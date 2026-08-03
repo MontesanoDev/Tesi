@@ -9,7 +9,7 @@ import { useProject } from '../hooks/useProject'
 import type { GroundedAnswer } from '../types'
 
 interface ChatTurn {
-  id: number
+  id: string
   question: string
   result: GroundedAnswer | null
   error: string | null
@@ -102,22 +102,74 @@ function ConversationTurn({ turn }: { turn: ChatTurn }) {
 }
 
 export function ProjectWorkspacePage() {
-  const { projectId } = useParams()
+  const { projectId, conversationId } = useParams()
   const navigate = useNavigate()
   const { project, loading, error, refresh } = useProject(projectId)
   const [menuOpen, setMenuOpen] = useState(false)
   const [prompt, setPrompt] = useState('')
   const [turns, setTurns] = useState<ChatTurn[]>([])
   const [searching, setSearching] = useState(false)
+  const [conversationLoading, setConversationLoading] = useState(false)
+  const [conversationError, setConversationError] = useState<string | null>(null)
   const turnSequence = useRef(0)
   const chatThread = useRef<HTMLDivElement>(null)
+  const activeConversation = useRef<string | null>(conversationId ?? null)
+  const loadedConversation = useRef<string | null>(null)
 
   useEffect(() => {
     setPrompt('')
     setTurns([])
     setSearching(false)
+    setConversationError(null)
     turnSequence.current = 0
+    activeConversation.current = null
+    loadedConversation.current = null
   }, [projectId])
+
+  useEffect(() => {
+    if (!projectId) return
+    if (!conversationId) {
+      activeConversation.current = null
+      loadedConversation.current = null
+      setTurns([])
+      setConversationLoading(false)
+      setConversationError(null)
+      return
+    }
+    if (loadedConversation.current === conversationId) return
+
+    const controller = new AbortController()
+    activeConversation.current = conversationId
+    setTurns([])
+    setConversationLoading(true)
+    setConversationError(null)
+    api.conversation(projectId, conversationId, controller.signal)
+      .then((conversation) => {
+        activeConversation.current = conversation.id
+        loadedConversation.current = conversation.id
+        setTurns(conversation.turns.map((turn) => ({
+          id: `turn-${turn.id}`,
+          question: turn.question,
+          result: {
+            ...turn,
+            conversation_id: conversation.id,
+            turn_id: turn.id,
+          },
+          error: null,
+        })))
+      })
+      .catch((reason) => {
+        if (reason instanceof DOMException && reason.name === 'AbortError') return
+        setConversationError(
+          reason instanceof Error ? reason.message : 'Conversazione non disponibile',
+        )
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setConversationLoading(false)
+      })
+
+    return () => controller.abort()
+  }, [projectId, conversationId])
 
   useEffect(() => {
     const thread = chatThread.current
@@ -137,8 +189,8 @@ export function ProjectWorkspacePage() {
   async function submitPrompt(event: FormEvent) {
     event.preventDefault()
     const query = prompt.trim()
-    if (!query || searching) return
-    const turnId = ++turnSequence.current
+    if (!query || searching || conversationLoading) return
+    const turnId = `local-${++turnSequence.current}`
     setTurns((current) => [
       ...current,
       { id: turnId, question: query, result: null, error: null },
@@ -146,10 +198,24 @@ export function ProjectWorkspacePage() {
     setPrompt('')
     setSearching(true)
     try {
-      const result = await api.projectAnswer(activeProjectId, query)
+      const result = await api.projectAnswer(
+        activeProjectId,
+        query,
+        activeConversation.current,
+      )
+      activeConversation.current = result.conversation_id
+      loadedConversation.current = result.conversation_id
       setTurns((current) => current.map((turn) => (
-        turn.id === turnId ? { ...turn, result } : turn
+        turn.id === turnId
+          ? { ...turn, id: `turn-${result.turn_id}`, result }
+          : turn
       )))
+      if (conversationId !== result.conversation_id) {
+        navigate(
+          `/projects/${activeProjectId}/conversations/${result.conversation_id}`,
+          { replace: true },
+        )
+      }
     } catch (reason) {
       const message = reason instanceof Error ? reason.message : 'Ricerca non riuscita'
       setTurns((current) => current.map((turn) => (
@@ -188,7 +254,7 @@ export function ProjectWorkspacePage() {
           className="send-button"
           type="submit"
           aria-label="Invia"
-          disabled={!prompt.trim() || searching}
+          disabled={!prompt.trim() || searching || conversationLoading}
         >
           <ArrowUp size={20} />
         </button>
@@ -232,7 +298,11 @@ export function ProjectWorkspacePage() {
             </div>
           </header>
 
-          {turns.length === 0 ? (
+          {conversationLoading ? (
+            <LoadingState label="Caricamento conversazione" />
+          ) : conversationError ? (
+            <ErrorState message={conversationError} />
+          ) : turns.length === 0 ? (
             <>
               {composer}
               <div className="assistant-note">
@@ -240,26 +310,32 @@ export function ProjectWorkspacePage() {
                 <p>Mapi RAG usa i documenti, i dati aziendali e i modelli collegati a questo progetto.</p>
               </div>
 
-              <section className="recent-conversations">
-                <span className="section-label">Conversazioni recenti</span>
-                <div className="conversation-grid">
-                  {project.conversations.map((conversation) => (
-                    <button
-                      className="conversation-item"
-                      type="button"
-                      key={conversation.id}
-                      onClick={() => {
-                        if (conversation.target === 'review') {
-                          navigate(`/projects/${project.id}/review`)
-                        }
-                      }}
-                    >
-                      <strong>{conversation.title}</strong>
-                      <span>{conversation.metadata}</span>
-                    </button>
-                  ))}
-                </div>
-              </section>
+              {!conversationId && (
+                <section className="recent-conversations">
+                  <span className="section-label">Conversazioni recenti</span>
+                  <div className="conversation-grid">
+                    {project.conversations.map((conversation) => (
+                      <button
+                        className="conversation-item"
+                        type="button"
+                        key={conversation.id}
+                        onClick={() => {
+                          if (conversation.target === 'review') {
+                            navigate(`/projects/${project.id}/review`)
+                            return
+                          }
+                          navigate(
+                            `/projects/${project.id}/conversations/${conversation.id}`,
+                          )
+                        }}
+                      >
+                        <strong>{conversation.title}</strong>
+                        <span>{conversation.metadata}</span>
+                      </button>
+                    ))}
+                  </div>
+                </section>
+              )}
             </>
           ) : (
             <>

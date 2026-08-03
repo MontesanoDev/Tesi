@@ -31,6 +31,8 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
     await route.fulfill({
       contentType: 'application/json',
       body: JSON.stringify({
+        conversation_id: 'conv-scadenza-test',
+        turn_id: 101,
         question: 'Qual è la scadenza?',
         answer: 'La scadenza è fissata alle ore 12.00 del 15.09.2025 [1].',
         citations: [1],
@@ -95,23 +97,54 @@ test('document review keeps source provenance visible', async ({ page }, testInf
 })
 
 test('conversation preserves earlier turns without project evidence', async ({ page }, testInfo) => {
+  const conversationId = 'conv-history-test'
+  const persistedTurns: Array<Record<string, unknown>> = []
+
+  await page.route(
+    `**/api/projects/fondo-riqualificazione-2027/conversations/${conversationId}`,
+    async (route) => {
+      await route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify({
+          id: conversationId,
+          project_id: 'fondo-riqualificazione-2027',
+          title: 'Chi sei?',
+          metadata: `Ora · ${persistedTurns.length} messaggi`,
+          target: 'chat',
+          turns: persistedTurns,
+        }),
+      })
+    },
+  )
   await page.route('**/api/projects/fondo-riqualificazione-2027/answer', async (route) => {
-    const { question } = route.request().postDataJSON() as { question: string }
+    const { question, conversation_id } = route.request().postDataJSON() as {
+      question: string
+      conversation_id: string | null
+    }
     const firstQuestion = question === 'Chi sei?'
+    expect(conversation_id).toBe(firstQuestion ? null : conversationId)
+    const turnId = persistedTurns.length + 1
+    const turn = {
+      id: turnId,
+      question,
+      answer: firstQuestion
+        ? 'Sono Mapi RAG, un assistente tecnico per progetti di ingegneria civile.'
+        : 'Il mio nome è Mapi RAG.',
+      citations: [],
+      missing_information: [],
+      evidence: [],
+      generation_status: 'direct',
+      model: 'Mapi RAG',
+      total_tokens: 0,
+      notice: null,
+    }
+    persistedTurns.push(turn)
     await route.fulfill({
       contentType: 'application/json',
       body: JSON.stringify({
-        question,
-        answer: firstQuestion
-          ? 'Sono Mapi RAG, un assistente tecnico per progetti di ingegneria civile.'
-          : 'Il mio nome è Mapi RAG.',
-        citations: [],
-        missing_information: [],
-        evidence: [],
-        generation_status: 'direct',
-        model: 'Mapi RAG',
-        total_tokens: 0,
-        notice: null,
+        ...turn,
+        conversation_id: conversationId,
+        turn_id: turnId,
       }),
     })
   })
@@ -133,6 +166,14 @@ test('conversation preserves earlier turns without project evidence', async ({ p
   await expect(page.getByText('Come ti chiami?', { exact: true })).toBeVisible()
   await expect(page.getByText('Il mio nome è Mapi RAG.')).toBeVisible()
   await expect(page.getByText('Evidenze recuperate', { exact: true })).toHaveCount(0)
+  await expect(page).toHaveURL(
+    `/projects/fondo-riqualificazione-2027/conversations/${conversationId}`,
+  )
+
+  await page.reload()
+  await expect(page.locator('.chat-turn')).toHaveCount(2)
+  await expect(page.getByText('Chi sei?', { exact: true })).toBeVisible()
+  await expect(page.getByText('Il mio nome è Mapi RAG.')).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
     path: `artifacts/${testInfo.project.name}-conversation-history.png`,

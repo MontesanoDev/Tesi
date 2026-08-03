@@ -3,6 +3,7 @@ from app.repository import (
     _expand_neighbor_evidence,
     _neighbor_excerpt,
     _rerank_evidence,
+    contextualize_search_query,
 )
 from app.seed import seed_database
 
@@ -46,6 +47,15 @@ def test_previous_neighbor_excerpt_preserves_section_boundary():
 
     assert "Possono presentare proposta" in excerpt
     assert len(excerpt) <= 484
+
+
+def test_follow_up_search_reuses_the_previous_question():
+    query = contextualize_search_query(
+        "E quali sono?",
+        [{"question": "Quali requisiti tecnici sono obbligatori?", "answer": "..."}],
+    )
+
+    assert query == "Quali requisiti tecnici sono obbligatori? E quali sono?"
 
 
 def test_neighbor_expansion_adds_previous_document_context(tmp_path, monkeypatch):

@@ -13,6 +13,10 @@ export default function App() {
       <Route path="/projects" element={<ProjectsPage />} />
       <Route path="/projects/:projectId" element={<ProjectWorkspacePage />} />
       <Route
+        path="/projects/:projectId/conversations/:conversationId"
+        element={<ProjectWorkspacePage />}
+      />
+      <Route
         path="/projects/:projectId/settings"
         element={<ProjectSettingsPage />}
       />

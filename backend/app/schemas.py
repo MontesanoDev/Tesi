@@ -83,6 +83,24 @@ class Evidence(BaseModel):
     relevance: float
 
 
+class ConversationTurn(BaseModel):
+    id: int
+    question: str
+    answer: str | None
+    citations: list[int]
+    missing_information: list[str]
+    evidence: list[Evidence]
+    generation_status: Literal["completed", "direct", "not_configured", "no_evidence", "failed"]
+    model: str | None
+    total_tokens: int | None
+    notice: str | None
+
+
+class ConversationDetail(Conversation):
+    project_id: str
+    turns: list[ConversationTurn]
+
+
 class EvidenceSearch(BaseModel):
     query: str
     results: list[Evidence]
@@ -90,17 +108,18 @@ class EvidenceSearch(BaseModel):
 
 class QuestionRequest(BaseModel):
     question: str = Field(min_length=2, max_length=500)
+    conversation_id: str | None = Field(default=None, max_length=80)
 
 
 class GroundedAnswerResponse(BaseModel):
+    conversation_id: str
+    turn_id: int
     question: str
     answer: str | None
     citations: list[int]
     missing_information: list[str]
     evidence: list[Evidence]
-    generation_status: Literal[
-        "completed", "direct", "not_configured", "no_evidence", "failed"
-    ]
+    generation_status: Literal["completed", "direct", "not_configured", "no_evidence", "failed"]
     model: str | None
     total_tokens: int | None
     notice: str | None

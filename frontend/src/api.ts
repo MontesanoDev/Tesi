@@ -1,4 +1,5 @@
 import type {
+  ConversationDetail,
   DocumentReview,
   EvidenceSearch,
   GroundedAnswer,
@@ -51,10 +52,15 @@ export const api = {
       signal,
     })
   },
-  projectAnswer: (projectId: string, question: string) =>
+  conversation: (projectId: string, conversationId: string, signal?: AbortSignal) =>
+    request<ConversationDetail>(
+      `/projects/${projectId}/conversations/${conversationId}`,
+      { signal },
+    ),
+  projectAnswer: (projectId: string, question: string, conversationId?: string | null) =>
     request<GroundedAnswer>(`/projects/${projectId}/answer`, {
       method: 'POST',
-      body: JSON.stringify({ question }),
+      body: JSON.stringify({ question, conversation_id: conversationId ?? null }),
     }),
   documentReview: (projectId: string, signal?: AbortSignal) =>
     request<DocumentReview>(`/projects/${projectId}/document-review`, { signal }),

@@ -22,14 +22,20 @@ from app.ingestion import (
 from app.intents import direct_system_answer
 from app.repository import (
     add_project_file,
+    contextualize_search_query,
     create_project,
     get_company_facts,
+    get_conversation,
+    get_conversation_history,
     get_document_review,
+    get_or_create_conversation,
     get_project,
     list_projects,
+    save_conversation_turn,
     search_project_evidence,
 )
 from app.schemas import (
+    ConversationDetail,
     DocumentReview,
     EvidenceSearch,
     GroundedAnswerResponse,
@@ -82,6 +88,17 @@ async def project(project_id: str) -> dict:
     return result
 
 
+@app.get(
+    "/api/projects/{project_id}/conversations/{conversation_id}",
+    response_model=ConversationDetail,
+)
+async def project_conversation(project_id: str, conversation_id: str) -> dict:
+    result = get_conversation(project_id, conversation_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Conversazione non trovata")
+    return result
+
+
 @app.get("/api/projects/{project_id}/evidence", response_model=EvidenceSearch)
 async def project_evidence(
     project_id: str,
@@ -98,22 +115,43 @@ async def project_evidence(
 async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
     if get_project(project_id) is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
+    conversation = get_or_create_conversation(
+        project_id,
+        payload.conversation_id,
+        payload.question,
+    )
+    if conversation is None:
+        raise HTTPException(status_code=404, detail="Conversazione non trovata")
+    conversation_id = conversation["id"]
+    history = get_conversation_history(conversation_id)
+
+    def persist(response: dict) -> dict:
+        turn_id = save_conversation_turn(conversation_id, response)
+        return {
+            **response,
+            "conversation_id": conversation_id,
+            "turn_id": turn_id,
+        }
+
     direct_answer = direct_system_answer(payload.question)
     if direct_answer:
-        return {
-            "question": payload.question,
-            "answer": direct_answer,
-            "citations": [],
-            "missing_information": [],
-            "evidence": [],
-            "generation_status": "direct",
-            "model": "Mapi RAG",
-            "total_tokens": 0,
-            "notice": None,
-        }
+        return persist(
+            {
+                "question": payload.question,
+                "answer": direct_answer,
+                "citations": [],
+                "missing_information": [],
+                "evidence": [],
+                "generation_status": "direct",
+                "model": "Mapi RAG",
+                "total_tokens": 0,
+                "notice": None,
+            }
+        )
+    search_query = contextualize_search_query(payload.question, history)
     evidence = search_project_evidence(
         project_id,
-        payload.question,
+        search_query,
         limit=4,
         include_neighbors=True,
     )
@@ -128,42 +166,51 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
         "total_tokens": None,
     }
     if not evidence:
-        return {
-            **base_response,
-            "answer": None,
-            "generation_status": "no_evidence",
-            "notice": "Nessuna evidenza pertinente trovata nelle fonti indicizzate.",
-        }
+        return persist(
+            {
+                **base_response,
+                "answer": None,
+                "generation_status": "no_evidence",
+                "notice": "Nessuna evidenza pertinente trovata nelle fonti indicizzate.",
+            }
+        )
     try:
         generated = await generate_grounded_answer(
             payload.question,
             evidence,
             company_facts=get_company_facts(),
+            conversation_history=history,
         )
     except GenerationNotConfiguredError as exc:
-        return {
-            **base_response,
-            "answer": None,
-            "generation_status": "not_configured",
-            "notice": str(exc),
-        }
+        return persist(
+            {
+                **base_response,
+                "answer": None,
+                "generation_status": "not_configured",
+                "notice": str(exc),
+            }
+        )
     except GenerationError as exc:
-        return {
+        return persist(
+            {
+                **base_response,
+                "answer": None,
+                "generation_status": "failed",
+                "notice": str(exc),
+            }
+        )
+    return persist(
+        {
             **base_response,
-            "answer": None,
-            "generation_status": "failed",
-            "notice": str(exc),
+            "answer": generated.answer,
+            "citations": generated.citations,
+            "missing_information": generated.missing_information,
+            "generation_status": "completed",
+            "model": generated.model,
+            "total_tokens": generated.total_tokens,
+            "notice": None,
         }
-    return {
-        **base_response,
-        "answer": generated.answer,
-        "citations": generated.citations,
-        "missing_information": generated.missing_information,
-        "generation_status": "completed",
-        "model": generated.model,
-        "total_tokens": generated.total_tokens,
-        "notice": None,
-    }
+    )
 
 
 @app.post(

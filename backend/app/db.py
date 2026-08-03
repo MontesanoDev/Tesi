@@ -20,9 +20,7 @@ def get_storage_path() -> Path:
     return Path(configured) if configured else DEFAULT_STORAGE_PATH
 
 
-def _ensure_column(
-    db: sqlite3.Connection, table: str, column: str, definition: str
-) -> None:
+def _ensure_column(db: sqlite3.Connection, table: str, column: str, definition: str) -> None:
     columns = {row[1] for row in db.execute(f"PRAGMA table_info({table})")}
     if column not in columns:
         db.execute(f"ALTER TABLE {table} ADD COLUMN {column} {definition}")
@@ -140,8 +138,28 @@ def init_database() -> None:
                 title TEXT NOT NULL,
                 metadata TEXT NOT NULL,
                 target TEXT,
-                sort_order INTEGER NOT NULL DEFAULT 0
+                sort_order INTEGER NOT NULL DEFAULT 0,
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
             );
+
+            CREATE TABLE IF NOT EXISTS conversation_turns (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                conversation_id TEXT NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+                question TEXT NOT NULL,
+                answer TEXT,
+                citations_json TEXT NOT NULL DEFAULT '[]',
+                missing_information_json TEXT NOT NULL DEFAULT '[]',
+                evidence_json TEXT NOT NULL DEFAULT '[]',
+                generation_status TEXT NOT NULL,
+                model TEXT,
+                total_tokens INTEGER,
+                notice TEXT,
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_conversation_turns_conversation
+            ON conversation_turns(conversation_id, id);
 
             CREATE TABLE IF NOT EXISTS document_fields (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -161,6 +179,15 @@ def init_database() -> None:
         _ensure_column(db, "project_files", "byte_size", "INTEGER NOT NULL DEFAULT 0")
         _ensure_column(db, "project_files", "page_count", "INTEGER NOT NULL DEFAULT 0")
         _ensure_column(db, "project_files", "chunk_count", "INTEGER NOT NULL DEFAULT 0")
+        _ensure_column(db, "conversations", "created_at", "TEXT")
+        _ensure_column(db, "conversations", "updated_at", "TEXT")
+        db.execute(
+            """
+            UPDATE conversations
+            SET created_at = COALESCE(created_at, CURRENT_TIMESTAMP),
+                updated_at = COALESCE(updated_at, CURRENT_TIMESTAMP)
+            """
+        )
         db.execute(
             """
             INSERT OR REPLACE INTO document_chunks_fts(rowid, project_id, file_id, content)

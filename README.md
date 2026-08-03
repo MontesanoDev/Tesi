@@ -67,5 +67,8 @@ testo, lo divide in frammenti sovrapposti e li persiste in SQLite. Un indice
 full-text FTS5 consente gia di recuperare dal composer evidenze ordinate con
 nome della fonte e numero del frammento. Se `DEEPSEEK_API_KEY` e configurata,
 DeepSeek produce una risposta JSON vincolata alle evidenze recuperate; citazioni
-inesistenti vengono rifiutate. Il retrieval semantico tramite embedding potra
+inesistenti vengono rifiutate. Le conversazioni e i relativi turni sono
+persistiti in SQLite: le card recenti riaprono le chat, il refresh conserva
+risposte e citazioni e la cronologia recente viene passata al modello soltanto
+come contesto conversazionale. Il retrieval semantico tramite embedding potra
 essere aggiunto sopra questo contratto dati senza riscrivere l'interfaccia.

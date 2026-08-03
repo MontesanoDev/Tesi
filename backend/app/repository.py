@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 import sqlite3
 import unicodedata
@@ -41,6 +42,7 @@ TEMPORAL_QUERY_TERMS = {
 }
 DATE_PATTERN = re.compile(r"\b(?:\d{1,2}[./-]){2}\d{2,4}\b")
 TIME_PATTERN = re.compile(r"\bore\s+\d{1,2}(?:[.:]\d{2})?", flags=re.IGNORECASE)
+FOLLOWUP_TERMS = {"anche", "e", "invece", "quella", "quello", "questa", "questo"}
 
 
 def _rows(db: sqlite3.Connection, query: str, params: tuple = ()) -> list[dict]:
@@ -51,6 +53,12 @@ def _slugify(value: str) -> str:
     normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode()
     slug = re.sub(r"[^a-z0-9]+", "-", normalized.lower()).strip("-")
     return slug or f"progetto-{uuid4().hex[:8]}"
+
+
+def _conversation_title(question: str) -> str:
+    compact = re.sub(r"\s+", " ", question).strip()
+    title = compact[:72].rstrip()
+    return f"{title[0].upper()}{title[1:]}" if title else "Nuova conversazione"
 
 
 def _format_size(byte_size: int) -> str:
@@ -227,11 +235,175 @@ def get_project(project_id: str) -> dict | None:
             db,
             """
             SELECT id, title, metadata, target
-            FROM conversations WHERE project_id = ? ORDER BY sort_order
+            FROM conversations
+            WHERE project_id = ?
+            ORDER BY datetime(updated_at) DESC, rowid DESC, sort_order
             """,
             (project_id,),
         )
         return result
+
+
+def get_or_create_conversation(
+    project_id: str,
+    conversation_id: str | None,
+    first_question: str,
+) -> dict | None:
+    with connection() as db:
+        if conversation_id:
+            row = db.execute(
+                """
+                SELECT id, project_id, title, metadata, target
+                FROM conversations
+                WHERE id = ? AND project_id = ?
+                """,
+                (conversation_id, project_id),
+            ).fetchone()
+            return dict(row) if row is not None else None
+
+        new_id = f"conv-{uuid4().hex[:16]}"
+        db.execute(
+            """
+            INSERT INTO conversations (
+                id, project_id, title, metadata, target, sort_order
+            ) VALUES (?, ?, ?, 'Ora · nuova conversazione', 'chat', 0)
+            """,
+            (new_id, project_id, _conversation_title(first_question)),
+        )
+        row = db.execute(
+            """
+            SELECT id, project_id, title, metadata, target
+            FROM conversations WHERE id = ?
+            """,
+            (new_id,),
+        ).fetchone()
+    return dict(row) if row is not None else None
+
+
+def get_conversation_history(conversation_id: str, limit: int = 6) -> list[dict]:
+    with connection() as db:
+        rows = _rows(
+            db,
+            """
+            SELECT question, answer
+            FROM conversation_turns
+            WHERE conversation_id = ? AND answer IS NOT NULL
+            ORDER BY id DESC
+            LIMIT ?
+            """,
+            (conversation_id, limit),
+        )
+    rows.reverse()
+    return rows
+
+
+def contextualize_search_query(question: str, history: list[dict]) -> str:
+    if not history:
+        return question
+    tokens = _normalized_tokens(question)
+    if tokens & FOLLOWUP_TERMS:
+        return f"{history[-1]['question']} {question}"
+    return question
+
+
+def _public_evidence(evidence: list[dict]) -> list[dict]:
+    fields = (
+        "chunk_id",
+        "file_id",
+        "source_name",
+        "chunk_index",
+        "excerpt",
+        "relevance",
+    )
+    return [{field: item[field] for field in fields} for item in evidence]
+
+
+def save_conversation_turn(conversation_id: str, response: dict) -> int:
+    evidence = _public_evidence(response.get("evidence", []))
+    with connection() as db:
+        cursor = db.execute(
+            """
+            INSERT INTO conversation_turns (
+                conversation_id, question, answer, citations_json,
+                missing_information_json, evidence_json, generation_status,
+                model, total_tokens, notice
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                conversation_id,
+                response["question"],
+                response.get("answer"),
+                json.dumps(response.get("citations", [])),
+                json.dumps(response.get("missing_information", []), ensure_ascii=False),
+                json.dumps(evidence, ensure_ascii=False),
+                response["generation_status"],
+                response.get("model"),
+                response.get("total_tokens"),
+                response.get("notice"),
+            ),
+        )
+        turn_id = cursor.lastrowid
+        if turn_id is None:
+            raise RuntimeError("Il turno non ha ricevuto un identificativo")
+        turn_count = db.execute(
+            "SELECT COUNT(*) FROM conversation_turns WHERE conversation_id = ?",
+            (conversation_id,),
+        ).fetchone()[0]
+        label = "messaggio" if turn_count == 1 else "messaggi"
+        db.execute(
+            """
+            UPDATE conversations
+            SET metadata = ?, updated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+            """,
+            (f"Ora · {turn_count} {label}", conversation_id),
+        )
+    return int(turn_id)
+
+
+def get_conversation(project_id: str, conversation_id: str) -> dict | None:
+    with connection() as db:
+        conversation = db.execute(
+            """
+            SELECT id, project_id, title, metadata, target
+            FROM conversations
+            WHERE id = ? AND project_id = ?
+            """,
+            (conversation_id, project_id),
+        ).fetchone()
+        if conversation is None:
+            return None
+        turns = _rows(
+            db,
+            """
+            SELECT
+                id, question, answer, citations_json,
+                missing_information_json, evidence_json,
+                generation_status, model, total_tokens, notice
+            FROM conversation_turns
+            WHERE conversation_id = ?
+            ORDER BY id
+            """,
+            (conversation_id,),
+        )
+
+    result = dict(conversation)
+    result["turns"] = [
+        {
+            "id": turn["id"],
+            "question": turn["question"],
+            "answer": turn["answer"],
+            "citations": json.loads(turn["citations_json"]),
+            "missing_information": json.loads(turn["missing_information_json"]),
+            "evidence": json.loads(turn["evidence_json"]),
+            "generation_status": turn["generation_status"],
+            "model": turn["model"],
+            "total_tokens": turn["total_tokens"],
+            "notice": turn["notice"],
+        }
+        for turn in turns
+    ]
+    return result
 
 
 def create_project(payload: ProjectCreate) -> dict:

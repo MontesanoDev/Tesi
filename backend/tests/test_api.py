@@ -37,9 +37,7 @@ async def test_project_vertical_slice(client):
     assert len(detail.json()["files"]) == 2
     assert detail.json()["call_fact_count"] == 14
 
-    review = await client.get(
-        "/api/projects/fondo-riqualificazione-2027/document-review"
-    )
+    review = await client.get("/api/projects/fondo-riqualificazione-2027/document-review")
     assert review.status_code == 200
     assert review.json()["total_fields"] == 6
 
@@ -80,6 +78,35 @@ async def test_identity_question_bypasses_retrieval_and_generation(client, monke
     assert payload["citations"] == []
     assert payload["total_tokens"] == 0
     assert payload["answer"].startswith("Sono Mapi RAG")
+    assert payload["conversation_id"].startswith("conv-")
+    assert payload["turn_id"] > 0
+
+    persisted = await client.get(
+        f"/api/projects/fondo-riqualificazione-2027/conversations/{payload['conversation_id']}"
+    )
+    assert persisted.status_code == 200
+    assert persisted.json()["title"] == "Chi sei?"
+    assert persisted.json()["turns"][0]["answer"] == payload["answer"]
+    assert persisted.json()["turns"][0]["generation_status"] == "direct"
+
+    project = await client.get("/api/projects/fondo-riqualificazione-2027")
+    recent = project.json()["conversations"][0]
+    assert recent["id"] == payload["conversation_id"]
+    assert recent["metadata"] == "Ora · 1 messaggio"
+
+
+@pytest.mark.anyio
+async def test_answer_rejects_a_conversation_from_another_project(client):
+    response = await client.post(
+        "/api/projects/adeguamento-sismico-edificio-b/answer",
+        json={
+            "question": "Chi sei?",
+            "conversation_id": "requisiti-ammissibilita",
+        },
+    )
+
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Conversazione non trovata"
 
 
 @pytest.mark.anyio
@@ -125,12 +152,22 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
     assert not_configured.json()["generation_status"] == "not_configured"
     assert not_configured.json()["evidence"]
 
-    async def fake_generation(question, retrieved_evidence, company_facts=None):
-        assert question == "Quali sono i requisiti tecnici verificabili?"
-        assert retrieved_evidence[0]["content"]
-        assert any(
-            fact["key"] == "organization_type" for fact in company_facts or []
+    generation_calls = []
+
+    async def fake_generation(
+        question,
+        retrieved_evidence,
+        company_facts=None,
+        conversation_history=None,
+    ):
+        generation_calls.append(
+            {
+                "question": question,
+                "history": conversation_history or [],
+            }
         )
+        assert retrieved_evidence[0]["content"]
+        assert any(fact["key"] == "organization_type" for fact in company_facts or [])
         return GeneratedAnswer(
             answer="Il requisito deve essere verificabile nella fonte [1].",
             citations=[1],
@@ -148,6 +185,29 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
     assert generated.json()["generation_status"] == "completed"
     assert generated.json()["citations"] == [1]
     assert generated.json()["model"] == "deepseek-test"
+    assert generation_calls[0]["history"] == []
+
+    conversation_id = generated.json()["conversation_id"]
+    follow_up = await client.post(
+        "/api/projects/fondo-riqualificazione-2027/answer",
+        json={
+            "question": "E quali sono?",
+            "conversation_id": conversation_id,
+        },
+    )
+    assert follow_up.status_code == 200
+    assert follow_up.json()["conversation_id"] == conversation_id
+    assert generation_calls[1]["history"][0]["question"] == (
+        "Quali sono i requisiti tecnici verificabili?"
+    )
+
+    persisted = await client.get(
+        f"/api/projects/fondo-riqualificazione-2027/conversations/{conversation_id}"
+    )
+    assert persisted.status_code == 200
+    assert len(persisted.json()["turns"]) == 2
+    assert persisted.json()["turns"][0]["citations"] == [1]
+    assert "content" not in persisted.json()["turns"][0]["evidence"][0]
 
 
 @pytest.mark.anyio

@@ -26,7 +26,7 @@ def test_generation_parser_rejects_unknown_citations():
         )
 
 
-def test_generation_prompt_includes_verified_company_context():
+def test_generation_prompt_includes_verified_context_and_recent_history():
     prompt = _build_user_prompt(
         "Mapi puo presentare domanda?",
         [
@@ -42,7 +42,15 @@ def test_generation_prompt_includes_verified_company_context():
                 "value": "Societa privata di ingegneria civile",
             }
         ],
+        [
+            {
+                "question": "Quali soggetti sono ammessi?",
+                "answer": "Sono ammessi gli enti locali [1].",
+            }
+        ],
     )
 
     assert "CONTESTO AZIENDALE VERIFICATO" in prompt
     assert "Societa privata di ingegneria civile" in prompt
+    assert "CRONOLOGIA RECENTE NON FATTUALE" in prompt
+    assert "Quali soggetti sono ammessi?" in prompt

@@ -86,6 +86,8 @@ export type GenerationStatus =
   | 'failed'
 
 export interface GroundedAnswer {
+  conversation_id: string
+  turn_id: number
   question: string
   answer: string | null
   citations: number[]
@@ -95,4 +97,22 @@ export interface GroundedAnswer {
   model: string | null
   total_tokens: number | null
   notice: string | null
+}
+
+export interface ConversationTurnData {
+  id: number
+  question: string
+  answer: string | null
+  citations: number[]
+  missing_information: string[]
+  evidence: Evidence[]
+  generation_status: GenerationStatus
+  model: string | null
+  total_tokens: number | null
+  notice: string | null
+}
+
+export interface ConversationDetail extends Conversation {
+  project_id: string
+  turns: ConversationTurnData[]
 }
