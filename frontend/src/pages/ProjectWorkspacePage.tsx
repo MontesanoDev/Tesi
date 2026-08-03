@@ -1,5 +1,5 @@
 import { ArrowUp, EllipsisVertical, FileText, Paperclip } from 'lucide-react'
-import { useState, type FormEvent } from 'react'
+import { useState, type FormEvent, type KeyboardEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
 import { AppShell } from '../components/AppShell'
@@ -45,6 +45,12 @@ export function ProjectWorkspacePage() {
     }
   }
 
+  function handleComposerKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key !== 'Enter' || event.shiftKey || event.nativeEvent.isComposing) return
+    event.preventDefault()
+    event.currentTarget.form?.requestSubmit()
+  }
+
   return (
     <AppShell active="projects" project={project} contentClassName="workspace-content">
       <Link className="back-link" to="/projects">← Tutti i progetti</Link>
@@ -87,6 +93,7 @@ export function ProjectWorkspacePage() {
               placeholder="Come posso aiutarti in questo progetto?"
               value={prompt}
               onChange={(event) => setPrompt(event.target.value)}
+              onKeyDown={handleComposerKeyDown}
             />
             <div className="composer-tools">
               <button className="icon-button" type="button" aria-label="Allega file">

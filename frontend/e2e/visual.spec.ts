@@ -52,8 +52,12 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
       }),
     })
   })
-  await page.getByPlaceholder('Come posso aiutarti in questo progetto?').fill('Qual è la scadenza?')
-  await page.getByRole('button', { name: 'Invia' }).click()
+  const composer = page.getByPlaceholder('Come posso aiutarti in questo progetto?')
+  await composer.fill('Qual è')
+  await composer.press('Shift+Enter')
+  await composer.pressSequentially('la scadenza?')
+  await expect(composer).toHaveValue('Qual è\nla scadenza?')
+  await composer.press('Enter')
   await expect(page.getByText('Risposta Mapi')).toBeVisible()
   await expect(page.getByText('Evidenze recuperate', { exact: true })).toBeVisible()
   await expect(
