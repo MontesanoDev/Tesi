@@ -7,11 +7,25 @@ from contextlib import contextmanager
 from pathlib import Path
 
 DEFAULT_DB_PATH = Path(__file__).resolve().parents[1] / "data" / "mapi.db"
+DEFAULT_STORAGE_PATH = Path(__file__).resolve().parents[1] / "data" / "uploads"
 
 
 def get_db_path() -> Path:
     configured = os.getenv("MAPI_DB_PATH")
     return Path(configured) if configured else DEFAULT_DB_PATH
+
+
+def get_storage_path() -> Path:
+    configured = os.getenv("MAPI_STORAGE_PATH")
+    return Path(configured) if configured else DEFAULT_STORAGE_PATH
+
+
+def _ensure_column(
+    db: sqlite3.Connection, table: str, column: str, definition: str
+) -> None:
+    columns = {row[1] for row in db.execute(f"PRAGMA table_info({table})")}
+    if column not in columns:
+        db.execute(f"ALTER TABLE {table} ADD COLUMN {column} {definition}")
 
 
 @contextmanager
@@ -54,8 +68,27 @@ def init_database() -> None:
                 metadata TEXT NOT NULL,
                 kind TEXT NOT NULL,
                 status TEXT NOT NULL,
+                storage_path TEXT,
+                mime_type TEXT,
+                byte_size INTEGER NOT NULL DEFAULT 0,
+                page_count INTEGER NOT NULL DEFAULT 0,
+                chunk_count INTEGER NOT NULL DEFAULT 0,
                 sort_order INTEGER NOT NULL DEFAULT 0
             );
+
+            CREATE TABLE IF NOT EXISTS document_chunks (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+                file_id INTEGER NOT NULL REFERENCES project_files(id) ON DELETE CASCADE,
+                chunk_index INTEGER NOT NULL,
+                content TEXT NOT NULL,
+                char_count INTEGER NOT NULL,
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(file_id, chunk_index)
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_document_chunks_project
+            ON document_chunks(project_id);
 
             CREATE TABLE IF NOT EXISTS knowledge_sources (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -90,3 +123,8 @@ def init_database() -> None:
             );
             """
         )
+        _ensure_column(db, "project_files", "storage_path", "TEXT")
+        _ensure_column(db, "project_files", "mime_type", "TEXT")
+        _ensure_column(db, "project_files", "byte_size", "INTEGER NOT NULL DEFAULT 0")
+        _ensure_column(db, "project_files", "page_count", "INTEGER NOT NULL DEFAULT 0")
+        _ensure_column(db, "project_files", "chunk_count", "INTEGER NOT NULL DEFAULT 0")

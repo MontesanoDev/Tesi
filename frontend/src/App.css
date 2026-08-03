@@ -563,6 +563,37 @@
   gap: 16px;
 }
 
+.source-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.upload-feedback {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.upload-feedback--success { color: #8fc3a1; }
+.upload-feedback--error { color: #dc9b8f; }
+
+.spin {
+  animation: spin 900ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin { animation: none; }
+}
+
 .knowledge-section h2,
 .settings-card h2,
 .review-panel h2 {

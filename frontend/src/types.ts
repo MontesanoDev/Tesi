@@ -17,6 +17,8 @@ export interface ProjectFile {
   metadata: string
   kind: 'source' | 'template'
   status: string
+  page_count: number
+  chunk_count: number
 }
 
 export interface KnowledgeSource {

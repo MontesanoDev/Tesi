@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { api } from '../api'
 import type { ProjectDetail } from '../types'
 
@@ -30,5 +30,17 @@ export function useProject(projectId?: string) {
     return () => controller.abort()
   }, [projectId])
 
-  return { project, error, loading }
+  const refresh = useCallback(async () => {
+    if (!projectId) return
+    try {
+      const result = await api.project(projectId)
+      setProject(result)
+      setError(null)
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'Aggiornamento non riuscito')
+      throw reason
+    }
+  }, [projectId])
+
+  return { project, error, loading, refresh }
 }

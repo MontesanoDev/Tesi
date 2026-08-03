@@ -1,13 +1,33 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+from typing import Annotated
 
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, File, HTTPException, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.db import init_database
-from app.repository import create_project, get_document_review, get_project, list_projects
-from app.schemas import DocumentReview, ProjectCreate, ProjectDetail, ProjectSummary
+from app.ingestion import (
+    DocumentTooLargeError,
+    EmptyDocumentError,
+    InvalidDocumentError,
+    UnsupportedDocumentError,
+    ingest_upload,
+)
+from app.repository import (
+    add_project_file,
+    create_project,
+    get_document_review,
+    get_project,
+    list_projects,
+)
+from app.schemas import (
+    DocumentReview,
+    ProjectCreate,
+    ProjectDetail,
+    ProjectFile,
+    ProjectSummary,
+)
 from app.seed import seed_database
 
 
@@ -46,6 +66,32 @@ async def projects_create(payload: ProjectCreate) -> dict:
 @app.get("/api/projects/{project_id}", response_model=ProjectDetail)
 async def project(project_id: str) -> dict:
     result = get_project(project_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    return result
+
+
+@app.post(
+    "/api/projects/{project_id}/files",
+    response_model=ProjectFile,
+    status_code=status.HTTP_201_CREATED,
+)
+async def project_file_create(
+    project_id: str,
+    file: Annotated[UploadFile, File(description="Documento PDF o TXT")],
+) -> dict:
+    if get_project(project_id) is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    try:
+        document = await ingest_upload(project_id, file)
+    except UnsupportedDocumentError as exc:
+        raise HTTPException(status_code=415, detail=str(exc)) from exc
+    except DocumentTooLargeError as exc:
+        raise HTTPException(status_code=413, detail=str(exc)) from exc
+    except (EmptyDocumentError, InvalidDocumentError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+    result = add_project_file(project_id, document)
     if result is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
     return result

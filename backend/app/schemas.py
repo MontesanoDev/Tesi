@@ -25,6 +25,8 @@ class ProjectFile(BaseModel):
     metadata: str
     kind: str
     status: str
+    page_count: int = 0
+    chunk_count: int = 0
 
 
 class KnowledgeSource(BaseModel):

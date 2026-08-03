@@ -1,7 +1,7 @@
 import httpx
 import pytest
 
-from app.db import init_database
+from app.db import connection, init_database
 from app.main import app
 from app.seed import seed_database
 
@@ -14,6 +14,7 @@ def anyio_backend():
 @pytest.fixture
 async def client(tmp_path, monkeypatch):
     monkeypatch.setenv("MAPI_DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("MAPI_STORAGE_PATH", str(tmp_path / "uploads"))
     init_database()
     seed_database()
     transport = httpx.ASGITransport(app=app)
@@ -57,3 +58,41 @@ async def test_create_project_persists(client):
     persisted = await client.get(f"/api/projects/{project_id}")
     assert persisted.status_code == 200
     assert persisted.json()["title"] == "Nuova candidatura"
+
+
+@pytest.mark.anyio
+async def test_upload_document_extracts_and_persists_chunks(client):
+    content = ("Requisito tecnico verificabile con fonte documentale. " * 80).encode()
+    response = await client.post(
+        "/api/projects/fondo-riqualificazione-2027/files",
+        files={"file": ("capitolato-tecnico.txt", content, "text/plain")},
+    )
+
+    assert response.status_code == 201
+    uploaded = response.json()
+    assert uploaded["name"] == "capitolato-tecnico.txt"
+    assert uploaded["status"] == "Indicizzato"
+    assert uploaded["chunk_count"] >= 2
+
+    detail = await client.get("/api/projects/fondo-riqualificazione-2027")
+    assert detail.status_code == 200
+    assert detail.json()["files"][-1]["name"] == "capitolato-tecnico.txt"
+    assert detail.json()["source_count"] == 13
+
+    with connection() as db:
+        persisted_chunks = db.execute(
+            "SELECT COUNT(*) FROM document_chunks WHERE file_id = ?",
+            (uploaded["id"],),
+        ).fetchone()[0]
+    assert persisted_chunks == uploaded["chunk_count"]
+
+
+@pytest.mark.anyio
+async def test_upload_rejects_unsupported_documents(client):
+    response = await client.post(
+        "/api/projects/fondo-riqualificazione-2027/files",
+        files={"file": ("render.png", b"not-an-image", "image/png")},
+    )
+
+    assert response.status_code == 415
+    assert response.json()["detail"] == "Sono supportati soltanto file PDF e TXT"

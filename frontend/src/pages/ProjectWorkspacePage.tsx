@@ -9,7 +9,7 @@ import { useProject } from '../hooks/useProject'
 export function ProjectWorkspacePage() {
   const { projectId } = useParams()
   const navigate = useNavigate()
-  const { project, loading, error } = useProject(projectId)
+  const { project, loading, error, refresh } = useProject(projectId)
   const [menuOpen, setMenuOpen] = useState(false)
   const [prompt, setPrompt] = useState('')
   const [savedPrompt, setSavedPrompt] = useState<string | null>(null)
@@ -117,7 +117,7 @@ export function ProjectWorkspacePage() {
           </section>
         </section>
 
-        <ProjectKnowledgePanel project={project} />
+        <ProjectKnowledgePanel project={project} onProjectChange={refresh} />
       </div>
     </AppShell>
   )

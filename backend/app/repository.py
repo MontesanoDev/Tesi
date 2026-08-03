@@ -6,6 +6,7 @@ import unicodedata
 from uuid import uuid4
 
 from app.db import connection
+from app.ingestion import IngestedDocument
 from app.schemas import ProjectCreate
 
 
@@ -17,6 +18,14 @@ def _slugify(value: str) -> str:
     normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode()
     slug = re.sub(r"[^a-z0-9]+", "-", normalized.lower()).strip("-")
     return slug or f"progetto-{uuid4().hex[:8]}"
+
+
+def _format_size(byte_size: int) -> str:
+    if byte_size >= 1024 * 1024:
+        return f"{byte_size / (1024 * 1024):.1f} MB".replace(".0 ", " ")
+    if byte_size >= 1024:
+        return f"{round(byte_size / 1024)} KB"
+    return f"{byte_size} B"
 
 
 def list_projects() -> list[dict]:
@@ -53,7 +62,7 @@ def get_project(project_id: str) -> dict | None:
         result["files"] = _rows(
             db,
             """
-            SELECT id, name, metadata, kind, status
+            SELECT id, name, metadata, kind, status, page_count, chunk_count
             FROM project_files WHERE project_id = ? ORDER BY sort_order
             """,
             (project_id,),
@@ -100,6 +109,71 @@ def create_project(payload: ProjectCreate) -> dict:
     if project is None:
         raise RuntimeError("Il progetto appena creato non e stato trovato")
     return project
+
+
+def add_project_file(project_id: str, document: IngestedDocument) -> dict | None:
+    chunk_count = len(document.chunks)
+    chunk_label = "frammento" if chunk_count == 1 else "frammenti"
+    file_type = "PDF" if document.mime_type == "application/pdf" else "TXT"
+    metadata = f"{file_type} · {_format_size(document.byte_size)} · {chunk_count} {chunk_label}"
+
+    with connection() as db:
+        if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
+            return None
+        sort_order = db.execute(
+            "SELECT COALESCE(MAX(sort_order), 0) + 1 FROM project_files WHERE project_id = ?",
+            (project_id,),
+        ).fetchone()[0]
+        cursor = db.execute(
+            """
+            INSERT INTO project_files (
+                project_id, name, metadata, kind, status, storage_path,
+                mime_type, byte_size, page_count, chunk_count, sort_order
+            ) VALUES (?, ?, ?, 'source', 'Indicizzato', ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                project_id,
+                document.name,
+                metadata,
+                document.storage_path,
+                document.mime_type,
+                document.byte_size,
+                document.page_count,
+                chunk_count,
+                sort_order,
+            ),
+        )
+        file_id = cursor.lastrowid
+        if file_id is None:
+            raise RuntimeError("Il file indicizzato non ha ricevuto un identificativo")
+        db.executemany(
+            """
+            INSERT INTO document_chunks (
+                project_id, file_id, chunk_index, content, char_count
+            ) VALUES (?, ?, ?, ?, ?)
+            """,
+            [
+                (project_id, file_id, index, content, len(content))
+                for index, content in enumerate(document.chunks)
+            ],
+        )
+        db.execute(
+            """
+            UPDATE projects
+            SET shared_source_count = shared_source_count + 1,
+                updated_label = 'Aggiornato ora'
+            WHERE id = ?
+            """,
+            (project_id,),
+        )
+        row = db.execute(
+            """
+            SELECT id, name, metadata, kind, status, page_count, chunk_count
+            FROM project_files WHERE id = ?
+            """,
+            (file_id,),
+        ).fetchone()
+    return dict(row) if row is not None else None
 
 
 def get_document_review(project_id: str) -> dict | None:

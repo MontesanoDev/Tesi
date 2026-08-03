@@ -1,14 +1,20 @@
-import type { DocumentReview, ProjectDetail, ProjectSummary } from './types'
+import type {
+  DocumentReview,
+  ProjectDetail,
+  ProjectFile,
+  ProjectSummary,
+} from './types'
 
 const API_BASE = import.meta.env.VITE_API_URL ?? '/api'
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const headers = new Headers(init?.headers)
+  if (init?.body && !(init.body instanceof FormData) && !headers.has('Content-Type')) {
+    headers.set('Content-Type', 'application/json')
+  }
   const response = await fetch(`${API_BASE}${path}`, {
     ...init,
-    headers: {
-      'Content-Type': 'application/json',
-      ...init?.headers,
-    },
+    headers,
   })
 
   if (!response.ok) {
@@ -29,6 +35,14 @@ export const api = {
       method: 'POST',
       body: JSON.stringify(payload),
     }),
+  uploadProjectFile: (projectId: string, file: File) => {
+    const body = new FormData()
+    body.append('file', file)
+    return request<ProjectFile>(`/projects/${projectId}/files`, {
+      method: 'POST',
+      body,
+    })
+  },
   documentReview: (projectId: string, signal?: AbortSignal) =>
     request<DocumentReview>(`/projects/${projectId}/document-review`, { signal }),
 }
