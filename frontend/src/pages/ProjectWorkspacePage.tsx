@@ -1,4 +1,4 @@
-import { ArrowUp, EllipsisVertical, FileText, Paperclip } from 'lucide-react'
+import { ArrowUp, ChevronDown, EllipsisVertical, FileText, Paperclip } from 'lucide-react'
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
@@ -71,11 +71,14 @@ function ConversationTurn({ turn }: { turn: ChatTurn }) {
       )}
 
       {evidence.length > 0 && (
-        <section className="evidence-results" aria-labelledby={evidenceTitleId}>
-          <div className="evidence-heading">
-            <span className="section-label" id={evidenceTitleId}>Evidenze recuperate</span>
+        <details className="evidence-results" aria-labelledby={evidenceTitleId}>
+          <summary className="evidence-heading">
+            <span>
+              <ChevronDown size={15} />
+              <span className="section-label" id={evidenceTitleId}>Evidenze recuperate</span>
+            </span>
             <span>{evidence.length} risultati</span>
-          </div>
+          </summary>
           <ol className="evidence-list">
             {evidence.map((item, index) => (
               <li
@@ -92,7 +95,7 @@ function ConversationTurn({ turn }: { turn: ChatTurn }) {
               </li>
             ))}
           </ol>
-        </section>
+        </details>
       )}
     </article>
   )
@@ -107,7 +110,7 @@ export function ProjectWorkspacePage() {
   const [turns, setTurns] = useState<ChatTurn[]>([])
   const [searching, setSearching] = useState(false)
   const turnSequence = useRef(0)
-  const latestTurn = useRef<HTMLDivElement>(null)
+  const chatThread = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setPrompt('')
@@ -117,8 +120,13 @@ export function ProjectWorkspacePage() {
   }, [projectId])
 
   useEffect(() => {
-    latestTurn.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }, [turns.length])
+    const thread = chatThread.current
+    if (!thread) return
+    const frame = requestAnimationFrame(() => {
+      thread.scrollTo({ top: thread.scrollHeight, behavior: 'smooth' })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [turns])
 
   if (loading) return <AppShell active="projects"><LoadingState /></AppShell>
   if (error || !project) {
@@ -158,11 +166,41 @@ export function ProjectWorkspacePage() {
     event.currentTarget.form?.requestSubmit()
   }
 
+  const composer = (
+    <form
+      className={`composer${turns.length > 0 ? ' composer--docked' : ''}`}
+      onSubmit={submitPrompt}
+    >
+      <textarea
+        aria-label="Messaggio per Mapi RAG"
+        placeholder="Come posso aiutarti in questo progetto?"
+        value={prompt}
+        onChange={(event) => setPrompt(event.target.value)}
+        onKeyDown={handleComposerKeyDown}
+      />
+      <div className="composer-tools">
+        <button className="icon-button" type="button" aria-label="Allega file">
+          <Paperclip size={19} />
+        </button>
+        <span className="composer-chip">Fonti del progetto</span>
+        <span className="composer-chip">Mapi RAG</span>
+        <button
+          className="send-button"
+          type="submit"
+          aria-label="Invia"
+          disabled={!prompt.trim() || searching}
+        >
+          <ArrowUp size={20} />
+        </button>
+      </div>
+    </form>
+  )
+
   return (
     <AppShell active="projects" project={project} contentClassName="workspace-content">
       <Link className="back-link" to="/projects">← Tutti i progetti</Link>
       <div className="workspace-layout">
-        <section className="workspace-main">
+        <section className={`workspace-main${turns.length > 0 ? ' workspace-main--conversation' : ''}`}>
           <header className="project-heading">
             <div>
               <h1>{project.title}</h1>
@@ -194,69 +232,47 @@ export function ProjectWorkspacePage() {
             </div>
           </header>
 
-          <form className="composer" onSubmit={submitPrompt}>
-            <textarea
-              aria-label="Messaggio per Mapi RAG"
-              placeholder="Come posso aiutarti in questo progetto?"
-              value={prompt}
-              onChange={(event) => setPrompt(event.target.value)}
-              onKeyDown={handleComposerKeyDown}
-            />
-            <div className="composer-tools">
-              <button className="icon-button" type="button" aria-label="Allega file">
-                <Paperclip size={19} />
-              </button>
-              <span className="composer-chip">Fonti del progetto</span>
-              <span className="composer-chip">Mapi RAG</span>
-              <button
-                className="send-button"
-                type="submit"
-                aria-label="Invia"
-                disabled={!prompt.trim() || searching}
-              >
-                <ArrowUp size={20} />
-              </button>
-            </div>
-          </form>
-
           {turns.length === 0 ? (
-            <div className="assistant-note">
-              <span className="activity-dot activity-dot--idle" />
-              <p>Mapi RAG usa i documenti, i dati aziendali e i modelli collegati a questo progetto.</p>
-            </div>
-          ) : (
-            <div className="chat-thread">
-              {turns.map((turn, index) => (
-                <div
-                  key={turn.id}
-                  ref={index === turns.length - 1 ? latestTurn : undefined}
-                >
-                  <ConversationTurn turn={turn} />
-                </div>
-              ))}
-            </div>
-          )}
+            <>
+              {composer}
+              <div className="assistant-note">
+                <span className="activity-dot activity-dot--idle" />
+                <p>Mapi RAG usa i documenti, i dati aziendali e i modelli collegati a questo progetto.</p>
+              </div>
 
-          <section className="recent-conversations">
-            <span className="section-label">Conversazioni recenti</span>
-            <div className="conversation-grid">
-              {project.conversations.map((conversation) => (
-                <button
-                  className="conversation-item"
-                  type="button"
-                  key={conversation.id}
-                  onClick={() => {
-                    if (conversation.target === 'review') {
-                      navigate(`/projects/${project.id}/review`)
-                    }
-                  }}
-                >
-                  <strong>{conversation.title}</strong>
-                  <span>{conversation.metadata}</span>
-                </button>
-              ))}
-            </div>
-          </section>
+              <section className="recent-conversations">
+                <span className="section-label">Conversazioni recenti</span>
+                <div className="conversation-grid">
+                  {project.conversations.map((conversation) => (
+                    <button
+                      className="conversation-item"
+                      type="button"
+                      key={conversation.id}
+                      onClick={() => {
+                        if (conversation.target === 'review') {
+                          navigate(`/projects/${project.id}/review`)
+                        }
+                      }}
+                    >
+                      <strong>{conversation.title}</strong>
+                      <span>{conversation.metadata}</span>
+                    </button>
+                  ))}
+                </div>
+              </section>
+            </>
+          ) : (
+            <>
+              <div className="chat-thread" ref={chatThread}>
+                {turns.map((turn) => (
+                  <div key={turn.id}>
+                    <ConversationTurn turn={turn} />
+                  </div>
+                ))}
+              </div>
+              {composer}
+            </>
+          )}
         </section>
 
         <ProjectKnowledgePanel project={project} onProjectChange={refresh} />

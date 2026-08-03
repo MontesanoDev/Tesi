@@ -60,9 +60,11 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
   await composer.press('Enter')
   await expect(page.getByText('Risposta Mapi')).toBeVisible()
   await expect(page.getByText('Evidenze recuperate', { exact: true })).toBeVisible()
-  await expect(
-    page.locator('.evidence-results').getByText('Fondo_Riqualificazione_2027.pdf'),
-  ).toBeVisible()
+  const citedSource = page.locator('.evidence-results').getByText('Fondo_Riqualificazione_2027.pdf')
+  await expect(citedSource).not.toBeVisible()
+  await page.getByText('Evidenze recuperate', { exact: true }).click()
+  await expect(citedSource).toBeVisible()
+  await expect(composer).toBeInViewport()
   await expectNoHorizontalOverflow(page)
 
   await page.getByRole('button', { name: 'Menu progetto' }).click()

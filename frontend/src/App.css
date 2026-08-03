@@ -327,6 +327,18 @@
   min-width: 0;
 }
 
+.workspace-main--conversation {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 120px);
+  min-height: 620px;
+}
+
+.workspace-main--conversation .project-heading {
+  flex: 0 0 auto;
+  margin-bottom: 8px;
+}
+
 .project-heading {
   display: flex;
   align-items: flex-start;
@@ -408,6 +420,22 @@
   border-radius: 8px;
   background: #2b2c29;
   overflow: hidden;
+}
+
+.composer--docked {
+  flex: 0 0 auto;
+  height: 132px;
+  margin-top: 16px;
+  box-shadow: 0 -16px 28px rgba(30, 31, 29, 0.9);
+}
+
+.composer.composer--docked textarea {
+  height: 76px;
+  padding-top: 16px;
+}
+
+.composer--docked .composer-tools {
+  height: 56px;
 }
 
 .composer textarea {
@@ -509,11 +537,17 @@
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .chat-thread {
-  margin-top: 24px;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 12px 8px 20px 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #555650 transparent;
+  scrollbar-width: thin;
 }
 
 .chat-thread > div {
-  scroll-margin-top: 24px;
+  scroll-margin-top: 12px;
 }
 
 .chat-thread > div + div {
@@ -637,6 +671,27 @@
 .evidence-heading {
   justify-content: space-between;
   gap: 16px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.evidence-heading::-webkit-details-marker {
+  display: none;
+}
+
+.evidence-heading > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.evidence-heading svg {
+  flex: 0 0 auto;
+  transition: transform 160ms ease;
+}
+
+.evidence-results[open] .evidence-heading svg {
+  transform: rotate(180deg);
 }
 
 .evidence-heading > span:last-child {
@@ -1653,6 +1708,11 @@
   .workspace-layout {
     width: min(100% - 32px, 620px);
     margin-top: 24px;
+  }
+
+  .workspace-main--conversation {
+    height: calc(100dvh - 128px);
+    min-height: 620px;
   }
 
   .project-heading h1 { font-size: 24px; }
