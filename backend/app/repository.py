@@ -29,6 +29,18 @@ SEARCH_STOP_WORDS = {
     "sono",
     "una",
 }
+TEMPORAL_QUERY_TERMS = {
+    "data",
+    "date",
+    "entro",
+    "quando",
+    "scadenza",
+    "scadenze",
+    "termine",
+    "termini",
+}
+DATE_PATTERN = re.compile(r"\b(?:\d{1,2}[./-]){2}\d{2,4}\b")
+TIME_PATTERN = re.compile(r"\bore\s+\d{1,2}(?:[.:]\d{2})?", flags=re.IGNORECASE)
 
 
 def _rows(db: sqlite3.Connection, query: str, params: tuple = ()) -> list[dict]:
@@ -64,6 +76,38 @@ def _build_fts_query(query: str) -> str:
         else:
             terms.append(f'"{token}"')
     return " OR ".join(terms)
+
+
+def _rerank_evidence(query: str, candidates: list[dict], limit: int) -> list[dict]:
+    query_tokens = set(re.findall(r"[^\W_]+", query.lower(), flags=re.UNICODE))
+    temporal_query = bool(query_tokens & TEMPORAL_QUERY_TERMS)
+
+    for candidate in candidates:
+        relevance = -candidate.pop("rank")
+        content = candidate["content"]
+        if temporal_query:
+            if DATE_PATTERN.search(content):
+                relevance += 3.0
+            if TIME_PATTERN.search(content):
+                relevance += 1.5
+        candidate["relevance"] = round(relevance, 6)
+    candidates.sort(key=lambda item: item["relevance"], reverse=True)
+
+    selected: list[dict] = []
+    deferred: list[dict] = []
+    for candidate in candidates:
+        duplicates_adjacent_chunk = any(
+            item["file_id"] == candidate["file_id"]
+            and abs(item["chunk_index"] - candidate["chunk_index"]) <= 1
+            for item in selected
+        )
+        if duplicates_adjacent_chunk:
+            deferred.append(candidate)
+        elif len(selected) < limit:
+            selected.append(candidate)
+    if len(selected) < limit:
+        selected.extend(deferred[: limit - len(selected)])
+    return selected
 
 
 def list_projects() -> list[dict]:
@@ -221,7 +265,7 @@ def search_project_evidence(project_id: str, query: str, limit: int = 4) -> list
             return None
         if not fts_query:
             return []
-        rows = _rows(
+        candidates = _rows(
             db,
             """
             SELECT
@@ -239,11 +283,9 @@ def search_project_evidence(project_id: str, query: str, limit: int = 4) -> list
             ORDER BY rank
             LIMIT ?
             """,
-            (fts_query, project_id, limit),
+            (fts_query, project_id, max(limit * 6, 24)),
         )
-    for row in rows:
-        row["relevance"] = round(-row.pop("rank"), 6)
-    return rows
+    return _rerank_evidence(query, candidates, limit)
 
 
 def get_document_review(project_id: str) -> dict | None:
