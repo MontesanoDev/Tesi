@@ -92,13 +92,17 @@ test('document review keeps source provenance visible', async ({ page }, testInf
   })
 })
 
-test('assistant identity bypasses project evidence', async ({ page }) => {
+test('conversation preserves earlier turns without project evidence', async ({ page }, testInfo) => {
   await page.route('**/api/projects/fondo-riqualificazione-2027/answer', async (route) => {
+    const { question } = route.request().postDataJSON() as { question: string }
+    const firstQuestion = question === 'Chi sei?'
     await route.fulfill({
       contentType: 'application/json',
       body: JSON.stringify({
-        question: 'Chi sei?',
-        answer: 'Sono Mapi RAG, un assistente tecnico per progetti di ingegneria civile.',
+        question,
+        answer: firstQuestion
+          ? 'Sono Mapi RAG, un assistente tecnico per progetti di ingegneria civile.'
+          : 'Il mio nome è Mapi RAG.',
         citations: [],
         missing_information: [],
         evidence: [],
@@ -117,5 +121,19 @@ test('assistant identity bypasses project evidence', async ({ page }) => {
 
   await expect(page.getByText('Risposta diretta di Mapi RAG.')).toBeVisible()
   await expect(page.getByText('Sono Mapi RAG, un assistente tecnico')).toBeVisible()
+
+  await composer.fill('Come ti chiami?')
+  await composer.press('Enter')
+
+  await expect(page.locator('.chat-turn')).toHaveCount(2)
+  await expect(page.getByText('Chi sei?', { exact: true })).toBeVisible()
+  await expect(page.getByText('Sono Mapi RAG, un assistente tecnico')).toBeVisible()
+  await expect(page.getByText('Come ti chiami?', { exact: true })).toBeVisible()
+  await expect(page.getByText('Il mio nome è Mapi RAG.')).toBeVisible()
   await expect(page.getByText('Evidenze recuperate', { exact: true })).toHaveCount(0)
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-conversation-history.png`,
+    fullPage: true,
+  })
 })

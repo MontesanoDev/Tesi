@@ -1,5 +1,5 @@
 import { ArrowUp, EllipsisVertical, FileText, Paperclip } from 'lucide-react'
-import { useState, type FormEvent, type KeyboardEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
 import { AppShell } from '../components/AppShell'
@@ -8,17 +8,117 @@ import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
 import { useProject } from '../hooks/useProject'
 import type { GroundedAnswer } from '../types'
 
+interface ChatTurn {
+  id: number
+  question: string
+  result: GroundedAnswer | null
+  error: string | null
+}
+
+function turnStatus(turn: ChatTurn) {
+  if (turn.error) return turn.error
+  if (!turn.result) return 'Ricerca delle evidenze nelle fonti del progetto...'
+  if (turn.result.generation_status === 'direct') return 'Risposta diretta di Mapi RAG.'
+  if (turn.result.generation_status === 'completed') {
+    return turn.result.evidence.length === 1
+      ? 'Risposta generata da 1 evidenza del progetto.'
+      : `Risposta generata da ${turn.result.evidence.length} evidenze del progetto.`
+  }
+  return turn.result.notice ?? 'Nessuna evidenza pertinente trovata nelle fonti indicizzate.'
+}
+
+function ConversationTurn({ turn }: { turn: ChatTurn }) {
+  const result = turn.result
+  const evidence = result?.evidence ?? []
+  const answerTitleId = `answer-title-${turn.id}`
+  const evidenceTitleId = `evidence-title-${turn.id}`
+  const activityClass = turn.error
+    ? 'activity-dot activity-dot--error'
+    : result
+      ? 'activity-dot activity-dot--done'
+      : 'activity-dot'
+
+  return (
+    <article className="chat-turn">
+      <div className="user-message">
+        <span>Tu</span>
+        <p>{turn.question}</p>
+      </div>
+
+      <div className="turn-status" aria-live="polite">
+        <span className={activityClass} />
+        <p>{turnStatus(turn)}</p>
+      </div>
+
+      {result?.answer && (
+        <section className="grounded-answer" aria-labelledby={answerTitleId}>
+          <div className="grounded-answer-heading">
+            <h2 id={answerTitleId}>Risposta Mapi</h2>
+            {result.model && <span>{result.model}</span>}
+          </div>
+          <p>{result.answer}</p>
+          {result.missing_information.length > 0 && (
+            <div className="missing-information">
+              <strong>Informazioni mancanti</strong>
+              <ul>
+                {result.missing_information.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+      )}
+
+      {evidence.length > 0 && (
+        <section className="evidence-results" aria-labelledby={evidenceTitleId}>
+          <div className="evidence-heading">
+            <span className="section-label" id={evidenceTitleId}>Evidenze recuperate</span>
+            <span>{evidence.length} risultati</span>
+          </div>
+          <ol className="evidence-list">
+            {evidence.map((item, index) => (
+              <li
+                className={`evidence-item${result?.citations.includes(index + 1) ? ' is-cited' : ''}`}
+                key={item.chunk_id}
+              >
+                <div className="evidence-source">
+                  <span className="evidence-reference">[{index + 1}]</span>
+                  <FileText size={15} />
+                  <strong>{item.source_name}</strong>
+                  <span className="evidence-fragment">Frammento {item.chunk_index + 1}</span>
+                </div>
+                <p>{item.excerpt}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+    </article>
+  )
+}
+
 export function ProjectWorkspacePage() {
   const { projectId } = useParams()
   const navigate = useNavigate()
   const { project, loading, error, refresh } = useProject(projectId)
   const [menuOpen, setMenuOpen] = useState(false)
   const [prompt, setPrompt] = useState('')
-  const [savedPrompt, setSavedPrompt] = useState<string | null>(null)
-  const [answerResult, setAnswerResult] = useState<GroundedAnswer | null>(null)
+  const [turns, setTurns] = useState<ChatTurn[]>([])
   const [searching, setSearching] = useState(false)
-  const [searchError, setSearchError] = useState<string | null>(null)
-  const evidence = answerResult?.evidence ?? []
+  const turnSequence = useRef(0)
+  const latestTurn = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    setPrompt('')
+    setTurns([])
+    setSearching(false)
+    turnSequence.current = 0
+  }, [projectId])
+
+  useEffect(() => {
+    latestTurn.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, [turns.length])
 
   if (loading) return <AppShell active="projects"><LoadingState /></AppShell>
   if (error || !project) {
@@ -30,16 +130,23 @@ export function ProjectWorkspacePage() {
     event.preventDefault()
     const query = prompt.trim()
     if (!query || searching) return
-    setSavedPrompt(query)
+    const turnId = ++turnSequence.current
+    setTurns((current) => [
+      ...current,
+      { id: turnId, question: query, result: null, error: null },
+    ])
     setPrompt('')
-    setAnswerResult(null)
-    setSearchError(null)
     setSearching(true)
     try {
       const result = await api.projectAnswer(activeProjectId, query)
-      setAnswerResult(result)
+      setTurns((current) => current.map((turn) => (
+        turn.id === turnId ? { ...turn, result } : turn
+      )))
     } catch (reason) {
-      setSearchError(reason instanceof Error ? reason.message : 'Ricerca non riuscita')
+      const message = reason instanceof Error ? reason.message : 'Ricerca non riuscita'
+      setTurns((current) => current.map((turn) => (
+        turn.id === turnId ? { ...turn, error: message } : turn
+      )))
     } finally {
       setSearching(false)
     }
@@ -112,72 +219,22 @@ export function ProjectWorkspacePage() {
             </div>
           </form>
 
-          <div className="assistant-note" aria-live="polite">
-            <span
-              className={savedPrompt && !searching ? 'activity-dot activity-dot--done' : 'activity-dot'}
-            />
-            <p>
-              {searching
-                ? 'Ricerca delle evidenze nelle fonti del progetto...'
-                : searchError
-                  ? searchError
-                  : answerResult?.generation_status === 'direct'
-                    ? 'Risposta diretta di Mapi RAG.'
-                  : answerResult?.generation_status === 'completed'
-                    ? evidence.length === 1
-                      ? 'Risposta generata da 1 evidenza del progetto.'
-                      : `Risposta generata da ${evidence.length} evidenze del progetto.`
-                    : answerResult?.notice
-                      ? answerResult.notice
-                      : savedPrompt
-                        ? 'Nessuna evidenza pertinente trovata nelle fonti indicizzate.'
-                      : 'Mapi RAG usa i documenti, i dati aziendali e i modelli collegati a questo progetto.'}
-            </p>
-          </div>
-
-          {answerResult?.answer && (
-            <section className="grounded-answer" aria-labelledby="answer-title">
-              <div className="grounded-answer-heading">
-                <h2 id="answer-title">Risposta Mapi</h2>
-                {answerResult.model && <span>{answerResult.model}</span>}
-              </div>
-              <p>{answerResult.answer}</p>
-              {answerResult.missing_information.length > 0 && (
-                <div className="missing-information">
-                  <strong>Informazioni mancanti</strong>
-                  <ul>
-                    {answerResult.missing_information.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
+          {turns.length === 0 ? (
+            <div className="assistant-note">
+              <span className="activity-dot activity-dot--idle" />
+              <p>Mapi RAG usa i documenti, i dati aziendali e i modelli collegati a questo progetto.</p>
+            </div>
+          ) : (
+            <div className="chat-thread">
+              {turns.map((turn, index) => (
+                <div
+                  key={turn.id}
+                  ref={index === turns.length - 1 ? latestTurn : undefined}
+                >
+                  <ConversationTurn turn={turn} />
                 </div>
-              )}
-            </section>
-          )}
-
-          {evidence.length > 0 && (
-            <section className="evidence-results" aria-labelledby="evidence-title">
-              <div className="evidence-heading">
-                <span className="section-label" id="evidence-title">Evidenze recuperate</span>
-                <span>{evidence.length} risultati</span>
-              </div>
-              <ol className="evidence-list">
-                {evidence.map((item, index) => (
-                  <li
-                    className={`evidence-item${answerResult?.citations.includes(index + 1) ? ' is-cited' : ''}`}
-                    key={item.chunk_id}
-                  >
-                    <div className="evidence-source">
-                      <span className="evidence-reference">[{index + 1}]</span>
-                      <FileText size={15} />
-                      <strong>{item.source_name}</strong>
-                      <span className="evidence-fragment">Frammento {item.chunk_index + 1}</span>
-                    </div>
-                    <p>{item.excerpt}</p>
-                  </li>
-                ))}
-              </ol>
-            </section>
+              ))}
+            </div>
           )}
 
           <section className="recent-conversations">

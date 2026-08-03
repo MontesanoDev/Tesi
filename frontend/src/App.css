@@ -497,7 +497,77 @@
   animation: none;
 }
 
+.activity-dot--idle {
+  animation: none;
+}
+
+.activity-dot--error {
+  border: 4px solid var(--gold);
+  animation: none;
+}
+
 @keyframes spin { to { transform: rotate(360deg); } }
+
+.chat-thread {
+  margin-top: 24px;
+}
+
+.chat-thread > div {
+  scroll-margin-top: 24px;
+}
+
+.chat-thread > div + div {
+  margin-top: 26px;
+  padding-top: 26px;
+  border-top: 1px solid var(--border);
+}
+
+.user-message {
+  width: fit-content;
+  max-width: 86%;
+  margin-left: auto;
+  padding: 10px 14px 12px;
+  border-radius: 8px;
+  background: var(--control);
+}
+
+.user-message span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text-faint);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.user-message p {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 21px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.turn-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  margin-top: 12px;
+  color: #9b9c96;
+  font-size: 12px;
+}
+
+.turn-status .activity-dot {
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+}
+
+.chat-turn .grounded-answer {
+  padding-top: 14px;
+}
 
 .grounded-answer {
   padding: 18px 0 20px;
