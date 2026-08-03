@@ -91,3 +91,31 @@ test('document review keeps source provenance visible', async ({ page }, testInf
     fullPage: true,
   })
 })
+
+test('assistant identity bypasses project evidence', async ({ page }) => {
+  await page.route('**/api/projects/fondo-riqualificazione-2027/answer', async (route) => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        question: 'Chi sei?',
+        answer: 'Sono Mapi RAG, un assistente tecnico per progetti di ingegneria civile.',
+        citations: [],
+        missing_information: [],
+        evidence: [],
+        generation_status: 'direct',
+        model: 'Mapi RAG',
+        total_tokens: 0,
+        notice: null,
+      }),
+    })
+  })
+
+  await page.goto('/projects/fondo-riqualificazione-2027')
+  const composer = page.getByPlaceholder('Come posso aiutarti in questo progetto?')
+  await composer.fill('Chi sei?')
+  await composer.press('Enter')
+
+  await expect(page.getByText('Risposta diretta di Mapi RAG.')).toBeVisible()
+  await expect(page.getByText('Sono Mapi RAG, un assistente tecnico')).toBeVisible()
+  await expect(page.getByText('Evidenze recuperate', { exact: true })).toHaveCount(0)
+})

@@ -121,6 +121,8 @@ export function ProjectWorkspacePage() {
                 ? 'Ricerca delle evidenze nelle fonti del progetto...'
                 : searchError
                   ? searchError
+                  : answerResult?.generation_status === 'direct'
+                    ? 'Risposta diretta di Mapi RAG.'
                   : answerResult?.generation_status === 'completed'
                     ? evidence.length === 1
                       ? 'Risposta generata da 1 evidenza del progetto.'

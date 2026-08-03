@@ -80,6 +80,7 @@ export interface EvidenceSearch {
 
 export type GenerationStatus =
   | 'completed'
+  | 'direct'
   | 'not_configured'
   | 'no_evidence'
   | 'failed'

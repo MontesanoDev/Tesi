@@ -19,6 +19,7 @@ from app.ingestion import (
     UnsupportedDocumentError,
     ingest_upload,
 )
+from app.intents import direct_system_answer
 from app.repository import (
     add_project_file,
     create_project,
@@ -94,9 +95,24 @@ async def project_evidence(
 
 @app.post("/api/projects/{project_id}/answer", response_model=GroundedAnswerResponse)
 async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
+    if get_project(project_id) is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    direct_answer = direct_system_answer(payload.question)
+    if direct_answer:
+        return {
+            "question": payload.question,
+            "answer": direct_answer,
+            "citations": [],
+            "missing_information": [],
+            "evidence": [],
+            "generation_status": "direct",
+            "model": "Mapi RAG",
+            "total_tokens": 0,
+            "notice": None,
+        }
     evidence = search_project_evidence(project_id, payload.question, limit=4)
     if evidence is None:
-        raise HTTPException(status_code=404, detail="Progetto non trovato")
+        raise RuntimeError("Il progetto validato non e piu disponibile")
     base_response = {
         "question": payload.question,
         "citations": [],

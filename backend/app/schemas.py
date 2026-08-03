@@ -98,7 +98,9 @@ class GroundedAnswerResponse(BaseModel):
     citations: list[int]
     missing_information: list[str]
     evidence: list[Evidence]
-    generation_status: Literal["completed", "not_configured", "no_evidence", "failed"]
+    generation_status: Literal[
+        "completed", "direct", "not_configured", "no_evidence", "failed"
+    ]
     model: str | None
     total_tokens: int | None
     notice: str | None

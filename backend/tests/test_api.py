@@ -62,6 +62,27 @@ async def test_create_project_persists(client):
 
 
 @pytest.mark.anyio
+async def test_identity_question_bypasses_retrieval_and_generation(client, monkeypatch):
+    async def unexpected_generation(*_args, **_kwargs):
+        raise AssertionError("DeepSeek non deve essere chiamato per una domanda di sistema")
+
+    monkeypatch.setattr("app.main.generate_grounded_answer", unexpected_generation)
+    response = await client.post(
+        "/api/projects/fondo-riqualificazione-2027/answer",
+        json={"question": "Chi sei?"},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["generation_status"] == "direct"
+    assert payload["model"] == "Mapi RAG"
+    assert payload["evidence"] == []
+    assert payload["citations"] == []
+    assert payload["total_tokens"] == 0
+    assert payload["answer"].startswith("Sono Mapi RAG")
+
+
+@pytest.mark.anyio
 async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch):
     content = ("Requisito tecnico verificabile con fonte documentale. " * 80).encode()
     response = await client.post(
