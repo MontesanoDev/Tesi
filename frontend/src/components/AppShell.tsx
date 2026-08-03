@@ -157,7 +157,7 @@ export function AppShell({
               <em>Globale</em>
             </Link>
             {project && (
-              <Link className="knowledge-link" to={`/projects/${project.id}/settings`}>
+              <Link className="knowledge-link" to={`/projects/${project.id}/knowledge`}>
                 <FileText size={18} />
                 <span>
                   <strong>Dati del bando</strong>

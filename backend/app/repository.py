@@ -6,6 +6,7 @@ import sqlite3
 import unicodedata
 from uuid import uuid4
 
+from app.artifacts import get_company_markdown
 from app.db import connection
 from app.ingestion import IngestedDocument
 from app.schemas import ProjectCreate
@@ -204,6 +205,15 @@ def list_projects() -> list[dict]:
 
 
 def get_company_facts() -> list[dict]:
+    markdown = get_company_markdown()
+    if markdown:
+        return [
+            {
+                "key": "company_facts_markdown",
+                "label": "Company Facts (Markdown)",
+                "value": markdown,
+            }
+        ]
     with connection() as db:
         return _rows(
             db,
@@ -236,7 +246,9 @@ def get_project(project_id: str) -> dict | None:
             db,
             """
             SELECT id, name, metadata, kind, status, page_count, chunk_count
-            FROM project_files WHERE project_id = ? ORDER BY sort_order
+            FROM project_files
+            WHERE project_id = ? AND kind != 'artifact'
+            ORDER BY sort_order
             """,
             (project_id,),
         )

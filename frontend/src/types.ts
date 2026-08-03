@@ -30,6 +30,24 @@ export interface KnowledgeSource {
   item_count: number
 }
 
+export interface KnowledgeArtifactSummary {
+  id: string
+  kind: string
+  scope: 'global' | 'project'
+  title: string
+  filename: string
+  status: string
+  byte_size: number
+  version: number
+  updated_at: string
+  editable: boolean
+  chunk_count: number
+}
+
+export interface KnowledgeArtifactDetail extends KnowledgeArtifactSummary {
+  content: string
+}
+
 export interface Conversation {
   id: string
   title: string

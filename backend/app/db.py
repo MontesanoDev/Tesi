@@ -8,6 +8,7 @@ from pathlib import Path
 
 DEFAULT_DB_PATH = Path(__file__).resolve().parents[1] / "data" / "mapi.db"
 DEFAULT_STORAGE_PATH = Path(__file__).resolve().parents[1] / "data" / "uploads"
+DEFAULT_KNOWLEDGE_PATH = Path(__file__).resolve().parents[1] / "data" / "knowledge"
 
 
 def get_db_path() -> Path:
@@ -18,6 +19,11 @@ def get_db_path() -> Path:
 def get_storage_path() -> Path:
     configured = os.getenv("MAPI_STORAGE_PATH")
     return Path(configured) if configured else DEFAULT_STORAGE_PATH
+
+
+def get_knowledge_path() -> Path:
+    configured = os.getenv("MAPI_KNOWLEDGE_PATH")
+    return Path(configured) if configured else DEFAULT_KNOWLEDGE_PATH
 
 
 def _ensure_column(db: sqlite3.Connection, table: str, column: str, definition: str) -> None:
@@ -160,6 +166,32 @@ def init_database() -> None:
 
             CREATE INDEX IF NOT EXISTS idx_conversation_turns_conversation
             ON conversation_turns(conversation_id, id);
+
+            CREATE TABLE IF NOT EXISTS knowledge_artifacts (
+                id TEXT PRIMARY KEY,
+                project_id TEXT REFERENCES projects(id) ON DELETE CASCADE,
+                kind TEXT NOT NULL,
+                scope TEXT NOT NULL,
+                title TEXT NOT NULL,
+                filename TEXT NOT NULL,
+                storage_path TEXT NOT NULL UNIQUE,
+                status TEXT NOT NULL,
+                content_hash TEXT NOT NULL,
+                byte_size INTEGER NOT NULL DEFAULT 0,
+                version INTEGER NOT NULL DEFAULT 1,
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+            );
+
+            CREATE TABLE IF NOT EXISTS project_artifact_links (
+                project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+                artifact_id TEXT NOT NULL REFERENCES knowledge_artifacts(id) ON DELETE CASCADE,
+                file_id INTEGER NOT NULL UNIQUE REFERENCES project_files(id) ON DELETE CASCADE,
+                PRIMARY KEY (project_id, artifact_id)
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_project_artifact_links_artifact
+            ON project_artifact_links(artifact_id);
 
             CREATE TABLE IF NOT EXISTS document_fields (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,

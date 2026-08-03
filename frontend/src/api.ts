@@ -3,6 +3,8 @@ import type {
   DocumentReview,
   EvidenceSearch,
   GroundedAnswer,
+  KnowledgeArtifactDetail,
+  KnowledgeArtifactSummary,
   ProjectDetail,
   ProjectFile,
   ProjectSummary,
@@ -46,6 +48,21 @@ export const api = {
       body,
     })
   },
+  projectArtifacts: (projectId: string, signal?: AbortSignal) =>
+    request<KnowledgeArtifactSummary[]>(`/projects/${projectId}/artifacts`, { signal }),
+  projectArtifact: (projectId: string, artifactId: string, signal?: AbortSignal) =>
+    request<KnowledgeArtifactDetail>(
+      `/projects/${projectId}/artifacts/${encodeURIComponent(artifactId)}`,
+      { signal },
+    ),
+  updateProjectArtifact: (projectId: string, artifactId: string, content: string) =>
+    request<KnowledgeArtifactDetail>(
+      `/projects/${projectId}/artifacts/${encodeURIComponent(artifactId)}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify({ content }),
+      },
+    ),
   projectEvidence: (projectId: string, query: string, signal?: AbortSignal) => {
     const params = new URLSearchParams({ q: query })
     return request<EvidenceSearch>(`/projects/${projectId}/evidence?${params}`, {

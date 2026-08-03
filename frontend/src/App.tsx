@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { DocumentReviewPage } from './pages/DocumentReviewPage'
 import { GeneralSettingsPage } from './pages/GeneralSettingsPage'
+import { KnowledgeArtifactsPage } from './pages/KnowledgeArtifactsPage'
 import { ProjectSettingsPage } from './pages/ProjectSettingsPage'
 import { ProjectWorkspacePage } from './pages/ProjectWorkspacePage'
 import { ProjectsPage } from './pages/ProjectsPage'
@@ -19,6 +20,10 @@ export default function App() {
       <Route
         path="/projects/:projectId/settings"
         element={<ProjectSettingsPage />}
+      />
+      <Route
+        path="/projects/:projectId/knowledge"
+        element={<KnowledgeArtifactsPage />}
       />
       <Route
         path="/projects/:projectId/review"

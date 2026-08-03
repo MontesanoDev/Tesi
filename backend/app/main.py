@@ -6,6 +6,14 @@ from typing import Annotated
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.artifacts import (
+    ArtifactReadOnlyError,
+    ensure_project_artifacts,
+    get_project_artifact,
+    list_project_artifacts,
+    seed_markdown_artifacts,
+    update_project_artifact,
+)
 from app.db import init_database
 from app.generation import (
     GenerationError,
@@ -41,6 +49,9 @@ from app.schemas import (
     DocumentReview,
     EvidenceSearch,
     GroundedAnswerResponse,
+    KnowledgeArtifactDetail,
+    KnowledgeArtifactSummary,
+    KnowledgeArtifactUpdate,
     ProjectCreate,
     ProjectDetail,
     ProjectFile,
@@ -54,6 +65,7 @@ from app.seed import seed_database
 async def lifespan(_: FastAPI):
     init_database()
     seed_database()
+    seed_markdown_artifacts()
     yield
 
 
@@ -79,7 +91,12 @@ async def projects() -> list[dict]:
 
 @app.post("/api/projects", response_model=ProjectDetail, status_code=status.HTTP_201_CREATED)
 async def projects_create(payload: ProjectCreate) -> dict:
-    return create_project(payload)
+    created = create_project(payload)
+    ensure_project_artifacts(created["id"])
+    result = get_project(created["id"])
+    if result is None:
+        raise RuntimeError("Il progetto appena creato non e piu disponibile")
+    return result
 
 
 @app.get("/api/projects/{project_id}", response_model=ProjectDetail)
@@ -87,6 +104,46 @@ async def project(project_id: str) -> dict:
     result = get_project(project_id)
     if result is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
+    return result
+
+
+@app.get(
+    "/api/projects/{project_id}/artifacts",
+    response_model=list[KnowledgeArtifactSummary],
+)
+async def project_artifacts(project_id: str) -> list[dict]:
+    result = list_project_artifacts(project_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    return result
+
+
+@app.get(
+    "/api/projects/{project_id}/artifacts/{artifact_id}",
+    response_model=KnowledgeArtifactDetail,
+)
+async def project_artifact(project_id: str, artifact_id: str) -> dict:
+    result = get_project_artifact(project_id, artifact_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Artefatto Markdown non trovato")
+    return result
+
+
+@app.put(
+    "/api/projects/{project_id}/artifacts/{artifact_id}",
+    response_model=KnowledgeArtifactDetail,
+)
+async def project_artifact_update(
+    project_id: str,
+    artifact_id: str,
+    payload: KnowledgeArtifactUpdate,
+) -> dict:
+    try:
+        result = update_project_artifact(project_id, artifact_id, payload.content)
+    except ArtifactReadOnlyError as exc:
+        raise HTTPException(status_code=403, detail=str(exc)) from exc
+    if result is None:
+        raise HTTPException(status_code=404, detail="Artefatto Markdown non trovato")
     return result
 
 

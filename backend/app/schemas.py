@@ -40,6 +40,28 @@ class KnowledgeSource(BaseModel):
     item_count: int
 
 
+class KnowledgeArtifactSummary(BaseModel):
+    id: str
+    kind: str
+    scope: Literal["global", "project"]
+    title: str
+    filename: str
+    status: str
+    byte_size: int
+    version: int
+    updated_at: str
+    editable: bool
+    chunk_count: int
+
+
+class KnowledgeArtifactDetail(KnowledgeArtifactSummary):
+    content: str
+
+
+class KnowledgeArtifactUpdate(BaseModel):
+    content: str = Field(min_length=1, max_length=500_000)
+
+
 class Conversation(BaseModel):
     id: str
     title: str

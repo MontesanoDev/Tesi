@@ -37,7 +37,13 @@ export function ProjectSettingsPage() {
           <div className="settings-card-divider" />
           <div className="setting-section-title">
             <span>Fonti collegate</span>
-            <button className="button button--compact" type="button">Modifica collegamenti</button>
+            <button
+              className="button button--compact"
+              type="button"
+              onClick={() => navigate(`/projects/${project.id}/knowledge`)}
+            >
+              Apri artefatti Markdown
+            </button>
           </div>
           <div className="linked-source-grid">
             <div className="linked-source">
@@ -73,8 +79,8 @@ export function ProjectSettingsPage() {
             <div><strong>{project.call_fact_count}</strong><span>Call facts</span></div>
             <div><strong>{project.model_count}</strong><span>Template</span></div>
             <div><strong>{project.missing_fact_count}</strong><span>Dato mancante</span></div>
-            <button className="button" type="button" onClick={() => navigate(`/projects/${project.id}/review`)}>
-              Verifica Call Facts
+            <button className="button" type="button" onClick={() => navigate(`/projects/${project.id}/knowledge`)}>
+              Apri Call Facts
             </button>
           </div>
         </section>

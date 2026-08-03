@@ -1,7 +1,8 @@
 import httpx
 import pytest
 
-from app.db import connection, init_database
+from app.artifacts import seed_markdown_artifacts
+from app.db import connection, get_knowledge_path, init_database
 from app.generation import GeneratedAnswer
 from app.main import app
 from app.seed import seed_database
@@ -16,8 +17,10 @@ def anyio_backend():
 async def client(tmp_path, monkeypatch):
     monkeypatch.setenv("MAPI_DB_PATH", str(tmp_path / "test.db"))
     monkeypatch.setenv("MAPI_STORAGE_PATH", str(tmp_path / "uploads"))
+    monkeypatch.setenv("MAPI_KNOWLEDGE_PATH", str(tmp_path / "knowledge"))
     init_database()
     seed_database()
+    seed_markdown_artifacts()
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as value:
         yield value
@@ -57,6 +60,100 @@ async def test_create_project_persists(client):
     persisted = await client.get(f"/api/projects/{project_id}")
     assert persisted.status_code == 200
     assert persisted.json()["title"] == "Nuova candidatura"
+
+    artifacts = await client.get(f"/api/projects/{project_id}/artifacts")
+    assert artifacts.status_code == 200
+    assert len(artifacts.json()) == 5
+
+
+@pytest.mark.anyio
+async def test_markdown_artifact_update_is_versioned_and_indexed(client):
+    project_id = "fondo-riqualificazione-2027"
+    artifacts = await client.get(f"/api/projects/{project_id}/artifacts")
+    assert artifacts.status_code == 200
+    call_facts = next(artifact for artifact in artifacts.json() if artifact["kind"] == "call_facts")
+    assert call_facts["editable"] is True
+    assert call_facts["chunk_count"] == 0
+
+    detail = await client.get(f"/api/projects/{project_id}/artifacts/{call_facts['id']}")
+    assert detail.status_code == 200
+    assert "# Call Facts" in detail.json()["content"]
+
+    content = (
+        "---\nartifact: call_facts\nscope: project\nstatus: draft\n---\n\n"
+        "# Call Facts\n\n## Requisito idraulico\n\n"
+        "La verifica di resilienza idraulica è obbligatoria.\n"
+    )
+    updated = await client.put(
+        f"/api/projects/{project_id}/artifacts/{call_facts['id']}",
+        json={"content": content},
+    )
+    assert updated.status_code == 200
+    assert updated.json()["version"] == call_facts["version"] + 1
+    assert updated.json()["chunk_count"] == 1
+    assert updated.json()["content"] == content
+
+    evidence = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "resilienza idraulica"},
+    )
+    assert evidence.status_code == 200
+    assert evidence.json()["results"][0]["source_name"] == "call-facts.md"
+
+    company_facts = next(
+        artifact for artifact in artifacts.json() if artifact["kind"] == "company_facts"
+    )
+    forbidden = await client.put(
+        f"/api/projects/{project_id}/artifacts/{company_facts['id']}",
+        json={"content": "# Company Facts\n\nModifica locale non consentita."},
+    )
+    assert forbidden.status_code == 403
+
+
+@pytest.mark.anyio
+async def test_markdown_artifact_seed_is_idempotent(client):
+    project_id = "fondo-riqualificazione-2027"
+    before = await client.get(f"/api/projects/{project_id}/artifacts")
+
+    seed_markdown_artifacts()
+    seed_markdown_artifacts()
+
+    after = await client.get(f"/api/projects/{project_id}/artifacts")
+    assert after.json() == before.json()
+    with connection() as db:
+        artifact_files = db.execute(
+            """
+            SELECT COUNT(*) FROM project_files
+            WHERE project_id = ? AND kind = 'artifact'
+            """,
+            (project_id,),
+        ).fetchone()[0]
+    assert artifact_files == 5
+
+
+@pytest.mark.anyio
+async def test_external_markdown_change_is_catalogued_and_reindexed(client):
+    project_id = "fondo-riqualificazione-2027"
+    artifact_id = f"{project_id}--call-facts"
+    before = await client.get(f"/api/projects/{project_id}/artifacts/{artifact_id}")
+    external_content = "# Call Facts\n\nLa soglia geotecnica verificabile è pari al 60%.\n"
+    path = get_knowledge_path() / "projects" / project_id / "call-facts.md"
+    path.write_text(external_content, encoding="utf-8")
+
+    seed_markdown_artifacts()
+
+    after = await client.get(f"/api/projects/{project_id}/artifacts/{artifact_id}")
+    assert after.status_code == 200
+    assert after.json()["content"] == external_content
+    assert after.json()["status"] == "Modifica esterna"
+    assert after.json()["version"] == before.json()["version"] + 1
+    assert after.json()["chunk_count"] == 1
+
+    evidence = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "soglia geotecnica"},
+    )
+    assert evidence.json()["results"][0]["source_name"] == "call-facts.md"
 
 
 @pytest.mark.anyio
@@ -241,7 +338,7 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
             }
         )
         assert retrieved_evidence[0]["content"]
-        assert any(fact["key"] == "organization_type" for fact in company_facts or [])
+        assert any(fact["key"] == "company_facts_markdown" for fact in company_facts or [])
         return GeneratedAnswer(
             answer="Il requisito deve essere verificabile nella fonte [1].",
             citations=[1],

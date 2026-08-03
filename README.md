@@ -55,6 +55,7 @@ export PATH="$PWD/../.tools/node/bin:$PATH"
 npm run lint
 npm run test
 npm run build
+npm run test:e2e
 ```
 
 ## Stato della vertical slice
@@ -72,3 +73,9 @@ persistiti in SQLite: le card recenti riaprono le chat, il refresh conserva
 risposte e citazioni e la cronologia recente viene passata al modello soltanto
 come contesto conversazionale. Il retrieval semantico tramite embedding potra
 essere aggiunto sopra questo contratto dati senza riscrivere l'interfaccia.
+
+La conoscenza revisionabile segue un approccio Markdown-first. Ogni progetto
+collega artefatti globali (`general-kb.md`, `company-facts.md`) e artefatti locali
+(`call-facts.md`, `project-facts.md`, `template.md`). I file Markdown sono la
+fonte canonica; SQLite ne conserva catalogo, scope, versione, hash e chunk FTS5
+derivati. Il salvataggio dall'editor aggiorna il file e lo reindicizza nel RAG.

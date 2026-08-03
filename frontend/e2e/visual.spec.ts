@@ -96,6 +96,28 @@ test('document review keeps source provenance visible', async ({ page }, testInf
   })
 })
 
+test('markdown knowledge artifacts expose project and global scopes', async ({ page }, testInfo) => {
+  await page.goto('/projects/fondo-riqualificazione-2027/settings')
+  await page.getByRole('button', { name: 'Apri artefatti Markdown' }).click()
+
+  await expect(page.getByRole('heading', { name: 'Conoscenza Markdown' })).toBeVisible()
+  const callFactsEditor = page.getByLabel('Contenuto di Call Facts')
+  await expect(callFactsEditor).toBeVisible()
+  await expect(callFactsEditor).toContainText('# Call Facts')
+  await expect(callFactsEditor).toBeEditable()
+
+  await page.getByRole('button', { name: /Company Facts/ }).click()
+  const companyEditor = page.getByLabel('Contenuto di Company Facts')
+  await expect(companyEditor).toContainText('Mapi Ingegneria S.r.l.')
+  await expect(companyEditor).not.toBeEditable()
+  await expect(page.getByText('Gli artefatti globali sono in sola lettura')).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-markdown-knowledge.png`,
+    fullPage: true,
+  })
+})
+
 test('missing evidence is explained as an assistant answer', async ({ page }) => {
   await page.route('**/api/projects/fondo-riqualificazione-2027/answer', async (route) => {
     await route.fulfill({
