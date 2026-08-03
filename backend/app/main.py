@@ -23,6 +23,7 @@ from app.intents import direct_system_answer
 from app.repository import (
     add_project_file,
     create_project,
+    get_company_facts,
     get_document_review,
     get_project,
     list_projects,
@@ -129,7 +130,11 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
             "notice": "Nessuna evidenza pertinente trovata nelle fonti indicizzate.",
         }
     try:
-        generated = await generate_grounded_answer(payload.question, evidence)
+        generated = await generate_grounded_answer(
+            payload.question,
+            evidence,
+            company_facts=get_company_facts(),
+        )
     except GenerationNotConfiguredError as exc:
         return {
             **base_response,

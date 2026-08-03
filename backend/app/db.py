@@ -126,6 +126,14 @@ def init_database() -> None:
                 sort_order INTEGER NOT NULL DEFAULT 0
             );
 
+            CREATE TABLE IF NOT EXISTS company_facts (
+                key TEXT PRIMARY KEY,
+                label TEXT NOT NULL,
+                value TEXT NOT NULL,
+                verified INTEGER NOT NULL DEFAULT 0,
+                sort_order INTEGER NOT NULL DEFAULT 0
+            );
+
             CREATE TABLE IF NOT EXISTS conversations (
                 id TEXT PRIMARY KEY,
                 project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,

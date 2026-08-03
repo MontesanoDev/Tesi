@@ -39,6 +39,24 @@ TEMPORAL_QUERY_TERMS = {
     "termine",
     "termini",
 }
+APPLICATION_QUERY_TERMS = {
+    "candidatura",
+    "domanda",
+    "istanza",
+    "partecipare",
+    "presentare",
+    "proposta",
+}
+ELIGIBILITY_QUERY_TERMS = {
+    "ammissibile",
+    "ammissibilita",
+    "chi",
+    "direttamente",
+    "possono",
+    "puo",
+    "proponente",
+}
+POST_AWARD_QUERY_TERMS = {"anticipazione", "beneficiario", "erogazione", "rendicontazione"}
 DATE_PATTERN = re.compile(r"\b(?:\d{1,2}[./-]){2}\d{2,4}\b")
 TIME_PATTERN = re.compile(r"\bore\s+\d{1,2}(?:[.:]\d{2})?", flags=re.IGNORECASE)
 
@@ -61,6 +79,18 @@ def _format_size(byte_size: int) -> str:
     return f"{byte_size} B"
 
 
+def _normalized_tokens(value: str) -> set[str]:
+    normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode()
+    return set(re.findall(r"[^\W_]+", normalized.lower(), flags=re.UNICODE))
+
+
+def _is_eligibility_query(query: str) -> bool:
+    tokens = _normalized_tokens(query)
+    if tokens & POST_AWARD_QUERY_TERMS:
+        return False
+    return bool(tokens & APPLICATION_QUERY_TERMS and tokens & ELIGIBILITY_QUERY_TERMS)
+
+
 def _build_fts_query(query: str) -> str:
     tokens = re.findall(r"[^\W_]+", query.lower(), flags=re.UNICODE)
     meaningful = [
@@ -75,21 +105,44 @@ def _build_fts_query(query: str) -> str:
             terms.append(f'"{token[:-1]}"*')
         else:
             terms.append(f'"{token}"')
+    if _is_eligibility_query(query):
+        terms.extend(('"soggetti proponenti"', '"enti locali"', '"ammissibilita"'))
     return " OR ".join(terms)
 
 
 def _rerank_evidence(query: str, candidates: list[dict], limit: int) -> list[dict]:
-    query_tokens = set(re.findall(r"[^\W_]+", query.lower(), flags=re.UNICODE))
+    query_tokens = _normalized_tokens(query)
     temporal_query = bool(query_tokens & TEMPORAL_QUERY_TERMS)
+    eligibility_query = _is_eligibility_query(query)
 
     for candidate in candidates:
         relevance = -candidate.pop("rank")
         content = candidate["content"]
+        normalized_content = (
+            unicodedata.normalize("NFKD", content)
+            .encode("ascii", "ignore")
+            .decode()
+            .lower()
+        )
         if temporal_query:
             if DATE_PATTERN.search(content):
                 relevance += 3.0
             if TIME_PATTERN.search(content):
                 relevance += 1.5
+        if eligibility_query:
+            if "soggetti proponenti" in normalized_content:
+                relevance += 6.0
+            if "esclusivamente gli enti locali" in normalized_content:
+                relevance += 8.0
+            if "possono presentare" in normalized_content:
+                relevance += 3.0
+            if "domanda di erogazione" in normalized_content:
+                relevance -= 7.0
+            elif (
+                "beneficiario" in normalized_content
+                and "soggetto proponente" not in normalized_content
+            ):
+                relevance -= 3.0
         candidate["relevance"] = round(relevance, 6)
     candidates.sort(key=lambda item: item["relevance"], reverse=True)
 
@@ -121,6 +174,19 @@ def list_projects() -> list[dict]:
                 p.model_count
             FROM projects p
             ORDER BY p.rowid
+            """,
+        )
+
+
+def get_company_facts() -> list[dict]:
+    with connection() as db:
+        return _rows(
+            db,
+            """
+            SELECT key, label, value
+            FROM company_facts
+            WHERE verified = 1
+            ORDER BY sort_order
             """,
         )
 

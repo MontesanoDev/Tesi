@@ -1,6 +1,6 @@
 import pytest
 
-from app.generation import GenerationError, _parse_content
+from app.generation import GenerationError, _build_user_prompt, _parse_content
 
 
 def test_generation_parser_accepts_only_available_citations():
@@ -24,3 +24,25 @@ def test_generation_parser_rejects_unknown_citations():
             model="deepseek-test",
             usage={},
         )
+
+
+def test_generation_prompt_includes_verified_company_context():
+    prompt = _build_user_prompt(
+        "Mapi puo presentare domanda?",
+        [
+            {
+                "source_name": "bando.pdf",
+                "chunk_index": 4,
+                "content": "Sono ammessi esclusivamente gli Enti locali.",
+            }
+        ],
+        [
+            {
+                "label": "Tipo di soggetto",
+                "value": "Societa privata di ingegneria civile",
+            }
+        ],
+    )
+
+    assert "CONTESTO AZIENDALE VERIFICATO" in prompt
+    assert "Societa privata di ingegneria civile" in prompt

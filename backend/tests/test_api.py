@@ -125,9 +125,12 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
     assert not_configured.json()["generation_status"] == "not_configured"
     assert not_configured.json()["evidence"]
 
-    async def fake_generation(question, retrieved_evidence):
+    async def fake_generation(question, retrieved_evidence, company_facts=None):
         assert question == "Quali sono i requisiti tecnici verificabili?"
         assert retrieved_evidence[0]["content"]
+        assert any(
+            fact["key"] == "organization_type" for fact in company_facts or []
+        )
         return GeneratedAnswer(
             answer="Il requisito deve essere verificabile nella fonte [1].",
             citations=[1],

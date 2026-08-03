@@ -44,9 +44,41 @@ PROJECTS = [
     ),
 ]
 
+COMPANY_FACTS = [
+    (
+        "legal_name",
+        "Ragione sociale",
+        "Mapi Ingegneria S.r.l.",
+        1,
+        1,
+    ),
+    (
+        "organization_type",
+        "Tipo di soggetto",
+        "Societa privata di ingegneria civile",
+        1,
+        2,
+    ),
+    (
+        "operating_role",
+        "Ruolo operativo",
+        "Consulenza tecnica e supporto alla progettazione per enti committenti",
+        1,
+        3,
+    ),
+]
+
 
 def seed_database() -> None:
     with connection() as db:
+        db.executemany(
+            """
+            INSERT OR IGNORE INTO company_facts (
+                key, label, value, verified, sort_order
+            ) VALUES (?, ?, ?, ?, ?)
+            """,
+            COMPANY_FACTS,
+        )
         if db.execute("SELECT COUNT(*) FROM projects").fetchone()[0] > 0:
             return
 
