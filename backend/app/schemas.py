@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import BaseModel, Field
 
 
@@ -84,3 +86,19 @@ class Evidence(BaseModel):
 class EvidenceSearch(BaseModel):
     query: str
     results: list[Evidence]
+
+
+class QuestionRequest(BaseModel):
+    question: str = Field(min_length=2, max_length=500)
+
+
+class GroundedAnswerResponse(BaseModel):
+    question: str
+    answer: str | None
+    citations: list[int]
+    missing_information: list[str]
+    evidence: list[Evidence]
+    generation_status: Literal["completed", "not_configured", "no_evidence", "failed"]
+    model: str | None
+    total_tokens: int | None
+    notice: str | None

@@ -77,3 +77,21 @@ export interface EvidenceSearch {
   query: string
   results: Evidence[]
 }
+
+export type GenerationStatus =
+  | 'completed'
+  | 'not_configured'
+  | 'no_evidence'
+  | 'failed'
+
+export interface GroundedAnswer {
+  question: string
+  answer: string | null
+  citations: number[]
+  missing_information: string[]
+  evidence: Evidence[]
+  generation_status: GenerationStatus
+  model: string | null
+  total_tokens: number | null
+  notice: string | null
+}

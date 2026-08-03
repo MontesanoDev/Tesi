@@ -29,6 +29,20 @@ npm run dev
 Aprire `http://localhost:5173`. La documentazione delle API e disponibile su
 `http://localhost:8000/docs`.
 
+## Configurazione DeepSeek
+
+La generazione grounded legge la configurazione da `.env` nella root oppure da
+`backend/.env`:
+
+```dotenv
+DEEPSEEK_API_KEY=...
+DEEPSEEK_MODEL=deepseek-v4-flash
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+```
+
+Senza key il retrieval e le citazioni continuano a funzionare e l'interfaccia
+segnala esplicitamente che la generazione non e configurata.
+
 ## Verifica
 
 ```bash
@@ -51,6 +65,7 @@ file collegati e revisione del documento con provenienza dei campi. I documenti
 PDF e TXT possono essere caricati nell'area di progetto: il backend estrae il
 testo, lo divide in frammenti sovrapposti e li persiste in SQLite. Un indice
 full-text FTS5 consente gia di recuperare dal composer evidenze ordinate con
-nome della fonte e numero del frammento. Il retrieval semantico tramite
-embedding e la risposta vincolata del modello saranno aggiunti sopra questo
-contratto dati senza dover riscrivere l'interfaccia.
+nome della fonte e numero del frammento. Se `DEEPSEEK_API_KEY` e configurata,
+DeepSeek produce una risposta JSON vincolata alle evidenze recuperate; citazioni
+inesistenti vengono rifiutate. Il retrieval semantico tramite embedding potra
+essere aggiunto sopra questo contratto dati senza riscrivere l'interfaccia.

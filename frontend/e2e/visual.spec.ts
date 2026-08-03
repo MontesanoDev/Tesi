@@ -27,12 +27,15 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
     fullPage: true,
   })
 
-  await page.route('**/api/projects/fondo-riqualificazione-2027/evidence?**', async (route) => {
+  await page.route('**/api/projects/fondo-riqualificazione-2027/answer', async (route) => {
     await route.fulfill({
       contentType: 'application/json',
       body: JSON.stringify({
-        query: 'Qual è la scadenza?',
-        results: [
+        question: 'Qual è la scadenza?',
+        answer: 'La scadenza è fissata alle ore 12.00 del 15.09.2025 [1].',
+        citations: [1],
+        missing_information: [],
+        evidence: [
           {
             chunk_id: 1,
             file_id: 1,
@@ -42,11 +45,16 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
             relevance: 5.7,
           },
         ],
+        generation_status: 'completed',
+        model: 'deepseek-test',
+        total_tokens: 42,
+        notice: null,
       }),
     })
   })
   await page.getByPlaceholder('Come posso aiutarti in questo progetto?').fill('Qual è la scadenza?')
   await page.getByRole('button', { name: 'Invia' }).click()
+  await expect(page.getByText('Risposta Mapi')).toBeVisible()
   await expect(page.getByText('Evidenze recuperate', { exact: true })).toBeVisible()
   await expect(
     page.locator('.evidence-results').getByText('Fondo_Riqualificazione_2027.pdf'),

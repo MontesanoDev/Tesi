@@ -499,6 +499,60 @@
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
+.grounded-answer {
+  padding: 18px 0 20px;
+  border-top: 1px solid var(--border);
+}
+
+.grounded-answer-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.grounded-answer-heading h2 {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.grounded-answer-heading span {
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: #b8d5e9;
+  background: var(--blue-bg);
+  font-size: 10px;
+}
+
+.grounded-answer > p {
+  margin-top: 10px;
+  color: #d2d3cd;
+  font-size: 13px;
+  line-height: 21px;
+  white-space: pre-wrap;
+}
+
+.missing-information {
+  margin-top: 14px;
+  padding-left: 12px;
+  border-left: 2px solid var(--gold-bg);
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.missing-information strong {
+  color: var(--gold);
+}
+
+.missing-information ul {
+  margin: 6px 0 0 16px;
+}
+
+.missing-information li + li {
+  margin-top: 4px;
+}
+
 .evidence-results {
   padding-top: 18px;
   border-top: 1px solid var(--border);
@@ -534,6 +588,11 @@
   border-top: 0;
 }
 
+.evidence-item.is-cited {
+  padding-left: 10px;
+  box-shadow: inset 2px 0 #2f6b4d;
+}
+
 .evidence-source {
   min-width: 0;
   gap: 8px;
@@ -548,7 +607,14 @@
   white-space: nowrap;
 }
 
-.evidence-source span {
+.evidence-reference {
+  flex: 0 0 auto;
+  color: #8fc3a1;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.evidence-fragment {
   flex: 0 0 auto;
   margin-left: auto;
   color: var(--text-faint);

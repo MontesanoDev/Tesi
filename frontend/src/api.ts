@@ -1,6 +1,7 @@
 import type {
   DocumentReview,
   EvidenceSearch,
+  GroundedAnswer,
   ProjectDetail,
   ProjectFile,
   ProjectSummary,
@@ -50,6 +51,11 @@ export const api = {
       signal,
     })
   },
+  projectAnswer: (projectId: string, question: string) =>
+    request<GroundedAnswer>(`/projects/${projectId}/answer`, {
+      method: 'POST',
+      body: JSON.stringify({ question }),
+    }),
   documentReview: (projectId: string, signal?: AbortSignal) =>
     request<DocumentReview>(`/projects/${projectId}/document-review`, { signal }),
 }

@@ -2,6 +2,7 @@ import httpx
 import pytest
 
 from app.db import connection, init_database
+from app.generation import GeneratedAnswer
 from app.main import app
 from app.seed import seed_database
 
@@ -61,7 +62,7 @@ async def test_create_project_persists(client):
 
 
 @pytest.mark.anyio
-async def test_upload_document_extracts_and_persists_chunks(client):
+async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch):
     content = ("Requisito tecnico verificabile con fonte documentale. " * 80).encode()
     response = await client.post(
         "/api/projects/fondo-riqualificazione-2027/files",
@@ -93,6 +94,36 @@ async def test_upload_document_extracts_and_persists_chunks(client):
     assert evidence.status_code == 200
     assert evidence.json()["results"][0]["source_name"] == "capitolato-tecnico.txt"
     assert "Requisito tecnico" in evidence.json()["results"][0]["excerpt"]
+
+    monkeypatch.delenv("DEEPSEEK_API_KEY", raising=False)
+    not_configured = await client.post(
+        "/api/projects/fondo-riqualificazione-2027/answer",
+        json={"question": "Quali sono i requisiti tecnici verificabili?"},
+    )
+    assert not_configured.status_code == 200
+    assert not_configured.json()["generation_status"] == "not_configured"
+    assert not_configured.json()["evidence"]
+
+    async def fake_generation(question, retrieved_evidence):
+        assert question == "Quali sono i requisiti tecnici verificabili?"
+        assert retrieved_evidence[0]["content"]
+        return GeneratedAnswer(
+            answer="Il requisito deve essere verificabile nella fonte [1].",
+            citations=[1],
+            missing_information=[],
+            model="deepseek-test",
+            total_tokens=42,
+        )
+
+    monkeypatch.setattr("app.main.generate_grounded_answer", fake_generation)
+    generated = await client.post(
+        "/api/projects/fondo-riqualificazione-2027/answer",
+        json={"question": "Quali sono i requisiti tecnici verificabili?"},
+    )
+    assert generated.status_code == 200
+    assert generated.json()["generation_status"] == "completed"
+    assert generated.json()["citations"] == [1]
+    assert generated.json()["model"] == "deepseek-test"
 
 
 @pytest.mark.anyio

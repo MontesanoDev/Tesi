@@ -229,6 +229,7 @@ def search_project_evidence(project_id: str, query: str, limit: int = 4) -> list
                 c.file_id,
                 f.name AS source_name,
                 c.chunk_index,
+                c.content,
                 snippet(document_chunks_fts, 2, '', '', ' … ', 36) AS excerpt,
                 bm25(document_chunks_fts) AS rank
             FROM document_chunks_fts

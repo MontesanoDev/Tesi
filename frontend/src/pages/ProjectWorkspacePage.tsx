@@ -6,7 +6,7 @@ import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
 import { useProject } from '../hooks/useProject'
-import type { Evidence } from '../types'
+import type { GroundedAnswer } from '../types'
 
 export function ProjectWorkspacePage() {
   const { projectId } = useParams()
@@ -15,9 +15,10 @@ export function ProjectWorkspacePage() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [prompt, setPrompt] = useState('')
   const [savedPrompt, setSavedPrompt] = useState<string | null>(null)
-  const [evidence, setEvidence] = useState<Evidence[]>([])
+  const [answerResult, setAnswerResult] = useState<GroundedAnswer | null>(null)
   const [searching, setSearching] = useState(false)
   const [searchError, setSearchError] = useState<string | null>(null)
+  const evidence = answerResult?.evidence ?? []
 
   if (loading) return <AppShell active="projects"><LoadingState /></AppShell>
   if (error || !project) {
@@ -31,12 +32,12 @@ export function ProjectWorkspacePage() {
     if (!query || searching) return
     setSavedPrompt(query)
     setPrompt('')
-    setEvidence([])
+    setAnswerResult(null)
     setSearchError(null)
     setSearching(true)
     try {
-      const result = await api.projectEvidence(activeProjectId, query)
-      setEvidence(result.results)
+      const result = await api.projectAnswer(activeProjectId, query)
+      setAnswerResult(result)
     } catch (reason) {
       setSearchError(reason instanceof Error ? reason.message : 'Ricerca non riuscita')
     } finally {
@@ -113,15 +114,37 @@ export function ProjectWorkspacePage() {
                 ? 'Ricerca delle evidenze nelle fonti del progetto...'
                 : searchError
                   ? searchError
-                  : savedPrompt && evidence.length > 0
+                  : answerResult?.generation_status === 'completed'
                     ? evidence.length === 1
-                      ? '1 evidenza recuperata dalle fonti del progetto.'
-                      : `${evidence.length} evidenze recuperate dalle fonti del progetto.`
-                    : savedPrompt
-                      ? 'Nessuna evidenza pertinente trovata nelle fonti indicizzate.'
+                      ? 'Risposta generata da 1 evidenza del progetto.'
+                      : `Risposta generata da ${evidence.length} evidenze del progetto.`
+                    : answerResult?.notice
+                      ? answerResult.notice
+                      : savedPrompt
+                        ? 'Nessuna evidenza pertinente trovata nelle fonti indicizzate.'
                       : 'Mapi RAG usa i documenti, i dati aziendali e i modelli collegati a questo progetto.'}
             </p>
           </div>
+
+          {answerResult?.answer && (
+            <section className="grounded-answer" aria-labelledby="answer-title">
+              <div className="grounded-answer-heading">
+                <h2 id="answer-title">Risposta Mapi</h2>
+                {answerResult.model && <span>{answerResult.model}</span>}
+              </div>
+              <p>{answerResult.answer}</p>
+              {answerResult.missing_information.length > 0 && (
+                <div className="missing-information">
+                  <strong>Informazioni mancanti</strong>
+                  <ul>
+                    {answerResult.missing_information.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
+          )}
 
           {evidence.length > 0 && (
             <section className="evidence-results" aria-labelledby="evidence-title">
@@ -130,12 +153,16 @@ export function ProjectWorkspacePage() {
                 <span>{evidence.length} risultati</span>
               </div>
               <ol className="evidence-list">
-                {evidence.map((item) => (
-                  <li className="evidence-item" key={item.chunk_id}>
+                {evidence.map((item, index) => (
+                  <li
+                    className={`evidence-item${answerResult?.citations.includes(index + 1) ? ' is-cited' : ''}`}
+                    key={item.chunk_id}
+                  >
                     <div className="evidence-source">
+                      <span className="evidence-reference">[{index + 1}]</span>
                       <FileText size={15} />
                       <strong>{item.source_name}</strong>
-                      <span>Frammento {item.chunk_index + 1}</span>
+                      <span className="evidence-fragment">Frammento {item.chunk_index + 1}</span>
                     </div>
                     <p>{item.excerpt}</p>
                   </li>

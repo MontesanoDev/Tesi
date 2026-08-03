@@ -7,6 +7,11 @@ from fastapi import FastAPI, File, HTTPException, Query, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.db import init_database
+from app.generation import (
+    GenerationError,
+    GenerationNotConfiguredError,
+    generate_grounded_answer,
+)
 from app.ingestion import (
     DocumentTooLargeError,
     EmptyDocumentError,
@@ -25,10 +30,12 @@ from app.repository import (
 from app.schemas import (
     DocumentReview,
     EvidenceSearch,
+    GroundedAnswerResponse,
     ProjectCreate,
     ProjectDetail,
     ProjectFile,
     ProjectSummary,
+    QuestionRequest,
 )
 from app.seed import seed_database
 
@@ -83,6 +90,54 @@ async def project_evidence(
     if results is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
     return {"query": q, "results": results}
+
+
+@app.post("/api/projects/{project_id}/answer", response_model=GroundedAnswerResponse)
+async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
+    evidence = search_project_evidence(project_id, payload.question, limit=4)
+    if evidence is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    base_response = {
+        "question": payload.question,
+        "citations": [],
+        "missing_information": [],
+        "evidence": evidence,
+        "model": None,
+        "total_tokens": None,
+    }
+    if not evidence:
+        return {
+            **base_response,
+            "answer": None,
+            "generation_status": "no_evidence",
+            "notice": "Nessuna evidenza pertinente trovata nelle fonti indicizzate.",
+        }
+    try:
+        generated = await generate_grounded_answer(payload.question, evidence)
+    except GenerationNotConfiguredError as exc:
+        return {
+            **base_response,
+            "answer": None,
+            "generation_status": "not_configured",
+            "notice": str(exc),
+        }
+    except GenerationError as exc:
+        return {
+            **base_response,
+            "answer": None,
+            "generation_status": "failed",
+            "notice": str(exc),
+        }
+    return {
+        **base_response,
+        "answer": generated.answer,
+        "citations": generated.citations,
+        "missing_information": generated.missing_information,
+        "generation_status": "completed",
+        "model": generated.model,
+        "total_tokens": generated.total_tokens,
+        "notice": None,
+    }
 
 
 @app.post(
