@@ -111,7 +111,12 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
             "total_tokens": 0,
             "notice": None,
         }
-    evidence = search_project_evidence(project_id, payload.question, limit=4)
+    evidence = search_project_evidence(
+        project_id,
+        payload.question,
+        limit=4,
+        include_neighbors=True,
+    )
     if evidence is None:
         raise RuntimeError("Il progetto validato non e piu disponibile")
     base_response = {

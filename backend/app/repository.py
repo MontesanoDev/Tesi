@@ -39,24 +39,6 @@ TEMPORAL_QUERY_TERMS = {
     "termine",
     "termini",
 }
-APPLICATION_QUERY_TERMS = {
-    "candidatura",
-    "domanda",
-    "istanza",
-    "partecipare",
-    "presentare",
-    "proposta",
-}
-ELIGIBILITY_QUERY_TERMS = {
-    "ammissibile",
-    "ammissibilita",
-    "chi",
-    "direttamente",
-    "possono",
-    "puo",
-    "proponente",
-}
-POST_AWARD_QUERY_TERMS = {"anticipazione", "beneficiario", "erogazione", "rendicontazione"}
 DATE_PATTERN = re.compile(r"\b(?:\d{1,2}[./-]){2}\d{2,4}\b")
 TIME_PATTERN = re.compile(r"\bore\s+\d{1,2}(?:[.:]\d{2})?", flags=re.IGNORECASE)
 
@@ -84,13 +66,6 @@ def _normalized_tokens(value: str) -> set[str]:
     return set(re.findall(r"[^\W_]+", normalized.lower(), flags=re.UNICODE))
 
 
-def _is_eligibility_query(query: str) -> bool:
-    tokens = _normalized_tokens(query)
-    if tokens & POST_AWARD_QUERY_TERMS:
-        return False
-    return bool(tokens & APPLICATION_QUERY_TERMS and tokens & ELIGIBILITY_QUERY_TERMS)
-
-
 def _build_fts_query(query: str) -> str:
     tokens = re.findall(r"[^\W_]+", query.lower(), flags=re.UNICODE)
     meaningful = [
@@ -105,44 +80,21 @@ def _build_fts_query(query: str) -> str:
             terms.append(f'"{token[:-1]}"*')
         else:
             terms.append(f'"{token}"')
-    if _is_eligibility_query(query):
-        terms.extend(('"soggetti proponenti"', '"enti locali"', '"ammissibilita"'))
     return " OR ".join(terms)
 
 
 def _rerank_evidence(query: str, candidates: list[dict], limit: int) -> list[dict]:
     query_tokens = _normalized_tokens(query)
     temporal_query = bool(query_tokens & TEMPORAL_QUERY_TERMS)
-    eligibility_query = _is_eligibility_query(query)
 
     for candidate in candidates:
         relevance = -candidate.pop("rank")
         content = candidate["content"]
-        normalized_content = (
-            unicodedata.normalize("NFKD", content)
-            .encode("ascii", "ignore")
-            .decode()
-            .lower()
-        )
         if temporal_query:
             if DATE_PATTERN.search(content):
                 relevance += 3.0
             if TIME_PATTERN.search(content):
                 relevance += 1.5
-        if eligibility_query:
-            if "soggetti proponenti" in normalized_content:
-                relevance += 6.0
-            if "esclusivamente gli enti locali" in normalized_content:
-                relevance += 8.0
-            if "possono presentare" in normalized_content:
-                relevance += 3.0
-            if "domanda di erogazione" in normalized_content:
-                relevance -= 7.0
-            elif (
-                "beneficiario" in normalized_content
-                and "soggetto proponente" not in normalized_content
-            ):
-                relevance -= 3.0
         candidate["relevance"] = round(relevance, 6)
     candidates.sort(key=lambda item: item["relevance"], reverse=True)
 
@@ -161,6 +113,54 @@ def _rerank_evidence(query: str, candidates: list[dict], limit: int) -> list[dic
     if len(selected) < limit:
         selected.extend(deferred[: limit - len(selected)])
     return selected
+
+
+def _neighbor_excerpt(content: str, offset: int, window: int = 480) -> str:
+    normalized = re.sub(r"\s+", " ", content).strip()
+    if len(normalized) <= window:
+        return normalized
+    if offset < 0:
+        return f"... {normalized[-window:]}"
+    return f"{normalized[:window]} ..."
+
+
+def _expand_neighbor_evidence(
+    project_id: str,
+    anchors: list[dict],
+    max_results: int,
+) -> list[dict]:
+    if len(anchors) >= max_results:
+        return anchors[:max_results]
+
+    expanded = list(anchors)
+    seen_chunk_ids = {item["chunk_id"] for item in anchors}
+    with connection() as db:
+        for offset in (-1, 1):
+            for anchor in anchors:
+                row = db.execute(
+                    """
+                    SELECT
+                        c.id AS chunk_id,
+                        c.file_id,
+                        f.name AS source_name,
+                        c.chunk_index,
+                        c.content
+                    FROM document_chunks c
+                    JOIN project_files f ON f.id = c.file_id
+                    WHERE c.project_id = ? AND c.file_id = ? AND c.chunk_index = ?
+                    """,
+                    (project_id, anchor["file_id"], anchor["chunk_index"] + offset),
+                ).fetchone()
+                if row is None or row["chunk_id"] in seen_chunk_ids:
+                    continue
+                neighbor = dict(row)
+                neighbor["excerpt"] = _neighbor_excerpt(neighbor["content"], offset)
+                neighbor["relevance"] = round(anchor["relevance"] - 0.25, 6)
+                expanded.append(neighbor)
+                seen_chunk_ids.add(neighbor["chunk_id"])
+                if len(expanded) >= max_results:
+                    return expanded
+    return expanded
 
 
 def list_projects() -> list[dict]:
@@ -324,7 +324,12 @@ def add_project_file(project_id: str, document: IngestedDocument) -> dict | None
     return dict(row) if row is not None else None
 
 
-def search_project_evidence(project_id: str, query: str, limit: int = 4) -> list[dict] | None:
+def search_project_evidence(
+    project_id: str,
+    query: str,
+    limit: int = 4,
+    include_neighbors: bool = False,
+) -> list[dict] | None:
     fts_query = _build_fts_query(query)
     with connection() as db:
         if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
@@ -351,7 +356,10 @@ def search_project_evidence(project_id: str, query: str, limit: int = 4) -> list
             """,
             (fts_query, project_id, max(limit * 6, 24)),
         )
-    return _rerank_evidence(query, candidates, limit)
+    anchors = _rerank_evidence(query, candidates, limit)
+    if include_neighbors:
+        return _expand_neighbor_evidence(project_id, anchors, max_results=limit * 2)
+    return anchors
 
 
 def get_document_review(project_id: str) -> dict | None:
