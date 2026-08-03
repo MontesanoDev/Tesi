@@ -499,6 +499,69 @@
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
+.evidence-results {
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.evidence-heading,
+.evidence-source {
+  display: flex;
+  align-items: center;
+}
+
+.evidence-heading {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.evidence-heading > span:last-child {
+  color: var(--text-faint);
+  font-size: 11px;
+}
+
+.evidence-list {
+  margin-top: 10px;
+  list-style: none;
+}
+
+.evidence-item {
+  padding: 13px 0;
+  border-top: 1px solid #373834;
+}
+
+.evidence-item:first-child {
+  border-top: 0;
+}
+
+.evidence-source {
+  min-width: 0;
+  gap: 8px;
+  color: #bfc0ba;
+}
+
+.evidence-source strong {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.evidence-source span {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--text-faint);
+  font-size: 10px;
+}
+
+.evidence-item > p {
+  margin-top: 7px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+
 .recent-conversations {
   margin-top: 28px;
 }
@@ -584,14 +647,6 @@
 
 .spin {
   animation: spin 900ms linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .spin { animation: none; }
 }
 
 .knowledge-section h2,

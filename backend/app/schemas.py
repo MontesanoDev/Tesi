@@ -70,3 +70,17 @@ class DocumentReview(BaseModel):
     completed_fields: int
     total_fields: int
     fields: list[DocumentField]
+
+
+class Evidence(BaseModel):
+    chunk_id: int
+    file_id: int
+    source_name: str
+    chunk_index: int
+    excerpt: str
+    relevance: float
+
+
+class EvidenceSearch(BaseModel):
+    query: str
+    results: list[Evidence]

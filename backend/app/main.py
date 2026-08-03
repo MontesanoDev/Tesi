@@ -3,7 +3,7 @@ from __future__ import annotations
 from contextlib import asynccontextmanager
 from typing import Annotated
 
-from fastapi import FastAPI, File, HTTPException, UploadFile, status
+from fastapi import FastAPI, File, HTTPException, Query, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.db import init_database
@@ -20,9 +20,11 @@ from app.repository import (
     get_document_review,
     get_project,
     list_projects,
+    search_project_evidence,
 )
 from app.schemas import (
     DocumentReview,
+    EvidenceSearch,
     ProjectCreate,
     ProjectDetail,
     ProjectFile,
@@ -69,6 +71,18 @@ async def project(project_id: str) -> dict:
     if result is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
     return result
+
+
+@app.get("/api/projects/{project_id}/evidence", response_model=EvidenceSearch)
+async def project_evidence(
+    project_id: str,
+    q: Annotated[str, Query(min_length=2, max_length=500)],
+    limit: Annotated[int, Query(ge=1, le=8)] = 4,
+) -> dict:
+    results = search_project_evidence(project_id, q, limit)
+    if results is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    return {"query": q, "results": results}
 
 
 @app.post(

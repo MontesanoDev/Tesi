@@ -86,6 +86,14 @@ async def test_upload_document_extracts_and_persists_chunks(client):
         ).fetchone()[0]
     assert persisted_chunks == uploaded["chunk_count"]
 
+    evidence = await client.get(
+        "/api/projects/fondo-riqualificazione-2027/evidence",
+        params={"q": "Quali sono i requisiti tecnici verificabili?"},
+    )
+    assert evidence.status_code == 200
+    assert evidence.json()["results"][0]["source_name"] == "capitolato-tecnico.txt"
+    assert "Requisito tecnico" in evidence.json()["results"][0]["excerpt"]
+
 
 @pytest.mark.anyio
 async def test_upload_rejects_unsupported_documents(client):

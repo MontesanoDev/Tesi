@@ -49,6 +49,8 @@ Sono gia funzionanti elenco e creazione dei progetti, area del progetto,
 separazione tra impostazioni generali e impostazioni del progetto, lettura dei
 file collegati e revisione del documento con provenienza dei campi. I documenti
 PDF e TXT possono essere caricati nell'area di progetto: il backend estrae il
-testo, lo divide in frammenti sovrapposti e li persiste in SQLite. Embedding,
-retrieval e risposta del modello saranno aggiunti sopra questo contratto dati
-senza dover riscrivere l'interfaccia.
+testo, lo divide in frammenti sovrapposti e li persiste in SQLite. Un indice
+full-text FTS5 consente gia di recuperare dal composer evidenze ordinate con
+nome della fonte e numero del frammento. Il retrieval semantico tramite
+embedding e la risposta vincolata del modello saranno aggiunti sopra questo
+contratto dati senza dover riscrivere l'interfaccia.

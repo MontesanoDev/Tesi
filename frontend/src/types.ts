@@ -63,3 +63,17 @@ export interface DocumentReview {
   total_fields: number
   fields: DocumentField[]
 }
+
+export interface Evidence {
+  chunk_id: number
+  file_id: number
+  source_name: string
+  chunk_index: number
+  excerpt: string
+  relevance: number
+}
+
+export interface EvidenceSearch {
+  query: string
+  results: Evidence[]
+}

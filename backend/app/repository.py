@@ -9,6 +9,27 @@ from app.db import connection
 from app.ingestion import IngestedDocument
 from app.schemas import ProjectCreate
 
+SEARCH_STOP_WORDS = {
+    "che",
+    "chi",
+    "come",
+    "con",
+    "cosa",
+    "dei",
+    "del",
+    "della",
+    "delle",
+    "gli",
+    "nel",
+    "nella",
+    "per",
+    "qual",
+    "quale",
+    "quali",
+    "sono",
+    "una",
+}
+
 
 def _rows(db: sqlite3.Connection, query: str, params: tuple = ()) -> list[dict]:
     return [dict(row) for row in db.execute(query, params).fetchall()]
@@ -26,6 +47,23 @@ def _format_size(byte_size: int) -> str:
     if byte_size >= 1024:
         return f"{round(byte_size / 1024)} KB"
     return f"{byte_size} B"
+
+
+def _build_fts_query(query: str) -> str:
+    tokens = re.findall(r"[^\W_]+", query.lower(), flags=re.UNICODE)
+    meaningful = [
+        token
+        for token in tokens
+        if token not in SEARCH_STOP_WORDS
+        and (len(token) >= 3 or any(char.isdigit() for char in token))
+    ]
+    terms = []
+    for token in dict.fromkeys(meaningful):
+        if len(token) >= 5 and token[-1] in "aeiou":
+            terms.append(f'"{token[:-1]}"*')
+        else:
+            terms.append(f'"{token}"')
+    return " OR ".join(terms)
 
 
 def list_projects() -> list[dict]:
@@ -174,6 +212,37 @@ def add_project_file(project_id: str, document: IngestedDocument) -> dict | None
             (file_id,),
         ).fetchone()
     return dict(row) if row is not None else None
+
+
+def search_project_evidence(project_id: str, query: str, limit: int = 4) -> list[dict] | None:
+    fts_query = _build_fts_query(query)
+    with connection() as db:
+        if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
+            return None
+        if not fts_query:
+            return []
+        rows = _rows(
+            db,
+            """
+            SELECT
+                c.id AS chunk_id,
+                c.file_id,
+                f.name AS source_name,
+                c.chunk_index,
+                snippet(document_chunks_fts, 2, '', '', ' … ', 36) AS excerpt,
+                bm25(document_chunks_fts) AS rank
+            FROM document_chunks_fts
+            JOIN document_chunks c ON c.id = document_chunks_fts.rowid
+            JOIN project_files f ON f.id = c.file_id
+            WHERE document_chunks_fts MATCH ? AND c.project_id = ?
+            ORDER BY rank
+            LIMIT ?
+            """,
+            (fts_query, project_id, limit),
+        )
+    for row in rows:
+        row["relevance"] = round(-row.pop("rank"), 6)
+    return rows
 
 
 def get_document_review(project_id: str) -> dict | None:

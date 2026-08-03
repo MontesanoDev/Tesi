@@ -1,10 +1,12 @@
-import { ArrowUp, EllipsisVertical, Paperclip } from 'lucide-react'
+import { ArrowUp, EllipsisVertical, FileText, Paperclip } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
 import { useProject } from '../hooks/useProject'
+import type { Evidence } from '../types'
 
 export function ProjectWorkspacePage() {
   const { projectId } = useParams()
@@ -13,17 +15,33 @@ export function ProjectWorkspacePage() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [prompt, setPrompt] = useState('')
   const [savedPrompt, setSavedPrompt] = useState<string | null>(null)
+  const [evidence, setEvidence] = useState<Evidence[]>([])
+  const [searching, setSearching] = useState(false)
+  const [searchError, setSearchError] = useState<string | null>(null)
 
   if (loading) return <AppShell active="projects"><LoadingState /></AppShell>
   if (error || !project) {
     return <AppShell active="projects"><ErrorState message={error ?? 'Progetto non trovato'} /></AppShell>
   }
+  const activeProjectId = project.id
 
-  function submitPrompt(event: FormEvent) {
+  async function submitPrompt(event: FormEvent) {
     event.preventDefault()
-    if (!prompt.trim()) return
-    setSavedPrompt(prompt.trim())
+    const query = prompt.trim()
+    if (!query || searching) return
+    setSavedPrompt(query)
     setPrompt('')
+    setEvidence([])
+    setSearchError(null)
+    setSearching(true)
+    try {
+      const result = await api.projectEvidence(activeProjectId, query)
+      setEvidence(result.results)
+    } catch (reason) {
+      setSearchError(reason instanceof Error ? reason.message : 'Ricerca non riuscita')
+    } finally {
+      setSearching(false)
+    }
   }
 
   return (
@@ -79,7 +97,7 @@ export function ProjectWorkspacePage() {
                 className="send-button"
                 type="submit"
                 aria-label="Invia"
-                disabled={!prompt.trim()}
+                disabled={!prompt.trim() || searching}
               >
                 <ArrowUp size={20} />
               </button>
@@ -87,13 +105,44 @@ export function ProjectWorkspacePage() {
           </form>
 
           <div className="assistant-note" aria-live="polite">
-            <span className={savedPrompt ? 'activity-dot activity-dot--done' : 'activity-dot'} />
+            <span
+              className={savedPrompt && !searching ? 'activity-dot activity-dot--done' : 'activity-dot'}
+            />
             <p>
-              {savedPrompt
-                ? 'Richiesta salvata nella conversazione corrente.'
-                : 'Mapi RAG usa i documenti, i dati aziendali e i modelli collegati a questo progetto.'}
+              {searching
+                ? 'Ricerca delle evidenze nelle fonti del progetto...'
+                : searchError
+                  ? searchError
+                  : savedPrompt && evidence.length > 0
+                    ? evidence.length === 1
+                      ? '1 evidenza recuperata dalle fonti del progetto.'
+                      : `${evidence.length} evidenze recuperate dalle fonti del progetto.`
+                    : savedPrompt
+                      ? 'Nessuna evidenza pertinente trovata nelle fonti indicizzate.'
+                      : 'Mapi RAG usa i documenti, i dati aziendali e i modelli collegati a questo progetto.'}
             </p>
           </div>
+
+          {evidence.length > 0 && (
+            <section className="evidence-results" aria-labelledby="evidence-title">
+              <div className="evidence-heading">
+                <span className="section-label" id="evidence-title">Evidenze recuperate</span>
+                <span>{evidence.length} risultati</span>
+              </div>
+              <ol className="evidence-list">
+                {evidence.map((item) => (
+                  <li className="evidence-item" key={item.chunk_id}>
+                    <div className="evidence-source">
+                      <FileText size={15} />
+                      <strong>{item.source_name}</strong>
+                      <span>Frammento {item.chunk_index + 1}</span>
+                    </div>
+                    <p>{item.excerpt}</p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
 
           <section className="recent-conversations">
             <span className="section-label">Conversazioni recenti</span>

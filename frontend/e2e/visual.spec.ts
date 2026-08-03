@@ -27,6 +27,32 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
     fullPage: true,
   })
 
+  await page.route('**/api/projects/fondo-riqualificazione-2027/evidence?**', async (route) => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        query: 'Qual è la scadenza?',
+        results: [
+          {
+            chunk_id: 1,
+            file_id: 1,
+            source_name: 'Fondo_Riqualificazione_2027.pdf',
+            chunk_index: 17,
+            excerpt: 'Il termine di scadenza è fissato alle ore 12.00 del 15.09.2025.',
+            relevance: 5.7,
+          },
+        ],
+      }),
+    })
+  })
+  await page.getByPlaceholder('Come posso aiutarti in questo progetto?').fill('Qual è la scadenza?')
+  await page.getByRole('button', { name: 'Invia' }).click()
+  await expect(page.getByText('Evidenze recuperate', { exact: true })).toBeVisible()
+  await expect(
+    page.locator('.evidence-results').getByText('Fondo_Riqualificazione_2027.pdf'),
+  ).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+
   await page.getByRole('button', { name: 'Menu progetto' }).click()
   await page.getByRole('button', { name: /Impostazioni progetto/ }).click()
   await expect(page.getByRole('heading', { name: 'Impostazioni progetto' })).toBeVisible()

@@ -1,5 +1,6 @@
 import type {
   DocumentReview,
+  EvidenceSearch,
   ProjectDetail,
   ProjectFile,
   ProjectSummary,
@@ -41,6 +42,12 @@ export const api = {
     return request<ProjectFile>(`/projects/${projectId}/files`, {
       method: 'POST',
       body,
+    })
+  },
+  projectEvidence: (projectId: string, query: string, signal?: AbortSignal) => {
+    const params = new URLSearchParams({ q: query })
+    return request<EvidenceSearch>(`/projects/${projectId}/evidence?${params}`, {
+      signal,
     })
   },
   documentReview: (projectId: string, signal?: AbortSignal) =>

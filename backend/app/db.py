@@ -90,6 +90,31 @@ def init_database() -> None:
             CREATE INDEX IF NOT EXISTS idx_document_chunks_project
             ON document_chunks(project_id);
 
+            CREATE VIRTUAL TABLE IF NOT EXISTS document_chunks_fts USING fts5(
+                project_id UNINDEXED,
+                file_id UNINDEXED,
+                content,
+                tokenize = 'unicode61 remove_diacritics 2'
+            );
+
+            CREATE TRIGGER IF NOT EXISTS document_chunks_fts_insert
+            AFTER INSERT ON document_chunks BEGIN
+                INSERT INTO document_chunks_fts(rowid, project_id, file_id, content)
+                VALUES (new.id, new.project_id, new.file_id, new.content);
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS document_chunks_fts_delete
+            AFTER DELETE ON document_chunks BEGIN
+                DELETE FROM document_chunks_fts WHERE rowid = old.id;
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS document_chunks_fts_update
+            AFTER UPDATE ON document_chunks BEGIN
+                DELETE FROM document_chunks_fts WHERE rowid = old.id;
+                INSERT INTO document_chunks_fts(rowid, project_id, file_id, content)
+                VALUES (new.id, new.project_id, new.file_id, new.content);
+            END;
+
             CREATE TABLE IF NOT EXISTS knowledge_sources (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
@@ -128,3 +153,9 @@ def init_database() -> None:
         _ensure_column(db, "project_files", "byte_size", "INTEGER NOT NULL DEFAULT 0")
         _ensure_column(db, "project_files", "page_count", "INTEGER NOT NULL DEFAULT 0")
         _ensure_column(db, "project_files", "chunk_count", "INTEGER NOT NULL DEFAULT 0")
+        db.execute(
+            """
+            INSERT OR REPLACE INTO document_chunks_fts(rowid, project_id, file_id, content)
+            SELECT id, project_id, file_id, content FROM document_chunks
+            """
+        )
