@@ -1,0 +1,55 @@
+import { expect, test } from '@playwright/test'
+
+async function expectNoHorizontalOverflow(page: import('@playwright/test').Page) {
+  const dimensions = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }))
+  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth)
+}
+
+test('project flow renders without overlap', async ({ page }, testInfo) => {
+  await page.goto('/projects')
+  await expect(page.getByRole('heading', { name: 'Progetti' })).toBeVisible()
+  await expect(page.getByText('Fondo Riqualificazione 2027')).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-projects.png`,
+    fullPage: true,
+  })
+
+  await page.getByText('Fondo Riqualificazione 2027').first().click()
+  await expect(page.getByPlaceholder('Come posso aiutarti in questo progetto?')).toBeVisible()
+  await expect(page.getByText('Fondo_Riqualificazione_2027.pdf')).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-workspace.png`,
+    fullPage: true,
+  })
+
+  await page.getByRole('button', { name: 'Menu progetto' }).click()
+  await page.getByRole('button', { name: /Impostazioni progetto/ }).click()
+  await expect(page.getByRole('heading', { name: 'Impostazioni progetto' })).toBeVisible()
+  await expect(page.getByText('Fonti globali rese disponibili nel progetto corrente')).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-project-settings.png`,
+    fullPage: true,
+  })
+})
+
+test('document review keeps source provenance visible', async ({ page }, testInfo) => {
+  await page.goto('/projects/fondo-riqualificazione-2027/review')
+  await expect(page.getByRole('heading', { name: 'Modulo di candidatura A' }).first()).toBeVisible()
+  await expect(page.getByText("L'approvazione finale spetta al revisore umano.")).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  const paperDimensions = await page.locator('.document-preview').evaluate((element) => ({
+    clientWidth: element.clientWidth,
+    scrollWidth: element.scrollWidth,
+  }))
+  expect(paperDimensions.scrollWidth).toBeLessThanOrEqual(paperDimensions.clientWidth)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-review.png`,
+    fullPage: true,
+  })
+})

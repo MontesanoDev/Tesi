@@ -1,0 +1,27 @@
+[project]
+name = "mapi-rag-api"
+version = "0.1.0"
+description = "API FastAPI e persistenza SQLite per il prototipo Mapi RAG"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.141.1",
+    "uvicorn[standard]>=0.52.1",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+    "ruff>=0.16.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

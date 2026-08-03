@@ -1,0 +1,185 @@
+import {
+  Database,
+  FileText,
+  Folder,
+  MessageSquare,
+  PanelLeft,
+  Plus,
+  Settings,
+  X,
+} from 'lucide-react'
+import { useState, type ReactNode } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import type { ProjectDetail } from '../types'
+
+interface AppShellProps {
+  children: ReactNode
+  active: 'projects' | 'documents' | 'company' | 'settings'
+  project?: ProjectDetail | null
+  contentClassName?: string
+}
+
+const navClass = ({ isActive }: { isActive: boolean }) =>
+  `rail-button${isActive ? ' rail-button--active' : ''}`
+
+export function AppShell({
+  children,
+  active,
+  project,
+  contentClassName = '',
+}: AppShellProps) {
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const projectPath = project ? `/projects/${project.id}` : '/projects'
+
+  return (
+    <div className="app-shell">
+      <aside className="icon-rail" aria-label="Navigazione principale">
+        <button
+          className="rail-button rail-button--panel"
+          type="button"
+          aria-label="Espandi barra laterale"
+          title="Espandi barra laterale"
+          onClick={() => setDrawerOpen(true)}
+        >
+          <PanelLeft size={18} />
+        </button>
+        <Link
+          className="rail-button"
+          to={projectPath}
+          aria-label="Nuova conversazione"
+          title="Nuova conversazione"
+        >
+          <Plus size={19} />
+        </Link>
+        <Link
+          className="rail-button"
+          to={projectPath}
+          aria-label="Conversazioni"
+          title="Conversazioni"
+        >
+          <MessageSquare size={18} />
+        </Link>
+        <NavLink
+          className={navClass}
+          to="/projects"
+          aria-label="Progetti"
+          title="Progetti"
+        >
+          <Folder size={18} />
+        </NavLink>
+        <Link
+          className={`rail-button${active === 'company' ? ' rail-button--active' : ''}`}
+          to="/projects"
+          aria-label="Dati aziendali"
+          title="Dati aziendali"
+        >
+          <Database size={18} />
+        </Link>
+        <Link
+          className={`rail-button${active === 'documents' ? ' rail-button--active' : ''}`}
+          to={project ? `/projects/${project.id}/review` : '/projects'}
+          aria-label="Documenti e output"
+          title="Documenti e output"
+        >
+          <FileText size={18} />
+        </Link>
+        <NavLink
+          className={({ isActive }) => `${navClass({ isActive })} rail-settings`}
+          to="/settings"
+          aria-label="Impostazioni generali"
+          title="Impostazioni generali"
+        >
+          <Settings size={18} />
+        </NavLink>
+        <div className="profile-avatar" aria-label="Profilo Mapi Ingegneria">
+          M
+        </div>
+      </aside>
+
+      <main className={`app-content ${contentClassName}`}>{children}</main>
+
+      {drawerOpen && (
+        <div className="drawer-layer">
+          <button
+            className="drawer-scrim"
+            type="button"
+            aria-label="Chiudi barra laterale"
+            onClick={() => setDrawerOpen(false)}
+          />
+          <aside className="side-drawer" aria-label="Navigazione estesa">
+            <div className="drawer-brand">
+              <button
+                className="icon-button"
+                type="button"
+                aria-label="Riduci barra laterale"
+                title="Riduci barra laterale"
+                onClick={() => setDrawerOpen(false)}
+              >
+                <PanelLeft size={18} />
+              </button>
+              <div>
+                <strong>Mapi RAG</strong>
+                <span>Area di progetto</span>
+              </div>
+              <button
+                className="drawer-close"
+                type="button"
+                aria-label="Chiudi"
+                onClick={() => setDrawerOpen(false)}
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <Link className="drawer-primary" to={projectPath}>
+              <Plus size={18} /> Nuova conversazione
+            </Link>
+            <span className="drawer-label">Navigazione</span>
+            <NavLink className="drawer-link" to="/projects">
+              <Folder size={18} /> Progetti
+            </NavLink>
+            <Link className="drawer-link" to={projectPath}>
+              <MessageSquare size={18} /> Conversazioni
+            </Link>
+            <Link
+              className="drawer-link"
+              to={project ? `/projects/${project.id}/review` : '/projects'}
+            >
+              <FileText size={18} /> Documenti e output
+            </Link>
+            <div className="drawer-divider" />
+            <span className="drawer-label">Base di conoscenza</span>
+            <Link className="knowledge-link" to="/settings">
+              <Database size={18} />
+              <span>
+                <strong>Dati aziendali</strong>
+                <small>Mapi Ingegneria</small>
+              </span>
+              <em>Globale</em>
+            </Link>
+            {project && (
+              <Link className="knowledge-link" to={`/projects/${project.id}/settings`}>
+                <FileText size={18} />
+                <span>
+                  <strong>Dati del bando</strong>
+                  <small>{project.title}</small>
+                </span>
+                <em className="project-scope">Progetto</em>
+              </Link>
+            )}
+            <div className="drawer-spacer" />
+            <NavLink className="drawer-link" to="/settings">
+              <Settings size={18} /> Impostazioni
+            </NavLink>
+            <div className="drawer-profile">
+              <span>M</span>
+              <div>
+                <strong>Mapi Ingegneria</strong>
+                <small>Area di lavoro tesi</small>
+              </div>
+            </div>
+          </aside>
+        </div>
+      )}
+    </div>
+  )
+}
