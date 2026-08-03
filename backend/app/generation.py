@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import json
 import re
 from dataclasses import dataclass
@@ -126,14 +127,17 @@ async def generate_grounded_answer(question: str, evidence: list[dict]) -> Gener
         "max_tokens": 900,
     }
     try:
-        async with httpx.AsyncClient(timeout=httpx.Timeout(90, connect=10)) as client:
-            response = await client.post(
-                f"{settings.base_url}/chat/completions",
-                headers={"Authorization": f"Bearer {settings.api_key}"},
-                json=request_body,
-            )
-            response.raise_for_status()
-            payload = response.json()
+        async with asyncio.timeout(90):
+            async with httpx.AsyncClient(timeout=httpx.Timeout(30, connect=10)) as client:
+                response = await client.post(
+                    f"{settings.base_url}/chat/completions",
+                    headers={"Authorization": f"Bearer {settings.api_key}"},
+                    json=request_body,
+                )
+                response.raise_for_status()
+                payload = response.json()
+    except TimeoutError as exc:
+        raise GenerationError("DeepSeek non ha risposto entro 90 secondi") from exc
     except httpx.HTTPStatusError as exc:
         status_code = exc.response.status_code
         raise GenerationError(f"DeepSeek ha rifiutato la richiesta ({status_code})") from exc
