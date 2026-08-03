@@ -30,7 +30,9 @@ from app.repository import (
     get_document_review,
     get_or_create_conversation,
     get_project,
+    is_follow_up_question,
     list_projects,
+    recent_conversation_evidence,
     save_conversation_turn,
     search_project_evidence,
 )
@@ -157,6 +159,8 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
     )
     if evidence is None:
         raise RuntimeError("Il progetto validato non e piu disponibile")
+    if not evidence and history and is_follow_up_question(payload.question):
+        evidence = recent_conversation_evidence(history)
     base_response = {
         "question": payload.question,
         "citations": [],
@@ -169,9 +173,15 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
         return persist(
             {
                 **base_response,
-                "answer": None,
+                "answer": (
+                    "Non trovo nelle fonti indicizzate informazioni sufficienti per "
+                    f"rispondere in modo verificabile a «{payload.question}». Il dato "
+                    "richiesto deve essere aggiunto o confermato da una fonte prima "
+                    "di utilizzarlo."
+                ),
+                "missing_information": ["Una fonte contenente il dato richiesto dall'utente"],
                 "generation_status": "no_evidence",
-                "notice": "Nessuna evidenza pertinente trovata nelle fonti indicizzate.",
+                "notice": "Le fonti non contengono dati verificabili per questa richiesta.",
             }
         )
     try:

@@ -4,6 +4,8 @@ from app.repository import (
     _neighbor_excerpt,
     _rerank_evidence,
     contextualize_search_query,
+    is_follow_up_question,
+    recent_conversation_evidence,
 )
 from app.seed import seed_database
 
@@ -56,6 +58,46 @@ def test_follow_up_search_reuses_the_previous_question():
     )
 
     assert query == "Quali requisiti tecnici sono obbligatori? E quali sono?"
+
+
+def test_clitic_pronoun_marks_a_follow_up_question():
+    history = [{"question": "Chi è il responsabile?", "answer": "..."}]
+
+    assert is_follow_up_question("Come contattarlo?")
+    assert contextualize_search_query("Come contattarlo?", history) == (
+        "Chi è il responsabile? Come contattarlo?"
+    )
+
+
+def test_short_independent_question_is_not_contextualized():
+    history = [{"question": "Chi è il responsabile?", "answer": "..."}]
+
+    assert not is_follow_up_question("Dammi la PEC")
+    assert contextualize_search_query("Dammi la PEC", history) == "Dammi la PEC"
+
+
+def test_follow_up_can_reuse_document_evidence_from_recent_turn():
+    history = [
+        {
+            "question": "Chi è il responsabile?",
+            "answer": "Il responsabile è indicato nella fonte [1].",
+            "evidence": [
+                {
+                    "chunk_id": 7,
+                    "file_id": 2,
+                    "source_name": "bando.pdf",
+                    "chunk_index": 12,
+                    "excerpt": "Il responsabile del procedimento è indicato nella sezione.",
+                    "relevance": 4.2,
+                }
+            ],
+        }
+    ]
+
+    reused = recent_conversation_evidence(history)
+
+    assert reused[0]["content"] == history[0]["evidence"][0]["excerpt"]
+    assert reused[0]["source_name"] == "bando.pdf"
 
 
 def test_neighbor_expansion_adds_previous_document_context(tmp_path, monkeypatch):

@@ -110,6 +110,80 @@ async def test_answer_rejects_a_conversation_from_another_project(client):
 
 
 @pytest.mark.anyio
+async def test_answer_explains_when_no_evidence_is_available(client, monkeypatch):
+    async def unexpected_generation(*_args, **_kwargs):
+        raise AssertionError("DeepSeek non deve colmare l'assenza totale di fonti")
+
+    monkeypatch.setattr("app.main.generate_grounded_answer", unexpected_generation)
+    response = await client.post(
+        "/api/projects/adeguamento-sismico-edificio-b/answer",
+        json={"question": "Qual è il recapito del responsabile?"},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["generation_status"] == "no_evidence"
+    assert payload["answer"].startswith("Non trovo nelle fonti indicizzate")
+    assert payload["missing_information"]
+
+
+@pytest.mark.anyio
+async def test_follow_up_reuses_previous_document_evidence(client, monkeypatch):
+    previous_evidence = {
+        "chunk_id": 7,
+        "file_id": 1,
+        "source_name": "bando.pdf",
+        "chunk_index": 12,
+        "excerpt": "Il responsabile del procedimento è indicato nella sezione.",
+        "relevance": 4.2,
+    }
+    history = [
+        {
+            "question": "Chi è il responsabile?",
+            "answer": "Il responsabile è indicato nella fonte [1].",
+            "evidence": [previous_evidence],
+        }
+    ]
+    monkeypatch.setattr("app.main.get_conversation_history", lambda _id: history)
+    monkeypatch.setattr(
+        "app.main.search_project_evidence",
+        lambda *_args, **_kwargs: [],
+    )
+
+    async def fake_generation(
+        question,
+        evidence,
+        company_facts=None,
+        conversation_history=None,
+    ):
+        assert question == "Come contattarlo?"
+        assert evidence[0]["content"] == previous_evidence["excerpt"]
+        assert conversation_history == history
+        return GeneratedAnswer(
+            answer="Le evidenze disponibili non riportano un recapito verificabile [1].",
+            citations=[1],
+            missing_information=["Recapito del responsabile"],
+            model="deepseek-test",
+            total_tokens=31,
+        )
+
+    monkeypatch.setattr("app.main.generate_grounded_answer", fake_generation)
+    response = await client.post(
+        "/api/projects/fondo-riqualificazione-2027/answer",
+        json={
+            "question": "Come contattarlo?",
+            "conversation_id": "requisiti-ammissibilita",
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["generation_status"] == "completed"
+    assert payload["evidence"][0]["chunk_id"] == previous_evidence["chunk_id"]
+    assert payload["missing_information"] == ["Recapito del responsabile"]
+
+
+@pytest.mark.anyio
 async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch):
     content = ("Requisito tecnico verificabile con fonte documentale. " * 80).encode()
     response = await client.post(

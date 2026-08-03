@@ -96,6 +96,36 @@ test('document review keeps source provenance visible', async ({ page }, testInf
   })
 })
 
+test('missing evidence is explained as an assistant answer', async ({ page }) => {
+  await page.route('**/api/projects/fondo-riqualificazione-2027/answer', async (route) => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        conversation_id: 'conv-no-evidence-test',
+        turn_id: 201,
+        question: 'Come posso contattarlo?',
+        answer: 'Non trovo nelle fonti indicizzate informazioni sufficienti per rispondere in modo verificabile.',
+        citations: [],
+        missing_information: ['Una fonte contenente il recapito richiesto'],
+        evidence: [],
+        generation_status: 'no_evidence',
+        model: null,
+        total_tokens: null,
+        notice: 'Le fonti non contengono dati verificabili per questa richiesta.',
+      }),
+    })
+  })
+
+  await page.goto('/projects/fondo-riqualificazione-2027')
+  const composer = page.getByPlaceholder('Come posso aiutarti in questo progetto?')
+  await composer.fill('Come posso contattarlo?')
+  await composer.press('Enter')
+
+  await expect(page.getByText('Le fonti non contengono dati verificabili')).toBeVisible()
+  await expect(page.getByText('Non trovo nelle fonti indicizzate')).toBeVisible()
+  await expect(page.getByText('Una fonte contenente il recapito richiesto')).toBeVisible()
+})
+
 test('conversation preserves earlier turns without project evidence', async ({ page }, testInfo) => {
   const conversationId = 'conv-history-test'
   const persistedTurns: Array<Record<string, unknown>> = []

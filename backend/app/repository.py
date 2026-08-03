@@ -42,7 +42,24 @@ TEMPORAL_QUERY_TERMS = {
 }
 DATE_PATTERN = re.compile(r"\b(?:\d{1,2}[./-]){2}\d{2,4}\b")
 TIME_PATTERN = re.compile(r"\bore\s+\d{1,2}(?:[.:]\d{2})?", flags=re.IGNORECASE)
-FOLLOWUP_TERMS = {"anche", "e", "invece", "quella", "quello", "questa", "questo"}
+FOLLOWUP_TERMS = {
+    "anche",
+    "e",
+    "esso",
+    "essa",
+    "invece",
+    "lei",
+    "lui",
+    "quella",
+    "quello",
+    "questa",
+    "questo",
+    "sua",
+    "sue",
+    "suo",
+    "suoi",
+}
+FOLLOWUP_CLITIC_PATTERN = re.compile(r"(?:ar|er|ir)(?:gli|la|le|li|lo|ne)$")
 
 
 def _rows(db: sqlite3.Connection, query: str, params: tuple = ()) -> list[dict]:
@@ -285,7 +302,7 @@ def get_conversation_history(conversation_id: str, limit: int = 6) -> list[dict]
         rows = _rows(
             db,
             """
-            SELECT question, answer
+            SELECT question, answer, evidence_json
             FROM conversation_turns
             WHERE conversation_id = ? AND answer IS NOT NULL
             ORDER BY id DESC
@@ -294,16 +311,35 @@ def get_conversation_history(conversation_id: str, limit: int = 6) -> list[dict]
             (conversation_id, limit),
         )
     rows.reverse()
+    for row in rows:
+        row["evidence"] = json.loads(row.pop("evidence_json"))
     return rows
 
 
-def contextualize_search_query(question: str, history: list[dict]) -> str:
-    if not history:
-        return question
+def is_follow_up_question(question: str) -> bool:
     tokens = _normalized_tokens(question)
-    if tokens & FOLLOWUP_TERMS:
+    return bool(
+        tokens & FOLLOWUP_TERMS or any(FOLLOWUP_CLITIC_PATTERN.search(token) for token in tokens)
+    )
+
+
+def contextualize_search_query(question: str, history: list[dict]) -> str:
+    if history and is_follow_up_question(question):
         return f"{history[-1]['question']} {question}"
     return question
+
+
+def recent_conversation_evidence(history: list[dict]) -> list[dict]:
+    if not history:
+        return []
+    evidence = history[-1].get("evidence") or []
+    return [
+        {
+            **item,
+            "content": item["excerpt"],
+        }
+        for item in evidence
+    ]
 
 
 def _public_evidence(evidence: list[dict]) -> list[dict]:
