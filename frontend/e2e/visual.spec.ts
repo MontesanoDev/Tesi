@@ -97,26 +97,86 @@ test('document review keeps source provenance visible', async ({ page }, testInf
 })
 
 test('markdown knowledge artifacts expose project and global scopes', async ({ page }, testInfo) => {
+  let factStatus: 'pending' | 'verified' = 'pending'
+  let factTitle = 'Termine di candidatura'
+  let factValue = '15 settembre 2025'
+  let artifactVersion = 4
+  const callFactsArtifact = () => ({
+    id: 'fondo-riqualificazione-2027--call-facts',
+    kind: 'call_facts',
+    scope: 'project',
+    title: 'Call Facts',
+    filename: 'call-facts.md',
+    status: factStatus === 'verified' ? 'Verificato' : 'Da verificare',
+    byte_size: 342,
+    version: artifactVersion,
+    updated_at: '2026-08-04 18:00:00',
+    editable: true,
+    chunk_count: factStatus === 'verified' ? 1 : 0,
+    content: [
+      '# Call Facts',
+      '',
+      `## ${factTitle}`,
+      '',
+      '<!-- fact-id: cf-demo -->',
+      '',
+      `**Valore:** ${factValue}`,
+      '',
+      `**Stato:** ${factStatus === 'verified' ? 'Verificato' : 'Da verificare'}`,
+      '',
+      '**Fonti:**',
+      '- avviso.pdf, frammento 18',
+    ].join('\n'),
+  })
+  const reviewPayload = () => ({
+    artifact: callFactsArtifact(),
+    facts: [
+      {
+        id: 'cf-demo',
+        title: factTitle,
+        value: factValue,
+        status: factStatus,
+        sources: [{ name: 'avviso.pdf', fragment: 18 }],
+      },
+    ],
+    missing_information: [],
+    pending_count: factStatus === 'pending' ? 1 : 0,
+    verified_count: factStatus === 'verified' ? 1 : 0,
+    discarded_count: 0,
+  })
+
+  await page.route(
+    '**/api/projects/fondo-riqualificazione-2027/call-facts',
+    async (route) => {
+      await route.fulfill({ contentType: 'application/json', body: JSON.stringify(reviewPayload()) })
+    },
+  )
+  await page.route(
+    /\/api\/projects\/fondo-riqualificazione-2027\/call-facts\/cf-demo$/,
+    async (route) => {
+      const payload = route.request().postDataJSON() as {
+        action: 'verify' | 'edit'
+        title?: string
+        value?: string
+      }
+      artifactVersion += 1
+      if (payload.action === 'verify') factStatus = 'verified'
+      if (payload.action === 'edit') {
+        factStatus = 'pending'
+        factTitle = payload.title ?? factTitle
+        factValue = payload.value ?? factValue
+      }
+      await route.fulfill({ contentType: 'application/json', body: JSON.stringify(reviewPayload()) })
+    },
+  )
   await page.route(
     '**/api/projects/fondo-riqualificazione-2027/call-facts/extract',
     async (route) => {
+      artifactVersion += 1
       await route.fulfill({
         contentType: 'application/json',
         body: JSON.stringify({
-          artifact: {
-            id: 'fondo-riqualificazione-2027--call-facts',
-            kind: 'call_facts',
-            scope: 'project',
-            title: 'Call Facts',
-            filename: 'call-facts.md',
-            status: 'Da verificare',
-            byte_size: 342,
-            version: 2,
-            updated_at: '2026-08-03 18:00:00',
-            editable: true,
-            chunk_count: 1,
-            content: '# Call Facts\n\n## Termine di candidatura\n\n15 settembre 2025',
-          },
+          artifact: callFactsArtifact(),
           fact_count: 2,
           missing_count: 1,
           evidence_count: 8,
@@ -130,13 +190,34 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
   await page.getByRole('button', { name: 'Apri artefatti Markdown' }).click()
 
   await expect(page.getByRole('heading', { name: 'Conoscenza Markdown' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Termine di candidatura' })).toBeVisible()
+  await expect(page.getByText('avviso.pdf, frammento 18')).toBeVisible()
+
+  await page.getByRole('button', { name: 'Verifica', exact: true }).click()
+  await expect(page.getByText('verificato e reso disponibile al RAG')).toBeVisible()
+  await page.getByRole('tab', { name: 'Verificati 1' }).click()
+  await expect(page.getByRole('heading', { name: 'Termine di candidatura' })).toBeVisible()
+
+  await page.getByRole('button', { name: 'Modifica', exact: true }).click()
+  await page.getByLabel('Titolo').fill('Termine e orario della candidatura')
+  await page.getByLabel('Valore').fill('Ore 12 del 15 settembre 2025')
+  await page.getByRole('button', { name: 'Salva modifica' }).click()
+  await page.getByRole('tab', { name: 'Da verificare 1' }).click()
+  await expect(page.getByRole('heading', { name: 'Termine e orario della candidatura' })).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-call-facts-review.png`,
+    fullPage: true,
+  })
+
+  await page.getByRole('tab', { name: 'Markdown' }).click()
   const callFactsEditor = page.getByLabel('Contenuto di Call Facts')
   await expect(callFactsEditor).toBeVisible()
-  await expect(callFactsEditor).toContainText('# Call Facts')
+  await expect(callFactsEditor).toContainText('Termine e orario della candidatura')
   await expect(callFactsEditor).toBeEditable()
 
   await page.getByRole('button', { name: /Estrai dalle fonti|Riestrai dalle fonti/ }).click()
-  await expect(callFactsEditor).toContainText('## Termine di candidatura')
+  await expect(callFactsEditor).toContainText('## Termine e orario della candidatura')
   await expect(page.getByText('2 fatti estratti da 8 frammenti')).toBeVisible()
 
   await page.getByRole('button', { name: /Company Facts/ }).click()

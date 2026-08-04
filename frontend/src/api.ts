@@ -1,5 +1,7 @@
 import type {
   CallFactsExtractionResult,
+  CallFactsReview,
+  CallFactRevision,
   ConversationDetail,
   DocumentReview,
   EvidenceSearch,
@@ -68,6 +70,16 @@ export const api = {
     request<CallFactsExtractionResult>(`/projects/${projectId}/call-facts/extract`, {
       method: 'POST',
     }),
+  callFactsReview: (projectId: string, signal?: AbortSignal) =>
+    request<CallFactsReview>(`/projects/${projectId}/call-facts`, { signal }),
+  reviseCallFact: (projectId: string, factId: string, payload: CallFactRevision) =>
+    request<CallFactsReview>(
+      `/projects/${projectId}/call-facts/${encodeURIComponent(factId)}`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify(payload),
+      },
+    ),
   projectEvidence: (projectId: string, query: string, signal?: AbortSignal) => {
     const params = new URLSearchParams({ q: query })
     return request<EvidenceSearch>(`/projects/${projectId}/evidence?${params}`, {

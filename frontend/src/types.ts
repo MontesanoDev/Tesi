@@ -57,6 +57,38 @@ export interface CallFactsExtractionResult {
   total_tokens: number | null
 }
 
+export type CallFactStatus = 'pending' | 'verified' | 'discarded'
+export type CallFactAction = 'verify' | 'edit' | 'discard' | 'restore'
+
+export interface CallFactSource {
+  name: string
+  fragment: number
+}
+
+export interface CallFactItem {
+  id: string
+  title: string
+  value: string
+  status: CallFactStatus
+  sources: CallFactSource[]
+}
+
+export interface CallFactsReview {
+  artifact: KnowledgeArtifactDetail
+  facts: CallFactItem[]
+  missing_information: string[]
+  pending_count: number
+  verified_count: number
+  discarded_count: number
+}
+
+export interface CallFactRevision {
+  action: CallFactAction
+  version: number
+  title?: string
+  value?: string
+}
+
 export interface Conversation {
   id: string
   title: string

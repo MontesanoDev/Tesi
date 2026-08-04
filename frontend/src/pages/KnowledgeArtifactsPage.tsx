@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
 import { AppShell } from '../components/AppShell'
+import { CallFactsReviewPanel } from '../components/CallFactsReviewPanel'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { StatusPill } from '../components/StatusPill'
 import { useProject } from '../hooks/useProject'
 import type {
+  CallFactsReview,
   KnowledgeArtifactDetail,
   KnowledgeArtifactSummary,
   StatusTone,
@@ -33,6 +35,10 @@ export function KnowledgeArtifactsPage() {
   const [saving, setSaving] = useState(false)
   const [extracting, setExtracting] = useState(false)
   const [savedMessage, setSavedMessage] = useState<string | null>(null)
+  const [viewMode, setViewMode] = useState<'review' | 'markdown'>('markdown')
+  const [review, setReview] = useState<CallFactsReview | null>(null)
+  const [reviewLoading, setReviewLoading] = useState(false)
+  const [reviewRefresh, setReviewRefresh] = useState(0)
 
   useEffect(() => {
     if (!projectId) return
@@ -61,12 +67,14 @@ export function KnowledgeArtifactsPage() {
     if (!projectId || !selectedId) return
     const controller = new AbortController()
     setDetailLoading(true)
+    setArtifact(null)
     setError(null)
     setSavedMessage(null)
     api.projectArtifact(projectId, selectedId, controller.signal)
       .then((item) => {
         setArtifact(item)
         setContent(item.content)
+        setViewMode(item.kind === 'call_facts' ? 'review' : 'markdown')
       })
       .catch((reason) => {
         if (reason instanceof DOMException && reason.name === 'AbortError') return
@@ -77,6 +85,26 @@ export function KnowledgeArtifactsPage() {
       })
     return () => controller.abort()
   }, [projectId, selectedId])
+
+  useEffect(() => {
+    if (!projectId || artifact?.kind !== 'call_facts') {
+      setReview(null)
+      setReviewLoading(false)
+      return
+    }
+    const controller = new AbortController()
+    setReviewLoading(true)
+    api.callFactsReview(projectId, controller.signal)
+      .then(setReview)
+      .catch((reason) => {
+        if (reason instanceof DOMException && reason.name === 'AbortError') return
+        setError(reason instanceof Error ? reason.message : 'Revisione non disponibile')
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setReviewLoading(false)
+      })
+    return () => controller.abort()
+  }, [projectId, artifact?.id, artifact?.kind, reviewRefresh])
 
   async function saveArtifact() {
     if (!projectId || !artifact || !artifact.editable || content === artifact.content) return
@@ -90,6 +118,7 @@ export function KnowledgeArtifactsPage() {
       setArtifacts((current) => current.map((item) => (
         item.id === updated.id ? updated : item
       )))
+      if (updated.kind === 'call_facts') setReviewRefresh((current) => current + 1)
       setSavedMessage(`Versione ${updated.version} salvata e indicizzata.`)
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'Salvataggio non riuscito')
@@ -110,6 +139,7 @@ export function KnowledgeArtifactsPage() {
       setArtifacts((current) => current.map((item) => (
         item.id === result.artifact.id ? result.artifact : item
       )))
+      setReviewRefresh((current) => current + 1)
       setSavedMessage(
         `${result.fact_count} fatti estratti da ${result.evidence_count} frammenti · `
         + `${result.missing_count} informazioni mancanti.`,
@@ -132,6 +162,17 @@ export function KnowledgeArtifactsPage() {
 
   const dirty = Boolean(artifact && content !== artifact.content)
   const canExtract = Boolean(artifact?.editable && artifact.kind === 'call_facts')
+
+  function handleReviewUpdated(updated: CallFactsReview, message: string) {
+    setReview(updated)
+    setArtifact(updated.artifact)
+    setContent(updated.artifact.content)
+    setArtifacts((current) => current.map((item) => (
+      item.id === updated.artifact.id ? updated.artifact : item
+    )))
+    setSavedMessage(message)
+    setError(null)
+  }
 
   return (
     <AppShell active="projects" project={project}>
@@ -196,17 +237,51 @@ export function KnowledgeArtifactsPage() {
                   <span>{artifact.chunk_count} frammenti indicizzati</span>
                   <span>{artifact.scope === 'global' ? 'Scope globale' : 'Scope progetto'}</span>
                 </div>
-                <textarea
-                  className="markdown-editor"
-                  aria-label={`Contenuto di ${artifact.title}`}
-                  value={content}
-                  readOnly={!artifact.editable}
-                  spellCheck={false}
-                  onChange={(event) => setContent(event.target.value)}
-                />
+                {artifact.kind === 'call_facts' && (
+                  <div className="artifact-view-tabs" role="tablist" aria-label="Vista Call Facts">
+                    <button
+                      className={viewMode === 'review' ? 'is-active' : ''}
+                      type="button"
+                      role="tab"
+                      aria-selected={viewMode === 'review'}
+                      onClick={() => setViewMode('review')}
+                    >
+                      Revisione
+                    </button>
+                    <button
+                      className={viewMode === 'markdown' ? 'is-active' : ''}
+                      type="button"
+                      role="tab"
+                      aria-selected={viewMode === 'markdown'}
+                      onClick={() => setViewMode('markdown')}
+                    >
+                      Markdown
+                    </button>
+                  </div>
+                )}
+                {artifact.kind === 'call_facts' && viewMode === 'review' ? (
+                  <CallFactsReviewPanel
+                    projectId={project.id}
+                    review={review}
+                    loading={reviewLoading}
+                    onUpdated={handleReviewUpdated}
+                    onError={setError}
+                  />
+                ) : (
+                  <textarea
+                    className="markdown-editor"
+                    aria-label={`Contenuto di ${artifact.title}`}
+                    value={content}
+                    readOnly={!artifact.editable}
+                    spellCheck={false}
+                    onChange={(event) => setContent(event.target.value)}
+                  />
+                )}
                 <footer className="artifact-editor-footer">
                   <div>
-                    {artifact.editable ? (
+                    {artifact.kind === 'call_facts' && viewMode === 'review' ? (
+                      <span>Ogni revisione aggiorna e reindicizza automaticamente il Markdown.</span>
+                    ) : artifact.editable ? (
                       <span>{content.split('\n').length} righe · {dirty ? 'Modifiche non salvate' : 'Salvato'}</span>
                     ) : (
                       <span>Gli artefatti globali sono in sola lettura in questo progetto.</span>
@@ -230,14 +305,16 @@ export function KnowledgeArtifactsPage() {
                             : 'Riestrai dalle fonti'}
                       </button>
                     )}
-                    <button
-                      className="button button--primary artifact-save"
-                      type="button"
-                      disabled={!dirty || saving || extracting || !artifact.editable}
-                      onClick={saveArtifact}
-                    >
-                      <Save size={16} /> {saving ? 'Salvataggio' : 'Salva e indicizza'}
-                    </button>
+                    {(artifact.kind !== 'call_facts' || viewMode === 'markdown') && (
+                      <button
+                        className="button button--primary artifact-save"
+                        type="button"
+                        disabled={!dirty || saving || extracting || !artifact.editable}
+                        onClick={saveArtifact}
+                      >
+                        <Save size={16} /> {saving ? 'Salvataggio' : 'Salva e indicizza'}
+                      </button>
+                    )}
                   </div>
                 </footer>
               </>

@@ -85,3 +85,11 @@ categorie prefissato e associa a ciascuno nome del documento e numero del
 frammento. Il risultato sostituisce `call-facts.md`, viene marcato come da
 verificare, versionato e reindicizzato. Le modifiche manuali non salvate bloccano
 la riestrazione per evitare sovrascritture involontarie.
+
+I Call Facts dispongono inoltre di una revisione human-in-the-loop. Ogni fatto puo
+essere verificato, modificato, scartato o ripristinato dalla vista di progetto; le
+azioni riscrivono e versionano `call-facts.md`, che conserva ID, stato e provenienza
+di ogni elemento. Soltanto i fatti marcati come verificati vengono derivati in
+chunk FTS5 utilizzabili dal RAG. Una modifica riporta sempre il fatto allo stato
+`Da verificare`, mentre i fatti scartati restano nel Markdown per tracciabilita ma
+sono esclusi dall'indice.
