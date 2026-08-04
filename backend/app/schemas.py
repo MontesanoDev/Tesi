@@ -71,6 +71,35 @@ class CallFactsExtractionResponse(BaseModel):
     total_tokens: int | None
 
 
+class CallFactSource(BaseModel):
+    name: str
+    fragment: int
+
+
+class CallFactItem(BaseModel):
+    id: str
+    title: str
+    value: str
+    status: Literal["pending", "verified", "discarded"]
+    sources: list[CallFactSource]
+
+
+class CallFactsReview(BaseModel):
+    artifact: KnowledgeArtifactDetail
+    facts: list[CallFactItem]
+    missing_information: list[str]
+    pending_count: int
+    verified_count: int
+    discarded_count: int
+
+
+class CallFactRevision(BaseModel):
+    action: Literal["verify", "edit", "discard", "restore"]
+    version: int = Field(ge=1)
+    title: str | None = Field(default=None, min_length=1, max_length=180)
+    value: str | None = Field(default=None, min_length=1, max_length=4_000)
+
+
 class Conversation(BaseModel):
     id: str
     title: str

@@ -3,7 +3,11 @@ import pytest
 
 from app.artifacts import seed_markdown_artifacts
 from app.db import connection, get_knowledge_path, init_database
-from app.fact_extraction import CallFactsExtraction, ExtractedFact
+from app.fact_extraction import (
+    CallFactsExtraction,
+    ExtractedFact,
+    render_call_facts_markdown,
+)
 from app.generation import GeneratedAnswer
 from app.main import app
 from app.seed import seed_database
@@ -72,25 +76,26 @@ async def test_markdown_artifact_update_is_versioned_and_indexed(client):
     project_id = "fondo-riqualificazione-2027"
     artifacts = await client.get(f"/api/projects/{project_id}/artifacts")
     assert artifacts.status_code == 200
-    call_facts = next(artifact for artifact in artifacts.json() if artifact["kind"] == "call_facts")
-    assert call_facts["editable"] is True
-    assert call_facts["chunk_count"] == 0
+    project_facts = next(
+        artifact for artifact in artifacts.json() if artifact["kind"] == "project_facts"
+    )
+    assert project_facts["editable"] is True
 
-    detail = await client.get(f"/api/projects/{project_id}/artifacts/{call_facts['id']}")
+    detail = await client.get(f"/api/projects/{project_id}/artifacts/{project_facts['id']}")
     assert detail.status_code == 200
-    assert "# Call Facts" in detail.json()["content"]
+    assert "# Project Facts" in detail.json()["content"]
 
     content = (
-        "---\nartifact: call_facts\nscope: project\nstatus: draft\n---\n\n"
-        "# Call Facts\n\n## Requisito idraulico\n\n"
+        "---\nartifact: project_facts\nscope: project\nstatus: draft\n---\n\n"
+        "# Project Facts\n\n## Requisito idraulico\n\n"
         "La verifica di resilienza idraulica è obbligatoria.\n"
     )
     updated = await client.put(
-        f"/api/projects/{project_id}/artifacts/{call_facts['id']}",
+        f"/api/projects/{project_id}/artifacts/{project_facts['id']}",
         json={"content": content},
     )
     assert updated.status_code == 200
-    assert updated.json()["version"] == call_facts["version"] + 1
+    assert updated.json()["version"] == project_facts["version"] + 1
     assert updated.json()["chunk_count"] == 1
     assert updated.json()["content"] == content
 
@@ -99,7 +104,7 @@ async def test_markdown_artifact_update_is_versioned_and_indexed(client):
         params={"q": "resilienza idraulica"},
     )
     assert evidence.status_code == 200
-    assert evidence.json()["results"][0]["source_name"] == "call-facts.md"
+    assert evidence.json()["results"][0]["source_name"] == "project-facts.md"
 
     company_facts = next(
         artifact for artifact in artifacts.json() if artifact["kind"] == "company_facts"
@@ -135,10 +140,10 @@ async def test_markdown_artifact_seed_is_idempotent(client):
 @pytest.mark.anyio
 async def test_external_markdown_change_is_catalogued_and_reindexed(client):
     project_id = "fondo-riqualificazione-2027"
-    artifact_id = f"{project_id}--call-facts"
+    artifact_id = f"{project_id}--project-facts"
     before = await client.get(f"/api/projects/{project_id}/artifacts/{artifact_id}")
-    external_content = "# Call Facts\n\nLa soglia geotecnica verificabile è pari al 60%.\n"
-    path = get_knowledge_path() / "projects" / project_id / "call-facts.md"
+    external_content = "# Project Facts\n\nLa soglia geotecnica verificabile è pari al 60%.\n"
+    path = get_knowledge_path() / "projects" / project_id / "project-facts.md"
     path.write_text(external_content, encoding="utf-8")
 
     seed_markdown_artifacts()
@@ -154,7 +159,7 @@ async def test_external_markdown_change_is_catalogued_and_reindexed(client):
         f"/api/projects/{project_id}/evidence",
         params={"q": "soglia geotecnica"},
     )
-    assert evidence.json()["results"][0]["source_name"] == "call-facts.md"
+    assert evidence.json()["results"][0]["source_name"] == "project-facts.md"
 
 
 @pytest.mark.anyio
@@ -176,14 +181,15 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
         assert received_project_id == project_id
         assert title == "Fondo Riqualificazione 2027"
         assert source_chunks[0]["source_name"] == "avviso.txt"
+        markdown = render_call_facts_markdown(
+            project_id,
+            [ExtractedFact("Termine di candidatura", "15 settembre 2025", [1])],
+            ["Ora di scadenza"],
+            [{"source_name": "avviso.txt", "chunk_index": 0}],
+            "deepseek-test",
+        )
         return CallFactsExtraction(
-            markdown=(
-                "---\nartifact: call_facts\nscope: project\n"
-                "status: pending_review\n---\n\n# Call Facts\n\n"
-                "## Termine di candidatura\n\n"
-                "**Valore:** 15 settembre 2025\n\n"
-                "**Fonti:**\n- avviso.txt, frammento 1\n"
-            ),
+            markdown=markdown,
             facts=[ExtractedFact("Termine di candidatura", "15 settembre 2025", [1])],
             missing_information=["Ora di scadenza"],
             evidence_count=1,
@@ -197,11 +203,18 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
     assert response.status_code == 200
     payload = response.json()
     assert payload["artifact"]["status"] == "Da verificare"
-    assert payload["artifact"]["chunk_count"] == 1
+    assert payload["artifact"]["chunk_count"] == 0
     assert payload["fact_count"] == 1
     assert payload["missing_count"] == 1
     assert payload["evidence_count"] == 1
     assert payload["model"] == "deepseek-test"
+
+    review = await client.get(f"/api/projects/{project_id}/call-facts")
+    assert review.status_code == 200
+    assert review.json()["pending_count"] == 1
+    assert review.json()["verified_count"] == 0
+    fact = review.json()["facts"][0]
+    assert fact["sources"] == [{"name": "avviso.txt", "fragment": 1}]
 
     project = await client.get(f"/api/projects/{project_id}")
     assert project.json()["call_fact_count"] == 1
@@ -209,7 +222,18 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
     call_facts_source = next(
         source for source in project.json()["knowledge_sources"] if source["name"] == "Call Facts"
     )
-    assert call_facts_source["item_count"] == 1
+    assert call_facts_source["item_count"] == 0
+
+    verified = await client.patch(
+        f"/api/projects/{project_id}/call-facts/{fact['id']}",
+        json={"action": "verify", "version": review.json()["artifact"]["version"]},
+    )
+    assert verified.status_code == 200
+    assert verified.json()["verified_count"] == 1
+    assert verified.json()["pending_count"] == 0
+    assert verified.json()["facts"][0]["status"] == "verified"
+    assert verified.json()["artifact"]["status"] == "Verificato"
+    assert verified.json()["artifact"]["chunk_count"] == 1
 
     evidence = await client.get(
         f"/api/projects/{project_id}/evidence",
@@ -217,6 +241,39 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
     )
     assert evidence.status_code == 200
     assert any(item["source_name"] == "call-facts.md" for item in evidence.json()["results"])
+
+    stale = await client.patch(
+        f"/api/projects/{project_id}/call-facts/{fact['id']}",
+        json={"action": "discard", "version": review.json()["artifact"]["version"]},
+    )
+    assert stale.status_code == 409
+
+    edited = await client.patch(
+        f"/api/projects/{project_id}/call-facts/{fact['id']}",
+        json={
+            "action": "edit",
+            "version": verified.json()["artifact"]["version"],
+            "title": "Termine revisionato",
+            "value": "Dato revisionato esclusivo",
+        },
+    )
+    assert edited.status_code == 200
+    assert edited.json()["facts"][0]["status"] == "pending"
+    assert edited.json()["artifact"]["chunk_count"] == 0
+
+    discarded = await client.patch(
+        f"/api/projects/{project_id}/call-facts/{fact['id']}",
+        json={"action": "discard", "version": edited.json()["artifact"]["version"]},
+    )
+    assert discarded.status_code == 200
+    assert discarded.json()["discarded_count"] == 1
+
+    restored = await client.patch(
+        f"/api/projects/{project_id}/call-facts/{fact['id']}",
+        json={"action": "restore", "version": discarded.json()["artifact"]["version"]},
+    )
+    assert restored.status_code == 200
+    assert restored.json()["facts"][0]["status"] == "pending"
 
 
 @pytest.mark.anyio

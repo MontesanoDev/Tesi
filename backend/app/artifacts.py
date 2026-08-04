@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 from pathlib import Path
 
+from app.call_facts import CallFactsFormatError, verified_call_facts_markdown
 from app.db import connection, get_knowledge_path
 from app.ingestion import chunk_text
 
@@ -144,8 +145,21 @@ def _link_artifact(db, project_id: str, artifact: dict, content: str) -> None:
         """,
         (project_id, artifact["id"]),
     ).fetchone()
-    indexed = artifact["status"] not in {"Da configurare", "Da estrarre"}
-    file_status = "Indicizzato" if indexed else "Da compilare"
+    index_content = content
+    if artifact["kind"] == "call_facts":
+        try:
+            index_content = verified_call_facts_markdown(content)
+        except CallFactsFormatError:
+            index_content = ""
+        indexed = bool(index_content)
+    else:
+        indexed = artifact["status"] not in {"Da configurare", "Da estrarre"}
+    if indexed:
+        file_status = "Indicizzato"
+    elif artifact["kind"] == "call_facts":
+        file_status = "In revisione"
+    else:
+        file_status = "Da compilare"
     if existing is None:
         sort_order = db.execute(
             "SELECT COALESCE(MAX(sort_order), 0) + 1 FROM project_files WHERE project_id = ?",
@@ -181,7 +195,7 @@ def _link_artifact(db, project_id: str, artifact: dict, content: str) -> None:
     else:
         file_id = existing["file_id"]
 
-    chunk_count = _replace_chunks(db, project_id, file_id, content, indexed)
+    chunk_count = _replace_chunks(db, project_id, file_id, index_content, indexed)
     db.execute(
         """
         UPDATE project_files

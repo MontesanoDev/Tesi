@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+from dataclasses import replace
 from typing import Annotated
 
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile, status
@@ -14,6 +15,13 @@ from app.artifacts import (
     replace_project_artifact,
     seed_markdown_artifacts,
     update_project_artifact,
+)
+from app.call_facts import (
+    CallFactsDocument,
+    CallFactsFormatError,
+    parse_call_facts_markdown,
+    render_call_facts_document,
+    revise_call_fact,
 )
 from app.db import init_database
 from app.fact_extraction import extract_call_facts, load_project_source_chunks
@@ -46,9 +54,12 @@ from app.repository import (
     save_conversation_turn,
     search_project_evidence,
     update_call_fact_metrics,
+    update_call_fact_review_metrics,
 )
 from app.schemas import (
+    CallFactRevision,
     CallFactsExtractionResponse,
+    CallFactsReview,
     ConversationDetail,
     DocumentReview,
     EvidenceSearch,
@@ -63,6 +74,41 @@ from app.schemas import (
     QuestionRequest,
 )
 from app.seed import seed_database
+
+
+def _call_facts_review_payload(artifact: dict, document: CallFactsDocument) -> dict:
+    return {
+        "artifact": artifact,
+        "facts": [
+            {
+                "id": fact.id,
+                "title": fact.title,
+                "value": fact.value,
+                "status": fact.status,
+                "sources": [
+                    {"name": source.name, "fragment": source.fragment}
+                    for source in fact.sources
+                ],
+            }
+            for fact in document.facts
+        ],
+        "missing_information": document.missing_information,
+        "pending_count": document.pending_count,
+        "verified_count": document.verified_count,
+        "discarded_count": document.discarded_count,
+    }
+
+
+def _get_call_facts_document(project_id: str) -> tuple[dict, CallFactsDocument]:
+    artifact_id = f"{project_id}--call-facts"
+    artifact = get_project_artifact(project_id, artifact_id)
+    if artifact is None:
+        raise HTTPException(status_code=404, detail="Artefatto Call Facts non trovato")
+    try:
+        document = parse_call_facts_markdown(artifact["content"])
+    except CallFactsFormatError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    return artifact, replace(document, project_id=project_id)
 
 
 @asynccontextmanager
@@ -194,6 +240,70 @@ async def project_call_facts_extract(project_id: str) -> dict:
         "model": extraction.model,
         "total_tokens": extraction.total_tokens,
     }
+
+
+@app.get(
+    "/api/projects/{project_id}/call-facts",
+    response_model=CallFactsReview,
+)
+async def project_call_facts(project_id: str) -> dict:
+    if get_project(project_id) is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    artifact, document = _get_call_facts_document(project_id)
+    return _call_facts_review_payload(artifact, document)
+
+
+@app.patch(
+    "/api/projects/{project_id}/call-facts/{fact_id}",
+    response_model=CallFactsReview,
+)
+async def project_call_fact_revision(
+    project_id: str,
+    fact_id: str,
+    payload: CallFactRevision,
+) -> dict:
+    if get_project(project_id) is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    artifact, document = _get_call_facts_document(project_id)
+    if artifact["version"] != payload.version:
+        raise HTTPException(
+            status_code=409,
+            detail="call-facts.md e stato aggiornato: ricarica la revisione",
+        )
+    try:
+        revised = revise_call_fact(
+            document,
+            fact_id,
+            payload.action,
+            title=payload.title,
+            value=payload.value,
+        )
+    except CallFactsFormatError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+    if revised.pending_count:
+        artifact_status = "Da verificare"
+    elif revised.verified_count:
+        artifact_status = "Verificato"
+    else:
+        artifact_status = "Revisionato"
+    updated = replace_project_artifact(
+        project_id,
+        artifact["id"],
+        render_call_facts_document(revised),
+        status=artifact_status,
+    )
+    if updated is None:
+        raise HTTPException(status_code=404, detail="Artefatto Call Facts non trovato")
+    update_call_fact_review_metrics(
+        project_id=project_id,
+        active_count=revised.active_count,
+        verified_count=revised.verified_count,
+        pending_count=revised.pending_count,
+        discarded_count=revised.discarded_count,
+        missing_count=len(revised.missing_information),
+    )
+    return _call_facts_review_payload(updated, revised)
 
 
 @app.get(

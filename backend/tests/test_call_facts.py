@@ -1,0 +1,86 @@
+import pytest
+
+from app.call_facts import (
+    CallFactsFormatError,
+    parse_call_facts_markdown,
+    render_call_facts_document,
+    revise_call_fact,
+    verified_call_facts_markdown,
+)
+from app.fact_extraction import ExtractedFact, render_call_facts_markdown
+
+
+def extracted_markdown() -> str:
+    return render_call_facts_markdown(
+        "progetto-test",
+        [
+            ExtractedFact("Scadenza", "15 settembre 2025", [1]),
+            ExtractedFact("Soggetto ammesso", "Comune", [2]),
+        ],
+        ["Codice CUP"],
+        [
+            {"source_name": "bando.pdf", "chunk_index": 8},
+            {"source_name": "bando.pdf", "chunk_index": 10},
+        ],
+        "deepseek-test",
+    )
+
+
+def test_call_facts_round_trip_preserves_ids_sources_and_missing_information():
+    document = parse_call_facts_markdown(extracted_markdown())
+
+    assert document.project_id == "progetto-test"
+    assert document.model == "deepseek-test"
+    assert document.pending_count == 2
+    assert document.verified_count == 0
+    assert document.facts[0].id.startswith("cf-")
+    assert document.facts[0].sources[0].fragment == 9
+    assert document.missing_information == ["Codice CUP"]
+
+    rendered = render_call_facts_document(document)
+    reparsed = parse_call_facts_markdown(rendered)
+    assert reparsed == document
+    assert f"<!-- fact-id: {document.facts[0].id} -->" in rendered
+
+
+def test_review_actions_control_which_facts_are_indexable():
+    document = parse_call_facts_markdown(extracted_markdown())
+    first, second = document.facts
+
+    verified = revise_call_fact(document, first.id, "verify")
+    indexed = verified_call_facts_markdown(render_call_facts_document(verified))
+    assert "15 settembre 2025" in indexed
+    assert "Soggetto ammesso" not in indexed
+
+    edited = revise_call_fact(
+        verified,
+        first.id,
+        "edit",
+        title="Termine candidatura",
+        value="Ore 12 del 15 settembre 2025",
+    )
+    assert edited.facts[0].status == "pending"
+    assert edited.facts[0].id == first.id
+    assert verified_call_facts_markdown(render_call_facts_document(edited)) == ""
+
+    discarded = revise_call_fact(edited, first.id, "discard")
+    assert discarded.discarded_count == 1
+    restored = revise_call_fact(discarded, first.id, "restore")
+    assert restored.facts[0].status == "pending"
+
+    with pytest.raises(CallFactsFormatError):
+        revise_call_fact(restored, second.id, "edit", title="", value="Dato")
+
+
+def test_fact_without_sources_cannot_be_verified():
+    markdown = (
+        "# Call Facts\n\n"
+        "## Dato manuale\n\n"
+        "**Valore:** Da controllare\n\n"
+        "**Stato:** Da verificare\n\n"
+        "**Fonti:**\n"
+    )
+    document = parse_call_facts_markdown(markdown)
+
+    with pytest.raises(CallFactsFormatError, match="senza fonti"):
+        revise_call_fact(document, document.facts[0].id, "verify")

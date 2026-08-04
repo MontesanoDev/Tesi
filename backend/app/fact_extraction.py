@@ -8,6 +8,12 @@ from dataclasses import dataclass
 
 import httpx
 
+from app.call_facts import (
+    CallFactsDocument,
+    CallFactSource,
+    new_call_fact,
+    render_call_facts_document,
+)
 from app.config import get_deepseek_settings
 from app.db import connection
 from app.generation import GenerationError, GenerationNotConfiguredError
@@ -223,48 +229,26 @@ def render_call_facts_markdown(
     evidence: list[dict],
     model: str,
 ) -> str:
-    lines = [
-        "---",
-        "artifact: call_facts",
-        "scope: project",
-        f"project: {project_id}",
-        "status: pending_review",
-        f"model: {model}",
-        "---",
-        "",
-        "# Call Facts",
-        "",
-        "> Estratti automaticamente dalle fonti del progetto. Ogni fatto richiede verifica umana.",
-    ]
-    for fact in facts:
-        lines.extend(
-            (
-                "",
-                f"## {fact.title}",
-                "",
-                f"**Valore:** {fact.value}",
-                "",
-                "**Stato:** Da verificare",
-                "",
-                "**Fonti:**",
-            )
-        )
+    rendered_facts = []
+    for ordinal, fact in enumerate(facts, start=1):
         seen_sources: set[tuple[str, int]] = set()
+        sources = []
         for evidence_id in fact.evidence_ids:
             item = evidence[evidence_id - 1]
             source = (str(item["source_name"]), int(item["chunk_index"]) + 1)
             if source in seen_sources:
                 continue
             seen_sources.add(source)
-            lines.append(f"- {source[0]}, frammento {source[1]}")
-
-    lines.extend(("", "# Informazioni mancanti", ""))
-    if missing_information:
-        lines.extend(f"- {item}" for item in missing_information)
-    else:
-        lines.append("- Nessuna informazione mancante segnalata dall'estrazione automatica.")
-    lines.append("")
-    return "\n".join(lines)
+            sources.append(CallFactSource(name=source[0], fragment=source[1]))
+        rendered_facts.append(new_call_fact(fact.title, fact.value, sources, ordinal))
+    return render_call_facts_document(
+        CallFactsDocument(
+            project_id=project_id,
+            model=model,
+            facts=rendered_facts,
+            missing_information=missing_information,
+        )
+    )
 
 
 async def extract_call_facts(

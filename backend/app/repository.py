@@ -549,16 +549,37 @@ def update_call_fact_metrics(
     fact_count: int,
     missing_count: int,
 ) -> bool:
+    return update_call_fact_review_metrics(
+        project_id=project_id,
+        active_count=fact_count,
+        verified_count=0,
+        pending_count=fact_count,
+        discarded_count=0,
+        missing_count=missing_count,
+    )
+
+
+def update_call_fact_review_metrics(
+    project_id: str,
+    active_count: int,
+    verified_count: int,
+    pending_count: int,
+    discarded_count: int,
+    missing_count: int,
+) -> bool:
+    fully_reviewed = active_count > 0 and pending_count == 0
+    project_status = "Call Facts verificati" if fully_reviewed else "Da verificare"
+    tone = "success" if fully_reviewed else "warning"
     with connection() as db:
         cursor = db.execute(
             """
             UPDATE projects
             SET call_fact_count = ?, missing_fact_count = ?,
-                status = 'Da verificare', status_tone = 'warning',
+                status = ?, status_tone = ?,
                 updated_label = 'Aggiornato ora'
             WHERE id = ?
             """,
-            (fact_count, missing_count, project_id),
+            (active_count, missing_count, project_status, tone, project_id),
         )
         if cursor.rowcount == 0:
             return False
@@ -573,7 +594,12 @@ def update_call_fact_metrics(
             """,
             (project_id,),
         ).fetchone()
-        detail = f"{fact_count} estratti · {missing_count} mancanti"
+        detail_parts = [f"{verified_count} verificati su {active_count}"]
+        if discarded_count:
+            detail_parts.append(f"{discarded_count} scartati")
+        if missing_count:
+            detail_parts.append(f"{missing_count} mancanti")
+        detail = " · ".join(detail_parts)
         if source is None:
             sort_order = db.execute(
                 """
@@ -586,18 +612,18 @@ def update_call_fact_metrics(
                 """
                 INSERT INTO knowledge_sources (
                     project_id, name, detail, scope, tone, item_count, sort_order
-                ) VALUES (?, 'Call Facts', ?, 'project', 'warning', ?, ?)
+                ) VALUES (?, 'Call Facts', ?, 'project', ?, ?, ?)
                 """,
-                (project_id, detail, fact_count, sort_order),
+                (project_id, detail, tone, verified_count, sort_order),
             )
         else:
             db.execute(
                 """
                 UPDATE knowledge_sources
-                SET name = 'Call Facts', detail = ?, tone = 'warning', item_count = ?
+                SET name = 'Call Facts', detail = ?, tone = ?, item_count = ?
                 WHERE id = ?
                 """,
-                (detail, fact_count, source["id"]),
+                (detail, tone, verified_count, source["id"]),
             )
     return True
 
