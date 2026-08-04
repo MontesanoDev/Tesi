@@ -79,3 +79,9 @@ collega artefatti globali (`general-kb.md`, `company-facts.md`) e artefatti loca
 (`call-facts.md`, `project-facts.md`, `template.md`). I file Markdown sono la
 fonte canonica; SQLite ne conserva catalogo, scope, versione, hash e chunk FTS5
 derivati. Il salvataggio dall'editor aggiorna il file e lo reindicizza nel RAG.
+Da questa vista e anche possibile avviare l'estrazione dei Call Facts: DeepSeek
+analizza i frammenti delle sole fonti del progetto, propone fatti senza un enum di
+categorie prefissato e associa a ciascuno nome del documento e numero del
+frammento. Il risultato sostituisce `call-facts.md`, viene marcato come da
+verificare, versionato e reindicizzato. Le modifiche manuali non salvate bloccano
+la riestrazione per evitare sovrascritture involontarie.

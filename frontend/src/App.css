@@ -1345,6 +1345,18 @@
   margin-left: 0;
 }
 
+.artifact-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.artifact-extract {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .general-card {
   min-height: 0;
 }
@@ -1997,7 +2009,13 @@
     flex-direction: column;
   }
 
-  .artifact-save {
+  .artifact-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .artifact-save,
+  .artifact-extract {
     justify-content: center;
     width: 100%;
   }

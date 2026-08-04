@@ -62,18 +62,18 @@ export function ProjectSettingsPage() {
             <span className="setting-monogram setting-monogram--gold">CF</span>
             <div>
               <h2>Call Facts</h2>
-              <p>Fatti estratti e verificati dal bando del progetto corrente</p>
+              <p>Fatti estratti dalle fonti e sottoposti a verifica umana</p>
             </div>
             <StatusPill tone="warning">Progetto</StatusPill>
           </div>
           <div className="settings-card-divider" />
-          <span className="section-label">Documento del bando</span>
+          <span className="section-label">Fonti del progetto</span>
           <div className="call-document-row">
             <div>
               <strong>{project.files.find((file) => file.kind === 'source')?.name ?? 'Nessun bando collegato'}</strong>
-              <span>{project.call_fact_count} fatti verificati · ultima estrazione oggi</span>
+              <span>{project.call_fact_count} fatti estratti · ultima estrazione oggi</span>
             </div>
-            <StatusPill tone="warning">{project.missing_fact_count} da verificare</StatusPill>
+            <StatusPill tone="warning">{project.missing_fact_count} mancanti</StatusPill>
           </div>
           <div className="metric-grid">
             <div><strong>{project.call_fact_count}</strong><span>Call facts</span></div>

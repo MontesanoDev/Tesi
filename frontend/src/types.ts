@@ -48,6 +48,15 @@ export interface KnowledgeArtifactDetail extends KnowledgeArtifactSummary {
   content: string
 }
 
+export interface CallFactsExtractionResult {
+  artifact: KnowledgeArtifactDetail
+  fact_count: number
+  missing_count: number
+  evidence_count: number
+  model: string
+  total_tokens: number | null
+}
+
 export interface Conversation {
   id: string
   title: string

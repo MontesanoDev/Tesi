@@ -1,4 +1,4 @@
-import { FileText, Globe2, Save } from 'lucide-react'
+import { FileText, Globe2, Save, WandSparkles } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
@@ -31,6 +31,7 @@ export function KnowledgeArtifactsPage() {
   const [detailLoading, setDetailLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
+  const [extracting, setExtracting] = useState(false)
   const [savedMessage, setSavedMessage] = useState<string | null>(null)
 
   useEffect(() => {
@@ -97,6 +98,29 @@ export function KnowledgeArtifactsPage() {
     }
   }
 
+  async function extractFacts() {
+    if (!projectId || !artifact || artifact.kind !== 'call_facts' || dirty) return
+    setExtracting(true)
+    setError(null)
+    setSavedMessage(null)
+    try {
+      const result = await api.extractCallFacts(projectId)
+      setArtifact(result.artifact)
+      setContent(result.artifact.content)
+      setArtifacts((current) => current.map((item) => (
+        item.id === result.artifact.id ? result.artifact : item
+      )))
+      setSavedMessage(
+        `${result.fact_count} fatti estratti da ${result.evidence_count} frammenti · `
+        + `${result.missing_count} informazioni mancanti.`,
+      )
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'Estrazione non riuscita')
+    } finally {
+      setExtracting(false)
+    }
+  }
+
   if (projectLoading) return <AppShell active="projects"><LoadingState /></AppShell>
   if (projectError || !project) {
     return (
@@ -107,6 +131,7 @@ export function KnowledgeArtifactsPage() {
   }
 
   const dirty = Boolean(artifact && content !== artifact.content)
+  const canExtract = Boolean(artifact?.editable && artifact.kind === 'call_facts')
 
   return (
     <AppShell active="projects" project={project}>
@@ -188,14 +213,32 @@ export function KnowledgeArtifactsPage() {
                     )}
                     {savedMessage && <strong>{savedMessage}</strong>}
                   </div>
-                  <button
-                    className="button button--primary artifact-save"
-                    type="button"
-                    disabled={!dirty || saving || !artifact.editable}
-                    onClick={saveArtifact}
-                  >
-                    <Save size={16} /> {saving ? 'Salvataggio' : 'Salva e indicizza'}
-                  </button>
+                  <div className="artifact-actions">
+                    {canExtract && (
+                      <button
+                        className="button artifact-extract"
+                        type="button"
+                        disabled={dirty || saving || extracting}
+                        title={dirty ? 'Salva o annulla le modifiche prima di estrarre' : undefined}
+                        onClick={extractFacts}
+                      >
+                        <WandSparkles size={16} />
+                        {extracting
+                          ? 'Estrazione in corso'
+                          : artifact.status === 'Da estrarre'
+                            ? 'Estrai dalle fonti'
+                            : 'Riestrai dalle fonti'}
+                      </button>
+                    )}
+                    <button
+                      className="button button--primary artifact-save"
+                      type="button"
+                      disabled={!dirty || saving || extracting || !artifact.editable}
+                      onClick={saveArtifact}
+                    >
+                      <Save size={16} /> {saving ? 'Salvataggio' : 'Salva e indicizza'}
+                    </button>
+                  </div>
                 </footer>
               </>
             )}

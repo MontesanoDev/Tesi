@@ -1,4 +1,5 @@
 import type {
+  CallFactsExtractionResult,
   ConversationDetail,
   DocumentReview,
   EvidenceSearch,
@@ -63,6 +64,10 @@ export const api = {
         body: JSON.stringify({ content }),
       },
     ),
+  extractCallFacts: (projectId: string) =>
+    request<CallFactsExtractionResult>(`/projects/${projectId}/call-facts/extract`, {
+      method: 'POST',
+    }),
   projectEvidence: (projectId: string, query: string, signal?: AbortSignal) => {
     const params = new URLSearchParams({ q: query })
     return request<EvidenceSearch>(`/projects/${projectId}/evidence?${params}`, {

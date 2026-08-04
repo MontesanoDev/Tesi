@@ -97,6 +97,35 @@ test('document review keeps source provenance visible', async ({ page }, testInf
 })
 
 test('markdown knowledge artifacts expose project and global scopes', async ({ page }, testInfo) => {
+  await page.route(
+    '**/api/projects/fondo-riqualificazione-2027/call-facts/extract',
+    async (route) => {
+      await route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify({
+          artifact: {
+            id: 'fondo-riqualificazione-2027--call-facts',
+            kind: 'call_facts',
+            scope: 'project',
+            title: 'Call Facts',
+            filename: 'call-facts.md',
+            status: 'Da verificare',
+            byte_size: 342,
+            version: 2,
+            updated_at: '2026-08-03 18:00:00',
+            editable: true,
+            chunk_count: 1,
+            content: '# Call Facts\n\n## Termine di candidatura\n\n15 settembre 2025',
+          },
+          fact_count: 2,
+          missing_count: 1,
+          evidence_count: 8,
+          model: 'deepseek-test',
+          total_tokens: 123,
+        }),
+      })
+    },
+  )
   await page.goto('/projects/fondo-riqualificazione-2027/settings')
   await page.getByRole('button', { name: 'Apri artefatti Markdown' }).click()
 
@@ -105,6 +134,10 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
   await expect(callFactsEditor).toBeVisible()
   await expect(callFactsEditor).toContainText('# Call Facts')
   await expect(callFactsEditor).toBeEditable()
+
+  await page.getByRole('button', { name: /Estrai dalle fonti|Riestrai dalle fonti/ }).click()
+  await expect(callFactsEditor).toContainText('## Termine di candidatura')
+  await expect(page.getByText('2 fatti estratti da 8 frammenti')).toBeVisible()
 
   await page.getByRole('button', { name: /Company Facts/ }).click()
   const companyEditor = page.getByLabel('Contenuto di Company Facts')
