@@ -544,6 +544,64 @@ def add_project_file(project_id: str, document: IngestedDocument) -> dict | None
     return dict(row) if row is not None else None
 
 
+def update_call_fact_metrics(
+    project_id: str,
+    fact_count: int,
+    missing_count: int,
+) -> bool:
+    with connection() as db:
+        cursor = db.execute(
+            """
+            UPDATE projects
+            SET call_fact_count = ?, missing_fact_count = ?,
+                status = 'Da verificare', status_tone = 'warning',
+                updated_label = 'Aggiornato ora'
+            WHERE id = ?
+            """,
+            (fact_count, missing_count, project_id),
+        )
+        if cursor.rowcount == 0:
+            return False
+
+        source = db.execute(
+            """
+            SELECT id FROM knowledge_sources
+            WHERE project_id = ?
+              AND (name = 'Call Facts' OR name = 'Dati estratti dal bando')
+            ORDER BY id
+            LIMIT 1
+            """,
+            (project_id,),
+        ).fetchone()
+        detail = f"{fact_count} estratti · {missing_count} mancanti"
+        if source is None:
+            sort_order = db.execute(
+                """
+                SELECT COALESCE(MAX(sort_order), 0) + 1
+                FROM knowledge_sources WHERE project_id = ?
+                """,
+                (project_id,),
+            ).fetchone()[0]
+            db.execute(
+                """
+                INSERT INTO knowledge_sources (
+                    project_id, name, detail, scope, tone, item_count, sort_order
+                ) VALUES (?, 'Call Facts', ?, 'project', 'warning', ?, ?)
+                """,
+                (project_id, detail, fact_count, sort_order),
+            )
+        else:
+            db.execute(
+                """
+                UPDATE knowledge_sources
+                SET name = 'Call Facts', detail = ?, tone = 'warning', item_count = ?
+                WHERE id = ?
+                """,
+                (detail, fact_count, source["id"]),
+            )
+    return True
+
+
 def search_project_evidence(
     project_id: str,
     query: str,

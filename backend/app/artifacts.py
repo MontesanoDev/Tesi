@@ -387,7 +387,12 @@ def get_project_artifact(project_id: str, artifact_id: str) -> dict | None:
     return result
 
 
-def update_project_artifact(project_id: str, artifact_id: str, content: str) -> dict | None:
+def replace_project_artifact(
+    project_id: str,
+    artifact_id: str,
+    content: str,
+    status: str,
+) -> dict | None:
     with connection() as db:
         row = db.execute(
             """
@@ -410,11 +415,11 @@ def update_project_artifact(project_id: str, artifact_id: str, content: str) -> 
         db.execute(
             """
             UPDATE knowledge_artifacts
-            SET status = 'Bozza aggiornata', content_hash = ?, byte_size = ?,
+            SET status = ?, content_hash = ?, byte_size = ?,
                 version = version + 1, updated_at = CURRENT_TIMESTAMP
             WHERE id = ?
             """,
-            (_content_hash(content), byte_size, artifact_id),
+            (status, _content_hash(content), byte_size, artifact_id),
         )
         updated = dict(
             db.execute(
@@ -430,6 +435,15 @@ def update_project_artifact(project_id: str, artifact_id: str, content: str) -> 
             _link_artifact(db, link["project_id"], updated, content)
 
     return get_project_artifact(project_id, artifact_id)
+
+
+def update_project_artifact(project_id: str, artifact_id: str, content: str) -> dict | None:
+    return replace_project_artifact(
+        project_id,
+        artifact_id,
+        content,
+        status="Bozza aggiornata",
+    )
 
 
 def get_company_markdown() -> str | None:

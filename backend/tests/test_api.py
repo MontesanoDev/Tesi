@@ -3,6 +3,7 @@ import pytest
 
 from app.artifacts import seed_markdown_artifacts
 from app.db import connection, get_knowledge_path, init_database
+from app.fact_extraction import CallFactsExtraction, ExtractedFact
 from app.generation import GeneratedAnswer
 from app.main import app
 from app.seed import seed_database
@@ -154,6 +155,78 @@ async def test_external_markdown_change_is_catalogued_and_reindexed(client):
         params={"q": "soglia geotecnica"},
     )
     assert evidence.json()["results"][0]["source_name"] == "call-facts.md"
+
+
+@pytest.mark.anyio
+async def test_call_facts_extraction_updates_markdown_and_project_metrics(client, monkeypatch):
+    project_id = "fondo-riqualificazione-2027"
+    uploaded = await client.post(
+        f"/api/projects/{project_id}/files",
+        files={
+            "file": (
+                "avviso.txt",
+                b"Il Comune presenta la candidatura entro il 15 settembre 2025.",
+                "text/plain",
+            )
+        },
+    )
+    assert uploaded.status_code == 201
+
+    async def fake_extraction(received_project_id, title, source_chunks):
+        assert received_project_id == project_id
+        assert title == "Fondo Riqualificazione 2027"
+        assert source_chunks[0]["source_name"] == "avviso.txt"
+        return CallFactsExtraction(
+            markdown=(
+                "---\nartifact: call_facts\nscope: project\n"
+                "status: pending_review\n---\n\n# Call Facts\n\n"
+                "## Termine di candidatura\n\n"
+                "**Valore:** 15 settembre 2025\n\n"
+                "**Fonti:**\n- avviso.txt, frammento 1\n"
+            ),
+            facts=[ExtractedFact("Termine di candidatura", "15 settembre 2025", [1])],
+            missing_information=["Ora di scadenza"],
+            evidence_count=1,
+            model="deepseek-test",
+            total_tokens=72,
+        )
+
+    monkeypatch.setattr("app.main.extract_call_facts", fake_extraction)
+    response = await client.post(f"/api/projects/{project_id}/call-facts/extract")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["artifact"]["status"] == "Da verificare"
+    assert payload["artifact"]["chunk_count"] == 1
+    assert payload["fact_count"] == 1
+    assert payload["missing_count"] == 1
+    assert payload["evidence_count"] == 1
+    assert payload["model"] == "deepseek-test"
+
+    project = await client.get(f"/api/projects/{project_id}")
+    assert project.json()["call_fact_count"] == 1
+    assert project.json()["missing_fact_count"] == 1
+    call_facts_source = next(
+        source for source in project.json()["knowledge_sources"] if source["name"] == "Call Facts"
+    )
+    assert call_facts_source["item_count"] == 1
+
+    evidence = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "termine candidatura settembre"},
+    )
+    assert evidence.status_code == 200
+    assert any(item["source_name"] == "call-facts.md" for item in evidence.json()["results"])
+
+
+@pytest.mark.anyio
+async def test_call_facts_extraction_requires_an_indexed_source(client):
+    response = await client.post(
+        "/api/projects/adeguamento-sismico-edificio-b/call-facts/extract"
+    )
+
+    assert response.status_code == 422
+    assert "almeno una fonte" in response.json()["detail"]
 
 
 @pytest.mark.anyio

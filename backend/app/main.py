@@ -11,10 +11,12 @@ from app.artifacts import (
     ensure_project_artifacts,
     get_project_artifact,
     list_project_artifacts,
+    replace_project_artifact,
     seed_markdown_artifacts,
     update_project_artifact,
 )
 from app.db import init_database
+from app.fact_extraction import extract_call_facts, load_project_source_chunks
 from app.generation import (
     GenerationError,
     GenerationNotConfiguredError,
@@ -43,8 +45,10 @@ from app.repository import (
     recent_conversation_evidence,
     save_conversation_turn,
     search_project_evidence,
+    update_call_fact_metrics,
 )
 from app.schemas import (
+    CallFactsExtractionResponse,
     ConversationDetail,
     DocumentReview,
     EvidenceSearch,
@@ -145,6 +149,51 @@ async def project_artifact_update(
     if result is None:
         raise HTTPException(status_code=404, detail="Artefatto Markdown non trovato")
     return result
+
+
+@app.post(
+    "/api/projects/{project_id}/call-facts/extract",
+    response_model=CallFactsExtractionResponse,
+)
+async def project_call_facts_extract(project_id: str) -> dict:
+    project = get_project(project_id)
+    if project is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    source_chunks = load_project_source_chunks(project_id)
+    if not source_chunks:
+        raise HTTPException(
+            status_code=422,
+            detail="Carica e indicizza almeno una fonte prima di estrarre i Call Facts",
+        )
+    try:
+        extraction = await extract_call_facts(
+            project_id,
+            project["title"],
+            source_chunks,
+        )
+    except GenerationNotConfiguredError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    except GenerationError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+
+    artifact_id = f"{project_id}--call-facts"
+    artifact = replace_project_artifact(
+        project_id,
+        artifact_id,
+        extraction.markdown,
+        status="Da verificare",
+    )
+    if artifact is None:
+        raise HTTPException(status_code=404, detail="Artefatto Call Facts non trovato")
+    update_call_fact_metrics(project_id, extraction.fact_count, extraction.missing_count)
+    return {
+        "artifact": artifact,
+        "fact_count": extraction.fact_count,
+        "missing_count": extraction.missing_count,
+        "evidence_count": extraction.evidence_count,
+        "model": extraction.model,
+        "total_tokens": extraction.total_tokens,
+    }
 
 
 @app.get(

@@ -62,6 +62,15 @@ class KnowledgeArtifactUpdate(BaseModel):
     content: str = Field(min_length=1, max_length=500_000)
 
 
+class CallFactsExtractionResponse(BaseModel):
+    artifact: KnowledgeArtifactDetail
+    fact_count: int
+    missing_count: int
+    evidence_count: int
+    model: str
+    total_tokens: int | None
+
+
 class Conversation(BaseModel):
     id: str
     title: str
