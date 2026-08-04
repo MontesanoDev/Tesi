@@ -53,6 +53,7 @@ from app.repository import (
     recent_conversation_evidence,
     save_conversation_turn,
     search_project_evidence,
+    sync_call_fact_review_metrics,
     update_call_fact_metrics,
     update_call_fact_review_metrics,
 )
@@ -116,6 +117,7 @@ async def lifespan(_: FastAPI):
     init_database()
     seed_database()
     seed_markdown_artifacts()
+    sync_call_fact_review_metrics()
     yield
 
 

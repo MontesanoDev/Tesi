@@ -6,7 +6,8 @@ import sqlite3
 import unicodedata
 from uuid import uuid4
 
-from app.artifacts import get_company_markdown
+from app.artifacts import get_company_markdown, get_project_artifact
+from app.call_facts import CallFactsFormatError, parse_call_facts_markdown
 from app.db import connection
 from app.ingestion import IngestedDocument
 from app.schemas import ProjectCreate
@@ -626,6 +627,29 @@ def update_call_fact_review_metrics(
                 (detail, tone, verified_count, source["id"]),
             )
     return True
+
+
+def sync_call_fact_review_metrics() -> None:
+    with connection() as db:
+        project_ids = [row["id"] for row in db.execute("SELECT id FROM projects").fetchall()]
+    for project_id in project_ids:
+        artifact = get_project_artifact(project_id, f"{project_id}--call-facts")
+        if artifact is None:
+            continue
+        try:
+            document = parse_call_facts_markdown(artifact["content"])
+        except CallFactsFormatError:
+            continue
+        if not document.facts:
+            continue
+        update_call_fact_review_metrics(
+            project_id=project_id,
+            active_count=document.active_count,
+            verified_count=document.verified_count,
+            pending_count=document.pending_count,
+            discarded_count=document.discarded_count,
+            missing_count=len(document.missing_information),
+        )
 
 
 def search_project_evidence(
