@@ -31,8 +31,33 @@ PROJECT_ARTIFACTS = (
         "project-facts.md",
         "Bozza",
     ),
-    ("template", "template", "Template", "template.md", "Da configurare"),
+    ("template", "template", "Template", "template.md", "Bozza"),
+    ("draft", "output_draft", "Draft", "draft.md", "Da generare"),
 )
+
+LEGACY_TEMPLATE_BODY = "# Template\n\n> Definire qui la struttura Markdown dell'output atteso.\n"
+DEFAULT_TEMPLATE_BODY = """# Template candidatura
+
+## Sintesi della candidatura
+
+[TODO: sintetizzare oggetto e finalita della candidatura]
+
+## Requisiti e ammissibilita
+
+[TODO: riportare i requisiti verificati nelle fonti]
+
+## Modalita, scadenze e documentazione
+
+[TODO: riportare modalita operative, termini e documenti richiesti]
+
+## Quadro economico e obblighi
+
+[TODO: riportare importi, vincoli e obblighi applicabili]
+
+## Dati del proponente e del progetto
+
+[TODO: completare con i dati confermati dal proponente]
+"""
 
 
 def _content_hash(content: str) -> str:
@@ -105,10 +130,47 @@ def _project_content(kind: str, project: dict) -> str:
             "con la loro provenienza.\n"
         )
         status = "Da estrarre"
+    elif kind == "template":
+        body = DEFAULT_TEMPLATE_BODY
+        status = "Bozza"
+    elif kind == "output_draft":
+        body = (
+            "# Draft candidatura\n\n"
+            "> Generare questo documento dal template dopo aver verificato i Call Facts.\n"
+        )
+        status = "Da generare"
     else:
-        body = "# Template\n\n> Definire qui la struttura Markdown dell'output atteso.\n"
-        status = "Da configurare"
+        raise ValueError(f"Tipo di artefatto progetto non supportato: {kind}")
     return f"{_frontmatter(kind, 'project', project_id, status)}\n{body}"
+
+
+def _upgrade_legacy_template(db, artifact: dict, project: dict) -> dict:
+    if artifact["kind"] != "template" or artifact["status"] != "Da configurare":
+        return artifact
+    legacy_content = (
+        f"{_frontmatter('template', 'project', project['id'], 'Da configurare')}\n"
+        f"{LEGACY_TEMPLATE_BODY}"
+    )
+    if _read_artifact(artifact["storage_path"]) != legacy_content:
+        return artifact
+
+    content = _project_content("template", project)
+    _write_artifact(artifact["storage_path"], content)
+    db.execute(
+        """
+        UPDATE knowledge_artifacts
+        SET status = 'Bozza', content_hash = ?, byte_size = ?,
+            version = version + 1, updated_at = CURRENT_TIMESTAMP
+        WHERE id = ?
+        """,
+        (_content_hash(content), len(content.encode("utf-8")), artifact["id"]),
+    )
+    return dict(
+        db.execute(
+            "SELECT * FROM knowledge_artifacts WHERE id = ?",
+            (artifact["id"],),
+        ).fetchone()
+    )
 
 
 def _metadata(byte_size: int, version: int, scope: str) -> str:
@@ -152,12 +214,17 @@ def _link_artifact(db, project_id: str, artifact: dict, content: str) -> None:
         except CallFactsFormatError:
             index_content = ""
         indexed = bool(index_content)
+    elif artifact["kind"] == "output_draft":
+        index_content = ""
+        indexed = False
     else:
         indexed = artifact["status"] not in {"Da configurare", "Da estrarre"}
     if indexed:
         file_status = "Indicizzato"
     elif artifact["kind"] == "call_facts":
         file_status = "In revisione"
+    elif artifact["kind"] == "output_draft":
+        file_status = artifact["status"]
     else:
         file_status = "Da compilare"
     if existing is None:
@@ -312,6 +379,7 @@ def _ensure_project_artifacts(db, project: dict, company_facts: list[dict]) -> N
             status,
             _project_content(kind, project),
         )
+        artifact = _upgrade_legacy_template(db, artifact, project)
         _link_artifact(db, project_id, artifact, _read_artifact(artifact["storage_path"]))
 
 
@@ -371,8 +439,9 @@ def list_project_artifacts(project_id: str) -> list[dict] | None:
                         WHEN 'call_facts' THEN 0
                         WHEN 'project_facts' THEN 1
                         WHEN 'template' THEN 2
-                        WHEN 'company_facts' THEN 3
-                        ELSE 4
+                        WHEN 'output_draft' THEN 3
+                        WHEN 'company_facts' THEN 4
+                        ELSE 5
                     END
                 """,
                 (project_id, project_id),

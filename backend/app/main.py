@@ -24,6 +24,11 @@ from app.call_facts import (
     revise_call_fact,
 )
 from app.db import init_database
+from app.draft_generation import (
+    DraftInputError,
+    generate_grounded_draft,
+    render_draft_markdown,
+)
 from app.fact_extraction import extract_call_facts, load_project_source_chunks
 from app.generation import (
     GenerationError,
@@ -63,6 +68,7 @@ from app.schemas import (
     CallFactsReview,
     ConversationDetail,
     DocumentReview,
+    DraftGenerationResponse,
     EvidenceSearch,
     GroundedAnswerResponse,
     KnowledgeArtifactDetail,
@@ -306,6 +312,84 @@ async def project_call_fact_revision(
         missing_count=len(revised.missing_information),
     )
     return _call_facts_review_payload(updated, revised)
+
+
+@app.post(
+    "/api/projects/{project_id}/draft/generate",
+    response_model=DraftGenerationResponse,
+)
+async def project_draft_generate(project_id: str) -> dict:
+    project = get_project(project_id)
+    if project is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+
+    _, call_facts = _get_call_facts_document(project_id)
+    verified_facts = [fact for fact in call_facts.facts if fact.status == "verified"]
+    if not verified_facts:
+        raise HTTPException(
+            status_code=422,
+            detail="Verifica almeno un Call Fact prima di generare il draft",
+        )
+
+    artifact_ids = {
+        "template": f"{project_id}--template",
+        "project_facts": f"{project_id}--project-facts",
+        "company_facts": "global--company-facts",
+        "draft": f"{project_id}--draft",
+    }
+    artifacts = {
+        name: get_project_artifact(project_id, artifact_id)
+        for name, artifact_id in artifact_ids.items()
+    }
+    if any(artifact is None for artifact in artifacts.values()):
+        raise HTTPException(
+            status_code=422,
+            detail="Gli artefatti richiesti per il draft non sono completi",
+        )
+
+    template = artifacts["template"]
+    project_facts = artifacts["project_facts"]
+    company_facts = artifacts["company_facts"]
+    if template is None or project_facts is None or company_facts is None:
+        raise RuntimeError("Gli artefatti validati non sono piu disponibili")
+    if template["status"] == "Da configurare":
+        raise HTTPException(
+            status_code=422,
+            detail="Configura il Template prima di generare il draft",
+        )
+
+    try:
+        generated = await generate_grounded_draft(
+            project_title=project["title"],
+            template_markdown=template["content"],
+            company_facts_markdown=company_facts["content"],
+            project_facts_markdown=project_facts["content"],
+            verified_facts=verified_facts,
+        )
+    except DraftInputError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except GenerationNotConfiguredError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    except GenerationError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+
+    markdown = render_draft_markdown(project_id, generated, verified_facts)
+    draft = replace_project_artifact(
+        project_id,
+        artifact_ids["draft"],
+        markdown,
+        status="Da verificare",
+    )
+    if draft is None:
+        raise HTTPException(status_code=404, detail="Artefatto Draft non trovato")
+    return {
+        "artifact": draft,
+        "verified_fact_count": len(verified_facts),
+        "used_fact_count": len(generated.used_fact_ids),
+        "missing_information": generated.missing_information,
+        "model": generated.model,
+        "total_tokens": generated.total_tokens,
+    }
 
 
 @app.get(

@@ -100,6 +100,15 @@ class CallFactRevision(BaseModel):
     value: str | None = Field(default=None, min_length=1, max_length=4_000)
 
 
+class DraftGenerationResponse(BaseModel):
+    artifact: KnowledgeArtifactDetail
+    verified_fact_count: int
+    used_fact_count: int
+    missing_information: list[str]
+    model: str
+    total_tokens: int | None
+
+
 class Conversation(BaseModel):
     id: str
     title: str

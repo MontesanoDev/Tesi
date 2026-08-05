@@ -76,7 +76,7 @@ essere aggiunto sopra questo contratto dati senza riscrivere l'interfaccia.
 
 La conoscenza revisionabile segue un approccio Markdown-first. Ogni progetto
 collega artefatti globali (`general-kb.md`, `company-facts.md`) e artefatti locali
-(`call-facts.md`, `project-facts.md`, `template.md`). I file Markdown sono la
+(`call-facts.md`, `project-facts.md`, `template.md`, `draft.md`). I file Markdown sono la
 fonte canonica; SQLite ne conserva catalogo, scope, versione, hash e chunk FTS5
 derivati. Il salvataggio dall'editor aggiorna il file e lo reindicizza nel RAG.
 Da questa vista e anche possibile avviare l'estrazione dei Call Facts: DeepSeek
@@ -93,3 +93,10 @@ di ogni elemento. Soltanto i fatti marcati come verificati vengono derivati in
 chunk FTS5 utilizzabili dal RAG. Una modifica riporta sempre il fatto allo stato
 `Da verificare`, mentre i fatti scartati restano nel Markdown per tracciabilita ma
 sono esclusi dall'indice.
+
+Il draft viene generato seguendo il `template.md` e usando esclusivamente
+`company-facts.md`, `project-facts.md` e i Call Facts gia verificati. I dati
+assenti restano come `TODO`, mentre i riferimenti `[CF:...]`, `[COMPANY]` e
+`[PROJECT]` rendono visibile la provenienza. Il backend rifiuta riferimenti a
+Call Facts non verificati. `draft.md` resta modificabile e versionato, ma non
+viene indicizzato: un output generato non puo quindi rientrare nel RAG come fonte.

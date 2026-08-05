@@ -3,6 +3,7 @@ import pytest
 
 from app.artifacts import seed_markdown_artifacts
 from app.db import connection, get_knowledge_path, init_database
+from app.draft_generation import GeneratedDraft
 from app.fact_extraction import (
     CallFactsExtraction,
     ExtractedFact,
@@ -68,7 +69,7 @@ async def test_create_project_persists(client):
 
     artifacts = await client.get(f"/api/projects/{project_id}/artifacts")
     assert artifacts.status_code == 200
-    assert len(artifacts.json()) == 5
+    assert len(artifacts.json()) == 6
 
 
 @pytest.mark.anyio
@@ -134,7 +135,7 @@ async def test_markdown_artifact_seed_is_idempotent(client):
             """,
             (project_id,),
         ).fetchone()[0]
-    assert artifact_files == 5
+    assert artifact_files == 6
 
 
 @pytest.mark.anyio
@@ -284,6 +285,86 @@ async def test_call_facts_extraction_requires_an_indexed_source(client):
 
     assert response.status_code == 422
     assert "almeno una fonte" in response.json()["detail"]
+
+
+@pytest.mark.anyio
+async def test_draft_generation_uses_only_verified_call_facts(client, monkeypatch):
+    project_id = "fondo-riqualificazione-2027"
+    call_facts_id = f"{project_id}--call-facts"
+    markdown = render_call_facts_markdown(
+        project_id,
+        [ExtractedFact("Termine di candidatura", "15 settembre 2025", [1])],
+        ["Importo richiesto dal proponente"],
+        [{"source_name": "avviso.pdf", "chunk_index": 17}],
+        "deepseek-test",
+    )
+    updated = await client.put(
+        f"/api/projects/{project_id}/artifacts/{call_facts_id}",
+        json={"content": markdown},
+    )
+    assert updated.status_code == 200
+
+    review = await client.get(f"/api/projects/{project_id}/call-facts")
+    fact = review.json()["facts"][0]
+    verified = await client.patch(
+        f"/api/projects/{project_id}/call-facts/{fact['id']}",
+        json={"action": "verify", "version": review.json()["artifact"]["version"]},
+    )
+    assert verified.status_code == 200
+
+    async def fake_draft(
+        project_title,
+        template_markdown,
+        company_facts_markdown,
+        project_facts_markdown,
+        verified_facts,
+    ):
+        assert project_title == "Fondo Riqualificazione 2027"
+        assert "# Template candidatura" in template_markdown
+        assert "Mapi Ingegneria" in company_facts_markdown
+        assert "Fondo Riqualificazione 2027" in project_facts_markdown
+        assert [item.id for item in verified_facts] == [fact["id"]]
+        return GeneratedDraft(
+            markdown=(
+                "# Candidatura\n\n"
+                f"Termine: 15 settembre 2025 [CF:{fact['id']}]\n\n"
+                "Importo: [TODO: inserire importo richiesto]"
+            ),
+            used_fact_ids=[fact["id"]],
+            missing_information=["Importo richiesto dal proponente"],
+            model="deepseek-test",
+            total_tokens=144,
+        )
+
+    monkeypatch.setattr("app.main.generate_grounded_draft", fake_draft)
+    response = await client.post(f"/api/projects/{project_id}/draft/generate")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["artifact"]["kind"] == "output_draft"
+    assert payload["artifact"]["status"] == "Da verificare"
+    assert payload["artifact"]["chunk_count"] == 0
+    assert payload["verified_fact_count"] == 1
+    assert payload["used_fact_count"] == 1
+    assert "[TODO: inserire importo richiesto]" in payload["artifact"]["content"]
+    assert f"[CF:{fact['id']}] Termine di candidatura" in payload["artifact"]["content"]
+
+    evidence = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "inserire importo richiesto"},
+    )
+    assert evidence.status_code == 200
+    assert all(item["source_name"] != "draft.md" for item in evidence.json()["results"])
+
+
+@pytest.mark.anyio
+async def test_draft_generation_requires_a_verified_call_fact(client):
+    response = await client.post(
+        "/api/projects/adeguamento-sismico-edificio-b/draft/generate"
+    )
+
+    assert response.status_code == 422
+    assert "Verifica almeno un Call Fact" in response.json()["detail"]
 
 
 @pytest.mark.anyio
