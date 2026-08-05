@@ -100,3 +100,10 @@ assenti restano come `TODO`, mentre i riferimenti `[CF:...]`, `[COMPANY]` e
 `[PROJECT]` rendono visibile la provenienza. Il backend rifiuta riferimenti a
 Call Facts non verificati. `draft.md` resta modificabile e versionato, ma non
 viene indicizzato: un output generato non puo quindi rientrare nel RAG come fonte.
+
+La Company KB usa un indice documentale globale separato. I PDF e TXT aziendali
+vengono caricati e suddivisi in frammenti una sola volta dalle impostazioni
+generali; ogni progetto puo poi collegarli o scollegarli senza duplicare file o
+chunk. Il retrieval unisce le fonti locali ai soli documenti aziendali collegati,
+mantenendo l'isolamento tra progetti. `Company Facts` resta distinto dalla Company
+KB: il primo contiene dati strutturati verificati, la seconda documenti e referenze.

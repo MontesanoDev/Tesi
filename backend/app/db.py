@@ -138,6 +138,64 @@ def init_database() -> None:
                 sort_order INTEGER NOT NULL DEFAULT 0
             );
 
+            CREATE TABLE IF NOT EXISTS global_documents (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                metadata TEXT NOT NULL,
+                status TEXT NOT NULL,
+                storage_path TEXT NOT NULL UNIQUE,
+                mime_type TEXT NOT NULL,
+                byte_size INTEGER NOT NULL DEFAULT 0,
+                page_count INTEGER NOT NULL DEFAULT 0,
+                chunk_count INTEGER NOT NULL DEFAULT 0,
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+            );
+
+            CREATE TABLE IF NOT EXISTS global_document_chunks (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                document_id INTEGER NOT NULL REFERENCES global_documents(id) ON DELETE CASCADE,
+                chunk_index INTEGER NOT NULL,
+                content TEXT NOT NULL,
+                char_count INTEGER NOT NULL,
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(document_id, chunk_index)
+            );
+
+            CREATE VIRTUAL TABLE IF NOT EXISTS global_document_chunks_fts USING fts5(
+                document_id UNINDEXED,
+                content,
+                tokenize = 'unicode61 remove_diacritics 2'
+            );
+
+            CREATE TRIGGER IF NOT EXISTS global_document_chunks_fts_insert
+            AFTER INSERT ON global_document_chunks BEGIN
+                INSERT INTO global_document_chunks_fts(rowid, document_id, content)
+                VALUES (new.id, new.document_id, new.content);
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS global_document_chunks_fts_delete
+            AFTER DELETE ON global_document_chunks BEGIN
+                DELETE FROM global_document_chunks_fts WHERE rowid = old.id;
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS global_document_chunks_fts_update
+            AFTER UPDATE ON global_document_chunks BEGIN
+                DELETE FROM global_document_chunks_fts WHERE rowid = old.id;
+                INSERT INTO global_document_chunks_fts(rowid, document_id, content)
+                VALUES (new.id, new.document_id, new.content);
+            END;
+
+            CREATE TABLE IF NOT EXISTS project_global_document_links (
+                project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+                document_id INTEGER NOT NULL REFERENCES global_documents(id) ON DELETE CASCADE,
+                linked_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (project_id, document_id)
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_project_global_document_links_document
+            ON project_global_document_links(document_id);
+
             CREATE TABLE IF NOT EXISTS conversations (
                 id TEXT PRIMARY KEY,
                 project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
@@ -224,5 +282,11 @@ def init_database() -> None:
             """
             INSERT OR REPLACE INTO document_chunks_fts(rowid, project_id, file_id, content)
             SELECT id, project_id, file_id, content FROM document_chunks
+            """
+        )
+        db.execute(
+            """
+            INSERT OR REPLACE INTO global_document_chunks_fts(rowid, document_id, content)
+            SELECT id, document_id, content FROM global_document_chunks
             """
         )

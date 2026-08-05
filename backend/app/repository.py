@@ -164,20 +164,42 @@ def _expand_neighbor_evidence(
     with connection() as db:
         for offset in (-1, 1):
             for anchor in anchors:
-                row = db.execute(
-                    """
-                    SELECT
-                        c.id AS chunk_id,
-                        c.file_id,
-                        f.name AS source_name,
-                        c.chunk_index,
-                        c.content
-                    FROM document_chunks c
-                    JOIN project_files f ON f.id = c.file_id
-                    WHERE c.project_id = ? AND c.file_id = ? AND c.chunk_index = ?
-                    """,
-                    (project_id, anchor["file_id"], anchor["chunk_index"] + offset),
-                ).fetchone()
+                if anchor["file_id"] < 0:
+                    row = db.execute(
+                        """
+                        SELECT
+                            -c.id AS chunk_id,
+                            -d.id AS file_id,
+                            d.name AS source_name,
+                            c.chunk_index,
+                            c.content
+                        FROM global_document_chunks c
+                        JOIN global_documents d ON d.id = c.document_id
+                        JOIN project_global_document_links l
+                          ON l.document_id = d.id AND l.project_id = ?
+                        WHERE c.document_id = ? AND c.chunk_index = ?
+                        """,
+                        (
+                            project_id,
+                            -anchor["file_id"],
+                            anchor["chunk_index"] + offset,
+                        ),
+                    ).fetchone()
+                else:
+                    row = db.execute(
+                        """
+                        SELECT
+                            c.id AS chunk_id,
+                            c.file_id,
+                            f.name AS source_name,
+                            c.chunk_index,
+                            c.content
+                        FROM document_chunks c
+                        JOIN project_files f ON f.id = c.file_id
+                        WHERE c.project_id = ? AND c.file_id = ? AND c.chunk_index = ?
+                        """,
+                        (project_id, anchor["file_id"], anchor["chunk_index"] + offset),
+                    ).fetchone()
                 if row is None or row["chunk_id"] in seen_chunk_ids:
                     continue
                 neighbor = dict(row)
@@ -227,6 +249,145 @@ def get_company_facts() -> list[dict]:
         )
 
 
+def get_global_knowledge() -> dict:
+    with connection() as db:
+        documents = _rows(
+            db,
+            """
+            SELECT id, name, metadata, status, mime_type, byte_size,
+                   page_count, chunk_count, created_at, updated_at
+            FROM global_documents
+            ORDER BY datetime(created_at) DESC, id DESC
+            """,
+        )
+        company_fact_count = db.execute(
+            "SELECT COUNT(*) FROM company_facts WHERE verified = 1"
+        ).fetchone()[0]
+    return {
+        "documents": documents,
+        "document_count": len(documents),
+        "chunk_count": sum(document["chunk_count"] for document in documents),
+        "company_fact_count": company_fact_count,
+    }
+
+
+def add_global_document(document: IngestedDocument) -> dict:
+    chunk_count = len(document.chunks)
+    chunk_label = "frammento" if chunk_count == 1 else "frammenti"
+    file_type = "PDF" if document.mime_type == "application/pdf" else "TXT"
+    metadata = f"{file_type} · {_format_size(document.byte_size)} · {chunk_count} {chunk_label}"
+    with connection() as db:
+        cursor = db.execute(
+            """
+            INSERT INTO global_documents (
+                name, metadata, status, storage_path, mime_type,
+                byte_size, page_count, chunk_count
+            ) VALUES (?, ?, 'Indicizzato', ?, ?, ?, ?, ?)
+            """,
+            (
+                document.name,
+                metadata,
+                document.storage_path,
+                document.mime_type,
+                document.byte_size,
+                document.page_count,
+                chunk_count,
+            ),
+        )
+        document_id = cursor.lastrowid
+        if document_id is None:
+            raise RuntimeError("Il documento globale non ha ricevuto un identificativo")
+        db.executemany(
+            """
+            INSERT INTO global_document_chunks (
+                document_id, chunk_index, content, char_count
+            ) VALUES (?, ?, ?, ?)
+            """,
+            [
+                (document_id, index, content, len(content))
+                for index, content in enumerate(document.chunks)
+            ],
+        )
+        row = db.execute(
+            """
+            SELECT id, name, metadata, status, mime_type, byte_size,
+                   page_count, chunk_count, created_at, updated_at
+            FROM global_documents WHERE id = ?
+            """,
+            (document_id,),
+        ).fetchone()
+    if row is None:
+        raise RuntimeError("Il documento globale appena creato non e disponibile")
+    return dict(row)
+
+
+def delete_global_document(document_id: int) -> dict | None:
+    with connection() as db:
+        row = db.execute(
+            "SELECT id, storage_path FROM global_documents WHERE id = ?",
+            (document_id,),
+        ).fetchone()
+        if row is None:
+            return None
+        db.execute("DELETE FROM global_documents WHERE id = ?", (document_id,))
+    return dict(row)
+
+
+def list_project_global_documents(project_id: str) -> list[dict] | None:
+    with connection() as db:
+        if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
+            return None
+        return _rows(
+            db,
+            """
+            SELECT d.id, d.name, d.metadata, d.status, d.mime_type,
+                   d.byte_size, d.page_count, d.chunk_count,
+                   CASE WHEN l.project_id IS NULL THEN 0 ELSE 1 END AS linked
+            FROM global_documents d
+            LEFT JOIN project_global_document_links l
+              ON l.document_id = d.id AND l.project_id = ?
+            ORDER BY datetime(d.created_at) DESC, d.id DESC
+            """,
+            (project_id,),
+        )
+
+
+def set_project_global_document_link(
+    project_id: str,
+    document_id: int,
+    linked: bool,
+) -> dict | None:
+    with connection() as db:
+        if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
+            return None
+        document = db.execute(
+            "SELECT 1 FROM global_documents WHERE id = ?",
+            (document_id,),
+        ).fetchone()
+        if document is None:
+            return None
+        if linked:
+            db.execute(
+                """
+                INSERT OR IGNORE INTO project_global_document_links (project_id, document_id)
+                VALUES (?, ?)
+                """,
+                (project_id, document_id),
+            )
+        else:
+            db.execute(
+                """
+                DELETE FROM project_global_document_links
+                WHERE project_id = ? AND document_id = ?
+                """,
+                (project_id, document_id),
+            )
+    documents = list_project_global_documents(project_id)
+    if documents is None:
+        return None
+    return next((item for item in documents if item["id"] == document_id), None)
+
+
 def get_project(project_id: str) -> dict | None:
     with connection() as db:
         project = db.execute(
@@ -260,6 +421,36 @@ def get_project(project_id: str) -> dict | None:
             FROM knowledge_sources WHERE project_id = ? ORDER BY sort_order
             """,
             (project_id,),
+        )
+        linked_company_kb = db.execute(
+            """
+            SELECT COUNT(*) AS document_count,
+                   COALESCE(SUM(d.chunk_count), 0) AS chunk_count
+            FROM project_global_document_links l
+            JOIN global_documents d ON d.id = l.document_id
+            WHERE l.project_id = ?
+            """,
+            (project_id,),
+        ).fetchone()
+        document_count = linked_company_kb["document_count"]
+        chunk_count = linked_company_kb["chunk_count"]
+        result["knowledge_sources"].append(
+            {
+                "id": -1,
+                "name": "Company KB",
+                "detail": (
+                    (
+                        "1 frammento disponibile"
+                        if chunk_count == 1
+                        else f"{chunk_count} frammenti disponibili"
+                    )
+                    if document_count
+                    else "Nessun documento collegato"
+                ),
+                "scope": "global",
+                "tone": "success" if document_count else "info",
+                "item_count": document_count,
+            }
         )
         result["conversations"] = _rows(
             db,
@@ -664,7 +855,7 @@ def search_project_evidence(
             return None
         if not fts_query:
             return []
-        candidates = _rows(
+        project_candidates = _rows(
             db,
             """
             SELECT
@@ -684,6 +875,29 @@ def search_project_evidence(
             """,
             (fts_query, project_id, max(limit * 6, 24)),
         )
+        global_candidates = _rows(
+            db,
+            """
+            SELECT
+                -c.id AS chunk_id,
+                -d.id AS file_id,
+                d.name AS source_name,
+                c.chunk_index,
+                c.content,
+                snippet(global_document_chunks_fts, 1, '', '', ' … ', 36) AS excerpt,
+                bm25(global_document_chunks_fts) AS rank
+            FROM global_document_chunks_fts
+            JOIN global_document_chunks c ON c.id = global_document_chunks_fts.rowid
+            JOIN global_documents d ON d.id = c.document_id
+            JOIN project_global_document_links l
+              ON l.document_id = d.id AND l.project_id = ?
+            WHERE global_document_chunks_fts MATCH ?
+            ORDER BY rank
+            LIMIT ?
+            """,
+            (project_id, fts_query, max(limit * 6, 24)),
+        )
+        candidates = project_candidates + global_candidates
     anchors = _rerank_evidence(query, candidates, limit)
     if include_neighbors:
         return _expand_neighbor_evidence(project_id, anchors, max_results=limit * 2)

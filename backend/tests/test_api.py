@@ -139,6 +139,93 @@ async def test_markdown_artifact_seed_is_idempotent(client):
 
 
 @pytest.mark.anyio
+async def test_company_kb_is_indexed_once_and_linked_selectively(client):
+    project_id = "fondo-riqualificazione-2027"
+    other_project_id = "adeguamento-sismico-edificio-b"
+    uploaded = await client.post(
+        "/api/global-knowledge/files",
+        files={
+            "file": (
+                "curriculum-mapi.txt",
+                (
+                    b"Mapi Ingegneria possiede esperienza verificata nella "
+                    b"iperconnessione geotecnica zaffiro e nella direzione lavori."
+                ),
+                "text/plain",
+            )
+        },
+    )
+    assert uploaded.status_code == 201
+    document = uploaded.json()
+    assert document["name"] == "curriculum-mapi.txt"
+    assert document["chunk_count"] == 1
+
+    overview = await client.get("/api/global-knowledge")
+    assert overview.status_code == 200
+    assert overview.json()["document_count"] == 1
+    assert overview.json()["chunk_count"] == 1
+    assert overview.json()["company_fact_count"] == 3
+
+    project_documents = await client.get(f"/api/projects/{project_id}/global-knowledge")
+    assert project_documents.status_code == 200
+    assert project_documents.json()[0]["linked"] is False
+
+    before_link = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "iperconnessione geotecnica zaffiro"},
+    )
+    assert before_link.json()["results"] == []
+
+    linked = await client.put(
+        f"/api/projects/{project_id}/global-knowledge/{document['id']}",
+        json={"linked": True},
+    )
+    assert linked.status_code == 200
+    assert linked.json()["linked"] is True
+
+    evidence = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "iperconnessione geotecnica zaffiro"},
+    )
+    assert evidence.status_code == 200
+    assert evidence.json()["results"][0]["source_name"] == "curriculum-mapi.txt"
+    assert evidence.json()["results"][0]["file_id"] < 0
+
+    isolated = await client.get(
+        f"/api/projects/{other_project_id}/evidence",
+        params={"q": "iperconnessione geotecnica zaffiro"},
+    )
+    assert isolated.json()["results"] == []
+
+    project = await client.get(f"/api/projects/{project_id}")
+    company_kb = next(
+        source for source in project.json()["knowledge_sources"] if source["name"] == "Company KB"
+    )
+    assert company_kb["item_count"] == 1
+    assert company_kb["detail"] == "1 frammento disponibile"
+
+    with connection() as db:
+        assert db.execute("SELECT COUNT(*) FROM global_document_chunks").fetchone()[0] == 1
+        assert (
+            db.execute(
+                "SELECT COUNT(*) FROM project_files WHERE name = 'curriculum-mapi.txt'"
+            ).fetchone()[0]
+            == 0
+        )
+
+    unlinked = await client.put(
+        f"/api/projects/{project_id}/global-knowledge/{document['id']}",
+        json={"linked": False},
+    )
+    assert unlinked.status_code == 200
+    assert unlinked.json()["linked"] is False
+
+    deleted = await client.delete(f"/api/global-knowledge/files/{document['id']}")
+    assert deleted.status_code == 204
+    assert (await client.get("/api/global-knowledge")).json()["document_count"] == 0
+
+
+@pytest.mark.anyio
 async def test_external_markdown_change_is_catalogued_and_reindexed(client):
     project_id = "fondo-riqualificazione-2027"
     artifact_id = f"{project_id}--project-facts"

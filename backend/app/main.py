@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from dataclasses import replace
 from typing import Annotated
 
-from fastapi import FastAPI, File, HTTPException, Query, UploadFile, status
+from fastapi import FastAPI, File, HTTPException, Query, Response, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.artifacts import (
@@ -23,7 +23,7 @@ from app.call_facts import (
     render_call_facts_document,
     revise_call_fact,
 )
-from app.db import init_database
+from app.db import get_storage_path, init_database
 from app.draft_generation import (
     DraftInputError,
     generate_grounded_draft,
@@ -40,24 +40,30 @@ from app.ingestion import (
     EmptyDocumentError,
     InvalidDocumentError,
     UnsupportedDocumentError,
+    ingest_global_upload,
     ingest_upload,
 )
 from app.intents import direct_system_answer
 from app.repository import (
+    add_global_document,
     add_project_file,
     contextualize_search_query,
     create_project,
+    delete_global_document,
     get_company_facts,
     get_conversation,
     get_conversation_history,
     get_document_review,
+    get_global_knowledge,
     get_or_create_conversation,
     get_project,
     is_follow_up_question,
+    list_project_global_documents,
     list_projects,
     recent_conversation_evidence,
     save_conversation_turn,
     search_project_evidence,
+    set_project_global_document_link,
     sync_call_fact_review_metrics,
     update_call_fact_metrics,
     update_call_fact_review_metrics,
@@ -70,6 +76,9 @@ from app.schemas import (
     DocumentReview,
     DraftGenerationResponse,
     EvidenceSearch,
+    GlobalKnowledgeDocument,
+    GlobalKnowledgeLinkUpdate,
+    GlobalKnowledgeOverview,
     GroundedAnswerResponse,
     KnowledgeArtifactDetail,
     KnowledgeArtifactSummary,
@@ -77,6 +86,7 @@ from app.schemas import (
     ProjectCreate,
     ProjectDetail,
     ProjectFile,
+    ProjectGlobalKnowledgeDocument,
     ProjectSummary,
     QuestionRequest,
 )
@@ -93,8 +103,7 @@ def _call_facts_review_payload(artifact: dict, document: CallFactsDocument) -> d
                 "value": fact.value,
                 "status": fact.status,
                 "sources": [
-                    {"name": source.name, "fragment": source.fragment}
-                    for source in fact.sources
+                    {"name": source.name, "fragment": source.fragment} for source in fact.sources
                 ],
             }
             for fact in document.facts
@@ -157,12 +166,77 @@ async def projects_create(payload: ProjectCreate) -> dict:
     return result
 
 
+@app.get("/api/global-knowledge", response_model=GlobalKnowledgeOverview)
+async def global_knowledge() -> dict:
+    return get_global_knowledge()
+
+
+@app.post(
+    "/api/global-knowledge/files",
+    response_model=GlobalKnowledgeDocument,
+    status_code=status.HTTP_201_CREATED,
+)
+async def global_knowledge_file_create(
+    file: Annotated[UploadFile, File(description="Documento aziendale PDF o TXT")],
+) -> dict:
+    try:
+        document = await ingest_global_upload(file)
+    except UnsupportedDocumentError as exc:
+        raise HTTPException(status_code=415, detail=str(exc)) from exc
+    except DocumentTooLargeError as exc:
+        raise HTTPException(status_code=413, detail=str(exc)) from exc
+    except (EmptyDocumentError, InvalidDocumentError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    return add_global_document(document)
+
+
+@app.delete(
+    "/api/global-knowledge/files/{document_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+async def global_knowledge_file_delete(document_id: int) -> Response:
+    deleted = delete_global_document(document_id)
+    if deleted is None:
+        raise HTTPException(status_code=404, detail="Documento aziendale non trovato")
+    storage_root = get_storage_path().resolve()
+    path = (storage_root / deleted["storage_path"]).resolve()
+    if storage_root in path.parents:
+        path.unlink(missing_ok=True)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
 @app.get("/api/projects/{project_id}", response_model=ProjectDetail)
 async def project(project_id: str) -> dict:
     result = get_project(project_id)
     if result is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
     return result
+
+
+@app.get(
+    "/api/projects/{project_id}/global-knowledge",
+    response_model=list[ProjectGlobalKnowledgeDocument],
+)
+async def project_global_knowledge(project_id: str) -> list[dict]:
+    documents = list_project_global_documents(project_id)
+    if documents is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    return documents
+
+
+@app.put(
+    "/api/projects/{project_id}/global-knowledge/{document_id}",
+    response_model=ProjectGlobalKnowledgeDocument,
+)
+async def project_global_knowledge_update(
+    project_id: str,
+    document_id: int,
+    payload: GlobalKnowledgeLinkUpdate,
+) -> dict:
+    document = set_project_global_document_link(project_id, document_id, payload.linked)
+    if document is None:
+        raise HTTPException(status_code=404, detail="Progetto o documento aziendale non trovato")
+    return document
 
 
 @app.get(

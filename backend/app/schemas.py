@@ -31,6 +31,32 @@ class ProjectFile(BaseModel):
     chunk_count: int = 0
 
 
+class GlobalKnowledgeDocument(BaseModel):
+    id: int
+    name: str
+    metadata: str
+    status: str
+    mime_type: str
+    byte_size: int
+    page_count: int
+    chunk_count: int
+
+
+class GlobalKnowledgeOverview(BaseModel):
+    documents: list[GlobalKnowledgeDocument]
+    document_count: int
+    chunk_count: int
+    company_fact_count: int
+
+
+class ProjectGlobalKnowledgeDocument(GlobalKnowledgeDocument):
+    linked: bool
+
+
+class GlobalKnowledgeLinkUpdate(BaseModel):
+    linked: bool
+
+
 class KnowledgeSource(BaseModel):
     id: int
     name: str
