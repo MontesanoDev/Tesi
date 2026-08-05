@@ -96,6 +96,105 @@ test('document review keeps source provenance visible', async ({ page }, testInf
   })
 })
 
+test('company knowledge is uploaded globally and linked per project', async ({ page }, testInfo) => {
+  let linkedDocumentId: number | null = null
+  const documents = [
+    {
+      id: 41,
+      name: 'curriculum-mapi.pdf',
+      metadata: 'PDF · 840 KB · 18 frammenti',
+      status: 'Indicizzato',
+      mime_type: 'application/pdf',
+      byte_size: 860160,
+      page_count: 8,
+      chunk_count: 18,
+    },
+  ]
+
+  await page.route(/\/api\/global-knowledge$/, async (route) => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        documents,
+        document_count: documents.length,
+        chunk_count: documents.reduce((total, document) => total + document.chunk_count, 0),
+        company_fact_count: 3,
+      }),
+    })
+  })
+  await page.route(/\/api\/global-knowledge\/files$/, async (route) => {
+    const uploaded = {
+      id: 42,
+      name: 'certificazione-iso.txt',
+      metadata: 'TXT · 1 KB · 2 frammenti',
+      status: 'Indicizzato',
+      mime_type: 'text/plain',
+      byte_size: 512,
+      page_count: 1,
+      chunk_count: 2,
+    }
+    documents.unshift(uploaded)
+    await route.fulfill({
+      status: 201,
+      contentType: 'application/json',
+      body: JSON.stringify(uploaded),
+    })
+  })
+  await page.route(
+    /\/api\/projects\/fondo-riqualificazione-2027\/global-knowledge$/,
+    async (route) => {
+      await route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify(documents.map((document) => ({
+          ...document,
+          linked: document.id === linkedDocumentId,
+        }))),
+      })
+    },
+  )
+  await page.route(
+    /\/api\/projects\/fondo-riqualificazione-2027\/global-knowledge\/(\d+)$/,
+    async (route) => {
+      const documentId = Number(route.request().url().split('/').at(-1))
+      const payload = route.request().postDataJSON() as { linked: boolean }
+      linkedDocumentId = payload.linked ? documentId : null
+      const document = documents.find((item) => item.id === documentId)
+      await route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify({ ...document, linked: payload.linked }),
+      })
+    },
+  )
+
+  await page.goto('/settings')
+  await expect(page.getByRole('heading', { name: 'Conoscenza globale' })).toBeVisible()
+  await expect(page.getByText('curriculum-mapi.pdf')).toBeVisible()
+  await page.locator('input[type="file"]').setInputFiles({
+    name: 'certificazione-iso.txt',
+    mimeType: 'text/plain',
+    buffer: Buffer.from('Certificazione ISO 9001 per servizi di ingegneria.'),
+  })
+  await expect(page.getByText('certificazione-iso.txt indicizzato in 2 frammenti.')).toBeVisible()
+  await expect(page.getByText('2 documenti', { exact: true })).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-company-kb-global.png`,
+    fullPage: true,
+  })
+
+  await page.goto('/projects/fondo-riqualificazione-2027/settings')
+  const companyToggle = page.getByRole('switch', { name: 'Collega curriculum-mapi.pdf' })
+  await expect(companyToggle).toHaveAttribute('aria-checked', 'false')
+  await companyToggle.click()
+  await expect(companyToggle).toHaveAttribute('aria-checked', 'true')
+  await expect(page.getByText('1 documento', { exact: true })).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-company-kb-project.png`,
+    fullPage: true,
+  })
+})
+
 test('markdown knowledge artifacts expose project and global scopes', async ({ page }, testInfo) => {
   let factStatus: 'pending' | 'verified' = 'pending'
   let factTitle = 'Termine di candidatura'

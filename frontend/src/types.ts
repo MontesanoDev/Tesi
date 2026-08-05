@@ -21,6 +21,28 @@ export interface ProjectFile {
   chunk_count: number
 }
 
+export interface GlobalKnowledgeDocument {
+  id: number
+  name: string
+  metadata: string
+  status: string
+  mime_type: string
+  byte_size: number
+  page_count: number
+  chunk_count: number
+}
+
+export interface GlobalKnowledgeOverview {
+  documents: GlobalKnowledgeDocument[]
+  document_count: number
+  chunk_count: number
+  company_fact_count: number
+}
+
+export interface ProjectGlobalKnowledgeDocument extends GlobalKnowledgeDocument {
+  linked: boolean
+}
+
 export interface KnowledgeSource {
   id: number
   name: string

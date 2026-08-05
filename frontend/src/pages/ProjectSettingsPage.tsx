@@ -1,17 +1,70 @@
+import { LoaderCircle } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { StatusPill } from '../components/StatusPill'
 import { useProject } from '../hooks/useProject'
+import type { ProjectGlobalKnowledgeDocument } from '../types'
 
 export function ProjectSettingsPage() {
   const { projectId } = useParams()
   const navigate = useNavigate()
   const { project, loading, error } = useProject(projectId)
+  const [globalDocuments, setGlobalDocuments] = useState<ProjectGlobalKnowledgeDocument[]>([])
+  const [globalLoading, setGlobalLoading] = useState(true)
+  const [globalError, setGlobalError] = useState<string | null>(null)
+  const [linkingId, setLinkingId] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (!projectId) return
+    const controller = new AbortController()
+    setGlobalLoading(true)
+    api.projectGlobalKnowledge(projectId, controller.signal)
+      .then((documents) => {
+        setGlobalDocuments(documents)
+        setGlobalError(null)
+      })
+      .catch((reason) => {
+        if (reason instanceof DOMException && reason.name === 'AbortError') return
+        setGlobalError(reason instanceof Error ? reason.message : 'Company KB non disponibile')
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setGlobalLoading(false)
+      })
+    return () => controller.abort()
+  }, [projectId])
 
   if (loading) return <AppShell active="projects"><LoadingState /></AppShell>
   if (error || !project) {
     return <AppShell active="projects"><ErrorState message={error ?? 'Progetto non trovato'} /></AppShell>
+  }
+
+  const activeProjectId = project.id
+  const linkedDocumentCount = globalDocuments.filter((document) => document.linked).length
+  const linkedDocumentLabel = linkedDocumentCount === 1
+    ? '1 documento'
+    : `${linkedDocumentCount} documenti`
+
+  async function toggleGlobalDocument(document: ProjectGlobalKnowledgeDocument) {
+    if (linkingId !== null) return
+    setLinkingId(document.id)
+    setGlobalError(null)
+    try {
+      const updated = await api.updateProjectGlobalKnowledge(
+        activeProjectId,
+        document.id,
+        !document.linked,
+      )
+      setGlobalDocuments((current) => current.map((item) => (
+        item.id === updated.id ? updated : item
+      )))
+    } catch (reason) {
+      setGlobalError(reason instanceof Error ? reason.message : 'Collegamento non riuscito')
+    } finally {
+      setLinkingId(null)
+    }
   }
 
   return (
@@ -32,7 +85,9 @@ export function ProjectSettingsPage() {
               <h2>Conoscenza condivisa</h2>
               <p>Fonti globali rese disponibili nel progetto corrente</p>
             </div>
-            <StatusPill tone="info">Collegata</StatusPill>
+            <StatusPill tone={linkedDocumentCount ? 'success' : 'info'}>
+              {linkedDocumentLabel}
+            </StatusPill>
           </div>
           <div className="settings-card-divider" />
           <div className="setting-section-title">
@@ -52,8 +107,51 @@ export function ProjectSettingsPage() {
             </div>
             <div className="linked-source">
               <strong>Company Facts</strong>
-              <span>Mapi Ingegneria · 28 dati verificati</span>
+              <span>Mapi Ingegneria · dati strutturati verificati</span>
             </div>
+          </div>
+          <div className="company-kb-project-section">
+            <div className="setting-section-title">
+              <span>Documenti Company KB</span>
+              <button
+                className="button button--compact"
+                type="button"
+                onClick={() => navigate('/settings')}
+              >
+                Gestisci archivio globale
+              </button>
+            </div>
+            {globalLoading ? (
+              <LoadingState label="Caricamento Company KB" />
+            ) : globalDocuments.length ? (
+              <div className="project-global-document-list">
+                {globalDocuments.map((document) => (
+                  <div className="project-global-document-row" key={document.id}>
+                    <div>
+                      <strong>{document.name}</strong>
+                      <span>{document.metadata}</span>
+                    </div>
+                    {linkingId === document.id && <LoaderCircle className="spin" size={16} />}
+                    <button
+                      type="button"
+                      role="switch"
+                      aria-label={`Collega ${document.name}`}
+                      aria-checked={document.linked}
+                      className={`toggle${document.linked ? ' is-on' : ''}`}
+                      disabled={linkingId !== null}
+                      onClick={() => toggleGlobalDocument(document)}
+                    >
+                      <span />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="project-global-empty">
+                Nessun documento aziendale disponibile nell'archivio globale.
+              </p>
+            )}
+            {globalError && <p className="upload-feedback upload-feedback--error" role="alert">{globalError}</p>}
           </div>
         </section>
 
@@ -87,7 +185,7 @@ export function ProjectSettingsPage() {
 
         <div className="scope-banner">
           <strong>Scope controllato</strong>
-          <span>La Knowledge Base è condivisa; i Call Facts restano isolati nel progetto corrente.</span>
+          <span>I documenti aziendali sono condivisi solo se collegati; i Call Facts restano isolati nel progetto corrente.</span>
         </div>
       </div>
     </AppShell>

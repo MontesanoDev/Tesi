@@ -7,10 +7,13 @@ import type {
   DraftGenerationResult,
   EvidenceSearch,
   GroundedAnswer,
+  GlobalKnowledgeDocument,
+  GlobalKnowledgeOverview,
   KnowledgeArtifactDetail,
   KnowledgeArtifactSummary,
   ProjectDetail,
   ProjectFile,
+  ProjectGlobalKnowledgeDocument,
   ProjectSummary,
 } from './types'
 
@@ -30,6 +33,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     const payload = await response.json().catch(() => null)
     throw new Error(payload?.detail ?? `Richiesta non riuscita (${response.status})`)
   }
+
+  if (response.status === 204) return undefined as T
 
   return response.json() as Promise<T>
 }
@@ -52,6 +57,28 @@ export const api = {
       body,
     })
   },
+  globalKnowledge: (signal?: AbortSignal) =>
+    request<GlobalKnowledgeOverview>('/global-knowledge', { signal }),
+  uploadGlobalKnowledgeFile: (file: File) => {
+    const body = new FormData()
+    body.append('file', file)
+    return request<GlobalKnowledgeDocument>('/global-knowledge/files', {
+      method: 'POST',
+      body,
+    })
+  },
+  deleteGlobalKnowledgeFile: (documentId: number) =>
+    request<void>(`/global-knowledge/files/${documentId}`, { method: 'DELETE' }),
+  projectGlobalKnowledge: (projectId: string, signal?: AbortSignal) =>
+    request<ProjectGlobalKnowledgeDocument[]>(
+      `/projects/${projectId}/global-knowledge`,
+      { signal },
+    ),
+  updateProjectGlobalKnowledge: (projectId: string, documentId: number, linked: boolean) =>
+    request<ProjectGlobalKnowledgeDocument>(
+      `/projects/${projectId}/global-knowledge/${documentId}`,
+      { method: 'PUT', body: JSON.stringify({ linked }) },
+    ),
   projectArtifacts: (projectId: string, signal?: AbortSignal) =>
     request<KnowledgeArtifactSummary[]>(`/projects/${projectId}/artifacts`, { signal }),
   projectArtifact: (projectId: string, artifactId: string, signal?: AbortSignal) =>
