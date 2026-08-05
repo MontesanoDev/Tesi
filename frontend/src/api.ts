@@ -4,6 +4,7 @@ import type {
   CallFactRevision,
   ConversationDetail,
   DocumentReview,
+  DraftGenerationResult,
   EvidenceSearch,
   GroundedAnswer,
   KnowledgeArtifactDetail,
@@ -80,6 +81,10 @@ export const api = {
         body: JSON.stringify(payload),
       },
     ),
+  generateDraft: (projectId: string) =>
+    request<DraftGenerationResult>(`/projects/${projectId}/draft/generate`, {
+      method: 'POST',
+    }),
   projectEvidence: (projectId: string, query: string, signal?: AbortSignal) => {
     const params = new URLSearchParams({ q: query })
     return request<EvidenceSearch>(`/projects/${projectId}/evidence?${params}`, {

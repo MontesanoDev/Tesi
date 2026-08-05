@@ -1,5 +1,5 @@
-import { FileText, Globe2, Save, WandSparkles } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { FileOutput, FileText, Globe2, LayoutTemplate, Save, WandSparkles } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
 import { AppShell } from '../components/AppShell'
@@ -16,7 +16,11 @@ import type {
 
 function artifactTone(artifact: KnowledgeArtifactSummary): StatusTone {
   if (artifact.scope === 'global') return 'info'
-  if (artifact.status === 'Bozza aggiornata' || artifact.status === 'Bozza') return 'warning'
+  if (
+    artifact.status === 'Bozza aggiornata'
+    || artifact.status === 'Bozza'
+    || artifact.status === 'Da verificare'
+  ) return 'warning'
   if (artifact.status === 'Verificato') return 'success'
   return 'purple'
 }
@@ -34,11 +38,13 @@ export function KnowledgeArtifactsPage() {
   const [error, setError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const [extracting, setExtracting] = useState(false)
+  const [generatingDraft, setGeneratingDraft] = useState(false)
   const [savedMessage, setSavedMessage] = useState<string | null>(null)
   const [viewMode, setViewMode] = useState<'review' | 'markdown'>('markdown')
   const [review, setReview] = useState<CallFactsReview | null>(null)
   const [reviewLoading, setReviewLoading] = useState(false)
   const [reviewRefresh, setReviewRefresh] = useState(0)
+  const pendingSelectionMessage = useRef<string | null>(null)
 
   useEffect(() => {
     if (!projectId) return
@@ -69,7 +75,8 @@ export function KnowledgeArtifactsPage() {
     setDetailLoading(true)
     setArtifact(null)
     setError(null)
-    setSavedMessage(null)
+    setSavedMessage(pendingSelectionMessage.current)
+    pendingSelectionMessage.current = null
     api.projectArtifact(projectId, selectedId, controller.signal)
       .then((item) => {
         setArtifact(item)
@@ -119,7 +126,11 @@ export function KnowledgeArtifactsPage() {
         item.id === updated.id ? updated : item
       )))
       if (updated.kind === 'call_facts') setReviewRefresh((current) => current + 1)
-      setSavedMessage(`Versione ${updated.version} salvata e indicizzata.`)
+      setSavedMessage(
+        updated.kind === 'output_draft'
+          ? `Versione ${updated.version} salvata per la revisione.`
+          : `Versione ${updated.version} salvata e indicizzata.`,
+      )
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'Salvataggio non riuscito')
     } finally {
@@ -151,6 +162,40 @@ export function KnowledgeArtifactsPage() {
     }
   }
 
+  async function generateDraft() {
+    if (
+      !projectId
+      || !artifact
+      || !['template', 'output_draft'].includes(artifact.kind)
+      || dirty
+    ) return
+    setGeneratingDraft(true)
+    setError(null)
+    setSavedMessage(null)
+    try {
+      const result = await api.generateDraft(projectId)
+      const message = (
+        `Draft generato da ${result.used_fact_count} di ${result.verified_fact_count} `
+        + `Call Facts verificati · ${result.missing_information.length} TODO.`
+      )
+      setArtifacts((current) => current.map((item) => (
+        item.id === result.artifact.id ? result.artifact : item
+      )))
+      if (artifact.id === result.artifact.id) {
+        setArtifact(result.artifact)
+        setContent(result.artifact.content)
+        setSavedMessage(message)
+      } else {
+        pendingSelectionMessage.current = message
+        setSelectedId(result.artifact.id)
+      }
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'Generazione del draft non riuscita')
+    } finally {
+      setGeneratingDraft(false)
+    }
+  }
+
   if (projectLoading) return <AppShell active="projects"><LoadingState /></AppShell>
   if (projectError || !project) {
     return (
@@ -162,6 +207,9 @@ export function KnowledgeArtifactsPage() {
 
   const dirty = Boolean(artifact && content !== artifact.content)
   const canExtract = Boolean(artifact?.editable && artifact.kind === 'call_facts')
+  const canGenerateDraft = Boolean(
+    artifact?.editable && ['template', 'output_draft'].includes(artifact.kind),
+  )
 
   function handleReviewUpdated(updated: CallFactsReview, message: string) {
     setReview(updated)
@@ -187,7 +235,7 @@ export function KnowledgeArtifactsPage() {
         <header className="page-heading knowledge-heading">
           <div>
             <h1>Conoscenza Markdown</h1>
-            <p>Artefatti leggibili, revisionabili e indicizzati nel progetto</p>
+            <p>Conoscenza e output revisionabili con provenienza controllata</p>
           </div>
           <span>{artifacts.length} artefatti collegati</span>
         </header>
@@ -196,7 +244,7 @@ export function KnowledgeArtifactsPage() {
 
         <div className="artifact-layout">
           <nav className="artifact-list" aria-label="Artefatti Markdown">
-            <span className="section-label">File di conoscenza</span>
+            <span className="section-label">Artefatti Markdown</span>
             {listLoading ? (
               <LoadingState label="Caricamento artefatti" />
             ) : (
@@ -207,7 +255,15 @@ export function KnowledgeArtifactsPage() {
                   key={item.id}
                   onClick={() => setSelectedId(item.id)}
                 >
-                  {item.scope === 'global' ? <Globe2 size={17} /> : <FileText size={17} />}
+                  {item.scope === 'global' ? (
+                    <Globe2 size={17} />
+                  ) : item.kind === 'output_draft' ? (
+                    <FileOutput size={17} />
+                  ) : item.kind === 'template' ? (
+                    <LayoutTemplate size={17} />
+                  ) : (
+                    <FileText size={17} />
+                  )}
                   <span>
                     <strong>{item.title}</strong>
                     <small>{item.filename} · v{item.version}</small>
@@ -234,7 +290,11 @@ export function KnowledgeArtifactsPage() {
                 </header>
                 <div className="artifact-metadata">
                   <span>Versione {artifact.version}</span>
-                  <span>{artifact.chunk_count} frammenti indicizzati</span>
+                  <span>
+                    {artifact.kind === 'output_draft'
+                      ? 'Output escluso dal RAG'
+                      : `${artifact.chunk_count} frammenti indicizzati`}
+                  </span>
                   <span>{artifact.scope === 'global' ? 'Scope globale' : 'Scope progetto'}</span>
                 </div>
                 {artifact.kind === 'call_facts' && (
@@ -305,14 +365,37 @@ export function KnowledgeArtifactsPage() {
                             : 'Riestrai dalle fonti'}
                       </button>
                     )}
+                    {canGenerateDraft && (
+                      <button
+                        className="button artifact-generate"
+                        type="button"
+                        disabled={dirty || saving || extracting || generatingDraft}
+                        title={dirty ? 'Salva o annulla le modifiche prima di generare' : undefined}
+                        onClick={generateDraft}
+                      >
+                        <WandSparkles size={16} />
+                        {generatingDraft
+                          ? 'Generazione in corso'
+                          : artifact.kind === 'output_draft' && artifact.status !== 'Da generare'
+                            ? 'Rigenera draft'
+                            : 'Genera draft'}
+                      </button>
+                    )}
                     {(artifact.kind !== 'call_facts' || viewMode === 'markdown') && (
                       <button
                         className="button button--primary artifact-save"
                         type="button"
-                        disabled={!dirty || saving || extracting || !artifact.editable}
+                        disabled={
+                          !dirty || saving || extracting || generatingDraft || !artifact.editable
+                        }
                         onClick={saveArtifact}
                       >
-                        <Save size={16} /> {saving ? 'Salvataggio' : 'Salva e indicizza'}
+                        <Save size={16} />{' '}
+                        {saving
+                          ? 'Salvataggio'
+                          : artifact.kind === 'output_draft'
+                            ? 'Salva revisione'
+                            : 'Salva e indicizza'}
                       </button>
                     )}
                   </div>

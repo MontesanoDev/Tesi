@@ -89,6 +89,15 @@ export interface CallFactRevision {
   value?: string
 }
 
+export interface DraftGenerationResult {
+  artifact: KnowledgeArtifactDetail
+  verified_fact_count: number
+  used_fact_count: number
+  missing_information: string[]
+  model: string
+  total_tokens: number | null
+}
+
 export interface Conversation {
   id: string
   title: string

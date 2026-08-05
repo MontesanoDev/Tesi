@@ -144,6 +144,33 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
     verified_count: factStatus === 'verified' ? 1 : 0,
     discarded_count: 0,
   })
+  let draftGenerated = false
+  const draftArtifact = () => ({
+    id: 'fondo-riqualificazione-2027--draft',
+    kind: 'output_draft',
+    scope: 'project',
+    title: 'Draft',
+    filename: 'draft.md',
+    status: draftGenerated ? 'Da verificare' : 'Da generare',
+    byte_size: 640,
+    version: draftGenerated ? 2 : 1,
+    updated_at: '2026-08-04 18:10:00',
+    editable: true,
+    chunk_count: 0,
+    content: draftGenerated
+      ? [
+          '# Candidatura',
+          '',
+          'Termine: 15 settembre 2025 [CF:cf-demo]',
+          '',
+          'Importo: [TODO: inserire importo richiesto]',
+          '',
+          '# Provenienza',
+          '',
+          '- [CF:cf-demo] Termine di candidatura - avviso.pdf, frammento 18',
+        ].join('\n')
+      : '# Draft candidatura\n\n> Generare il documento dal template.',
+  })
 
   await page.route(
     '**/api/projects/fondo-riqualificazione-2027/call-facts',
@@ -182,6 +209,29 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
           evidence_count: 8,
           model: 'deepseek-test',
           total_tokens: 123,
+        }),
+      })
+    },
+  )
+  await page.route(
+    '**/api/projects/fondo-riqualificazione-2027/artifacts/fondo-riqualificazione-2027--draft',
+    async (route) => {
+      await route.fulfill({ contentType: 'application/json', body: JSON.stringify(draftArtifact()) })
+    },
+  )
+  await page.route(
+    '**/api/projects/fondo-riqualificazione-2027/draft/generate',
+    async (route) => {
+      draftGenerated = true
+      await route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify({
+          artifact: draftArtifact(),
+          verified_fact_count: 1,
+          used_fact_count: 1,
+          missing_information: ['Importo richiesto'],
+          model: 'deepseek-test',
+          total_tokens: 120,
         }),
       })
     },
@@ -228,6 +278,22 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
     path: `artifacts/${testInfo.project.name}-markdown-knowledge.png`,
+    fullPage: true,
+  })
+
+  await page.locator('.artifact-list-item').filter({ hasText: 'Call Facts' }).click()
+  await page.getByRole('button', { name: 'Verifica', exact: true }).click()
+  await page.locator('.artifact-list-item').filter({ hasText: 'Template' }).click()
+  await page.getByRole('button', { name: 'Genera draft', exact: true }).click()
+  await expect(page.getByRole('heading', { name: 'Draft', exact: true })).toBeVisible()
+  await expect(page.getByText('Output escluso dal RAG')).toBeVisible()
+  await expect(page.getByLabel('Contenuto di Draft')).toContainText(
+    'Termine: 15 settembre 2025 [CF:cf-demo]',
+  )
+  await expect(page.getByText('Draft generato da 1 di 1 Call Facts verificati · 1 TODO.')).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-generated-draft.png`,
     fullPage: true,
   })
 })

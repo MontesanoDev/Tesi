@@ -1615,7 +1615,8 @@
   gap: 8px;
 }
 
-.artifact-extract {
+.artifact-extract,
+.artifact-generate {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -2309,7 +2310,8 @@
   }
 
   .artifact-save,
-  .artifact-extract {
+  .artifact-extract,
+  .artifact-generate {
     justify-content: center;
     width: 100%;
   }
