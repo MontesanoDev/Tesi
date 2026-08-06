@@ -9,7 +9,17 @@ documenti tecnici. Il repository separa l'interfaccia dalla pipeline dati:
 
 ## Avvio locale
 
-Aprire due terminali dalla root del progetto.
+Dalla root del progetto e sufficiente un solo comando:
+
+```bash
+./start.sh
+```
+
+Lo script avvia FastAPI e Vite, mostra gli indirizzi locali e arresta entrambi
+con `Ctrl+C`. Le porte possono essere cambiate con `MAPI_BACKEND_PORT` e
+`MAPI_FRONTEND_PORT`.
+
+In alternativa, aprire due terminali dalla root del progetto.
 
 Backend:
 
