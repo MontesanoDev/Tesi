@@ -529,6 +529,64 @@ def update_project_artifact(project_id: str, artifact_id: str, content: str) -> 
     )
 
 
+def get_global_artifact(kind: str) -> dict | None:
+    with connection() as db:
+        row = db.execute(
+            """
+            SELECT a.*, 1 AS editable, COALESCE(MAX(f.chunk_count), 0) AS chunk_count
+            FROM knowledge_artifacts a
+            LEFT JOIN project_artifact_links l ON l.artifact_id = a.id
+            LEFT JOIN project_files f ON f.id = l.file_id
+            WHERE a.scope = 'global' AND a.kind = ?
+            GROUP BY a.id
+            """,
+            (kind,),
+        ).fetchone()
+    if row is None:
+        return None
+    result = dict(row)
+    result["content"] = _read_artifact(result["storage_path"])
+    return result
+
+
+def update_global_artifact(kind: str, content: str) -> dict | None:
+    with connection() as db:
+        row = db.execute(
+            """
+            SELECT * FROM knowledge_artifacts
+            WHERE scope = 'global' AND kind = ?
+            """,
+            (kind,),
+        ).fetchone()
+        if row is None:
+            return None
+        artifact = dict(row)
+        _write_artifact(artifact["storage_path"], content)
+        byte_size = len(content.encode("utf-8"))
+        db.execute(
+            """
+            UPDATE knowledge_artifacts
+            SET status = 'Verificato', content_hash = ?, byte_size = ?,
+                version = version + 1, updated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+            """,
+            (_content_hash(content), byte_size, artifact["id"]),
+        )
+        updated = dict(
+            db.execute(
+                "SELECT * FROM knowledge_artifacts WHERE id = ?",
+                (artifact["id"],),
+            ).fetchone()
+        )
+        links = db.execute(
+            "SELECT project_id FROM project_artifact_links WHERE artifact_id = ?",
+            (artifact["id"],),
+        ).fetchall()
+        for link in links:
+            _link_artifact(db, link["project_id"], updated, content)
+    return get_global_artifact(kind)
+
+
 def get_company_markdown() -> str | None:
     with connection() as db:
         row = db.execute(

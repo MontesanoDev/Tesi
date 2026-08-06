@@ -34,6 +34,7 @@ class ProjectFile(BaseModel):
 class GlobalKnowledgeDocument(BaseModel):
     id: int
     name: str
+    category: Literal["general", "company"]
     metadata: str
     status: str
     mime_type: str

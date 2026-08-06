@@ -250,19 +250,24 @@ def get_company_facts() -> list[dict]:
 
 
 def get_global_knowledge() -> dict:
+    company_markdown = get_company_markdown()
     with connection() as db:
         documents = _rows(
             db,
             """
-            SELECT id, name, metadata, status, mime_type, byte_size,
+            SELECT id, name, category, metadata, status, mime_type, byte_size,
                    page_count, chunk_count, created_at, updated_at
             FROM global_documents
             ORDER BY datetime(created_at) DESC, id DESC
             """,
         )
-        company_fact_count = db.execute(
-            "SELECT COUNT(*) FROM company_facts WHERE verified = 1"
-        ).fetchone()[0]
+        company_fact_count = (
+            sum(line.startswith("## ") for line in company_markdown.splitlines())
+            if company_markdown
+            else db.execute(
+                "SELECT COUNT(*) FROM company_facts WHERE verified = 1"
+            ).fetchone()[0]
+        )
     return {
         "documents": documents,
         "document_count": len(documents),
@@ -271,7 +276,7 @@ def get_global_knowledge() -> dict:
     }
 
 
-def add_global_document(document: IngestedDocument) -> dict:
+def add_global_document(document: IngestedDocument, category: str) -> dict:
     chunk_count = len(document.chunks)
     chunk_label = "frammento" if chunk_count == 1 else "frammenti"
     file_type = "PDF" if document.mime_type == "application/pdf" else "TXT"
@@ -280,12 +285,13 @@ def add_global_document(document: IngestedDocument) -> dict:
         cursor = db.execute(
             """
             INSERT INTO global_documents (
-                name, metadata, status, storage_path, mime_type,
+                name, category, metadata, status, storage_path, mime_type,
                 byte_size, page_count, chunk_count
-            ) VALUES (?, ?, 'Indicizzato', ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, 'Indicizzato', ?, ?, ?, ?, ?)
             """,
             (
                 document.name,
+                category,
                 metadata,
                 document.storage_path,
                 document.mime_type,
@@ -310,7 +316,7 @@ def add_global_document(document: IngestedDocument) -> dict:
         )
         row = db.execute(
             """
-            SELECT id, name, metadata, status, mime_type, byte_size,
+            SELECT id, name, category, metadata, status, mime_type, byte_size,
                    page_count, chunk_count, created_at, updated_at
             FROM global_documents WHERE id = ?
             """,
@@ -340,7 +346,7 @@ def list_project_global_documents(project_id: str) -> list[dict] | None:
         return _rows(
             db,
             """
-            SELECT d.id, d.name, d.metadata, d.status, d.mime_type,
+            SELECT d.id, d.name, d.category, d.metadata, d.status, d.mime_type,
                    d.byte_size, d.page_count, d.chunk_count,
                    CASE WHEN l.project_id IS NULL THEN 0 ELSE 1 END AS linked
             FROM global_documents d
@@ -422,36 +428,44 @@ def get_project(project_id: str) -> dict | None:
             """,
             (project_id,),
         )
-        linked_company_kb = db.execute(
+        linked_global_knowledge = _rows(
+            db,
             """
-            SELECT COUNT(*) AS document_count,
+            SELECT d.category, COUNT(*) AS document_count,
                    COALESCE(SUM(d.chunk_count), 0) AS chunk_count
             FROM project_global_document_links l
             JOIN global_documents d ON d.id = l.document_id
             WHERE l.project_id = ?
+            GROUP BY d.category
             """,
             (project_id,),
-        ).fetchone()
-        document_count = linked_company_kb["document_count"]
-        chunk_count = linked_company_kb["chunk_count"]
-        result["knowledge_sources"].append(
-            {
-                "id": -1,
-                "name": "Company KB",
-                "detail": (
-                    (
-                        "1 frammento disponibile"
-                        if chunk_count == 1
-                        else f"{chunk_count} frammenti disponibili"
-                    )
-                    if document_count
-                    else "Nessun documento collegato"
-                ),
-                "scope": "global",
-                "tone": "success" if document_count else "info",
-                "item_count": document_count,
-            }
         )
+        counts = {row["category"]: row for row in linked_global_knowledge}
+        for source_id, category, name in (
+            (-1, "company", "Company KB"),
+            (-2, "general", "General KB"),
+        ):
+            values = counts.get(category, {"document_count": 0, "chunk_count": 0})
+            document_count = values["document_count"]
+            chunk_count = values["chunk_count"]
+            result["knowledge_sources"].append(
+                {
+                    "id": source_id,
+                    "name": name,
+                    "detail": (
+                        (
+                            "1 frammento disponibile"
+                            if chunk_count == 1
+                            else f"{chunk_count} frammenti disponibili"
+                        )
+                        if document_count
+                        else "Nessun documento collegato"
+                    ),
+                    "scope": "global",
+                    "tone": "success" if document_count else "info",
+                    "item_count": document_count,
+                }
+            )
         result["conversations"] = _rows(
             db,
             """

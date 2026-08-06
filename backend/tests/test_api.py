@@ -144,6 +144,7 @@ async def test_company_kb_is_indexed_once_and_linked_selectively(client):
     other_project_id = "adeguamento-sismico-edificio-b"
     uploaded = await client.post(
         "/api/global-knowledge/files",
+        data={"category": "company"},
         files={
             "file": (
                 "curriculum-mapi.txt",
@@ -158,6 +159,7 @@ async def test_company_kb_is_indexed_once_and_linked_selectively(client):
     assert uploaded.status_code == 201
     document = uploaded.json()
     assert document["name"] == "curriculum-mapi.txt"
+    assert document["category"] == "company"
     assert document["chunk_count"] == 1
 
     overview = await client.get("/api/global-knowledge")
@@ -223,6 +225,54 @@ async def test_company_kb_is_indexed_once_and_linked_selectively(client):
     deleted = await client.delete(f"/api/global-knowledge/files/{document['id']}")
     assert deleted.status_code == 204
     assert (await client.get("/api/global-knowledge")).json()["document_count"] == 0
+
+
+@pytest.mark.anyio
+async def test_global_knowledge_categories_and_company_facts_are_explicit(client):
+    uploaded = await client.post(
+        "/api/global-knowledge/files",
+        data={"category": "general"},
+        files={
+            "file": (
+                "norma-tecnica.txt",
+                b"Norma tecnica generale per la verifica delle strutture.",
+                "text/plain",
+            )
+        },
+    )
+    assert uploaded.status_code == 201
+    assert uploaded.json()["category"] == "general"
+
+    invalid = await client.post(
+        "/api/global-knowledge/files",
+        data={"category": "facts"},
+        files={"file": ("facts.txt", b"Dato aziendale", "text/plain")},
+    )
+    assert invalid.status_code == 422
+
+    before = await client.get("/api/global-knowledge/company-facts")
+    assert before.status_code == 200
+    content = (
+        "---\nartifact: company_facts\nscope: global\nstatus: verified\n---\n\n"
+        "# Company Facts\n\n"
+        "## Ragione sociale\n\nMapi Ingegneria S.r.l.\n\n"
+        "## PEC\n\ninfo@mapi.example\n"
+    )
+    updated = await client.put(
+        "/api/global-knowledge/company-facts",
+        json={"content": content},
+    )
+    assert updated.status_code == 200
+    assert updated.json()["version"] == before.json()["version"] + 1
+    assert updated.json()["content"] == content
+
+    overview = await client.get("/api/global-knowledge")
+    assert overview.json()["company_fact_count"] == 2
+    project_copy = await client.get(
+        "/api/projects/fondo-riqualificazione-2027/artifacts/global--company-facts"
+    )
+    assert project_copy.json()["content"] == content
+    assert project_copy.json()["chunk_count"] == 1
 
 
 @pytest.mark.anyio

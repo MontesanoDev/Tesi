@@ -2,18 +2,20 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 from dataclasses import replace
-from typing import Annotated
+from typing import Annotated, Literal
 
-from fastapi import FastAPI, File, HTTPException, Query, Response, UploadFile, status
+from fastapi import FastAPI, File, Form, HTTPException, Query, Response, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.artifacts import (
     ArtifactReadOnlyError,
     ensure_project_artifacts,
+    get_global_artifact,
     get_project_artifact,
     list_project_artifacts,
     replace_project_artifact,
     seed_markdown_artifacts,
+    update_global_artifact,
     update_project_artifact,
 )
 from app.call_facts import (
@@ -178,16 +180,39 @@ async def global_knowledge() -> dict:
 )
 async def global_knowledge_file_create(
     file: Annotated[UploadFile, File(description="Documento aziendale PDF o TXT")],
+    category: Annotated[Literal["general", "company"], Form()] = "company",
 ) -> dict:
     try:
-        document = await ingest_global_upload(file)
+        document = await ingest_global_upload(category, file)
     except UnsupportedDocumentError as exc:
         raise HTTPException(status_code=415, detail=str(exc)) from exc
     except DocumentTooLargeError as exc:
         raise HTTPException(status_code=413, detail=str(exc)) from exc
     except (EmptyDocumentError, InvalidDocumentError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
-    return add_global_document(document)
+    return add_global_document(document, category)
+
+
+@app.get(
+    "/api/global-knowledge/company-facts",
+    response_model=KnowledgeArtifactDetail,
+)
+async def global_company_facts() -> dict:
+    artifact = get_global_artifact("company_facts")
+    if artifact is None:
+        raise HTTPException(status_code=404, detail="Company Facts non disponibili")
+    return artifact
+
+
+@app.put(
+    "/api/global-knowledge/company-facts",
+    response_model=KnowledgeArtifactDetail,
+)
+async def global_company_facts_update(payload: KnowledgeArtifactUpdate) -> dict:
+    artifact = update_global_artifact("company_facts", payload.content)
+    if artifact is None:
+        raise HTTPException(status_code=404, detail="Company Facts non disponibili")
+    return artifact
 
 
 @app.delete(

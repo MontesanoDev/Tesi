@@ -145,5 +145,5 @@ async def ingest_upload(project_id: str, upload: UploadFile) -> IngestedDocument
         await upload.close()
 
 
-async def ingest_global_upload(upload: UploadFile) -> IngestedDocument:
-    return await ingest_upload("_global/company", upload)
+async def ingest_global_upload(category: str, upload: UploadFile) -> IngestedDocument:
+    return await ingest_upload(f"_global/{category}", upload)

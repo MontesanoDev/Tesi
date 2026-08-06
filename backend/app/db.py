@@ -141,6 +141,7 @@ def init_database() -> None:
             CREATE TABLE IF NOT EXISTS global_documents (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
+                category TEXT NOT NULL DEFAULT 'company',
                 metadata TEXT NOT NULL,
                 status TEXT NOT NULL,
                 storage_path TEXT NOT NULL UNIQUE,
@@ -269,6 +270,12 @@ def init_database() -> None:
         _ensure_column(db, "project_files", "byte_size", "INTEGER NOT NULL DEFAULT 0")
         _ensure_column(db, "project_files", "page_count", "INTEGER NOT NULL DEFAULT 0")
         _ensure_column(db, "project_files", "chunk_count", "INTEGER NOT NULL DEFAULT 0")
+        _ensure_column(
+            db,
+            "global_documents",
+            "category",
+            "TEXT NOT NULL DEFAULT 'company'",
+        )
         _ensure_column(db, "conversations", "created_at", "TEXT")
         _ensure_column(db, "conversations", "updated_at", "TEXT")
         db.execute(
