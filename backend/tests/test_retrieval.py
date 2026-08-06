@@ -38,6 +38,41 @@ def test_temporal_reranking_prioritizes_explicit_dates():
     assert results[0]["relevance"] > results[1]["relevance"]
 
 
+def test_cross_index_reranking_prioritizes_query_coverage():
+    candidates = [
+        {
+            "chunk_id": 1,
+            "file_id": 1,
+            "source_name": "bando.pdf",
+            "chunk_index": 12,
+            "content": "Requisiti tecnici e certificazione di sostenibilita del progetto.",
+            "excerpt": "Requisiti tecnici...",
+            "rank": -14.0,
+        },
+        {
+            "chunk_id": -1,
+            "file_id": -1,
+            "source_name": "visura.pdf",
+            "chunk_index": 2,
+            "content": (
+                "Mapi Ingegneria. Direttore tecnico Ing. Elisa Romano. "
+                "Certificazione del sistema di gestione qualita ISO 9001:2015."
+            ),
+            "excerpt": "Direttore tecnico...",
+            "rank": -2.6,
+        },
+    ]
+
+    results = _rerank_evidence(
+        "Chi e il direttore tecnico di Mapi Ingegneria e quale certificazione di qualita possiede?",
+        candidates,
+        limit=2,
+    )
+
+    assert results[0]["source_name"] == "visura.pdf"
+    assert results[0]["relevance"] > results[1]["relevance"]
+
+
 def test_previous_neighbor_excerpt_preserves_section_boundary():
     content = (
         "Premessa generale. " * 30

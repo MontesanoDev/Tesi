@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 import re
 import sqlite3
 import unicodedata
@@ -93,18 +94,27 @@ def _normalized_tokens(value: str) -> set[str]:
     return set(re.findall(r"[^\W_]+", normalized.lower(), flags=re.UNICODE))
 
 
-def _build_fts_query(query: str) -> str:
-    tokens = re.findall(r"[^\W_]+", query.lower(), flags=re.UNICODE)
-    meaningful = [
+def _meaningful_search_tokens(value: str) -> list[str]:
+    return [
         token
-        for token in tokens
+        for token in _normalized_tokens(value)
         if token not in SEARCH_STOP_WORDS
         and (len(token) >= 3 or any(char.isdigit() for char in token))
     ]
+
+
+def _search_stem(token: str) -> str:
+    if len(token) >= 5 and token[-1] in "aeiou":
+        return token[:-1]
+    return token
+
+
+def _build_fts_query(query: str) -> str:
     terms = []
-    for token in dict.fromkeys(meaningful):
-        if len(token) >= 5 and token[-1] in "aeiou":
-            terms.append(f'"{token[:-1]}"*')
+    for token in _meaningful_search_tokens(query):
+        stem = _search_stem(token)
+        if stem != token:
+            terms.append(f'"{stem}"*')
         else:
             terms.append(f'"{token}"')
     return " OR ".join(terms)
@@ -112,16 +122,24 @@ def _build_fts_query(query: str) -> str:
 
 def _rerank_evidence(query: str, candidates: list[dict], limit: int) -> list[dict]:
     query_tokens = _normalized_tokens(query)
+    search_tokens = _meaningful_search_tokens(query)
     temporal_query = bool(query_tokens & TEMPORAL_QUERY_TERMS)
 
     for candidate in candidates:
-        relevance = -candidate.pop("rank")
+        bm25_score = max(0.0, -candidate.pop("rank"))
         content = candidate["content"]
+        content_tokens = _normalized_tokens(content)
+        matched_count = sum(
+            any(content_token.startswith(_search_stem(token)) for content_token in content_tokens)
+            for token in search_tokens
+        )
+        coverage = matched_count / len(search_tokens) if search_tokens else 0.0
+        relevance = math.log1p(bm25_score) + matched_count * 1.5 + coverage * 6.0
         if temporal_query:
             if DATE_PATTERN.search(content):
-                relevance += 3.0
+                relevance += 6.0
             if TIME_PATTERN.search(content):
-                relevance += 1.5
+                relevance += 3.0
         candidate["relevance"] = round(relevance, 6)
     candidates.sort(key=lambda item: item["relevance"], reverse=True)
 
