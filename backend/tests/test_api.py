@@ -2,7 +2,7 @@ import httpx
 import pytest
 
 from app.artifacts import seed_markdown_artifacts
-from app.db import connection, get_knowledge_path, init_database
+from app.db import connection, get_knowledge_path, get_storage_path, init_database
 from app.draft_generation import GeneratedDraft
 from app.fact_extraction import (
     CallFactsExtraction,
@@ -70,6 +70,50 @@ async def test_create_project_persists(client):
     artifacts = await client.get(f"/api/projects/{project_id}/artifacts")
     assert artifacts.status_code == 200
     assert len(artifacts.json()) == 6
+
+
+@pytest.mark.anyio
+async def test_delete_project_removes_local_data_without_reseeding(client):
+    created = await client.post(
+        "/api/projects",
+        json={
+            "title": "Progetto da eliminare",
+            "description": "Verifica della cancellazione definitiva",
+        },
+    )
+    project_id = created.json()["id"]
+    uploaded = await client.post(
+        f"/api/projects/{project_id}/files",
+        files={"file": ("nota.txt", b"Documento locale del progetto", "text/plain")},
+    )
+    assert uploaded.status_code == 201
+
+    project_uploads = get_storage_path() / project_id
+    project_knowledge = get_knowledge_path() / "projects" / project_id
+    assert project_uploads.exists()
+    assert project_knowledge.exists()
+
+    deleted = await client.delete(f"/api/projects/{project_id}")
+    assert deleted.status_code == 204
+    assert (await client.get(f"/api/projects/{project_id}")).status_code == 404
+    assert not project_uploads.exists()
+    assert not project_knowledge.exists()
+
+    with connection() as db:
+        assert db.execute(
+            "SELECT COUNT(*) FROM project_files WHERE project_id = ?", (project_id,)
+        ).fetchone()[0] == 0
+        assert db.execute(
+            "SELECT COUNT(*) FROM knowledge_artifacts WHERE project_id = ?", (project_id,)
+        ).fetchone()[0] == 0
+        assert db.execute(
+            "SELECT COUNT(*) FROM knowledge_artifacts WHERE scope = 'global'"
+        ).fetchone()[0] == 2
+
+    assert (await client.delete(f"/api/projects/{project_id}")).status_code == 404
+    seed_database()
+    project_ids = {project["id"] for project in (await client.get("/api/projects")).json()}
+    assert project_id not in project_ids
 
 
 @pytest.mark.anyio

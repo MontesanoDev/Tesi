@@ -79,7 +79,16 @@ def seed_database() -> None:
             """,
             COMPANY_FACTS,
         )
+        seed_initialized = db.execute(
+            "SELECT 1 FROM app_metadata WHERE key = 'demo_projects_initialized'"
+        ).fetchone()
+        if seed_initialized is not None:
+            return
+
         if db.execute("SELECT COUNT(*) FROM projects").fetchone()[0] > 0:
+            db.execute(
+                "INSERT INTO app_metadata (key, value) VALUES ('demo_projects_initialized', '1')"
+            )
             return
 
         db.executemany(
@@ -236,4 +245,8 @@ def seed_database() -> None:
                     6,
                 ),
             ],
+        )
+
+        db.execute(
+            "INSERT INTO app_metadata (key, value) VALUES ('demo_projects_initialized', '1')"
         )

@@ -685,6 +685,12 @@ def create_project(payload: ProjectCreate) -> dict:
     return project
 
 
+def delete_project(project_id: str) -> bool:
+    with connection() as db:
+        cursor = db.execute("DELETE FROM projects WHERE id = ?", (project_id,))
+        return cursor.rowcount > 0
+
+
 def add_project_file(project_id: str, document: IngestedDocument) -> dict | None:
     chunk_count = len(document.chunks)
     chunk_label = "frammento" if chunk_count == 1 else "frammenti"

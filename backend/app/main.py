@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 from dataclasses import replace
+from shutil import rmtree
 from typing import Annotated, Literal
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, Response, UploadFile, status
@@ -25,7 +26,7 @@ from app.call_facts import (
     render_call_facts_document,
     revise_call_fact,
 )
-from app.db import get_storage_path, init_database
+from app.db import get_knowledge_path, get_storage_path, init_database
 from app.draft_generation import (
     DraftInputError,
     generate_grounded_draft,
@@ -52,6 +53,7 @@ from app.repository import (
     contextualize_search_query,
     create_project,
     delete_global_document,
+    delete_project,
     get_company_facts,
     get_conversation,
     get_conversation_history,
@@ -166,6 +168,22 @@ async def projects_create(payload: ProjectCreate) -> dict:
     if result is None:
         raise RuntimeError("Il progetto appena creato non e piu disponibile")
     return result
+
+
+@app.delete("/api/projects/{project_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def project_delete(project_id: str) -> Response:
+    if not delete_project(project_id):
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+
+    for root, relative_path in (
+        (get_storage_path(), project_id),
+        (get_knowledge_path(), f"projects/{project_id}"),
+    ):
+        resolved_root = root.resolve()
+        project_path = (resolved_root / relative_path).resolve()
+        if resolved_root in project_path.parents:
+            rmtree(project_path, ignore_errors=True)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 @app.get("/api/global-knowledge", response_model=GlobalKnowledgeOverview)
