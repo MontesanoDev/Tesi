@@ -69,7 +69,7 @@ export function AppShell({
         </NavLink>
         <Link
           className={`rail-button${active === 'company' ? ' rail-button--active' : ''}`}
-          to="/projects"
+          to="/company-knowledge"
           aria-label="Dati aziendali"
           title="Dati aziendali"
         >
@@ -148,7 +148,7 @@ export function AppShell({
             </Link>
             <div className="drawer-divider" />
             <span className="drawer-label">Base di conoscenza</span>
-            <Link className="knowledge-link" to="/settings">
+            <Link className="knowledge-link" to="/company-knowledge">
               <Database size={18} />
               <span>
                 <strong>Dati aziendali</strong>

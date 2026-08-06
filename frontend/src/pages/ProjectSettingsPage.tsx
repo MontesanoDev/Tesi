@@ -28,7 +28,7 @@ export function ProjectSettingsPage() {
       })
       .catch((reason) => {
         if (reason instanceof DOMException && reason.name === 'AbortError') return
-        setGlobalError(reason instanceof Error ? reason.message : 'Company KB non disponibile')
+        setGlobalError(reason instanceof Error ? reason.message : 'Archivio globale non disponibile')
       })
       .finally(() => {
         if (!controller.signal.aborted) setGlobalLoading(false)
@@ -112,11 +112,11 @@ export function ProjectSettingsPage() {
           </div>
           <div className="company-kb-project-section">
             <div className="setting-section-title">
-              <span>Documenti Company KB</span>
+              <span>Fonti globali opzionali</span>
               <button
                 className="button button--compact"
                 type="button"
-                onClick={() => navigate('/settings')}
+                onClick={() => navigate('/company-knowledge')}
               >
                 Gestisci archivio globale
               </button>
@@ -129,7 +129,9 @@ export function ProjectSettingsPage() {
                   <div className="project-global-document-row" key={document.id}>
                     <div>
                       <strong>{document.name}</strong>
-                      <span>{document.metadata}</span>
+                      <span>
+                        {document.category === 'general' ? 'General KB' : 'Company KB'} · {document.metadata}
+                      </span>
                     </div>
                     {linkingId === document.id && <LoaderCircle className="spin" size={16} />}
                     <button
@@ -148,7 +150,7 @@ export function ProjectSettingsPage() {
               </div>
             ) : (
               <p className="project-global-empty">
-                Nessun documento aziendale disponibile nell'archivio globale.
+                Nessuna fonte opzionale disponibile nell'archivio globale.
               </p>
             )}
             {globalError && <p className="upload-feedback upload-feedback--error" role="alert">{globalError}</p>}

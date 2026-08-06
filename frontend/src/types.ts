@@ -24,6 +24,7 @@ export interface ProjectFile {
 export interface GlobalKnowledgeDocument {
   id: number
   name: string
+  category: 'general' | 'company'
   metadata: string
   status: string
   mime_type: string

@@ -1666,6 +1666,54 @@
   margin-top: 8px;
 }
 
+.company-knowledge-page {
+  width: min(100% - 48px, 840px);
+}
+
+.knowledge-type-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 4px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: #191a18;
+}
+
+.knowledge-type-tabs button {
+  display: inline-flex;
+  min-width: 0;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--text-muted);
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.knowledge-type-tabs button:hover,
+.knowledge-type-tabs button:focus-visible,
+.knowledge-type-tabs button.is-active {
+  color: var(--text);
+  background: var(--control);
+  outline: none;
+}
+
+.company-knowledge-card {
+  min-height: 260px;
+}
+
+.company-knowledge-card .setting-section-title small {
+  color: var(--text-faint);
+  font-size: 10px;
+}
+
 .global-knowledge-heading {
   display: flex;
   align-items: flex-start;
@@ -1675,6 +1723,13 @@
 
 .global-knowledge-heading > div {
   min-width: 0;
+}
+
+.global-knowledge-heading p {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 18px;
 }
 
 .global-upload-button {
@@ -1779,6 +1834,26 @@
   color: var(--text-faint);
   font-size: 11px;
   text-align: center;
+}
+
+.company-facts-editor {
+  min-height: 360px;
+  max-height: 54vh;
+  resize: vertical;
+}
+
+.company-facts-actions {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+}
+
+.company-facts-actions > span {
+  color: var(--text-faint);
+  font-size: 10px;
 }
 
 .project-global-document-row {
@@ -2359,6 +2434,9 @@
   .linked-source-grid { grid-template-columns: minmax(0, 1fr); }
   .global-knowledge-heading { align-items: stretch; flex-direction: column; }
   .global-upload-button { justify-content: center; width: 100%; }
+  .knowledge-type-tabs { grid-template-columns: minmax(0, 1fr); }
+  .company-facts-actions { align-items: stretch; flex-direction: column; }
+  .company-facts-actions .button { justify-content: center; width: 100%; }
   .company-document-row { grid-template-columns: 20px minmax(0, 1fr) 34px; }
   .company-document-row .status-pill { display: none; }
   .company-kb-section .setting-section-title { align-items: flex-start; flex-direction: column; }

@@ -59,9 +59,10 @@ export const api = {
   },
   globalKnowledge: (signal?: AbortSignal) =>
     request<GlobalKnowledgeOverview>('/global-knowledge', { signal }),
-  uploadGlobalKnowledgeFile: (file: File) => {
+  uploadGlobalKnowledgeFile: (file: File, category: 'general' | 'company') => {
     const body = new FormData()
     body.append('file', file)
+    body.append('category', category)
     return request<GlobalKnowledgeDocument>('/global-knowledge/files', {
       method: 'POST',
       body,
@@ -69,6 +70,13 @@ export const api = {
   },
   deleteGlobalKnowledgeFile: (documentId: number) =>
     request<void>(`/global-knowledge/files/${documentId}`, { method: 'DELETE' }),
+  companyFacts: (signal?: AbortSignal) =>
+    request<KnowledgeArtifactDetail>('/global-knowledge/company-facts', { signal }),
+  updateCompanyFacts: (content: string) =>
+    request<KnowledgeArtifactDetail>('/global-knowledge/company-facts', {
+      method: 'PUT',
+      body: JSON.stringify({ content }),
+    }),
   projectGlobalKnowledge: (projectId: string, signal?: AbortSignal) =>
     request<ProjectGlobalKnowledgeDocument[]>(
       `/projects/${projectId}/global-knowledge`,

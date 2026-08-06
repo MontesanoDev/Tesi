@@ -104,7 +104,11 @@ export function ProjectKnowledgePanel({
               <strong>{source.name}</strong>
               <span>
                 {source.item_count}{' '}
-                {source.name === 'Modelli' ? 'disponibili' : 'verificati'}
+                {source.name === 'Modelli'
+                  ? 'disponibili'
+                  : source.name === 'Company KB' || source.name === 'General KB'
+                    ? 'documenti'
+                    : 'verificati'}
               </span>
             </div>
           ))}

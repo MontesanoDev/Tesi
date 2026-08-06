@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { CompanyKnowledgePage } from './pages/CompanyKnowledgePage'
 import { DocumentReviewPage } from './pages/DocumentReviewPage'
 import { GeneralSettingsPage } from './pages/GeneralSettingsPage'
 import { KnowledgeArtifactsPage } from './pages/KnowledgeArtifactsPage'
@@ -30,6 +31,7 @@ export default function App() {
         element={<DocumentReviewPage />}
       />
       <Route path="/settings" element={<GeneralSettingsPage />} />
+      <Route path="/company-knowledge" element={<CompanyKnowledgePage />} />
       <Route path="*" element={<Navigate to="/projects" replace />} />
     </Routes>
   )

@@ -111,9 +111,11 @@ assenti restano come `TODO`, mentre i riferimenti `[CF:...]`, `[COMPANY]` e
 Call Facts non verificati. `draft.md` resta modificabile e versionato, ma non
 viene indicizzato: un output generato non puo quindi rientrare nel RAG come fonte.
 
-La Company KB usa un indice documentale globale separato. I PDF e TXT aziendali
-vengono caricati e suddivisi in frammenti una sola volta dalle impostazioni
-generali; ogni progetto puo poi collegarli o scollegarli senza duplicare file o
-chunk. Il retrieval unisce le fonti locali ai soli documenti aziendali collegati,
-mantenendo l'isolamento tra progetti. `Company Facts` resta distinto dalla Company
-KB: il primo contiene dati strutturati verificati, la seconda documenti e referenze.
+L'archivio documentale globale distingue esplicitamente `General KB` e `Company
+KB`. Al caricamento, i PDF e TXT vengono classificati rispettivamente come norme
+e materiali tecnici trasversali oppure come documenti, referenze e certificazioni
+aziendali. Sono indicizzati una sola volta e ogni progetto puo poi collegarli o
+scollegarli senza duplicare file o chunk. `Company Facts` non e una categoria di
+upload: e un artefatto Markdown separato che contiene dati aziendali strutturati,
+verificati e revisionabili. La gestione dell'archivio ha una vista dedicata,
+distinta sia dalle impostazioni generali sia dalle impostazioni del progetto.

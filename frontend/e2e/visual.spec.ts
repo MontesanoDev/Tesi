@@ -102,6 +102,7 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
     {
       id: 41,
       name: 'curriculum-mapi.pdf',
+      category: 'company',
       metadata: 'PDF · 840 KB · 18 frammenti',
       status: 'Indicizzato',
       mime_type: 'application/pdf',
@@ -109,7 +110,20 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
       page_count: 8,
       chunk_count: 18,
     },
+    {
+      id: 40,
+      name: 'norme-tecniche.txt',
+      category: 'general',
+      metadata: 'TXT · 12 KB · 4 frammenti',
+      status: 'Indicizzato',
+      mime_type: 'text/plain',
+      byte_size: 12288,
+      page_count: 1,
+      chunk_count: 4,
+    },
   ]
+  let companyFactsContent = '# Company Facts\n\n## Ragione sociale\n\nMapi Ingegneria S.r.l.'
+  let companyFactsVersion = 2
 
   await page.route(/\/api\/global-knowledge$/, async (route) => {
     await route.fulfill({
@@ -126,6 +140,7 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
     const uploaded = {
       id: 42,
       name: 'certificazione-iso.txt',
+      category: 'company',
       metadata: 'TXT · 1 KB · 2 frammenti',
       status: 'Indicizzato',
       mime_type: 'text/plain',
@@ -138,6 +153,29 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
       status: 201,
       contentType: 'application/json',
       body: JSON.stringify(uploaded),
+    })
+  })
+  await page.route(/\/api\/global-knowledge\/company-facts$/, async (route) => {
+    if (route.request().method() === 'PUT') {
+      companyFactsContent = (route.request().postDataJSON() as { content: string }).content
+      companyFactsVersion += 1
+    }
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        id: 'global--company-facts',
+        kind: 'company_facts',
+        scope: 'global',
+        title: 'Company Facts',
+        filename: 'company-facts.md',
+        status: 'Verificato',
+        byte_size: companyFactsContent.length,
+        version: companyFactsVersion,
+        updated_at: '2026-08-06 10:00:00',
+        editable: true,
+        chunk_count: 1,
+        content: companyFactsContent,
+      }),
     })
   })
   await page.route(
@@ -167,15 +205,28 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
   )
 
   await page.goto('/settings')
-  await expect(page.getByRole('heading', { name: 'Conoscenza globale' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Impostazioni generali' })).toBeVisible()
+  await expect(page.getByRole('tab', { name: 'Company KB' })).not.toBeVisible()
+
+  await page.goto('/company-knowledge')
+  await expect(page.getByRole('heading', { name: 'Dati aziendali e conoscenza' })).toBeVisible()
   await expect(page.getByText('curriculum-mapi.pdf')).toBeVisible()
+  await expect(page.getByText('norme-tecniche.txt')).not.toBeVisible()
   await page.locator('input[type="file"]').setInputFiles({
     name: 'certificazione-iso.txt',
     mimeType: 'text/plain',
     buffer: Buffer.from('Certificazione ISO 9001 per servizi di ingegneria.'),
   })
-  await expect(page.getByText('certificazione-iso.txt indicizzato in 2 frammenti.')).toBeVisible()
+  await expect(page.getByText('certificazione-iso.txt aggiunto a Company KB in 2 frammenti.')).toBeVisible()
   await expect(page.getByText('2 documenti', { exact: true })).toBeVisible()
+  await page.getByRole('tab', { name: 'General KB' }).click()
+  await expect(page.getByText('norme-tecniche.txt')).toBeVisible()
+  await expect(page.getByText('curriculum-mapi.pdf')).not.toBeVisible()
+  await page.getByRole('tab', { name: 'Company Facts' }).click()
+  const factsEditor = page.getByRole('textbox', { name: 'Contenuto di Company Facts' })
+  await factsEditor.fill(`${companyFactsContent}\n\n## PEC\n\ninfo@mapi.example`)
+  await page.getByRole('button', { name: 'Salva' }).click()
+  await expect(page.getByText('Company Facts salvati e reindicizzati nei progetti.')).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
     path: `artifacts/${testInfo.project.name}-company-kb-global.png`,
