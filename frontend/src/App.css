@@ -414,6 +414,17 @@
   color: var(--text-muted);
 }
 
+.project-menu .danger-command {
+  color: #e0a09a;
+}
+
+.project-menu .danger-command:hover,
+.project-menu .danger-command:focus-visible {
+  color: #f1bbb5;
+  background: #3a2927;
+  outline: none;
+}
+
 .composer {
   height: 158px;
   border: 1px solid var(--border);
@@ -2330,6 +2341,38 @@
 .project-modal textarea:focus { border-color: #8b8d85; }
 .project-modal textarea { resize: vertical; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+
+.delete-project-modal > p {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.delete-project-modal > p strong {
+  color: var(--text);
+}
+
+.delete-project-note {
+  margin-top: 14px;
+  padding-left: 12px;
+  border-left: 3px solid #9a5b53;
+}
+
+.button--danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-color: #824a44;
+  color: #fff4f1;
+  background: #7a3f39;
+}
+
+.button--danger:hover:not(:disabled),
+.button--danger:focus-visible:not(:disabled) {
+  border-color: #a8645b;
+  background: #8b4942;
+}
 
 @media (max-width: 1100px) {
   .workspace-layout {

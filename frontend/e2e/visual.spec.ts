@@ -80,6 +80,37 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
   })
 })
 
+test('project deletion requires confirmation and returns to the project list', async ({ page }, testInfo) => {
+  let deleteRequests = 0
+  await page.route(
+    /\/api\/projects\/fondo-riqualificazione-2027$/,
+    async (route) => {
+      if (route.request().method() !== 'DELETE') {
+        await route.continue()
+        return
+      }
+      deleteRequests += 1
+      await route.fulfill({ status: 204, body: '' })
+    },
+  )
+
+  await page.goto('/projects/fondo-riqualificazione-2027')
+  await page.getByRole('button', { name: 'Menu progetto' }).click()
+  await page.getByRole('button', { name: 'Elimina progetto' }).click()
+  await expect(page.getByRole('dialog', { name: 'Elimina progetto' })).toBeVisible()
+  await expect(page.getByText("La conoscenza globale dell'azienda non verrà eliminata.")).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-delete-project.png`,
+    fullPage: true,
+  })
+
+  await page.getByRole('button', { name: 'Elimina definitivamente' }).click()
+  await expect(page).toHaveURL(/\/projects$/)
+  await expect(page.getByRole('heading', { name: 'Progetti' })).toBeVisible()
+  expect(deleteRequests).toBe(1)
+})
+
 test('document review keeps source provenance visible', async ({ page }, testInfo) => {
   await page.goto('/projects/fondo-riqualificazione-2027/review')
   await expect(page.getByRole('heading', { name: 'Modulo di candidatura A' }).first()).toBeVisible()

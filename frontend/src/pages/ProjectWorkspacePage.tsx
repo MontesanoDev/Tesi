@@ -1,4 +1,13 @@
-import { ArrowUp, ChevronDown, EllipsisVertical, FileText, Paperclip } from 'lucide-react'
+import {
+  ArrowUp,
+  ChevronDown,
+  EllipsisVertical,
+  FileText,
+  LoaderCircle,
+  Paperclip,
+  Trash2,
+  X,
+} from 'lucide-react'
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
@@ -106,6 +115,9 @@ export function ProjectWorkspacePage() {
   const navigate = useNavigate()
   const { project, loading, error, refresh } = useProject(projectId)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [deletingProject, setDeletingProject] = useState(false)
+  const [deleteError, setDeleteError] = useState<string | null>(null)
   const [prompt, setPrompt] = useState('')
   const [turns, setTurns] = useState<ChatTurn[]>([])
   const [searching, setSearching] = useState(false)
@@ -232,6 +244,19 @@ export function ProjectWorkspacePage() {
     event.currentTarget.form?.requestSubmit()
   }
 
+  async function deleteCurrentProject() {
+    if (deletingProject) return
+    setDeletingProject(true)
+    setDeleteError(null)
+    try {
+      await api.deleteProject(activeProjectId)
+      navigate('/projects', { replace: true })
+    } catch (reason) {
+      setDeleteError(reason instanceof Error ? reason.message : 'Eliminazione non riuscita')
+      setDeletingProject(false)
+    }
+  }
+
   const composer = (
     <form
       className={`composer${turns.length > 0 ? ' composer--docked' : ''}`}
@@ -293,6 +318,17 @@ export function ProjectWorkspacePage() {
                   <div />
                   <button type="button">Rinomina progetto</button>
                   <button className="muted-command" type="button">Archivia progetto</button>
+                  <button
+                    className="danger-command"
+                    type="button"
+                    onClick={() => {
+                      setMenuOpen(false)
+                      setDeleteError(null)
+                      setDeleteDialogOpen(true)
+                    }}
+                  >
+                    Elimina progetto <Trash2 size={16} />
+                  </button>
                 </div>
               )}
             </div>
@@ -353,6 +389,65 @@ export function ProjectWorkspacePage() {
 
         <ProjectKnowledgePanel project={project} onProjectChange={refresh} />
       </div>
+
+      {deleteDialogOpen && (
+        <div className="modal-layer" role="presentation">
+          <button
+            className="modal-scrim"
+            type="button"
+            aria-label="Chiudi conferma eliminazione"
+            disabled={deletingProject}
+            onClick={() => setDeleteDialogOpen(false)}
+          />
+          <section
+            className="project-modal delete-project-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-project-title"
+          >
+            <div className="modal-heading">
+              <h2 id="delete-project-title">Elimina progetto</h2>
+              <button
+                className="icon-button"
+                type="button"
+                aria-label="Chiudi"
+                disabled={deletingProject}
+                onClick={() => setDeleteDialogOpen(false)}
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <p>
+              Stai per eliminare <strong>{project.title}</strong> insieme a conversazioni,
+              documenti e artefatti locali.
+            </p>
+            <p className="delete-project-note">
+              La conoscenza globale dell'azienda non verrà eliminata. Questa operazione non è annullabile.
+            </p>
+            {deleteError && <p className="upload-feedback upload-feedback--error" role="alert">{deleteError}</p>}
+            <div className="modal-actions">
+              <button
+                className="button"
+                type="button"
+                disabled={deletingProject}
+                onClick={() => setDeleteDialogOpen(false)}
+              >
+                Annulla
+              </button>
+              <button
+                className="button button--danger"
+                type="button"
+                autoFocus
+                disabled={deletingProject}
+                onClick={deleteCurrentProject}
+              >
+                {deletingProject ? <LoaderCircle className="spin" size={16} /> : <Trash2 size={16} />}
+                {deletingProject ? 'Eliminazione' : 'Elimina definitivamente'}
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
     </AppShell>
   )
 }

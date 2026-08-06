@@ -70,7 +70,8 @@ npm run test:e2e
 
 ## Stato della vertical slice
 
-Sono gia funzionanti elenco e creazione dei progetti, area del progetto,
+Sono gia funzionanti elenco, creazione ed eliminazione definitiva dei progetti,
+con pulizia dei file e degli artefatti locali, area del progetto,
 separazione tra impostazioni generali e impostazioni del progetto, lettura dei
 file collegati e revisione del documento con provenienza dei campi. I documenti
 PDF e TXT possono essere caricati nell'area di progetto: il backend estrae il
