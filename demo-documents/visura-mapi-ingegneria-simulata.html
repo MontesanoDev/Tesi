@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Visura Mapi Ingegneria - simulazione</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #252724;
+      background: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9.2pt;
+      line-height: 1.34;
+    }
+    .page {
+      position: relative;
+      width: 210mm;
+      min-height: 297mm;
+      padding: 12mm 16mm 13mm;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: auto; }
+    p { margin: 1.5mm 0; }
+    .document-flag {
+      margin: -12mm -16mm 8mm;
+      padding: 3mm 16mm;
+      color: #fff;
+      background: #8b332e;
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-align: center;
+    }
+    .masthead {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12mm;
+      padding-bottom: 5mm;
+      border-bottom: 2px solid #263d35;
+    }
+    .brand {
+      color: #263d35;
+      font-size: 18pt;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+    .brand small {
+      display: block;
+      margin-top: 1mm;
+      color: #68726d;
+      font-size: 8pt;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+    .document-meta {
+      color: #66706b;
+      font-size: 8.5pt;
+      text-align: right;
+    }
+    .document-meta strong {
+      display: block;
+      color: #263d35;
+      font-size: 10pt;
+    }
+    h1 {
+      margin: 6mm 0 1.5mm;
+      color: #1f2824;
+      font-size: 17pt;
+      line-height: 1.15;
+    }
+    .subtitle {
+      margin: 0 0 5mm;
+      color: #67716c;
+      font-size: 10pt;
+    }
+    h2 {
+      margin: 3.8mm 0 1.5mm;
+      padding-bottom: 1.5mm;
+      border-bottom: 1px solid #aeb7b2;
+      color: #263d35;
+      font-size: 12pt;
+      text-transform: uppercase;
+    }
+    h3 {
+      margin: 3.5mm 0 1.5mm;
+      color: #263d35;
+      font-size: 10.5pt;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 1.25mm 2.2mm;
+      border-bottom: 1px solid #d9ddda;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      width: 35%;
+      color: #5e6762;
+      background: #f2f4f2;
+      font-size: 8.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    td strong { color: #1f2824; }
+    .status {
+      display: inline-block;
+      padding: 1mm 2.5mm;
+      border: 1px solid #5f8d75;
+      border-radius: 2mm;
+      color: #285a42;
+      background: #eaf4ee;
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7mm;
+    }
+    .fact-box {
+      padding: 3mm;
+      border: 1px solid #cbd1cd;
+      border-left: 3px solid #3d6956;
+      background: #f7f8f7;
+    }
+    .fact-box strong {
+      display: block;
+      margin-bottom: 1mm;
+      color: #263d35;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+    }
+    ul { margin: 2mm 0 0; padding-left: 5mm; }
+    li { margin: 0.9mm 0; }
+    .note {
+      margin-top: 3mm;
+      padding: 2mm 3mm;
+      border: 1px solid #d5b3ae;
+      color: #63332f;
+      background: #fbf1ef;
+      font-size: 8pt;
+    }
+    .footer {
+      position: absolute;
+      right: 16mm;
+      bottom: 8mm;
+      left: 16mm;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 2mm;
+      border-top: 1px solid #d1d6d3;
+      color: #7a827e;
+      font-size: 7.5pt;
+    }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <div class="document-flag">FAC-SIMILE PER TESI - DOCUMENTO SIMULATO - NON UFFICIALE</div>
+    <header class="masthead">
+      <div class="brand">
+        MAPI INGEGNERIA S.R.L.
+        <small>Societa di ingegneria civile</small>
+      </div>
+      <div class="document-meta">
+        <strong>Estratto dati impresa</strong>
+        Generato il 6 agosto 2026<br>
+        Identificativo demo: MAPI-VIS-2026-001
+      </div>
+    </header>
+
+    <h1>Visura aziendale simulata</h1>
+    <p class="subtitle">Profilo societario predisposto esclusivamente per la dimostrazione del sistema Mapi RAG.</p>
+
+    <h2>1. Dati identificativi</h2>
+    <table>
+      <tr><th>Denominazione</th><td><strong>Mapi Ingegneria S.r.l.</strong></td></tr>
+      <tr><th>Forma giuridica</th><td>Societa a responsabilita limitata</td></tr>
+      <tr><th>Stato attivita</th><td><span class="status">Attiva</span></td></tr>
+      <tr><th>Codice fiscale e Partita IVA</th><td>IT01234567890 (dato simulato)</td></tr>
+      <tr><th>Numero REA</th><td>BA - 654321 (dato simulato)</td></tr>
+      <tr><th>Data costituzione</th><td>27 febbraio 2019</td></tr>
+      <tr><th>Data iscrizione</th><td>14 marzo 2019</td></tr>
+      <tr><th>Durata societa</th><td>Fino al 31 dicembre 2050</td></tr>
+      <tr><th>Capitale sociale</th><td>EUR 50.000,00, interamente versato</td></tr>
+    </table>
+
+    <h2>2. Sede e contatti</h2>
+    <table>
+      <tr><th>Sede legale e operativa</th><td>Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia</td></tr>
+      <tr><th>PEC</th><td>mapi.ingegneria@pec.demo</td></tr>
+      <tr><th>E-mail</th><td>segreteria@mapi-ingegneria.demo</td></tr>
+      <tr><th>Telefono</th><td>+39 080 000 2040 (recapito simulato)</td></tr>
+      <tr><th>Sito web</th><td>www.mapi-ingegneria.demo</td></tr>
+    </table>
+
+    <h2>3. Attivita prevalente</h2>
+    <table>
+      <tr><th>Codice ATECO</th><td><strong>71.12.10</strong> - Attivita degli studi di ingegneria</td></tr>
+      <tr><th>Ruolo operativo</th><td>Consulenza tecnica e supporto alla progettazione per enti pubblici e committenti privati</td></tr>
+      <tr><th>Ambito territoriale</th><td>Italia, con operativita prevalente nelle regioni del Mezzogiorno</td></tr>
+    </table>
+
+    <div class="note">
+      Questo documento non proviene dal Registro delle Imprese e non certifica l'esistenza dei soggetti o dei dati indicati. Tutti i riferimenti sono simulati per finalita didattiche.
+    </div>
+
+    <footer class="footer">
+      <span>Mapi RAG - dataset dimostrativo</span>
+      <span>Pagina 1 di 2</span>
+    </footer>
+  </section>
+
+  <section class="page">
+    <div class="document-flag">FAC-SIMILE PER TESI - DOCUMENTO SIMULATO - NON UFFICIALE</div>
+    <header class="masthead">
+      <div class="brand">
+        MAPI INGEGNERIA S.R.L.
+        <small>Societa di ingegneria civile</small>
+      </div>
+      <div class="document-meta">
+        <strong>Dettaglio attivita e capacita</strong>
+        Identificativo demo: MAPI-VIS-2026-001
+      </div>
+    </header>
+
+    <h2>4. Oggetto sociale e servizi</h2>
+    <p>La societa svolge servizi integrati di ingegneria e architettura con particolare riferimento alle opere civili e alle infrastrutture pubbliche.</p>
+    <ul>
+      <li>progettazione di fattibilita tecnico-economica, definitiva ed esecutiva;</li>
+      <li>verifiche strutturali, valutazioni di vulnerabilita sismica e interventi di adeguamento;</li>
+      <li>riqualificazione energetica e funzionale di edifici pubblici;</li>
+      <li>direzione lavori, coordinamento della sicurezza e contabilita dei lavori;</li>
+      <li>modellazione BIM, gestione documentale e supporto ai processi autorizzativi;</li>
+      <li>assistenza tecnica agli enti nella partecipazione a bandi e programmi di finanziamento.</li>
+    </ul>
+
+    <h2>5. Amministrazione e struttura tecnica</h2>
+    <table>
+      <tr><th>Amministratore unico</th><td>Ing. Luca Ferri - nominato il 18 aprile 2024, in carica fino ad approvazione del bilancio 2026</td></tr>
+      <tr><th>Direttore tecnico</th><td>Ing. Elisa Romano - iscrizione professionale simulata n. 8421, Ordine degli Ingegneri di Bari</td></tr>
+      <tr><th>Responsabile qualita</th><td>Arch. Andrea Greco</td></tr>
+      <tr><th>Addetti al 31/12/2025</th><td>7 unita, di cui 5 tecnici</td></tr>
+    </table>
+
+    <h2>6. Certificazioni e coperture</h2>
+    <div class="two-columns">
+      <div class="fact-box">
+        <strong>Sistema di gestione qualita</strong>
+        ISO 9001:2015<br>
+        Certificato demo MAPI-QMS-2024-001<br>
+        Scadenza: 30 settembre 2027
+      </div>
+      <div class="fact-box">
+        <strong>Polizza professionale</strong>
+        Massimale: EUR 2.000.000,00<br>
+        Polizza demo RC-MAPI-2026-018<br>
+        Scadenza: 31 dicembre 2026
+      </div>
+    </div>
+
+    <h2>7. Indicatori economici sintetici</h2>
+    <table>
+      <tr><th>Ricavi 2024</th><td>EUR 1.080.000,00 (valore simulato)</td></tr>
+      <tr><th>Ricavi 2025</th><td>EUR 1.280.000,00 (valore simulato)</td></tr>
+      <tr><th>Patrimonio netto 2025</th><td>EUR 410.000,00 (valore simulato)</td></tr>
+    </table>
+
+    <h2>8. Dichiarazioni di stato</h2>
+    <table>
+      <tr><th>Procedure concorsuali</th><td>Nessuna procedura indicata nel dataset simulato</td></tr>
+      <tr><th>Scioglimento o liquidazione</th><td>Nessuna procedura indicata nel dataset simulato</td></tr>
+      <tr><th>Unita locali</th><td>Nessuna unita locale ulteriore rispetto alla sede operativa</td></tr>
+    </table>
+
+    <div class="note">
+      Documento dimostrativo prodotto per una tesi universitaria sul Retrieval-Augmented Generation. Non utilizzare per pratiche amministrative, dichiarazioni sostitutive o verifiche camerali.
+    </div>
+
+    <footer class="footer">
+      <span>Mapi RAG - dataset dimostrativo</span>
+      <span>Pagina 2 di 2</span>
+    </footer>
+  </section>
+</body>
+</html>
