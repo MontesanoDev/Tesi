@@ -7,6 +7,13 @@ documenti tecnici. Il repository separa l'interfaccia dalla pipeline dati:
 - `backend/`: FastAPI e SQLite;
 - `backend/data/mapi.db`: database locale creato e popolato al primo avvio.
 
+Documentazione di approfondimento:
+
+- [`docs/stato-prototipo.md`](docs/stato-prototipo.md): funzioni implementate,
+  parti dimostrative, limiti e roadmap;
+- [`docs/stack-tecnico.md`](docs/stack-tecnico.md): architettura, chunking, SQLite
+  FTS5, DeepSeek, persistenza e strategia di evoluzione.
+
 ## Avvio locale
 
 Dalla root del progetto e sufficiente un solo comando:
