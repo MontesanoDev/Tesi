@@ -1,0 +1,65 @@
+ACCESSIBILITA DI EDIFICI, SPAZI E SERVIZI PUBBLICI
+
+Ambito: progettazione inclusiva e superamento delle barriere architettoniche.
+Versione del documento: 17 agosto 2026.
+Parole chiave: accessibilita, visitabilita, adattabilita, percorso accessibile,
+barriere architettoniche, edificio pubblico, servizi igienici, segnaletica.
+
+APPROCCIO PER CATENA DI ACCESSIBILITA
+
+L'accessibilita non coincide con la presenza di una rampa o di un ascensore. Deve
+essere verificata come catena continua fra spazio pubblico, accesso, percorsi,
+ambienti, servizi e uscita. Una singola discontinuita puo rendere inutilizzabile
+l'intero servizio.
+
+La verifica deve considerare persone con differenti esigenze motorie,
+sensoriali e cognitive. Le soluzioni vanno coordinate con sicurezza antincendio,
+strutture, impianti, tutela dei beni e gestione ordinaria dell'edificio.
+
+CHECKLIST DI RILIEVO
+
+Per lo stato di fatto e utile documentare almeno:
+
+- collegamento con marciapiedi, trasporto, parcheggi e aree di sosta;
+- pendenze, dislivelli, pavimentazioni, ostacoli e protezioni dei percorsi;
+- accessi, soglie, porte, spazi di manovra e sistemi di apertura;
+- distribuzione orizzontale e verticale, scale, rampe e ascensori;
+- raggiungibilita e utilizzabilita degli ambienti aperti al pubblico;
+- servizi igienici, arredi, sportelli e dispositivi di comando;
+- orientamento, contrasto visivo, segnaletica e informazioni;
+- procedure di emergenza e assistenza;
+- manutenzione degli ausili e assenza di ostacoli temporanei.
+
+Ogni non conformita dovrebbe essere associata a fotografia o rilievo, posizione,
+utente interessato, requisito di riferimento, gravita, soluzione proposta e
+responsabile della decisione.
+
+PROGETTAZIONE DEGLI INTERVENTI
+
+Le alternative vanno confrontate per efficacia, autonomia dell'utente,
+compatibilita con i vincoli, affidabilita, manutenzione e gestione. Una soluzione
+tecnicamente installabile ma normalmente chiusa, occupata o utilizzabile solo con
+procedure non definite non produce un percorso realmente accessibile.
+
+Per edifici esistenti o vincolati puo essere necessario coordinare piu misure e
+motivare le scelte. Le deroghe o soluzioni alternative non devono essere dedotte
+automaticamente dal sistema: richiedono verifica del caso concreto e approvazione
+dei soggetti competenti.
+
+OUTPUT REVISIONABILE
+
+Il fascicolo dovrebbe contenere planimetria dei percorsi, abaco delle criticita,
+fotografie, requisiti, interventi, priorita, stima economica, dipendenze e campi
+da confermare. La dichiarazione finale di conformita resta responsabilita del
+professionista competente.
+
+FONTI UFFICIALI DI RIFERIMENTO
+
+- Decreto del Presidente della Repubblica 24 luglio 1996, n. 503, eliminazione
+  delle barriere architettoniche negli edifici, spazi e servizi pubblici:
+  https://www.normattiva.it/atto/caricaDettaglioAtto?atto.codiceRedazionale=096G0512&atto.dataPubblicazioneGazzetta=1996-09-27
+- Legge 5 febbraio 1992, n. 104, articolo 24:
+  https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1992-02-05;104~art24!vig=
+
+Nota: le dimensioni e le prescrizioni applicabili devono essere ricavate dagli
+atti vigenti e dalle regole specifiche del luogo e dell'intervento.

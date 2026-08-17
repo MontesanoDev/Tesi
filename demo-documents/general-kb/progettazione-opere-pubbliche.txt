@@ -1,0 +1,86 @@
+PROGETTAZIONE DI OPERE PUBBLICHE: INPUT, LIVELLI E CONTROLLI
+
+Ambito: progettazione di lavori pubblici e supporto tecnico-amministrativo.
+Versione del documento: 17 agosto 2026.
+Parole chiave: quadro esigenziale, DIP, PFTE, progetto esecutivo, vincoli, costi,
+tempi, autorizzazioni, manutenzione, verifica del progetto.
+
+SCOPO
+
+Questo documento descrive un metodo generale per organizzare la progettazione di
+un'opera pubblica. Non stabilisce quali elaborati siano obbligatori in uno
+specifico affidamento: tali elaborati dipendono dalla disciplina vigente, dal
+Documento di indirizzo alla progettazione e dalle caratteristiche dell'opera.
+
+QUADRO DI PARTENZA
+
+La progettazione deve partire dal fabbisogno pubblico e non dalla scelta
+anticipata di una soluzione. Il quadro iniziale dovrebbe chiarire almeno:
+
+- problema da risolvere e utenti interessati;
+- prestazioni attese e criteri misurabili di successo;
+- stato dei luoghi, disponibilita delle aree e interferenze note;
+- vincoli urbanistici, ambientali, paesaggistici, culturali, idrogeologici,
+  sismici e archeologici da verificare;
+- importo disponibile, fonti di finanziamento e limiti di ammissibilita;
+- tempi amministrativi, progettuali, autorizzativi e realizzativi;
+- dati, rilievi, indagini e autorizzazioni gia disponibili o mancanti;
+- soggetti responsabili delle decisioni e delle validazioni.
+
+Il Documento di indirizzo alla progettazione, predisposto dalla stazione
+appaltante, traduce il quadro esigenziale in requisiti, livelli di approfondimento
+ed elaborati richiesti. Se il processo usa la gestione informativa digitale, il
+DIP deve coordinarsi anche con i requisiti informativi e con il capitolato
+informativo.
+
+LIVELLI DI PROGETTAZIONE
+
+Il Codice dei contratti pubblici articola normalmente la progettazione in due
+livelli: progetto di fattibilita tecnico-economica, o PFTE, e progetto esecutivo.
+
+Il PFTE confronta le alternative praticabili e motiva la soluzione preferibile
+rispetto a bisogni, benefici, costi, rischi, vincoli e prestazioni. Deve essere
+sufficientemente definito per sostenere le autorizzazioni previste, determinare
+le caratteristiche essenziali dell'intervento e impostare la manutenzione. Le
+indagini non sono allegati ornamentali: devono ridurre le incertezze che possono
+modificare soluzione, costo o tempo.
+
+Il progetto esecutivo sviluppa in dettaglio la soluzione approvata. Definisce le
+lavorazioni, le caratteristiche tecniche, il costo, i tempi, il piano di
+manutenzione e gli elementi necessari all'esecuzione. Ogni variazione rispetto al
+PFTE deve essere riconoscibile, motivata e approvata dal soggetto competente.
+
+MATRICE DI CONTROLLO
+
+Per ogni requisito e utile registrare:
+
+- identificativo e descrizione del requisito;
+- fonte e riferimento puntuale;
+- elaborato che fornisce la risposta;
+- responsabile della produzione e responsabile della verifica;
+- stato: da analizzare, in lavorazione, verificato, non applicabile;
+- evidenza della verifica e data dell'ultima revisione;
+- dipendenze e informazioni mancanti.
+
+Un requisito non e soddisfatto soltanto perche compare in una relazione. Deve
+esistere coerenza fra relazioni, elaborati grafici, computo, quadro economico,
+cronoprogramma e piano di manutenzione.
+
+GESTIONE DELLE INFORMAZIONI MANCANTI
+
+Un sistema di supporto non deve inventare dati tecnici o amministrativi. Quando
+un'informazione non e disponibile deve segnalarla, indicarne il proprietario e
+spiegare quale decisione o elaborato ne dipende. Esempi: titolarita dell'area,
+rilievo aggiornato, indagini sui materiali, costo massimo, parere di un ente,
+durata utile o requisito prestazionale.
+
+FONTI UFFICIALI DI RIFERIMENTO
+
+- Decreto legislativo 31 marzo 2023, n. 36, articolo 41, livelli e contenuti
+  della progettazione:
+  https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2023;036~art41=
+- Decreto legislativo 31 marzo 2023, n. 36, Allegato I.7, contenuti dei livelli
+  progettuali e del DIP:
+  https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:2023;36:8~art3@originale!:=
+
+Nota: verificare sempre il testo vigente e gli atti specifici dell'intervento.

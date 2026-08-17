@@ -1,0 +1,68 @@
+GESTIONE INFORMATIVA DIGITALE E BIM NEI LAVORI PUBBLICI
+
+Ambito: modellazione informativa, gestione documentale e interoperabilita.
+Versione del documento: 17 agosto 2026.
+Parole chiave: BIM, gestione informativa digitale, capitolato informativo,
+offerta di gestione informativa, piano di gestione informativa, ambiente di
+condivisione dati, CDE, requisiti informativi, interoperabilita.
+
+IL BIM E UN PROCESSO INFORMATIVO
+
+La gestione informativa digitale non coincide con la sola produzione di un
+modello tridimensionale. Il processo deve stabilire quali informazioni servono,
+chi le produce, quando vengono consegnate, come sono controllate e quale versione
+puo essere usata per prendere decisioni.
+
+DOCUMENTI DI GOVERNO
+
+Il capitolato informativo esprime requisiti, obiettivi, usi, formati, regole di
+consegna, controlli e responsabilita richiesti dal committente. L'offerta di
+gestione informativa descrive la risposta proposta dall'affidatario. Il piano di
+gestione informativa consolida il processo operativo dopo l'affidamento secondo
+quanto previsto dai documenti contrattuali.
+
+Questi documenti devono essere coerenti con il livello progettuale, il Documento
+di indirizzo alla progettazione e gli elaborati richiesti. Requisiti troppo
+generici producono modelli ricchi di geometria ma poveri di informazioni utili.
+
+AMBIENTE DI CONDIVISIONE DEI DATI
+
+L'ambiente di condivisione dei dati organizza contenitori informativi, stati,
+revisioni, autorizzazioni e tracciabilita. Un flusso minimo distingue informazioni
+in lavorazione, condivise per coordinamento, pubblicate o approvate e archiviate.
+La nomenclatura concreta dipende dalle regole adottate nel progetto.
+
+Per ogni contenitore sono necessari almeno:
+
+- identificativo univoco e disciplina;
+- autore, responsabile e data;
+- revisione e stato di idoneita all'uso;
+- collegamento ai requisiti informativi;
+- esito dei controlli e problemi aperti;
+- formato nativo e formato interoperabile richiesto.
+
+CONTROLLI
+
+I controlli possono riguardare completezza, coerenza, interferenze, attributi,
+classificazione, coordinate, versioni e corrispondenza fra modelli e documenti.
+Un controllo automatico segnala una condizione; l'accettazione tecnica resta una
+decisione attribuita a un ruolo identificato.
+
+CONSEGNA E CICLO DI VITA
+
+La consegna finale dovrebbe rendere espliciti modelli validati, elaborati
+derivati, registro delle revisioni, problemi residui, manuali, dati utili alla
+manutenzione e criteri per l'aggiornamento. L'interoperabilita va pianificata per
+evitare che le informazioni diventino inutilizzabili al cambio di software.
+
+FONTI UFFICIALI DI RIFERIMENTO
+
+- Decreto legislativo 31 marzo 2023, n. 36, articolo 43 e Allegato I.9, metodi e
+  strumenti di gestione informativa digitale delle costruzioni:
+  https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:2023;36:10~art1!vig=
+- Decreto legislativo 31 marzo 2023, n. 36, Allegato I.7, coordinamento fra
+  livelli progettuali, modelli ed elaborati:
+  https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:2023;36:8~art22@originale!:=
+
+Nota: il documento non riproduce norme tecniche UNI. Requisiti contrattuali,
+standard e versioni applicabili devono essere verificati per ogni affidamento.

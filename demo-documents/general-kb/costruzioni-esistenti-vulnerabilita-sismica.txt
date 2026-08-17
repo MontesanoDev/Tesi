@@ -1,0 +1,79 @@
+COSTRUZIONI ESISTENTI: CONOSCENZA, VALUTAZIONE E INTERVENTO
+
+Ambito: edifici esistenti, vulnerabilita sismica e progettazione strutturale.
+Versione del documento: 17 agosto 2026.
+Parole chiave: NTC 2018, costruzioni esistenti, rilievo, indagini, materiali,
+livello di conoscenza, modello strutturale, sicurezza, intervento locale,
+miglioramento, adeguamento.
+
+PRINCIPIO GENERALE
+
+La valutazione di una costruzione esistente e un processo progressivo. Il calcolo
+non sostituisce la conoscenza dell'opera: affidabilita del modello e attendibilita
+dei risultati dipendono da documenti, rilievi, indagini, storia costruttiva e
+osservazione del danneggiamento.
+
+PIANO DELLA CONOSCENZA
+
+Il piano della conoscenza dovrebbe integrare:
+
+- documenti originari, varianti, collaudi, pratiche sismiche e manutenzioni;
+- rilievo geometrico e strutturale, comprese irregolarita e modifiche;
+- identificazione dei materiali, dettagli costruttivi e collegamenti;
+- quadro fessurativo, degrado, dissesti e interventi precedenti;
+- caratteristiche del terreno, fondazioni e possibili interazioni con il sito;
+- destinazione d'uso, carichi, impianti e componenti non strutturali rilevanti;
+- prove e indagini motivate dagli obiettivi della valutazione.
+
+Ogni dato dovrebbe riportare fonte, data, metodo di acquisizione, responsabile e
+grado di affidabilita. Un dato desunto non deve essere presentato come misurato.
+Le prove sui materiali vanno pianificate in modo rappresentativo e affidate, nei
+casi previsti, a soggetti qualificati o autorizzati.
+
+DAL RILIEVO AL MODELLO
+
+Prima dell'analisi e necessario formulare un'ipotesi del comportamento
+strutturale: percorso dei carichi, sistemi resistenti, diaframmi, collegamenti,
+fondazioni, irregolarita, possibili meccanismi locali e globali. Il modello deve
+essere coerente con il livello di conoscenza realmente raggiunto.
+
+Le incertezze importanti vanno dichiarate e, quando influenzano l'esito, trattate
+con analisi di sensibilita o nuove indagini. L'output non dovrebbe essere soltanto
+un indice sintetico: deve indicare ipotesi, criticita, verifiche governanti e
+limiti del modello.
+
+SCELTA DELL'INTERVENTO
+
+Le NTC distinguono categorie di intervento sulle costruzioni esistenti, tra cui
+riparazioni o interventi locali, miglioramento e adeguamento. La classificazione
+non dipende dal nome commerciale dei lavori, ma dagli effetti dell'intervento sul
+comportamento della costruzione e dalle condizioni normative applicabili.
+
+La soluzione va confrontata rispetto a sicurezza, compatibilita con l'esistente,
+durabilita, invasivita, cantierabilita, interferenza con l'uso, manutenzione,
+costo e tempi. Interventi energetici, architettonici o impiantistici possono
+modificare masse, rigidezze, carichi o dettagli e devono essere coordinati con la
+valutazione strutturale.
+
+OUTPUT MINIMO REVISIONABILE
+
+Un fascicolo tecnico revisionabile dovrebbe comprendere:
+
+- inventario delle fonti e registro delle lacune;
+- rilievo e quadro del danno;
+- piano e risultati delle indagini;
+- modello interpretativo con ipotesi dichiarate;
+- sintesi delle verifiche e delle criticita;
+- alternative di intervento e criteri di scelta;
+- controlli previsti in progettazione, esecuzione e manutenzione.
+
+FONTI UFFICIALI DI RIFERIMENTO
+
+- Decreto ministeriale 17 gennaio 2018, Aggiornamento delle Norme tecniche per
+  le costruzioni, in particolare Capitolo 8:
+  https://www.gazzettaufficiale.it/eli/gu/2018/02/20/42/so/8/sg/pdf
+- Circolare 21 gennaio 2019, n. 7 C.S.LL.PP., istruzioni applicative:
+  https://www.gazzettaufficiale.it/do/gazzetta/downloadPdf?dataPubblicazioneGazzetta=20190211&edizione=0&estensione=pdf&numeroGazzetta=35&numeroSupplemento=5&progressivo=0&tipoSerie=SG&tipoSupplemento=SO
+
+Nota: il documento e una sintesi metodologica e non contiene verifiche o giudizi
+di sicurezza riferiti a un edificio specifico.

@@ -1,0 +1,78 @@
+RIQUALIFICAZIONE ENERGETICA DEGLI EDIFICI PUBBLICI
+
+Ambito: diagnosi energetica, progettazione integrata e sostenibilita edilizia.
+Versione del documento: 17 agosto 2026.
+Parole chiave: diagnosi energetica, edificio-impianto, consumi, baseline,
+involucro, impianti, fonti rinnovabili, APE, costi-benefici, CAM edilizia.
+
+DIAGNOSI PRIMA DELLA SOLUZIONE
+
+La riqualificazione deve partire dalla conoscenza del sistema edificio-impianto.
+La diagnosi energetica ricostruisce usi, consumi e prestazioni, identifica le
+cause delle inefficienze e confronta gli interventi con un'analisi tecnica ed
+economica. L'Attestato di prestazione energetica descrive la prestazione secondo
+regole convenzionali e fornisce raccomandazioni, ma non sostituisce da solo una
+diagnosi costruita sui consumi e sulle condizioni operative reali.
+
+DATI DI INGRESSO
+
+Il quadro conoscitivo dovrebbe includere:
+
+- geometria, orientamento, involucro, serramenti e ponti termici rilevanti;
+- destinazioni d'uso, occupazione, orari e condizioni di comfort;
+- impianti di climatizzazione, ventilazione, acqua calda, illuminazione e
+  regolazione;
+- vettori energetici, bollette e misure disponibili su piu periodi;
+- manutenzioni, guasti, setpoint e modalita effettive di conduzione;
+- vincoli architettonici, strutturali, antincendio, acustici e paesaggistici;
+- condizioni climatiche e confronto fra consumi osservati e modello.
+
+Le anomalie nei dati devono essere documentate. Stime, misure e valori di
+progetto vanno distinti per evitare confronti ingannevoli.
+
+PACCHETTI DI INTERVENTO
+
+Le misure possono riguardare involucro, schermature, tenuta all'aria, impianti,
+regolazione, illuminazione, monitoraggio, fonti rinnovabili e comportamento
+gestionale. E opportuno valutare pacchetti coordinati, perche un intervento
+sull'involucro modifica i fabbisogni e puo cambiare il corretto dimensionamento
+degli impianti.
+
+Per ciascuna alternativa vanno dichiarati:
+
+- prestazione attesa e indicatore usato;
+- investimento, costi di esercizio e ipotesi economiche;
+- risparmio stimato, incertezza e metodo di calcolo;
+- vita utile, manutenzione e sostituzioni previste;
+- effetti su comfort, qualita dell'aria e continuita del servizio;
+- interferenze, fasi di cantiere e tempi;
+- autorizzazioni, vincoli e criteri ambientali applicabili.
+
+CONTROLLO E MISURA
+
+La proposta dovrebbe definire una baseline verificabile e un piano di misura
+successivo all'intervento. Indicatori, periodo di confronto e correzioni per
+clima, occupazione o orari devono essere stabiliti prima di dichiarare il
+risparmio conseguito.
+
+CAM EDILIZIA
+
+Negli affidamenti pubblici interessati, i Criteri ambientali minimi per l'edilizia
+devono essere tradotti in requisiti progettuali, documenti di prova e controlli.
+La relazione non dovrebbe limitarsi a dichiarare la conformita: per ogni criterio
+occorre indicare applicabilita, elaborato di risposta, evidenza richiesta e
+responsabile della verifica. Le eventuali non applicabilita devono essere
+motivate rispetto alle norme e ai vincoli pertinenti.
+
+FONTI UFFICIALI DI RIFERIMENTO
+
+- ENEA, Linee guida per la diagnosi energetica degli edifici pubblici:
+  https://www.efficienzaenergetica.enea.it/servizi-per/pubblica-amministrazione/riqualificazione-energetica-degli-edifici-della-pubblica-amministrazione/edilizia-pubblica-e-scolastica/linee-guida-per-la-diagnosi-energetica-degli-edifici-pubblici.html
+- Decreto legislativo 19 agosto 2005, n. 192, prestazione energetica degli
+  edifici:
+  https://www.normattiva.it/atto/caricaDettaglioAtto?atto.codiceRedazionale=005G0219&atto.dataPubblicazioneGazzetta=2005-09-23
+- Decreto 23 giugno 2022, Criteri ambientali minimi per l'edilizia:
+  https://www.gazzettaufficiale.it/atto/serie_generale/caricaDettaglioAtto/originario?atto.codiceRedazionale=22A04307&atto.dataPubblicazioneGazzetta=2022-08-06
+
+Nota: requisiti e metodi di calcolo applicabili devono essere verificati rispetto
+alla data, alla localizzazione e alla tipologia dell'intervento.

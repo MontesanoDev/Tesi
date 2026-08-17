@@ -1,0 +1,64 @@
+DIREZIONE LAVORI, CONTABILITA E SICUREZZA NEI CANTIERI
+
+Ambito: esecuzione di lavori pubblici e cantieri temporanei o mobili.
+Versione del documento: 17 agosto 2026.
+Parole chiave: direttore dei lavori, RUP, controllo tecnico, contabilita,
+ordini di servizio, coordinatore sicurezza, PSC, impresa esecutrice, cantiere.
+
+RESPONSABILITA DISTINTE
+
+Direzione dei lavori e coordinamento della sicurezza sono funzioni coordinate ma
+non intercambiabili. Il direttore dei lavori cura il controllo tecnico,
+contabile e amministrativo dell'esecuzione nell'ambito dell'incarico ricevuto. Il
+coordinatore per l'esecuzione svolge i compiti di coordinamento e controllo in
+materia di sicurezza previsti dalla disciplina applicabile. RUP, committente,
+imprese e lavoratori autonomi conservano le rispettive responsabilita.
+
+AVVIO DELL'ESECUZIONE
+
+Prima dell'avvio e utile verificare:
+
+- contratto, progetto approvato, autorizzazioni e disponibilita delle aree;
+- nominativi, incarichi, deleghe e canali formali di comunicazione;
+- cronoprogramma, interferenze, accessi, allestimenti e servizi di cantiere;
+- documenti di sicurezza, idoneita e obblighi delle imprese;
+- sistema di contabilita, registro dei controlli e gestione delle revisioni;
+- campioni, prove, certificazioni e punti di arresto delle lavorazioni;
+- gestione di imprevisti, non conformita, riserve e proposte di variante.
+
+CONTROLLO DURANTE I LAVORI
+
+Il controllo deve produrre evidenze datate e riconducibili a un responsabile.
+Verbali, ordini di servizio, misure, fotografie, prove, certificati e stati di
+avanzamento devono riferirsi alla corretta revisione degli elaborati.
+
+Una non conformita dovrebbe riportare descrizione, posizione, requisito violato,
+responsabile della correzione, termine, verifica di chiusura e conseguenze su
+costi o tempi. Non va chiusa soltanto perche e stata inviata una comunicazione.
+
+Il coordinamento della sicurezza verifica l'applicazione delle disposizioni
+pertinenti del piano di sicurezza e delle procedure di lavoro, coordina i
+soggetti interessati e gestisce le segnalazioni secondo i poteri e gli obblighi
+previsti. Le decisioni devono essere documentate senza confondere controllo della
+qualita dell'opera e vigilanza sulla sicurezza.
+
+CHIUSURA E CONSEGNA
+
+La chiusura comprende contabilita finale, esiti delle prove, certificazioni,
+elaborati aggiornati, manuali, piano di manutenzione, registro delle modifiche e
+problemi residui. I dati devono poter essere ricondotti alla fonte e alla persona
+che li ha verificati.
+
+FONTI UFFICIALI DI RIFERIMENTO
+
+- Decreto legislativo 31 marzo 2023, n. 36, articolo 115, controllo tecnico,
+  contabile e amministrativo:
+  https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:2023;36~art115!vig=
+- Decreto legislativo 31 marzo 2023, n. 36, Allegato II.14, direzione dei lavori:
+  https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:2023-03-31;36:29~art1!vig=
+- Decreto legislativo 9 aprile 2008, n. 81, Titolo IV, cantieri temporanei o
+  mobili:
+  https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2008-04-03;81!vig=
+
+Nota: compiti, nomine e documenti obbligatori devono essere verificati sul caso
+concreto e sul testo vigente.

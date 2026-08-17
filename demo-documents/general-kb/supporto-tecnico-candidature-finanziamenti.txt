@@ -1,0 +1,74 @@
+SUPPORTO TECNICO A CANDIDATURE E PROGRAMMI DI FINANZIAMENTO
+
+Ambito: analisi di avvisi, verifica dei requisiti e preparazione di output.
+Versione del documento: 17 agosto 2026.
+Parole chiave: bando, avviso, candidatura, beneficiario, proponente, ammissibilita,
+documenti richiesti, spese ammissibili, criteri di valutazione, scadenza,
+provenienza, informazioni mancanti.
+
+RUOLO DEL SUPPORTO TECNICO
+
+Una societa di ingegneria puo assistere il soggetto proponente nell'analisi
+tecnica e documentale, ma non assume automaticamente il ruolo di beneficiario o
+di soggetto autorizzato alla presentazione. Il ruolo deve essere verificato nel
+testo dell'avviso, negli allegati e negli atti del proponente.
+
+SEPARARE FONTI, FATTI E DECISIONI
+
+Il documento dell'avviso e una fonte. Un requisito estratto e un fatto proposto,
+da verificare rispetto al contesto. La decisione di dichiarare la conformita
+spetta al soggetto responsabile. Questa separazione evita di trasformare una
+frase recuperata dal sistema in una dichiarazione amministrativa non controllata.
+
+MATRICE DI CONFORMITA
+
+Per ogni requisito e utile registrare:
+
+- identificativo e categoria;
+- formulazione sintetica;
+- fonte, pagina o sezione e frammento rilevante;
+- soggetto a cui il requisito si applica;
+- dato o documento che puo provarne il soddisfacimento;
+- proprietario dell'informazione;
+- stato: da verificare, verificato, non soddisfatto, non applicabile;
+- scadenza, dipendenze e note del revisore.
+
+Le categorie iniziali possono comprendere soggetti ammissibili, requisiti
+dell'immobile o dell'intervento, requisiti di partecipazione, dotazione
+finanziaria, spese, documenti, modalita di trasmissione, scadenze, criteri di
+valutazione e obblighi successivi al finanziamento. Le categorie servono a
+organizzare la lettura e non sostituiscono il testo dell'avviso.
+
+FLUSSO OPERATIVO
+
+1. Acquisire avviso, allegati, modelli, rettifiche e chiarimenti ufficiali.
+2. Registrare versione, data, provenienza e relazioni fra i documenti.
+3. Estrarre requisiti e scadenze mantenendo il riferimento puntuale alla fonte.
+4. Identificare proponente, beneficiario, partner, delegati e firmatari.
+5. Confrontare i requisiti con dati aziendali, dati del progetto e documenti.
+6. Segnalare conflitti, ambiguita e informazioni mancanti.
+7. Preparare checklist e bozza senza completare campi privi di una fonte valida.
+8. Sottoporre dichiarazioni e allegati a revisione umana prima dell'uso.
+
+CONTROLLO DELLE SCADENZE
+
+La parola scadenza puo riferirsi a presentazione, richieste di chiarimento,
+esecuzione, rendicontazione o monitoraggio. Ogni data deve quindi riportare
+oggetto, fuso orario se rilevante, canale di trasmissione, evento che la genera e
+fonte. Se la domanda dell'utente e ambigua, il sistema deve chiedere quale
+scadenza interessa o presentare le alternative chiaramente etichettate.
+
+OUTPUT VINCOLATO
+
+Una bozza affidabile conserva campi mancanti espliciti, provenienza dei valori,
+versione del template e stato di revisione. I dati inseriti dall'utente devono
+essere distinguibili dai dati recuperati dalle fonti. La generazione non deve
+inventare importi, firme, titoli, autorizzazioni, date o requisiti posseduti.
+
+Questo testo costituisce un protocollo metodologico dimostrativo. Per gli appalti
+pubblici il quadro generale della progettazione e dei ruoli e consultabile nel
+Decreto legislativo 31 marzo 2023, n. 36:
+https://www.normattiva.it/atto/caricaDettaglioAtto?atto.codiceRedazionale=23G00044&atto.dataPubblicazioneGazzetta=2023-03-31
+
+Nota: la lex specialis della singola procedura e i suoi aggiornamenti devono
+essere verificati integralmente da un responsabile umano.
