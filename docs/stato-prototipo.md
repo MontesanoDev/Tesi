@@ -1,7 +1,5 @@
 # Stato del prototipo Mapi RAG
 
-> Stato aggiornato al 6 agosto 2026.
-
 ## 1. Obiettivo
 
 Mapi RAG e una vertical slice di un assistente per progetti tecnici e documentali

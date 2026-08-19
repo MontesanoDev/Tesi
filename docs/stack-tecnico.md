@@ -1,7 +1,5 @@
 # Stack tecnico e pipeline di Mapi RAG
 
-> Stato aggiornato al 6 agosto 2026.
-
 ## 1. Architettura generale
 
 Mapi RAG usa una classica architettura web a tre livelli:
