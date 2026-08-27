@@ -49,16 +49,6 @@ export function ProjectKnowledgePanel({
         accept=".pdf,.txt,application/pdf,text/plain"
         onChange={uploadFile}
       />
-      <section className="knowledge-section knowledge-instructions">
-        <div className="panel-title-row">
-          <h2>Istruzioni</h2>
-          <button className="icon-button" type="button" aria-label="Modifica istruzioni">
-            <Plus size={18} />
-          </button>
-        </div>
-        <p>{project.instructions}</p>
-      </section>
-
       <section className="knowledge-section knowledge-files">
         <div className="panel-title-row">
           <h2>File e fonti</h2>

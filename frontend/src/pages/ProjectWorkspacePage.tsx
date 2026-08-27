@@ -4,7 +4,6 @@ import {
   EllipsisVertical,
   FileText,
   LoaderCircle,
-  Paperclip,
   Trash2,
   X,
 } from 'lucide-react'
@@ -270,11 +269,6 @@ export function ProjectWorkspacePage() {
         onKeyDown={handleComposerKeyDown}
       />
       <div className="composer-tools">
-        <button className="icon-button" type="button" aria-label="Allega file">
-          <Paperclip size={19} />
-        </button>
-        <span className="composer-chip">Fonti del progetto</span>
-        <span className="composer-chip">Mapi RAG</span>
         <button
           className="send-button"
           type="submit"

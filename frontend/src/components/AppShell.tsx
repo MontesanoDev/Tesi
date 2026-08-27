@@ -2,9 +2,7 @@ import {
   Database,
   FileText,
   Folder,
-  MessageSquare,
   PanelLeft,
-  Plus,
   Settings,
   X,
 } from 'lucide-react'
@@ -29,7 +27,6 @@ export function AppShell({
   contentClassName = '',
 }: AppShellProps) {
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const projectPath = project ? `/projects/${project.id}` : '/projects'
 
   return (
     <div className="app-shell">
@@ -43,22 +40,6 @@ export function AppShell({
         >
           <PanelLeft size={18} />
         </button>
-        <Link
-          className="rail-button"
-          to={projectPath}
-          aria-label="Nuova conversazione"
-          title="Nuova conversazione"
-        >
-          <Plus size={19} />
-        </Link>
-        <Link
-          className="rail-button"
-          to={projectPath}
-          aria-label="Conversazioni"
-          title="Conversazioni"
-        >
-          <MessageSquare size={18} />
-        </Link>
         <NavLink
           className={navClass}
           to="/projects"
@@ -74,14 +55,6 @@ export function AppShell({
           title="Dati aziendali"
         >
           <Database size={18} />
-        </Link>
-        <Link
-          className={`rail-button${active === 'documents' ? ' rail-button--active' : ''}`}
-          to={project ? `/projects/${project.id}/review` : '/projects'}
-          aria-label="Documenti e output"
-          title="Documenti e output"
-        >
-          <FileText size={18} />
         </Link>
         <NavLink
           className={({ isActive }) => `${navClass({ isActive })} rail-settings`}
@@ -130,22 +103,10 @@ export function AppShell({
                 <X size={18} />
               </button>
             </div>
-            <Link className="drawer-primary" to={projectPath}>
-              <Plus size={18} /> Nuova conversazione
-            </Link>
             <span className="drawer-label">Navigazione</span>
             <NavLink className="drawer-link" to="/projects">
               <Folder size={18} /> Progetti
             </NavLink>
-            <Link className="drawer-link" to={projectPath}>
-              <MessageSquare size={18} /> Conversazioni
-            </Link>
-            <Link
-              className="drawer-link"
-              to={project ? `/projects/${project.id}/review` : '/projects'}
-            >
-              <FileText size={18} /> Documenti e output
-            </Link>
             <div className="drawer-divider" />
             <span className="drawer-label">Base di conoscenza</span>
             <Link className="knowledge-link" to="/company-knowledge">

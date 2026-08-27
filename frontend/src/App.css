@@ -475,22 +475,6 @@
   padding: 7px 16px;
 }
 
-.composer-tools .icon-button {
-  width: 34px;
-  height: 34px;
-}
-
-.composer-chip {
-  display: inline-flex;
-  align-items: center;
-  height: 28px;
-  padding: 0 14px;
-  border-radius: 14px;
-  color: #d0d1cb;
-  background: #363733;
-  font-size: 12px;
-}
-
 .send-button {
   display: grid;
   place-items: center;
@@ -858,14 +842,6 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
-}
-
-.knowledge-instructions > p {
-  max-width: 360px;
-  margin-top: 4px;
-  color: var(--text-muted);
-  font-size: 13px;
-  line-height: 18px;
 }
 
 .file-list {
@@ -2204,7 +2180,6 @@
 .drawer-brand span { margin-top: 2px; color: var(--text-muted); font-size: 10px; }
 .drawer-close { width: 32px; height: 32px; }
 
-.drawer-primary,
 .drawer-link,
 .knowledge-link {
   display: flex;
@@ -2216,11 +2191,6 @@
   color: #d9dad4;
   font-size: 13px;
   text-decoration: none;
-}
-
-.drawer-primary {
-  margin: 12px 0 18px;
-  background: var(--control);
 }
 
 .drawer-link:hover,
@@ -2419,8 +2389,6 @@
   }
 
   .rail-button--panel,
-  .icon-rail > .rail-button:nth-of-type(2),
-  .icon-rail > .rail-button:nth-of-type(3),
   .profile-avatar {
     display: none;
   }
@@ -2467,7 +2435,6 @@
 
   .project-heading h1 { font-size: 24px; }
   .project-heading p { font-size: 13px; }
-  .composer-chip:nth-of-type(2) { display: none; }
   .conversation-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 
   .settings-card { padding: 18px; }
