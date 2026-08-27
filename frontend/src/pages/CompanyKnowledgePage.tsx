@@ -4,22 +4,20 @@ import {
   Database,
   FileText,
   LoaderCircle,
-  Save,
+  NotebookPen,
   Trash2,
   Upload,
+  X,
 } from 'lucide-react'
-import { useEffect, useRef, useState, type ChangeEvent } from 'react'
+import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { LoadingState } from '../components/LoadingState'
 import { StatusPill } from '../components/StatusPill'
-import type {
-  GlobalKnowledgeOverview,
-  KnowledgeArtifactDetail,
-} from '../types'
+import type { GlobalKnowledgeOverview } from '../types'
 
-type KnowledgeView = 'company' | 'facts' | 'general'
+type KnowledgeView = 'company' | 'general'
 
 const viewCopy = {
   company: {
@@ -34,14 +32,29 @@ const viewCopy = {
   },
 } as const
 
+function markdownFilename(title: string) {
+  const slug = title
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+  return `${slug || 'contenuto'}.md`
+}
+
+function fragmentCountLabel(count: number) {
+  return count === 1 ? '1 frammento' : `${count} frammenti`
+}
+
 export function CompanyKnowledgePage() {
   const [activeView, setActiveView] = useState<KnowledgeView>('company')
   const [knowledge, setKnowledge] = useState<GlobalKnowledgeOverview | null>(null)
-  const [companyFacts, setCompanyFacts] = useState<KnowledgeArtifactDetail | null>(null)
-  const [factsContent, setFactsContent] = useState('')
   const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
-  const [savingFacts, setSavingFacts] = useState(false)
+  const [textModalOpen, setTextModalOpen] = useState(false)
+  const [textTitle, setTextTitle] = useState('')
+  const [textContent, setTextContent] = useState('')
+  const [savingText, setSavingText] = useState(false)
   const [deletingId, setDeletingId] = useState<number | null>(null)
   const [feedback, setFeedback] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -49,14 +62,9 @@ export function CompanyKnowledgePage() {
 
   useEffect(() => {
     const controller = new AbortController()
-    Promise.all([
-      api.globalKnowledge(controller.signal),
-      api.companyFacts(controller.signal),
-    ])
-      .then(([overview, facts]) => {
+    api.globalKnowledge(controller.signal)
+      .then((overview) => {
         setKnowledge(overview)
-        setCompanyFacts(facts)
-        setFactsContent(facts.content)
         setError(null)
       })
       .catch((reason) => {
@@ -72,7 +80,6 @@ export function CompanyKnowledgePage() {
   const documents = knowledge?.documents.filter((document) => document.category === activeView) ?? []
   const documentCount = documents.length
   const documentCountLabel = documentCount === 1 ? '1 documento' : `${documentCount} documenti`
-  const factsDirty = companyFacts?.content !== factsContent
 
   function selectView(view: KnowledgeView) {
     setActiveView(view)
@@ -87,18 +94,47 @@ export function CompanyKnowledgePage() {
   async function uploadDocument(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
     event.target.value = ''
-    if (!file || uploading || activeView === 'facts') return
+    if (!file || uploading) return
     setUploading(true)
     setFeedback(null)
     setError(null)
     try {
       const document = await api.uploadGlobalKnowledgeFile(file, activeView)
       await refreshKnowledge()
-      setFeedback(`${document.name} aggiunto a ${viewCopy[activeView].title} in ${document.chunk_count} frammenti.`)
+      setFeedback(
+        `${document.name} aggiunto a ${viewCopy[activeView].title} in ${fragmentCountLabel(document.chunk_count)}.`,
+      )
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'Caricamento non riuscito')
     } finally {
       setUploading(false)
+    }
+  }
+
+  async function addTextContent(event: FormEvent) {
+    event.preventDefault()
+    const title = textTitle.trim()
+    const content = textContent.trim()
+    if (!title || !content || savingText) return
+
+    setSavingText(true)
+    setFeedback(null)
+    setError(null)
+    try {
+      const markdown = `# ${title}\n\n${content}\n`
+      const file = new File([markdown], markdownFilename(title), { type: 'text/markdown' })
+      const document = await api.uploadGlobalKnowledgeFile(file, activeView)
+      await refreshKnowledge()
+      setTextModalOpen(false)
+      setTextTitle('')
+      setTextContent('')
+      setFeedback(
+        `${document.name} aggiunto a ${viewCopy[activeView].title} in ${fragmentCountLabel(document.chunk_count)}.`,
+      )
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'Salvataggio non riuscito')
+    } finally {
+      setSavingText(false)
     }
   }
 
@@ -118,30 +154,13 @@ export function CompanyKnowledgePage() {
     }
   }
 
-  async function saveCompanyFacts() {
-    if (!factsDirty || savingFacts) return
-    setSavingFacts(true)
-    setFeedback(null)
-    setError(null)
-    try {
-      const updated = await api.updateCompanyFacts(factsContent)
-      setCompanyFacts(updated)
-      await refreshKnowledge()
-      setFeedback('Company Facts salvati e reindicizzati nei progetti.')
-    } catch (reason) {
-      setError(reason instanceof Error ? reason.message : 'Salvataggio non riuscito')
-    } finally {
-      setSavingFacts(false)
-    }
-  }
-
   return (
     <AppShell active="company">
       <Link className="back-link" to="/projects">← Tutti i progetti</Link>
       <div className="settings-page company-knowledge-page page-container">
         <header className="page-heading">
           <h1>Dati aziendali e conoscenza</h1>
-          <p>Gestisci le fonti globali e scegli esplicitamente il loro ruolo</p>
+          <p>Gestisci le fonti globali disponibili nei progetti</p>
         </header>
 
         <div className="knowledge-type-tabs" role="tablist" aria-label="Tipo di conoscenza globale">
@@ -153,15 +172,6 @@ export function CompanyKnowledgePage() {
             onClick={() => selectView('company')}
           >
             <Building2 size={16} /> Company KB
-          </button>
-          <button
-            className={activeView === 'facts' ? 'is-active' : ''}
-            type="button"
-            role="tab"
-            aria-selected={activeView === 'facts'}
-            onClick={() => selectView('facts')}
-          >
-            <Database size={16} /> Company Facts
           </button>
           <button
             className={activeView === 'general' ? 'is-active' : ''}
@@ -177,38 +187,6 @@ export function CompanyKnowledgePage() {
         <section className="settings-card company-knowledge-card">
           {loading ? (
             <LoadingState label="Caricamento conoscenza globale" />
-          ) : activeView === 'facts' ? (
-            <>
-              <div className="global-knowledge-heading">
-                <div>
-                  <h2>Company Facts</h2>
-                  <p>Dati aziendali strutturati e verificati. Non vengono ricavati implicitamente da un PDF.</p>
-                </div>
-                <StatusPill tone="success">{knowledge?.company_fact_count ?? 0} campi</StatusPill>
-              </div>
-              <textarea
-                className="markdown-editor company-facts-editor"
-                aria-label="Contenuto di Company Facts"
-                value={factsContent}
-                spellCheck={false}
-                onChange={(event) => setFactsContent(event.target.value)}
-              />
-              <div className="company-facts-actions">
-                <span>
-                  {companyFacts ? `Versione ${companyFacts.version}` : 'Artefatto non disponibile'} ·{' '}
-                  {factsDirty ? 'Modifiche non salvate' : 'Salvato'}
-                </span>
-                <button
-                  className="button artifact-save"
-                  type="button"
-                  disabled={!factsDirty || savingFacts}
-                  onClick={saveCompanyFacts}
-                >
-                  {savingFacts ? <LoaderCircle className="spin" size={15} /> : <Save size={15} />}
-                  Salva
-                </button>
-              </div>
-            </>
           ) : (
             <>
               <div className="global-knowledge-heading">
@@ -216,22 +194,36 @@ export function CompanyKnowledgePage() {
                   <h2>{viewCopy[activeView].title}</h2>
                   <p>{viewCopy[activeView].description}</p>
                 </div>
-                <input
-                  ref={fileInput}
-                  className="source-file-input"
-                  type="file"
-                  accept=".pdf,.txt,application/pdf,text/plain"
-                  onChange={uploadDocument}
-                />
-                <button
-                  className="button button--compact global-upload-button"
-                  type="button"
-                  disabled={uploading}
-                  onClick={() => fileInput.current?.click()}
-                >
-                  {uploading ? <LoaderCircle className="spin" size={15} /> : <Upload size={15} />}
-                  {uploading ? 'Indicizzazione' : `Carica in ${viewCopy[activeView].title}`}
-                </button>
+                <div className="global-knowledge-actions">
+                  <input
+                    ref={fileInput}
+                    className="source-file-input"
+                    type="file"
+                    accept=".pdf,.txt,.md,application/pdf,text/plain,text/markdown"
+                    onChange={uploadDocument}
+                  />
+                  <button
+                    className="button button--compact global-upload-button"
+                    type="button"
+                    disabled={uploading || savingText}
+                    onClick={() => fileInput.current?.click()}
+                  >
+                    {uploading ? <LoaderCircle className="spin" size={15} /> : <Upload size={15} />}
+                    {uploading ? 'Indicizzazione' : 'Carica dal dispositivo'}
+                  </button>
+                  <button
+                    className="button button--compact global-upload-button"
+                    type="button"
+                    disabled={uploading || savingText}
+                    onClick={() => {
+                      setError(null)
+                      setTextModalOpen(true)
+                    }}
+                  >
+                    <NotebookPen size={15} />
+                    Aggiungi contenuto testuale
+                  </button>
+                </div>
               </div>
               <div className="settings-card-divider" />
               <div className="setting-section-title">
@@ -274,9 +266,75 @@ export function CompanyKnowledgePage() {
             </>
           )}
           {feedback && <p className="upload-feedback upload-feedback--success" aria-live="polite">{feedback}</p>}
-          {error && <p className="upload-feedback upload-feedback--error" role="alert">{error}</p>}
+          {error && !textModalOpen && <p className="upload-feedback upload-feedback--error" role="alert">{error}</p>}
         </section>
       </div>
+
+      {textModalOpen && (
+        <div className="modal-layer" role="presentation">
+          <button
+            className="modal-scrim"
+            type="button"
+            aria-label="Chiudi contenuto testuale"
+            disabled={savingText}
+            onClick={() => setTextModalOpen(false)}
+          />
+          <form className="project-modal text-content-modal" onSubmit={addTextContent}>
+            <div className="modal-heading">
+              <h2>Aggiungi contenuto testuale</h2>
+              <button
+                className="icon-button"
+                type="button"
+                aria-label="Chiudi"
+                disabled={savingText}
+                onClick={() => setTextModalOpen(false)}
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <label>
+              Titolo
+              <input
+                required
+                minLength={3}
+                autoFocus
+                value={textTitle}
+                onChange={(event) => setTextTitle(event.target.value)}
+              />
+            </label>
+            <label>
+              Contenuto Markdown
+              <textarea
+                required
+                minLength={3}
+                rows={12}
+                spellCheck={false}
+                value={textContent}
+                onChange={(event) => setTextContent(event.target.value)}
+              />
+            </label>
+            {error && <p className="upload-feedback upload-feedback--error" role="alert">{error}</p>}
+            <div className="modal-actions">
+              <button
+                className="button"
+                type="button"
+                disabled={savingText}
+                onClick={() => setTextModalOpen(false)}
+              >
+                Annulla
+              </button>
+              <button
+                className="button button--primary"
+                type="submit"
+                disabled={!textTitle.trim() || !textContent.trim() || savingText}
+              >
+                {savingText && <LoaderCircle className="spin" size={15} />}
+                Salva in {viewCopy[activeView].title}
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </AppShell>
   )
 }

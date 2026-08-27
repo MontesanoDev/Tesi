@@ -153,8 +153,7 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
       chunk_count: 4,
     },
   ]
-  let companyFactsContent = '# Company Facts\n\n## Ragione sociale\n\nMapi Ingegneria S.r.l.'
-  let companyFactsVersion = 2
+  let uploadCount = 0
 
   await page.route(/\/api\/global-knowledge$/, async (route) => {
     await route.fulfill({
@@ -163,50 +162,39 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
         documents,
         document_count: documents.length,
         chunk_count: documents.reduce((total, document) => total + document.chunk_count, 0),
-        company_fact_count: 3,
       }),
     })
   })
   await page.route(/\/api\/global-knowledge\/files$/, async (route) => {
-    const uploaded = {
-      id: 42,
-      name: 'certificazione-iso.txt',
-      category: 'company',
-      metadata: 'TXT · 1 KB · 2 frammenti',
-      status: 'Indicizzato',
-      mime_type: 'text/plain',
-      byte_size: 512,
-      page_count: 1,
-      chunk_count: 2,
-    }
+    uploadCount += 1
+    const uploaded = uploadCount === 1
+      ? {
+          id: 42,
+          name: 'certificazione-iso.txt',
+          category: 'company',
+          metadata: 'TXT · 1 KB · 2 frammenti',
+          status: 'Indicizzato',
+          mime_type: 'text/plain',
+          byte_size: 512,
+          page_count: 1,
+          chunk_count: 2,
+        }
+      : {
+          id: 43,
+          name: 'profilo-operativo.md',
+          category: 'company',
+          metadata: 'MD · 1 KB · 1 frammento',
+          status: 'Indicizzato',
+          mime_type: 'text/markdown',
+          byte_size: 180,
+          page_count: 1,
+          chunk_count: 1,
+        }
     documents.unshift(uploaded)
     await route.fulfill({
       status: 201,
       contentType: 'application/json',
       body: JSON.stringify(uploaded),
-    })
-  })
-  await page.route(/\/api\/global-knowledge\/company-facts$/, async (route) => {
-    if (route.request().method() === 'PUT') {
-      companyFactsContent = (route.request().postDataJSON() as { content: string }).content
-      companyFactsVersion += 1
-    }
-    await route.fulfill({
-      contentType: 'application/json',
-      body: JSON.stringify({
-        id: 'global--company-facts',
-        kind: 'company_facts',
-        scope: 'global',
-        title: 'Company Facts',
-        filename: 'company-facts.md',
-        status: 'Verificato',
-        byte_size: companyFactsContent.length,
-        version: companyFactsVersion,
-        updated_at: '2026-08-06 10:00:00',
-        editable: true,
-        chunk_count: 1,
-        content: companyFactsContent,
-      }),
     })
   })
   await page.route(
@@ -250,14 +238,17 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
   })
   await expect(page.getByText('certificazione-iso.txt aggiunto a Company KB in 2 frammenti.')).toBeVisible()
   await expect(page.getByText('2 documenti', { exact: true })).toBeVisible()
+  await page.getByRole('button', { name: 'Aggiungi contenuto testuale' }).click()
+  await page.getByLabel('Titolo').fill('Profilo operativo')
+  await page.getByLabel('Contenuto Markdown').fill('Mapi supporta la progettazione per enti committenti.')
+  await page.getByRole('button', { name: 'Salva in Company KB' }).click()
+  await expect(page.getByText('profilo-operativo.md aggiunto a Company KB in 1 frammento.')).toBeVisible()
+  await expect(page.getByText('profilo-operativo.md', { exact: true })).toBeVisible()
+  await expect(page.getByText('3 documenti', { exact: true })).toBeVisible()
   await page.getByRole('tab', { name: 'General KB' }).click()
   await expect(page.getByText('norme-tecniche.txt')).toBeVisible()
   await expect(page.getByText('curriculum-mapi.pdf')).not.toBeVisible()
-  await page.getByRole('tab', { name: 'Company Facts' }).click()
-  const factsEditor = page.getByRole('textbox', { name: 'Contenuto di Company Facts' })
-  await factsEditor.fill(`${companyFactsContent}\n\n## PEC\n\ninfo@mapi.example`)
-  await page.getByRole('button', { name: 'Salva' }).click()
-  await expect(page.getByText('Company Facts salvati e reindicizzati nei progetti.')).toBeVisible()
+  await expect(page.getByRole('tab', { name: 'Company Facts' })).not.toBeVisible()
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
     path: `artifacts/${testInfo.project.name}-company-kb-global.png`,
@@ -451,10 +442,9 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
   await expect(callFactsEditor).toContainText('## Termine e orario della candidatura')
   await expect(page.getByText('2 fatti estratti da 8 frammenti')).toBeVisible()
 
-  await page.getByRole('button', { name: /Company Facts/ }).click()
-  const companyEditor = page.getByLabel('Contenuto di Company Facts')
-  await expect(companyEditor).toContainText('Mapi Ingegneria S.r.l.')
-  await expect(companyEditor).not.toBeEditable()
+  await page.getByRole('button', { name: /General KB/ }).click()
+  const generalEditor = page.getByLabel('Contenuto di General KB')
+  await expect(generalEditor).not.toBeEditable()
   await expect(page.getByText('Gli artefatti globali sono in sola lettura')).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await page.screenshot({

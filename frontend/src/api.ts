@@ -72,13 +72,6 @@ export const api = {
   },
   deleteGlobalKnowledgeFile: (documentId: number) =>
     request<void>(`/global-knowledge/files/${documentId}`, { method: 'DELETE' }),
-  companyFacts: (signal?: AbortSignal) =>
-    request<KnowledgeArtifactDetail>('/global-knowledge/company-facts', { signal }),
-  updateCompanyFacts: (content: string) =>
-    request<KnowledgeArtifactDetail>('/global-knowledge/company-facts', {
-      method: 'PUT',
-      body: JSON.stringify({ content }),
-    }),
   projectGlobalKnowledge: (projectId: string, signal?: AbortSignal) =>
     request<ProjectGlobalKnowledgeDocument[]>(
       `/projects/${projectId}/global-knowledge`,

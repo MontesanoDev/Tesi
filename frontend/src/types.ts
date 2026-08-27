@@ -37,7 +37,6 @@ export interface GlobalKnowledgeOverview {
   documents: GlobalKnowledgeDocument[]
   document_count: number
   chunk_count: number
-  company_fact_count: number
 }
 
 export interface ProjectGlobalKnowledgeDocument extends GlobalKnowledgeDocument {

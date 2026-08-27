@@ -105,10 +105,6 @@ export function ProjectSettingsPage() {
               <strong>General KB</strong>
               <span>Norme e materiali tecnici</span>
             </div>
-            <div className="linked-source">
-              <strong>Company Facts</strong>
-              <span>Mapi Ingegneria · dati strutturati verificati</span>
-            </div>
           </div>
           <div className="company-kb-project-section">
             <div className="setting-section-title">

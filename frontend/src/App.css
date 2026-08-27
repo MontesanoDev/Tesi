@@ -1659,7 +1659,7 @@
 
 .knowledge-type-tabs {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 6px;
   margin-bottom: 12px;
   padding: 4px;
@@ -1724,6 +1724,18 @@
   align-items: center;
   gap: 8px;
   flex: 0 0 auto;
+}
+
+.global-knowledge-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.global-knowledge-actions .button {
+  justify-content: flex-start;
 }
 
 .global-source-grid {
@@ -1821,26 +1833,6 @@
   color: var(--text-faint);
   font-size: 11px;
   text-align: center;
-}
-
-.company-facts-editor {
-  min-height: 360px;
-  max-height: 54vh;
-  resize: vertical;
-}
-
-.company-facts-actions {
-  display: flex;
-  min-height: 48px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-top: 12px;
-}
-
-.company-facts-actions > span {
-  color: var(--text-faint);
-  font-size: 10px;
 }
 
 .project-global-document-row {
@@ -2312,6 +2304,12 @@
 .project-modal textarea { resize: vertical; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
 
+.text-content-modal textarea {
+  min-height: 240px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  line-height: 20px;
+}
+
 .delete-project-modal > p {
   color: var(--text-muted);
   font-size: 13px;
@@ -2445,8 +2443,6 @@
   .global-knowledge-heading { align-items: stretch; flex-direction: column; }
   .global-upload-button { justify-content: center; width: 100%; }
   .knowledge-type-tabs { grid-template-columns: minmax(0, 1fr); }
-  .company-facts-actions { align-items: stretch; flex-direction: column; }
-  .company-facts-actions .button { justify-content: center; width: 100%; }
   .company-document-row { grid-template-columns: 20px minmax(0, 1fr) 34px; }
   .company-document-row .status-pill { display: none; }
   .company-kb-section .setting-section-title { align-items: flex-start; flex-direction: column; }

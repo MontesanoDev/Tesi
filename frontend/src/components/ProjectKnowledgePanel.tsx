@@ -46,7 +46,7 @@ export function ProjectKnowledgePanel({
         className="source-file-input"
         type="file"
         aria-label="Seleziona un documento da indicizzare"
-        accept=".pdf,.txt,application/pdf,text/plain"
+        accept=".pdf,.txt,.md,application/pdf,text/plain,text/markdown"
         onChange={uploadFile}
       />
       <section className="knowledge-section knowledge-files">
@@ -56,7 +56,7 @@ export function ProjectKnowledgePanel({
             className="icon-button"
             type="button"
             aria-label="Aggiungi file"
-            title="Aggiungi un documento PDF o TXT"
+            title="Aggiungi un documento PDF, TXT o Markdown"
             disabled={uploading}
             onClick={() => fileInput.current?.click()}
           >
