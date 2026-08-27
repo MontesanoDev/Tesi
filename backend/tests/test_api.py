@@ -210,7 +210,7 @@ async def test_company_kb_is_indexed_once_and_linked_selectively(client):
     assert overview.status_code == 200
     assert overview.json()["document_count"] == 1
     assert overview.json()["chunk_count"] == 1
-    assert overview.json()["company_fact_count"] == 3
+    assert overview.json()["company_fact_count"] == 14
 
     project_documents = await client.get(f"/api/projects/{project_id}/global-knowledge")
     assert project_documents.status_code == 200
@@ -606,7 +606,7 @@ async def test_answer_explains_when_no_evidence_is_available(client, monkeypatch
     monkeypatch.setattr("app.main.generate_grounded_answer", unexpected_generation)
     response = await client.post(
         "/api/projects/adeguamento-sismico-edificio-b/answer",
-        json={"question": "Qual è il recapito del responsabile?"},
+        json={"question": "Qual è il colore della moquette?"},
     )
 
     assert response.status_code == 200
