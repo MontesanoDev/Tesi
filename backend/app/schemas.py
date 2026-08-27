@@ -47,7 +47,6 @@ class GlobalKnowledgeOverview(BaseModel):
     documents: list[GlobalKnowledgeDocument]
     document_count: int
     chunk_count: int
-    company_fact_count: int
 
 
 class ProjectGlobalKnowledgeDocument(GlobalKnowledgeDocument):

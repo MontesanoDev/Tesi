@@ -135,14 +135,6 @@ def init_database() -> None:
                 sort_order INTEGER NOT NULL DEFAULT 0
             );
 
-            CREATE TABLE IF NOT EXISTS company_facts (
-                key TEXT PRIMARY KEY,
-                label TEXT NOT NULL,
-                value TEXT NOT NULL,
-                verified INTEGER NOT NULL DEFAULT 0,
-                sort_order INTEGER NOT NULL DEFAULT 0
-            );
-
             CREATE TABLE IF NOT EXISTS global_documents (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
@@ -275,6 +267,7 @@ def init_database() -> None:
         _ensure_column(db, "project_files", "byte_size", "INTEGER NOT NULL DEFAULT 0")
         _ensure_column(db, "project_files", "page_count", "INTEGER NOT NULL DEFAULT 0")
         _ensure_column(db, "project_files", "chunk_count", "INTEGER NOT NULL DEFAULT 0")
+        db.execute("DROP TABLE IF EXISTS company_facts")
         _ensure_column(
             db,
             "global_documents",

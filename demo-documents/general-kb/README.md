@@ -1,8 +1,8 @@
 # Corpus dimostrativo General KB
 
 Questi file descrivono conoscenze tecniche riutilizzabili negli ambiti in cui
-opera la societa simulata Mapi Ingegneria S.r.l. Non sono Company Facts e non
-provano requisiti o capacita dell'impresa.
+opera la societa simulata Mapi Ingegneria S.r.l. Non provano requisiti o
+capacita dell'impresa.
 
 ## File disponibili
 

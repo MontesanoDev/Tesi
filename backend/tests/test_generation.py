@@ -26,7 +26,7 @@ def test_generation_parser_rejects_unknown_citations():
         )
 
 
-def test_generation_prompt_includes_verified_context_and_recent_history():
+def test_generation_prompt_includes_evidence_and_recent_history():
     prompt = _build_user_prompt(
         "Mapi puo presentare domanda?",
         [
@@ -34,13 +34,12 @@ def test_generation_prompt_includes_verified_context_and_recent_history():
                 "source_name": "bando.pdf",
                 "chunk_index": 4,
                 "content": "Sono ammessi esclusivamente gli Enti locali.",
-            }
-        ],
-        [
+            },
             {
-                "label": "Tipo di soggetto",
-                "value": "Societa privata di ingegneria civile",
-            }
+                "source_name": "profilo-mapi.md",
+                "chunk_index": 0,
+                "content": "Mapi e una societa privata di ingegneria civile.",
+            },
         ],
         [
             {
@@ -50,7 +49,7 @@ def test_generation_prompt_includes_verified_context_and_recent_history():
         ],
     )
 
-    assert "CONTESTO AZIENDALE VERIFICATO" in prompt
-    assert "Societa privata di ingegneria civile" in prompt
+    assert "EVIDENZE DISPONIBILI" in prompt
+    assert "profilo-mapi.md" in prompt
     assert "CRONOLOGIA RECENTE NON FATTUALE" in prompt
     assert "Quali soggetti sono ammessi?" in prompt

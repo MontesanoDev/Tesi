@@ -36,11 +36,11 @@ una fonte fattuale: le affermazioni devono restare fondate sulle evidenze corren
 Non completare dati assenti e non trasformare ipotesi in fatti.
 Non confondere l'istanza di partecipazione con le domande di erogazione presentate
 dal Beneficiario dopo l'ammissione al finanziamento.
-Usa il contesto aziendale verificato per identificare Mapi, senza attribuirle il ruolo
-di Soggetto proponente o Beneficiario se non ne possiede i requisiti.
+Non attribuire a Mapi il ruolo di Soggetto proponente o Beneficiario se le evidenze
+recuperate non lo dimostrano.
 Ogni affermazione tratta dalle evidenze documentali deve riportare una citazione nel
-formato [N], dove N e il numero dell'evidenza. I dati del contesto aziendale non
-richiedono una citazione [N]. Se le fonti non bastano, dichiaralo e indica i dati mancanti.
+formato [N], dove N e il numero dell'evidenza. Se le fonti non bastano, dichiaralo e
+indica i dati mancanti.
 Produci soltanto un oggetto json con questa forma:
 {
   "answer": "risposta con citazioni [1]",
@@ -53,7 +53,6 @@ Produci soltanto un oggetto json con questa forma:
 def _build_user_prompt(
     question: str,
     evidence: list[dict],
-    company_facts: list[dict] | None = None,
     conversation_history: list[dict] | None = None,
 ) -> str:
     sources = []
@@ -68,16 +67,12 @@ def _build_user_prompt(
                 )
             )
         )
-    company_context = "\n".join(
-        f"- {fact['label']}: {fact['value']}" for fact in company_facts or []
-    )
     recent_history = "\n\n".join(
         f"UTENTE: {turn['question']}\nMAPI: {turn['answer']}" for turn in conversation_history or []
     )
     return (
         f"DOMANDA DELL'UTENTE:\n{question}\n\n"
         f"CRONOLOGIA RECENTE NON FATTUALE:\n{recent_history or '- Nessun turno precedente'}\n\n"
-        f"CONTESTO AZIENDALE VERIFICATO:\n{company_context or '- Nessun dato disponibile'}\n\n"
         f"EVIDENZE DISPONIBILI:\n\n{'\n\n'.join(sources)}\n\n"
         "Restituisci ora la risposta come oggetto json."
     )
@@ -133,7 +128,6 @@ def _parse_content(content: str, evidence_count: int, model: str, usage: dict) -
 async def generate_grounded_answer(
     question: str,
     evidence: list[dict],
-    company_facts: list[dict] | None = None,
     conversation_history: list[dict] | None = None,
 ) -> GeneratedAnswer:
     settings = get_deepseek_settings()
@@ -149,7 +143,6 @@ async def generate_grounded_answer(
                 "content": _build_user_prompt(
                     question,
                     evidence,
-                    company_facts,
                     conversation_history,
                 ),
             },

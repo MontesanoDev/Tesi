@@ -69,7 +69,8 @@ async def test_create_project_persists(client):
 
     artifacts = await client.get(f"/api/projects/{project_id}/artifacts")
     assert artifacts.status_code == 200
-    assert len(artifacts.json()) == 6
+    assert len(artifacts.json()) == 5
+    assert all(artifact["kind"] != "company_facts" for artifact in artifacts.json())
 
 
 @pytest.mark.anyio
@@ -108,7 +109,7 @@ async def test_delete_project_removes_local_data_without_reseeding(client):
         ).fetchone()[0] == 0
         assert db.execute(
             "SELECT COUNT(*) FROM knowledge_artifacts WHERE scope = 'global'"
-        ).fetchone()[0] == 2
+        ).fetchone()[0] == 1
 
     assert (await client.delete(f"/api/projects/{project_id}")).status_code == 404
     seed_database()
@@ -151,12 +152,12 @@ async def test_markdown_artifact_update_is_versioned_and_indexed(client):
     assert evidence.status_code == 200
     assert evidence.json()["results"][0]["source_name"] == "project-facts.md"
 
-    company_facts = next(
-        artifact for artifact in artifacts.json() if artifact["kind"] == "company_facts"
+    general_kb = next(
+        artifact for artifact in artifacts.json() if artifact["kind"] == "general_kb"
     )
     forbidden = await client.put(
-        f"/api/projects/{project_id}/artifacts/{company_facts['id']}",
-        json={"content": "# Company Facts\n\nModifica locale non consentita."},
+        f"/api/projects/{project_id}/artifacts/{general_kb['id']}",
+        json={"content": "# General KB\n\nModifica locale non consentita."},
     )
     assert forbidden.status_code == 403
 
@@ -179,7 +180,7 @@ async def test_markdown_artifact_seed_is_idempotent(client):
             """,
             (project_id,),
         ).fetchone()[0]
-    assert artifact_files == 6
+    assert artifact_files == 5
 
 
 @pytest.mark.anyio
@@ -210,7 +211,6 @@ async def test_company_kb_is_indexed_once_and_linked_selectively(client):
     assert overview.status_code == 200
     assert overview.json()["document_count"] == 1
     assert overview.json()["chunk_count"] == 1
-    assert overview.json()["company_fact_count"] == 14
 
     project_documents = await client.get(f"/api/projects/{project_id}/global-knowledge")
     assert project_documents.status_code == 200
@@ -272,7 +272,7 @@ async def test_company_kb_is_indexed_once_and_linked_selectively(client):
 
 
 @pytest.mark.anyio
-async def test_global_knowledge_categories_and_company_facts_are_explicit(client):
+async def test_global_knowledge_categories_and_markdown_are_explicit(client):
     uploaded = await client.post(
         "/api/global-knowledge/files",
         data={"category": "general"},
@@ -294,29 +294,38 @@ async def test_global_knowledge_categories_and_company_facts_are_explicit(client
     )
     assert invalid.status_code == 422
 
-    before = await client.get("/api/global-knowledge/company-facts")
-    assert before.status_code == 200
-    content = (
-        "---\nartifact: company_facts\nscope: global\nstatus: verified\n---\n\n"
-        "# Company Facts\n\n"
-        "## Ragione sociale\n\nMapi Ingegneria S.r.l.\n\n"
-        "## PEC\n\ninfo@mapi.example\n"
+    markdown = await client.post(
+        "/api/global-knowledge/files",
+        data={"category": "company"},
+        files={
+            "file": (
+                "profilo-mapi.md",
+                b"# Profilo Mapi\n\nDirettore tecnico: Elisa Romano.",
+                "text/markdown",
+            )
+        },
     )
-    updated = await client.put(
-        "/api/global-knowledge/company-facts",
-        json={"content": content},
-    )
-    assert updated.status_code == 200
-    assert updated.json()["version"] == before.json()["version"] + 1
-    assert updated.json()["content"] == content
+    assert markdown.status_code == 201
+    assert markdown.json()["name"] == "profilo-mapi.md"
+    assert markdown.json()["mime_type"] == "text/markdown"
+    assert markdown.json()["metadata"].startswith("MD ·")
 
     overview = await client.get("/api/global-knowledge")
-    assert overview.json()["company_fact_count"] == 2
-    project_copy = await client.get(
-        "/api/projects/fondo-riqualificazione-2027/artifacts/global--company-facts"
-    )
-    assert project_copy.json()["content"] == content
-    assert project_copy.json()["chunk_count"] == 1
+    assert overview.json()["document_count"] == 2
+    assert "company_fact_count" not in overview.json()
+    assert (await client.get("/api/global-knowledge/company-facts")).status_code == 404
+
+    with connection() as db:
+        stored = db.execute(
+            """
+            SELECT c.content
+            FROM global_document_chunks c
+            JOIN global_documents d ON d.id = c.document_id
+            WHERE d.id = ?
+            """,
+            (markdown.json()["id"],),
+        ).fetchone()[0]
+    assert "Direttore tecnico: Elisa Romano" in stored
 
 
 @pytest.mark.anyio
@@ -493,16 +502,33 @@ async def test_draft_generation_uses_only_verified_call_facts(client, monkeypatc
     )
     assert verified.status_code == 200
 
+    company_document = await client.post(
+        "/api/global-knowledge/files",
+        data={"category": "company"},
+        files={
+            "file": (
+                "profilo-mapi.md",
+                b"# Profilo Mapi\n\nMapi Ingegneria supporta enti committenti.",
+                "text/markdown",
+            )
+        },
+    )
+    await client.put(
+        f"/api/projects/{project_id}/global-knowledge/{company_document.json()['id']}",
+        json={"linked": True},
+    )
+
     async def fake_draft(
         project_title,
         template_markdown,
-        company_facts_markdown,
+        company_sources,
         project_facts_markdown,
         verified_facts,
     ):
         assert project_title == "Fondo Riqualificazione 2027"
         assert "# Template candidatura" in template_markdown
-        assert "Mapi Ingegneria" in company_facts_markdown
+        assert company_sources[0]["source_name"] == "profilo-mapi.md"
+        assert "Mapi Ingegneria" in company_sources[0]["content"]
         assert "Fondo Riqualificazione 2027" in project_facts_markdown
         assert [item.id for item in verified_facts] == [fact["id"]]
         return GeneratedDraft(
@@ -642,7 +668,6 @@ async def test_follow_up_reuses_previous_document_evidence(client, monkeypatch):
     async def fake_generation(
         question,
         evidence,
-        company_facts=None,
         conversation_history=None,
     ):
         assert question == "Come contattarlo?"
@@ -720,7 +745,6 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
     async def fake_generation(
         question,
         retrieved_evidence,
-        company_facts=None,
         conversation_history=None,
     ):
         generation_calls.append(
@@ -730,7 +754,6 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
             }
         )
         assert retrieved_evidence[0]["content"]
-        assert any(fact["key"] == "company_facts_markdown" for fact in company_facts or [])
         return GeneratedAnswer(
             answer="Il requisito deve essere verificabile nella fonte [1].",
             citations=[1],
@@ -781,4 +804,4 @@ async def test_upload_rejects_unsupported_documents(client):
     )
 
     assert response.status_code == 415
-    assert response.json()["detail"] == "Sono supportati soltanto file PDF e TXT"
+    assert response.json()["detail"] == "Sono supportati soltanto file PDF, TXT e Markdown"

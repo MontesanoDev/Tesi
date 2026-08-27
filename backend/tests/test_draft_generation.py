@@ -35,13 +35,25 @@ def test_generated_draft_is_validated_and_rendered_with_provenance():
         model="deepseek-test",
         total_tokens=81,
     )
-    markdown = render_draft_markdown("progetto-demo", generated, [fact])
+    company_sources = [
+        {
+            "source_name": "profilo-mapi.md",
+            "chunk_index": 0,
+            "content": "Mapi Ingegneria supporta enti committenti.",
+        }
+    ]
+    markdown = render_draft_markdown(
+        "progetto-demo",
+        generated,
+        [fact],
+        company_sources,
+    )
 
     assert "status: pending_review" in markdown
     assert "[TODO" not in markdown
     assert "- Importo richiesto" in markdown
     assert "[CF:cf-deadline] Termine di candidatura - avviso.pdf, frammento 18" in markdown
-    assert "[COMPANY] Dati provenienti da company-facts.md." in markdown
+    assert "[COMPANY] Fonti Company KB collegate: profilo-mapi.md." in markdown
 
 
 @pytest.mark.parametrize(

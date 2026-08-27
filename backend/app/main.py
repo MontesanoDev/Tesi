@@ -11,12 +11,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.artifacts import (
     ArtifactReadOnlyError,
     ensure_project_artifacts,
-    get_global_artifact,
     get_project_artifact,
     list_project_artifacts,
     replace_project_artifact,
     seed_markdown_artifacts,
-    update_global_artifact,
     update_project_artifact,
 )
 from app.call_facts import (
@@ -54,11 +52,11 @@ from app.repository import (
     create_project,
     delete_global_document,
     delete_project,
-    get_company_facts,
     get_conversation,
     get_conversation_history,
     get_document_review,
     get_global_knowledge,
+    get_linked_company_context,
     get_or_create_conversation,
     get_project,
     is_follow_up_question,
@@ -197,7 +195,7 @@ async def global_knowledge() -> dict:
     status_code=status.HTTP_201_CREATED,
 )
 async def global_knowledge_file_create(
-    file: Annotated[UploadFile, File(description="Documento aziendale PDF o TXT")],
+    file: Annotated[UploadFile, File(description="Documento PDF, TXT o Markdown")],
     category: Annotated[Literal["general", "company"], Form()] = "company",
 ) -> dict:
     try:
@@ -209,28 +207,6 @@ async def global_knowledge_file_create(
     except (EmptyDocumentError, InvalidDocumentError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     return add_global_document(document, category)
-
-
-@app.get(
-    "/api/global-knowledge/company-facts",
-    response_model=KnowledgeArtifactDetail,
-)
-async def global_company_facts() -> dict:
-    artifact = get_global_artifact("company_facts")
-    if artifact is None:
-        raise HTTPException(status_code=404, detail="Company Facts non disponibili")
-    return artifact
-
-
-@app.put(
-    "/api/global-knowledge/company-facts",
-    response_model=KnowledgeArtifactDetail,
-)
-async def global_company_facts_update(payload: KnowledgeArtifactUpdate) -> dict:
-    artifact = update_global_artifact("company_facts", payload.content)
-    if artifact is None:
-        raise HTTPException(status_code=404, detail="Company Facts non disponibili")
-    return artifact
 
 
 @app.delete(
@@ -451,7 +427,6 @@ async def project_draft_generate(project_id: str) -> dict:
     artifact_ids = {
         "template": f"{project_id}--template",
         "project_facts": f"{project_id}--project-facts",
-        "company_facts": "global--company-facts",
         "draft": f"{project_id}--draft",
     }
     artifacts = {
@@ -466,8 +441,7 @@ async def project_draft_generate(project_id: str) -> dict:
 
     template = artifacts["template"]
     project_facts = artifacts["project_facts"]
-    company_facts = artifacts["company_facts"]
-    if template is None or project_facts is None or company_facts is None:
+    if template is None or project_facts is None:
         raise RuntimeError("Gli artefatti validati non sono piu disponibili")
     if template["status"] == "Da configurare":
         raise HTTPException(
@@ -475,11 +449,12 @@ async def project_draft_generate(project_id: str) -> dict:
             detail="Configura il Template prima di generare il draft",
         )
 
+    company_sources = get_linked_company_context(project_id)
     try:
         generated = await generate_grounded_draft(
             project_title=project["title"],
             template_markdown=template["content"],
-            company_facts_markdown=company_facts["content"],
+            company_sources=company_sources,
             project_facts_markdown=project_facts["content"],
             verified_facts=verified_facts,
         )
@@ -490,7 +465,12 @@ async def project_draft_generate(project_id: str) -> dict:
     except GenerationError as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
-    markdown = render_draft_markdown(project_id, generated, verified_facts)
+    markdown = render_draft_markdown(
+        project_id,
+        generated,
+        verified_facts,
+        company_sources,
+    )
     draft = replace_project_artifact(
         project_id,
         artifact_ids["draft"],
@@ -607,7 +587,6 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
         generated = await generate_grounded_answer(
             payload.question,
             evidence,
-            company_facts=get_company_facts(),
             conversation_history=history,
         )
     except GenerationNotConfiguredError as exc:
@@ -649,7 +628,7 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
 )
 async def project_file_create(
     project_id: str,
-    file: Annotated[UploadFile, File(description="Documento PDF o TXT")],
+    file: Annotated[UploadFile, File(description="Documento PDF, TXT o Markdown")],
 ) -> dict:
     if get_project(project_id) is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")

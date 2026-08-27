@@ -14,7 +14,11 @@ from app.db import get_storage_path
 MAX_FILE_SIZE = 20 * 1024 * 1024
 CHUNK_SIZE = 1_200
 CHUNK_OVERLAP = 200
-SUPPORTED_EXTENSIONS = {".pdf": "application/pdf", ".txt": "text/plain"}
+SUPPORTED_EXTENSIONS = {
+    ".md": "text/markdown",
+    ".pdf": "application/pdf",
+    ".txt": "text/plain",
+}
 
 
 class IngestionError(ValueError):
@@ -75,7 +79,7 @@ def chunk_text(
 
 
 def _extract_text(path: Path, extension: str) -> tuple[str, int]:
-    if extension == ".txt":
+    if extension in {".md", ".txt"}:
         return path.read_text(encoding="utf-8", errors="replace"), 1
 
     try:
@@ -114,7 +118,7 @@ async def ingest_upload(project_id: str, upload: UploadFile) -> IngestedDocument
     original_name = Path(upload.filename or "").name
     extension = Path(original_name).suffix.lower()
     if not original_name or extension not in SUPPORTED_EXTENSIONS:
-        raise UnsupportedDocumentError("Sono supportati soltanto file PDF e TXT")
+        raise UnsupportedDocumentError("Sono supportati soltanto file PDF, TXT e Markdown")
 
     mime_type = SUPPORTED_EXTENSIONS[extension]
     storage_root = get_storage_path()

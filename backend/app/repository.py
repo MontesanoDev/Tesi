@@ -7,7 +7,7 @@ import sqlite3
 import unicodedata
 from uuid import uuid4
 
-from app.artifacts import get_company_markdown, get_project_artifact
+from app.artifacts import get_project_artifact
 from app.call_facts import CallFactsFormatError, parse_call_facts_markdown
 from app.db import connection
 from app.ingestion import IngestedDocument
@@ -245,30 +245,7 @@ def list_projects() -> list[dict]:
         )
 
 
-def get_company_facts() -> list[dict]:
-    markdown = get_company_markdown()
-    if markdown:
-        return [
-            {
-                "key": "company_facts_markdown",
-                "label": "Company Facts (Markdown)",
-                "value": markdown,
-            }
-        ]
-    with connection() as db:
-        return _rows(
-            db,
-            """
-            SELECT key, label, value
-            FROM company_facts
-            WHERE verified = 1
-            ORDER BY sort_order
-            """,
-        )
-
-
 def get_global_knowledge() -> dict:
-    company_markdown = get_company_markdown()
     with connection() as db:
         documents = _rows(
             db,
@@ -279,25 +256,20 @@ def get_global_knowledge() -> dict:
             ORDER BY datetime(created_at) DESC, id DESC
             """,
         )
-        company_fact_count = (
-            sum(line.startswith("## ") for line in company_markdown.splitlines())
-            if company_markdown
-            else db.execute(
-                "SELECT COUNT(*) FROM company_facts WHERE verified = 1"
-            ).fetchone()[0]
-        )
     return {
         "documents": documents,
         "document_count": len(documents),
         "chunk_count": sum(document["chunk_count"] for document in documents),
-        "company_fact_count": company_fact_count,
     }
 
 
 def add_global_document(document: IngestedDocument, category: str) -> dict:
     chunk_count = len(document.chunks)
     chunk_label = "frammento" if chunk_count == 1 else "frammenti"
-    file_type = "PDF" if document.mime_type == "application/pdf" else "TXT"
+    file_type = {
+        "application/pdf": "PDF",
+        "text/markdown": "MD",
+    }.get(document.mime_type, "TXT")
     metadata = f"{file_type} · {_format_size(document.byte_size)} · {chunk_count} {chunk_label}"
     with connection() as db:
         cursor = db.execute(
@@ -374,6 +346,38 @@ def list_project_global_documents(project_id: str) -> list[dict] | None:
             """,
             (project_id,),
         )
+
+
+def get_linked_company_context(
+    project_id: str,
+    max_characters: int = 45_000,
+) -> list[dict]:
+    with connection() as db:
+        rows = _rows(
+            db,
+            """
+            SELECT d.name AS source_name, c.chunk_index, c.content
+            FROM project_global_document_links l
+            JOIN global_documents d ON d.id = l.document_id
+            JOIN global_document_chunks c ON c.document_id = d.id
+            WHERE l.project_id = ? AND d.category = 'company'
+            ORDER BY d.id, c.chunk_index
+            """,
+            (project_id,),
+        )
+
+    selected: list[dict] = []
+    used_characters = 0
+    for row in rows:
+        remaining = max_characters - used_characters
+        if remaining <= 0:
+            break
+        content = row["content"][:remaining]
+        if not content:
+            continue
+        selected.append({**row, "content": content})
+        used_characters += len(content)
+    return selected
 
 
 def set_project_global_document_link(

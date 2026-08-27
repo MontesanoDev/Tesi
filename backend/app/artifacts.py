@@ -14,13 +14,6 @@ class ArtifactReadOnlyError(ValueError):
 
 GLOBAL_ARTIFACTS = (
     ("general-kb", "general_kb", "General KB", "general-kb.md", "Da configurare"),
-    (
-        "company-facts",
-        "company_facts",
-        "Company Facts",
-        "company-facts.md",
-        "Verificato",
-    ),
 )
 PROJECT_ARTIFACTS = (
     ("call-facts", "call_facts", "Call Facts", "call-facts.md", "Da estrarre"),
@@ -96,15 +89,7 @@ def _frontmatter(kind: str, scope: str, project_id: str | None, status: str) -> 
     )
 
 
-def _global_content(kind: str, company_facts: list[dict]) -> str:
-    if kind == "company_facts":
-        sections = "\n\n".join(f"## {fact['label']}\n\n{fact['value']}" for fact in company_facts)
-        return (
-            f"{_frontmatter(kind, 'global', None, 'Verificato')}\n"
-            "# Company Facts\n\n"
-            "Dati aziendali verificati e condivisi tra i progetti.\n\n"
-            f"{sections}\n"
-        )
+def _global_content(kind: str) -> str:
     return (
         f"{_frontmatter(kind, 'global', None, 'Da configurare')}\n"
         "# General KB\n\n"
@@ -347,7 +332,21 @@ def _insert_artifact(
     return dict(existing)
 
 
-def _ensure_project_artifacts(db, project: dict, company_facts: list[dict]) -> None:
+def _remove_legacy_company_facts_artifact(db) -> None:
+    artifact = db.execute(
+        "SELECT storage_path FROM knowledge_artifacts WHERE id = 'global--company-facts'"
+    ).fetchone()
+    file_ids = db.execute(
+        "SELECT file_id FROM project_artifact_links WHERE artifact_id = 'global--company-facts'"
+    ).fetchall()
+    for row in file_ids:
+        db.execute("DELETE FROM project_files WHERE id = ?", (row["file_id"],))
+    db.execute("DELETE FROM knowledge_artifacts WHERE id = 'global--company-facts'")
+    if artifact is not None:
+        _artifact_path(artifact["storage_path"]).unlink(missing_ok=True)
+
+
+def _ensure_project_artifacts(db, project: dict) -> None:
     project_id = project["id"]
     for slug, kind, title, filename, status in GLOBAL_ARTIFACTS:
         artifact_id = f"global--{slug}"
@@ -361,7 +360,7 @@ def _ensure_project_artifacts(db, project: dict, company_facts: list[dict]) -> N
             filename,
             f"global/{filename}",
             status,
-            _global_content(kind, company_facts),
+            _global_content(kind),
         )
         _link_artifact(db, project_id, artifact, _read_artifact(artifact["storage_path"]))
 
@@ -385,18 +384,10 @@ def _ensure_project_artifacts(db, project: dict, company_facts: list[dict]) -> N
 
 def seed_markdown_artifacts() -> None:
     with connection() as db:
-        company_facts = [
-            dict(row)
-            for row in db.execute(
-                """
-                SELECT key, label, value FROM company_facts
-                WHERE verified = 1 ORDER BY sort_order
-                """
-            ).fetchall()
-        ]
+        _remove_legacy_company_facts_artifact(db)
         projects = [dict(row) for row in db.execute("SELECT * FROM projects").fetchall()]
         for project in projects:
-            _ensure_project_artifacts(db, project, company_facts)
+            _ensure_project_artifacts(db, project)
 
 
 def ensure_project_artifacts(project_id: str) -> None:
@@ -404,16 +395,7 @@ def ensure_project_artifacts(project_id: str) -> None:
         project = db.execute("SELECT * FROM projects WHERE id = ?", (project_id,)).fetchone()
         if project is None:
             return
-        company_facts = [
-            dict(row)
-            for row in db.execute(
-                """
-                SELECT key, label, value FROM company_facts
-                WHERE verified = 1 ORDER BY sort_order
-                """
-            ).fetchall()
-        ]
-        _ensure_project_artifacts(db, dict(project), company_facts)
+        _ensure_project_artifacts(db, dict(project))
 
 
 def list_project_artifacts(project_id: str) -> list[dict] | None:
@@ -440,7 +422,6 @@ def list_project_artifacts(project_id: str) -> list[dict] | None:
                         WHEN 'project_facts' THEN 1
                         WHEN 'template' THEN 2
                         WHEN 'output_draft' THEN 3
-                        WHEN 'company_facts' THEN 4
                         ELSE 5
                     END
                 """,
@@ -585,16 +566,3 @@ def update_global_artifact(kind: str, content: str) -> dict | None:
         for link in links:
             _link_artifact(db, link["project_id"], updated, content)
     return get_global_artifact(kind)
-
-
-def get_company_markdown() -> str | None:
-    with connection() as db:
-        row = db.execute(
-            "SELECT storage_path FROM knowledge_artifacts WHERE id = 'global--company-facts'"
-        ).fetchone()
-    if row is None:
-        return None
-    try:
-        return _read_artifact(row["storage_path"])
-    except FileNotFoundError:
-        return None
