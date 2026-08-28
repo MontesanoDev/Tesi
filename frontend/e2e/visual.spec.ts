@@ -127,8 +127,7 @@ test('document review keeps source provenance visible', async ({ page }, testInf
   })
 })
 
-test('company knowledge is global and general knowledge can be linked', async ({ page }, testInfo) => {
-  let linkedDocumentId: number | null = null
+test('company knowledge is managed in the global archive', async ({ page }, testInfo) => {
   const documents = [
     {
       id: 41,
@@ -229,32 +228,6 @@ test('company knowledge is global and general knowledge can be linked', async ({
       body: JSON.stringify({ ...document, content: profileContent }),
     })
   })
-  await page.route(
-    /\/api\/projects\/fondo-riqualificazione-2027\/global-knowledge$/,
-    async (route) => {
-      await route.fulfill({
-        contentType: 'application/json',
-        body: JSON.stringify(documents.map((document) => ({
-          ...document,
-          linked: document.category === 'company' || document.id === linkedDocumentId,
-        }))),
-      })
-    },
-  )
-  await page.route(
-    /\/api\/projects\/fondo-riqualificazione-2027\/global-knowledge\/(\d+)$/,
-    async (route) => {
-      const documentId = Number(route.request().url().split('/').at(-1))
-      const payload = route.request().postDataJSON() as { linked: boolean }
-      linkedDocumentId = payload.linked ? documentId : null
-      const document = documents.find((item) => item.id === documentId)
-      await route.fulfill({
-        contentType: 'application/json',
-        body: JSON.stringify({ ...document, linked: payload.linked }),
-      })
-    },
-  )
-
   await page.goto('/settings')
   await expect(page.getByRole('heading', { name: 'Impostazioni generali' })).toBeVisible()
   await expect(page.getByRole('tab', { name: 'Company KB' })).not.toBeVisible()
@@ -296,14 +269,11 @@ test('company knowledge is global and general knowledge can be linked', async ({
   })
 
   await page.goto('/projects/fondo-riqualificazione-2027/settings')
-  await expect(page.getByRole('switch', { name: 'Collega curriculum-mapi.pdf' })).toHaveCount(0)
-  await expect(page.getByText('Company KB · sempre disponibile')).toBeVisible()
-  await expect(page.getByText('3 documenti', { exact: true })).toBeVisible()
-  const generalToggle = page.getByRole('switch', { name: 'Collega norme-tecniche.txt' })
-  await expect(generalToggle).toHaveAttribute('aria-checked', 'false')
-  await generalToggle.click()
-  await expect(generalToggle).toHaveAttribute('aria-checked', 'true')
-  await expect(page.getByText('4 documenti', { exact: true })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Impostazioni progetto' })).toBeVisible()
+  await expect(page.getByText('Conoscenza condivisa')).toHaveCount(0)
+  await expect(page.getByText('curriculum-mapi.pdf')).toHaveCount(0)
+  await expect(page.getByText('norme-tecniche.txt')).toHaveCount(0)
+  await expect(page.getByRole('heading', { name: 'Call Facts' })).toBeVisible()
   await expect(page.getByText('Scope controllato')).toHaveCount(0)
   await expectNoHorizontalOverflow(page)
   await page.screenshot({

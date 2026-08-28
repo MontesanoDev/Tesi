@@ -1724,8 +1724,7 @@
   min-height: 66px;
 }
 
-.company-kb-section,
-.company-kb-project-section {
+.company-kb-section {
   margin-top: 16px;
   padding-top: 14px;
   border-top: 1px solid var(--border);
@@ -1736,8 +1735,7 @@
   font-size: 10px;
 }
 
-.company-document-list,
-.project-global-document-list {
+.company-document-list {
   border: 1px solid #373834;
   border-radius: 8px;
   background: var(--panel-raised);
@@ -1754,25 +1752,20 @@
   border-bottom: 1px solid #373834;
 }
 
-.company-document-row:last-child,
-.project-global-document-row:last-child {
+.company-document-row:last-child {
   border-bottom: 0;
 }
 
-.company-document-row > div,
-.project-global-document-row > div {
+.company-document-row > div {
   min-width: 0;
 }
 
 .company-document-row strong,
-.company-document-row span,
-.project-global-document-row strong,
-.project-global-document-row span {
+.company-document-row span {
   display: block;
 }
 
-.company-document-row strong,
-.project-global-document-row strong {
+.company-document-row strong {
   overflow: hidden;
   color: var(--text);
   font-size: 12px;
@@ -1780,8 +1773,7 @@
   white-space: nowrap;
 }
 
-.company-document-row > div > span,
-.project-global-document-row > div > span {
+.company-document-row > div > span {
   margin-top: 4px;
   color: var(--text-muted);
   font-size: 10px;
@@ -1808,8 +1800,7 @@
   color: #dc9b8f;
 }
 
-.company-kb-empty,
-.project-global-empty {
+.company-kb-empty {
   display: flex;
   min-height: 76px;
   align-items: center;
@@ -1821,24 +1812,6 @@
   color: var(--text-faint);
   font-size: 11px;
   text-align: center;
-}
-
-.project-global-document-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 18px 46px;
-  align-items: center;
-  gap: 12px;
-  min-height: 58px;
-  padding: 8px 12px;
-  border-bottom: 1px solid #373834;
-}
-
-.project-global-document-row .toggle {
-  justify-self: end;
-}
-
-.project-global-document-row--automatic {
-  grid-template-columns: minmax(0, 1fr) auto;
 }
 
 .toggle:disabled {
@@ -2443,8 +2416,6 @@
   .company-document-row { grid-template-columns: 20px minmax(0, 1fr) 34px 34px; }
   .company-document-row .status-pill { display: none; }
   .company-kb-section .setting-section-title { align-items: flex-start; flex-direction: column; }
-  .company-kb-project-section .setting-section-title { align-items: stretch; flex-direction: column; }
-  .company-kb-project-section .setting-section-title .button { width: 100%; }
   .metric-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .metric-grid > .button { grid-column: 1 / -1; }
   .metric-grid > div { flex-direction: column; justify-content: center; align-items: flex-start; }

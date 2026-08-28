@@ -1,73 +1,17 @@
-import { LoaderCircle } from 'lucide-react'
-import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { StatusPill } from '../components/StatusPill'
 import { useProject } from '../hooks/useProject'
-import type { ProjectGlobalKnowledgeDocument } from '../types'
 
 export function ProjectSettingsPage() {
   const { projectId } = useParams()
   const navigate = useNavigate()
   const { project, loading, error } = useProject(projectId)
-  const [globalDocuments, setGlobalDocuments] = useState<ProjectGlobalKnowledgeDocument[]>([])
-  const [globalLoading, setGlobalLoading] = useState(true)
-  const [globalError, setGlobalError] = useState<string | null>(null)
-  const [linkingId, setLinkingId] = useState<number | null>(null)
-
-  useEffect(() => {
-    if (!projectId) return
-    const controller = new AbortController()
-    setGlobalLoading(true)
-    api.projectGlobalKnowledge(projectId, controller.signal)
-      .then((documents) => {
-        setGlobalDocuments(documents)
-        setGlobalError(null)
-      })
-      .catch((reason) => {
-        if (reason instanceof DOMException && reason.name === 'AbortError') return
-        setGlobalError(reason instanceof Error ? reason.message : 'Archivio globale non disponibile')
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) setGlobalLoading(false)
-      })
-    return () => controller.abort()
-  }, [projectId])
 
   if (loading) return <AppShell active="projects"><LoadingState /></AppShell>
   if (error || !project) {
     return <AppShell active="projects"><ErrorState message={error ?? 'Progetto non trovato'} /></AppShell>
-  }
-
-  const activeProjectId = project.id
-  const companyDocuments = globalDocuments.filter((document) => document.category === 'company')
-  const generalDocuments = globalDocuments.filter((document) => document.category === 'general')
-  const activeDocumentCount = companyDocuments.length
-    + generalDocuments.filter((document) => document.linked).length
-  const activeDocumentLabel = activeDocumentCount === 1
-    ? '1 documento'
-    : `${activeDocumentCount} documenti`
-
-  async function toggleGlobalDocument(document: ProjectGlobalKnowledgeDocument) {
-    if (linkingId !== null) return
-    setLinkingId(document.id)
-    setGlobalError(null)
-    try {
-      const updated = await api.updateProjectGlobalKnowledge(
-        activeProjectId,
-        document.id,
-        !document.linked,
-      )
-      setGlobalDocuments((current) => current.map((item) => (
-        item.id === updated.id ? updated : item
-      )))
-    } catch (reason) {
-      setGlobalError(reason instanceof Error ? reason.message : 'Collegamento non riuscito')
-    } finally {
-      setLinkingId(null)
-    }
   }
 
   return (
@@ -78,85 +22,8 @@ export function ProjectSettingsPage() {
       <div className="settings-page page-container settings-page--project">
         <header className="page-heading">
           <h1>Impostazioni progetto</h1>
-          <p>Gestisci le conoscenze tecniche utilizzate in questo progetto</p>
+          <p>Gestisci i dati estratti dalle fonti del progetto</p>
         </header>
-
-        <section className="settings-card project-setting-card">
-          <div className="settings-card-heading">
-            <span className="setting-monogram setting-monogram--blue">KB</span>
-            <div>
-              <h2>Conoscenza condivisa</h2>
-              <p>La Company KB è disponibile automaticamente in ogni progetto</p>
-            </div>
-            <StatusPill tone={activeDocumentCount ? 'success' : 'info'}>
-              {activeDocumentLabel}
-            </StatusPill>
-          </div>
-          <div className="company-kb-project-section">
-            <div className="setting-section-title">
-              <span>Company KB · sempre disponibile</span>
-              <button
-                className="button button--compact"
-                type="button"
-                onClick={() => navigate('/company-knowledge')}
-              >
-                Gestisci archivio globale
-              </button>
-            </div>
-            {globalLoading ? (
-              <LoadingState label="Caricamento Company KB" />
-            ) : companyDocuments.length ? (
-              <div className="project-global-document-list">
-                {companyDocuments.map((document) => (
-                  <div
-                    className="project-global-document-row project-global-document-row--automatic"
-                    key={document.id}
-                  >
-                    <div>
-                      <strong>{document.name}</strong>
-                      <span>Company KB · {document.metadata}</span>
-                    </div>
-                    <StatusPill tone="success">Attiva</StatusPill>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="project-global-empty">
-                Nessun documento disponibile nella Company KB.
-              </p>
-            )}
-          </div>
-          {!globalLoading && generalDocuments.length > 0 && (
-            <div className="company-kb-project-section">
-              <div className="setting-section-title">
-                <span>General KB · fonti tecniche opzionali</span>
-              </div>
-              <div className="project-global-document-list">
-                {generalDocuments.map((document) => (
-                  <div className="project-global-document-row" key={document.id}>
-                    <div>
-                      <strong>{document.name}</strong>
-                      <span>General KB · {document.metadata}</span>
-                    </div>
-                    {linkingId === document.id && <LoaderCircle className="spin" size={16} />}
-                    <button
-                      type="button"
-                      role="switch"
-                      aria-label={`Collega ${document.name}`}
-                      aria-checked={document.linked}
-                      className={`toggle${document.linked ? ' is-on' : ''}`}
-                      disabled={linkingId !== null}
-                      onClick={() => toggleGlobalDocument(document)}
-                    >
-                      <span />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          {globalError && <p className="upload-feedback upload-feedback--error" role="alert">{globalError}</p>}
-        </section>
 
         <section className="settings-card project-setting-card call-facts-card">
           <div className="settings-card-heading">
