@@ -62,6 +62,7 @@ from app.repository import (
     get_global_knowledge,
     get_or_create_conversation,
     get_project,
+    get_project_file_record,
     is_follow_up_question,
     list_project_global_documents,
     list_projects,
@@ -73,6 +74,7 @@ from app.repository import (
     update_call_fact_metrics,
     update_call_fact_review_metrics,
     update_global_document_content,
+    update_project_file_content,
 )
 from app.schemas import (
     CallFactRevision,
@@ -94,6 +96,8 @@ from app.schemas import (
     ProjectCreate,
     ProjectDetail,
     ProjectFile,
+    ProjectFileContent,
+    ProjectFileUpdate,
     ProjectGlobalKnowledgeDocument,
     ProjectSummary,
     QuestionRequest,
@@ -724,6 +728,81 @@ async def project_file_create(
     if result is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
     return result
+
+
+@app.get(
+    "/api/projects/{project_id}/files/{file_id}/content",
+    response_model=ProjectFileContent,
+)
+async def project_file_content(project_id: str, file_id: int) -> dict:
+    document = get_project_file_record(project_id, file_id)
+    if document is None:
+        raise HTTPException(status_code=404, detail="Fonte del progetto non trovata")
+    if document["mime_type"] not in {"text/plain", "text/markdown"}:
+        raise HTTPException(
+            status_code=415,
+            detail="Soltanto le fonti TXT e Markdown possono essere modificate",
+        )
+
+    storage_root = get_storage_path().resolve()
+    path = (storage_root / document["storage_path"]).resolve()
+    if storage_root not in path.parents or not path.is_file():
+        raise HTTPException(status_code=404, detail="File della fonte non trovato")
+    try:
+        content = path.read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as exc:
+        raise HTTPException(status_code=422, detail="La fonte testuale non e leggibile") from exc
+    return {**document, "content": content}
+
+
+@app.put(
+    "/api/projects/{project_id}/files/{file_id}/content",
+    response_model=ProjectFileContent,
+)
+async def project_file_content_update(
+    project_id: str,
+    file_id: int,
+    payload: ProjectFileUpdate,
+) -> dict:
+    document = get_project_file_record(project_id, file_id)
+    if document is None:
+        raise HTTPException(status_code=404, detail="Fonte del progetto non trovata")
+    if document["mime_type"] not in {"text/plain", "text/markdown"}:
+        raise HTTPException(
+            status_code=415,
+            detail="Soltanto le fonti TXT e Markdown possono essere modificate",
+        )
+
+    chunks = chunk_text(payload.content)
+    if not chunks:
+        raise HTTPException(status_code=422, detail="La fonte non puo essere vuota")
+
+    storage_root = get_storage_path().resolve()
+    path = (storage_root / document["storage_path"]).resolve()
+    if storage_root not in path.parents or not path.is_file():
+        raise HTTPException(status_code=404, detail="File della fonte non trovato")
+
+    encoded = payload.content.encode("utf-8")
+    previous_content = path.read_bytes()
+    temporary_path = path.with_name(f".{path.name}.{uuid4().hex}.tmp")
+    try:
+        temporary_path.write_bytes(encoded)
+        temporary_path.replace(path)
+        updated = update_project_file_content(
+            project_id,
+            file_id,
+            len(encoded),
+            chunks,
+        )
+    except Exception:
+        path.write_bytes(previous_content)
+        raise
+    finally:
+        temporary_path.unlink(missing_ok=True)
+    if updated is None:
+        path.write_bytes(previous_content)
+        raise HTTPException(status_code=404, detail="Fonte del progetto non trovata")
+    return {**updated, "content": payload.content}
 
 
 @app.get("/api/projects/{project_id}/document-review", response_model=DocumentReview)

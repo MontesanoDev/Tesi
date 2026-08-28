@@ -17,8 +17,14 @@ export interface ProjectFile {
   metadata: string
   kind: 'source' | 'template'
   status: string
+  mime_type?: string | null
+  byte_size?: number
   page_count: number
   chunk_count: number
+}
+
+export interface ProjectFileContent extends ProjectFile {
+  content: string
 }
 
 export interface GlobalKnowledgeDocument {

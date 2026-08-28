@@ -27,8 +27,18 @@ class ProjectFile(BaseModel):
     metadata: str
     kind: str
     status: str
+    mime_type: str | None = None
+    byte_size: int = 0
     page_count: int = 0
     chunk_count: int = 0
+
+
+class ProjectFileContent(ProjectFile):
+    content: str
+
+
+class ProjectFileUpdate(BaseModel):
+    content: str = Field(min_length=1, max_length=500_000)
 
 
 class GlobalKnowledgeDocument(BaseModel):

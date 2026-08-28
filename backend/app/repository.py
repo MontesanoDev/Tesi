@@ -512,7 +512,8 @@ def get_project(project_id: str) -> dict | None:
         result["files"] = _rows(
             db,
             """
-            SELECT id, name, metadata, kind, status, page_count, chunk_count
+            SELECT id, name, metadata, kind, status, mime_type, byte_size,
+                   page_count, chunk_count
             FROM project_files
             WHERE project_id = ? AND kind != 'artifact'
             ORDER BY sort_order
@@ -794,9 +795,11 @@ def delete_project(project_id: str) -> bool:
 
 def add_project_file(project_id: str, document: IngestedDocument) -> dict | None:
     chunk_count = len(document.chunks)
-    chunk_label = "frammento" if chunk_count == 1 else "frammenti"
-    file_type = "PDF" if document.mime_type == "application/pdf" else "TXT"
-    metadata = f"{file_type} · {_format_size(document.byte_size)} · {chunk_count} {chunk_label}"
+    metadata = _global_document_metadata(
+        document.mime_type,
+        document.byte_size,
+        chunk_count,
+    )
 
     with connection() as db:
         if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
@@ -849,10 +852,85 @@ def add_project_file(project_id: str, document: IngestedDocument) -> dict | None
         )
         row = db.execute(
             """
-            SELECT id, name, metadata, kind, status, page_count, chunk_count
+            SELECT id, name, metadata, kind, status, mime_type, byte_size,
+                   page_count, chunk_count
             FROM project_files WHERE id = ?
             """,
             (file_id,),
+        ).fetchone()
+    return dict(row) if row is not None else None
+
+
+def get_project_file_record(project_id: str, file_id: int) -> dict | None:
+    with connection() as db:
+        row = db.execute(
+            """
+            SELECT id, project_id, name, metadata, kind, status, storage_path,
+                   mime_type, byte_size, page_count, chunk_count
+            FROM project_files
+            WHERE project_id = ? AND id = ? AND kind != 'artifact'
+            """,
+            (project_id, file_id),
+        ).fetchone()
+    return dict(row) if row is not None else None
+
+
+def update_project_file_content(
+    project_id: str,
+    file_id: int,
+    byte_size: int,
+    chunks: list[str],
+) -> dict | None:
+    with connection() as db:
+        document = db.execute(
+            """
+            SELECT mime_type
+            FROM project_files
+            WHERE project_id = ? AND id = ? AND kind != 'artifact'
+            """,
+            (project_id, file_id),
+        ).fetchone()
+        if document is None:
+            return None
+
+        db.execute("DELETE FROM document_chunks WHERE file_id = ?", (file_id,))
+        db.executemany(
+            """
+            INSERT INTO document_chunks (
+                project_id, file_id, chunk_index, content, char_count
+            ) VALUES (?, ?, ?, ?, ?)
+            """,
+            [
+                (project_id, file_id, index, chunk, len(chunk))
+                for index, chunk in enumerate(chunks)
+            ],
+        )
+        db.execute(
+            """
+            UPDATE project_files
+            SET metadata = ?, status = 'Indicizzato', byte_size = ?,
+                page_count = 1, chunk_count = ?
+            WHERE project_id = ? AND id = ?
+            """,
+            (
+                _global_document_metadata(document["mime_type"], byte_size, len(chunks)),
+                byte_size,
+                len(chunks),
+                project_id,
+                file_id,
+            ),
+        )
+        db.execute(
+            "UPDATE projects SET updated_label = 'Aggiornato ora' WHERE id = ?",
+            (project_id,),
+        )
+        row = db.execute(
+            """
+            SELECT id, name, metadata, kind, status, mime_type, byte_size,
+                   page_count, chunk_count
+            FROM project_files WHERE project_id = ? AND id = ?
+            """,
+            (project_id, file_id),
         ).fetchone()
     return dict(row) if row is not None else None
 

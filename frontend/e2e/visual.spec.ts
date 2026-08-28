@@ -20,6 +20,7 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
 
   await page.getByText('Fondo Riqualificazione 2027').first().click()
   await expect(page.getByPlaceholder('Come posso aiutarti in questo progetto?')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Contesto progetto' })).toBeVisible()
   await expect(page.getByText('Fondo_Riqualificazione_2027.pdf')).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
@@ -68,14 +69,89 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
   await expect(citedSource).toBeVisible()
   await expect(composer).toBeInViewport()
   await expectNoHorizontalOverflow(page)
+})
 
-  await page.getByRole('button', { name: 'Menu progetto' }).click()
-  await page.getByRole('button', { name: /Impostazioni progetto/ }).click()
-  await expect(page.getByRole('heading', { name: 'Impostazioni progetto' })).toBeVisible()
-  await expect(page.getByText('Fonti globali rese disponibili nel progetto corrente')).toBeVisible()
+test('project context accepts and edits Markdown sources', async ({ page }, testInfo) => {
+  let markdownContent = '# Nota tecnica\n\nContenuto iniziale.'
+  const files = [
+    {
+      id: 21,
+      name: 'bando.pdf',
+      metadata: 'PDF · 2 MB · 12 frammenti',
+      kind: 'source',
+      status: 'Indicizzato',
+      mime_type: 'application/pdf',
+      byte_size: 2097152,
+      page_count: 20,
+      chunk_count: 12,
+    },
+  ]
+  const projectPayload = () => ({
+    id: 'contesto-progetto',
+    title: 'Contesto progetto',
+    description: 'Fonti persistenti della commessa',
+    status: 'In analisi',
+    status_tone: 'info',
+    updated_label: 'ora',
+    source_count: files.length,
+    model_count: 0,
+    instructions: '',
+    call_fact_count: 0,
+    missing_fact_count: 0,
+    files,
+    knowledge_sources: [],
+    conversations: [],
+  })
+
+  await page.route(/\/api\/projects\/contesto-progetto$/, async (route) => {
+    await route.fulfill({ contentType: 'application/json', body: JSON.stringify(projectPayload()) })
+  })
+  await page.route(/\/api\/projects\/contesto-progetto\/files$/, async (route) => {
+    const document = {
+      id: 22,
+      name: 'nota-tecnica.md',
+      metadata: 'MD · 42 B · 1 frammento',
+      kind: 'source',
+      status: 'Indicizzato',
+      mime_type: 'text/markdown',
+      byte_size: 42,
+      page_count: 1,
+      chunk_count: 1,
+    }
+    if (!files.some((file) => file.id === document.id)) files.push(document)
+    await route.fulfill({ status: 201, contentType: 'application/json', body: JSON.stringify(document) })
+  })
+  await page.route(/\/api\/projects\/contesto-progetto\/files\/22\/content$/, async (route) => {
+    if (route.request().method() === 'PUT') {
+      markdownContent = (route.request().postDataJSON() as { content: string }).content
+    }
+    const document = files.find((file) => file.id === 22)
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({ ...document, content: markdownContent }),
+    })
+  })
+
+  await page.goto('/projects/contesto-progetto')
+  await expect(page.getByRole('heading', { name: 'Contesto progetto' }).last()).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Modifica bando.pdf' })).toHaveCount(0)
+
+  await page.getByRole('button', { name: 'Aggiungi al contesto' }).click()
+  await expect(page.getByRole('button', { name: 'Carica dal dispositivo' })).toBeVisible()
+  await page.getByRole('button', { name: 'Aggiungi contenuto testuale' }).click()
+  await page.getByLabel('Titolo').fill('Nota tecnica')
+  await page.getByLabel('Contenuto Markdown').fill('Contenuto iniziale.')
+  await page.getByRole('button', { name: 'Aggiungi al progetto' }).click()
+  await expect(page.getByText('nota-tecnica.md', { exact: true })).toBeVisible()
+
+  await page.getByRole('button', { name: 'Modifica nota-tecnica.md' }).click()
+  await page.getByLabel('Contenuto Markdown').fill('# Nota tecnica\n\nContenuto corretto.')
+  await page.getByRole('button', { name: 'Salva modifiche' }).click()
+  await expect(page.getByText('nota-tecnica.md aggiornato e reindicizzato in 1 frammento.')).toBeVisible()
+  expect(markdownContent).toContain('Contenuto corretto')
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
-    path: `artifacts/${testInfo.project.name}-project-settings.png`,
+    path: `artifacts/${testInfo.project.name}-project-context.png`,
     fullPage: true,
   })
 })

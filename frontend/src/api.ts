@@ -14,6 +14,7 @@ import type {
   KnowledgeArtifactSummary,
   ProjectDetail,
   ProjectFile,
+  ProjectFileContent,
   ProjectGlobalKnowledgeDocument,
   ProjectSummary,
 } from './types'
@@ -60,6 +61,13 @@ export const api = {
       body,
     })
   },
+  projectFileContent: (projectId: string, fileId: number) =>
+    request<ProjectFileContent>(`/projects/${projectId}/files/${fileId}/content`),
+  updateProjectFileContent: (projectId: string, fileId: number, content: string) =>
+    request<ProjectFileContent>(`/projects/${projectId}/files/${fileId}/content`, {
+      method: 'PUT',
+      body: JSON.stringify({ content }),
+    }),
   globalKnowledge: (signal?: AbortSignal) =>
     request<GlobalKnowledgeOverview>('/global-knowledge', { signal }),
   uploadGlobalKnowledgeFile: (file: File, category: 'general' | 'company') => {

@@ -814,6 +814,7 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
     assert not_configured.json()["generation_status"] == "not_configured"
     assert not_configured.json()["evidence"]
 
+
     generation_calls = []
 
     async def fake_generation(
@@ -868,6 +869,66 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
     assert len(persisted.json()["turns"]) == 2
     assert persisted.json()["turns"][0]["citations"] == [1]
     assert "content" not in persisted.json()["turns"][0]["evidence"][0]
+
+
+@pytest.mark.anyio
+async def test_project_text_source_can_be_edited_and_reindexed(client):
+    project_id = "fondo-riqualificazione-2027"
+    uploaded = await client.post(
+        f"/api/projects/{project_id}/files",
+        files={
+            "file": (
+                "nota-operativa.md",
+                b"# Nota operativa\n\nLa soglia obsoleta e color zaffiro.",
+                "text/markdown",
+            )
+        },
+    )
+    assert uploaded.status_code == 201
+    file_id = uploaded.json()["id"]
+    assert uploaded.json()["mime_type"] == "text/markdown"
+
+    detail = await client.get(f"/api/projects/{project_id}/files/{file_id}/content")
+    assert detail.status_code == 200
+    assert "zaffiro" in detail.json()["content"]
+
+    corrected_content = (
+        "# Nota operativa\n\nLa soglia corretta e color amaranto per il collaudo finale."
+    )
+    updated = await client.put(
+        f"/api/projects/{project_id}/files/{file_id}/content",
+        json={"content": corrected_content},
+    )
+    assert updated.status_code == 200
+    assert updated.json()["content"] == corrected_content
+    assert updated.json()["metadata"].startswith("MD ·")
+    assert updated.json()["chunk_count"] == 1
+
+    with connection() as db:
+        record = db.execute(
+            "SELECT storage_path FROM project_files WHERE id = ?",
+            (file_id,),
+        ).fetchone()
+        indexed_content = db.execute(
+            "SELECT content FROM document_chunks WHERE file_id = ?",
+            (file_id,),
+        ).fetchone()[0]
+    stored_content = (get_storage_path() / record["storage_path"]).read_text(
+        encoding="utf-8"
+    )
+    assert stored_content == corrected_content
+    assert "amaranto" in indexed_content
+
+    evidence = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "amaranto collaudo finale"},
+    )
+    assert evidence.status_code == 200
+    assert evidence.json()["results"][0]["source_name"] == "nota-operativa.md"
+
+    pdf_id = (await client.get(f"/api/projects/{project_id}")).json()["files"][0]["id"]
+    pdf_editor = await client.get(f"/api/projects/{project_id}/files/{pdf_id}/content")
+    assert pdf_editor.status_code == 415
 
 
 @pytest.mark.anyio
