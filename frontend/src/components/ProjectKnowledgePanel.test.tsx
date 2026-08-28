@@ -100,6 +100,63 @@ describe('ProjectKnowledgePanel', () => {
     })
   })
 
+  it('explains invalid handwritten content instead of failing silently', async () => {
+    render(
+      <ProjectKnowledgePanel
+        project={project}
+        onProjectChange={vi.fn().mockResolvedValue(undefined)}
+      />,
+    )
+
+    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi al contesto' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi contenuto testuale' }))
+    fireEvent.change(screen.getByLabelText('Titolo'), { target: { value: 'AB' } })
+    fireEvent.change(screen.getByLabelText('Contenuto Markdown'), {
+      target: { value: 'Contenuto valido.' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi al progetto' }))
+
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'Inserisci un titolo di almeno 3 caratteri',
+    )
+    expect(api.uploadProjectFile).not.toHaveBeenCalled()
+  })
+
+  it('shows the knowledge used by the project', () => {
+    render(
+      <ProjectKnowledgePanel
+        project={{
+          ...project,
+          knowledge_sources: [
+            {
+              id: -1,
+              name: 'Company KB',
+              detail: '3 frammenti disponibili',
+              scope: 'global',
+              tone: 'success',
+              item_count: 2,
+            },
+            {
+              id: -2,
+              name: 'General KB',
+              detail: 'Nessun documento collegato',
+              scope: 'global',
+              tone: 'info',
+              item_count: 0,
+            },
+          ],
+        }}
+        onProjectChange={vi.fn().mockResolvedValue(undefined)}
+      />,
+    )
+
+    expect(screen.getByRole('heading', { name: 'Conoscenza utilizzata' })).toBeVisible()
+    expect(screen.getByText('Company KB')).toBeVisible()
+    expect(screen.getByText('2 documenti')).toBeVisible()
+    expect(screen.getByText('General KB')).toBeVisible()
+    expect(screen.getByText('0 documenti')).toBeVisible()
+  })
+
   it('edits and reindexes a text source', async () => {
     const onProjectChange = vi.fn().mockResolvedValue(undefined)
     const textFile = {

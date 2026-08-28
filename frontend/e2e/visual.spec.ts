@@ -99,7 +99,24 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
     call_fact_count: 0,
     missing_fact_count: 0,
     files,
-    knowledge_sources: [],
+    knowledge_sources: [
+      {
+        id: -1,
+        name: 'Company KB',
+        detail: '2 frammenti disponibili',
+        scope: 'global',
+        tone: 'success',
+        item_count: 1,
+      },
+      {
+        id: -2,
+        name: 'General KB',
+        detail: 'Nessun documento collegato',
+        scope: 'global',
+        tone: 'info',
+        item_count: 0,
+      },
+    ],
     conversations: [],
   })
 
@@ -134,6 +151,9 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
 
   await page.goto('/projects/contesto-progetto')
   await expect(page.getByRole('heading', { name: 'Contesto progetto' }).last()).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Conoscenza utilizzata' })).toBeVisible()
+  await expect(page.getByText('Company KB')).toBeVisible()
+  await expect(page.getByText('1 documento')).toBeVisible()
   await expect(page.getByRole('button', { name: 'Modifica bando.pdf' })).toHaveCount(0)
   await page.getByRole('button', { name: 'Menu progetto' }).click()
   await expect(page.getByRole('button', { name: /Impostazioni progetto/ })).toHaveCount(0)

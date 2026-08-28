@@ -35,6 +35,16 @@ function isEditableSource(file: ProjectFile) {
   return file.mime_type === 'text/plain' || file.mime_type === 'text/markdown'
 }
 
+function knowledgeItemLabel(name: string, count: number) {
+  if (name === 'Company KB' || name === 'General KB') {
+    return count === 1 ? '1 documento' : `${count} documenti`
+  }
+  if (name === 'Modelli') {
+    return count === 1 ? '1 disponibile' : `${count} disponibili`
+  }
+  return count === 1 ? '1 verificato' : `${count} verificati`
+}
+
 export function ProjectKnowledgePanel({
   project,
   onProjectChange,
@@ -112,7 +122,15 @@ export function ProjectKnowledgePanel({
     event.preventDefault()
     const title = textTitle.trim()
     const content = textContent.trim()
-    if ((!editingFile && !title) || !content || savingText) return
+    if (savingText) return
+    if (!editingFile && title.length < 3) {
+      setError('Inserisci un titolo di almeno 3 caratteri')
+      return
+    }
+    if (content.length < 3) {
+      setError('Inserisci un contenuto di almeno 3 caratteri')
+      return
+    }
 
     setSavingText(true)
     setFeedback(null)
@@ -232,6 +250,23 @@ export function ProjectKnowledgePanel({
             )}
           </div>
         </section>
+
+        <section className="knowledge-section knowledge-summary">
+          <h2>Conoscenza utilizzata</h2>
+          <div className="knowledge-source-list">
+            {project.knowledge_sources.length === 0 ? (
+              <p className="empty-list">Nessuna conoscenza condivisa disponibile</p>
+            ) : (
+              project.knowledge_sources.map((source) => (
+                <div className="knowledge-source" key={source.id}>
+                  <span className={`source-dot source-dot--${source.tone}`} />
+                  <strong>{source.name}</strong>
+                  <span>{knowledgeItemLabel(source.name, source.item_count)}</span>
+                </div>
+              ))
+            )}
+          </div>
+        </section>
       </aside>
 
       {textModalOpen && (
@@ -243,9 +278,18 @@ export function ProjectKnowledgePanel({
             disabled={savingText}
             onClick={closeTextModal}
           />
-          <form className="project-modal text-content-modal" onSubmit={saveTextContent}>
+          <form
+            className="project-modal text-content-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="text-content-modal-title"
+            noValidate
+            onSubmit={saveTextContent}
+          >
             <div className="modal-heading">
-              <h2>{editingFile ? `Modifica ${editingFile.name}` : 'Aggiungi contenuto testuale'}</h2>
+              <h2 id="text-content-modal-title">
+                {editingFile ? `Modifica ${editingFile.name}` : 'Aggiungi contenuto testuale'}
+              </h2>
               <button
                 className="icon-button"
                 type="button"
@@ -264,7 +308,10 @@ export function ProjectKnowledgePanel({
                   minLength={3}
                   autoFocus
                   value={textTitle}
-                  onChange={(event) => setTextTitle(event.target.value)}
+                  onChange={(event) => {
+                    setTextTitle(event.target.value)
+                    setError(null)
+                  }}
                 />
               </label>
             )}
@@ -277,7 +324,10 @@ export function ProjectKnowledgePanel({
                 autoFocus={Boolean(editingFile)}
                 spellCheck={false}
                 value={textContent}
-                onChange={(event) => setTextContent(event.target.value)}
+                onChange={(event) => {
+                  setTextContent(event.target.value)
+                  setError(null)
+                }}
               />
             </label>
             {error && <p className="upload-feedback upload-feedback--error" role="alert">{error}</p>}
@@ -288,7 +338,11 @@ export function ProjectKnowledgePanel({
               <button
                 className="button button--primary"
                 type="submit"
-                disabled={(!editingFile && !textTitle.trim()) || !textContent.trim() || savingText}
+                disabled={
+                  savingText
+                  || (!editingFile && !textTitle.trim())
+                  || !textContent.trim()
+                }
               >
                 {savingText && <LoaderCircle className="spin" size={15} />}
                 {editingFile ? 'Salva modifiche' : 'Aggiungi al progetto'}
