@@ -127,7 +127,7 @@ test('document review keeps source provenance visible', async ({ page }, testInf
   })
 })
 
-test('company knowledge is uploaded globally and linked per project', async ({ page }, testInfo) => {
+test('company knowledge is global and general knowledge can be linked', async ({ page }, testInfo) => {
   let linkedDocumentId: number | null = null
   const documents = [
     {
@@ -236,7 +236,7 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
         contentType: 'application/json',
         body: JSON.stringify(documents.map((document) => ({
           ...document,
-          linked: document.id === linkedDocumentId,
+          linked: document.category === 'company' || document.id === linkedDocumentId,
         }))),
       })
     },
@@ -296,11 +296,15 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
   })
 
   await page.goto('/projects/fondo-riqualificazione-2027/settings')
-  const companyToggle = page.getByRole('switch', { name: 'Collega curriculum-mapi.pdf' })
-  await expect(companyToggle).toHaveAttribute('aria-checked', 'false')
-  await companyToggle.click()
-  await expect(companyToggle).toHaveAttribute('aria-checked', 'true')
-  await expect(page.getByText('1 documento', { exact: true })).toBeVisible()
+  await expect(page.getByRole('switch', { name: 'Collega curriculum-mapi.pdf' })).toHaveCount(0)
+  await expect(page.getByText('Company KB · sempre disponibile')).toBeVisible()
+  await expect(page.getByText('3 documenti', { exact: true })).toBeVisible()
+  const generalToggle = page.getByRole('switch', { name: 'Collega norme-tecniche.txt' })
+  await expect(generalToggle).toHaveAttribute('aria-checked', 'false')
+  await generalToggle.click()
+  await expect(generalToggle).toHaveAttribute('aria-checked', 'true')
+  await expect(page.getByText('4 documenti', { exact: true })).toBeVisible()
+  await expect(page.getByText('Scope controllato')).toHaveCount(0)
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
     path: `artifacts/${testInfo.project.name}-company-kb-project.png`,

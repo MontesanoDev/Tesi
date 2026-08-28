@@ -930,12 +930,6 @@
 .source-dot--warning { background: #8b6b28; }
 .source-dot--purple { background: #7256a0; }
 
-.scope-note {
-  margin-top: 24px;
-  color: #777873;
-  font-size: 12px;
-}
-
 .page-heading {
   margin-bottom: 38px;
 }
@@ -956,8 +950,7 @@
   background: var(--panel);
 }
 
-.settings-card + .settings-card,
-.settings-card + .scope-banner {
+.settings-card + .settings-card {
   margin-top: 12px;
 }
 
@@ -1097,22 +1090,6 @@
 .metric-grid > div span {
   color: var(--text-muted);
   font-size: 11px;
-}
-
-.scope-banner {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 12px 14px;
-  border: 1px solid #31483a;
-  border-radius: 8px;
-  color: #bfe3cb;
-  background: #202a23;
-  font-size: 12px;
-}
-
-.scope-banner span {
-  color: #8fa899;
 }
 
 .knowledge-workspace {
@@ -1858,6 +1835,10 @@
 
 .project-global-document-row .toggle {
   justify-self: end;
+}
+
+.project-global-document-row--automatic {
+  grid-template-columns: minmax(0, 1fr) auto;
 }
 
 .toggle:disabled {

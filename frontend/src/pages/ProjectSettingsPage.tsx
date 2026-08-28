@@ -42,10 +42,13 @@ export function ProjectSettingsPage() {
   }
 
   const activeProjectId = project.id
-  const linkedDocumentCount = globalDocuments.filter((document) => document.linked).length
-  const linkedDocumentLabel = linkedDocumentCount === 1
+  const companyDocuments = globalDocuments.filter((document) => document.category === 'company')
+  const generalDocuments = globalDocuments.filter((document) => document.category === 'general')
+  const activeDocumentCount = companyDocuments.length
+    + generalDocuments.filter((document) => document.linked).length
+  const activeDocumentLabel = activeDocumentCount === 1
     ? '1 documento'
-    : `${linkedDocumentCount} documenti`
+    : `${activeDocumentCount} documenti`
 
   async function toggleGlobalDocument(document: ProjectGlobalKnowledgeDocument) {
     if (linkingId !== null) return
@@ -75,7 +78,7 @@ export function ProjectSettingsPage() {
       <div className="settings-page page-container settings-page--project">
         <header className="page-heading">
           <h1>Impostazioni progetto</h1>
-          <p>Configura le conoscenze utilizzate da Mapi RAG in questo progetto</p>
+          <p>Gestisci le conoscenze tecniche utilizzate in questo progetto</p>
         </header>
 
         <section className="settings-card project-setting-card">
@@ -83,32 +86,15 @@ export function ProjectSettingsPage() {
             <span className="setting-monogram setting-monogram--blue">KB</span>
             <div>
               <h2>Conoscenza condivisa</h2>
-              <p>Fonti globali rese disponibili nel progetto corrente</p>
+              <p>La Company KB è disponibile automaticamente in ogni progetto</p>
             </div>
-            <StatusPill tone={linkedDocumentCount ? 'success' : 'info'}>
-              {linkedDocumentLabel}
+            <StatusPill tone={activeDocumentCount ? 'success' : 'info'}>
+              {activeDocumentLabel}
             </StatusPill>
-          </div>
-          <div className="settings-card-divider" />
-          <div className="setting-section-title">
-            <span>Fonti collegate</span>
-            <button
-              className="button button--compact"
-              type="button"
-              onClick={() => navigate(`/projects/${project.id}/knowledge`)}
-            >
-              Apri artefatti Markdown
-            </button>
-          </div>
-          <div className="linked-source-grid">
-            <div className="linked-source">
-              <strong>General KB</strong>
-              <span>Norme e materiali tecnici</span>
-            </div>
           </div>
           <div className="company-kb-project-section">
             <div className="setting-section-title">
-              <span>Fonti globali opzionali</span>
+              <span>Company KB · sempre disponibile</span>
               <button
                 className="button button--compact"
                 type="button"
@@ -119,15 +105,38 @@ export function ProjectSettingsPage() {
             </div>
             {globalLoading ? (
               <LoadingState label="Caricamento Company KB" />
-            ) : globalDocuments.length ? (
+            ) : companyDocuments.length ? (
               <div className="project-global-document-list">
-                {globalDocuments.map((document) => (
+                {companyDocuments.map((document) => (
+                  <div
+                    className="project-global-document-row project-global-document-row--automatic"
+                    key={document.id}
+                  >
+                    <div>
+                      <strong>{document.name}</strong>
+                      <span>Company KB · {document.metadata}</span>
+                    </div>
+                    <StatusPill tone="success">Attiva</StatusPill>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="project-global-empty">
+                Nessun documento disponibile nella Company KB.
+              </p>
+            )}
+          </div>
+          {!globalLoading && generalDocuments.length > 0 && (
+            <div className="company-kb-project-section">
+              <div className="setting-section-title">
+                <span>General KB · fonti tecniche opzionali</span>
+              </div>
+              <div className="project-global-document-list">
+                {generalDocuments.map((document) => (
                   <div className="project-global-document-row" key={document.id}>
                     <div>
                       <strong>{document.name}</strong>
-                      <span>
-                        {document.category === 'general' ? 'General KB' : 'Company KB'} · {document.metadata}
-                      </span>
+                      <span>General KB · {document.metadata}</span>
                     </div>
                     {linkingId === document.id && <LoaderCircle className="spin" size={16} />}
                     <button
@@ -144,13 +153,9 @@ export function ProjectSettingsPage() {
                   </div>
                 ))}
               </div>
-            ) : (
-              <p className="project-global-empty">
-                Nessuna fonte opzionale disponibile nell'archivio globale.
-              </p>
-            )}
-            {globalError && <p className="upload-feedback upload-feedback--error" role="alert">{globalError}</p>}
-          </div>
+            </div>
+          )}
+          {globalError && <p className="upload-feedback upload-feedback--error" role="alert">{globalError}</p>}
         </section>
 
         <section className="settings-card project-setting-card call-facts-card">
@@ -181,10 +186,6 @@ export function ProjectSettingsPage() {
           </div>
         </section>
 
-        <div className="scope-banner">
-          <strong>Scope controllato</strong>
-          <span>I documenti aziendali sono condivisi solo se collegati; i Call Facts restano isolati nel progetto corrente.</span>
-        </div>
       </div>
     </AppShell>
   )

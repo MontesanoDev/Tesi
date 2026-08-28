@@ -54,12 +54,12 @@ from app.repository import (
     create_project,
     delete_global_document,
     delete_project,
+    get_company_context,
     get_conversation,
     get_conversation_history,
     get_document_review,
     get_global_document_record,
     get_global_knowledge,
-    get_linked_company_context,
     get_or_create_conversation,
     get_project,
     is_follow_up_question,
@@ -528,7 +528,7 @@ async def project_draft_generate(project_id: str) -> dict:
             detail="Configura il Template prima di generare il draft",
         )
 
-    company_sources = get_linked_company_context(project_id)
+    company_sources = get_company_context()
     try:
         generated = await generate_grounded_draft(
             project_title=project["title"],

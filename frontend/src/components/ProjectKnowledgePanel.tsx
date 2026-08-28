@@ -103,7 +103,6 @@ export function ProjectKnowledgePanel({
             </div>
           ))}
         </div>
-        <p className="scope-note">Le fonti restano limitate a questo progetto.</p>
       </section>
     </aside>
   )

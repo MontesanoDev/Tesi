@@ -184,7 +184,7 @@ async def test_markdown_artifact_seed_is_idempotent(client):
 
 
 @pytest.mark.anyio
-async def test_company_kb_is_indexed_once_and_linked_selectively(client):
+async def test_company_kb_is_indexed_once_and_available_to_every_project(client):
     project_id = "fondo-riqualificazione-2027"
     other_project_id = "adeguamento-sismico-edificio-b"
     uploaded = await client.post(
@@ -214,20 +214,7 @@ async def test_company_kb_is_indexed_once_and_linked_selectively(client):
 
     project_documents = await client.get(f"/api/projects/{project_id}/global-knowledge")
     assert project_documents.status_code == 200
-    assert project_documents.json()[0]["linked"] is False
-
-    before_link = await client.get(
-        f"/api/projects/{project_id}/evidence",
-        params={"q": "iperconnessione geotecnica zaffiro"},
-    )
-    assert before_link.json()["results"] == []
-
-    linked = await client.put(
-        f"/api/projects/{project_id}/global-knowledge/{document['id']}",
-        json={"linked": True},
-    )
-    assert linked.status_code == 200
-    assert linked.json()["linked"] is True
+    assert project_documents.json()[0]["linked"] is True
 
     evidence = await client.get(
         f"/api/projects/{project_id}/evidence",
@@ -237,11 +224,11 @@ async def test_company_kb_is_indexed_once_and_linked_selectively(client):
     assert evidence.json()["results"][0]["source_name"] == "curriculum-mapi.txt"
     assert evidence.json()["results"][0]["file_id"] < 0
 
-    isolated = await client.get(
+    shared = await client.get(
         f"/api/projects/{other_project_id}/evidence",
         params={"q": "iperconnessione geotecnica zaffiro"},
     )
-    assert isolated.json()["results"] == []
+    assert shared.json()["results"][0]["source_name"] == "curriculum-mapi.txt"
 
     project = await client.get(f"/api/projects/{project_id}")
     company_kb = next(
@@ -252,6 +239,7 @@ async def test_company_kb_is_indexed_once_and_linked_selectively(client):
 
     with connection() as db:
         assert db.execute("SELECT COUNT(*) FROM global_document_chunks").fetchone()[0] == 1
+        assert db.execute("SELECT COUNT(*) FROM project_global_document_links").fetchone()[0] == 0
         assert (
             db.execute(
                 "SELECT COUNT(*) FROM project_files WHERE name = 'curriculum-mapi.txt'"
@@ -259,12 +247,12 @@ async def test_company_kb_is_indexed_once_and_linked_selectively(client):
             == 0
         )
 
-    unlinked = await client.put(
+    unchanged = await client.put(
         f"/api/projects/{project_id}/global-knowledge/{document['id']}",
         json={"linked": False},
     )
-    assert unlinked.status_code == 200
-    assert unlinked.json()["linked"] is False
+    assert unchanged.status_code == 200
+    assert unchanged.json()["linked"] is True
 
     deleted = await client.delete(f"/api/global-knowledge/files/{document['id']}")
     assert deleted.status_code == 204
@@ -279,13 +267,33 @@ async def test_global_knowledge_categories_and_markdown_are_explicit(client):
         files={
             "file": (
                 "norma-tecnica.txt",
-                b"Norma tecnica generale per la verifica delle strutture.",
+                b"Norma tecnica generale: protocollo xilofono normativo ametista.",
                 "text/plain",
             )
         },
     )
     assert uploaded.status_code == 201
     assert uploaded.json()["category"] == "general"
+
+    project_id = "fondo-riqualificazione-2027"
+    before_link = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "xilofono normativo ametista"},
+    )
+    assert before_link.json()["results"] == []
+
+    linked = await client.put(
+        f"/api/projects/{project_id}/global-knowledge/{uploaded.json()['id']}",
+        json={"linked": True},
+    )
+    assert linked.status_code == 200
+    assert linked.json()["linked"] is True
+
+    after_link = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "xilofono normativo ametista"},
+    )
+    assert after_link.json()["results"][0]["source_name"] == "norma-tecnica.txt"
 
     invalid = await client.post(
         "/api/global-knowledge/files",
@@ -344,12 +352,6 @@ async def test_global_text_source_can_be_edited_and_reindexed(client):
     )
     assert uploaded.status_code == 201
     document_id = uploaded.json()["id"]
-
-    linked = await client.put(
-        f"/api/projects/{project_id}/global-knowledge/{document_id}",
-        json={"linked": True},
-    )
-    assert linked.status_code == 200
 
     before = await client.get(
         f"/api/projects/{project_id}/evidence",
@@ -578,7 +580,7 @@ async def test_draft_generation_uses_only_verified_call_facts(client, monkeypatc
     )
     assert verified.status_code == 200
 
-    company_document = await client.post(
+    await client.post(
         "/api/global-knowledge/files",
         data={"category": "company"},
         files={
@@ -588,10 +590,6 @@ async def test_draft_generation_uses_only_verified_call_facts(client, monkeypatc
                 "text/markdown",
             )
         },
-    )
-    await client.put(
-        f"/api/projects/{project_id}/global-knowledge/{company_document.json()['id']}",
-        json={"linked": True},
     )
 
     async def fake_draft(

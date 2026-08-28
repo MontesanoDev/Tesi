@@ -193,9 +193,10 @@ def _expand_neighbor_evidence(
                             c.content
                         FROM global_document_chunks c
                         JOIN global_documents d ON d.id = c.document_id
-                        JOIN project_global_document_links l
+                        LEFT JOIN project_global_document_links l
                           ON l.document_id = d.id AND l.project_id = ?
                         WHERE c.document_id = ? AND c.chunk_index = ?
+                          AND (d.category = 'company' OR l.project_id IS NOT NULL)
                         """,
                         (
                             project_id,
@@ -412,7 +413,11 @@ def list_project_global_documents(project_id: str) -> list[dict] | None:
             """
             SELECT d.id, d.name, d.category, d.metadata, d.status, d.mime_type,
                    d.byte_size, d.page_count, d.chunk_count,
-                   CASE WHEN l.project_id IS NULL THEN 0 ELSE 1 END AS linked
+                   CASE
+                       WHEN d.category = 'company' THEN 1
+                       WHEN l.project_id IS NULL THEN 0
+                       ELSE 1
+                   END AS linked
             FROM global_documents d
             LEFT JOIN project_global_document_links l
               ON l.document_id = d.id AND l.project_id = ?
@@ -422,8 +427,7 @@ def list_project_global_documents(project_id: str) -> list[dict] | None:
         )
 
 
-def get_linked_company_context(
-    project_id: str,
+def get_company_context(
     max_characters: int = 45_000,
 ) -> list[dict]:
     with connection() as db:
@@ -431,13 +435,11 @@ def get_linked_company_context(
             db,
             """
             SELECT d.name AS source_name, c.chunk_index, c.content
-            FROM project_global_document_links l
-            JOIN global_documents d ON d.id = l.document_id
+            FROM global_documents d
             JOIN global_document_chunks c ON c.document_id = d.id
-            WHERE l.project_id = ? AND d.category = 'company'
+            WHERE d.category = 'company'
             ORDER BY d.id, c.chunk_index
             """,
-            (project_id,),
         )
 
     selected: list[dict] = []
@@ -463,27 +465,28 @@ def set_project_global_document_link(
         if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
             return None
         document = db.execute(
-            "SELECT 1 FROM global_documents WHERE id = ?",
+            "SELECT category FROM global_documents WHERE id = ?",
             (document_id,),
         ).fetchone()
         if document is None:
             return None
-        if linked:
-            db.execute(
-                """
-                INSERT OR IGNORE INTO project_global_document_links (project_id, document_id)
-                VALUES (?, ?)
-                """,
-                (project_id, document_id),
-            )
-        else:
-            db.execute(
-                """
-                DELETE FROM project_global_document_links
-                WHERE project_id = ? AND document_id = ?
-                """,
-                (project_id, document_id),
-            )
+        if document["category"] == "general":
+            if linked:
+                db.execute(
+                    """
+                    INSERT OR IGNORE INTO project_global_document_links (project_id, document_id)
+                    VALUES (?, ?)
+                    """,
+                    (project_id, document_id),
+                )
+            else:
+                db.execute(
+                    """
+                    DELETE FROM project_global_document_links
+                    WHERE project_id = ? AND document_id = ?
+                    """,
+                    (project_id, document_id),
+                )
     documents = list_project_global_documents(project_id)
     if documents is None:
         return None
@@ -524,19 +527,21 @@ def get_project(project_id: str) -> dict | None:
             """,
             (project_id,),
         )
-        linked_global_knowledge = _rows(
+        active_global_knowledge = _rows(
             db,
             """
             SELECT d.category, COUNT(*) AS document_count,
                    COALESCE(SUM(d.chunk_count), 0) AS chunk_count
-            FROM project_global_document_links l
-            JOIN global_documents d ON d.id = l.document_id
-            WHERE l.project_id = ?
+            FROM global_documents d
+            LEFT JOIN project_global_document_links l
+              ON l.document_id = d.id AND l.project_id = ?
+            WHERE d.category = 'company'
+               OR (d.category = 'general' AND l.project_id IS NOT NULL)
             GROUP BY d.category
             """,
             (project_id,),
         )
-        counts = {row["category"]: row for row in linked_global_knowledge}
+        counts = {row["category"]: row for row in active_global_knowledge}
         for source_id, category, name in (
             (-1, "company", "Company KB"),
             (-2, "general", "General KB"),
@@ -1005,9 +1010,10 @@ def search_project_evidence(
             FROM global_document_chunks_fts
             JOIN global_document_chunks c ON c.id = global_document_chunks_fts.rowid
             JOIN global_documents d ON d.id = c.document_id
-            JOIN project_global_document_links l
+            LEFT JOIN project_global_document_links l
               ON l.document_id = d.id AND l.project_id = ?
             WHERE global_document_chunks_fts MATCH ?
+              AND (d.category = 'company' OR l.project_id IS NOT NULL)
             ORDER BY rank
             LIMIT ?
             """,
