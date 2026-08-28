@@ -154,7 +154,29 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
     },
   ]
   let uploadCount = 0
+  let profileContent = '# Profilo operativo\n\nMapi supporta la progettazione per enti committenti.\n'
 
+  await page.route(/\/api\/projects\/fondo-riqualificazione-2027$/, async (route) => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        id: 'fondo-riqualificazione-2027',
+        title: 'Fondo Riqualificazione 2027',
+        description: 'Preparazione della candidatura tecnica',
+        status: 'In analisi',
+        status_tone: 'info',
+        updated_label: 'ora',
+        source_count: 1,
+        model_count: 1,
+        instructions: '',
+        call_fact_count: 14,
+        missing_fact_count: 2,
+        files: [],
+        knowledge_sources: [],
+        conversations: [],
+      }),
+    })
+  })
   await page.route(/\/api\/global-knowledge$/, async (route) => {
     await route.fulfill({
       contentType: 'application/json',
@@ -195,6 +217,16 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
       status: 201,
       contentType: 'application/json',
       body: JSON.stringify(uploaded),
+    })
+  })
+  await page.route(/\/api\/global-knowledge\/files\/43\/content$/, async (route) => {
+    if (route.request().method() === 'PUT') {
+      profileContent = (route.request().postDataJSON() as { content: string }).content
+    }
+    const document = documents.find((item) => item.id === 43)
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({ ...document, content: profileContent }),
     })
   })
   await page.route(
@@ -245,6 +277,14 @@ test('company knowledge is uploaded globally and linked per project', async ({ p
   await expect(page.getByText('profilo-operativo.md aggiunto a Company KB in 1 frammento.')).toBeVisible()
   await expect(page.getByText('profilo-operativo.md', { exact: true })).toBeVisible()
   await expect(page.getByText('3 documenti', { exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Modifica curriculum-mapi.pdf' })).toHaveCount(0)
+  await page.getByRole('button', { name: 'Modifica profilo-operativo.md' }).click()
+  await expect(page.getByRole('heading', { name: 'Modifica profilo-operativo.md' })).toBeVisible()
+  await page.getByLabel('Contenuto Markdown').fill(
+    '# Profilo operativo\n\nMapi supporta progettazione e direzione lavori.',
+  )
+  await page.getByRole('button', { name: 'Salva modifiche' }).click()
+  await expect(page.getByText('profilo-operativo.md aggiornato e reindicizzato in 1 frammento.')).toBeVisible()
   await page.getByRole('tab', { name: 'General KB' }).click()
   await expect(page.getByText('norme-tecniche.txt')).toBeVisible()
   await expect(page.getByText('curriculum-mapi.pdf')).not.toBeVisible()

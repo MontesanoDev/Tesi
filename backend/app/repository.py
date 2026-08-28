@@ -263,14 +263,22 @@ def get_global_knowledge() -> dict:
     }
 
 
-def add_global_document(document: IngestedDocument, category: str) -> dict:
-    chunk_count = len(document.chunks)
+def _global_document_metadata(mime_type: str, byte_size: int, chunk_count: int) -> str:
     chunk_label = "frammento" if chunk_count == 1 else "frammenti"
     file_type = {
         "application/pdf": "PDF",
         "text/markdown": "MD",
-    }.get(document.mime_type, "TXT")
-    metadata = f"{file_type} · {_format_size(document.byte_size)} · {chunk_count} {chunk_label}"
+    }.get(mime_type, "TXT")
+    return f"{file_type} · {_format_size(byte_size)} · {chunk_count} {chunk_label}"
+
+
+def add_global_document(document: IngestedDocument, category: str) -> dict:
+    chunk_count = len(document.chunks)
+    metadata = _global_document_metadata(
+        document.mime_type,
+        document.byte_size,
+        chunk_count,
+    )
     with connection() as db:
         cursor = db.execute(
             """
@@ -315,6 +323,72 @@ def add_global_document(document: IngestedDocument, category: str) -> dict:
     if row is None:
         raise RuntimeError("Il documento globale appena creato non e disponibile")
     return dict(row)
+
+
+def get_global_document_record(document_id: int) -> dict | None:
+    with connection() as db:
+        row = db.execute(
+            """
+            SELECT id, name, category, metadata, status, storage_path, mime_type,
+                   byte_size, page_count, chunk_count, created_at, updated_at
+            FROM global_documents WHERE id = ?
+            """,
+            (document_id,),
+        ).fetchone()
+    return dict(row) if row is not None else None
+
+
+def update_global_document_content(
+    document_id: int,
+    byte_size: int,
+    chunks: list[str],
+) -> dict | None:
+    with connection() as db:
+        document = db.execute(
+            "SELECT mime_type FROM global_documents WHERE id = ?",
+            (document_id,),
+        ).fetchone()
+        if document is None:
+            return None
+
+        db.execute(
+            "DELETE FROM global_document_chunks WHERE document_id = ?",
+            (document_id,),
+        )
+        db.executemany(
+            """
+            INSERT INTO global_document_chunks (
+                document_id, chunk_index, content, char_count
+            ) VALUES (?, ?, ?, ?)
+            """,
+            [
+                (document_id, index, chunk, len(chunk))
+                for index, chunk in enumerate(chunks)
+            ],
+        )
+        db.execute(
+            """
+            UPDATE global_documents
+            SET metadata = ?, status = 'Indicizzato', byte_size = ?,
+                page_count = 1, chunk_count = ?, updated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+            """,
+            (
+                _global_document_metadata(document["mime_type"], byte_size, len(chunks)),
+                byte_size,
+                len(chunks),
+                document_id,
+            ),
+        )
+        row = db.execute(
+            """
+            SELECT id, name, category, metadata, status, mime_type, byte_size,
+                   page_count, chunk_count, created_at, updated_at
+            FROM global_documents WHERE id = ?
+            """,
+            (document_id,),
+        ).fetchone()
+    return dict(row) if row is not None else None
 
 
 def delete_global_document(document_id: int) -> dict | None:

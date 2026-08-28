@@ -8,6 +8,7 @@ import type {
   EvidenceSearch,
   GroundedAnswer,
   GlobalKnowledgeDocument,
+  GlobalKnowledgeDocumentContent,
   GlobalKnowledgeOverview,
   KnowledgeArtifactDetail,
   KnowledgeArtifactSummary,
@@ -72,6 +73,13 @@ export const api = {
   },
   deleteGlobalKnowledgeFile: (documentId: number) =>
     request<void>(`/global-knowledge/files/${documentId}`, { method: 'DELETE' }),
+  globalKnowledgeFileContent: (documentId: number) =>
+    request<GlobalKnowledgeDocumentContent>(`/global-knowledge/files/${documentId}/content`),
+  updateGlobalKnowledgeFileContent: (documentId: number, content: string) =>
+    request<GlobalKnowledgeDocumentContent>(`/global-knowledge/files/${documentId}/content`, {
+      method: 'PUT',
+      body: JSON.stringify({ content }),
+    }),
   projectGlobalKnowledge: (projectId: string, signal?: AbortSignal) =>
     request<ProjectGlobalKnowledgeDocument[]>(
       `/projects/${projectId}/global-knowledge`,

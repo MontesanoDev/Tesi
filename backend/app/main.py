@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from dataclasses import replace
 from shutil import rmtree
 from typing import Annotated, Literal
+from uuid import uuid4
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, Response, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -41,6 +42,7 @@ from app.ingestion import (
     EmptyDocumentError,
     InvalidDocumentError,
     UnsupportedDocumentError,
+    chunk_text,
     ingest_global_upload,
     ingest_upload,
 )
@@ -55,6 +57,7 @@ from app.repository import (
     get_conversation,
     get_conversation_history,
     get_document_review,
+    get_global_document_record,
     get_global_knowledge,
     get_linked_company_context,
     get_or_create_conversation,
@@ -69,6 +72,7 @@ from app.repository import (
     sync_call_fact_review_metrics,
     update_call_fact_metrics,
     update_call_fact_review_metrics,
+    update_global_document_content,
 )
 from app.schemas import (
     CallFactRevision,
@@ -79,6 +83,8 @@ from app.schemas import (
     DraftGenerationResponse,
     EvidenceSearch,
     GlobalKnowledgeDocument,
+    GlobalKnowledgeDocumentContent,
+    GlobalKnowledgeDocumentUpdate,
     GlobalKnowledgeLinkUpdate,
     GlobalKnowledgeOverview,
     GroundedAnswerResponse,
@@ -207,6 +213,79 @@ async def global_knowledge_file_create(
     except (EmptyDocumentError, InvalidDocumentError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     return add_global_document(document, category)
+
+
+@app.get(
+    "/api/global-knowledge/files/{document_id}/content",
+    response_model=GlobalKnowledgeDocumentContent,
+)
+async def global_knowledge_file_content(document_id: int) -> dict:
+    document = get_global_document_record(document_id)
+    if document is None:
+        raise HTTPException(status_code=404, detail="Documento globale non trovato")
+    if document["mime_type"] not in {"text/plain", "text/markdown"}:
+        raise HTTPException(
+            status_code=415,
+            detail="Soltanto le fonti TXT e Markdown possono essere modificate",
+        )
+
+    storage_root = get_storage_path().resolve()
+    path = (storage_root / document["storage_path"]).resolve()
+    if storage_root not in path.parents or not path.is_file():
+        raise HTTPException(status_code=404, detail="File della fonte non trovato")
+    try:
+        content = path.read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as exc:
+        raise HTTPException(status_code=422, detail="La fonte testuale non e leggibile") from exc
+    return {**document, "content": content}
+
+
+@app.put(
+    "/api/global-knowledge/files/{document_id}/content",
+    response_model=GlobalKnowledgeDocumentContent,
+)
+async def global_knowledge_file_content_update(
+    document_id: int,
+    payload: GlobalKnowledgeDocumentUpdate,
+) -> dict:
+    document = get_global_document_record(document_id)
+    if document is None:
+        raise HTTPException(status_code=404, detail="Documento globale non trovato")
+    if document["mime_type"] not in {"text/plain", "text/markdown"}:
+        raise HTTPException(
+            status_code=415,
+            detail="Soltanto le fonti TXT e Markdown possono essere modificate",
+        )
+
+    chunks = chunk_text(payload.content)
+    if not chunks:
+        raise HTTPException(status_code=422, detail="La fonte non puo essere vuota")
+
+    storage_root = get_storage_path().resolve()
+    path = (storage_root / document["storage_path"]).resolve()
+    if storage_root not in path.parents or not path.is_file():
+        raise HTTPException(status_code=404, detail="File della fonte non trovato")
+
+    encoded = payload.content.encode("utf-8")
+    previous_content = path.read_bytes()
+    temporary_path = path.with_name(f".{path.name}.{uuid4().hex}.tmp")
+    try:
+        temporary_path.write_bytes(encoded)
+        temporary_path.replace(path)
+        updated = update_global_document_content(
+            document_id,
+            len(encoded),
+            chunks,
+        )
+    except Exception:
+        path.write_bytes(previous_content)
+        raise
+    finally:
+        temporary_path.unlink(missing_ok=True)
+    if updated is None:
+        path.write_bytes(previous_content)
+        raise HTTPException(status_code=404, detail="Documento globale non trovato")
+    return {**updated, "content": payload.content}
 
 
 @app.delete(

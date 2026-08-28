@@ -5,6 +5,7 @@ import {
   FileText,
   LoaderCircle,
   NotebookPen,
+  Pencil,
   Trash2,
   Upload,
   X,
@@ -15,7 +16,7 @@ import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { LoadingState } from '../components/LoadingState'
 import { StatusPill } from '../components/StatusPill'
-import type { GlobalKnowledgeOverview } from '../types'
+import type { GlobalKnowledgeDocument, GlobalKnowledgeOverview } from '../types'
 
 type KnowledgeView = 'company' | 'general'
 
@@ -55,6 +56,8 @@ export function CompanyKnowledgePage() {
   const [textTitle, setTextTitle] = useState('')
   const [textContent, setTextContent] = useState('')
   const [savingText, setSavingText] = useState(false)
+  const [editingDocument, setEditingDocument] = useState<GlobalKnowledgeDocument | null>(null)
+  const [loadingEditorId, setLoadingEditorId] = useState<number | null>(null)
   const [deletingId, setDeletingId] = useState<number | null>(null)
   const [feedback, setFeedback] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -111,25 +114,70 @@ export function CompanyKnowledgePage() {
     }
   }
 
-  async function addTextContent(event: FormEvent) {
+  function closeTextModal() {
+    if (savingText) return
+    setTextModalOpen(false)
+    setEditingDocument(null)
+    setTextTitle('')
+    setTextContent('')
+    setError(null)
+  }
+
+  function openTextContentModal() {
+    setEditingDocument(null)
+    setTextTitle('')
+    setTextContent('')
+    setError(null)
+    setTextModalOpen(true)
+  }
+
+  async function openDocumentEditor(document: GlobalKnowledgeDocument) {
+    if (loadingEditorId !== null || savingText) return
+    setLoadingEditorId(document.id)
+    setFeedback(null)
+    setError(null)
+    try {
+      const detail = await api.globalKnowledgeFileContent(document.id)
+      setEditingDocument(document)
+      setTextTitle('')
+      setTextContent(detail.content)
+      setTextModalOpen(true)
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'Contenuto non disponibile')
+    } finally {
+      setLoadingEditorId(null)
+    }
+  }
+
+  async function saveTextContent(event: FormEvent) {
     event.preventDefault()
     const title = textTitle.trim()
     const content = textContent.trim()
-    if (!title || !content || savingText) return
+    if ((!editingDocument && !title) || !content || savingText) return
 
     setSavingText(true)
     setFeedback(null)
     setError(null)
     try {
-      const markdown = `# ${title}\n\n${content}\n`
-      const file = new File([markdown], markdownFilename(title), { type: 'text/markdown' })
-      const document = await api.uploadGlobalKnowledgeFile(file, activeView)
+      const document = editingDocument
+        ? await api.updateGlobalKnowledgeFileContent(editingDocument.id, textContent)
+        : await api.uploadGlobalKnowledgeFile(
+            new File(
+              [`# ${title}\n\n${content}\n`],
+              markdownFilename(title),
+              { type: 'text/markdown' },
+            ),
+            activeView,
+          )
       await refreshKnowledge()
       setTextModalOpen(false)
+      setEditingDocument(null)
       setTextTitle('')
       setTextContent('')
       setFeedback(
-        `${document.name} aggiunto a ${viewCopy[activeView].title} in ${fragmentCountLabel(document.chunk_count)}.`,
+        editingDocument
+          ? `${document.name} aggiornato e reindicizzato in ${fragmentCountLabel(document.chunk_count)}.`
+          : `${document.name} aggiunto a ${viewCopy[activeView].title} in ${fragmentCountLabel(document.chunk_count)}.`,
       )
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'Salvataggio non riuscito')
@@ -215,10 +263,7 @@ export function CompanyKnowledgePage() {
                     className="button button--compact global-upload-button"
                     type="button"
                     disabled={uploading || savingText}
-                    onClick={() => {
-                      setError(null)
-                      setTextModalOpen(true)
-                    }}
+                    onClick={openTextContentModal}
                   >
                     <NotebookPen size={15} />
                     Aggiungi contenuto testuale
@@ -242,12 +287,28 @@ export function CompanyKnowledgePage() {
                         <span>{document.metadata}</span>
                       </div>
                       <StatusPill tone="success">{document.status}</StatusPill>
+                      {document.mime_type === 'text/plain' || document.mime_type === 'text/markdown' ? (
+                        <button
+                          className="icon-button company-document-edit"
+                          type="button"
+                          title={`Modifica ${document.name}`}
+                          aria-label={`Modifica ${document.name}`}
+                          disabled={deletingId !== null || loadingEditorId !== null || uploading}
+                          onClick={() => openDocumentEditor(document)}
+                        >
+                          {loadingEditorId === document.id
+                            ? <LoaderCircle className="spin" size={16} />
+                            : <Pencil size={16} />}
+                        </button>
+                      ) : (
+                        <span className="company-document-action-spacer" aria-hidden="true" />
+                      )}
                       <button
                         className="icon-button company-document-delete"
                         type="button"
                         title={`Rimuovi ${document.name}`}
                         aria-label={`Rimuovi ${document.name}`}
-                        disabled={deletingId !== null}
+                        disabled={deletingId !== null || loadingEditorId !== null || uploading}
                         onClick={() => deleteDocument(document.id, document.name)}
                       >
                         {deletingId === document.id
@@ -277,37 +338,40 @@ export function CompanyKnowledgePage() {
             type="button"
             aria-label="Chiudi contenuto testuale"
             disabled={savingText}
-            onClick={() => setTextModalOpen(false)}
+            onClick={closeTextModal}
           />
-          <form className="project-modal text-content-modal" onSubmit={addTextContent}>
+          <form className="project-modal text-content-modal" onSubmit={saveTextContent}>
             <div className="modal-heading">
-              <h2>Aggiungi contenuto testuale</h2>
+              <h2>{editingDocument ? `Modifica ${editingDocument.name}` : 'Aggiungi contenuto testuale'}</h2>
               <button
                 className="icon-button"
                 type="button"
                 aria-label="Chiudi"
                 disabled={savingText}
-                onClick={() => setTextModalOpen(false)}
+                onClick={closeTextModal}
               >
                 <X size={18} />
               </button>
             </div>
+            {!editingDocument && (
+              <label>
+                Titolo
+                <input
+                  required
+                  minLength={3}
+                  autoFocus
+                  value={textTitle}
+                  onChange={(event) => setTextTitle(event.target.value)}
+                />
+              </label>
+            )}
             <label>
-              Titolo
-              <input
-                required
-                minLength={3}
-                autoFocus
-                value={textTitle}
-                onChange={(event) => setTextTitle(event.target.value)}
-              />
-            </label>
-            <label>
-              Contenuto Markdown
+              {editingDocument?.mime_type === 'text/plain' ? 'Contenuto testuale' : 'Contenuto Markdown'}
               <textarea
                 required
                 minLength={3}
                 rows={12}
+                autoFocus={Boolean(editingDocument)}
                 spellCheck={false}
                 value={textContent}
                 onChange={(event) => setTextContent(event.target.value)}
@@ -319,17 +383,17 @@ export function CompanyKnowledgePage() {
                 className="button"
                 type="button"
                 disabled={savingText}
-                onClick={() => setTextModalOpen(false)}
+                onClick={closeTextModal}
               >
                 Annulla
               </button>
               <button
                 className="button button--primary"
                 type="submit"
-                disabled={!textTitle.trim() || !textContent.trim() || savingText}
+                disabled={(!editingDocument && !textTitle.trim()) || !textContent.trim() || savingText}
               >
                 {savingText && <LoaderCircle className="spin" size={15} />}
-                Salva in {viewCopy[activeView].title}
+                {editingDocument ? 'Salva modifiche' : `Salva in ${viewCopy[activeView].title}`}
               </button>
             </div>
           </form>

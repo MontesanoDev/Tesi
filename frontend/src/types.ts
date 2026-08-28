@@ -33,6 +33,10 @@ export interface GlobalKnowledgeDocument {
   chunk_count: number
 }
 
+export interface GlobalKnowledgeDocumentContent extends GlobalKnowledgeDocument {
+  content: string
+}
+
 export interface GlobalKnowledgeOverview {
   documents: GlobalKnowledgeDocument[]
   document_count: number

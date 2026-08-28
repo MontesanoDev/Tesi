@@ -329,6 +329,82 @@ async def test_global_knowledge_categories_and_markdown_are_explicit(client):
 
 
 @pytest.mark.anyio
+async def test_global_text_source_can_be_edited_and_reindexed(client):
+    project_id = "fondo-riqualificazione-2027"
+    uploaded = await client.post(
+        "/api/global-knowledge/files",
+        data={"category": "company"},
+        files={
+            "file": (
+                "profilo-operativo.md",
+                b"# Profilo operativo\n\nCompetenza cromatica zaffiro obsoleta.",
+                "text/markdown",
+            )
+        },
+    )
+    assert uploaded.status_code == 201
+    document_id = uploaded.json()["id"]
+
+    linked = await client.put(
+        f"/api/projects/{project_id}/global-knowledge/{document_id}",
+        json={"linked": True},
+    )
+    assert linked.status_code == 200
+
+    before = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "competenza cromatica zaffiro obsoleta"},
+    )
+    assert before.json()["results"][0]["source_name"] == "profilo-operativo.md"
+
+    detail = await client.get(f"/api/global-knowledge/files/{document_id}/content")
+    assert detail.status_code == 200
+    assert "zaffiro obsoleta" in detail.json()["content"]
+
+    corrected_content = (
+        "# Profilo operativo\n\n"
+        "Certificazione tecnica amaranto verificata per servizi di ingegneria.\n"
+    )
+    updated = await client.put(
+        f"/api/global-knowledge/files/{document_id}/content",
+        json={"content": corrected_content},
+    )
+    assert updated.status_code == 200
+    assert updated.json()["content"] == corrected_content
+    assert updated.json()["chunk_count"] == 1
+
+    obsolete = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "competenza cromatica zaffiro obsoleta"},
+    )
+    assert obsolete.json()["results"] == []
+    corrected = await client.get(
+        f"/api/projects/{project_id}/evidence",
+        params={"q": "certificazione tecnica amaranto verificata"},
+    )
+    assert corrected.json()["results"][0]["source_name"] == "profilo-operativo.md"
+
+    empty = await client.put(
+        f"/api/global-knowledge/files/{document_id}/content",
+        json={"content": "   \n"},
+    )
+    assert empty.status_code == 422
+
+    with connection() as db:
+        record = db.execute(
+            "SELECT storage_path FROM global_documents WHERE id = ?",
+            (document_id,),
+        ).fetchone()
+        indexed_content = db.execute(
+            "SELECT content FROM global_document_chunks WHERE document_id = ?",
+            (document_id,),
+        ).fetchone()[0]
+    stored_path = get_storage_path() / record["storage_path"]
+    assert stored_path.read_text(encoding="utf-8") == corrected_content
+    assert "amaranto verificata" in indexed_content
+
+
+@pytest.mark.anyio
 async def test_external_markdown_change_is_catalogued_and_reindexed(client):
     project_id = "fondo-riqualificazione-2027"
     artifact_id = f"{project_id}--project-facts"

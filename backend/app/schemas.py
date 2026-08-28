@@ -43,6 +43,14 @@ class GlobalKnowledgeDocument(BaseModel):
     chunk_count: int
 
 
+class GlobalKnowledgeDocumentContent(GlobalKnowledgeDocument):
+    content: str
+
+
+class GlobalKnowledgeDocumentUpdate(BaseModel):
+    content: str = Field(min_length=1, max_length=500_000)
+
+
 class GlobalKnowledgeOverview(BaseModel):
     documents: list[GlobalKnowledgeDocument]
     document_count: int
