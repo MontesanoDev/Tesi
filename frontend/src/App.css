@@ -399,7 +399,6 @@
   cursor: pointer;
 }
 
-.project-menu button:first-child,
 .project-menu button:hover {
   background: var(--control);
 }
@@ -1034,33 +1033,12 @@
   margin-top: 12px;
 }
 
-.settings-card > p,
-.settings-card-heading p {
+.settings-card > p {
   margin-top: 4px;
   color: var(--text-muted);
   font-size: 13px;
   line-height: 20px;
 }
-
-.settings-card-heading {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 16px;
-}
-
-.setting-monogram {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.setting-monogram--blue { color: #bdd4e3; background: #2a3740; }
-.setting-monogram--gold { color: #ecd27f; background: #42371f; }
 
 .settings-card-divider {
   height: 1px;
@@ -1081,95 +1059,6 @@
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-}
-
-.linked-source-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.linked-source {
-  min-width: 0;
-  min-height: 50px;
-  padding: 10px 12px;
-  border: 1px solid #373834;
-  border-radius: 8px;
-  background: var(--panel-raised);
-}
-
-.linked-source strong,
-.linked-source span {
-  display: block;
-}
-
-.linked-source strong {
-  color: #deded9;
-  font-size: 13px;
-}
-
-.linked-source span {
-  margin-top: 4px;
-  color: #858680;
-  font-size: 11px;
-}
-
-.linked-source--status {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.call-facts-card > .section-label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-.call-document-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 52px;
-  padding: 7px 12px;
-  border: 1px solid #373834;
-  border-radius: 8px;
-  background: var(--panel-raised);
-}
-
-.call-document-row strong,
-.call-document-row span {
-  display: block;
-}
-
-.call-document-row strong { font-size: 13px; }
-.call-document-row > div > span { margin-top: 4px; color: var(--text-muted); font-size: 11px; }
-
-.metric-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) 172px;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.metric-grid > div {
-  display: flex;
-  align-items: center;
-  min-height: 48px;
-  padding: 0 12px;
-  border-radius: 8px;
-  background: var(--panel-raised);
-}
-
-.metric-grid > div strong {
-  margin-right: 14px;
-  font-size: 16px;
-}
-
-.metric-grid > div span {
-  color: var(--text-muted);
-  font-size: 11px;
 }
 
 .knowledge-workspace {
@@ -1793,15 +1682,6 @@
 
 .global-knowledge-actions .button {
   justify-content: flex-start;
-}
-
-.global-source-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.global-source-grid .linked-source {
-  min-height: 66px;
 }
 
 .company-kb-section {
@@ -2486,20 +2366,12 @@
   .conversation-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 
   .settings-card { padding: 18px; }
-  .settings-card-heading { grid-template-columns: 48px minmax(0, 1fr); gap: 14px; }
-  .settings-card-heading > .status-pill { grid-column: 2; justify-self: start; }
-  .setting-monogram { width: 48px; height: 48px; }
-  .linked-source-grid { grid-template-columns: minmax(0, 1fr); }
   .global-knowledge-heading { align-items: stretch; flex-direction: column; }
   .global-upload-button { justify-content: center; width: 100%; }
   .knowledge-type-tabs { grid-template-columns: minmax(0, 1fr); }
   .company-document-row { grid-template-columns: 20px minmax(0, 1fr) 34px 34px; }
   .company-document-row .status-pill { display: none; }
   .company-kb-section .setting-section-title { align-items: flex-start; flex-direction: column; }
-  .metric-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-  .metric-grid > .button { grid-column: 1 / -1; }
-  .metric-grid > div { flex-direction: column; justify-content: center; align-items: flex-start; }
-  .metric-grid > div strong { margin-right: 0; }
 
   .knowledge-workspace {
     width: min(100% - 32px, 620px);

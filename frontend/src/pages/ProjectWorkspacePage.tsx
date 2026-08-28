@@ -303,13 +303,6 @@ export function ProjectWorkspacePage() {
               </button>
               {menuOpen && (
                 <div className="project-menu">
-                  <button
-                    type="button"
-                    onClick={() => navigate(`/projects/${project.id}/settings`)}
-                  >
-                    Impostazioni progetto <span>→</span>
-                  </button>
-                  <div />
                   <button type="button">Rinomina progetto</button>
                   <button className="muted-command" type="button">Archivia progetto</button>
                   <button

@@ -227,9 +227,9 @@ export function KnowledgeArtifactsPage() {
       <button
         className="back-link"
         type="button"
-        onClick={() => navigate(`/projects/${project.id}/settings`)}
+        onClick={() => navigate(`/projects/${project.id}`)}
       >
-        ← Impostazioni progetto
+        ← {project.title}
       </button>
       <div className="knowledge-workspace">
         <header className="page-heading knowledge-heading">

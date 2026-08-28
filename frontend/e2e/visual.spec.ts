@@ -135,6 +135,9 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   await page.goto('/projects/contesto-progetto')
   await expect(page.getByRole('heading', { name: 'Contesto progetto' }).last()).toBeVisible()
   await expect(page.getByRole('button', { name: 'Modifica bando.pdf' })).toHaveCount(0)
+  await page.getByRole('button', { name: 'Menu progetto' }).click()
+  await expect(page.getByRole('button', { name: /Impostazioni progetto/ })).toHaveCount(0)
+  await page.getByRole('button', { name: 'Menu progetto' }).click()
 
   await page.getByRole('button', { name: 'Aggiungi al contesto' }).click()
   await expect(page.getByRole('button', { name: 'Carica dal dispositivo' })).toBeVisible()
@@ -344,18 +347,6 @@ test('company knowledge is managed in the global archive', async ({ page }, test
     fullPage: true,
   })
 
-  await page.goto('/projects/fondo-riqualificazione-2027/settings')
-  await expect(page.getByRole('heading', { name: 'Impostazioni progetto' })).toBeVisible()
-  await expect(page.getByText('Conoscenza condivisa')).toHaveCount(0)
-  await expect(page.getByText('curriculum-mapi.pdf')).toHaveCount(0)
-  await expect(page.getByText('norme-tecniche.txt')).toHaveCount(0)
-  await expect(page.getByRole('heading', { name: 'Call Facts' })).toBeVisible()
-  await expect(page.getByText('Scope controllato')).toHaveCount(0)
-  await expectNoHorizontalOverflow(page)
-  await page.screenshot({
-    path: `artifacts/${testInfo.project.name}-company-kb-project.png`,
-    fullPage: true,
-  })
 })
 
 test('markdown knowledge artifacts expose project and global scopes', async ({ page }, testInfo) => {
@@ -433,6 +424,88 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
         ].join('\n')
       : '# Draft candidatura\n\n> Generare il documento dal template.',
   })
+  const templateArtifact = {
+    id: 'fondo-riqualificazione-2027--template',
+    kind: 'template',
+    scope: 'project',
+    title: 'Template',
+    filename: 'template.md',
+    status: 'Bozza',
+    byte_size: 280,
+    version: 1,
+    updated_at: '2026-08-04 18:05:00',
+    editable: true,
+    chunk_count: 1,
+    content: '# Template candidatura\n\n## Termine\n\n[TODO: inserire termine]',
+  }
+  const generalArtifact = {
+    id: 'global--general-kb',
+    kind: 'general_kb',
+    scope: 'global',
+    title: 'General KB',
+    filename: 'general-kb.md',
+    status: 'Verificato',
+    byte_size: 180,
+    version: 1,
+    updated_at: '2026-08-04 18:00:00',
+    editable: false,
+    chunk_count: 1,
+    content: '# General KB\n\nNorme tecniche condivise.',
+  }
+
+  await page.route(/\/api\/projects\/fondo-riqualificazione-2027$/, async (route) => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        id: 'fondo-riqualificazione-2027',
+        title: 'Fondo Riqualificazione 2027',
+        description: 'Preparazione della candidatura tecnica',
+        status: 'In analisi',
+        status_tone: 'info',
+        updated_label: 'ora',
+        source_count: 1,
+        model_count: 1,
+        instructions: '',
+        call_fact_count: 1,
+        missing_fact_count: 0,
+        files: [],
+        knowledge_sources: [],
+        conversations: [],
+      }),
+    })
+  })
+  await page.route(
+    /\/api\/projects\/fondo-riqualificazione-2027\/artifacts$/,
+    async (route) => {
+      await route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify([
+          callFactsArtifact(),
+          templateArtifact,
+          draftArtifact(),
+          generalArtifact,
+        ]),
+      })
+    },
+  )
+  await page.route(
+    '**/api/projects/fondo-riqualificazione-2027/artifacts/fondo-riqualificazione-2027--call-facts',
+    async (route) => {
+      await route.fulfill({ contentType: 'application/json', body: JSON.stringify(callFactsArtifact()) })
+    },
+  )
+  await page.route(
+    '**/api/projects/fondo-riqualificazione-2027/artifacts/fondo-riqualificazione-2027--template',
+    async (route) => {
+      await route.fulfill({ contentType: 'application/json', body: JSON.stringify(templateArtifact) })
+    },
+  )
+  await page.route(
+    '**/api/projects/fondo-riqualificazione-2027/artifacts/global--general-kb',
+    async (route) => {
+      await route.fulfill({ contentType: 'application/json', body: JSON.stringify(generalArtifact) })
+    },
+  )
 
   await page.route(
     '**/api/projects/fondo-riqualificazione-2027/call-facts',
@@ -498,8 +571,7 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
       })
     },
   )
-  await page.goto('/projects/fondo-riqualificazione-2027/settings')
-  await page.getByRole('button', { name: 'Apri artefatti Markdown' }).click()
+  await page.goto('/projects/fondo-riqualificazione-2027/knowledge')
 
   await expect(page.getByRole('heading', { name: 'Conoscenza Markdown' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Termine di candidatura' })).toBeVisible()
