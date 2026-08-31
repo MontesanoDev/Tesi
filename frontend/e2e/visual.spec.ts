@@ -219,6 +219,11 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   await expect(page.getByText('Company KB')).toBeVisible()
   await expect(page.getByText('1 documento')).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
+  await expect(
+    page.locator('.project-context-panel').getByRole('heading', {
+      name: 'Preparazione candidatura',
+    }),
+  ).toHaveCount(0)
   await expect(page.getByRole('link', { name: /Call Facts/ })).toHaveAttribute(
     'href',
     '/projects/contesto-progetto/knowledge?artifact=call_facts',

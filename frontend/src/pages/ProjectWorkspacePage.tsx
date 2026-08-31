@@ -13,6 +13,7 @@ import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
+import { ProjectPreparationPanel } from '../components/ProjectPreparationPanel'
 import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import { useProject } from '../hooks/useProject'
 import type { GroundedAnswer } from '../types'
@@ -377,10 +378,7 @@ export function ProjectWorkspacePage() {
           ) : turns.length === 0 ? (
             <>
               {composer}
-              <div className="assistant-note">
-                <span className="activity-dot activity-dot--idle" />
-                <p>Mapi RAG usa i documenti, i dati aziendali e i modelli collegati a questo progetto.</p>
-              </div>
+              <ProjectPreparationPanel project={project} />
 
               {!conversationId && (
                 <section className="recent-conversations">
