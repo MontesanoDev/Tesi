@@ -77,6 +77,38 @@ async def test_create_project_persists(client):
 
 
 @pytest.mark.anyio
+async def test_rename_project_preserves_identity_and_data(client):
+    project_id = "fondo-riqualificazione-2027"
+    before = (await client.get(f"/api/projects/{project_id}")).json()
+
+    renamed = await client.patch(
+        f"/api/projects/{project_id}",
+        json={"title": "  Riqualificazione scuole Puglia  "},
+    )
+
+    assert renamed.status_code == 200
+    assert renamed.json()["id"] == project_id
+    assert renamed.json()["title"] == "Riqualificazione scuole Puglia"
+    assert renamed.json()["files"] == before["files"]
+    assert (await client.get(f"/api/projects/{project_id}")).json()["title"] == (
+        "Riqualificazione scuole Puglia"
+    )
+    assert any(
+        project["title"] == "Riqualificazione scuole Puglia"
+        for project in (await client.get("/api/projects")).json()
+    )
+
+    invalid = await client.patch(
+        f"/api/projects/{project_id}",
+        json={"title": "   "},
+    )
+    assert invalid.status_code == 422
+    assert (
+        await client.patch("/api/projects/progetto-inesistente", json={"title": "Nuovo nome"})
+    ).status_code == 404
+
+
+@pytest.mark.anyio
 async def test_delete_project_removes_local_data_without_reseeding(client):
     created = await client.post(
         "/api/projects",

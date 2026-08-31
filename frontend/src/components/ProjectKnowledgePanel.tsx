@@ -21,6 +21,7 @@ import type {
   ProjectFile,
   StatusTone,
 } from '../types'
+import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import { StatusPill } from './StatusPill'
 
 interface ProjectKnowledgePanelProps {
@@ -95,6 +96,10 @@ export function ProjectKnowledgePanel({
   const [feedback, setFeedback] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [workflowArtifacts, setWorkflowArtifacts] = useState<KnowledgeArtifactSummary[]>([])
+  const addMenuRef = useDismissibleMenu<HTMLDivElement>(
+    addMenuOpen,
+    () => setAddMenuOpen(false),
+  )
 
   useEffect(() => {
     const controller = new AbortController()
@@ -253,7 +258,7 @@ export function ProjectKnowledgePanel({
               <h2>Contesto progetto</h2>
               <span className="context-source-count">{sourceCountLabel}</span>
             </div>
-            <div className="context-add-wrap">
+            <div className="context-add-wrap" ref={addMenuRef}>
               <button
                 className={`icon-button${addMenuOpen ? ' is-active' : ''}`}
                 type="button"

@@ -74,6 +74,7 @@ from app.repository import (
     update_call_fact_metrics,
     update_call_fact_review_metrics,
     update_global_document_content,
+    update_project,
     update_project_file_content,
 )
 from app.schemas import (
@@ -100,6 +101,7 @@ from app.schemas import (
     ProjectFileUpdate,
     ProjectGlobalKnowledgeDocument,
     ProjectSummary,
+    ProjectUpdate,
     QuestionRequest,
 )
 from app.seed import seed_database
@@ -176,6 +178,14 @@ async def projects_create(payload: ProjectCreate) -> dict:
     if result is None:
         raise RuntimeError("Il progetto appena creato non e piu disponibile")
     return result
+
+
+@app.patch("/api/projects/{project_id}", response_model=ProjectDetail)
+async def project_update(project_id: str, payload: ProjectUpdate) -> dict:
+    updated = update_project(project_id, payload)
+    if updated is None:
+        raise HTTPException(status_code=404, detail="Progetto non trovato")
+    return updated
 
 
 @app.delete("/api/projects/{project_id}", status_code=status.HTTP_204_NO_CONTENT)

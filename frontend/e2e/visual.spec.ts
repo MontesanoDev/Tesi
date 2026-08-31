@@ -73,6 +73,7 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
 
 test('project context accepts and edits Markdown sources', async ({ page }, testInfo) => {
   let markdownContent = '# Nota tecnica\n\nContenuto iniziale.'
+  let projectTitle = 'Contesto progetto'
   const files = [
     {
       id: 21,
@@ -88,7 +89,7 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   ]
   const projectPayload = () => ({
     id: 'contesto-progetto',
-    title: 'Contesto progetto',
+    title: projectTitle,
     description: 'Fonti persistenti della commessa',
     status: 'In analisi',
     status_tone: 'info',
@@ -121,6 +122,10 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   })
 
   await page.route(/\/api\/projects\/contesto-progetto$/, async (route) => {
+    if (route.request().method() === 'PATCH') {
+      const payload = route.request().postDataJSON() as { title: string }
+      projectTitle = payload.title
+    }
     await route.fulfill({ contentType: 'application/json', body: JSON.stringify(projectPayload()) })
   })
   await page.route(/\/api\/projects\/contesto-progetto\/artifacts$/, async (route) => {
@@ -225,10 +230,22 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   await expect(page.getByRole('button', { name: 'Modifica bando.pdf' })).toHaveCount(0)
   await page.getByRole('button', { name: 'Menu progetto' }).click()
   await expect(page.getByRole('button', { name: /Impostazioni progetto/ })).toHaveCount(0)
+  await page.locator('.project-heading h1').click()
+  await expect(page.getByRole('button', { name: 'Rinomina progetto' })).toHaveCount(0)
+
   await page.getByRole('button', { name: 'Menu progetto' }).click()
+  await page.getByRole('button', { name: 'Rinomina progetto' }).click()
+  await expect(page.getByRole('dialog', { name: 'Rinomina progetto' })).toBeVisible()
+  await page.getByLabel('Nome del progetto').fill('Commessa scuole Puglia')
+  await page.getByRole('button', { name: 'Salva nome' }).click()
+  await expect(page.locator('.project-heading h1')).toHaveText('Commessa scuole Puglia')
 
   await page.getByRole('button', { name: 'Aggiungi al contesto' }).click()
   await expect(page.getByRole('button', { name: 'Carica dal dispositivo' })).toBeVisible()
+  await page.locator('.project-heading h1').click()
+  await expect(page.getByRole('button', { name: 'Carica dal dispositivo' })).toHaveCount(0)
+
+  await page.getByRole('button', { name: 'Aggiungi al contesto' }).click()
   await page.getByRole('button', { name: 'Aggiungi contenuto testuale' }).click()
   await page.getByLabel('Titolo').fill('Nota tecnica')
   await page.getByLabel('Contenuto Markdown').fill('Contenuto iniziale.')

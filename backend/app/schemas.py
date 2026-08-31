@@ -2,12 +2,21 @@ from __future__ import annotations
 
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class ProjectCreate(BaseModel):
     title: str = Field(min_length=3, max_length=120)
     description: str = Field(min_length=3, max_length=240)
+
+
+class ProjectUpdate(BaseModel):
+    title: str = Field(min_length=3, max_length=120)
+
+    @field_validator("title", mode="before")
+    @classmethod
+    def strip_title(cls, value: object) -> object:
+        return value.strip() if isinstance(value, str) else value
 
 
 class ProjectSummary(BaseModel):

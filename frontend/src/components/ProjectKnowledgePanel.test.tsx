@@ -113,6 +113,20 @@ describe('ProjectKnowledgePanel', () => {
     })
   })
 
+  it('dismisses the add menu outside the popover and with Escape', () => {
+    renderPanel()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi al contesto' }))
+    expect(screen.getByRole('button', { name: 'Carica dal dispositivo' })).toBeVisible()
+    fireEvent.pointerDown(document.body)
+    expect(screen.queryByRole('button', { name: 'Carica dal dispositivo' })).toBeNull()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi al contesto' }))
+    expect(screen.getByRole('button', { name: 'Carica dal dispositivo' })).toBeVisible()
+    fireEvent.keyDown(document, { key: 'Escape' })
+    expect(screen.queryByRole('button', { name: 'Carica dal dispositivo' })).toBeNull()
+  })
+
   it('explains invalid handwritten content instead of failing silently', async () => {
     renderPanel()
 

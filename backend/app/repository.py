@@ -11,7 +11,7 @@ from app.artifacts import get_project_artifact
 from app.call_facts import CallFactsFormatError, parse_call_facts_markdown
 from app.db import connection
 from app.ingestion import IngestedDocument
-from app.schemas import ProjectCreate
+from app.schemas import ProjectCreate, ProjectUpdate
 
 SEARCH_STOP_WORDS = {
     "che",
@@ -785,6 +785,21 @@ def create_project(payload: ProjectCreate) -> dict:
     if project is None:
         raise RuntimeError("Il progetto appena creato non e stato trovato")
     return project
+
+
+def update_project(project_id: str, payload: ProjectUpdate) -> dict | None:
+    with connection() as db:
+        cursor = db.execute(
+            """
+            UPDATE projects
+            SET title = ?, updated_label = 'Aggiornato ora'
+            WHERE id = ?
+            """,
+            (payload.title, project_id),
+        )
+        if cursor.rowcount == 0:
+            return None
+    return get_project(project_id)
 
 
 def delete_project(project_id: str) -> bool:

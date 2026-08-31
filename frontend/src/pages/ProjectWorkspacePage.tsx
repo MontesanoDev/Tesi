@@ -13,6 +13,7 @@ import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
+import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import { useProject } from '../hooks/useProject'
 import type { GroundedAnswer } from '../types'
 
@@ -114,6 +115,10 @@ export function ProjectWorkspacePage() {
   const navigate = useNavigate()
   const { project, loading, error, refresh } = useProject(projectId)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [renameDialogOpen, setRenameDialogOpen] = useState(false)
+  const [renameTitle, setRenameTitle] = useState('')
+  const [renamingProject, setRenamingProject] = useState(false)
+  const [renameError, setRenameError] = useState<string | null>(null)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [deletingProject, setDeletingProject] = useState(false)
   const [deleteError, setDeleteError] = useState<string | null>(null)
@@ -126,6 +131,10 @@ export function ProjectWorkspacePage() {
   const chatThread = useRef<HTMLDivElement>(null)
   const activeConversation = useRef<string | null>(conversationId ?? null)
   const loadedConversation = useRef<string | null>(null)
+  const projectMenuRef = useDismissibleMenu<HTMLDivElement>(
+    menuOpen,
+    () => setMenuOpen(false),
+  )
 
   useEffect(() => {
     setPrompt('')
@@ -196,6 +205,7 @@ export function ProjectWorkspacePage() {
     return <AppShell active="projects"><ErrorState message={error ?? 'Progetto non trovato'} /></AppShell>
   }
   const activeProjectId = project.id
+  const activeProjectTitle = project.title
 
   async function submitPrompt(event: FormEvent) {
     event.preventDefault()
@@ -256,6 +266,45 @@ export function ProjectWorkspacePage() {
     }
   }
 
+  function openRenameDialog() {
+    setMenuOpen(false)
+    setRenameTitle(activeProjectTitle)
+    setRenameError(null)
+    setRenameDialogOpen(true)
+  }
+
+  function closeRenameDialog() {
+    if (renamingProject) return
+    setRenameDialogOpen(false)
+    setRenameError(null)
+  }
+
+  async function renameCurrentProject(event: FormEvent) {
+    event.preventDefault()
+    const title = renameTitle.trim()
+    if (renamingProject) return
+    if (title.length < 3) {
+      setRenameError('Inserisci un nome di almeno 3 caratteri')
+      return
+    }
+    if (title === activeProjectTitle) {
+      closeRenameDialog()
+      return
+    }
+
+    setRenamingProject(true)
+    setRenameError(null)
+    try {
+      await api.updateProject(activeProjectId, { title })
+      await refresh()
+      setRenameDialogOpen(false)
+    } catch (reason) {
+      setRenameError(reason instanceof Error ? reason.message : 'Rinomina non riuscita')
+    } finally {
+      setRenamingProject(false)
+    }
+  }
+
   const composer = (
     <form
       className={`composer${turns.length > 0 ? ' composer--docked' : ''}`}
@@ -291,7 +340,7 @@ export function ProjectWorkspacePage() {
               <h1>{project.title}</h1>
               <p>{project.description}</p>
             </div>
-            <div className="project-menu-wrap">
+            <div className="project-menu-wrap" ref={projectMenuRef}>
               <button
                 className={`icon-button project-menu-trigger${menuOpen ? ' is-active' : ''}`}
                 type="button"
@@ -303,7 +352,7 @@ export function ProjectWorkspacePage() {
               </button>
               {menuOpen && (
                 <div className="project-menu">
-                  <button type="button">Rinomina progetto</button>
+                  <button type="button" onClick={openRenameDialog}>Rinomina progetto</button>
                   <button className="muted-command" type="button">Archivia progetto</button>
                   <button
                     className="danger-command"
@@ -376,6 +425,76 @@ export function ProjectWorkspacePage() {
 
         <ProjectKnowledgePanel project={project} onProjectChange={refresh} />
       </div>
+
+      {renameDialogOpen && (
+        <div className="modal-layer" role="presentation">
+          <button
+            className="modal-scrim"
+            type="button"
+            aria-label="Chiudi rinomina progetto"
+            disabled={renamingProject}
+            onClick={closeRenameDialog}
+          />
+          <form
+            className="project-modal rename-project-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="rename-project-title"
+            noValidate
+            onSubmit={renameCurrentProject}
+          >
+            <div className="modal-heading">
+              <h2 id="rename-project-title">Rinomina progetto</h2>
+              <button
+                className="icon-button"
+                type="button"
+                aria-label="Chiudi"
+                disabled={renamingProject}
+                onClick={closeRenameDialog}
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <label>
+              Nome del progetto
+              <input
+                required
+                minLength={3}
+                maxLength={120}
+                autoFocus
+                value={renameTitle}
+                onChange={(event) => {
+                  setRenameTitle(event.target.value)
+                  setRenameError(null)
+                }}
+              />
+            </label>
+            {renameError && (
+              <p className="upload-feedback upload-feedback--error" role="alert">
+                {renameError}
+              </p>
+            )}
+            <div className="modal-actions">
+              <button
+                className="button"
+                type="button"
+                disabled={renamingProject}
+                onClick={closeRenameDialog}
+              >
+                Annulla
+              </button>
+              <button
+                className="button button--primary"
+                type="submit"
+                disabled={!renameTitle.trim() || renamingProject}
+              >
+                {renamingProject && <LoaderCircle className="spin" size={15} />}
+                Salva nome
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
 
       {deleteDialogOpen && (
         <div className="modal-layer" role="presentation">

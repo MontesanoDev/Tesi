@@ -51,6 +51,11 @@ export const api = {
       method: 'POST',
       body: JSON.stringify(payload),
     }),
+  updateProject: (projectId: string, payload: { title: string }) =>
+    request<ProjectDetail>(`/projects/${projectId}`, {
+      method: 'PATCH',
+      body: JSON.stringify(payload),
+    }),
   deleteProject: (projectId: string) =>
     request<void>(`/projects/${projectId}`, { method: 'DELETE' }),
   uploadProjectFile: (projectId: string, file: File) => {
