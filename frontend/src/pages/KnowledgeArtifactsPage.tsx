@@ -1,6 +1,6 @@
-import { FileOutput, FileText, Globe2, LayoutTemplate, Save, WandSparkles } from 'lucide-react'
+import { FileOutput, FileText, LayoutTemplate, Save, WandSparkles } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { CallFactsReviewPanel } from '../components/CallFactsReviewPanel'
@@ -28,6 +28,8 @@ function artifactTone(artifact: KnowledgeArtifactSummary): StatusTone {
 export function KnowledgeArtifactsPage() {
   const { projectId } = useParams()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const requestedArtifactKind = searchParams.get('artifact')
   const { project, loading: projectLoading, error: projectError } = useProject(projectId)
   const [artifacts, setArtifacts] = useState<KnowledgeArtifactSummary[]>([])
   const [selectedId, setSelectedId] = useState<string | null>(null)
@@ -55,8 +57,12 @@ export function KnowledgeArtifactsPage() {
       .then((items) => {
         setArtifacts(items)
         setSelectedId((current) => {
+          const requested = items.find((item) => item.kind === requestedArtifactKind)
+          if (requested) return requested.id
           if (current && items.some((item) => item.id === current)) return current
-          return items.find((item) => item.kind === 'call_facts')?.id ?? items[0]?.id ?? null
+          return items.find((item) => item.kind === 'call_facts')?.id
+            ?? items[0]?.id
+            ?? null
         })
       })
       .catch((reason) => {
@@ -67,7 +73,7 @@ export function KnowledgeArtifactsPage() {
         if (!controller.signal.aborted) setListLoading(false)
       })
     return () => controller.abort()
-  }, [projectId])
+  }, [projectId, requestedArtifactKind])
 
   useEffect(() => {
     if (!projectId || !selectedId) return
@@ -227,15 +233,15 @@ export function KnowledgeArtifactsPage() {
       <button
         className="back-link"
         type="button"
-        onClick={() => navigate(`/projects/${project.id}/settings`)}
+        onClick={() => navigate(`/projects/${project.id}`)}
       >
-        ← Impostazioni progetto
+        ← {project.title}
       </button>
       <div className="knowledge-workspace">
         <header className="page-heading knowledge-heading">
           <div>
-            <h1>Conoscenza Markdown</h1>
-            <p>Conoscenza e output revisionabili con provenienza controllata</p>
+            <h1>Preparazione candidatura</h1>
+            <p>Dati verificati, struttura e bozza del progetto</p>
           </div>
           <span>{artifacts.length} artefatti collegati</span>
         </header>
@@ -243,8 +249,8 @@ export function KnowledgeArtifactsPage() {
         {error && <div className="knowledge-error" role="alert">{error}</div>}
 
         <div className="artifact-layout">
-          <nav className="artifact-list" aria-label="Artefatti Markdown">
-            <span className="section-label">Artefatti Markdown</span>
+          <nav className="artifact-list" aria-label="Preparazione candidatura">
+            <span className="section-label">Flusso di lavoro</span>
             {listLoading ? (
               <LoadingState label="Caricamento artefatti" />
             ) : (
@@ -255,9 +261,7 @@ export function KnowledgeArtifactsPage() {
                   key={item.id}
                   onClick={() => setSelectedId(item.id)}
                 >
-                  {item.scope === 'global' ? (
-                    <Globe2 size={17} />
-                  ) : item.kind === 'output_draft' ? (
+                  {item.kind === 'output_draft' ? (
                     <FileOutput size={17} />
                   ) : item.kind === 'template' ? (
                     <LayoutTemplate size={17} />
@@ -269,7 +273,7 @@ export function KnowledgeArtifactsPage() {
                     <small>{item.filename} · v{item.version}</small>
                   </span>
                   <StatusPill tone={artifactTone(item)}>
-                    {item.scope === 'global' ? 'Globale' : 'Progetto'}
+                    {item.status}
                   </StatusPill>
                 </button>
               ))

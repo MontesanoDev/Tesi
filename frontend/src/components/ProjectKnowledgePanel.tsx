@@ -1,5 +1,10 @@
 import {
+  ChevronRight,
+  ClipboardList,
+  FileOutput,
   FileText,
+  LayoutTemplate,
+  ListChecks,
   LoaderCircle,
   NotebookPen,
   Paperclip,
@@ -7,9 +12,15 @@ import {
   Plus,
   X,
 } from 'lucide-react'
-import { useRef, useState, type ChangeEvent, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { api } from '../api'
-import type { ProjectDetail, ProjectFile } from '../types'
+import type {
+  KnowledgeArtifactSummary,
+  ProjectDetail,
+  ProjectFile,
+  StatusTone,
+} from '../types'
 import { StatusPill } from './StatusPill'
 
 interface ProjectKnowledgePanelProps {
@@ -45,6 +56,29 @@ function knowledgeItemLabel(name: string, count: number) {
   return count === 1 ? '1 verificato' : `${count} verificati`
 }
 
+const WORKFLOW_ITEMS = [
+  { kind: 'call_facts', label: 'Call Facts' },
+  { kind: 'project_facts', label: 'Dati del progetto' },
+  { kind: 'template', label: 'Template' },
+  { kind: 'output_draft', label: 'Draft' },
+] as const
+
+function workflowTone(status: string): StatusTone {
+  if (status === 'Verificato') return 'success'
+  if (status === 'Da estrarre' || status === 'Da generare') return 'info'
+  if (status === 'Bozza' || status === 'Bozza aggiornata' || status === 'Da verificare') {
+    return 'warning'
+  }
+  return 'purple'
+}
+
+function WorkflowIcon({ kind }: { kind: (typeof WORKFLOW_ITEMS)[number]['kind'] }) {
+  if (kind === 'call_facts') return <ListChecks size={17} />
+  if (kind === 'project_facts') return <ClipboardList size={17} />
+  if (kind === 'template') return <LayoutTemplate size={17} />
+  return <FileOutput size={17} />
+}
+
 export function ProjectKnowledgePanel({
   project,
   onProjectChange,
@@ -60,6 +94,19 @@ export function ProjectKnowledgePanel({
   const [savingText, setSavingText] = useState(false)
   const [feedback, setFeedback] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [workflowArtifacts, setWorkflowArtifacts] = useState<KnowledgeArtifactSummary[]>([])
+
+  useEffect(() => {
+    const controller = new AbortController()
+    setWorkflowArtifacts([])
+    api.projectArtifacts(project.id, controller.signal)
+      .then(setWorkflowArtifacts)
+      .catch((reason) => {
+        if (reason instanceof DOMException && reason.name === 'AbortError') return
+        setWorkflowArtifacts([])
+      })
+    return () => controller.abort()
+  }, [project.id])
 
   async function uploadFile(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
@@ -167,6 +214,28 @@ export function ProjectKnowledgePanel({
     ? '1 fonte'
     : `${project.files.length} fonti`
 
+  function workflowStatus(kind: (typeof WORKFLOW_ITEMS)[number]['kind']) {
+    const artifact = workflowArtifacts.find((item) => item.kind === kind)
+    if (artifact) return artifact.status
+    if (kind === 'call_facts') {
+      if (project.call_fact_count === 0) return 'Da estrarre'
+      return project.missing_fact_count > 0 ? 'Da verificare' : 'Verificato'
+    }
+    if (kind === 'output_draft') return 'Da generare'
+    return 'Bozza'
+  }
+
+  function workflowDetail(kind: (typeof WORKFLOW_ITEMS)[number]['kind']) {
+    if (kind === 'call_facts') {
+      const factLabel = project.call_fact_count === 1
+        ? '1 fatto'
+        : `${project.call_fact_count} fatti`
+      return `${factLabel} · ${project.missing_fact_count} mancanti`
+    }
+    const artifact = workflowArtifacts.find((item) => item.kind === kind)
+    return artifact ? `Versione ${artifact.version}` : 'Versione 1'
+  }
+
   return (
     <>
       <aside className="knowledge-panel project-context-panel">
@@ -265,6 +334,30 @@ export function ProjectKnowledgePanel({
                 </div>
               ))
             )}
+          </div>
+        </section>
+
+        <section className="knowledge-section project-workflow-summary">
+          <h2>Preparazione candidatura</h2>
+          <div className="project-workflow-list">
+            {WORKFLOW_ITEMS.map((item) => {
+              const status = workflowStatus(item.kind)
+              return (
+                <Link
+                  className="project-workflow-row"
+                  key={item.kind}
+                  to={`/projects/${project.id}/knowledge?artifact=${item.kind}`}
+                >
+                  <WorkflowIcon kind={item.kind} />
+                  <span>
+                    <strong>{item.label}</strong>
+                    <small>{workflowDetail(item.kind)}</small>
+                  </span>
+                  <StatusPill tone={workflowTone(status)}>{status}</StatusPill>
+                  <ChevronRight size={16} />
+                </Link>
+              )
+            })}
           </div>
         </section>
       </aside>

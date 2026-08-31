@@ -123,6 +123,65 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   await page.route(/\/api\/projects\/contesto-progetto$/, async (route) => {
     await route.fulfill({ contentType: 'application/json', body: JSON.stringify(projectPayload()) })
   })
+  await page.route(/\/api\/projects\/contesto-progetto\/artifacts$/, async (route) => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify([
+        {
+          id: 'contesto-progetto--call-facts',
+          kind: 'call_facts',
+          scope: 'project',
+          title: 'Call Facts',
+          filename: 'call-facts.md',
+          status: 'Da estrarre',
+          byte_size: 80,
+          version: 1,
+          updated_at: '2026-08-31 10:00:00',
+          editable: true,
+          chunk_count: 0,
+        },
+        {
+          id: 'contesto-progetto--project-facts',
+          kind: 'project_facts',
+          scope: 'project',
+          title: 'Project Facts',
+          filename: 'project-facts.md',
+          status: 'Bozza',
+          byte_size: 80,
+          version: 1,
+          updated_at: '2026-08-31 10:00:00',
+          editable: true,
+          chunk_count: 1,
+        },
+        {
+          id: 'contesto-progetto--template',
+          kind: 'template',
+          scope: 'project',
+          title: 'Template',
+          filename: 'template.md',
+          status: 'Bozza',
+          byte_size: 80,
+          version: 1,
+          updated_at: '2026-08-31 10:00:00',
+          editable: true,
+          chunk_count: 1,
+        },
+        {
+          id: 'contesto-progetto--draft',
+          kind: 'output_draft',
+          scope: 'project',
+          title: 'Draft',
+          filename: 'draft.md',
+          status: 'Da generare',
+          byte_size: 80,
+          version: 1,
+          updated_at: '2026-08-31 10:00:00',
+          editable: true,
+          chunk_count: 0,
+        },
+      ]),
+    })
+  })
   await page.route(/\/api\/projects\/contesto-progetto\/files$/, async (route) => {
     const document = {
       id: 22,
@@ -154,9 +213,18 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   await expect(page.getByRole('heading', { name: 'Conoscenza utilizzata' })).toBeVisible()
   await expect(page.getByText('Company KB')).toBeVisible()
   await expect(page.getByText('1 documento')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
+  await expect(page.getByRole('link', { name: /Call Facts/ })).toHaveAttribute(
+    'href',
+    '/projects/contesto-progetto/knowledge?artifact=call_facts',
+  )
+  await expect(page.getByRole('link', { name: /Draft/ })).toHaveAttribute(
+    'href',
+    '/projects/contesto-progetto/knowledge?artifact=output_draft',
+  )
   await expect(page.getByRole('button', { name: 'Modifica bando.pdf' })).toHaveCount(0)
   await page.getByRole('button', { name: 'Menu progetto' }).click()
-  await expect(page.getByRole('button', { name: /Impostazioni progetto/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Impostazioni progetto/ })).toHaveCount(0)
   await page.getByRole('button', { name: 'Menu progetto' }).click()
 
   await page.getByRole('button', { name: 'Aggiungi al contesto' }).click()
@@ -379,19 +447,6 @@ test('company knowledge is managed in the global archive', async ({ page }, test
     fullPage: true,
   })
 
-  await page.goto('/projects/fondo-riqualificazione-2027/settings')
-  await expect(page.getByRole('heading', { name: 'Impostazioni progetto' })).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Call Facts' })).toBeVisible()
-  await expect(page.getByText('Conoscenza condivisa')).toHaveCount(0)
-  await expect(page.getByText('curriculum-mapi.pdf')).toHaveCount(0)
-  await expect(page.getByText('norme-tecniche.txt')).toHaveCount(0)
-  await expect(page.getByRole('button', { name: 'Apri Call Facts' })).toBeVisible()
-  await expectNoHorizontalOverflow(page)
-  await page.screenshot({
-    path: `artifacts/${testInfo.project.name}-call-facts-settings.png`,
-    fullPage: true,
-  })
-
 })
 
 test('markdown artifacts support call facts and draft workflow', async ({ page }, testInfo) => {
@@ -609,10 +664,13 @@ test('markdown artifacts support call facts and draft workflow', async ({ page }
       })
     },
   )
-  await page.goto('/projects/fondo-riqualificazione-2027/settings')
-  await page.getByRole('button', { name: 'Apri Call Facts' }).click()
+  await page.goto('/projects/fondo-riqualificazione-2027')
+  await page.getByRole('link', { name: /Call Facts/ }).click()
 
-  await expect(page.getByRole('heading', { name: 'Conoscenza Markdown' })).toBeVisible()
+  await expect(page).toHaveURL(
+    /\/projects\/fondo-riqualificazione-2027\/knowledge\?artifact=call_facts$/,
+  )
+  await expect(page.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Termine di candidatura' })).toBeVisible()
   await expect(page.getByText('avviso.pdf, frammento 18')).toBeVisible()
 

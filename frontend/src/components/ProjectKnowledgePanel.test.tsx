@@ -1,4 +1,5 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { api } from '../api'
 import type { ProjectDetail } from '../types'
@@ -9,6 +10,7 @@ vi.mock('../api', () => ({
     uploadProjectFile: vi.fn(),
     projectFileContent: vi.fn(),
     updateProjectFileContent: vi.fn(),
+    projectArtifacts: vi.fn(),
   },
 }))
 
@@ -29,6 +31,17 @@ const project: ProjectDetail = {
   conversations: [],
 }
 
+function renderPanel(
+  projectValue: ProjectDetail = project,
+  onProjectChange = vi.fn().mockResolvedValue(undefined),
+) {
+  return render(
+    <MemoryRouter>
+      <ProjectKnowledgePanel project={projectValue} onProjectChange={onProjectChange} />
+    </MemoryRouter>,
+  )
+}
+
 describe('ProjectKnowledgePanel', () => {
   afterEach(cleanup)
 
@@ -36,6 +49,8 @@ describe('ProjectKnowledgePanel', () => {
     vi.mocked(api.uploadProjectFile).mockReset()
     vi.mocked(api.projectFileContent).mockReset()
     vi.mocked(api.updateProjectFileContent).mockReset()
+    vi.mocked(api.projectArtifacts).mockReset()
+    vi.mocked(api.projectArtifacts).mockResolvedValue([])
   })
 
   it('uploads a source and refreshes the project', async () => {
@@ -49,9 +64,7 @@ describe('ProjectKnowledgePanel', () => {
       page_count: 1,
       chunk_count: 2,
     })
-    render(
-      <ProjectKnowledgePanel project={project} onProjectChange={onProjectChange} />,
-    )
+    renderPanel(project, onProjectChange)
 
     const input = screen.getByLabelText('Seleziona un documento da indicizzare')
     const file = new File(['contenuto tecnico'], 'capitolato.txt', {
@@ -81,7 +94,7 @@ describe('ProjectKnowledgePanel', () => {
       page_count: 1,
       chunk_count: 1,
     })
-    render(<ProjectKnowledgePanel project={project} onProjectChange={onProjectChange} />)
+    renderPanel(project, onProjectChange)
 
     fireEvent.click(screen.getByRole('button', { name: 'Aggiungi al contesto' }))
     fireEvent.click(screen.getByRole('button', { name: 'Aggiungi contenuto testuale' }))
@@ -101,12 +114,7 @@ describe('ProjectKnowledgePanel', () => {
   })
 
   it('explains invalid handwritten content instead of failing silently', async () => {
-    render(
-      <ProjectKnowledgePanel
-        project={project}
-        onProjectChange={vi.fn().mockResolvedValue(undefined)}
-      />,
-    )
+    renderPanel()
 
     fireEvent.click(screen.getByRole('button', { name: 'Aggiungi al contesto' }))
     fireEvent.click(screen.getByRole('button', { name: 'Aggiungi contenuto testuale' }))
@@ -123,32 +131,27 @@ describe('ProjectKnowledgePanel', () => {
   })
 
   it('shows the knowledge used by the project', () => {
-    render(
-      <ProjectKnowledgePanel
-        project={{
-          ...project,
-          knowledge_sources: [
-            {
-              id: -1,
-              name: 'Company KB',
-              detail: '3 frammenti disponibili',
-              scope: 'global',
-              tone: 'success',
-              item_count: 2,
-            },
-            {
-              id: -2,
-              name: 'General KB',
-              detail: 'Nessun documento collegato',
-              scope: 'global',
-              tone: 'info',
-              item_count: 0,
-            },
-          ],
-        }}
-        onProjectChange={vi.fn().mockResolvedValue(undefined)}
-      />,
-    )
+    renderPanel({
+      ...project,
+      knowledge_sources: [
+        {
+          id: -1,
+          name: 'Company KB',
+          detail: '3 frammenti disponibili',
+          scope: 'global',
+          tone: 'success',
+          item_count: 2,
+        },
+        {
+          id: -2,
+          name: 'General KB',
+          detail: 'Nessun documento collegato',
+          scope: 'global',
+          tone: 'info',
+          item_count: 0,
+        },
+      ],
+    })
 
     expect(screen.getByRole('heading', { name: 'Conoscenza utilizzata' })).toBeVisible()
     expect(screen.getByText('Company KB')).toBeVisible()
@@ -178,12 +181,7 @@ describe('ProjectKnowledgePanel', () => {
       ...textFile,
       content: '# Requisiti\n\nVersione corretta.',
     })
-    render(
-      <ProjectKnowledgePanel
-        project={{ ...project, files: [textFile] }}
-        onProjectChange={onProjectChange}
-      />,
-    )
+    renderPanel({ ...project, files: [textFile] }, onProjectChange)
 
     fireEvent.click(screen.getByRole('button', { name: 'Modifica requisiti.md' }))
     const editor = await screen.findByLabelText('Contenuto Markdown')
@@ -197,6 +195,61 @@ describe('ProjectKnowledgePanel', () => {
         '# Requisiti\n\nVersione corretta.',
       )
       expect(onProjectChange).toHaveBeenCalledOnce()
+    })
+  })
+
+  it('links each preparation step to its artifact and shows live status', async () => {
+    vi.mocked(api.projectArtifacts).mockResolvedValue([
+      {
+        id: 'progetto-test--call-facts',
+        kind: 'call_facts',
+        scope: 'project',
+        title: 'Call Facts',
+        filename: 'call-facts.md',
+        status: 'Da verificare',
+        byte_size: 120,
+        version: 3,
+        updated_at: '2026-08-31 10:00:00',
+        editable: true,
+        chunk_count: 1,
+      },
+      {
+        id: 'progetto-test--template',
+        kind: 'template',
+        scope: 'project',
+        title: 'Template',
+        filename: 'template.md',
+        status: 'Bozza',
+        byte_size: 80,
+        version: 2,
+        updated_at: '2026-08-31 10:00:00',
+        editable: true,
+        chunk_count: 1,
+      },
+    ])
+
+    renderPanel({ ...project, call_fact_count: 4, missing_fact_count: 1 })
+
+    expect(screen.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
+    expect(screen.getByRole('link', { name: /Call Facts/ })).toHaveAttribute(
+      'href',
+      '/projects/progetto-test/knowledge?artifact=call_facts',
+    )
+    expect(screen.getByRole('link', { name: /Dati del progetto/ })).toHaveAttribute(
+      'href',
+      '/projects/progetto-test/knowledge?artifact=project_facts',
+    )
+    expect(screen.getByRole('link', { name: /Template/ })).toHaveAttribute(
+      'href',
+      '/projects/progetto-test/knowledge?artifact=template',
+    )
+    expect(screen.getByRole('link', { name: /Draft/ })).toHaveAttribute(
+      'href',
+      '/projects/progetto-test/knowledge?artifact=output_draft',
+    )
+    await waitFor(() => {
+      expect(screen.getByRole('link', { name: /Call Facts/ })).toHaveTextContent('Da verificare')
+      expect(screen.getByRole('link', { name: /Template/ })).toHaveTextContent('Versione 2')
     })
   })
 })
