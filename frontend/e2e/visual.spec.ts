@@ -394,7 +394,7 @@ test('company knowledge is managed in the global archive', async ({ page }, test
 
 })
 
-test('markdown knowledge artifacts expose project and global scopes', async ({ page }, testInfo) => {
+test('markdown artifacts support call facts and draft workflow', async ({ page }, testInfo) => {
   let factStatus: 'pending' | 'verified' = 'pending'
   let factTitle = 'Termine di candidatura'
   let factValue = '15 settembre 2025'
@@ -483,19 +483,19 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
     chunk_count: 1,
     content: '# Template candidatura\n\n## Termine\n\n[TODO: inserire termine]',
   }
-  const generalArtifact = {
-    id: 'global--general-kb',
-    kind: 'general_kb',
-    scope: 'global',
-    title: 'General KB',
-    filename: 'general-kb.md',
-    status: 'Verificato',
-    byte_size: 180,
+  const projectFactsArtifact = {
+    id: 'fondo-riqualificazione-2027--project-facts',
+    kind: 'project_facts',
+    scope: 'project',
+    title: 'Project Facts',
+    filename: 'project-facts.md',
+    status: 'Bozza',
+    byte_size: 210,
     version: 1,
     updated_at: '2026-08-04 18:00:00',
-    editable: false,
+    editable: true,
     chunk_count: 1,
-    content: '# General KB\n\nNorme tecniche condivise.',
+    content: '# Project Facts\n\n## Titolo\n\nFondo Riqualificazione 2027',
   }
 
   await page.route(/\/api\/projects\/fondo-riqualificazione-2027$/, async (route) => {
@@ -526,9 +526,9 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
         contentType: 'application/json',
         body: JSON.stringify([
           callFactsArtifact(),
+          projectFactsArtifact,
           templateArtifact,
           draftArtifact(),
-          generalArtifact,
         ]),
       })
     },
@@ -545,13 +545,6 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
       await route.fulfill({ contentType: 'application/json', body: JSON.stringify(templateArtifact) })
     },
   )
-  await page.route(
-    '**/api/projects/fondo-riqualificazione-2027/artifacts/global--general-kb',
-    async (route) => {
-      await route.fulfill({ contentType: 'application/json', body: JSON.stringify(generalArtifact) })
-    },
-  )
-
   await page.route(
     '**/api/projects/fondo-riqualificazione-2027/call-facts',
     async (route) => {
@@ -650,17 +643,15 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
   await expect(callFactsEditor).toContainText('## Termine e orario della candidatura')
   await expect(page.getByText('2 fatti estratti da 8 frammenti')).toBeVisible()
 
-  await page.getByRole('button', { name: /General KB/ }).click()
-  const generalEditor = page.getByLabel('Contenuto di General KB')
-  await expect(generalEditor).not.toBeEditable()
-  await expect(page.getByText('Gli artefatti globali sono in sola lettura')).toBeVisible()
+  await expect(page.getByRole('button', { name: /General KB/ })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: /Project Facts/ })).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
     path: `artifacts/${testInfo.project.name}-markdown-knowledge.png`,
     fullPage: true,
   })
 
-  await page.locator('.artifact-list-item').filter({ hasText: 'Call Facts' }).click()
+  await page.getByRole('tab', { name: 'Revisione' }).click()
   await page.getByRole('button', { name: 'Verifica', exact: true }).click()
   await page.locator('.artifact-list-item').filter({ hasText: 'Template' }).click()
   await page.getByRole('button', { name: 'Genera draft', exact: true }).click()

@@ -69,8 +69,11 @@ async def test_create_project_persists(client):
 
     artifacts = await client.get(f"/api/projects/{project_id}/artifacts")
     assert artifacts.status_code == 200
-    assert len(artifacts.json()) == 5
-    assert all(artifact["kind"] != "company_facts" for artifact in artifacts.json())
+    assert len(artifacts.json()) == 4
+    assert all(
+        artifact["kind"] not in {"company_facts", "general_kb"}
+        for artifact in artifacts.json()
+    )
 
 
 @pytest.mark.anyio
@@ -109,7 +112,7 @@ async def test_delete_project_removes_local_data_without_reseeding(client):
         ).fetchone()[0] == 0
         assert db.execute(
             "SELECT COUNT(*) FROM knowledge_artifacts WHERE scope = 'global'"
-        ).fetchone()[0] == 1
+        ).fetchone()[0] == 0
 
     assert (await client.delete(f"/api/projects/{project_id}")).status_code == 404
     seed_database()
@@ -152,16 +155,6 @@ async def test_markdown_artifact_update_is_versioned_and_indexed(client):
     assert evidence.status_code == 200
     assert evidence.json()["results"][0]["source_name"] == "project-facts.md"
 
-    general_kb = next(
-        artifact for artifact in artifacts.json() if artifact["kind"] == "general_kb"
-    )
-    forbidden = await client.put(
-        f"/api/projects/{project_id}/artifacts/{general_kb['id']}",
-        json={"content": "# General KB\n\nModifica locale non consentita."},
-    )
-    assert forbidden.status_code == 403
-
-
 @pytest.mark.anyio
 async def test_markdown_artifact_seed_is_idempotent(client):
     project_id = "fondo-riqualificazione-2027"
@@ -180,7 +173,7 @@ async def test_markdown_artifact_seed_is_idempotent(client):
             """,
             (project_id,),
         ).fetchone()[0]
-    assert artifact_files == 5
+    assert artifact_files == 4
 
 
 @pytest.mark.anyio

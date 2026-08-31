@@ -12,9 +12,6 @@ class ArtifactReadOnlyError(ValueError):
     pass
 
 
-GLOBAL_ARTIFACTS = (
-    ("general-kb", "general_kb", "General KB", "general-kb.md", "Da configurare"),
-)
 PROJECT_ARTIFACTS = (
     ("call-facts", "call_facts", "Call Facts", "call-facts.md", "Da estrarre"),
     (
@@ -86,14 +83,6 @@ def _frontmatter(kind: str, scope: str, project_id: str | None, status: str) -> 
         f"{project_line}"
         f"status: {status.lower().replace(' ', '_')}\n"
         "---\n"
-    )
-
-
-def _global_content(kind: str) -> str:
-    return (
-        f"{_frontmatter(kind, 'global', None, 'Da configurare')}\n"
-        "# General KB\n\n"
-        "> Aggiungere qui norme, procedure e conoscenze tecniche condivise.\n"
     )
 
 
@@ -332,38 +321,25 @@ def _insert_artifact(
     return dict(existing)
 
 
-def _remove_legacy_company_facts_artifact(db) -> None:
-    artifact = db.execute(
-        "SELECT storage_path FROM knowledge_artifacts WHERE id = 'global--company-facts'"
-    ).fetchone()
-    file_ids = db.execute(
-        "SELECT file_id FROM project_artifact_links WHERE artifact_id = 'global--company-facts'"
-    ).fetchall()
-    for row in file_ids:
-        db.execute("DELETE FROM project_files WHERE id = ?", (row["file_id"],))
-    db.execute("DELETE FROM knowledge_artifacts WHERE id = 'global--company-facts'")
-    if artifact is not None:
-        _artifact_path(artifact["storage_path"]).unlink(missing_ok=True)
+def _remove_legacy_global_artifacts(db) -> None:
+    for artifact_id in ("global--company-facts", "global--general-kb"):
+        artifact = db.execute(
+            "SELECT storage_path FROM knowledge_artifacts WHERE id = ?",
+            (artifact_id,),
+        ).fetchone()
+        file_ids = db.execute(
+            "SELECT file_id FROM project_artifact_links WHERE artifact_id = ?",
+            (artifact_id,),
+        ).fetchall()
+        for row in file_ids:
+            db.execute("DELETE FROM project_files WHERE id = ?", (row["file_id"],))
+        db.execute("DELETE FROM knowledge_artifacts WHERE id = ?", (artifact_id,))
+        if artifact is not None:
+            _artifact_path(artifact["storage_path"]).unlink(missing_ok=True)
 
 
 def _ensure_project_artifacts(db, project: dict) -> None:
     project_id = project["id"]
-    for slug, kind, title, filename, status in GLOBAL_ARTIFACTS:
-        artifact_id = f"global--{slug}"
-        artifact = _insert_artifact(
-            db,
-            artifact_id,
-            None,
-            kind,
-            "global",
-            title,
-            filename,
-            f"global/{filename}",
-            status,
-            _global_content(kind),
-        )
-        _link_artifact(db, project_id, artifact, _read_artifact(artifact["storage_path"]))
-
     for slug, kind, title, filename, status in PROJECT_ARTIFACTS:
         artifact_id = f"{project_id}--{slug}"
         artifact = _insert_artifact(
@@ -384,7 +360,7 @@ def _ensure_project_artifacts(db, project: dict) -> None:
 
 def seed_markdown_artifacts() -> None:
     with connection() as db:
-        _remove_legacy_company_facts_artifact(db)
+        _remove_legacy_global_artifacts(db)
         projects = [dict(row) for row in db.execute("SELECT * FROM projects").fetchall()]
         for project in projects:
             _ensure_project_artifacts(db, project)
