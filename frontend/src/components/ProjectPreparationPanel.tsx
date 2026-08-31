@@ -72,10 +72,12 @@ export function ProjectPreparationPanel({ project }: { project: ProjectDetail })
   }
 
   return (
-    <section className="project-preparation" aria-labelledby="project-preparation-title">
+    <section
+      className="knowledge-section project-preparation"
+      aria-labelledby="project-preparation-title"
+    >
       <div className="project-preparation-heading">
         <h2 id="project-preparation-title">Preparazione candidatura</h2>
-        <span>Flusso di lavoro</span>
       </div>
       <div className="project-workflow-list">
         {WORKFLOW_ITEMS.map((item) => {

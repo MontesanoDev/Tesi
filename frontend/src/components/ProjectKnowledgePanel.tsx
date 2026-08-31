@@ -11,6 +11,7 @@ import { useRef, useState, type ChangeEvent, type FormEvent } from 'react'
 import { api } from '../api'
 import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import type { ProjectDetail, ProjectFile } from '../types'
+import { ProjectPreparationPanel } from './ProjectPreparationPanel'
 import { StatusPill } from './StatusPill'
 
 interface ProjectKnowledgePanelProps {
@@ -34,16 +35,6 @@ function fragmentCountLabel(count: number) {
 
 function isEditableSource(file: ProjectFile) {
   return file.mime_type === 'text/plain' || file.mime_type === 'text/markdown'
-}
-
-function knowledgeItemLabel(name: string, count: number) {
-  if (name === 'Company KB' || name === 'General KB') {
-    return count === 1 ? '1 documento' : `${count} documenti`
-  }
-  if (name === 'Modelli') {
-    return count === 1 ? '1 disponibile' : `${count} disponibili`
-  }
-  return count === 1 ? '1 verificato' : `${count} verificati`
 }
 
 export function ProjectKnowledgePanel({
@@ -256,23 +247,7 @@ export function ProjectKnowledgePanel({
           </div>
         </section>
 
-        <section className="knowledge-section knowledge-summary">
-          <h2>Conoscenza utilizzata</h2>
-          <div className="knowledge-source-list">
-            {project.knowledge_sources.length === 0 ? (
-              <p className="empty-list">Nessuna conoscenza condivisa disponibile</p>
-            ) : (
-              project.knowledge_sources.map((source) => (
-                <div className="knowledge-source" key={source.id}>
-                  <span className={`source-dot source-dot--${source.tone}`} />
-                  <strong>{source.name}</strong>
-                  <span>{knowledgeItemLabel(source.name, source.item_count)}</span>
-                </div>
-              ))
-            )}
-          </div>
-        </section>
-
+        <ProjectPreparationPanel project={project} />
       </aside>
 
       {textModalOpen && (

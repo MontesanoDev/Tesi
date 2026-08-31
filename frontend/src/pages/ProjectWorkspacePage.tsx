@@ -13,7 +13,7 @@ import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
-import { ProjectPreparationPanel } from '../components/ProjectPreparationPanel'
+import { ProjectKnowledgeSummary } from '../components/ProjectKnowledgeSummary'
 import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import { useProject } from '../hooks/useProject'
 import type { GroundedAnswer } from '../types'
@@ -378,7 +378,7 @@ export function ProjectWorkspacePage() {
           ) : turns.length === 0 ? (
             <>
               {composer}
-              <ProjectPreparationPanel project={project} />
+              <ProjectKnowledgeSummary project={project} />
 
               {!conversationId && (
                 <section className="recent-conversations">

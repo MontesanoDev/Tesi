@@ -102,6 +102,14 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
     files,
     knowledge_sources: [
       {
+        id: 1,
+        name: 'Call Facts',
+        detail: 'Nessun fatto verificato',
+        scope: 'project',
+        tone: 'warning',
+        item_count: 0,
+      },
+      {
         id: -1,
         name: 'Company KB',
         detail: '2 frammenti disponibili',
@@ -216,12 +224,18 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   await page.goto('/projects/contesto-progetto')
   await expect(page.getByRole('heading', { name: 'Contesto progetto' }).last()).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Conoscenza utilizzata' })).toBeVisible()
+  await expect(page.getByText('Call Facts').first()).toBeVisible()
   await expect(page.getByText('Company KB')).toBeVisible()
   await expect(page.getByText('1 documento')).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
   await expect(
     page.locator('.project-context-panel').getByRole('heading', {
       name: 'Preparazione candidatura',
+    }),
+  ).toBeVisible()
+  await expect(
+    page.locator('.project-context-panel').getByRole('heading', {
+      name: 'Conoscenza utilizzata',
     }),
   ).toHaveCount(0)
   await expect(page.getByRole('link', { name: /Call Facts/ })).toHaveAttribute(

@@ -10,6 +10,7 @@ vi.mock('../api', () => ({
     uploadProjectFile: vi.fn(),
     projectFileContent: vi.fn(),
     updateProjectFileContent: vi.fn(),
+    projectArtifacts: vi.fn(),
   },
 }))
 
@@ -48,6 +49,8 @@ describe('ProjectKnowledgePanel', () => {
     vi.mocked(api.uploadProjectFile).mockReset()
     vi.mocked(api.projectFileContent).mockReset()
     vi.mocked(api.updateProjectFileContent).mockReset()
+    vi.mocked(api.projectArtifacts).mockReset()
+    vi.mocked(api.projectArtifacts).mockResolvedValue([])
   })
 
   it('uploads a source and refreshes the project', async () => {
@@ -141,34 +144,13 @@ describe('ProjectKnowledgePanel', () => {
     expect(api.uploadProjectFile).not.toHaveBeenCalled()
   })
 
-  it('shows the knowledge used by the project', () => {
-    renderPanel({
-      ...project,
-      knowledge_sources: [
-        {
-          id: -1,
-          name: 'Company KB',
-          detail: '3 frammenti disponibili',
-          scope: 'global',
-          tone: 'success',
-          item_count: 2,
-        },
-        {
-          id: -2,
-          name: 'General KB',
-          detail: 'Nessun documento collegato',
-          scope: 'global',
-          tone: 'info',
-          item_count: 0,
-        },
-      ],
-    })
+  it('keeps the preparation workflow in the context sidebar', () => {
+    renderPanel()
 
-    expect(screen.getByRole('heading', { name: 'Conoscenza utilizzata' })).toBeVisible()
-    expect(screen.getByText('Company KB')).toBeVisible()
-    expect(screen.getByText('2 documenti')).toBeVisible()
-    expect(screen.getByText('General KB')).toBeVisible()
-    expect(screen.getByText('0 documenti')).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
+    expect(screen.getByRole('link', { name: /Call Facts/ })).toBeVisible()
+    expect(screen.getByRole('link', { name: /Draft/ })).toBeVisible()
+    expect(screen.queryByRole('heading', { name: 'Conoscenza utilizzata' })).toBeNull()
   })
 
   it('edits and reindexes a text source', async () => {
