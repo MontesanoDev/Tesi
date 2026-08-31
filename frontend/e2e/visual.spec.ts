@@ -246,6 +246,13 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
     'href',
     '/projects/contesto-progetto/knowledge?artifact=output_draft',
   )
+  const composer = page.getByLabel('Messaggio per Mapi RAG')
+  const initialComposerHeight = await composer.evaluate((element) => element.clientHeight)
+  await composer.fill(Array.from({ length: 8 }, (_, index) => `Riga ${index + 1}`).join('\n'))
+  await expect.poll(() => composer.evaluate((element) => element.clientHeight)).toBeGreaterThan(
+    initialComposerHeight,
+  )
+  await composer.fill('')
   await expect(page.getByRole('button', { name: 'Modifica bando.pdf' })).toHaveCount(0)
   await page.getByRole('button', { name: 'Menu progetto' }).click()
   await expect(page.getByRole('button', { name: /Impostazioni progetto/ })).toHaveCount(0)

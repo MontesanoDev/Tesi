@@ -7,7 +7,14 @@ import {
   Trash2,
   X,
 } from 'lucide-react'
-import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type FormEvent,
+  type KeyboardEvent,
+} from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
 import { AppShell } from '../components/AppShell'
@@ -130,6 +137,7 @@ export function ProjectWorkspacePage() {
   const [conversationError, setConversationError] = useState<string | null>(null)
   const turnSequence = useRef(0)
   const chatThread = useRef<HTMLDivElement>(null)
+  const composerInput = useRef<HTMLTextAreaElement>(null)
   const activeConversation = useRef<string | null>(conversationId ?? null)
   const loadedConversation = useRef<string | null>(null)
   const projectMenuRef = useDismissibleMenu<HTMLDivElement>(
@@ -200,6 +208,13 @@ export function ProjectWorkspacePage() {
     })
     return () => cancelAnimationFrame(frame)
   }, [turns])
+
+  useLayoutEffect(() => {
+    const input = composerInput.current
+    if (!input) return
+    input.style.height = 'auto'
+    input.style.height = `${input.scrollHeight}px`
+  }, [prompt, turns.length])
 
   if (loading) return <AppShell active="projects"><LoadingState /></AppShell>
   if (error || !project) {
@@ -312,6 +327,7 @@ export function ProjectWorkspacePage() {
       onSubmit={submitPrompt}
     >
       <textarea
+        ref={composerInput}
         aria-label="Messaggio per Mapi RAG"
         placeholder="Come posso aiutarti in questo progetto?"
         value={prompt}
