@@ -409,10 +409,6 @@
   background: var(--border);
 }
 
-.project-menu .muted-command {
-  color: var(--text-muted);
-}
-
 .project-menu .danger-command {
   color: #e0a09a;
 }

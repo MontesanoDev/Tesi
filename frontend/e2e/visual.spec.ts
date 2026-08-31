@@ -249,6 +249,7 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   await expect(page.getByRole('button', { name: 'Modifica bando.pdf' })).toHaveCount(0)
   await page.getByRole('button', { name: 'Menu progetto' }).click()
   await expect(page.getByRole('button', { name: /Impostazioni progetto/ })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Archivia progetto' })).toHaveCount(0)
   await page.locator('.project-heading h1').click()
   await expect(page.getByRole('button', { name: 'Rinomina progetto' })).toHaveCount(0)
 

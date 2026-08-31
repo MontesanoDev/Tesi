@@ -354,7 +354,6 @@ export function ProjectWorkspacePage() {
               {menuOpen && (
                 <div className="project-menu">
                   <button type="button" onClick={openRenameDialog}>Rinomina progetto</button>
-                  <button className="muted-command" type="button">Archivia progetto</button>
                   <button
                     className="danger-command"
                     type="button"
