@@ -156,7 +156,7 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   await expect(page.getByText('1 documento')).toBeVisible()
   await expect(page.getByRole('button', { name: 'Modifica bando.pdf' })).toHaveCount(0)
   await page.getByRole('button', { name: 'Menu progetto' }).click()
-  await expect(page.getByRole('button', { name: /Impostazioni progetto/ })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: /Impostazioni progetto/ })).toBeVisible()
   await page.getByRole('button', { name: 'Menu progetto' }).click()
 
   await page.getByRole('button', { name: 'Aggiungi al contesto' }).click()
@@ -269,7 +269,19 @@ test('company knowledge is managed in the global archive', async ({ page }, test
         instructions: '',
         call_fact_count: 14,
         missing_fact_count: 2,
-        files: [],
+        files: [
+          {
+            id: 31,
+            name: 'bando-regione-puglia.pdf',
+            metadata: 'PDF · 7 MB · 232 frammenti',
+            kind: 'source',
+            status: 'Indicizzato',
+            mime_type: 'application/pdf',
+            byte_size: 7340032,
+            page_count: 146,
+            chunk_count: 232,
+          },
+        ],
         knowledge_sources: [],
         conversations: [],
       }),
@@ -364,6 +376,19 @@ test('company knowledge is managed in the global archive', async ({ page }, test
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
     path: `artifacts/${testInfo.project.name}-company-kb-global.png`,
+    fullPage: true,
+  })
+
+  await page.goto('/projects/fondo-riqualificazione-2027/settings')
+  await expect(page.getByRole('heading', { name: 'Impostazioni progetto' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Call Facts' })).toBeVisible()
+  await expect(page.getByText('Conoscenza condivisa')).toHaveCount(0)
+  await expect(page.getByText('curriculum-mapi.pdf')).toHaveCount(0)
+  await expect(page.getByText('norme-tecniche.txt')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Apri Call Facts' })).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await page.screenshot({
+    path: `artifacts/${testInfo.project.name}-call-facts-settings.png`,
     fullPage: true,
   })
 
@@ -591,7 +616,8 @@ test('markdown knowledge artifacts expose project and global scopes', async ({ p
       })
     },
   )
-  await page.goto('/projects/fondo-riqualificazione-2027/knowledge')
+  await page.goto('/projects/fondo-riqualificazione-2027/settings')
+  await page.getByRole('button', { name: 'Apri Call Facts' }).click()
 
   await expect(page.getByRole('heading', { name: 'Conoscenza Markdown' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Termine di candidatura' })).toBeVisible()

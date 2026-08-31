@@ -3,6 +3,7 @@ import { CompanyKnowledgePage } from './pages/CompanyKnowledgePage'
 import { DocumentReviewPage } from './pages/DocumentReviewPage'
 import { GeneralSettingsPage } from './pages/GeneralSettingsPage'
 import { KnowledgeArtifactsPage } from './pages/KnowledgeArtifactsPage'
+import { ProjectSettingsPage } from './pages/ProjectSettingsPage'
 import { ProjectWorkspacePage } from './pages/ProjectWorkspacePage'
 import { ProjectsPage } from './pages/ProjectsPage'
 import './App.css'
@@ -16,6 +17,10 @@ export default function App() {
       <Route
         path="/projects/:projectId/conversations/:conversationId"
         element={<ProjectWorkspacePage />}
+      />
+      <Route
+        path="/projects/:projectId/settings"
+        element={<ProjectSettingsPage />}
       />
       <Route
         path="/projects/:projectId/knowledge"

@@ -1033,12 +1033,32 @@
   margin-top: 12px;
 }
 
-.settings-card > p {
+.settings-card > p,
+.settings-card-heading p {
   margin-top: 4px;
   color: var(--text-muted);
   font-size: 13px;
   line-height: 20px;
 }
+
+.settings-card-heading {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+}
+
+.setting-monogram {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.setting-monogram--gold { color: #ecd27f; background: #42371f; }
 
 .settings-card-divider {
   height: 1px;
@@ -1059,6 +1079,71 @@
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.call-facts-card > .section-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.call-document-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 52px;
+  padding: 7px 12px;
+  border: 1px solid #373834;
+  border-radius: 8px;
+  background: var(--panel-raised);
+}
+
+.call-document-row > div {
+  min-width: 0;
+}
+
+.call-document-row strong,
+.call-document-row span {
+  display: block;
+}
+
+.call-document-row strong {
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.call-document-row > div > span {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) 172px;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.metric-grid > div {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--panel-raised);
+}
+
+.metric-grid > div strong {
+  margin-right: 14px;
+  font-size: 16px;
+}
+
+.metric-grid > div span {
+  color: var(--text-muted);
+  font-size: 11px;
 }
 
 .knowledge-workspace {
@@ -2373,6 +2458,17 @@
   .conversation-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 
   .settings-card { padding: 18px; }
+  .settings-card-heading { grid-template-columns: 48px minmax(0, 1fr); gap: 14px; }
+  .settings-card-heading > .status-pill { grid-column: 2; justify-self: start; }
+  .setting-monogram { width: 48px; height: 48px; }
+  .metric-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .metric-grid > .button { grid-column: 1 / -1; }
+  .metric-grid > div {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .metric-grid > div strong { margin-right: 0; }
   .global-knowledge-heading { align-items: stretch; flex-direction: column; }
   .global-upload-button { justify-content: center; width: 100%; }
   .knowledge-type-tabs { grid-template-columns: minmax(0, 1fr); }
