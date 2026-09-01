@@ -193,13 +193,10 @@ def _expand_neighbor_evidence(
                             c.content
                         FROM global_document_chunks c
                         JOIN global_documents d ON d.id = c.document_id
-                        LEFT JOIN project_global_document_links l
-                          ON l.document_id = d.id AND l.project_id = ?
                         WHERE c.document_id = ? AND c.chunk_index = ?
-                          AND (d.category = 'company' OR l.project_id IS NOT NULL)
+                          AND d.category IN ('company', 'general')
                         """,
                         (
-                            project_id,
                             -anchor["file_id"],
                             anchor["chunk_index"] + offset,
                         ),
@@ -413,17 +410,10 @@ def list_project_global_documents(project_id: str) -> list[dict] | None:
             """
             SELECT d.id, d.name, d.category, d.metadata, d.status, d.mime_type,
                    d.byte_size, d.page_count, d.chunk_count,
-                   CASE
-                       WHEN d.category = 'company' THEN 1
-                       WHEN l.project_id IS NULL THEN 0
-                       ELSE 1
-                   END AS linked
+                   1 AS linked
             FROM global_documents d
-            LEFT JOIN project_global_document_links l
-              ON l.document_id = d.id AND l.project_id = ?
             ORDER BY datetime(d.created_at) DESC, d.id DESC
             """,
-            (project_id,),
         )
 
 
@@ -470,23 +460,6 @@ def set_project_global_document_link(
         ).fetchone()
         if document is None:
             return None
-        if document["category"] == "general":
-            if linked:
-                db.execute(
-                    """
-                    INSERT OR IGNORE INTO project_global_document_links (project_id, document_id)
-                    VALUES (?, ?)
-                    """,
-                    (project_id, document_id),
-                )
-            else:
-                db.execute(
-                    """
-                    DELETE FROM project_global_document_links
-                    WHERE project_id = ? AND document_id = ?
-                    """,
-                    (project_id, document_id),
-                )
     documents = list_project_global_documents(project_id)
     if documents is None:
         return None
@@ -534,13 +507,9 @@ def get_project(project_id: str) -> dict | None:
             SELECT d.category, COUNT(*) AS document_count,
                    COALESCE(SUM(d.chunk_count), 0) AS chunk_count
             FROM global_documents d
-            LEFT JOIN project_global_document_links l
-              ON l.document_id = d.id AND l.project_id = ?
-            WHERE d.category = 'company'
-               OR (d.category = 'general' AND l.project_id IS NOT NULL)
+            WHERE d.category IN ('company', 'general')
             GROUP BY d.category
             """,
-            (project_id,),
         )
         counts = {row["category"]: row for row in active_global_knowledge}
         for source_id, category, name in (
@@ -1103,14 +1072,12 @@ def search_project_evidence(
             FROM global_document_chunks_fts
             JOIN global_document_chunks c ON c.id = global_document_chunks_fts.rowid
             JOIN global_documents d ON d.id = c.document_id
-            LEFT JOIN project_global_document_links l
-              ON l.document_id = d.id AND l.project_id = ?
             WHERE global_document_chunks_fts MATCH ?
-              AND (d.category = 'company' OR l.project_id IS NOT NULL)
+              AND d.category IN ('company', 'general')
             ORDER BY rank
             LIMIT ?
             """,
-            (project_id, fts_query, max(limit * 6, 24)),
+            (fts_query, max(limit * 6, 24)),
         )
         candidates = project_candidates + global_candidates
     anchors = _rerank_evidence(query, candidates, limit)

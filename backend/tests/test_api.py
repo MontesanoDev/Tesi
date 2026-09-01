@@ -301,24 +301,34 @@ async def test_global_knowledge_categories_and_markdown_are_explicit(client):
     assert uploaded.json()["category"] == "general"
 
     project_id = "fondo-riqualificazione-2027"
-    before_link = await client.get(
+    evidence = await client.get(
         f"/api/projects/{project_id}/evidence",
         params={"q": "xilofono normativo ametista"},
     )
-    assert before_link.json()["results"] == []
+    assert evidence.json()["results"][0]["source_name"] == "norma-tecnica.txt"
 
-    linked = await client.put(
+    project = await client.get(f"/api/projects/{project_id}")
+    general_kb = next(
+        source for source in project.json()["knowledge_sources"] if source["name"] == "General KB"
+    )
+    assert general_kb["item_count"] == 1
+    assert general_kb["detail"] == "1 frammento disponibile"
+
+    project_documents = await client.get(f"/api/projects/{project_id}/global-knowledge")
+    general_document = next(
+        item for item in project_documents.json() if item["id"] == uploaded.json()["id"]
+    )
+    assert general_document["linked"] is True
+
+    unchanged = await client.put(
         f"/api/projects/{project_id}/global-knowledge/{uploaded.json()['id']}",
-        json={"linked": True},
+        json={"linked": False},
     )
-    assert linked.status_code == 200
-    assert linked.json()["linked"] is True
+    assert unchanged.status_code == 200
+    assert unchanged.json()["linked"] is True
 
-    after_link = await client.get(
-        f"/api/projects/{project_id}/evidence",
-        params={"q": "xilofono normativo ametista"},
-    )
-    assert after_link.json()["results"][0]["source_name"] == "norma-tecnica.txt"
+    with connection() as db:
+        assert db.execute("SELECT COUNT(*) FROM project_global_document_links").fetchone()[0] == 0
 
     invalid = await client.post(
         "/api/global-knowledge/files",
