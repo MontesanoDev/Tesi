@@ -2,30 +2,49 @@ import { useCallback, useEffect, useState } from 'react'
 import { api } from '../api'
 import type { ProjectDetail } from '../types'
 
+interface ProjectState {
+  requestedId?: string
+  project: ProjectDetail | null
+  error: string | null
+  loading: boolean
+}
+
 export function useProject(projectId?: string) {
-  const [project, setProject] = useState<ProjectDetail | null>(null)
-  const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [state, setState] = useState<ProjectState>(() => ({
+    requestedId: projectId,
+    project: null,
+    error: projectId ? null : 'Progetto non specificato',
+    loading: Boolean(projectId),
+  }))
 
   useEffect(() => {
     if (!projectId) {
-      setError('Progetto non specificato')
-      setLoading(false)
+      setState({
+        requestedId: projectId,
+        project: null,
+        error: 'Progetto non specificato',
+        loading: false,
+      })
       return
     }
 
     const controller = new AbortController()
-    setLoading(true)
+    setState({ requestedId: projectId, project: null, error: null, loading: true })
     api
       .project(projectId, controller.signal)
       .then((result) => {
-        setProject(result)
-        setError(null)
+        if (controller.signal.aborted) return
+        setState({ requestedId: projectId, project: result, error: null, loading: false })
       })
       .catch((reason: Error) => {
-        if (reason.name !== 'AbortError') setError(reason.message)
+        if (controller.signal.aborted || reason.name === 'AbortError') return
+        setState({
+          requestedId: projectId,
+          project: null,
+          error: reason.message,
+          loading: false,
+        })
       })
-      .finally(() => setLoading(false))
 
     return () => controller.abort()
   }, [projectId])
@@ -34,13 +53,29 @@ export function useProject(projectId?: string) {
     if (!projectId) return
     try {
       const result = await api.project(projectId)
-      setProject(result)
-      setError(null)
+      setState((current) => (
+        current.requestedId === projectId
+          ? { ...current, project: result, error: null }
+          : current
+      ))
     } catch (reason) {
-      setError(reason instanceof Error ? reason.message : 'Aggiornamento non riuscito')
+      setState((current) => (
+        current.requestedId === projectId
+          ? {
+              ...current,
+              error: reason instanceof Error ? reason.message : 'Aggiornamento non riuscito',
+            }
+          : current
+      ))
       throw reason
     }
   }, [projectId])
 
-  return { project, error, loading, refresh }
+  const stateMatchesRoute = state.requestedId === projectId
+  return {
+    project: stateMatchesRoute ? state.project : null,
+    error: stateMatchesRoute ? state.error : null,
+    loading: !stateMatchesRoute || state.loading,
+    refresh,
+  }
 }
