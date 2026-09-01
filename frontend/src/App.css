@@ -284,11 +284,16 @@
   justify-content: center;
   min-width: 82px;
   height: 26px;
-  padding: 1px 12px 0;
+  padding: 0 12px;
   border-radius: 13px;
   font-size: 10px;
   line-height: 1;
   white-space: nowrap;
+}
+
+.status-pill__label {
+  display: block;
+  transform: translateY(2px);
 }
 
 .status-pill--success { color: #bfe3cb; background: var(--green-bg); }

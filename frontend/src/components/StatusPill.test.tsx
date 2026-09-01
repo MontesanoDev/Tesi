@@ -6,7 +6,7 @@ describe('StatusPill', () => {
   it('renders the requested tone and label', () => {
     render(<StatusPill tone="warning">Da verificare</StatusPill>)
 
-    const badge = screen.getByText('Da verificare')
-    expect(badge).toHaveClass('status-pill--warning')
+    const label = screen.getByText('Da verificare')
+    expect(label.closest('.status-pill')).toHaveClass('status-pill--warning')
   })
 })
