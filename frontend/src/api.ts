@@ -21,6 +21,40 @@ import type {
 
 const API_BASE = import.meta.env.VITE_API_URL ?? '/api'
 
+function errorDetailMessage(detail: unknown): string | null {
+  if (typeof detail === 'string') return detail.trim() || null
+
+  if (Array.isArray(detail)) {
+    const messages = detail
+      .map((item) => {
+        if (typeof item === 'string') return item.trim()
+        if (!item || typeof item !== 'object') return ''
+
+        const entry = item as Record<string, unknown>
+        const message = typeof entry.msg === 'string'
+          ? entry.msg
+          : typeof entry.message === 'string'
+            ? entry.message
+            : ''
+        const location = Array.isArray(entry.loc)
+          ? entry.loc.filter((part) => part !== 'body').join('.')
+          : ''
+        return location && message ? `${location}: ${message}` : message
+      })
+      .filter(Boolean)
+    return messages.length > 0 ? messages.join('; ') : null
+  }
+
+  if (detail && typeof detail === 'object') {
+    const entry = detail as Record<string, unknown>
+    for (const key of ['message', 'msg', 'error']) {
+      if (typeof entry[key] === 'string' && entry[key].trim()) return entry[key].trim()
+    }
+  }
+
+  return null
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const headers = new Headers(init?.headers)
   if (init?.body && !(init.body instanceof FormData) && !headers.has('Content-Type')) {
@@ -32,8 +66,13 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   })
 
   if (!response.ok) {
-    const payload = await response.json().catch(() => null)
-    throw new Error(payload?.detail ?? `Richiesta non riuscita (${response.status})`)
+    const payload: unknown = await response.json().catch(() => null)
+    const detail = payload && typeof payload === 'object' && 'detail' in payload
+      ? (payload as { detail: unknown }).detail
+      : null
+    throw new Error(
+      errorDetailMessage(detail) ?? `Richiesta non riuscita (${response.status})`,
+    )
   }
 
   if (response.status === 204) return undefined as T
