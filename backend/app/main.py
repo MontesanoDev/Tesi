@@ -78,6 +78,7 @@ from app.repository import (
     update_project_file_content,
 )
 from app.schemas import (
+    MAX_QUESTION_LENGTH,
     CallFactRevision,
     CallFactsExtractionResponse,
     CallFactsReview,
@@ -596,7 +597,7 @@ async def project_conversation(project_id: str, conversation_id: str) -> dict:
 @app.get("/api/projects/{project_id}/evidence", response_model=EvidenceSearch)
 async def project_evidence(
     project_id: str,
-    q: Annotated[str, Query(min_length=2, max_length=500)],
+    q: Annotated[str, Query(min_length=2, max_length=MAX_QUESTION_LENGTH)],
     limit: Annotated[int, Query(ge=1, le=8)] = 4,
 ) -> dict:
     results = search_project_evidence(project_id, q, limit)

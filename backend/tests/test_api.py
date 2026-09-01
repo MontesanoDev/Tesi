@@ -11,6 +11,7 @@ from app.fact_extraction import (
 )
 from app.generation import GeneratedAnswer
 from app.main import app
+from app.schemas import MAX_QUESTION_LENGTH, QuestionRequest
 from app.seed import seed_database
 
 
@@ -30,6 +31,14 @@ async def client(tmp_path, monkeypatch):
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as value:
         yield value
+
+
+def test_question_limit_accepts_operational_prompts() -> None:
+    question = "Q" * 1_500
+
+    assert len(question) > 500
+    assert QuestionRequest(question=question).question == question
+    assert MAX_QUESTION_LENGTH == 4_000
 
 
 @pytest.mark.anyio

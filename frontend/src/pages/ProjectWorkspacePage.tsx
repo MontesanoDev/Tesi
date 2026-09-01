@@ -32,6 +32,8 @@ interface ChatTurn {
   error: string | null
 }
 
+const MAX_PROMPT_LENGTH = 4_000
+
 function turnStatus(turn: ChatTurn) {
   if (turn.error) return turn.error
   if (!turn.result) return 'Ricerca delle evidenze nelle fonti del progetto...'
@@ -330,6 +332,7 @@ export function ProjectWorkspacePage() {
         ref={composerInput}
         aria-label="Messaggio per Mapi RAG"
         placeholder="Come posso aiutarti in questo progetto?"
+        maxLength={MAX_PROMPT_LENGTH}
         value={prompt}
         onChange={(event) => setPrompt(event.target.value)}
         onKeyDown={handleComposerKeyDown}

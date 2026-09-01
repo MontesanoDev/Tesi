@@ -247,6 +247,7 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
     '/projects/contesto-progetto/knowledge?artifact=output_draft',
   )
   const composer = page.getByLabel('Messaggio per Mapi RAG')
+  await expect(composer).toHaveAttribute('maxlength', '4000')
   const initialComposerHeight = await composer.evaluate((element) => element.clientHeight)
   await composer.fill(Array.from({ length: 8 }, (_, index) => `Riga ${index + 1}`).join('\n'))
   await expect.poll(() => composer.evaluate((element) => element.clientHeight)).toBeGreaterThan(

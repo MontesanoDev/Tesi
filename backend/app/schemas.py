@@ -4,6 +4,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 
+MAX_QUESTION_LENGTH = 4_000
+
 
 class ProjectCreate(BaseModel):
     title: str = Field(min_length=3, max_length=120)
@@ -229,7 +231,7 @@ class EvidenceSearch(BaseModel):
 
 
 class QuestionRequest(BaseModel):
-    question: str = Field(min_length=2, max_length=500)
+    question: str = Field(min_length=2, max_length=MAX_QUESTION_LENGTH)
     conversation_id: str | None = Field(default=None, max_length=80)
 
 
