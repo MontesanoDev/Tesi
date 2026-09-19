@@ -2,6 +2,7 @@ import pytest
 
 from app.call_facts import (
     CallFactsFormatError,
+    available_project_facts_markdown,
     parse_call_facts_markdown,
     render_call_facts_document,
     revise_call_fact,
@@ -84,3 +85,44 @@ def test_fact_without_sources_cannot_be_verified():
 
     with pytest.raises(CallFactsFormatError, match="senza fonti"):
         revise_call_fact(document, document.facts[0].id, "verify")
+    assert available_project_facts_markdown(markdown) == ""
+
+
+def test_unverified_extractions_and_corrections_are_available_with_provenance():
+    document = parse_call_facts_markdown(extracted_markdown())
+    first = document.facts[0]
+    indexed = available_project_facts_markdown(extracted_markdown())
+    assert "15 settembre 2025" in indexed
+    assert "Comune" in indexed
+    assert "Estratto automaticamente" in indexed
+    assert "bando.pdf, frammento 9" in indexed
+    assert "verificati" not in indexed
+
+    edited = revise_call_fact(
+        document, first.id, "edit", title=first.title, value="16 settembre 2025"
+    )
+    rendered = render_call_facts_document(edited)
+    assert parse_call_facts_markdown(rendered).facts[0].origin == "user_corrected"
+    indexed = available_project_facts_markdown(rendered)
+    assert "16 settembre 2025" in indexed
+    assert "15 settembre 2025" not in indexed
+    assert "Corretto dall'utente" in indexed
+    assert "bando.pdf, frammento 9" in indexed
+
+    discarded = revise_call_fact(edited, first.id, "discard")
+    indexed = available_project_facts_markdown(render_call_facts_document(discarded))
+    assert "16 settembre 2025" not in indexed
+    restored = revise_call_fact(discarded, first.id, "restore")
+    assert restored.facts[0].origin == "user_corrected"
+    indexed = available_project_facts_markdown(render_call_facts_document(restored))
+    assert "16 settembre 2025" in indexed
+
+
+def test_legacy_pending_and_verified_states_keep_ids_and_values():
+    legacy = extracted_markdown().replace("**Stato:** Disponibile", "**Stato:** Da verificare", 1)
+    legacy = legacy.replace("**Stato:** Disponibile", "**Stato:** Verificato", 1)
+    document = parse_call_facts_markdown(legacy)
+    assert document.pending_count == 1
+    assert document.verified_count == 1
+    assert len(document.available_facts) == 2
+    assert parse_call_facts_markdown(render_call_facts_document(document)) == document

@@ -1,0 +1,84 @@
+.template-format-heading { flex-wrap: wrap; gap: 16px; }
+.template-format { display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-size: 12px; }
+.template-format select,
+.docx-workspace select {
+  min-width: 0;
+  max-width: 100%;
+  min-height: 36px;
+  padding: 7px 30px 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  background: var(--control);
+  font: inherit;
+  font-size: 12px;
+  text-overflow: ellipsis;
+}
+.docx-workspace { min-width: 0; font-size: 13px; line-height: 1.5; }
+.docx-workspace .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 38px; white-space: normal; line-height: 1.4; }
+.docx-workspace .button svg { flex-shrink: 0; }
+.docx-workspace .button--primary { margin-left: 0; }
+.docx-tabs { margin-top: 20px; }
+.docx-tabs button { min-width: 0; overflow-wrap: anywhere; }
+.docx-form { margin-top: 16px; }
+.docx-model-row { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-block: 1px solid var(--border); }
+.docx-model-row > svg { flex-shrink: 0; color: #a7bcb1; }
+.docx-model-name { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.docx-model-name strong, .docx-model-name small { display: block; }
+.docx-model-name small, .docx-result-heading small { margin-top: 4px; color: var(--text-muted); font-size: 11px; }
+.docx-instructions { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 8px; }
+.docx-instructions span { color: var(--text-muted); font-size: 12px; }
+.docx-form textarea { display: block; width: 100%; min-height: 88px; max-height: 280px; resize: vertical; padding: 12px; border: 1px solid var(--border); border-radius: 5px; background: #181917; color: var(--text); font: inherit; line-height: 1.6; }
+.docx-form textarea:focus-visible, .docx-workspace select:focus-visible, .template-format select:focus-visible { outline: 2px solid #9ebfaa; outline-offset: 2px; }
+.docx-form-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }
+.docx-form-footer > span { color: var(--text-muted); font-size: 11px; white-space: nowrap; }
+.docx-form-actions { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.docx-form-actions > .template-icon-button { flex-shrink: 0; }
+.docx-progress, .docx-no-runs { color: var(--text-muted); margin: 18px 0; }
+.docx-spinner { animation: docx-spin 1.4s linear infinite; }
+@keyframes docx-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .docx-spinner { animation: none; } }
+.docx-results { margin-top: 20px; }
+.docx-history { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.docx-history select { width: 100%; }
+.docx-result-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.docx-result-heading > div { min-width: 0; flex: 1 1 200px; }
+.docx-workspace h3 { margin: 0; color: var(--text-strong); font-size: 15px; overflow-wrap: anywhere; }
+.docx-review-notice { margin: 12px 0 16px; color: #dabf82; }
+.docx-downloads { display: flex; flex-wrap: wrap; gap: 8px; }
+.docx-counts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; padding: 18px 0; border-block: 1px solid var(--border); }
+.docx-counts div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 5px; }
+.docx-counts dt { color: var(--text-muted); font-size: 11px; }
+.docx-counts dd { margin: 0; color: var(--text-strong); font-size: 22px; font-weight: 600; }
+.docx-warnings { color: var(--text-muted); margin: 20px 0; font-size: 12px; overflow-wrap: anywhere; }
+.docx-warnings summary { color: #dabf82; cursor: pointer; }
+.docx-warnings ul { padding-left: 20px; }
+.docx-warnings li + li { margin-top: 6px; }
+.docx-saved-instructions { white-space: pre-wrap; }
+.docx-fields-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.docx-fields { padding: 0; margin: 12px 0 0; list-style: none; }
+.docx-field { border-bottom: 1px solid var(--border); }
+.docx-field summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 0; cursor: pointer; }
+.docx-field summary::before { content: '+'; width: 10px; flex-shrink: 0; color: var(--text-muted); }
+.docx-field details[open] summary::before { content: '-'; }
+.docx-field summary:focus-visible, .docx-warnings summary:focus-visible { outline: 2px solid #9ebfaa; outline-offset: 2px; }
+.docx-field-data { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.docx-field-data strong, .docx-field-data > span { display: block; }
+.docx-field-data > span { color: var(--text-muted); white-space: pre-wrap; margin-top: 4px; }
+.docx-field .status-pill { flex-shrink: 0; }
+.docx-field-detail { padding: 0 0 16px 26px; color: var(--text-muted); font-size: 12px; overflow-wrap: anywhere; }
+.docx-field-detail p { margin: 0 0 10px; }
+.docx-field-detail ul { padding-left: 18px; }
+.docx-field-detail blockquote { margin: 16px 0; padding-left: 12px; border-left: 2px solid #6d9782; }
+.docx-field-detail cite { font-style: normal; color: #a6c1cf; }
+@media (max-width: 700px) {
+  .docx-model-row { flex-wrap: wrap; gap: 10px; }
+  .docx-model-name { flex-basis: calc(100% - 40px); }
+  .docx-model-row > .button { flex: 1; }
+  .docx-downloads .button { flex: 1 1 180px; }
+  .docx-counts { gap: 10px; }
+  .docx-field summary { flex-wrap: wrap; gap: 8px; }
+  .docx-field-data { flex-basis: calc(100% - 26px); }
+  .docx-field .status-pill { margin-left: 18px; }
+  .docx-field-detail { padding-left: 18px; }
+}

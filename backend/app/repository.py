@@ -9,7 +9,7 @@ from uuid import uuid4
 
 from app.artifacts import get_project_artifact
 from app.call_facts import CallFactsFormatError, parse_call_facts_markdown
-from app.db import connection
+from app.db import connection, touch_project
 from app.ingestion import IngestedDocument
 from app.schemas import ProjectCreate, ProjectUpdate
 
@@ -238,7 +238,8 @@ def list_projects() -> list[dict]:
                 p.updated_label, p.shared_source_count AS source_count,
                 p.model_count
             FROM projects p
-            ORDER BY p.rowid
+            ORDER BY julianday(COALESCE(p.updated_at, p.created_at)) DESC,
+                     p.created_at DESC, p.rowid DESC
             """,
         )
 
@@ -683,6 +684,10 @@ def save_conversation_turn(conversation_id: str, response: dict) -> int:
             """,
             (f"Ora · {turn_count} {label}", conversation_id),
         )
+        project_id = db.execute(
+            "SELECT project_id FROM conversations WHERE id = ?", (conversation_id,)
+        ).fetchone()["project_id"]
+        touch_project(db, project_id)
     return int(turn_id)
 
 
@@ -744,9 +749,10 @@ def create_project(payload: ProjectCreate) -> dict:
             INSERT INTO projects (
                 id, title, description, status, status_tone, updated_label,
                 instructions, shared_source_count, model_count,
-                call_fact_count, missing_fact_count
+                call_fact_count, missing_fact_count, updated_at
             ) VALUES (?, ?, ?, 'In configurazione', 'info', 'Aggiornato ora',
-                      'Usa solo informazioni presenti nelle fonti.', 0, 0, 0, 0)
+                      'Usa solo informazioni presenti nelle fonti.', 0, 0, 0, 0,
+                      strftime('%Y-%m-%d %H:%M:%f', 'now'))
             """,
             (project_id, payload.title, payload.description),
         )
@@ -761,13 +767,14 @@ def update_project(project_id: str, payload: ProjectUpdate) -> dict | None:
         cursor = db.execute(
             """
             UPDATE projects
-            SET title = ?, updated_label = 'Aggiornato ora'
+            SET title = ?
             WHERE id = ?
             """,
             (payload.title, project_id),
         )
         if cursor.rowcount == 0:
             return None
+        touch_project(db, project_id)
     return get_project(project_id)
 
 
@@ -828,12 +835,12 @@ def add_project_file(project_id: str, document: IngestedDocument) -> dict | None
         db.execute(
             """
             UPDATE projects
-            SET shared_source_count = shared_source_count + 1,
-                updated_label = 'Aggiornato ora'
+            SET shared_source_count = shared_source_count + 1
             WHERE id = ?
             """,
             (project_id,),
         )
+        touch_project(db, project_id)
         row = db.execute(
             """
             SELECT id, name, metadata, kind, status, mime_type, byte_size,
@@ -904,10 +911,7 @@ def update_project_file_content(
                 file_id,
             ),
         )
-        db.execute(
-            "UPDATE projects SET updated_label = 'Aggiornato ora' WHERE id = ?",
-            (project_id,),
-        )
+        touch_project(db, project_id)
         row = db.execute(
             """
             SELECT id, name, metadata, kind, status, mime_type, byte_size,
@@ -942,9 +946,8 @@ def update_call_fact_review_metrics(
     discarded_count: int,
     missing_count: int,
 ) -> bool:
-    fully_reviewed = active_count > 0 and pending_count == 0
-    project_status = "Call Facts verificati" if fully_reviewed else "Da verificare"
-    tone = "success" if fully_reviewed else "warning"
+    project_status = "Dati disponibili" if active_count else "In preparazione"
+    tone = "info"
     with connection() as db:
         cursor = db.execute(
             """
@@ -963,13 +966,13 @@ def update_call_fact_review_metrics(
             """
             SELECT id FROM knowledge_sources
             WHERE project_id = ?
-              AND (name = 'Call Facts' OR name = 'Dati estratti dal bando')
+              AND name IN ('Call Facts', 'Dati estratti dal bando', 'Dati del progetto')
             ORDER BY id
             LIMIT 1
             """,
             (project_id,),
         ).fetchone()
-        detail_parts = [f"{verified_count} verificati su {active_count}"]
+        detail_parts = [f"{active_count} dati estratti"]
         if discarded_count:
             detail_parts.append(f"{discarded_count} scartati")
         if missing_count:
@@ -987,18 +990,18 @@ def update_call_fact_review_metrics(
                 """
                 INSERT INTO knowledge_sources (
                     project_id, name, detail, scope, tone, item_count, sort_order
-                ) VALUES (?, 'Call Facts', ?, 'project', ?, ?, ?)
+                ) VALUES (?, 'Dati del progetto', ?, 'project', ?, ?, ?)
                 """,
-                (project_id, detail, tone, verified_count, sort_order),
+                (project_id, detail, tone, active_count, sort_order),
             )
         else:
             db.execute(
                 """
                 UPDATE knowledge_sources
-                SET name = 'Call Facts', detail = ?, tone = ?, item_count = ?
+                SET name = 'Dati del progetto', detail = ?, tone = ?, item_count = ?
                 WHERE id = ?
                 """,
-                (detail, tone, verified_count, source["id"]),
+                (detail, tone, active_count, source["id"]),
             )
     return True
 
@@ -1014,11 +1017,9 @@ def sync_call_fact_review_metrics() -> None:
             document = parse_call_facts_markdown(artifact["content"])
         except CallFactsFormatError:
             continue
-        if not document.facts:
-            continue
         update_call_fact_review_metrics(
             project_id=project_id,
-            active_count=document.active_count,
+            active_count=len(document.available_facts),
             verified_count=document.verified_count,
             pending_count=document.pending_count,
             discarded_count=document.discarded_count,

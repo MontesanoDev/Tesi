@@ -13,6 +13,7 @@ export function ProjectsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [query, setQuery] = useState('')
+  const [sortOrder, setSortOrder] = useState<'updated' | 'name'>('updated')
   const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
@@ -30,6 +31,12 @@ export function ProjectsPage() {
   const filtered = projects.filter((project) =>
     `${project.title} ${project.description}`.toLowerCase().includes(query.toLowerCase()),
   )
+  // The API returns projects in most-recently-updated order.
+  if (sortOrder === 'name') {
+    filtered.sort((a, b) => a.title.localeCompare(b.title, 'it', {
+      sensitivity: 'base', numeric: true,
+    }))
+  }
 
   async function createProject(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -59,7 +66,8 @@ export function ProjectsPage() {
             </label>
             <label className="sort-control">
               <span>Ordina per</span>
-              <select defaultValue="updated" aria-label="Ordina progetti">
+              <select value={sortOrder} aria-label="Ordina progetti"
+                onChange={(event) => setSortOrder(event.target.value as 'updated' | 'name')}>
                 <option value="updated">Ultimo aggiornamento</option>
                 <option value="name">Nome</option>
               </select>

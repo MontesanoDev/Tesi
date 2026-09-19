@@ -1,0 +1,65 @@
+{
+  "case_id": "catanzaro-dl-cse",
+  "purpose": "Preparazione di un caso di prova didattico, non candidatura reale",
+  "retrieved_at": "2026-09-14",
+  "prepared_at": "2026-09-15",
+  "tender": {
+    "title": "Direzione lavori e CSE delle nuove residenze universitarie, III lotto",
+    "authority": "Fondazione Universita Magna Graecia di Catanzaro",
+    "official_page": "https://piattaforma.asmecomm.it/gare/dettaglio.php?codice=84051",
+    "cig": "B9304DFF59",
+    "cup": "C65E19000450002",
+    "publication_date": "2025-11-20",
+    "submission_deadline": "2025-12-30",
+    "historical_case": true
+  },
+  "files": [
+    {
+      "id": "bando",
+      "path": "originali/bando.pdf",
+      "role": "project_source",
+      "sha256": "9a6c848926db2aa0492f496b2ed7c5758e4aa55a243c4e1df352d8cf3acb6c72",
+      "url": "https://piattaforma.asmecomm.it/allegati/open.php?codice=343868&filename=MjAyNS4xMS4xOS1iYW5kby1nYXJhLnBkZg%3D%3D&general_connection=1&sourceID=83622&sourceType=Z2FyZS1wdWJsaWM%3D"
+    },
+    {
+      "id": "disciplinare",
+      "path": "originali/disciplinare.pdf",
+      "role": "project_source",
+      "sha256": "5520429355b89c18d5a16ceae94cce11e2e7790e66606f340c7d37b933daa6e9",
+      "url": "https://piattaforma.asmecomm.it/allegati/open.php?codice=343867&filename=MjAyNS4xMS4xOS1kaXNjaXBsaW5hcmUtZGktZ2FyYS5wZGY%3D&general_connection=1&sourceID=83622&sourceType=Z2FyZS1wdWJsaWM%3D"
+    },
+    {
+      "id": "domanda_originale",
+      "path": "originali/domanda-partecipazione.doc",
+      "role": "original_template",
+      "sha256": "0daca478c0483e6ff5153a3c0ecd2f4b549c194ddf0ddd9e2538dd58c24dddb7",
+      "url": "https://piattaforma.asmecomm.it/allegati/open.php?codice=343857&filename=ZG9tYW5kYS1kaS1wYXJ0ZWNpcGF6aW9uZS5kb2M%3D&general_connection=1&sourceID=83622&sourceType=Z2FyZS1wdWJsaWM%3D"
+    },
+    {
+      "id": "domanda_docx",
+      "path": "modello/domanda-partecipazione.docx",
+      "role": "working_template",
+      "sha256": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563",
+      "derived_from": "domanda_originale",
+      "conversion": {
+        "tool": "LibreOffice Writer",
+        "version": "26.2.5.2",
+        "filter": "MS Word 2007 XML",
+        "body_table_count": 50,
+        "legacy_checkbox_count": 28,
+        "footnote_count": 7,
+        "layout_status": "needs_review",
+        "note": "DOC e DOCX renderizzati localmente: entrambi 17 pagine. Posizione di note e alcuni blocchi non identica. Non e una conversione certificata fedele all'originale Word."
+      }
+    },
+    {
+      "id": "visura_mapi_demo",
+      "path": "../../visura-mapi-ingegneria-simulata.pdf",
+      "role": "company_source_demo_only",
+      "sha256": "74edda8cd65ef67e50c2195cdd6059114115aa47b5bc595b37fa6de962ce52aa",
+      "document_date": "2026-08-06",
+      "synthetic": true,
+      "note": "Dati inventati e posteriori alla gara: utilizzabili solo per test di estrazione, non per attestare requisiti alla scadenza del bando."
+    }
+  ]
+}

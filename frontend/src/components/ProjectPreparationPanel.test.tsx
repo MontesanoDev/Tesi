@@ -8,6 +8,7 @@ import { ProjectPreparationPanel } from './ProjectPreparationPanel'
 vi.mock('../api', () => ({
   api: {
     projectArtifacts: vi.fn(),
+    documentCompilations: vi.fn(),
   },
 }))
 
@@ -32,6 +33,7 @@ describe('ProjectPreparationPanel', () => {
   afterEach(cleanup)
 
   beforeEach(() => {
+    vi.mocked(api.documentCompilations).mockReset().mockResolvedValue([])
     vi.mocked(api.projectArtifacts).mockReset()
     vi.mocked(api.projectArtifacts).mockResolvedValue([
       {
@@ -71,10 +73,7 @@ describe('ProjectPreparationPanel', () => {
     )
 
     expect(screen.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
-    expect(screen.getByRole('link', { name: /Call Facts/ })).toHaveAttribute(
-      'href',
-      '/projects/progetto-test/knowledge?artifact=call_facts',
-    )
+    expect(screen.queryByRole('link', { name: /Call Facts/ })).not.toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Dati del progetto/ })).toHaveAttribute(
       'href',
       '/projects/progetto-test/knowledge?artifact=project_facts',
@@ -83,13 +82,36 @@ describe('ProjectPreparationPanel', () => {
       'href',
       '/projects/progetto-test/knowledge?artifact=template',
     )
-    expect(screen.getByRole('link', { name: /Draft/ })).toHaveAttribute(
-      'href',
-      '/projects/progetto-test/knowledge?artifact=output_draft',
-    )
+    expect(screen.queryByRole('link', { name: /Draft/ })).not.toBeInTheDocument()
+    expect(screen.getAllByRole('link')).toHaveLength(2)
     await waitFor(() => {
-      expect(screen.getByRole('link', { name: /Call Facts/ })).toHaveTextContent('Da verificare')
+      expect(screen.getByRole('link', { name: /Dati del progetto/ })).toHaveTextContent('4 dati estratti')
       expect(screen.getByRole('link', { name: /Template/ })).toHaveTextContent('Versione 2')
     })
+  })
+
+  it('shows the saved compilation status under Template', async () => {
+    const artifacts = await api.projectArtifacts(project.id)
+    vi.mocked(api.projectArtifacts).mockResolvedValue([...artifacts, {
+      ...artifacts[1], id: 'progetto-test--draft', kind: 'output_draft',
+      title: 'Draft', filename: 'draft.md', status: 'Da verificare', version: 4,
+    }])
+    render(<MemoryRouter><ProjectPreparationPanel project={project} /></MemoryRouter>)
+    await waitFor(() => {
+      expect(screen.getByRole('link', { name: /Template/ })).toHaveTextContent('Compilazione v4')
+      expect(screen.getByRole('link', { name: /Template/ })).toHaveTextContent('Da verificare')
+    })
+    expect(screen.queryByRole('link', { name: /Draft/ })).not.toBeInTheDocument()
+  })
+
+  it('shows persisted Word compilations ahead of the legacy text status', async () => {
+    vi.mocked(api.documentCompilations).mockResolvedValue([{
+      id: 'run-1', project_id: project.id, template_name: 'domanda.docx',
+      created_at: '2026-09-15T13:00:00Z', status: 'needs_review',
+      downloads: { docx: '', report: '', template: '' },
+    }])
+    render(<MemoryRouter><ProjectPreparationPanel project={project} /></MemoryRouter>)
+    await waitFor(() => expect(screen.getByRole('link', { name: /Template/ })).toHaveTextContent('1 compilazione Word'))
+    expect(screen.getByRole('link', { name: /Template/ })).toHaveTextContent('Da verificare')
   })
 })

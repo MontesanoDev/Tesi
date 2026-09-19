@@ -13,7 +13,7 @@ const project: ProjectDetail = {
   source_count: 0,
   model_count: 0,
   instructions: '',
-  call_fact_count: 0,
+  call_fact_count: 4,
   missing_fact_count: 0,
   files: [],
   knowledge_sources: [
@@ -52,8 +52,9 @@ describe('ProjectKnowledgeSummary', () => {
     render(<ProjectKnowledgeSummary project={project} />)
 
     expect(screen.getByRole('heading', { name: 'Conoscenza utilizzata' })).toBeVisible()
-    expect(screen.getByText('Call Facts')).toBeVisible()
-    expect(screen.getByText('4 verificati')).toBeVisible()
+    expect(screen.getByText('Dati del progetto')).toBeVisible()
+    expect(screen.getByText('4 dati estratti')).toBeVisible()
+    expect(screen.queryByText('Call Facts')).not.toBeInTheDocument()
     expect(screen.getByText('Company KB')).toBeVisible()
     expect(screen.getByText('2 documenti')).toBeVisible()
     expect(screen.getByText('General KB')).toBeVisible()

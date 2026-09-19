@@ -84,8 +84,10 @@ def _parse_content(content: str, evidence_count: int, model: str, usage: dict) -
         cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", cleaned, flags=re.IGNORECASE)
     try:
         payload = json.loads(cleaned)
-    except json.JSONDecodeError as exc:
+    except (ValueError, RecursionError) as exc:
         raise GenerationError("DeepSeek ha restituito un output JSON non valido") from exc
+    if not isinstance(payload, dict):
+        raise GenerationError("DeepSeek non ha restituito un oggetto per la risposta")
 
     answer = payload.get("answer")
     if not isinstance(answer, str) or not answer.strip():
@@ -98,11 +100,14 @@ def _parse_content(content: str, evidence_count: int, model: str, usage: dict) -
         dict.fromkeys(
             citation
             for citation in raw_citations
-            if isinstance(citation, int) and 1 <= citation <= evidence_count
+            if type(citation) is int and 1 <= citation <= evidence_count
         )
     )
 
-    answer_references = {int(value) for value in re.findall(r"\[(\d+)]", answer)}
+    try:
+        answer_references = {int(value) for value in re.findall(r"\[(\d+)]", answer)}
+    except ValueError as exc:
+        raise GenerationError("DeepSeek ha citato una fonte non presente nel contesto") from exc
     if any(reference < 1 or reference > evidence_count for reference in answer_references):
         raise GenerationError("DeepSeek ha citato una fonte non presente nel contesto")
     citations = list(dict.fromkeys([*citations, *sorted(answer_references)]))

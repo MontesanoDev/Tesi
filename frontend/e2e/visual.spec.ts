@@ -224,7 +224,7 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   await page.goto('/projects/contesto-progetto')
   await expect(page.getByRole('heading', { name: 'Contesto progetto' }).last()).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Conoscenza utilizzata' })).toBeVisible()
-  await expect(page.getByText('Call Facts').first()).toBeVisible()
+  await expect(page.getByText('Dati del progetto').first()).toBeVisible()
   await expect(page.getByText('Company KB')).toBeVisible()
   await expect(page.getByText('1 documento')).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
@@ -238,14 +238,15 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
       name: 'Conoscenza utilizzata',
     }),
   ).toHaveCount(0)
-  await expect(page.getByRole('link', { name: /Call Facts/ })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: /Dati del progetto/ })).toHaveAttribute(
     'href',
-    '/projects/contesto-progetto/knowledge?artifact=call_facts',
+    '/projects/contesto-progetto/knowledge?artifact=project_facts',
   )
-  await expect(page.getByRole('link', { name: /Draft/ })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: /Template/ })).toHaveAttribute(
     'href',
-    '/projects/contesto-progetto/knowledge?artifact=output_draft',
+    '/projects/contesto-progetto/knowledge?artifact=template',
   )
+  await expect(page.getByRole('link', { name: /Draft/ })).toHaveCount(0)
   const composer = page.getByLabel('Messaggio per Mapi RAG')
   await expect(composer).toHaveAttribute('maxlength', '4000')
   const initialComposerHeight = await composer.evaluate((element) => element.clientHeight)
@@ -494,8 +495,9 @@ test('company knowledge is managed in the global archive', async ({ page }, test
 
 })
 
-test('markdown artifacts support call facts and draft workflow', async ({ page }, testInfo) => {
+test('project data and template work without manual fact verification', async ({ page }, testInfo) => {
   let factStatus: 'pending' | 'verified' = 'pending'
+  let factOrigin = 'extracted'
   let factTitle = 'Termine di candidatura'
   let factValue = '15 settembre 2025'
   let artifactVersion = 4
@@ -534,6 +536,7 @@ test('markdown artifacts support call facts and draft workflow', async ({ page }
         title: factTitle,
         value: factValue,
         status: factStatus,
+        origin: factOrigin,
         sources: [{ name: 'avviso.pdf', fragment: 18 }],
       },
     ],
@@ -597,6 +600,15 @@ test('markdown artifacts support call facts and draft workflow', async ({ page }
     chunk_count: 1,
     content: '# Project Facts\n\n## Titolo\n\nFondo Riqualificazione 2027',
   }
+
+  await page.route('**/api/projects/fondo-riqualificazione-2027/document-compilations', (route) => route.fulfill({ json: [] }))
+  await page.route('**/api/projects/fondo-riqualificazione-2027/artifacts/fondo-riqualificazione-2027--project-facts', async (route) => {
+    if (route.request().method() === 'PUT') {
+      projectFactsArtifact.content = route.request().postDataJSON().content
+      projectFactsArtifact.version += 1
+    }
+    await route.fulfill({ json: projectFactsArtifact })
+  })
 
   await page.route(/\/api\/projects\/fondo-riqualificazione-2027$/, async (route) => {
     await route.fulfill({
@@ -663,6 +675,7 @@ test('markdown artifacts support call facts and draft workflow', async ({ page }
       if (payload.action === 'verify') factStatus = 'verified'
       if (payload.action === 'edit') {
         factStatus = 'pending'
+        factOrigin = 'user_corrected'
         factTitle = payload.title ?? factTitle
         factValue = payload.value ?? factValue
       }
@@ -700,7 +713,8 @@ test('markdown artifacts support call facts and draft workflow', async ({ page }
         contentType: 'application/json',
         body: JSON.stringify({
           artifact: draftArtifact(),
-          verified_fact_count: 1,
+          verified_fact_count: 0,
+          available_fact_count: 1,
           used_fact_count: 1,
           missing_information: ['Importo richiesto'],
           model: 'deepseek-test',
@@ -710,60 +724,59 @@ test('markdown artifacts support call facts and draft workflow', async ({ page }
     },
   )
   await page.goto('/projects/fondo-riqualificazione-2027')
-  await page.getByRole('link', { name: /Call Facts/ }).click()
+  await page.getByRole('link', { name: /Dati del progetto/ }).click()
 
   await expect(page).toHaveURL(
-    /\/projects\/fondo-riqualificazione-2027\/knowledge\?artifact=call_facts$/,
+    /\/projects\/fondo-riqualificazione-2027\/knowledge\?artifact=project_facts$/,
   )
   await expect(page.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Termine di candidatura' })).toBeVisible()
   await expect(page.getByText('avviso.pdf, frammento 18')).toBeVisible()
 
-  await page.getByRole('button', { name: 'Verifica', exact: true }).click()
-  await expect(page.getByText('verificato e reso disponibile al RAG')).toBeVisible()
-  await page.getByRole('tab', { name: 'Verificati 1' }).click()
-  await expect(page.getByRole('heading', { name: 'Termine di candidatura' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Verifica', exact: true })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Attivi 1' })).toBeVisible()
 
   await page.getByRole('button', { name: 'Modifica', exact: true }).click()
   await page.getByLabel('Titolo').fill('Termine e orario della candidatura')
   await page.getByLabel('Valore').fill('Ore 12 del 15 settembre 2025')
   await page.getByRole('button', { name: 'Salva modifica' }).click()
-  await page.getByRole('tab', { name: 'Da verificare 1' }).click()
   await expect(page.getByRole('heading', { name: 'Termine e orario della candidatura' })).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
-    path: `artifacts/${testInfo.project.name}-call-facts-review.png`,
+    path: `artifacts/${testInfo.project.name}-project-data.png`,
     fullPage: true,
   })
 
-  await page.getByRole('tab', { name: 'Markdown' }).click()
-  const callFactsEditor = page.getByLabel('Contenuto di Call Facts')
-  await expect(callFactsEditor).toBeVisible()
-  await expect(callFactsEditor).toContainText('Termine e orario della candidatura')
-  await expect(callFactsEditor).toBeEditable()
-
+  await page.getByRole('tab', { name: 'Dati inseriti' }).click()
+  const enteredEditor = page.getByLabel('Dati e scelte del proponente')
+  await expect(enteredEditor).toHaveValue(projectFactsArtifact.content)
+  await enteredEditor.fill('Firmatario: Persona demo. Partecipazione singola.')
+  await page.getByRole('button', { name: 'Salva dati' }).click()
+  await expect(page.getByRole('status')).toContainText('Dati salvati.')
+  await page.getByRole('tab', { name: 'Dati estratti' }).click()
+  page.once('dialog', (dialog) => dialog.accept())
   await page.getByRole('button', { name: /Estrai dalle fonti|Riestrai dalle fonti/ }).click()
-  await expect(callFactsEditor).toContainText('## Termine e orario della candidatura')
-  await expect(page.getByText('2 fatti estratti da 8 frammenti')).toBeVisible()
+  await expect(page.getByText('2 dati estratti.')).toBeVisible()
+  await page.getByRole('tab', { name: 'Dati inseriti' }).click()
+  await expect(enteredEditor).toHaveValue('Firmatario: Persona demo. Partecipazione singola.')
 
   await expect(page.getByRole('button', { name: /General KB/ })).toHaveCount(0)
-  await expect(page.getByRole('button', { name: /Project Facts/ })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Dati del progetto/ })).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
-    path: `artifacts/${testInfo.project.name}-markdown-knowledge.png`,
+    path: `artifacts/${testInfo.project.name}-entered-project-data.png`,
     fullPage: true,
   })
 
-  await page.getByRole('tab', { name: 'Revisione' }).click()
-  await page.getByRole('button', { name: 'Verifica', exact: true }).click()
+  expect(factStatus).toBe('pending')
   await page.locator('.artifact-list-item').filter({ hasText: 'Template' }).click()
-  await page.getByRole('button', { name: 'Genera draft', exact: true }).click()
-  await expect(page.getByRole('heading', { name: 'Draft', exact: true })).toBeVisible()
-  await expect(page.getByText('Output escluso dal RAG')).toBeVisible()
-  await expect(page.getByLabel('Contenuto di Draft')).toContainText(
+  await page.getByLabel('Formato template').selectOption('text')
+  await page.getByRole('button', { name: 'Genera compilazione', exact: true }).click()
+  await expect(page.getByRole('heading', { name: 'Template', exact: true })).toBeVisible()
+  await expect(page.getByRole('article', { name: 'Anteprima compilazione' })).toContainText(
     'Termine: 15 settembre 2025 [CF:cf-demo]',
   )
-  await expect(page.getByText('Draft generato da 1 di 1 Call Facts verificati · 1 TODO.')).toBeVisible()
+  await expect(page.getByText('Compilazione generata: 1 di 1 dati estratti utilizzati. Dati mancanti: 1.')).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
     path: `artifacts/${testInfo.project.name}-generated-draft.png`,

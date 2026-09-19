@@ -11,6 +11,7 @@ vi.mock('../api', () => ({
     projectFileContent: vi.fn(),
     updateProjectFileContent: vi.fn(),
     projectArtifacts: vi.fn(),
+    documentCompilations: vi.fn(),
   },
 }))
 
@@ -46,6 +47,7 @@ describe('ProjectKnowledgePanel', () => {
   afterEach(cleanup)
 
   beforeEach(() => {
+    vi.mocked(api.documentCompilations).mockReset().mockResolvedValue([])
     vi.mocked(api.uploadProjectFile).mockReset()
     vi.mocked(api.projectFileContent).mockReset()
     vi.mocked(api.updateProjectFileContent).mockReset()
@@ -148,8 +150,9 @@ describe('ProjectKnowledgePanel', () => {
     renderPanel()
 
     expect(screen.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
-    expect(screen.getByRole('link', { name: /Call Facts/ })).toBeVisible()
-    expect(screen.getByRole('link', { name: /Draft/ })).toBeVisible()
+    expect(screen.queryByRole('link', { name: /Call Facts/ })).not.toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Template/ })).toBeVisible()
+    expect(screen.queryByRole('link', { name: /Draft/ })).not.toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'Conoscenza utilizzata' })).toBeNull()
   })
 

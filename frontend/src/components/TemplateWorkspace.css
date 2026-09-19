@@ -1,0 +1,157 @@
+.template-workspace {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.template-tabs {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.template-tabs button {
+  min-height: 42px;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+}
+
+.template-tabs button[aria-selected="true"] {
+  border-bottom-color: #9ebfaa;
+  color: var(--text-strong);
+}
+
+.template-workspace [role="tabpanel"] {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.template-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 0;
+}
+
+.template-version {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.template-tools,
+.template-display-mode,
+.template-footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.template-tools .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+}
+
+.template-display-mode {
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.template-display-mode button,
+.template-icon-button {
+  display: inline-grid;
+  width: 34px;
+  height: 32px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  color: var(--text-muted);
+  background: transparent;
+}
+
+.template-display-mode button[aria-pressed="true"],
+.template-icon-button:hover:not(:disabled) {
+  color: var(--text-strong);
+  background: var(--control);
+}
+
+.template-workspace button:disabled { cursor: default; opacity: .5; }
+.template-workspace button:focus-visible { outline: 2px solid #9ebfaa; outline-offset: 3px; }
+
+.template-preview,
+.template-empty,
+.template-text-editor {
+  flex: 1;
+  min-height: 390px;
+  max-height: 600px;
+  overflow: auto;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #181917;
+}
+
+.template-preview {
+  padding: 28px 30px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.template-preview > :first-child { margin-top: 0; }
+.template-preview > :last-child { margin-bottom: 0; }
+.template-preview h1 { margin: 24px 0 14px; font-size: 22px; line-height: 1.35; }
+.template-preview h2 { margin: 24px 0 12px; font-size: 17px; line-height: 1.4; }
+.template-preview h3 { margin: 20px 0 10px; font-size: 15px; line-height: 1.4; }
+.template-preview h4, .template-preview h5, .template-preview h6 { font-size: 13px; }
+.template-preview p, .template-preview ul, .template-preview ol { margin: 12px 0; }
+.template-preview ul, .template-preview ol { padding-left: 24px; }
+.template-preview a { color: #a5c9db; text-decoration: underline; }
+.template-preview blockquote { margin: 16px 0; padding: 0 16px; border-left: 3px solid #696d63; color: var(--text-muted); }
+.template-preview pre { overflow: auto; padding: 12px; background: #222320; }
+.template-preview code { font-size: 12px; white-space: pre-wrap; }
+.template-preview hr { margin: 24px 0; border: 0; border-top: 1px solid var(--border); }
+.template-table { max-width: 100%; overflow-x: auto; }
+.template-table table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.template-table th, .template-table td { padding: 9px 12px; border: 1px solid var(--border); text-align: left; }
+.template-table th { background: #282a26; font-weight: 600; }
+
+.template-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.template-footer { padding-top: 16px; }
+.template-feedback { min-height: 20px; margin-bottom: 10px; color: #9fbdab; font-size: 11px; overflow-wrap: anywhere; }
+.template-footer-actions { justify-content: flex-end; }
+
+@media (max-width: 700px) {
+  .template-preview { padding: 18px; }
+  .template-preview, .template-empty, .template-text-editor { min-height: 330px; max-height: 520px; }
+  .template-toolbar { align-items: flex-start; flex-direction: column; }
+  .template-footer-actions .button { flex: 1 1 180px; justify-content: center; }
+}

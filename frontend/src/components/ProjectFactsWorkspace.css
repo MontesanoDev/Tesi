@@ -1,0 +1,21 @@
+.project-facts-workspace { min-width: 0; }
+.project-facts-workspace [hidden] { display: none; }
+.project-facts-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 24px 0; }
+.project-facts-toolbar h3 { font-size: 16px; margin: 0; }
+.project-facts-toolbar .button { flex-shrink: 0; }
+.project-facts-label { display: block; margin: 24px 0 12px; }
+.project-facts-workspace .project-facts-editor { min-height: 220px; height: 360px; max-height: 65vh; width: 100%; resize: vertical; }
+.project-facts-workspace .call-facts-review { min-height: 0; }
+.project-facts-workspace .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.project-facts-workspace .fact-missing-banner summary { cursor: pointer; }
+.project-facts-workspace .fact-missing-banner[open] summary { margin-bottom: 8px; }
+.project-facts-feedback { margin-top: 16px; font-size: 14px; }
+.project-facts-workspace .call-fact-heading h3,
+.project-facts-workspace .call-fact-value,
+.project-facts-workspace .call-fact-sources li { overflow-wrap: anywhere; }
+.project-facts-workspace .call-fact-heading > div { min-width: 0; }
+@media (max-width: 640px) {
+  .project-facts-toolbar { flex-wrap: wrap; }
+  .project-facts-workspace .call-fact-heading { align-items: flex-start; flex-wrap: wrap; }
+  .project-facts-workspace .artifact-actions { flex-wrap: wrap; }
+}

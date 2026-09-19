@@ -1,0 +1,21 @@
+{
+  "source_page": "https://comuneminervinole.tuttogare.it/albo_fornitori/dettaglio.php?codice=1",
+  "retrieved_at": "2026-09-18T10:08:44.040151+00:00",
+  "purpose": "Prova esplorativa didattica, nessuna candidatura o invio",
+  "files": [
+    {
+      "file": "originali/avviso.pdf",
+      "url": "https://comuneminervinole.tuttogare.it/allegati/open.php?codice=105&filename=YXZ2aXNvLWRpLWVsZW5jby1wcm9mZXNzaW9uaXN0aS1zaWduZWQucGRm&sourceID=1&sourceType=YWxib19mb3JuaXRvcmktcHVibGlj&general_connection=1",
+      "sha256": "c7c16c448270cb03951f2b1aab85ed2814915e0ce184a5179cbab55472714b41",
+      "bytes": 344446,
+      "official_hash_matched": true
+    },
+    {
+      "file": "originali/domanda-iscrizione.docx",
+      "url": "https://comuneminervinole.tuttogare.it/allegati/open.php?codice=94&filename=bW9kZWxsby1kb21hbmRhLWlzY3JpemlvbmUuZG9jeA==&sourceID=1&sourceType=YWxib19mb3JuaXRvcmktcHVibGlj&general_connection=1",
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+      "bytes": 63494,
+      "official_hash_matched": true
+    }
+  ]
+}

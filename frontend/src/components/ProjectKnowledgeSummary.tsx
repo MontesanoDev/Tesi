@@ -2,14 +2,14 @@ import type { KnowledgeSource, ProjectDetail, StatusTone } from '../types'
 
 interface DisplayedKnowledgeSource {
   id: string
-  name: 'Call Facts' | 'Company KB' | 'General KB'
+  name: 'Dati del progetto' | 'Company KB' | 'General KB'
   tone: StatusTone
   itemCount: number
 }
 
 function sourceCountLabel(name: DisplayedKnowledgeSource['name'], count: number) {
-  if (name === 'Call Facts') {
-    return count === 1 ? '1 verificato' : `${count} verificati`
+  if (name === 'Dati del progetto') {
+    return count === 1 ? '1 dato estratto' : `${count} dati estratti`
   }
   return count === 1 ? '1 documento' : `${count} documenti`
 }
@@ -25,6 +25,7 @@ function displayedSources(project: ProjectDetail): DisplayedKnowledgeSource[] {
   const callFacts = findSource(project.knowledge_sources, [
     'Call Facts',
     'Dati estratti dal bando',
+    'Dati del progetto',
   ])
   const company = findSource(project.knowledge_sources, ['Company KB'])
   const general = findSource(project.knowledge_sources, ['General KB'])
@@ -32,9 +33,9 @@ function displayedSources(project: ProjectDetail): DisplayedKnowledgeSource[] {
   return [
     {
       id: 'call-facts',
-      name: 'Call Facts',
-      tone: callFacts?.tone ?? 'warning',
-      itemCount: callFacts?.item_count ?? 0,
+      name: 'Dati del progetto',
+      tone: 'info',
+      itemCount: callFacts?.name === 'Dati del progetto' ? callFacts.item_count : project.call_fact_count,
     },
     {
       id: 'company-kb',

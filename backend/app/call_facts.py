@@ -9,11 +9,12 @@ CallFactStatus = Literal["pending", "verified", "discarded"]
 CallFactAction = Literal["verify", "edit", "discard", "restore"]
 
 STATUS_LABELS: dict[CallFactStatus, str] = {
-    "pending": "Da verificare",
+    "pending": "Disponibile",
     "verified": "Verificato",
     "discarded": "Scartato",
 }
 LABEL_STATUSES = {label.casefold(): status for status, label in STATUS_LABELS.items()}
+LABEL_STATUSES["da verificare"] = "pending"
 FACT_ID_PATTERN = re.compile(r"^<!--\s*fact-id:\s*([a-z0-9-]+)\s*-->$", re.IGNORECASE)
 SOURCE_PATTERN = re.compile(r"^-\s+(.+),\s+frammento\s+(\d+)\s*$", re.IGNORECASE)
 
@@ -35,6 +36,7 @@ class CallFact:
     value: str
     status: CallFactStatus
     sources: list[CallFactSource]
+    origin: Literal["extracted", "user_corrected"] = "extracted"
 
 
 @dataclass(frozen=True)
@@ -59,6 +61,10 @@ class CallFactsDocument:
     @property
     def active_count(self) -> int:
         return self.pending_count + self.verified_count
+
+    @property
+    def available_facts(self) -> list[CallFact]:
+        return [fact for fact in self.facts if fact.status != "discarded" and fact.sources]
 
 
 def _single_line(value: str) -> str:
@@ -154,6 +160,8 @@ def _parse_fact(block: list[str], ordinal: int) -> CallFact:
         value=_single_line(value),
         status=status,
         sources=sources,
+        origin="user_corrected" if _field_value(block, "Origine") == "Corretto dall'utente"
+        else "extracted",
     )
 
 
@@ -203,11 +211,7 @@ def parse_call_facts_markdown(content: str) -> CallFactsDocument:
 
 
 def _document_status(document: CallFactsDocument) -> str:
-    if document.pending_count:
-        return "pending_review"
-    if document.verified_count:
-        return "verified"
-    return "reviewed"
+    return "available" if document.available_facts else "empty"
 
 
 def render_call_facts_document(document: CallFactsDocument) -> str:
@@ -222,7 +226,7 @@ def render_call_facts_document(document: CallFactsDocument) -> str:
         "",
         "# Call Facts",
         "",
-        "> Estratti automaticamente dalle fonti del progetto. Ogni fatto richiede verifica umana.",
+        "> Dati estratti dalle fonti del progetto; non costituiscono una verifica dei requisiti.",
     ]
     for fact in document.facts:
         lines.extend(
@@ -235,6 +239,11 @@ def render_call_facts_document(document: CallFactsDocument) -> str:
                 f"**Valore:** {_single_line(fact.value)}",
                 "",
                 f"**Stato:** {STATUS_LABELS[fact.status]}",
+                "",
+                "**Origine:** " + (
+                    "Corretto dall'utente" if fact.origin == "user_corrected"
+                    else "Estratto dalle fonti"
+                ),
                 "",
                 "**Fonti:**",
             )
@@ -282,6 +291,7 @@ def revise_call_fact(
             title=revised_title,
             value=revised_value,
             status="pending",
+            origin="user_corrected",
         )
     else:
         raise CallFactsFormatError("Azione di revisione non supportata")
@@ -301,3 +311,20 @@ def verified_call_facts_markdown(content: str) -> str:
         lines.extend(f"- {source.name}, frammento {source.fragment}" for source in fact.sources)
     lines.append("")
     return "\n".join(lines)
+
+
+def available_project_facts_markdown(content: str) -> str:
+    document = parse_call_facts_markdown(content)
+    if not document.available_facts:
+        return ""
+    lines = ["# Dati del progetto estratti dalle fonti"]
+    for fact in document.available_facts:
+        origin = (
+            "Corretto dall'utente" if fact.origin == "user_corrected"
+            else "Estratto automaticamente"
+        )
+        lines.extend(
+            ("", f"## {fact.title}", "", fact.value, "", f"Origine: {origin}.", "Fonti di origine:")
+        )
+        lines.extend(f"- {source.name}, frammento {source.fragment}" for source in fact.sources)
+    return "\n".join(lines) + "\n"

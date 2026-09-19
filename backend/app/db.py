@@ -62,7 +62,8 @@ def init_database() -> None:
                 model_count INTEGER NOT NULL DEFAULT 0,
                 call_fact_count INTEGER NOT NULL DEFAULT 0,
                 missing_fact_count INTEGER NOT NULL DEFAULT 0,
-                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
             );
 
             CREATE TABLE IF NOT EXISTS app_metadata (
@@ -260,8 +261,23 @@ def init_database() -> None:
                 status TEXT NOT NULL,
                 sort_order INTEGER NOT NULL DEFAULT 0
             );
+
+            CREATE TABLE IF NOT EXISTS document_compilations (
+                id TEXT PRIMARY KEY,
+                project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+                template_name TEXT NOT NULL,
+                storage_path TEXT NOT NULL UNIQUE,
+                report_json TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_document_compilations_project
+            ON document_compilations(project_id, created_at);
             """
         )
+        _ensure_column(db, "projects", "updated_at", "TEXT")
+        # Older projects have no modification history; creation is the known fallback.
+        db.execute("UPDATE projects SET updated_at = created_at WHERE updated_at IS NULL")
         _ensure_column(db, "project_files", "storage_path", "TEXT")
         _ensure_column(db, "project_files", "mime_type", "TEXT")
         _ensure_column(db, "project_files", "byte_size", "INTEGER NOT NULL DEFAULT 0")
@@ -295,3 +311,15 @@ def init_database() -> None:
             SELECT id, document_id, content FROM global_document_chunks
             """
         )
+
+
+def touch_project(db: sqlite3.Connection, project_id: str) -> None:
+    db.execute(
+        """
+        UPDATE projects
+        SET updated_at = strftime('%Y-%m-%d %H:%M:%f', 'now'),
+            updated_label = 'Aggiornato ora'
+        WHERE id = ?
+        """,
+        (project_id,),
+    )

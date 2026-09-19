@@ -7,20 +7,32 @@ import { StatusPill } from '../components/StatusPill'
 import { useProject } from '../hooks/useProject'
 import type { DocumentReview } from '../types'
 
+interface ReviewState {
+  requestedId?: string
+  review: DocumentReview | null
+  error: string | null
+}
+
 export function DocumentReviewPage() {
   const { projectId } = useParams()
   const { project, loading: projectLoading, error: projectError } = useProject(projectId)
-  const [review, setReview] = useState<DocumentReview | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [state, setState] = useState<ReviewState>({ review: null, error: null })
+  const review = state.requestedId === projectId ? state.review : null
+  const error = state.requestedId === projectId ? state.error : null
 
   useEffect(() => {
     if (!projectId) return
     const controller = new AbortController()
+    setState({ requestedId: projectId, review: null, error: null })
     api
       .documentReview(projectId, controller.signal)
-      .then(setReview)
+      .then((result) => {
+        if (controller.signal.aborted) return
+        setState({ requestedId: projectId, review: result, error: null })
+      })
       .catch((reason: Error) => {
-        if (reason.name !== 'AbortError') setError(reason.message)
+        if (controller.signal.aborted || reason.name === 'AbortError') return
+        setState({ requestedId: projectId, review: null, error: reason.message })
       })
     return () => controller.abort()
   }, [projectId])
@@ -33,14 +45,16 @@ export function DocumentReviewPage() {
     }))
   }, [review])
 
-  if (projectLoading || !review) {
-    return <AppShell active="documents" project={project}><LoadingState /></AppShell>
-  }
-  if (projectError || error || !project) {
+  if (projectError || error || (!projectLoading && !project)) {
     return <AppShell active="documents"><ErrorState message={projectError ?? error ?? 'Documento non trovato'} /></AppShell>
   }
+  if (projectLoading || !project || !review) {
+    return <AppShell active="documents" project={project}><LoadingState /></AppShell>
+  }
 
-  const percentage = Math.round((review.completed_fields / review.total_fields) * 100)
+  const percentage = review.total_fields > 0
+    ? Math.round((review.completed_fields / review.total_fields) * 100)
+    : 0
   const missing = review.fields.filter((field) => field.status === 'missing')
   const provenance = review.fields.reduce<Record<string, number>>((counts, field) => {
     counts[field.source_kind] = (counts[field.source_kind] ?? 0) + 1

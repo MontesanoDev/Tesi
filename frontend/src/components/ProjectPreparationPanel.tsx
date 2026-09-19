@@ -1,24 +1,21 @@
 import {
   ChevronRight,
   ClipboardList,
-  FileOutput,
   LayoutTemplate,
-  ListChecks,
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api'
-import type { KnowledgeArtifactSummary, ProjectDetail, StatusTone } from '../types'
+import type { DocumentCompilationSummary, KnowledgeArtifactSummary, ProjectDetail, StatusTone } from '../types'
 import { StatusPill } from './StatusPill'
 
 const WORKFLOW_ITEMS = [
-  { kind: 'call_facts', label: 'Call Facts' },
   { kind: 'project_facts', label: 'Dati del progetto' },
   { kind: 'template', label: 'Template' },
-  { kind: 'output_draft', label: 'Draft' },
 ] as const
 
 function workflowTone(status: string): StatusTone {
+  if (status === 'Disponibile' || status === 'Da completare') return 'info'
   if (status === 'Verificato') return 'success'
   if (status === 'Da estrarre' || status === 'Da generare') return 'info'
   if (status === 'Bozza' || status === 'Bozza aggiornata' || status === 'Da verificare') {
@@ -28,14 +25,13 @@ function workflowTone(status: string): StatusTone {
 }
 
 function WorkflowIcon({ kind }: { kind: (typeof WORKFLOW_ITEMS)[number]['kind'] }) {
-  if (kind === 'call_facts') return <ListChecks size={17} />
   if (kind === 'project_facts') return <ClipboardList size={17} />
-  if (kind === 'template') return <LayoutTemplate size={17} />
-  return <FileOutput size={17} />
+  return <LayoutTemplate size={17} />
 }
 
 export function ProjectPreparationPanel({ project }: { project: ProjectDetail }) {
   const [artifacts, setArtifacts] = useState<KnowledgeArtifactSummary[]>([])
+  const [compilations, setCompilations] = useState<DocumentCompilationSummary[]>([])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -49,23 +45,39 @@ export function ProjectPreparationPanel({ project }: { project: ProjectDetail })
     return () => controller.abort()
   }, [project.id])
 
+  useEffect(() => {
+    const controller = new AbortController()
+    setCompilations([])
+    api.documentCompilations(project.id, controller.signal)
+      .then((items) => { if (!controller.signal.aborted) setCompilations(items) })
+      .catch(() => { if (!controller.signal.aborted) setCompilations([]) })
+    return () => controller.abort()
+  }, [project.id])
+
   function statusFor(kind: (typeof WORKFLOW_ITEMS)[number]['kind']) {
+    if (kind === 'project_facts') return project.call_fact_count > 0 ? 'Disponibile' : 'Da completare'
+    if (kind === 'template' && compilations.length) return 'Da verificare'
+    const compilation = artifacts.find((item) => item.kind === 'output_draft')
+    if (kind === 'template' && compilation && compilation.status !== 'Da generare') {
+      return compilation.status
+    }
     const artifact = artifacts.find((item) => item.kind === kind)
     if (artifact) return artifact.status
-    if (kind === 'call_facts') {
-      if (project.call_fact_count === 0) return 'Da estrarre'
-      return project.missing_fact_count > 0 ? 'Da verificare' : 'Verificato'
-    }
-    if (kind === 'output_draft') return 'Da generare'
     return 'Bozza'
   }
 
   function detailFor(kind: (typeof WORKFLOW_ITEMS)[number]['kind']) {
-    if (kind === 'call_facts') {
+    if (kind === 'template' && compilations.length) return compilations.length === 1
+      ? '1 compilazione Word' : `${compilations.length} compilazioni Word`
+    const compilation = artifacts.find((item) => item.kind === 'output_draft')
+    if (kind === 'template' && compilation && compilation.status !== 'Da generare') {
+      return `Compilazione v${compilation.version}`
+    }
+    if (kind === 'project_facts') {
       const factLabel = project.call_fact_count === 1
-        ? '1 fatto'
-        : `${project.call_fact_count} fatti`
-      return `${factLabel} · ${project.missing_fact_count} mancanti`
+        ? '1 dato estratto'
+        : `${project.call_fact_count} dati estratti`
+      return factLabel
     }
     const artifact = artifacts.find((item) => item.kind === kind)
     return artifact ? `Versione ${artifact.version}` : 'Versione 1'

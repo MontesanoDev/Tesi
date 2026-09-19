@@ -1,17 +1,16 @@
-import { Check, FileText, Pencil, RotateCcw, Save, Trash2, X } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { FileText, Pencil, RotateCcw, Save, Trash2, X } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
 import { api } from '../api'
 import type {
   CallFactAction,
   CallFactItem,
   CallFactsReview,
-  CallFactStatus,
-  StatusTone,
 } from '../types'
 import { LoadingState } from './LoadingState'
 import { StatusPill } from './StatusPill'
 
-type FactFilter = 'pending' | 'verified' | 'discarded' | 'all'
+type FactFilter = 'active' | 'discarded'
+type EditAction = Exclude<CallFactAction, 'verify'>
 
 interface CallFactsReviewPanelProps {
   projectId: string
@@ -19,12 +18,8 @@ interface CallFactsReviewPanelProps {
   loading: boolean
   onUpdated: (review: CallFactsReview, message: string) => void
   onError: (message: string | null) => void
-}
-
-const STATUS: Record<CallFactStatus, { label: string; tone: StatusTone }> = {
-  pending: { label: 'Da verificare', tone: 'warning' },
-  verified: { label: 'Verificato', tone: 'success' },
-  discarded: { label: 'Scartato', tone: 'purple' },
+  disabled?: boolean
+  onDirtyChange: (dirty: boolean) => void
 }
 
 export function CallFactsReviewPanel({
@@ -33,38 +28,41 @@ export function CallFactsReviewPanel({
   loading,
   onUpdated,
   onError,
+  disabled = false,
+  onDirtyChange,
 }: CallFactsReviewPanelProps) {
-  const [filter, setFilter] = useState<FactFilter>('pending')
+  const [filter, setFilter] = useState<FactFilter>('active')
   const [workingId, setWorkingId] = useState<string | null>(null)
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editTitle, setEditTitle] = useState('')
   const [editValue, setEditValue] = useState('')
+  useEffect(() => {
+    onDirtyChange(Boolean(editingId || workingId))
+    return () => onDirtyChange(false)
+  }, [editingId, workingId, onDirtyChange])
 
   const filteredFacts = useMemo(() => {
     if (!review) return []
-    return filter === 'all'
-      ? review.facts
-      : review.facts.filter((fact) => fact.status === filter)
+    return review.facts.filter((fact) => filter === 'active'
+      ? fact.status !== 'discarded' : fact.status === 'discarded')
   }, [filter, review])
 
-  if (loading) return <LoadingState label="Caricamento revisione" />
+  if (loading) return <LoadingState label="Caricamento dati estratti" />
   if (!review) {
-    return <div className="fact-empty-state">Revisione non disponibile.</div>
+    return <div className="fact-empty-state">Dati estratti non disponibili.</div>
   }
 
   const filters: Array<{ id: FactFilter; label: string; count: number }> = [
-    { id: 'pending', label: 'Da verificare', count: review.pending_count },
-    { id: 'verified', label: 'Verificati', count: review.verified_count },
-    { id: 'discarded', label: 'Scartati', count: review.discarded_count },
-    { id: 'all', label: 'Tutti', count: review.facts.length },
+    { id: 'active', label: 'Attivi', count: review.facts.length - review.discarded_count },
+    { id: 'discarded', label: 'Esclusi', count: review.discarded_count },
   ]
 
   async function revise(
     fact: CallFactItem,
-    action: CallFactAction,
+    action: EditAction,
     fields?: { title: string; value: string },
   ) {
-    if (!review) return
+    if (!review || disabled || workingId) return
     setWorkingId(fact.id)
     onError(null)
     try {
@@ -74,11 +72,10 @@ export function CallFactsReviewPanel({
         ...fields,
       })
       setEditingId(null)
-      const messages: Record<CallFactAction, string> = {
-        verify: `“${fact.title}” verificato e reso disponibile al RAG.`,
-        edit: `“${fact.title}” modificato e rimesso in verifica.`,
-        discard: `“${fact.title}” scartato e rimosso dalla conoscenza utilizzabile.`,
-        restore: `“${fact.title}” ripristinato tra i fatti da verificare.`,
+      const messages: Record<EditAction, string> = {
+        edit: `“${fact.title}” aggiornato.`,
+        discard: `“${fact.title}” escluso dai dati estratti.`,
+        restore: `“${fact.title}” ripristinato.`,
       }
       onUpdated(updated, messages[action])
     } catch (reason) {
@@ -97,19 +94,13 @@ export function CallFactsReviewPanel({
 
   return (
     <div className="call-facts-review">
-      <div className="call-facts-summary" aria-label="Stato revisione Call Facts">
-        <div><strong>{review.pending_count}</strong><span>Da verificare</span></div>
-        <div><strong>{review.verified_count}</strong><span>Verificati</span></div>
-        <div><strong>{review.discarded_count}</strong><span>Scartati</span></div>
-      </div>
-
-      <div className="fact-filter-tabs" role="tablist" aria-label="Filtra Call Facts">
+      <div className="fact-filter-tabs" role="group" aria-label="Filtra dati estratti">
         {filters.map((item) => (
           <button
             className={filter === item.id ? 'is-active' : ''}
             type="button"
-            role="tab"
-            aria-selected={filter === item.id}
+            aria-pressed={filter === item.id}
+            disabled={disabled || Boolean(editingId || workingId)}
             key={item.id}
             onClick={() => setFilter(item.id)}
           >
@@ -119,19 +110,18 @@ export function CallFactsReviewPanel({
       </div>
 
       {review.missing_information.length > 0 && (
-        <div className="fact-missing-banner">
-          <strong>Informazioni mancanti</strong>
+        <details className="fact-missing-banner">
+          <summary>Informazioni non trovate ({review.missing_information.length})</summary>
           <ul>
             {review.missing_information.map((item) => <li key={item}>{item}</li>)}
           </ul>
-        </div>
+        </details>
       )}
 
       <div className="call-fact-list">
         {filteredFacts.length === 0 ? (
-          <div className="fact-empty-state">Nessun fatto in questo stato.</div>
+          <div className="fact-empty-state">{filter === 'active' ? 'Nessun dato estratto.' : 'Nessun dato escluso.'}</div>
         ) : filteredFacts.map((fact, index) => {
-          const status = STATUS[fact.status]
           const editing = editingId === fact.id
           const working = workingId === fact.id
           return (
@@ -141,10 +131,12 @@ export function CallFactsReviewPanel({
             >
               <header className="call-fact-heading">
                 <div>
-                  <span className="section-label">Fatto {index + 1}</span>
+                  <span className="section-label">Dato {index + 1}</span>
                   <h3>{fact.title}</h3>
                 </div>
-                <StatusPill tone={status.tone}>{status.label}</StatusPill>
+                <StatusPill tone={fact.status === 'discarded' ? 'purple' : 'info'}>
+                  {fact.status === 'discarded' ? 'Escluso' : fact.origin === 'user_corrected' ? 'Corretto' : 'Estratto'}
+                </StatusPill>
               </header>
 
               {editing ? (
@@ -195,7 +187,7 @@ export function CallFactsReviewPanel({
                 <>
                   <p className="call-fact-value">{fact.value}</p>
                   <div className="call-fact-sources">
-                    <span>Provenienza</span>
+                    <span>{fact.origin === 'user_corrected' ? 'Fonte di origine' : 'Provenienza'}</span>
                     <ul>
                       {fact.sources.map((source) => (
                         <li key={`${source.name}-${source.fragment}`}>
@@ -206,21 +198,11 @@ export function CallFactsReviewPanel({
                     </ul>
                   </div>
                   <footer className="call-fact-actions">
-                    {fact.status === 'pending' && (
-                      <button
-                        className="button button--primary button--compact"
-                        type="button"
-                        disabled={working}
-                        onClick={() => void revise(fact, 'verify')}
-                      >
-                        <Check size={15} /> {working ? 'Salvataggio' : 'Verifica'}
-                      </button>
-                    )}
                     {fact.status !== 'discarded' && (
                       <button
                         className="button button--compact"
                         type="button"
-                        disabled={working}
+                        disabled={disabled || Boolean(editingId || workingId)}
                         onClick={() => startEditing(fact)}
                       >
                         <Pencil size={15} /> Modifica
@@ -230,16 +212,16 @@ export function CallFactsReviewPanel({
                       <button
                         className="button button--compact fact-discard"
                         type="button"
-                        disabled={working}
+                        disabled={disabled || Boolean(editingId || workingId)}
                         onClick={() => void revise(fact, 'discard')}
                       >
-                        <Trash2 size={15} /> Scarta
+                        <Trash2 size={15} /> Escludi
                       </button>
                     ) : (
                       <button
                         className="button button--compact"
                         type="button"
-                        disabled={working}
+                        disabled={disabled || Boolean(editingId || workingId)}
                         onClick={() => void revise(fact, 'restore')}
                       >
                         <RotateCcw size={15} /> Ripristina

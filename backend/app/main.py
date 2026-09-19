@@ -26,6 +26,7 @@ from app.call_facts import (
     revise_call_fact,
 )
 from app.db import get_knowledge_path, get_storage_path, init_database
+from app.document_compilation_routes import router as document_compilation_router
 from app.draft_generation import (
     DraftInputError,
     generate_grounded_draft,
@@ -117,6 +118,7 @@ def _call_facts_review_payload(artifact: dict, document: CallFactsDocument) -> d
                 "title": fact.title,
                 "value": fact.value,
                 "status": fact.status,
+                "origin": fact.origin,
                 "sources": [
                     {"name": source.name, "fragment": source.fragment} for source in fact.sources
                 ],
@@ -152,6 +154,7 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(title="Mapi RAG API", version="0.1.0", lifespan=lifespan)
+app.include_router(document_compilation_router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -383,12 +386,28 @@ async def project_artifact_update(
     artifact_id: str,
     payload: KnowledgeArtifactUpdate,
 ) -> dict:
+    current = get_project_artifact(project_id, artifact_id)
+    document = None
+    if current and current["kind"] == "call_facts":
+        try:
+            document = parse_call_facts_markdown(payload.content)
+        except CallFactsFormatError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
     try:
         result = update_project_artifact(project_id, artifact_id, payload.content)
     except ArtifactReadOnlyError as exc:
         raise HTTPException(status_code=403, detail=str(exc)) from exc
     if result is None:
         raise HTTPException(status_code=404, detail="Artefatto Markdown non trovato")
+    if document is not None:
+        update_call_fact_review_metrics(
+            project_id=project_id,
+            active_count=len(document.available_facts),
+            verified_count=document.verified_count,
+            pending_count=document.pending_count,
+            discarded_count=document.discarded_count,
+            missing_count=len(document.missing_information),
+        )
     return result
 
 
@@ -400,11 +419,15 @@ async def project_call_facts_extract(project_id: str) -> dict:
     project = get_project(project_id)
     if project is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
+    artifact_id = f"{project_id}--call-facts"
+    original = get_project_artifact(project_id, artifact_id)
+    if original is None:
+        raise HTTPException(status_code=404, detail="Dati del progetto non trovati")
     source_chunks = load_project_source_chunks(project_id)
     if not source_chunks:
         raise HTTPException(
             status_code=422,
-            detail="Carica e indicizza almeno una fonte prima di estrarre i Call Facts",
+            detail="Carica e indicizza almeno una fonte prima di estrarre i dati del progetto",
         )
     try:
         extraction = await extract_call_facts(
@@ -417,12 +440,17 @@ async def project_call_facts_extract(project_id: str) -> dict:
     except GenerationError as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
-    artifact_id = f"{project_id}--call-facts"
+    current = get_project_artifact(project_id, artifact_id)
+    if current is None or current["version"] != original["version"]:
+        raise HTTPException(
+            status_code=409,
+            detail="I dati sono cambiati durante l'estrazione. Ricarica prima di riprovare.",
+        )
     artifact = replace_project_artifact(
         project_id,
         artifact_id,
         extraction.markdown,
-        status="Da verificare",
+        status="Estratto",
     )
     if artifact is None:
         raise HTTPException(status_code=404, detail="Artefatto Call Facts non trovato")
@@ -476,12 +504,7 @@ async def project_call_fact_revision(
     except CallFactsFormatError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
-    if revised.pending_count:
-        artifact_status = "Da verificare"
-    elif revised.verified_count:
-        artifact_status = "Verificato"
-    else:
-        artifact_status = "Revisionato"
+    artifact_status = "Disponibile" if revised.available_facts else "Nessun dato disponibile"
     updated = replace_project_artifact(
         project_id,
         artifact["id"],
@@ -492,7 +515,7 @@ async def project_call_fact_revision(
         raise HTTPException(status_code=404, detail="Artefatto Call Facts non trovato")
     update_call_fact_review_metrics(
         project_id=project_id,
-        active_count=revised.active_count,
+        active_count=len(revised.available_facts),
         verified_count=revised.verified_count,
         pending_count=revised.pending_count,
         discarded_count=revised.discarded_count,
@@ -511,12 +534,7 @@ async def project_draft_generate(project_id: str) -> dict:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
 
     _, call_facts = _get_call_facts_document(project_id)
-    verified_facts = [fact for fact in call_facts.facts if fact.status == "verified"]
-    if not verified_facts:
-        raise HTTPException(
-            status_code=422,
-            detail="Verifica almeno un Call Fact prima di generare il draft",
-        )
+    available_facts = call_facts.available_facts
 
     artifact_ids = {
         "template": f"{project_id}--template",
@@ -550,7 +568,7 @@ async def project_draft_generate(project_id: str) -> dict:
             template_markdown=template["content"],
             company_sources=company_sources,
             project_facts_markdown=project_facts["content"],
-            verified_facts=verified_facts,
+            available_facts=available_facts,
         )
     except DraftInputError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
@@ -562,7 +580,7 @@ async def project_draft_generate(project_id: str) -> dict:
     markdown = render_draft_markdown(
         project_id,
         generated,
-        verified_facts,
+        available_facts,
         company_sources,
     )
     draft = replace_project_artifact(
@@ -575,7 +593,8 @@ async def project_draft_generate(project_id: str) -> dict:
         raise HTTPException(status_code=404, detail="Artefatto Draft non trovato")
     return {
         "artifact": draft,
-        "verified_fact_count": len(verified_facts),
+        "verified_fact_count": sum(fact.status == "verified" for fact in available_facts),
+        "available_fact_count": len(available_facts),
         "used_fact_count": len(generated.used_fact_ids),
         "missing_information": generated.missing_information,
         "model": generated.model,

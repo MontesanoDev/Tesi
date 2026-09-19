@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "case_id": "catanzaro-dl-cse",
+  "template_id": "domanda_docx",
+  "template_sha256": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563",
+  "scope": "Anagrafica, ramo societa di ingegneria, servizi pregressi e prime righe dei soggetti noti. Non tutti i rami del modulo.",
+  "requires_human_review": true,
+  "ready_for_submission": false,
+  "target_convention": "Indici zero-based: tutte le w:tbl nel body in ordine XML, poi w:tr e w:tc dirette. label indica il testo della cella di etichetta, senza spazi. Non sono coordinate PDF.",
+  "states": {
+    "proposed_demo": "Valore ricavabile dalla visura simulata; proposta per test, non dichiarazione verificata.",
+    "missing": "Non disponibile nelle fonti del caso.",
+    "partial": "Una parte del dato e disponibile, ma non basta per riempire il campo.",
+    "needs_confirmation": "Una scelta o dichiarazione richiede conferma esplicita.",
+    "conditional": "La compilazione dipende da una scelta ancora non confermata."
+  },
+  "fields": [
+    {
+      "id": "firmatario.nome", "section": "anagrafica",
+      "target": {"table": 0, "row": 0, "column": 1, "label_column": 0, "label": "Il/La sottoscritto/a"},
+      "state": "proposed_demo", "suggested_value": "Luca Ferri",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 2, "quote": "Ing. Luca Ferri"}],
+      "note": "Nominativo dell'amministratore, non prova sufficiente dei poteri di firma. Confermare che sia il sottoscrittore."
+    },
+    {
+      "id": "firmatario.nascita", "section": "anagrafica",
+      "target": {"table": 0, "row": 1, "column": 1, "label_column": 0, "label": "Data e luogo di nascita"},
+      "state": "missing", "suggested_value": null, "evidence": [],
+      "note": "Non dedurre luogo e data di nascita da nome o sede aziendale."
+    },
+    {
+      "id": "firmatario.codice_fiscale", "section": "anagrafica",
+      "target": {"table": 0, "row": 2, "column": 1, "label_column": 0, "label": "Codice fiscale"},
+      "state": "missing", "suggested_value": null, "evidence": [],
+      "note": "Il CF della persona non e il CF dell'azienda ne quello della stazione appaltante."
+    },
+    {
+      "id": "firmatario.carica", "section": "anagrafica",
+      "target": {"table": 0, "row": 3, "column": 1, "label_column": 0, "label": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"},
+      "state": "proposed_demo", "suggested_value": "Amministratore unico",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 2, "quote": "AMMINISTRATORE UNICO"}],
+      "note": "Non aggiungere deleghe o poteri di rappresentanza non documentati."
+    },
+    {
+      "id": "firmatario.procura", "section": "anagrafica",
+      "target": {"table": 0, "row": 4, "column": 1, "label_column": 0, "label": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"},
+      "state": "conditional", "suggested_value": null, "evidence": [],
+      "note": "Richiedere la procura solo se il sottoscrittore e un procuratore; non inventare un repertorio."
+    },
+    {
+      "id": "impresa.denominazione", "section": "anagrafica",
+      "target": {"table": 0, "row": 5, "column": 1, "label_column": 0, "label": "Operatore economico"},
+      "state": "proposed_demo", "suggested_value": "Mapi Ingegneria S.r.l.",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "Mapi Ingegneria S.r.l."}]
+    },
+    {
+      "id": "impresa.forma_giuridica", "section": "anagrafica",
+      "target": {"table": 0, "row": 6, "column": 1, "label_column": 0, "label": "Forma giuridica"},
+      "state": "proposed_demo", "suggested_value": "Societa a responsabilita limitata",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "Societa a responsabilita limitata"}]
+    },
+    {
+      "id": "impresa.sede_legale", "section": "anagrafica",
+      "target": {"table": 0, "row": 7, "column": 1, "label_column": 0, "label": "Sede legale (via, città, prov.)"},
+      "state": "proposed_demo", "suggested_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"}]
+    },
+    {
+      "id": "impresa.sede_operativa_diversa", "section": "anagrafica",
+      "target": {"table": 0, "row": 8, "column": 1, "label_column": 0, "label": "Sede operativa (se diversa dalla sede legale)"},
+      "state": "conditional", "suggested_value": null,
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "SEDE LEGALE E OPERATIVA"}],
+      "note": "La fonte indica un'unica sede. Lasciare vuoto se si conferma che non esiste una sede diversa."
+    },
+    {
+      "id": "impresa.codice_fiscale", "section": "anagrafica",
+      "target": {"table": 0, "row": 9, "column": 1, "label_column": 0, "label": "Codice fiscale operatore economico"},
+      "state": "needs_confirmation", "suggested_value": null,
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "IT01234567890 (dato simulato)"}],
+      "note": "Identificativo fittizio. Il valore numerico non supera il controllo formale della cifra di controllo: non correggerlo o trattarlo come CF reale."
+    },
+    {
+      "id": "impresa.partita_iva", "section": "anagrafica",
+      "target": {"table": 0, "row": 10, "column": 1, "label_column": 0, "label": "Partita IVA operatore economico"},
+      "state": "needs_confirmation", "suggested_value": null,
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "IT01234567890 (dato simulato)"}],
+      "note": "Tenere il valore originale nel report demo. Non sostituirlo con la P.IVA della Fondazione presente nell'intestazione."
+    },
+    {
+      "id": "impresa.telefono", "section": "anagrafica",
+      "target": {"table": 0, "row": 11, "column": 1, "label_column": 0, "label": "Cellulare + Telefono"},
+      "state": "partial", "suggested_value": "+39 080 000 2040",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "+39 080 000 2040"}],
+      "note": "Disponibile soltanto un telefono simulato, nessun cellulare."
+    },
+    {
+      "id": "societa_ingegneria.denominazione", "section": "5.d",
+      "target": {"table": 25, "row": 0, "column": 1, "label_column": 0, "label": "Denominazione sociale:"},
+      "state": "proposed_demo", "suggested_value": "Mapi Ingegneria S.r.l.",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "Mapi Ingegneria S.r.l."}]
+    },
+    {
+      "id": "societa_ingegneria.cciaa", "section": "5.d",
+      "target": {"table": 25, "row": 2, "column": 0, "label_row": 1, "label_column": 0, "label": "iscrizione alla CCIAA di: (per gli stranieri registri equipollenti)"},
+      "state": "missing", "suggested_value": null, "evidence": [],
+      "note": "La provincia BA del REA non viene automaticamente trasformata nel dato richiesto. Serve una fonte camerale esplicita."
+    },
+    {
+      "id": "societa_ingegneria.numero_data_iscrizione", "section": "5.d",
+      "target": {"table": 25, "row": 3, "column": 1, "label_column": 0, "label": "numero e data d’iscrizione:"},
+      "state": "partial", "suggested_value": null,
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "14 marzo 2019"}],
+      "note": "Data presente; numero di iscrizione non documentato separatamente. Non copiare BA - 654321 come se REA e numero Registro Imprese fossero la stessa cosa."
+    },
+    {
+      "id": "societa_ingegneria.forma_giuridica", "section": "5.d",
+      "target": {"table": 25, "row": 4, "column": 1, "label_column": 0, "label": "forma giuridica:"},
+      "state": "proposed_demo", "suggested_value": "Societa a responsabilita limitata",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "Societa a responsabilita limitata"}]
+    },
+    {
+      "id": "societa_ingegneria.sede", "section": "5.d",
+      "target": {"table": 25, "row": 4, "column": 3, "label_column": 2, "label": "sede legale:"},
+      "state": "proposed_demo", "suggested_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 1, "quote": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"}]
+    },
+    {
+      "id": "direttore_tecnico.nome", "section": "5.d",
+      "target": {"table": 26, "row": 0, "column": 1, "label_column": 0, "label": "Nome e cognome:"},
+      "state": "proposed_demo", "suggested_value": "Elisa Romano",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 2, "quote": "Ing. Elisa Romano"}],
+      "note": "Direttore tecnico aziendale; non assegnare automaticamente l'incarico di DL o CSE."
+    },
+    {
+      "id": "direttore_tecnico.qualifica", "section": "5.d",
+      "target": {"table": 26, "row": 1, "column": 1, "label_column": 0, "label": "qualifica professionale:"},
+      "state": "partial", "suggested_value": "Ingegnere",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 2, "quote": "Ing. Elisa Romano"}],
+      "note": "Espansione di Ing.; non attesta classe di laurea, settore o anzianita professionale."
+    },
+    {
+      "id": "direttore_tecnico.abilitazione", "section": "5.d",
+      "target": {"table": 26, "row": 2, "column": 1, "label_column": 0, "label": "Data di abilitazione"},
+      "state": "missing", "suggested_value": null, "evidence": []
+    },
+    {
+      "id": "direttore_tecnico.ordine", "section": "5.d",
+      "target": {"table": 26, "row": 3, "column": 1, "label_column": 0, "label": "Ordine professionale di appartenenza:"},
+      "state": "proposed_demo", "suggested_value": "Ordine degli Ingegneri di Bari",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 2, "quote": "Ordine degli Ingegneri di Bari"}]
+    },
+    {
+      "id": "direttore_tecnico.numero_albo", "section": "5.d",
+      "target": {"table": 26, "row": 4, "column": 1, "label_column": 0, "label": "numero di iscrizione all’Albo professionale:"},
+      "state": "proposed_demo", "suggested_value": "8421",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 2, "quote": "iscrizione professionale simulata n. 8421"}],
+      "note": "Valore simulato, non verificato presso l'Ordine."
+    },
+    {
+      "id": "servizi.E06", "section": "parte_prima_13a",
+      "target": {"table": 7, "row": 1, "column": 3, "label_column": 1, "label": "E.06"},
+      "state": "missing", "suggested_value": null, "evidence": [],
+      "note": "Richiesti servizi pregressi documentati: non copiare il valore delle opere della gara."
+    },
+    {
+      "id": "servizi.S03", "section": "parte_prima_13a",
+      "target": {"table": 7, "row": 2, "column": 3, "label_column": 1, "label": "S.03"},
+      "state": "missing", "suggested_value": null, "evidence": []
+    },
+    {
+      "id": "servizi.IA01", "section": "parte_prima_13a",
+      "target": {"table": 7, "row": 3, "column": 3, "label_column": 1, "label": "IA.01"},
+      "state": "missing", "suggested_value": null, "evidence": []
+    },
+    {
+      "id": "servizi.IA02", "section": "parte_prima_13a",
+      "target": {"table": 7, "row": 4, "column": 3, "label_column": 1, "label": "IA.02"},
+      "state": "missing", "suggested_value": null, "evidence": []
+    },
+    {
+      "id": "servizi.IA03", "section": "parte_prima_13a",
+      "target": {"table": 7, "row": 5, "column": 3, "label_column": 1, "label": "IA.03"},
+      "state": "missing", "suggested_value": null, "evidence": []
+    },
+    {
+      "id": "soggetti.amministratore.nome", "section": "parte_terza",
+      "target": {"table": 41, "row": 1, "column": 0, "label_row": 0, "label_column": 0, "label": "Nome e cognome"},
+      "state": "proposed_demo", "suggested_value": "Luca Ferri",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 2, "quote": "Ing. Luca Ferri"}],
+      "note": "Prima riga soltanto: non dimostra la completezza dell'elenco dei soggetti."
+    },
+    {
+      "id": "soggetti.amministratore.nascita", "section": "parte_terza",
+      "target": {"table": 41, "row": 1, "column": 1, "label_row": 0, "label_column": 1, "label": "Data e luogo di nascita"},
+      "state": "missing", "suggested_value": null, "evidence": []
+    },
+    {
+      "id": "soggetti.amministratore.residenza", "section": "parte_terza",
+      "target": {"table": 41, "row": 1, "column": 2, "label_row": 0, "label_column": 2, "label": "Residenza"},
+      "state": "missing", "suggested_value": null, "evidence": [],
+      "note": "La sede dell'azienda non e la residenza della persona."
+    },
+    {
+      "id": "soggetti.amministratore.codice_fiscale", "section": "parte_terza",
+      "target": {"table": 41, "row": 1, "column": 3, "label_row": 0, "label_column": 3, "label": "Codice fiscale"},
+      "state": "missing", "suggested_value": null, "evidence": []
+    },
+    {
+      "id": "soggetti.amministratore.carica", "section": "parte_terza",
+      "target": {"table": 41, "row": 1, "column": 4, "label_row": 0, "label_column": 4, "label": "Poteri conferiti / qualifica"},
+      "state": "partial", "suggested_value": "Amministratore unico",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 2, "quote": "AMMINISTRATORE UNICO"}],
+      "note": "Qualifica presente, estensione dei poteri non documentata."
+    },
+    {
+      "id": "soggetti.direttore_tecnico.nome", "section": "parte_terza",
+      "target": {"table": 44, "row": 1, "column": 0, "label_row": 0, "label_column": 0, "label": "Nome e cognome"},
+      "state": "proposed_demo", "suggested_value": "Elisa Romano",
+      "evidence": [{"source_id": "visura_mapi_demo", "page": 2, "quote": "Ing. Elisa Romano"}]
+    },
+    {
+      "id": "soggetti.direttore_tecnico.nascita", "section": "parte_terza",
+      "target": {"table": 44, "row": 1, "column": 1, "label_row": 0, "label_column": 1, "label": "Data e luogo di nascita"},
+      "state": "missing", "suggested_value": null, "evidence": []
+    },
+    {
+      "id": "soggetti.direttore_tecnico.residenza", "section": "parte_terza",
+      "target": {"table": 44, "row": 1, "column": 2, "label_row": 0, "label_column": 2, "label": "Residenza"},
+      "state": "missing", "suggested_value": null, "evidence": []
+    },
+    {
+      "id": "soggetti.direttore_tecnico.codice_fiscale", "section": "parte_terza",
+      "target": {"table": 44, "row": 1, "column": 3, "label_row": 0, "label_column": 3, "label": "Codice fiscale"},
+      "state": "missing", "suggested_value": null, "evidence": []
+    }
+  ],
+  "decisions": [
+    {
+      "id": "tipo_operatore", "state": "needs_confirmation",
+      "anchor": "Specificare la tipologia dell’operatore economico secondo la propria natura giuridica",
+      "rule": "Societa di ingegneria e il ramo candidato per questa demo, non un requisito accertato dal nome. Solo dopo conferma abilitare 5.d; non riempire anche 5.c, 5.e e 5.f. Nessuna casella gia spuntata."
+    },
+    {
+      "id": "partecipazione_congiunta", "state": "needs_confirmation",
+      "anchor": "L’operatore economico partecipa alla procedura insieme ad altri?",
+      "rule": "Chiedere singola/RTI/consorzio/rete e gli eventuali membri. Una S.r.l. puo partecipare con altri: la forma societaria non determina la risposta NO."
+    },
+    {
+      "id": "partecipazione_multipla", "state": "needs_confirmation",
+      "anchor": "di partecipare alla medesima gara contemporaneamente in forme diverse",
+      "rule": "Non selezionare NO per assenza di informazioni nella KB."
+    },
+    {
+      "id": "fatturato", "state": "needs_confirmation",
+      "anchor": "di aver conseguito nel triennio precedente",
+      "rule": "E una dichiarazione prestampata, non un campo vuoto ne una prova aziendale. Non convalidarla perche esiste nel template. I ricavi demo 2024/2025 non sono una prova completa del fatturato richiesto nel periodo di gara."
+    },
+    {
+      "id": "accettazione_impegni", "state": "needs_confirmation",
+      "anchor": "che accetta, senza condizione o riserva alcuna",
+      "rule": "Accettazione delle condizioni, remunerativita dell'offerta, codice di comportamento, accesso agli atti, privacy e conformita copie restano dichiarazioni dell'operatore, non conclusioni automatiche del modello."
+    },
+    {
+      "id": "condizioni_speciali", "state": "needs_confirmation",
+      "anchor": "per gli operatori economici ammessi al concordato preventivo",
+      "rule": "Rami per concordato, operatori esteri e altri casi condizionati richiedono applicabilita esplicita. Nessuna procedura indicata non significa assenza verificata di procedure."
+    },
+    {
+      "id": "completezza_soggetti", "state": "needs_confirmation",
+      "anchor": "DICHIARAZIONI SUI SOGGETTI DI CUI ALL’ART. 94 COMMI 3 E 4 DEL CODICE",
+      "rule": "Due nominativi nella visura demo non dimostrano completezza dei soggetti da dichiarare. Richiedere assetto societario e dati pertinenti; non identificare socio unico, controllori o amministratori di fatto per inferenza."
+    },
+    {
+      "id": "allegati", "state": "needs_confirmation",
+      "anchor": "ALLEGA la seguente documentazione:",
+      "rule": "Confrontare l'elenco con file effettivamente presenti. Non dichiarare allegati DGUE, organigramma, procura o contratto di avvalimento non caricati. Consultare anche il disciplinare, non soltanto l'elenco del modulo."
+    },
+    {
+      "id": "firma", "state": "needs_confirmation",
+      "anchor": "Letto, confermato e sottoscritto.",
+      "rule": "Nessuna firma digitale, firma disegnata o invio al portale eseguito dall'AI. La bozza non diventa una domanda sottoscritta."
+    }
+  ]
+}

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import math
 import re
 from dataclasses import dataclass
@@ -19,6 +20,10 @@ from app.db import connection
 from app.generation import GenerationError, GenerationNotConfiguredError
 
 MAX_SOURCE_CHARACTERS = 160_000
+OUTPUT_TOKEN_BUDGETS = (12_000, 24_000)
+EXTRACTION_TIMEOUT_SECONDS = 360
+REQUEST_TIMEOUT_SECONDS = 180
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -165,9 +170,20 @@ def _clean_json(content: str) -> dict:
     try:
         payload = json.loads(cleaned)
     except json.JSONDecodeError as exc:
-        raise GenerationError("DeepSeek ha restituito Call Facts in un formato non valido") from exc
+        logger.warning(
+            "Invalid extraction JSON: chars=%d line=%d column=%d reason=%s",
+            len(cleaned), exc.lineno, exc.colno, exc.msg,
+        )
+        raise GenerationError(
+            "DeepSeek ha restituito una risposta JSON non valida per i dati estratti. "
+            "I dati salvati non sono stati modificati."
+        ) from exc
+    except (ValueError, RecursionError) as exc:
+        raise GenerationError(
+            "La risposta JSON dei dati estratti supera i limiti supportati"
+        ) from exc
     if not isinstance(payload, dict):
-        raise GenerationError("DeepSeek non ha restituito un oggetto di Call Facts")
+        raise GenerationError("DeepSeek non ha restituito un oggetto JSON di dati estratti")
     return payload
 
 
@@ -178,7 +194,7 @@ def parse_extracted_facts(
     payload = _clean_json(content)
     raw_facts = payload.get("facts", [])
     if not isinstance(raw_facts, list):
-        raise GenerationError("L'elenco dei Call Facts restituito da DeepSeek non e valido")
+        raise GenerationError("L'elenco dei dati estratti restituito da DeepSeek non e valido")
 
     facts: list[ExtractedFact] = []
     seen: set[tuple[str, str]] = set()
@@ -196,7 +212,7 @@ def parse_extracted_facts(
             dict.fromkeys(
                 evidence_id
                 for evidence_id in raw_evidence_ids
-                if isinstance(evidence_id, int) and 1 <= evidence_id <= evidence_count
+                if type(evidence_id) is int and 1 <= evidence_id <= evidence_count
             )
         )
         title = re.sub(r"\s+", " ", title).strip()
@@ -272,20 +288,72 @@ async def extract_call_facts(
         "response_format": {"type": "json_object"},
         "thinking": {"type": "disabled"},
         "temperature": 0.1,
-        "max_tokens": 4_000,
     }
+    usages: list[int | None] = []
     try:
-        async with asyncio.timeout(150):
-            async with httpx.AsyncClient(timeout=httpx.Timeout(120, connect=10)) as client:
-                response = await client.post(
-                    f"{settings.base_url}/chat/completions",
-                    headers={"Authorization": f"Bearer {settings.api_key}"},
-                    json=request_body,
-                )
-                response.raise_for_status()
-                payload = response.json()
+        async with asyncio.timeout(EXTRACTION_TIMEOUT_SECONDS):
+            async with httpx.AsyncClient(timeout=httpx.Timeout(160, connect=10)) as client:
+                for attempt, budget in enumerate(OUTPUT_TOKEN_BUDGETS, start=1):
+                    async with asyncio.timeout(REQUEST_TIMEOUT_SECONDS):
+                        response = await client.post(
+                            f"{settings.base_url}/chat/completions",
+                            headers={"Authorization": f"Bearer {settings.api_key}"},
+                            json={**request_body, "max_tokens": budget},
+                        )
+                        response.raise_for_status()
+                        payload = response.json()
+                    if not isinstance(payload, dict):
+                        raise GenerationError("La risposta di estrazione non e un oggetto JSON")
+                    try:
+                        choice = payload["choices"][0]
+                        finish_reason = choice["finish_reason"]
+                    except (KeyError, IndexError, TypeError) as exc:
+                        raise GenerationError(
+                            "La risposta di estrazione non dichiara come e terminata"
+                        ) from exc
+                    if not isinstance(finish_reason, str):
+                        raise GenerationError(
+                            "La risposta di estrazione non dichiara come e terminata"
+                        )
+                    usage = payload.get("usage")
+                    tokens = usage.get("total_tokens") if isinstance(usage, dict) else None
+                    usages.append(tokens if type(tokens) is int and tokens >= 0 else None)
+                    logger.info(
+                        "Extraction response: attempt=%d max_tokens=%d finish_reason=%r tokens=%s",
+                        attempt, budget, finish_reason, usages[-1],
+                    )
+                    if finish_reason == "length":
+                        logger.warning("Extraction response truncated at max_tokens=%d", budget)
+                        # Never salvage truncated JSON: retry with the same complete evidence set.
+                        if attempt < len(OUTPUT_TOKEN_BUDGETS):
+                            continue
+                        raise GenerationError(
+                            "La risposta di estrazione e ancora troppo lunga dopo il secondo "
+                            "tentativo. Nessun dato incompleto e stato salvato."
+                        )
+                    if finish_reason != "stop":
+                        if finish_reason == "content_filter":
+                            raise GenerationError("DeepSeek ha filtrato la risposta di estrazione")
+                        raise GenerationError(
+                            "DeepSeek ha interrotto l'estrazione prima del completamento. "
+                            "Riprova; i dati salvati non sono stati modificati."
+                        )
+                    try:
+                        content = choice["message"]["content"]
+                        model = payload.get("model") or settings.model
+                    except (KeyError, TypeError) as exc:
+                        raise GenerationError(
+                            "La risposta di estrazione non rispetta il contratto atteso"
+                        ) from exc
+                    if not isinstance(content, str) or not isinstance(model, str):
+                        raise GenerationError("La risposta di estrazione non contiene testo valido")
+                    facts, missing_information = parse_extracted_facts(content, len(evidence))
+                    break
     except TimeoutError as exc:
-        raise GenerationError("DeepSeek non ha completato l'estrazione entro 150 secondi") from exc
+        raise GenerationError(
+            "DeepSeek non ha completato l'estrazione entro il tempo massimo. "
+            "I dati salvati non sono stati modificati."
+        ) from exc
     except httpx.HTTPStatusError as exc:
         raise GenerationError(
             f"DeepSeek ha rifiutato l'estrazione ({exc.response.status_code})"
@@ -295,17 +363,7 @@ async def extract_call_facts(
             "DeepSeek non e raggiungibile o ha restituito dati non validi"
         ) from exc
 
-    try:
-        content = payload["choices"][0]["message"]["content"]
-        model = payload.get("model") or settings.model
-    except (KeyError, IndexError, TypeError) as exc:
-        raise GenerationError("La risposta di estrazione non rispetta il contratto atteso") from exc
-    if not isinstance(content, str) or not isinstance(model, str):
-        raise GenerationError("La risposta di estrazione non contiene testo valido")
-
-    facts, missing_information = parse_extracted_facts(content, len(evidence))
-    usage = payload.get("usage", {})
-    total_tokens = usage.get("total_tokens") if isinstance(usage, dict) else None
+    total_tokens = sum(usages) if all(value is not None for value in usages) else None
     return CallFactsExtraction(
         markdown=render_call_facts_markdown(
             project_id,
@@ -318,5 +376,5 @@ async def extract_call_facts(
         missing_information=missing_information,
         evidence_count=len(evidence),
         model=model,
-        total_tokens=total_tokens if isinstance(total_tokens, int) else None,
+        total_tokens=total_tokens,
     )

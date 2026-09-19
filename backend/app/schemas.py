@@ -137,6 +137,7 @@ class CallFactItem(BaseModel):
     value: str
     status: Literal["pending", "verified", "discarded"]
     sources: list[CallFactSource]
+    origin: Literal["extracted", "user_corrected"] = "extracted"
 
 
 class CallFactsReview(BaseModel):
@@ -158,6 +159,7 @@ class CallFactRevision(BaseModel):
 class DraftGenerationResponse(BaseModel):
     artifact: KnowledgeArtifactDetail
     verified_fact_count: int
+    available_fact_count: int
     used_fact_count: int
     missing_information: list[str]
     model: str

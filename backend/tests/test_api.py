@@ -1,3 +1,5 @@
+import json
+
 import httpx
 import pytest
 
@@ -173,7 +175,7 @@ async def test_markdown_artifact_update_is_versioned_and_indexed(client):
 
     detail = await client.get(f"/api/projects/{project_id}/artifacts/{project_facts['id']}")
     assert detail.status_code == 200
-    assert "# Project Facts" in detail.json()["content"]
+    assert "# Dati inseriti per il progetto" in detail.json()["content"]
 
     content = (
         "---\nartifact: project_facts\nscope: project\nstatus: draft\n---\n\n"
@@ -478,6 +480,9 @@ async def test_external_markdown_change_is_catalogued_and_reindexed(client):
 @pytest.mark.anyio
 async def test_call_facts_extraction_updates_markdown_and_project_metrics(client, monkeypatch):
     project_id = "fondo-riqualificazione-2027"
+    entered_url = f"/api/projects/{project_id}/artifacts/{project_id}--project-facts"
+    await client.put(entered_url, json={"content": "# Dati inseriti\n\nFirmatario: Persona demo"})
+    entered_before = (await client.get(entered_url)).json()
     uploaded = await client.post(
         f"/api/projects/{project_id}/files",
         files={
@@ -515,12 +520,24 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
 
     assert response.status_code == 200
     payload = response.json()
-    assert payload["artifact"]["status"] == "Da verificare"
-    assert payload["artifact"]["chunk_count"] == 0
+    assert payload["artifact"]["status"] == "Estratto"
+    assert payload["artifact"]["chunk_count"] > 0
     assert payload["fact_count"] == 1
     assert payload["missing_count"] == 1
     assert payload["evidence_count"] == 1
     assert payload["model"] == "deepseek-test"
+    assert (await client.get(entered_url)).json() == entered_before
+    from app.document_compilation import load_compilation_sources
+
+    compilation_sources = load_compilation_sources(project_id).selected
+    assert any(
+        item["source_kind"] == "call_facts" and "15 settembre" in item["content"]
+        for item in compilation_sources
+    )
+    assert any(
+        item["source_kind"] == "project_facts" and "Persona demo" in item["content"]
+        for item in compilation_sources
+    )
 
     review = await client.get(f"/api/projects/{project_id}/call-facts")
     assert review.status_code == 200
@@ -533,9 +550,10 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
     assert project.json()["call_fact_count"] == 1
     assert project.json()["missing_fact_count"] == 1
     call_facts_source = next(
-        source for source in project.json()["knowledge_sources"] if source["name"] == "Call Facts"
+        source for source in project.json()["knowledge_sources"]
+        if source["name"] == "Dati del progetto"
     )
-    assert call_facts_source["item_count"] == 0
+    assert call_facts_source["item_count"] == 1
 
     verified = await client.patch(
         f"/api/projects/{project_id}/call-facts/{fact['id']}",
@@ -545,7 +563,7 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
     assert verified.json()["verified_count"] == 1
     assert verified.json()["pending_count"] == 0
     assert verified.json()["facts"][0]["status"] == "verified"
-    assert verified.json()["artifact"]["status"] == "Verificato"
+    assert verified.json()["artifact"]["status"] == "Disponibile"
     assert verified.json()["artifact"]["chunk_count"] == 1
 
     evidence = await client.get(
@@ -572,7 +590,8 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
     )
     assert edited.status_code == 200
     assert edited.json()["facts"][0]["status"] == "pending"
-    assert edited.json()["artifact"]["chunk_count"] == 0
+    assert edited.json()["artifact"]["chunk_count"] > 0
+    assert edited.json()["facts"][0]["origin"] == "user_corrected"
 
     discarded = await client.patch(
         f"/api/projects/{project_id}/call-facts/{fact['id']}",
@@ -580,6 +599,11 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
     )
     assert discarded.status_code == 200
     assert discarded.json()["discarded_count"] == 1
+    assert discarded.json()["artifact"]["chunk_count"] == 0
+    assert not any(
+        item["source_kind"] == "call_facts"
+        for item in load_compilation_sources(project_id).selected
+    )
 
     restored = await client.patch(
         f"/api/projects/{project_id}/call-facts/{fact['id']}",
@@ -587,6 +611,160 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
     )
     assert restored.status_code == 200
     assert restored.json()["facts"][0]["status"] == "pending"
+    assert restored.json()["artifact"]["chunk_count"] > 0
+
+
+@pytest.mark.anyio
+async def test_existing_facts_reindex_without_rewriting_legacy_documents(client):
+    from app.repository import sync_call_fact_review_metrics
+
+    project_id = "fondo-riqualificazione-2027"
+    url = f"/api/projects/{project_id}/artifacts/{project_id}--call-facts"
+    content = render_call_facts_markdown(
+        project_id, [ExtractedFact("Scadenza esclusiva", "21 ottobre 2026", [1])], [],
+        [{"source_name": "bando-demo.pdf", "chunk_index": 1}], "test",
+    ).replace("**Stato:** Disponibile", "**Stato:** Da verificare")
+    await client.put(url, json={"content": content})
+    before = (await client.get(url)).json()
+    entered_url = f"/api/projects/{project_id}/artifacts/{project_id}--project-facts"
+    entered = (await client.get(entered_url)).json()
+    with connection() as db:
+        db.execute(
+            "DELETE FROM document_chunks WHERE file_id IN "
+            "(SELECT file_id FROM project_artifact_links WHERE artifact_id = ?)", (before["id"],)
+        )
+        db.execute(
+            "UPDATE project_files SET chunk_count = 0 WHERE id IN "
+            "(SELECT file_id FROM project_artifact_links WHERE artifact_id = ?)", (before["id"],)
+        )
+    seed_markdown_artifacts()
+    seed_markdown_artifacts()
+    sync_call_fact_review_metrics()
+    after = (await client.get(url)).json()
+    assert after["content"] == content
+    assert after["version"] == before["version"]
+    assert after["chunk_count"] > 0
+    assert (await client.get(entered_url)).json() == entered
+    review = (await client.get(f"/api/projects/{project_id}/call-facts")).json()
+    assert review["verified_count"] == 0
+    assert review["pending_count"] == 1
+    project = (await client.get(f"/api/projects/{project_id}")).json()
+    source = next(s for s in project["knowledge_sources"] if s["name"] == "Dati del progetto")
+    assert source["item_count"] == 1
+    other = (await client.get(
+        "/api/projects/adeguamento-sismico-edificio-b/evidence",
+        params={"q": "Scadenza esclusiva ottobre"},
+    )).json()
+    assert not any("21 ottobre 2026" in item["excerpt"] for item in other["results"])
+
+
+@pytest.mark.anyio
+async def test_extraction_does_not_overwrite_concurrent_corrections(client, monkeypatch):
+    from app.artifacts import replace_project_artifact
+
+    project_id = "fondo-riqualificazione-2027"
+    artifact_id = f"{project_id}--call-facts"
+    await client.post(
+        f"/api/projects/{project_id}/files",
+        files={"file": ("bando.txt", b"Scadenza: 21 ottobre 2026", "text/plain")},
+    )
+    original = render_call_facts_markdown(
+        project_id, [ExtractedFact("Scadenza", "21 ottobre 2026", [1])], [],
+        [{"source_name": "bando.txt", "chunk_index": 0}], "test",
+    )
+
+    async def fake_extraction(*_args):
+        replace_project_artifact(
+            project_id, artifact_id, original.replace("21 ottobre", "22 ottobre"), "Disponibile"
+        )
+        return CallFactsExtraction(
+            markdown=original, facts=[], missing_information=[], evidence_count=1,
+            model="test", total_tokens=1,
+        )
+
+    monkeypatch.setattr("app.main.extract_call_facts", fake_extraction)
+    response = await client.post(f"/api/projects/{project_id}/call-facts/extract")
+    assert response.status_code == 409
+    stored = (await client.get(f"/api/projects/{project_id}/artifacts/{artifact_id}")).json()
+    assert "22 ottobre" in stored["content"]
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("recovered", [False, True])
+async def test_truncated_extraction_preserves_saved_data_until_complete(
+    client, monkeypatch, recovered,
+):
+    project_id = "fondo-riqualificazione-2027"
+    artifact_id = f"{project_id}--call-facts"
+    artifact_url = f"/api/projects/{project_id}/artifacts/{artifact_id}"
+    entered_url = f"/api/projects/{project_id}/artifacts/{project_id}--project-facts"
+    uploaded = await client.post(
+        f"/api/projects/{project_id}/files",
+        files={"file": ("bando.txt", b"Scadenza: 21 ottobre 2026", "text/plain")},
+    )
+    assert uploaded.status_code == 201
+    original = render_call_facts_markdown(
+        project_id, [ExtractedFact("Scadenza precedente", "20 ottobre 2026", [1])], [],
+        [{"source_name": "bando.txt", "chunk_index": 0}], "test",
+    )
+    assert (await client.put(artifact_url, json={"content": original})).status_code == 200
+    before = (await client.get(artifact_url)).json()
+    entered_before = (await client.get(entered_url)).json()
+    project_before = (await client.get(f"/api/projects/{project_id}")).json()
+
+    def indexed_chunks():
+        with connection() as db:
+            return [dict(row) for row in db.execute(
+                "SELECT * FROM document_chunks WHERE file_id = "
+                "(SELECT file_id FROM project_artifact_links WHERE artifact_id = ?) "
+                "ORDER BY chunk_index", (artifact_id,),
+            ).fetchall()]
+
+    chunks_before = indexed_chunks()
+    requests = []
+
+    def provider_response(request):
+        requests.append(json.loads(request.content))
+        # Even syntactically valid JSON must be rejected when the provider says length.
+        content = json.dumps({
+            "facts": [{"title": "Scadenza nuova", "value": "21 ottobre 2026", "evidence_ids": [1]}],
+            "missing_information": [],
+        })
+        return httpx.Response(200, json={
+            "model": "deepseek-test",
+            "choices": [{
+                "finish_reason": "stop" if recovered and len(requests) == 2 else "length",
+                "message": {"content": content},
+            }],
+            "usage": {"total_tokens": 81},
+        })
+
+    transport = httpx.MockTransport(provider_response)
+    original_client = httpx.AsyncClient
+    monkeypatch.setattr(httpx, "AsyncClient", lambda **kwargs: original_client(
+        transport=transport, **kwargs,
+    ))
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "test-key")
+    monkeypatch.setenv("DEEPSEEK_BASE_URL", "https://provider.test")
+
+    response = await client.post(f"/api/projects/{project_id}/call-facts/extract")
+    stored = (await client.get(artifact_url)).json()
+    assert [item["max_tokens"] for item in requests] == [12_000, 24_000]
+    assert requests[0]["messages"] == requests[1]["messages"]
+    assert (await client.get(entered_url)).json() == entered_before
+    if recovered:
+        assert response.status_code == 200
+        assert response.json()["total_tokens"] == 162
+        assert stored["version"] == before["version"] + 1
+        assert "Scadenza nuova" in stored["content"]
+        assert "Scadenza precedente" not in stored["content"]
+        assert any("Scadenza nuova" in chunk["content"] for chunk in indexed_chunks())
+    else:
+        assert response.status_code == 502
+        assert "ancora troppo lunga" in response.json()["detail"]
+        assert stored == before
+        assert indexed_chunks() == chunks_before
+        assert (await client.get(f"/api/projects/{project_id}")).json() == project_before
 
 
 @pytest.mark.anyio
@@ -600,7 +778,9 @@ async def test_call_facts_extraction_requires_an_indexed_source(client):
 
 
 @pytest.mark.anyio
-async def test_draft_generation_uses_only_verified_call_facts(client, monkeypatch):
+async def test_draft_generation_uses_extracted_facts_without_manual_verification(
+    client, monkeypatch,
+):
     project_id = "fondo-riqualificazione-2027"
     call_facts_id = f"{project_id}--call-facts"
     markdown = render_call_facts_markdown(
@@ -618,11 +798,7 @@ async def test_draft_generation_uses_only_verified_call_facts(client, monkeypatc
 
     review = await client.get(f"/api/projects/{project_id}/call-facts")
     fact = review.json()["facts"][0]
-    verified = await client.patch(
-        f"/api/projects/{project_id}/call-facts/{fact['id']}",
-        json={"action": "verify", "version": review.json()["artifact"]["version"]},
-    )
-    assert verified.status_code == 200
+    assert fact["status"] == "pending"
 
     await client.post(
         "/api/global-knowledge/files",
@@ -641,14 +817,15 @@ async def test_draft_generation_uses_only_verified_call_facts(client, monkeypatc
         template_markdown,
         company_sources,
         project_facts_markdown,
-        verified_facts,
+        available_facts,
     ):
         assert project_title == "Fondo Riqualificazione 2027"
         assert "# Template candidatura" in template_markdown
         assert company_sources[0]["source_name"] == "profilo-mapi.md"
         assert "Mapi Ingegneria" in company_sources[0]["content"]
         assert "Fondo Riqualificazione 2027" in project_facts_markdown
-        assert [item.id for item in verified_facts] == [fact["id"]]
+        assert [item.id for item in available_facts] == [fact["id"]]
+        assert available_facts[0].status == "pending"
         return GeneratedDraft(
             markdown=(
                 "# Candidatura\n\n"
@@ -669,7 +846,8 @@ async def test_draft_generation_uses_only_verified_call_facts(client, monkeypatc
     assert payload["artifact"]["kind"] == "output_draft"
     assert payload["artifact"]["status"] == "Da verificare"
     assert payload["artifact"]["chunk_count"] == 0
-    assert payload["verified_fact_count"] == 1
+    assert payload["verified_fact_count"] == 0
+    assert payload["available_fact_count"] == 1
     assert payload["used_fact_count"] == 1
     assert "[TODO: inserire importo richiesto]" in payload["artifact"]["content"]
     assert f"[CF:{fact['id']}] Termine di candidatura" in payload["artifact"]["content"]
@@ -683,13 +861,105 @@ async def test_draft_generation_uses_only_verified_call_facts(client, monkeypatc
 
 
 @pytest.mark.anyio
-async def test_draft_generation_requires_a_verified_call_fact(client):
+@pytest.mark.parametrize("model_output", ["short_reference", "discarded_fact", "mismatch"])
+async def test_draft_generation_validates_provider_references_before_saving(
+    client, monkeypatch, model_output,
+):
+    project_id = "fondo-riqualificazione-2027"
+    markdown = render_call_facts_markdown(
+        project_id,
+        [
+            ExtractedFact("Scadenza", "15 settembre 2025", [1]),
+            ExtractedFact("Importo", "100 euro", [1]),
+        ],
+        [],
+        [{"source_name": "avviso.pdf", "chunk_index": 17}],
+        "deepseek-test",
+    )
+    updated = await client.put(
+        f"/api/projects/{project_id}/artifacts/{project_id}--call-facts",
+        json={"content": markdown},
+    )
+    assert updated.status_code == 200
+    review = (await client.get(f"/api/projects/{project_id}/call-facts")).json()
+    fact_id = review["facts"][0]["id"]
+    pending_id = review["facts"][1]["id"]
+    verified = await client.patch(
+        f"/api/projects/{project_id}/call-facts/{fact_id}",
+        json={"action": "verify", "version": review["artifact"]["version"]},
+    )
+    assert verified.status_code == 200
+    discarded = await client.patch(
+        f"/api/projects/{project_id}/call-facts/{pending_id}",
+        json={"action": "discard", "version": verified.json()["artifact"]["version"]},
+    )
+    assert discarded.status_code == 200
+
+    draft_url = f"/api/projects/{project_id}/artifacts/{project_id}--draft"
+    before = (await client.get(draft_url)).json()
+
+    def provider_response(request):
+        assert request.url == httpx.URL("https://provider.test/chat/completions")
+        body = json.loads(request.content)
+        assert f"Riferimento da copiare: [CF:{fact_id}]" in body["messages"][1]["content"]
+        assert pending_id not in body["messages"][1]["content"]
+        reference = pending_id if model_output == "discarded_fact" else fact_id
+        content = json.dumps({
+            "markdown": f"# Candidatura\n\nDato [CF:{reference.removeprefix('cf-')}]",
+            "used_fact_ids": [] if model_output == "mismatch" else [fact_id],
+            "missing_information": [],
+        })
+        return httpx.Response(200, json={
+            "model": "deepseek-test",
+            "choices": [{"message": {"content": content}}],
+            "usage": {"total_tokens": 81},
+        })
+
+    transport = httpx.MockTransport(provider_response)
+    original_client = httpx.AsyncClient
+    monkeypatch.setattr(httpx, "AsyncClient", lambda **kwargs: original_client(
+        transport=transport, **kwargs,
+    ))
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "test-key")
+    monkeypatch.setenv("DEEPSEEK_BASE_URL", "https://provider.test")
+
+    response = await client.post(f"/api/projects/{project_id}/draft/generate")
+    persisted = (await client.get(draft_url)).json()
+    if model_output == "short_reference":
+        assert response.status_code == 200
+        assert response.json()["verified_fact_count"] == 1
+        assert response.json()["used_fact_count"] == 1
+        assert response.json()["total_tokens"] == 81
+        assert persisted["version"] == before["version"] + 1
+        assert persisted["status"] == "Da verificare"
+        assert f"Dato [CF:{fact_id}]" in persisted["content"]
+        assert f"[CF:{fact_id}] Scadenza - avviso.pdf, frammento 18" in persisted["content"]
+        assert persisted["chunk_count"] == 0
+    else:
+        assert response.status_code == 502
+        expected_error = "esclusi" if model_output == "discarded_fact" else "non coincidono"
+        assert expected_error in response.json()["detail"]
+        assert persisted == before
+
+
+@pytest.mark.anyio
+async def test_draft_generation_can_use_entered_data_without_extraction(client, monkeypatch):
+    async def fake_draft(**kwargs):
+        assert kwargs["available_facts"] == []
+        assert "Adeguamento" in kwargs["project_facts_markdown"]
+        return GeneratedDraft(
+            markdown="# Progetto [PROJECT]", used_fact_ids=[],
+            missing_information=["Scadenza del bando"], model="test", total_tokens=10,
+        )
+
+    monkeypatch.setattr("app.main.generate_grounded_draft", fake_draft)
     response = await client.post(
         "/api/projects/adeguamento-sismico-edificio-b/draft/generate"
     )
 
-    assert response.status_code == 422
-    assert "Verifica almeno un Call Fact" in response.json()["detail"]
+    assert response.status_code == 200
+    assert response.json()["available_fact_count"] == 0
+    assert response.json()["artifact"]["status"] == "Da verificare"
 
 
 @pytest.mark.anyio
@@ -813,6 +1083,63 @@ async def test_follow_up_reuses_previous_document_evidence(client, monkeypatch):
     assert payload["generation_status"] == "completed"
     assert payload["evidence"][0]["chunk_id"] == previous_evidence["chunk_id"]
     assert payload["missing_information"] == ["Recapito del responsabile"]
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("model_content", ["[]", "null", '{"answer":'])
+async def test_answer_handles_invalid_model_content_and_can_retry(
+    client, monkeypatch, model_content,
+):
+    project_id = "fondo-riqualificazione-2027"
+    uploaded = await client.post(
+        f"/api/projects/{project_id}/files",
+        files={"file": ("requisito.txt", b"Requisito tecnico verificabile.", "text/plain")},
+    )
+    assert uploaded.status_code == 201
+
+    contents = iter([
+        model_content,
+        '{"answer":"Il requisito tecnico e verificabile [1].","citation_ids":[1]}',
+    ])
+
+    def provider_response(request):
+        assert request.url == httpx.URL("https://provider.test/chat/completions")
+        return httpx.Response(200, json={
+            "model": "deepseek-test",
+            "choices": [{"message": {"content": next(contents)}}],
+        })
+
+    transport = httpx.MockTransport(provider_response)
+    original_client = httpx.AsyncClient
+    monkeypatch.setattr(httpx, "AsyncClient", lambda **kwargs: original_client(
+        transport=transport, **kwargs,
+    ))
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "test-key")
+    monkeypatch.setenv("DEEPSEEK_BASE_URL", "https://provider.test")
+
+    failed = await client.post(
+        f"/api/projects/{project_id}/answer",
+        json={"question": "Quale requisito tecnico?"},
+    )
+    assert failed.status_code == 200
+    payload = failed.json()
+    assert payload["generation_status"] == "failed"
+    assert payload["answer"] is None
+    assert payload["notice"].startswith("DeepSeek")
+    assert payload["evidence"]
+    conversation_id = payload["conversation_id"]
+
+    retried = await client.post(
+        f"/api/projects/{project_id}/answer",
+        json={"question": "Quale requisito tecnico?", "conversation_id": conversation_id},
+    )
+    assert retried.status_code == 200
+    assert retried.json()["generation_status"] == "completed"
+    assert retried.json()["citations"] == [1]
+    persisted = await client.get(f"/api/projects/{project_id}/conversations/{conversation_id}")
+    assert [turn["generation_status"] for turn in persisted.json()["turns"]] == [
+        "failed", "completed",
+    ]
 
 
 @pytest.mark.anyio

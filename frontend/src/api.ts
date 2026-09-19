@@ -3,6 +3,9 @@ import type {
   CallFactsReview,
   CallFactRevision,
   ConversationDetail,
+  CompilationDownload,
+  DocumentCompilation,
+  DocumentCompilationSummary,
   DocumentReview,
   DraftGenerationResult,
   EvidenceSearch,
@@ -55,7 +58,7 @@ function errorDetailMessage(detail: unknown): string | null {
   return null
 }
 
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
+async function requestResponse(path: string, init?: RequestInit): Promise<Response> {
   const headers = new Headers(init?.headers)
   if (init?.body && !(init.body instanceof FormData) && !headers.has('Content-Type')) {
     headers.set('Content-Type', 'application/json')
@@ -75,6 +78,11 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     )
   }
 
+  return response
+}
+
+async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const response = await requestResponse(path, init)
   if (response.status === 204) return undefined as T
 
   return response.json() as Promise<T>
@@ -175,6 +183,24 @@ export const api = {
     request<DraftGenerationResult>(`/projects/${projectId}/draft/generate`, {
       method: 'POST',
     }),
+  documentCompilations: (projectId: string, signal?: AbortSignal) =>
+    request<DocumentCompilationSummary[]>(`/projects/${projectId}/document-compilations`, { signal }),
+  documentCompilation: (projectId: string, runId: string, signal?: AbortSignal) =>
+    request<DocumentCompilation>(`/projects/${projectId}/document-compilations/${encodeURIComponent(runId)}`, { signal }),
+  compileDocument: (projectId: string, file: File, instructions: string) => {
+    const body = new FormData()
+    body.append('file', file)
+    body.append('instructions', instructions)
+    return request<DocumentCompilation>(`/projects/${projectId}/document-compilations`, {
+      method: 'POST', body,
+    })
+  },
+  downloadCompilation: async (projectId: string, runId: string, kind: CompilationDownload) => {
+    const response = await requestResponse(
+      `/projects/${projectId}/document-compilations/${encodeURIComponent(runId)}/download/${kind}`,
+    )
+    return response.blob()
+  },
   projectEvidence: (projectId: string, query: string, signal?: AbortSignal) => {
     const params = new URLSearchParams({ q: query })
     return request<EvidenceSearch>(`/projects/${projectId}/evidence?${params}`, {

@@ -3,8 +3,8 @@ from __future__ import annotations
 import hashlib
 from pathlib import Path
 
-from app.call_facts import CallFactsFormatError, verified_call_facts_markdown
-from app.db import connection, get_knowledge_path
+from app.call_facts import CallFactsFormatError, available_project_facts_markdown
+from app.db import connection, get_knowledge_path, touch_project
 from app.ingestion import chunk_text
 
 
@@ -17,7 +17,7 @@ PROJECT_ARTIFACTS = (
     (
         "project-facts",
         "project_facts",
-        "Project Facts",
+        "Dati del progetto",
         "project-facts.md",
         "Bozza",
     ),
@@ -90,7 +90,7 @@ def _project_content(kind: str, project: dict) -> str:
     project_id = project["id"]
     if kind == "project_facts":
         body = (
-            "# Project Facts\n\n"
+            "# Dati inseriti per il progetto\n\n"
             "## Titolo\n\n"
             f"{project['title']}\n\n"
             "## Descrizione\n\n"
@@ -110,7 +110,7 @@ def _project_content(kind: str, project: dict) -> str:
     elif kind == "output_draft":
         body = (
             "# Draft candidatura\n\n"
-            "> Generare questo documento dal template dopo aver verificato i Call Facts.\n"
+            "> Compilazione del template a partire dai dati del progetto e dalle fonti.\n"
         )
         status = "Da generare"
     else:
@@ -184,7 +184,7 @@ def _link_artifact(db, project_id: str, artifact: dict, content: str) -> None:
     index_content = content
     if artifact["kind"] == "call_facts":
         try:
-            index_content = verified_call_facts_markdown(content)
+            index_content = available_project_facts_markdown(content)
         except CallFactsFormatError:
             index_content = ""
         indexed = bool(index_content)
@@ -196,7 +196,7 @@ def _link_artifact(db, project_id: str, artifact: dict, content: str) -> None:
     if indexed:
         file_status = "Indicizzato"
     elif artifact["kind"] == "call_facts":
-        file_status = "In revisione"
+        file_status = "Nessun dato disponibile"
     elif artifact["kind"] == "output_draft":
         file_status = artifact["status"]
     else:
@@ -355,6 +355,11 @@ def _ensure_project_artifacts(db, project: dict) -> None:
             _project_content(kind, project),
         )
         artifact = _upgrade_legacy_template(db, artifact, project)
+        if kind == "project_facts" and artifact["title"] == "Project Facts":
+            db.execute(
+                "UPDATE knowledge_artifacts SET title = ? WHERE id = ?", (title, artifact_id)
+            )
+            artifact["title"] = title
         _link_artifact(db, project_id, artifact, _read_artifact(artifact["storage_path"]))
 
 
@@ -473,6 +478,7 @@ def replace_project_artifact(
         ).fetchall()
         for link in links:
             _link_artifact(db, link["project_id"], updated, content)
+            touch_project(db, link["project_id"])
 
     return get_project_artifact(project_id, artifact_id)
 

@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { CandidatureDemoPage } from './pages/CandidatureDemoPage'
 import { CompanyKnowledgePage } from './pages/CompanyKnowledgePage'
 import { DocumentReviewPage } from './pages/DocumentReviewPage'
 import { GeneralSettingsPage } from './pages/GeneralSettingsPage'
@@ -10,6 +11,7 @@ import './App.css'
 export default function App() {
   return (
     <Routes>
+      <Route path="/demo/candidatura" element={<CandidatureDemoPage />} />
       <Route path="/" element={<Navigate to="/projects" replace />} />
       <Route path="/projects" element={<ProjectsPage />} />
       <Route path="/projects/:projectId" element={<ProjectWorkspacePage />} />
