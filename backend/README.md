@@ -17,7 +17,7 @@ Conversazioni, dati gia estratti o inseriti e compilazioni salvate non vengono
 riscritti: sono copie separate. Se contengono informazioni della fonte errata,
 vanno aggiornati separatamente; eliminare il PDF non ritratta quei contenuti.
 
-Per la gestione unificata delle estrazioni e dei dati inseriti:
+Per le API e la compatibilita dei dati estratti o inseriti, rimossi dalla UI:
 [Dati del progetto](docs/dati-progetto.md).
 
 Per il nuovo percorso di compilazione dei moduli Word, API e comando di prova:

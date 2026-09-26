@@ -99,7 +99,7 @@ Schema e dettagli: [Modelli AI](backend/docs/modelli-ai.md).
 | Navigazione e pagine       | [App.tsx](frontend/src/App.tsx), [pages](frontend/src/pages/)                                      | Progetti, conversazioni, KB, preparazione e viste dimostrative.                     |
 | Client HTTP                | [api.ts](frontend/src/api.ts), [types.ts](frontend/src/types.ts)                                   | Richieste, errori e tipi del frontend.                                              |
 | Compilazione Word nella UI | [DocxTemplateWorkspace.tsx](frontend/src/components/DocxTemplateWorkspace.tsx)                     | File e istruzioni, generazione, storico, report, download e riutilizzo del modello. |
-| Dati della candidatura     | [ProjectFactsWorkspace.tsx](frontend/src/components/ProjectFactsWorkspace.tsx)                     | Dati estratti correggibili/escludibili e dati inseriti dall'utente.                 |
+| Preparazione candidatura  | [KnowledgeArtifactsPage.tsx](frontend/src/pages/KnowledgeArtifactsPage.tsx)                      | Accesso diretto al Template; modello AI scelto dall'ingranaggio della chat.         |
 | API principali             | [main.py](backend/app/main.py)                                                                     | CRUD, caricamenti, chat, estrazione e generazione Markdown.                         |
 | Persistenza                | [db.py](backend/app/db.py), [repository.py](backend/app/repository.py)                             | Schema SQLite, trigger FTS5, query e aggiornamenti.                                 |
 | Ingestion                  | [ingestion.py](backend/app/ingestion.py)                                                           | Estrazione del testo e suddivisione in chunk.                                       |
@@ -854,9 +854,9 @@ ruoli aziendali, scelte mancanti e coerenza dei rami. Erano indicazioni al model
 senza nuovi controlli deterministici sull'indirizzo o sulle sezioni. La prova
 successiva descritta sotto ha portato a ritirare queste aggiunte.
 
-**Interfaccia:** il campo delle indicazioni spiega che modalità di partecipazione,
-sottoscrittore e sezioni da compilare possono essere indicati lì oppure nei
-Dati del progetto. Non viene dedotta né precompilata una scelta della candidatura.
+**Interfaccia:** il campo delle indicazioni permette di specificare modalità di
+partecipazione, sottoscrittore e sezioni da compilare. La sezione Dati del progetto
+è stata rimossa dalla UI; nessuna scelta della candidatura viene precompilata.
 
 **Verifica:** 374 test backend superati, 19 test del componente DOCX frontend
 superati, controllo TypeScript, Ruff, lint del componente e `git diff --check`

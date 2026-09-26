@@ -19,8 +19,8 @@ Gli altri servizi cloud si collegano tramite chiave API. Non è un accesso
 agli abbonamenti ChatGPT o Claude.
 
 Nel progetto l'ingranaggio nel box della chat apre la scelta del modello.
-Nella preparazione della candidatura si usa il menu Modello AI. La scelta
-di una configurazione salvata vale per chat, estrazione,
+La preparazione della candidatura usa la stessa scelta, senza un secondo selettore.
+La configurazione salvata vale per chat, estrazione,
 compilazione Word e generazione testuale. All'inizio di ogni elaborazione il
 backend fissa il modello e le credenziali: i gruppi e le correzioni della stessa
 compilazione restano sullo stesso servizio anche se le impostazioni cambiano.

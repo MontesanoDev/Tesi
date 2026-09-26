@@ -2,15 +2,12 @@ import type { KnowledgeSource, ProjectDetail, StatusTone } from '../types'
 
 interface DisplayedKnowledgeSource {
   id: string
-  name: 'Dati del progetto' | 'Company KB' | 'General KB'
+  name: 'Company KB' | 'General KB'
   tone: StatusTone
   itemCount: number
 }
 
-function sourceCountLabel(name: DisplayedKnowledgeSource['name'], count: number) {
-  if (name === 'Dati del progetto') {
-    return count === 1 ? '1 dato estratto' : `${count} dati estratti`
-  }
+function sourceCountLabel(count: number) {
   return count === 1 ? '1 documento' : `${count} documenti`
 }
 
@@ -22,21 +19,10 @@ function findSource(
 }
 
 function displayedSources(project: ProjectDetail): DisplayedKnowledgeSource[] {
-  const callFacts = findSource(project.knowledge_sources, [
-    'Call Facts',
-    'Dati estratti dal bando',
-    'Dati del progetto',
-  ])
   const company = findSource(project.knowledge_sources, ['Company KB'])
   const general = findSource(project.knowledge_sources, ['General KB'])
 
   return [
-    {
-      id: 'call-facts',
-      name: 'Dati del progetto',
-      tone: 'info',
-      itemCount: callFacts?.name === 'Dati del progetto' ? callFacts.item_count : project.call_fact_count,
-    },
     {
       id: 'company-kb',
       name: 'Company KB',
@@ -64,7 +50,7 @@ export function ProjectKnowledgeSummary({ project }: { project: ProjectDetail })
           <div className="project-knowledge-summary-item" key={source.id}>
             <span className={`source-dot source-dot--${source.tone}`} aria-hidden="true" />
             <strong>{source.name}</strong>
-            <span>{sourceCountLabel(source.name, source.itemCount)}</span>
+            <span>{sourceCountLabel(source.itemCount)}</span>
           </div>
         ))}
       </div>

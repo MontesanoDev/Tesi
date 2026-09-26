@@ -48,12 +48,12 @@ const project: ProjectDetail = {
 describe('ProjectKnowledgeSummary', () => {
   afterEach(cleanup)
 
-  it('shows only the three knowledge channels with stable empty states', () => {
+  it('shows the knowledge archives without the removed project data counter', () => {
     render(<ProjectKnowledgeSummary project={project} />)
 
     expect(screen.getByRole('heading', { name: 'Conoscenza utilizzata' })).toBeVisible()
-    expect(screen.getByText('Dati del progetto')).toBeVisible()
-    expect(screen.getByText('4 dati estratti')).toBeVisible()
+    expect(screen.queryByText('Dati del progetto')).not.toBeInTheDocument()
+    expect(screen.queryByText('4 dati estratti')).not.toBeInTheDocument()
     expect(screen.queryByText('Call Facts')).not.toBeInTheDocument()
     expect(screen.getByText('Company KB')).toBeVisible()
     expect(screen.getByText('2 documenti')).toBeVisible()

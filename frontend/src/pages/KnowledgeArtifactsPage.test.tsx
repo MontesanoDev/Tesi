@@ -1,4 +1,4 @@
-import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { api } from '../api'
@@ -23,10 +23,11 @@ function artifacts(id: string): KnowledgeArtifactDetail[] {
   }))
 }
 
-function setup(kind = 'template') {
+function setup(kind: string | null = 'template') {
   const router = createMemoryRouter([
     { path: '/projects/:projectId/knowledge', element: <KnowledgeArtifactsPage /> },
-  ], { initialEntries: [`/projects/primo/knowledge?artifact=${kind}`] })
+    { path: '/projects/:projectId', element: <div>Vista progetto</div> },
+  ], { initialEntries: [`/projects/primo/knowledge${kind ? `?artifact=${kind}` : ''}`] })
   render(<RouterProvider router={router} />)
   return router
 }
@@ -34,8 +35,8 @@ function setup(kind = 'template') {
 describe('unified Template navigation', () => {
   afterEach(() => { cleanup(); vi.restoreAllMocks() })
   beforeEach(() => {
-    vi.mocked(api.aiSettings).mockResolvedValue({ profiles: [], default_profile_id: null })
-    vi.mocked(api.projectAiModel).mockResolvedValue({ profile_id: null, effective_profile: null })
+    vi.mocked(api.aiSettings).mockReset().mockResolvedValue({ profiles: [], default_profile_id: null })
+    vi.mocked(api.projectAiModel).mockReset().mockResolvedValue({ profile_id: null, effective_profile: null })
     vi.mocked(api.documentCompilations).mockReset().mockResolvedValue([])
     vi.mocked(api.project).mockReset().mockImplementation(async (id) => ({
       id, title: `Progetto ${id}`, description: '', status: 'In analisi', status_tone: 'info',
@@ -57,9 +58,7 @@ describe('unified Template navigation', () => {
     expect(await screen.findByRole('heading', { name: 'Compilazione primo' })).toBeVisible()
     expect(screen.getByRole('heading', { name: 'Template' })).toBeVisible()
     expect(screen.getByRole('tab', { name: 'Compilazione' })).toHaveAttribute('aria-selected', 'true')
-    const nav = within(screen.getByRole('navigation', { name: 'Preparazione candidatura' }))
-    expect(nav.queryByRole('button', { name: /Draft/ })).not.toBeInTheDocument()
-    expect(nav.getByRole('button', { name: /Template/ })).toHaveClass('is-active')
+    expect(screen.queryByRole('navigation', { name: 'Preparazione candidatura' })).not.toBeInTheDocument()
   })
 
   it('allows cancelling navigation with unsaved changes, without altering project data', async () => {
@@ -71,24 +70,23 @@ describe('unified Template navigation', () => {
     await screen.findByRole('heading', { name: 'Modello primo' })
     fireEvent.click(screen.getByRole('button', { name: 'Modifica testo' }))
     fireEvent.change(screen.getByRole('textbox'), { target: { value: '# Non perdere' } })
-    fireEvent.click(screen.getByRole('button', { name: /Dati del progetto/ }))
+    fireEvent.click(screen.getByRole('button', { name: /Progetto primo/ }))
     expect(screen.getByRole('textbox')).toHaveValue('# Non perdere')
     expect(api.callFactsReview).not.toHaveBeenCalled()
     vi.mocked(window.confirm).mockReturnValue(true)
-    fireEvent.click(screen.getByRole('button', { name: /Dati del progetto/ }))
-    await waitFor(() => expect(api.callFactsReview).toHaveBeenCalled())
-    expect(screen.getByRole('tab', { name: 'Dati estratti' })).toBeVisible()
+    fireEvent.click(screen.getByRole('button', { name: /Progetto primo/ }))
+    expect(await screen.findByText('Vista progetto')).toBeVisible()
+    expect(api.callFactsReview).not.toHaveBeenCalled()
   })
 
-  it('opens legacy Call Facts links in the unified project data view', async () => {
-    setup('call_facts')
-    expect(await screen.findByRole('heading', { name: 'Dati del progetto' })).toBeVisible()
-    expect(screen.getByRole('tab', { name: 'Dati estratti' })).toBeVisible()
-    const nav = within(screen.getByRole('navigation', { name: 'Preparazione candidatura' }))
-    expect(nav.getAllByRole('button')).toHaveLength(2)
-    expect(nav.queryByText('Call Facts')).not.toBeInTheDocument()
-    fireEvent.click(screen.getByRole('tab', { name: 'Dati inseriti' }))
-    expect(screen.getByRole('textbox')).toHaveValue('# Dati inseriti primo')
+  it.each([null, 'call_facts', 'project_facts'])('opens %s links directly in Template', async (kind) => {
+    setup(kind)
+    expect(await screen.findByRole('button', { name: 'Carica modello' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Template' })).toBeVisible()
+    expect(screen.queryByRole('tab', { name: 'Dati estratti' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('tab', { name: 'Dati inseriti' })).not.toBeInTheDocument()
+    expect(api.callFactsReview).not.toHaveBeenCalled()
+    expect(api.projectArtifact).toHaveBeenCalledWith('primo', 'primo--template', expect.any(AbortSignal))
   })
 
   it('opens Word by default and preserves the existing text compilation', async () => {
@@ -100,24 +98,16 @@ describe('unified Template navigation', () => {
     expect(screen.getByRole('heading', { name: 'Modello primo' })).toBeVisible()
   })
 
-  it('allows changing AI model after uploading Word without losing the file or instructions', async () => {
-    const local = { id: 'local', name: 'Ollama', provider: 'ollama' as const,
-      model: 'local-test', base_url: 'http://127.0.0.1:11434', context_window: 32768, has_api_key: false }
-    vi.mocked(api.aiSettings).mockResolvedValue({ profiles: [local], default_profile_id: 'local' })
-    vi.mocked(api.projectAiModel).mockResolvedValue({ profile_id: null, effective_profile: local })
-    vi.mocked(api.setProjectAiModel).mockResolvedValue({ profile_id: 'local', effective_profile: local })
-    const { container } = render(<RouterProvider router={createMemoryRouter([
-      { path: '/projects/:projectId/knowledge', element: <KnowledgeArtifactsPage /> },
-    ], { initialEntries: ['/projects/primo/knowledge?artifact=template'] })} />)
+  it('keeps Word upload and instructions without another AI model selector', async () => {
+    setup()
     await screen.findByRole('button', { name: 'Carica modello' })
-    fireEvent.change(container.querySelector('input[type="file"]')!, { target: {
+    fireEvent.change(screen.getByLabelText('Carica modello DOCX'), { target: {
       files: [new File(['document'], 'domanda.docx', { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' })],
     } })
     fireEvent.change(screen.getByLabelText(/Indicazioni per la compilazione/), { target: { value: 'Mantieni queste indicazioni' } })
-    const select = screen.getByRole('combobox', { name: 'Modello AI' })
-    expect(select).toBeEnabled()
-    fireEvent.change(select, { target: { value: 'local' } })
-    await waitFor(() => expect(select).toHaveValue('local'))
+    expect(screen.queryByRole('combobox', { name: 'Modello AI' })).not.toBeInTheDocument()
+    expect(api.projectAiModel).not.toHaveBeenCalled()
+    expect(api.aiSettings).not.toHaveBeenCalled()
     expect(screen.getByText('domanda.docx', { exact: true })).toBeVisible()
     expect(screen.getByLabelText(/Indicazioni per la compilazione/)).toHaveValue('Mantieni queste indicazioni')
     expect(screen.getByRole('button', { name: 'Compila Word' })).toBeEnabled()
@@ -140,21 +130,28 @@ describe('unified Template navigation', () => {
     expect(screen.getByRole('heading', { name: 'Compilazione secondo' })).toBeVisible()
   })
 
-  it('ignores extracted facts arriving after switching to a different project', async () => {
-    let resolve!: (value: Awaited<ReturnType<typeof api.callFactsReview>>) => void
-    const data = (id: string) => ({
-      artifact: artifacts(id)[0], pending_count: 1, verified_count: 0, discarded_count: 0,
-      missing_information: [], facts: [{ id: `cf-${id}`, title: `Dato ${id}`, value: 'Valore',
-        status: 'pending' as const, sources: [{ name: `${id}.pdf`, fragment: 1 }] }],
+  it('ignores a template arriving after switching to another project', async () => {
+    let resolve!: (item: KnowledgeArtifactDetail) => void
+    vi.mocked(api.projectArtifact).mockImplementation(async (id, artifactId) => {
+      if (id === 'primo') return new Promise((done) => { resolve = done })
+      return artifacts(id).find((item) => item.id === artifactId)!
     })
-    vi.mocked(api.callFactsReview).mockImplementation(async (id) => id === 'primo'
-      ? new Promise((done) => { resolve = done }) : data(id))
-    const router = setup('project_facts')
+    const router = setup()
     await waitFor(() => expect(resolve).toBeDefined())
-    await act(async () => { await router.navigate('/projects/secondo/knowledge?artifact=project_facts') })
-    expect(await screen.findByRole('heading', { name: 'Dato secondo' })).toBeVisible()
-    await act(async () => resolve(data('primo')))
-    expect(screen.queryByRole('heading', { name: 'Dato primo' })).not.toBeInTheDocument()
-    expect(screen.getByText('secondo.pdf, frammento 1')).toBeVisible()
+    await act(async () => { await router.navigate('/projects/secondo/knowledge') })
+    fireEvent.change(await screen.findByLabelText('Formato template'), { target: { value: 'text' } })
+    await screen.findByRole('heading', { name: 'Compilazione secondo' })
+    fireEvent.click(screen.getByRole('tab', { name: 'Modello' }))
+    await screen.findByRole('heading', { name: 'Modello secondo' })
+    await act(async () => resolve(artifacts('primo')[1]))
+    expect(screen.queryByRole('heading', { name: 'Modello primo' })).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Modello secondo' })).toBeVisible()
+  })
+
+  it('reports a missing template instead of loading indefinitely', async () => {
+    vi.mocked(api.projectArtifacts).mockResolvedValue(artifacts('primo').filter((item) => item.kind !== 'template'))
+    setup()
+    expect(await screen.findByRole('alert')).toHaveTextContent('Template non disponibile')
+    expect(screen.queryByText('Caricamento template')).not.toBeInTheDocument()
   })
 })

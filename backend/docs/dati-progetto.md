@@ -1,34 +1,36 @@
 # Dati del progetto
 
-Il flusso visibile e **Fonti -> Dati del progetto -> Template e compilazione**.
-Non esiste piu una fase obbligatoria di approvazione dei singoli Call Facts.
+Il flusso visibile e **Fonti -> Template e compilazione**. La sezione Dati del
+progetto, le schede Dati estratti/Dati inseriti e il relativo contatore non sono
+piu presenti nell'interfaccia. Per specificare modalita di partecipazione,
+firmatario e sezioni da compilare si usano le indicazioni del modulo Word.
 
-- **Dati estratti**: sintesi automatiche delle fonti del progetto, con nome del
-  documento e frammento di origine. Si possono correggere, escludere e ripristinare.
-- **Dati inseriti**: testo modificabile con dati e scelte del proponente.
-  Il salvataggio li indicizza nel solo progetto corrente.
-- **Company KB e General KB**: restano archivi globali separati e invariati.
+Il backend conserva gli artefatti e le API esistenti: quanto descritto sotto
+riguarda questa compatibilita, non funzioni accessibili dalla UI attuale.
+I dati gia salvati possono ancora entrare nel contesto della chat e della
+compilazione secondo i filtri esistenti. La rimozione della sezione non esegue
+cancellazioni o migrazioni dei documenti.
 
 ## Compatibilita e persistenza
 
 L'unificazione riguarda il workflow, non una fusione distruttiva dei documenti.
 Si conservano `call-facts.md` e `project-facts.md`, ID, contenuti e versioni.
-Gli endpoint `/call-facts` e i vecchi link restano compatibili; nella UI aprono
-la vista unica. Le vecchie verifiche restano registrate, senza essere un requisito
+Gli endpoint `/call-facts` restano disponibili; i vecchi link della UI aprono
+ora il Template. Le vecchie verifiche restano registrate, senza essere un requisito
 di utilizzo. Nessun fatto viene automaticamente marcato come verificato.
 
 All'avvio gli artefatti vengono reindicizzati: i fatti con fonti e non esclusi
 sono disponibili anche se il vecchio stato e `pending`. Il testo salvato non
 viene riscritto per convertirne lo stato. Fatti senza fonti non sono promossi
-a evidenze; dati dichiarati nuovi vanno nella sezione Dati inseriti.
+a evidenze.
 
-Le correzioni effettuate dalla nuova UI conservano ID e fonti di origine e
+Le correzioni effettuate tramite API conservano ID e fonti di origine e
 registrano `origin=user_corrected`. Non sono citazioni letterali dei documenti.
 Non e possibile ricostruire retroattivamente l'origine delle correzioni storiche
 che il vecchio formato non distingueva dalle estrazioni.
 
-La riestrazione sostituisce i dati estratti, incluse correzioni ed esclusioni,
-solo dopo conferma nell'interfaccia. Non tocca i dati inseriti; una modifica
+La riestrazione tramite API sostituisce i dati estratti, incluse correzioni ed
+esclusioni. Non tocca i dati inseriti; una modifica
 concorrente dei fatti durante la richiesta interrompe la sostituzione con 409.
 I file originali del progetto rimangono nel corpus anche quando si esclude una
 sintesi estratta: l'esclusione non cancella la fonte documentale.

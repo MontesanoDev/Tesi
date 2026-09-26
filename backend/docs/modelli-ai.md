@@ -12,8 +12,8 @@ nella compilazione. Il nome del modello si può anche inserire manualmente.
 
 Il primo modello salvato diventa il predefinito. Nel progetto, l'ingranaggio
 in basso a sinistra nel box della chat apre l'elenco dei modelli e il collegamento
-alle impostazioni. Nella preparazione della candidatura è disponibile il menu
-**Modello AI**. Si può seguire il predefinito o scegliere un modello specifico.
+alle impostazioni. Si può seguire il predefinito o scegliere un modello specifico.
+La preparazione della candidatura usa questa scelta e apre direttamente il Template.
 La scelta viene salvata nel database ed è comune a chat,
 estrazione dei dati, generazione Markdown e compilazione DOCX.
 

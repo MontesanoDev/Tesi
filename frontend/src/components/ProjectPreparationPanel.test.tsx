@@ -65,7 +65,7 @@ describe('ProjectPreparationPanel', () => {
     ])
   })
 
-  it('links each preparation step to its artifact and shows live status', async () => {
+  it('links directly to Template with its live status and no project data step', async () => {
     render(
       <MemoryRouter>
         <ProjectPreparationPanel project={project} />
@@ -74,18 +74,14 @@ describe('ProjectPreparationPanel', () => {
 
     expect(screen.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
     expect(screen.queryByRole('link', { name: /Call Facts/ })).not.toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Dati del progetto/ })).toHaveAttribute(
-      'href',
-      '/projects/progetto-test/knowledge?artifact=project_facts',
-    )
+    expect(screen.queryByRole('link', { name: /Dati del progetto/ })).not.toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Template/ })).toHaveAttribute(
       'href',
       '/projects/progetto-test/knowledge?artifact=template',
     )
     expect(screen.queryByRole('link', { name: /Draft/ })).not.toBeInTheDocument()
-    expect(screen.getAllByRole('link')).toHaveLength(2)
+    expect(screen.getAllByRole('link')).toHaveLength(1)
     await waitFor(() => {
-      expect(screen.getByRole('link', { name: /Dati del progetto/ })).toHaveTextContent('4 dati estratti')
       expect(screen.getByRole('link', { name: /Template/ })).toHaveTextContent('Versione 2')
     })
   })
