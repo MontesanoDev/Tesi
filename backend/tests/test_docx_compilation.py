@@ -303,7 +303,7 @@ async def test_api_compiles_downloads_and_keeps_output_out_of_retrieval(client, 
     before = (await client.get(f"/api/projects/{project_id}")).json()
     captured = {}
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         captured.update(json.loads(prompt))
         company = next(s for s in captured["sources"] if s["scope"] == "company")
         return (
@@ -386,7 +386,7 @@ async def test_api_missing_key_and_invalid_model_do_not_persist_runs(client, mon
     response = await client.post(url, files={"file": ("modulo.docx", template_bytes())})
     assert response.status_code == 503
 
-    async def invalid(_):
+    async def invalid(_, **_request_options):
         return "[]", "test", None
 
     monkeypatch.setattr(compilation, "request_field_proposals", invalid)
@@ -423,7 +423,7 @@ async def test_deletion_during_generation_prevents_persistence(client, monkeypat
     await add_company(client)
     project = "fondo-riqualificazione-2027"
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         company = next(s for s in json.loads(prompt)["sources"] if s["scope"] == "company")
         await client.delete(f"/api/projects/{project}")
         return (
@@ -540,7 +540,7 @@ async def test_real_template_is_batched_without_losing_context_or_mutating_layou
     original_catalog = json.dumps([layout.catalog, layout.paragraph_catalog])
     captured = []
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         body = json.loads(prompt)
         captured.append(body)
         targets = body["target_ids"]
@@ -595,7 +595,7 @@ async def test_truncated_batch_is_split_and_valid_results_are_combined(monkeypat
     layout = inspect_docx(template_bytes(("Societa", "CF", "Sede", "PEC")))
     captured = []
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         targets = json.loads(prompt)["target_ids"]
         captured.append(targets)
         if len(targets) > 2:
@@ -615,16 +615,81 @@ async def test_truncated_batch_is_split_and_valid_results_are_combined(monkeypat
 
 
 @pytest.mark.anyio
-async def test_failed_later_batch_does_not_persist_partial_document(client, monkeypatch):
+async def test_single_call_includes_all_catanzaro_candidates(monkeypatch):
+    layout = inspect_docx((CASE / "modello/domanda-partecipazione.docx").read_bytes())
+    captured = []
+
+    async def model(prompt, **_request_options):
+        body = json.loads(prompt)
+        captured.append(body)
+        writable = {
+            cell["id"]
+            for table in body["tables"]
+            for row in table["rows"]
+            for cell in row
+            if cell["writable"]
+        } | {
+            field["id"]
+            for paragraph in body["paragraphs"]
+            for field in paragraph["fields"]
+            if field["writable"]
+        }
+        assert writable == layout.candidate_ids == set(body["target_ids"])
+        assert body["sources"] == compilation.source_catalog(sources())
+        return missing_proposals(body["target_ids"]), "local-test", 100
+
+    monkeypatch.setattr(compilation, "request_field_proposals", model)
+    report, model_name, tokens, execution = await compilation.compile_fields_once(
+        layout, sources(), "Catanzaro", ""
+    )
+    assert len(captured) == 1
+    assert len(report["fields"]) == execution["batch_size"] == 279
+    assert report["unclassified_fields"] == []
+    assert model_name == "local-test"
+    assert tokens == 100
+    assert execution["requests"] == execution["completed_batches"] == 1
+    assert execution["repair_requests"] == 0
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("failure", ["truncated", "empty_quote", "duplicate_id", "timeout"])
+async def test_single_call_failure_never_retries_or_saves_a_draft(client, monkeypatch, failure):
+    await add_company(client)
+    calls = 0
+    if failure == "timeout":
+        monkeypatch.setattr(compilation, "SINGLE_CALL_TIMEOUT_SECONDS", 0.01)
+
+    async def model(prompt, **_request_options):
+        nonlocal calls
+        calls += 1
+        if failure == "timeout":
+            await asyncio.sleep(10)
+            pytest.fail("La richiesta deve essere annullata al timeout")
+        if failure == "truncated":
+            raise compilation.TruncatedCompilationError(tokens=100)
+        if failure == "empty_quote":
+            # Reproduce Gemma's invalid citation: readable JSON is insufficient.
+            return result(proposal(evidence=[{"source_id": "company:1", "quote": ""}])), "test", 100
+        return result(proposal(), proposal()), "test", 100
+
+    monkeypatch.setattr(compilation, "request_field_proposals", model)
+    url = "/api/projects/fondo-riqualificazione-2027/document-compilations"
+    response = await client.post(url, files={"file": ("modulo.docx", template_bytes())})
+    assert response.status_code == 502, response.text
+    assert calls == 1
+    assert (await client.get(url)).json() == []
+    assert not list(get_storage_path().rglob("bozza.docx"))
+
+
+@pytest.mark.anyio
+async def test_single_call_unknown_id_does_not_persist_partial_document(client, monkeypatch):
     await add_company(client)
     calls = []
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         targets = json.loads(prompt)["target_ids"]
         calls.append(targets)
-        if len(calls) == 2:
-            return missing_proposals(["t999.r0.c1"]), "test", 10
-        return missing_proposals(targets), "test", 10
+        return missing_proposals([*targets, "t999.r0.c1"]), "test", 10
 
     monkeypatch.setattr(compilation, "request_field_proposals", model)
     project = "fondo-riqualificazione-2027"
@@ -634,20 +699,25 @@ async def test_failed_later_batch_does_not_persist_partial_document(client, monk
     )
     assert response.status_code == 502
     assert "sconosciuto" in response.json()["detail"]
-    assert len(calls) == 2
+    assert len(calls) == 1
     assert (await client.get(f"/api/projects/{project}/document-compilations")).json() == []
     assert not list(get_storage_path().rglob("bozza.docx"))
 
 
 @pytest.mark.anyio
 @pytest.mark.parametrize("include_assigned_field", [False, True])
-async def test_api_discards_out_of_batch_proposals_without_losing_valid_work(
+async def test_explicit_legacy_batches_discard_out_of_batch_proposals_without_losing_valid_work(
     client, monkeypatch, include_assigned_field,
 ):
     await add_company(client)
     calls = []
+    # Exercise the retained comparison strategy explicitly; the API defaults to one call.
+    async def legacy_compile(*args):
+        return await compilation.compile_document(*args, strategy="batches")
 
-    async def model(prompt):
+    monkeypatch.setattr(routes, "compile_document", legacy_compile)
+
+    async def model(prompt, **_request_options):
         body = json.loads(prompt)
         calls.append(body["target_ids"])
         company = next(item for item in body["sources"] if item["scope"] == "company")
@@ -701,11 +771,18 @@ async def test_api_discards_out_of_batch_proposals_without_losing_valid_work(
 
 
 @pytest.mark.anyio
-async def test_api_saves_one_document_after_all_batches_succeed(client, monkeypatch):
+async def test_api_compiles_all_fields_in_one_call_and_saves_one_document(client, monkeypatch):
     await add_company(client)
+    calls = []
 
-    async def model(prompt):
+    async def model(prompt, **request_options):
         body = json.loads(prompt)
+        calls.append(body["target_ids"])
+        assert len(body["target_ids"]) == 33
+        assert request_options == {
+            "max_tokens": compilation.SINGLE_CALL_MAX_OUTPUT_TOKENS,
+            "timeout_seconds": compilation.SINGLE_CALL_TIMEOUT_SECONDS,
+        }
         company = next(item for item in body["sources"] if item["scope"] == "company")
         fields = [
             proposal(
@@ -724,9 +801,12 @@ async def test_api_saves_one_document_after_all_batches_succeed(client, monkeypa
     assert response.status_code == 201, response.text
     run = response.json()
     report = run["report"]
+    assert len(calls) == 1
     assert report["written_field_count"] == 33
-    assert report["total_tokens"] == 20
-    assert report["execution"]["completed_batches"] == 2
+    assert report["total_tokens"] == 10
+    assert report["execution"]["strategy"] == "single_call"
+    assert report["execution"]["requests"] == 1
+    assert report["execution"]["completed_batches"] == 1
     assert report["warnings"].count("Dati simulati") == 1
     assert len((await client.get(url)).json()) == 1
     output = await client.get(run["downloads"]["docx"])
@@ -739,7 +819,7 @@ async def test_api_keeps_valid_fields_and_reports_unrepaired_citations(client, m
     await add_company(client)
     calls = 0
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         nonlocal calls
         calls += 1
         body = json.loads(prompt)
@@ -749,24 +829,25 @@ async def test_api_keeps_valid_fields_and_reports_unrepaired_citations(client, m
             cell_id="t0.r1.c1", label="Codice fiscale",
             evidence=[{"source_id": "project:non-fornito", "quote": "Dato non documentato"}],
         )
-        return result(good, bad) if calls == 1 else result(bad), "test", 10
+        return result(good, bad), "test", 10
 
     monkeypatch.setattr(compilation, "request_field_proposals", model)
     url = "/api/projects/fondo-riqualificazione-2027/document-compilations"
     response = await client.post(url, files={"file": ("modulo.docx", template_bytes())})
     assert response.status_code == 201, response.text
     report = response.json()["report"]
-    assert calls == 2
+    assert calls == 1
     assert report["schema_version"] == 3
     assert report["written_field_count"] == report["blocked_field_count"] == 1
     assert report["ready_for_submission"] is False
-    assert report["total_tokens"] == 20
+    assert report["total_tokens"] == 10
+    assert report["execution"]["repair_requests"] == 0
+    assert report["execution"]["repair_skipped_fields"] == 1
     blocked = report["fields"][1]
     assert blocked["status"] == "needs_review"
     assert blocked["evidence"] == []
     assert blocked["rejected_evidence"][0]["source_id"] == "project:non-fornito"
-    assert blocked["repair"]["status"] == "unresolved"
-    assert blocked["repair"]["attempted"] is True
+    assert "repair" not in blocked
     saved = (await client.get(f"{url}/{response.json()['id']}")).json()
     assert saved["report"] == report
     output = await client.get(response.json()["downloads"]["docx"])
@@ -780,7 +861,7 @@ async def test_api_keeps_valid_fields_and_reports_unrepaired_citations(client, m
 async def test_api_preserves_user_provenance_without_a_fictitious_document(client, monkeypatch):
     await add_company(client)
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         body = json.loads(prompt)
         user = next(item for item in body["sources"] if item["origin"] == "user"
                     and item["source_kind"] == "user_instructions")
@@ -812,7 +893,7 @@ async def test_decorative_batch_can_be_empty_and_missing_usage_is_not_undercount
     layout = inspect_docx(template_bytes(["Societa"] * 33))
     calls = 0
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         nonlocal calls
         calls += 1
         targets = json.loads(prompt)["target_ids"]
@@ -842,7 +923,7 @@ async def test_batch_failures_are_bounded_and_do_not_retry_unrelated_errors(monk
     if failure == "timeout":
         monkeypatch.setattr(compilation, "COMPILATION_TIMEOUT_SECONDS", 0.01)
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         nonlocal calls
         calls += 1
         if failure == "timeout":
@@ -867,7 +948,7 @@ async def test_repeated_truncations_stop_at_request_budget(monkeypatch):
     monkeypatch.setattr(compilation, "MAX_BATCH_REQUESTS", 2)
     calls = 0
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         nonlocal calls
         calls += 1
         raise compilation.TruncatedCompilationError()
@@ -948,7 +1029,7 @@ async def test_api_compiles_paragraphs_and_reports_mixed_coverage(client, monkey
     document.save(data)
     captured = {}
 
-    async def model(prompt):
+    async def model(prompt, **_request_options):
         captured.update(json.loads(prompt))
         company = next(s for s in captured["sources"] if s["scope"] == "company")
         return (
@@ -974,7 +1055,7 @@ async def test_api_compiles_paragraphs_and_reports_mixed_coverage(client, monkey
     run = response.json()
     report = run["report"]
     assert report["schema_version"] == 3
-    assert report["prompt_version"] == "docx-fields-v11-compact-json"
+    assert report["prompt_version"] == "docx-fields-v12-single-call"
     assert report["execution"]["completed_batches"] == 1
     assert report["written_field_count"] == 1
     assert report["fields"][0]["location"] == {

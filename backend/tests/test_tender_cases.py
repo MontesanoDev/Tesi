@@ -65,7 +65,7 @@ async def test_isolated_demo_records_calls_and_preserves_app_environment(tmp_pat
         "MAPI_DB_PATH", "MAPI_STORAGE_PATH", "MAPI_KNOWLEDGE_PATH",
     )}
 
-    async def proposals(prompt):
+    async def proposals(prompt, **_request_options):
         payload = json.loads(prompt)
         assert "Trapani" in payload["project_title"]
         assert {s["scope"] for s in payload["sources"]} == {"company", "project", "user"}
@@ -84,7 +84,9 @@ async def test_isolated_demo_records_calls_and_preserves_app_environment(tmp_pat
     assert not (tmp_path / "existing-knowledge").exists()
     assert json.loads((output / "result.json").read_text())["success"]
     report = json.loads((output / "report.json").read_text())
-    assert report["execution"]["completed_batches"] == 4
-    assert len(list(output.glob("batch-*.prompt.json"))) == 4
-    assert len(list(output.glob("batch-*.response.json"))) == 4
+    assert report["execution"]["strategy"] == "single_call"
+    assert report["execution"]["requests"] == 1
+    assert report["execution"]["completed_batches"] == 1
+    assert len(list(output.glob("batch-*.prompt.json"))) == 1
+    assert len(list(output.glob("batch-*.response.json"))) == 1
     assert (output / "bozza.docx").is_file()

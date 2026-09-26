@@ -46,18 +46,15 @@ binari non sono supportati dal nuovo caricamento.
    KB. I dati estratti con provenienza sono disponibili senza approvazione manuale;
    i dati esclusi non vengono indicizzati. I dati inseriti per il progetto restano
    distinguibili dalle sintesi automatiche. Template e draft non diventano evidenze aziendali.
-3. Il prompt dedicato `docx-fields-v11-compact-json` chiede campi, valori, fonte,
-   citazione letterale, stato e motivazione in gruppi da massimo 32 elementi.
-   Il contesto del modulo e le fonti rimangono disponibili in ogni gruppo, ma
-   soltanto gli ID assegnati sono scrivibili. **La mappa manuale Catanzaro non viene letta
-   dal codice di produzione**: viene usata soltanto nei test del writer.
-4. Il backend rifiuta JSON non interpretabile, campi sconosciuti/duplicati e
-   contratti di scrittura incoerenti. Le proposte per candidati validi esterni
-   al gruppo vengono scartate e registrate, senza autorizzare scritture.
-   Una citazione inesistente
-   o un valore non presente nella citazione blocca invece il singolo campo.
-   Dopo il primo passaggio, un solo tentativo mirato puo correggere queste
-   proposte; quelle ancora non valide restano vuote e segnalate nel report.
+3. Il prompt `docx-fields-v12-single-call` chiede campi, valori, fonte,
+   citazione letterale, stato e motivazione in **una sola richiesta per tutti
+   i candidati**. Catalogo completo e fonti sono inviati una volta.
+   **La mappa manuale Catanzaro non viene letta dal codice di produzione**:
+   viene usata soltanto nei test del writer.
+4. Il backend rifiuta JSON incompatibile con lo schema, campi non scrivibili,
+   sconosciuti o duplicati e contratti di scrittura incoerenti. Una citazione
+   inesistente o un valore non presente nella citazione blocca invece il singolo
+   campo. Non ci sono richieste automatiche di correzione o nuovi tentativi.
 5. Il writer inserisce le proposte ammesse in una copia del modello. Conserva
    tutte le parti ZIP diverse da `word/document.xml` byte per byte, incluse
    immagini, note, intestazioni e relazioni. Aggiunge un avviso di bozza e rende
@@ -94,8 +91,8 @@ con `check_deliverability=False`: niente DNS, invio di messaggi o verifica della
 titolarita/qualifica PEC. Si mantiene il valore letterale, senza normalizzarlo.
 Recapiti incompleti o sintatticamente invalidi vengono bloccati (`invalid_email`),
 cosi come un indirizzo valido ricavato ritagliandone uno piu lungo nella citazione
-(`partial_email_evidence`). Rientrano nell'unico tentativo di correzione esistente;
-se ancora errati restano vuoti. Il writer ripete il controllo sintattico sui
+(`partial_email_evidence`). I campi bloccati restano vuoti, senza una seconda
+richiesta al modello. Il writer ripete il controllo sintattico sui
 campi tipizzati prima di sostituire il segnaposto o riempire la cella.
 
 Un recapito esplicitamente diviso come `___@___.___` non e ricomposto automaticamente:
@@ -116,8 +113,7 @@ Vengono controllati i confini del token nel testo della fonte, anche se la
 citazione restituita contiene soltanto la parte troncata. Un'occorrenza del
 valore altrove nel frammento, fuori dalla citazione, non basta.
 
-Il codice `partial_numeric_evidence` lascia il campo vuoto e ammette l'unico
-tentativo di correzione gia previsto. Non completa automaticamente zeri o
+Il codice `partial_numeric_evidence` lascia il campo vuoto. Non completa automaticamente zeri o
 prefissi: il modello deve proporre un valore supportato, oppure astenersi.
 Un codice completo viene mantenuto letteralmente, inclusi gli zeri iniziali.
 
@@ -128,7 +124,7 @@ Il writer non riceve fonti: questo controllo viene eseguito dal validatore
 prima della scrittura. I risultati salvati con versioni precedenti rimangono
 invariati; la versione del prompt distingue le nuove compilazioni.
 
-### Provenienza e correzioni limitate
+### Provenienza e proposte bloccate
 
 Le indicazioni non vuote sono una fonte separata `user:instructions`, con
 `scope=user`, `source_kind=user_instructions` e `origin=user`. Non hanno
@@ -144,66 +140,54 @@ conserva `validation_codes`, `validation_notes` e `rejected_evidence`: una
 citazione rifiutata non compare tra le evidenze valide. Anche una sola citazione
 errata aggiunta a una valida blocca quella proposta, non le altre.
 
-Soltanto queste proposte sono ammesse a **una correzione per campo**, dopo aver
-eseguito tutti i gruppi iniziali. Il modello riceve errori, proposta e stesse
-fonti, e puo modificare valore e citazioni, non ID, etichetta, soggetto o tipo.
-I controlli vengono ripetuti integralmente. Nessun confronto fuzzy su accenti,
-numeri o codici: la correzione deve copiare il valore letterale dalla fonte.
-Campi gia accettati, firme, scelte e dichiarazioni non vengono rigenerati.
+Nella modalita corrente non vengono inviate richieste di correzione. I campi
+con evidenze non valide restano vuoti; i valori ammessi possono essere scritti.
+Gli errori strutturali, come una citazione vuota incompatibile con lo schema,
+restano bloccanti per l'intero documento.
 
-`repair` conserva proposta iniziale, eventuale risposta e stato
-`corrected`/`unresolved`. Se il tentativo omette il campo, fallisce, cambia
-identita o non supera i controlli, rimane bloccato. Un errore strutturale nel
-JSON di correzione resta invece bloccante per l'intero documento.
+La precedente strategia a gruppi prevedeva una correzione mirata per campo.
+I suoi report possono contenere `repair` con proposta iniziale, risposta e
+stato `corrected`/`unresolved`. I risultati storici restano consultabili.
 
 Due normalizzazioni non autorizzano scritture: per i soli campi con stato diverso
 da `proposed` e `value=null`, una lista `evidence` omessa diventa vuota e
 un'etichetta testuale vuota viene mostrata con la coordinata del campo. Non
 vengono inventati significati o fonti; tipi errati e ID sconosciuti restano errori.
 
-### Risposte lunghe e gruppi di campi
+### Una richiesta per il modulo intero
 
-La generazione usa chiamate sequenziali, ciascuna limitata a 12.000 token di
-output. Nel passaggio iniziale, se il servizio termina con `finish_reason=length`, la risposta viene
-scartata senza tentare di riparare il JSON; solo quel gruppo viene diviso a meta
-e riprovato. I gruppi gia completati non vengono rigenerati. Errori strutturali
-(JSON non valido, ID sconosciuti, non scrivibili o duplicati) e filtri del servizio
-interrompono la compilazione.
-Una correzione troncata non viene suddivisa o ripetuta: il campo resta bloccato.
+`compile_document()` usa `compile_fields_once()`: tutti gli ID candidati sono
+inclusi in `target_ids`, fino al limite strutturale di 400 posizioni.
+La richiesta concede fino a 32.768 token di output e 1.800 secondi di attesa.
+La connessione iniziale ha un limite di 10 secondi. Sono massimali operativi
+per questa prova, non soglie ottimizzate tramite benchmark.
 
-Se la risposta include un campo esistente ma esterno a `target_ids`, quella
-proposta viene scartata senza interrompere le altre: non autorizza scritture,
-classificazioni o correzioni. Il campo puo essere trattato soltanto nella chiamata
-del proprio gruppo; se li viene omesso resta vuoto e non classificato. Non viene
-riassegnato un ID e non si riusa la proposta scartata in chiamate successive.
-La stessa regola vale durante le correzioni, che non possono modificare campi
-gia accettati. Non sono aggiunte chiamate al modello per questo caso.
+Una risposta troncata, un JSON non valido, ID sconosciuti o duplicati e filtri
+del servizio interrompono la compilazione. Non vengono eseguiti divisioni del
+lavoro, correzioni o passaggi a un altro modello. DOCX e record sono creati
+soltanto dopo la validazione; non vengono salvati risultati parziali in caso
+di errore strutturale.
 
-Il report conserva le proposte fuori gruppo in `rejected_proposals`, con
-`validation_code=outside_batch`, proposta originale, ID autorizzati, numero
-di chiamata e fase (`initial`/`repair`). Un avviso riassuntivo compare nella UI;
-`execution.out_of_batch_proposals` ne conta le occorrenze, non i campi unici.
-I controlli su formato, duplicati, fonti, valori e firme restano attivi. Questa
-gestione riguarda i gruppi tecnici, non l'applicabilita semantica delle sezioni.
+Il modello puo omettere candidati: restano in `unclassified_fields`. Se
+restituisce `fields=[]`, non viene prodotto un file. Il termine regolare della
+risposta non prova che tutti i campi siano stati interpretati correttamente.
 
-Limiti: massimo 40 chiamate complessive, 180 secondi per chiamata e 600 secondi
-per l'elaborazione dei gruppi, correzioni incluse. Se il budget di chiamate e
-esaurito, le correzioni opzionali non vengono eseguite. Anche un singolo campo
-ancora troncato nel passaggio iniziale interrompe il processo. DOCX e record
-vengono creati solo dopo il completamento del passaggio iniziale e dei controlli:
-possono contenere campi bloccati lasciati vuoti, non gruppi mai elaborati.
+Il report indica `execution.strategy=single_call`, `requests=1` e
+`repair_requests=0`. Per compatibilita conserva `batch_size` (numero totale
+di candidati) e `completed_batches=1`. `repair_skipped_fields` conta le
+proposte bloccate che sarebbero correggibili nella precedente strategia.
+`total_tokens` e il consumo dichiarato dal provider, oppure `null` se assente.
 
-Un gruppo puo contenere solo elementi decorativi e restituire `fields=[]`:
-rimangono visibili tra gli elementi non classificati. Se tutti i gruppi sono
-vuoti, non viene prodotto un file. I controlli su fonti, firme e valori restano
-invariati. La suddivisione non garantisce correttezza semantica o completezza.
+`compile_field_batches()` resta disponibile soltanto per test e confronti
+espliciti tramite `compile_document(..., strategy="batches")`. Non e un'opzione
+della UI e non e un fallback. Le sue regole precedenti restano: gruppi di 32,
+12.000 token di risposta, massimo 40 richieste e 600 secondi complessivi,
+divisione dei gruppi iniziali troncati e una correzione mirata per campo.
 
-Il report include `execution` con dimensione dei gruppi, chiamate effettuate,
-gruppi completati, risposte troncate, richieste di correzione e campi corretti,
-tentati o saltati. `total_tokens` somma anche correzioni e tentativi troncati,
-oppure e `null` se il servizio non fornisce tutti i consumi, inclusi errori del
-provider durante la correzione. Moduli
-grandi richiedono piu chiamate e possono costare di piu e impiegare alcuni minuti.
+Per la prova reale su `gemma4:e2b`, configurazione, risposta rifiutata e consumi
+sono nel [resoconto della chiamata unica](../../prova-compilazione-unica.md).
+Le sezioni seguenti sulle versioni v8-v11 e le relative misure descrivono
+le esecuzioni precedenti a questo cambiamento.
 
 ## Modelli con paragrafi
 
@@ -351,8 +335,8 @@ Dalla directory `backend`, con dipendenze installate tramite `uv sync`:
 .venv/bin/python -m scripts.compile_docx_demo --live
 ```
 
-Il flag `--live` autorizza **vere chiamate API a consumo**, una per gruppo ed
-eventuali tentativi sui gruppi troncati o sulle proposte correggibili. Occorre
+Il flag `--live` autorizza **una vera chiamata API a consumo** per l'intero
+modulo, senza ulteriori tentativi automatici. Occorre
 `DEEPSEEK_API_KEY`; modello e URL seguono le impostazioni esistenti in `.env`.
 Lo script crea un database temporaneo, carica bando e disciplinare pubblici e
 visura Mapi simulata, poi conserva i tre risultati in
@@ -434,7 +418,7 @@ report anche quando non e stata scritta nel DOCX. `ready_for_submission` e sempr
   certificazione di completezza del modulo.
 - Verificare soggetto, ramo applicabile, validita temporale e conflitti: una
   citazione autentica puo essere usata in modo semanticamente sbagliato.
-  L'applicabilita resta affidata al modello: la correzione mirata delle evidenze
+  L'applicabilita resta affidata al modello: il controllo delle evidenze
   non introduce un controllo deterministico dei rami.
 - Il primo writer accetta valori estrattivi, non parafrasi o concatenazioni
   arbitrarie. Per esempio, una qualifica riformulata dal modello puo essere
@@ -449,7 +433,7 @@ report anche quando non e stata scritta nel DOCX. `ready_for_submission` e sempr
   PDF. La conversione iniziale DOC -> DOCX del caso Catanzaro aveva gia spostato
   alcune note: preservarle non risolve quel limite preesistente.
 - Nessun ciclo autonomo di strumenti, firma, invio al portale o validazione
-  amministrativa. E una pipeline controllata con chiamate LLM dedicate a gruppi di campi.
+  amministrativa. E una pipeline controllata con una richiesta LLM per l'intero modulo.
 
 ## Verifiche eseguite
 

@@ -15,7 +15,7 @@ import httpx
 
 from app import document_compilation as compilation
 from app.db import init_database
-from app.document_compilation import COMPILATION_TIMEOUT_SECONDS
+from app.document_compilation import SINGLE_CALL_TIMEOUT_SECONDS
 from app.ingestion import SUPPORTED_EXTENSIONS
 from app.main import app
 
@@ -88,14 +88,14 @@ async def run(output: Path, company_file: Path | None = None, case: str = "catan
     request = compilation.request_field_proposals
     call_count = 0
 
-    async def recorded(prompt: str):
+    async def recorded(prompt: str, **request_options):
         nonlocal call_count
         call_count += 1
         base = output / f"batch-{call_count:02d}"
         dump(base.with_suffix(".prompt.json"), json.loads(prompt))
         started = time.monotonic()
         try:
-            content, model, tokens = await request(prompt)
+            content, model, tokens = await request(prompt, **request_options)
         except Exception as exc:
             dump(base.with_suffix(".error.json"), {"error": str(exc)})
             raise
@@ -117,7 +117,7 @@ async def run(output: Path, company_file: Path | None = None, case: str = "catan
         async with httpx.AsyncClient(
             transport=httpx.ASGITransport(app=app),
             base_url="http://demo",
-            timeout=COMPILATION_TIMEOUT_SECONDS + 60,
+            timeout=SINGLE_CALL_TIMEOUT_SECONDS + 60,
         ) as client:
             response = await client.post(
                 "/api/projects",

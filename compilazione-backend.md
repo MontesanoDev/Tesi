@@ -22,12 +22,13 @@ Nel progetto l'ingranaggio nel box della chat apre la scelta del modello.
 La preparazione della candidatura usa la stessa scelta, senza un secondo selettore.
 La configurazione salvata vale per chat, estrazione,
 compilazione Word e generazione testuale. All'inizio di ogni elaborazione il
-backend fissa il modello e le credenziali: i gruppi e le correzioni della stessa
-compilazione restano sullo stesso servizio anche se le impostazioni cambiano.
+backend fissa il modello e le credenziali: la compilazione resta sullo stesso
+servizio anche se le impostazioni cambiano durante l'elaborazione.
 
 Il cambio di servizio modifica il collegamento al modello, non il parser Word,
-i controlli o la struttura dei prompt. Restano anche i budget e i gruppi di
-32 posizioni: non si adattano automaticamente alla capacità del modello scelto.
+i controlli o la struttura dei prompt. Il Word viene compilato con una sola
+richiesta per tutti i candidati. Budget delle fonti e limite della risposta
+non si adattano automaticamente alla capacità del modello scelto.
 OpenAI usa l'API Responses, Claude l'API Messages; il backend adatta la richiesta
 e normalizza testo, consumo e motivo di conclusione della risposta. Gli stessi
 validatori controllano poi le proposte, qualunque sia il servizio scelto.
@@ -101,20 +102,19 @@ flowchart TD
     A[DOCX originale e indicazioni utente] --> B[Parser: celle e segnaposti]
     B --> C[Catalogo con identificatori e contesto]
     D[Fonti del progetto, Company KB e General KB] --> E[Selezione entro i limiti di caratteri]
-    C --> F[Gruppi di massimo 32 posizioni candidate]
-    E --> G[Richiesta al modello selezionato]
-    F --> G
+    C --> G[Una richiesta con tutti i candidati]
+    E --> G
     G --> H[Proposte JSON]
     H --> I[Controllo di identificatori, valori e citazioni]
-    I -->|Errori correggibili| J[Un tentativo di correzione]
-    J -->|Valori che superano i controlli| K[Valori ammessi alla scrittura]
+    I -->|Evidenze non valide| J[Campo vuoto con motivo nel report]
+    I -->|Schema o ID non validi| N[Interruzione senza bozza]
     I -->|Proposte valide| K
     K --> L[Python modifica la copia del DOCX]
     L --> M[Originale, bozza e report salvati nel progetto]
 ```
 
 La richiesta entra da `POST /api/projects/{project_id}/document-compilations`.
-`compile_document()` coordina lettura del modello, fonti, chiamate al modello,
+`compile_document()` coordina lettura del modello, fonti, richiesta al modello,
 validazione e scrittura. Il modello riceve rappresentazioni testuali del modulo
 e delle fonti: il file Word viene letto e modificato nel backend.
 
@@ -160,21 +160,24 @@ Non viene letta una mappa manuale specifica del bando. Le regole del parser
 riguardano la struttura del documento e i segnaposti. La mappa Catanzaro
 presente nei file di esempio è usata nei test del writer.
 
-**Gruppi di campi e limiti del contesto**
+**Richiesta unica e limiti del contesto**
 
-Il backend ordina prima le celle e poi i segnaposti e li suddivide in gruppi
-da massimo 32 candidati. Ogni richiesta autorizza soltanto gli ID del gruppo,
-tramite `target_ids` e `writable`. Gli altri campi restano visibili come contesto.
+Il backend ordina prima le celle e poi i segnaposti e li invia insieme, con
+tutti gli ID candidati in `target_ids`. `writable` distingue le posizioni
+scrivibili dal testo prestampato. Il modello riceve il catalogo completo e
+propone i valori in un'unica risposta. Non ci sono correzioni automatiche o
+nuove richieste in caso di risposta troncata.
 
 | Modello presente nel progetto | Celle | Segnaposti | Candidati | Chiamate iniziali |
 | ----------------------------- | -----:| ----------:| ---------:| -----------------:|
-| Catanzaro                     | 265   | 14         | 279       | 9                 |
-| Minervino                     | 67    | 187        | 254       | 8                 |
-| Trapani                       | 54    | 61         | 115       | 4                 |
+| Catanzaro                     | 265   | 14         | 279       | 1                 |
+| Minervino                     | 67    | 187        | 254       | 1                 |
+| Trapani                       | 54    | 61         | 115       | 1                 |
 
-Il numero di chiamate può aumentare per correzioni o risposte troncate.
-Il limite di 32 serve a contenere la risposta generata. Non limita il numero
-di fonti e non corrisponde a 32 campi sicuramente compilabili.
+La precedente strategia da 32 candidati rimane nel codice per confronti
+espliciti e test, ma non viene usata dall'interfaccia né come ripiego automatico.
+La prova su Gemma e i suoi limiti sono descritti in
+[Compilazione unica con Gemma](prova-compilazione-unica.md).
 
 | Fonti selezionate per il Word                 | Massimo di caratteri |
 | --------------------------------------------- | --------------------:|
@@ -182,7 +185,7 @@ di fonti e non corrisponde a 32 campi sicuramente compilabili.
 | Progetto, compresi i dati estratti e inseriti | 90.000               |
 | General KB                                    | 20.000               |
 
-Se tutte le fonti di un gruppo rientrano nel limite, vengono inviate tutte.
+Se tutte le fonti di un ambito rientrano nel relativo limite, vengono inviate tutte.
 Altrimenti `select_source_chunks()` prende frammenti distribuiti lungo
 l'elenco ordinato. La selezione non valuta la pertinenza rispetto al campo:
 può escludere un'informazione utile. La copertura parziale viene riportata
@@ -193,16 +196,16 @@ completo. A essi si aggiungono il testo del modulo, i cataloghi, le indicazioni
 e le istruzioni di sistema. Sono massimali operativi del prototipo, non soglie
 ottimali dimostrate da un benchmark.
 
-Ogni chiamata riceve di nuovo cataloghi, testo del modulo e fonti selezionate.
-Questa ripetizione pesa sul consumo. La versione corrente compatta il JSON
-eliminando gli spazi tra chiavi e valori, mantenendo tutti i contenuti.
+Cataloghi, testo del modulo e fonti selezionate vengono inviati una volta.
+Il JSON resta compatto, senza spazi tra chiavi e valori. La richiesta può
+comunque essere lunga: la finestra di contesto deve contenere input e risposta.
 
 **Il system prompt**
 
 Il system prompt contiene le istruzioni generali per la compilazione. È la
 costante `SYSTEM_PROMPT` in
 [`document_compilation.py`](backend/app/document_compilation.py), inviata
-al modello selezionato a ogni chiamata, comprese le correzioni. Non addestra il modello:
+al modello selezionato insieme al contesto. Non addestra il modello:
 gli indica come svolgere il compito nella richiesta corrente.
 
 La richiesta contiene due messaggi distinti:
@@ -210,7 +213,7 @@ La richiesta contiene due messaggi distinti:
 | Ruolo API | Contenuto                                                                                                                                                                                                                                 |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `system`  | Regole stabili: come interpretare i candidati, usare le evidenze e restituire le proposte.                                                                                                                                                |
-| `user`    | JSON costruito da `build_prompt()`: titolo e indicazioni del progetto, hash e testo del modulo, cataloghi, ID del gruppo, fonti selezionate e copertura. Nelle correzioni contiene anche le proposte da correggere e gli errori rilevati. |
+| `user`    | JSON costruito da `build_prompt()`: titolo e indicazioni del progetto, hash e testo del modulo, cataloghi, tutti gli ID candidati, fonti selezionate e copertura. |
 
 Il messaggio `user` viene costruito dal backend: non coincide con il solo
 testo digitato dall'utente. Un'indicazione come «partecipazione singola» entra
@@ -219,7 +222,7 @@ in questo contesto come scelta esplicita, senza modificare il system prompt.
 Le istruzioni principali chiedono al modello di:
 
 - distinguere campi reali ed elementi decorativi e rispondere soltanto per
-  gli ID autorizzati nel gruppo;
+  gli ID autorizzati nella richiesta;
 - distinguere azienda, persone e stazione appaltante, senza confondere ruoli
   o usare la sede aziendale come residenza personale;
 - copiare i valori dalle evidenze, indicando l'ID della fonte e una citazione
@@ -291,9 +294,8 @@ non applicabilità e mancata classificazione.
 **Controlli prima della scrittura**
 
 Pydantic controlla la struttura del JSON. Il backend verifica poi che gli ID
-siano conosciuti e non duplicati. Una proposta riferita a un candidato valido
-ma esterno al gruppo viene scartata e registrata in `rejected_proposals`:
-non autorizza scritture, classificazioni o correzioni per quel campo.
+siano conosciuti, scrivibili e non duplicati. Nella richiesta unica sono
+autorizzate tutte le posizioni candidate riconosciute dal parser.
 ID sconosciuti, duplicati o contratti incoerenti interrompono la compilazione.
 
 Per scrivere un valore devono esserci evidenze valide: la fonte citata deve
@@ -308,23 +310,19 @@ I campi riconosciuti come firme e le proposte classificate come scelte o
 dichiarazioni sono bloccati. L'individuazione semantica di una dichiarazione
 dipende però anche dalla classificazione del modello.
 
-Dopo il primo passaggio, il backend può chiedere una sola correzione per le
-proposte con errori previsti, come una citazione non valida o un valore troncato.
-La correzione deve conservare identità e tipo del campo. Se resta priva di
-evidenze valide, viene omessa o cambia l'identità del campo, il campo rimane
-vuoto con la motivazione del blocco. Gli errori strutturali, come un JSON
-incompatibile con lo schema o ID sconosciuti o duplicati, interrompono invece
-l'intera compilazione anche durante una correzione, senza produrre il Word.
+Una proposta con evidenze non valide resta vuota con il motivo del blocco nel
+report. Non viene chiesta una correzione al modello. Un JSON incompatibile
+con lo schema, ID sconosciuti o duplicati, o una risposta troncata interrompono
+l'intera compilazione senza produrre il Word. Lo stesso accade se il modello
+non restituisce nessun campo.
 
-Nel primo passaggio, se il provider segnala una risposta troncata per il
-limite di output, questa viene scartata e il gruppo viene diviso in due per
-riprovare. Se accade anche con un solo candidato, la compilazione si interrompe.
-Una correzione troncata non viene invece ritentata: i campi coinvolti restano
-vuoti e le proposte già accettate vengono conservate.
-
-I limiti sono 12.000 token di output per chiamata, 40 richieste complessive e
-600 secondi per l'elaborazione dei gruppi. Il consumo registrato include anche
-correzioni e tentativi troncati quando il provider ne restituisce il conteggio.
+La richiesta concede fino a **32.768 token di output e 1.800 secondi**.
+Sono massimali operativi per provare il modulo intero e consentire l'uso locale,
+non valori ottimizzati tramite benchmark. Il modello può fermarsi prima e
+può omettere candidati: una risposta conclusa non garantisce completezza.
+`total_tokens` registra il consumo dichiarato dal provider, oppure `null`
+se non disponibile. Il report indica `execution.strategy=single_call` e
+`execution.requests=1`.
 
 **Come viene scritto e conservato il Word**
 
@@ -381,9 +379,9 @@ una mappa semantica che imponga automaticamente la scelta dei rami del modulo.
 
 **Campi sbagliati che superano i controlli**
 
-Un ID incluso in `target_ids` è autorizzato per il gruppo tecnico corrente.
+Un ID incluso in `target_ids` è autorizzato per la richiesta corrente.
 Questo non significa che la sua sezione sia applicabile alla domanda.
-I gruppi vengono costruiti dalle posizioni candidate: un'indicazione come
+Gli ID sono ricavati dalle posizioni candidate: un'indicazione come
 «lascia vuoto il ramo dello studio associato» viene inviata al modello, ma
 non viene tradotta automaticamente in un'esclusione di quegli ID dal writer.
 
@@ -426,8 +424,8 @@ Scrittura accettata
 Verifica mancante: la fonte attesta un servizio già svolto da Mapi?
 ```
 
-Questi errori non attivano la correzione mirata, perché non producono un errore
-di validazione riconosciuto. Anche una motivazione o un avviso dell'AI può
+Questi errori non producono un errore di validazione riconosciuto e quindi
+possono arrivare fino al Word. Anche una motivazione o un avviso dell'AI può
 contraddire ciò che è stato scritto: nella prova Trapani il modello dichiara
 di non aver compilato la tabella riepilogativa, ma vi inserisce il Comune.
 Per controllare il risultato servono i valori effettivamente scritti e il
@@ -461,7 +459,7 @@ l'elaborazione o la compilazione di quel formato da parte del backend.
 | [repository.py](backend/app/repository.py)                                   | Accesso ai dati, ricerca FTS5 e gestione delle fonti.                                          |
 | [fact_extraction.py](backend/app/fact_extraction.py)                         | Estrazione dei dati del bando e selezione dei frammenti entro un limite.                       |
 | [docx_templates.py](backend/app/docx_templates.py)                           | Individuazione delle posizioni e scrittura controllata del DOCX.                               |
-| [document_compilation.py](backend/app/document_compilation.py)               | Contesto, gruppi, chiamate AI, validazione e correzioni.                                       |
+| [document_compilation.py](backend/app/document_compilation.py)               | Contesto, richiesta AI unica e validazione; strategia precedente conservata per confronti. |
 | [document_compilation_routes.py](backend/app/document_compilation_routes.py) | Upload del modello, persistenza, storico e download.                                           |
 | [draft_generation.py](backend/app/draft_generation.py)                       | Generazione e controllo della bozza Markdown.                                                  |
 | [artifacts.py](backend/app/artifacts.py)                                     | Salvataggio di dati, modelli e bozze testuali; esclusione di template e output dalle evidenze. |
@@ -542,11 +540,11 @@ vettoriale o ibrida avrebbe senso come esperimento successivo, se il confronto
 mostrasse omissioni dovute a sinonimi e formulazioni diverse. Andrebbero
 misurati anche il costo e la complessità dei componenti aggiunti.
 
-Un altro intervento sarebbe formare i gruppi seguendo le sezioni del modulo,
-entro un limite di dimensione, anziché spezzarli soltanto ogni 32 candidati.
-Si potrebbero così mantenere insieme campi che dipendono dalla stessa scelta.
-Gruppi più grandi, però, producono risposte più lunghe e possono richiedere
-nuovi tentativi: il risparmio va misurato sull'intera compilazione.
+Un confronto utile sarebbe tra la richiesta unica, i precedenti gruppi fissi
+e gruppi costruiti seguendo le sezioni del modulo. La richiesta unica evita
+la ripetizione delle fonti, ma richiede al modello di gestire più campi insieme.
+La scelta va valutata su correttezza, completezza, tempi e consumo dell'intera
+compilazione, mantenendo uguali modello, fonti e indicazioni.
 
 **Rendere la revisione e la provenienza più precise**
 
@@ -622,4 +620,4 @@ i suoi campi siano riconoscibili o modificabili.
 | Dopo             | Confrontare retrieval FTS5 e gruppi per sezione con il comportamento attuale. | Modifica selezione del contesto e costruzione delle richieste.                                                   |
 | Dopo             | Revisione delle singole proposte e tracciamento delle versioni delle fonti.   | Estende persistenza e interfaccia; riutilizza il writer.                                                         |
 | Estensione       | OCR, compilazione PDF e ulteriori strutture Word.                             | Richiede componenti e verifiche specifici per formato.                                                           |
-| Uso continuativo | Esecuzioni in background con avanzamento e ripresa.                           | Richiede stato persistente dei gruppi completati, gestione dei tentativi e prevenzione delle chiamate duplicate. |
+| Uso continuativo | Esecuzioni in background con avanzamento e ripresa.                           | Richiede stato persistente delle elaborazioni, gestione delle interruzioni e prevenzione delle chiamate duplicate. |

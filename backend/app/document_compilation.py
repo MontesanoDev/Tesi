@@ -30,15 +30,21 @@ from app.docx_templates import (
 from app.fact_extraction import select_source_chunks
 from app.generation import GenerationError, GenerationNotConfiguredError
 
-PROMPT_VERSION = "docx-fields-v11-compact-json"
+PROMPT_VERSION = "docx-fields-v12-single-call"
 SOURCE_BUDGETS = {"company": 40_000, "project": 90_000, "general": 20_000}
 MAX_RESPONSE_CHARACTERS = 200_000
 FIELDS_PER_BATCH = 32
 MAX_BATCH_REQUESTS = 40
 COMPILATION_TIMEOUT_SECONDS = 600
+SINGLE_CALL_TIMEOUT_SECONDS = 1800
+SINGLE_CALL_MAX_OUTPUT_TOKENS = 32_768
 REPAIRABLE_CODES = {
-    "unknown_source", "invalid_quote", "value_not_in_quote", "invalid_email",
-    "partial_email_evidence", "partial_numeric_evidence",
+    "unknown_source",
+    "invalid_quote",
+    "value_not_in_quote",
+    "invalid_email",
+    "partial_email_evidence",
+    "partial_numeric_evidence",
 }
 logger = logging.getLogger(__name__)
 
@@ -51,9 +57,9 @@ Non devi generare Markdown, XML o un nuovo documento. Il codice scrivera solo
 le celle e i segnaposti autorizzati, lasciando invariato il testo prestampato.
 I cataloghi includono elementi decorativi: omettili, ma riporta i campi reali anche
 quando sono mancanti. Usa SOLO cell_id in target_ids e con writable=true.
-Questa chiamata riguarda un solo gruppo: gli altri elementi restano visibili
-per contesto, ma NON devono comparire nella risposta. Non anticipare altri gruppi.
-Se il gruppo contiene solo elementi decorativi, restituisci fields=[].
+Esamina il modulo nel suo insieme e mantieni coerenza tra sezioni e soggetti.
+Gli elementi non inclusi in target_ids restano visibili per contesto, ma NON
+devono comparire nella risposta. Se tutti i candidati sono decorativi, usa fields=[].
 La chiave cell_id identifica sia celle (t0.r1.c1) sia segnaposti (p3.s0).
 Per i paragrafi, text_with_fields mostra ogni segnaposto come [[p3.s0]]:
 proponi SOLO il valore di quel segnaposto, mai l'intero paragrafo o le etichette.
@@ -331,7 +337,12 @@ def build_prompt(
     return json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
 
 
-async def request_field_proposals(prompt: str) -> tuple[str, str, int | None]:
+async def request_field_proposals(
+    prompt: str,
+    *,
+    max_tokens: int = 12_000,
+    timeout_seconds: float = 180,
+) -> tuple[str, str, int | None]:
     settings = get_deepseek_settings()
     if not settings.configured:
         raise GenerationNotConfiguredError("Configura un modello AI nelle Impostazioni generali")
@@ -344,17 +355,23 @@ async def request_field_proposals(prompt: str) -> tuple[str, str, int | None]:
         "response_format": {"type": "json_object"},
         "thinking": {"type": "disabled"},
         "temperature": 0.1,
-        "max_tokens": 12_000,
+        "max_tokens": max_tokens,
     }
     try:
-        async with asyncio.timeout(180):
-            async with httpx.AsyncClient(timeout=httpx.Timeout(160, connect=10)) as client:
+        async with asyncio.timeout(timeout_seconds):
+            async with httpx.AsyncClient(
+                timeout=httpx.Timeout(timeout_seconds, connect=10)
+            ) as client:
                 response = await post_chat(client, settings, body)
                 response.raise_for_status()
                 payload = response.json()
     except TimeoutError as exc:
         raise GenerationError(
-            "Il gruppo di campi non e stato completato entro 180 secondi"
+            f"La compilazione non e stata completata entro {timeout_seconds:g} secondi"
+        ) from exc
+    except httpx.TimeoutException as exc:
+        raise GenerationError(
+            f"Tempo di attesa scaduto durante la compilazione con {settings.label}"
         ) from exc
     except httpx.HTTPStatusError as exc:
         raise GenerationError(
@@ -560,9 +577,60 @@ def validate_proposals(
     }
 
 
+async def compile_fields_once(
+    layout: DocxLayout, sources: CompilationSources, title: str, instructions: str
+) -> tuple[dict, str, int | None, dict]:
+    """One proposal for the whole document; validation never triggers another LLM call."""
+    targets = (*layout.cells, *layout.slots)
+    try:
+        async with asyncio.timeout(SINGLE_CALL_TIMEOUT_SECONDS):
+            content, model, tokens = await request_field_proposals(
+                build_prompt(layout, sources, title, instructions, targets),
+                max_tokens=SINGLE_CALL_MAX_OUTPUT_TOKENS,
+                timeout_seconds=SINGLE_CALL_TIMEOUT_SECONDS,
+            )
+    except TimeoutError as exc:
+        raise GenerationError(
+            "Compilazione non completata entro il tempo massimo "
+            f"({SINGLE_CALL_TIMEOUT_SECONDS:g} secondi); nessun file prodotto"
+        ) from exc
+    # Truncation, malformed JSON and unknown IDs abort without retries or partial writes.
+    report = validate_proposals(
+        content,
+        layout,
+        sources,
+        allowed_ids=set(targets),
+        instructions=instructions,
+    )
+    if not report["fields"]:
+        raise GenerationError(
+            "Il modello non ha identificato campi da compilare; nessun file prodotto"
+        )
+    blocked = [field for field in report["fields"] if field["validation_codes"]]
+    if blocked:
+        report["warnings"].append(
+            f"{len(blocked)} proposte bloccate dai controlli: campi lasciati vuoti. "
+            "La modalita a chiamata unica non esegue correzioni automatiche."
+        )
+    execution = {
+        "strategy": "single_call",
+        "batch_size": len(targets),
+        "requests": 1,
+        "completed_batches": 1,
+        "truncated_responses": 0,
+        "repair_requests": 0,
+        "repair_attempted_fields": 0,
+        "repaired_fields": 0,
+        "repair_skipped_fields": sum(field["repairable"] for field in blocked),
+        "out_of_batch_proposals": len(report["rejected_proposals"]),
+    }
+    return report, model, tokens, execution
+
+
 async def compile_field_batches(
     layout: DocxLayout, sources: CompilationSources, title: str, instructions: str
 ) -> tuple[dict, str, int | None, dict]:
+    """Previous strategy retained for regression tests and explicit comparisons."""
     targets = (*layout.cells, *layout.slots)
     fields, warnings, models = [], [], []
     rejected_proposals = []
@@ -602,7 +670,11 @@ async def compile_field_batches(
             await process(batch[middle:])
             return
         report = validate_proposals(
-            content, layout, sources, allowed_ids=set(batch), instructions=instructions,
+            content,
+            layout,
+            sources,
+            allowed_ids=set(batch),
+            instructions=instructions,
         )
         fields.extend(report["fields"])
         warnings.extend(report["warnings"])
@@ -621,9 +693,18 @@ async def compile_field_batches(
                 "status": "unresolved",
                 "attempted": False,
                 "initial_proposal": {
-                    key: field[key] for key in (
-                        "cell_id", "label", "entity", "kind", "value", "reason",
-                        "evidence", "rejected_evidence", "validation_notes", "validation_codes",
+                    key: field[key]
+                    for key in (
+                        "cell_id",
+                        "label",
+                        "entity",
+                        "kind",
+                        "value",
+                        "reason",
+                        "evidence",
+                        "rejected_evidence",
+                        "validation_notes",
+                        "validation_codes",
                     )
                 },
                 "message": "Proposta ancora bloccata; campo lasciato vuoto",
@@ -644,10 +725,16 @@ async def compile_field_batches(
         for attempt in attempts.values():
             attempt["attempted"] = True
         try:
-            content, model, tokens = await request_field_proposals(build_prompt(
-                layout, sources, title, instructions, targets,
-                corrections=[attempt["initial_proposal"] for attempt in attempts.values()],
-            ))
+            content, model, tokens = await request_field_proposals(
+                build_prompt(
+                    layout,
+                    sources,
+                    title,
+                    instructions,
+                    targets,
+                    corrections=[attempt["initial_proposal"] for attempt in attempts.values()],
+                )
+            )
         except TruncatedCompilationError as exc:
             usage.append(exc.tokens)
             execution["truncated_responses"] += 1
@@ -663,7 +750,11 @@ async def compile_field_batches(
         models.append(model)
         # Only assigned fields reach the repair step; extras stay in the rejection audit.
         report = validate_proposals(
-            content, layout, sources, allowed_ids=set(targets), instructions=instructions,
+            content,
+            layout,
+            sources,
+            allowed_ids=set(targets),
+            instructions=instructions,
         )
         warnings.extend(report["warnings"])
         rejected_proposals.extend(
@@ -737,7 +828,12 @@ async def compile_field_batches(
 
 
 async def compile_document(
-    project_id: str, title: str, data: bytes, instructions: str
+    project_id: str,
+    title: str,
+    data: bytes,
+    instructions: str,
+    *,
+    strategy: Literal["single_call", "batches"] = "single_call",
 ) -> tuple[bytes, dict]:
     layout = await asyncio.to_thread(inspect_docx, data)
     sources = await asyncio.to_thread(load_compilation_sources, project_id)
@@ -745,9 +841,8 @@ async def compile_document(
         raise DocumentInputError(
             "Carica almeno una fonte del progetto o aziendale prima di compilare"
         )
-    report, model, tokens, execution = await compile_field_batches(
-        layout, sources, title, instructions
-    )
+    compile_fields = compile_field_batches if strategy == "batches" else compile_fields_once
+    report, model, tokens, execution = await compile_fields(layout, sources, title, instructions)
     values = {
         field["cell_id"]: field["written_value"]
         for field in report["fields"]

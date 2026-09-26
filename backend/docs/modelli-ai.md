@@ -108,8 +108,8 @@ senza ricreare progetti, fonti o compilazioni. La migrazione del vecchio vincolo
 sui tre provider conserva profili, chiavi cifrate, predefinito e scelte dei progetti.
 
 Prima della generazione, `project_ai_context()` legge una configurazione e la
-mantiene in un `ContextVar`. Tutti i gruppi e le eventuali correzioni della
-stessa compilazione usano quel modello e quelle credenziali. Cambiare le
+mantiene in un `ContextVar`. La compilazione usa quel modello e quelle
+credenziali fino al termine. Cambiare le
 impostazioni durante un'elaborazione vale per le richieste successive. Le
 richieste concorrenti di progetti diversi hanno contesti separati.
 
@@ -125,8 +125,10 @@ quelli dell'applicazione. Non c'è un passaggio automatico a un servizio diverso
 in caso di errore.
 
 Le risposte native vengono normalizzate prima della validazione. Una risposta
-troncata o rifiutata non viene trattata come completata; nella compilazione Word
-rimangono applicabili le regole esistenti di divisione dei gruppi e correzione.
+troncata o rifiutata non viene trattata come completata. La compilazione Word
+usa una sola chiamata per tutti i candidati, senza divisione automatica o
+richieste di correzione. Un errore strutturale interrompe la compilazione;
+una proposta con evidenze non valide lascia vuoto il campo interessato.
 
 La chat concede a Ollama fino a 180 secondi complessivi, compresi il caricamento
 del modello e la generazione. Con `stream: false` il servizio invia il JSON al
@@ -135,7 +137,8 @@ servizi restano 90 secondi complessivi e 30 secondi di attesa dei dati HTTP;
 la connessione iniziale ha un limite di 10 secondi per tutti. I timeout sono
 segnalati separatamente dagli errori di collegamento e non provocano un nuovo
 tentativo automatico. Questi valori riguardano la chat; estrazione e compilazione
-mantengono i propri limiti.
+mantengono i propri limiti. Per il Word sono 1.800 secondi complessivi di
+attesa del modello, 10 secondi per la connessione e fino a 32.768 token di output.
 
 ## Chiavi e configurazioni esistenti
 
@@ -170,13 +173,19 @@ Supportare il collegamento non significa che ogni modello sappia compilare
 correttamente i moduli. Deve rispettare i contratti JSON e gestire il contesto
 richiesto. Il controllo delle citazioni non certifica l'interpretazione del campo.
 
-I budget delle fonti, i gruppi di 32 posizioni, i limiti della risposta e i timeout
+I budget delle fonti, i limiti della risposta e i timeout
 non vengono ricalibrati automaticamente quando si cambia modello. In Ollama la
 finestra richiesta si imposta dalla UI, inizialmente a 32.768 token: non è una
 misura della capacità effettiva di qualsiasi modello e non è stata ottimizzata
 con benchmark. Con fonti estese può essere insufficiente; il servizio può
 troncare il contesto o rifiutare la richiesta. Aumentarla richiede memoria e un
 modello che la supporti. Anche un modello locale lento può superare i timeout.
+
+Per la prova del modulo Catanzaro con `gemma4:e2b`, il profilo Ollama locale
+e stato portato a 131.072 token: la richiesta misurata contiene 68.878 token
+di input. La connessione ha funzionato, ma la risposta non ha rispettato lo
+schema dei campi. Misure e limiti sono nel
+[resoconto della prova](../../prova-compilazione-unica.md).
 
 La verifica automatica copre persistenza, migrazione, credenziali, PKCE,
 selezione, concorrenza e generazione nei quattro percorsi per tutti i provider

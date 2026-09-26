@@ -43,7 +43,7 @@ flowchart TB
         ART["artifacts.py<br/>artefatti Markdown e indice"]
         CHAT["generation.py<br/>risposta con riferimenti"]
         MD["draft_generation.py<br/>bozza Markdown"]
-        COMP["document_compilation.py<br/>fonti, gruppi, proposte, controlli"]
+        COMP["document_compilation.py<br/>fonti, richiesta unica, proposte, controlli"]
         WORD["docx_templates.py<br/>catalogo XML e scrittura DOCX"]
         API --> ING
         API --> RET
@@ -106,7 +106,7 @@ Schema e dettagli: [Modelli AI](backend/docs/modelli-ai.md).
 | Artefatti e fatti          | [artifacts.py](backend/app/artifacts.py), [call_facts.py](backend/app/call_facts.py)               | Markdown, versioni, collegamenti e disponibilità dei fatti.                         |
 | Estrazione LLM             | [fact_extraction.py](backend/app/fact_extraction.py)                                               | Sintesi dei documenti del progetto con riferimenti ai frammenti.                    |
 | Chat e draft testuale      | [generation.py](backend/app/generation.py), [draft_generation.py](backend/app/draft_generation.py) | Due contratti di generazione distinti.                                              |
-| Compilatore                | [document_compilation.py](backend/app/document_compilation.py)                                     | Contesto, proposte JSON, validazione, gruppi e correzione limitata.                 |
+| Compilatore                | [document_compilation.py](backend/app/document_compilation.py)                                     | Contesto, richiesta unica, proposte JSON e validazione. Strategia a gruppi disponibile per confronti espliciti. |
 | Parser/writer Word         | [docx_templates.py](backend/app/docx_templates.py)                                                 | Controllo ZIP/XML, candidati, coordinate fisiche e sostituzioni.                    |
 | API DOCX                   | [document_compilation_routes.py](backend/app/document_compilation_routes.py)                       | Upload, persistenza dei risultati e download per progetto.                          |
 
@@ -274,16 +274,9 @@ sequenceDiagram
     W-->>API: Celle, segnaposti, contesto e aree non supportate
     API->>DB: Carica fonti e seleziona entro i budget
     DB-->>API: Chunk selezionati per scope
-    loop Gruppi fino a 32 candidati
-        API->>LLM: Catalogo completo, fonti, target_ids del gruppo
-        LLM-->>API: Campi, valori, citazioni e stati in JSON
-        Note over API: Valida struttura, posizioni, citazioni e valori
-    end
-    opt Proposte con errori correggibili
-        API->>LLM: Un tentativo mirato, con identità dei campi fissata
-        LLM-->>API: Correzioni
-        Note over API: Ripete i controlli
-    end
+    API->>LLM: Una richiesta: catalogo completo, fonti, tutti i target_ids
+    LLM-->>API: Campi, valori, citazioni e stati in JSON
+    Note over API: Valida struttura, posizioni, citazioni e valori; nessun nuovo tentativo
     API->>W: Valori ammessi per le sole posizioni autorizzate
     W-->>API: DOCX con avviso di bozza
     Note over API,DB: BEGIN IMMEDIATE e ricontrollo esistenza progetto
@@ -325,7 +318,7 @@ strutturale, non un'analisi della resa grafica in Word.
 | `unclassified_fields`          | Posizioni candidate non classificate: possono essere campi o elementi decorativi.                             |
 | `unsupported_locations`        | Aree complesse rilevate e lasciate invariate. Non è un inventario completo di tutti i campi non riconosciuti. |
 
-I controlli verificano JSON, ID, duplicati, appartenenza al gruppo, coerenza
+I controlli verificano JSON, ID, duplicati, posizioni autorizzate, coerenza
 stato/valore, presenza delle citazioni nelle fonti e del valore nelle citazioni.
 I confronti testuali normalizzano spazi e maiuscole. Dal prompt
 `docx-fields-v7-numeric-evidence`, il validatore controlla anche che i token con
@@ -334,15 +327,17 @@ testo originale ai bordi della citazione. Sono inoltre presenti
 protezione delle firme riconosciute, blocco di scelte/dichiarazioni classificate
 come tali e validazione sintattica dei campi email riconosciuti.
 
-Un errore di evidenza blocca il campo; alcuni errori possono ricevere una sola
-correzione. Un errore strutturale della risposta può interrompere tutta la
-compilazione. Le risposte iniziali troncate vengono scartate e il solo gruppo
-interessato viene suddiviso. Sono previsti massimo 40 richieste e 600 secondi
-per elaborazione dei gruppi e correzioni, con 180 secondi per richiesta.
+Un errore di evidenza blocca il campo. Un errore strutturale della risposta o
+una risposta troncata interrompono tutta la compilazione. La modalità corrente
+usa una sola chiamata, fino a 32.768 token di output e 1.800 secondi di attesa,
+senza correzioni o suddivisioni automatiche. La precedente strategia a gruppi
+rimane nel codice per confronti e test, ma non viene richiamata dall'interfaccia.
 
 Il report registra hash di template/output, hash dei chunk citati, citazioni,
-origine dei dati, modello, versione del prompt, consumo dichiarato, errori e
-correzioni. `ready_for_submission` rimane `false`.
+origine dei dati, modello, versione del prompt, consumo dichiarato ed errori.
+`execution.strategy` vale `single_call`; `ready_for_submission` rimane `false`.
+La [prova con Gemma locale](prova-compilazione-unica.md) documenta un caso
+reale terminato senza bozza per errori nel JSON proposto dal modello.
 
 ## 6. Problematiche principali e priorità
 
@@ -382,13 +377,13 @@ Sono risultati storici di quelle esecuzioni, **non nuove misure di questo audit*
 
 **Evidenza:** `load_compilation_sources` usa `select_source_chunks`, che oltre
 budget sceglie posizioni distribuite nel corpus. La scelta non dipende dal
-campo, dal suo soggetto o dalla query. Ogni gruppo riceve nuovamente fonti e
-catalogo del modello.
+campo, dal suo soggetto o dalla query. La richiesta unica riceve fonti e
+catalogo del modello una volta.
 
 **Conseguenza:** un dato presente nella KB può essere escluso dal contesto;
 un dato poco pertinente può occuparlo. Aumentano anche token e latenza.
 `source_coverage` misura chunk/caratteri inviati, non copertura informativa dei
-campi. La correzione automatica riusa le stesse fonti e non recupera quelle omesse.
+campi. Non vengono recuperate altre fonti se il modello non trova un dato.
 
 **Intervento:** query costruite da etichetta, sezione e soggetto, con filtro per
 origine e tipo di documento; FTS5 per campo o piccolo gruppo, espansione del
@@ -505,7 +500,7 @@ evitare che una schermata dimostrativa sembri una funzionalità integrata.
 | Aspetto              | Riscontro                                                                                                                                                           | Priorità/intervento                                                                                                                                                            |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Accesso al servizio  | Nessuna autenticazione nelle route; `start.sh` espone per default su `0.0.0.0`. CORS non autentica le richieste.                                                    | Prima di un uso in rete con dati reali: accesso controllato, permessi e impostazioni di ascolto esplicite. Non serve costruire una piattaforma multiutente per la demo locale. |
-| Richieste lunghe     | La generazione vive nella richiesta HTTP; non ci sono job persistenti, ripresa o avanzamento per batch nella UI.                                                    | Per uso prolungato: stato del job, idempotenza e ripresa dei gruppi. La suddivisione attuale è già un buon primo controllo.                                                    |
+| Richieste lunghe     | La generazione vive nella richiesta HTTP; non ci sono job persistenti o ripresa nella UI. | Per uso prolungato: stato del job, idempotenza e gestione esplicita delle interruzioni. |
 | Riproducibilità      | Hash e report presenti, ma manca lo snapshot completo del contesto selezionato in ogni esecuzione.                                                                  | Salvare un manifesto delle fonti/versioni, configurazione e contesto necessario al replay. La sola versione del prompt non congela tutto l'esperimento.                        |
 | Coerenza DB/file     | Alcune operazioni riscrivono file prima del commit SQLite; gli artefatti mantengono solo la versione corrente.                                                      | Scritture atomiche, revisioni conservate e procedure di recupero. La persistenza DOCX ha già cleanup e controllo della cancellazione del progetto.                             |
 | Chat e Markdown      | Non controllano `finish_reason` come fanno estrazione e DOCX; riferimenti validi non provano ogni affermazione. La chat può accettare una risposta senza citazioni. | Uniformare i contratti di terminazione e astensione; verificare il supporto delle affermazioni, senza confondere ID valido e contenuto corretto.                               |
@@ -928,7 +923,7 @@ stesso gruppo con la v9 e con il solo JSON compatto non ha riprodotto quelle
 scritture. Non è una dimostrazione causale su una singola prova; per prudenza
 è stata ritirata l'omissione di `paragraph.text`.
 
-La versione corrente `docx-fields-v11-compact-json` mantiene l'intero payload
+La versione `docx-fields-v11-compact-json` mantiene l'intero payload
 della v9 e modifica soltanto gli spazi di separazione JSON. Il confronto di
 tutte le richieste live, correzioni comprese, conferma l'uguaglianza dei dati
 dopo il parsing. Non cambia l'architettura né la selezione delle fonti.
