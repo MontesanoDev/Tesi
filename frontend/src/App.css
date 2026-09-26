@@ -1649,28 +1649,6 @@
   min-height: 0;
 }
 
-.settings-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  min-height: 36px;
-  color: var(--text);
-  font-size: 13px;
-}
-
-.settings-row div strong,
-.settings-row div span {
-  display: block;
-}
-
-.settings-row div span,
-.settings-row > span {
-  margin-top: 4px;
-  color: var(--text-muted);
-  font-size: 11px;
-}
-
 .value-control {
   width: 144px;
   height: 34px;
