@@ -9,6 +9,7 @@ from dataclasses import dataclass
 
 import httpx
 
+from app.ai_transport import post_chat
 from app.call_facts import (
     CallFactsDocument,
     CallFactSource,
@@ -175,7 +176,7 @@ def _clean_json(content: str) -> dict:
             len(cleaned), exc.lineno, exc.colno, exc.msg,
         )
         raise GenerationError(
-            "DeepSeek ha restituito una risposta JSON non valida per i dati estratti. "
+            "Il modello ha restituito una risposta JSON non valida per i dati estratti. "
             "I dati salvati non sono stati modificati."
         ) from exc
     except (ValueError, RecursionError) as exc:
@@ -183,7 +184,7 @@ def _clean_json(content: str) -> dict:
             "La risposta JSON dei dati estratti supera i limiti supportati"
         ) from exc
     if not isinstance(payload, dict):
-        raise GenerationError("DeepSeek non ha restituito un oggetto JSON di dati estratti")
+        raise GenerationError("Il modello non ha restituito un oggetto JSON di dati estratti")
     return payload
 
 
@@ -234,7 +235,9 @@ def parse_extracted_facts(
             )
         )
     if not facts and not missing_information:
-        raise GenerationError("DeepSeek non ha estratto fatti o informazioni mancanti utilizzabili")
+        raise GenerationError(
+            "Il modello non ha estratto fatti o informazioni mancanti utilizzabili"
+        )
     return facts, missing_information
 
 
@@ -273,8 +276,8 @@ async def extract_call_facts(
     source_chunks: list[dict],
 ) -> CallFactsExtraction:
     settings = get_deepseek_settings()
-    if not settings.api_key:
-        raise GenerationNotConfiguredError("DEEPSEEK_API_KEY non configurata")
+    if not settings.configured:
+        raise GenerationNotConfiguredError("Configura un modello AI nelle Impostazioni generali")
 
     evidence = select_source_chunks(source_chunks)
     if not evidence:
@@ -295,10 +298,8 @@ async def extract_call_facts(
             async with httpx.AsyncClient(timeout=httpx.Timeout(160, connect=10)) as client:
                 for attempt, budget in enumerate(OUTPUT_TOKEN_BUDGETS, start=1):
                     async with asyncio.timeout(REQUEST_TIMEOUT_SECONDS):
-                        response = await client.post(
-                            f"{settings.base_url}/chat/completions",
-                            headers={"Authorization": f"Bearer {settings.api_key}"},
-                            json={**request_body, "max_tokens": budget},
+                        response = await post_chat(
+                            client, settings, {**request_body, "max_tokens": budget},
                         )
                         response.raise_for_status()
                         payload = response.json()
@@ -333,9 +334,11 @@ async def extract_call_facts(
                         )
                     if finish_reason != "stop":
                         if finish_reason == "content_filter":
-                            raise GenerationError("DeepSeek ha filtrato la risposta di estrazione")
+                            raise GenerationError(
+                                f"{settings.label} ha filtrato la risposta di estrazione"
+                            )
                         raise GenerationError(
-                            "DeepSeek ha interrotto l'estrazione prima del completamento. "
+                            f"{settings.label} ha interrotto l'estrazione prima del completamento. "
                             "Riprova; i dati salvati non sono stati modificati."
                         )
                     try:
@@ -351,16 +354,16 @@ async def extract_call_facts(
                     break
     except TimeoutError as exc:
         raise GenerationError(
-            "DeepSeek non ha completato l'estrazione entro il tempo massimo. "
+            f"{settings.label} non ha completato l'estrazione entro il tempo massimo. "
             "I dati salvati non sono stati modificati."
         ) from exc
     except httpx.HTTPStatusError as exc:
         raise GenerationError(
-            f"DeepSeek ha rifiutato l'estrazione ({exc.response.status_code})"
+            f"{settings.label} ha rifiutato l'estrazione ({exc.response.status_code})"
         ) from exc
     except (httpx.HTTPError, ValueError) as exc:
         raise GenerationError(
-            "DeepSeek non e raggiungibile o ha restituito dati non validi"
+            f"{settings.label} non e raggiungibile o ha restituito dati non validi"
         ) from exc
 
     total_tokens = sum(usages) if all(value is not None for value in usages) else None

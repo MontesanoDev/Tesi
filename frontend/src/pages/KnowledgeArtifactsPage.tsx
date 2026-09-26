@@ -6,6 +6,7 @@ import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectFactsWorkspace } from '../components/ProjectFactsWorkspace'
 import { TemplateWorkspace } from '../components/TemplateWorkspace'
+import { ProjectModelSelector } from '../components/ProjectModelSelector'
 import { useProject } from '../hooks/useProject'
 import type { KnowledgeArtifactDetail, KnowledgeArtifactSummary } from '../types'
 
@@ -24,8 +25,10 @@ export function KnowledgeArtifactsPage() {
   const [detailLoading, setDetailLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [dirty, setDirty] = useState(false)
+  const [changingModel, setChangingModel] = useState(false)
   const onUpdated = useCallback((updated: KnowledgeArtifactDetail) => {
     setArtifacts((current) => current.map((item) => item.id === updated.id ? updated : item))
+    setArtifact((current) => current?.id === updated.id ? updated : current)
   }, [])
 
   useEffect(() => {
@@ -78,8 +81,10 @@ export function KnowledgeArtifactsPage() {
       onClick={() => { if (confirmLeave()) navigate(`/projects/${project.id}`) }}>← {project.title}</button>
     <div className="knowledge-workspace">
       <header className="page-heading knowledge-heading"><h1>Preparazione candidatura</h1></header>
+      <ProjectModelSelector key={project.id} projectId={project.id}
+        onChanging={setChangingModel} />
       {error && <div className="knowledge-error" role="alert">{error}</div>}
-      <div className="artifact-layout">
+      <div className="artifact-layout" inert={changingModel}>
         <nav className="artifact-list" aria-label="Preparazione candidatura">
           <span className="section-label">Flusso di lavoro</span>
           {listLoading ? <LoadingState label="Caricamento dati" /> : workflowArtifacts.map((item) => (

@@ -28,6 +28,7 @@
 .docx-model-name small, .docx-result-heading small { margin-top: 4px; color: var(--text-muted); font-size: 11px; }
 .docx-instructions { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 8px; }
 .docx-instructions span { color: var(--text-muted); font-size: 12px; }
+.docx-instructions-help { margin: 0 0 10px; color: var(--text-muted); font-size: 12px; }
 .docx-form textarea { display: block; width: 100%; min-height: 88px; max-height: 280px; resize: vertical; padding: 12px; border: 1px solid var(--border); border-radius: 5px; background: #181917; color: var(--text); font: inherit; line-height: 1.6; }
 .docx-form textarea:focus-visible, .docx-workspace select:focus-visible, .template-format select:focus-visible { outline: 2px solid #9ebfaa; outline-offset: 2px; }
 .docx-form-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }

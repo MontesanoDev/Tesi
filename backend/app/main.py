@@ -9,6 +9,8 @@ from uuid import uuid4
 from fastapi import FastAPI, File, Form, HTTPException, Query, Response, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.ai_profiles import import_legacy_configuration, project_ai_context
+from app.ai_routes import router as ai_router
 from app.artifacts import (
     ArtifactReadOnlyError,
     ensure_project_artifacts,
@@ -55,6 +57,7 @@ from app.repository import (
     create_project,
     delete_global_document,
     delete_project,
+    delete_project_file,
     get_company_context,
     get_conversation,
     get_conversation_history,
@@ -147,6 +150,7 @@ def _get_call_facts_document(project_id: str) -> tuple[dict, CallFactsDocument]:
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     init_database()
+    import_legacy_configuration()
     seed_database()
     seed_markdown_artifacts()
     sync_call_fact_review_metrics()
@@ -155,6 +159,7 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(title="Mapi RAG API", version="0.1.0", lifespan=lifespan)
 app.include_router(document_compilation_router)
+app.include_router(ai_router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -430,11 +435,12 @@ async def project_call_facts_extract(project_id: str) -> dict:
             detail="Carica e indicizza almeno una fonte prima di estrarre i dati del progetto",
         )
     try:
-        extraction = await extract_call_facts(
-            project_id,
-            project["title"],
-            source_chunks,
-        )
+        with project_ai_context(project_id):
+            extraction = await extract_call_facts(
+                project_id,
+                project["title"],
+                source_chunks,
+            )
     except GenerationNotConfiguredError as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
     except GenerationError as exc:
@@ -555,21 +561,22 @@ async def project_draft_generate(project_id: str) -> dict:
     project_facts = artifacts["project_facts"]
     if template is None or project_facts is None:
         raise RuntimeError("Gli artefatti validati non sono piu disponibili")
-    if template["status"] == "Da configurare":
+    if template["status"] == "Da configurare" or not template["content"].strip():
         raise HTTPException(
             status_code=422,
-            detail="Configura il Template prima di generare il draft",
+            detail="Carica o crea e salva un modello prima di generare la compilazione",
         )
 
     company_sources = get_company_context()
     try:
-        generated = await generate_grounded_draft(
-            project_title=project["title"],
-            template_markdown=template["content"],
-            company_sources=company_sources,
-            project_facts_markdown=project_facts["content"],
-            available_facts=available_facts,
-        )
+        with project_ai_context(project_id):
+            generated = await generate_grounded_draft(
+                project_title=project["title"],
+                template_markdown=template["content"],
+                company_sources=company_sources,
+                project_facts_markdown=project_facts["content"],
+                available_facts=available_facts,
+            )
     except DraftInputError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     except GenerationNotConfiguredError as exc:
@@ -672,7 +679,7 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
     if evidence is None:
         raise RuntimeError("Il progetto validato non e piu disponibile")
     if not evidence and history and is_follow_up_question(payload.question):
-        evidence = recent_conversation_evidence(history)
+        evidence = recent_conversation_evidence(project_id, history)
     base_response = {
         "question": payload.question,
         "citations": [],
@@ -697,11 +704,12 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
             }
         )
     try:
-        generated = await generate_grounded_answer(
-            payload.question,
-            evidence,
-            conversation_history=history,
-        )
+        with project_ai_context(project_id):
+            generated = await generate_grounded_answer(
+                payload.question,
+                evidence,
+                conversation_history=history,
+            )
     except GenerationNotConfiguredError as exc:
         return persist(
             {
@@ -758,6 +766,22 @@ async def project_file_create(
     if result is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
     return result
+
+
+@app.delete(
+    "/api/projects/{project_id}/files/{file_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+def project_file_delete(project_id: str, file_id: int) -> Response:
+    try:
+        deleted = delete_project_file(project_id, file_id)
+    except (OSError, ValueError) as exc:
+        raise HTTPException(
+            status_code=500, detail="Impossibile eliminare la fonte; riprova",
+        ) from exc
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Fonte del progetto non trovata")
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 @app.get(

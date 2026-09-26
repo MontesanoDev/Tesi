@@ -85,6 +85,21 @@ def test_supported_markers_are_replaced_literally(marker):
     assert result.paragraphs[1].text == "Nome: Luca; testo originale."
 
 
+@pytest.mark.parametrize("marker", ["(__)", "(_ _)", "( __ )", "(\u00a0_\u00a0_\u00a0)"])
+def test_short_parenthesized_fields_survive_split_runs_without_changing_surrounding_text(marker):
+    document = Document()
+    paragraph = document.add_paragraph()
+    for character in f"Comune: ____ {marker}; riferimento AB__12; nota __testo__.":
+        paragraph.add_run(character)
+    layout = inspect_docx(save(document))
+    assert layout.candidate_ids == {"p0.s0", "p0.s1"}
+    result = Document(BytesIO(fill_docx(layout, {"p0.s0": "Torino", "p0.s1": "TO"})))
+    expected_marker = marker.replace(layout.slots["p0.s1"].placeholder, "TO")
+    assert result.paragraphs[1].text == (
+        f"Comune: Torino {expected_marker}; riferimento AB__12; nota __testo__."
+    )
+
+
 @pytest.mark.parametrize(
     "text",
     [
@@ -92,6 +107,7 @@ def test_supported_markers_are_replaced_literally(marker):
         "Norma [12] e articolo 3",
         "Nome:       ",
         "Testo libero senza campi",
+        "Riferimento AB__12, __nome__, segno (_) e __ isolato",
     ],
 )
 def test_prose_punctuation_and_unmarked_spaces_are_not_fields(text):
@@ -319,7 +335,7 @@ def test_native_form_regression_merges_contacts_and_preserves_abbreviation_dots(
     )
     layout = inspect_docx(path.read_bytes())
     assert len(layout.cells) == 67
-    assert len(layout.slots) == 184
+    assert len(layout.slots) == 187
     paragraph = next(p for p in layout.paragraph_catalog if p["paragraph"] == 42)
     assert len(paragraph["fields"]) == 6
     assert paragraph["text_with_fields"].startswith("prov. [[p42.s0]] via/piazza ")
@@ -327,8 +343,15 @@ def test_native_form_regression_merges_contacts_and_preserves_abbreviation_dots(
     assert layout.field_types["p42.s4"] == layout.field_types["p42.s5"] == "email"
     assert layout.field_types["p16.s0"] == "email"  # Label ends the preceding paragraph.
     assert len([s for s in layout.slots.values() if s.paragraph_index == 40]) == 1
-    values = {"p42.s4": "segreteria@azienda.demo", "p42.s5": "azienda@pec.demo"}
+    assert layout.slots["p15.s1"].placeholder == "__"
+    assert layout.slots["p12.s2"].placeholder == "__"
+    assert layout.slots["p13.s1"].placeholder == "__"
+    values = {
+        "p15.s0": "Bari", "p15.s1": "BA",
+        "p42.s4": "segreteria@azienda.demo", "p42.s5": "azienda@pec.demo",
+    }
     output = Document(BytesIO(fill_docx(layout, values)))
+    assert output.paragraphs[16].text.startswith("Bari (BA), tel. ")
     assert "e-mail segreteria@azienda.demo pec azienda@pec.demo e composta" in (
         output.paragraphs[43].text
     )

@@ -21,6 +21,7 @@ import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
 import { ProjectKnowledgeSummary } from '../components/ProjectKnowledgeSummary'
+import { ProjectModelSelector } from '../components/ProjectModelSelector'
 import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import { useProject } from '../hooks/useProject'
 import type { GroundedAnswer } from '../types'
@@ -135,6 +136,7 @@ export function ProjectWorkspacePage() {
   const [prompt, setPrompt] = useState('')
   const [turns, setTurns] = useState<ChatTurn[]>([])
   const [searching, setSearching] = useState(false)
+  const [changingModel, setChangingModel] = useState(false)
   const [conversationLoading, setConversationLoading] = useState(false)
   const [conversationError, setConversationError] = useState<string | null>(null)
   const turnSequence = useRef(0)
@@ -228,7 +230,7 @@ export function ProjectWorkspacePage() {
   async function submitPrompt(event: FormEvent) {
     event.preventDefault()
     const query = prompt.trim()
-    if (!query || searching || conversationLoading) return
+    if (!query || searching || conversationLoading || changingModel) return
     const turnId = `local-${++turnSequence.current}`
     setTurns((current) => [
       ...current,
@@ -338,11 +340,13 @@ export function ProjectWorkspacePage() {
         onKeyDown={handleComposerKeyDown}
       />
       <div className="composer-tools">
+        <ProjectModelSelector key={project.id} projectId={project.id} variant="menu"
+          disabled={searching || conversationLoading} onChanging={setChangingModel} />
         <button
           className="send-button"
           type="submit"
           aria-label="Invia"
-          disabled={!prompt.trim() || searching || conversationLoading}
+          disabled={!prompt.trim() || searching || conversationLoading || changingModel}
         >
           <ArrowUp size={20} />
         </button>

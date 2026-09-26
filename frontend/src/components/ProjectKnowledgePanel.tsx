@@ -5,6 +5,7 @@ import {
   Paperclip,
   Pencil,
   Plus,
+  Trash2,
   X,
 } from 'lucide-react'
 import { useRef, useState, type ChangeEvent, type FormEvent } from 'react'
@@ -50,18 +51,55 @@ export function ProjectKnowledgePanel({
   const [textTitle, setTextTitle] = useState('')
   const [textContent, setTextContent] = useState('')
   const [savingText, setSavingText] = useState(false)
+  const [fileToDelete, setFileToDelete] = useState<ProjectFile | null>(null)
+  const [deletingFile, setDeletingFile] = useState(false)
+  const [deleteError, setDeleteError] = useState<string | null>(null)
+  const deleteTrigger = useRef<HTMLButtonElement | null>(null)
   const [feedback, setFeedback] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const addMenuRef = useDismissibleMenu<HTMLDivElement>(
     addMenuOpen,
     () => setAddMenuOpen(false),
   )
+  const sourceBusy = uploading || savingText || loadingEditorId !== null || deletingFile
+
+  function closeDeleteDialog() {
+    if (deletingFile) return
+    setFileToDelete(null)
+    setDeleteError(null)
+    deleteTrigger.current?.focus()
+  }
+
+  async function deleteSource() {
+    if (!fileToDelete || sourceBusy) return
+    const file = fileToDelete
+    setDeletingFile(true)
+    setDeleteError(null)
+    setFeedback(null)
+    setError(null)
+    try {
+      await api.deleteProjectFile(project.id, file.id)
+    } catch (reason) {
+      setDeleteError(reason instanceof Error ? reason.message : 'Eliminazione non riuscita')
+      setDeletingFile(false)
+      return
+    }
+    setFileToDelete(null)
+    try {
+      await onProjectChange()
+      setFeedback(`${file.name} eliminato dal progetto e dall'indice.`)
+    } catch {
+      setError('Fonte eliminata, ma la lista non si aggiorna. Ricarica la pagina.')
+    } finally {
+      setDeletingFile(false)
+    }
+  }
 
   async function uploadFile(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
     event.target.value = ''
     setAddMenuOpen(false)
-    if (!file || uploading) return
+    if (!file || sourceBusy) return
 
     setUploading(true)
     setFeedback(null)
@@ -88,7 +126,7 @@ export function ProjectKnowledgePanel({
   }
 
   async function openFileEditor(file: ProjectFile) {
-    if (!isEditableSource(file) || loadingEditorId !== null || savingText) return
+    if (!isEditableSource(file) || sourceBusy) return
     setLoadingEditorId(file.id)
     setFeedback(null)
     setError(null)
@@ -186,7 +224,7 @@ export function ProjectKnowledgePanel({
                 type="button"
                 aria-label="Aggiungi al contesto"
                 aria-expanded={addMenuOpen}
-                disabled={uploading || savingText}
+                disabled={sourceBusy}
                 onClick={() => setAddMenuOpen((value) => !value)}
               >
                 {uploading ? <LoaderCircle className="spin" size={18} /> : <Plus size={18} />}
@@ -219,28 +257,47 @@ export function ProjectKnowledgePanel({
                 <div className="file-row context-file-row" key={file.id}>
                   <FileText size={17} />
                   <div>
-                    <strong>{file.name}</strong>
+                    <strong title={file.name}>{file.name}</strong>
                     <span>{file.metadata}</span>
                   </div>
                   <StatusPill tone={file.kind === 'template' ? 'purple' : 'success'}>
                     {file.status}
                   </StatusPill>
-                  {isEditableSource(file) ? (
-                    <button
-                      className="icon-button context-file-edit"
-                      type="button"
-                      title={`Modifica ${file.name}`}
-                      aria-label={`Modifica ${file.name}`}
-                      disabled={loadingEditorId !== null || uploading || savingText}
-                      onClick={() => openFileEditor(file)}
-                    >
-                      {loadingEditorId === file.id
-                        ? <LoaderCircle className="spin" size={16} />
-                        : <Pencil size={16} />}
-                    </button>
-                  ) : (
-                    <span className="context-file-action-spacer" aria-hidden="true" />
-                  )}
+                  <div className="context-file-actions">
+                    {isEditableSource(file) ? (
+                      <button
+                        className="icon-button context-file-edit"
+                        type="button"
+                        title={`Modifica ${file.name}`}
+                        aria-label={`Modifica ${file.name}`}
+                        disabled={sourceBusy}
+                        onClick={() => openFileEditor(file)}
+                      >
+                        {loadingEditorId === file.id
+                          ? <LoaderCircle className="spin" size={16} />
+                          : <Pencil size={16} />}
+                      </button>
+                    ) : (
+                      <span className="context-file-action-spacer" aria-hidden="true" />
+                    )}
+                    {file.kind === 'source' && (
+                      <button
+                        className="icon-button context-file-delete"
+                        type="button"
+                        title={`Elimina ${file.name}`}
+                        aria-label={`Elimina ${file.name}`}
+                        disabled={sourceBusy}
+                        onClick={(event) => {
+                          deleteTrigger.current = event.currentTarget
+                          setAddMenuOpen(false)
+                          setDeleteError(null)
+                          setFileToDelete(file)
+                        }}
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    )}
+                  </div>
                 </div>
               ))
             )}
@@ -249,6 +306,60 @@ export function ProjectKnowledgePanel({
 
         <ProjectPreparationPanel project={project} />
       </aside>
+
+      {fileToDelete && (
+        <div className="modal-layer" role="presentation">
+          <button className="modal-scrim" type="button" tabIndex={-1}
+            aria-label="Chiudi conferma eliminazione fonte" disabled={deletingFile}
+            onClick={closeDeleteDialog} />
+          <section className="project-modal delete-project-modal delete-source-modal" role="dialog"
+            aria-modal="true" aria-labelledby="delete-source-title"
+            aria-describedby="delete-source-description" aria-busy={deletingFile}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape') {
+                event.preventDefault()
+                closeDeleteDialog()
+              }
+              if (event.key === 'Tab') {
+                const buttons = event.currentTarget.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')
+                const first = buttons[0]
+                const last = buttons[buttons.length - 1]
+                if (!buttons.length) {
+                  event.preventDefault()
+                } else if (event.shiftKey && document.activeElement === first) {
+                  event.preventDefault()
+                  last?.focus()
+                } else if (!event.shiftKey && document.activeElement === last) {
+                  event.preventDefault()
+                  first?.focus()
+                }
+              }
+            }}>
+            <div className="modal-heading">
+              <h2 id="delete-source-title">Elimina fonte</h2>
+              <button className="icon-button" type="button" aria-label="Chiudi"
+                disabled={deletingFile} onClick={closeDeleteDialog}><X size={18} /></button>
+            </div>
+            <p id="delete-source-description">
+              Eliminare <strong>{fileToDelete.name}</strong> dal progetto e dall'indice di ricerca?
+              Questa operazione non può essere annullata.
+            </p>
+            <p className="delete-project-note">
+              Le conversazioni, i dati già estratti e le compilazioni salvate restano invariati.
+            </p>
+            {deleteError && <p className="upload-feedback upload-feedback--error" role="alert">{deleteError}</p>}
+            <div className="modal-actions">
+              <button className="button" type="button" autoFocus disabled={deletingFile}
+                onClick={closeDeleteDialog}>Annulla</button>
+              <button className="button button--danger" type="button" disabled={deletingFile}
+                onClick={deleteSource}>
+                {deletingFile ? <LoaderCircle className="spin" size={16} /> : <Trash2 size={16} />}
+                {deletingFile ? 'Eliminazione' : 'Elimina fonte'}
+              </button>
+            </div>
+          </section>
+        </div>
+      )}
 
       {textModalOpen && (
         <div className="modal-layer" role="presentation">

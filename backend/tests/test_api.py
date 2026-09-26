@@ -1,18 +1,27 @@
 import json
+from pathlib import Path
 
 import httpx
 import pytest
 
-from app.artifacts import seed_markdown_artifacts
+from app.artifacts import (
+    LEGACY_CANDIDATURE_TEMPLATE_BODY,
+    LEGACY_TEMPLATE_BODY,
+    replace_project_artifact,
+    seed_markdown_artifacts,
+)
 from app.db import connection, get_knowledge_path, get_storage_path, init_database
+from app.document_compilation import load_compilation_sources
 from app.draft_generation import GeneratedDraft
 from app.fact_extraction import (
     CallFactsExtraction,
     ExtractedFact,
+    load_project_source_chunks,
     render_call_facts_markdown,
 )
 from app.generation import GeneratedAnswer
 from app.main import app
+from app.repository import recent_conversation_evidence
 from app.schemas import MAX_QUESTION_LENGTH, QuestionRequest
 from app.seed import seed_database
 
@@ -778,6 +787,75 @@ async def test_call_facts_extraction_requires_an_indexed_source(client):
 
 
 @pytest.mark.anyio
+async def test_new_text_template_is_empty_and_generation_requires_a_saved_model(
+    client, monkeypatch,
+):
+    created = await client.post(
+        "/api/projects", json={"title": "Modello vuoto", "description": "Prova modello testuale"},
+    )
+    assert created.status_code == 201
+    project_id = created.json()["id"]
+    url = f"/api/projects/{project_id}/artifacts/{project_id}--template"
+    template = (await client.get(url)).json()
+    assert template["content"] == ""
+    assert template["status"] == "Da configurare"
+    assert template["byte_size"] == template["chunk_count"] == 0
+
+    async def unexpected_generation(**_kwargs):
+        raise AssertionError("Non chiamare il modello senza un template")
+
+    monkeypatch.setattr("app.main.generate_grounded_draft", unexpected_generation)
+    blocked = await client.post(f"/api/projects/{project_id}/draft/generate")
+    assert blocked.status_code == 422
+    assert "Carica o crea e salva un modello" in blocked.json()["detail"]
+    seed_markdown_artifacts()
+    assert (await client.get(url)).json() == template
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("status,body", [
+    ("Da configurare", LEGACY_TEMPLATE_BODY),
+    ("Bozza", LEGACY_CANDIDATURE_TEMPLATE_BODY),
+])
+@pytest.mark.parametrize("customized", ["no", "edited", "saved"])
+async def test_empty_template_migration_preserves_custom_models_and_saved_output(
+    client, status, body, customized,
+):
+    project_id = "fondo-riqualificazione-2027"
+    artifact_id = f"{project_id}--template"
+    content = (
+        f"---\nartifact: template\nscope: project\nproject: {project_id}\n"
+        f"status: {status.lower().replace(' ', '_')}\n---\n\n{body}"
+    )
+    if customized == "edited":
+        content += "\n## Sezione aggiunta dal proponente\n\nDettagli specifici.\n"
+    stored = replace_project_artifact(
+        project_id, artifact_id, content,
+        "Bozza aggiornata" if customized == "saved" else status,
+    )
+    output_id = f"{project_id}--draft"
+    output = replace_project_artifact(
+        project_id, output_id, "# Compilazione salvata\n\nNon modificare.", "Da verificare",
+    )
+    seed_markdown_artifacts()
+    after = (await client.get(f"/api/projects/{project_id}/artifacts/{artifact_id}")).json()
+    if customized == "no":
+        assert after["content"] == ""
+        assert after["status"] == "Da configurare"
+        assert after["version"] == stored["version"] + 1
+    else:
+        assert after["content"] == content
+        assert after["status"] == stored["status"]
+        assert after["version"] == stored["version"]
+    assert after["chunk_count"] == 0
+    saved_output = (await client.get(f"/api/projects/{project_id}/artifacts/{output_id}")).json()
+    assert saved_output["content"] == output["content"]
+    assert saved_output["version"] == output["version"]
+    seed_markdown_artifacts()
+    assert (await client.get(f"/api/projects/{project_id}/artifacts/{artifact_id}")).json() == after
+
+
+@pytest.mark.anyio
 async def test_draft_generation_uses_extracted_facts_without_manual_verification(
     client, monkeypatch,
 ):
@@ -838,6 +916,10 @@ async def test_draft_generation_uses_extracted_facts_without_manual_verification
             total_tokens=144,
         )
 
+    await client.put(
+        f"/api/projects/{project_id}/artifacts/{project_id}--template",
+        json={"content": "# Template candidatura\n\nTermine: [TODO]\nImporto: [TODO]"},
+    )
     monkeypatch.setattr("app.main.generate_grounded_draft", fake_draft)
     response = await client.post(f"/api/projects/{project_id}/draft/generate")
 
@@ -866,6 +948,10 @@ async def test_draft_generation_validates_provider_references_before_saving(
     client, monkeypatch, model_output,
 ):
     project_id = "fondo-riqualificazione-2027"
+    await client.put(
+        f"/api/projects/{project_id}/artifacts/{project_id}--template",
+        json={"content": "# Modello caricato\n\nScadenza: [TODO]"},
+    )
     markdown = render_call_facts_markdown(
         project_id,
         [
@@ -944,6 +1030,10 @@ async def test_draft_generation_validates_provider_references_before_saving(
 
 @pytest.mark.anyio
 async def test_draft_generation_can_use_entered_data_without_extraction(client, monkeypatch):
+    await client.put(
+        "/api/projects/adeguamento-sismico-edificio-b/artifacts/adeguamento-sismico-edificio-b--template",
+        json={"content": "# Modello caricato\n\nDescrizione del progetto: [TODO]"},
+    )
     async def fake_draft(**kwargs):
         assert kwargs["available_facts"] == []
         assert "Adeguamento" in kwargs["project_facts_markdown"]
@@ -1031,15 +1121,131 @@ async def test_answer_explains_when_no_evidence_is_available(client, monkeypatch
 
 
 @pytest.mark.anyio
+@pytest.mark.parametrize("kind", ["template", "draft"])
+async def test_output_artifacts_are_not_factual_evidence_even_with_legacy_chunks(
+    client, monkeypatch, kind,
+):
+    project = "fondo-riqualificazione-2027"
+    artifact_id = f"{project}--{kind}"
+    text = "Fatturato zaffiro 999 milioni. Esempio per il documento da produrre."
+    updated = await client.put(
+        f"/api/projects/{project}/artifacts/{artifact_id}", json={"content": text},
+    )
+    assert updated.status_code == 200
+    assert updated.json()["content"] == text
+    with connection() as db:
+        file_id = db.execute(
+            "SELECT file_id FROM project_artifact_links WHERE artifact_id = ?", (artifact_id,),
+        ).fetchone()[0]
+        assert db.execute(
+            "SELECT COUNT(*) FROM document_chunks WHERE file_id = ?", (file_id,),
+        ).fetchone()[0] == 0
+        # Simulate an index and conversation created before the source policy changed.
+        chunk_id = db.execute(
+            """INSERT INTO document_chunks
+            (project_id, file_id, chunk_index, content, char_count) VALUES (?, ?, 0, ?, ?)""",
+            (project, file_id, text, len(text)),
+        ).lastrowid
+    evidence = await client.get(f"/api/projects/{project}/evidence", params={"q": "zaffiro"})
+    assert evidence.json()["results"] == []
+
+    async def unexpected_generation(*_args, **_kwargs):
+        pytest.fail("Template e bozze non devono fornire evidenze alla generazione")
+
+    history = [{"question": "Fatturato zaffiro?", "answer": "999 milioni [1]", "evidence": [{
+        "chunk_id": chunk_id, "file_id": file_id, "source_name": f"{kind}.md",
+        "chunk_index": 0, "excerpt": text, "relevance": 1.0,
+    }]}]
+    monkeypatch.setattr("app.main.get_conversation_history", lambda _id: history)
+    monkeypatch.setattr("app.main.generate_grounded_answer", unexpected_generation)
+    answer = await client.post(
+        f"/api/projects/{project}/answer", json={"question": "E il fatturato zaffiro?"},
+    )
+    assert answer.status_code == 200
+    assert answer.json()["generation_status"] == "no_evidence"
+    assert answer.json()["evidence"] == []
+
+    seed_markdown_artifacts()
+    with connection() as db:
+        assert db.execute(
+            "SELECT COUNT(*) FROM document_chunks WHERE file_id = ?", (file_id,),
+        ).fetchone()[0] == 0
+    unchanged = await client.get(f"/api/projects/{project}/artifacts/{artifact_id}")
+    assert unchanged.json()["content"] == text
+    assert unchanged.json()["version"] == updated.json()["version"]
+
+
+@pytest.mark.anyio
+async def test_evidence_policy_uses_source_role_instead_of_filename(client):
+    project = "fondo-riqualificazione-2027"
+    uploaded = await client.post(
+        f"/api/projects/{project}/files",
+        files={"file": ("template.md", b"Fonte dichiarata: competenza zaffiro.", "text/markdown")},
+    )
+    assert uploaded.status_code == 201
+    evidence = await client.get(f"/api/projects/{project}/evidence", params={"q": "zaffiro"})
+    assert [hit["file_id"] for hit in evidence.json()["results"]] == [uploaded.json()["id"]]
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("scope", ["project", "company", "general", "other_project"])
+@pytest.mark.parametrize("deleted", [False, True])
+async def test_follow_up_revalidates_source_existence_and_project_scope(
+    client, monkeypatch, scope, deleted,
+):
+    project = "fondo-riqualificazione-2027"
+    source_project = "adeguamento-sismico-edificio-b" if scope == "other_project" else project
+    text = "Il responsabile zaffiro e nella fonte."
+    if scope in {"company", "general"}:
+        await client.post(
+            "/api/global-knowledge/files", data={"category": scope},
+            files={"file": ("responsabile.txt", text.encode(), "text/plain")},
+        )
+    else:
+        await client.post(
+            f"/api/projects/{source_project}/files",
+            files={"file": ("responsabile.txt", text.encode(), "text/plain")},
+        )
+    retrieved = await client.get(
+        f"/api/projects/{source_project}/evidence", params={"q": "zaffiro"},
+    )
+    item = retrieved.json()["results"][0]
+    history = [{"question": "Responsabile zaffiro?", "answer": "Vedi [1]", "evidence": [item]}]
+    if deleted:
+        with connection() as db:
+            if item["chunk_id"] < 0:
+                db.execute("DELETE FROM global_document_chunks WHERE id = ?", (-item["chunk_id"],))
+            else:
+                db.execute("DELETE FROM document_chunks WHERE id = ?", (item["chunk_id"],))
+    monkeypatch.setattr("app.main.get_conversation_history", lambda _id: history)
+    monkeypatch.setattr("app.main.search_project_evidence", lambda *_args, **_kwargs: [])
+    allowed = not deleted and scope != "other_project"
+
+    async def generate(_question, evidence, conversation_history=None):
+        assert allowed, "Una fonte eliminata o di un altro progetto non deve essere riutilizzata"
+        assert evidence[0]["content"] == text
+        return GeneratedAnswer("Vedi fonte [1]", [1], [], "test", 1)
+
+    monkeypatch.setattr("app.main.generate_grounded_answer", generate)
+    answer = await client.post(
+        f"/api/projects/{project}/answer", json={"question": "E il recapito?"},
+    )
+    assert answer.status_code == 200
+    assert answer.json()["generation_status"] == ("completed" if allowed else "no_evidence")
+    assert bool(answer.json()["evidence"]) == allowed
+
+
+@pytest.mark.anyio
 async def test_follow_up_reuses_previous_document_evidence(client, monkeypatch):
-    previous_evidence = {
-        "chunk_id": 7,
-        "file_id": 1,
-        "source_name": "bando.pdf",
-        "chunk_index": 12,
-        "excerpt": "Il responsabile del procedimento è indicato nella sezione.",
-        "relevance": 4.2,
-    }
+    source = "Il responsabile del procedimento e indicato nella sezione. Recapito non disponibile."
+    await client.post(
+        "/api/projects/fondo-riqualificazione-2027/files",
+        files={"file": ("bando.txt", source.encode(), "text/plain")},
+    )
+    retrieved = await client.get(
+        "/api/projects/fondo-riqualificazione-2027/evidence", params={"q": "responsabile"},
+    )
+    previous_evidence = retrieved.json()["results"][0]
     history = [
         {
             "question": "Chi è il responsabile?",
@@ -1059,7 +1265,7 @@ async def test_follow_up_reuses_previous_document_evidence(client, monkeypatch):
         conversation_history=None,
     ):
         assert question == "Come contattarlo?"
-        assert evidence[0]["content"] == previous_evidence["excerpt"]
+        assert evidence[0]["content"] == source
         assert conversation_history == history
         return GeneratedAnswer(
             answer="Le evidenze disponibili non riportano un recapito verificabile [1].",
@@ -1125,7 +1331,7 @@ async def test_answer_handles_invalid_model_content_and_can_retry(
     payload = failed.json()
     assert payload["generation_status"] == "failed"
     assert payload["answer"] is None
-    assert payload["notice"].startswith("DeepSeek")
+    assert payload["notice"].startswith("Il modello")
     assert payload["evidence"]
     conversation_id = payload["conversation_id"]
 
@@ -1300,6 +1506,135 @@ async def test_project_text_source_can_be_edited_and_reindexed(client):
     pdf_id = (await client.get(f"/api/projects/{project_id}")).json()["files"][0]["id"]
     pdf_editor = await client.get(f"/api/projects/{project_id}/files/{pdf_id}/content")
     assert pdf_editor.status_code == 415
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("extension,mime,query", [
+    ("txt", "text/plain", "zaffiro"),
+    ("md", "text/markdown", "zaffiro"),
+    ("pdf", "application/pdf", "Trapani"),
+])
+async def test_delete_source_removes_file_chunks_fts_and_follow_up_evidence(
+    client, extension, mime, query,
+):
+    project_id = "fondo-riqualificazione-2027"
+    url = f"/api/projects/{project_id}"
+    before = (await client.get(url)).json()
+    artifacts = (await client.get(f"{url}/artifacts")).json()
+    globals_before = (await client.get("/api/global-knowledge")).json()
+    other_before = (await client.get("/api/projects/adeguamento-sismico-edificio-b")).json()
+    data = b"# Nota\n\nIl responsabile zaffiro e indicato nel progetto."
+    if extension == "pdf":
+        data = (Path(__file__).resolve().parents[2] / (
+            "demo-documents/bandi/trapani-green/originali/avviso.pdf"
+        )).read_bytes()
+    uploaded = await client.post(
+        f"{url}/files", files={"file": (f"da-eliminare.{extension}", data, mime)},
+    )
+    assert uploaded.status_code == 201
+    file_id = uploaded.json()["id"]
+    with connection() as db:
+        row = db.execute(
+            "SELECT storage_path FROM project_files WHERE id = ?", (file_id,),
+        ).fetchone()
+    path = get_storage_path() / row["storage_path"]
+    assert path.is_file()
+    found = (await client.get(f"{url}/evidence", params={"q": query})).json()["results"]
+    own_evidence = [item for item in found if item["file_id"] == file_id]
+    assert own_evidence
+    history = [{"question": query, "answer": "Fonte [1]", "evidence": own_evidence}]
+    assert recent_conversation_evidence(project_id, history)
+
+    deleted = await client.delete(f"{url}/files/{file_id}")
+    assert deleted.status_code == 204
+    assert not path.exists()
+    with connection() as db:
+        assert db.execute("SELECT 1 FROM project_files WHERE id = ?", (file_id,)).fetchone() is None
+        for table in ("document_chunks", "document_chunks_fts"):
+            assert db.execute(
+                f"SELECT COUNT(*) FROM {table} WHERE file_id = ?", (file_id,),
+            ).fetchone()[0] == 0
+    after = (await client.get(url)).json()
+    assert after["files"] == before["files"]
+    assert after["source_count"] == before["source_count"]
+    assert (await client.get(f"{url}/artifacts")).json() == artifacts
+    assert (await client.get("/api/global-knowledge")).json() == globals_before
+    assert (await client.get("/api/projects/adeguamento-sismico-edificio-b")).json() == other_before
+    assert all(item["file_id"] != file_id for item in (
+        await client.get(f"{url}/evidence", params={"q": query})
+    ).json()["results"])
+    assert not recent_conversation_evidence(project_id, history)
+    assert all(item["file_id"] != file_id for item in load_project_source_chunks(project_id))
+    assert all(item["document_id"] != file_id or item["scope"] != "project"
+               for item in load_compilation_sources(project_id).selected)
+    assert (await client.get(f"{url}/files/{file_id}/content")).status_code == 404
+    assert (await client.put(
+        f"{url}/files/{file_id}/content", json={"content": "Non ricreare"},
+    )).status_code == 404
+    assert (await client.delete(f"{url}/files/{file_id}")).status_code == 404
+    init_database()
+    seed_markdown_artifacts()
+    assert all(item["id"] != file_id for item in (await client.get(url)).json()["files"])
+
+
+@pytest.mark.anyio
+async def test_delete_source_cannot_delete_another_project_or_an_artifact(client):
+    project_id = "fondo-riqualificazione-2027"
+    url = f"/api/projects/{project_id}"
+    file = (await client.post(
+        f"{url}/files", files={"file": ("nota.txt", b"Fonte da conservare", "text/plain")},
+    )).json()
+    assert (await client.delete(
+        f"/api/projects/adeguamento-sismico-edificio-b/files/{file['id']}"
+    )).status_code == 404
+    assert (await client.delete(f"/api/projects/inesistente/files/{file['id']}")).status_code == 404
+    assert (await client.delete(f"{url}/files/99999999")).status_code == 404
+    assert (await client.get(f"{url}/files/{file['id']}/content")).status_code == 200
+    artifacts = (await client.get(f"{url}/artifacts")).json()
+    with connection() as db:
+        ids = [row["file_id"] for row in db.execute(
+            "SELECT file_id FROM project_artifact_links WHERE project_id = ?", (project_id,),
+        )]
+    for artifact_file_id in ids:
+        assert (await client.delete(f"{url}/files/{artifact_file_id}")).status_code == 404
+    assert (await client.get(f"{url}/artifacts")).json() == artifacts
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("failure", ["missing", "permission", "outside_storage"])
+async def test_delete_source_handles_storage_failures_without_losing_index(
+    client, monkeypatch, failure,
+):
+    project_id = "fondo-riqualificazione-2027"
+    url = f"/api/projects/{project_id}"
+    file = (await client.post(
+        f"{url}/files", files={"file": ("nota.txt", b"Fonte zaffiro da conservare", "text/plain")},
+    )).json()
+    with connection() as db:
+        row = db.execute(
+            "SELECT storage_path FROM project_files WHERE id = ?", (file["id"],),
+        ).fetchone()
+    path = get_storage_path() / row["storage_path"]
+    before = (await client.get(url)).json()
+    if failure == "missing":
+        path.unlink()
+    elif failure == "permission":
+        def denied(*_args, **_kwargs):
+            raise PermissionError("Test unlink failure")
+        monkeypatch.setattr(Path, "unlink", denied)
+    else:
+        with connection() as db:
+            db.execute("UPDATE project_files SET storage_path = ? WHERE id = ?",
+                       ("../outside.txt", file["id"]))
+    result = await client.delete(f"{url}/files/{file['id']}")
+    if failure == "missing":
+        assert result.status_code == 204
+    else:
+        assert result.status_code == 500
+        assert (await client.get(url)).json() == before
+        assert path.exists()
+        found = (await client.get(f"{url}/evidence", params={"q": "zaffiro"})).json()["results"]
+        assert any(item["file_id"] == file["id"] for item in found)
 
 
 @pytest.mark.anyio

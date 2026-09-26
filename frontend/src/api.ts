@@ -1,4 +1,9 @@
 import type {
+  AiLoginFlow,
+  AiProfile,
+  AiProfileInput,
+  AiSettings,
+  ProjectAiSelection,
   CallFactsExtractionResult,
   CallFactsReview,
   CallFactRevision,
@@ -89,6 +94,32 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const api = {
+  aiSettings: (signal?: AbortSignal) => request<AiSettings>('/settings/ai', { signal }),
+  beginOpenRouterLogin: () => request<AiLoginFlow>('/settings/ai/openrouter/login', { method: 'POST' }),
+  completeOpenRouterLogin: (connection_token: string, code: string) =>
+    request<{ message: string }>('/settings/ai/openrouter/login/complete', {
+      method: 'POST', body: JSON.stringify({ connection_token, code }),
+    }),
+  saveAiProfile: (payload: AiProfileInput, id?: string) =>
+    request<AiProfile>(`/settings/ai/profiles${id ? `/${encodeURIComponent(id)}` : ''}`, {
+      method: id ? 'PUT' : 'POST', body: JSON.stringify(payload),
+    }),
+  deleteAiProfile: (id: string) =>
+    request<void>(`/settings/ai/profiles/${encodeURIComponent(id)}`, { method: 'DELETE' }),
+  setDefaultAiProfile: (profileId: string | null) =>
+    request<AiSettings>('/settings/ai/default', {
+      method: 'PUT', body: JSON.stringify({ profile_id: profileId }),
+    }),
+  checkAiConnection: (payload: AiProfileInput & { profile_id?: string }) =>
+    request<{ models: string[]; message: string }>('/settings/ai/check', {
+      method: 'POST', body: JSON.stringify(payload),
+    }),
+  projectAiModel: (projectId: string, signal?: AbortSignal) =>
+    request<ProjectAiSelection>(`/projects/${projectId}/ai-model`, { signal }),
+  setProjectAiModel: (projectId: string, profileId: string | null) =>
+    request<ProjectAiSelection>(`/projects/${projectId}/ai-model`, {
+      method: 'PUT', body: JSON.stringify({ profile_id: profileId }),
+    }),
   projects: (signal?: AbortSignal) =>
     request<ProjectSummary[]>('/projects', { signal }),
   project: (projectId: string, signal?: AbortSignal) =>
@@ -115,6 +146,8 @@ export const api = {
   },
   projectFileContent: (projectId: string, fileId: number) =>
     request<ProjectFileContent>(`/projects/${projectId}/files/${fileId}/content`),
+  deleteProjectFile: (projectId: string, fileId: number) =>
+    request<void>(`/projects/${projectId}/files/${fileId}`, { method: 'DELETE' }),
   updateProjectFileContent: (projectId: string, fileId: number, content: string) =>
     request<ProjectFileContent>(`/projects/${projectId}/files/${fileId}/content`, {
       method: 'PUT',

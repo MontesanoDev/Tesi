@@ -7,6 +7,7 @@ from dataclasses import dataclass
 
 import httpx
 
+from app.ai_transport import post_chat
 from app.call_facts import CallFact
 from app.config import get_deepseek_settings
 from app.generation import GenerationError, GenerationNotConfiguredError
@@ -76,9 +77,9 @@ def _clean_json(content: str) -> dict:
     try:
         payload = json.loads(cleaned)
     except (ValueError, RecursionError) as exc:
-        raise GenerationError("DeepSeek ha restituito un draft in un formato non valido") from exc
+        raise GenerationError("Il modello ha restituito un draft in un formato non valido") from exc
     if not isinstance(payload, dict):
-        raise GenerationError("DeepSeek non ha restituito un oggetto per il draft")
+        raise GenerationError("Il modello non ha restituito un oggetto per il draft")
     return payload
 
 
@@ -171,8 +172,10 @@ def _fact_context(facts: list[CallFact]) -> str:
                     f"Riferimento da copiare: [CF:{fact.id}]",
                     f"Titolo: {fact.title}",
                     f"Valore: {fact.value}",
-                    "Origine: " + (
-                        "Correzione dell'utente" if fact.origin == "user_corrected"
+                    "Origine: "
+                    + (
+                        "Correzione dell'utente"
+                        if fact.origin == "user_corrected"
                         else "Estrazione automatica"
                     ),
                     f"Fonti: {sources}",
@@ -256,9 +259,7 @@ def render_draft_markdown(
             lines.append(f"- [CF:{fact.id}] {fact.title} - {sources}")
     else:
         lines.append("- Nessun Call Fact utilizzato in questo draft.")
-    company_names = list(
-        dict.fromkeys(source["source_name"] for source in company_sources or [])
-    )
+    company_names = list(dict.fromkeys(source["source_name"] for source in company_sources or []))
     if company_names:
         lines.append(f"- [COMPANY] Fonti Company KB collegate: {'; '.join(company_names)}.")
     else:
@@ -275,8 +276,8 @@ async def generate_grounded_draft(
     available_facts: list[CallFact],
 ) -> GeneratedDraft:
     settings = get_deepseek_settings()
-    if not settings.api_key:
-        raise GenerationNotConfiguredError("DEEPSEEK_API_KEY non configurata")
+    if not settings.configured:
+        raise GenerationNotConfiguredError("Configura un modello AI nelle Impostazioni generali")
     user_prompt = _build_user_prompt(
         project_title,
         template_markdown,
@@ -298,22 +299,20 @@ async def generate_grounded_draft(
     try:
         async with asyncio.timeout(150):
             async with httpx.AsyncClient(timeout=httpx.Timeout(120, connect=10)) as client:
-                response = await client.post(
-                    f"{settings.base_url}/chat/completions",
-                    headers={"Authorization": f"Bearer {settings.api_key}"},
-                    json=request_body,
-                )
+                response = await post_chat(client, settings, request_body)
                 response.raise_for_status()
                 payload = response.json()
     except TimeoutError as exc:
-        raise GenerationError("DeepSeek non ha completato il draft entro 150 secondi") from exc
+        raise GenerationError(
+            f"{settings.label} non ha completato il draft entro 150 secondi"
+        ) from exc
     except httpx.HTTPStatusError as exc:
         raise GenerationError(
-            f"DeepSeek ha rifiutato la generazione del draft ({exc.response.status_code})"
+            f"{settings.label} ha rifiutato la generazione del draft ({exc.response.status_code})"
         ) from exc
     except (httpx.HTTPError, ValueError) as exc:
         raise GenerationError(
-            "DeepSeek non e raggiungibile o ha restituito dati non validi"
+            f"{settings.label} non e raggiungibile o ha restituito dati non validi"
         ) from exc
 
     try:
@@ -323,6 +322,8 @@ async def generate_grounded_draft(
         raise GenerationError("La risposta del draft non rispetta il contratto atteso") from exc
     if not isinstance(content, str) or not isinstance(model, str):
         raise GenerationError("La risposta del draft non contiene testo valido")
+    if payload["choices"][0].get("finish_reason", "stop") != "stop":
+        raise GenerationError("Il modello ha interrotto il draft prima del completamento")
 
     generated = parse_generated_draft(content, {fact.id for fact in available_facts})
     usage = payload.get("usage", {})

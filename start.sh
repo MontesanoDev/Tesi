@@ -61,10 +61,6 @@ if [[ ! -d "$ROOT_DIR/frontend/node_modules" ]]; then
   exit 1
 fi
 
-if [[ ! -f "$ROOT_DIR/.env" && ! -f "$ROOT_DIR/backend/.env" ]]; then
-  printf 'Avviso: file .env assente; la generazione DeepSeek non sara disponibile.\n' >&2
-fi
-
 trap cleanup EXIT
 trap 'exit 130' INT TERM
 

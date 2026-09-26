@@ -111,28 +111,44 @@ def test_short_independent_question_is_not_contextualized():
     assert contextualize_search_query("Dammi la PEC", history) == "Dammi la PEC"
 
 
-def test_follow_up_can_reuse_document_evidence_from_recent_turn():
+def test_follow_up_reloads_current_source_instead_of_trusting_saved_excerpt(tmp_path, monkeypatch):
+    monkeypatch.setenv("MAPI_DB_PATH", str(tmp_path / "retrieval.db"))
+    init_database()
+    seed_database()
+    project_id = "fondo-riqualificazione-2027"
+    content = "Il responsabile e indicato nella fonte attuale."
+    with connection() as db:
+        file_id = db.execute(
+            """INSERT INTO project_files (project_id, name, metadata, kind, status)
+            VALUES (?, 'bando.txt', 'TXT', 'source', 'Indicizzato')""", (project_id,),
+        ).lastrowid
+        chunk_id = db.execute(
+            """INSERT INTO document_chunks
+            (project_id, file_id, chunk_index, content, char_count) VALUES (?, ?, 0, ?, ?)""",
+            (project_id, file_id, content, len(content)),
+        ).lastrowid
     history = [
         {
             "question": "Chi è il responsabile?",
             "answer": "Il responsabile è indicato nella fonte [1].",
             "evidence": [
                 {
-                    "chunk_id": 7,
-                    "file_id": 2,
-                    "source_name": "bando.pdf",
-                    "chunk_index": 12,
-                    "excerpt": "Il responsabile del procedimento è indicato nella sezione.",
+                    "chunk_id": chunk_id,
+                    "file_id": file_id,
+                    "source_name": "nome-obsoleto.pdf",
+                    "chunk_index": 0,
+                    "excerpt": "Estratto storico obsoleto.",
                     "relevance": 4.2,
                 }
             ],
         }
     ]
 
-    reused = recent_conversation_evidence(history)
+    reused = recent_conversation_evidence(project_id, history)
 
-    assert reused[0]["content"] == history[0]["evidence"][0]["excerpt"]
-    assert reused[0]["source_name"] == "bando.pdf"
+    assert reused[0]["content"] == content
+    assert reused[0]["excerpt"] == content
+    assert reused[0]["source_name"] == "bando.txt"
 
 
 def test_neighbor_expansion_adds_previous_document_context(tmp_path, monkeypatch):

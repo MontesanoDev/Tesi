@@ -48,6 +48,7 @@ def connection() -> Iterator[sqlite3.Connection]:
 
 def init_database() -> None:
     with connection() as db:
+        _migrate_ai_providers(db)
         db.executescript(
             """
             CREATE TABLE IF NOT EXISTS projects (
@@ -69,6 +70,36 @@ def init_database() -> None:
             CREATE TABLE IF NOT EXISTS app_metadata (
                 key TEXT PRIMARY KEY,
                 value TEXT NOT NULL
+            );
+
+            CREATE TABLE IF NOT EXISTS ai_profiles (
+                id TEXT PRIMARY KEY,
+                name TEXT NOT NULL,
+                provider TEXT NOT NULL,
+                base_url TEXT NOT NULL,
+                model TEXT NOT NULL,
+                encrypted_api_key TEXT,
+                context_window INTEGER NOT NULL DEFAULT 32768,
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+            );
+
+            CREATE TABLE IF NOT EXISTS ai_preferences (
+                id INTEGER PRIMARY KEY CHECK(id = 1),
+                default_profile_id TEXT REFERENCES ai_profiles(id) ON DELETE SET NULL
+            );
+            INSERT OR IGNORE INTO ai_preferences(id) VALUES (1);
+
+            CREATE TABLE IF NOT EXISTS ai_login_flows (
+                token_hash TEXT PRIMARY KEY,
+                encrypted_verifier TEXT,
+                encrypted_api_key TEXT,
+                status TEXT NOT NULL,
+                expires_at INTEGER NOT NULL
+            );
+
+            CREATE TABLE IF NOT EXISTS project_ai_settings (
+                project_id TEXT PRIMARY KEY REFERENCES projects(id) ON DELETE CASCADE,
+                profile_id TEXT NOT NULL REFERENCES ai_profiles(id) ON DELETE RESTRICT
             );
 
             CREATE TABLE IF NOT EXISTS project_files (
@@ -311,6 +342,34 @@ def init_database() -> None:
             SELECT id, document_id, content FROM global_document_chunks
             """
         )
+
+
+def _migrate_ai_providers(db: sqlite3.Connection) -> None:
+    """Remove the original three-provider CHECK, preserving IDs, secrets and foreign keys."""
+    row = db.execute("SELECT sql FROM sqlite_master WHERE name='ai_profiles'").fetchone()
+    if row is None or "CHECK" not in row[0].upper():
+        return
+    # SQLite cannot alter a CHECK. Disable FK actions only for this atomic table replacement.
+    db.execute("PRAGMA foreign_keys = OFF")
+    try:
+        db.execute("BEGIN IMMEDIATE")
+        db.execute("""CREATE TABLE ai_profiles_expanded (
+            id TEXT PRIMARY KEY, name TEXT NOT NULL, provider TEXT NOT NULL,
+            base_url TEXT NOT NULL, model TEXT NOT NULL, encrypted_api_key TEXT,
+            context_window INTEGER NOT NULL DEFAULT 32768,
+            created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+        )""")
+        db.execute("INSERT INTO ai_profiles_expanded SELECT * FROM ai_profiles")
+        db.execute("DROP TABLE ai_profiles")
+        db.execute("ALTER TABLE ai_profiles_expanded RENAME TO ai_profiles")
+        if db.execute("PRAGMA foreign_key_check").fetchone():
+            raise RuntimeError("La migrazione dei modelli AI viola i collegamenti del database")
+        db.commit()
+    except Exception:
+        db.rollback()
+        raise
+    finally:
+        db.execute("PRAGMA foreign_keys = ON")
 
 
 def touch_project(db: sqlite3.Connection, project_id: str) -> None:

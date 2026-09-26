@@ -298,3 +298,53 @@ export interface ConversationDetail extends Conversation {
   project_id: string
   turns: ConversationTurnData[]
 }
+export type AiProvider = 'openai' | 'anthropic' | 'google' | 'deepseek' | 'mistral'
+  | 'xai' | 'groq' | 'openrouter' | 'ollama' | 'compatible'
+
+export interface AiProviderDefinition {
+  id: AiProvider
+  name: string
+  base_url: string
+  credentials_url: string
+  description: string
+  requires_key: boolean
+  browser_login: boolean
+}
+
+export interface AiLoginFlow {
+  connection_token: string
+  authorization_url: string
+  expires_in: number
+}
+
+export interface AiProfile {
+  id: string
+  name: string
+  provider: AiProvider
+  base_url: string
+  model: string
+  context_window: number
+  has_api_key: boolean
+}
+
+export interface AiProfileInput {
+  name: string
+  provider: AiProvider
+  base_url: string
+  model: string
+  context_window: number
+  api_key?: string
+  connection_token?: string
+  clear_api_key?: boolean
+}
+
+export interface AiSettings {
+  profiles: AiProfile[]
+  default_profile_id: string | null
+  providers?: AiProviderDefinition[]
+}
+
+export interface ProjectAiSelection {
+  profile_id: string | null
+  effective_profile: AiProfile | null
+}

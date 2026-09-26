@@ -21,12 +21,13 @@ PROJECT_ARTIFACTS = (
         "project-facts.md",
         "Bozza",
     ),
-    ("template", "template", "Template", "template.md", "Bozza"),
+    ("template", "template", "Template", "template.md", "Da configurare"),
     ("draft", "output_draft", "Draft", "draft.md", "Da generare"),
 )
 
 LEGACY_TEMPLATE_BODY = "# Template\n\n> Definire qui la struttura Markdown dell'output atteso.\n"
-DEFAULT_TEMPLATE_BODY = """# Template candidatura
+# Retained only to recognize untouched templates created by older versions.
+LEGACY_CANDIDATURE_TEMPLATE_BODY = """# Template candidatura
 
 ## Sintesi della candidatura
 
@@ -105,8 +106,7 @@ def _project_content(kind: str, project: dict) -> str:
         )
         status = "Da estrarre"
     elif kind == "template":
-        body = DEFAULT_TEMPLATE_BODY
-        status = "Bozza"
+        return ""
     elif kind == "output_draft":
         body = (
             "# Draft candidatura\n\n"
@@ -119,11 +119,17 @@ def _project_content(kind: str, project: dict) -> str:
 
 
 def _upgrade_legacy_template(db, artifact: dict, project: dict) -> dict:
-    if artifact["kind"] != "template" or artifact["status"] != "Da configurare":
+    if artifact["kind"] != "template":
+        return artifact
+    legacy_body = {
+        "Da configurare": LEGACY_TEMPLATE_BODY,
+        "Bozza": LEGACY_CANDIDATURE_TEMPLATE_BODY,
+    }.get(artifact["status"])
+    if legacy_body is None:
         return artifact
     legacy_content = (
-        f"{_frontmatter('template', 'project', project['id'], 'Da configurare')}\n"
-        f"{LEGACY_TEMPLATE_BODY}"
+        f"{_frontmatter('template', 'project', project['id'], artifact['status'])}\n"
+        f"{legacy_body}"
     )
     if _read_artifact(artifact["storage_path"]) != legacy_content:
         return artifact
@@ -133,7 +139,7 @@ def _upgrade_legacy_template(db, artifact: dict, project: dict) -> dict:
     db.execute(
         """
         UPDATE knowledge_artifacts
-        SET status = 'Bozza', content_hash = ?, byte_size = ?,
+        SET status = 'Da configurare', content_hash = ?, byte_size = ?,
             version = version + 1, updated_at = CURRENT_TIMESTAMP
         WHERE id = ?
         """,
@@ -188,16 +194,17 @@ def _link_artifact(db, project_id: str, artifact: dict, content: str) -> None:
         except CallFactsFormatError:
             index_content = ""
         indexed = bool(index_content)
-    elif artifact["kind"] == "output_draft":
+    elif artifact["kind"] == "project_facts":
+        indexed = artifact["status"] not in {"Da configurare", "Da estrarre"}
+    else:
+        # Templates and generated output describe a document, not factual evidence.
         index_content = ""
         indexed = False
-    else:
-        indexed = artifact["status"] not in {"Da configurare", "Da estrarre"}
     if indexed:
         file_status = "Indicizzato"
     elif artifact["kind"] == "call_facts":
         file_status = "Nessun dato disponibile"
-    elif artifact["kind"] == "output_draft":
+    elif artifact["kind"] in {"template", "output_draft"}:
         file_status = artifact["status"]
     else:
         file_status = "Da compilare"

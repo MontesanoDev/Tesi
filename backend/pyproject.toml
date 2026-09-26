@@ -5,6 +5,7 @@ description = "API FastAPI e persistenza SQLite per il prototipo Mapi RAG"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "cryptography>=50.0.1",
     "email-validator>=2.3.0",
     "fastapi>=0.141.1",
     "httpx>=0.28.1",

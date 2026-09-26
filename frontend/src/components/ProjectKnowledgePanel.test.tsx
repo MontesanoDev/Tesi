@@ -10,6 +10,7 @@ vi.mock('../api', () => ({
     uploadProjectFile: vi.fn(),
     projectFileContent: vi.fn(),
     updateProjectFileContent: vi.fn(),
+    deleteProjectFile: vi.fn(),
     projectArtifacts: vi.fn(),
     documentCompilations: vi.fn(),
   },
@@ -51,6 +52,7 @@ describe('ProjectKnowledgePanel', () => {
     vi.mocked(api.uploadProjectFile).mockReset()
     vi.mocked(api.projectFileContent).mockReset()
     vi.mocked(api.updateProjectFileContent).mockReset()
+    vi.mocked(api.deleteProjectFile).mockReset()
     vi.mocked(api.projectArtifacts).mockReset()
     vi.mocked(api.projectArtifacts).mockResolvedValue([])
   })
@@ -192,6 +194,82 @@ describe('ProjectKnowledgePanel', () => {
       )
       expect(onProjectChange).toHaveBeenCalledOnce()
     })
+  })
+
+  const source = {
+    id: 7, name: 'bando.pdf', metadata: 'PDF', kind: 'source' as const,
+    status: 'Indicizzato', mime_type: 'application/pdf', page_count: 1, chunk_count: 2,
+  }
+
+  it.each(['bando.pdf', 'nota.txt', 'contenuto.md'])('deletes %s only after confirmation', async (name) => {
+    const onProjectChange = vi.fn().mockResolvedValue(undefined)
+    vi.mocked(api.deleteProjectFile).mockResolvedValue(undefined)
+    renderPanel({ ...project, files: [{ ...source, name }] }, onProjectChange)
+    fireEvent.click(screen.getByRole('button', { name: `Elimina ${name}` }))
+    expect(screen.getByRole('dialog', { name: 'Elimina fonte' })).toBeVisible()
+    expect(api.deleteProjectFile).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByRole('button', { name: 'Elimina fonte' }))
+    await waitFor(() => expect(onProjectChange).toHaveBeenCalledOnce())
+    expect(api.deleteProjectFile).toHaveBeenCalledWith(project.id, source.id)
+    expect(screen.queryByRole('dialog')).toBeNull()
+    expect(screen.getByText(`${name} eliminato dal progetto e dall'indice.`)).toBeVisible()
+  })
+
+  it.each(['cancel', 'escape', 'outside'])('cancels deletion through %s without a request', (action) => {
+    renderPanel({ ...project, files: [source] })
+    const trigger = screen.getByRole('button', { name: 'Elimina bando.pdf' })
+    fireEvent.click(trigger)
+    if (action === 'cancel') fireEvent.click(screen.getByRole('button', { name: 'Annulla' }))
+    else if (action === 'escape') fireEvent.keyDown(screen.getByRole('button', { name: 'Annulla' }), { key: 'Escape' })
+    else fireEvent.click(screen.getByRole('button', { name: 'Chiudi conferma eliminazione fonte' }))
+    expect(screen.queryByRole('dialog')).toBeNull()
+    expect(api.deleteProjectFile).not.toHaveBeenCalled()
+    expect(trigger).toHaveFocus()
+  })
+
+  it('keeps the file visible and lets the user retry after an error', async () => {
+    const onProjectChange = vi.fn().mockResolvedValue(undefined)
+    vi.mocked(api.deleteProjectFile).mockRejectedValueOnce(new Error('Eliminazione non riuscita'))
+      .mockResolvedValueOnce(undefined)
+    renderPanel({ ...project, files: [source] }, onProjectChange)
+    fireEvent.click(screen.getByRole('button', { name: 'Elimina bando.pdf' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Elimina fonte' }))
+    expect(await screen.findByRole('alert')).toHaveTextContent('Eliminazione non riuscita')
+    expect(screen.getByRole('dialog')).toBeVisible()
+    expect(onProjectChange).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByRole('button', { name: 'Elimina fonte' }))
+    await waitFor(() => expect(onProjectChange).toHaveBeenCalledOnce())
+  })
+
+  it('disables repeated deletion and other source changes while deleting', async () => {
+    let resolveDeletion!: () => void
+    vi.mocked(api.deleteProjectFile).mockImplementation(() => new Promise<void>((resolve) => {
+      resolveDeletion = resolve
+    }))
+    renderPanel({ ...project, files: [{ ...source, mime_type: 'text/plain' }] })
+    fireEvent.click(screen.getByRole('button', { name: 'Elimina bando.pdf' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Elimina fonte' }))
+    expect(screen.getByRole('button', { name: 'Eliminazione' })).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'Annulla' })).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'Aggiungi al contesto' })).toBeDisabled()
+    expect(screen.getByRole('button', { name: 'Modifica bando.pdf' })).toBeDisabled()
+    expect(api.deleteProjectFile).toHaveBeenCalledOnce()
+    resolveDeletion()
+    await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+  })
+
+  it('distinguishes a refresh error from a failed deletion', async () => {
+    vi.mocked(api.deleteProjectFile).mockResolvedValue(undefined)
+    renderPanel({ ...project, files: [source] }, vi.fn().mockRejectedValue(new Error('Offline')))
+    fireEvent.click(screen.getByRole('button', { name: 'Elimina bando.pdf' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Elimina fonte' }))
+    expect(await screen.findByRole('alert')).toHaveTextContent('Fonte eliminata, ma la lista non si aggiorna')
+    expect(screen.queryByRole('dialog')).toBeNull()
+  })
+
+  it('does not offer deletion for a workflow template', () => {
+    renderPanel({ ...project, files: [{ ...source, kind: 'template' }] })
+    expect(screen.queryByRole('button', { name: 'Elimina bando.pdf' })).toBeNull()
   })
 
 })

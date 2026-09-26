@@ -1,0 +1,92 @@
+[
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "base_url": "https://api.openai.com/v1",
+    "credentials_url": "https://platform.openai.com/api-keys",
+    "description": "Modelli GPT tramite API OpenAI",
+    "requires_key": true,
+    "browser_login": false
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic · Claude",
+    "base_url": "https://api.anthropic.com/v1",
+    "credentials_url": "https://platform.claude.com/settings/keys",
+    "description": "Modelli Claude tramite API Anthropic",
+    "requires_key": true,
+    "browser_login": false
+  },
+  {
+    "id": "google",
+    "name": "Google · Gemini",
+    "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "credentials_url": "https://aistudio.google.com/apikey",
+    "description": "Modelli Gemini tramite Google AI Studio",
+    "requires_key": true,
+    "browser_login": false
+  },
+  {
+    "id": "deepseek",
+    "name": "DeepSeek",
+    "base_url": "https://api.deepseek.com",
+    "credentials_url": "https://platform.deepseek.com/api_keys",
+    "description": "Modelli DeepSeek",
+    "requires_key": true,
+    "browser_login": false
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral",
+    "base_url": "https://api.mistral.ai/v1",
+    "credentials_url": "https://console.mistral.ai/api-keys",
+    "description": "Modelli Mistral",
+    "requires_key": true,
+    "browser_login": false
+  },
+  {
+    "id": "xai",
+    "name": "xAI · Grok",
+    "base_url": "https://api.x.ai/v1",
+    "credentials_url": "https://console.x.ai",
+    "description": "Modelli Grok tramite API xAI",
+    "requires_key": true,
+    "browser_login": false
+  },
+  {
+    "id": "groq",
+    "name": "Groq",
+    "base_url": "https://api.groq.com/openai/v1",
+    "credentials_url": "https://console.groq.com/keys",
+    "description": "Modelli ospitati da Groq",
+    "requires_key": true,
+    "browser_login": false
+  },
+  {
+    "id": "openrouter",
+    "name": "OpenRouter",
+    "base_url": "https://openrouter.ai/api/v1",
+    "credentials_url": "https://openrouter.ai/settings/keys",
+    "description": "Un account per modelli di diversi fornitori",
+    "requires_key": true,
+    "browser_login": true
+  },
+  {
+    "id": "ollama",
+    "name": "Ollama",
+    "base_url": "http://127.0.0.1:11434",
+    "credentials_url": "https://ollama.com",
+    "description": "Servizio Ollama locale o remoto",
+    "requires_key": false,
+    "browser_login": false
+  },
+  {
+    "id": "compatible",
+    "name": "Altro servizio compatibile",
+    "base_url": "",
+    "credentials_url": "",
+    "description": "Endpoint personalizzato compatibile con Chat Completions",
+    "requires_key": false,
+    "browser_login": false
+  }
+]

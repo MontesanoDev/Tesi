@@ -9,7 +9,7 @@ from uuid import uuid4
 
 from app.artifacts import get_project_artifact
 from app.call_facts import CallFactsFormatError, parse_call_facts_markdown
-from app.db import connection, touch_project
+from app.db import connection, get_storage_path, touch_project
 from app.ingestion import IngestedDocument
 from app.schemas import ProjectCreate, ProjectUpdate
 
@@ -63,6 +63,17 @@ FOLLOWUP_TERMS = {
     "suoi",
 }
 FOLLOWUP_CLITIC_PATTERN = re.compile(r"(?:ar|er|ir)(?:gli|la|le|li|lo|ne)$")
+# All queries below use alias f for project_files. Filter at read time as well
+# as at indexing time, so legacy chunks cannot become factual evidence.
+PROJECT_EVIDENCE_FILTER = """
+    (f.kind = 'source' OR (f.kind = 'artifact' AND EXISTS (
+        SELECT 1 FROM project_artifact_links l
+        JOIN knowledge_artifacts a ON a.id = l.artifact_id
+        WHERE l.file_id = f.id AND l.project_id = f.project_id
+          AND a.project_id = f.project_id
+          AND a.kind IN ('call_facts', 'project_facts')
+    )))
+"""
 
 
 def _rows(db: sqlite3.Connection, query: str, params: tuple = ()) -> list[dict]:
@@ -203,7 +214,7 @@ def _expand_neighbor_evidence(
                     ).fetchone()
                 else:
                     row = db.execute(
-                        """
+                        f"""
                         SELECT
                             c.id AS chunk_id,
                             c.file_id,
@@ -213,6 +224,7 @@ def _expand_neighbor_evidence(
                         FROM document_chunks c
                         JOIN project_files f ON f.id = c.file_id
                         WHERE c.project_id = ? AND c.file_id = ? AND c.chunk_index = ?
+                          AND {PROJECT_EVIDENCE_FILTER}
                         """,
                         (project_id, anchor["file_id"], anchor["chunk_index"] + offset),
                     ).fetchone()
@@ -619,17 +631,50 @@ def contextualize_search_query(question: str, history: list[dict]) -> str:
     return question
 
 
-def recent_conversation_evidence(history: list[dict]) -> list[dict]:
+def recent_conversation_evidence(project_id: str, history: list[dict]) -> list[dict]:
     if not history:
         return []
-    evidence = history[-1].get("evidence") or []
-    return [
-        {
-            **item,
-            "content": item["excerpt"],
-        }
-        for item in evidence
-    ]
+    current = []
+    # History contains presentation excerpts, not trusted source snapshots.
+    # Revalidate IDs, project membership and source role, then load current text.
+    with connection() as db:
+        if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
+            return []
+        for item in history[-1].get("evidence") or []:
+            chunk_id, file_id = item.get("chunk_id"), item.get("file_id")
+            if type(chunk_id) is not int or type(file_id) is not int:
+                continue
+            if chunk_id < 0 and file_id < 0:
+                row = db.execute(
+                    """
+                    SELECT -c.id AS chunk_id, -d.id AS file_id, d.name AS source_name,
+                           c.chunk_index, c.content
+                    FROM global_document_chunks c
+                    JOIN global_documents d ON d.id = c.document_id
+                    WHERE c.id = ? AND d.id = ? AND c.chunk_index = ?
+                      AND d.category IN ('company', 'general')
+                    """,
+                    (-chunk_id, -file_id, item.get("chunk_index")),
+                ).fetchone()
+            else:
+                row = db.execute(
+                    f"""
+                    SELECT c.id AS chunk_id, c.file_id, f.name AS source_name,
+                           c.chunk_index, c.content
+                    FROM document_chunks c
+                    JOIN project_files f ON f.id = c.file_id
+                    WHERE c.project_id = ? AND c.id = ? AND c.file_id = ?
+                      AND c.chunk_index = ? AND {PROJECT_EVIDENCE_FILTER}
+                    """,
+                    (project_id, chunk_id, file_id, item.get("chunk_index")),
+                ).fetchone()
+            if row is not None:
+                current.append({
+                    **dict(row),
+                    "excerpt": _neighbor_excerpt(row["content"], offset=1),
+                    "relevance": item["relevance"],
+                })
+    return current
 
 
 def _public_evidence(evidence: list[dict]) -> list[dict]:
@@ -866,6 +911,43 @@ def get_project_file_record(project_id: str, file_id: int) -> dict | None:
     return dict(row) if row is not None else None
 
 
+def delete_project_file(project_id: str, file_id: int) -> bool:
+    with connection() as db:
+        db.execute("BEGIN IMMEDIATE")
+        document = db.execute(
+            """
+            SELECT storage_path FROM project_files
+            WHERE project_id = ? AND id = ? AND kind = 'source'
+            """,
+            (project_id, file_id),
+        ).fetchone()
+        if document is None:
+            return False
+        path = None
+        if document["storage_path"]:
+            root = get_storage_path().resolve()
+            project_root = (root / project_id).resolve()
+            path = (root / document["storage_path"]).resolve()
+            if root not in project_root.parents or project_root not in path.parents:
+                raise ValueError("Percorso della fonte non valido")
+        # Cascades remove chunks; their delete trigger removes the matching FTS5 rows.
+        db.execute(
+            "DELETE FROM project_files WHERE id = ? AND project_id = ?", (file_id, project_id),
+        )
+        db.execute(
+            """
+            UPDATE projects SET shared_source_count = MAX(0, shared_source_count - 1)
+            WHERE id = ?
+            """,
+            (project_id,),
+        )
+        touch_project(db, project_id)
+        # Keep the database transaction open so an unlink failure leaves the source retriable.
+        if path is not None:
+            path.unlink(missing_ok=True)
+    return True
+
+
 def update_project_file_content(
     project_id: str,
     file_id: int,
@@ -1041,7 +1123,7 @@ def search_project_evidence(
             return []
         project_candidates = _rows(
             db,
-            """
+            f"""
             SELECT
                 c.id AS chunk_id,
                 c.file_id,
@@ -1054,6 +1136,7 @@ def search_project_evidence(
             JOIN document_chunks c ON c.id = document_chunks_fts.rowid
             JOIN project_files f ON f.id = c.file_id
             WHERE document_chunks_fts MATCH ? AND c.project_id = ?
+              AND {PROJECT_EVIDENCE_FILTER}
             ORDER BY rank
             LIMIT ?
             """,

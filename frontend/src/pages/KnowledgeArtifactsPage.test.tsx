@@ -8,6 +8,7 @@ import { KnowledgeArtifactsPage } from './KnowledgeArtifactsPage'
 vi.mock('../api', () => ({ api: {
   project: vi.fn(), projectArtifacts: vi.fn(), projectArtifact: vi.fn(), callFactsReview: vi.fn(),
   documentCompilations: vi.fn(),
+  aiSettings: vi.fn(), projectAiModel: vi.fn(), setProjectAiModel: vi.fn(),
 } }))
 
 function artifacts(id: string): KnowledgeArtifactDetail[] {
@@ -33,6 +34,8 @@ function setup(kind = 'template') {
 describe('unified Template navigation', () => {
   afterEach(() => { cleanup(); vi.restoreAllMocks() })
   beforeEach(() => {
+    vi.mocked(api.aiSettings).mockResolvedValue({ profiles: [], default_profile_id: null })
+    vi.mocked(api.projectAiModel).mockResolvedValue({ profile_id: null, effective_profile: null })
     vi.mocked(api.documentCompilations).mockReset().mockResolvedValue([])
     vi.mocked(api.project).mockReset().mockImplementation(async (id) => ({
       id, title: `Progetto ${id}`, description: '', status: 'In analisi', status_tone: 'info',
@@ -95,6 +98,29 @@ describe('unified Template navigation', () => {
     expect(await screen.findByRole('heading', { name: 'Compilazione primo' })).toBeVisible()
     fireEvent.click(screen.getByRole('tab', { name: 'Modello' }))
     expect(screen.getByRole('heading', { name: 'Modello primo' })).toBeVisible()
+  })
+
+  it('allows changing AI model after uploading Word without losing the file or instructions', async () => {
+    const local = { id: 'local', name: 'Ollama', provider: 'ollama' as const,
+      model: 'local-test', base_url: 'http://127.0.0.1:11434', context_window: 32768, has_api_key: false }
+    vi.mocked(api.aiSettings).mockResolvedValue({ profiles: [local], default_profile_id: 'local' })
+    vi.mocked(api.projectAiModel).mockResolvedValue({ profile_id: null, effective_profile: local })
+    vi.mocked(api.setProjectAiModel).mockResolvedValue({ profile_id: 'local', effective_profile: local })
+    const { container } = render(<RouterProvider router={createMemoryRouter([
+      { path: '/projects/:projectId/knowledge', element: <KnowledgeArtifactsPage /> },
+    ], { initialEntries: ['/projects/primo/knowledge?artifact=template'] })} />)
+    await screen.findByRole('button', { name: 'Carica modello' })
+    fireEvent.change(container.querySelector('input[type="file"]')!, { target: {
+      files: [new File(['document'], 'domanda.docx', { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' })],
+    } })
+    fireEvent.change(screen.getByLabelText(/Indicazioni per la compilazione/), { target: { value: 'Mantieni queste indicazioni' } })
+    const select = screen.getByRole('combobox', { name: 'Modello AI' })
+    expect(select).toBeEnabled()
+    fireEvent.change(select, { target: { value: 'local' } })
+    await waitFor(() => expect(select).toHaveValue('local'))
+    expect(screen.getByText('domanda.docx', { exact: true })).toBeVisible()
+    expect(screen.getByLabelText(/Indicazioni per la compilazione/)).toHaveValue('Mantieni queste indicazioni')
+    expect(screen.getByRole('button', { name: 'Compila Word' })).toBeEnabled()
   })
 
   it('never shows a late compilation from a different project', async () => {

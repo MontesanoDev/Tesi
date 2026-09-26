@@ -22,7 +22,7 @@ MAX_CATALOG_CHARACTERS = 100_000
 DRAFT_NOTICE = "BOZZA NON VERIFICATA - NON FIRMARE O INVIARE SENZA REVISIONE"
 PLACEHOLDER = re.compile(r"[\s_.\-\u2026\u2013\u2014]*\Z")
 INLINE_PLACEHOLDER = re.compile(
-    r"_(?:[ \u00a0]*_){2,}|[.\u2026](?:[ \u00a0]*[.\u2026])*"
+    r"_(?:[ \u00a0]*_){1,}|[.\u2026](?:[ \u00a0]*[.\u2026])*"
     r"|\{\{[^{}\n]{1,80}\}\}"
     r"|\[(?:DA COMPILARE|INSERIRE|INDICARE)\b[^\]\n]{0,80}\]",
     re.IGNORECASE,
@@ -79,6 +79,13 @@ def is_email_label(value: str) -> bool:
 def _placeholder_matches(text: str) -> list[re.Match]:
     matches = []
     for match in INLINE_PLACEHOLDER.finditer(text):
+        if match.group().startswith("_") and match.group().count("_") == 2:
+            # Short fields such as (__) are explicit blanks. Keep bare double
+            # underscores in identifiers or prose outside the writable catalog.
+            before = text[:match.start()].rstrip(" \u00a0")
+            after = text[match.end():].lstrip(" \u00a0")
+            if not before.endswith("(") or not after.startswith(")"):
+                continue
         if match.group()[0] in ".\u2026":
             # Preserve the abbreviation and its space in e.g. "prov. ........".
             if (

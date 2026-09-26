@@ -7,7 +7,15 @@ from dataclasses import dataclass
 
 import httpx
 
+from app.ai_transport import post_chat
 from app.config import get_deepseek_settings
+
+# Ollama can load the model on the first request and only sends the completed
+# JSON (stream=False). Its read timeout must include loading and generation.
+CHAT_TIMEOUT_SECONDS = 90
+OLLAMA_CHAT_TIMEOUT_SECONDS = 180
+CHAT_READ_TIMEOUT_SECONDS = 30
+CHAT_CONNECT_TIMEOUT_SECONDS = 10
 
 
 class GenerationError(RuntimeError):
@@ -85,13 +93,13 @@ def _parse_content(content: str, evidence_count: int, model: str, usage: dict) -
     try:
         payload = json.loads(cleaned)
     except (ValueError, RecursionError) as exc:
-        raise GenerationError("DeepSeek ha restituito un output JSON non valido") from exc
+        raise GenerationError("Il modello ha restituito un output JSON non valido") from exc
     if not isinstance(payload, dict):
-        raise GenerationError("DeepSeek non ha restituito un oggetto per la risposta")
+        raise GenerationError("Il modello non ha restituito un oggetto per la risposta")
 
     answer = payload.get("answer")
     if not isinstance(answer, str) or not answer.strip():
-        raise GenerationError("DeepSeek non ha restituito una risposta utilizzabile")
+        raise GenerationError("Il modello non ha restituito una risposta utilizzabile")
 
     raw_citations = payload.get("citation_ids", [])
     if not isinstance(raw_citations, list):
@@ -107,9 +115,9 @@ def _parse_content(content: str, evidence_count: int, model: str, usage: dict) -
     try:
         answer_references = {int(value) for value in re.findall(r"\[(\d+)]", answer)}
     except ValueError as exc:
-        raise GenerationError("DeepSeek ha citato una fonte non presente nel contesto") from exc
+        raise GenerationError("Il modello ha citato una fonte non presente nel contesto") from exc
     if any(reference < 1 or reference > evidence_count for reference in answer_references):
-        raise GenerationError("DeepSeek ha citato una fonte non presente nel contesto")
+        raise GenerationError("Il modello ha citato una fonte non presente nel contesto")
     citations = list(dict.fromkeys([*citations, *sorted(answer_references)]))
     if citations and not answer_references:
         answer = f"{answer.rstrip()} Fonti: {', '.join(f'[{value}]' for value in citations)}."
@@ -136,8 +144,8 @@ async def generate_grounded_answer(
     conversation_history: list[dict] | None = None,
 ) -> GeneratedAnswer:
     settings = get_deepseek_settings()
-    if not settings.api_key:
-        raise GenerationNotConfiguredError("DEEPSEEK_API_KEY non configurata")
+    if not settings.configured:
+        raise GenerationNotConfiguredError("Configura un modello AI nelle Impostazioni generali")
 
     request_body = {
         "model": settings.model,
@@ -157,23 +165,49 @@ async def generate_grounded_answer(
         "temperature": 0.1,
         "max_tokens": 900,
     }
+    timeout_seconds = (
+        OLLAMA_CHAT_TIMEOUT_SECONDS if settings.provider == "ollama" else CHAT_TIMEOUT_SECONDS
+    )
+    read_timeout_seconds = (
+        timeout_seconds if settings.provider == "ollama" else CHAT_READ_TIMEOUT_SECONDS
+    )
     try:
-        async with asyncio.timeout(90):
-            async with httpx.AsyncClient(timeout=httpx.Timeout(30, connect=10)) as client:
-                response = await client.post(
-                    f"{settings.base_url}/chat/completions",
-                    headers={"Authorization": f"Bearer {settings.api_key}"},
-                    json=request_body,
+        async with asyncio.timeout(timeout_seconds):
+            async with httpx.AsyncClient(
+                timeout=httpx.Timeout(
+                    CHAT_READ_TIMEOUT_SECONDS,
+                    connect=CHAT_CONNECT_TIMEOUT_SECONDS,
+                    read=read_timeout_seconds,
                 )
+            ) as client:
+                response = await post_chat(client, settings, request_body)
                 response.raise_for_status()
                 payload = response.json()
     except TimeoutError as exc:
-        raise GenerationError("DeepSeek non ha risposto entro 90 secondi") from exc
+        raise GenerationError(
+            f"{settings.label} non ha completato la risposta entro {timeout_seconds:g} secondi"
+        ) from exc
+    except httpx.ConnectTimeout as exc:
+        raise GenerationError(
+            f"Collegamento a {settings.label} non riuscito entro "
+            f"{CHAT_CONNECT_TIMEOUT_SECONDS:g} secondi. Controlla l'indirizzo e il servizio."
+        ) from exc
+    except httpx.ReadTimeout as exc:
+        raise GenerationError(
+            f"{settings.label} non ha inviato dati entro {read_timeout_seconds:g} secondi "
+            "di attesa della risposta"
+        ) from exc
+    except httpx.TimeoutException as exc:
+        raise GenerationError(
+            f"Tempo di attesa scaduto durante la richiesta a {settings.label}"
+        ) from exc
     except httpx.HTTPStatusError as exc:
         status_code = exc.response.status_code
-        raise GenerationError(f"DeepSeek ha rifiutato la richiesta ({status_code})") from exc
+        raise GenerationError(
+            f"{settings.label} ha rifiutato la richiesta ({status_code})"
+        ) from exc
     except (httpx.HTTPError, ValueError) as exc:
-        message = "DeepSeek non e raggiungibile o ha restituito dati non validi"
+        message = f"{settings.label} non e raggiungibile o ha restituito dati non validi"
         raise GenerationError(message) from exc
 
     try:
@@ -181,7 +215,9 @@ async def generate_grounded_answer(
         content = choice["message"]["content"]
         model = payload.get("model") or settings.model
     except (KeyError, IndexError, TypeError) as exc:
-        raise GenerationError("La risposta di DeepSeek non rispetta il contratto atteso") from exc
+        raise GenerationError("La risposta del modello non rispetta il contratto atteso") from exc
     if not isinstance(content, str) or not isinstance(model, str):
-        raise GenerationError("La risposta di DeepSeek non contiene testo valido")
+        raise GenerationError("La risposta del modello non contiene testo valido")
+    if choice.get("finish_reason", "stop") != "stop":
+        raise GenerationError("Il modello ha interrotto la risposta prima del completamento")
     return _parse_content(content, len(evidence), model, payload.get("usage", {}))

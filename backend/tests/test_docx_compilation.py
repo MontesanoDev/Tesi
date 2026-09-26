@@ -480,6 +480,60 @@ def missing_proposals(targets):
     )
 
 
+@pytest.mark.parametrize("template_path", [
+    CASE / "modello/domanda-partecipazione.docx",
+    CASE.parent / "minervino-elenco-sia/originali/domanda-iscrizione.docx",
+])
+@pytest.mark.parametrize("repair", [False, True])
+def test_compact_prompt_preserves_context_and_evidence(template_path, repair):
+    layout = inspect_docx(template_path.read_bytes())
+    original_catalog = json.dumps([layout.catalog, layout.paragraph_catalog])
+    evidence = sources('Società: D\'Amico & Figli\nSede: Bari  (BA)\t"Italia"')
+    instructions = "  Partecipazione singola.\nSottoscrittore: da confermare.  "
+    targets = (*layout.cells, *layout.slots)[-32:]
+    corrections = [{"proposal": proposal(cell_id=targets[0]), "errors": [
+        {"code": "invalid_quote", "message": "Citazione non presente nella fonte."},
+    ]}] if repair else None
+
+    prompt = compilation.build_prompt(
+        layout, evidence, "Società – domanda", instructions, targets, corrections=corrections
+    )
+    body = json.loads(prompt)
+
+    assert body["sources"] == compilation.source_catalog(evidence, instructions)
+    assert body["source_coverage"] == evidence.coverage()
+    assert body["user_instructions"] == instructions
+    assert body["user_instructions_source_id"] == "user:instructions"
+    assert body["project_title"] == "Società – domanda"
+    assert body["template_sha256"] == layout.sha256
+    assert body["template_text"] == text_of(layout.document.element.body)
+    assert body["unsupported_locations"] == layout.unsupported_locations
+    assert body["target_ids"] == list(targets)
+    if repair:
+        assert body["correction_request"] == corrections
+    else:
+        assert "correction_request" not in body
+
+    # The annotated text plus original placeholders must reconstruct every paragraph.
+    for original, sent in zip(layout.paragraph_catalog, body["paragraphs"], strict=True):
+        assert sent["text"] == original["text"]
+        reconstructed = sent["text_with_fields"]
+        for field in sent["fields"]:
+            reconstructed = reconstructed.replace(f"[[{field['id']}]]", field["placeholder"])
+            assert field["writable"] == (field["id"] in targets)
+        assert reconstructed == original["text"]
+        for key, value in original.items():
+            if key not in {"text", "fields"}:
+                assert sent[key] == value
+        for before, after in zip(original["fields"], sent["fields"], strict=True):
+            assert {k: v for k, v in after.items() if k != "writable"} == {
+                k: v for k, v in before.items() if k != "writable"
+            }
+
+    assert len(prompt) < len(json.dumps(body, ensure_ascii=False))
+    assert json.dumps([layout.catalog, layout.paragraph_catalog]) == original_catalog
+
+
 @pytest.mark.anyio
 async def test_real_template_is_batched_without_losing_context_or_mutating_layout(monkeypatch):
     layout = inspect_docx((CASE / "modello/domanda-partecipazione.docx").read_bytes())
@@ -531,6 +585,7 @@ async def test_real_template_is_batched_without_losing_context_or_mutating_layou
         "repair_attempted_fields": 0,
         "repaired_fields": 0,
         "repair_skipped_fields": 0,
+        "out_of_batch_proposals": 0,
     }
     assert json.dumps([layout.catalog, layout.paragraph_catalog]) == original_catalog
 
@@ -568,8 +623,7 @@ async def test_failed_later_batch_does_not_persist_partial_document(client, monk
         targets = json.loads(prompt)["target_ids"]
         calls.append(targets)
         if len(calls) == 2:
-            # A valid field in the document, but not in this batch.
-            return missing_proposals(calls[0][:1]), "test", 10
+            return missing_proposals(["t999.r0.c1"]), "test", 10
         return missing_proposals(targets), "test", 10
 
     monkeypatch.setattr(compilation, "request_field_proposals", model)
@@ -579,10 +633,71 @@ async def test_failed_later_batch_does_not_persist_partial_document(client, monk
         files={"file": ("grande.docx", template_bytes(["Societa"] * 33))},
     )
     assert response.status_code == 502
-    assert "esterno al gruppo" in response.json()["detail"]
+    assert "sconosciuto" in response.json()["detail"]
     assert len(calls) == 2
     assert (await client.get(f"/api/projects/{project}/document-compilations")).json() == []
     assert not list(get_storage_path().rglob("bozza.docx"))
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("include_assigned_field", [False, True])
+async def test_api_discards_out_of_batch_proposals_without_losing_valid_work(
+    client, monkeypatch, include_assigned_field,
+):
+    await add_company(client)
+    calls = []
+
+    async def model(prompt):
+        body = json.loads(prompt)
+        calls.append(body["target_ids"])
+        company = next(item for item in body["sources"] if item["scope"] == "company")
+
+        def field(target, value="Mapi Ingegneria S.r.l."):
+            return proposal(
+                cell_id=target, value=value,
+                evidence=[{"source_id": company["id"], "quote": company["content"]}],
+            )
+
+        if len(calls) == 1:
+            # Future-group proposal must not fill/classify an omitted field later.
+            return result(field(calls[0][0]), field("t0.r32.c1")), "test", 10
+        # Even a supported value must not overwrite an already accepted field.
+        extra = field(calls[0][0], value="Mapi")
+        own = [field(body["target_ids"][0])] if include_assigned_field else []
+        return result(extra, *own), "test", 12
+
+    monkeypatch.setattr(compilation, "request_field_proposals", model)
+    url = "/api/projects/fondo-riqualificazione-2027/document-compilations"
+    response = await client.post(
+        url, files={"file": ("grande.docx", template_bytes(["Societa"] * 33))},
+    )
+    assert response.status_code == 201, response.text
+    run = response.json()
+    report = run["report"]
+    assert len(calls) == 2
+    assert report["total_tokens"] == 22
+    assert report["written_field_count"] == (2 if include_assigned_field else 1)
+    assert report["ready_for_submission"] is False
+    assert report["execution"]["out_of_batch_proposals"] == 2
+    assert report["execution"]["repair_requests"] == 0
+    assert ("t0.r32.c1" in report["unclassified_fields"]) is not include_assigned_field
+    assert len(report["fields"]) == report["written_field_count"]
+    rejected = report["rejected_proposals"]
+    assert [item["proposal"]["cell_id"] for item in rejected] == ["t0.r32.c1", calls[0][0]]
+    assert [item["request"] for item in rejected] == [1, 2]
+    assert all(item["validation_code"] == "outside_batch" for item in rejected)
+    assert all(item["phase"] == "initial" for item in rejected)
+    assert all(item["proposal"]["cell_id"] not in item["target_ids"] for item in rejected)
+    assert any("2 proposte fuori dal gruppo" in warning for warning in report["warnings"])
+    saved = (await client.get(f"{url}/{run['id']}")).json()
+    assert saved["report"] == report
+    assert (await client.get(run["downloads"]["report"])).json() == report
+    output = Document(BytesIO((await client.get(run["downloads"]["docx"])).content))
+    assert output.tables[0].cell(0, 1).text == "Mapi Ingegneria S.r.l."
+    assert output.tables[0].cell(32, 1).text == (
+        "Mapi Ingegneria S.r.l." if include_assigned_field else ""
+    )
+    assert all(output.tables[0].cell(row, 1).text == "" for row in range(1, 32))
 
 
 @pytest.mark.anyio
@@ -859,7 +974,7 @@ async def test_api_compiles_paragraphs_and_reports_mixed_coverage(client, monkey
     run = response.json()
     report = run["report"]
     assert report["schema_version"] == 3
-    assert report["prompt_version"] == "docx-fields-v6-logical-fields"
+    assert report["prompt_version"] == "docx-fields-v11-compact-json"
     assert report["execution"]["completed_batches"] == 1
     assert report["written_field_count"] == 1
     assert report["fields"][0]["location"] == {

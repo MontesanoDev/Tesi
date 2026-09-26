@@ -12,6 +12,7 @@ from typing import Literal
 import httpx
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
+from app.ai_transport import post_chat
 from app.config import get_deepseek_settings
 from app.db import connection
 from app.docx_templates import (
@@ -29,7 +30,7 @@ from app.docx_templates import (
 from app.fact_extraction import select_source_chunks
 from app.generation import GenerationError, GenerationNotConfiguredError
 
-PROMPT_VERSION = "docx-fields-v6-logical-fields"
+PROMPT_VERSION = "docx-fields-v11-compact-json"
 SOURCE_BUDGETS = {"company": 40_000, "project": 90_000, "general": 20_000}
 MAX_RESPONSE_CHARACTERS = 200_000
 FIELDS_PER_BATCH = 32
@@ -37,7 +38,7 @@ MAX_BATCH_REQUESTS = 40
 COMPILATION_TIMEOUT_SECONDS = 600
 REPAIRABLE_CODES = {
     "unknown_source", "invalid_quote", "value_not_in_quote", "invalid_email",
-    "partial_email_evidence",
+    "partial_email_evidence", "partial_numeric_evidence",
 }
 logger = logging.getLogger(__name__)
 
@@ -75,6 +76,10 @@ Regole:
 - per status=proposed copia un valore testuale dalle evidenze e cita source_id
   e una breve citazione letterale che contenga quel valore e il suo contesto;
 - non inventare, correggere o completare numeri, CF, date, deleghe, competenze;
+- copia numeri e codici senza ritagliare un token alfanumerico: conserva zeri
+  iniziali, prefissi e suffissi. Una citazione abbreviata non autorizza a
+  troncare il valore originale. I componenti separati di una data possono
+  essere copiati nei rispettivi segnaposti senza cambiare le cifre;
 - le anagrafiche esplicitamente simulate possono essere proposte nella bozza,
   segnalando in warnings che sono dati inventati utilizzabili solo per demo;
   non usarle per attestare requisiti reali o retroattivi. Le attestazioni basate
@@ -314,7 +319,7 @@ def build_prompt(
         "template_text": text_of(layout.document.element.body),
         "source_coverage": sources.coverage(),
         "sources": source_catalog(sources, instructions),
-        "task": "Proponi SOLO i campi in target_ids, nel formato JSON richiesto.",
+        "task": "Proponi SOLO i campi in target_ids, nel formato JSON richiesto.",#user prompt
     }
     if corrections is not None:
         payload["correction_request"] = corrections
@@ -323,13 +328,13 @@ def build_prompt(
             "Mantieni cell_id, label, entity e kind; non aggiungere altri campi. "
             "Usa needs_review e value=null se non trovi una proposta supportata."
         )
-    return json.dumps(payload, ensure_ascii=False)
+    return json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
 
 
 async def request_field_proposals(prompt: str) -> tuple[str, str, int | None]:
     settings = get_deepseek_settings()
-    if not settings.api_key:
-        raise GenerationNotConfiguredError("DEEPSEEK_API_KEY non configurata")
+    if not settings.configured:
+        raise GenerationNotConfiguredError("Configura un modello AI nelle Impostazioni generali")
     body = {
         "model": settings.model,
         "messages": [
@@ -344,11 +349,7 @@ async def request_field_proposals(prompt: str) -> tuple[str, str, int | None]:
     try:
         async with asyncio.timeout(180):
             async with httpx.AsyncClient(timeout=httpx.Timeout(160, connect=10)) as client:
-                response = await client.post(
-                    f"{settings.base_url}/chat/completions",
-                    headers={"Authorization": f"Bearer {settings.api_key}"},
-                    json=body,
-                )
+                response = await post_chat(client, settings, body)
                 response.raise_for_status()
                 payload = response.json()
     except TimeoutError as exc:
@@ -357,10 +358,10 @@ async def request_field_proposals(prompt: str) -> tuple[str, str, int | None]:
         ) from exc
     except httpx.HTTPStatusError as exc:
         raise GenerationError(
-            f"DeepSeek ha rifiutato la compilazione ({exc.response.status_code})"
+            f"{settings.label} ha rifiutato la compilazione ({exc.response.status_code})"
         ) from exc
     except (httpx.HTTPError, ValueError) as exc:
-        raise GenerationError("DeepSeek non raggiungibile o risposta non valida") from exc
+        raise GenerationError(f"{settings.label} non raggiungibile o risposta non valida") from exc
     try:
         choice = payload["choices"][0]
         content = choice["message"]["content"]
@@ -391,6 +392,34 @@ async def request_field_proposals(prompt: str) -> tuple[str, str, int | None]:
     return content, model, tokens
 
 
+def _complete_numeric_evidence(value: str, quote: str, source: str) -> bool:
+    """Check numeric-bearing tokens against the source, even across quote edges.
+
+    This is a lexical integrity check, not validation of tax IDs, dates or
+    formatted amounts. Punctuation-delimited date components remain usable.
+    """
+    value, quote, source = normalized(value), normalized(quote), normalized(source)
+    numeric_tokens = [
+        token.span() for token in re.finditer(r"\w+", value)
+        if any(char.isdigit() for char in token.group())
+    ]
+    if not numeric_tokens:
+        return True
+    # Lookaheads include overlapping occurrences. Test only occurrences inside
+    # the actual cited span, not an unrelated occurrence elsewhere in the chunk.
+    value_offsets = [match.start() for match in re.finditer(rf"(?={re.escape(value)})", quote)]
+    for citation in re.finditer(rf"(?={re.escape(quote)})", source):
+        for offset in value_offsets:
+            start = citation.start() + offset
+            if all(
+                (start + left == 0 or not re.match(r"\w", source[start + left - 1]))
+                and (start + right == len(source) or not re.match(r"\w", source[start + right]))
+                for left, right in numeric_tokens
+            ):
+                return True
+    return False
+
+
 def validate_proposals(
     content: str,
     layout: DocxLayout,
@@ -409,14 +438,22 @@ def validate_proposals(
     source_map = {source["id"]: source for source in source_catalog(sources, instructions)}
     seen = set()
     fields = []
+    rejected_proposals = []
     for item in proposals.fields:
         if item.cell_id not in layout.candidate_ids or item.cell_id in seen:
             raise GenerationError(
                 "Il modello indica un campo non scrivibile, sconosciuto o duplicato"
             )
-        if allowed_ids is not None and item.cell_id not in allowed_ids:
-            raise GenerationError("Il modello indica un campo esterno al gruppo richiesto")
         seen.add(item.cell_id)
+        if allowed_ids is not None and item.cell_id not in allowed_ids:
+            # Context-only fields cannot authorize writes, repairs or classification.
+            rejected_proposals.append({
+                "proposal": item.model_dump(),
+                "validation_code": "outside_batch",
+                "message": "Proposta scartata: campo esterno al gruppo richiesto",
+                "target_ids": sorted(allowed_ids),
+            })
+            continue
         if item.status != "proposed" and item.value is not None:
             raise GenerationError("Un campo non compilabile contiene un valore inatteso")
         if item.status == "proposed" and not item.value:
@@ -465,6 +502,14 @@ def validate_proposals(
             ):
                 checks.append("Il valore non compare letteralmente nelle evidenze citate")
                 codes.append("value_not_in_quote")
+            elif not any(
+                _complete_numeric_evidence(
+                    item.value, citation["quote"], source_map[citation["source_id"]]["content"],
+                )
+                for citation in evidence
+            ):
+                checks.append("Il valore ritaglia un numero o codice alfanumerico nella fonte")
+                codes.append("partial_numeric_evidence")
             if evidence and item.entity in {"company", "person"} and not any(
                 citation["scope"] != "general" for citation in evidence
             ):
@@ -504,10 +549,12 @@ def validate_proposals(
                 ),
             }
         )
+    classified = {field["cell_id"] for field in fields}
     return {
         "fields": fields,
-        "unclassified_cells": sorted(set(layout.cells) - seen),
-        "unclassified_fields": sorted(layout.candidate_ids - seen),
+        "rejected_proposals": rejected_proposals,
+        "unclassified_cells": sorted(set(layout.cells) - classified),
+        "unclassified_fields": sorted(layout.candidate_ids - classified),
         "unsupported_locations": layout.unsupported_locations,
         "warnings": proposals.warnings,
     }
@@ -518,6 +565,7 @@ async def compile_field_batches(
 ) -> tuple[dict, str, int | None, dict]:
     targets = (*layout.cells, *layout.slots)
     fields, warnings, models = [], [], []
+    rejected_proposals = []
     usage: list[int | None] = []
     execution = {
         "batch_size": FIELDS_PER_BATCH,
@@ -558,6 +606,10 @@ async def compile_field_batches(
         )
         fields.extend(report["fields"])
         warnings.extend(report["warnings"])
+        rejected_proposals.extend(
+            {**item, "phase": "initial", "request": execution["requests"]}
+            for item in report["rejected_proposals"]
+        )
         models.append(model)
         usage.append(tokens)
         execution["completed_batches"] += 1
@@ -609,11 +661,15 @@ async def compile_field_batches(
             return
         usage.append(tokens)
         models.append(model)
-        # Structural errors still abort: a correction may only address its assigned fields.
+        # Only assigned fields reach the repair step; extras stay in the rejection audit.
         report = validate_proposals(
             content, layout, sources, allowed_ids=set(targets), instructions=instructions,
         )
         warnings.extend(report["warnings"])
+        rejected_proposals.extend(
+            {**item, "phase": "repair", "request": execution["requests"]}
+            for item in report["rejected_proposals"]
+        )
         corrected = {field["cell_id"]: field for field in report["fields"]}
         for original in blocked:
             candidate = corrected.get(original["cell_id"])
@@ -661,8 +717,16 @@ async def compile_field_batches(
             f"{blocked_count} proposte bloccate dai controlli: campi vuoti da correggere, "
             "non necessariamente dati mancanti nelle fonti."
         )
+    execution["out_of_batch_proposals"] = len(rejected_proposals)
+    if rejected_proposals:
+        warnings.append(
+            f"{len(rejected_proposals)} proposte fuori dal gruppo richiesto scartate: "
+            "non sono state usate per compilare o classificare campi. "
+            "Ogni campo viene valutato solo nel proprio gruppo; quelli omessi restano vuoti."
+        )
     report = {
         "fields": fields,
+        "rejected_proposals": rejected_proposals,
         "warnings": list(dict.fromkeys(warnings)),
         "unclassified_cells": sorted(set(layout.cells) - seen),
         "unclassified_fields": sorted(layout.candidate_ids - seen),

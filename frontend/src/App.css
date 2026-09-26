@@ -432,7 +432,7 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   background: #2b2c29;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .composer--docked {
@@ -944,7 +944,7 @@
 
 .context-file-row {
   display: grid;
-  grid-template-columns: 18px minmax(0, 1fr) auto 32px;
+  grid-template-columns: 18px minmax(0, 1fr) auto 64px;
   gap: 10px;
 }
 
@@ -957,9 +957,25 @@
 }
 
 .context-file-edit,
+.context-file-delete,
 .context-file-action-spacer {
   width: 32px;
   height: 32px;
+}
+
+.context-file-actions {
+  display: flex;
+  align-items: center;
+  width: 64px;
+}
+
+.context-file-delete:hover:not(:disabled),
+.context-file-delete:focus-visible:not(:disabled) {
+  color: #f2a69a;
+}
+
+.delete-source-modal > p {
+  overflow-wrap: anywhere;
 }
 
 .context-file-edit:hover:not(:disabled),

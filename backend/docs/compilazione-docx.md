@@ -10,6 +10,8 @@ JSON. Il percorso e collegato alla schermata **Template**, nel formato Word.
 2. Lasciare **Formato: Word (.docx)** e scegliere **Carica modello**.
 3. Aggiungere eventuali indicazioni e premere **Compila Word**. Il solo caricamento
    non avvia chiamate al modello e non aggiunge il modulo alla KB.
+   Specificare modalita di partecipazione, sottoscrittore e sezioni da compilare
+   quando queste scelte non sono gia nei Dati del progetto.
 4. Consultare campi inseriti, mancanti, proposte bloccate, citazioni e avvisi.
    Il report e consultabile, non un editor Word o una certificazione di verifica.
 5. Scaricare **Word compilato**, **Report JSON** o **Modello originale**.
@@ -44,13 +46,15 @@ binari non sono supportati dal nuovo caricamento.
    KB. I dati estratti con provenienza sono disponibili senza approvazione manuale;
    i dati esclusi non vengono indicizzati. I dati inseriti per il progetto restano
    distinguibili dalle sintesi automatiche. Template e draft non diventano evidenze aziendali.
-3. Il prompt dedicato `docx-fields-v6-logical-fields` chiede campi, valori, fonte,
+3. Il prompt dedicato `docx-fields-v11-compact-json` chiede campi, valori, fonte,
    citazione letterale, stato e motivazione in gruppi da massimo 32 elementi.
    Il contesto del modulo e le fonti rimangono disponibili in ogni gruppo, ma
    soltanto gli ID assegnati sono scrivibili. **La mappa manuale Catanzaro non viene letta
    dal codice di produzione**: viene usata soltanto nei test del writer.
-4. Il backend rifiuta JSON non interpretabile, campi sconosciuti/duplicati o
-   esterni al gruppo e contratti di scrittura incoerenti. Una citazione inesistente
+4. Il backend rifiuta JSON non interpretabile, campi sconosciuti/duplicati e
+   contratti di scrittura incoerenti. Le proposte per candidati validi esterni
+   al gruppo vengono scartate e registrate, senza autorizzare scritture.
+   Una citazione inesistente
    o un valore non presente nella citazione blocca invece il singolo campo.
    Dopo il primo passaggio, un solo tentativo mirato puo correggere queste
    proposte; quelle ancora non valide restano vuote e segnalate nel report.
@@ -103,6 +107,27 @@ un limite: non esiste una validazione semantica generale di tutti i campi.
 Non cambiano retrieval, budget, modello, scelta dei rami o workflow. I risultati
 precedenti rimangono invariati; le correzioni si applicano alle nuove compilazioni.
 
+### Integrita dei numeri e codici nelle evidenze (v7)
+
+Il validatore blocca `1234567890` se proviene da `01234567890`, oppure `ABC123`
+se ritagliato da `ABC123Z`. Il controllo si applica ai token alfanumerici che
+contengono cifre, indipendentemente dall'etichetta restituita dal modello.
+Vengono controllati i confini del token nel testo della fonte, anche se la
+citazione restituita contiene soltanto la parte troncata. Un'occorrenza del
+valore altrove nel frammento, fuori dalla citazione, non basta.
+
+Il codice `partial_numeric_evidence` lascia il campo vuoto e ammette l'unico
+tentativo di correzione gia previsto. Non completa automaticamente zeri o
+prefissi: il modello deve proporre un valore supportato, oppure astenersi.
+Un codice completo viene mantenuto letteralmente, inclusi gli zeri iniziali.
+
+Questo e un controllo lessicale, non una validazione fiscale o semantica.
+Non interpreta codici composti, importi decimali o requisiti. I componenti di
+una data delimitati da barre restano utilizzabili nei rispettivi segnaposti.
+Il writer non riceve fonti: questo controllo viene eseguito dal validatore
+prima della scrittura. I risultati salvati con versioni precedenti rimangono
+invariati; la versione del prompt distingue le nuove compilazioni.
+
 ### Provenienza e correzioni limitate
 
 Le indicazioni non vuote sono una fonte separata `user:instructions`, con
@@ -113,7 +138,8 @@ hanno origine `extracted`, le fonti documentali `document`. Dichiarare un dato
 non equivale a verificarlo documentalmente, ne autorizza firme o attestazioni.
 
 Una proposta con fonte sconosciuta, citazione non letterale, valore non contenuto
-nella citazione o recapito non valido diventa `needs_review`, con `written_value=null`. Il report
+nella citazione, numero/codice ritagliato o recapito non valido diventa
+`needs_review`, con `written_value=null`. Il report
 conserva `validation_codes`, `validation_notes` e `rejected_evidence`: una
 citazione rifiutata non compare tra le evidenze valide. Anche una sola citazione
 errata aggiunta a una valida blocca quella proposta, non le altre.
@@ -140,9 +166,25 @@ vengono inventati significati o fonti; tipi errati e ID sconosciuti restano erro
 La generazione usa chiamate sequenziali, ciascuna limitata a 12.000 token di
 output. Nel passaggio iniziale, se il servizio termina con `finish_reason=length`, la risposta viene
 scartata senza tentare di riparare il JSON; solo quel gruppo viene diviso a meta
-e riprovato. I gruppi gia completati non vengono rigenerati. Errori strutturali,
-filtri del servizio e campi esterni al gruppo interrompono la compilazione.
+e riprovato. I gruppi gia completati non vengono rigenerati. Errori strutturali
+(JSON non valido, ID sconosciuti, non scrivibili o duplicati) e filtri del servizio
+interrompono la compilazione.
 Una correzione troncata non viene suddivisa o ripetuta: il campo resta bloccato.
+
+Se la risposta include un campo esistente ma esterno a `target_ids`, quella
+proposta viene scartata senza interrompere le altre: non autorizza scritture,
+classificazioni o correzioni. Il campo puo essere trattato soltanto nella chiamata
+del proprio gruppo; se li viene omesso resta vuoto e non classificato. Non viene
+riassegnato un ID e non si riusa la proposta scartata in chiamate successive.
+La stessa regola vale durante le correzioni, che non possono modificare campi
+gia accettati. Non sono aggiunte chiamate al modello per questo caso.
+
+Il report conserva le proposte fuori gruppo in `rejected_proposals`, con
+`validation_code=outside_batch`, proposta originale, ID autorizzati, numero
+di chiamata e fase (`initial`/`repair`). Un avviso riassuntivo compare nella UI;
+`execution.out_of_batch_proposals` ne conta le occorrenze, non i campi unici.
+I controlli su formato, duplicati, fonti, valori e firme restano attivi. Questa
+gestione riguarda i gruppi tecnici, non l'applicabilita semantica delle sezioni.
 
 Limiti: massimo 40 chiamate complessive, 180 secondi per chiamata e 600 secondi
 per l'elaborazione dei gruppi, correzioni incluse. Se il budget di chiamate e
@@ -169,14 +211,18 @@ Sono riconosciuti segnaposti espliciti come:
 
 ```text
 Il sottoscritto ______, nato a ______ il ___/___/______.
+Sede in ______ (__) e provincia di residenza ( __ ).
 Societa: {{ragione_sociale}}. Sede: [INSERIRE SEDE LEGALE].
 Luogo: ........; data: ........
 ```
 
-Supporto: almeno tre underscore (anche separati da spazi), almeno quattro punti,
+Supporto: almeno tre underscore (anche separati da spazi), due underscore
+racchiusi tra parentesi come `(__)` o `( _ _ )`, almeno quattro punti,
 almeno due caratteri ellissi consecutivi, `{{campo}}`, `[DA COMPILARE]`,
 `[INSERIRE ...]`, `[INDICARE ...]`. I tre puntini di una frase normale non sono
 trattati come campi. Piu segnaposti nella stessa frase restano distinti.
+Le sequenze di due underscore dentro parole o fuori dalle parentesi non sono
+nuovi campi. Le parentesi e gli spazi circostanti sono preservati dal writer.
 
 Un esempio sintetico pronto da caricare si trova in
 `demo-documents/modelli/modulo-paragrafi.docx`. Non e un modulo ufficiale.
@@ -195,6 +241,107 @@ bozza. `unclassified_fields` include celle e segnaposti non classificati;
 vecchi report v1/v2; le nuove compilazioni producono lo schema v3 con provenienza,
 proposte rifiutate e traccia delle correzioni. `unsupported_locations` segnala i paragrafi esclusi per
 controlli Word o contenuti complessi: non implica una verifica di completezza.
+
+### Campi corti e ripristino del prompt (v9)
+
+La v8 aveva aggiunto istruzioni su componenti dell'indirizzo, ruoli aziendali,
+scelte mancanti e coerenza delle sezioni. La successiva compilazione Minervino
+ha prodotto due sole scritture, entrambe nel ramo studio associato non confermato,
+bloccando anche l'anagrafica generale per mancanza della scelta di partecipazione.
+Il report contava zero proposte respinte dal validatore: era il modello a
+classificare quasi tutti i campi come `needs_review`.
+
+La v9 ripristina le istruzioni della v7 e mantiene la correzione del parser.
+Una sola esecuzione non misura la qualita generale delle versioni, ma l'esito
+osservato non giustifica mantenere il cambiamento al prompt come miglioramento.
+I problemi semantici della v7 rimangono aperti; il ripristino non garantisce
+di riprodurre il precedente numero di scritture.
+
+La correzione del parser e verificabile senza LLM: il modulo Minervino
+espone anche le tre province iniziali, passando da 184 a 187 segnaposti.
+Non vengono aggiunte coordinate o dati specifici del bando al codice di
+produzione; le coordinate del caso reale sono usate solo nei test di regressione.
+Gli ID vengono ricalcolati durante ogni nuova analisi del modello: i report
+precedenti restano associati alla compilazione e alla versione che li ha prodotti.
+
+### Riduzione del contesto duplicato (v10, successivamente ritirata)
+
+L'esperimento descritto sotto e stato verificato con compilazioni reali e poi
+ritirato: la versione corrente mantiene soltanto il JSON compatto (v11).
+
+La v10 conserva le istruzioni della v9 e rende piu compatto il payload JSON:
+
+- nel catalogo dei paragrafi invia `text_with_fields` e i segnaposti originali,
+  omettendo la copia ridondante `text`. Il testo originale e ricostruibile dai
+  dati inviati; il catalogo interno del parser rimane invariato;
+- elimina gli spazi di separazione del JSON, conservando quelli nei valori,
+  nelle fonti, nelle citazioni e nelle indicazioni utente.
+
+Rimangono disponibili il testo completo del modulo, i contesti adiacenti,
+tutte le fonti selezionate e i metadati. Restano invariati i gruppi da 32 campi,
+i budget, i controlli e il tentativo di correzione. La riduzione si applica
+anche alle richieste di correzione, senza cambiare i dati da correggere.
+
+Misura offline del 22 settembre 2026 sui due modelli e sulle fonti correnti,
+con titolo del progetto salvato e indicazioni utente vuote. La tabella somma
+i caratteri dei messaggi utente di tutti i gruppi iniziali; esclude il messaggio
+di sistema, le risposte ed eventuali correzioni o tentativi troncati. Il confronto
+ricostruisce la serializzazione v9 sugli stessi dati della v10.
+
+| Caso | Gruppi | Caratteri prima | Caratteri dopo | Riduzione |
+| --- | ---: | ---: | ---: | ---: |
+| Minervino | 8 | 1.557.492 | 1.389.182 | 10,81% |
+| Catanzaro | 9 | 2.068.424 | 1.998.647 | 3,37% |
+
+Includendo i 6.193 caratteri del messaggio di sistema ripetuti per chiamata,
+le riduzioni sono rispettivamente 10,47% e 3,28%. Le fonti selezionate sono
+52 frammenti e 58.874 caratteri per Minervino, 92 frammenti e 106.718 caratteri
+per Catanzaro. Queste sono misure di caratteri, **non di token del provider**:
+non e stata effettuata una nuova compilazione a pagamento. I test verificano
+la conservazione dei dati nei prompt iniziali e di correzione dei due modelli;
+non dimostrano equivalenza delle risposte dell'LLM o migliore interpretazione.
+Le fonti continuano a essere ripetute in ogni gruppo: il costo principale resta.
+
+Verifica della v10: 378 test backend superati con risposte del provider simulate;
+Ruff e `git diff --check` senza errori.
+
+### Verifica reale e versione conservativa (v11)
+
+Le compilazioni live v10 hanno confermato meno token di input, ma Catanzaro
+ha prodotto nove scritture aggiuntive nei rami 5.e e 5.f non confermati.
+Sul solo gruppo interessato, il riferimento v9 e la variante con il solo JSON
+compatto non hanno scritto quei campi. Una prova per configurazione non
+isola la variabilita del modello: la rimozione di `paragraph.text` e stata
+ritirata per prudenza, senza attribuirle una causalita dimostrata.
+
+La versione **`docx-fields-v11-compact-json`** ripristina il catalogo integrale
+dei paragrafi. Rispetto alla v9 cambia soltanto la serializzazione JSON,
+con `separators=(",", ":")`. Tutti i dati, le stringhe, le istruzioni, i gruppi
+e i controlli restano presenti. Le richieste reali, comprese le correzioni,
+sono state confrontate con il builder precedente: dopo il parsing JSON i
+payload risultano uguali.
+
+| Caso | Token input primo gruppo, riferimento v9 | Token input primo gruppo v11 | Riduzione input | Token totali compilazione v11 | Campi scritti |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Minervino | 47.808 | 44.360 | 7,21% | 418.249 | 19 |
+| Catanzaro | 73.594 | 69.073 | 6,14% | 642.207 | 22 |
+
+La misura di input usa il contesto esatto del primo gruppo, stesso modello e
+stesse istruzioni. La richiesta di riferimento ha risposta limitata a un token
+e non genera una bozza. I totali delle compilazioni includono input e output,
+compresa una correzione Minervino; escludono le chiamate di misura e diagnosi.
+Non si tratta di una misura del risparmio monetario o della qualita generale.
+
+Le nuove bozze sono registrate nei progetti. Catanzaro conserva gli stessi
+22 campi e valori della precedente v9; persistono le scritture in sezioni
+non confermate. Minervino scrive la provincia iniziale, ma conserva errori
+di indirizzo e scrive recapiti anche nei rami associati non confermati.
+L'integrita ZIP, i testi prestampati, le scritture e le evidenze sono stati
+verificati; non e stato controllato il rendering in Word. Sulla v11 sono
+passati 378 test backend, Ruff e `git diff --check`.
+
+Risultati, differenze semantiche, consumi delle prove e file prodotti sono in
+[Verifica token e compilazioni](../../verifica-token-compilazione.md).
 
 ## Provare il caso Catanzaro senza modificare i propri dati
 

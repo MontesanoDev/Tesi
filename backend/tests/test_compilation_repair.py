@@ -181,6 +181,68 @@ def test_false_citation_blocks_only_its_field_even_with_another_valid_citation(b
     assert len(blocked["evidence"]) == 1
 
 
+@pytest.mark.parametrize("kind", ["table", "shifted", "paragraph"])
+@pytest.mark.parametrize("status", ["proposed", "missing", "needs_review", "not_applicable"])
+def test_out_of_batch_proposals_are_audited_but_never_classified_or_written(kind, status):
+    layout = layout_for(kind)
+    first, second, _ = targets(layout)
+    extra = proposal(
+        second, status=status, value=COMPANY if status == "proposed" else None,
+    )
+    report = compilation.validate_proposals(
+        response(extra, proposal(first)), layout, context(), allowed_ids={first},
+    )
+    assert [field["cell_id"] for field in report["fields"]] == [first]
+    assert report["fields"][0]["written_value"] == COMPANY
+    assert second in report["unclassified_fields"]
+    if kind != "paragraph":
+        assert second in report["unclassified_cells"]
+    assert report["rejected_proposals"] == [{
+        "proposal": extra,
+        "validation_code": "outside_batch",
+        "message": "Proposta scartata: campo esterno al gruppo richiesto",
+        "target_ids": [first],
+    }]
+    all_rejected = compilation.validate_proposals(
+        response(extra), layout, context(), allowed_ids=set(),
+    )
+    assert all_rejected["fields"] == []
+    assert set(all_rejected["unclassified_fields"]) == set(targets(layout))
+
+
+@pytest.mark.parametrize("failure", ["unknown", "unwritable", "duplicate", "bad_schema"])
+def test_scope_filter_does_not_relax_structural_validation(failure):
+    layout = layout_for()
+    first, second, _ = targets(layout)
+    extras = [proposal(second)]
+    if failure == "unknown":
+        extras = [proposal("t999.r0.c1")]
+    elif failure == "unwritable":
+        extras = [proposal("t0.r0.c0")]
+    elif failure == "duplicate":
+        extras.append(proposal(second))
+    else:
+        extras = [proposal(second, value={"unexpected": "object"})]
+    with pytest.raises(GenerationError):
+        compilation.validate_proposals(
+            response(proposal(first), *extras), layout, context(), allowed_ids={first},
+        )
+
+
+def test_scope_filter_keeps_evidence_and_signature_checks_for_assigned_fields():
+    layout = layout_for()
+    first, second, signature = targets(layout)
+    report = compilation.validate_proposals(
+        response(proposal(first, evidence=[]), proposal(second), proposal(signature)),
+        layout, context(), allowed_ids={first, signature},
+    )
+    assert len(report["fields"]) == 2
+    assert all(field["written_value"] is None for field in report["fields"])
+    assert "value_not_in_quote" in report["fields"][0]["validation_codes"]
+    assert "protected_field" in report["fields"][1]["validation_codes"]
+    assert len(report["rejected_proposals"]) == 1
+
+
 @pytest.mark.anyio
 @pytest.mark.parametrize("kind", ["table", "shifted", "paragraph"])
 @pytest.mark.parametrize("error", ["accents", "wrong_quote", "unknown_source"])
@@ -277,7 +339,47 @@ async def test_failed_repair_keeps_good_fields_and_never_runs_a_second_repair(mo
 
 
 @pytest.mark.anyio
-@pytest.mark.parametrize("failure", ["json", "unknown", "duplicate", "accepted_field"])
+@pytest.mark.parametrize("kind", ["table", "paragraph"])
+@pytest.mark.parametrize("include_correction", [False, True])
+async def test_out_of_batch_repair_cannot_modify_previously_accepted_fields(
+    monkeypatch, kind, include_correction,
+):
+    layout = layout_for(kind)
+    first, second, _ = targets(layout)
+    calls = []
+
+    async def model(prompt):
+        body = json.loads(prompt)
+        calls.append(body)
+        if len(calls) == 1:
+            return response(proposal(first), proposal(second, evidence=[])), "test", 10
+        assert body["target_ids"] == [second]
+        extra = proposal(first, value="Impresa")
+        own = [proposal(second)] if include_correction else []
+        return response(extra, *own), "test", 12
+
+    monkeypatch.setattr(compilation, "request_field_proposals", model)
+    report, _, tokens, execution = await compilation.compile_field_batches(
+        layout, context(), "Altro progetto", "",
+    )
+    assert len(calls) == 2
+    assert tokens == 22
+    assert execution["out_of_batch_proposals"] == 1
+    assert execution["repair_requests"] == 1
+    assert execution["repaired_fields"] == int(include_correction)
+    assert report["fields"][0]["written_value"] == COMPANY
+    assert "repair" not in report["fields"][0]
+    repaired = report["fields"][1]
+    assert repaired["written_value"] == (COMPANY if include_correction else None)
+    assert repaired["repair"]["status"] == ("corrected" if include_correction else "unresolved")
+    assert report["rejected_proposals"][0]["proposal"]["cell_id"] == first
+    assert report["rejected_proposals"][0]["phase"] == "repair"
+    assert report["rejected_proposals"][0]["request"] == 2
+    assert report["rejected_proposals"][0]["target_ids"] == [second]
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("failure", ["json", "unknown", "duplicate"])
 async def test_structural_repair_errors_still_abort_the_document(monkeypatch, failure):
     layout = layout_for()
     first, second, _ = targets(layout)
@@ -292,8 +394,6 @@ async def test_structural_repair_errors_still_abort_the_document(monkeypatch, fa
             return '{"fields":', "test", 2
         if failure == "unknown":
             return response(proposal("t999.r0.c1")), "test", 2
-        if failure == "accepted_field":
-            return response(proposal(first)), "test", 2
         return response(proposal(second), proposal(second)), "test", 2
 
     monkeypatch.setattr(compilation, "request_field_proposals", model)

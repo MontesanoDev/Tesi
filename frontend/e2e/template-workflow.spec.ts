@@ -22,6 +22,8 @@ async function fixture(page: Page, existing = false) {
   const state = { model, output, generations: 0, failure: false }
   await page.route('**/api/**', async (route) => {
     const path = new URL(route.request().url()).pathname
+    if (path === '/api/settings/ai') return route.fulfill({ json: { profiles: [], default_profile_id: null } })
+    if (path.endsWith('/ai-model')) return route.fulfill({ json: { profile_id: null, effective_profile: null } })
     const root = `/api/projects/${projectId}`
     if (path === root) return route.fulfill({ json: {
       id: projectId, title: 'Riqualificazione edilizia scolastica', description: 'Candidatura del Comune',

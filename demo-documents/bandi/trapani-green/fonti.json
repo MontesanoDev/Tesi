@@ -1,0 +1,29 @@
+{
+  "source_page": "https://comune.trapani.it/novita/progetto-trapani-green-nuovo-avviso-per-laffidamento-dellincarico-professionale-di-progettazione-esecuzione-dei-lavori/",
+  "publication_date": "2023-02-28",
+  "retrieved_at": "2026-09-23T07:59:40Z",
+  "purpose": "Terzo caso didattico di compilazione DOCX; nessuna candidatura o invio",
+  "files": [
+    {
+      "file": "originali/avviso.pdf",
+      "url": "https://comune.trapani.it/wp-content/uploads/2024/04/avviso-affidamento-diretto-progettista-e-dl-pubblicazione.pdf",
+      "sha256": "e05489ce3e68b02f9658a36867e200359e7461b67734d05d9e507ed4ad40be1c",
+      "bytes": 232835,
+      "hash_origin": "calcolato localmente; non confrontato con un hash pubblicato dall'ente"
+    },
+    {
+      "file": "originali/disciplinare.pdf",
+      "url": "https://comune.trapani.it/wp-content/uploads/2024/04/schema-disciplinare-progettista-e-dl-pubblicazione.pdf",
+      "sha256": "2d81df8dff420edcc358ae0121a4c8ac34a26bd16847bcf2cca0b11cf6b25426",
+      "bytes": 211233,
+      "hash_origin": "calcolato localmente; non confrontato con un hash pubblicato dall'ente"
+    },
+    {
+      "file": "originali/manifestazione-interesse.docx",
+      "url": "https://comune.trapani.it/wp-content/uploads/2024/04/all-a-modello-manifestazione-dinteresse-pubblicazione.docx",
+      "sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+      "bytes": 24743,
+      "hash_origin": "calcolato localmente; non confrontato con un hash pubblicato dall'ente"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { Download, Eye, FileText, FileUp, Pencil, Save, WandSparkles } from 'lucide-react'
+import { Download, Eye, FileText, FileUp, NotebookPen, Pencil, Save, WandSparkles } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Markdown from 'react-markdown'
 import remarkFrontmatter from 'remark-frontmatter'
@@ -72,6 +72,9 @@ function MarkdownTemplateWorkspace({
   const outputDirty = Boolean(output && outputText !== output.content)
   const dirty = modelDirty || outputDirty
   const hasOutput = Boolean(output && output.status !== 'Da generare')
+  const hasModel = Boolean(model.content.trim())
+  const emptyModel = view === 'model' && !hasModel && !modelDirty && !editing
+  const newModelEditor = view === 'model' && !hasModel && editing
   const current = view === 'model' ? model : output
   const text = view === 'model' ? modelText : outputText
   const currentDirty = view === 'model' ? modelDirty : outputDirty
@@ -159,7 +162,7 @@ function MarkdownTemplateWorkspace({
   }
 
   async function generate() {
-    if (busy.current || dirty || loading || loadError || !model.editable || !output?.editable) return
+    if (busy.current || dirty || !hasModel || loading || loadError || !model.editable || !output?.editable) return
     if (hasOutput && !window.confirm(
       'Rigenerando perderai la compilazione salvata, incluse le modifiche manuali. Continuare?',
     )) return
@@ -254,10 +257,17 @@ function MarkdownTemplateWorkspace({
         {loadError} <button type="button" className="button" onClick={() => setReload((n) => n + 1)}>Riprova</button>
       </div>}
       {error && <div className="knowledge-error" role="alert">{error}</div>}
+      <input ref={fileInput} type="file" hidden accept=".md,.txt,text/markdown,text/plain"
+        aria-label="Importa modello Markdown o TXT"
+        onChange={(event) => {
+          const file = event.currentTarget.files?.[0]
+          event.currentTarget.value = ''
+          void importModel(file)
+        }} />
       <section id="template-panel" role="tabpanel" aria-labelledby={`template-tab-${view}`}>
-        <div className="template-toolbar">
+        {!emptyModel && <div className="template-toolbar">
           <span className="template-version">
-            {view === 'model' ? `Modello v${model.version}` : hasOutput ? `Compilazione v${output?.version}` : 'Nessuna compilazione'}
+            {view === 'model' ? hasModel ? `Modello v${model.version}` : 'Nuovo modello' : hasOutput ? `Compilazione v${output?.version}` : 'Nessuna compilazione'}
             {currentDirty ? ' · Modifiche non salvate' : ''}
           </span>
           <div className="template-tools">
@@ -265,16 +275,9 @@ function MarkdownTemplateWorkspace({
               {view === 'model' ? model.status : hasOutput ? output?.status : 'Da generare'}
             </StatusPill>
             {view === 'model' && <>
-              <input ref={fileInput} type="file" hidden accept=".md,.txt,text/markdown,text/plain"
-                aria-label="Importa modello Markdown o TXT"
-                onChange={(event) => {
-                  const file = event.currentTarget.files?.[0]
-                  event.currentTarget.value = ''
-                  void importModel(file)
-                }} />
               <button type="button" className="button template-import" disabled={Boolean(operation) || !model.editable}
                 title="Importa un modello Markdown o TXT" onClick={() => fileInput.current?.click()}>
-                <FileUp size={16} /> Importa modello
+                <FileUp size={16} /> {hasModel ? 'Cambia modello' : 'Carica modello'}
               </button>
             </>}
             {(view === 'model' || hasOutput) && <>
@@ -286,16 +289,29 @@ function MarkdownTemplateWorkspace({
               </div>
               <button type="button" className="template-icon-button" aria-label="Scarica Markdown"
                 title={currentDirty ? 'Salva le modifiche prima di scaricare' : 'Scarica Markdown'}
-                disabled={Boolean(operation) || currentDirty} onClick={download}><Download size={17} /></button>
+                disabled={Boolean(operation) || currentDirty || (view === 'model' && !hasModel)} onClick={download}><Download size={17} /></button>
             </>}
           </div>
-        </div>
-        {view === 'compilation' && loading ? <LoadingState label="Caricamento compilazione" />
+        </div>}
+        {emptyModel ? <div className="template-model-empty">
+          <FileText size={24} aria-hidden="true" />
+          <p>Nessun modello caricato</p>
+          <div className="template-model-actions">
+            <button className="button button--primary" type="button"
+              disabled={Boolean(operation) || !model.editable}
+              onClick={() => fileInput.current?.click()}><FileUp size={16} />Carica modello</button>
+            <button className="button" type="button" disabled={Boolean(operation) || !model.editable}
+              onClick={() => { setEditing(true); setMessage(null); setError(null) }}>
+              <NotebookPen size={16} />Crea modello
+            </button>
+          </div>
+        </div> : view === 'compilation' && loading ? <LoadingState label="Caricamento compilazione" />
           : view === 'compilation' && !hasOutput ? <div className="template-empty">
             <FileText size={24} aria-hidden="true" />
             <p>{loadError ? 'Compilazione non disponibile' : 'Nessuna compilazione generata'}</p>
           </div>
           : editing ? <textarea className="markdown-editor template-text-editor"
+            autoFocus={newModelEditor}
             aria-label={view === 'model' ? 'Contenuto del modello' : 'Contenuto della compilazione'}
             value={text} readOnly={Boolean(operation) || !editable} spellCheck={false}
             onChange={(event) => {
@@ -316,19 +332,22 @@ function MarkdownTemplateWorkspace({
           {operation === 'generate' ? 'Generazione in corso...' : message}
         </div>
         <div className="template-footer-actions">
-          {currentDirty && <button className="button" type="button" disabled={Boolean(operation)}
+          {(currentDirty || newModelEditor) && <button className="button" type="button" disabled={Boolean(operation)}
             onClick={() => {
-              if (!window.confirm('Annullare le modifiche non salvate di questo documento?')) return
-              if (view === 'model') setModelText(model.content)
+              if (currentDirty && !window.confirm('Annullare le modifiche non salvate di questo documento?')) return
+              if (view === 'model') {
+                setModelText(model.content)
+                if (!hasModel) setEditing(false)
+              }
               else setOutputText(output?.content ?? '')
               setMessage(null)
             }}>Annulla modifiche</button>}
-          {currentDirty && <button className="button button--primary artifact-save" type="button"
+          {(currentDirty || newModelEditor) && <button className="button button--primary artifact-save" type="button"
             disabled={Boolean(operation) || !editable || !text.trim()} onClick={save}>
             <Save size={16} />{operation === 'save' ? 'Salvataggio' : view === 'model' ? 'Salva modello' : 'Salva compilazione'}
           </button>}
           <button className="button artifact-generate" type="button" disabled={
-            Boolean(operation) || loading || Boolean(loadError) || dirty || !model.editable || !output?.editable
+            Boolean(operation) || loading || Boolean(loadError) || dirty || !hasModel || !model.editable || !output?.editable
           } title={dirty ? 'Salva o annulla le modifiche in Modello e Compilazione prima di generare' : undefined}
             onClick={generate}><WandSparkles size={16} />
             {operation === 'generate' ? 'Generazione in corso' : hasOutput ? 'Rigenera compilazione' : 'Genera compilazione'}

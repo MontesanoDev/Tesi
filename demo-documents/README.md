@@ -32,6 +32,11 @@ di Minervino di Lecce, con campi soprattutto nei paragrafi. La prova usa il
 compilatore invariato e documenta anche rami errati e recapiti malformati;
 non e un benchmark o una candidatura pronta.
 
+La directory [bandi/trapani-green](bandi/trapani-green/README.md) contiene il
+terzo caso: avviso, disciplinare e Allegato A DOCX nativo del Comune di Trapani.
+Include istruzioni esplicite e criteri di controllo per una prova sul ramo
+societa' di ingegneria, senza attestare requisiti o compilare altri rami.
+
 `modelli/modulo-paragrafi.docx` e un modello sintetico con segnaposti nei paragrafi
 e celle vuote. Si carica da **Template > Word (.docx)**, non nella KB. Contiene
 anche campi personali mancanti e una firma da lasciare vuota; serve a provare

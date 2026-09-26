@@ -7,6 +7,7 @@
 __pycache__/
 *.py[cod]
 *.db
+*.ai-key
 
 backend/.venv/
 backend/data/

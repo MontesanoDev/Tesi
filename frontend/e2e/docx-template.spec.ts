@@ -17,6 +17,8 @@ async function fixture(page: Page, existing = false) {
   }))
   await page.route('**/api/**', async (route) => {
     const path = new URL(route.request().url()).pathname
+    if (path === '/api/settings/ai') return route.fulfill({ json: { profiles: [], default_profile_id: null } })
+    if (path.endsWith('/ai-model')) return route.fulfill({ json: { profile_id: null, effective_profile: null } })
     const root = '/api/projects/docx-test'
     if (path === root) return route.fulfill({ json: {
       id: 'docx-test', title: 'Residenze universitarie di Catanzaro', description: 'Direzione lavori e sicurezza',

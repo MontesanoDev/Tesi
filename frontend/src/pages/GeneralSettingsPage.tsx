@@ -1,10 +1,8 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AppShell } from '../components/AppShell'
+import { AiSettingsPanel } from '../components/AiSettingsPanel'
 
 export function GeneralSettingsPage() {
-  const [reviewRequired, setReviewRequired] = useState(true)
-
   return (
     <AppShell active="settings">
       <Link className="back-link" to="/projects">← Tutti i progetti</Link>
@@ -14,14 +12,11 @@ export function GeneralSettingsPage() {
           <p>Preferenze valide per tutta l'applicazione e per tutti i progetti</p>
         </header>
 
+        <AiSettingsPanel />
         <section className="settings-card general-card">
           <h2>Applicazione</h2>
           <p>Configura il comportamento predefinito di Mapi RAG.</p>
           <div className="settings-card-divider" />
-          <div className="settings-row">
-            <div><strong>Modello predefinito</strong><span>Utilizzato nelle nuove conversazioni</span></div>
-            <button className="value-control" type="button">Mapi RAG</button>
-          </div>
           <div className="settings-row">
             <strong>Lingua predefinita</strong>
             <span>Italiano</span>
@@ -35,16 +30,7 @@ export function GeneralSettingsPage() {
           </div>
           <div className="settings-card-divider" />
           <div className="settings-row">
-            <strong>Richiedi conferma umana prima dell'esportazione</strong>
-            <button
-              type="button"
-              role="switch"
-              aria-checked={reviewRequired}
-              className={`toggle${reviewRequired ? ' is-on' : ''}`}
-              onClick={() => setReviewRequired((value) => !value)}
-            >
-              <span />
-            </button>
+            <p>I documenti generati sono bozze: verifica dati, campi e dichiarazioni prima di usarli.</p>
           </div>
         </section>
       </div>

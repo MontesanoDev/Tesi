@@ -10,6 +10,7 @@ from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from starlette.concurrency import run_in_threadpool
 
+from app.ai_profiles import project_ai_context
 from app.db import connection, get_storage_path, touch_project
 from app.document_compilation import compile_document
 from app.docx_templates import MAX_DOCX_BYTES, DocumentInputError, DocxTooLargeError
@@ -103,9 +104,10 @@ async def create_compilation(
     finally:
         await file.close()
     try:
-        draft, report = await compile_document(
-            project_id, project["title"], data, instructions.strip()
-        )
+        with project_ai_context(project_id):
+            draft, report = await compile_document(
+                project_id, project["title"], data, instructions.strip()
+            )
         return await run_in_threadpool(_persist, project_id, filename, data, draft, report)
     except DocxTooLargeError as exc:
         raise HTTPException(status_code=413, detail=str(exc)) from exc

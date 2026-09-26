@@ -27,10 +27,10 @@ const generation: DraftGenerationResult = {
   missing_information: ['Importo richiesto'], model: 'test', total_tokens: 1,
 }
 
-function setup(initialView: 'model' | 'compilation' = 'model') {
+function setup(initialView: 'model' | 'compilation' = 'model', model = template) {
   const onUpdated = vi.fn()
   const onDirtyChange = vi.fn()
-  return { ...render(<TemplateWorkspace projectId="test" template={template}
+  return { ...render(<TemplateWorkspace projectId="test" template={model}
     outputId={blankOutput.id} initialView={initialView} initialFormat="text" onUpdated={onUpdated} onDirtyChange={onDirtyChange} />),
   onUpdated, onDirtyChange }
 }
@@ -44,6 +44,69 @@ describe('TemplateWorkspace', () => {
       ...(id === template.id ? template : savedOutput), content, version: 4, status: 'Bozza aggiornata',
     }))
     vi.spyOn(window, 'confirm').mockReturnValue(true)
+  })
+
+  const emptyTemplate = { ...template, content: '', byte_size: 0, version: 1, status: 'Da configurare' }
+
+  it('starts without a fictitious template and disables generation', async () => {
+    setup('model', emptyTemplate)
+    expect(screen.getByText('Nessun modello caricato')).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Carica modello' })).toBeEnabled()
+    expect(screen.getByRole('button', { name: 'Crea modello' })).toBeEnabled()
+    expect(screen.queryByRole('textbox')).toBeNull()
+    expect(screen.queryByRole('article')).toBeNull()
+    await waitFor(() => expect(api.projectArtifact).toHaveBeenCalled())
+    expect(screen.getByRole('button', { name: 'Genera compilazione' })).toBeDisabled()
+    fireEvent.click(screen.getByRole('button', { name: 'Genera compilazione' }))
+    expect(api.generateDraft).not.toHaveBeenCalled()
+  })
+
+  it('creates a blank model explicitly and requires content and saving before generation', async () => {
+    setup('model', emptyTemplate)
+    fireEvent.click(screen.getByRole('button', { name: 'Crea modello' }))
+    expect(screen.getByRole('textbox', { name: 'Contenuto del modello' })).toHaveValue('')
+    expect(screen.getByRole('button', { name: 'Salva modello' })).toBeDisabled()
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '# Domanda specifica\n\nPEC: [TODO]' } })
+    expect(screen.getByRole('button', { name: 'Genera compilazione' })).toBeDisabled()
+    fireEvent.click(screen.getByRole('button', { name: 'Salva modello' }))
+    await screen.findByText('Modello salvato.')
+    expect(api.updateProjectArtifact).toHaveBeenCalledWith('test', template.id, '# Domanda specifica\n\nPEC: [TODO]')
+    expect(screen.getByRole('button', { name: 'Genera compilazione' })).toBeEnabled()
+    fireEvent.click(screen.getByRole('button', { name: 'Anteprima' }))
+    expect(screen.getByRole('heading', { name: 'Domanda specifica' })).toBeVisible()
+  })
+
+  it('can leave an empty new model without saving a placeholder', async () => {
+    setup('model', emptyTemplate)
+    fireEvent.click(screen.getByRole('button', { name: 'Crea modello' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Annulla modifiche' }))
+    expect(screen.getByText('Nessun modello caricato')).toBeVisible()
+    expect(api.updateProjectArtifact).not.toHaveBeenCalled()
+    expect(window.confirm).not.toHaveBeenCalled()
+  })
+
+  it('imports into an empty model without inserting predefined sections', async () => {
+    setup('model', emptyTemplate)
+    const content = 'Richiedente: [TODO]\nPEC: [TODO]'
+    const file = new File([content], 'modulo.txt')
+    Object.defineProperty(file, 'arrayBuffer', { value: async () => new TextEncoder().encode(content).buffer })
+    fireEvent.change(screen.getByLabelText('Importa modello Markdown o TXT'), { target: { files: [file] } })
+    expect(await screen.findByRole('textbox')).toHaveValue(content)
+    expect(screen.getByRole('button', { name: 'Genera compilazione' })).toBeDisabled()
+    fireEvent.click(screen.getByRole('button', { name: 'Salva modello' }))
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Genera compilazione' })).toBeEnabled())
+    expect(api.updateProjectArtifact).toHaveBeenCalledWith('test', template.id, content)
+  })
+
+  it('still displays and edits a saved compilation when the model is absent', async () => {
+    vi.mocked(api.projectArtifact).mockResolvedValue(savedOutput)
+    setup('compilation', emptyTemplate)
+    expect(await screen.findByRole('heading', { name: 'Candidatura compilata' })).toBeVisible()
+    expect(screen.getByRole('button', { name: 'Modifica testo' })).toBeEnabled()
+    expect(screen.getByRole('button', { name: 'Scarica Markdown' })).toBeEnabled()
+    expect(screen.getByRole('button', { name: 'Rigenera compilazione' })).toBeDisabled()
+    fireEvent.click(screen.getByRole('tab', { name: 'Modello' }))
+    expect(screen.getByText('Nessun modello caricato')).toBeVisible()
   })
 
   it('renders the model as Markdown without exposing YAML or an empty Draft editor', async () => {

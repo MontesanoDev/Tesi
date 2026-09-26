@@ -294,7 +294,12 @@ export function DocxTemplateWorkspace({ projectId, onDirtyChange }: Props) {
           aria-label="Rimuovi modello selezionato" disabled={disabled} onClick={() => { setFile(null); setError(null) }}><X size={17} /></button>}
       </div>
       <label className="docx-instructions" htmlFor="docx-instructions">Indicazioni per la compilazione <span>Facoltative</span></label>
+      <p id="docx-instructions-help" className="docx-instructions-help">
+        Indica la modalità di partecipazione, chi sottoscrive la domanda e le sezioni da compilare.
+        Se queste scelte sono già nei Dati del progetto, non serve ripeterle.
+      </p>
       <textarea id="docx-instructions" rows={3} maxLength={4000} value={instructions}
+        aria-describedby="docx-instructions-help"
         disabled={disabled} onChange={(event) => setInstructions(event.target.value)} />
       <div className="docx-form-footer">
         <span>{instructions.length} / 4000</span>

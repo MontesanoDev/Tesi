@@ -145,6 +145,22 @@
   text-align: center;
 }
 
+.template-model-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 240px;
+  padding: 32px 16px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.template-model-empty p { margin: 0; }
+.template-model-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.template-model-actions .button { display: inline-flex; align-items: center; gap: 8px; }
+
 .template-footer { padding-top: 16px; }
 .template-feedback { min-height: 20px; margin-bottom: 10px; color: #9fbdab; font-size: 11px; overflow-wrap: anywhere; }
 .template-footer-actions { justify-content: flex-end; }

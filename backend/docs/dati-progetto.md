@@ -33,6 +33,27 @@ concorrente dei fatti durante la richiesta interrompe la sostituzione con 409.
 I file originali del progetto rimangono nel corpus anche quando si esclude una
 sintesi estratta: l'esclusione non cancella la fonte documentale.
 
+## Fonti ammesse nella chat
+
+La ricerca fattuale usa le fonti caricate, i dati inseriti per il progetto,
+i dati estratti disponibili e le KB globali. Gli artefatti `template.md` e
+`draft.md` restano consultabili/modificabili nei rispettivi percorsi, ma non
+vengono indicizzati come evidenze. Il generatore Markdown continua a leggere
+il template direttamente per definire la struttura dell'output.
+
+All'avvio il riallineamento degli artefatti elimina dall'indice gli eventuali
+vecchi chunk di template e draft, senza riscrivere contenuto o versione dei
+documenti personalizzati. Anche le query applicano il filtro per ruolo della
+fonte: i chunk legacy non diventano evidenze prima del riallineamento.
+Il nome del file non e un criterio di esclusione: un file caricato esplicitamente
+fra le fonti resta una fonte anche se si chiama `template.md`.
+
+Il fallback delle domande successive rilegge i chunk citati nel turno precedente
+e verifica tipo di fonte e appartenenza al progetto. Gli estratti salvati nella
+cronologia non sono piu riutilizzati direttamente come evidenza: fonti eliminate,
+chunk sostituiti, template e documenti di altri progetti vengono esclusi.
+La cronologia rimane disponibile come contesto conversazionale non fattuale.
+
 ## Risposte incomplete durante l'estrazione
 
 L'estrazione usa un limite di output di 12.000 token e controlla `finish_reason`.
