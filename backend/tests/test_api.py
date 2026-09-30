@@ -1055,7 +1055,7 @@ async def test_draft_generation_can_use_entered_data_without_extraction(client, 
 @pytest.mark.anyio
 async def test_identity_question_bypasses_retrieval_and_generation(client, monkeypatch):
     async def unexpected_generation(*_args, **_kwargs):
-        raise AssertionError("DeepSeek non deve essere chiamato per una domanda di sistema")
+        raise AssertionError("Il modello AI non deve essere chiamato per una domanda di sistema")
 
     monkeypatch.setattr("app.main.generate_grounded_answer", unexpected_generation)
     response = await client.post(
@@ -1105,7 +1105,7 @@ async def test_answer_rejects_a_conversation_from_another_project(client):
 @pytest.mark.anyio
 async def test_answer_explains_when_no_evidence_is_available(client, monkeypatch):
     async def unexpected_generation(*_args, **_kwargs):
-        raise AssertionError("DeepSeek non deve colmare l'assenza totale di fonti")
+        raise AssertionError("Il modello AI non deve colmare l'assenza totale di fonti")
 
     monkeypatch.setattr("app.main.generate_grounded_answer", unexpected_generation)
     response = await client.post(

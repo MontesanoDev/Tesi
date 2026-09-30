@@ -5,12 +5,12 @@ from __future__ import annotations
 import httpx
 
 from app.ai_providers import provider_headers
-from app.config import DeepSeekSettings
+from app.config import AISettings
 
 
 def _normalized(
     response: httpx.Response,
-    settings: DeepSeekSettings,
+    settings: AISettings,
     content: str,
     finish_reason: str,
     total_tokens: int | None,
@@ -36,7 +36,7 @@ def _object(response: httpx.Response) -> dict:
 
 
 async def _openai(
-    client: httpx.AsyncClient, settings: DeepSeekSettings, body: dict
+    client: httpx.AsyncClient, settings: AISettings, body: dict
 ) -> httpx.Response:
     # Responses supports current OpenAI text models without legacy max_tokens/temperature.
     response = await client.post(
@@ -85,7 +85,7 @@ async def _openai(
 
 
 async def _anthropic(
-    client: httpx.AsyncClient, settings: DeepSeekSettings, body: dict
+    client: httpx.AsyncClient, settings: AISettings, body: dict
 ) -> httpx.Response:
     # Messages uses a top-level system prompt; JSON is requested by the existing prompts.
     # Do not send OpenAI's response_format or assume every Claude supports a fixed temperature.
@@ -138,7 +138,7 @@ async def _anthropic(
 
 async def post_chat(
     client: httpx.AsyncClient,
-    settings: DeepSeekSettings,
+    settings: AISettings,
     body: dict,
 ) -> httpx.Response:
     if settings.provider == "openai":

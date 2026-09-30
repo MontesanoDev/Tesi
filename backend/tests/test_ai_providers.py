@@ -15,7 +15,7 @@ from app.ai_login import token_hash
 from app.ai_profiles import _decrypt, resolve_project_settings
 from app.ai_providers import PROVIDERS
 from app.ai_transport import post_chat
-from app.config import DeepSeekSettings
+from app.config import AISettings
 from app.db import connection, get_db_path, init_database
 
 
@@ -156,7 +156,7 @@ async def test_openrouter_checks_key_before_public_inventory(client, monkeypatch
 @pytest.mark.parametrize("provider", ["openai", "anthropic"])
 @pytest.mark.parametrize("finish", ["complete", "length", "refusal", "incomplete"])
 async def test_native_protocols_normalize_finish_reasons_and_usage(provider, finish):
-    settings = DeepSeekSettings(SECRET, "test-model", "https://provider.test/v1", provider)
+    settings = AISettings(SECRET, "test-model", "https://provider.test/v1", provider)
     messages = [{"role": "system", "content": "Return JSON"}, {"role": "user", "content": "Test"}]
 
     def handler(request):

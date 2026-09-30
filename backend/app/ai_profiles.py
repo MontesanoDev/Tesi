@@ -12,7 +12,7 @@ from cryptography.fernet import Fernet, InvalidToken
 from pydantic import BaseModel, ConfigDict, Field, SecretStr, field_validator
 
 from app.ai_providers import PROVIDERS, ProviderId, provider_catalog
-from app.config import DeepSeekSettings, get_environment_settings, use_ai_settings
+from app.config import AISettings, get_environment_settings, use_ai_settings
 from app.db import connection, get_db_path
 
 
@@ -153,11 +153,11 @@ def _resolved_key(payload: ProfileInput, previous: sqlite3.Row | None) -> str | 
     return key
 
 
-def settings_for_input(payload: ProfileInput, profile_id: str | None = None) -> DeepSeekSettings:
+def settings_for_input(payload: ProfileInput, profile_id: str | None = None) -> AISettings:
     with connection() as db:
         previous = _get_row(db, profile_id) if profile_id else None
         key = _resolved_key(payload, previous)
-    return DeepSeekSettings(
+    return AISettings(
         api_key=key,
         model=payload.model,
         base_url=payload.base_url,
@@ -284,7 +284,7 @@ def select_project_profile(project_id: str, profile_id: str | None) -> dict:
     return project_selection(project_id)
 
 
-def resolve_project_settings(project_id: str) -> DeepSeekSettings:
+def resolve_project_settings(project_id: str) -> AISettings:
     with connection() as db:
         row = db.execute(
             "SELECT a.* FROM ai_profiles a WHERE a.id = COALESCE("
@@ -293,7 +293,7 @@ def resolve_project_settings(project_id: str) -> DeepSeekSettings:
             (project_id,),
         ).fetchone()
         if row:
-            return DeepSeekSettings(
+            return AISettings(
                 api_key=_decrypt(row["encrypted_api_key"]),
                 model=row["model"],
                 base_url=row["base_url"],
@@ -307,7 +307,7 @@ def resolve_project_settings(project_id: str) -> DeepSeekSettings:
     if not managed:
         return get_environment_settings()
     # Deleting a profile must never silently reactivate old cloud credentials.
-    return DeepSeekSettings(api_key=None, model="", base_url="")
+    return AISettings(api_key=None, model="", base_url="")
 
 
 @contextmanager

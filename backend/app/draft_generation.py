@@ -9,7 +9,7 @@ import httpx
 
 from app.ai_transport import post_chat
 from app.call_facts import CallFact
-from app.config import get_deepseek_settings
+from app.config import get_ai_settings
 from app.generation import GenerationError, GenerationNotConfiguredError
 
 MAX_TEMPLATE_CHARACTERS = 50_000
@@ -275,7 +275,7 @@ async def generate_grounded_draft(
     project_facts_markdown: str,
     available_facts: list[CallFact],
 ) -> GeneratedDraft:
-    settings = get_deepseek_settings()
+    settings = get_ai_settings()
     if not settings.configured:
         raise GenerationNotConfiguredError("Configura un modello AI nelle Impostazioni generali")
     user_prompt = _build_user_prompt(

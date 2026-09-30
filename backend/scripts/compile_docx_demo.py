@@ -145,7 +145,7 @@ async def run(output: Path, company_file: Path | None = None, case: str = "catan
             )
             response.raise_for_status()
             print(
-                "Generazione DeepSeek sul caso demo, senza modificare il database dell'app...",
+                "Generazione AI sul caso demo, senza modificare il database dell'app...",
                 flush=True,
             )
             started = time.monotonic()
@@ -209,7 +209,10 @@ async def run(output: Path, company_file: Path | None = None, case: str = "catan
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--case", choices=CASES, default="catanzaro")
-    parser.add_argument("--live", action="store_true", help="Consenti chiamate DeepSeek a consumo")
+    parser.add_argument(
+        "--live", action="store_true",
+        help="Consenti chiamate al modello configurato, anche a consumo",
+    )
     parser.add_argument(
         "--company-file", type=Path,
         help="Fonte aziendale simulata PDF, TXT o MD; di default usa la visura demo",

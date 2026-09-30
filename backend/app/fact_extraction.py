@@ -16,7 +16,7 @@ from app.call_facts import (
     new_call_fact,
     render_call_facts_document,
 )
-from app.config import get_deepseek_settings
+from app.config import get_ai_settings
 from app.db import connection
 from app.generation import GenerationError, GenerationNotConfiguredError
 
@@ -195,7 +195,7 @@ def parse_extracted_facts(
     payload = _clean_json(content)
     raw_facts = payload.get("facts", [])
     if not isinstance(raw_facts, list):
-        raise GenerationError("L'elenco dei dati estratti restituito da DeepSeek non e valido")
+        raise GenerationError("L'elenco dei dati estratti restituito dal modello AI non e valido")
 
     facts: list[ExtractedFact] = []
     seen: set[tuple[str, str]] = set()
@@ -275,7 +275,7 @@ async def extract_call_facts(
     project_title: str,
     source_chunks: list[dict],
 ) -> CallFactsExtraction:
-    settings = get_deepseek_settings()
+    settings = get_ai_settings()
     if not settings.configured:
         raise GenerationNotConfiguredError("Configura un modello AI nelle Impostazioni generali")
 

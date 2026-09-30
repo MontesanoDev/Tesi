@@ -5,10 +5,10 @@ import re
 import httpx
 
 from app.ai_providers import provider_headers
-from app.config import DeepSeekSettings
+from app.config import AISettings
 
 
-async def discover_models(settings: DeepSeekSettings) -> list[str]:
+async def discover_models(settings: AISettings) -> list[str]:
     headers = provider_headers(settings.provider, settings.api_key)
     url = (
         f"{settings.base_url.removesuffix('/v1')}/api/tags"

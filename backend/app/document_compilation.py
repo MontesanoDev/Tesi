@@ -13,7 +13,7 @@ import httpx
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
 from app.ai_transport import post_chat
-from app.config import get_deepseek_settings
+from app.config import get_ai_settings
 from app.db import connection
 from app.docx_templates import (
     SIGNATURE_LABEL,
@@ -343,7 +343,7 @@ async def request_field_proposals(
     max_tokens: int = 12_000,
     timeout_seconds: float = 180,
 ) -> tuple[str, str, int | None]:
-    settings = get_deepseek_settings()
+    settings = get_ai_settings()
     if not settings.configured:
         raise GenerationNotConfiguredError("Configura un modello AI nelle Impostazioni generali")
     body = {

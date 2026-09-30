@@ -19,7 +19,7 @@ from app.ai_profiles import (
 from app.ai_providers import PROVIDERS
 from app.ai_transport import post_chat
 from app.artifacts import seed_markdown_artifacts
-from app.config import DeepSeekSettings, get_deepseek_settings
+from app.config import AISettings, get_ai_settings
 from app.db import connection, get_db_path, init_database
 from app.main import app
 from app.seed import seed_database
@@ -266,22 +266,22 @@ async def test_concurrent_operations_pin_model_and_secret_across_updates(client)
 
     async def existing_compilation():
         with project_ai_context(PROJECT):
-            initial = get_deepseek_settings()
+            initial = get_ai_settings()
             started.set()
             await changed.wait()
-            assert get_deepseek_settings() is initial
+            assert get_ai_settings() is initial
             assert initial.model == "remote-test"
             assert initial.api_key == SECRET
 
     async def other_project():
         await started.wait()
         with project_ai_context(second_project):
-            assert get_deepseek_settings().provider == "ollama"
+            assert get_ai_settings().provider == "ollama"
             save_profile(ProfileInput(**{**DEEPSEEK, "api_key": "new-key"}), first["id"])
             select_project_profile(PROJECT, second["id"])
             changed.set()
             await asyncio.sleep(0)
-            assert get_deepseek_settings().provider == "ollama"
+            assert get_ai_settings().provider == "ollama"
 
     await asyncio.gather(existing_compilation(), other_project())
     assert resolve_project_settings(PROJECT).provider == "ollama"
@@ -293,7 +293,7 @@ async def test_concurrent_operations_pin_model_and_secret_across_updates(client)
     ["deepseek", "compatible", "ollama", "google", "mistral", "xai", "groq", "openrouter"],
 )
 async def test_provider_wire_format_and_usage(provider):
-    settings = DeepSeekSettings(
+    settings = AISettings(
         SECRET if provider != "ollama" else None,
         "test-model",
         "https://provider.test/v1",

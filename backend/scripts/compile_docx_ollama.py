@@ -16,7 +16,7 @@ from unittest.mock import patch
 from app import ai_transport
 from app import document_compilation as compilation
 from app.ai_profiles import project_ai_context
-from app.config import get_deepseek_settings
+from app.config import get_ai_settings
 from app.document_compilation_routes import _persist
 from app.docx_templates import inspect_docx
 from app.repository import get_project
@@ -31,7 +31,7 @@ async def run(project_id: str, template: Path, output: Path, instructions: str, 
     if not project:
         raise ValueError("Progetto non trovato")
     with project_ai_context(project_id):
-        settings = get_deepseek_settings()
+        settings = get_ai_settings()
         if settings.provider != "ollama":
             raise ValueError("Seleziona un profilo Ollama nel progetto: nessuna API cloud ammessa")
         data = template.read_bytes()

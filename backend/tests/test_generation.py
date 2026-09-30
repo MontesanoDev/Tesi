@@ -5,7 +5,7 @@ import httpx
 import pytest
 
 from app import generation
-from app.config import DeepSeekSettings, use_ai_settings
+from app.config import AISettings, use_ai_settings
 from app.generation import GenerationError, _build_user_prompt, _parse_content
 
 
@@ -15,7 +15,7 @@ def anyio_backend():
 
 
 def _settings(provider):
-    return DeepSeekSettings(
+    return AISettings(
         api_key=None if provider == "ollama" else "test-key",
         model="test-model",
         base_url="http://provider.test",

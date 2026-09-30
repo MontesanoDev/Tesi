@@ -16,7 +16,7 @@ load_dotenv(PROJECT_ROOT / "backend" / ".env")
 
 
 @dataclass(frozen=True)
-class DeepSeekSettings:
+class AISettings:
     api_key: str | None = field(repr=False)
     model: str
     base_url: str
@@ -35,12 +35,12 @@ class DeepSeekSettings:
         return provider.name if provider else "Il servizio AI"
 
 
-_active_settings: ContextVar[DeepSeekSettings | None] = ContextVar("ai_settings", default=None)
+_active_settings: ContextVar[AISettings | None] = ContextVar("ai_settings", default=None)
 
 
 @contextmanager
-def use_ai_settings(settings: DeepSeekSettings):
-    """Pin credentials/model for an entire operation, including DOCX batches and repairs."""
+def use_ai_settings(settings: AISettings):
+    """Pin credentials and model for an entire generation operation."""
     token = _active_settings.set(settings)
     try:
         yield
@@ -48,13 +48,12 @@ def use_ai_settings(settings: DeepSeekSettings):
         _active_settings.reset(token)
 
 
-def get_deepseek_settings() -> DeepSeekSettings:
-    # Kept as a compatibility entry point for the existing generation modules and scripts.
+def get_ai_settings() -> AISettings:
     return _active_settings.get() or get_environment_settings()
 
 
-def get_environment_settings() -> DeepSeekSettings:
-    return DeepSeekSettings(
+def get_environment_settings() -> AISettings:
+    return AISettings(
         api_key=os.getenv("DEEPSEEK_API_KEY") or None,
         model=os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash"),
         base_url=os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").rstrip("/"),

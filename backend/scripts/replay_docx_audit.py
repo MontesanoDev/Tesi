@@ -10,7 +10,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from app import document_compilation as compilation
-from app.config import get_deepseek_settings
+from app.config import get_ai_settings
 from app.docx_templates import inspect_docx
 
 
@@ -32,7 +32,7 @@ async def replay(audit: Path, output: Path):
         raise ValueError("Le fonti non corrispondono alla copertura registrata")
     layout = inspect_docx(template)
     output.mkdir(parents=True, exist_ok=False)
-    settings = get_deepseek_settings()
+    settings = get_ai_settings()
     dump(output / "inputs.json", {
         "previous_audit": str(audit.resolve()),
         "started_at": datetime.now(UTC).isoformat(),
@@ -114,7 +114,7 @@ def main():
     parser.add_argument("--live", action="store_true")
     args = parser.parse_args()
     if not args.live:
-        parser.error("--live autorizza chiamate DeepSeek a consumo con le fonti registrate")
+        parser.error("--live autorizza chiamate al modello configurato con le fonti registrate")
     if args.output.exists():
         parser.error("L'output esiste gia: non sovrascrivere prove precedenti")
     asyncio.run(replay(args.audit, args.output))

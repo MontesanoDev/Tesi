@@ -8,7 +8,7 @@ from dataclasses import dataclass
 import httpx
 
 from app.ai_transport import post_chat
-from app.config import get_deepseek_settings
+from app.config import get_ai_settings
 
 # Ollama can load the model on the first request and only sends the completed
 # JSON (stream=False). Its read timeout must include loading and generation.
@@ -103,7 +103,7 @@ def _parse_content(content: str, evidence_count: int, model: str, usage: dict) -
 
     raw_citations = payload.get("citation_ids", [])
     if not isinstance(raw_citations, list):
-        raise GenerationError("Le citazioni restituite da DeepSeek non sono valide")
+        raise GenerationError("Le citazioni restituite dal modello AI non sono valide")
     citations = list(
         dict.fromkeys(
             citation
@@ -143,7 +143,7 @@ async def generate_grounded_answer(
     evidence: list[dict],
     conversation_history: list[dict] | None = None,
 ) -> GeneratedAnswer:
-    settings = get_deepseek_settings()
+    settings = get_ai_settings()
     if not settings.configured:
         raise GenerationNotConfiguredError("Configura un modello AI nelle Impostazioni generali")
 
