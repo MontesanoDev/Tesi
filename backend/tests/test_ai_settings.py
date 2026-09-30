@@ -175,7 +175,7 @@ async def test_discovery_reuses_saved_key_without_generation(client, monkeypatch
         )
         return httpx.Response(
             200,
-            json={"models": [{"name": "local-test"}]}
+            json={"models": [{"name": "local-test", "capabilities": ["completion"]}]}
             if provider == "ollama"
             else {"data": [{"id": "remote-test"}]},
         )

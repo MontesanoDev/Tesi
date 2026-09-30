@@ -1,4 +1,7 @@
 import type {
+  RetrievalInput,
+  RetrievalSettings,
+  VectorIndexResult,
   AiLoginFlow,
   AiProfile,
   AiProfileInput,
@@ -94,6 +97,18 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const api = {
+  retrievalSettings: (signal?: AbortSignal) =>
+    request<RetrievalSettings>('/settings/retrieval', { signal }),
+  saveRetrievalSettings: (payload: RetrievalInput) =>
+    request<RetrievalSettings>('/settings/retrieval', {
+      method: 'PUT', body: JSON.stringify(payload),
+    }),
+  checkRetrievalConnection: (payload: RetrievalInput) =>
+    request<{ message: string; dimensions: number }>('/settings/retrieval/check', {
+      method: 'POST', body: JSON.stringify(payload),
+    }),
+  updateVectorIndex: () =>
+    request<VectorIndexResult>('/settings/retrieval/index', { method: 'POST' }),
   aiSettings: (signal?: AbortSignal) => request<AiSettings>('/settings/ai', { signal }),
   beginOpenRouterLogin: () => request<AiLoginFlow>('/settings/ai/openrouter/login', { method: 'POST' }),
   completeOpenRouterLogin: (connection_token: string, code: string) =>

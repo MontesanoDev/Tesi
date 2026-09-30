@@ -8,6 +8,7 @@ from uuid import uuid4
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, Response, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.concurrency import run_in_threadpool
 
 from app.ai_profiles import import_legacy_configuration, project_ai_context
 from app.ai_routes import router as ai_router
@@ -72,7 +73,6 @@ from app.repository import (
     list_projects,
     recent_conversation_evidence,
     save_conversation_turn,
-    search_project_evidence,
     set_project_global_document_link,
     sync_call_fact_review_metrics,
     update_call_fact_metrics,
@@ -81,6 +81,9 @@ from app.repository import (
     update_project,
     update_project_file_content,
 )
+from app.retrieval import search_project_evidence
+from app.retrieval_routes import router as retrieval_router
+from app.retrieval_settings import RetrievalError
 from app.schemas import (
     MAX_QUESTION_LENGTH,
     CallFactRevision,
@@ -160,6 +163,7 @@ async def lifespan(_: FastAPI):
 app = FastAPI(title="Mapi RAG API", version="0.1.0", lifespan=lifespan)
 app.include_router(document_compilation_router)
 app.include_router(ai_router)
+app.include_router(retrieval_router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -626,7 +630,10 @@ async def project_evidence(
     q: Annotated[str, Query(min_length=2, max_length=MAX_QUESTION_LENGTH)],
     limit: Annotated[int, Query(ge=1, le=8)] = 4,
 ) -> dict:
-    results = search_project_evidence(project_id, q, limit)
+    try:
+        results = await run_in_threadpool(search_project_evidence, project_id, q, limit)
+    except RetrievalError as exc:
+        raise HTTPException(503, str(exc)) from None
     if results is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
     return {"query": q, "results": results}
@@ -670,12 +677,12 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
             }
         )
     search_query = contextualize_search_query(payload.question, history)
-    evidence = search_project_evidence(
-        project_id,
-        search_query,
-        limit=4,
-        include_neighbors=True,
-    )
+    try:
+        evidence = await run_in_threadpool(
+            search_project_evidence, project_id, search_query, limit=4, include_neighbors=True,
+        )
+    except RetrievalError as exc:
+        raise HTTPException(503, str(exc)) from None
     if evidence is None:
         raise RuntimeError("Il progetto validato non e piu disponibile")
     if not evidence and history and is_follow_up_question(payload.question):

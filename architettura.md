@@ -5,9 +5,10 @@
 ## 1. Valutazione complessiva
 
 **L'impostazione è sensata per una tesi e per un prototipo di compilazione assistita.**
-SQLite/FTS5, FastAPI, un writer Word deterministico e proposte LLM validate sono
-una base comprensibile e sperimentabile. Non occorre sostituire tutto con un
-framework RAG o con un database vettoriale per rendere valido il progetto.
+SQLite, FastAPI, un writer Word deterministico e proposte LLM validate sono
+una base comprensibile e sperimentabile. La chat dispone di FTS5 e Qdrant,
+selezionabili dalle impostazioni. Qdrant aggiunge un indice vettoriale senza
+sostituire SQLite come archivio dei testi e dei dati dell'applicazione.
 
 Il problema centrale è più ampio di «trovare i campi vuoti»: occorre determinare
 **significato del campo, soggetto a cui appartiene, applicabilità della sezione,
@@ -15,7 +16,7 @@ evidenza pertinente e posizione di scrittura**. Queste decisioni oggi sono in
 gran parte affidate alla stessa risposta del modello. Una citazione autentica
 può accompagnare un dato inserito nel campo sbagliato.
 
-Un'altra distinzione fondamentale per la tesi: **la chat usa retrieval FTS5;
+Un'altra distinzione fondamentale per la tesi: **la chat usa retrieval FTS5 o Qdrant;
 la compilazione DOCX attuale seleziona fonti entro budget, senza retrieval
 mirato per campo**. Migliorare il retrieval della chat non migliora automaticamente
 il compilatore, perché sono percorsi differenti.
@@ -38,7 +39,8 @@ flowchart TB
     subgraph Backend["Backend Python / FastAPI"]
         API["main.py e document_compilation_routes.py"]
         ING["ingestion.py<br/>PDF, TXT, Markdown"]
-        RET["repository.py<br/>FTS5 + riordinamento euristico"]
+        RET["retrieval.py<br/>scelta FTS5 o Qdrant"]
+        EMB["vector_retrieval.py<br/>embedding tramite Ollama"]
         FACT["fact_extraction.py + call_facts.py<br/>dati estratti"]
         ART["artifacts.py<br/>artefatti Markdown e indice"]
         CHAT["generation.py<br/>risposta con riferimenti"]
@@ -47,6 +49,7 @@ flowchart TB
         WORD["docx_templates.py<br/>catalogo XML e scrittura DOCX"]
         API --> ING
         API --> RET
+        RET <--> EMB
         API --> FACT
         API --> ART
         API --> MD
@@ -56,11 +59,13 @@ flowchart TB
         FACT --> ART
     end
     DB[("SQLite<br/>metadati, chunk, FTS5,<br/>conversazioni, compilazioni")]
+    VDB[("Qdrant<br/>vettori, ID, scope e hash")]
     FS[("Filesystem locale<br/>fonti, artefatti Markdown,<br/>originali DOCX, bozze e report")]
     LLM["ai_transport.py<br/>OpenAI, Claude, servizi compatibili e Ollama"]
     ING --> DB
     ING --> FS
     RET --> DB
+    EMB <--> VDB
     ART --> DB
     ART --> FS
     COMP --> DB
@@ -72,12 +77,15 @@ flowchart TB
 ```
 
 È un **monolite modulare**: un frontend e un backend, con funzioni Python per
-orchestrare le diverse pipeline. Non sono presenti embedding, ricerca vettoriale,
-reranker neurali, una coda di lavori o un agente che scelga autonomamente strumenti.
+orchestrare le diverse pipeline. Per la ricerca vettoriale usa Qdrant, locale
+o tramite URL, ed embedding Ollama con un modello distinto da quello della
+chat. Non sono presenti reranker neurali, una coda di lavori o un agente che
+scelga autonomamente strumenti.
 
 Le fonti sono conservate localmente, ma i testi selezionati vengono inviati al
-servizio scelto durante la generazione. Con DeepSeek l'inferenza è remota;
-con Ollama avviene sul computer che ospita quel servizio.
+servizio scelto durante la generazione. Con un provider cloud l'inferenza è
+remota; con Ollama avviene sul computer che ospita quel servizio. Anche gli
+embedding vengono prodotti dal servizio Ollama configurato, locale o remoto.
 
 Le impostazioni generali permettono di salvare più configurazioni AI. Ogni
 progetto può seguire il predefinito o scegliere un profilo specifico; la scelta
@@ -102,6 +110,7 @@ Schema e dettagli: [Modelli AI](backend/docs/modelli-ai.md).
 | Preparazione candidatura  | [KnowledgeArtifactsPage.tsx](frontend/src/pages/KnowledgeArtifactsPage.tsx)                      | Accesso diretto al Template; modello AI scelto dall'ingranaggio della chat.         |
 | API principali             | [main.py](backend/app/main.py)                                                                     | CRUD, caricamenti, chat, estrazione e generazione Markdown.                         |
 | Persistenza                | [db.py](backend/app/db.py), [repository.py](backend/app/repository.py)                             | Schema SQLite, trigger FTS5, query e aggiornamenti.                                 |
+| Ricerca vettoriale         | [retrieval.py](backend/app/retrieval.py), [vector_retrieval.py](backend/app/vector_retrieval.py) | Selezione del motore, embedding Ollama, indice Qdrant e rilettura delle evidenze da SQLite. |
 | Ingestion                  | [ingestion.py](backend/app/ingestion.py)                                                           | Estrazione del testo e suddivisione in chunk.                                       |
 | Artefatti e fatti          | [artifacts.py](backend/app/artifacts.py), [call_facts.py](backend/app/call_facts.py)               | Markdown, versioni, collegamenti e disponibilità dei fatti.                         |
 | Estrazione LLM             | [fact_extraction.py](backend/app/fact_extraction.py)                                               | Sintesi dei documenti del progetto con riferimenti ai frammenti.                    |
@@ -187,6 +196,8 @@ Markdown viene riscritto. Le compilazioni Word, invece, hanno cartelle distinte.
 3. Unisce i testi, normalizza alcuni spazi e costruisce chunk di circa 1.200
    caratteri, con 200 caratteri di sovrapposizione.
 4. Salva i chunk e alimenta FTS5 tramite trigger.
+5. Se si usa Qdrant, la prima ricerca successiva sincronizza l'indice
+   vettoriale; lo stesso lavoro può essere avviato dalle impostazioni.
 
 Le pagine sono contate, ma il collegamento pagina/chunk non viene conservato.
 Non esiste OCR integrato. Un PDF solo immagine viene rifiutato se non produce
@@ -194,7 +205,35 @@ testo; in uno misto, pagine o porzioni immagine possono restare escluse senza
 che l'intero caricamento fallisca. Inoltre righe di tabelle e colonne possono
 perdere le loro relazioni quando diventano testo continuo.
 
-### Chat con FTS5
+### Chat con Qdrant
+
+La scelta del motore di ricerca è globale e indipendente dal profilo AI usato
+dal progetto. Il percorso Qdrant trasforma domanda e chunk in vettori mediante
+Ollama, filtra per progetto corrente e KB globali e cerca per similarità coseno.
+I testi vengono poi riletti da SQLite e controllati prima di inviarli al
+modello. Template e bozze generate restano esclusi dalle evidenze.
+
+```mermaid
+flowchart LR
+    Q[Domanda] --> E[Embedding Ollama]
+    E --> R[Qdrant: ricerca con filtro per progetto e KB globali]
+    S[(SQLite: chunk)] --> I[Sincronizzazione dei vettori modificati]
+    I --> R
+    R --> V[Rilettura e verifica dei chunk in SQLite]
+    V --> N[4 frammenti principali e vicini, fino a 8 evidenze]
+    N --> L[Modello della chat: risposta con citazioni]
+```
+
+La sincronizzazione precede ogni ricerca, riusando gli embedding invariati.
+Un errore viene mostrato all'utente, senza passare automaticamente a FTS5.
+Il punteggio coseno non misura la correttezza della risposta; la qualità va
+confrontata con FTS5 su domande ed evidenze attese. Il percorso non usa ancora
+una soglia di similarità ottimizzata né una ricerca ibrida.
+
+Configurazione, persistenza, limiti della modalità locale e verifiche:
+[Ricerca vettoriale](backend/docs/ricerca-vettoriale.md).
+
+### Chat con FTS5, ancora selezionabile
 
 ```mermaid
 flowchart LR
@@ -240,7 +279,7 @@ Riferimento: [documentazione ufficiale FTS5](https://www.sqlite.org/fts5.html).
 
 | Percorso             | Contesto effettivo                                                                                     | Selezione                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| Chat                 | Chunk di progetto e KB globali, cronologia recente                                                     | FTS5/BM25, euristiche e vicini.                                                                                          |
+| Chat                 | Chunk di progetto e KB globali, cronologia recente                                                     | Qdrant/coseno oppure FTS5/BM25; diversificazione e vicini.                                                               |
 | Estrazione dei fatti | Soltanto fonti originali del progetto                                                                  | Tutti i chunk se entrano nel budget; altrimenti campionamento distribuito, fino a 160.000 caratteri.                     |
 | Draft Markdown       | Template testuale, fatti disponibili, dati inseriti, Company KB                                        | Contesti assemblati; fonti aziendali caricate in ordine fino al budget.                                                  |
 | Compilazione DOCX    | Fonti originali, fatti disponibili, dati inseriti, Company KB, General KB, indicazioni dell'esecuzione | Selezione distribuita per scope: 40.000 caratteri company, 90.000 project, 20.000 general. Nessuna query FTS5 per campo. |
@@ -590,16 +629,18 @@ modelli, dipendenze e servizi opzionali hanno condizioni proprie.
 | **[Haystack](https://github.com/deepset-ai/haystack)**                         | Apache-2.0. Pipeline RAG modulari; [DocumentJoiner](https://docs.haystack.deepset.ai/docs/documentjoiner) supporta RRF e sono disponibili [ranker](https://docs.haystack.deepset.ai/docs/sentencetransformerssimilarityranker). | Utile come infrastruttura per confrontare retriever. Non necessario per implementare retrieval per campo e non risolve il mapping del modulo.                                                                                     |
 | **[RAGFlow](https://github.com/infiniflow/ragflow)**                           | Apache-2.0. Piattaforma RAG con ingestion, analisi documentale e workflow.                                                                                                                                                      | Alternativa più ampia alla parte di gestione della conoscenza. La documentazione consultata non dimostra la compilazione affidabile dei tuoi moduli e delle loro sezioni condizionali; migrare ora allargherebbe molto il lavoro. |
 
-Come eventuale backend vettoriale, [Qdrant](https://github.com/qdrant/qdrant)
-offre [query ibride e fusione dei risultati](https://qdrant.tech/documentation/search/hybrid-queries/).
-Va valutato dopo aver misurato i limiti del recupero attuale: aggiunge un
-componente e non risolve gli errori di soggetto o di applicabilità.
+[Qdrant](https://github.com/qdrant/qdrant) è ora integrato come alternativa
+vettoriale per la chat. Offre anche
+[query ibride e fusione dei risultati](https://qdrant.tech/documentation/search/hybrid-queries/),
+che l'applicazione non usa ancora. Il confronto con FTS5 resta da misurare;
+Qdrant non risolve gli errori di soggetto o di applicabilità del compilatore.
 
 **Scelta suggerita:** mantenere FastAPI, SQLite/FTS5 e writer esistenti; prendere
 da docassemble l'idea di regole e domande condizionali; provare Docling su un
 sottoinsieme di fonti; usare docxtpl solo per un eventuale percorso con template
 preparati. FormFyxer/pypdf diventano pertinenti se si estende il perimetro ai PDF.
-Haystack e un backend vettoriale sono opzioni sperimentali successive.
+Haystack rimane un'opzione da valutare se serve orchestrare più esperimenti;
+l'integrazione Qdrant attuale usa direttamente il client Python.
 
 Fra i progetti esaminati ci sono componenti utili e piattaforme documentali,
 ma **non emerge una soluzione pronta che dimostri tutti i requisiti specifici**:

@@ -74,6 +74,13 @@ async def test_discovery_auth_pagination_and_text_filters(client, monkeypatch, p
 
     def handler(request):
         calls.append(request)
+        if provider == "ollama" and request.url.path == "/api/show":
+            assert request.method == "POST"
+            assert request.headers.get("authorization") == f"Bearer {SECRET}"
+            name = json.loads(request.content)["model"]
+            return httpx.Response(200, json={
+                "capabilities": ["embedding"] if name == "custom-vectors" else ["completion"],
+            })
         assert request.method == "GET"
         if provider == "anthropic":
             assert request.headers["x-api-key"] == SECRET
@@ -100,6 +107,7 @@ async def test_discovery_auth_pagination_and_text_filters(client, monkeypatch, p
                 json={
                     "models": [
                         {"name": "model-a"},
+                        {"name": "custom-vectors"},
                         {
                             "name": "model-b",
                             "capabilities": [
@@ -133,7 +141,8 @@ async def test_discovery_auth_pagination_and_text_filters(client, monkeypatch, p
     response = await client.post("/api/settings/ai/check", json={**DEEPSEEK, "provider": provider})
     assert response.status_code == 200, response.text
     assert response.json()["models"] == ["model-a", "model-b"]
-    assert len(calls) == (2 if provider in {"anthropic", "openrouter"} else 1)
+    expected_calls = {"ollama": 3, "anthropic": 2, "openrouter": 2}.get(provider, 1)
+    assert len(calls) == expected_calls
 
 
 @pytest.mark.anyio

@@ -348,3 +348,34 @@ export interface ProjectAiSelection {
   profile_id: string | null
   effective_profile: AiProfile | null
 }
+
+export interface RetrievalConfig {
+  backend: 'fts5' | 'qdrant'
+  qdrant_mode: 'local' | 'remote'
+  qdrant_url: string
+  embedding_url: string
+  embedding_model: string
+  query_prefix: string
+  document_prefix: string
+}
+
+export interface RetrievalSettings extends RetrievalConfig {
+  has_qdrant_api_key: boolean
+  has_embedding_api_key: boolean
+}
+
+export interface RetrievalInput extends RetrievalConfig {
+  qdrant_api_key?: string
+  embedding_api_key?: string
+  clear_qdrant_api_key?: boolean
+  clear_embedding_api_key?: boolean
+}
+
+export interface VectorIndexResult {
+  collection: string
+  indexed_chunks: number
+  updated_chunks: number
+  deleted_chunks: number
+  dimensions: number
+  embedding_digest: string
+}

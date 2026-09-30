@@ -76,10 +76,12 @@ TXT e Markdown legge il contenuto. Il testo viene diviso in frammenti di circa
 1.200 caratteri, con 200 caratteri di sovrapposizione. Cerca uno spazio su cui
 spezzare il testo, quindi la lunghezza effettiva può variare.
 
-I frammenti vengono salvati in SQLite e indicizzati con FTS5. La chat usa
-questa ricerca lessicale per recuperare evidenze rispetto alla domanda.
+I frammenti vengono salvati in SQLite e indicizzati con FTS5. La chat può
+usare la ricerca lessicale oppure Qdrant con embedding Ollama, secondo le
+impostazioni. In entrambi i casi i testi delle evidenze vengono letti da SQLite.
+Dettagli: [Ricerca vettoriale](backend/docs/ricerca-vettoriale.md).
 La compilazione Word carica invece le fonti entro limiti di lunghezza: non
-esegue una ricerca FTS5 per ciascun campo.
+esegue una ricerca lessicale o vettoriale per ciascun campo.
 
 | Origine                        | Contenuto disponibile alla compilazione Word                                                                                            |
 | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |

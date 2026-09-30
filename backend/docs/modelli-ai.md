@@ -27,7 +27,7 @@ estrazione dei dati, generazione Markdown e compilazione DOCX.
 | xAI / Grok | Chiave API e modello | `/v1/models` e `/v1/chat/completions` |
 | Groq | Chiave API e modello | Endpoint `/openai/v1`, con `/models` e `/chat/completions` |
 | OpenRouter | Accesso con account oppure chiave API | `/key` verifica la credenziale, `/models` legge il catalogo pubblico, `/chat/completions` genera |
-| Ollama | Servizio avviato e modello già installato | `/api/tags` per la verifica, `/api/chat` per la generazione |
+| Ollama | Servizio avviato e modello già installato | `/api/tags` e `/api/show` per elenco e capacità, `/api/chat` per la generazione |
 | Altro servizio compatibile | Indirizzo base, modello, eventuale chiave | API Chat Completions con `response_format: json_object`; `/models` per la verifica |
 
 Il collegamento parte dal server Mapi. Per Ollama, `127.0.0.1` indica quindi il
@@ -43,6 +43,12 @@ backend. I nomi dei modelli arrivano dalle API dei servizi. La selezione esclude
 i modelli riconoscibili come destinati ad altri usi, come embedding e immagini;
 per OpenRouter usa anche i metadati sul supporto al formato JSON. Questi filtri
 non certificano la compatibilità di ogni modello né i suoi permessi di utilizzo.
+
+Per Ollama si leggono le capacità dichiarate dal modello: il catalogo della
+chat include quelli con capacità `completion`. Un modello di soli embedding,
+anche con un nome personalizzato, non viene proposto come generatore.
+Il servizio e il modello di embedding si configurano separatamente in
+**Ricerca nelle fonti**: [Ricerca vettoriale](ricerca-vettoriale.md).
 
 ## Accesso con account
 

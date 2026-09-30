@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { AppShell } from '../components/AppShell'
 import { AiSettingsPanel } from '../components/AiSettingsPanel'
+import { RetrievalSettingsPanel } from '../components/RetrievalSettingsPanel'
 
 export function GeneralSettingsPage() {
   return (
@@ -13,6 +14,7 @@ export function GeneralSettingsPage() {
         </header>
 
         <AiSettingsPanel />
+        <RetrievalSettingsPanel />
       </div>
     </AppShell>
   )

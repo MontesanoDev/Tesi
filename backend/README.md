@@ -1,6 +1,6 @@
 # Backend Mapi RAG
 
-FastAPI, SQLite/FTS5 e generazione tramite OpenAI, Claude, Gemini, DeepSeek,
+FastAPI, SQLite, ricerca FTS5 o Qdrant e generazione tramite OpenAI, Claude, Gemini, DeepSeek,
 Mistral, Grok, Groq, OpenRouter, Ollama o API compatibili.
 
 I modelli e le chiavi si configurano in **Impostazioni generali → Modelli AI**.
@@ -8,10 +8,18 @@ Dal progetto si sceglie quale configurazione usare per chat, estrazione e
 compilazione. Non è necessario inserire le chiavi nel `.env`.
 Dettagli, gestione delle credenziali e limiti: [Modelli AI](docs/modelli-ai.md).
 
+La ricerca della chat si configura in **Impostazioni generali → Ricerca nelle
+fonti**. Qdrant usa embedding prodotti da un servizio Ollama locale o remoto;
+FTS5 resta selezionabile. L'archivio vettoriale può essere locale o un servizio
+Qdrant tramite URL. Installazione, diagramma e limiti:
+[Ricerca vettoriale](docs/ricerca-vettoriale.md).
+
 Le fonti PDF, TXT e Markdown del contesto progetto possono essere eliminate con
 `DELETE /api/projects/{project_id}/files/{file_id}` (204). La rimozione riguarda
 il file caricato, i suoi frammenti e le relative righe FTS5; gli ID di un altro
 progetto e gli artefatti di lavoro non sono cancellabili da questo endpoint.
+Qdrant viene sincronizzato prima della ricerca successiva o dall'apposito
+pulsante nelle impostazioni.
 Le evidenze della chat vengono ricontrollate prima del riutilizzo nei follow-up.
 Conversazioni, dati gia estratti o inseriti e compilazioni salvate non vengono
 riscritti: sono copie separate. Se contengono informazioni della fonte errata,

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 import sqlite3
 from contextlib import contextmanager
@@ -66,11 +67,17 @@ def _cipher(*, create: bool = False) -> Fernet:
     path = get_db_path().with_suffix(".ai-key")
     if create and not path.exists():
         with connection() as db:
+            retrieval = db.execute(
+                "SELECT value FROM app_metadata WHERE key='retrieval_settings_v1'"
+            ).fetchone()
+            retrieval_secrets = json.loads(retrieval[0]) if retrieval else {}
             if (
                 db.execute(
                     "SELECT 1 FROM ai_profiles WHERE encrypted_api_key IS NOT NULL LIMIT 1"
                 ).fetchone()
                 or db.execute("SELECT 1 FROM ai_login_flows LIMIT 1").fetchone()
+                or retrieval_secrets.get("encrypted_qdrant_api_key")
+                or retrieval_secrets.get("encrypted_embedding_api_key")
             ):
                 raise ProfileError(
                     "Il file .ai-key manca ma ci sono chiavi salvate. Ripristina il backup."

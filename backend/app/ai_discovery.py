@@ -40,6 +40,17 @@ async def discover_models(settings: AISettings) -> list[str]:
             params["after_id"] = cursor
         else:
             raise ValueError("Elenco modelli troppo esteso")
+        if settings.provider == "ollama":
+            for item in entries:
+                if not isinstance(item, dict) or not isinstance(item.get("name"), str):
+                    continue
+                if "capabilities" not in item:
+                    metadata = await client.post(
+                        f"{settings.base_url.removesuffix('/v1')}/api/show",
+                        headers=headers, json={"model": item["name"]},
+                    )
+                    metadata.raise_for_status()
+                    item["capabilities"] = metadata.json().get("capabilities", [])
     key = "name" if settings.provider == "ollama" else "id"
     models = set()
     for item in entries:
@@ -48,6 +59,10 @@ async def discover_models(settings: AISettings) -> list[str]:
         model = item[key]
         if not 0 < len(model) <= 160 or any(ord(c) < 32 for c in model):
             continue
+        if settings.provider == "ollama":
+            capabilities = item.get("capabilities")
+            if not isinstance(capabilities, list) or "completion" not in capabilities:
+                continue
         if settings.provider == "openai" and re.search(
             r"embedding|whisper|tts|audio|realtime|dall-e|image|moderation|transcri|sora|babbage|davinci",
             model,
