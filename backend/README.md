@@ -8,9 +8,10 @@ Dal progetto si sceglie quale configurazione usare per chat, estrazione e
 compilazione. Non è necessario inserire le chiavi nel `.env`.
 Dettagli, gestione delle credenziali e limiti: [Modelli AI](docs/modelli-ai.md).
 
-La ricerca della chat si configura in **Impostazioni generali → Ricerca nelle
-fonti**. Qdrant usa embedding prodotti da un servizio Ollama locale o remoto;
-FTS5 resta selezionabile. L'archivio vettoriale può essere locale o un servizio
+La ricerca della chat usa **LangChain** e si configura in **Impostazioni
+generali → Ricerca nelle fonti**. Qdrant usa embedding prodotti da un servizio
+Ollama locale o remoto; FTS5 resta selezionabile attraverso lo stesso contratto
+`Retriever`. L'archivio vettoriale può essere locale o un servizio
 Qdrant tramite URL. Installazione, diagramma e limiti:
 [Ricerca vettoriale](docs/ricerca-vettoriale.md).
 

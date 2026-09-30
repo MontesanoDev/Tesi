@@ -14,11 +14,15 @@ import math
 from contextlib import contextmanager
 from uuid import NAMESPACE_URL, uuid4, uuid5
 
-import httpx
+from langchain_core.documents import Document
+from langchain_core.embeddings import Embeddings
+from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient, models
 
 from app.db import connection, get_db_path
 from app.repository import PROJECT_EVIDENCE_FILTER, _expand_neighbor_evidence, _neighbor_excerpt
+from app.retrieval_documents import evidence_document
+from app.retrieval_embeddings import source_embeddings
 from app.retrieval_settings import RETRIEVAL_LOCK, RetrievalError, RetrievalSettings
 
 logger = logging.getLogger(__name__)
@@ -52,81 +56,6 @@ def point_id(chunk_id: int) -> str:
     return str(uuid5(NAMESPACE_URL, f"mapi:chunk:{chunk_id}"))
 
 
-class OllamaEmbeddings:
-    def __init__(self, settings: RetrievalSettings):
-        self.settings = settings
-
-    def _request(self, method: str, path: str, body: dict | None = None) -> dict:
-        headers = (
-            {"Authorization": f"Bearer {self.settings.embedding_api_key}"}
-            if self.settings.embedding_api_key
-            else {}
-        )
-        try:
-            with httpx.Client(timeout=httpx.Timeout(180, connect=10), headers=headers) as client:
-                response = client.request(method, f"{self.settings.embedding_url}{path}", json=body)
-                response.raise_for_status()
-                payload = response.json()
-                if not isinstance(payload, dict):
-                    raise ValueError
-                return payload
-        except httpx.TimeoutException:
-            raise RetrievalError("Tempo di attesa scaduto per il modello di embedding") from None
-        except httpx.HTTPStatusError as exc:
-            raise RetrievalError(
-                f"Ollama ha rifiutato gli embedding ({exc.response.status_code}). "
-                "Verifica modello, accesso e lunghezza dei frammenti."
-            ) from None
-        except httpx.HTTPError, ValueError:
-            raise RetrievalError(
-                "Servizio di embedding non raggiungibile o risposta non valida. "
-                "Controlla l'indirizzo nelle impostazioni della ricerca."
-            ) from None
-
-    def digest(self) -> str:
-        payload = self._request("GET", "/api/tags")
-        requested = self.settings.embedding_model
-        names = {requested, f"{requested}:latest"}
-        available = payload.get("models")
-        if not isinstance(available, list):
-            raise RetrievalError("Elenco modelli del servizio di embedding non valido")
-        for item in available:
-            if isinstance(item, dict) and item.get("name") in names and item.get("digest"):
-                return str(item["digest"])
-        raise RetrievalError(
-            "Modello di embedding non installato sul servizio Ollama configurato. "
-            f"Scarica {requested} su quel servizio oppure scegli un modello installato."
-        )
-
-    def embed(self, texts: list[str]) -> list[list[float]]:
-        payload = self._request(
-            "POST",
-            "/api/embed",
-            {
-                "model": self.settings.embedding_model,
-                "input": texts,
-                "truncate": False,
-            },
-        )
-        vectors = payload.get("embeddings")
-        if not isinstance(vectors, list) or len(vectors) != len(texts):
-            raise RetrievalError(
-                "Il modello di embedding ha restituito un numero di vettori errato"
-            )
-        dimension = None
-        for vector in vectors:
-            if (
-                not isinstance(vector, list)
-                or not 1 <= len(vector) <= 65536
-                or (dimension is not None and len(vector) != dimension)
-                or any(type(v) not in (int, float) or not math.isfinite(v) for v in vector)
-                or not any(vector)
-            ):
-                raise RetrievalError("Il modello di embedding ha restituito vettori non validi")
-            dimension = len(vector)
-        return vectors
-
-
 def collection_name(settings: RetrievalSettings, digest: str, dimension: int) -> str:
     with connection() as db:
         db.execute(
@@ -137,7 +66,7 @@ def collection_name(settings: RetrievalSettings, digest: str, dimension: int) ->
             "SELECT value FROM app_metadata WHERE key='vector_namespace'"
         ).fetchone()[0]
     signature = [
-        "mapi-v1",
+        "mapi-langchain-v2",
         namespace,
         settings.embedding_url,
         settings.embedding_model,
@@ -182,10 +111,10 @@ def synchronize(
     client: QdrantClient,
     name: str,
     settings: RetrievalSettings,
-    embedder: OllamaEmbeddings,
+    embedder: Embeddings,
     chunks: list[dict],
     dimension: int,
-) -> dict:
+) -> tuple[QdrantVectorStore, dict]:
     if not client.collection_exists(name):
         client.create_collection(
             name,
@@ -193,53 +122,49 @@ def synchronize(
         )
         if settings.qdrant_mode == "remote":
             client.create_payload_index(
-                name, "scope", field_schema=models.PayloadSchemaType.KEYWORD
+                name, "metadata.scope", field_schema=models.PayloadSchemaType.KEYWORD
             )
+    # The query already established the dimension. Avoid an extra dummy embedding
+    # in LangChain's constructor; vector searches still validate the collection.
+    store = QdrantVectorStore(
+        client=client,
+        collection_name=name,
+        embedding=embedder,
+        validate_collection_config=False,
+    )
     stored = {}
     offset = None
     while True:
         points, offset = client.scroll(
             name, limit=256, offset=offset, with_payload=True, with_vectors=False
         )
-        stored.update({str(p.id): p.payload or {} for p in points})
+        stored.update({str(p.id): (p.payload or {}).get("metadata", {}) for p in points})
         if offset is None:
             break
     current = {point_id(c["chunk_id"]): c for c in chunks}
     deleted = sorted(set(stored) - set(current))
     if deleted:
-        client.delete(name, points_selector=models.PointIdsList(points=deleted), wait=True)
+        store.delete(ids=deleted, wait=True)
     changed = [
         (key, chunk)
         for key, chunk in current.items()
         if stored.get(key, {}).get("content_hash") != content_hash(chunk)
     ]
-    for start in range(0, len(changed), EMBED_BATCH_SIZE):
-        batch = changed[start : start + EMBED_BATCH_SIZE]
-        prefix = settings.document_prefix
-        texts = [f"{prefix} {chunk['content']}".strip() for _, chunk in batch]
-        vectors = embedder.embed(texts)
-        if any(len(vector) != dimension for vector in vectors):
-            raise RetrievalError(
-                "Le dimensioni degli embedding sono cambiate durante l'indicizzazione"
-            )
-        client.upsert(
-            name,
-            points=[
-                models.PointStruct(
-                    id=key,
-                    vector=vector,
-                    payload={
-                        "chunk_id": chunk["chunk_id"],
-                        "scope": chunk["scope"],
-                        "content_hash": content_hash(chunk),
-                    },
-                )
-                for (key, chunk), vector in zip(batch, vectors, strict=True)
-            ],
-            wait=True,
+    documents = [
+        Document(
+            id=key,
+            page_content=chunk["content"],
+            metadata={
+                "chunk_id": chunk["chunk_id"],
+                "scope": chunk["scope"],
+                "content_hash": content_hash(chunk),
+            },
         )
-    # Never publish/query a mixture if an Ollama tag was replaced during indexing.
-    return {
+        for key, chunk in changed
+    ]
+    if documents:
+        store.add_documents(documents, batch_size=EMBED_BATCH_SIZE, wait=True)
+    return store, {
         "collection": name,
         "indexed_chunks": len(chunks),
         "updated_chunks": len(changed),
@@ -253,51 +178,46 @@ def run_vector_search(
     query: str | None = None,
     limit: int = 4,
     include_neighbors: bool = False,
-) -> list[dict] | dict:
-    with RETRIEVAL_LOCK:
+) -> list[Document] | dict:
+    with RETRIEVAL_LOCK, source_embeddings(settings) as embedder:
         chunks = corpus()
-        embedder = OllamaEmbeddings(settings)
         digest = embedder.digest()
-        text = f"{settings.query_prefix} {query or 'Verifica della ricerca'}".strip()
-        vector = embedder.embed([text])[0]
+        vector = embedder.embed_query(query or "Verifica della ricerca")
         name = collection_name(settings, digest, len(vector))
         with vector_client(settings) as client:
-            status = synchronize(client, name, settings, embedder, chunks, len(vector))
+            store, status = synchronize(client, name, settings, embedder, chunks, len(vector))
             if embedder.digest() != digest:
                 client.delete_collection(name)
                 raise RetrievalError("Modello di embedding aggiornato durante la ricerca: riprova")
             if query is None:
                 return status | {"dimensions": len(vector), "embedding_digest": digest}
-            hits = client.query_points(
-                name,
-                query=vector,
-                query_filter=models.Filter(
+            hits = store.similarity_search_with_score_by_vector(
+                vector,
+                filter=models.Filter(
                     must=[
                         models.FieldCondition(
-                            key="scope",
+                            key="metadata.scope",
                             match=models.MatchAny(any=[f"project:{project_id}", "global"]),
                         )
                     ]
                 ),
-                limit=max(limit * 6, 24),
-                with_payload=True,
-                with_vectors=False,
-            ).points
+                k=max(limit * 6, 24),
+            )
         # Reload after the network calls: old/deleted/differently scoped evidence is unusable.
         fresh = {c["chunk_id"]: c for c in corpus()}
         anchors, deferred = [], []
-        for hit in hits:
-            payload = hit.payload or {}
+        for document, score in hits:
+            payload = document.metadata
             chunk = fresh.get(payload.get("chunk_id"))
             if (
                 chunk is None
                 or chunk["scope"] not in {f"project:{project_id}", "global"}
                 or payload.get("content_hash") != content_hash(chunk)
-                or not math.isfinite(hit.score)
+                or not math.isfinite(score)
             ):
                 continue
             item = {k: v for k, v in chunk.items() if k != "scope"}
-            item.update(excerpt=_neighbor_excerpt(chunk["content"], 0), relevance=hit.score)
+            item.update(excerpt=_neighbor_excerpt(chunk["content"], 0), relevance=score)
             adjacent = any(
                 c["file_id"] == item["file_id"] and abs(c["chunk_index"] - item["chunk_index"]) <= 1
                 for c in anchors
@@ -308,14 +228,14 @@ def run_vector_search(
                 anchors.append(item)
         anchors.extend(deferred[: max(0, limit - len(anchors))])
         if include_neighbors:
-            return _expand_neighbor_evidence(project_id, anchors, max_results=limit * 2)
-        return anchors
+            anchors = _expand_neighbor_evidence(project_id, anchors, max_results=limit * 2)
+        return [evidence_document(item) for item in anchors]
 
 
 def check_connection(settings: RetrievalSettings) -> dict:
-    embedder = OllamaEmbeddings(settings)
-    digest = embedder.digest()
-    vector = embedder.embed(["Verifica del modello di embedding"])[0]
+    with source_embeddings(settings) as embedder:
+        digest = embedder.digest()
+        vector = embedder.embed_query("Verifica del modello di embedding")
     with RETRIEVAL_LOCK, vector_client(settings) as client:
         client.get_collections()
     return {

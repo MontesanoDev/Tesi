@@ -39,8 +39,8 @@ flowchart TB
     subgraph Backend["Backend Python / FastAPI"]
         API["main.py e document_compilation_routes.py"]
         ING["ingestion.py<br/>PDF, TXT, Markdown"]
-        RET["retrieval.py<br/>scelta FTS5 o Qdrant"]
-        EMB["vector_retrieval.py<br/>embedding tramite Ollama"]
+        RET["retrieval.py<br/>Retriever LangChain: FTS5 o Qdrant"]
+        EMB["LangChain<br/>OllamaEmbeddings + QdrantVectorStore"]
         FACT["fact_extraction.py + call_facts.py<br/>dati estratti"]
         ART["artifacts.py<br/>artefatti Markdown e indice"]
         CHAT["generation.py<br/>risposta con riferimenti"]
@@ -59,7 +59,7 @@ flowchart TB
         FACT --> ART
     end
     DB[("SQLite<br/>metadati, chunk, FTS5,<br/>conversazioni, compilazioni")]
-    VDB[("Qdrant<br/>vettori, ID, scope e hash")]
+    VDB[("Qdrant<br/>vettori, testi e metadati")]
     FS[("Filesystem locale<br/>fonti, artefatti Markdown,<br/>originali DOCX, bozze e report")]
     LLM["ai_transport.py<br/>OpenAI, Claude, servizi compatibili e Ollama"]
     ING --> DB
@@ -77,10 +77,11 @@ flowchart TB
 ```
 
 È un **monolite modulare**: un frontend e un backend, con funzioni Python per
-orchestrare le diverse pipeline. Per la ricerca vettoriale usa Qdrant, locale
-o tramite URL, ed embedding Ollama con un modello distinto da quello della
-chat. Non sono presenti reranker neurali, una coda di lavori o un agente che
-scelga autonomamente strumenti.
+orchestrare le diverse pipeline. Il retrieval usa le astrazioni LangChain:
+`Document`, `BaseRetriever`, `QdrantVectorStore` e l'integrazione Ollama per gli
+embedding. Qdrant può essere locale o tramite URL; il modello di embedding è
+distinto da quello della chat. Non sono presenti reranker neurali, una coda
+di lavori o un agente che scelga autonomamente strumenti.
 
 Le fonti sono conservate localmente, ma i testi selezionati vengono inviati al
 servizio scelto durante la generazione. Con un provider cloud l'inferenza è
@@ -110,7 +111,7 @@ Schema e dettagli: [Modelli AI](backend/docs/modelli-ai.md).
 | Preparazione candidatura  | [KnowledgeArtifactsPage.tsx](frontend/src/pages/KnowledgeArtifactsPage.tsx)                      | Accesso diretto al Template; modello AI scelto dall'ingranaggio della chat.         |
 | API principali             | [main.py](backend/app/main.py)                                                                     | CRUD, caricamenti, chat, estrazione e generazione Markdown.                         |
 | Persistenza                | [db.py](backend/app/db.py), [repository.py](backend/app/repository.py)                             | Schema SQLite, trigger FTS5, query e aggiornamenti.                                 |
-| Ricerca vettoriale         | [retrieval.py](backend/app/retrieval.py), [vector_retrieval.py](backend/app/vector_retrieval.py) | Selezione del motore, embedding Ollama, indice Qdrant e rilettura delle evidenze da SQLite. |
+| Retrieval LangChain       | [retrieval.py](backend/app/retrieval.py), [vector_retrieval.py](backend/app/vector_retrieval.py), [retrieval_embeddings.py](backend/app/retrieval_embeddings.py) | Retriever intercambiabili, Document, embedding Ollama, QdrantVectorStore e verifica delle evidenze in SQLite. |
 | Ingestion                  | [ingestion.py](backend/app/ingestion.py)                                                           | Estrazione del testo e suddivisione in chunk.                                       |
 | Artefatti e fatti          | [artifacts.py](backend/app/artifacts.py), [call_facts.py](backend/app/call_facts.py)               | Markdown, versioni, collegamenti e disponibilità dei fatti.                         |
 | Estrazione LLM             | [fact_extraction.py](backend/app/fact_extraction.py)                                               | Sintesi dei documenti del progetto con riferimenti ai frammenti.                    |
@@ -208,7 +209,9 @@ perdere le loro relazioni quando diventano testo continuo.
 ### Chat con Qdrant
 
 La scelta del motore di ricerca è globale e indipendente dal profilo AI usato
-dal progetto. Il percorso Qdrant trasforma domanda e chunk in vettori mediante
+dal progetto. Il backend costruisce un retriever LangChain con interfaccia
+`invoke()`/`ainvoke()` e risultati `Document`, comune a FTS5 e Qdrant. Il
+percorso Qdrant trasforma domanda e chunk in vettori mediante l'integrazione
 Ollama, filtra per progetto corrente e KB globali e cerca per similarità coseno.
 I testi vengono poi riletti da SQLite e controllati prima di inviarli al
 modello. Template e bozze generate restano esclusi dalle evidenze.
@@ -639,8 +642,9 @@ Qdrant non risolve gli errori di soggetto o di applicabilità del compilatore.
 da docassemble l'idea di regole e domande condizionali; provare Docling su un
 sottoinsieme di fonti; usare docxtpl solo per un eventuale percorso con template
 preparati. FormFyxer/pypdf diventano pertinenti se si estende il perimetro ai PDF.
-Haystack rimane un'opzione da valutare se serve orchestrare più esperimenti;
-l'integrazione Qdrant attuale usa direttamente il client Python.
+Per astrarre il retrieval è stato integrato LangChain, con le integrazioni
+ufficiali Qdrant e Ollama. Haystack rimane un'alternativa da confrontare solo
+se emergono esigenze che il framework scelto non copre.
 
 Fra i progetti esaminati ci sono componenti utili e piattaforme documentali,
 ma **non emerge una soluzione pronta che dimostri tutti i requisiti specifici**:
@@ -654,7 +658,7 @@ un'affermazione di inesistenza sull'intero mercato.
 | --------------------------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | FTS5 lessicale                                | Buona baseline semplice e ispezionabile.                | Mantenerla e misurarla; introdurla nella compilazione per campo.              |
 | SQLite + filesystem                           | Adeguati al prototipo di una società.                   | Migliorare tracciabilità e atomicità prima di cambiare database.              |
-| Codice Python senza framework RAG             | Scelta legittima e leggibile nella tesi.                | Definire interfacce per retrieval, schema dei campi, validazione e provider.  |
+| Retrieval con LangChain                       | Contratti comuni per documenti, embedding e motori di ricerca. | Mantenere i controlli applicativi su provenienza e freschezza; misurare la qualità separatamente. |
 | LLM propone / Python scrive                   | Separazione da conservare.                              | Aggiungere vincoli semantici indipendenti dall'output LLM.                    |
 | Evidenze letterali e astensione               | Buon fondamento, con limiti dimostrati.                 | Risalire alle fonti primarie e validare soggetto, tipo e contesto.            |
 | Estrazione dei fatti prima della compilazione | Utile come sintesi, beneficio non ancora misurato.      | Confrontare con/senza fatti; evitare che sostituiscano la prova originale.    |

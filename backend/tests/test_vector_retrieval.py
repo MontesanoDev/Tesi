@@ -6,6 +6,10 @@ from dataclasses import replace
 
 import httpx
 import pytest
+from langchain_core.documents import Document
+from langchain_core.retrievers import BaseRetriever
+from langchain_core.runnables import RunnableLambda
+from ollama import Client, ListResponse, ResponseError
 from qdrant_client import QdrantClient
 
 from app import retrieval
@@ -13,6 +17,7 @@ from app import vector_retrieval as vector
 from app.ai_profiles import ProfileError
 from app.db import connection, get_db_path, init_database
 from app.main import app
+from app.retrieval_embeddings import SourceEmbeddings
 from app.retrieval_settings import (
     RetrievalError,
     RetrievalInput,
@@ -71,13 +76,14 @@ def shared(text="PEC aziendale: mapi@example.test") -> int:
 def embeddings(database, monkeypatch):
     state = {"digest": "model-v1", "inputs": [], "fail": False}
 
-    def fake_request(self, method, path, body=None):
+    def fake_list(self):
         if state["fail"]:
             raise RetrievalError("Embedding non disponibile")
-        if path == "/api/tags":
-            return {"models": [{"name": self.settings.embedding_model, "digest": state["digest"]}]}
-        assert path == "/api/embed" and body["truncate"] is False
-        state["inputs"].extend(body["input"])
+        return ListResponse(models=[{"model": "embeddinggemma", "digest": state["digest"]}])
+
+    def fake_embed(self, *, model, input, truncate):
+        assert model == "embeddinggemma" and truncate is False
+        state["inputs"].extend(input)
         return {
             "embeddings": [
                 [
@@ -87,11 +93,12 @@ def embeddings(database, monkeypatch):
                     1.0 if any(t in text.lower() for t in ("pec", "posta")) else 0.0,
                     0.1,
                 ]
-                for text in body["input"]
+                for text in input
             ]
         }
 
-    monkeypatch.setattr(vector.OllamaEmbeddings, "_request", fake_request)
+    monkeypatch.setattr(Client, "list", fake_list)
+    monkeypatch.setattr(Client, "embed", fake_embed)
     save_settings(RetrievalInput(backend="qdrant"))
     return state
 
@@ -158,7 +165,7 @@ def test_failed_embeddings_never_fall_back_to_fts_or_query_partial_index(embeddi
 
 def test_missing_project_and_lexical_mode_do_not_require_embeddings(database, monkeypatch):
     source()
-    monkeypatch.setattr(vector.OllamaEmbeddings, "digest", lambda *a: pytest.fail("No embedding"))
+    monkeypatch.setattr(SourceEmbeddings, "digest", lambda *a: pytest.fail("No embedding"))
     assert retrieval.search_project_evidence("missing", "scadenza") is None
     assert (
         retrieval.search_project_evidence("alpha", "scadenza")[0]["content"] == "Scadenza 30 giugno"
@@ -185,7 +192,7 @@ def test_partial_indexing_failure_can_resume_without_reembedding_completed_chunk
     source(text="Scadenza giugno")
     source(text="PEC mapi@example.test")
     monkeypatch.setattr(vector, "EMBED_BATCH_SIZE", 1)
-    original = vector.OllamaEmbeddings.embed
+    original = SourceEmbeddings._embed
     failed = False
 
     def fail_second(self, texts):
@@ -195,7 +202,7 @@ def test_partial_indexing_failure_can_resume_without_reembedding_completed_chunk
             raise RetrievalError("Interrotto")
         return original(self, texts)
 
-    monkeypatch.setattr(vector.OllamaEmbeddings, "embed", fail_second)
+    monkeypatch.setattr(SourceEmbeddings, "_embed", fail_second)
     with pytest.raises(RetrievalError, match="Interrotto"):
         vector.run_vector_search(resolve_settings())
     result = vector.run_vector_search(resolve_settings())
@@ -204,9 +211,9 @@ def test_partial_indexing_failure_can_resume_without_reembedding_completed_chunk
 
 @pytest.mark.parametrize("vectors", [[], [[0, 0]], [[float("nan")]], [[True]], [[1], [1, 2]], None])
 def test_embedding_contract_rejects_bad_vectors(database, monkeypatch, vectors):
-    monkeypatch.setattr(vector.OllamaEmbeddings, "_request", lambda *a: {"embeddings": vectors})
-    with pytest.raises(RetrievalError):
-        vector.OllamaEmbeddings(resolve_settings()).embed(["query"])
+    monkeypatch.setattr(Client, "embed", lambda *a, **kw: {"embeddings": vectors})
+    with vector.source_embeddings(resolve_settings()) as embedder, pytest.raises(RetrievalError):
+        embedder.embed_query("query")
 
 
 def test_settings_encrypt_keys_and_require_new_credentials_for_new_endpoints(database):
@@ -258,6 +265,7 @@ def test_remote_embedding_protocol_uses_configured_endpoint_and_no_truncation(
                     "models": [
                         {
                             "name": "embeddinggemma:latest",
+                            "model": "embeddinggemma:latest",
                             "digest": "fake-digest",
                         }
                     ]
@@ -279,9 +287,9 @@ def test_remote_embedding_protocol_uses_configured_endpoint_and_no_truncation(
             **kw,
         ),
     )
-    embedder = vector.OllamaEmbeddings(settings)
-    assert embedder.digest() == "fake-digest"
-    assert embedder.embed(["domanda"]) == [[1.0, 0.5]]
+    with vector.source_embeddings(settings) as embedder:
+        assert embedder.digest() == "fake-digest"
+        assert embedder.embed_query("domanda") == [1.0, 0.5]
 
 
 def test_qdrant_remote_connection_receives_only_its_own_key(database, monkeypatch):
@@ -307,14 +315,14 @@ def test_qdrant_remote_connection_receives_only_its_own_key(database, monkeypatc
 
 def test_model_replacement_during_indexing_discards_mixed_vectors(embeddings, monkeypatch):
     source()
-    original = vector.OllamaEmbeddings.embed
+    original = SourceEmbeddings._embed
 
     def change_model(self, texts):
         result = original(self, texts)
         embeddings["digest"] = "model-v2"
         return result
 
-    monkeypatch.setattr(vector.OllamaEmbeddings, "embed", change_model)
+    monkeypatch.setattr(SourceEmbeddings, "_embed", change_model)
     with pytest.raises(RetrievalError, match="aggiornato"):
         vector.run_vector_search(resolve_settings())
     with closing(QdrantClient(path=str(get_db_path()) + ".qdrant")) as client:
@@ -364,3 +372,111 @@ async def test_settings_validation_does_not_echo_keys(database):
             },
         )
         assert result.status_code == 422 and "do-not-echo" not in result.text
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("backend", ["fts5", "qdrant"])
+async def test_retrievers_compose_in_langchain_with_the_same_document_contract(
+    embeddings,
+    backend,
+):
+    chunk = source()
+    save_settings(RetrievalInput(backend=backend))
+    retriever = retrieval.build_retriever("alpha", limit=1)
+    assert isinstance(retriever, BaseRetriever)
+    documents = await retriever.ainvoke("Scadenza")
+    assert len(documents) == 1 and isinstance(documents[0], Document)
+    assert documents[0].id == str(chunk)
+    assert documents[0].page_content == "Scadenza 30 giugno"
+    assert documents[0].metadata["source_name"] == "bando.txt"
+    chain = retriever | RunnableLambda(lambda docs: [doc.metadata["chunk_id"] for doc in docs])
+    assert chain.invoke("Scadenza") == [chunk]
+
+
+def test_langchain_payload_keeps_sqlite_as_the_source_of_returned_text(embeddings):
+    chunk = source()
+    settings = resolve_settings()
+    status = vector.run_vector_search(settings)
+    with closing(QdrantClient(path=str(get_db_path()) + ".qdrant")) as client:
+        payload = client.retrieve(status["collection"], ids=[vector.point_id(chunk)])[0].payload
+    assert payload["page_content"] == "Scadenza 30 giugno"
+    assert payload["metadata"]["scope"] == "project:alpha"
+    assert payload["metadata"]["chunk_id"] == chunk
+    # A stored text copy must never bypass SQLite freshness checks.
+    with closing(QdrantClient(path=str(get_db_path()) + ".qdrant")) as client:
+        client.set_payload(
+            status["collection"],
+            {"page_content": "Testo obsoleto"},
+            points=[vector.point_id(chunk)],
+        )
+    assert (
+        retrieval.search_project_evidence("alpha", "Scadenza")[0]["content"] == "Scadenza 30 giugno"
+    )
+
+
+def test_prefixes_are_applied_once_and_dimension_changes_are_rejected(embeddings, monkeypatch):
+    settings = replace(resolve_settings(), query_prefix="query:", document_prefix="passage:")
+    with vector.source_embeddings(settings) as embedder:
+        embedder.embed_query("Scadenza")
+        embedder.embed_documents(["PEC", "Termine"])
+        assert embeddings["inputs"] == ["query: Scadenza", "passage: PEC", "passage: Termine"]
+        monkeypatch.setattr(Client, "embed", lambda *a, **kw: {"embeddings": [[1.0]]})
+        with pytest.raises(RetrievalError, match="dimensioni"):
+            embedder.embed_query("Scadenza")
+
+
+def test_ollama_sdk_does_not_forward_environment_credentials(database, monkeypatch):
+    monkeypatch.setenv("OLLAMA_API_KEY", "unrelated-cloud-secret")
+    original = httpx.Client
+
+    def handler(request):
+        assert "authorization" not in request.headers
+        assert json.loads(request.content)["truncate"] is False
+        return httpx.Response(200, json={"embeddings": [[1.0, 0.5]]})
+
+    monkeypatch.setattr(
+        httpx,
+        "Client",
+        lambda **kw: original(
+            transport=httpx.MockTransport(handler),
+            **kw,
+        ),
+    )
+    with vector.source_embeddings(resolve_settings()) as embedder:
+        assert embedder.embed_query("Domanda") == [1.0, 0.5]
+
+
+def test_retriever_serialization_excludes_service_secrets(embeddings):
+    save_settings(RetrievalInput(backend="qdrant", embedding_api_key="private-credential"))
+    retriever = retrieval.build_retriever("alpha")
+    assert "private-credential" not in repr(retriever)
+    assert "private-credential" not in retriever.model_dump_json()
+
+
+@pytest.mark.parametrize(
+    "error",
+    [
+        httpx.ReadTimeout("private-credential"),
+        ConnectionError("private-credential"),
+        ResponseError("private-credential", status_code=401),
+        ValueError("private-credential"),
+    ],
+)
+def test_sdk_errors_remain_readable_without_exposing_credentials(database, monkeypatch, error):
+    def fail(*args, **kwargs):
+        raise error
+
+    monkeypatch.setattr(Client, "embed", fail)
+    with vector.source_embeddings(resolve_settings()) as embedder:
+        with pytest.raises(RetrievalError) as caught:
+            embedder.embed_query("Domanda")
+    assert "private-credential" not in str(caught.value)
+
+
+@pytest.mark.anyio
+async def test_async_embeddings_preserve_query_and_document_prefixes(embeddings):
+    settings = replace(resolve_settings(), query_prefix="query:", document_prefix="passage:")
+    with vector.source_embeddings(settings) as embedder:
+        assert await embedder.aembed_query("Scadenza") == [1.0, 0.0, 0.1]
+        assert await embedder.aembed_documents(["PEC"]) == [[0.0, 1.0, 0.1]]
+    assert embeddings["inputs"] == ["query: Scadenza", "passage: PEC"]

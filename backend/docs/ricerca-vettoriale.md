@@ -1,9 +1,14 @@
-# Ricerca nelle fonti: Qdrant e FTS5
+# Ricerca nelle fonti: LangChain, Qdrant e FTS5
 
 La chat può recuperare le evidenze con Qdrant oppure con FTS5. La scelta si
 salva in **Impostazioni generali → Ricerca nelle fonti** e vale per tutti i
 progetti. FTS5 resta disponibile per confrontare i risultati e per usare la
 ricerca senza un servizio di embedding. Non c'è fusione dei due metodi.
+
+Il framework di retrieval è **LangChain**. Entrambi i motori implementano
+`BaseRetriever`: ricevono una domanda tramite `invoke()` o `ainvoke()` e
+restituiscono una lista di `Document`. La conversione nel formato delle
+evidenze dell'applicazione avviene al confine con le API esistenti.
 
 Il modello che produce gli embedding è separato da quello che risponde nella
 chat. Cambiare Gemma con Claude, per esempio, non richiede di ricostruire
@@ -11,7 +16,8 @@ l'indice; cambiare il modello di embedding sì.
 
 ## Avvio e configurazione
 
-Le dipendenze Python includono `qdrant-client`. Dalla directory `backend`:
+Le dipendenze Python includono `langchain-core`, `langchain-qdrant`,
+`langchain-ollama` e `qdrant-client`. Dalla directory `backend`:
 
 ```bash
 uv sync
@@ -54,11 +60,11 @@ flowchart TD
     D[PDF, TXT e Markdown] --> C[Estrazione e suddivisione in chunk]
     C --> S[(SQLite: testi e metadati)]
     S --> H[Confronto degli hash con l'indice]
-    H --> E[Ollama: embedding dei chunk nuovi o modificati]
-    E --> V[(Qdrant: vettori, ID, scope e hash)]
+    H --> E[LangChain Ollama: embedding dei Document modificati]
+    E --> V[(QdrantVectorStore: vettori, testi e metadati)]
     H --> X[Rimozione dei punti non più presenti]
     X --> V
-    Q[Domanda] --> EQ[Ollama: embedding della domanda]
+    Q[Domanda al Retriever LangChain] --> EQ[Ollama: embedding della domanda]
     EQ --> R[Ricerca per similarità coseno con filtro]
     V --> R
     F[Progetto corrente e KB globali] --> R
@@ -72,11 +78,54 @@ flowchart TD
 Il filtro del progetto è incluso nella query Qdrant: opera prima della
 selezione dei risultati migliori.
 
-SQLite resta l'archivio principale. Qdrant contiene un vettore per chunk e un
-payload con `chunk_id`, `scope` e `content_hash`; non duplica il testo. Gli ID
-positivi identificano i chunk dei progetti, quelli negativi i chunk globali,
-come nel contratto delle evidenze già usato dalla chat. Un UUID deterministico
-li associa ai punti Qdrant.
+SQLite resta l'archivio principale. L'integrazione standard `QdrantVectorStore`
+salva un vettore per chunk, una copia del testo in `page_content` e i campi
+`chunk_id`, `scope`, `content_hash` in `metadata`. La copia nell'indice non
+diventa la fonte autorevole: i testi restituiti alla chat vengono sempre
+riletti da SQLite e verificati. Il filtro usa `metadata.scope`.
+
+Gli ID positivi identificano i chunk dei progetti, quelli negativi i chunk
+globali, come nel contratto delle evidenze già usato dalla chat. Un UUID
+deterministico li associa ai punti Qdrant.
+
+## Cosa astrae LangChain
+
+| Interfaccia o componente | Impiego nell'applicazione |
+| --- | --- |
+| `Document` | Testo in `page_content`, identificatore e metadati di provenienza. |
+| `BaseRetriever` | Contratto comune per `FTS5Retriever` e `QdrantEvidenceRetriever`. |
+| `QdrantVectorStore` | Inserimento dei documenti con embedding, cancellazione e ricerca con punteggio. |
+| `OllamaEmbeddings` | Base dell'adattatore di embedding, con client e protocollo Ollama gestiti dall'integrazione ufficiale. |
+
+Il backend costruisce il retriever dalle impostazioni. Un chiamante può usare
+lo stesso codice con entrambi i motori:
+
+```python
+from app.retrieval import build_retriever
+
+retriever = build_retriever(project_id, limit=4, include_neighbors=True)
+documents = retriever.invoke("Qual è la scadenza della domanda?")
+# In una funzione async: documents = await retriever.ainvoke(domanda)
+```
+
+I retriever sono componibili anche con gli altri Runnable di LangChain. La
+scelta del database e il trasporto degli embedding non sono responsabilità
+della route della chat. Rimangono applicativi il filtro delle fonti ammesse,
+la sincronizzazione con SQLite, il controllo di freschezza, la selezione dei
+vicini e la gestione delle credenziali.
+
+`SourceEmbeddings` estende l'integrazione Ollama per applicare i prefissi,
+validare i vettori e richiedere `truncate=False`. La versione usata
+dell'adattatore ufficiale non espone quest'ultima opzione: il metodo chiama
+quindi il client Ollama fornito dall'integrazione, senza ricostruire richieste
+HTTP manualmente. La stessa regola vale per i metodi asincroni. Le credenziali
+provengono dalle impostazioni del servizio; una `OLLAMA_API_KEY` esterna non
+viene ereditata implicitamente.
+
+Il generatore delle risposte e il compilatore Word usano ancora il trasporto
+multi-provider dell'applicazione. Questa integrazione di LangChain riguarda
+documenti, embedding, archivio vettoriale e retrieval; non introduce agenti
+né un account o un servizio LangSmith obbligatorio.
 
 Il corpus comprende le fonti ammesse del progetto, Company KB e General KB.
 Template e bozze generate non diventano evidenze. Rimangono ammessi gli
@@ -100,6 +149,11 @@ di embedding, dal digest del modello Ollama, dai prefissi e dalla dimensione
 dei vettori. Un cambiamento prepara una collezione distinta, evitando di
 mescolare vettori incompatibili. Le collezioni precedenti restano sul disco:
 non c'è ancora una pulizia automatica.
+
+Il passaggio al payload LangChain usa la versione di schema
+`mapi-langchain-v2`: viene preparata una nuova collezione. Il vecchio indice
+resta separato e i documenti SQLite non vengono modificati. Dopo il primo
+aggiornamento, gli embedding invariati vengono nuovamente riutilizzati.
 
 Il backend controlla numero, dimensione e valori dei vettori. Chiede a Ollama
 `truncate: false`: un testo troppo lungo deve provocare un errore, anziché
@@ -154,9 +208,11 @@ le modifiche e un lavoro di indicizzazione separato dalle richieste chat.
 
 | Componente | Responsabilità |
 | --- | --- |
-| `retrieval.py` | Scelta tra il percorso FTS5 esistente e Qdrant. |
+| `retrieval.py` | Factory e retriever LangChain per FTS5 e Qdrant; ingresso delle API esistenti. |
+| `retrieval_documents.py` | Conversione fra `Document` e il contratto delle evidenze. |
+| `retrieval_embeddings.py` | Adattatore LangChain Ollama con prefissi, controlli e divieto di troncamento. |
 | `retrieval_settings.py` | Configurazione in SQLite, validazione degli indirizzi e chiavi cifrate. |
-| `vector_retrieval.py` | Embedding Ollama, sincronizzazione Qdrant, ricerca e verifica delle evidenze. |
+| `vector_retrieval.py` | Sincronizzazione e ricerca tramite `QdrantVectorStore`, verifica delle evidenze. |
 | `retrieval_routes.py` | API delle impostazioni e dell'indice. |
 | `RetrievalSettingsPanel.tsx` | Configurazione, verifica e aggiornamento dalla UI. |
 
@@ -176,14 +232,18 @@ I test usano un indice Qdrant locale reale ed embedding controllati per
 verificare isolamento tra progetti, esclusioni, modifiche, cancellazioni,
 riuso dei vettori, cambio modello ed errori. I collegamenti remoti sono
 verificati tramite risposte simulate, non con un server Qdrant remoto reale.
+Altri test eseguono entrambi i retriever in composizioni LangChain, controllano
+il percorso asincrono, i prefissi e l'isolamento delle credenziali.
 
-Sul corpus locale sono stati indicizzati 306 frammenti con `embeddinggemma`,
-vettori di 768 dimensioni. La prima indicizzazione ha richiesto circa 46
-secondi. Una domanda sulla PEC ha poi attraversato ricerca Qdrant e generazione
-con `gemma4:e2b`, ottenendo la PEC simulata corretta con citazioni. I risultati
-delle prove sono nei file locali `backend/data/qdrant-*-check.json`, esclusi
-dal repository. Sono prove di funzionamento, non un benchmark di qualità o
-prestazioni generalizzabile.
+Sul corpus locale il percorso LangChain ha indicizzato 306 frammenti con
+`embeddinggemma`, vettori di 768 dimensioni. Una domanda sulla PEC ha poi
+attraversato `QdrantEvidenceRetriever.ainvoke()`, restituito otto `Document`
+e ottenuto da `gemma4:e2b` la PEC simulata corretta con citazioni. Un secondo
+aggiornamento ha riutilizzato tutti i vettori, con zero chunk da ricalcolare.
+La prova è salvata in `backend/data/langchain-retrieval-check.json`; i file
+`backend/data/qdrant-*-check.json` documentano le prove precedenti. Sono file
+locali esclusi dal repository e prove di funzionamento, non un benchmark di
+qualità o prestazioni generalizzabile.
 
 La compilazione DOCX continua ad assemblare le fonti entro i propri budget e
 a inviare la richiesta unica prevista dal compilatore. Qdrant interviene nella
@@ -195,3 +255,6 @@ questa valutazione; non è incluso in questa implementazione.
 
 Riferimenti del protocollo: [API embedding Ollama](https://docs.ollama.com/api/embed)
 e [modello embeddinggemma in Ollama](https://ollama.com/library/embeddinggemma).
+Integrazioni del framework:
+[LangChain Qdrant](https://docs.langchain.com/oss/python/integrations/vectorstores/qdrant)
+e [LangChain Ollama](https://docs.langchain.com/oss/python/integrations/embeddings/ollama).
