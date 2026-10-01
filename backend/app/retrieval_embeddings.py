@@ -105,7 +105,8 @@ class SourceEmbeddings(OllamaEmbeddings):
                     return item.digest
         raise RetrievalError(
             "Modello di embedding non installato sul servizio Ollama configurato. "
-            f"Scarica {self.model} su quel servizio oppure scegli un modello installato."
+            f"Scarica {self.model} su quel servizio oppure verifica l'indirizzo "
+            "nelle impostazioni avanzate della ricerca."
         )
 
 

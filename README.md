@@ -43,6 +43,9 @@ l'indirizzo di ascolto; `./start.sh --help` mostra le opzioni.
 2. In **Ricerca nelle fonti**, scegliere FTS5 oppure Qdrant. La ricerca
    vettoriale richiede un modello di embedding installato su Ollama; Qdrant
    può usare un archivio locale oppure un servizio raggiungibile tramite URL.
+   Gli indirizzi dei servizi e i comandi di verifica sono nelle impostazioni
+   avanzate. Il modello di embedding è mostrato in sola lettura ed è comune
+   a tutti i progetti.
 3. Caricare le fonti PDF, TXT o Markdown nel progetto o nella conoscenza
    aziendale. La chat cerca nelle fonti e mostra le evidenze utilizzate.
 4. Nel **Template** del progetto, caricare un modulo `.docx` o un modello

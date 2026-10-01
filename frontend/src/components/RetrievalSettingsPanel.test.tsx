@@ -30,18 +30,27 @@ describe('retrieval settings', () => {
   })
 
   it('saves vector retrieval independently and allows indexing only the saved configuration', async () => {
-    vi.mocked(api.saveRetrievalSettings).mockResolvedValue({ ...settings, backend: 'qdrant' })
+    const configured = { ...settings, query_prefix: 'query:', document_prefix: 'passage:' }
+    vi.mocked(api.retrievalSettings).mockResolvedValue(configured)
+    vi.mocked(api.saveRetrievalSettings).mockResolvedValue({ ...configured, backend: 'qdrant' })
     vi.mocked(api.updateVectorIndex).mockResolvedValue({ collection: 'test', indexed_chunks: 40,
       updated_chunks: 2, deleted_chunks: 1, dimensions: 768, embedding_digest: 'test' })
     render(<RetrievalSettingsPanel />)
     fireEvent.change(await screen.findByLabelText('Metodo di ricerca'), { target: { value: 'qdrant' } })
+    expect(screen.getByLabelText('Archivio vettoriale')).not.toBeVisible()
+    fireEvent.click(screen.getByText('Impostazioni avanzate'))
+    expect(screen.getByText('embeddinggemma')).toBeVisible()
+    expect(screen.queryByLabelText(/Modello di embedding/)).not.toBeInTheDocument()
+    expect(screen.queryByLabelText(/Prefisso/)).not.toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeDisabled()
     fireEvent.click(screen.getByRole('button', { name: 'Salva ricerca' }))
     await waitFor(() => expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeEnabled())
-    expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({ backend: 'qdrant', embedding_model: 'embeddinggemma' }))
+    expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({
+      backend: 'qdrant', embedding_model: 'embeddinggemma', query_prefix: 'query:', document_prefix: 'passage:',
+    }))
     fireEvent.click(screen.getByRole('button', { name: 'Aggiorna indice' }))
     expect(await screen.findByText(/40 frammenti, 2 aggiornati e 1 rimossi/)).toBeVisible()
-    fireEvent.change(screen.getByLabelText(/Modello di embedding/), { target: { value: 'other-embedding' } })
+    fireEvent.change(screen.getByLabelText(/Indirizzo Ollama/), { target: { value: 'https://ollama.example' } })
     expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeDisabled()
   })
 
@@ -52,6 +61,7 @@ describe('retrieval settings', () => {
     vi.mocked(api.checkRetrievalConnection).mockResolvedValue({ message: 'Collegamento riuscito', dimensions: 768 })
     vi.mocked(api.saveRetrievalSettings).mockResolvedValue(remote)
     render(<RetrievalSettingsPanel />)
+    fireEvent.click(await screen.findByText('Impostazioni avanzate'))
     const key = await screen.findByLabelText(/Chiave Qdrant/)
     expect(key).toHaveValue('')
     fireEvent.change(key, { target: { value: 'fake-secret' } })
@@ -70,6 +80,7 @@ describe('retrieval settings', () => {
     vi.mocked(api.retrievalSettings).mockResolvedValue({ ...settings, backend: 'qdrant' })
     vi.mocked(api.updateVectorIndex).mockRejectedValue(new Error('Ollama non raggiungibile'))
     render(<RetrievalSettingsPanel />)
+    fireEvent.click(await screen.findByText('Impostazioni avanzate'))
     fireEvent.click(await screen.findByRole('button', { name: 'Aggiorna indice' }))
     expect(await screen.findByRole('alert')).toHaveTextContent('Ollama non raggiungibile')
     expect(screen.getByLabelText('Metodo di ricerca')).toHaveValue('qdrant')

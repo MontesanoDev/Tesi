@@ -24,6 +24,8 @@
 .ai-profile-form small, .ai-help { color: #aaa; font-size: 12px; line-height: 1.6; }
 .ai-advanced summary { cursor: pointer; font-size: 13px; color: #ccc; }
 .ai-advanced label { margin-top: 16px; }
+.retrieval-advanced-content { display: grid; gap: 18px; margin-top: 18px; }
+.ai-profile-form .retrieval-advanced-content label, .retrieval-advanced-content p { margin: 0; }
 .ai-error, .ai-notice { padding: 10px 12px; border-radius: 8px; font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
 .ai-settings .ai-error, .ai-settings .ai-notice { margin: 14px 0; }
 .ai-error { color: #ffd1c9; background: #442e2b; }
