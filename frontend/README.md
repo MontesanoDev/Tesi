@@ -11,7 +11,8 @@ npm run dev
 ```
 
 Vite espone l'app sulla porta 5173 e inoltra `/api` al backend su
-`http://127.0.0.1:8000`. Per avviare entrambi i processi usare `./start.sh`
+`http://127.0.0.1:8000`; `MAPI_BACKEND_PORT` cambia la porta usata dal proxy
+durante lo sviluppo. Per avviare entrambi i processi usare `./start.sh`
 dalla radice del repository. `VITE_API_URL` permette di configurare un diverso
 indirizzo API durante l'avvio o la build del frontend.
 

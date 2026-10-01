@@ -19,7 +19,7 @@ from app.fact_extraction import (
     load_project_source_chunks,
     render_call_facts_markdown,
 )
-from app.generation import GeneratedAnswer
+from app.generation import GeneratedAnswer, GenerationError
 from app.main import app
 from app.repository import recent_conversation_evidence
 from app.schemas import MAX_QUESTION_LENGTH, QuestionRequest
@@ -1646,3 +1646,76 @@ async def test_upload_rejects_unsupported_documents(client):
 
     assert response.status_code == 415
     assert response.json()["detail"] == "Sono supportati soltanto file PDF, TXT e Markdown"
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("category", ["company", "general"])
+@pytest.mark.parametrize("failure", ["missing", "permission", "outside_storage"])
+async def test_global_delete_preserves_record_and_index_when_storage_removal_fails(
+    client, monkeypatch, category, failure,
+):
+    uploaded = await client.post(
+        "/api/global-knowledge/files", data={"category": category},
+        files={"file": ("fonte.txt", b"Documento zaffiro condiviso", "text/plain")},
+    )
+    document_id = uploaded.json()["id"]
+    with connection() as db:
+        stored_path = db.execute(
+            "SELECT storage_path FROM global_documents WHERE id=?", (document_id,),
+        ).fetchone()[0]
+    path = get_storage_path() / stored_path
+    if failure == "missing":
+        path.unlink()
+    elif failure == "permission":
+        def denied(*_args, **_kwargs):
+            raise PermissionError("Simulated removal failure")
+        monkeypatch.setattr(Path, "unlink", denied)
+    else:
+        with connection() as db:
+            db.execute("UPDATE global_documents SET storage_path=? WHERE id=?",
+                       ("../outside.txt", document_id))
+    result = await client.delete(f"/api/global-knowledge/files/{document_id}")
+    assert result.status_code == (204 if failure == "missing" else 500)
+    documents = (await client.get("/api/global-knowledge")).json()["documents"]
+    found = (await client.get(
+        "/api/projects/fondo-riqualificazione-2027/evidence", params={"q": "zaffiro"},
+    )).json()["results"]
+    if failure != "missing":
+        assert any(item["id"] == document_id for item in documents)
+        assert any(item["file_id"] == -document_id for item in found)
+        assert path.exists()
+    else:
+        assert all(item["id"] != document_id for item in documents)
+        assert all(item["file_id"] != -document_id for item in found)
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("stage", ["retrieval", "generation", "generation_failure"])
+async def test_chat_handles_project_deleted_during_request(client, monkeypatch, stage):
+    project_id = "fondo-riqualificazione-2027"
+    url = f"/api/projects/{project_id}"
+    await client.post(
+        f"{url}/files", files={"file": ("fonte.txt", b"Dato zaffiro verificabile", "text/plain")},
+    )
+
+    if stage == "retrieval":
+        def remove_during_search(*args, **kwargs):
+            with connection() as db:
+                db.execute("DELETE FROM projects WHERE id=?", (project_id,))
+            return None
+        monkeypatch.setattr("app.main.search_project_evidence", remove_during_search)
+    else:
+        async def remove_during_generation(*args, **kwargs):
+            assert (await client.delete(url)).status_code == 204
+            if stage == "generation_failure":
+                raise GenerationError("Risposta del modello non valida")
+            return GeneratedAnswer("Dato zaffiro [1]", [1], [], "test", 12)
+        monkeypatch.setattr("app.main.generate_grounded_answer", remove_during_generation)
+
+    result = await client.post(f"{url}/answer", json={"question": "Cosa dice del dato zaffiro?"})
+    assert result.status_code == 404
+    assert "eliminat" in result.json()["detail"]
+    assert (await client.get(url)).status_code == 404
+    with connection() as db:
+        assert db.execute("SELECT COUNT(*) FROM conversations WHERE project_id=?",
+                          (project_id,)).fetchone()[0] == 0

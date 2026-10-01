@@ -24,6 +24,15 @@ L'applicazione è su `http://localhost:5173`, la documentazione API su
 `http://localhost:8000/docs`. Se presente, lo script usa il Node locale in
 `.tools/node/bin`; `./start.sh --help` elenca le opzioni di avvio.
 
+Per cambiare le porte, ad esempio:
+
+```bash
+MAPI_BACKEND_PORT=8001 MAPI_FRONTEND_PORT=5174 ./start.sh
+```
+
+Lo script configura anche il proxy API e le origini locali consentite dal
+backend. Se la porta del frontend è occupata, si ferma senza cambiarla.
+
 Aprire **Impostazioni generali** per configurare i modelli AI e la ricerca.
 Con Qdrant occorre anche un servizio Ollama per gli embedding. I dati locali
 risiedono normalmente in `backend/data/`; percorsi e configurazione sono

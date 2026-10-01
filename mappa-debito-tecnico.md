@@ -1,5 +1,50 @@
 # Mappa del codice morto e del debito tecnico
 
+**Verifica successiva alla pulizia**
+
+La pulizia è stata riesaminata e salvata nel commit `b2e4687`. Il controllo
+ha incluso backend, frontend, persistenza, provider AI, retrieval, compilazione
+e avvio dell'applicazione. Non sono emerse regressioni nei flussi verificati;
+sono stati riprodotti e corretti questi problemi aggiuntivi:
+
+| Problema | Correzione | Verifica |
+| --- | --- | --- |
+| La cancellazione di una fonte globale eliminava prima il record dal database. Un errore nella rimozione del file lasciava persi anche i frammenti indicizzati. | La transazione termina dopo la rimozione del file. Un errore ripristina record, frammenti e indice FTS; i percorsi esterni alla cartella dei file vengono rifiutati. | Sei casi per Company KB e General KB: file già assente, permessi insufficienti e percorso non valido. |
+| Un progetto eliminato mentre la chat lavorava poteva causare un errore interno o una violazione delle chiavi esterne al salvataggio della risposta. | Il salvataggio verifica la conversazione nella stessa transazione della scrittura. Se il progetto o la conversazione non esistono più, la richiesta termina con un 404 spiegato. | Tre casi: eliminazione durante la ricerca, durante una generazione riuscita e durante una generazione fallita. |
+| `start.sh` accettava una porta backend diversa, ma Vite continuava a inoltrare le API alla 8000. Anche le origini CORS erano fissate alla 5173. | Proxy e origini locali seguono le porte configurate. Le porte vengono validate; Vite non ne sceglie un'altra se quella richiesta è occupata. | Avvio completo su backend 8096 e frontend 5197, richiesta `/api/health` attraverso il proxy, verifica CORS e sei valori di porta non validi. |
+| D16: tre librerie importate dall'app erano disponibili solo come dipendenze transitive. | Dichiarati direttamente `lxml`, `pydantic` e `starlette`, con lockfile aggiornato. | Le versioni installate sono rimaste invariate; suite backend e lint superati. |
+
+La transazione sulla cancellazione gestisce gli errori della rimozione del
+file; non rende atomici filesystem e SQLite in caso di arresto del processo
+fra rimozione e commit. L'indice vettoriale continua a essere riconciliato con
+SQLite al momento della ricerca, secondo il comportamento già esistente.
+
+**Esito delle verifiche**
+
+- 570 test backend superati, inclusi i nove nuovi casi di regressione.
+- 108 test frontend superati; TypeScript, lint Python/TypeScript e build superati.
+- 58 scenari Playwright superati tra desktop e mobile: menu e profili AI,
+  impostazioni retrieval, fonti, chat, revisione dimostrativa, template Word e
+  testuali, ordinamento progetti e demo candidatura.
+- Prove browser svolte con API simulate oppure con backend reale su database
+  temporaneo. La configurazione dei profili e la scelta del modello sono state
+  salvate e rilette dal backend; discovery e risposte dei modelli erano simulate.
+- Nessuna chiamata a provider AI reali e nessuna modifica ai dati applicativi
+  dell'utente. Non è stata rieseguita la generazione del PDF di presentazione.
+
+Queste prove verificano il software e i suoi controlli, non la qualità delle
+interpretazioni del modello: un dato presente nella fonte può ancora essere
+proposto per la persona o la sezione sbagliata. Non costituiscono un benchmark
+RAG o una valutazione comparativa dei modelli.
+
+Restano aperti i contratti legacy D02–D04, la strategia a gruppi conservata
+per confronto D05 e il refactoring dei moduli e delle operazioni duplicate
+D10–D11. Non sono stati eliminati percorsi ancora utilizzati da API, dati
+storici o test. La build segnala ancora un bundle JavaScript di circa 504 kB:
+è un intervento di ottimizzazione separato, non un errore di compilazione.
+
+**Audit e prima pulizia**
+
 Audit del 1 ottobre 2026, sul commit `ae16cb9`, seguito dalla pulizia autorizzata
 descritta sotto. La mappa e i numeri di riga dell'audit fotografano la versione
 precedente alla pulizia.

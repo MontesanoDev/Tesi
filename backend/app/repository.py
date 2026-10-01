@@ -404,13 +404,21 @@ def update_global_document_content(
 
 def delete_global_document(document_id: int) -> dict | None:
     with connection() as db:
+        db.execute("BEGIN IMMEDIATE")
         row = db.execute(
             "SELECT id, storage_path FROM global_documents WHERE id = ?",
             (document_id,),
         ).fetchone()
         if row is None:
             return None
+        storage_root = get_storage_path().resolve()
+        path = (storage_root / row["storage_path"]).resolve()
+        if storage_root not in path.parents:
+            raise ValueError("Il documento globale non appartiene alla cartella dei file")
         db.execute("DELETE FROM global_documents WHERE id = ?", (document_id,))
+        # Commit only after removal succeeds; an unlink failure also rolls back
+        # the cascading chunk deletion and the FTS index updates.
+        path.unlink(missing_ok=True)
     return dict(row)
 
 
@@ -689,9 +697,15 @@ def _public_evidence(evidence: list[dict]) -> list[dict]:
     return [{field: item[field] for field in fields} for item in evidence]
 
 
-def save_conversation_turn(conversation_id: str, response: dict) -> int:
+def save_conversation_turn(conversation_id: str, response: dict) -> int | None:
     evidence = _public_evidence(response.get("evidence", []))
     with connection() as db:
+        db.execute("BEGIN IMMEDIATE")
+        conversation = db.execute(
+            "SELECT project_id FROM conversations WHERE id = ?", (conversation_id,)
+        ).fetchone()
+        if conversation is None:
+            return None
         cursor = db.execute(
             """
             INSERT INTO conversation_turns (
@@ -729,10 +743,7 @@ def save_conversation_turn(conversation_id: str, response: dict) -> int:
             """,
             (f"Ora · {turn_count} {label}", conversation_id),
         )
-        project_id = db.execute(
-            "SELECT project_id FROM conversations WHERE id = ?", (conversation_id,)
-        ).fetchone()["project_id"]
-        touch_project(db, project_id)
+        touch_project(db, conversation["project_id"])
     return int(turn_id)
 
 

@@ -45,6 +45,16 @@ if [[ $# -gt 0 ]]; then
   exit 2
 fi
 
+for port in "$BACKEND_PORT" "$FRONTEND_PORT"; do
+  if [[ ! "$port" =~ ^[0-9]{1,5}$ ]] || (( 10#$port < 1 || 10#$port > 65535 )); then
+    printf 'Errore: le porte devono essere numeri compresi tra 1 e 65535.\n' >&2
+    exit 2
+  fi
+done
+BACKEND_PORT="$((10#$BACKEND_PORT))"
+FRONTEND_PORT="$((10#$FRONTEND_PORT))"
+export MAPI_BACKEND_PORT="$BACKEND_PORT" MAPI_FRONTEND_PORT="$FRONTEND_PORT"
+
 if [[ -x "$ROOT_DIR/.tools/node/bin/node" ]]; then
   export PATH="$ROOT_DIR/.tools/node/bin:$PATH"
 fi
@@ -73,7 +83,7 @@ PIDS+=("$!")
 
 (
   cd "$ROOT_DIR/frontend"
-  exec npm run dev -- --host "$HOST" --port "$FRONTEND_PORT"
+  exec npm run dev -- --host "$HOST" --port "$FRONTEND_PORT" --strictPort
 ) &
 PIDS+=("$!")
 

@@ -10,7 +10,7 @@ export default defineConfig({
       ignored: ['**/artifacts/**'],
     },
     proxy: {
-      '/api': 'http://127.0.0.1:8000',
+      '/api': `http://127.0.0.1:${process.env.MAPI_BACKEND_PORT || '8000'}`,
     },
   },
 })

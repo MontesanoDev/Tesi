@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from contextlib import asynccontextmanager
 from dataclasses import replace
 from shutil import rmtree
@@ -166,7 +167,11 @@ app.include_router(ai_router)
 app.include_router(retrieval_router)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=[
+        f"http://{host}:{port}"
+        for host in ("localhost", "127.0.0.1")
+        for port in sorted({"5173", os.getenv("MAPI_FRONTEND_PORT") or "5173"})
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -319,14 +324,15 @@ async def global_knowledge_file_content_update(
     "/api/global-knowledge/files/{document_id}",
     status_code=status.HTTP_204_NO_CONTENT,
 )
-async def global_knowledge_file_delete(document_id: int) -> Response:
-    deleted = delete_global_document(document_id)
+def global_knowledge_file_delete(document_id: int) -> Response:
+    try:
+        deleted = delete_global_document(document_id)
+    except (OSError, ValueError):
+        raise HTTPException(
+            status_code=500, detail="Impossibile eliminare la fonte globale; riprova"
+        ) from None
     if deleted is None:
         raise HTTPException(status_code=404, detail="Documento aziendale non trovato")
-    storage_root = get_storage_path().resolve()
-    path = (storage_root / deleted["storage_path"]).resolve()
-    if storage_root in path.parents:
-        path.unlink(missing_ok=True)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
@@ -651,6 +657,11 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
 
     def persist(response: dict) -> dict:
         turn_id = save_conversation_turn(conversation_id, response)
+        if turn_id is None:
+            raise HTTPException(
+                status_code=404,
+                detail="La conversazione o il progetto sono stati eliminati durante la risposta",
+            )
         return {
             **response,
             "conversation_id": conversation_id,
@@ -680,7 +691,9 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
     except RetrievalError as exc:
         raise HTTPException(503, str(exc)) from None
     if evidence is None:
-        raise RuntimeError("Il progetto validato non e piu disponibile")
+        raise HTTPException(
+            status_code=404, detail="Il progetto e stato eliminato durante la ricerca"
+        )
     if not evidence and history and is_follow_up_question(payload.question):
         evidence = recent_conversation_evidence(project_id, history)
     base_response = {
