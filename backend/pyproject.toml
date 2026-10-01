@@ -2,7 +2,6 @@
 name = "mapi-rag-api"
 version = "0.1.0"
 description = "API FastAPI e persistenza SQLite per il prototipo Mapi RAG"
-readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "cryptography>=50.0.1",
