@@ -54,12 +54,28 @@ l'indirizzo di ascolto; `./start.sh --help` mostra le opzioni.
    La compilazione Word seleziona il contesto entro limiti di caratteri;
    non usa il retrieval della chat. Le bozze richiedono revisione umana.
 
-La chat controlla che i numeri delle citazioni corrispondano alle evidenze
+La chat usa il modello scelto nel progetto per decidere se il messaggio richiede
+una ricerca. Saluti, ringraziamenti e chiarimenti possono ricevere una risposta
+diretta; per le domande documentali il modello formula da una a tre query,
+anche risolvendo i riferimenti alla conversazione. Il backend alterna i risultati
+delle ricerche, elimina i duplicati e seleziona quattro frammenti principali;
+aggiunge poi il testo adiacente, fino a un massimo di otto evidenze.
+Non usa un elenco di frasi per riconoscere ringraziamenti o domande successive.
+
+Una risposta diretta richiede una chiamata AI; una risposta documentale ne
+richiede normalmente due. Il limite complessivo della chat, inclusi decisione,
+ricerca, risposta ed eventuale correzione, è di 180 secondi con Ollama e 90 con
+gli altri provider. Il conteggio dei token include tutte le chiamate di una
+risposta riuscita, se il provider comunica i consumi.
+
+Il backend controlla che i numeri delle citazioni corrispondano alle evidenze
 inviate al modello. Se trova riferimenti fuori elenco, chiede una sola
 correzione con le stesse fonti, entro il tempo massimo della richiesta.
 Se anche la correzione fallisce, mostra il motivo e mantiene consultabili
 le evidenze. Il controllo verifica i riferimenti, non garantisce che ogni
-affermazione sia correttamente supportata dalla fonte citata.
+affermazione sia correttamente supportata dalla fonte citata. Anche la decisione
+iniziale è affidata al modello e può essere errata; lo schema JSON verifica la
+forma della decisione, non la sua correttezza semantica.
 
 Prima di usare la ricerca semantica, sul server Ollama configurato eseguire:
 

@@ -37,7 +37,7 @@ const MAX_PROMPT_LENGTH = 4_000
 
 function turnStatus(turn: ChatTurn) {
   if (turn.error) return turn.error
-  if (!turn.result) return 'Ricerca delle evidenze nelle fonti del progetto...'
+  if (!turn.result) return 'Elaborazione della richiesta...'
   if (turn.result.generation_status === 'direct') return 'Risposta diretta di Mapi RAG.'
   if (turn.result.generation_status === 'completed') {
     return turn.result.evidence.length === 1

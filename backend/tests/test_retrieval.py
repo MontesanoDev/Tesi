@@ -3,11 +3,63 @@ from app.repository import (
     _expand_neighbor_evidence,
     _neighbor_excerpt,
     _rerank_evidence,
-    contextualize_search_query,
-    is_follow_up_question,
-    recent_conversation_evidence,
 )
+from app.retrieval import expand_evidence_context, merge_evidence_results
 from app.seed import seed_database
+
+
+def test_multiple_queries_share_context_without_duplicates():
+    groups = [
+        [{"chunk_id": i} for i in range(1, 9)],
+        [{"chunk_id": i} for i in [1, -1, -2, -3, -4, -5, -6, -7]],
+        [{"chunk_id": i} for i in range(20, 28)],
+    ]
+    merged = merge_evidence_results(groups)
+    assert [item["chunk_id"] for item in merged] == [1, 20, 2, -1, 21, 3, -2, 22]
+    assert merge_evidence_results([[], groups[0]]) == groups[0]
+    assert merge_evidence_results([]) == []
+
+
+def test_merged_queries_preserve_neighbors_and_revalidate_sources(tmp_path, monkeypatch):
+    monkeypatch.setenv("MAPI_DB_PATH", str(tmp_path / "merge.db"))
+    init_database()
+    seed_database()
+    project = "fondo-riqualificazione-2027"
+    groups = []
+    with connection() as db:
+        for name in ("riepilogo.txt", "contatti.txt"):
+            file_id = db.execute(
+                "INSERT INTO project_files(project_id,name,metadata,kind,status) "
+                "VALUES (?,?, '', 'source', 'Indicizzato')", (project, name),
+            ).lastrowid
+            group = []
+            for index in range(8):
+                text = f"Contenuto {name} {index}"
+                chunk_id = db.execute(
+                    "INSERT INTO document_chunks"
+                    "(project_id,file_id,chunk_index,content,char_count) "
+                    "VALUES (?,?,?,?,?)", (project, file_id, index, text, len(text)),
+                ).lastrowid
+                if index % 2:
+                    group.append({
+                        "chunk_id": chunk_id, "file_id": file_id, "chunk_index": index,
+                        "source_name": name, "content": "OBSOLETO", "excerpt": "OBSOLETO",
+                        "relevance": 0.9,
+                    })
+            groups.append(group)
+    anchors = merge_evidence_results(groups, limit=4)
+    result = expand_evidence_context(project, anchors)
+    assert len(result) == 8
+    assert {item["source_name"] for item in result} == {"riepilogo.txt", "contatti.txt"}
+    assert [(item["source_name"], item["chunk_index"]) for item in result[4:]] == [
+        ("riepilogo.txt", 0), ("contatti.txt", 0), ("riepilogo.txt", 2), ("contatti.txt", 2),
+    ]
+    assert all(item["content"] != "OBSOLETO" for item in result)
+    with connection() as db:
+        db.execute("DELETE FROM project_files WHERE id=?", (groups[1][0]["file_id"],))
+    remaining = expand_evidence_context(project, anchors)
+    assert all(item["source_name"] == "riepilogo.txt" for item in remaining)
+    assert expand_evidence_context("adeguamento-sismico-edificio-b", anchors) == []
 
 
 def test_temporal_reranking_prioritizes_explicit_dates():
@@ -84,71 +136,6 @@ def test_previous_neighbor_excerpt_preserves_section_boundary():
 
     assert "Possono presentare proposta" in excerpt
     assert len(excerpt) <= 484
-
-
-def test_follow_up_search_reuses_the_previous_question():
-    query = contextualize_search_query(
-        "E quali sono?",
-        [{"question": "Quali requisiti tecnici sono obbligatori?", "answer": "..."}],
-    )
-
-    assert query == "Quali requisiti tecnici sono obbligatori? E quali sono?"
-
-
-def test_clitic_pronoun_marks_a_follow_up_question():
-    history = [{"question": "Chi è il responsabile?", "answer": "..."}]
-
-    assert is_follow_up_question("Come contattarlo?")
-    assert contextualize_search_query("Come contattarlo?", history) == (
-        "Chi è il responsabile? Come contattarlo?"
-    )
-
-
-def test_short_independent_question_is_not_contextualized():
-    history = [{"question": "Chi è il responsabile?", "answer": "..."}]
-
-    assert not is_follow_up_question("Dammi la PEC")
-    assert contextualize_search_query("Dammi la PEC", history) == "Dammi la PEC"
-
-
-def test_follow_up_reloads_current_source_instead_of_trusting_saved_excerpt(tmp_path, monkeypatch):
-    monkeypatch.setenv("MAPI_DB_PATH", str(tmp_path / "retrieval.db"))
-    init_database()
-    seed_database()
-    project_id = "fondo-riqualificazione-2027"
-    content = "Il responsabile e indicato nella fonte attuale."
-    with connection() as db:
-        file_id = db.execute(
-            """INSERT INTO project_files (project_id, name, metadata, kind, status)
-            VALUES (?, 'bando.txt', 'TXT', 'source', 'Indicizzato')""", (project_id,),
-        ).lastrowid
-        chunk_id = db.execute(
-            """INSERT INTO document_chunks
-            (project_id, file_id, chunk_index, content, char_count) VALUES (?, ?, 0, ?, ?)""",
-            (project_id, file_id, content, len(content)),
-        ).lastrowid
-    history = [
-        {
-            "question": "Chi è il responsabile?",
-            "answer": "Il responsabile è indicato nella fonte [1].",
-            "evidence": [
-                {
-                    "chunk_id": chunk_id,
-                    "file_id": file_id,
-                    "source_name": "nome-obsoleto.pdf",
-                    "chunk_index": 0,
-                    "excerpt": "Estratto storico obsoleto.",
-                    "relevance": 4.2,
-                }
-            ],
-        }
-    ]
-
-    reused = recent_conversation_evidence(project_id, history)
-
-    assert reused[0]["content"] == content
-    assert reused[0]["excerpt"] == content
-    assert reused[0]["source_name"] == "bando.txt"
 
 
 def test_neighbor_expansion_adds_previous_document_context(tmp_path, monkeypatch):

@@ -20,8 +20,8 @@ from app.fact_extraction import (
     render_call_facts_markdown,
 )
 from app.generation import GeneratedAnswer, GenerationError
+from app.intents import ChatDecision, PlannedTurn, plan_chat_turn
 from app.main import app
-from app.repository import recent_conversation_evidence
 from app.schemas import MAX_QUESTION_LENGTH, QuestionRequest
 from app.seed import seed_database
 
@@ -29,6 +29,12 @@ from app.seed import seed_database
 @pytest.fixture
 def anyio_backend():
     return "asyncio"
+
+
+async def document_plan(question, history):
+    # API/storage tests stub the planner. Provider and routing contracts are
+    # exercised with real planning code in test_chat_flow and test_ai_settings.
+    return PlannedTurn(ChatDecision(action="retrieve", answer="", queries=[question]), "test", 0)
 
 
 @pytest.fixture
@@ -39,6 +45,7 @@ async def client(tmp_path, monkeypatch):
     init_database()
     seed_database()
     seed_markdown_artifacts()
+    monkeypatch.setattr("app.main.plan_chat_turn", document_plan)
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as value:
         yield value
@@ -1053,11 +1060,18 @@ async def test_draft_generation_can_use_entered_data_without_extraction(client, 
 
 
 @pytest.mark.anyio
-async def test_identity_question_bypasses_retrieval_and_generation(client, monkeypatch):
+async def test_planned_direct_reply_bypasses_retrieval_and_generation(client, monkeypatch):
     async def unexpected_generation(*_args, **_kwargs):
         raise AssertionError("Il modello AI non deve essere chiamato per una domanda di sistema")
 
+    async def reply_plan(question, history):
+        return PlannedTurn(ChatDecision(
+            action="reply", answer="Sono Mapi RAG, assistente per le fonti.", queries=[],
+        ), "test-model", 15)
+
+    monkeypatch.setattr("app.main.plan_chat_turn", reply_plan)
     monkeypatch.setattr("app.main.generate_grounded_answer", unexpected_generation)
+    monkeypatch.setattr("app.main.search_project_evidence", unexpected_generation)
     response = await client.post(
         "/api/projects/fondo-riqualificazione-2027/answer",
         json={"question": "Chi sei?"},
@@ -1066,10 +1080,10 @@ async def test_identity_question_bypasses_retrieval_and_generation(client, monke
     assert response.status_code == 200
     payload = response.json()
     assert payload["generation_status"] == "direct"
-    assert payload["model"] == "Mapi RAG"
+    assert payload["model"] == "test-model"
     assert payload["evidence"] == []
     assert payload["citations"] == []
-    assert payload["total_tokens"] == 0
+    assert payload["total_tokens"] == 15
     assert payload["answer"].startswith("Sono Mapi RAG")
     assert payload["conversation_id"].startswith("conv-")
     assert payload["turn_id"] > 0
@@ -1218,7 +1232,12 @@ async def test_follow_up_revalidates_source_existence_and_project_scope(
             else:
                 db.execute("DELETE FROM document_chunks WHERE id = ?", (item["chunk_id"],))
     monkeypatch.setattr("app.main.get_conversation_history", lambda _id: history)
-    monkeypatch.setattr("app.main.search_project_evidence", lambda *_args, **_kwargs: [])
+    async def follow_up_plan(question, history):
+        return PlannedTurn(ChatDecision(
+            action="retrieve", answer="", queries=["Responsabile zaffiro recapito"],
+        ), "test", 0)
+
+    monkeypatch.setattr("app.main.plan_chat_turn", follow_up_plan)
     allowed = not deleted and scope != "other_project"
 
     async def generate(_question, evidence, conversation_history=None):
@@ -1236,7 +1255,7 @@ async def test_follow_up_revalidates_source_existence_and_project_scope(
 
 
 @pytest.mark.anyio
-async def test_follow_up_reuses_previous_document_evidence(client, monkeypatch):
+async def test_follow_up_searches_current_sources_with_planned_query(client, monkeypatch):
     source = "Il responsabile del procedimento e indicato nella sezione. Recapito non disponibile."
     await client.post(
         "/api/projects/fondo-riqualificazione-2027/files",
@@ -1254,10 +1273,12 @@ async def test_follow_up_reuses_previous_document_evidence(client, monkeypatch):
         }
     ]
     monkeypatch.setattr("app.main.get_conversation_history", lambda _id: history)
-    monkeypatch.setattr(
-        "app.main.search_project_evidence",
-        lambda *_args, **_kwargs: [],
-    )
+    async def follow_up_plan(question, history):
+        return PlannedTurn(ChatDecision(
+            action="retrieve", answer="", queries=["Recapito responsabile del procedimento"],
+        ), "test", 0)
+
+    monkeypatch.setattr("app.main.plan_chat_turn", follow_up_plan)
 
     async def fake_generation(
         question,
@@ -1445,13 +1466,15 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
     assert "Requisito tecnico" in evidence.json()["results"][0]["excerpt"]
 
     monkeypatch.delenv("DEEPSEEK_API_KEY", raising=False)
+    monkeypatch.setattr("app.main.plan_chat_turn", plan_chat_turn)
     not_configured = await client.post(
         "/api/projects/fondo-riqualificazione-2027/answer",
         json={"question": "Quali sono i requisiti tecnici verificabili?"},
     )
     assert not_configured.status_code == 200
     assert not_configured.json()["generation_status"] == "not_configured"
-    assert not_configured.json()["evidence"]
+    assert not_configured.json()["evidence"] == []
+    monkeypatch.setattr("app.main.plan_chat_turn", document_plan)
 
 
     generation_calls = []
@@ -1488,6 +1511,10 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
     assert generation_calls[0]["history"] == []
 
     conversation_id = generated.json()["conversation_id"]
+    async def follow_up_plan(question, history):
+        return await document_plan(history[-1]["question"], history)
+
+    monkeypatch.setattr("app.main.plan_chat_turn", follow_up_plan)
     follow_up = await client.post(
         "/api/projects/fondo-riqualificazione-2027/answer",
         json={
@@ -1604,8 +1631,6 @@ async def test_delete_source_removes_file_chunks_fts_and_follow_up_evidence(
     found = (await client.get(f"{url}/evidence", params={"q": query})).json()["results"]
     own_evidence = [item for item in found if item["file_id"] == file_id]
     assert own_evidence
-    history = [{"question": query, "answer": "Fonte [1]", "evidence": own_evidence}]
-    assert recent_conversation_evidence(project_id, history)
 
     deleted = await client.delete(f"{url}/files/{file_id}")
     assert deleted.status_code == 204
@@ -1625,7 +1650,6 @@ async def test_delete_source_removes_file_chunks_fts_and_follow_up_evidence(
     assert all(item["file_id"] != file_id for item in (
         await client.get(f"{url}/evidence", params={"q": query})
     ).json()["results"])
-    assert not recent_conversation_evidence(project_id, history)
     assert all(item["file_id"] != file_id for item in load_project_source_chunks(project_id))
     assert all(item["document_id"] != file_id or item["scope"] != "project"
                for item in load_compilation_sources(project_id).selected)

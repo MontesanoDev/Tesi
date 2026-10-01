@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import os
 from contextlib import asynccontextmanager
 from dataclasses import replace
@@ -40,6 +41,7 @@ from app.fact_extraction import extract_call_facts, load_project_source_chunks
 from app.generation import (
     GenerationError,
     GenerationNotConfiguredError,
+    chat_timeout_seconds,
     generate_grounded_answer,
 )
 from app.ingestion import (
@@ -51,11 +53,10 @@ from app.ingestion import (
     ingest_global_upload,
     ingest_upload,
 )
-from app.intents import direct_system_answer
+from app.intents import plan_chat_turn
 from app.repository import (
     add_global_document,
     add_project_file,
-    contextualize_search_query,
     create_project,
     delete_global_document,
     delete_project,
@@ -69,10 +70,8 @@ from app.repository import (
     get_or_create_conversation,
     get_project,
     get_project_file_record,
-    is_follow_up_question,
     list_project_global_documents,
     list_projects,
-    recent_conversation_evidence,
     save_conversation_turn,
     set_project_global_document_link,
     sync_call_fact_review_metrics,
@@ -82,7 +81,7 @@ from app.repository import (
     update_project,
     update_project_file_content,
 )
-from app.retrieval import search_project_evidence
+from app.retrieval import expand_evidence_context, merge_evidence_results, search_project_evidence
 from app.retrieval_routes import router as retrieval_router
 from app.retrieval_settings import RetrievalError
 from app.schemas import (
@@ -668,94 +667,98 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
             "turn_id": turn_id,
         }
 
-    direct_answer = direct_system_answer(payload.question)
-    if direct_answer:
-        return persist(
-            {
-                "question": payload.question,
-                "answer": direct_answer,
-                "citations": [],
-                "missing_information": [],
-                "evidence": [],
-                "generation_status": "direct",
-                "model": "Mapi RAG",
-                "total_tokens": 0,
-                "notice": None,
-            }
-        )
-    search_query = contextualize_search_query(payload.question, history)
-    try:
-        evidence = await run_in_threadpool(
-            search_project_evidence, project_id, search_query, limit=4, include_neighbors=True,
-        )
-    except RetrievalError as exc:
-        raise HTTPException(503, str(exc)) from None
-    if evidence is None:
-        raise HTTPException(
-            status_code=404, detail="Il progetto e stato eliminato durante la ricerca"
-        )
-    if not evidence and history and is_follow_up_question(payload.question):
-        evidence = recent_conversation_evidence(project_id, history)
     base_response = {
         "question": payload.question,
+        "answer": None,
         "citations": [],
         "missing_information": [],
-        "evidence": evidence,
+        "evidence": [],
         "model": None,
         "total_tokens": None,
+        "notice": None,
     }
-    if not evidence:
-        return persist(
-            {
-                **base_response,
-                "answer": (
-                    "Non trovo nelle fonti indicizzate informazioni sufficienti per "
-                    f"rispondere in modo verificabile a «{payload.question}». Il dato "
-                    "richiesto deve essere aggiunto o confermato da una fonte prima "
-                    "di utilizzarlo."
-                ),
-                "missing_information": ["Una fonte contenente il dato richiesto dall'utente"],
-                "generation_status": "no_evidence",
-                "notice": "Le fonti non contengono dati verificabili per questa richiesta.",
-            }
-        )
     try:
+        # Pin the same provider/model for planning, answering and citation repair.
         with project_ai_context(project_id):
-            generated = await generate_grounded_answer(
-                payload.question,
-                evidence,
-                conversation_history=history,
-            )
+            timeout_seconds = chat_timeout_seconds()
+            async with asyncio.timeout(timeout_seconds):
+                planned = await plan_chat_turn(payload.question, history)
+                decision = planned.decision
+                if decision.action == "reply":
+                    return persist({
+                        **base_response,
+                        "answer": decision.answer,
+                        "generation_status": "direct",
+                        "model": planned.model,
+                        "total_tokens": planned.total_tokens,
+                    })
+
+                groups = []
+                for query in decision.queries:
+                    results = await run_in_threadpool(
+                        search_project_evidence, project_id, query,
+                        limit=4, include_neighbors=False,
+                    )
+                    if results is None:
+                        raise HTTPException(
+                            status_code=404,
+                            detail="Il progetto e stato eliminato durante la ricerca",
+                        )
+                    groups.append(results)
+                    base_response["evidence"] = merge_evidence_results(groups, limit=4)
+                evidence = await run_in_threadpool(
+                    expand_evidence_context, project_id, base_response["evidence"],
+                )
+                base_response["evidence"] = evidence
+                if not evidence:
+                    return persist({
+                        **base_response,
+                        "answer": (
+                            "Non trovo nelle fonti indicizzate informazioni sufficienti per "
+                            f"rispondere in modo verificabile a «{payload.question}». Il dato "
+                            "richiesto deve essere aggiunto o confermato da una fonte prima "
+                            "di utilizzarlo."
+                        ),
+                        "missing_information": [
+                            "Una fonte contenente il dato richiesto dall'utente",
+                        ],
+                        "generation_status": "no_evidence",
+                        "model": planned.model,
+                        "total_tokens": planned.total_tokens,
+                        "notice": "Le fonti non contengono dati verificabili per questa richiesta.",
+                    })
+                generated = await generate_grounded_answer(
+                    payload.question, evidence, conversation_history=history,
+                )
+                total_tokens = (
+                    planned.total_tokens + generated.total_tokens
+                    if planned.total_tokens is not None and generated.total_tokens is not None
+                    else None
+                )
+                return persist({
+                    **base_response,
+                    "answer": generated.answer,
+                    "citations": generated.citations,
+                    "missing_information": generated.missing_information,
+                    "generation_status": "completed",
+                    "model": generated.model,
+                    "total_tokens": total_tokens,
+                })
+    except RetrievalError as exc:
+        raise HTTPException(503, str(exc)) from None
     except GenerationNotConfiguredError as exc:
-        return persist(
-            {
-                **base_response,
-                "answer": None,
-                "generation_status": "not_configured",
-                "notice": str(exc),
-            }
-        )
+        return persist({**base_response, "generation_status": "not_configured", "notice": str(exc)})
     except GenerationError as exc:
-        return persist(
-            {
-                **base_response,
-                "answer": None,
-                "generation_status": "failed",
-                "notice": str(exc),
-            }
-        )
-    return persist(
-        {
+        return persist({**base_response, "generation_status": "failed", "notice": str(exc)})
+    except TimeoutError:
+        return persist({
             **base_response,
-            "answer": generated.answer,
-            "citations": generated.citations,
-            "missing_information": generated.missing_information,
-            "generation_status": "completed",
-            "model": generated.model,
-            "total_tokens": generated.total_tokens,
-            "notice": None,
-        }
-    )
+            "generation_status": "failed",
+            "notice": (
+                f"La richiesta non e stata completata entro il limite complessivo di "
+                f"{timeout_seconds:g} secondi. Riprova con una domanda piu specifica."
+            ),
+        })
 
 
 @app.post(

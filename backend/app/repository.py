@@ -45,24 +45,6 @@ TEMPORAL_QUERY_TERMS = {
 }
 DATE_PATTERN = re.compile(r"\b(?:\d{1,2}[./-]){2}\d{2,4}\b")
 TIME_PATTERN = re.compile(r"\bore\s+\d{1,2}(?:[.:]\d{2})?", flags=re.IGNORECASE)
-FOLLOWUP_TERMS = {
-    "anche",
-    "e",
-    "esso",
-    "essa",
-    "invece",
-    "lei",
-    "lui",
-    "quella",
-    "quello",
-    "questa",
-    "questo",
-    "sua",
-    "sue",
-    "suo",
-    "suoi",
-}
-FOLLOWUP_CLITIC_PATTERN = re.compile(r"(?:ar|er|ir)(?:gli|la|le|li|lo|ne)$")
 # All queries below use alias f for project_files. Filter at read time as well
 # as at indexing time, so legacy chunks cannot become factual evidence.
 PROJECT_EVIDENCE_FILTER = """
@@ -185,6 +167,7 @@ def _expand_neighbor_evidence(
     anchors: list[dict],
     max_results: int,
 ) -> list[dict]:
+    anchors = reload_evidence(project_id, anchors)
     if len(anchors) >= max_results:
         return anchors[:max_results]
 
@@ -626,29 +609,13 @@ def get_conversation_history(conversation_id: str, limit: int = 6) -> list[dict]
     return rows
 
 
-def is_follow_up_question(question: str) -> bool:
-    tokens = _normalized_tokens(question)
-    return bool(
-        tokens & FOLLOWUP_TERMS or any(FOLLOWUP_CLITIC_PATTERN.search(token) for token in tokens)
-    )
-
-
-def contextualize_search_query(question: str, history: list[dict]) -> str:
-    if history and is_follow_up_question(question):
-        return f"{history[-1]['question']} {question}"
-    return question
-
-
-def recent_conversation_evidence(project_id: str, history: list[dict]) -> list[dict]:
-    if not history:
-        return []
+def reload_evidence(project_id: str, evidence: list[dict]) -> list[dict]:
     current = []
-    # History contains presentation excerpts, not trusted source snapshots.
-    # Revalidate IDs, project membership and source role, then load current text.
+    # Multiple searches may take time: recheck all selected sources before generation.
     with connection() as db:
         if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
             return []
-        for item in history[-1].get("evidence") or []:
+        for item in evidence:
             chunk_id, file_id = item.get("chunk_id"), item.get("file_id")
             if type(chunk_id) is not int or type(file_id) is not int:
                 continue

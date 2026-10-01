@@ -340,7 +340,14 @@ def test_empty_corpus_query_removes_last_deleted_document(embeddings):
 
 
 @pytest.mark.anyio
-async def test_retrieval_api_selects_backend_and_surfaces_failure(embeddings):
+async def test_retrieval_api_selects_backend_and_surfaces_failure(embeddings, monkeypatch):
+    from app.intents import ChatDecision, PlannedTurn
+
+    async def plan(question, history):
+        decision = ChatDecision(action="retrieve", answer="", queries=[question])
+        return PlannedTurn(decision, "test", 0)
+
+    monkeypatch.setattr("app.main.plan_chat_turn", plan)
     source()
     async with httpx.AsyncClient(
         transport=httpx.ASGITransport(app=app), base_url="http://test"

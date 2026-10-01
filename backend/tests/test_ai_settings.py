@@ -417,7 +417,10 @@ async def test_selected_provider_routes_all_generation_paths(
         body = json.loads(request.content)
         calls.append(body)
         assert body["model"] == profile["model"]
-        content = json.dumps(replies[operation])
+        content = json.dumps(
+            {"action": "retrieve", "answer": "", "queries": ["Requisito tecnico"]}
+            if operation == "chat" and len(calls) == 1 else replies[operation]
+        )
         if provider == "ollama":
             assert request.url.path == "/api/chat"
             assert "authorization" not in request.headers
@@ -486,7 +489,7 @@ async def test_selected_provider_routes_all_generation_paths(
         path = "call-facts/extract" if operation == "facts" else "draft/generate"
         response = await client.post(f"/api/projects/{PROJECT}/{path}")
     assert response.status_code in {200, 201}, response.text
-    assert len(calls) == 1
+    assert len(calls) == (2 if operation == "chat" else 1)
     payload = response.json()["report"] if operation == "docx" else response.json()
     assert payload["model"] == profile["model"]
-    assert payload["total_tokens"] == 130
+    assert payload["total_tokens"] == (260 if operation == "chat" else 130)

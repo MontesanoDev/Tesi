@@ -1,12 +1,14 @@
 """Both search engines expose LangChain's Retriever -> list[Document] contract."""
 
+from itertools import zip_longest
+
 from langchain_core.callbacks import CallbackManagerForRetrieverRun
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from pydantic import Field
 
 from app.ai_profiles import ProfileError
-from app.repository import get_project
+from app.repository import _expand_neighbor_evidence, get_project
 from app.repository import search_project_evidence as search_lexical_evidence
 from app.retrieval_documents import document_evidence, evidence_document
 from app.retrieval_settings import (
@@ -16,6 +18,26 @@ from app.retrieval_settings import (
     resolve_settings,
 )
 from app.vector_retrieval import run_vector_search
+
+
+def merge_evidence_results(groups: list[list[dict]], limit: int = 8) -> list[dict]:
+    """Alternate ranked results so each query gets space in the bounded context."""
+    merged, seen = [], set()
+    for row in zip_longest(*groups):
+        for item in row:
+            if item is None or item["chunk_id"] in seen:
+                continue
+            seen.add(item["chunk_id"])
+            merged.append(item)
+            if len(merged) == limit:
+                return merged
+    return merged
+
+
+def expand_evidence_context(project_id: str, anchors: list[dict]) -> list[dict]:
+    # Reserve context for neighboring text after merging queries. Merging eight
+    # hits from each query first would crowd all neighbors out of the final list.
+    return _expand_neighbor_evidence(project_id, anchors, max_results=8)
 
 
 class ProjectRetriever(BaseRetriever):
