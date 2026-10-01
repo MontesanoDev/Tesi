@@ -156,47 +156,58 @@ describe('project model selection', () => {
     </MemoryRouter>) }
   }
 
+  async function openMenu() {
+    fireEvent.click(screen.getByRole('button', { name: 'Impostazioni AI' }))
+    return screen.findByRole('menuitemradio', { name: /Usa predefinito/ })
+  }
+
   it('persists a project override and can return to the global default', async () => {
     vi.mocked(api.setProjectAiModel).mockResolvedValueOnce({ profile_id: 'local', effective_profile: local })
       .mockResolvedValueOnce({ profile_id: null, effective_profile: cloud })
     const { onChanging } = setup()
-    const select = await screen.findByRole('combobox', { name: 'Modello AI' })
-    expect(select).toHaveValue('')
-    fireEvent.change(select, { target: { value: 'local' } })
-    await waitFor(() => expect(select).toHaveValue('local'))
+    expect(await openMenu()).toHaveAttribute('aria-checked', 'true')
+    fireEvent.click(screen.getByRole('menuitemradio', { name: /Ollama ufficio/ }))
+    await waitFor(() => expect(screen.queryByRole('menu')).not.toBeInTheDocument())
     expect(api.setProjectAiModel).toHaveBeenCalledWith('project', 'local')
     expect(onChanging).toHaveBeenCalledWith(true)
     expect(onChanging).toHaveBeenLastCalledWith(false)
-    fireEvent.change(select, { target: { value: '' } })
-    await waitFor(() => expect(select).toHaveValue(''))
+    const defaultOption = await openMenu()
+    expect(screen.getByRole('menuitemradio', { name: /Ollama ufficio/ })).toHaveAttribute('aria-checked', 'true')
+    fireEvent.click(defaultOption)
+    await waitFor(() => expect(screen.queryByRole('menu')).not.toBeInTheDocument())
     expect(api.setProjectAiModel).toHaveBeenLastCalledWith('project', null)
+    expect(await openMenu()).toHaveAttribute('aria-checked', 'true')
   })
 
   it('keeps the old selection when saving fails', async () => {
     vi.mocked(api.setProjectAiModel).mockRejectedValue(new Error('Salvataggio non riuscito'))
     setup()
-    const select = await screen.findByRole('combobox', { name: 'Modello AI' })
-    fireEvent.change(select, { target: { value: 'local' } })
+    const defaultOption = await openMenu()
+    fireEvent.click(screen.getByRole('menuitemradio', { name: /Ollama ufficio/ }))
     expect(await screen.findByRole('alert')).toHaveTextContent('Salvataggio non riuscito')
-    expect(select).toHaveValue('')
-    expect(select).toBeEnabled()
+    expect(defaultOption).toHaveAttribute('aria-checked', 'true')
+    expect(defaultOption).toBeEnabled()
   })
 
   it('disables changes while an operation is running', async () => {
     setup(true)
-    expect(await screen.findByRole('combobox', { name: 'Modello AI' })).toBeDisabled()
+    expect(await openMenu()).toBeDisabled()
+    expect(screen.getByRole('menuitemradio', { name: /Ollama ufficio/ })).toBeDisabled()
   })
 
   it('ignores an old save response after moving to another project', async () => {
     let resolve!: (selection: ProjectAiSelection) => void
     vi.mocked(api.setProjectAiModel).mockReturnValue(new Promise((done) => { resolve = done }))
     const { rerender, onChanging } = setup()
-    fireEvent.change(await screen.findByRole('combobox'), { target: { value: 'local' } })
-    expect(screen.getByRole('combobox')).toBeDisabled()
+    await openMenu()
+    fireEvent.click(screen.getByRole('menuitemradio', { name: /Ollama ufficio/ }))
+    expect(screen.getByRole('menuitemradio', { name: /Ollama ufficio/ })).toBeDisabled()
     rerender(<MemoryRouter><ProjectModelSelector projectId="another" onChanging={onChanging} /></MemoryRouter>)
-    await waitFor(() => expect(screen.getByRole('combobox')).toBeEnabled())
+    const defaultOption = await openMenu()
+    expect(defaultOption).toBeEnabled()
     await act(async () => resolve({ profile_id: 'local', effective_profile: local }))
-    expect(screen.getByRole('combobox')).toHaveValue('')
+    expect(defaultOption).toHaveAttribute('aria-checked', 'true')
+    expect(screen.getByRole('menu')).toBeVisible()
     expect(api.projectAiModel).toHaveBeenLastCalledWith('another', expect.any(AbortSignal))
   })
 
@@ -204,15 +215,16 @@ describe('project model selection', () => {
     vi.mocked(api.aiSettings).mockResolvedValue({ providers, profiles: [], default_profile_id: null })
     vi.mocked(api.projectAiModel).mockResolvedValue({ profile_id: null, effective_profile: null })
     setup()
-    expect(await screen.findByRole('link', { name: 'Configura un modello AI' })).toHaveAttribute('href', '/settings')
-    expect(screen.getByRole('combobox')).toBeDisabled()
+    expect(await openMenu()).toBeDisabled()
+    expect(screen.getByRole('menuitem', { name: 'Gestisci modelli' })).toHaveAttribute('href', '/settings')
+    expect(screen.getByText('Aggiungi un modello nelle impostazioni per iniziare.')).toBeVisible()
   })
 
   it('opens the composer menu, navigates with the keyboard and saves without submitting the chat', async () => {
     const submit = vi.fn((event) => event.preventDefault())
     vi.mocked(api.setProjectAiModel).mockResolvedValue({ profile_id: 'local', effective_profile: local })
     render(<MemoryRouter><form onSubmit={submit}>
-      <ProjectModelSelector projectId="project" variant="menu" />
+      <ProjectModelSelector projectId="project" />
     </form></MemoryRouter>)
     const trigger = screen.getByRole('button', { name: 'Impostazioni AI' })
     expect(screen.queryByRole('combobox')).not.toBeInTheDocument()
@@ -239,7 +251,7 @@ describe('project model selection', () => {
 
   it('keeps failed model changes visible in the menu and closes on an outside click', async () => {
     vi.mocked(api.setProjectAiModel).mockRejectedValue(new Error('Cambio non riuscito'))
-    render(<MemoryRouter><ProjectModelSelector projectId="project" variant="menu" /></MemoryRouter>)
+    render(<MemoryRouter><ProjectModelSelector projectId="project" /></MemoryRouter>)
     fireEvent.click(screen.getByRole('button', { name: 'Impostazioni AI' }))
     fireEvent.click(await screen.findByRole('menuitemradio', { name: /Ollama ufficio/ }))
     expect(await screen.findByRole('alert')).toHaveTextContent('Cambio non riuscito')

@@ -13,6 +13,7 @@ import {
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api'
+import { fragmentCountLabel, markdownFilename } from '../sourceText'
 import { AppShell } from '../components/AppShell'
 import { LoadingState } from '../components/LoadingState'
 import { StatusPill } from '../components/StatusPill'
@@ -32,20 +33,6 @@ const viewCopy = {
     empty: 'Nessun documento tecnico generale caricato.',
   },
 } as const
-
-function markdownFilename(title: string) {
-  const slug = title
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-  return `${slug || 'contenuto'}.md`
-}
-
-function fragmentCountLabel(count: number) {
-  return count === 1 ? '1 frammento' : `${count} frammenti`
-}
 
 export function CompanyKnowledgePage() {
   const [activeView, setActiveView] = useState<KnowledgeView>('company')

@@ -6,7 +6,6 @@ from app.call_facts import (
     parse_call_facts_markdown,
     render_call_facts_document,
     revise_call_fact,
-    verified_call_facts_markdown,
 )
 from app.fact_extraction import ExtractedFact, render_call_facts_markdown
 
@@ -49,9 +48,10 @@ def test_review_actions_control_which_facts_are_indexable():
     first, second = document.facts
 
     verified = revise_call_fact(document, first.id, "verify")
-    indexed = verified_call_facts_markdown(render_call_facts_document(verified))
+    indexed = available_project_facts_markdown(render_call_facts_document(verified))
     assert "15 settembre 2025" in indexed
-    assert "Soggetto ammesso" not in indexed
+    assert "Soggetto ammesso" in indexed
+    assert verified.facts[0].status == "verified"
 
     edited = revise_call_fact(
         verified,
@@ -62,12 +62,20 @@ def test_review_actions_control_which_facts_are_indexable():
     )
     assert edited.facts[0].status == "pending"
     assert edited.facts[0].id == first.id
-    assert verified_call_facts_markdown(render_call_facts_document(edited)) == ""
+    indexed = available_project_facts_markdown(render_call_facts_document(edited))
+    assert "Ore 12 del 15 settembre 2025" in indexed
+    assert "Corretto dall'utente" in indexed
 
     discarded = revise_call_fact(edited, first.id, "discard")
     assert discarded.discarded_count == 1
+    indexed = available_project_facts_markdown(render_call_facts_document(discarded))
+    assert "Termine candidatura" not in indexed
+    assert "Soggetto ammesso" in indexed
     restored = revise_call_fact(discarded, first.id, "restore")
     assert restored.facts[0].status == "pending"
+    assert "Termine candidatura" in available_project_facts_markdown(
+        render_call_facts_document(restored)
+    )
 
     with pytest.raises(CallFactsFormatError):
         revise_call_fact(restored, second.id, "edit", title="", value="Dato")

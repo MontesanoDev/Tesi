@@ -300,19 +300,6 @@ def revise_call_fact(
     return replace(document, facts=facts)
 
 
-def verified_call_facts_markdown(content: str) -> str:
-    document = parse_call_facts_markdown(content)
-    verified = [fact for fact in document.facts if fact.status == "verified"]
-    if not verified:
-        return ""
-    lines = ["# Call Facts verificati"]
-    for fact in verified:
-        lines.extend(("", f"## {fact.title}", "", fact.value, "", "Fonti:"))
-        lines.extend(f"- {source.name}, frammento {source.fragment}" for source in fact.sources)
-    lines.append("")
-    return "\n".join(lines)
-
-
 def available_project_facts_markdown(content: str) -> str:
     document = parse_call_facts_markdown(content)
     if not document.available_facts:

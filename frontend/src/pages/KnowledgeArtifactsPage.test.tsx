@@ -6,7 +6,7 @@ import type { KnowledgeArtifactDetail } from '../types'
 import { KnowledgeArtifactsPage } from './KnowledgeArtifactsPage'
 
 vi.mock('../api', () => ({ api: {
-  project: vi.fn(), projectArtifacts: vi.fn(), projectArtifact: vi.fn(), callFactsReview: vi.fn(),
+  project: vi.fn(), projectArtifacts: vi.fn(), projectArtifact: vi.fn(),
   documentCompilations: vi.fn(),
   aiSettings: vi.fn(), projectAiModel: vi.fn(), setProjectAiModel: vi.fn(),
 } }))
@@ -47,10 +47,6 @@ describe('unified Template navigation', () => {
     vi.mocked(api.projectArtifact).mockReset().mockImplementation(async (id, artifactId) => (
       artifacts(id).find((item) => item.id === artifactId)!
     ))
-    vi.mocked(api.callFactsReview).mockReset().mockImplementation(async (id) => ({
-      artifact: artifacts(id)[0], facts: [], missing_information: [],
-      pending_count: 0, verified_count: 0, discarded_count: 0,
-    }))
   })
 
   it('opens old Draft links in the compilation tab of Template', async () => {
@@ -72,11 +68,9 @@ describe('unified Template navigation', () => {
     fireEvent.change(screen.getByRole('textbox'), { target: { value: '# Non perdere' } })
     fireEvent.click(screen.getByRole('button', { name: /Progetto primo/ }))
     expect(screen.getByRole('textbox')).toHaveValue('# Non perdere')
-    expect(api.callFactsReview).not.toHaveBeenCalled()
     vi.mocked(window.confirm).mockReturnValue(true)
     fireEvent.click(screen.getByRole('button', { name: /Progetto primo/ }))
     expect(await screen.findByText('Vista progetto')).toBeVisible()
-    expect(api.callFactsReview).not.toHaveBeenCalled()
   })
 
   it.each([null, 'call_facts', 'project_facts'])('opens %s links directly in Template', async (kind) => {
@@ -85,7 +79,6 @@ describe('unified Template navigation', () => {
     expect(screen.getByRole('heading', { name: 'Template' })).toBeVisible()
     expect(screen.queryByRole('tab', { name: 'Dati estratti' })).not.toBeInTheDocument()
     expect(screen.queryByRole('tab', { name: 'Dati inseriti' })).not.toBeInTheDocument()
-    expect(api.callFactsReview).not.toHaveBeenCalled()
     expect(api.projectArtifact).toHaveBeenCalledWith('primo', 'primo--template', expect.any(AbortSignal))
   })
 

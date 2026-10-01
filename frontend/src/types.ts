@@ -49,10 +49,6 @@ export interface GlobalKnowledgeOverview {
   chunk_count: number
 }
 
-export interface ProjectGlobalKnowledgeDocument extends GlobalKnowledgeDocument {
-  linked: boolean
-}
-
 export interface KnowledgeSource {
   id: number
   name: string
@@ -78,48 +74,6 @@ export interface KnowledgeArtifactSummary {
 
 export interface KnowledgeArtifactDetail extends KnowledgeArtifactSummary {
   content: string
-}
-
-export interface CallFactsExtractionResult {
-  artifact: KnowledgeArtifactDetail
-  fact_count: number
-  missing_count: number
-  evidence_count: number
-  model: string
-  total_tokens: number | null
-}
-
-export type CallFactStatus = 'pending' | 'verified' | 'discarded'
-export type CallFactAction = 'verify' | 'edit' | 'discard' | 'restore'
-
-export interface CallFactSource {
-  name: string
-  fragment: number
-}
-
-export interface CallFactItem {
-  id: string
-  title: string
-  value: string
-  status: CallFactStatus
-  sources: CallFactSource[]
-  origin?: 'extracted' | 'user_corrected'
-}
-
-export interface CallFactsReview {
-  artifact: KnowledgeArtifactDetail
-  facts: CallFactItem[]
-  missing_information: string[]
-  pending_count: number
-  verified_count: number
-  discarded_count: number
-}
-
-export interface CallFactRevision {
-  action: CallFactAction
-  version: number
-  title?: string
-  value?: string
 }
 
 export interface DraftGenerationResult {

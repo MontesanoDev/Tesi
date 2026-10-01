@@ -7,9 +7,6 @@ import type {
   AiProfileInput,
   AiSettings,
   ProjectAiSelection,
-  CallFactsExtractionResult,
-  CallFactsReview,
-  CallFactRevision,
   ConversationDetail,
   CompilationDownload,
   DocumentCompilation,
@@ -26,7 +23,6 @@ import type {
   ProjectDetail,
   ProjectFile,
   ProjectFileContent,
-  ProjectGlobalKnowledgeDocument,
   ProjectSummary,
 } from './types'
 
@@ -188,16 +184,6 @@ export const api = {
       method: 'PUT',
       body: JSON.stringify({ content }),
     }),
-  projectGlobalKnowledge: (projectId: string, signal?: AbortSignal) =>
-    request<ProjectGlobalKnowledgeDocument[]>(
-      `/projects/${projectId}/global-knowledge`,
-      { signal },
-    ),
-  updateProjectGlobalKnowledge: (projectId: string, documentId: number, linked: boolean) =>
-    request<ProjectGlobalKnowledgeDocument>(
-      `/projects/${projectId}/global-knowledge/${documentId}`,
-      { method: 'PUT', body: JSON.stringify({ linked }) },
-    ),
   projectArtifacts: (projectId: string, signal?: AbortSignal) =>
     request<KnowledgeArtifactSummary[]>(`/projects/${projectId}/artifacts`, { signal }),
   projectArtifact: (projectId: string, artifactId: string, signal?: AbortSignal) =>
@@ -211,20 +197,6 @@ export const api = {
       {
         method: 'PUT',
         body: JSON.stringify({ content }),
-      },
-    ),
-  extractCallFacts: (projectId: string) =>
-    request<CallFactsExtractionResult>(`/projects/${projectId}/call-facts/extract`, {
-      method: 'POST',
-    }),
-  callFactsReview: (projectId: string, signal?: AbortSignal) =>
-    request<CallFactsReview>(`/projects/${projectId}/call-facts`, { signal }),
-  reviseCallFact: (projectId: string, factId: string, payload: CallFactRevision) =>
-    request<CallFactsReview>(
-      `/projects/${projectId}/call-facts/${encodeURIComponent(factId)}`,
-      {
-        method: 'PATCH',
-        body: JSON.stringify(payload),
       },
     ),
   generateDraft: (projectId: string) =>

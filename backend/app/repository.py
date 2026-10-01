@@ -1013,8 +1013,6 @@ def update_call_fact_metrics(
     return update_call_fact_review_metrics(
         project_id=project_id,
         active_count=fact_count,
-        verified_count=0,
-        pending_count=fact_count,
         discarded_count=0,
         missing_count=missing_count,
     )
@@ -1023,8 +1021,6 @@ def update_call_fact_metrics(
 def update_call_fact_review_metrics(
     project_id: str,
     active_count: int,
-    verified_count: int,
-    pending_count: int,
     discarded_count: int,
     missing_count: int,
 ) -> bool:
@@ -1102,8 +1098,6 @@ def sync_call_fact_review_metrics() -> None:
         update_call_fact_review_metrics(
             project_id=project_id,
             active_count=len(document.available_facts),
-            verified_count=document.verified_count,
-            pending_count=document.pending_count,
             discarded_count=document.discarded_count,
             missing_count=len(document.missing_information),
         )

@@ -1,32 +1,50 @@
-# React + TypeScript + Vite
+# Frontend Mapi RAG
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Interfaccia React/TypeScript per progetti, fonti, chat, impostazioni AI e
+compilazioni Word o testuali. Il progetto usa Vite, Vitest e Playwright.
 
-Currently, two official plugins are available:
+Dalla directory `frontend/`:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm ci
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Vite espone l'app sulla porta 5173 e inoltra `/api` al backend su
+`http://127.0.0.1:8000`. Per avviare entrambi i processi usare `./start.sh`
+dalla radice del repository. `VITE_API_URL` permette di configurare un diverso
+indirizzo API durante l'avvio o la build del frontend.
+
+```bash
+npm test
+npm run lint
+npm run build
+```
+
+`npm test` esegue i test di componenti, hook e client HTTP; `npm run build`
+include il controllo TypeScript e produce `dist/`.
+
+**Prove browser**
+
+Con Vite in esecuzione e i browser Playwright installati (`npx playwright install chromium`),
+questi scenari usano API simulate e non richiedono il backend:
+
+```bash
+npm run test:e2e -- e2e/composer-model-menu.spec.ts e2e/document-review.spec.ts
+```
+
+Per usare una porta diversa:
+
+```bash
+PLAYWRIGHT_BASE_URL=http://127.0.0.1:5175 npm run test:e2e -- e2e/document-review.spec.ts
+```
+
+La configurazione esegue ogni scenario su desktop e mobile. Screenshot e trace
+sono salvati in `artifacts/`. La suite E2E completa comprende anche prove con
+backend reale, che creano o modificano dati: usare un ambiente di test dedicato.
+
+La pagina `/demo/candidatura` è una demo autonoma. La vecchia pagina
+`/projects/:projectId/review` mostra un esempio di revisione; le compilazioni
+effettive e i loro report sono nel Template del progetto.
+
+Configurazione della ricerca e API: [README backend](../backend/README.md).

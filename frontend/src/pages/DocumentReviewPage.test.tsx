@@ -75,6 +75,10 @@ describe('DocumentReviewPage', () => {
 
     expect(await screen.findByText('0% completato')).toBeVisible()
     expect(screen.queryByText(/NaN/)).not.toBeInTheDocument()
+    expect(screen.getByText('Demo')).toBeVisible()
+    expect(screen.getByRole('link', { name: 'Apri Template' })).toHaveAttribute('href', '/projects/primo/knowledge')
+    expect(screen.queryByRole('button', { name: 'Salva' })).not.toBeInTheDocument()
+    expect(screen.queryByText('Giulia Bianchi')).not.toBeInTheDocument()
   })
 
   it('clears the previous review while loading another project', async () => {

@@ -97,7 +97,7 @@ export function ProjectsPage() {
                   <p>{project.description}</p>
                   <div className="project-card-footer">
                     <span>
-                      {project.source_count} fonti · {project.model_count} modelli
+                      {project.source_count} fonti
                       <small>{project.updated_label}</small>
                     </span>
                     <StatusPill tone={project.status_tone}>{project.status}</StatusPill>

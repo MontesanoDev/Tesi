@@ -412,8 +412,6 @@ async def project_artifact_update(
         update_call_fact_review_metrics(
             project_id=project_id,
             active_count=len(document.available_facts),
-            verified_count=document.verified_count,
-            pending_count=document.pending_count,
             discarded_count=document.discarded_count,
             missing_count=len(document.missing_information),
         )
@@ -526,8 +524,6 @@ async def project_call_fact_revision(
     update_call_fact_review_metrics(
         project_id=project_id,
         active_count=len(revised.available_facts),
-        verified_count=revised.verified_count,
-        pending_count=revised.pending_count,
         discarded_count=revised.discarded_count,
         missing_count=len(revised.missing_information),
     )

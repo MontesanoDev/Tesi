@@ -340,7 +340,7 @@ export function ProjectWorkspacePage() {
         onKeyDown={handleComposerKeyDown}
       />
       <div className="composer-tools">
-        <ProjectModelSelector key={project.id} projectId={project.id} variant="menu"
+        <ProjectModelSelector key={project.id} projectId={project.id}
           disabled={searching || conversationLoading} onChanging={setChangingModel} />
         <button
           className="send-button"

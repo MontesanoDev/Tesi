@@ -516,10 +516,6 @@
   animation: none;
 }
 
-.activity-dot--idle {
-  animation: none;
-}
-
 .activity-dot--error {
   border: 4px solid var(--gold);
   animation: none;
@@ -1223,17 +1219,6 @@
   font-size: 20px;
 }
 
-.artifact-metadata {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 18px;
-  margin-top: 14px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-faint);
-  font-size: 10px;
-}
-
 .markdown-editor {
   width: 100%;
   min-height: 450px;
@@ -1262,30 +1247,6 @@
   cursor: default;
 }
 
-.artifact-editor-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  min-height: 58px;
-  padding-top: 14px;
-}
-
-.artifact-editor-footer span,
-.artifact-editor-footer strong {
-  display: block;
-  font-size: 10px;
-}
-
-.artifact-editor-footer span {
-  color: var(--text-faint);
-}
-
-.artifact-editor-footer strong {
-  margin-top: 5px;
-  color: #8fc3a1;
-}
-
 .artifact-save {
   display: inline-flex;
   align-items: center;
@@ -1293,13 +1254,6 @@
   margin-left: 0;
 }
 
-.artifact-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.artifact-extract,
 .artifact-generate {
   display: inline-flex;
   align-items: center;
@@ -1308,24 +1262,6 @@
 
 .general-card {
   min-height: 0;
-}
-
-.value-control {
-  width: 144px;
-  height: 34px;
-  border: 1px solid #373834;
-  border-radius: 6px;
-  color: var(--text);
-  background: var(--panel-muted);
-  text-align: left;
-  padding: 0 14px;
-  cursor: pointer;
-}
-
-.settings-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 8px;
 }
 
 .company-knowledge-page {
@@ -1413,17 +1349,6 @@
   justify-content: flex-start;
 }
 
-.company-kb-section {
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-}
-
-.company-kb-section .setting-section-title small {
-  color: var(--text-faint);
-  font-size: 10px;
-}
-
 .company-document-list {
   border: 1px solid #373834;
   border-radius: 8px;
@@ -1503,36 +1428,6 @@
   text-align: center;
 }
 
-.toggle:disabled {
-  opacity: 0.55;
-  cursor: wait;
-}
-
-.toggle {
-  position: relative;
-  width: 46px;
-  height: 24px;
-  padding: 0;
-  border: 0;
-  border-radius: 12px;
-  background: #454641;
-  cursor: pointer;
-}
-
-.toggle span {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--text);
-  transition: transform 160ms ease;
-}
-
-.toggle.is-on { background: var(--green); }
-.toggle.is-on span { transform: translateX(22px); }
-
 .review-heading {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto auto;
@@ -1545,6 +1440,12 @@
 .review-heading h1 { font-size: 26px; }
 .review-heading p { font-size: 12px; }
 .review-actions { display: flex; gap: 12px; }
+.review-actions .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
 
 .review-layout {
   display: grid;
@@ -1694,39 +1595,25 @@
 
 .review-summary strong { font-size: 11px; }
 .review-summary strong:nth-child(2) { color: var(--gold); }
-.review-summary span { grid-column: 1 / -1; color: var(--text-muted); font-size: 10px; }
 
 .review-panel > .section-label {
   margin: 28px 0 12px;
 }
 
-.review-warning,
-.review-person {
+.review-warning {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   min-height: 86px;
   padding: 14px;
-  border: 1px solid var(--border);
+  border: 1px solid #66501c;
   border-radius: 8px;
-  background: var(--panel-raised);
-}
-
-.review-warning {
-  border-color: #66501c;
   background: #332b1c;
 }
 
-.review-warning strong,
-.review-person strong { font-size: 12px; }
-.review-warning span,
-.review-person span { margin-top: 7px; color: #a18444; font-size: 10px; }
-.review-warning .button { margin-top: 10px; }
-.review-person { margin-top: 14px; }
-.review-person span { color: var(--text-muted); }
-.review-person small { margin-top: 10px; color: #777872; font-size: 9px; }
-.review-person .status-pill { position: absolute; right: 12px; top: 34px; }
+.review-warning strong { font-size: 12px; }
+.review-warning span { margin-top: 7px; color: #a18444; font-size: 10px; }
 
 .provenance-list {
   display: grid;
@@ -2108,7 +1995,6 @@
   .knowledge-type-tabs { grid-template-columns: minmax(0, 1fr); }
   .company-document-row { grid-template-columns: 20px minmax(0, 1fr) 34px 34px; }
   .company-document-row .status-pill { display: none; }
-  .company-kb-section .setting-section-title { align-items: flex-start; flex-direction: column; }
 
   .knowledge-workspace {
     width: min(100% - 32px, 620px);
@@ -2130,18 +2016,7 @@
     resize: vertical;
   }
 
-  .artifact-editor-footer {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .artifact-actions {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
   .artifact-save,
-  .artifact-extract,
   .artifact-generate {
     justify-content: center;
     width: 100%;

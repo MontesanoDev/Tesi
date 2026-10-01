@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import { useRef, useState, type ChangeEvent, type FormEvent } from 'react'
 import { api } from '../api'
+import { fragmentCountLabel, markdownFilename } from '../sourceText'
 import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import type { ProjectDetail, ProjectFile } from '../types'
 import { ProjectPreparationPanel } from './ProjectPreparationPanel'
@@ -18,20 +19,6 @@ import { StatusPill } from './StatusPill'
 interface ProjectKnowledgePanelProps {
   project: ProjectDetail
   onProjectChange: () => Promise<void>
-}
-
-function markdownFilename(title: string) {
-  const slug = title
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-  return `${slug || 'contenuto'}.md`
-}
-
-function fragmentCountLabel(count: number) {
-  return count === 1 ? '1 frammento' : `${count} frammenti`
 }
 
 function isEditableSource(file: ProjectFile) {

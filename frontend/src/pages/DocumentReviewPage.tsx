@@ -67,19 +67,18 @@ export function DocumentReviewPage() {
       <header className="review-heading">
         <div>
           <h1>{review.title}</h1>
-          <p>{review.subtitle} · {review.completed_fields} campi su {review.total_fields} compilati</p>
+          <p>Esempio di revisione · {review.completed_fields} campi su {review.total_fields} compilati</p>
         </div>
-        <StatusPill tone="warning">Da verificare</StatusPill>
+        <StatusPill tone="info">Demo</StatusPill>
         <div className="review-actions">
-          <button className="button" type="button">Salva</button>
-          <button className="button" type="button" disabled>Esporta dopo verifica</button>
+          <Link className="button" to={`/projects/${project.id}/knowledge`}>Apri Template</Link>
         </div>
       </header>
 
       <div className="review-layout">
         <article className="document-preview">
-          <span className="document-eyebrow">Allegato 1</span>
-          <h2>Modulo di candidatura A</h2>
+          <span className="document-eyebrow">Dati dimostrativi</span>
+          <h2>Anteprima dimostrativa</h2>
           <p>{project.title}</p>
           <div className="document-rule" />
           {sections.map(({ section, fields }, sectionIndex) => (
@@ -100,7 +99,8 @@ export function DocumentReviewPage() {
             </section>
           ))}
           <p className="document-note">
-            I campi generati restano modificabili. I dati non presenti devono essere inseriti e confermati da un revisore.
+            Questa anteprima mostra dati dimostrativi e non permette modifiche.
+            Le compilazioni del progetto e i relativi report sono disponibili nel Template.
           </p>
         </article>
 
@@ -111,22 +111,14 @@ export function DocumentReviewPage() {
           <div className="review-summary">
             <strong>{review.completed_fields} completati</strong>
             <strong>{review.total_fields - review.completed_fields} mancanti</strong>
-            <span>1 campo richiede conferma</span>
           </div>
           <span className="section-label">Elementi da verificare</span>
           {missing.map((field) => (
             <div className="review-warning" key={field.id}>
               <strong>{field.label}</strong>
               <span>Richiesto dal modello · nessuna fonte</span>
-              <button className="button button--compact" type="button">Inserisci valore</button>
             </div>
           ))}
-          <div className="review-person">
-            <strong>Firmatario autorizzato</strong>
-            <span>Giulia Bianchi</span>
-            <small>Profilo aziendale · p.1</small>
-            <StatusPill tone="warning">Da verificare</StatusPill>
-          </div>
           <span className="section-label">Provenienza dei campi</span>
           <div className="provenance-list">
             <div><span className="source-dot source-dot--success" />Dati aziendali <em>{provenance.company ?? 0} campi</em></div>

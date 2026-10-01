@@ -6,11 +6,10 @@ import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import type { AiSettings, ProjectAiSelection } from '../types'
 import './AiSettings.css'
 
-export function ProjectModelSelector({ projectId, disabled = false, onChanging, variant = 'inline' }: {
+export function ProjectModelSelector({ projectId, disabled = false, onChanging }: {
   projectId: string
   disabled?: boolean
   onChanging?: (changing: boolean) => void
-  variant?: 'inline' | 'menu'
 }) {
   const id = useId()
   const [settings, setSettings] = useState<AiSettings | null>(null)
@@ -95,7 +94,7 @@ export function ProjectModelSelector({ projectId, disabled = false, onChanging, 
       if (!controller?.signal.aborted) {
         setSelection(result)
         setNotice('Modello aggiornato per questo progetto.')
-        if (variant === 'menu') closeMenu()
+        closeMenu()
       }
     } catch (reason) {
       if (!controller?.signal.aborted) setError(reason instanceof Error ? reason.message : 'Cambio modello non riuscito')
@@ -104,7 +103,7 @@ export function ProjectModelSelector({ projectId, disabled = false, onChanging, 
     }
   }
   const defaultProfile = settings?.profiles.find((profile) => profile.id === settings.default_profile_id)
-  if (variant === 'menu') return <div className="composer-ai" ref={menu}
+  return <div className="composer-ai" ref={menu}
     onBlur={(event) => {
       if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget)) setOpen(false)
     }}>
@@ -149,23 +148,5 @@ export function ProjectModelSelector({ projectId, disabled = false, onChanging, 
       </Link>
     </div>}
     {notice && <span className="ai-screen-reader" role="status">{notice}</span>}
-  </div>
-  return <div className="project-ai-control">
-    <div className="project-ai-row">
-      <label htmlFor={id}>Modello AI</label>
-      {settings && selection ? <select id={id} value={selection.profile_id ?? ''}
-        disabled={disabled || busy || settings.profiles.length === 0}
-        onChange={(event) => void select(event.target.value)}>
-        <option value="">{defaultProfile ? `Predefinito · ${defaultProfile.name} · ${defaultProfile.model}` : 'Predefinito non configurato'}</option>
-        {settings.profiles.map((profile) => <option key={profile.id} value={profile.id}>{profile.name} · {profile.model}</option>)}
-      </select> : <span>{error ? 'Modello non disponibile' : 'Caricamento…'}</span>}
-      <Link to="/settings">{settings?.profiles.length === 0 ? 'Configura un modello AI' : 'Gestisci modelli'}</Link>
-    </div>
-    <small className="ai-help">Usato per chat, dati e compilazione. Il cambio vale dalle prossime richieste.</small>
-    {busy && <small role="status">Salvataggio della scelta…</small>}
-    {notice && <small role="status">{notice}</small>}
-    {error && <div className="ai-error" role="alert">{error}
-      {!settings && <button className="ai-button" type="button" onClick={() => setReload((value) => value + 1)}>Riprova</button>}
-    </div>}
   </div>
 }
