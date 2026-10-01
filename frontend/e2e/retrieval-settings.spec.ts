@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test('configure vector search, check a remote endpoint and prepare the saved index', async ({ page }, testInfo) => {
   let settings = {
     backend: 'fts5', qdrant_mode: 'local', qdrant_url: 'http://127.0.0.1:6333',
-    embedding_url: 'http://127.0.0.1:11434', embedding_model: 'embeddinggemma',
+    embedding_url: 'http://127.0.0.1:11434', embedding_model: 'bge-m3',
     query_prefix: '', document_prefix: '', has_qdrant_api_key: false, has_embedding_api_key: false,
   }
   let fail = true
@@ -12,7 +12,7 @@ test('configure vector search, check a remote endpoint and prepare the saved ind
     if (path === '/api/settings/ai') return route.fulfill({ json: { profiles: [], default_profile_id: null } })
     if (path === '/api/settings/retrieval/check') {
       const payload = route.request().postDataJSON()
-      expect(payload.embedding_model).toBe('embeddinggemma')
+      expect(payload.embedding_model).toBe('bge-m3')
       expect(payload.qdrant_api_key).toBe('browser-fake-secret')
       return route.fulfill({ json: { message: 'Collegamento riuscito.', dimensions: 768 } })
     }
@@ -38,7 +38,7 @@ test('configure vector search, check a remote endpoint and prepare the saved ind
   await expect(panel.getByRole('button', { name: 'Aggiorna indice' })).toBeHidden()
   await expect(panel.getByRole('button', { name: 'Salva ricerca' })).toBeVisible()
   await panel.getByText('Impostazioni avanzate', { exact: true }).click()
-  await expect(panel.getByText('embeddinggemma', { exact: true })).toBeVisible()
+  await expect(panel.getByText('bge-m3', { exact: true })).toBeVisible()
   await expect(panel.getByLabel('Modello di embedding')).toHaveCount(0)
   await expect(panel.getByLabel(/Prefisso/)).toHaveCount(0)
   await expect(panel.getByRole('button', { name: 'Aggiorna indice' })).toBeDisabled()

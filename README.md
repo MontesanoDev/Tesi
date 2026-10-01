@@ -41,7 +41,7 @@ l'indirizzo di ascolto; `./start.sh --help` mostra le opzioni.
    il file `.env` non è necessario. L'ingranaggio nella chat cambia il modello
    del progetto.
 2. In **Ricerca nelle fonti**, scegliere FTS5 oppure Qdrant. La ricerca
-   vettoriale richiede un modello di embedding installato su Ollama; Qdrant
+   vettoriale usa **BGE-M3** tramite Ollama; Qdrant
    può usare un archivio locale oppure un servizio raggiungibile tramite URL.
    Gli indirizzi dei servizi e i comandi di verifica sono nelle impostazioni
    avanzate. Il modello di embedding è mostrato in sola lettura ed è comune
@@ -53,6 +53,17 @@ l'indirizzo di ascolto; `./start.sh --help` mostra le opzioni.
    segnaposti, valida le proposte del modello e produce una bozza con report.
    La compilazione Word seleziona il contesto entro limiti di caratteri;
    non usa il retrieval della chat. Le bozze richiedono revisione umana.
+
+Prima di usare la ricerca semantica, sul server Ollama configurato eseguire:
+
+```bash
+ollama pull bge-m3
+```
+
+BGE-M3 è il modello predefinito delle nuove configurazioni. Le configurazioni
+già salvate conservano il proprio modello; il passaggio a un altro modello
+richiede una nuova indicizzazione. Il cambio del modello della chat non cambia
+gli embedding. I pesi vengono scaricati da Ollama e non sono inclusi nella repo.
 
 I dati locali sono in `backend/data/`, esclusa da Git. Per cambiarne i percorsi
 si usano `MAPI_DB_PATH`, `MAPI_STORAGE_PATH` e `MAPI_KNOWLEDGE_PATH`. Le chiavi

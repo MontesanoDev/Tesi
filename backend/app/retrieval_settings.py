@@ -28,7 +28,7 @@ class RetrievalInput(BaseModel):
     qdrant_api_key: SecretStr | None = None
     clear_qdrant_api_key: bool = False
     embedding_url: str = Field(default="http://127.0.0.1:11434", max_length=500)
-    embedding_model: str = Field(default="embeddinggemma", min_length=1, max_length=160)
+    embedding_model: str = Field(default="bge-m3", min_length=1, max_length=160)
     embedding_api_key: SecretStr | None = None
     clear_embedding_api_key: bool = False
     query_prefix: str = Field(default="", max_length=500)

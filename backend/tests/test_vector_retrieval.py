@@ -79,10 +79,10 @@ def embeddings(database, monkeypatch):
     def fake_list(self):
         if state["fail"]:
             raise RetrievalError("Embedding non disponibile")
-        return ListResponse(models=[{"model": "embeddinggemma", "digest": state["digest"]}])
+        return ListResponse(models=[{"model": "bge-m3", "digest": state["digest"]}])
 
     def fake_embed(self, *, model, input, truncate):
-        assert model == "embeddinggemma" and truncate is False
+        assert model == "bge-m3" and truncate is False
         state["inputs"].extend(input)
         return {
             "embeddings": [
@@ -264,8 +264,8 @@ def test_remote_embedding_protocol_uses_configured_endpoint_and_no_truncation(
                 json={
                     "models": [
                         {
-                            "name": "embeddinggemma:latest",
-                            "model": "embeddinggemma:latest",
+                            "name": "bge-m3:latest",
+                            "model": "bge-m3:latest",
                             "digest": "fake-digest",
                         }
                     ]
@@ -273,7 +273,7 @@ def test_remote_embedding_protocol_uses_configured_endpoint_and_no_truncation(
             )
         assert request.url.path == "/ollama/api/embed"
         assert json.loads(request.content) == {
-            "model": "embeddinggemma",
+            "model": "bge-m3",
             "input": ["domanda"],
             "truncate": False,
         }

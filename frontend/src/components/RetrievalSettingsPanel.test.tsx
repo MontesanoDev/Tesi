@@ -11,7 +11,7 @@ vi.mock('../api', () => ({ api: {
 
 const settings: RetrievalSettings = {
   backend: 'fts5', qdrant_mode: 'local', qdrant_url: 'http://127.0.0.1:6333',
-  embedding_url: 'http://127.0.0.1:11434', embedding_model: 'embeddinggemma',
+  embedding_url: 'http://127.0.0.1:11434', embedding_model: 'bge-m3',
   query_prefix: '', document_prefix: '', has_qdrant_api_key: false, has_embedding_api_key: false,
 }
 
@@ -39,14 +39,14 @@ describe('retrieval settings', () => {
     fireEvent.change(await screen.findByLabelText('Metodo di ricerca'), { target: { value: 'qdrant' } })
     expect(screen.getByLabelText('Archivio vettoriale')).not.toBeVisible()
     fireEvent.click(screen.getByText('Impostazioni avanzate'))
-    expect(screen.getByText('embeddinggemma')).toBeVisible()
+    expect(screen.getByText('bge-m3')).toBeVisible()
     expect(screen.queryByLabelText(/Modello di embedding/)).not.toBeInTheDocument()
     expect(screen.queryByLabelText(/Prefisso/)).not.toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeDisabled()
     fireEvent.click(screen.getByRole('button', { name: 'Salva ricerca' }))
     await waitFor(() => expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeEnabled())
     expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({
-      backend: 'qdrant', embedding_model: 'embeddinggemma', query_prefix: 'query:', document_prefix: 'passage:',
+      backend: 'qdrant', embedding_model: 'bge-m3', query_prefix: 'query:', document_prefix: 'passage:',
     }))
     fireEvent.click(screen.getByRole('button', { name: 'Aggiorna indice' }))
     expect(await screen.findByText(/40 frammenti, 2 aggiornati e 1 rimossi/)).toBeVisible()
