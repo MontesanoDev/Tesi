@@ -52,7 +52,7 @@ def test_answer_parser_ignores_non_integer_citation_ids():
         json.dumps(
             {
                 "answer": "Risposta dalle fonti.",
-                "citation_ids": [True, False, "1", 1.0, None, {}, [], 2, 2, 1, 0, -1, 99],
+                "citation_ids": [True, False, "1", 1.0, None, {}, [], 2, 2, 1],
             }
         ),
         evidence_count=2,
@@ -63,6 +63,15 @@ def test_answer_parser_ignores_non_integer_citation_ids():
     assert parsed.citations == [2, 1]
     assert all(type(citation) is int for citation in parsed.citations)
     assert parsed.answer.endswith("Fonti: [2], [1].")
+
+
+@pytest.mark.parametrize("reference", [0, -1, 99])
+@pytest.mark.parametrize("location", ["answer", "citation_ids"])
+def test_answer_parser_rejects_unavailable_references(reference, location):
+    payload = {"answer": "Dato [1].", "citation_ids": [1]}
+    payload[location] = f"Dato [{reference}]." if location == "answer" else [reference]
+    with pytest.raises(GenerationError, match="fonte non presente"):
+        _parse_content(json.dumps(payload), evidence_count=2, model="test", usage={})
 
 
 def test_answer_parser_reports_an_oversized_inline_reference():

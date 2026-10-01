@@ -54,6 +54,13 @@ l'indirizzo di ascolto; `./start.sh --help` mostra le opzioni.
    La compilazione Word seleziona il contesto entro limiti di caratteri;
    non usa il retrieval della chat. Le bozze richiedono revisione umana.
 
+La chat controlla che i numeri delle citazioni corrispondano alle evidenze
+inviate al modello. Se trova riferimenti fuori elenco, chiede una sola
+correzione con le stesse fonti, entro il tempo massimo della richiesta.
+Se anche la correzione fallisce, mostra il motivo e mantiene consultabili
+le evidenze. Il controllo verifica i riferimenti, non garantisce che ogni
+affermazione sia correttamente supportata dalla fonte citata.
+
 Prima di usare la ricerca semantica, sul server Ollama configurato eseguire:
 
 ```bash

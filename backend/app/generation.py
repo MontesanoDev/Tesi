@@ -3,12 +3,12 @@ from __future__ import annotations
 import asyncio
 import json
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 import httpx
 
 from app.ai_transport import post_chat
-from app.config import get_ai_settings
+from app.config import AISettings, get_ai_settings
 
 # Ollama can load the model on the first request and only sends the completed
 # JSON (stream=False). Its read timeout must include loading and generation.
@@ -24,6 +24,11 @@ class GenerationError(RuntimeError):
 
 class GenerationNotConfiguredError(GenerationError):
     pass
+
+
+class UnavailableCitationError(GenerationError):
+    def __init__(self):
+        super().__init__("Il modello ha citato una fonte non presente nel contesto")
 
 
 @dataclass(frozen=True)
@@ -49,6 +54,10 @@ recuperate non lo dimostrano.
 Ogni affermazione tratta dalle evidenze documentali deve riportare una citazione nel
 formato [N], dove N e il numero dell'evidenza. Se le fonti non bastano, dichiaralo e
 indica i dati mancanti.
+Usa soltanto gli identificatori elencati in CITAZIONI AMMESSE nella richiesta corrente.
+I numeri di pagina, frammento o altri riferimenti interni ai documenti non sono
+identificatori di citazione. Non riutilizzare la numerazione delle risposte precedenti.
+Il campo citation_ids deve contenere gli stessi identificatori interi citati in answer.
 Produci soltanto un oggetto json con questa forma:
 {
   "answer": "risposta con citazioni [1]",
@@ -56,6 +65,25 @@ Produci soltanto un oggetto json con questa forma:
   "missing_information": ["eventuale dato non presente"]
 }
 """.strip()
+
+
+def _allowed_citations(evidence_count: int) -> str:
+    return ", ".join(f"[{index}]" for index in range(1, evidence_count + 1)) or "nessuna"
+
+
+def _citation_repair_prompt(evidence_count: int) -> str:
+    return (
+        "La risposta precedente e stata scartata perche cita identificatori non disponibili. "
+        "E una bozza respinta, non una fonte di informazioni.\n"
+        f"CITAZIONI AMMESSE: {_allowed_citations(evidence_count)}.\n"
+        "Ricontrolla ogni affermazione nelle stesse evidenze della richiesta originale. "
+        "Usa gli ID delle EVIDENZE, non i numeri di pagina o frammento riportati nei testi. "
+        "Non rinumerare alla cieca e non limitarti a togliere una citazione lasciando "
+        "l'affermazione senza supporto. Se manca una fonte, ometti l'affermazione "
+        "e indica il dato mancante in missing_information.\n"
+        "Restituisci l'intero oggetto json corretto, con answer, citation_ids e "
+        "missing_information, senza altri commenti."
+    )
 
 
 def _build_user_prompt(
@@ -70,7 +98,7 @@ def _build_user_prompt(
                 (
                     f"EVIDENZA [{index}]",
                     f"Fonte: {item['source_name']}",
-                    f"Frammento: {item['chunk_index'] + 1}",
+                    "TESTO DELL'EVIDENZA:",
                     str(item["content"]),
                 )
             )
@@ -81,6 +109,7 @@ def _build_user_prompt(
     return (
         f"DOMANDA DELL'UTENTE:\n{question}\n\n"
         f"CRONOLOGIA RECENTE NON FATTUALE:\n{recent_history or '- Nessun turno precedente'}\n\n"
+        f"CITAZIONI AMMESSE: {_allowed_citations(len(evidence))}\n\n"
         f"EVIDENZE DISPONIBILI:\n\n{'\n\n'.join(sources)}\n\n"
         "Restituisci ora la risposta come oggetto json."
     )
@@ -104,6 +133,8 @@ def _parse_content(content: str, evidence_count: int, model: str, usage: dict) -
     raw_citations = payload.get("citation_ids", [])
     if not isinstance(raw_citations, list):
         raise GenerationError("Le citazioni restituite dal modello AI non sono valide")
+    if any(type(value) is int and not 1 <= value <= evidence_count for value in raw_citations):
+        raise UnavailableCitationError()
     citations = list(
         dict.fromkeys(
             citation
@@ -113,11 +144,11 @@ def _parse_content(content: str, evidence_count: int, model: str, usage: dict) -
     )
 
     try:
-        answer_references = {int(value) for value in re.findall(r"\[(\d+)]", answer)}
+        answer_references = {int(value) for value in re.findall(r"\[(-?\d+)]", answer)}
     except ValueError as exc:
-        raise GenerationError("Il modello ha citato una fonte non presente nel contesto") from exc
+        raise UnavailableCitationError() from exc
     if any(reference < 1 or reference > evidence_count for reference in answer_references):
-        raise GenerationError("Il modello ha citato una fonte non presente nel contesto")
+        raise UnavailableCitationError()
     citations = list(dict.fromkeys([*citations, *sorted(answer_references)]))
     if citations and not answer_references:
         answer = f"{answer.rstrip()} Fonti: {', '.join(f'[{value}]' for value in citations)}."
@@ -128,14 +159,64 @@ def _parse_content(content: str, evidence_count: int, model: str, usage: dict) -
         if isinstance(raw_missing, list)
         else []
     )
-    total_tokens = usage.get("total_tokens") if isinstance(usage, dict) else None
     return GeneratedAnswer(
         answer=answer.strip(),
         citations=citations,
         missing_information=missing_information,
         model=model,
-        total_tokens=total_tokens if isinstance(total_tokens, int) else None,
+        total_tokens=_total_tokens(usage),
     )
+
+
+def _total_tokens(usage: dict) -> int | None:
+    count = usage.get("total_tokens") if isinstance(usage, dict) else None
+    return count if type(count) is int and count >= 0 else None
+
+
+async def _request_content(
+    client: httpx.AsyncClient,
+    settings: AISettings,
+    body: dict,
+    read_timeout_seconds: float,
+) -> tuple[str, str, dict]:
+    try:
+        response = await post_chat(client, settings, body)
+        response.raise_for_status()
+        payload = response.json()
+    except httpx.ConnectTimeout as exc:
+        raise GenerationError(
+            f"Collegamento a {settings.label} non riuscito entro "
+            f"{CHAT_CONNECT_TIMEOUT_SECONDS:g} secondi. Controlla l'indirizzo e il servizio."
+        ) from exc
+    except httpx.ReadTimeout as exc:
+        raise GenerationError(
+            f"{settings.label} non ha inviato dati entro {read_timeout_seconds:g} secondi "
+            "di attesa della risposta"
+        ) from exc
+    except httpx.TimeoutException as exc:
+        raise GenerationError(
+            f"Tempo di attesa scaduto durante la richiesta a {settings.label}"
+        ) from exc
+    except httpx.HTTPStatusError as exc:
+        raise GenerationError(
+            f"{settings.label} ha rifiutato la richiesta ({exc.response.status_code})"
+        ) from exc
+    except (httpx.HTTPError, ValueError) as exc:
+        raise GenerationError(
+            f"{settings.label} non e raggiungibile o ha restituito dati non validi"
+        ) from exc
+
+    try:
+        choice = payload["choices"][0]
+        content = choice["message"]["content"]
+        model = payload.get("model") or settings.model
+    except (KeyError, IndexError, TypeError) as exc:
+        raise GenerationError("La risposta del modello non rispetta il contratto atteso") from exc
+    if not isinstance(content, str) or not isinstance(model, str):
+        raise GenerationError("La risposta del modello non contiene testo valido")
+    if choice.get("finish_reason", "stop") != "stop":
+        raise GenerationError("Il modello ha interrotto la risposta prima del completamento")
+    return content, model, payload.get("usage", {})
 
 
 async def generate_grounded_answer(
@@ -171,7 +252,9 @@ async def generate_grounded_answer(
     read_timeout_seconds = (
         timeout_seconds if settings.provider == "ollama" else CHAT_READ_TIMEOUT_SECONDS
     )
+    repairing = False
     try:
+        # One deadline covers both calls; only an unavailable citation warrants a repair.
         async with asyncio.timeout(timeout_seconds):
             async with httpx.AsyncClient(
                 timeout=httpx.Timeout(
@@ -180,44 +263,54 @@ async def generate_grounded_answer(
                     read=read_timeout_seconds,
                 )
             ) as client:
-                response = await post_chat(client, settings, request_body)
-                response.raise_for_status()
-                payload = response.json()
+                content, model, usage = await _request_content(
+                    client, settings, request_body, read_timeout_seconds,
+                )
+                try:
+                    return _parse_content(content, len(evidence), model, usage)
+                except UnavailableCitationError:
+                    repairing = True
+                first_tokens = _total_tokens(usage)
+                # Keep the original context and numbering. Never run retrieval again
+                # or rewrite the invalid citations in application code.
+                repair_body = {
+                    **request_body,
+                    "messages": [
+                        *request_body["messages"],
+                        {"role": "assistant", "content": content},
+                        {"role": "user", "content": _citation_repair_prompt(len(evidence))},
+                    ],
+                }
+                content, model, usage = await _request_content(
+                    client, settings, repair_body, read_timeout_seconds,
+                )
+                repaired = _parse_content(content, len(evidence), model, usage)
+                # A partial count would understate the cost of the successful answer.
+                total = (
+                    first_tokens + repaired.total_tokens
+                    if first_tokens is not None and repaired.total_tokens is not None else None
+                )
+                return replace(repaired, total_tokens=total)
+    except UnavailableCitationError:
+        raise GenerationError(
+            "La risposta non e stata mostrata perche contiene citazioni non valide anche "
+            "dopo un tentativo di correzione. Puoi consultare le evidenze recuperate."
+        ) from None
     except TimeoutError as exc:
+        if repairing:
+            raise GenerationError(
+                "La prima risposta e stata scartata per citazioni non valide. "
+                f"La correzione non e terminata entro il limite complessivo di "
+                f"{timeout_seconds:g} secondi. Puoi consultare le evidenze recuperate."
+            ) from exc
         raise GenerationError(
             f"{settings.label} non ha completato la risposta entro {timeout_seconds:g} secondi"
         ) from exc
-    except httpx.ConnectTimeout as exc:
-        raise GenerationError(
-            f"Collegamento a {settings.label} non riuscito entro "
-            f"{CHAT_CONNECT_TIMEOUT_SECONDS:g} secondi. Controlla l'indirizzo e il servizio."
-        ) from exc
-    except httpx.ReadTimeout as exc:
-        raise GenerationError(
-            f"{settings.label} non ha inviato dati entro {read_timeout_seconds:g} secondi "
-            "di attesa della risposta"
-        ) from exc
-    except httpx.TimeoutException as exc:
-        raise GenerationError(
-            f"Tempo di attesa scaduto durante la richiesta a {settings.label}"
-        ) from exc
-    except httpx.HTTPStatusError as exc:
-        status_code = exc.response.status_code
-        raise GenerationError(
-            f"{settings.label} ha rifiutato la richiesta ({status_code})"
-        ) from exc
-    except (httpx.HTTPError, ValueError) as exc:
-        message = f"{settings.label} non e raggiungibile o ha restituito dati non validi"
-        raise GenerationError(message) from exc
-
-    try:
-        choice = payload["choices"][0]
-        content = choice["message"]["content"]
-        model = payload.get("model") or settings.model
-    except (KeyError, IndexError, TypeError) as exc:
-        raise GenerationError("La risposta del modello non rispetta il contratto atteso") from exc
-    if not isinstance(content, str) or not isinstance(model, str):
-        raise GenerationError("La risposta del modello non contiene testo valido")
-    if choice.get("finish_reason", "stop") != "stop":
-        raise GenerationError("Il modello ha interrotto la risposta prima del completamento")
-    return _parse_content(content, len(evidence), model, payload.get("usage", {}))
+    except GenerationError as exc:
+        if repairing:
+            raise GenerationError(
+                "La prima risposta e stata scartata per citazioni non valide. "
+                f"La correzione non e riuscita: {exc}. "
+                "Puoi consultare le evidenze recuperate."
+            ) from exc
+        raise

@@ -1349,6 +1349,68 @@ async def test_answer_handles_invalid_model_content_and_can_retry(
 
 
 @pytest.mark.anyio
+@pytest.mark.parametrize("repair_succeeds", [True, False])
+async def test_citation_repair_preserves_evidence_and_saves_only_final_result(
+    client, monkeypatch, repair_succeeds,
+):
+    project_id = "fondo-riqualificazione-2027"
+    uploaded = await client.post(
+        f"/api/projects/{project_id}/files",
+        files={"file": ("requisito.txt", b"Requisito tecnico verificabile.", "text/plain")},
+    )
+    assert uploaded.status_code == 201
+    requests = []
+
+    def provider_response(request):
+        requests.append(json.loads(request.content))
+        citation = 1 if repair_succeeds and len(requests) == 2 else 24
+        content = json.dumps({
+            "answer": f"Il requisito tecnico e verificabile [{citation}].",
+            "citation_ids": [citation],
+        })
+        return httpx.Response(200, json={
+            "model": "test-model",
+            "choices": [{"message": {"content": content}}],
+            "usage": {"total_tokens": 120},
+        })
+
+    original_client = httpx.AsyncClient
+    monkeypatch.setattr(httpx, "AsyncClient", lambda **kwargs: original_client(
+        transport=httpx.MockTransport(provider_response), **kwargs,
+    ))
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "test-key")
+    monkeypatch.setenv("DEEPSEEK_BASE_URL", "https://provider.test")
+
+    response = await client.post(
+        f"/api/projects/{project_id}/answer", json={"question": "Quale requisito tecnico?"},
+    )
+    assert response.status_code == 200
+    payload = response.json()
+    assert len(requests) == 2
+    assert requests[0]["messages"] == requests[1]["messages"][:2]
+    assert payload["evidence"]
+    assert payload["evidence"][0]["file_id"] == uploaded.json()["id"]
+    if repair_succeeds:
+        assert payload["generation_status"] == "completed"
+        assert payload["answer"] == "Il requisito tecnico e verificabile [1]."
+        assert payload["citations"] == [1]
+        assert payload["total_tokens"] == 240
+    else:
+        assert payload["generation_status"] == "failed"
+        assert payload["answer"] is None
+        assert payload["citations"] == []
+        assert "dopo un tentativo di correzione" in payload["notice"]
+
+    conversation_id = payload["conversation_id"]
+    persisted = await client.get(f"/api/projects/{project_id}/conversations/{conversation_id}")
+    turns = persisted.json()["turns"]
+    assert len(turns) == 1
+    assert turns[0]["answer"] == payload["answer"]
+    assert turns[0]["generation_status"] == payload["generation_status"]
+    assert turns[0]["evidence"] == payload["evidence"]
+
+
+@pytest.mark.anyio
 async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch):
     content = ("Requisito tecnico verificabile con fonte documentale. " * 80).encode()
     response = await client.post(
