@@ -223,10 +223,10 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
 
   await page.goto('/projects/contesto-progetto')
   await expect(page.getByRole('heading', { name: 'Contesto progetto' }).last()).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Conoscenza utilizzata' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Conoscenza utilizzata' })).toHaveCount(0)
   await expect(page.getByText('Dati del progetto')).toHaveCount(0)
-  await expect(page.getByText('Company KB')).toBeVisible()
-  await expect(page.getByText('1 documento')).toBeVisible()
+  await expect(page.getByText('Company KB')).toHaveCount(0)
+  await expect(page.getByText('General KB')).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
   await expect(
     page.locator('.project-context-panel').getByRole('heading', {
@@ -239,9 +239,9 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
     }),
   ).toHaveCount(0)
   await expect(page.getByRole('link', { name: /Dati del progetto/ })).toHaveCount(0)
-  await expect(page.getByRole('link', { name: /Template/ })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: /Moduli e bozze/ })).toHaveAttribute(
     'href',
-    '/projects/contesto-progetto/knowledge?artifact=template',
+    '/projects/contesto-progetto?documents=docx',
   )
   await expect(page.getByRole('link', { name: /Draft/ })).toHaveCount(0)
   const composer = page.getByLabel('Messaggio per Mapi RAG')

@@ -104,7 +104,9 @@ export function DocxTemplateWorkspace({ projectId, onDirtyChange }: Props) {
       const link = event.target instanceof Element ? event.target.closest('a') : null
       if (!link || link.target === '_blank' || link.hasAttribute('download')
         || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return
-      if (!window.confirm('Operazione in corso o modello non ancora compilato. Uscire dal Template?')) {
+      const destination = new URL(link.href)
+      if (destination.origin === window.location.origin && destination.pathname === window.location.pathname) return
+      if (!window.confirm('Operazione in corso o modello non ancora compilato. Uscire dal progetto?')) {
         event.preventDefault()
         event.stopPropagation()
       }

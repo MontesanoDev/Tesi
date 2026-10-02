@@ -18,6 +18,7 @@ interface Props {
   outputId?: string
   initialView?: TemplateView
   initialFormat?: 'docx' | 'text'
+  embedded?: boolean
   onUpdated: (artifact: KnowledgeArtifactDetail) => void
   onDirtyChange: (dirty: boolean) => void
 }
@@ -33,10 +34,10 @@ export function TemplateWorkspace(props: Props) {
 
   return <div className="template-workspace">
     <header className="artifact-editor-heading template-format-heading">
-      <h2>Template</h2>
+      {!props.embedded && <h2>Moduli e bozze</h2>}
       <label className="template-format">Formato
-        <select aria-label="Formato template" value={format} onChange={(event) => {
-          if (dirty && !window.confirm('Operazione in corso o modifiche non salvate nel Template. Cambiare formato comunque?')) return
+        <select aria-label="Formato documento" value={format} onChange={(event) => {
+          if (dirty && !window.confirm('Operazione in corso o modifiche non salvate. Cambiare formato comunque?')) return
           setFormat(event.target.value as 'docx' | 'text')
         }}>
           <option value="docx">Word (.docx)</option>
@@ -120,7 +121,9 @@ function MarkdownTemplateWorkspace({
       const link = event.target instanceof Element ? event.target.closest('a') : null
       if (!link || link.target === '_blank' || link.hasAttribute('download')
         || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return
-      if (!window.confirm('Ci sono modifiche non salvate nel Template. Uscire senza salvarle?')) {
+      const destination = new URL(link.href)
+      if (destination.origin === window.location.origin && destination.pathname === window.location.pathname) return
+      if (!window.confirm('Ci sono modifiche non salvate nei documenti. Uscire senza salvarle?')) {
         event.preventDefault()
         event.stopPropagation()
       }
@@ -233,7 +236,7 @@ function MarkdownTemplateWorkspace({
 
   return (
     <div className="template-workspace" aria-busy={Boolean(operation)}>
-      <div className="template-tabs" role="tablist" aria-label="Template">
+      <div className="template-tabs" role="tablist" aria-label="Documento testuale">
         {(['model', 'compilation'] as const).map((tab) => (
           <button key={tab} id={`template-tab-${tab}`} type="button" role="tab"
             aria-selected={view === tab} aria-controls="template-panel"

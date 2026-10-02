@@ -998,7 +998,7 @@
 
 .project-workflow-row {
   display: grid;
-  grid-template-columns: 18px minmax(0, 1fr) auto 16px;
+  grid-template-columns: 18px minmax(0, 1fr) 16px;
   align-items: center;
   gap: 10px;
   min-height: 60px;
@@ -1043,44 +1043,6 @@
   margin-top: 3px;
   color: var(--text-muted);
   font-size: 10px;
-}
-
-.project-knowledge-summary {
-  margin-top: 28px;
-}
-
-.project-knowledge-summary h2 {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.project-knowledge-summary-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 16px;
-}
-
-.project-knowledge-summary-item {
-  display: grid;
-  grid-template-columns: 8px minmax(0, 1fr);
-  align-items: center;
-  gap: 5px 10px;
-  min-width: 0;
-}
-
-.project-knowledge-summary-item strong {
-  overflow: hidden;
-  font-size: 13px;
-  font-weight: 500;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.project-knowledge-summary-item > span:last-child {
-  grid-column: 2;
-  color: var(--text-muted);
-  font-size: 11px;
 }
 
 .source-dot {
@@ -1987,7 +1949,6 @@
   .project-heading h1 { font-size: 24px; }
   .project-heading p { font-size: 13px; }
   .conversation-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .project-knowledge-summary-list { grid-template-columns: minmax(0, 1fr); gap: 14px; }
 
   .settings-card { padding: 18px; }
   .global-knowledge-heading { align-items: stretch; flex-direction: column; }

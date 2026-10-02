@@ -153,7 +153,7 @@ describe('ProjectKnowledgePanel', () => {
 
     expect(screen.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
     expect(screen.queryByRole('link', { name: /Call Facts/ })).not.toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Template/ })).toBeVisible()
+    expect(screen.getByRole('link', { name: /Moduli e bozze/ })).toBeVisible()
     expect(screen.queryByRole('link', { name: /Draft/ })).not.toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'Conoscenza utilizzata' })).toBeNull()
   })

@@ -63,7 +63,7 @@ test('configure models and persist the project choice across chat and document v
     await page.screenshot({ path: `artifacts/${testInfo.project.name}-ai-project.png`, fullPage: true })
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true)
     await page.goto(`/projects/${project.id}/knowledge?artifact=template`)
-    await expect(page.getByRole('heading', { name: 'Template', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Moduli e bozze', exact: true })).toBeVisible()
     await expect(page.getByRole('combobox', { name: 'Modello AI' })).toHaveCount(0)
     expect((await (await request.get(`/api/projects/${project.id}/ai-model`)).json()).profile_id).toBe(local.id)
     await page.goto(`/projects/${project.id}`)

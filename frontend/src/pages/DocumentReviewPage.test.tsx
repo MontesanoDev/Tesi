@@ -76,7 +76,7 @@ describe('DocumentReviewPage', () => {
     expect(await screen.findByText('0% completato')).toBeVisible()
     expect(screen.queryByText(/NaN/)).not.toBeInTheDocument()
     expect(screen.getByText('Demo')).toBeVisible()
-    expect(screen.getByRole('link', { name: 'Apri Template' })).toHaveAttribute('href', '/projects/primo/knowledge')
+    expect(screen.getByRole('link', { name: 'Apri moduli e bozze' })).toHaveAttribute('href', '/projects/primo?documents=docx')
     expect(screen.queryByRole('button', { name: 'Salva' })).not.toBeInTheDocument()
     expect(screen.queryByText('Giulia Bianchi')).not.toBeInTheDocument()
   })

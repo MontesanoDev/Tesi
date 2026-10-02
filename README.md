@@ -48,7 +48,8 @@ l'indirizzo di ascolto; `./start.sh --help` mostra le opzioni.
    a tutti i progetti.
 3. Caricare le fonti PDF, TXT o Markdown nel progetto o nella conoscenza
    aziendale. La chat cerca nelle fonti e mostra le evidenze utilizzate.
-4. Nel **Template** del progetto, caricare un modulo `.docx` o un modello
+4. Nella vista del progetto, aprire **Preparazione candidatura → Moduli e bozze**
+   per caricare un modulo `.docx` o un modello
    testuale `.md`/`.txt`. Per Word, il backend individua celle vuote e
    segnaposti, valida le proposte del modello e produce una bozza con report.
    La compilazione Word seleziona il contesto entro limiti di caratteri;

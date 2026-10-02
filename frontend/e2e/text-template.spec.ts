@@ -55,7 +55,7 @@ test('text templates start empty and preserve the imported model separately from
   })
 
   await page.goto(`/projects/${projectId}/knowledge?artifact=template`)
-  const format = page.getByLabel('Formato template')
+  const format = page.getByLabel('Formato documento')
   await expect(format).toHaveValue('docx')
   await format.selectOption('text')
   await expect(page.getByText('Nessun modello caricato')).toBeVisible()
@@ -89,7 +89,7 @@ test('text templates start empty and preserve the imported model separately from
   expect(generations).toBe(1)
 
   await page.reload()
-  await page.getByLabel('Formato template').selectOption('text')
+  await page.getByLabel('Formato documento').selectOption('text')
   await expect(page.getByRole('heading', { name: 'Modulo specifico compilato' })).toBeVisible()
   await page.getByRole('tab', { name: 'Modello', exact: true }).click()
   await expect(page.getByRole('heading', { name: 'Modulo specifico', exact: true })).toBeVisible()

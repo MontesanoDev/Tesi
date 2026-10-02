@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test'
+import { expect, test, type Dialog, type Page } from '@playwright/test'
 import { readFile } from 'node:fs/promises'
 import { documentCompilationFixture } from '../src/test/documentCompilationFixture'
 import type { DocumentCompilation } from '../src/types'
@@ -68,10 +68,10 @@ test('Word upload, compilation, report, downloads and persisted history work ins
   page.on('pageerror', (error) => errors.push(error.message))
   const state = await fixture(page)
   await page.goto('/projects/docx-test')
-  await page.getByRole('link', { name: /Template/ }).click()
+  await page.getByRole('link', { name: /Moduli e bozze/ }).click()
   await expect(page.getByRole('combobox', { name: 'Modello AI' })).toHaveCount(0)
   await expect(page.getByRole('button', { name: /Dati del progetto/ })).toHaveCount(0)
-  await expect(page.getByLabel('Formato template')).toHaveValue('docx')
+  await expect(page.getByLabel('Formato documento')).toHaveValue('docx')
   await expect(page.getByRole('button', { name: 'Compila Word' })).toBeDisabled()
   await page.screenshot({ path: `artifacts/${testInfo.project.name}-docx-empty.png`, fullPage: true })
   await page.getByLabel('Carica modello DOCX').setInputFiles(modelPath)
@@ -121,8 +121,10 @@ test('Word upload, compilation, report, downloads and persisted history work ins
   await page.getByLabel('Compilazioni salvate', { exact: true }).selectOption('run-1')
   await expect(page.getByText('Ragione sociale', { exact: true })).toBeVisible()
   expect(state.generations).toBe(2)
-  await page.getByRole('button', { name: /Residenze universitarie di Catanzaro/ }).click()
-  await expect(page.getByRole('link', { name: /Template/ })).toContainText('2 compilazioni Word')
+  await page.getByRole('button', { name: 'Chiudi moduli e bozze' }).click()
+  await expect(page.getByLabel('Messaggio per Mapi RAG')).toBeVisible()
+  await page.getByRole('link', { name: /Moduli e bozze/ }).click()
+  await expect(page.getByLabel('Compilazioni salvate', { exact: true }).locator('option')).toHaveCount(2)
   expect(errors).toEqual([])
 })
 
@@ -132,11 +134,19 @@ test('model and instructions survive generation failure and prevent accidental n
   await page.goto(url)
   await page.getByLabel('Carica modello DOCX').setInputFiles(modelPath)
   await page.getByLabel(/Indicazioni per la compilazione/).fill('Indicazioni da conservare')
+  const unexpectedDialogs: string[] = []
+  const dismiss = async (dialog: Dialog) => { unexpectedDialogs.push(dialog.message()); await dialog.dismiss() }
+  page.on('dialog', dismiss)
+  await page.getByRole('button', { name: 'Chiudi moduli e bozze' }).click()
+  await page.getByRole('link', { name: /Moduli e bozze/ }).click()
+  await expect(page.getByLabel(/Indicazioni per la compilazione/)).toHaveValue('Indicazioni da conservare')
+  expect(unexpectedDialogs).toEqual([])
+  page.off('dialog', dismiss)
   page.once('dialog', (dialog) => dialog.dismiss())
-  await page.getByLabel('Formato template').selectOption('text')
-  await expect(page.getByLabel('Formato template')).toHaveValue('docx')
+  await page.getByLabel('Formato documento').selectOption('text')
+  await expect(page.getByLabel('Formato documento')).toHaveValue('docx')
   page.once('dialog', (dialog) => dialog.dismiss())
-  await page.getByRole('button', { name: /Residenze universitarie di Catanzaro/ }).click()
+  await page.getByRole('link', { name: '← Tutti i progetti' }).click()
   await expect(page.getByLabel(/Indicazioni per la compilazione/)).toHaveValue('Indicazioni da conservare')
   await page.getByRole('button', { name: 'Compila Word' }).click()
   await expect(page.getByRole('alert')).toHaveText('Risposta del modello non valida')

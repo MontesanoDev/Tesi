@@ -15,12 +15,12 @@ import {
   type FormEvent,
   type KeyboardEvent,
 } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
-import { ProjectKnowledgeSummary } from '../components/ProjectKnowledgeSummary'
+import { ProjectDocumentsPanel } from '../components/ProjectDocumentsPanel'
 import { ProjectModelSelector } from '../components/ProjectModelSelector'
 import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import { useProject } from '../hooks/useProject'
@@ -123,6 +123,7 @@ function ConversationTurn({ turn }: { turn: ChatTurn }) {
 
 export function ProjectWorkspacePage() {
   const { projectId, conversationId } = useParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
   const { project, loading, error, refresh } = useProject(projectId)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -393,6 +394,17 @@ export function ProjectWorkspacePage() {
             </div>
           </header>
 
+          <ProjectDocumentsPanel key={project.id} projectId={project.id}
+            open={searchParams.has('documents')}
+            initialFormat={searchParams.get('documents') === 'text' ? 'text' : 'docx'}
+            onClose={() => {
+              setSearchParams((current) => {
+                const next = new URLSearchParams(current)
+                next.delete('documents')
+                return next
+              }, { replace: true })
+            }} />
+
           {conversationLoading ? (
             <LoadingState label="Caricamento conversazione" />
           ) : conversationError ? (
@@ -400,7 +412,6 @@ export function ProjectWorkspacePage() {
           ) : turns.length === 0 ? (
             <>
               {composer}
-              <ProjectKnowledgeSummary project={project} />
 
               {!conversationId && (
                 <section className="recent-conversations">

@@ -1,9 +1,10 @@
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { createMemoryRouter, RouterProvider } from 'react-router-dom'
+import { createMemoryRouter, Link, RouterProvider, useParams, useSearchParams } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { api } from '../api'
 import type { KnowledgeArtifactDetail } from '../types'
 import { KnowledgeArtifactsPage } from './KnowledgeArtifactsPage'
+import { ProjectDocumentsPanel } from '../components/ProjectDocumentsPanel'
 
 vi.mock('../api', () => ({ api: {
   project: vi.fn(), projectArtifacts: vi.fn(), projectArtifact: vi.fn(),
@@ -23,10 +24,23 @@ function artifacts(id: string): KnowledgeArtifactDetail[] {
   }))
 }
 
+function DocumentsInProject() {
+  const { projectId } = useParams()
+  const [params, setParams] = useSearchParams()
+  return <>
+    <Link to="/projects">Esci dal progetto</Link>
+    <button onClick={() => setParams({ documents: 'docx' })}>Apri documenti</button>
+    <ProjectDocumentsPanel key={projectId} projectId={projectId!}
+      open={params.has('documents')} initialFormat={params.get('documents') === 'text' ? 'text' : 'docx'}
+      onClose={() => setParams({})} />
+  </>
+}
+
 function setup(kind: string | null = 'template') {
   const router = createMemoryRouter([
     { path: '/projects/:projectId/knowledge', element: <KnowledgeArtifactsPage /> },
-    { path: '/projects/:projectId', element: <div>Vista progetto</div> },
+    { path: '/projects/:projectId', element: <DocumentsInProject /> },
+    { path: '/projects', element: <div>Vista progetti</div> },
   ], { initialEntries: [`/projects/primo/knowledge${kind ? `?artifact=${kind}` : ''}`] })
   render(<RouterProvider router={router} />)
   return router
@@ -35,6 +49,7 @@ function setup(kind: string | null = 'template') {
 describe('unified Template navigation', () => {
   afterEach(() => { cleanup(); vi.restoreAllMocks() })
   beforeEach(() => {
+    Element.prototype.scrollIntoView = vi.fn()
     vi.mocked(api.aiSettings).mockReset().mockResolvedValue({ profiles: [], default_profile_id: null })
     vi.mocked(api.projectAiModel).mockReset().mockResolvedValue({ profile_id: null, effective_profile: null })
     vi.mocked(api.documentCompilations).mockReset().mockResolvedValue([])
@@ -52,7 +67,7 @@ describe('unified Template navigation', () => {
   it('opens old Draft links in the compilation tab of Template', async () => {
     setup('output_draft')
     expect(await screen.findByRole('heading', { name: 'Compilazione primo' })).toBeVisible()
-    expect(screen.getByRole('heading', { name: 'Template' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Moduli e bozze' })).toBeVisible()
     expect(screen.getByRole('tab', { name: 'Compilazione' })).toHaveAttribute('aria-selected', 'true')
     expect(screen.queryByRole('navigation', { name: 'Preparazione candidatura' })).not.toBeInTheDocument()
   })
@@ -60,23 +75,23 @@ describe('unified Template navigation', () => {
   it('allows cancelling navigation with unsaved changes, without altering project data', async () => {
     vi.spyOn(window, 'confirm').mockReturnValue(false)
     setup()
-    fireEvent.change(await screen.findByLabelText('Formato template'), { target: { value: 'text' } })
+    fireEvent.change(await screen.findByLabelText('Formato documento'), { target: { value: 'text' } })
     await screen.findByRole('heading', { name: 'Compilazione primo' })
     fireEvent.click(screen.getByRole('tab', { name: 'Modello' }))
     await screen.findByRole('heading', { name: 'Modello primo' })
     fireEvent.click(screen.getByRole('button', { name: 'Modifica testo' }))
     fireEvent.change(screen.getByRole('textbox'), { target: { value: '# Non perdere' } })
-    fireEvent.click(screen.getByRole('button', { name: /Progetto primo/ }))
+    fireEvent.click(screen.getByRole('link', { name: 'Esci dal progetto' }))
     expect(screen.getByRole('textbox')).toHaveValue('# Non perdere')
     vi.mocked(window.confirm).mockReturnValue(true)
-    fireEvent.click(screen.getByRole('button', { name: /Progetto primo/ }))
-    expect(await screen.findByText('Vista progetto')).toBeVisible()
+    fireEvent.click(screen.getByRole('link', { name: 'Esci dal progetto' }))
+    expect(await screen.findByText('Vista progetti')).toBeVisible()
   })
 
   it.each([null, 'call_facts', 'project_facts'])('opens %s links directly in Template', async (kind) => {
     setup(kind)
     expect(await screen.findByRole('button', { name: 'Carica modello' })).toBeVisible()
-    expect(screen.getByRole('heading', { name: 'Template' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Moduli e bozze' })).toBeVisible()
     expect(screen.queryByRole('tab', { name: 'Dati estratti' })).not.toBeInTheDocument()
     expect(screen.queryByRole('tab', { name: 'Dati inseriti' })).not.toBeInTheDocument()
     expect(api.projectArtifact).toHaveBeenCalledWith('primo', 'primo--template', expect.any(AbortSignal))
@@ -85,7 +100,7 @@ describe('unified Template navigation', () => {
   it('opens Word by default and preserves the existing text compilation', async () => {
     setup()
     expect(await screen.findByRole('button', { name: 'Carica modello' })).toBeVisible()
-    fireEvent.change(screen.getByLabelText('Formato template'), { target: { value: 'text' } })
+    fireEvent.change(screen.getByLabelText('Formato documento'), { target: { value: 'text' } })
     expect(await screen.findByRole('heading', { name: 'Compilazione primo' })).toBeVisible()
     fireEvent.click(screen.getByRole('tab', { name: 'Modello' }))
     expect(screen.getByRole('heading', { name: 'Modello primo' })).toBeVisible()
@@ -132,7 +147,7 @@ describe('unified Template navigation', () => {
     const router = setup()
     await waitFor(() => expect(resolve).toBeDefined())
     await act(async () => { await router.navigate('/projects/secondo/knowledge') })
-    fireEvent.change(await screen.findByLabelText('Formato template'), { target: { value: 'text' } })
+    fireEvent.change(await screen.findByLabelText('Formato documento'), { target: { value: 'text' } })
     await screen.findByRole('heading', { name: 'Compilazione secondo' })
     fireEvent.click(screen.getByRole('tab', { name: 'Modello' }))
     await screen.findByRole('heading', { name: 'Modello secondo' })
@@ -144,7 +159,25 @@ describe('unified Template navigation', () => {
   it('reports a missing template instead of loading indefinitely', async () => {
     vi.mocked(api.projectArtifacts).mockResolvedValue(artifacts('primo').filter((item) => item.kind !== 'template'))
     setup()
-    expect(await screen.findByRole('alert')).toHaveTextContent('Template non disponibile')
-    expect(screen.queryByText('Caricamento template')).not.toBeInTheDocument()
+    expect(await screen.findByRole('alert')).toHaveTextContent('Modelli non disponibili')
+    expect(screen.queryByText('Caricamento moduli')).not.toBeInTheDocument()
   })
+  it('redirects legacy links and preserves unsaved Word input when collapsing', async () => {
+    const router = setup()
+    await screen.findByRole('button', { name: 'Carica modello' })
+    expect(router.state.location.pathname).toBe('/projects/primo')
+    expect(router.state.location.search).toBe('?documents=docx')
+    fireEvent.change(screen.getByLabelText('Carica modello DOCX'), { target: {
+      files: [new File(['docx'], 'domanda.docx')],
+    } })
+    fireEvent.change(screen.getByLabelText(/Indicazioni per la compilazione/), { target: {
+      value: 'Conserva le indicazioni',
+    } })
+    fireEvent.click(screen.getByRole('button', { name: 'Chiudi moduli e bozze' }))
+    expect(screen.queryByRole('heading', { name: 'Moduli e bozze' })).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Apri documenti' }))
+    expect(screen.getByText('domanda.docx', { exact: true })).toBeVisible()
+    expect(screen.getByLabelText(/Indicazioni per la compilazione/)).toHaveValue('Conserva le indicazioni')
+  })
+
 })

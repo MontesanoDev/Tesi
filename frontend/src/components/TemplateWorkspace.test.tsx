@@ -135,7 +135,7 @@ describe('TemplateWorkspace', () => {
     await waitFor(() => expect(screen.getByRole('button', { name: 'Genera compilazione' })).toBeEnabled())
     fireEvent.click(screen.getByRole('button', { name: 'Genera compilazione' }))
     expect(await screen.findByRole('heading', { name: 'Candidatura compilata' })).toBeVisible()
-    expect(screen.getByRole('heading', { name: 'Template' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Moduli e bozze' })).toBeVisible()
     expect(screen.getByRole('tab', { name: 'Compilazione' })).toHaveAttribute('aria-selected', 'true')
     expect(onUpdated).toHaveBeenCalledWith(savedOutput)
     expect(api.generateDraft).toHaveBeenCalledExactlyOnceWith('test')
