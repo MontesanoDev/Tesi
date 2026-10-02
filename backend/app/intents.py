@@ -81,6 +81,11 @@ devono esprimere informazioni concrete da trovare, non comandi al motore di
 ricerca come "trova informazioni", "contenuto sostanziale" o "in questione".
 Esplicita il tipo di dato richiesto: un contatto richiede un recapito come
 telefono, email o PEC, non solo il nome del responsabile. Non includere saluti.
+Per i consigli operativi cerca i requisiti e le procedure pertinenti da cui
+ricavarli, non una sezione intitolata "consigli". Per un confronto fra dati
+discordanti cerca le rispettive voci di origine: conserva nelle query i valori
+e le etichette citati dall'utente o dalla cronologia, per verificarli nelle fonti.
+Non assumere che una spiegazione della differenza proposta dall'utente sia vera.
 Non rispondere alla domanda documentale in questa fase.
 
 Restituisci solo un oggetto JSON, senza altri campi:
