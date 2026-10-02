@@ -13,7 +13,6 @@ import { api } from '../api'
 import { fragmentCountLabel, markdownFilename } from '../sourceText'
 import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import type { ProjectDetail, ProjectFile } from '../types'
-import { ProjectPreparationPanel } from './ProjectPreparationPanel'
 import { StatusPill } from './StatusPill'
 
 interface ProjectKnowledgePanelProps {
@@ -290,8 +289,6 @@ export function ProjectKnowledgePanel({
             )}
           </div>
         </section>
-
-        <ProjectPreparationPanel project={project} />
       </aside>
 
       {fileToDelete && (

@@ -71,7 +71,7 @@ export function DocumentReviewPage() {
         </div>
         <StatusPill tone="info">Demo</StatusPill>
         <div className="review-actions">
-          <Link className="button" to={`/projects/${project.id}?documents=docx`}>Apri moduli e bozze</Link>
+          <Link className="button" to={`/projects/${project.id}`}>Apri chat del progetto</Link>
         </div>
       </header>
 
@@ -100,7 +100,6 @@ export function DocumentReviewPage() {
           ))}
           <p className="document-note">
             Questa anteprima mostra dati dimostrativi e non permette modifiche.
-            Le compilazioni e i report sono disponibili in Moduli e bozze nella vista del progetto.
           </p>
         </article>
 

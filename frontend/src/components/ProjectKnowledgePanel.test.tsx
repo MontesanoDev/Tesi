@@ -148,12 +148,12 @@ describe('ProjectKnowledgePanel', () => {
     expect(api.uploadProjectFile).not.toHaveBeenCalled()
   })
 
-  it('keeps the preparation workflow in the context sidebar', () => {
+  it('keeps only source management in the context sidebar', () => {
     renderPanel()
 
-    expect(screen.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
+    expect(screen.queryByRole('heading', { name: 'Preparazione candidatura' })).not.toBeInTheDocument()
     expect(screen.queryByRole('link', { name: /Call Facts/ })).not.toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Moduli e bozze/ })).toBeVisible()
+    expect(screen.queryByRole('link', { name: /Moduli e bozze/ })).not.toBeInTheDocument()
     expect(screen.queryByRole('link', { name: /Draft/ })).not.toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'Conoscenza utilizzata' })).toBeNull()
   })

@@ -48,12 +48,13 @@ l'indirizzo di ascolto; `./start.sh --help` mostra le opzioni.
    a tutti i progetti.
 3. Caricare le fonti PDF, TXT o Markdown nel progetto o nella conoscenza
    aziendale. La chat cerca nelle fonti e mostra le evidenze utilizzate.
-4. Nella vista del progetto, aprire **Preparazione candidatura → Moduli e bozze**
-   per caricare un modulo `.docx` o un modello
-   testuale `.md`/`.txt`. Per Word, il backend individua celle vuote e
-   segnaposti, valida le proposte del modello e produce una bozza con report.
-   La compilazione Word seleziona il contesto entro limiti di caratteri;
-   non usa il retrieval della chat. Le bozze richiedono revisione umana.
+
+La precedente interfaccia di compilazione dei moduli è stata rimossa. Il backend
+conserva le API di compilazione e i documenti già generati; allegati e compilazione
+attraverso la chat non sono ancora implementati. Per i DOCX, il backend individua
+celle vuote e segnaposti, valida le proposte del modello e produce una bozza con
+report. Seleziona il contesto entro limiti di caratteri, senza usare il retrieval
+della chat. Le bozze richiedono revisione umana.
 
 La chat usa il modello scelto nel progetto per decidere se il messaggio richiede
 una ricerca. Saluti, ringraziamenti e chiarimenti possono ricevere una risposta

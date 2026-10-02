@@ -1,4 +1,20 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
+
+async function mockChatProject(page: Page) {
+  const id = 'fondo-riqualificazione-2027'
+  await page.route(`**/api/projects/${id}`, (route) => route.fulfill({ json: {
+    id, title: 'Fondo Riqualificazione 2027', description: 'Progetto per le prove della chat',
+    status: 'In analisi', status_tone: 'info', updated_label: '', source_count: 0,
+    model_count: 0, instructions: '', call_fact_count: 0, missing_fact_count: 0,
+    files: [], knowledge_sources: [], conversations: [],
+  } }))
+  await page.route('**/api/settings/ai', (route) => route.fulfill({ json: {
+    profiles: [], default_profile_id: null,
+  } }))
+  await page.route(`**/api/projects/${id}/ai-model`, (route) => route.fulfill({ json: {
+    profile_id: null, effective_profile: null,
+  } }))
+}
 
 async function expectNoHorizontalOverflow(page: import('@playwright/test').Page) {
   const dimensions = await page.evaluate(() => ({
@@ -221,28 +237,16 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
     })
   })
 
-  await page.goto('/projects/contesto-progetto')
+  await page.goto('/projects/contesto-progetto?documents=docx')
   await expect(page.getByRole('heading', { name: 'Contesto progetto' }).last()).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Conoscenza utilizzata' })).toHaveCount(0)
   await expect(page.getByText('Dati del progetto')).toHaveCount(0)
   await expect(page.getByText('Company KB')).toHaveCount(0)
   await expect(page.getByText('General KB')).toHaveCount(0)
-  await expect(page.getByRole('heading', { name: 'Preparazione candidatura' })).toBeVisible()
-  await expect(
-    page.locator('.project-context-panel').getByRole('heading', {
-      name: 'Preparazione candidatura',
-    }),
-  ).toBeVisible()
-  await expect(
-    page.locator('.project-context-panel').getByRole('heading', {
-      name: 'Conoscenza utilizzata',
-    }),
-  ).toHaveCount(0)
-  await expect(page.getByRole('link', { name: /Dati del progetto/ })).toHaveCount(0)
-  await expect(page.getByRole('link', { name: /Moduli e bozze/ })).toHaveAttribute(
-    'href',
-    '/projects/contesto-progetto?documents=docx',
-  )
+  await expect(page.getByRole('heading', { name: 'Preparazione candidatura' })).toHaveCount(0)
+  await expect(page.getByRole('link', { name: /Moduli e bozze/ })).toHaveCount(0)
+  await expect(page.getByRole('heading', { name: 'Moduli e bozze' })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Compila Word' })).toHaveCount(0)
   await expect(page.getByRole('link', { name: /Draft/ })).toHaveCount(0)
   const composer = page.getByLabel('Messaggio per Mapi RAG')
   await expect(composer).toHaveAttribute('maxlength', '4000')
@@ -493,6 +497,7 @@ test('company knowledge is managed in the global archive', async ({ page }, test
 })
 
 test('missing evidence is explained as an assistant answer', async ({ page }) => {
+  await mockChatProject(page)
   await page.route('**/api/projects/fondo-riqualificazione-2027/answer', async (route) => {
     await route.fulfill({
       contentType: 'application/json',
@@ -523,6 +528,7 @@ test('missing evidence is explained as an assistant answer', async ({ page }) =>
 })
 
 test('conversation preserves earlier turns without project evidence', async ({ page }, testInfo) => {
+  await mockChatProject(page)
   const conversationId = 'conv-history-test'
   const persistedTurns: Array<Record<string, unknown>> = []
 

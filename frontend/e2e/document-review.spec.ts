@@ -54,7 +54,7 @@ test('document review handles an empty document without NaN progress', async ({ 
   await expect(page.locator('.progress-track > span')).toHaveAttribute('style', 'width: 0%;')
   await expect(page.getByText(/NaN/)).toHaveCount(0)
   await expect(page.getByText('Demo', { exact: true })).toBeVisible()
-  await expect(page.getByRole('link', { name: 'Apri moduli e bozze' })).toHaveAttribute('href', '/projects/review-test?documents=docx')
+  await expect(page.getByRole('link', { name: 'Apri chat del progetto' })).toHaveAttribute('href', '/projects/review-test')
   await expect(page.getByRole('button', { name: 'Salva', exact: true })).toHaveCount(0)
   expect(errors).toEqual([])
   await page.screenshot({ path: `artifacts/${testInfo.project.name}-review-empty.png`, fullPage: true })
