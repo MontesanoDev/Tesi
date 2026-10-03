@@ -121,7 +121,10 @@ export function ProjectFormsPanel({ projectId, forms, onProjectChange }: Props) 
       <input ref={input} type="file" multiple className="source-file-input" disabled={busy}
         aria-label="Seleziona moduli da compilare" accept=".docx,.pdf,.txt,.md" onChange={upload} />
     </div>
-    <p className="project-forms-help">DOCX, PDF, TXT o Markdown · Max 20 MB per file</p>
+    <p className="project-forms-help">Formati caricabili: DOCX, PDF, TXT o Markdown · Max 20 MB per file</p>
+    <p className="project-forms-help">
+      I PDF possono essere archiviati, ma non compilati. La compilazione dalla chat non è ancora disponibile.
+    </p>
     {progress && <p className="upload-feedback" role="status">{progress}</p>}
     {message && <p className="upload-feedback upload-feedback--success" role="status">{message}</p>}
     {errors.length > 0 && <ul className="project-forms-errors upload-feedback--error" role="alert">
