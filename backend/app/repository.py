@@ -882,7 +882,7 @@ def get_project_file_record(project_id: str, file_id: int) -> dict | None:
             SELECT id, project_id, name, metadata, kind, status, storage_path,
                    mime_type, byte_size, page_count, chunk_count
             FROM project_files
-            WHERE project_id = ? AND id = ? AND kind != 'artifact'
+            WHERE project_id = ? AND id = ? AND kind IN ('source', 'template')
             """,
             (project_id, file_id),
         ).fetchone()
@@ -937,7 +937,7 @@ def update_project_file_content(
             """
             SELECT mime_type
             FROM project_files
-            WHERE project_id = ? AND id = ? AND kind != 'artifact'
+            WHERE project_id = ? AND id = ? AND kind IN ('source', 'template')
             """,
             (project_id, file_id),
         ).fetchone()

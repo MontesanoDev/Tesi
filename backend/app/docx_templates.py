@@ -105,7 +105,7 @@ def _placeholder_matches(text: str) -> list[re.Match]:
     return matches
 
 
-def _check_package(data: bytes) -> None:
+def validate_docx_package(data: bytes) -> None:
     if len(data) > MAX_DOCX_BYTES:
         raise DocxTooLargeError("Il modello supera il limite di 20 MB")
     try:
@@ -371,7 +371,7 @@ class DocxLayout:
 
 
 def inspect_docx(data: bytes) -> DocxLayout:
-    _check_package(data)
+    validate_docx_package(data)
     try:
         document = Document(BytesIO(data))
     except (ValueError, KeyError, TypeError, etree.LxmlError) as exc:

@@ -15,7 +15,7 @@ export interface ProjectFile {
   id: number
   name: string
   metadata: string
-  kind: 'source' | 'template'
+  kind: 'source' | 'template' | 'form'
   status: string
   mime_type?: string | null
   byte_size?: number

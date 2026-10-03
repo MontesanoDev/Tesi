@@ -186,6 +186,17 @@ export const api = {
     }),
   projectArtifacts: (projectId: string, signal?: AbortSignal) =>
     request<KnowledgeArtifactSummary[]>(`/projects/${projectId}/artifacts`, { signal }),
+  uploadProjectForm: (projectId: string, file: File, signal?: AbortSignal) => {
+    const body = new FormData()
+    body.append('file', file)
+    return request<ProjectFile>(`/projects/${projectId}/forms`, { method: 'POST', body, signal })
+  },
+  downloadProjectForm: async (projectId: string, formId: number, signal?: AbortSignal) => {
+    const response = await requestResponse(`/projects/${projectId}/forms/${formId}/download`, { signal })
+    return response.blob()
+  },
+  deleteProjectForm: (projectId: string, formId: number, signal?: AbortSignal) =>
+    request<void>(`/projects/${projectId}/forms/${formId}`, { method: 'DELETE', signal }),
   projectArtifact: (projectId: string, artifactId: string, signal?: AbortSignal) =>
     request<KnowledgeArtifactDetail>(
       `/projects/${projectId}/artifacts/${encodeURIComponent(artifactId)}`,

@@ -54,6 +54,7 @@ from app.ingestion import (
     ingest_upload,
 )
 from app.intents import plan_chat_turn
+from app.project_forms import router as project_forms_router
 from app.repository import (
     add_global_document,
     add_project_file,
@@ -162,6 +163,7 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(title="Mapi RAG API", version="0.1.0", lifespan=lifespan)
 app.include_router(document_compilation_router)
+app.include_router(project_forms_router)
 app.include_router(ai_router)
 app.include_router(retrieval_router)
 app.add_middleware(

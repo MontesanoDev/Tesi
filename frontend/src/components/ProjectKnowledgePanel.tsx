@@ -14,6 +14,7 @@ import { fragmentCountLabel, markdownFilename } from '../sourceText'
 import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import type { ProjectDetail, ProjectFile } from '../types'
 import { StatusPill } from './StatusPill'
+import { ProjectFormsPanel } from './ProjectFormsPanel'
 
 interface ProjectKnowledgePanelProps {
   project: ProjectDetail
@@ -183,9 +184,10 @@ export function ProjectKnowledgePanel({
     }
   }
 
-  const sourceCountLabel = project.files.length === 1
+  const sources = project.files.filter((file) => file.kind !== 'form')
+  const sourceCountLabel = sources.length === 1
     ? '1 fonte'
-    : `${project.files.length} fonti`
+    : `${sources.length} fonti`
 
   return (
     <>
@@ -236,10 +238,10 @@ export function ProjectKnowledgePanel({
             <p className="upload-feedback upload-feedback--error" role="alert">{error}</p>
           )}
           <div className="file-list context-file-list">
-            {project.files.length === 0 ? (
+            {sources.length === 0 ? (
               <p className="empty-list">Nessuna fonte nel progetto</p>
             ) : (
-              project.files.map((file) => (
+              sources.map((file) => (
                 <div className="file-row context-file-row" key={file.id}>
                   <FileText size={17} />
                   <div>
@@ -289,6 +291,8 @@ export function ProjectKnowledgePanel({
             )}
           </div>
         </section>
+        <ProjectFormsPanel key={project.id} projectId={project.id}
+          forms={project.files.filter((file) => file.kind === 'form')} onProjectChange={onProjectChange} />
       </aside>
 
       {fileToDelete && (
