@@ -69,11 +69,20 @@ delle ricerche, elimina i duplicati e seleziona quattro frammenti principali;
 aggiunge poi il testo adiacente, fino a un massimo di otto evidenze.
 Non usa un elenco di frasi per riconoscere ringraziamenti o domande successive.
 
-Una risposta diretta richiede una chiamata AI; una risposta documentale ne
+Una risposta diretta richiede normalmente una chiamata AI; una risposta documentale ne
 richiede normalmente due. Il limite complessivo della chat, inclusi decisione,
 ricerca, risposta ed eventuale correzione, è di 180 secondi con Ollama e 90 con
 gli altri provider. Il conteggio dei token include tutte le chiamate di una
 risposta riuscita, se il provider comunica i consumi.
+
+Per la decisione iniziale, Ollama riceve lo schema JSON derivato dal validatore.
+Una decisione non valida consente un solo tentativo di correzione. Il limite
+di risposta per questa fase è 1.024 token, esteso a 2.048 se il provider segnala
+un troncamento. La risposta documentale dispone di 2.048 token; in caso di
+troncamento viene richiesta di nuovo con le stesse fonti e un limite di 4.096.
+Questo secondo tentativo è ammesso una sola volta, anche se avviene durante
+la correzione delle citazioni. Le risposte parziali vengono scartate e tutti
+i tentativi restano entro il limite complessivo di tempo.
 
 Il backend controlla che i numeri delle citazioni corrispondano alle evidenze
 inviate al modello. Se trova riferimenti fuori elenco, chiede una sola

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import re
 from dataclasses import dataclass, replace
 
@@ -16,6 +17,11 @@ CHAT_TIMEOUT_SECONDS = 90
 OLLAMA_CHAT_TIMEOUT_SECONDS = 180
 CHAT_READ_TIMEOUT_SECONDS = 30
 CHAT_CONNECT_TIMEOUT_SECONDS = 10
+# Output limits, independent of the retrieved context. A single larger attempt
+# is allowed on an explicit length stop; partial JSON is never accepted.
+ANSWER_OUTPUT_TOKENS = 2048
+ANSWER_RETRY_OUTPUT_TOKENS = 4096
+logger = logging.getLogger(__name__)
 
 
 class GenerationError(RuntimeError):
@@ -24,6 +30,15 @@ class GenerationError(RuntimeError):
 
 class GenerationNotConfiguredError(GenerationError):
     pass
+
+
+class GenerationTruncatedError(GenerationError):
+    def __init__(self, token_limit: int, total_tokens: int | None):
+        super().__init__(
+            f"Il modello ha raggiunto il limite di {token_limit} token di risposta "
+            "prima di completarla. Riprova con una richiesta piu breve."
+        )
+        self.total_tokens = total_tokens
 
 
 class UnavailableCitationError(GenerationError):
@@ -230,9 +245,11 @@ async def request_model_content(
     settings: AISettings,
     body: dict,
     read_timeout_seconds: float,
+    *,
+    response_schema: dict | None = None,
 ) -> tuple[str, str, dict]:
     try:
-        response = await post_chat(client, settings, body)
+        response = await post_chat(client, settings, body, response_schema=response_schema)
         response.raise_for_status()
         payload = response.json()
     except httpx.ConnectTimeout as exc:
@@ -266,7 +283,17 @@ async def request_model_content(
         raise GenerationError("La risposta del modello non rispetta il contratto atteso") from exc
     if not isinstance(content, str) or not isinstance(model, str):
         raise GenerationError("La risposta del modello non contiene testo valido")
-    if choice.get("finish_reason", "stop") != "stop":
+    reason = choice.get("finish_reason", "stop")
+    if reason != "stop":
+        logger.warning(
+            "Chat interrupted: provider=%s model=%s finish_reason=%r output_limit=%s",
+            settings.provider, settings.model, reason, body.get("max_tokens"),
+        )
+    if reason == "length":
+        raise GenerationTruncatedError(body["max_tokens"], _total_tokens(payload.get("usage", {})))
+    if reason == "content_filter":
+        raise GenerationError("Il servizio AI ha bloccato la risposta con un filtro sui contenuti")
+    if reason != "stop":
         raise GenerationError("Il modello ha interrotto la risposta prima del completamento")
     return content, model, payload.get("usage", {})
 
@@ -296,23 +323,45 @@ async def generate_grounded_answer(
         "response_format": {"type": "json_object"},
         "thinking": {"type": "disabled"},
         "temperature": 0.1,
-        "max_tokens": 900,
+        "max_tokens": ANSWER_OUTPUT_TOKENS,
     }
     timeout_seconds = chat_timeout_seconds()
     http_timeout = chat_http_timeout()
     repairing = False
     try:
-        # One deadline covers both calls; only an unavailable citation warrants a repair.
+        # The deadline covers the answer, one length retry and one citation repair.
         async with asyncio.timeout(timeout_seconds):
             async with httpx.AsyncClient(timeout=http_timeout) as client:
-                content, model, usage = await request_model_content(
-                    client, settings, request_body, http_timeout.read,
-                )
+                length_retried = False
+                token_counts: list[int | None] = []
+
+                async def complete(body: dict) -> tuple[str, str, dict]:
+                    nonlocal length_retried
+                    while True:
+                        attempt = {**body, "max_tokens": (
+                            ANSWER_RETRY_OUTPUT_TOKENS if length_retried else ANSWER_OUTPUT_TOKENS
+                        )}
+                        try:
+                            result = await request_model_content(
+                                client, settings, attempt, http_timeout.read,
+                            )
+                            token_counts.append(_total_tokens(result[2]))
+                            return result
+                        except GenerationTruncatedError as exc:
+                            token_counts.append(exc.total_tokens)
+                            if length_retried:
+                                raise
+                            length_retried = True
+
+                def with_total(answer: GeneratedAnswer) -> GeneratedAnswer:
+                    total = sum(token_counts) if all(n is not None for n in token_counts) else None
+                    return replace(answer, total_tokens=total)
+
+                content, model, usage = await complete(request_body)
                 try:
-                    return _parse_content(content, len(evidence), model, usage)
+                    return with_total(_parse_content(content, len(evidence), model, usage))
                 except UnavailableCitationError:
                     repairing = True
-                first_tokens = _total_tokens(usage)
                 # Keep the original context and numbering. Never run retrieval again
                 # or rewrite the invalid citations in application code.
                 repair_body = {
@@ -323,16 +372,9 @@ async def generate_grounded_answer(
                         {"role": "user", "content": _citation_repair_prompt(len(evidence))},
                     ],
                 }
-                content, model, usage = await request_model_content(
-                    client, settings, repair_body, http_timeout.read,
-                )
+                content, model, usage = await complete(repair_body)
                 repaired = _parse_content(content, len(evidence), model, usage)
-                # A partial count would understate the cost of the successful answer.
-                total = (
-                    first_tokens + repaired.total_tokens
-                    if first_tokens is not None and repaired.total_tokens is not None else None
-                )
-                return replace(repaired, total_tokens=total)
+                return with_total(repaired)
     except UnavailableCitationError:
         raise GenerationError(
             "La risposta non e stata mostrata perche contiene citazioni non valide anche "

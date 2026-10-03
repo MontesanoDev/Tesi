@@ -42,6 +42,8 @@ async def chat(tmp_path, monkeypatch):
             assert body["model"] == "selected-model"
             assert replies, "Unexpected additional model call"
             reply = replies.pop(0)
+            if isinstance(reply, httpx.Response):
+                return reply
             content = reply if isinstance(reply, str) else json.dumps(reply)
             return httpx.Response(200, json={
                 "choices": [{"message": {"content": content}, "finish_reason": "stop"}],
@@ -170,7 +172,7 @@ async def test_follow_up_uses_resolved_query_and_fresh_sources(chat):
 ])
 async def test_invalid_plan_does_not_trigger_arbitrary_search_or_answer(chat, monkeypatch, plan):
     client, replies, requests = chat
-    replies.append(plan)
+    replies.extend([plan, plan])
     monkeypatch.setattr(main, "search_project_evidence", no_search)
     response = await client.post(f"{URL}/answer", json={"question": "Mi aiuti?"})
     payload = response.json()
@@ -178,7 +180,61 @@ async def test_invalid_plan_does_not_trigger_arbitrary_search_or_answer(chat, mo
     assert "decisione valida" in payload["notice"]
     assert payload["answer"] is None
     assert payload["evidence"] == []
-    assert len(requests) == 1
+    assert len(requests) == 2
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("first,corrected", [
+    (
+        {"action": "reply", "answer": "Sono Mapi RAG."},
+        {"action": "reply", "answer": "Sono Mapi RAG.", "queries": []},
+    ),
+    (
+        {"action": "retrieve", "answer": "Fornisci il documento", "queries": ["Scadenza"]},
+        {"action": "retrieve", "answer": "", "queries": ["Scadenza"]},
+    ),
+])
+async def test_invalid_decision_is_repaired_before_search_or_reply(chat, first, corrected):
+    client, replies, requests = chat
+    await client.post(f"{URL}/files", files={
+        "file": ("scadenza.txt", b"Scadenza: 15 settembre", "text/plain"),
+    })
+    replies.extend([first, corrected])
+    retrieving = corrected["action"] == "retrieve"
+    if retrieving:
+        replies.append({"answer": "Scadenza 15 settembre [1].", "citation_ids": [1]})
+    payload = (await client.post(f"{URL}/answer", json={"question": "Mi aiuti?"})).json()
+    assert payload["generation_status"] == ("completed" if retrieving else "direct")
+    assert len(requests) == (3 if retrieving else 2)
+    assert payload["total_tokens"] == 20 * len(requests)
+    assert requests[1]["messages"][:2] == requests[0]["messages"]
+    assert requests[1]["messages"][-2]["content"] == json.dumps(first)
+    assert "contratto" in requests[1]["messages"][-1]["content"]
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("recovered", [False, True])
+@pytest.mark.parametrize("known_usage", [False, True])
+async def test_truncated_plan_has_one_retry_and_includes_its_usage(chat, recovered, known_usage):
+    client, replies, requests = chat
+    truncated = httpx.Response(200, json={
+        "choices": [{"message": {"content": '{"action":'}, "finish_reason": "length"}],
+        "usage": {"total_tokens": 30} if known_usage else {},
+    })
+    replies.extend([
+        truncated,
+        {"action": "reply", "answer": "Ciao!", "queries": []} if recovered else truncated,
+    ])
+    payload = (await client.post(f"{URL}/answer", json={"question": "Ciao"})).json()
+    assert [r["max_tokens"] for r in requests] == [1024, 2048]
+    assert requests[0]["messages"] == requests[1]["messages"]
+    assert payload["evidence"] == []
+    if recovered:
+        assert payload["generation_status"] == "direct"
+        assert payload["total_tokens"] == (50 if known_usage else None)
+    else:
+        assert payload["generation_status"] == "failed"
+        assert "limite di 2048 token" in payload["notice"]
 
 
 @pytest.mark.anyio

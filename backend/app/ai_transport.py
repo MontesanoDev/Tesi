@@ -140,6 +140,8 @@ async def post_chat(
     client: httpx.AsyncClient,
     settings: AISettings,
     body: dict,
+    *,
+    response_schema: dict | None = None,
 ) -> httpx.Response:
     if settings.provider == "openai":
         return await _openai(client, settings, body)
@@ -168,7 +170,8 @@ async def post_chat(
             "model": settings.model,
             "messages": payload["messages"],
             "stream": False,
-            "format": "json",
+            # JSON mode alone does not constrain keys, types or required fields.
+            "format": response_schema if response_schema is not None else "json",
             "think": False,
             "options": {
                 "temperature": payload.get("temperature", 0.1),

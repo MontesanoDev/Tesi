@@ -288,11 +288,12 @@ async def test_concurrent_operations_pin_model_and_secret_across_updates(client)
 
 
 @pytest.mark.anyio
+@pytest.mark.parametrize("use_schema", [False, True])
 @pytest.mark.parametrize(
     "provider",
     ["deepseek", "compatible", "ollama", "google", "mistral", "xai", "groq", "openrouter"],
 )
-async def test_provider_wire_format_and_usage(provider):
+async def test_provider_wire_format_and_usage(provider, use_schema):
     settings = AISettings(
         SECRET if provider != "ollama" else None,
         "test-model",
@@ -304,6 +305,7 @@ async def test_provider_wire_format_and_usage(provider):
         {"role": "system", "content": "Restituisci JSON"},
         {"role": "user", "content": "Dati di prova"},
     ]
+    schema = {"type": "object", "properties": {"ok": {"type": "boolean"}}, "required": ["ok"]}
 
     def handler(request):
         body = json.loads(request.content)
@@ -313,7 +315,8 @@ async def test_provider_wire_format_and_usage(provider):
             assert request.url == "https://provider.test/api/chat"
             assert "authorization" not in request.headers
             assert body["options"] == {"temperature": 0.1, "num_ctx": 65536, "num_predict": 1234}
-            assert body["format"] == "json" and body["stream"] is False
+            assert body["format"] == (schema if use_schema else "json")
+            assert body["stream"] is False
             return httpx.Response(
                 200,
                 json={
@@ -347,6 +350,7 @@ async def test_provider_wire_format_and_usage(provider):
                 "response_format": {"type": "json_object"},
                 "thinking": {"type": "disabled"},
             },
+            response_schema=schema if use_schema else None,
         )
     assert response.json()["choices"][0]["message"]["content"] == '{"ok":true}'
     assert response.json()["usage"]["total_tokens"] == 14

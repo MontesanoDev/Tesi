@@ -196,17 +196,17 @@ def test_generation_prompt_includes_evidence_and_recent_history():
     assert "Frammento: 5" not in prompt
 
 
-def _provider_response(provider, content, tokens=120):
+def _provider_response(provider, content, tokens=120, finish="stop"):
     if provider == "ollama":
         return httpx.Response(200, json={
             "message": {"content": content},
             "done": True,
-            "done_reason": "stop",
+            "done_reason": finish,
             "prompt_eval_count": tokens - 20,
             "eval_count": 20,
         })
     return httpx.Response(200, json={
-        "choices": [{"message": {"content": content}, "finish_reason": "stop"}],
+        "choices": [{"message": {"content": content}, "finish_reason": finish}],
         "usage": {"total_tokens": tokens},
     })
 
@@ -216,6 +216,92 @@ _EVIDENCE = [{
 }]
 _INVALID_ANSWER = '{"answer":"La scadenza e il 15 settembre [24].","citation_ids":[24]}'
 _VALID_ANSWER = '{"answer":"La scadenza e il 15 settembre [1].","citation_ids":[1]}'
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("provider", ["ollama", "deepseek"])
+@pytest.mark.parametrize("during_repair", [False, True])
+async def test_length_retry_preserves_context_and_counts_every_call(
+    mock_transport, provider, during_repair,
+):
+    requests = []
+
+    def handler(request):
+        requests.append(json.loads(request.content))
+        if during_repair and len(requests) == 1:
+            return _provider_response(provider, _INVALID_ANSWER)
+        if len(requests) == (2 if during_repair else 1):
+            return _provider_response(provider, '{"answer":"parziale', finish="length")
+        return _provider_response(provider, _VALID_ANSWER)
+
+    mock_transport(handler)
+    with use_ai_settings(_settings(provider)):
+        answer = await generation.generate_grounded_answer("Scadenza?", _EVIDENCE)
+    assert len(requests) == (3 if during_repair else 2)
+    assert answer.total_tokens == 120 * len(requests)
+    assert answer.citations == [1]
+    assert requests[-1]["messages"] == requests[-2]["messages"]
+    budgets = [
+        r["options"]["num_predict"] if provider == "ollama" else r["max_tokens"]
+        for r in requests
+    ]
+    assert budgets == ([2048, 2048, 4096] if during_repair else [2048, 4096])
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("with_citation_repair", [False, True])
+async def test_only_one_length_retry_across_answer_and_citation_repair(
+    mock_transport, with_citation_repair,
+):
+    requests = []
+
+    def handler(request):
+        requests.append(json.loads(request.content))
+        if with_citation_repair and len(requests) == 2:
+            return _provider_response("deepseek", _INVALID_ANSWER)
+        # Even complete-looking content must be rejected if the provider truncated it.
+        return _provider_response("deepseek", _VALID_ANSWER, finish="length")
+
+    mock_transport(handler)
+    with use_ai_settings(_settings("deepseek")):
+        with pytest.raises(GenerationError, match="limite di 4096 token"):
+            await generation.generate_grounded_answer("Scadenza?", _EVIDENCE)
+    assert len(requests) == (3 if with_citation_repair else 2)
+
+
+@pytest.mark.anyio
+async def test_unknown_truncated_usage_does_not_report_partial_cost(mock_transport):
+    requests = []
+
+    def handler(request):
+        requests.append(request)
+        if len(requests) == 1:
+            return httpx.Response(200, json={
+                "choices": [{"message": {"content": '{"answer":'}, "finish_reason": "length"}],
+            })
+        return _provider_response("deepseek", _VALID_ANSWER)
+
+    mock_transport(handler)
+    with use_ai_settings(_settings("deepseek")):
+        answer = await generation.generate_grounded_answer("Scadenza?", _EVIDENCE)
+    assert answer.total_tokens is None
+    assert len(requests) == 2
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("reason", ["content_filter", "incomplete", "tool_calls"])
+async def test_other_finish_reasons_do_not_trigger_length_retry(mock_transport, reason):
+    requests = []
+
+    def handler(request):
+        requests.append(request)
+        return _provider_response("deepseek", _VALID_ANSWER, finish=reason)
+
+    mock_transport(handler)
+    with use_ai_settings(_settings("deepseek")):
+        with pytest.raises(GenerationError):
+            await generation.generate_grounded_answer("Scadenza?", _EVIDENCE)
+    assert len(requests) == 1
 
 
 @pytest.mark.anyio
@@ -272,7 +358,7 @@ async def test_chat_stops_after_one_failed_citation_repair(mock_transport, provi
 
 
 @pytest.mark.anyio
-@pytest.mark.parametrize("failure", ["json", "schema", "truncation", "http", "timeout"])
+@pytest.mark.parametrize("failure", ["json", "schema", "http", "timeout"])
 @pytest.mark.parametrize("during_repair", [False, True])
 async def test_chat_does_not_retry_other_failures(mock_transport, failure, during_repair):
     requests = []
@@ -285,10 +371,6 @@ async def test_chat_does_not_retry_other_failures(mock_transport, failure, durin
             raise httpx.ReadTimeout("synthetic failure", request=request)
         if failure == "http":
             return httpx.Response(503)
-        if failure == "truncation":
-            return httpx.Response(200, json={
-                "choices": [{"message": {"content": _VALID_ANSWER}, "finish_reason": "length"}],
-            })
         return _provider_response("deepseek", '{"answer":' if failure == "json" else "[]")
 
     mock_transport(handler)
@@ -327,7 +409,10 @@ async def test_repaired_answer_does_not_report_partial_token_cost(
 
 @pytest.mark.anyio
 @pytest.mark.parametrize("provider", ["ollama", "deepseek"])
-async def test_citation_repair_shares_original_deadline(monkeypatch, mock_transport, provider):
+@pytest.mark.parametrize("first_failure", ["citation", "length"])
+async def test_retries_share_original_deadline(
+    monkeypatch, mock_transport, provider, first_failure,
+):
     # Record timeout scopes as well as cancellation: a second full deadline must
     # never be granted to the repair, even when the first call was fast.
     timeout = asyncio.timeout
@@ -344,6 +429,8 @@ async def test_citation_repair_shares_original_deadline(monkeypatch, mock_transp
     async def handler(request):
         requests.append(request)
         if len(requests) == 1:
+            if first_failure == "length":
+                return _provider_response(provider, '{"answer":"parziale', finish="length")
             return _provider_response(provider, _INVALID_ANSWER)
         try:
             await asyncio.sleep(60)
@@ -352,7 +439,7 @@ async def test_citation_repair_shares_original_deadline(monkeypatch, mock_transp
 
     mock_transport(handler)
     with use_ai_settings(_settings(provider)):
-        with pytest.raises(GenerationError, match="limite complessivo"):
+        with pytest.raises(GenerationError, match="secondi"):
             await generation.generate_grounded_answer("Qual e la scadenza?", _EVIDENCE)
     assert deadlines == [180 if provider == "ollama" else 90]
     assert cancelled.is_set()

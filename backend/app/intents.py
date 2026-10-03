@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import re
 from dataclasses import dataclass
 from typing import Annotated, Literal
@@ -14,6 +15,7 @@ from app.config import get_ai_settings
 from app.generation import (
     GenerationError,
     GenerationNotConfiguredError,
+    GenerationTruncatedError,
     _total_tokens,
     chat_http_timeout,
     conversation_context,
@@ -22,6 +24,8 @@ from app.generation import (
 
 # Bound search work independently of the model's interpretation of the message.
 MAX_SEARCH_QUERIES = 3
+PLANNING_OUTPUT_TOKENS = 1024
+logger = logging.getLogger(__name__)
 Query = Annotated[str, Field(min_length=1, max_length=500)]
 
 
@@ -96,6 +100,19 @@ Ogni query deve avere al massimo 500 caratteri; answer al massimo 1500 caratteri
 """.strip()
 
 
+PLANNING_REPAIR_PROMPT = """
+La decisione precedente non rispetta il contratto. Rileggi l'ultimo messaggio
+dell'utente nella richiesta originale e restituisci soltanto il JSON corretto.
+Sono obbligatori tutti e tre i campi: action, answer, queries.
+Per reply: answer contiene una breve risposta conversazionale e queries e [].
+Per retrieve: answer e esattamente "" e queries contiene da una a tre ricerche
+concrete nei documenti. Non chiedere all'utente di fornire il documento prima
+di averlo cercato e non anticipare la risposta documentale.
+Ogni query ha al massimo 500 caratteri; answer al massimo 1500 caratteri.
+La decisione respinta non e una fonte fattuale. Non aggiungere altri campi.
+""".strip()
+
+
 async def plan_chat_turn(question: str, history: list[dict]) -> PlannedTurn:
     settings = get_ai_settings()
     if not settings.configured:
@@ -112,19 +129,45 @@ async def plan_chat_turn(question: str, history: list[dict]) -> PlannedTurn:
         "response_format": {"type": "json_object"},
         "thinking": {"type": "disabled"},
         "temperature": 0.1,
-        "max_tokens": 600,
+        "max_tokens": PLANNING_OUTPUT_TOKENS,
     }
     timeout = chat_http_timeout()
+    token_counts: list[int | None] = []
     async with httpx.AsyncClient(timeout=timeout) as client:
-        content, model, usage = await request_model_content(client, settings, body, timeout.read)
-    cleaned = content.strip()
-    if cleaned.startswith("```"):
-        cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", cleaned, flags=re.IGNORECASE)
-    try:
-        decision = ChatDecision.model_validate(json.loads(cleaned))
-    except (ValueError, RecursionError) as exc:
-        raise GenerationError(
-            "Il modello non ha restituito una decisione valida su come gestire "
-            "il messaggio. Riprova."
-        ) from exc
-    return PlannedTurn(decision, model, _total_tokens(usage))
+        for attempt in range(2):
+            try:
+                content, model, usage = await request_model_content(
+                    client, settings, body, timeout.read,
+                    response_schema=ChatDecision.model_json_schema(),
+                )
+            except GenerationTruncatedError as exc:
+                token_counts.append(exc.total_tokens)
+                if attempt:
+                    raise
+                body = {**body, "max_tokens": 2 * PLANNING_OUTPUT_TOKENS}
+                continue
+            token_counts.append(_total_tokens(usage))
+            cleaned = content.strip()
+            if cleaned.startswith("```"):
+                cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", cleaned, flags=re.IGNORECASE)
+            try:
+                decision = ChatDecision.model_validate(json.loads(cleaned))
+            except (ValueError, RecursionError) as exc:
+                logger.warning(
+                    "Invalid chat decision: provider=%s model=%s attempt=%d error=%s",
+                    settings.provider, settings.model, attempt + 1, type(exc).__name__,
+                )
+                if attempt:
+                    raise GenerationError(
+                        "Il modello non ha restituito una decisione valida su come gestire "
+                        "il messaggio anche dopo un tentativo di correzione. Riprova."
+                    ) from exc
+                body = {**body, "messages": [
+                    *body["messages"],
+                    {"role": "assistant", "content": content},
+                    {"role": "user", "content": PLANNING_REPAIR_PROMPT},
+                ]}
+                continue
+            total = sum(token_counts) if all(n is not None for n in token_counts) else None
+            return PlannedTurn(decision, model, total)
+    raise AssertionError("Planning attempts exhausted without a result or error")
