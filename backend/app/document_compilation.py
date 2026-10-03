@@ -30,7 +30,7 @@ from app.docx_templates import (
 from app.fact_extraction import select_source_chunks
 from app.generation import GenerationError, GenerationNotConfiguredError
 
-PROMPT_VERSION = "docx-fields-v12-single-call"
+PROMPT_VERSION = "docx-fields-v13-source-boundaries"
 SOURCE_BUDGETS = {"company": 40_000, "project": 90_000, "general": 20_000}
 MAX_RESPONSE_CHARACTERS = 200_000
 FIELDS_PER_BATCH = 32
@@ -325,7 +325,7 @@ def build_prompt(
         "template_text": text_of(layout.document.element.body),
         "source_coverage": sources.coverage(),
         "sources": source_catalog(sources, instructions),
-        "task": "Proponi SOLO i campi in target_ids, nel formato JSON richiesto.",#user prompt
+        "task": "Proponi SOLO i campi in target_ids, nel formato JSON richiesto.",
     }
     if corrections is not None:
         payload["correction_request"] = corrections
@@ -362,7 +362,9 @@ async def request_field_proposals(
             async with httpx.AsyncClient(
                 timeout=httpx.Timeout(timeout_seconds, connect=10)
             ) as client:
-                response = await post_chat(client, settings, body)
+                response = await post_chat(
+                    client, settings, body, response_schema=ModelProposals.model_json_schema(),
+                )
                 response.raise_for_status()
                 payload = response.json()
     except TimeoutError as exc:
@@ -435,6 +437,23 @@ def _complete_numeric_evidence(value: str, quote: str, source: str) -> bool:
             ):
                 return True
     return False
+
+
+def _complete_email_evidence(value: str, quote: str, source: str) -> bool:
+    """An abbreviated quote cannot hide the rest of an address in the source."""
+    value, quote, source = normalized(value), normalized(quote), normalized(source)
+    email_token = r"\w!#$%&'*+/=?^`{|}~@\-"
+    complete_value = re.compile(
+        rf"(?<![{email_token}.]){re.escape(value)}"
+        rf"(?![{email_token}]|\.[\w-])",
+    )
+    occurrences = list(complete_value.finditer(source))
+    return any(
+        citation.start() <= occurrence.start()
+        and occurrence.end() <= citation.start() + len(quote)
+        for citation in re.finditer(rf"(?={re.escape(quote)})", source)
+        for occurrence in occurrences
+    )
 
 
 def validate_proposals(
@@ -541,15 +560,14 @@ def validate_proposals(
             elif (
                 layout.field_types.get(item.cell_id) == "email" or is_email_label(item.label)
             ) and evidence:
-                # A syntactically valid suffix is not evidence for the full mailbox.
-                email_token = r"\w!#$%&'*+/=?^`{|}~@\-"
-                complete_value = re.compile(
-                    rf"(?<![{email_token}.]){re.escape(item.value)}"
-                    rf"(?![{email_token}]|\.[\w-])", re.IGNORECASE,
-                )
-                if not any(complete_value.search(citation["quote"]) for citation in evidence):
+                if not any(
+                    _complete_email_evidence(
+                        item.value, citation["quote"], source_map[citation["source_id"]]["content"],
+                    )
+                    for citation in evidence
+                ):
                     codes.append("partial_email_evidence")
-                    checks.append("Il recapito e solo una parte dell'indirizzo nella citazione")
+                    checks.append("Il recapito e solo una parte dell'indirizzo nella fonte citata")
         written = item.value if item.status == "proposed" and not checks else None
         fields.append(
             {

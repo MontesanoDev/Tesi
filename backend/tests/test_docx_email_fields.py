@@ -117,6 +117,43 @@ def test_valid_mailbox_substring_is_not_a_full_address_in_evidence(value, full):
     assert field["repairable"]
 
 
+@pytest.mark.parametrize("value,full", [
+    ("ferri@pec.demo", "luca.ferri@pec.demo"),
+    ("luca@pec.it", "luca@pec.it.example"),
+    ("luca@pec.it", "luca@pec.it-extra.example"),
+])
+def test_short_quote_cannot_hide_email_boundaries_in_original_source(value, full):
+    layout = email_layout()
+    field = compilation.validate_proposals(
+        response(proposal(layout, value, value)), layout, sources(f"PEC: {full}"),
+    )["fields"][0]
+    assert field["written_value"] is None
+    assert field["validation_codes"] == ["partial_email_evidence"]
+    assert field["repairable"]
+
+
+def test_complete_email_elsewhere_does_not_validate_a_truncated_cited_address():
+    layout = email_layout()
+    value = "luca@pec.it"
+    quote = f"PEC: {value}"
+    source = f"{quote}.example. Altro contatto: {value}."
+    field = compilation.validate_proposals(
+        response(proposal(layout, value, quote)), layout, sources(source),
+    )["fields"][0]
+    assert field["written_value"] is None
+    assert field["validation_codes"] == ["partial_email_evidence"]
+
+
+def test_short_quote_of_complete_email_allows_source_whitespace_and_punctuation():
+    layout = email_layout()
+    value = "Nome.Cognome@Azienda.IT"
+    field = compilation.validate_proposals(
+        response(proposal(layout, value, f"PEC: {value}")),
+        layout, sources(f"Recapito (PEC:\n  {value})."),
+    )["fields"][0]
+    assert field["written_value"] == value
+
+
 @pytest.mark.parametrize("text", [
     "E-mail: ___@___.___", "PEC: {{utente}}@{{dominio}}.{{suffisso}}",
     "PEC: nome@____", "E-mail: ____@dominio.example", "PEC: ____ . ____",

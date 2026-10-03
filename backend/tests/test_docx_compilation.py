@@ -480,6 +480,37 @@ def missing_proposals(targets):
     )
 
 
+@pytest.mark.anyio
+async def test_ollama_compilation_receives_the_proposal_schema(monkeypatch):
+    from app.config import AISettings, use_ai_settings
+
+    captured = {}
+
+    def handler(request):
+        captured.update(json.loads(request.content))
+        return httpx.Response(200, json={
+            "model": "local", "done": True, "done_reason": "stop",
+            "message": {"content": result(proposal())},
+            "prompt_eval_count": 12, "eval_count": 6,
+        })
+
+    real_client = httpx.AsyncClient
+    monkeypatch.setattr(
+        compilation.httpx, "AsyncClient",
+        lambda **kwargs: real_client(transport=httpx.MockTransport(handler), **kwargs),
+    )
+    with use_ai_settings(AISettings(
+        api_key=None, model="local", base_url="http://ollama.test", provider="ollama",
+    )):
+        content, model, tokens = await compilation.request_field_proposals("JSON di prova")
+    assert captured["format"] == compilation.ModelProposals.model_json_schema()
+    assert captured["stream"] is False
+    assert model == "local"
+    assert tokens == 18
+    report = compilation.validate_proposals(content, inspect_docx(template_bytes()), sources())
+    assert report["fields"][0]["written_value"] == "Mapi Ingegneria S.r.l."
+
+
 @pytest.mark.parametrize("template_path", [
     CASE / "modello/domanda-partecipazione.docx",
     CASE.parent / "minervino-elenco-sia/originali/domanda-iscrizione.docx",
@@ -1055,7 +1086,7 @@ async def test_api_compiles_paragraphs_and_reports_mixed_coverage(client, monkey
     run = response.json()
     report = run["report"]
     assert report["schema_version"] == 3
-    assert report["prompt_version"] == "docx-fields-v12-single-call"
+    assert report["prompt_version"] == "docx-fields-v13-source-boundaries"
     assert report["execution"]["completed_batches"] == 1
     assert report["written_field_count"] == 1
     assert report["fields"][0]["location"] == {

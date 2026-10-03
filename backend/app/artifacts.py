@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 from pathlib import Path
+from uuid import uuid4
 
 from app.call_facts import CallFactsFormatError, available_project_facts_markdown
 from app.db import connection, get_knowledge_path, touch_project
@@ -64,11 +65,18 @@ def _artifact_path(relative_path: str) -> Path:
 
 
 def _write_artifact(relative_path: str, content: str) -> None:
+    _write_artifact_bytes(relative_path, content.encode("utf-8"))
+
+
+def _write_artifact_bytes(relative_path: str, content: bytes) -> None:
     path = _artifact_path(relative_path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(f"{path.suffix}.tmp")
-    temporary.write_text(content, encoding="utf-8")
-    temporary.replace(path)
+    temporary = path.with_name(f".{path.name}.{uuid4().hex}.tmp")
+    try:
+        temporary.write_bytes(content)
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def _read_artifact(relative_path: str) -> str:
@@ -446,6 +454,8 @@ def replace_project_artifact(
     status: str,
 ) -> dict | None:
     with connection() as db:
+        # Serialize updates before reading the file that may need to be restored.
+        db.execute("BEGIN IMMEDIATE")
         row = db.execute(
             """
             SELECT a.* FROM project_artifact_links l
@@ -462,7 +472,7 @@ def replace_project_artifact(
                 "L'artefatto globale va modificato dalle impostazioni generali"
             )
 
-        _write_artifact(artifact["storage_path"], content)
+        previous_content = _artifact_path(artifact["storage_path"]).read_bytes()
         byte_size = len(content.encode("utf-8"))
         db.execute(
             """
@@ -486,6 +496,15 @@ def replace_project_artifact(
         for link in links:
             _link_artifact(db, link["project_id"], updated, content)
             touch_project(db, link["project_id"])
+
+        # Change the file only after metadata and indexing succeeded. If the
+        # commit fails, restore the exact bytes while still holding the DB lock.
+        _write_artifact(artifact["storage_path"], content)
+        try:
+            db.commit()
+        except BaseException:
+            _write_artifact_bytes(artifact["storage_path"], previous_content)
+            raise
 
     return get_project_artifact(project_id, artifact_id)
 

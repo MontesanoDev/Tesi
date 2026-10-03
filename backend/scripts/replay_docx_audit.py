@@ -20,7 +20,10 @@ def dump(path, value):
 
 async def replay(audit: Path, output: Path):
     frozen = json.loads((audit / "batch-01.prompt.json").read_text())
-    template = (audit / "output/template.docx").read_bytes()
+    template_path = audit / "template.docx"
+    if not template_path.is_file():
+        template_path = audit / "output/template.docx"
+    template = template_path.read_bytes()
     if hashlib.sha256(template).hexdigest() != frozen["template_sha256"]:
         raise ValueError("Il template non corrisponde al prompt registrato")
     coverage = frozen["source_coverage"]
@@ -56,14 +59,14 @@ async def replay(audit: Path, output: Path):
     request = compilation.request_field_proposals
     call_count = 0
 
-    async def recorded(prompt):
+    async def recorded(prompt, **request_options):
         nonlocal call_count
         call_count += 1
         base = output / f"batch-{call_count:02d}"
         dump(base.with_suffix(".prompt.json"), json.loads(prompt))
         started = time.monotonic()
         try:
-            content, model, tokens = await request(prompt)
+            content, model, tokens = await request(prompt, **request_options)
         except Exception as exc:
             dump(base.with_suffix(".error.json"), {
                 "error": str(exc), "elapsed_seconds": time.monotonic() - started,

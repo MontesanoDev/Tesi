@@ -143,10 +143,19 @@ export function ProjectWorkspacePage() {
   const composerInput = useRef<HTMLTextAreaElement>(null)
   const activeConversation = useRef<string | null>(conversationId ?? null)
   const loadedConversation = useRef<string | null>(null)
+  const answerRequest = useRef<AbortController | null>(null)
   const projectMenuRef = useDismissibleMenu<HTMLDivElement>(
     menuOpen,
     () => setMenuOpen(false),
   )
+
+  useEffect(() => {
+    setSearching(false)
+    return () => {
+      answerRequest.current?.abort()
+      answerRequest.current = null
+    }
+  }, [projectId, conversationId])
 
   useEffect(() => {
     setPrompt('')
@@ -177,6 +186,7 @@ export function ProjectWorkspacePage() {
     setConversationError(null)
     api.conversation(projectId, conversationId, controller.signal)
       .then((conversation) => {
+        if (controller.signal.aborted) return
         activeConversation.current = conversation.id
         loadedConversation.current = conversation.id
         setTurns(conversation.turns.map((turn) => ({
@@ -191,6 +201,7 @@ export function ProjectWorkspacePage() {
         })))
       })
       .catch((reason) => {
+        if (controller.signal.aborted) return
         if (reason instanceof DOMException && reason.name === 'AbortError') return
         setConversationError(
           reason instanceof Error ? reason.message : 'Conversazione non disponibile',
@@ -229,7 +240,9 @@ export function ProjectWorkspacePage() {
   async function submitPrompt(event: FormEvent) {
     event.preventDefault()
     const query = prompt.trim()
-    if (!query || searching || conversationLoading || changingModel) return
+    if (!query || answerRequest.current || searching || conversationLoading || changingModel) return
+    const controller = new AbortController()
+    answerRequest.current = controller
     const turnId = `local-${++turnSequence.current}`
     setTurns((current) => [
       ...current,
@@ -242,7 +255,9 @@ export function ProjectWorkspacePage() {
         activeProjectId,
         query,
         activeConversation.current,
+        controller.signal,
       )
+      if (controller.signal.aborted) return
       activeConversation.current = result.conversation_id
       loadedConversation.current = result.conversation_id
       setTurns((current) => current.map((turn) => (
@@ -257,12 +272,16 @@ export function ProjectWorkspacePage() {
         )
       }
     } catch (reason) {
+      if (controller.signal.aborted) return
       const message = reason instanceof Error ? reason.message : 'Ricerca non riuscita'
       setTurns((current) => current.map((turn) => (
         turn.id === turnId ? { ...turn, error: message } : turn
       )))
     } finally {
-      setSearching(false)
+      if (answerRequest.current === controller) {
+        answerRequest.current = null
+        setSearching(false)
+      }
     }
   }
 

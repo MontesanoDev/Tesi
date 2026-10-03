@@ -7,6 +7,9 @@ Frontend React/TypeScript, backend FastAPI, SQLite per i dati e LangChain per
 la ricerca con FTS5 o Qdrant. Provider AI, modelli e chiavi si configurano
 dall'interfaccia; Ollama può essere locale o remoto.
 
+La [mappa del progetto e audit del codice](docs/mappa-progetto.md) descrive moduli,
+flussi, codice inutilizzato, verifiche e limiti ancora aperti.
+
 **Avvio**
 
 Servono Python 3.14 o successivo, `uv`, npm e Node.js 20.19+ della serie 20
@@ -60,6 +63,11 @@ di un PDF non implica che sia già compilabile. Per i DOCX, il backend individua
 celle vuote e segnaposti, valida le proposte del modello e produce una bozza con
 report. Seleziona il contesto entro limiti di caratteri, senza usare il retrieval
 della chat. Le bozze richiedono revisione umana.
+
+Ollama riceve lo schema JSON delle proposte anche per la compilazione DOCX.
+I controlli dei recapiti verificano l'indirizzo completo nella fonte originale,
+anche quando il modello ne cita soltanto una parte. Questi controlli non
+garantiscono che il dato appartenga al soggetto o alla sezione corretti.
 
 La chat usa il modello scelto nel progetto per decidere se il messaggio richiede
 una ricerca. Saluti, ringraziamenti e chiarimenti possono ricevere una risposta
