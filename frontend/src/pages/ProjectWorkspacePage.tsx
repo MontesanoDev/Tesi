@@ -40,8 +40,8 @@ function turnStatus(turn: ChatTurn) {
   if (turn.result.generation_status === 'direct') return 'Risposta diretta di Mapi RAG.'
   if (turn.result.generation_status === 'completed') {
     return turn.result.evidence.length === 1
-      ? 'Risposta generata da 1 evidenza del progetto.'
-      : `Risposta generata da ${turn.result.evidence.length} evidenze del progetto.`
+      ? 'Risposta generata con 1 evidenza recuperata.'
+      : `Risposta generata con ${turn.result.evidence.length} evidenze recuperate.`
   }
   return turn.result.notice ?? 'Nessuna evidenza pertinente trovata nelle fonti indicizzate.'
 }
