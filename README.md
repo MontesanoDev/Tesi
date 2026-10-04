@@ -61,8 +61,13 @@ conserva le API di compilazione e i documenti già generati; la selezione dei mo
 e la compilazione attraverso la chat non sono ancora implementate. Il caricamento
 di un PDF non implica che sia già compilabile. Per i DOCX, il backend individua
 celle vuote e segnaposti, valida le proposte del modello e produce una bozza con
-report. Seleziona il contesto entro limiti di caratteri, senza usare il retrieval
-della chat. Le bozze richiedono revisione umana.
+report. Tutti i candidati del documento vengono inviati in una sola chiamata AI,
+insieme alle istruzioni e alle fonti selezionate entro i budget di contesto.
+La modalità a gruppi da 32 è stata rimossa. Una proposta bloccata resta vuota
+nel documento ed è segnalata nel report; risposte troncate, JSON malformati e
+identificatori sconosciuti interrompono la compilazione senza ulteriori chiamate
+o salvataggi parziali. Il contesto non usa il retrieval della chat.
+Le bozze richiedono revisione umana.
 
 Ollama riceve lo schema JSON delle proposte anche per la compilazione DOCX.
 I controlli dei recapiti verificano l'indirizzo completo nella fonte originale,

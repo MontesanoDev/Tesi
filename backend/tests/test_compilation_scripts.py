@@ -10,8 +10,9 @@ from scripts.replay_docx_audit import replay
 
 
 @pytest.mark.parametrize("legacy_layout", [False, True])
+@pytest.mark.parametrize("prompt_name", ["request-01.prompt.json", "batch-01.prompt.json"])
 def test_replay_preserves_request_options_and_accepts_current_and_legacy_audits(
-    tmp_path, monkeypatch, legacy_layout,
+    tmp_path, monkeypatch, legacy_layout, prompt_name,
 ):
     audit = tmp_path / "audit"
     template_path = audit / "output/template.docx" if legacy_layout else audit / "template.docx"
@@ -22,7 +23,7 @@ def test_replay_preserves_request_options_and_accepts_current_and_legacy_audits(
         "chunk_index": 0, "content": "Societa: Impresa", "scope": "company",
     }], 1, len("Societa: Impresa"))
     frozen = compilation.build_prompt(layout, sources, "Prova ripetibile", "")
-    (audit / "batch-01.prompt.json").write_text(frozen, encoding="utf-8")
+    (audit / prompt_name).write_text(frozen, encoding="utf-8")
     calls = []
 
     async def model(prompt, **options):
@@ -46,4 +47,6 @@ def test_replay_preserves_request_options_and_accepts_current_and_legacy_audits(
     assert report["template_sha256"] == layout.sha256
     assert report["source_coverage"] == sources.coverage()
     assert report["execution"]["requests"] == 1
+    assert (output / "request-01.prompt.json").is_file()
+    assert not list(output.glob("batch-*"))
     assert json.loads((output / "result.json").read_text())["success"]

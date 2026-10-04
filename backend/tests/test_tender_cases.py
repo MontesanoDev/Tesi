@@ -86,7 +86,7 @@ async def test_isolated_demo_records_calls_and_preserves_app_environment(tmp_pat
     report = json.loads((output / "report.json").read_text())
     assert report["execution"]["strategy"] == "single_call"
     assert report["execution"]["requests"] == 1
-    assert report["execution"]["completed_batches"] == 1
-    assert len(list(output.glob("batch-*.prompt.json"))) == 1
-    assert len(list(output.glob("batch-*.response.json"))) == 1
+    assert report["execution"]["candidate_count"] == 115
+    assert len(list(output.glob("request-*.prompt.json"))) == 1
+    assert len(list(output.glob("request-*.response.json"))) == 1
     assert (output / "bozza.docx").is_file()

@@ -1,7 +1,8 @@
 # Mappa e audit di Mapi RAG
 
 Verifica del 3 ottobre 2026, sul codice del repository e sulle fixture versionate.
-Punto di partenza: commit `6307952`. Le correzioni descritte sono nel working tree.
+Punto di partenza: commit `6307952`. Le correzioni dell'audit sono conservate nel
+commit `2e4e946`; la compilazione è stata poi semplificata a un unico percorso.
 
 La base è utilizzabile per il prototipo, con una suite di regressione ampia e
 buone separazioni fra originali, fonti e documenti generati. Non era però priva
@@ -88,7 +89,7 @@ Tutti i percorsi della tabella sono relativi a [backend/app](../backend/app).
 | `vector_retrieval.py` | Corpus SQLite, sincronizzazione Qdrant per hash, filtri per progetto, rilettura dei risultati dalla fonte corrente. |
 | `project_forms.py` | Quattro operazioni HTTP per upload, elenco, download e rimozione di originali DOCX/PDF/TXT/MD; nessuna indicizzazione dei moduli. |
 | `docx_templates.py` | Validazione del contenitore DOCX, scoperta delle posizioni scrivibili, riconoscimento dei campi protetti e scrittura dall'originale. |
-| `document_compilation.py` | Catalogo fonti, prompt, proposte strutturate, validazione e report. Chiamata unica predefinita; gruppi conservati per confronti espliciti. |
+| `document_compilation.py` | Catalogo fonti, prompt, proposte strutturate, validazione e report. Una sola chiamata per tutto il documento, senza gruppi o correzioni automatiche. |
 | `document_compilation_routes.py` | Quattro operazioni HTTP per creazione/elenco/dettaglio/download delle compilazioni; conserva originale, bozza e report. |
 | `config.py` | Impostazioni AI e `ContextVar` per mantenere provider e modello durante un'operazione; importazione della configurazione ambiente preesistente. |
 | `ai_providers.py` | Catalogo provider, protocolli, metadati per la UI e header di autenticazione. |
@@ -177,7 +178,7 @@ Gli URL principali sono `/projects`, `/projects/:id`,
 | `create_paragraph_template.py` | Genera una fixture DOCX con tabelle e segnaposti; non sovrascrive file esistenti. |
 | `compile_docx_demo.py` | Prova end-to-end con database temporaneo e documenti simulati; `--live` abilita le chiamate AI. |
 | `compile_docx_ollama.py` | Prova con il profilo Ollama salvato nel progetto; può salvare il risultato se richiesto. |
-| `replay_docx_audit.py` | Ripete una compilazione su template e fonti congelati; corretto l'inoltro delle opzioni e il percorso del template. Supporta gli audit con `batch-01.prompt.json`, non tutti i formati degli altri script. |
+| `replay_docx_audit.py` | Ripete una compilazione su template e fonti congelati, inoltrando le opzioni al provider. Legge `request-01.prompt.json` e il nome storico `batch-01.prompt.json`; esegue sempre una chiamata unica. Non supporta tutti i formati degli altri script. |
 
 `demo-documents/bandi/` contiene Catanzaro, Minervino e Trapani; `general-kb/`
 contiene la conoscenza tecnica. La visura e le generalità aziendali sono simulate.
@@ -200,9 +201,10 @@ Sono residui della UI rimossa; restano inventariati perché le API backend
 corrispondenti esistono e il lavoro successivo sulla compilazione può riusarli.
 I tipi raggiunti soltanto da questi metodi seguono lo stesso stato.
 
-**Da conservare:** il motore DOCX è raggiungibile da API e script; la modalità a
-gruppi è selezionabile esplicitamente ed è coperta da prove comparative. Le API
-Markdown sono ancora esposte. La demo e la revisione hanno route attive. Il
+**Da conservare:** il motore DOCX è raggiungibile da API e script. La modalità a
+gruppi da 32 è stata rimossa insieme alla divisione delle risposte troncate e ai
+tentativi automatici di correzione; i test dei controlli sui valori restano attivi.
+Le API Markdown sono ancora esposte. La demo e la revisione hanno route attive. Il
 redirect e la migrazione dei template legacy gestiscono compatibilità reale.
 La mancanza di una voce visibile nel menu non prova che questi moduli siano morti.
 
@@ -223,7 +225,11 @@ di ogni ramo. Non è stata misurata la copertura dei selettori CSS nel browser.
 Inoltre sono stati abilitati i controlli TypeScript `strict` per applicazione e
 configurazione Vite. Il codice esistente li superava già. Ollama riceve ora anche
 per il DOCX lo schema JSON di `ModelProposals`, derivato dal validatore effettivo.
-Il report distingue la versione `docx-fields-v13-source-boundaries`.
+La versione del prompt è ora `docx-fields-v14-whole-document`: tutte le posizioni
+candidate del DOCX appartengono alla stessa richiesta. I nuovi report usano lo
+schema 4 e descrivono l'esecuzione con `strategy`, `candidate_count` e `requests`,
+senza contatori di gruppi o correzioni. I report già salvati restano consultabili
+e scaricabili nella forma originale.
 
 Annullare la richiesta browser impedisce effetti tardivi sulla UI; non garantisce
 che il provider o il server interrompano una generazione già iniziata. Il ripristino
@@ -273,7 +279,7 @@ al motore e alle basi applicative, non il nuovo workflow.
 Il punto di partenza superava 659 test backend e 57 test frontend, Ruff, Oxlint e
 build Vite. I nuovi test hanno esposto difetti che non erano coperti dalla suite.
 
-| Verifica finale | Esito |
+| Verifica al termine dell'audit | Esito |
 |---|---|
 | Pytest backend | 671 test superati. |
 | Vitest frontend | 61 test superati, in 11 file. |
@@ -284,6 +290,15 @@ build Vite. I nuovi test hanno esposto difetti che non erano coperti dalla suite
 | `git diff --check` | Nessun errore di whitespace. |
 
 Nessuna chiamata reale ai provider è stata necessaria per questi test.
+
+Dopo la rimozione della modalità a gruppi, l'intera suite backend supera
+637 test. Sono stati rimossi i casi dedicati al comportamento abbandonato e
+conservate le verifiche sui valori, aggiungendo controlli sul percorso unico e
+sull'accesso ai report storici. I moduli Catanzaro e Minervino inviano tutti i
+279 e 254 candidati in una sola richiesta nelle prove con provider simulato.
+Ruff, Oxlint, TypeScript strict e build Vite passano anche dopo la semplificazione.
+Queste prove verificano il percorso software; non misurano la qualità delle
+proposte prodotte da un modello reale.
 
 ```bash
 cd backend

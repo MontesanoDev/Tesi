@@ -109,6 +109,7 @@ export interface CompilationField {
   validation_notes: string[]
   validation_codes?: string[]
   rejected_evidence?: { source_id: string; quote: string; reason: string }[]
+  // Optional metadata in previously saved reports; new compilations use one request.
   repair?: {
     status: 'corrected' | 'unresolved'
     attempted: boolean

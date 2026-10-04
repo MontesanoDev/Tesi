@@ -19,7 +19,11 @@ def dump(path, value):
 
 
 async def replay(audit: Path, output: Path):
-    frozen = json.loads((audit / "batch-01.prompt.json").read_text())
+    prompt_path = audit / "request-01.prompt.json"
+    if not prompt_path.is_file():
+        # Read old audit files without retaining their obsolete execution strategy.
+        prompt_path = audit / "batch-01.prompt.json"
+    frozen = json.loads(prompt_path.read_text())
     template_path = audit / "template.docx"
     if not template_path.is_file():
         template_path = audit / "output/template.docx"
@@ -62,7 +66,7 @@ async def replay(audit: Path, output: Path):
     async def recorded(prompt, **request_options):
         nonlocal call_count
         call_count += 1
-        base = output / f"batch-{call_count:02d}"
+        base = output / f"request-{call_count:02d}"
         dump(base.with_suffix(".prompt.json"), json.loads(prompt))
         started = time.monotonic()
         try:

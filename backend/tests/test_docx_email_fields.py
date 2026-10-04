@@ -60,7 +60,6 @@ def test_type_comes_from_template_not_model_label(label, table):
     )["fields"][0]
     assert field["written_value"] is None
     assert field["validation_codes"] == ["invalid_email"]
-    assert field["repairable"]
     with pytest.raises(DocumentInputError, match="Email/PEC"):
         fill_docx(layout, {target: "pec"})
 
@@ -114,7 +113,6 @@ def test_valid_mailbox_substring_is_not_a_full_address_in_evidence(value, full):
     )["fields"][0]
     assert field["written_value"] is None
     assert field["validation_codes"] == ["partial_email_evidence"]
-    assert field["repairable"]
 
 
 @pytest.mark.parametrize("value,full", [
@@ -129,7 +127,6 @@ def test_short_quote_cannot_hide_email_boundaries_in_original_source(value, full
     )["fields"][0]
     assert field["written_value"] is None
     assert field["validation_codes"] == ["partial_email_evidence"]
-    assert field["repairable"]
 
 
 def test_complete_email_elsewhere_does_not_validate_a_truncated_cited_address():
@@ -170,7 +167,6 @@ def test_explicit_address_parts_are_all_blocked_including_direct_writer(text):
             layout, sources(quote),
         )["fields"][0]
         assert field["validation_codes"] == ["unsupported_email_layout"]
-        assert not field["repairable"]
         with pytest.raises(DocumentInputError, match="separatore|separatori"):
             fill_docx(layout, {target: "impresa@pec.demo"})
 
@@ -198,34 +194,31 @@ def test_named_marker_and_column_header_are_typed():
 
 @pytest.mark.anyio
 @pytest.mark.parametrize("fixed", [True, False])
-async def test_email_uses_only_one_targeted_repair_and_keeps_other_fields(monkeypatch, fixed):
+async def test_email_validation_in_one_call_keeps_other_fields(monkeypatch, fixed):
     layout = email_layout("Email: ....\u2026...; Nome: ____")
     quote = "Email: ufficio@impresa.demo. Nome: Impresa"
     bad = proposal(layout, "ufficio", quote, target="p0.s0")
+    if fixed:
+        bad["value"] = "ufficio@impresa.demo"
     good = proposal(layout, "Impresa", quote, target="p0.s1", label="Nome")
     calls = []
 
-    async def model(prompt):
+    async def model(prompt, **_options):
         payload = json.loads(prompt)
         calls.append(payload)
-        if len(calls) == 1:
-            return response(bad, good), "test-model", 10
-        assert payload["target_ids"] == ["p0.s0"]
-        assert payload["correction_request"][0]["validation_codes"] == ["invalid_email"]
-        value = "ufficio@impresa.demo" if fixed else "ufficio"
-        return response({**bad, "value": value}), "test-model", 12
+        assert payload["target_ids"] == ["p0.s0", "p0.s1"]
+        return response(bad, good), "test-model", 10
 
     monkeypatch.setattr(compilation, "request_field_proposals", model)
-    report, _, tokens, execution = await compilation.compile_field_batches(
+    report, _, tokens, execution = await compilation.compile_fields_once(
         layout, sources(quote), "Progetto diverso", "Solo dati disponibili",
     )
-    assert len(calls) == 2
-    assert tokens == 22
-    assert execution["repaired_fields"] == int(fixed)
+    assert len(calls) == execution["requests"] == 1
+    assert tokens == 10
     assert report["fields"][1]["written_value"] == "Impresa"
     first = report["fields"][0]
     assert first["written_value"] == ("ufficio@impresa.demo" if fixed else None)
-    assert first["repair"]["status"] == ("corrected" if fixed else "unresolved")
+    assert first["validation_codes"] == ([] if fixed else ["invalid_email"])
     values = {f["cell_id"]: f["written_value"] for f in report["fields"] if f["written_value"]}
     output = Document(BytesIO(fill_docx(layout, values)))
     assert output.paragraphs[1].text == (

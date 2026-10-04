@@ -91,7 +91,7 @@ async def run(output: Path, company_file: Path | None = None, case: str = "catan
     async def recorded(prompt: str, **request_options):
         nonlocal call_count
         call_count += 1
-        base = output / f"batch-{call_count:02d}"
+        base = output / f"request-{call_count:02d}"
         dump(base.with_suffix(".prompt.json"), json.loads(prompt))
         started = time.monotonic()
         try:

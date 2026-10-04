@@ -52,7 +52,6 @@ def test_partial_numeric_tokens_are_blocked_even_when_the_quote_is_trimmed(value
     field = compilation.validate_proposals(response(proposal), layout, sources)["fields"][0]
     assert field["written_value"] is None
     assert field["validation_codes"] == ["partial_numeric_evidence"]
-    assert field["repairable"]
 
 
 @pytest.mark.parametrize("value,source,quote", [
@@ -78,28 +77,28 @@ def test_complete_tokens_and_explicit_date_components_keep_their_literal_values(
 
 @pytest.mark.anyio
 @pytest.mark.parametrize("fixed", [True, False])
-async def test_numeric_repair_is_limited_and_preserves_unrelated_fields(monkeypatch, fixed):
+async def test_numeric_validation_in_one_call_preserves_unrelated_fields(monkeypatch, fixed):
     layout, sources, bad = inputs("1234567890", "Partita IVA: 01234567890. Societa: Esempio.")
+    if fixed:
+        bad["value"] = "01234567890"
     good = {**bad, "cell_id": "p0.s1", "label": "Denominazione", "value": "Esempio"}
     calls = []
 
-    async def model(prompt):
+    async def model(prompt, **_options):
         payload = json.loads(prompt)
         calls.append(payload)
-        if len(calls) == 1:
-            return response(bad, good), "test", 10
-        assert payload["target_ids"] == ["p0.s0"]
-        assert payload["correction_request"][0]["validation_codes"] == ["partial_numeric_evidence"]
-        return response({**bad, "value": "01234567890" if fixed else bad["value"]}), "test", 12
+        assert payload["target_ids"] == ["p0.s0", "p0.s1"]
+        return response(bad, good), "test", 10
 
     monkeypatch.setattr(compilation, "request_field_proposals", model)
-    report, _, tokens, execution = await compilation.compile_field_batches(
+    report, _, tokens, execution = await compilation.compile_fields_once(
         layout, sources, "Progetto", "",
     )
-    assert len(calls) == 2
-    assert tokens == 22
-    assert execution["repaired_fields"] == int(fixed)
-    assert report["fields"][0]["repair"]["status"] == ("corrected" if fixed else "unresolved")
+    assert len(calls) == execution["requests"] == 1
+    assert tokens == 10
+    assert report["fields"][0]["validation_codes"] == (
+        [] if fixed else ["partial_numeric_evidence"]
+    )
     values = {f["cell_id"]: f["written_value"] for f in report["fields"] if f["written_value"]}
     document = Document(BytesIO(fill_docx(layout, values)))
     expected = "01234567890" if fixed else "____"
