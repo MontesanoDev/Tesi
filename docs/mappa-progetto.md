@@ -87,7 +87,7 @@ Tutti i percorsi della tabella sono relativi a [backend/app](../backend/app).
 | `retrieval_routes.py` | Quattro operazioni HTTP: lettura/salvataggio impostazioni, verifica connessione e indicizzazione. |
 | `retrieval_embeddings.py` | Adapter Ollama con divieto di troncamento degli input, controlli sui vettori e sull'identità del modello. |
 | `vector_retrieval.py` | Corpus SQLite, sincronizzazione Qdrant per hash, filtri per progetto, rilettura dei risultati dalla fonte corrente. |
-| `project_forms.py` | Quattro operazioni HTTP per upload, elenco, download e rimozione di originali DOCX/PDF/TXT/MD; nessuna indicizzazione dei moduli. |
+| `project_forms.py` | Quattro operazioni HTTP per upload, elenco, download e rimozione di originali DOCX/TXT; nessuna indicizzazione dei moduli. |
 | `docx_templates.py` | Validazione del contenitore DOCX, scoperta delle posizioni scrivibili, riconoscimento dei campi protetti e scrittura dall'originale. |
 | `document_compilation.py` | Catalogo fonti, prompt, proposte strutturate, validazione e report. Una sola chiamata per tutto il documento, senza gruppi o correzioni automatiche. |
 | `document_compilation_routes.py` | Quattro operazioni HTTP per creazione/elenco/dettaglio/download delle compilazioni; conserva originale, bozza e report. |

@@ -1,12 +1,6 @@
-.project-forms-help { margin: 10px 0 16px; font-size: 11px; line-height: 1.6; color: var(--text-muted); }
 .project-forms-list { list-style: none; padding: 0; margin: 0; }
 .project-forms-list > li + li { border-top: 1px solid var(--border); }
-.project-form-row { display: grid; grid-template-columns: 18px minmax(0, 1fr) 30px 30px; align-items: center; gap: 8px; padding: 12px 0; }
-.project-form-row > svg { color: var(--text-muted); }
-.project-form-row .icon-button { width: 30px; height: 32px; }
-.project-form-name { min-width: 0; }
-.project-form-name strong { display: block; overflow-wrap: anywhere; color: var(--text); font-size: 12px; }
-.project-form-name small { display: block; margin-top: 5px; color: var(--text-muted); font-size: 10px; }
+.project-forms-list .file-row { border-bottom: 0; }
 .project-form-remove { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 12px; font-size: 12px; }
 .project-form-remove > span { flex-basis: 100%; }
 .project-form-remove .button { font-size: 12px; padding: 8px 10px; min-height: 32px; }

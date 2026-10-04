@@ -22,8 +22,9 @@ test('multiple originals persist separately from sources, with download and part
       uploads += 1
       const body = route.request().postDataBuffer()!.toString()
       const name = /filename="([^"]+)"/.exec(body)![1]
-      if (name === 'danneggiato.pdf') return route.fulfill({ status: 422, json: { detail: 'PDF non leggibile' } })
-      const item = { id: uploads + 10, name, kind: 'form', metadata: 'TXT · 35 B', status: 'Caricato',
+      if (name === 'danneggiato.txt') return route.fulfill({ status: 422, json: { detail: 'Testo non leggibile' } })
+      const format = name.endsWith('.docx') ? 'DOCX' : 'TXT'
+      const item = { id: uploads + 10, name, kind: 'form', metadata: `${format} · 35 B`, status: 'Caricato',
         byte_size: original.length, page_count: 0, chunk_count: 0 }
       forms.push(item)
       return route.fulfill({ status: 201, json: item })
@@ -48,16 +49,24 @@ test('multiple originals persist separately from sources, with download and part
   await page.goto(`/projects/${projectId}`)
   const panel = page.getByRole('region', { name: 'Moduli da compilare' })
   await expect(panel.getByText('Nessun modulo caricato')).toBeVisible()
+  await expect(panel.getByText('0 moduli', { exact: true })).toBeVisible()
+  await expect(panel.getByText(/I PDF possono/)).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Compila Word' })).toHaveCount(0)
+  await expect(page.getByLabel('Seleziona moduli da compilare')).toHaveAttribute('accept', '.docx,.txt')
   await page.getByLabel('Seleziona moduli da compilare').setInputFiles([
     { name: 'domanda.txt', mimeType: 'text/plain', buffer: original },
-    { name: 'danneggiato.pdf', mimeType: 'application/pdf', buffer: Buffer.from('invalid') },
-    { name: 'dichiarazione.md', mimeType: 'text/markdown', buffer: original },
+    { name: 'danneggiato.txt', mimeType: 'text/plain', buffer: Buffer.from('invalid') },
+    { name: 'modulo.pdf', mimeType: 'application/pdf', buffer: Buffer.from('unsupported') },
+    { name: 'modulo.md', mimeType: 'text/markdown', buffer: original },
+    { name: 'dichiarazione.docx', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', buffer: original },
   ])
   await expect(panel.getByText('2 moduli caricati.')).toBeVisible()
-  await expect(panel.getByRole('alert')).toContainText('danneggiato.pdf: PDF non leggibile')
+  await expect(panel.getByText('2 moduli', { exact: true })).toBeVisible()
+  await expect(panel.getByRole('alert')).toContainText('danneggiato.txt: Testo non leggibile')
+  await expect(panel.getByRole('alert')).toContainText('modulo.pdf: Usa un file Word (.docx) o testo (.txt)')
+  await expect(panel.getByRole('alert')).toContainText('modulo.md: Usa un file Word (.docx) o testo (.txt)')
   await expect(panel.getByText('domanda.txt', { exact: true })).toBeVisible()
-  await expect(panel.getByText('dichiarazione.md', { exact: true })).toBeVisible()
+  await expect(panel.getByText('dichiarazione.docx', { exact: true })).toBeVisible()
   await expect(page.locator('.knowledge-files')).toContainText('1 fonte')
   await expect(page.locator('.knowledge-files').getByText('domanda.txt')).toHaveCount(0)
   await expect(page.locator('.knowledge-files').getByText('bando.pdf')).toBeVisible()
@@ -82,9 +91,10 @@ test('multiple originals persist separately from sources, with download and part
   expect(forms).toHaveLength(2)
   await panel.getByRole('button', { name: 'Rimuovi modulo', exact: true }).click()
   await expect(panel.getByText('domanda.txt', { exact: true })).toHaveCount(0)
-  await expect(panel.getByText('dichiarazione.md', { exact: true })).toBeVisible()
+  await expect(panel.getByText('dichiarazione.docx', { exact: true })).toBeVisible()
   await page.reload()
   await expect(panel.locator('.project-forms-list > li')).toHaveCount(1)
+  await expect(panel.getByText('1 modulo', { exact: true })).toBeVisible()
   await expect(page.getByLabel('Messaggio per Mapi RAG')).toBeVisible()
   expect(unexpected).toEqual([])
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true)

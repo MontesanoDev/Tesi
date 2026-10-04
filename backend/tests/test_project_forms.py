@@ -49,7 +49,7 @@ def document_bytes(suffix):
 
 
 @pytest.mark.anyio
-@pytest.mark.parametrize("suffix", ["docx", "pdf", "txt", "md"])
+@pytest.mark.parametrize("suffix", ["docx", "txt"])
 async def test_archive_preserves_original_without_indexing_or_compiling(client, suffix):
     original = document_bytes(suffix)
     response = await client.post(
@@ -96,7 +96,7 @@ async def test_duplicate_names_are_independent_and_removal_preserves_other_forms
 @pytest.mark.anyio
 async def test_project_and_source_endpoints_cannot_access_or_modify_other_roles(client):
     form = (await client.post(
-        "/api/projects/primo/forms", files={"file": ("domanda.md", b"Nome: ___")},
+        "/api/projects/primo/forms", files={"file": ("domanda.txt", b"Nome: ___")},
     )).json()
     source = (await client.post(
         "/api/projects/primo/files", files={"file": ("fonte.txt", b"Dato aziendale")},
@@ -120,11 +120,12 @@ async def test_project_and_source_endpoints_cannot_access_or_modify_other_roles(
 @pytest.mark.anyio
 @pytest.mark.parametrize("name, content, code", [
     ("modulo.exe", b"invalid", 415),
+    ("modulo.pdf", document_bytes("pdf"), 415),
+    ("modulo.md", document_bytes("md"), 415),
     ("vuoto.txt", b"", 422),
-    ("spazi.md", b"  \n", 422),
+    ("spazi.txt", b"  \n", 422),
     ("binario.txt", b"\xff\x00", 422),
     ("falso.docx", b"invalid", 422),
-    ("falso.pdf", b"invalid", 422),
     ("x" * 181 + ".txt", b"Nome: ___", 422),
 ])
 async def test_invalid_uploads_leave_no_records_or_files(client, name, content, code):

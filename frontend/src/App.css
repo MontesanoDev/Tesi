@@ -953,6 +953,7 @@
 }
 
 .context-file-edit,
+.context-file-download,
 .context-file-delete,
 .context-file-action-spacer {
   width: 32px;
@@ -975,7 +976,9 @@
 }
 
 .context-file-edit:hover:not(:disabled),
-.context-file-edit:focus-visible:not(:disabled) {
+.context-file-edit:focus-visible:not(:disabled),
+.context-file-download:hover:not(:disabled),
+.context-file-download:focus-visible:not(:disabled) {
   color: var(--text);
 }
 

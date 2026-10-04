@@ -1,14 +1,11 @@
 from __future__ import annotations
 
-from io import BytesIO
 from pathlib import Path
 from typing import Annotated
 from uuid import uuid4
 
 from fastapi import APIRouter, File, HTTPException, Response, UploadFile
 from fastapi.responses import FileResponse
-from pypdf import PdfReader
-from pypdf.errors import PdfReadError
 from starlette.concurrency import run_in_threadpool
 
 from app.db import connection, get_storage_path, touch_project
@@ -20,9 +17,7 @@ from app.schemas import ProjectFile
 router = APIRouter(prefix="/api/projects/{project_id}/forms", tags=["Moduli del progetto"])
 FORM_FORMATS = {
     ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    ".pdf": "application/pdf",
     ".txt": "text/plain",
-    ".md": "text/markdown",
 }
 PUBLIC_COLUMNS = "id, name, metadata, kind, status, mime_type, byte_size, page_count, chunk_count"
 
@@ -49,15 +44,11 @@ def _validate_file(data: bytes, suffix: str) -> None:
     try:
         if suffix == ".docx":
             validate_docx_package(data)
-        elif suffix == ".pdf":
-            reader = PdfReader(BytesIO(data))
-            if reader.is_encrypted or not reader.pages:
-                raise ValueError("PDF vuoto o protetto")
         elif not data.decode("utf-8-sig").strip() or b"\x00" in data:
             raise ValueError("Testo vuoto o non valido")
     except DocxTooLargeError as exc:
         raise HTTPException(status_code=413, detail=str(exc)) from exc
-    except (DocumentInputError, PdfReadError, ValueError, OSError) as exc:
+    except (DocumentInputError, ValueError, OSError) as exc:
         raise HTTPException(
             status_code=422, detail="File non leggibile o formato non supportato: " + str(exc),
         ) from exc
@@ -112,7 +103,9 @@ async def upload_form(project_id: str, file: Annotated[UploadFile, File()]) -> d
         if not name or len(name) > 180 or any(ord(char) < 32 for char in name):
             raise HTTPException(status_code=422, detail="Nome del file non valido")
         if Path(name).suffix.lower() not in FORM_FORMATS:
-            raise HTTPException(status_code=415, detail="Carica un file DOCX, PDF, TXT o Markdown")
+            raise HTTPException(
+                status_code=415, detail="Carica un file Word (.docx) o testo (.txt)",
+            )
         data = await file.read(MAX_FILE_SIZE + 1)
         if len(data) > MAX_FILE_SIZE:
             raise HTTPException(status_code=413, detail="Il file supera il limite di 20 MB")

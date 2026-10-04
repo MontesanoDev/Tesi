@@ -51,15 +51,14 @@ l'indirizzo di ascolto; `./start.sh --help` mostra le opzioni.
    a tutti i progetti.
 3. Caricare le fonti PDF, TXT o Markdown nel progetto o nella conoscenza
    aziendale. La chat cerca nelle fonti e mostra le evidenze utilizzate.
-4. In **Moduli da compilare**, caricare uno o più originali DOCX, PDF, TXT o
-   Markdown, fino a 20 MB per file. Si possono scaricare e rimuovere singolarmente.
+4. In **Moduli da compilare**, caricare uno o più originali DOCX o TXT,
+   fino a 20 MB per file. Si possono scaricare e rimuovere singolarmente.
    I file vengono conservati senza modifiche, con ruolo `form`, separato dalle
    fonti: in questa fase non vengono indicizzati né inviati al modello.
 
 La precedente interfaccia di compilazione dei moduli è stata rimossa. Il backend
 conserva le API di compilazione e i documenti già generati; la selezione dei moduli
-e la compilazione attraverso la chat non sono ancora implementate. Il caricamento
-di un PDF non implica che sia già compilabile. Per i DOCX, il backend individua
+e la compilazione attraverso la chat non sono ancora implementate. Per i DOCX, il backend individua
 celle vuote e segnaposti, valida le proposte del modello e produce una bozza con
 report. Tutti i candidati del documento vengono inviati in una sola chiamata AI,
 insieme alle istruzioni e alle fonti selezionate entro i budget di contesto.
