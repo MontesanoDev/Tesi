@@ -103,7 +103,7 @@ describe('ProjectKnowledgePanel', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Aggiungi al contesto' }))
     fireEvent.click(screen.getByRole('button', { name: 'Aggiungi contenuto testuale' }))
     fireEvent.change(screen.getByLabelText('Titolo'), { target: { value: 'Nota tecnica' } })
-    fireEvent.change(screen.getByLabelText('Contenuto Markdown'), {
+    fireEvent.change(screen.getByLabelText('Contenuto testuale'), {
       target: { value: 'Vincolo tecnico verificato.' },
     })
     fireEvent.click(screen.getByRole('button', { name: 'Aggiungi al progetto' }))
@@ -137,7 +137,7 @@ describe('ProjectKnowledgePanel', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Aggiungi al contesto' }))
     fireEvent.click(screen.getByRole('button', { name: 'Aggiungi contenuto testuale' }))
     fireEvent.change(screen.getByLabelText('Titolo'), { target: { value: 'AB' } })
-    fireEvent.change(screen.getByLabelText('Contenuto Markdown'), {
+    fireEvent.change(screen.getByLabelText('Contenuto testuale'), {
       target: { value: 'Contenuto valido.' },
     })
     fireEvent.click(screen.getByRole('button', { name: 'Aggiungi al progetto' }))
@@ -182,7 +182,7 @@ describe('ProjectKnowledgePanel', () => {
     renderPanel({ ...project, files: [textFile] }, onProjectChange)
 
     fireEvent.click(screen.getByRole('button', { name: 'Modifica requisiti.md' }))
-    const editor = await screen.findByLabelText('Contenuto Markdown')
+    const editor = await screen.findByLabelText('Contenuto testuale')
     fireEvent.change(editor, { target: { value: '# Requisiti\n\nVersione corretta.' } })
     fireEvent.click(screen.getByRole('button', { name: 'Salva modifiche' }))
 

@@ -396,7 +396,7 @@ export function ProjectKnowledgePanel({
               </label>
             )}
             <label>
-              {editingFile?.mime_type === 'text/plain' ? 'Contenuto testuale' : 'Contenuto Markdown'}
+              Contenuto testuale
               <textarea
                 required
                 minLength={3}
