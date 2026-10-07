@@ -31,10 +31,12 @@ def anyio_backend():
     return "asyncio"
 
 
-async def document_plan(question, history):
+async def document_plan(question, history, forms=None):
     # API/storage tests stub the planner. Provider and routing contracts are
     # exercised with real planning code in test_chat_flow and test_ai_settings.
-    return PlannedTurn(ChatDecision(action="retrieve", answer="", queries=[question]), "test", 0)
+    return PlannedTurn(ChatDecision(
+        action="retrieve", target="source", answer="", queries=[question],
+    ), "test", 0)
 
 
 @pytest.fixture
@@ -1064,9 +1066,10 @@ async def test_planned_direct_reply_bypasses_retrieval_and_generation(client, mo
     async def unexpected_generation(*_args, **_kwargs):
         raise AssertionError("Il modello AI non deve essere chiamato per una domanda di sistema")
 
-    async def reply_plan(question, history):
+    async def reply_plan(question, history, forms=None):
         return PlannedTurn(ChatDecision(
-            action="reply", answer="Sono Mapi RAG, assistente per le fonti.", queries=[],
+            action="reply", target="source", answer="Sono Mapi RAG, assistente per le fonti.",
+            queries=[],
         ), "test-model", 15)
 
     monkeypatch.setattr("app.main.plan_chat_turn", reply_plan)
@@ -1232,9 +1235,10 @@ async def test_follow_up_revalidates_source_existence_and_project_scope(
             else:
                 db.execute("DELETE FROM document_chunks WHERE id = ?", (item["chunk_id"],))
     monkeypatch.setattr("app.main.get_conversation_history", lambda _id: history)
-    async def follow_up_plan(question, history):
+    async def follow_up_plan(question, history, forms=None):
         return PlannedTurn(ChatDecision(
-            action="retrieve", answer="", queries=["Responsabile zaffiro recapito"],
+            action="retrieve", target="source", answer="",
+            queries=["Responsabile zaffiro recapito"],
         ), "test", 0)
 
     monkeypatch.setattr("app.main.plan_chat_turn", follow_up_plan)
@@ -1273,9 +1277,10 @@ async def test_follow_up_searches_current_sources_with_planned_query(client, mon
         }
     ]
     monkeypatch.setattr("app.main.get_conversation_history", lambda _id: history)
-    async def follow_up_plan(question, history):
+    async def follow_up_plan(question, history, forms=None):
         return PlannedTurn(ChatDecision(
-            action="retrieve", answer="", queries=["Recapito responsabile del procedimento"],
+            action="retrieve", target="source", answer="",
+            queries=["Recapito responsabile del procedimento"],
         ), "test", 0)
 
     monkeypatch.setattr("app.main.plan_chat_turn", follow_up_plan)
@@ -1511,7 +1516,7 @@ async def test_upload_document_extracts_and_persists_chunks(client, monkeypatch)
     assert generation_calls[0]["history"] == []
 
     conversation_id = generated.json()["conversation_id"]
-    async def follow_up_plan(question, history):
+    async def follow_up_plan(question, history, forms=None):
         return await document_plan(history[-1]["question"], history)
 
     monkeypatch.setattr("app.main.plan_chat_turn", follow_up_plan)

@@ -304,6 +304,27 @@ def init_database() -> None:
 
             CREATE INDEX IF NOT EXISTS idx_document_compilations_project
             ON document_compilations(project_id, created_at);
+
+            CREATE TABLE IF NOT EXISTS compilation_sessions (
+                id TEXT PRIMARY KEY,
+                project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+                form_id INTEGER REFERENCES project_files(id) ON DELETE SET NULL,
+                conversation_id TEXT REFERENCES conversations(id) ON DELETE SET NULL,
+                original BLOB NOT NULL,
+                state_json TEXT NOT NULL,
+                version INTEGER NOT NULL DEFAULT 1,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            );
+            CREATE INDEX IF NOT EXISTS idx_compilation_sessions_project
+            ON compilation_sessions(project_id, created_at);
+            CREATE TABLE IF NOT EXISTS compilation_session_revisions (
+                session_id TEXT NOT NULL REFERENCES compilation_sessions(id) ON DELETE CASCADE,
+                version INTEGER NOT NULL,
+                event_json TEXT NOT NULL,
+                created_at TEXT NOT NULL,
+                PRIMARY KEY (session_id, version)
+            );
             """
         )
         _ensure_column(db, "projects", "updated_at", "TEXT")
@@ -323,6 +344,12 @@ def init_database() -> None:
         )
         _ensure_column(db, "conversations", "created_at", "TEXT")
         _ensure_column(db, "conversations", "updated_at", "TEXT")
+        _ensure_column(
+            db, "conversations", "selected_form_id",
+            "INTEGER REFERENCES project_files(id) ON DELETE SET NULL",
+        )
+        _ensure_column(db, "conversation_turns", "form_reference_json", "TEXT")
+        _ensure_column(db, "conversation_turns", "compilation_json", "TEXT")
         db.execute(
             """
             UPDATE conversations

@@ -1,0 +1,214 @@
+import { expect, test } from '@playwright/test'
+import type { CompilationSession, CompilationSessionField } from '../src/types'
+
+// API and AI are simulated. Neither browser project touches the user's backend data.
+for (const reducedMotion of [false, true]) {
+  test(`conversational compilation${reducedMotion ? ' with reduced motion' : ''}`, async ({ page }, testInfo) => {
+    await page.emulateMedia({ reducedMotion: reducedMotion ? 'reduce' : 'no-preference' })
+    const form = { id: 42, name: 'domanda-partecipazione.docx', kind: 'form', metadata: 'Word', status: 'Caricato' }
+    const reference = { form_id: form.id, name: form.name }
+    const fields: CompilationSessionField[] = ['Denominazione sociale', 'Data abilitazione direttore tecnico'].map((label, i) => ({
+      id: `t0.r${i}.c1`, candidate_id: `t0.r${i}.c1`, label, status: 'PENDING', provenance: null,
+      value: null, reason: '', validation_errors: [], requirement: null, source_evidence: [], alternatives: [],
+      form_evidence: { role: 'form', source_name: form.name, candidate_id: `t0.r${i}.c1` },
+    }))
+    let state: CompilationSession | null = null
+    const turns: object[] = []
+    let starts = 0
+    let steps = 0
+    let paused = false
+    let deferred = false
+    let release!: () => void
+    const firstStep = new Promise<void>((resolve) => { release = resolve })
+    const base = '/api/projects/compilation-chat'
+    function view() {
+      if (!state) return
+      state.chat = { enabled: true, auto_continue: state.status === 'CREATED' && !paused,
+        paused, paused_by_user: paused, deferred: deferred ? 1 : 0,
+        analyzed: state.summary.total - state.summary.pending, verified: state.summary.resolved,
+        user_provided: state.summary.user_provided, remaining_questions: state.summary.missing,
+        steps_used: steps, max_steps: 36,
+        question: paused ? null : deferred ? { kind: 'deferred_summary', field_ids: [],
+          message: 'La data di abilitazione resta non verificata e rinviata.' }
+          : state.status === 'WAITING_FOR_USER' ? { kind: 'value', field_ids: [fields[1].id],
+          message: 'Mi manca la data di abilitazione del direttore tecnico Elisa Romano. Qual è?' }
+          : state.status === 'READY' ? { kind: 'generate', field_ids: [], message: 'Vuoi che generi il DOCX?' } : null }
+    }
+    await page.route('**/api/**', async (route) => {
+      const request = route.request()
+      const path = new URL(request.url()).pathname
+      const body = request.postData() ? request.postDataJSON() : null
+      if (path === '/api/settings/ai') return route.fulfill({ json: { profiles: [], default_profile_id: null } })
+      if (path.endsWith('/ai-model')) return route.fulfill({ json: { profile_id: null, effective_profile: null } })
+      if (path === base) return route.fulfill({ json: {
+        id: 'compilation-chat', title: 'Candidatura di prova', description: 'Compilazione nella conversazione',
+        status: 'Bozza', status_tone: 'info', updated_label: '', source_count: 0, model_count: 1,
+        instructions: '', call_fact_count: 0, missing_fact_count: 0, knowledge_sources: [], conversations: [],
+        files: [form, { ...form, id: 43, name: 'fonte.txt', kind: 'source' }],
+      } })
+      if (path === `${base}/answer`) {
+        expect(body.form_id).toBe(42)
+        let answer = 'Il modulo richiede dati aziendali e del direttore tecnico.'
+        let compilation: { session_id: string; action: string } | null = null
+        if (body.question === 'me lo compili?') {
+          starts++
+          state ??= { id: 'session-1', project_id: 'compilation-chat', form_id: 42, original_file_id: 42,
+            conversation_id: 'chat-1', template_name: form.name, status: 'CREATED', version: 1,
+            created_at: '', updated_at: '', lease_until: null, last_error: null, last_generation: null, fields,
+            open_issues: fields.map((f) => ({ field_id: f.id, label: f.label, status: f.status, reason: '', validation_errors: [] })),
+            summary: { total: 2, pending: 2, resolved: 0, missing: 0, ambiguous: 0, conflicting: 0, not_applicable: 0, user_provided: 0 } }
+          view()
+          compilation = { session_id: 'session-1', action: 'start' }
+          answer = 'Certo. Analizzo il modulo e verifico le informazioni disponibili.'
+        } else if (['salta', 'non lo so', 'basta', 'riprendi'].includes(body.question)) {
+          expect(body.compilation_session_id).toBe('session-1')
+          state!.version++
+          if (body.question === 'basta') paused = true
+          else if (body.question === 'riprendi') { paused = false; deferred = false }
+          else deferred = true
+          view()
+          compilation = { session_id: 'session-1', action: paused ? 'paused'
+            : body.question === 'riprendi' ? 'resumed' : 'deferred' }
+          answer = paused ? 'Va bene, metto in pausa la compilazione.'
+            : body.question === 'riprendi' ? 'Riprendo la stessa compilazione.'
+              : 'La lascio non verificata e continuo.'
+        } else if (body.question === 'Forse 2014 oppure 2015') {
+          expect(body.compilation_session_id).toBe('session-1')
+          expect(body.compilation_version).toBe(state!.version)
+          state!.version++
+          state!.chat!.question!.message = 'Non ho modificato i valori. Qual è la data completa da usare?'
+          compilation = { session_id: 'session-1', action: 'clarify' }
+          answer = 'Ho bisogno di una data univoca.'
+        } else if (body.question === '12 giugno 2014') {
+          expect(body.compilation_version).toBe(state!.version)
+          Object.assign(fields[1], { value: '12/06/2014', provenance: 'USER', status: 'USER_PROVIDED', reason: 'Indicazione USER: 12 giugno 2014' })
+          Object.assign(state!, { status: 'READY', version: state!.version + 1, open_issues: [],
+            summary: { ...state!.summary, missing: 0, user_provided: 1 } })
+          view()
+          compilation = { session_id: 'session-1', action: 'updated' }
+          answer = 'Ho registrato la tua indicazione.'
+        } else expect(body.question).toBe('riassumilo')
+        const turn = { id: turns.length + 1, question: body.question, answer, compilation,
+          generation_status: compilation ? 'direct' : 'completed', citations: [], evidence: [], missing_information: [], notice: null,
+          model: 'simulato', total_tokens: 1, form_reference: reference }
+        turns.push(turn)
+        return route.fulfill({ json: { ...turn, turn_id: turn.id, conversation_id: 'chat-1' } })
+      }
+      if (path === `${base}/conversations/chat-1`) return route.fulfill({ json: {
+        id: 'chat-1', project_id: 'compilation-chat', title: 'Compilazione', metadata: '', target: 'chat',
+        form_reference: reference, turns,
+      } })
+      if (path === `${base}/compilation-sessions`) {
+        expect(request.method()).toBe('GET') // Start is routed through /answer.
+        expect(new URL(request.url()).searchParams.get('conversation_id')).toBe('chat-1')
+        return route.fulfill({ json: state ? [state] : [] })
+      }
+      if (path.endsWith('/session-1/resolve')) {
+        steps++
+        expect(body).toEqual({ version: state!.version, automatic: true })
+        if (steps === 1) {
+          await firstStep
+          Object.assign(fields[0], { status: 'RESOLVED', value: 'Mapi Ingegneria S.r.l.', provenance: 'SOURCE',
+            requirement: { name: fields[0].label, person_role: '', form_quote: fields[0].label },
+            source_evidence: [{ role: 'source', file_id: -1, chunk_id: -1, chunk_index: 0, source_name: 'visura.txt',
+              project_id: null, scope: 'global', category: 'company', quote: 'Denominazione sociale: Mapi Ingegneria S.r.l.', excerpt: '', relevance: 1 }] })
+          state!.summary = { ...state!.summary, pending: 1, resolved: 1 }
+        } else {
+          expect(steps).toBe(2)
+          Object.assign(fields[1], { status: 'MISSING', reason: 'Nessuna fonte sufficiente',
+            requirement: { name: fields[1].label, person_role: '', form_quote: fields[1].label } })
+          state!.status = 'WAITING_FOR_USER'
+          state!.summary = { ...state!.summary, pending: 0, missing: 1 }
+          state!.open_issues = [{ field_id: fields[1].id, label: fields[1].label, status: 'MISSING', reason: fields[1].reason, validation_errors: [] }]
+        }
+        state!.version += 2
+        view()
+        return route.fulfill({ json: state })
+      }
+      if (path.endsWith('/session-1/finalize')) {
+        expect(body).toEqual({ version: state!.version, allow_unresolved: false })
+        expect(state!.status).toBe('READY')
+        state!.last_generation = { id: 'run-1', project_id: 'compilation-chat', template_name: form.name, created_at: '',
+          status: 'needs_review', session_version: state!.version, downloads: { docx: '/download', report: '/report', template: '/template' } }
+        state!.status = 'GENERATED'
+        state!.version++
+        view()
+        return route.fulfill({ json: state })
+      }
+      if (path.endsWith('/session-1')) return route.fulfill({ json: state })
+      if (path.endsWith('/download/docx')) return route.fulfill({ body: 'simulated-docx-bytes',
+        contentType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' })
+      return route.fulfill({ json: [] })
+    })
+    await page.goto('/projects/compilation-chat')
+    const composer = page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    await composer.fill('@')
+    await expect(page.getByRole('option')).toHaveCount(1)
+    await page.getByRole('option', { name: form.name }).click()
+    await expect(page.locator('.composer-mention-chip')).toContainText(form.name)
+    await composer.fill('riassumilo')
+    await page.getByRole('button', { name: 'Invia', exact: true }).click()
+    await expect(page.getByText('Il modulo richiede dati aziendali e del direttore tecnico.')).toBeVisible()
+    expect(starts).toBe(0)
+    await composer.fill('me lo compili?')
+    await page.getByRole('button', { name: 'Invia', exact: true }).click()
+    await expect(page.getByText('Certo. Analizzo il modulo e verifico le informazioni disponibili.')).toBeVisible()
+    const spinner = page.locator('.compilation-activity svg')
+    await expect(spinner).toBeVisible()
+    expect(await spinner.evaluate((element) => getComputedStyle(element).animationName)).toBe(reducedMotion ? 'none' : 'compilation-spin')
+    await expect(page.getByRole('button', { name: 'Continua analisi' })).not.toBeVisible()
+    release()
+    await expect(page.getByText('Mi manca la data di abilitazione del direttore tecnico Elisa Romano. Qual è?')).toBeVisible()
+    expect(steps).toBe(2)
+    await expect(page.getByRole('button', { name: 'Genera DOCX' })).not.toBeVisible()
+    await expect(page.getByRole('button', { name: 'Genera bozza con campi irrisolti' })).not.toBeVisible()
+    await expect(page.getByText('Non posso compilare', { exact: false })).not.toBeVisible()
+    await page.reload()
+    await expect(page.getByText('Mi manca la data di abilitazione del direttore tecnico Elisa Romano. Qual è?')).toBeVisible()
+    for (const reply of ['salta', 'non lo so']) {
+      await composer.fill(reply)
+      await page.getByRole('button', { name: 'Invia', exact: true }).click()
+      await expect(page.getByText('La data di abilitazione resta non verificata e rinviata.')).toBeVisible()
+      await expect(page.locator('.compilation-question')).not.toContainText('Qual è?')
+      expect(fields[1].value).toBeNull()
+      expect(fields[1].status).toBe('MISSING')
+      await composer.fill('riprendi')
+      await page.getByRole('button', { name: 'Invia', exact: true }).click()
+      await expect(page.locator('.compilation-question')).toContainText('Qual è?')
+    }
+    await composer.fill('basta')
+    await page.getByRole('button', { name: 'Invia', exact: true }).click()
+    await expect(page.getByText('La compilazione è in pausa. Potrai riprenderla quando vuoi.')).toBeVisible()
+    await expect(page.locator('.compilation-question')).toHaveCount(0)
+    await page.reload()
+    await expect(page.getByText('La compilazione è in pausa. Potrai riprenderla quando vuoi.')).toBeVisible()
+    await expect(page.locator('.compilation-question')).toHaveCount(0)
+    expect(steps).toBe(2)
+    await composer.fill('riprendi')
+    await page.getByRole('button', { name: 'Invia', exact: true }).click()
+    await expect(page.locator('.compilation-question')).toContainText('Qual è?')
+    await composer.fill('Forse 2014 oppure 2015')
+    await page.getByRole('button', { name: 'Invia', exact: true }).click()
+    await expect(page.getByText('Non ho modificato i valori. Qual è la data completa da usare?')).toBeVisible()
+    expect(fields[1].value).toBeNull()
+    await composer.fill('12 giugno 2014')
+    await page.getByRole('button', { name: 'Invia', exact: true }).click()
+    await expect(page.getByText('Vuoi che generi il DOCX?')).toBeVisible()
+    await page.screenshot({ path: `artifacts/${testInfo.project.name}-compilation-conversational${reducedMotion ? '-reduced' : ''}.png`, fullPage: true })
+    await page.reload()
+    await expect(page.getByText('Vuoi che generi il DOCX?')).toBeVisible()
+    await page.getByText('Dettagli compilazione', { exact: true }).click()
+    await page.getByText('Valori e sezioni già valutati (2)').click()
+    await expect(page.getByText('USER · Indicazione dell’utente, non verificata da una fonte.')).toBeVisible()
+    await expect(page.getByText('12/06/2014', { exact: true })).toBeVisible()
+    await page.getByText('Dettagli compilazione', { exact: true }).click()
+    await page.getByRole('button', { name: 'Genera DOCX' }).click()
+    await expect(page.getByRole('button', { name: 'Scarica DOCX' })).toBeVisible()
+    const download = page.waitForEvent('download')
+    await page.getByRole('button', { name: 'Scarica DOCX' }).click()
+    expect((await download).suggestedFilename()).toBe('domanda-partecipazione.compilato.docx')
+    expect(starts).toBe(1)
+    expect(steps).toBe(2)
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+  })
+}

@@ -7,6 +7,7 @@ import { ProjectWorkspacePage } from './ProjectWorkspacePage'
 
 vi.mock('../api', () => ({ api: {
   project: vi.fn(), conversation: vi.fn(), projectAnswer: vi.fn(),
+  compilationSessions: vi.fn(),
 } }))
 vi.mock('../components/ProjectKnowledgePanel', () => ({ ProjectKnowledgePanel: () => null }))
 vi.mock('../components/ProjectModelSelector', () => ({ ProjectModelSelector: () => null }))
@@ -56,6 +57,7 @@ function submit(question: string) {
 describe('ProjectWorkspacePage pending requests', () => {
   beforeEach(() => {
     vi.resetAllMocks()
+    vi.mocked(api.compilationSessions).mockResolvedValue([])
     vi.stubGlobal('requestAnimationFrame', () => 1)
     vi.stubGlobal('cancelAnimationFrame', vi.fn())
     vi.mocked(api.project).mockImplementation(async (id) => ({
@@ -75,6 +77,23 @@ describe('ProjectWorkspacePage pending requests', () => {
     submit('Prima domanda')
     await screen.findByText('Risposta precedente')
     await waitFor(() => expect(screen.getByLabelText('Percorso attuale')).toHaveTextContent('/projects/alfa/conversations/nuova'))
+  })
+
+  it('shows the role of form evidence and supports legacy source evidence', async () => {
+    vi.mocked(api.projectAnswer).mockResolvedValue({
+      ...answer('nuova'), generation_status: 'completed', citations: [1],
+      evidence: [
+        { chunk_id: 1, file_id: 1, source_name: 'domanda.docx', chunk_index: 0,
+          excerpt: 'Dichiarazioni richieste', relevance: 1, role: 'form', project_id: 'alfa' },
+        { chunk_id: -1, file_id: -1, source_name: 'azienda.txt', chunk_index: 0,
+          excerpt: 'Dati documentati', relevance: 1 },
+      ],
+    })
+    await setup()
+    submit('Prima domanda')
+    await screen.findByText('domanda.docx')
+    expect(screen.getByText('Modulo')).toBeInTheDocument()
+    expect(screen.getByText('Fonte')).toBeInTheDocument()
   })
 
   it.each(['success', 'failure'] as const)(

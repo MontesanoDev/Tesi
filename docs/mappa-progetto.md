@@ -8,8 +8,25 @@ La base è utilizzabile per il prototipo, con una suite di regressione ampia e
 buone separazioni fra originali, fonti e documenti generati. Non era però priva
 di difetti: l'audit ha riprodotto problemi nella navigazione della chat, nella
 validazione delle email, nel salvataggio degli artefatti e nel replay delle prove.
-Questi punti sono stati corretti. La compilazione iterativa attraverso la chat
-rimane una funzionalità da progettare e implementare.
+Questi punti sono stati corretti. Gli aggiornamenti successivi della compilazione
+sono riportati qui sotto; i risultati dell'audit restano storici.
+
+Aggiornamento del 5 ottobre 2026: i moduli sono ora indicizzati con ruolo `form`
+e interrogabili dalla chat tramite un target distinto dalle fonti fattuali.
+Le richieste miste confrontano ora requisiti e informazioni documentate in
+contesti separati, con controllo backend del ruolo delle citazioni.
+Il passaggio dei dati e le responsabilità qui sotto riflettono queste modifiche;
+i conteggi delle verifiche dell'audit rimangono storici. Lo stato corrente e i
+comandi di reindicizzazione sono in [STATUS.md](../STATUS.md) e nel README.
+
+Aggiornamento del 6 ottobre: implementata la CompilationSession V1 backend,
+con candidate persistiti, risoluzione SOURCE limitata, correzioni utente e
+generazioni dall'originale. Guida e limiti in
+[compilation-session-v1.md](compilation-session-v1.md). Il collegamento alla
+chat e il menu `@` usano una selezione singola e routing semantico per avvio/ripresa.
+L'avanzamento è automatico ma limitato da un budget persistito. La chat interpreta
+risposte libere soltanto sul campo chiesto, con grounding USER e validazione;
+le ambiguità richiedono chiarimento. I controlli tecnici sono nei dettagli.
 
 ## Struttura del repository
 
@@ -17,7 +34,7 @@ rimane una funzionalità da progettare e implementare.
 |---|---|
 | `backend/app/` | 30 moduli Python, incluso `__init__.py`: API, persistenza, AI, retrieval, compilazione. Circa 8.800 righe prima degli interventi. |
 | `backend/tests/` | Regressioni API e di dominio, provider simulati, fixture DOCX reali, Qdrant locale con embedding simulati. |
-| `backend/scripts/` | Cinque strumenti per creare progetti/fixture, eseguire compilazioni dimostrative e ripetere prove registrate. |
+| `backend/scripts/` | Sei strumenti per creare progetti/fixture, eseguire compilazioni dimostrative, ripetere prove registrate e reindicizzare i moduli archiviati. |
 | `frontend/src/` | React e TypeScript: pagine, componenti, hook, client API, tipi, CSS e test. |
 | `frontend/e2e/` | Dieci file di scenari Playwright e una fixture JSON; progetti desktop e mobile. |
 | `demo-documents/` | 27 file versionati: bandi, moduli, fonti aziendali simulate e conoscenza tecnica. Input di test e script, da conservare. |
@@ -47,9 +64,12 @@ flowchart TD
     PLAN --> RICERCA[Ricerca e selezione delle evidenze]
     FTS --> RICERCA
     QDRANT --> RICERCA
-    RICERCA --> RISPOSTA[Generazione e controllo delle citazioni]
+    RICERCA --> CONTESTI[Contesti filtrati form e source]
+    CONTESTI --> RISPOSTA[Generazione e controllo delle citazioni e dei ruoli]
     RISPOSTA --> DB
     MODULI[Moduli caricati dalla UI] --> ARCHIVIO[Archivio con ruolo form]
+    ARCHIVIO --> TESTO[Testo documentale DOCX o TXT]
+    TESTO --> ING
     DOCX[Upload DOCX alla API di compilazione] --> PARSER[Catalogo di celle e segnaposti]
     PARSER --> PROPOSTE[Proposte del modello]
     DB --> CONTESTO[Selezione delle fonti per budget di caratteri]
@@ -59,9 +79,56 @@ flowchart TD
     BOZZA --> FILE
 ```
 
-L'archivio `form` non è ancora collegato al motore di compilazione: l'API DOCX
-richiede un nuovo upload. Il retrieval della chat non alimenta il contesto DOCX.
+L'API DOCX precedente richiede un upload e usa fonti selezionate per budget.
+Le nuove sessioni partono invece dal `form_id` archiviato e riusano
+planner/retrieval SOURCE. Il diagramma sopra descrive il percorso precedente;
+la guida delle sessioni contiene il nuovo flusso persistente.
 La generazione Markdown costituisce un terzo percorso, distinto da chat e DOCX.
+La chat seleziona `form` con un identificativo del modulo oppure `source`; FTS5,
+Qdrant e rilettura delle evidenze applicano ruolo e progetto. I moduli non sono
+ammessi nelle ricerche fattuali. Il target `mixed` usa query distinte nei due
+ruoli, nello stesso motore, e mantiene separati i contesti fino alla generazione.
+Le richieste esplicite di disponibilità hanno una protezione backend contro
+la classificazione form errata. Dopo il retrieval FORM, il planner individua
+etichette/estratti dei requisiti; il backend ne deriva le query SOURCE. Una
+risposta anticipata nella decisione retrieve viene ignorata per queste richieste.
+L'estrazione usa un prompt documentale dedicato e uno schema esplicito, con
+campo e ruolo personale separati. Accetta fino a 32 proposte, verifica estratti
+contigui nel FORM citato, deduplica e seleziona fino a 16 requisiti del turno.
+Il solo retry usa gli stessi chunk e riporta gli errori concreti; una lista
+ancora vuota non avvia SOURCE. I limiti di output non sostituiscono il grounding.
+`source_planning.py` aggiunge una sola pianificazione in batch per più di due
+requisiti: massimo sei gruppi semantici di quattro requisiti, due query e quattro
+evidenze SOURCE per gruppo. Query costruite dalle etichette validate, budget
+separati e deduplicazione conservano una mappa requisito/fonti ammesse. Gli
+esclusi dal budget vengono distinti come non ricercati; non diventano mancanti
+per assenza di dati. Le proposte coerenti troppo grandi sono suddivise, quelle
+invalide usano un fallback limitato per ruolo personale/campo, senza retry AI.
+`requirement_checks.py` conserva solo strutture temporanee del turno: requisiti,
+proposte di valori con estratti e controllo della provenienza; nessuna sessione
+o posizione DOCX. La risposta è composta da requisiti citati con `form`, valori
+letterali sostenuti da `source`, requisiti non verificati e non ricercati.
+Il matcher SOURCE ha un compito stabile indipendente dalla domanda originale.
+Il controllo del numero di iscrizione professionale riconosce la relazione
+locale fra iscrizione e numero, senza imporre la label FORM letterale; non
+promuove numeri estranei nello stesso chunk. Dopo una correzione,
+supporti del ruolo errato o senza riscontro vengono scartati senza perdere
+quelli validi. L'assenza di source
+pertinenti non rende compilabili i campi del form; l'assenza del form interrompe
+il confronto senza sostituirlo con fonti aziendali.
+La rappresentazione strutturale DOCX resta indipendente
+da quella documentale usata per la chat.
+
+Il modello dati conserva `project_files.kind` per il ruolo locale e
+`global_documents.category` (`company`/`general`) per la KB globale. Lo scope
+del retrieval è `project:ID` oppure `global`: entrambe le KB globali restano
+condivise fra progetti e ammesse per source. I collegamenti globali per progetto
+restano compatibilità; non restringono questa disponibilità. Il contesto
+`get_company_context()` usato dalla generazione Markdown seleziona invece
+soltanto company e non è cambiato. Nessuna categoria garantisce che un testo
+documenti un valore dell'operatore. Scope e categoria sono conservati nei
+payload Qdrant, nei `Document` LangChain, nei vicini, nella rilettura SQLite,
+nelle evidenze API e nello storico; non sono nuove colonne del database.
 
 ## Backend: responsabilità dei moduli
 
@@ -79,18 +146,21 @@ Tutti i percorsi della tabella sono relativi a [backend/app](../backend/app).
 | `call_facts.py` | Lettura/scrittura dei fatti estratti, provenienza, revisione e stati dei fatti. |
 | `fact_extraction.py` | Selezione delle fonti, richiesta AI e validazione dell'estrazione dei fatti del bando. |
 | `draft_generation.py` | Generazione Markdown da template, fonti aziendali, dati di progetto e fatti; controlli sui riferimenti ai fatti. |
-| `intents.py` | Decisione strutturata della chat: risposta diretta oppure una–tre query, con un tentativo di correzione. |
-| `generation.py` | Contratto delle risposte, timeout, gestione del troncamento, citazioni e conteggio token. |
+| `intents.py` | Decisione della chat, protezione delle richieste di disponibilità e lettura dei requisiti dopo retrieval FORM. Schemi e un tentativo di correzione per fase. |
+| `requirement_checks.py` | Requisiti documentali del singolo turno, query SOURCE da etichette verificate, controllo di ruolo/estratti/valori/associazione e composizione della risposta informativa. Nessuna compilazione persistente. |
+| `generation.py` | Contratti, timeout, troncamento, citazioni e conteggio token. Mixed chiede solo proposte strutturate di valori source; dopo la correzione conserva i riscontri validi e rende gli altri non verificati. |
 | `retrieval.py` | Interfaccia LangChain comune a FTS5/Qdrant, fusione dei risultati e ampliamento del contesto. |
 | `retrieval_documents.py` | Conversione fra evidenze applicative e `Document` LangChain. |
 | `retrieval_settings.py` | Configurazione del retrieval, segreti cifrati e lock dell'indice locale. |
 | `retrieval_routes.py` | Quattro operazioni HTTP: lettura/salvataggio impostazioni, verifica connessione e indicizzazione. |
 | `retrieval_embeddings.py` | Adapter Ollama con divieto di troncamento degli input, controlli sui vettori e sull'identità del modello. |
 | `vector_retrieval.py` | Corpus SQLite, sincronizzazione Qdrant per hash, filtri per progetto, rilettura dei risultati dalla fonte corrente. |
-| `project_forms.py` | Quattro operazioni HTTP per upload, elenco, download e rimozione di originali DOCX/TXT; nessuna indicizzazione dei moduli. |
+| `project_forms.py` | Quattro operazioni HTTP per upload, elenco, download e rimozione di originali DOCX/TXT; estrazione documentale, frammenti form e reindicizzazione esplicita dagli originali. |
 | `docx_templates.py` | Validazione del contenitore DOCX, scoperta delle posizioni scrivibili, riconoscimento dei campi protetti e scrittura dall'originale. |
 | `document_compilation.py` | Catalogo fonti, prompt, proposte strutturate, validazione e report. Una sola chiamata per tutto il documento, senza gruppi o correzioni automatiche. |
 | `document_compilation_routes.py` | Quattro operazioni HTTP per creazione/elenco/dettaglio/download delle compilazioni; conserva originale, bozza e report. |
+| `compilation_sessions.py` | Snapshot dell'originale/candidate, revisioni/versioni, aggiornamenti USER, finalizzazione con validatore e renderer esistenti. |
+| `compilation_session_models.py`, `compilation_session_resolution.py`, `compilation_session_routes.py` | Contratti, risoluzione di massimo 12 candidate per richiesta tramite SOURCE e API della V1 backend. |
 | `config.py` | Impostazioni AI e `ContextVar` per mantenere provider e modello durante un'operazione; importazione della configurazione ambiente preesistente. |
 | `ai_providers.py` | Catalogo provider, protocolli, metadati per la UI e header di autenticazione. |
 | `ai_profiles.py` | CRUD profili, selezione per progetto, cifratura delle chiavi e importazione della configurazione precedente. |
@@ -133,6 +203,7 @@ Lo schema comprende 18 tabelle ordinarie e due tabelle virtuali FTS5:
 | Fonti e indice | `document_chunks`, `document_chunks_fts`, `global_documents`, `global_document_chunks`, `global_document_chunks_fts`, `project_global_document_links` |
 | Conversazioni | `conversations`, `conversation_turns` |
 | Artefatti e risultati | `knowledge_artifacts`, `project_artifact_links`, `document_fields`, `document_compilations` |
+| Stato iterativo DOCX | `compilation_sessions`, `compilation_session_revisions` |
 | Configurazione | `app_metadata`, `ai_profiles`, `ai_preferences`, `ai_login_flows`, `project_ai_settings` |
 
 `project_files.kind` distingue fonti, moduli e contenitori degli artefatti; esiste
@@ -142,8 +213,8 @@ non vengono incluse nella ricerca del progetto corrente. Gli ID negativi delle
 evidenze globali evitano collisioni con quelli delle evidenze di progetto.
 
 I DOCX generati conservano hash di originale e output, provenienza e report di
-validazione. Non esiste ancora uno stato persistente di compilazione modificabile
-e riprendibile: i record attuali descrivono risultati conclusi.
+validazione. Le nuove sessioni conservano lo stato modificabile e le revisioni;
+i record `document_compilations` continuano a rappresentare risultati immutabili.
 
 ## Frontend
 
@@ -179,6 +250,7 @@ Gli URL principali sono `/projects`, `/projects/:id`,
 | `compile_docx_demo.py` | Prova end-to-end con database temporaneo e documenti simulati; `--live` abilita le chiamate AI. |
 | `compile_docx_ollama.py` | Prova con il profilo Ollama salvato nel progetto; può salvare il risultato se richiesto. |
 | `replay_docx_audit.py` | Ripete una compilazione su template e fonti congelati, inoltrando le opzioni al provider. Legge `request-01.prompt.json` e il nome storico `batch-01.prompt.json`; esegue sempre una chiamata unica. Non supporta tutti i formati degli altri script. |
+| `reindex_project_forms.py` | Riestrae/suddivide gli originali DOCX/TXT di un progetto o singolo modulo; aggiorna SQLite/FTS5 senza modificare i file. Sincronizzazione Qdrant opzionale con `--sync-vectors`. |
 
 `demo-documents/bandi/` contiene Catanzaro, Minervino e Trapani; `general-kb/`
 contiene la conoscenza tecnica. La visura e le generalità aziendali sono simulate.
@@ -240,10 +312,10 @@ unica resistente a un arresto improvviso del processo o del sistema.
 
 | Priorità | Punto | Implicazione |
 |---|---|---|
-| Alta per la nuova compilazione | Nessuno stato riprendibile, nessun collegamento chat → moduli, nessuna gestione delle correzioni utente. | Non basta riattivare il vecchio pulsante per ottenere una compilazione iterativa. |
+| Alta per la nuova compilazione | Workflow conversazionale e chiarimento USER sul campo chiesto implementati. | Valutare con provider reale routing, classificazione dei candidate e domande condizionali; non confondere test software con qualità semantica. |
 | Alta per affidabilità dei dati | Controlli prevalentemente sintattici e letterali. | Un valore autentico può essere assegnato al soggetto/sezione sbagliati; una citazione valida non prova l'affermazione. |
-| Media | Il DOCX seleziona fonti distribuite per budget: 40.000 caratteri aziendali, 90.000 di progetto e 20.000 generali. | Non ricerca le fonti necessarie a ogni campo. I budget in caratteri non sono adattati alla finestra token del modello. |
-| Media | Chiamata unica DOCX con limite di 1.800 secondi e 32.768 token in uscita, senza job persistente. | Una richiesta lunga non può essere ripresa dalla UI dopo una disconnessione; manca una misura reale del contesto necessario per modello/modulo. |
+| Media | Il percorso DOCX precedente seleziona fonti distribuite per budget: 40.000 caratteri aziendali, 90.000 di progetto e 20.000 generali. | Le sessioni usano invece retrieval SOURCE mirato; rimangono falsi negativi conservativi e limiti del contesto. |
+| Media | Il percorso DOCX precedente mantiene la chiamata unica da 1.800 secondi/32.768 token. | Le sessioni offrono passi da massimo 180 secondi e stato riprendibile; non è ancora misurata la qualità con provider reali del nuovo workflow. |
 | Media | `repository.py`, `main.py` e `document_compilation.py` concentrano molte responsabilità. | Separare routing/orchestrazione, persistenza e validatori durante gli interventi funzionali; evitare una riscrittura generale solo per ridurre le righe. |
 | Media | `_finish_ingestion` estrae PDF e suddivide il testo sincronicamente dentro una funzione async. | Un PDF impegnativo può occupare l'event loop; da spostare in un worker/thread con limiti espliciti. È una valutazione del percorso, non un benchmark di carico. |
 | Media | File caricati come fonti vengono scritti prima dell'inserimento nel database; la compensazione non copre ogni errore successivo. | Possibili file orfani su errore di persistenza. Da uniformare al salvataggio dei moduli. |
@@ -258,8 +330,9 @@ risposte reali e campi attesi annotati.
 
 ## Passo successivo per la compilazione
 
-Per un ciclo con chiarimenti, la prima unità di lavoro dovrebbe essere un solo
-DOCX già archiviato, una sezione ambigua e una risposta dell'utente:
+La V1 backend e il workflow conversazionale realizzano i punti seguenti.
+Il prossimo passo è valutarli con provider reale: un DOCX, una sezione ambigua
+e un chiarimento utente, conservando gli errori di associazione osservati.
 
 1. Collegare una sessione al `form_id` e all'hash dell'originale, verificando progetto e formato.
 2. Conservare mappa dei campi, proposte, fonti, problemi aperti e versioni della sessione.
@@ -269,10 +342,10 @@ DOCX già archiviato, una sezione ambigua e una risposta dell'utente:
 6. Rigenerare ogni versione dall'originale e dallo stato; non reinterpretare una bozza come template.
 7. Esporre stato, chiarimenti, report e download nella chat, misurando errori di soggetto/posizione oltre ai campi riempiti.
 
-Parser, validatori, writer DOCX, profili AI e retrieval sono riutilizzabili.
-La scelta fra avviare questa integrazione o valutare prima il solo motore DOCX
-resta aperta. In questo audit sono stati implementati miglioramenti circoscritti
-al motore e alle basi applicative, non il nuovo workflow.
+Parser, validatori, writer DOCX, profili AI e retrieval sono riutilizzati dalle
+sessioni. La V1 e il collegamento conversazionale chat/`@` sono implementati,
+inclusi chiarimenti liberi sul campo chiesto. Correzioni arbitrarie di altri campi
+e interpretazione di risposte su più campi restano fuori da questo percorso.
 
 ## Verifiche
 

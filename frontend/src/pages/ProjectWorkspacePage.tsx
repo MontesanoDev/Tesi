@@ -18,18 +18,21 @@ import {
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
 import { AppShell } from '../components/AppShell'
+import { CompilationSessionCard } from '../components/CompilationSessionCard'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
 import { ProjectModelSelector } from '../components/ProjectModelSelector'
 import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import { useProject } from '../hooks/useProject'
-import type { GroundedAnswer } from '../types'
+import { useCompilationSession } from '../hooks/useCompilationSession'
+import type { FormReference, GroundedAnswer, ProjectFile } from '../types'
 
 interface ChatTurn {
   id: string
   question: string
   result: GroundedAnswer | null
   error: string | null
+  form_reference?: FormReference | null
 }
 
 const MAX_PROMPT_LENGTH = 4_000
@@ -37,6 +40,7 @@ const MAX_PROMPT_LENGTH = 4_000
 function turnStatus(turn: ChatTurn) {
   if (turn.error) return turn.error
   if (!turn.result) return 'Elaborazione della richiesta...'
+  if (turn.result.compilation) return 'Compilazione nella conversazione.'
   if (turn.result.generation_status === 'direct') return 'Risposta diretta di Mapi RAG.'
   if (turn.result.generation_status === 'completed') {
     return turn.result.evidence.length === 1
@@ -62,6 +66,7 @@ function ConversationTurn({ turn }: { turn: ChatTurn }) {
       <div className="user-message">
         <span>Tu</span>
         <p>{turn.question}</p>
+        {turn.form_reference && <small className="chat-form-reference">@{turn.form_reference.name}</small>}
       </div>
 
       <div className="turn-status" aria-live="polite">
@@ -108,6 +113,7 @@ function ConversationTurn({ turn }: { turn: ChatTurn }) {
                   <span className="evidence-reference">[{index + 1}]</span>
                   <FileText size={15} />
                   <strong>{item.source_name}</strong>
+                  <span className="evidence-fragment">{item.role === 'form' ? 'Modulo' : 'Fonte'}</span>
                   <span className="evidence-fragment">Frammento {item.chunk_index + 1}</span>
                 </div>
                 <p>{item.excerpt}</p>
@@ -138,6 +144,17 @@ export function ProjectWorkspacePage() {
   const [changingModel, setChangingModel] = useState(false)
   const [conversationLoading, setConversationLoading] = useState(false)
   const [conversationError, setConversationError] = useState<string | null>(null)
+  const [formReference, setFormReference] = useState<FormReference | null>(null)
+  const [mention, setMention] = useState<{ start: number; end: number; query: string } | null>(null)
+  const [mentionIndex, setMentionIndex] = useState(0)
+  const forms = project?.files.filter((file) => file.kind === 'form') ?? []
+  const selectedForm = forms.find((file) => file.id === formReference?.form_id)
+  const mentionOptions = forms.filter((file) => file.name.toLocaleLowerCase().includes(mention?.query.toLocaleLowerCase() ?? ''))
+  const compilation = useCompilationSession(projectId, conversationId, selectedForm?.id,
+    searching || conversationLoading || changingModel)
+  // A freshly created chat must finish navigation before it can accept another mutation.
+  const activeSession = compilation.session?.conversation_id === conversationId ? compilation.session : null
+  const composerRef = useDismissibleMenu<HTMLFormElement>(Boolean(mention), () => setMention(null))
   const turnSequence = useRef(0)
   const chatThread = useRef<HTMLDivElement>(null)
   const composerInput = useRef<HTMLTextAreaElement>(null)
@@ -162,6 +179,8 @@ export function ProjectWorkspacePage() {
     setTurns([])
     setSearching(false)
     setConversationError(null)
+    setFormReference(null)
+    setMention(null)
     turnSequence.current = 0
     activeConversation.current = null
     loadedConversation.current = null
@@ -175,6 +194,8 @@ export function ProjectWorkspacePage() {
       setTurns([])
       setConversationLoading(false)
       setConversationError(null)
+      setFormReference(null)
+      setMention(null)
       return
     }
     if (loadedConversation.current === conversationId) return
@@ -182,6 +203,9 @@ export function ProjectWorkspacePage() {
     const controller = new AbortController()
     activeConversation.current = conversationId
     setTurns([])
+    setPrompt('')
+    setFormReference(null)
+    setMention(null)
     setConversationLoading(true)
     setConversationError(null)
     api.conversation(projectId, conversationId, controller.signal)
@@ -189,9 +213,11 @@ export function ProjectWorkspacePage() {
         if (controller.signal.aborted) return
         activeConversation.current = conversation.id
         loadedConversation.current = conversation.id
+        setFormReference(conversation.form_reference ?? null)
         setTurns(conversation.turns.map((turn) => ({
           id: `turn-${turn.id}`,
           question: turn.question,
+          form_reference: turn.form_reference,
           result: {
             ...turn,
             conversation_id: conversation.id,
@@ -218,10 +244,11 @@ export function ProjectWorkspacePage() {
     const thread = chatThread.current
     if (!thread) return
     const frame = requestAnimationFrame(() => {
-      thread.scrollTo({ top: thread.scrollHeight, behavior: 'smooth' })
+      thread.scrollTo({ top: thread.scrollHeight,
+        behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
     })
     return () => cancelAnimationFrame(frame)
-  }, [turns])
+  }, [turns, activeSession?.version])
 
   useLayoutEffect(() => {
     const input = composerInput.current
@@ -240,15 +267,18 @@ export function ProjectWorkspacePage() {
   async function submitPrompt(event: FormEvent) {
     event.preventDefault()
     const query = prompt.trim()
-    if (!query || answerRequest.current || searching || conversationLoading || changingModel) return
+    if (!query || answerRequest.current || searching || conversationLoading || changingModel
+      || (compilation.busy && !activeSession?.chat?.enabled)) return
     const controller = new AbortController()
     answerRequest.current = controller
     const turnId = `local-${++turnSequence.current}`
     setTurns((current) => [
       ...current,
-      { id: turnId, question: query, result: null, error: null },
+      { id: turnId, question: query, result: null, error: null,
+        form_reference: selectedForm ? { form_id: selectedForm.id, name: selectedForm.name } : null },
     ])
     setPrompt('')
+    setMention(null)
     setSearching(true)
     try {
       const result = await api.projectAnswer(
@@ -256,6 +286,8 @@ export function ProjectWorkspacePage() {
         query,
         activeConversation.current,
         controller.signal,
+        selectedForm?.id,
+        activeSession ? { session_id: activeSession.id, version: activeSession.version } : undefined,
       )
       if (controller.signal.aborted) return
       activeConversation.current = result.conversation_id
@@ -265,6 +297,7 @@ export function ProjectWorkspacePage() {
           ? { ...turn, id: `turn-${result.turn_id}`, result }
           : turn
       )))
+      if (result.compilation) compilation.refresh()
       if (conversationId !== result.conversation_id) {
         navigate(
           `/projects/${activeProjectId}/conversations/${result.conversation_id}`,
@@ -273,6 +306,7 @@ export function ProjectWorkspacePage() {
       }
     } catch (reason) {
       if (controller.signal.aborted) return
+      if (activeSession) compilation.refresh()
       const message = reason instanceof Error ? reason.message : 'Ricerca non riuscita'
       setTurns((current) => current.map((turn) => (
         turn.id === turnId ? { ...turn, error: message } : turn
@@ -286,9 +320,41 @@ export function ProjectWorkspacePage() {
   }
 
   function handleComposerKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.nativeEvent.isComposing) return
+    if (mention) {
+      if (event.key === 'Escape') { event.preventDefault(); setMention(null); return }
+      if (['ArrowDown', 'ArrowUp'].includes(event.key)) {
+        event.preventDefault()
+        setMentionIndex((index) => (index + (event.key === 'ArrowDown' ? 1 : -1) + Math.max(1, mentionOptions.length)) % Math.max(1, mentionOptions.length))
+        return
+      }
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault()
+        const option = mentionOptions[mentionIndex] ?? mentionOptions[0]
+        if (option) selectMention(option)
+        return
+      }
+    }
     if (event.key !== 'Enter' || event.shiftKey || event.nativeEvent.isComposing) return
     event.preventDefault()
     event.currentTarget.form?.requestSubmit()
+  }
+
+  function selectMention(form: ProjectFile) {
+    if (!mention || compilation.busy || searching) return
+    setFormReference({ form_id: form.id, name: form.name })
+    setPrompt(prompt.slice(0, mention.start) + prompt.slice(mention.end))
+    setMention(null)
+    composerInput.current?.focus()
+  }
+
+  async function startCompilation() {
+    if (!selectedForm || searching || conversationLoading || changingModel) return
+    const session = await compilation.start(selectedForm.id)
+    if (!session?.conversation_id) return
+    if (conversationId !== session.conversation_id) {
+      navigate(`/projects/${activeProjectId}/conversations/${session.conversation_id}`, { replace: true })
+    }
   }
 
   async function deleteCurrentProject() {
@@ -345,26 +411,56 @@ export function ProjectWorkspacePage() {
 
   const composer = (
     <form
-      className={`composer${turns.length > 0 ? ' composer--docked' : ''}`}
+      ref={composerRef}
+      className={`composer${turns.length > 0 || activeSession ? ' composer--docked' : ''}`}
       onSubmit={submitPrompt}
     >
+      {selectedForm && <div className="composer-mention">
+        <span className="composer-mention-chip"><FileText size={14} /><span>@{selectedForm.name}</span>
+          <button type="button" className="icon-button" aria-label="Rimuovi riferimento al modulo" title="Rimuovi riferimento al modulo"
+            disabled={compilation.busy || searching} onClick={() => setFormReference(null)}><X size={14} /></button>
+        </span>
+        {/\.docx$/i.test(selectedForm.name)
+          && (!activeSession || !activeSession.chat?.enabled || activeSession.chat.paused || activeSession.status === 'FAILED') && <button type="button" className="button"
+          disabled={compilation.busy || compilation.loading || searching || conversationLoading || changingModel}
+          onClick={() => void startCompilation()}>{activeSession ? 'Riprendi compilazione' : 'Avvia compilazione'}</button>}
+      </div>}
       <textarea
         ref={composerInput}
         aria-label="Messaggio per Mapi RAG"
-        placeholder="Come posso aiutarti in questo progetto?"
+        placeholder="Come posso aiutarti? Usa @ per scegliere un modulo"
         maxLength={MAX_PROMPT_LENGTH}
         value={prompt}
-        onChange={(event) => setPrompt(event.target.value)}
+        aria-controls={mention ? 'composer-form-options' : undefined}
+        aria-activedescendant={mention && mentionOptions[mentionIndex] ? `form-option-${mentionOptions[mentionIndex].id}` : undefined}
+        onChange={(event) => {
+          const text = event.target.value
+          const end = event.target.selectionStart
+          const match = /(?:^|\s)@([^@\s]*)$/.exec(text.slice(0, end))
+          setPrompt(text)
+          setMentionIndex(0)
+          setMention(match && !compilation.busy && !searching ? { start: end - match[1].length - 1, end, query: match[1] } : null)
+        }}
         onKeyDown={handleComposerKeyDown}
       />
+      {mention && <div className="composer-mention-menu" id="composer-form-options" role="listbox" aria-label="Moduli del progetto">
+        {mentionOptions.length === 0 && <p>Nessun modulo corrispondente nel progetto</p>}
+        {mentionOptions.map((form, index) => <button type="button" role="option" id={`form-option-${form.id}`}
+          aria-selected={index === mentionIndex} key={form.id} onClick={() => selectMention(form)}>{form.name}</button>)}
+      </div>}
+      {!compilation.session && compilation.error && <div>
+        <p role="alert">{compilation.error}</p>
+        <button type="button" className="button" disabled={compilation.busy} onClick={compilation.refresh}>Riprova caricamento sessione</button>
+      </div>}
+      {compilation.busy && !activeSession && <p role="status">Preparazione della compilazione…</p>}
       <div className="composer-tools">
         <ProjectModelSelector key={project.id} projectId={project.id}
-          disabled={searching || conversationLoading} onChanging={setChangingModel} />
+          disabled={searching || conversationLoading || compilation.busy} onChanging={setChangingModel} />
         <button
           className="send-button"
           type="submit"
           aria-label="Invia"
-          disabled={!prompt.trim() || searching || conversationLoading || changingModel}
+          disabled={!prompt.trim() || searching || conversationLoading || changingModel || (compilation.busy && !activeSession?.chat?.enabled)}
         >
           <ArrowUp size={20} />
         </button>
@@ -376,7 +472,7 @@ export function ProjectWorkspacePage() {
     <AppShell active="projects" project={project} contentClassName="workspace-content">
       <Link className="back-link" to="/projects">← Tutti i progetti</Link>
       <div className="workspace-layout">
-        <section className={`workspace-main${turns.length > 0 ? ' workspace-main--conversation' : ''}`}>
+        <section className={`workspace-main${turns.length > 0 || activeSession ? ' workspace-main--conversation' : ''}`}>
           <header className="project-heading">
             <div>
               <h1>{project.title}</h1>
@@ -415,7 +511,7 @@ export function ProjectWorkspacePage() {
             <LoadingState label="Caricamento conversazione" />
           ) : conversationError ? (
             <ErrorState message={conversationError} />
-          ) : turns.length === 0 ? (
+          ) : turns.length === 0 && !activeSession ? (
             <>
               {composer}
 
@@ -454,6 +550,11 @@ export function ProjectWorkspacePage() {
                     <ConversationTurn turn={turn} />
                   </div>
                 ))}
+                {activeSession && <CompilationSessionCard key={activeSession.id}
+                  session={activeSession} busy={compilation.busy || searching || changingModel}
+                  error={compilation.error} onContinue={compilation.resolve} onUpdate={compilation.update}
+                  onGenerate={compilation.finalize} onRefresh={compilation.refresh}
+                  onResume={() => void startCompilation()} />}
               </div>
               {composer}
             </>

@@ -422,7 +422,8 @@ async def test_selected_provider_routes_all_generation_paths(
         calls.append(body)
         assert body["model"] == profile["model"]
         content = json.dumps(
-            {"action": "retrieve", "answer": "", "queries": ["Requisito tecnico"]}
+            {"action": "retrieve", "target": "source", "answer": "",
+             "queries": ["Requisito tecnico"]}
             if operation == "chat" and len(calls) == 1 else replies[operation]
         )
         if provider == "ollama":

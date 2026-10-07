@@ -10,7 +10,7 @@ from app import project_forms
 from app.db import connection, get_storage_path, init_database
 from app.fact_extraction import load_project_source_chunks
 from app.main import app
-from app.repository import create_project, delete_project
+from app.repository import create_project, delete_project, search_project_evidence
 from app.schemas import ProjectCreate
 
 
@@ -50,7 +50,7 @@ def document_bytes(suffix):
 
 @pytest.mark.anyio
 @pytest.mark.parametrize("suffix", ["docx", "txt"])
-async def test_archive_preserves_original_without_indexing_or_compiling(client, suffix):
+async def test_archive_indexes_text_without_compiling_or_altering_original(client, suffix):
     original = document_bytes(suffix)
     response = await client.post(
         "/api/projects/primo/forms", files={"file": (f"domanda.{suffix}", original)},
@@ -58,8 +58,8 @@ async def test_archive_preserves_original_without_indexing_or_compiling(client, 
     assert response.status_code == 201, response.text
     form = response.json()
     assert form["kind"] == "form"
-    assert form["status"] == "Caricato"
-    assert form["chunk_count"] == 0
+    assert form["status"] == "Indicizzato"
+    assert form["chunk_count"] > 0
     assert "storage_path" not in form
     assert (await client.get("/api/projects/primo/forms")).json() == [form]
     project = (await client.get("/api/projects/primo")).json()
@@ -72,8 +72,14 @@ async def test_archive_preserves_original_without_indexing_or_compiling(client, 
     assert "attachment" in downloaded.headers["content-disposition"]
     assert not load_project_source_chunks("primo")
     with connection() as db:
-        for table in ("document_chunks", "document_chunks_fts", "document_compilations"):
-            assert db.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0] == 0
+        for table in ("document_chunks", "document_chunks_fts"):
+            assert db.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0] == form["chunk_count"]
+        chunks = db.execute(
+            "SELECT c.project_id, c.file_id, f.kind FROM document_chunks c "
+            "JOIN project_files f ON f.id=c.file_id",
+        ).fetchall()
+        assert all(tuple(row) == ("primo", form["id"], "form") for row in chunks)
+        assert db.execute("SELECT COUNT(*) FROM document_compilations").fetchone()[0] == 0
 
 
 @pytest.mark.anyio
@@ -91,6 +97,14 @@ async def test_duplicate_names_are_independent_and_removal_preserves_other_forms
     )).content == b"Secondo originale"
     assert (await client.get("/api/projects/primo")).json()["model_count"] == 1
     assert len(list(get_storage_path().rglob("*.txt"))) == 1
+    with connection() as db:
+        for table in ("document_chunks", "document_chunks_fts"):
+            assert db.execute(
+                f"SELECT COUNT(*) FROM {table} WHERE file_id=?", (rows[0]["id"],),
+            ).fetchone()[0] == 0
+            assert db.execute(
+                f"SELECT COUNT(*) FROM {table} WHERE file_id=?", (rows[1]["id"],),
+            ).fetchone()[0] > 0
 
 
 @pytest.mark.anyio
@@ -176,6 +190,92 @@ async def test_project_deleted_during_validation_cannot_leave_orphan_file(client
     )
     assert response.status_code == 404
     assert not list(get_storage_path().rglob("*.txt"))
+
+
+@pytest.mark.anyio
+async def test_documentary_docx_keeps_tables_and_paragraphs_in_order(client):
+    doc = Document()
+    doc.add_paragraph("Domanda di partecipazione")
+    doc.add_paragraph("Dati del sottoscrittore")
+    table = doc.add_table(rows=1, cols=2)
+    table.cell(0, 0).text = "Forma di partecipazione"
+    table.cell(0, 1).text = "Raggruppamento temporaneo"
+    doc.add_paragraph("Allegati richiesti: documento di identita")
+    out = BytesIO()
+    doc.save(out)
+    form = (await client.post(
+        "/api/projects/primo/forms", files={"file": ("domanda.docx", out.getvalue())},
+    )).json()
+    with connection() as db:
+        text = db.execute(
+            "SELECT content FROM document_chunks WHERE file_id=? ORDER BY chunk_index",
+            (form["id"],),
+        ).fetchone()[0]
+    terms = ["sottoscrittore", "Forma di partecipazione", "Raggruppamento", "Allegati"]
+    assert [text.index(term) for term in terms] == sorted(text.index(term) for term in terms)
+    assert text.count("Raggruppamento") == 1
+
+
+@pytest.mark.anyio
+async def test_explicit_reindex_restores_legacy_form_without_changing_original(client, monkeypatch):
+    from scripts.reindex_project_forms import main
+
+    original = document_bytes("txt")
+    form = (await client.post(
+        "/api/projects/primo/forms", files={"file": ("domanda.txt", original)},
+    )).json()
+    with connection() as db:
+        db.execute("DELETE FROM document_chunks WHERE file_id=?", (form["id"],))
+        db.execute(
+            "UPDATE project_files SET chunk_count=0, status='Caricato' WHERE id=?", (form["id"],),
+        )
+    assert search_project_evidence("primo", "Domanda", target="form") == []
+    monkeypatch.setattr("sys.argv", [
+        "reindex_project_forms", "--project", "primo", "--form-id", str(form["id"]),
+    ])
+    main()
+    found = search_project_evidence("primo", "Domanda", target="form", form_id=form["id"])
+    assert found and all(item["role"] == "form" for item in found)
+    assert search_project_evidence("secondo", "Domanda", target="form") == []
+    assert search_project_evidence("primo", "Domanda") == []
+    downloaded = await client.get(f"/api/projects/primo/forms/{form['id']}/download")
+    assert downloaded.content == original
+    # Repeating the explicit operation replaces chunks, rather than duplicating them.
+    main()
+    assert (await client.get("/api/projects/primo/forms")).json()[0]["chunk_count"] == len(found)
+
+
+@pytest.mark.anyio
+async def test_failed_reindex_preserves_previous_chunks(client, monkeypatch):
+    form = (await client.post(
+        "/api/projects/primo/forms", files={"file": ("domanda.txt", document_bytes("txt"))},
+    )).json()
+    before = search_project_evidence("primo", "Domanda", target="form")
+    def fail(*args):
+        raise OSError("Errore dopo scrittura dei frammenti")
+    monkeypatch.setattr(project_forms, "touch_project", fail)
+    with pytest.raises(OSError):
+        project_forms.reindex_form("primo", form["id"])
+    assert search_project_evidence("primo", "Domanda", target="form") == before
+
+
+@pytest.mark.anyio
+async def test_reindex_command_rejects_wrong_project_or_backend_before_changes(client, monkeypatch):
+    from scripts.reindex_project_forms import main
+
+    form = (await client.post(
+        "/api/projects/primo/forms", files={"file": ("domanda.txt", document_bytes("txt"))},
+    )).json()
+    before = search_project_evidence("primo", "Domanda", target="form")
+    for options in (
+        ["--project", "secondo", "--form-id", str(form["id"])],
+        ["--project", "primo", "--sync-vectors"],
+    ):
+        monkeypatch.setattr("sys.argv", ["reindex_project_forms", *options])
+        with pytest.raises(SystemExit) as error:
+            main()
+        assert error.value.code == 2
+        assert search_project_evidence("primo", "Domanda", target="form") == before
 
 
 @pytest.mark.anyio

@@ -34,11 +34,14 @@ def corpus() -> list[dict]:
         rows = db.execute(
             f"""
             SELECT c.id AS chunk_id, c.file_id, f.name AS source_name,
-                   c.chunk_index, c.content, 'project:' || c.project_id AS scope
+                   c.chunk_index, c.content, 'project:' || c.project_id AS scope,
+                   CASE WHEN f.kind = 'form' THEN 'form' ELSE 'source' END AS role,
+                   c.project_id, f.metadata AS document_metadata, NULL AS category
             FROM document_chunks c JOIN project_files f ON f.id=c.file_id
-            WHERE f.project_id=c.project_id AND {PROJECT_EVIDENCE_FILTER}
+            WHERE f.project_id=c.project_id AND (f.kind = 'form' OR {PROJECT_EVIDENCE_FILTER})
             UNION ALL
-            SELECT -c.id, -d.id, d.name, c.chunk_index, c.content, 'global'
+            SELECT -c.id, -d.id, d.name, c.chunk_index, c.content, 'global',
+                   'source', NULL, d.metadata, d.category
             FROM global_document_chunks c JOIN global_documents d ON d.id=c.document_id
             WHERE d.category IN ('company', 'general')
             """
@@ -48,7 +51,10 @@ def corpus() -> list[dict]:
 
 def content_hash(chunk: dict) -> str:
     # A move across projects must update the filter payload even if text is unchanged.
-    value = [chunk[k] for k in ("content", "source_name", "scope", "file_id", "chunk_index")]
+    value = [chunk[k] for k in (
+        "content", "source_name", "scope", "file_id", "chunk_index", "role",
+        "project_id", "document_metadata", "category",
+    )]
     return hashlib.sha256(json.dumps(value, ensure_ascii=False).encode()).hexdigest()
 
 
@@ -120,10 +126,15 @@ def synchronize(
             name,
             vectors_config=models.VectorParams(size=dimension, distance=models.Distance.COSINE),
         )
-        if settings.qdrant_mode == "remote":
-            client.create_payload_index(
-                name, "metadata.scope", field_schema=models.PayloadSchemaType.KEYWORD
-            )
+    if settings.qdrant_mode == "remote":
+        existing = client.get_collection(name).payload_schema
+        for field, schema in (
+            ("metadata.scope", models.PayloadSchemaType.KEYWORD),
+            ("metadata.role", models.PayloadSchemaType.KEYWORD),
+            ("metadata.file_id", models.PayloadSchemaType.INTEGER),
+        ):
+            if field not in existing:
+                client.create_payload_index(name, field, field_schema=schema)
     # The query already established the dimension. Avoid an extra dummy embedding
     # in LangChain's constructor; vector searches still validate the collection.
     store = QdrantVectorStore(
@@ -157,6 +168,12 @@ def synchronize(
             metadata={
                 "chunk_id": chunk["chunk_id"],
                 "scope": chunk["scope"],
+                "role": chunk["role"],
+                "project_id": chunk["project_id"],
+                "file_id": chunk["file_id"],
+                "source_name": chunk["source_name"],
+                "document_metadata": chunk["document_metadata"],
+                "category": chunk["category"],
                 "content_hash": content_hash(chunk),
             },
         )
@@ -178,7 +195,12 @@ def run_vector_search(
     query: str | None = None,
     limit: int = 4,
     include_neighbors: bool = False,
+    *,
+    target: str = "source",
+    form_id: int | None = None,
 ) -> list[Document] | dict:
+    if target not in {"source", "form"}:
+        raise ValueError("Target del retrieval non valido")
     with RETRIEVAL_LOCK, source_embeddings(settings) as embedder:
         chunks = corpus()
         digest = embedder.digest()
@@ -191,16 +213,20 @@ def run_vector_search(
                 raise RetrievalError("Modello di embedding aggiornato durante la ricerca: riprova")
             if query is None:
                 return status | {"dimensions": len(vector), "embedding_digest": digest}
+            scopes = [f"project:{project_id}"]
+            if target == "source":
+                scopes.append("global")
+            conditions = [
+                models.FieldCondition(key="metadata.scope", match=models.MatchAny(any=scopes)),
+                models.FieldCondition(key="metadata.role", match=models.MatchValue(value=target)),
+            ]
+            if form_id is not None:
+                conditions.append(models.FieldCondition(
+                    key="metadata.file_id", match=models.MatchValue(value=form_id),
+                ))
             hits = store.similarity_search_with_score_by_vector(
                 vector,
-                filter=models.Filter(
-                    must=[
-                        models.FieldCondition(
-                            key="metadata.scope",
-                            match=models.MatchAny(any=[f"project:{project_id}", "global"]),
-                        )
-                    ]
-                ),
+                filter=models.Filter(must=conditions),
                 k=max(limit * 6, 24),
             )
         # Reload after the network calls: old/deleted/differently scoped evidence is unusable.
@@ -211,12 +237,14 @@ def run_vector_search(
             chunk = fresh.get(payload.get("chunk_id"))
             if (
                 chunk is None
-                or chunk["scope"] not in {f"project:{project_id}", "global"}
+                or chunk["scope"] not in scopes
+                or chunk["role"] != target
+                or (form_id is not None and chunk["file_id"] != form_id)
                 or payload.get("content_hash") != content_hash(chunk)
                 or not math.isfinite(score)
             ):
                 continue
-            item = {k: v for k, v in chunk.items() if k != "scope"}
+            item = dict(chunk)
             item.update(excerpt=_neighbor_excerpt(chunk["content"], 0), relevance=score)
             adjacent = any(
                 c["file_id"] == item["file_id"] and abs(c["chunk_index"] - item["chunk_index"]) <= 1
@@ -228,7 +256,9 @@ def run_vector_search(
                 anchors.append(item)
         anchors.extend(deferred[: max(0, limit - len(anchors))])
         if include_neighbors:
-            anchors = _expand_neighbor_evidence(project_id, anchors, max_results=limit * 2)
+            anchors = _expand_neighbor_evidence(
+                project_id, anchors, max_results=limit * 2, target=target, form_id=form_id,
+            )
         return [evidence_document(item) for item in anchors]
 
 

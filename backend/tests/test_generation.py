@@ -6,7 +6,8 @@ import pytest
 
 from app import generation
 from app.config import AISettings, use_ai_settings
-from app.generation import GenerationError, _build_user_prompt, _parse_content
+from app.generation import GenerationError, _build_user_prompt, _parse_content, _parse_mixed_content
+from app.requirement_checks import Requirement
 
 
 @pytest.fixture
@@ -196,6 +197,123 @@ def test_generation_prompt_includes_evidence_and_recent_history():
     assert "Frammento: 5" not in prompt
 
 
+FORM_CONTEXT = [{
+    "role": "form", "source_name": "domanda.txt", "content": "Certificazione ISO 9001: ______",
+    "scope": "project:alpha", "category": None,
+}]
+FACTUAL_CONTEXT = [{
+    "role": "source", "source_name": "dati.txt",
+    "content": "Certificazione ISO 9001 di Mapi: MAPI-QMS-2024-001.",
+    "scope": "global", "category": "general",
+}]
+REQUIREMENTS = [Requirement(
+    name="Certificazione ISO 9001", form_quote="Certificazione ISO 9001:", form_citation_id=1,
+)]
+
+
+def mixed_support(citation=2):
+    return {"requirement_id": 1, "source_citation_id": citation,
+            "source_quote": FACTUAL_CONTEXT[0]["content"], "value": "MAPI-QMS-2024-001"}
+
+
+def test_mixed_parser_keeps_requirements_and_facts_with_their_own_citations():
+    response = {"supports": [mixed_support()]}
+    answer = _parse_mixed_content(
+        json.dumps(response), FORM_CONTEXT, FACTUAL_CONTEXT, "test", {}, requirements=REQUIREMENTS,
+    )
+    assert answer.citations == [1, 2]
+    requirement_position = answer.answer.index("Requisiti del modulo")
+    assert requirement_position < answer.answer.index("Informazioni verificate")
+    assert "non certifica la completezza" in answer.answer
+
+
+@pytest.mark.parametrize("citation", [1, 0, 9])
+def test_mixed_parser_rejects_form_and_unavailable_source_citations(citation):
+    with pytest.raises(GenerationError):
+        _parse_mixed_content(
+            json.dumps({"supports": [mixed_support(citation)]}),
+            FORM_CONTEXT, FACTUAL_CONTEXT, "test", {}, requirements=REQUIREMENTS,
+        )
+
+
+def test_mixed_parser_cannot_create_fact_when_only_form_exists():
+    invalid = {"supports": [mixed_support(1)]}
+    with pytest.raises(GenerationError):
+        _parse_mixed_content(
+            json.dumps(invalid), FORM_CONTEXT, [], "test", {}, requirements=REQUIREMENTS,
+        )
+
+
+def test_mixed_parser_rejects_free_answer_outside_checked_statements():
+    invalid = {"supports": [], "answer": "Tutti i dati sono disponibili: Mapi possiede ISO 9001."}
+    with pytest.raises(GenerationError, match="contratto"):
+        _parse_mixed_content(
+            json.dumps(invalid), FORM_CONTEXT, [], "test", {}, requirements=REQUIREMENTS,
+        )
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("provider", ["ollama", "deepseek"])
+async def test_mixed_generation_uses_existing_transport_and_role_contract(mock_transport, provider):
+    calls = []
+    content = json.dumps({"supports": [mixed_support()]})
+    def handler(request):
+        body = json.loads(request.content)
+        calls.append(body)
+        if provider == "ollama":
+            assert "supports" in body["format"]["properties"]
+        return _provider_response(provider, content)
+    mock_transport(handler)
+    with use_ai_settings(_settings(provider)):
+        answer = await generation.generate_grounded_answer(
+            "Abbiamo i dati richiesti?", FORM_CONTEXT, factual_evidence=FACTUAL_CONTEXT,
+            requirements=REQUIREMENTS,
+        )
+    assert answer.citations == [1, 2] and len(calls) == 1
+    prompt = calls[0]["messages"][1]["content"]
+    assert "REQUISITI DEL MODULO (role=form)" in prompt
+    assert "FONTI FATTUALI (role=source)" in prompt
+    assert "Scope: global; KB category: general" in prompt
+
+
+@pytest.mark.anyio
+async def test_mixed_generation_rejects_misrouted_context_before_any_model_call(mock_transport):
+    mock_transport(lambda *args: pytest.fail("No generation with misrouted contexts"))
+    with use_ai_settings(_settings("deepseek")):
+        with pytest.raises(GenerationError, match="Contesti form/source"):
+            await generation.generate_grounded_answer(
+                "Abbiamo i dati richiesti?", FORM_CONTEXT, factual_evidence=FORM_CONTEXT,
+            )
+
+
+@pytest.mark.anyio
+async def test_mixed_repair_keeps_valid_denomination_and_discards_wrong_director(mock_transport):
+    forms = [{"role": "form", "source_name": "domanda.txt",
+              "content": "Denominazione sociale: ____\nDirettore tecnico: ____"}]
+    sources = [{"role": "source", "source_name": "azienda.txt",
+                "content": "Mapi Ingegneria S.r.l."}]
+    requirements = [Requirement(name=name, form_quote=name, form_citation_id=1)
+                    for name in ("Denominazione sociale", "Direttore tecnico")]
+    calls = []
+    def handler(request):
+        calls.append(json.loads(request.content))
+        return _provider_response("deepseek", json.dumps({"supports": [
+            {"requirement_id": index, "source_citation_id": 2,
+             "source_quote": "Mapi Ingegneria S.r.l.", "value": "Mapi Ingegneria S.r.l."}
+            for index in (1, 2)
+        ]}))
+    mock_transport(handler)
+    with use_ai_settings(_settings("deepseek")):
+        answer = await generation.generate_grounded_answer(
+            "Abbiamo i dati richiesti?", forms, factual_evidence=sources, requirements=requirements,
+        )
+    assert len(calls) == 2 and answer.total_tokens == 240
+    assert calls[1]["messages"][:2] == calls[0]["messages"]
+    assert "Denominazione sociale: Mapi Ingegneria S.r.l. [2]" in answer.answer
+    assert "Direttore tecnico: disponibilità non verificata" in answer.answer
+    assert answer.missing_information == ["Direttore tecnico"]
+
+
 def _provider_response(provider, content, tokens=120, finish="stop"):
     if provider == "ollama":
         return httpx.Response(200, json={
@@ -286,6 +404,55 @@ async def test_unknown_truncated_usage_does_not_report_partial_cost(mock_transpo
         answer = await generation.generate_grounded_answer("Scadenza?", _EVIDENCE)
     assert answer.total_tokens is None
     assert len(requests) == 2
+
+
+@pytest.mark.anyio
+async def test_mixed_accepts_registration_number_without_literal_albo_or_repair(
+    mock_transport,
+):
+    form = {"role": "form", "source_name": "modulo.txt",
+            "content": "Direttore tecnico: numero di iscrizione all’Albo professionale"}
+    short = "Direttore tecnico: numero di iscrizione professionale: 8421."
+    source = {"role": "source", "source_name": "scheda.txt",
+              "content": short}
+    requirement = Requirement(
+        name="numero di iscrizione all’Albo professionale", person_role="Direttore tecnico",
+        form_quote=form["content"], form_citation_id=1,
+    )
+    requests = []
+    def handler(request):
+        body = json.loads(request.content)
+        requests.append(body)
+        quote = short if len(requests) == 1 else source["content"]
+        return _provider_response("deepseek", json.dumps({"supports": [{
+            "requirement_id": 1, "source_citation_id": 2,
+            "source_quote": quote, "value": "8421",
+        }]}))
+    mock_transport(handler)
+    with use_ai_settings(_settings("deepseek")):
+        result = await generation.generate_grounded_answer(
+            "Abbiamo il dato richiesto?", [form], factual_evidence=[source],
+            requirements=[requirement],
+        )
+    assert len(requests) == 1
+    assert "8421" in result.answer and result.missing_information == []
+
+
+def test_source_matching_task_is_independent_of_question_and_history_wording():
+    forms = [{"role": "form", "source_name": "modulo", "content": "Denominazione sociale"}]
+    sources = [{"role": "source", "source_name": "fonte", "content": "Mapi S.r.l."}]
+    prompts = [generation._build_user_prompt(
+        question, forms, [{"question": "Abbiamo tutto?", "answer": "Sì, tutto compilabile [1]."}],
+        factual_evidence=sources,
+    ) for question in ("Quali dati mancano?", "Quali dati possiamo compilare?", "Abbiamo tutto?")]
+    assert len(set(prompts)) == 1
+    assert "Sì, tutto compilabile" not in prompts[0]
+    assert "TUTTI i requisiti" in prompts[0]
+    assert "REQUISITI DEL MODULO (role=form)" in prompts[0]
+    assert "FONTI FATTUALI (role=source)" in prompts[0]
+    # JSON-mode providers reject the request before generation without this word.
+    assert "json" in prompts[0].casefold()
+    assert "json" in generation.MIXED_SYSTEM_PROMPT.casefold()
 
 
 @pytest.mark.anyio

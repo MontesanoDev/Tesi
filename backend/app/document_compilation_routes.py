@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Callable
 from pathlib import Path
 from shutil import rmtree
 from typing import Annotated, Literal
@@ -38,7 +39,10 @@ def _payload(row: dict, *, include_report: bool = True) -> dict:
     return result
 
 
-def _persist(project_id: str, filename: str, template: bytes, draft: bytes, report: dict) -> dict:
+def _persist(
+    project_id: str, filename: str, template: bytes, draft: bytes, report: dict,
+    *, on_saved: Callable | None = None,
+) -> dict:
     run_id = uuid4().hex
     root = get_storage_path().resolve()
     folder = (root / project_id / "_compilations" / run_id).resolve()
@@ -73,6 +77,9 @@ def _persist(project_id: str, filename: str, template: bytes, draft: bytes, repo
                 """,
                 row,
             )
+            # A session revision and its immutable output must commit together.
+            if on_saved is not None:
+                on_saved(db, _payload(row))
             touch_project(db, project_id)
     except Exception:
         if created:

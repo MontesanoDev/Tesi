@@ -186,6 +186,32 @@ def test_source_changed_during_vector_query_is_not_returned(embeddings, monkeypa
     assert retrieval.search_project_evidence("alpha", "Scadenza") == []
 
 
+def test_kb_category_changed_during_query_is_rechecked_and_reindexed(embeddings, monkeypatch):
+    chunk = shared()
+    settings = resolve_settings()
+    first = vector.run_vector_search(settings)
+    original = QdrantClient.query_points
+
+    def query(self, *args, **kwargs):
+        result = original(self, *args, **kwargs)
+        with connection() as db:
+            db.execute("UPDATE global_documents SET category='general'")
+        return result
+
+    with monkeypatch.context() as patch:
+        patch.setattr(QdrantClient, "query_points", query)
+        assert retrieval.search_project_evidence("alpha", "PEC") == []
+    updated = vector.run_vector_search(settings)
+    assert updated["collection"] == first["collection"]
+    assert updated["updated_chunks"] == 1
+    found = retrieval.search_project_evidence("alpha", "PEC")
+    assert len(found) == 1 and found[0]["chunk_id"] == chunk
+    assert found[0]["scope"] == "global" and found[0]["category"] == "general"
+    with closing(QdrantClient(path=str(get_db_path()) + ".qdrant")) as client:
+        payload = client.retrieve(first["collection"], ids=[vector.point_id(chunk)])[0].payload
+    assert payload["metadata"]["category"] == "general"
+
+
 def test_partial_indexing_failure_can_resume_without_reembedding_completed_chunks(
     embeddings, monkeypatch
 ):
@@ -343,8 +369,8 @@ def test_empty_corpus_query_removes_last_deleted_document(embeddings):
 async def test_retrieval_api_selects_backend_and_surfaces_failure(embeddings, monkeypatch):
     from app.intents import ChatDecision, PlannedTurn
 
-    async def plan(question, history):
-        decision = ChatDecision(action="retrieve", answer="", queries=[question])
+    async def plan(question, history, forms=None):
+        decision = ChatDecision(action="retrieve", target="source", answer="", queries=[question])
         return PlannedTurn(decision, "test", 0)
 
     monkeypatch.setattr("app.main.plan_chat_turn", plan)
@@ -419,6 +445,48 @@ def test_langchain_payload_keeps_sqlite_as_the_source_of_returned_text(embedding
     assert (
         retrieval.search_project_evidence("alpha", "Scadenza")[0]["content"] == "Scadenza 30 giugno"
     )
+
+
+def test_legacy_payload_is_upgraded_in_existing_collection_before_role_filtering(embeddings):
+    chunk = source()
+    settings = resolve_settings()
+    first = vector.run_vector_search(settings)
+    with closing(QdrantClient(path=str(get_db_path()) + ".qdrant")) as client:
+        client.set_payload(first["collection"], {
+            "metadata": {"chunk_id": chunk, "scope": "project:alpha", "content_hash": "legacy"},
+        }, points=[vector.point_id(chunk)])
+    found = retrieval.search_project_evidence("alpha", "Scadenza")
+    assert len(found) == 1 and found[0]["role"] == "source"
+    assert found[0]["project_id"] == "alpha"
+    with closing(QdrantClient(path=str(get_db_path()) + ".qdrant")) as client:
+        payload = client.retrieve(first["collection"], ids=[vector.point_id(chunk)])[0].payload
+    assert payload["metadata"]["role"] == "source"
+    assert payload["metadata"]["file_id"] == found[0]["file_id"]
+    assert payload["metadata"]["source_name"] == found[0]["source_name"]
+    assert payload["metadata"]["category"] is None
+    assert found[0]["scope"] == "project:alpha" and found[0]["category"] is None
+
+
+def test_role_changed_during_vector_query_is_not_factual_evidence(embeddings, monkeypatch):
+    chunk = source()
+    original = QdrantClient.query_points
+
+    def query(self, *args, **kwargs):
+        result = original(self, *args, **kwargs)
+        with connection() as db:
+            db.execute(
+                "UPDATE project_files SET kind='form' WHERE id="
+                "(SELECT file_id FROM document_chunks WHERE id=?)", (chunk,),
+            )
+        return result
+
+    with monkeypatch.context() as patch:
+        patch.setattr(QdrantClient, "query_points", query)
+        assert retrieval.search_project_evidence("alpha", "Scadenza") == []
+    assert retrieval.search_project_evidence("alpha", "Scadenza") == []
+    found = retrieval.search_project_evidence("alpha", "Scadenza", target="form")
+    assert [item["chunk_id"] for item in found] == [chunk]
+    assert found[0]["role"] == "form"
 
 
 def test_prefixes_are_applied_once_and_dimension_changes_are_rejected(embeddings, monkeypatch):

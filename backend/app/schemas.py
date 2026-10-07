@@ -207,6 +207,21 @@ class Evidence(BaseModel):
     chunk_index: int
     excerpt: str
     relevance: float
+    role: Literal["form", "source"] = "source"
+    project_id: str | None = None
+    document_metadata: str = ""
+    scope: str | None = None
+    category: Literal["company", "general"] | None = None
+
+
+class FormReference(BaseModel):
+    form_id: int
+    name: str
+
+
+class CompilationChatAction(BaseModel):
+    session_id: str
+    action: Literal["start", "updated", "clarify", "generated", "deferred", "paused", "resumed"]
 
 
 class ConversationTurn(BaseModel):
@@ -220,11 +235,14 @@ class ConversationTurn(BaseModel):
     model: str | None
     total_tokens: int | None
     notice: str | None
+    form_reference: FormReference | None = None
+    compilation: CompilationChatAction | None = None
 
 
 class ConversationDetail(Conversation):
     project_id: str
     turns: list[ConversationTurn]
+    form_reference: FormReference | None = None
 
 
 class EvidenceSearch(BaseModel):
@@ -235,6 +253,9 @@ class EvidenceSearch(BaseModel):
 class QuestionRequest(BaseModel):
     question: str = Field(min_length=2, max_length=MAX_QUESTION_LENGTH)
     conversation_id: str | None = Field(default=None, max_length=80)
+    form_id: int | None = Field(default=None, gt=0)
+    compilation_session_id: str | None = Field(default=None, max_length=100)
+    compilation_version: int | None = Field(default=None, ge=1)
 
 
 class GroundedAnswerResponse(BaseModel):
@@ -249,3 +270,5 @@ class GroundedAnswerResponse(BaseModel):
     model: str | None
     total_tokens: int | None
     notice: str | None
+    form_reference: FormReference | None = None
+    compilation: CompilationChatAction | None = None

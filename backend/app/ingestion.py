@@ -56,6 +56,8 @@ def chunk_text(
     chunk_size: int = CHUNK_SIZE,
     overlap: int = CHUNK_OVERLAP,
 ) -> list[str]:
+    if chunk_size <= 0 or not 0 <= overlap < chunk_size:
+        raise ValueError("La dimensione deve essere positiva e l'overlap inferiore al frammento")
     normalized = re.sub(r"[ \t]+", " ", text.replace("\x00", ""))
     normalized = re.sub(r"\n{3,}", "\n\n", normalized).strip()
     if not normalized:
@@ -65,8 +67,12 @@ def chunk_text(
     start = 0
     while start < len(normalized):
         end = min(start + chunk_size, len(normalized))
-        if end < len(normalized):
-            boundary = normalized.rfind(" ", start + chunk_size // 2, end)
+        if end < len(normalized) and not normalized[end].isspace():
+            # Include line breaks as boundaries. Only an individual token larger
+            # than the budget needs a hard cut.
+            boundary = end
+            while boundary > start and not normalized[boundary - 1].isspace():
+                boundary -= 1
             if boundary > start:
                 end = boundary
         content = normalized[start:end].strip()
@@ -74,7 +80,15 @@ def chunk_text(
             chunks.append(content)
         if end >= len(normalized):
             break
-        start = max(end - overlap, start + 1)
+        next_start = max(end - overlap, start + 1)
+        if next_start < end:
+            # Round overlap back to a full word: "incarico" must not become "carico".
+            while next_start > start and not normalized[next_start - 1].isspace():
+                next_start -= 1
+        # A short chunk or oversized token can leave no advancing overlap.
+        start = next_start if next_start > start else end
+        while start < len(normalized) and normalized[start].isspace():
+            start += 1
     return chunks
 
 

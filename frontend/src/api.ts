@@ -1,4 +1,7 @@
 import type {
+  CompilationSession,
+  CompilationSessionSummary,
+  CompilationFieldInput,
   RetrievalInput,
   RetrievalSettings,
   VectorIndexResult,
@@ -54,6 +57,7 @@ function errorDetailMessage(detail: unknown): string | null {
 
   if (detail && typeof detail === 'object') {
     const entry = detail as Record<string, unknown>
+    if (Array.isArray(entry.errors)) return errorDetailMessage(entry.errors)
     for (const key of ['message', 'msg', 'error']) {
       if (typeof entry[key] === 'string' && entry[key].trim()) return entry[key].trim()
     }
@@ -216,6 +220,27 @@ export const api = {
     }),
   documentCompilations: (projectId: string, signal?: AbortSignal) =>
     request<DocumentCompilationSummary[]>(`/projects/${projectId}/document-compilations`, { signal }),
+  compilationSessions: (projectId: string, conversationId: string, signal?: AbortSignal) =>
+    request<CompilationSessionSummary[]>(`/projects/${projectId}/compilation-sessions?${new URLSearchParams({ conversation_id: conversationId })}`, { signal }),
+  compilationSession: (projectId: string, sessionId: string, signal?: AbortSignal) =>
+    request<CompilationSession>(`/projects/${projectId}/compilation-sessions/${encodeURIComponent(sessionId)}`, { signal }),
+  startCompilationSession: (projectId: string, formId: number, conversationId: string | null, signal?: AbortSignal) =>
+    request<CompilationSession>(`/projects/${projectId}/compilation-sessions`, {
+      method: 'POST', signal,
+      body: JSON.stringify({ form_id: formId, conversation_id: conversationId, start_in_chat: true }),
+    }),
+  resolveCompilationSession: (projectId: string, sessionId: string, version: number, fieldIds?: string[], signal?: AbortSignal, automatic = false) =>
+    request<CompilationSession>(`/projects/${projectId}/compilation-sessions/${encodeURIComponent(sessionId)}/resolve`, {
+      method: 'POST', signal, body: JSON.stringify({ version, ...(fieldIds ? { field_ids: fieldIds } : {}), ...(automatic ? { automatic: true } : {}) }),
+    }),
+  updateCompilationFields: (projectId: string, sessionId: string, version: number, fields: CompilationFieldInput[], signal?: AbortSignal) =>
+    request<CompilationSession>(`/projects/${projectId}/compilation-sessions/${encodeURIComponent(sessionId)}/fields`, {
+      method: 'PATCH', signal, body: JSON.stringify({ version, fields }),
+    }),
+  finalizeCompilationSession: (projectId: string, sessionId: string, version: number, allowUnresolved: boolean, signal?: AbortSignal) =>
+    request<CompilationSession>(`/projects/${projectId}/compilation-sessions/${encodeURIComponent(sessionId)}/finalize`, {
+      method: 'POST', signal, body: JSON.stringify({ version, allow_unresolved: allowUnresolved }),
+    }),
   documentCompilation: (projectId: string, runId: string, signal?: AbortSignal) =>
     request<DocumentCompilation>(`/projects/${projectId}/document-compilations/${encodeURIComponent(runId)}`, { signal }),
   compileDocument: (projectId: string, file: File, instructions: string) => {
@@ -226,9 +251,10 @@ export const api = {
       method: 'POST', body,
     })
   },
-  downloadCompilation: async (projectId: string, runId: string, kind: CompilationDownload) => {
+  downloadCompilation: async (projectId: string, runId: string, kind: CompilationDownload, signal?: AbortSignal) => {
     const response = await requestResponse(
       `/projects/${projectId}/document-compilations/${encodeURIComponent(runId)}/download/${kind}`,
+      { signal },
     )
     return response.blob()
   },
@@ -243,10 +269,12 @@ export const api = {
       `/projects/${projectId}/conversations/${conversationId}`,
       { signal },
     ),
-  projectAnswer: (projectId: string, question: string, conversationId?: string | null, signal?: AbortSignal) =>
+  projectAnswer: (projectId: string, question: string, conversationId?: string | null, signal?: AbortSignal, formId?: number | null, compilation?: { session_id: string; version: number }) =>
     request<GroundedAnswer>(`/projects/${projectId}/answer`, {
       method: 'POST',
-      body: JSON.stringify({ question, conversation_id: conversationId ?? null }),
+      body: JSON.stringify({ question, conversation_id: conversationId ?? null,
+        ...(formId != null ? { form_id: formId } : {}),
+        ...(compilation ? { compilation_session_id: compilation.session_id, compilation_version: compilation.version } : {}) }),
       signal,
     }),
   documentReview: (projectId: string, signal?: AbortSignal) =>

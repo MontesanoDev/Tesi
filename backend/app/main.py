@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 import os
 from contextlib import asynccontextmanager
 from dataclasses import replace
@@ -30,6 +31,16 @@ from app.call_facts import (
     render_call_facts_document,
     revise_call_fact,
 )
+from app.compilation_chat import (
+    ActiveFieldDecision,
+    ClarificationDecision,
+    active_session,
+    handle_active_decision,
+    handle_decision,
+    handle_group_decision,
+    planner_context,
+)
+from app.compilation_session_routes import router as compilation_session_router
 from app.db import get_knowledge_path, get_storage_path, init_database
 from app.document_compilation_routes import router as document_compilation_router
 from app.draft_generation import (
@@ -53,7 +64,13 @@ from app.ingestion import (
     ingest_global_upload,
     ingest_upload,
 )
-from app.intents import plan_chat_turn
+from app.intents import (
+    plan_chat_turn,
+    plan_requirement_checks,
+    route_availability_request,
+    route_compilation_control,
+)
+from app.project_forms import list_forms
 from app.project_forms import router as project_forms_router
 from app.repository import (
     add_global_document,
@@ -114,6 +131,12 @@ from app.schemas import (
     QuestionRequest,
 )
 from app.seed import seed_database
+from app.source_planning import (
+    MAX_CLUSTER_EVIDENCE,
+    SOURCE_ANCHORS_PER_QUERY,
+    cluster_queries,
+    plan_source_search,
+)
 
 
 def _call_facts_review_payload(artifact: dict, document: CallFactsDocument) -> dict:
@@ -161,8 +184,10 @@ async def lifespan(_: FastAPI):
     yield
 
 
+logger = logging.getLogger(__name__)
 app = FastAPI(title="Mapi RAG API", version="0.1.0", lifespan=lifespan)
 app.include_router(document_compilation_router)
+app.include_router(compilation_session_router)
 app.include_router(project_forms_router)
 app.include_router(ai_router)
 app.include_router(retrieval_router)
@@ -632,9 +657,15 @@ async def project_evidence(
     project_id: str,
     q: Annotated[str, Query(min_length=2, max_length=MAX_QUESTION_LENGTH)],
     limit: Annotated[int, Query(ge=1, le=8)] = 4,
+    target: Literal["source", "form"] = "source",
+    form_id: Annotated[int | None, Query(gt=0)] = None,
 ) -> dict:
+    if target == "source" and form_id is not None:
+        raise HTTPException(422, "form_id richiede target=form")
     try:
-        results = await run_in_threadpool(search_project_evidence, project_id, q, limit)
+        results = await run_in_threadpool(
+            search_project_evidence, project_id, q, limit, target=target, form_id=form_id,
+        )
     except RetrievalError as exc:
         raise HTTPException(503, str(exc)) from None
     if results is None:
@@ -646,6 +677,15 @@ async def project_evidence(
 async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
     if get_project(project_id) is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
+    form_reference = None
+    mentioned_forms = None
+    if payload.form_id is not None:
+        mentioned_forms = [f for f in await run_in_threadpool(list_forms, project_id)
+                           if f["id"] == payload.form_id]
+        if not mentioned_forms:
+            raise HTTPException(404, "Modulo menzionato non trovato nel progetto")
+        form = mentioned_forms[0]
+        form_reference = {"form_id": form["id"], "name": form["name"]}
     conversation = get_or_create_conversation(
         project_id,
         payload.conversation_id,
@@ -655,6 +695,10 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
         raise HTTPException(status_code=404, detail="Conversazione non trovata")
     conversation_id = conversation["id"]
     history = get_conversation_history(conversation_id)
+    compilation_session = await run_in_threadpool(
+        active_session, project_id, conversation_id, payload.form_id,
+        payload.compilation_session_id,
+    )
 
     def persist(response: dict) -> dict:
         turn_id = save_conversation_turn(conversation_id, response)
@@ -671,6 +715,7 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
 
     base_response = {
         "question": payload.question,
+        "form_reference": form_reference,
         "answer": None,
         "citations": [],
         "missing_information": [],
@@ -684,8 +729,49 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
         with project_ai_context(project_id):
             timeout_seconds = chat_timeout_seconds()
             async with asyncio.timeout(timeout_seconds):
-                planned = await plan_chat_turn(payload.question, history)
-                decision = planned.decision
+                forms = (mentioned_forms if mentioned_forms is not None
+                         else await run_in_threadpool(list_forms, project_id))
+                planned = await plan_chat_turn(
+                    payload.question, history, forms,
+                    **({"selected_form": form_reference} if form_reference else {}),
+                    **({"compilation": planner_context(compilation_session)}
+                       if compilation_session else {}),
+                )
+                if isinstance(planned.decision, ClarificationDecision):
+                    text, command = await handle_group_decision(
+                        project_id, conversation_id, planned.decision,
+                        compilation_session, payload.question, payload.compilation_version,
+                    )
+                    return persist({**base_response, "answer": text, "compilation": command,
+                                    "generation_status": "direct", "model": planned.model,
+                                    "total_tokens": planned.total_tokens})
+                if isinstance(planned.decision, ActiveFieldDecision):
+                    text, command = await handle_active_decision(
+                        project_id, conversation_id, planned.decision, form_reference,
+                        compilation_session, payload.question, payload.compilation_version,
+                    )
+                    return persist({**base_response, "answer": text, "compilation": command,
+                                    "generation_status": "direct", "model": planned.model,
+                                    "total_tokens": planned.total_tokens})
+                workflow_decision = route_compilation_control(
+                    planned.decision, payload.question, compilation_session,
+                )
+                if workflow_decision.action not in {"reply", "retrieve"}:
+                    text, command = await handle_decision(
+                        project_id, conversation_id, workflow_decision, form_reference,
+                        compilation_session, payload.question, payload.compilation_version,
+                    )
+                    return persist({**base_response, "answer": text, "compilation": command,
+                                    "generation_status": "direct", "model": planned.model,
+                                    "total_tokens": planned.total_tokens})
+                decision = route_availability_request(planned.decision, payload.question, forms)
+                if form_reference and decision.target in {"form", "mixed"}:
+                    decision = decision.model_copy(update={"form_id": payload.form_id})
+                logger.info(
+                    "Chat routing project=%s planned=%s effective=%s form_id=%s",
+                    project_id, planned.decision.target, decision.target, decision.form_id,
+                )
+                token_counts = [planned.total_tokens]
                 if decision.action == "reply":
                     return persist({
                         **base_response,
@@ -695,47 +781,181 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
                         "total_tokens": planned.total_tokens,
                     })
 
-                groups = []
-                for query in decision.queries:
-                    results = await run_in_threadpool(
-                        search_project_evidence, project_id, query,
-                        limit=4, include_neighbors=False,
-                    )
-                    if results is None:
-                        raise HTTPException(
-                            status_code=404,
-                            detail="Il progetto e stato eliminato durante la ricerca",
-                        )
-                    groups.append(results)
-                    base_response["evidence"] = merge_evidence_results(groups, limit=4)
-                evidence = await run_in_threadpool(
-                    expand_evidence_context, project_id, base_response["evidence"],
-                )
-                base_response["evidence"] = evidence
-                if not evidence:
+                mixed = decision.target == "mixed"
+                target = "form" if mixed else decision.target
+                form_id = decision.form_id
+                if target == "form" and form_id not in {form["id"] for form in forms}:
                     return persist({
                         **base_response,
                         "answer": (
-                            "Non trovo nelle fonti indicizzate informazioni sufficienti per "
-                            f"rispondere in modo verificabile a «{payload.question}». Il dato "
-                            "richiesto deve essere aggiunto o confermato da una fonte prima "
-                            "di utilizzarlo."
+                            "Non riesco a recuperare il contenuto del modulo richiesto. "
+                            "Indica il nome di un modulo caricato in questo progetto."
                         ),
-                        "missing_information": [
-                            "Una fonte contenente il dato richiesto dall'utente",
-                        ],
                         "generation_status": "no_evidence",
+                        "missing_information": ["Identificazione del modulo richiesto"],
                         "model": planned.model,
                         "total_tokens": planned.total_tokens,
-                        "notice": "Le fonti non contengono dati verificabili per questa richiesta.",
+                        "notice": "Modulo assente o ambiguo; nessuna fonte sostitutiva.",
                     })
+                contexts = {}
+                requirements = None
+                source_coverage = None
+                # Separate retrieval and budgets: sources cannot crowd out requirements,
+                # and form neighbors can never be promoted into factual evidence.
+                for target in (("form", "source") if mixed else (target,)):
+                    groups = []
+                    if mixed and target == "source":
+                        requirement_plan = await plan_requirement_checks(
+                            payload.question, contexts["form"],
+                        )
+                        requirements = requirement_plan.plan.requirements
+                        token_counts.append(requirement_plan.total_tokens)
+                        logger.info(
+                            "Chat requirements project=%s validated=%d attempts=%d",
+                            project_id, len(requirements), requirement_plan.attempts,
+                        )
+                        if not requirements:
+                            return persist({
+                                **base_response,
+                                "answer": (
+                                    "Non ho verificato nelle evidenze del modulo requisiti "
+                                    "pertinenti alla richiesta. La disponibilità non è stata "
+                                    "valutata nelle fonti."
+                                ),
+                                "generation_status": "no_evidence",
+                                "missing_information": [
+                                    "Requisiti pertinenti sostenuti dal modulo",
+                                ],
+                                "model": requirement_plan.model,
+                                "total_tokens": (
+                                    sum(token_counts)
+                                    if all(n is not None for n in token_counts) else None
+                                ),
+                                "notice": (
+                                    "Nessun requisito verificato dopo due letture "
+                                    "delle stesse evidenze FORM."
+                                ),
+                            })
+                        source_plan = await plan_source_search(requirements)
+                        token_counts.append(source_plan.total_tokens)
+                        sources, coverage_chunks = {}, {}
+                        for cluster_index, cluster in enumerate(source_plan.clusters, 1):
+                            cluster_groups = []
+                            queries = cluster_queries(cluster, requirements)
+                            logger.info(
+                                "Chat SOURCE cluster=%d requirements=%s queries=%s",
+                                cluster_index, cluster.requirement_ids, queries,
+                            )
+                            for query in queries:
+                                results = await run_in_threadpool(
+                                    search_project_evidence, project_id, query,
+                                    limit=SOURCE_ANCHORS_PER_QUERY, include_neighbors=False,
+                                    target="source", form_id=None,
+                                )
+                                if results is None:
+                                    raise HTTPException(
+                                        404, "Progetto eliminato durante la ricerca",
+                                    )
+                                cluster_groups.append(results)
+                            anchors = merge_evidence_results(
+                                cluster_groups, limit=MAX_CLUSTER_EVIDENCE,
+                            )
+                            cluster_evidence = await run_in_threadpool(
+                                expand_evidence_context, project_id, anchors,
+                                target="source", max_results=MAX_CLUSTER_EVIDENCE,
+                            )
+                            chunks = {item["chunk_id"] for item in cluster_evidence}
+                            for requirement_id in cluster.requirement_ids:
+                                coverage_chunks[requirement_id] = chunks
+                            sources.update((item["chunk_id"], item) for item in cluster_evidence)
+                            contexts["source"] = list(sources.values())
+                            base_response["evidence"] = contexts["form"] + contexts["source"]
+                            logger.info("Chat SOURCE cluster=%d evidence=%s",
+                                        cluster_index, sorted(chunks))
+                        contexts["source"] = list(sources.values())
+                        citations = {item["chunk_id"]: index for index, item in enumerate(
+                            contexts["source"], len(contexts["form"]) + 1,
+                        )}
+                        source_coverage = {
+                            index: {citations[chunk] for chunk in chunks}
+                            for index, chunks in coverage_chunks.items()
+                        }
+                        logger.info("Chat SOURCE coverage searched=%s not_searched=%s evidence=%d",
+                                    sorted(source_coverage), sorted(source_plan.not_searched),
+                                    len(contexts["source"]))
+                        continue
+                    else:
+                        queries = decision.queries
+                    logger.info(
+                        "Chat search project=%s target=%s queries=%s", project_id, target, queries,
+                    )
+                    selected_form = form_id if target == "form" else None
+                    anchor_limit = 2 if mixed and target == "form" else 4
+                    for query in queries:
+                        results = await run_in_threadpool(
+                            search_project_evidence, project_id, query,
+                            limit=anchor_limit, include_neighbors=False,
+                            target=target, form_id=selected_form,
+                        )
+                        if results is None:
+                            raise HTTPException(
+                                status_code=404,
+                                detail="Il progetto e stato eliminato durante la ricerca",
+                            )
+                        groups.append(results)
+                        contexts[target] = merge_evidence_results(groups, limit=anchor_limit)
+                        base_response["evidence"] = [
+                            item for rows in contexts.values() for item in rows
+                        ]
+                    merged_count = len(contexts[target])
+                    evidence = await run_in_threadpool(
+                        expand_evidence_context, project_id, contexts[target],
+                        target=target, form_id=selected_form, max_results=4 if mixed else 8,
+                    )
+                    contexts[target] = evidence
+                    logger.info(
+                        "Chat bucket project=%s target=%s merged=%d expanded=%d",
+                        project_id, target, merged_count, len(evidence),
+                    )
+                    base_response["evidence"] = [
+                        item for rows in contexts.values() for item in rows
+                    ]
+                    if not evidence and (target == "form" or not mixed):
+                        return persist({
+                            **base_response,
+                            "answer": (
+                                "Non riesco a recuperare il contenuto del modulo richiesto. "
+                                "Il modulo potrebbe richiedere la reindicizzazione dall'originale."
+                                if target == "form" else
+                                "Non trovo nelle fonti indicizzate informazioni sufficienti per "
+                                f"rispondere in modo verificabile a «{payload.question}». Il dato "
+                                "richiesto deve essere aggiunto o confermato da una fonte prima "
+                                "di utilizzarlo."
+                            ),
+                            "missing_information": [
+                                "Contenuto indicizzato del modulo richiesto" if target == "form"
+                                else "Una fonte contenente il dato richiesto dall'utente",
+                            ],
+                            "generation_status": "no_evidence",
+                            "model": planned.model,
+                            "total_tokens": planned.total_tokens,
+                            "notice": (
+                                "Nessuna evidenza del modulo recuperata; nessuna fonte sostitutiva."
+                                if target == "form" else
+                                "Le fonti non contengono dati verificabili per questa richiesta."
+                            ),
+                        })
+                options = {
+                    "factual_evidence": contexts["source"], "requirements": requirements,
+                    "source_coverage": source_coverage,
+                } if mixed else {}
                 generated = await generate_grounded_answer(
-                    payload.question, evidence, conversation_history=history,
+                    payload.question, contexts["form"] if mixed else evidence,
+                    conversation_history=history, **options,
                 )
+                token_counts.append(generated.total_tokens)
                 total_tokens = (
-                    planned.total_tokens + generated.total_tokens
-                    if planned.total_tokens is not None and generated.total_tokens is not None
-                    else None
+                    sum(token_counts) if all(n is not None for n in token_counts) else None
                 )
                 return persist({
                     **base_response,

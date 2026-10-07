@@ -412,6 +412,7 @@ def validate_proposals(
     sources: CompilationSources,
     *,
     instructions: str = "",
+    explicit_user_values: dict[str, str] | None = None,
 ) -> dict:
     if len(content) > MAX_RESPONSE_CHARACTERS:
         raise GenerationError("La risposta di compilazione supera il limite supportato")
@@ -464,11 +465,18 @@ def validate_proposals(
                 }
             )
         if item.status == "proposed":
+            user_confirmed = (
+                explicit_user_values is not None
+                and explicit_user_values.get(item.cell_id) == item.value
+                and any(c["source_id"] == "user:instructions" for c in evidence)
+            )
             if (
-                item.kind != "data"
-                or is_signature_target(layout, item.cell_id)
+                is_signature_target(layout, item.cell_id)
                 or SIGNATURE_LABEL.search(item.label)
-                or normalized(item.value) in {"si", "sì", "no", "x", "true", "false", "n/a"}
+                or (not user_confirmed and (
+                    item.kind != "data"
+                    or normalized(item.value) in {"si", "sì", "no", "x", "true", "false", "n/a"}
+                ))
             ):
                 checks.append("Scelta, dichiarazione o firma: nessuna scrittura automatica")
                 codes.append("protected_field")

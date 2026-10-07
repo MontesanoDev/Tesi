@@ -174,6 +174,95 @@ export interface Conversation {
   target: string | null
 }
 
+export interface FormReference {
+  form_id: number
+  name: string
+}
+
+export type CompilationFieldStatus = 'PENDING' | 'RESOLVED' | 'MISSING' | 'AMBIGUOUS'
+  | 'CONFLICTING' | 'NOT_APPLICABLE' | 'USER_PROVIDED'
+
+export interface CompilationChatAction {
+  session_id: string
+  action: 'start' | 'updated' | 'clarify' | 'generated' | 'deferred' | 'paused' | 'resumed'
+}
+
+export interface CompilationChatState {
+  enabled: boolean
+  auto_continue: boolean
+  paused: boolean
+  paused_by_user?: boolean
+  deferred?: number
+  question: { kind: 'value' | 'applicability' | 'clarifications' | 'generate' | 'deferred_summary'; field_ids: string[]; message: string } | null
+  analyzed: number
+  verified: number
+  user_provided: number
+  remaining_questions: number
+  steps_used: number
+  max_steps: number
+  metrics?: { automatic_resolved: number; user_required_fields: number; user_turns: number }
+}
+
+export interface CompilationSessionSummary {
+  id: string
+  project_id: string
+  conversation_id: string | null
+  form_id: number | null
+  original_file_id: number
+  template_name: string
+  status: 'CREATED' | 'ANALYZING' | 'WAITING_FOR_USER' | 'READY' | 'GENERATED' | 'FAILED'
+  version: number
+  created_at: string
+  updated_at: string
+  lease_until: string | null
+  last_error: string | null
+  summary: {
+    total: number
+    pending: number
+    resolved: number
+    missing: number
+    ambiguous: number
+    conflicting: number
+    not_applicable: number
+    user_provided: number
+  }
+  chat?: CompilationChatState
+  last_generation: (DocumentCompilationSummary & { session_version: number }) | null
+}
+
+export interface CompilationSourceEvidence extends Evidence {
+  role: 'source'
+  quote: string
+}
+
+export interface CompilationSessionField {
+  id: string
+  candidate_id: string
+  label: string
+  value: string | null
+  status: CompilationFieldStatus
+  provenance: 'SOURCE' | 'USER' | 'FORM' | null
+  reason: string
+  validation_errors: string[]
+  form_evidence: { role: 'form'; source_name: string; quote?: string; candidate_id: string }
+  source_evidence: CompilationSourceEvidence[]
+  alternatives: { value: string; evidence: CompilationSourceEvidence }[]
+  requirement: { name: string; person_role: string; form_quote: string } | null
+}
+
+export interface CompilationSession extends CompilationSessionSummary {
+  fields: CompilationSessionField[]
+  open_issues: { field_id: string; status: CompilationFieldStatus; label: string;
+    reason: string; validation_errors: string[] }[]
+}
+
+export interface CompilationFieldInput {
+  field_id: string
+  action: 'set' | 'not_applicable' | 'reset'
+  value?: string
+  reason?: string
+}
+
 export interface ProjectDetail extends ProjectSummary {
   instructions: string
   call_fact_count: number
@@ -208,6 +297,11 @@ export interface Evidence {
   chunk_index: number
   excerpt: string
   relevance: number
+  role?: 'form' | 'source'
+  project_id?: string | null
+  document_metadata?: string
+  scope?: string | null
+  category?: 'company' | 'general' | null
 }
 
 export interface EvidenceSearch {
@@ -234,6 +328,8 @@ export interface GroundedAnswer {
   model: string | null
   total_tokens: number | null
   notice: string | null
+  compilation?: CompilationChatAction | null
+  form_reference?: FormReference | null
 }
 
 export interface ConversationTurnData {
@@ -247,11 +343,15 @@ export interface ConversationTurnData {
   model: string | null
   total_tokens: number | null
   notice: string | null
+  compilation?: CompilationChatAction | null
+  form_reference?: FormReference | null
 }
 
 export interface ConversationDetail extends Conversation {
   project_id: string
   turns: ConversationTurnData[]
+  compilation?: CompilationChatAction | null
+  form_reference?: FormReference | null
 }
 export type AiProvider = 'openai' | 'anthropic' | 'google' | 'deepseek' | 'mistral'
   | 'xai' | 'groq' | 'openrouter' | 'ollama' | 'compatible'

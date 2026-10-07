@@ -58,6 +58,14 @@ PROJECT_EVIDENCE_FILTER = """
 """
 
 
+def project_evidence_filter(target: str) -> str:
+    if target == "form":
+        return "f.kind = 'form'"
+    if target == "source":
+        return PROJECT_EVIDENCE_FILTER
+    raise ValueError("Target del retrieval non valido")
+
+
 def _rows(db: sqlite3.Connection, query: str, params: tuple = ()) -> list[dict]:
     return [dict(row) for row in db.execute(query, params).fetchall()]
 
@@ -110,6 +118,11 @@ def _build_fts_query(query: str) -> str:
             terms.append(f'"{stem}"*')
         else:
             terms.append(f'"{token}"')
+    # Dotted corporate acronyms consist of one-letter FTS tokens, which the
+    # normal keyword path omits. Keep each acronym as a phrase, not loose letters.
+    for acronym in re.findall(r"\b(?:[A-Za-z]\.){2,}[A-Za-z]?", query):
+        letters = " ".join(re.findall(r"[A-Za-z]", acronym.lower()))
+        terms.append(f'"{letters}"')
     return " OR ".join(terms)
 
 
@@ -166,8 +179,12 @@ def _expand_neighbor_evidence(
     project_id: str,
     anchors: list[dict],
     max_results: int,
+    *,
+    target: str = "source",
+    form_id: int | None = None,
 ) -> list[dict]:
-    anchors = reload_evidence(project_id, anchors)
+    evidence_filter = project_evidence_filter(target)
+    anchors = reload_evidence(project_id, anchors, target=target, form_id=form_id)
     if len(anchors) >= max_results:
         return anchors[:max_results]
 
@@ -183,6 +200,8 @@ def _expand_neighbor_evidence(
                             -c.id AS chunk_id,
                             -d.id AS file_id,
                             d.name AS source_name,
+                            'source' AS role, NULL AS project_id, d.metadata AS document_metadata,
+                            'global' AS scope, d.category,
                             c.chunk_index,
                             c.content
                         FROM global_document_chunks c
@@ -202,14 +221,16 @@ def _expand_neighbor_evidence(
                             c.id AS chunk_id,
                             c.file_id,
                             f.name AS source_name,
+                            ? AS role, c.project_id, f.metadata AS document_metadata,
+                            'project:' || c.project_id AS scope, NULL AS category,
                             c.chunk_index,
                             c.content
                         FROM document_chunks c
                         JOIN project_files f ON f.id = c.file_id
                         WHERE c.project_id = ? AND c.file_id = ? AND c.chunk_index = ?
-                          AND {PROJECT_EVIDENCE_FILTER}
+                          AND f.project_id = c.project_id AND {evidence_filter}
                         """,
-                        (project_id, anchor["file_id"], anchor["chunk_index"] + offset),
+                        (target, project_id, anchor["file_id"], anchor["chunk_index"] + offset),
                     ).fetchone()
                 if row is None or row["chunk_id"] in seen_chunk_ids:
                     continue
@@ -554,6 +575,19 @@ def get_project(project_id: str) -> dict | None:
         return result
 
 
+def create_conversation_record(db, project_id: str, title: str) -> dict:
+    """Also usable inside the atomic start of a compilation conversation."""
+    new_id = f"conv-{uuid4().hex[:16]}"
+    db.execute(
+        """INSERT INTO conversations (id, project_id, title, metadata, target, sort_order)
+           VALUES (?, ?, ?, 'Ora · nuova conversazione', 'chat', 0)""",
+        (new_id, project_id, _conversation_title(title)),
+    )
+    return dict(db.execute(
+        "SELECT id, project_id, title, metadata, target FROM conversations WHERE id=?", (new_id,),
+    ).fetchone())
+
+
 def get_or_create_conversation(
     project_id: str,
     conversation_id: str | None,
@@ -571,23 +605,7 @@ def get_or_create_conversation(
             ).fetchone()
             return dict(row) if row is not None else None
 
-        new_id = f"conv-{uuid4().hex[:16]}"
-        db.execute(
-            """
-            INSERT INTO conversations (
-                id, project_id, title, metadata, target, sort_order
-            ) VALUES (?, ?, ?, 'Ora · nuova conversazione', 'chat', 0)
-            """,
-            (new_id, project_id, _conversation_title(first_question)),
-        )
-        row = db.execute(
-            """
-            SELECT id, project_id, title, metadata, target
-            FROM conversations WHERE id = ?
-            """,
-            (new_id,),
-        ).fetchone()
-    return dict(row) if row is not None else None
+        return create_conversation_record(db, project_id, first_question)
 
 
 def get_conversation_history(conversation_id: str, limit: int = 6) -> list[dict]:
@@ -609,7 +627,10 @@ def get_conversation_history(conversation_id: str, limit: int = 6) -> list[dict]
     return rows
 
 
-def reload_evidence(project_id: str, evidence: list[dict]) -> list[dict]:
+def reload_evidence(
+    project_id: str, evidence: list[dict], *, target: str = "source", form_id: int | None = None,
+) -> list[dict]:
+    evidence_filter = project_evidence_filter(target)
     current = []
     # Multiple searches may take time: recheck all selected sources before generation.
     with connection() as db:
@@ -619,11 +640,14 @@ def reload_evidence(project_id: str, evidence: list[dict]) -> list[dict]:
             chunk_id, file_id = item.get("chunk_id"), item.get("file_id")
             if type(chunk_id) is not int or type(file_id) is not int:
                 continue
+            if target == "form" and (file_id < 0 or (form_id is not None and file_id != form_id)):
+                continue
             if chunk_id < 0 and file_id < 0:
                 row = db.execute(
                     """
                     SELECT -c.id AS chunk_id, -d.id AS file_id, d.name AS source_name,
-                           c.chunk_index, c.content
+                           c.chunk_index, c.content, 'source' AS role, NULL AS project_id,
+                           d.metadata AS document_metadata, 'global' AS scope, d.category
                     FROM global_document_chunks c
                     JOIN global_documents d ON d.id = c.document_id
                     WHERE c.id = ? AND d.id = ? AND c.chunk_index = ?
@@ -635,13 +659,15 @@ def reload_evidence(project_id: str, evidence: list[dict]) -> list[dict]:
                 row = db.execute(
                     f"""
                     SELECT c.id AS chunk_id, c.file_id, f.name AS source_name,
-                           c.chunk_index, c.content
+                           c.chunk_index, c.content, ? AS role, c.project_id,
+                           f.metadata AS document_metadata,
+                           'project:' || c.project_id AS scope, NULL AS category
                     FROM document_chunks c
                     JOIN project_files f ON f.id = c.file_id
                     WHERE c.project_id = ? AND c.id = ? AND c.file_id = ?
-                      AND c.chunk_index = ? AND {PROJECT_EVIDENCE_FILTER}
+                      AND c.chunk_index = ? AND f.project_id = c.project_id AND {evidence_filter}
                     """,
-                    (project_id, chunk_id, file_id, item.get("chunk_index")),
+                    (target, project_id, chunk_id, file_id, item.get("chunk_index")),
                 ).fetchone()
             if row is not None:
                 current.append({
@@ -661,7 +687,13 @@ def _public_evidence(evidence: list[dict]) -> list[dict]:
         "excerpt",
         "relevance",
     )
-    return [{field: item[field] for field in fields} for item in evidence]
+    return [
+        {**{field: item[field] for field in fields},
+         "role": item.get("role", "source"), "project_id": item.get("project_id"),
+         "document_metadata": item.get("document_metadata", ""),
+         "scope": item.get("scope"), "category": item.get("category")}
+        for item in evidence
+    ]
 
 
 def save_conversation_turn(conversation_id: str, response: dict) -> int | None:
@@ -678,8 +710,8 @@ def save_conversation_turn(conversation_id: str, response: dict) -> int | None:
             INSERT INTO conversation_turns (
                 conversation_id, question, answer, citations_json,
                 missing_information_json, evidence_json, generation_status,
-                model, total_tokens, notice
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                model, total_tokens, notice, form_reference_json, compilation_json
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 conversation_id,
@@ -692,6 +724,8 @@ def save_conversation_turn(conversation_id: str, response: dict) -> int | None:
                 response.get("model"),
                 response.get("total_tokens"),
                 response.get("notice"),
+                json.dumps(response.get("form_reference"), ensure_ascii=False),
+                json.dumps(response.get("compilation"), ensure_ascii=False),
             ),
         )
         turn_id = cursor.lastrowid
@@ -711,6 +745,14 @@ def save_conversation_turn(conversation_id: str, response: dict) -> int | None:
             (f"Ora · {turn_count} {label}", conversation_id),
         )
         touch_project(db, conversation["project_id"])
+        reference = response.get("form_reference")
+        db.execute(
+            """UPDATE conversations SET selected_form_id=(
+                   SELECT id FROM project_files WHERE id=? AND project_id=? AND kind='form'
+               ) WHERE id=?""",
+            (reference["form_id"] if reference else None, conversation["project_id"],
+             conversation_id),
+        )
     return int(turn_id)
 
 
@@ -732,7 +774,8 @@ def get_conversation(project_id: str, conversation_id: str) -> dict | None:
             SELECT
                 id, question, answer, citations_json,
                 missing_information_json, evidence_json,
-                generation_status, model, total_tokens, notice
+                generation_status, model, total_tokens, notice,
+                form_reference_json, compilation_json
             FROM conversation_turns
             WHERE conversation_id = ?
             ORDER BY id
@@ -740,7 +783,14 @@ def get_conversation(project_id: str, conversation_id: str) -> dict | None:
             (conversation_id,),
         )
 
+        selected_form = db.execute(
+            """SELECT f.id AS form_id, f.name FROM project_files f
+               JOIN conversations c ON c.selected_form_id=f.id
+               WHERE c.id=? AND c.project_id=? AND f.project_id=c.project_id AND f.kind='form'""",
+            (conversation_id, project_id),
+        ).fetchone()
     result = dict(conversation)
+    result["form_reference"] = dict(selected_form) if selected_form else None
     result["turns"] = [
         {
             "id": turn["id"],
@@ -753,6 +803,8 @@ def get_conversation(project_id: str, conversation_id: str) -> dict | None:
             "model": turn["model"],
             "total_tokens": turn["total_tokens"],
             "notice": turn["notice"],
+            "form_reference": json.loads(turn["form_reference_json"] or "null"),
+            "compilation": json.loads(turn["compilation_json"] or "null"),
         }
         for turn in turns
     ]
@@ -1086,7 +1138,11 @@ def search_project_evidence(
     query: str,
     limit: int = 4,
     include_neighbors: bool = False,
+    *,
+    target: str = "source",
+    form_id: int | None = None,
 ) -> list[dict] | None:
+    evidence_filter = project_evidence_filter(target)
     fts_query = _build_fts_query(query)
     with connection() as db:
         if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
@@ -1100,6 +1156,8 @@ def search_project_evidence(
                 c.id AS chunk_id,
                 c.file_id,
                 f.name AS source_name,
+                ? AS role, c.project_id, f.metadata AS document_metadata,
+                'project:' || c.project_id AS scope, NULL AS category,
                 c.chunk_index,
                 c.content,
                 snippet(document_chunks_fts, 2, '', '', ' … ', 36) AS excerpt,
@@ -1108,11 +1166,12 @@ def search_project_evidence(
             JOIN document_chunks c ON c.id = document_chunks_fts.rowid
             JOIN project_files f ON f.id = c.file_id
             WHERE document_chunks_fts MATCH ? AND c.project_id = ?
-              AND {PROJECT_EVIDENCE_FILTER}
+              AND f.project_id = c.project_id AND {evidence_filter}
+              AND (? IS NULL OR f.id = ?)
             ORDER BY rank
             LIMIT ?
             """,
-            (fts_query, project_id, max(limit * 6, 24)),
+            (target, fts_query, project_id, form_id, form_id, max(limit * 6, 24)),
         )
         global_candidates = _rows(
             db,
@@ -1121,6 +1180,8 @@ def search_project_evidence(
                 -c.id AS chunk_id,
                 -d.id AS file_id,
                 d.name AS source_name,
+                'source' AS role, NULL AS project_id, d.metadata AS document_metadata,
+                'global' AS scope, d.category,
                 c.chunk_index,
                 c.content,
                 snippet(global_document_chunks_fts, 1, '', '', ' … ', 36) AS excerpt,
@@ -1134,11 +1195,13 @@ def search_project_evidence(
             LIMIT ?
             """,
             (fts_query, max(limit * 6, 24)),
-        )
+        ) if target == "source" else []
         candidates = project_candidates + global_candidates
     anchors = _rerank_evidence(query, candidates, limit)
     if include_neighbors:
-        return _expand_neighbor_evidence(project_id, anchors, max_results=limit * 2)
+        return _expand_neighbor_evidence(
+            project_id, anchors, max_results=limit * 2, target=target, form_id=form_id,
+        )
     return anchors
 
 

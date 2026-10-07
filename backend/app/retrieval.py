@@ -1,6 +1,7 @@
 """Both search engines expose LangChain's Retriever -> list[Document] contract."""
 
 from itertools import zip_longest
+from typing import Literal
 
 from langchain_core.callbacks import CallbackManagerForRetrieverRun
 from langchain_core.documents import Document
@@ -34,16 +35,23 @@ def merge_evidence_results(groups: list[list[dict]], limit: int = 8) -> list[dic
     return merged
 
 
-def expand_evidence_context(project_id: str, anchors: list[dict]) -> list[dict]:
+def expand_evidence_context(
+    project_id: str, anchors: list[dict], *, target: str = "source", form_id: int | None = None,
+    max_results: int = 8,
+) -> list[dict]:
     # Reserve context for neighboring text after merging queries. Merging eight
     # hits from each query first would crowd all neighbors out of the final list.
-    return _expand_neighbor_evidence(project_id, anchors, max_results=8)
+    return _expand_neighbor_evidence(
+        project_id, anchors, max_results=max_results, target=target, form_id=form_id,
+    )
 
 
 class ProjectRetriever(BaseRetriever):
     project_id: str
     limit: int = Field(default=4, ge=1, le=8)
     include_neighbors: bool = False
+    target: Literal["source", "form"] = "source"
+    form_id: int | None = Field(default=None, gt=0)
 
 
 class FTS5Retriever(ProjectRetriever):
@@ -58,6 +66,8 @@ class FTS5Retriever(ProjectRetriever):
             query,
             self.limit,
             self.include_neighbors,
+            target=self.target,
+            form_id=self.form_id,
         )
         return [evidence_document(item) for item in evidence or []]
 
@@ -79,6 +89,8 @@ class QdrantEvidenceRetriever(ProjectRetriever):
             query,
             self.limit,
             self.include_neighbors,
+            target=self.target,
+            form_id=self.form_id,
         )
 
 
@@ -86,8 +98,14 @@ def build_retriever(
     project_id: str,
     limit: int = 4,
     include_neighbors: bool = False,
+    *,
+    target: Literal["source", "form"] = "source",
+    form_id: int | None = None,
 ) -> BaseRetriever:
-    options = dict(project_id=project_id, limit=limit, include_neighbors=include_neighbors)
+    options = dict(
+        project_id=project_id, limit=limit, include_neighbors=include_neighbors,
+        target=target, form_id=form_id,
+    )
     # FTS5 remains usable even if an old embedding credential cannot be decrypted.
     if public_settings()["backend"] == "fts5":
         return FTS5Retriever(**options)
@@ -105,10 +123,15 @@ def search_project_evidence(
     query: str,
     limit: int = 4,
     include_neighbors: bool = False,
+    *,
+    target: Literal["source", "form"] = "source",
+    form_id: int | None = None,
 ) -> list[dict] | None:
     if get_project(project_id) is None:
         return None
     if not query.strip():
         return []
-    documents = build_retriever(project_id, limit, include_neighbors).invoke(query)
+    documents = build_retriever(
+        project_id, limit, include_neighbors, target=target, form_id=form_id,
+    ).invoke(query)
     return [document_evidence(document) for document in documents]
