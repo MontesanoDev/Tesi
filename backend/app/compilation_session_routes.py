@@ -1,3 +1,4 @@
+import logging
 from contextlib import contextmanager
 
 from fastapi import APIRouter, HTTPException
@@ -11,7 +12,11 @@ from app.compilation_session_models import (
     ResolveRequest,
     UpdateFields,
 )
-from app.compilation_session_resolution import resolve_session
+from app.compilation_session_resolution import (
+    CompilationModelError,
+    CompilationOutputError,
+    resolve_session,
+)
 from app.docx_templates import DocumentInputError, DocxTooLargeError
 from app.generation import GenerationError, GenerationNotConfiguredError
 from app.retrieval_settings import RetrievalError
@@ -19,6 +24,7 @@ from app.retrieval_settings import RetrievalError
 router = APIRouter(
     prefix="/api/projects/{project_id}/compilation-sessions", tags=["Sessioni compilazione DOCX"]
 )
+logger = logging.getLogger(__name__)
 
 
 @contextmanager
@@ -69,12 +75,17 @@ async def resolve(project_id: str, session_id: str, body: ResolveRequest) -> dic
         try:
             return await resolve_session(project_id, session_id, body.version, body.field_ids,
                                          automatic=body.automatic)
-        except GenerationError as exc:
-            # Only globally invalid schema output reaches this bounded recovery.
-            # Localizable item errors retain valid siblings; provider errors still fail.
-            if body.automatic and str(exc) == "Output strutturato della risoluzione non valido":
+        except (CompilationModelError, TimeoutError) as exc:
+            # Only failures identified at the model boundary or the explicit
+            # step timeout are recoverable. Internal mapping bugs still surface.
+            logger.warning("DOCX step interrupted session=%s error=%s", session_id,
+                           type(exc).__name__)
+            if body.automatic:
                 recovered = await run_in_threadpool(
                     sessions.recover_invalid_automatic_step, project_id, session_id, body.version,
+                    pause=not isinstance(exc, CompilationOutputError),
+                    kind=("schema" if isinstance(exc, CompilationOutputError)
+                          else "provider_timeout"),
                 )
                 if recovered is not None:
                     return recovered

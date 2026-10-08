@@ -76,7 +76,7 @@ async def test_global_source_failure_does_not_spend_other_interpretation_retry(c
     state, _ = await mixed(chat, monkeypatch)
 
     async def failed(*args):
-        raise GenerationError("Output strutturato della risoluzione non valido")
+        raise resolution.CompilationOutputError("Output strutturato della risoluzione non valido")
 
     monkeypatch.setattr(resolution, "match_candidates", failed)
     state = await step(chat[0], state)
@@ -126,7 +126,7 @@ async def test_first_source_failure_keeps_form_and_source_retry(chat, monkeypatc
     original = resolution.match_candidates
 
     async def failed(*args):
-        raise GenerationError("Output strutturato della risoluzione non valido")
+        raise resolution.CompilationOutputError("Output strutturato della risoluzione non valido")
 
     monkeypatch.setattr(resolution, "match_candidates", failed)
     state = await step(chat[0], state)
@@ -142,7 +142,7 @@ async def test_first_source_failure_keeps_form_and_source_retry(chat, monkeypatc
 
 @pytest.mark.parametrize("payload", ["{", '{"fields":null}', '{"fields":[{}]}',
                                      '{"fields":[],"extra":true}',
-                                     '{"fields":[{"candidate_id":"x"},{"candidate_id":"x"}]}'])
+                                     '{"fields":[{"candidate_id":""}]}'])
 def test_global_schema_errors_remain_explicit(payload):
     with pytest.raises(GenerationError, match="Output strutturato"):
         resolution.parse_structured(payload, CandidateMeanings)
@@ -183,7 +183,7 @@ async def test_source_schema_retries_exhaust_without_reinterpretation(chat, monk
     calls = simulate(monkeypatch)
 
     async def failed(*args):
-        raise GenerationError("Output strutturato della risoluzione non valido")
+        raise resolution.CompilationOutputError("Output strutturato della risoluzione non valido")
 
     monkeypatch.setattr(resolution, "match_candidates", failed)
     state = await step(chat[0], state)
@@ -205,7 +205,7 @@ async def test_pause_during_source_phase_wins_over_recovery(chat, monkeypatch):
     async def failed(*args):
         chat_control("alpha", state["id"], state["version"],
                      ChatControl(kind="pause", user_quote="basta"))
-        raise GenerationError("Output strutturato della risoluzione non valido")
+        raise resolution.CompilationOutputError("Output strutturato della risoluzione non valido")
 
     monkeypatch.setattr(resolution, "match_candidates", failed)
     response = await chat[0].post(

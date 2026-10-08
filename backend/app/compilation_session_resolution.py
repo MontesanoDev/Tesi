@@ -5,6 +5,8 @@ from __future__ import annotations
 import asyncio
 import copy
 import json
+import logging
+from collections import Counter
 
 import httpx
 
@@ -76,6 +78,17 @@ from app.source_planning import (
 MAX_CONTEXT_CHARACTERS = 60_000
 
 
+logger = logging.getLogger(__name__)
+
+
+class CompilationModelError(GenerationError):
+    """Failure at the model boundary, distinct from internal mapping failures."""
+
+
+class CompilationOutputError(CompilationModelError):
+    """Globally unusable model output; the selected phase owns the spent attempt."""
+
+
 async def request_structured(task: str, data: dict, schema):
     settings, timeout = get_ai_settings(), chat_http_timeout()
     if not settings.configured:
@@ -109,13 +122,17 @@ async def request_structured(task: str, data: dict, schema):
         ],
     }
     async with httpx.AsyncClient(timeout=timeout) as client:
-        raw, _, _ = await request_model_content(
-            client,
-            settings,
-            body,
-            timeout.read,
-            response_schema=schema.model_json_schema(),
-        )
+        try:
+            raw, _, _ = await request_model_content(
+                client, settings, body, timeout.read,
+                response_schema=schema.model_json_schema(),
+            )
+        except GenerationNotConfiguredError:
+            raise
+        except GenerationError as exc:
+            logger.warning("DOCX model failure schema=%s error=%s", schema.__name__,
+                           type(exc).__name__)
+            raise CompilationModelError("Servizio AI temporaneamente non disponibile") from exc
     return parse_structured(raw, schema)
 
 
@@ -130,7 +147,7 @@ def parse_structured(raw, schema):
             if not isinstance(data, dict) or set(data) != {key} \
                     or not isinstance(data[key], list) or len(data[key]) > limit:
                 raise ValueError("Envelope della verifica non valido")
-            valid, seen = [], set()
+            valid, seen, blocked_candidates = [], set(), set()
             for item in data[key]:
                 if schema is HistoricalServices:
                     if not isinstance(item, dict) or type(item.get("source_id")) is not int:
@@ -140,27 +157,41 @@ def parse_structured(raw, schema):
                     except ValueError:
                         continue
                     continue
-                if not isinstance(item, dict) or not isinstance(item.get("candidate_id"), str):
+                candidate_id = item.get("candidate_id") if isinstance(item, dict) else None
+                if not isinstance(candidate_id, str) or not 1 <= len(candidate_id.strip()) <= 80:
                     raise ValueError("Verifica non localizzabile")
-                identity = (item["candidate_id"],)
+                identity = (candidate_id.strip(),)
                 if schema is SourceReview:
-                    if item.get("kind") not in {"value", "applicability", "exclusion"} \
+                    if not isinstance(item.get("kind"), str) \
+                            or item["kind"] not in {"value", "applicability", "exclusion"} \
                             or type(item.get("index")) is not int:
-                        raise ValueError("Proposta verificata non localizzabile")
-                    identity += (item["kind"], item["index"])
-                if identity in seen:
-                    if schema is SourceReview:
-                        # Conflicting duplicate verdicts cannot approve this
-                        # proposal. Other proposals retain their own reviews.
-                        valid = [v for v in valid if (v.candidate_id, v.kind, v.index) != identity]
+                        # The candidate is known, but the proposal is ambiguous:
+                        # quarantine all its verdicts, preserving other candidates.
+                        blocked_candidates.add(identity[0])
+                        valid = [v for v in valid if v.candidate_id != identity[0]]
+                        logger.warning("DOCX unbound SOURCE verdict candidate=%s", identity[0])
                         continue
-                    raise ValueError("Verifica duplicata")
+                    identity += (item["kind"], item["index"])
+                if identity[0] in blocked_candidates:
+                    continue
+                if identity in seen:
+                    # All versions of a duplicate verdict are rejected, never
+                    # first/last-wins. Independent verdicts remain usable.
+                    valid = [v for v in valid if (
+                        (v.candidate_id, v.kind, v.index) if schema is SourceReview
+                        else (v.candidate_id,)
+                    ) != identity]
+                    logger.warning("DOCX duplicate review schema=%s identity=%s",
+                                   schema.__name__, identity)
+                    continue
                 seen.add(identity)
                 try:
                     valid.append(item_schema.model_validate(item))
                 except ValueError:
                     # Missing/malformed verdicts never approve an item; valid
                     # siblings retain their own independent review.
+                    logger.warning("DOCX invalid review item schema=%s identity=%s",
+                                   schema.__name__, identity)
                     continue
             return schema(**{key: valid})
         if schema not in (CandidateMeanings, CandidateMatches):
@@ -173,10 +204,15 @@ def parse_structured(raw, schema):
         valid, errors, seen = [], {}, set()
         for item in data["fields"]:
             candidate_id = item.get("candidate_id") if isinstance(item, dict) else None
-            if not isinstance(candidate_id, str) or not 1 <= len(candidate_id.strip()) <= 80 \
-                    or candidate_id.strip() in seen:
-                raise ValueError("Item non localizzabile o candidate duplicato")
+            if not isinstance(candidate_id, str) or not 1 <= len(candidate_id.strip()) <= 80:
+                raise ValueError("Item non localizzabile")
             candidate_id = candidate_id.strip()
+            if candidate_id in seen:
+                # Neither version of a duplicated item is authoritative.
+                valid = [v for v in valid if v.candidate_id != candidate_id]
+                phase = "SOURCE" if schema is CandidateMatches else "di interpretazione"
+                errors[candidate_id] = f"Output {phase} duplicato: tutte le proposte scartate"
+                continue
             seen.add(candidate_id)
             try:
                 valid.append(item_schema.model_validate(item))
@@ -185,8 +221,10 @@ def parse_structured(raw, schema):
         result = schema(fields=valid)
         result._item_errors = errors
         return result
-    except ValueError as exc:
-        raise GenerationError("Output strutturato della risoluzione non valido") from exc
+    except (ValueError, RecursionError) as exc:
+        logger.warning("DOCX invalid model envelope schema=%s error=%s", schema.__name__,
+                       type(exc).__name__)
+        raise CompilationOutputError("Output strutturato della risoluzione non valido") from exc
 
 
 async def classify_candidates(fields: list[dict]) -> CandidateMeanings:
@@ -194,6 +232,7 @@ async def classify_candidates(fields: list[dict]) -> CandidateMeanings:
     # to ground a requirement or substitute indexed fragments for XML positions.
     contexts = list(dict.fromkeys(f["context"] for f in fields))
     data = {
+        "allowed_candidate_ids": [f["id"] for f in fields],
         "form_contexts": contexts,
         "form_sections": {s["id"]: s["text"] for f in fields
                           for s in f["structural"].get("form_sections", [])},
@@ -216,6 +255,9 @@ async def classify_candidates(fields: list[dict]) -> CandidateMeanings:
         )
     meanings = await request_structured(
         "Classifica i candidate strutturali di UN originale DOCX. Non cercare o inventare valori. "
+        "Restituisci solo candidate_id presenti in allowed_candidate_ids, copiandoli dalla "
+        "lista candidates. Gli ID di altre celle/slot nei contesti FORM non sono target "
+        "di questo passo. Ciascun candidate al massimo una volta. "
         "Un candidate non è necessariamente un dato obbligatorio. Usa data per dati effettivi, "
         "review per scelte/dichiarazioni/firme o significato dubbio, decorative solo per spazi "
         "senza significato compilabile. Identifica ciascun segnaposto/cella nel suo contesto; "
@@ -249,6 +291,9 @@ async def classify_candidates(fields: list[dict]) -> CandidateMeanings:
         "letterale, section_id identifica il passaggio form_sections che la introduce e "
         "condition_kind=subject_type. Condividi questi riferimenti nei suoi slot. "
         "Non includere la scelta del firmatario nella condizione di tipologia aziendale. "
+        "La condizione della sezione può riguardare il compilatore, mentre lo slot "
+        "descrive un'altra entità elencata: in questo caso usa condition_kind=participation "
+        "o other, non subject_type dell'entità elencata. Non cambiarne il soggetto. "
         "exclusive_group_id solo per un'istruzione FORM esplicita di scelta UNICA, "
         "altrimenti vuoto. Per firme/review/decorative semantic può essere null. "
         "Il requirement serve a cercare SOURCE: il modulo non prova nessun valore. "
@@ -268,15 +313,40 @@ async def classify_candidates(fields: list[dict]) -> CandidateMeanings:
     return meanings
 
 
-def apply_meanings(fields, meanings):
-    by_id, seen = {f["id"]: f for f in fields}, set()
-    if set(meanings._item_errors) - set(by_id):
-        raise GenerationError("Classificazione con candidate sconosciuto")
-    for field_id, error in meanings._item_errors.items():
-        by_id[field_id].update(status="PENDING", requirement=None, validation_errors=[error])
+def bind_meanings(fields, meanings):
+    """Scope interpretations before FORM review, without remapping foreign IDs."""
+    allowed = {f["id"] for f in fields}
+    for field_id, count in Counter(m.candidate_id for m in meanings.fields).items():
+        if field_id not in allowed:
+            meanings._item_errors[field_id] = (
+                "Candidate fuori dal gruppo da interpretare: interpretazione scartata"
+            )
+        elif count > 1:
+            meanings._item_errors[field_id] = (
+                "Output di interpretazione duplicato: tutte le proposte scartate"
+            )
+    meanings.fields = [m for m in meanings.fields
+                       if m.candidate_id in allowed and m.candidate_id not in meanings._item_errors]
+    by_id = {f["id"]: f for f in fields}
     for meaning in meanings.fields:
-        if meaning.candidate_id not in by_id or meaning.candidate_id in seen:
-            raise GenerationError("Classificazione con candidate sconosciuto o duplicato")
+        field = by_id[meaning.candidate_id]
+        proof = field.get("applicability") or {}
+        if not meaning.condition and (
+            proof.get("provenance") == "USER" or field.get("applicability_confirmed")
+        ):
+            # The independent FORM reviewer must see an already answered
+            # condition even if the classifier omits it on reanalysis.
+            meaning.condition = field.get("condition") or ""
+    return meanings
+
+
+def apply_meanings(fields, meanings):
+    bind_meanings(fields, meanings)
+    by_id, seen = {f["id"]: f for f in fields}, set()
+    for field_id, error in meanings._item_errors.items():
+        if field_id in by_id:
+            by_id[field_id].update(status="PENDING", requirement=None, validation_errors=[error])
+    for meaning in meanings.fields:
         seen.add(meaning.candidate_id)
         field = by_id[meaning.candidate_id]
         try:
@@ -285,6 +355,15 @@ def apply_meanings(fields, meanings):
                 raise ValueError("Estratto strutturale non presente nel FORM")
             if meaning.condition and not contains_form_span(material, meaning.condition):
                 raise ValueError("Condizione di applicabilità non presente nel FORM")
+            condition = meaning.condition
+            if not condition and field.get("condition") and contains_form_span(
+                material, field["condition"],
+            ):
+                condition = field["condition"]
+            proof = field.get("applicability") or {}
+            if (proof.get("provenance") == "USER" or field.get("applicability_confirmed")) \
+                    and field.get("condition") != condition:
+                raise ValueError("Interpretazione in conflitto con la condizione già chiarita USER")
             requirement = meaning.requirement
             if meaning.classification == "data":
                 if requirement is None:
@@ -315,11 +394,6 @@ def apply_meanings(fields, meanings):
                 ):
                     raise ValueError("Etichetta non associata alla posizione del candidate")
                 field.update(requirement=requirement.model_dump(), label=requirement.name)
-            condition = meaning.condition
-            if (not condition and field.get("condition")
-                    and contains_form_span(field["context"], field["condition"])):
-                # An omission on retry cannot erase an already grounded dependency.
-                condition = field["condition"]
             if field.get("condition") != condition:
                 field.pop("applicability", None)
                 field.pop("applicability_confirmed", None)
@@ -486,6 +560,9 @@ async def retrieve_sources(project_id: str, fields: list[dict]):
 async def match_candidates(fields, sources, coverage):
     return await request_structured(
         "Confronta ciascun requisito strutturale con le sole SOURCE ammesse per quel candidate. "
+        "Restituisci esattamente un item per ciascun allowed_candidate_id, anche quando "
+        "supports=[]: copia il candidate_id dalla lista requirements. Non usare ID letti "
+        "nei form_context, nelle SOURCE o in altre righe della tabella. "
         "FORM descrive la richiesta; USER CLAIM non è una prova; solo SOURCE può fornire valori. "
         "Per ogni supporto copia SOLO il valore effettivo, mai label, segnaposti o campi "
         "vuoti. value e quote sono letterali, includendo il soggetto/ruolo e "
@@ -512,6 +589,7 @@ async def match_candidates(fields, sources, coverage):
         "La conferma USER già registrata stabilisce la condizione, non il valore. "
         "Firme, consensi, dichiarazioni e decisioni richiedono conferma utente.",
         {
+            "allowed_candidate_ids": [f["id"] for f in fields if f["id"] in coverage],
             "requirements": [
                 {
                     "candidate_id": f["id"],
@@ -530,6 +608,32 @@ async def match_candidates(fields, sources, coverage):
         },
         CandidateMatches,
     )
+
+
+def bind_matches(fields, matches, coverage):
+    """Quarantine localizable bad output before review or state mutation."""
+    by_id = {f["id"] for f in fields}
+    if set(coverage) - by_id:
+        raise ValueError("Mapping interno: copertura SOURCE incoerente con il gruppo selezionato")
+    counts = Counter(m.candidate_id for m in matches.fields)
+    for field_id, count in counts.items():
+        if field_id not in coverage:
+            matches._item_errors[field_id] = (
+                "Candidate fuori dal gruppo ricercato: proposta scartata"
+            )
+        elif count > 1:
+            matches._item_errors[field_id] = "Output SOURCE duplicato: tutte le proposte scartate"
+    matches.fields = [m for m in matches.fields
+                      if m.candidate_id in coverage and m.candidate_id not in matches._item_errors]
+    if matches._item_errors:
+        # A contaminated response may omit the actual target. Keep its existing
+        # bounded SOURCE retry, without retrying valid or explicitly empty items.
+        answered = {m.candidate_id for m in matches.fields}
+        for field_id in coverage.keys() - answered:
+            matches._item_errors.setdefault(
+                field_id, "Matcher senza esito per il candidate ricercato",
+            )
+    return matches
 
 
 def _exclusion(field, support, sources, allowed):
@@ -578,7 +682,8 @@ def _exclusion(field, support, sources, allowed):
 
 
 def apply_matches(layout, fields, matches, sources, coverage):
-    by_id, seen = {f["id"]: f for f in fields}, set()
+    bind_matches(fields, matches, coverage)
+    by_id = {f["id"]: f for f in fields}
     for field in fields:
         if field["id"] in coverage:
             field.update(
@@ -592,14 +697,10 @@ def apply_matches(layout, fields, matches, sources, coverage):
                 reason="Nessun valore verificato nelle SOURCE recuperate",
             )
             field["source_proposals"] = []
-    if set(matches._item_errors) - set(coverage):
-        raise GenerationError("Matcher con candidate sconosciuto o non ricercato")
     for field_id, error in matches._item_errors.items():
-        by_id[field_id]["validation_errors"] = [error]
+        if field_id in coverage:
+            by_id[field_id]["validation_errors"].append(error)
     for match in matches.fields:
-        if match.candidate_id not in coverage or match.candidate_id in seen:
-            raise GenerationError("Matcher con candidate sconosciuto, duplicato o non ricercato")
-        seen.add(match.candidate_id)
         field, valid = by_id[match.candidate_id], []
         field["reason"] = match.reason
         condition_supports = []
@@ -727,6 +828,7 @@ async def resolve_session(project_id: str, session_id: str, version: int, field_
                              search={"status": "not_searched"}, last_attempt_at=now())
             if uninterpreted:
                 meanings = await classify_candidates(uninterpreted)
+                bind_meanings(uninterpreted, meanings)
                 form_reviews = await review_meanings(uninterpreted, meanings, request_structured)
                 apply_meanings(uninterpreted, meanings)
             else:
@@ -747,6 +849,7 @@ async def resolve_session(project_id: str, session_id: str, version: int, field_
                 if sources
                 else CandidateMatches(fields=[])
             )
+            bind_matches(searchable, matches, coverage)
             source_reviews = await review_sources(
                 searchable, matches, sources, coverage, request_structured,
             )
@@ -765,9 +868,15 @@ async def resolve_session(project_id: str, session_id: str, version: int, field_
                     "model_requests": (int(bool(uninterpreted)) + int(bool(searchable))
                                        + int(bool(sources)) + form_reviews + source_reviews),
                     "classification_retry": False,
+                    "interpretation_rejections": (
+                        dict(meanings._item_errors) if uninterpreted else {}
+                    ),
+                    "matcher_rejections": dict(matches._item_errors),
                 },
             )
-    except BaseException:
+    except BaseException as exc:
+        if not isinstance(exc, (CompilationModelError, TimeoutError, asyncio.CancelledError)):
+            logger.exception("DOCX resolution failed session=%s", session_id)
         # Cancellation/timeout also release the claim. An actual process crash is
         # recoverable via the persisted expiring lease, without an in-memory job.
         mark_failed(

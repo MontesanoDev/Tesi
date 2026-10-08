@@ -476,6 +476,8 @@ def complete_resolution(project_id, session_id, version, changed, diagnostics):
             last_resolution=diagnostics,
             last_error=None,
         )
+        if state.get("chat_workflow"):
+            state["chat_workflow"].pop("recovery_notice", None)
         if state.get("chat_workflow") and all(f["status"] == "PENDING" for f in changed):
             if not any(
                 f["status"] == "PENDING" and not f["last_attempt_at"] for f in state["fields"]
@@ -498,8 +500,9 @@ def mark_failed(project_id, session_id, version, message):
             save_state(db, row, state, "failed")
 
 
-def recover_invalid_automatic_step(project_id, session_id, requested_version):
-    """Recover a global schema failure within the budget of its active phase."""
+def recover_invalid_automatic_step(project_id, session_id, requested_version, *, pause=False,
+                                   kind="schema"):
+    """Recover a known model failure, preserving CAS and the phase's spent budget."""
     with connection() as db:
         db.execute("BEGIN IMMEDIATE")
         row = _row(db, project_id, session_id)
@@ -518,19 +521,27 @@ def recover_invalid_automatic_step(project_id, session_id, requested_version):
                 field.update(last_attempt_at=now())
                 field["validation_errors"] = list(dict.fromkeys([
                     *field["validation_errors"],
-                    "Output strutturato non valido: nessun dato applicato",
+                    "Output strutturato non valido: nessun dato applicato" if kind == "schema"
+                    else "Servizio AI interrotto: nessun nuovo dato applicato",
                 ]))
         workflow = state["chat_workflow"]
         workflow["output_rejections"] = workflow.get("output_rejections", 0) + 1
-        workflow["last_output_rejection"] = {"field_ids": selected, "at": now()}
+        workflow["last_output_rejection"] = {
+            "field_ids": selected, "at": now(), "kind": kind,
+            "phase": workflow.get("last_analysis_phase"),
+        }
+        workflow["recovery_notice"] = (
+            "Ho conservato i dati già verificati. Alcuni campi non sono stati completati. "
+            "Puoi continuare o esportare una bozza parziale."
+        )
+        if pause:
+            # Do not burn the remaining fields' attempts during a provider outage.
+            workflow["paused_reason"] = "model_error"
         state.update(status=session_status(state["fields"]), last_error=None, lease_until=None)
         synchronize(state)
         if not automatic_fields(state) and not workflow["pending_clarifications"] \
                 and any(f["status"] == "PENDING" for f in state["fields"]):
-            state.update(status="FAILED", last_error=(
-                "Tentativi automatici esauriti sulle posizioni rimaste "
-                "(interpretazione o SOURCE). Nessun valore inventato."
-            ))
+            workflow["paused_reason"] = "interpretation"
         return save_state(db, row, state, "automatic_output_rejected")
 
 

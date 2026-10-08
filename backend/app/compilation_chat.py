@@ -136,6 +136,7 @@ def new_cycle(previous=None):
         "started_at": datetime.now(UTC).isoformat(),
         "paused_reason": None,
         "clarification": None,
+        "recovery_notice": None,
         "user_paused": False,
         "clarification_mode": "grouped",
         "analysis_attempts": (previous or {}).get("analysis_attempts", {}).copy(),
@@ -249,7 +250,10 @@ def chat_view(state):
         and (bool(automatic_fields(state)) if grouped(state) else
              not available or dependency_pending)
         and budget_available(workflow),
+        "notice": (workflow or {}).get("recovery_notice"),
         "paused": user_paused or expired_lease or bool(
+            workflow and workflow.get("paused_reason") == "model_error"
+        ) or bool(
             pending
             and not available
             and state["status"] in {"CREATED", "WAITING_FOR_USER"}

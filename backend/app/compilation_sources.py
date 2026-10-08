@@ -7,6 +7,7 @@ span, the correct subject and the ordinary DOCX validation.
 
 from __future__ import annotations
 
+import logging
 import re
 import unicodedata
 from dataclasses import dataclass
@@ -24,6 +25,7 @@ from app.source_planning import (
 
 MAX_SOURCE_NAMES = 3
 MAX_ALLOWED_EVIDENCE = 8
+logger = logging.getLogger(__name__)
 
 
 class SourceMeaning(BaseModel):
@@ -80,7 +82,8 @@ async def plan_compilation_search(fields: list[dict], request) -> CompilationSea
             names[meaning.requirement_id] = list(dict.fromkeys(
                 [requirements[meaning.requirement_id - 1].name, *meaning.source_names]
             ))[:MAX_SOURCE_NAMES + 1]
-    except (ValueError, GenerationError):
+    except (ValueError, GenerationError) as exc:
+        logger.warning("DOCX SOURCE plan fallback error=%s", type(exc).__name__)
         # One bounded planning call. Failure preserves the literal labels and
         # explicit coverage limits; it never admits evidence or invents values.
         plan = fallback

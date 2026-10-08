@@ -65,6 +65,7 @@ from app.ingestion import (
     ingest_upload,
 )
 from app.intents import (
+    ChatDecision,
     plan_chat_turn,
     plan_requirement_checks,
     route_availability_request,
@@ -724,6 +725,30 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
         "total_tokens": None,
         "notice": None,
     }
+
+    async def interrupted_compilation():
+        if compilation_session is None:
+            return None
+        # Standalone controls already have a conservative deterministic guard.
+        # A provider outage must not prevent an explicit pause/resume.
+        control = route_compilation_control(ChatDecision(
+            action="reply", answer="Controllo", target="source", queries=[],
+        ), payload.question, compilation_session)
+        if control.action == "compilation_control":
+            text, command = await handle_decision(
+                project_id, conversation_id, control, form_reference, compilation_session,
+                payload.question, payload.compilation_version,
+            )
+            return persist({**base_response, "answer": text, "compilation": command,
+                            "generation_status": "direct"})
+        return persist({
+            **base_response,
+            "answer": "Ho conservato i dati già verificati. Non sono riuscito a completare "
+                      "questo passaggio. Puoi riprovare o esportare una bozza parziale.",
+            "compilation": {"session_id": compilation_session["id"], "action": "clarify"},
+            "generation_status": "failed",
+        })
+
     try:
         # Pin the same provider/model for planning, answering and citation repair.
         with project_ai_context(project_id):
@@ -971,8 +996,14 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
     except GenerationNotConfiguredError as exc:
         return persist({**base_response, "generation_status": "not_configured", "notice": str(exc)})
     except GenerationError as exc:
+        if compilation_session:
+            logger.warning("DOCX chat model failure error=%s", type(exc).__name__)
+            return await interrupted_compilation()
         return persist({**base_response, "generation_status": "failed", "notice": str(exc)})
     except TimeoutError:
+        if compilation_session:
+            logger.warning("DOCX chat timeout session=%s", compilation_session["id"])
+            return await interrupted_compilation()
         return persist({
             **base_response,
             "generation_status": "failed",

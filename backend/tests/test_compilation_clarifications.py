@@ -285,7 +285,9 @@ async def test_invalid_batch_does_not_stop_other_candidates(chat, monkeypatch):
     async def classifier(fields):
         calls.append([f["id"] for f in fields])
         if any(f["id"] == "t0.r0.c1" for f in fields):
-            raise GenerationError("Output strutturato della risoluzione non valido")
+            raise resolution.CompilationOutputError(
+                "Output strutturato della risoluzione non valido",
+            )
         return await original(fields)
     monkeypatch.setattr(resolution, "classify_candidates", classifier)
     for _ in range(4):
@@ -323,12 +325,14 @@ async def test_exhausted_invalid_output_is_not_a_request_for_user_values(chat, m
     state, _ = await start(chat)
     simulate(monkeypatch)
     async def failure(fields):
-        raise GenerationError("Output strutturato della risoluzione non valido")
+        raise resolution.CompilationOutputError("Output strutturato della risoluzione non valido")
     monkeypatch.setattr(resolution, "classify_candidates", failure)
     state = await step(chat[0], state)
     assert state["chat"]["auto_continue"] and state["chat"]["question"] is None
     state = await step(chat[0], state)
-    assert state["status"] == "FAILED" and not state["chat"]["auto_continue"]
+    assert state["status"] != "FAILED" and not state["chat"]["auto_continue"]
+    assert "Ho conservato" in state["chat"]["notice"]
+    assert set(state["chat_workflow"]["analysis_attempts"].values()) == {2}
     assert state["chat"]["question"] is None
     assert state["chat"]["metrics"]["user_required_fields"] == 0
     assert all(f["status"] == "PENDING" and f["value"] is None for f in state["fields"])
@@ -345,7 +349,7 @@ async def test_pause_during_an_invalid_output_wins_over_automatic_recovery(chat,
     async def failure(fields):
         sessions.chat_control("alpha", state["id"], state["version"],
                               ChatControl(kind="pause", user_quote="basta"))
-        raise GenerationError("Output strutturato della risoluzione non valido")
+        raise resolution.CompilationOutputError("Output strutturato della risoluzione non valido")
     monkeypatch.setattr(resolution, "classify_candidates", failure)
     response = await chat[0].post(f"/api/projects/alpha/compilation-sessions/{state['id']}/resolve",
         json={"version": state["version"], "automatic": True})

@@ -105,7 +105,8 @@ def clarification_question(state):
     from app.compilation_chat import budget_available
 
     workflow = state.get("chat_workflow") or {}
-    if workflow.get("user_paused") or state["status"] in {"ANALYZING", "FAILED", "GENERATED"}:
+    if (workflow.get("user_paused") or workflow.get("paused_reason") == "model_error"
+            or state["status"] in {"ANALYZING", "FAILED", "GENERATED"}):
         return None
     if automatic_fields(state) and budget_available(workflow):
         return None
@@ -178,7 +179,8 @@ def synchronize(state):
             polarities.setdefault(key, set()).add(known_applicability(field))
             proofs[key] = field["applicability"]
     for field in state["fields"]:
-        if not field.get("condition") or known_applicability(field) is not None:
+        if (field.get("provenance") == "USER" or field["status"] in {"RESOLVED", "USER_PROVIDED"}
+                or not field.get("condition") or known_applicability(field) is not None):
             continue
         proof = proofs.get(condition_key(field))
         if not proof or len(polarities[condition_key(field)]) != 1:

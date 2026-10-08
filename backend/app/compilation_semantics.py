@@ -7,7 +7,9 @@ deterministically before a semantic verdict can be used.
 
 import hashlib
 import json
+import logging
 import re
+from collections import Counter
 from copy import deepcopy
 from typing import Literal
 
@@ -15,8 +17,9 @@ from pydantic import Field
 
 from app.document_compilation import StrictModel
 from app.docx_templates import text_of
-from app.generation import GenerationError
 from app.requirement_checks import contains_form_span
+
+logger = logging.getLogger(__name__)
 
 
 class SectionCondition(StrictModel):
@@ -118,7 +121,7 @@ def form_material(field):
     ]])
 
 
-def validate_anchor(field, meaning):
+def validate_anchor(field, meaning, *, review_pending=False):
     semantic = meaning.semantic
     if not semantic or not meaning.requirement:
         raise ValueError("Interpretazione semantica senza requisito/anchor")
@@ -140,7 +143,7 @@ def validate_anchor(field, meaning):
         sections[semantic.section_id], meaning.condition,
     )):
         raise ValueError("Condizione non ancorata alla sezione FORM")
-    if (meaning.condition and semantic.condition_kind == "subject_type"
+    if (not review_pending and meaning.condition and semantic.condition_kind == "subject_type"
             and semantic.subject_relation == "represented_organization"
             and not contains_form_span(semantic.subject_anchor, meaning.condition)):
         raise ValueError("La condizione di tipologia riguarda l'entità, senza ruolo personale")
@@ -168,7 +171,7 @@ async def review_meanings(fields, meanings, request):
         if not meaning.semantic:
             continue  # Older contracts retain their literal FORM validation.
         if meaning.candidate_id not in by_id:
-            raise GenerationError("Classificazione con candidate sconosciuto")
+            raise ValueError("Mapping interno: interpretazione FORM non legata al gruppo")
         field = by_id[meaning.candidate_id]
         if not meaning.semantic.form_anchor:
             meaning.semantic.form_anchor = field["structural"].get("slot_anchor", "")
@@ -182,19 +185,25 @@ async def review_meanings(fields, meanings, request):
             # generic entity name never silently drops foreign/other qualifiers.
             meaning.condition = meaning.semantic.subject_anchor
             meaning.semantic.condition_kind = "subject_type"
-        if table_cell and meaning.condition:
-            # A local qualifier belongs to the physical row, even when the
-            # classifier references the document heading instead of that row.
+        if meaning.condition:
+            # Repair only a uniquely located literal condition. An independent
+            # review must still establish that it actually governs this slot.
             row_id = field["structural"].get("row_section_id")
             local_sections = {s["id"]: s["text"]
                               for s in field["structural"].get("form_sections", [])}
-            if (row_id and contains_form_span(local_sections[row_id], meaning.condition)
-                    and not contains_form_span(
-                        local_sections.get(meaning.semantic.section_id, ""), meaning.condition,
-                    )):
-                meaning.semantic.section_id = row_id
+            if not contains_form_span(
+                local_sections.get(meaning.semantic.section_id, ""), meaning.condition,
+            ):
+                matches = [key for key, text in local_sections.items()
+                           if contains_form_span(text, meaning.condition)]
+                if row_id in matches:
+                    meaning.semantic.section_id = row_id
+                elif len(matches) == 1:
+                    meaning.semantic.section_id = matches[0]
         try:
-            validate_anchor(field, meaning)
+            # The reviewer may distinguish a parent participation condition from
+            # the type of an entity listed below it. Final validation is strict.
+            validate_anchor(field, meaning, review_pending=True)
         except ValueError as exc:
             meanings._semantic_reviews[field["id"]] = {"accepted": False, "reason": str(exc)}
             continue
@@ -233,6 +242,10 @@ async def review_meanings(fields, meanings, request):
         "la designazione personale del firmatario. Per subject_type di un'organizzazione "
         "rappresentata usa solo la tipologia contenuta in semantic.subject_anchor, senza "
         "anteporre il ruolo della persona che la rappresenta. condition_complete è "
+        "verificata sul soggetto della condizione: se riguarda il compilatore ma lo slot "
+        "descrive un'altra entità elencata, restituisci section_condition con lo stesso "
+        "predicato letterale e condition_kind=participation o other. Non attribuire la "
+        "tipologia del compilatore alle entità elencate. condition_complete è "
         "OBBLIGATORIO: true solo se la "
         "condizione finale include TUTTI i qualificatori necessari del blocco FORM; "
         "false se un generico nome di organizzazione perde limiti geografici, giuridici "
@@ -244,11 +257,17 @@ async def review_meanings(fields, meanings, request):
         {"proposals": proposals, "form_contexts": contexts, "form_sections": sections}, FormReview,
     )
     expected = {p["candidate"]["id"] for p in proposals}
-    seen = set()
+    counts = Counter(v.candidate_id for v in review.fields)
     for verdict in review.fields:
-        if verdict.candidate_id not in expected or verdict.candidate_id in seen:
-            raise GenerationError("Verifica FORM con candidate sconosciuto/duplicato")
-        seen.add(verdict.candidate_id)
+        if verdict.candidate_id not in expected or counts[verdict.candidate_id] > 1:
+            logger.warning("DOCX FORM verdict rejected candidate=%s duplicate=%s",
+                           verdict.candidate_id, counts[verdict.candidate_id] > 1)
+            if verdict.candidate_id in expected:
+                meanings._semantic_reviews[verdict.candidate_id] = {
+                    "accepted": False,
+                    "reason": "Verdetto FORM duplicato: interpretazione respinta",
+                }
+            continue
         meaning = next(m for m in meanings.fields if m.candidate_id == verdict.candidate_id)
         if verdict.accepted:
             if not verdict.condition_complete:
@@ -340,7 +359,8 @@ async def review_sources(fields, matches, sources, coverage, request):
         )
         for fact in facts.facts:
             if fact.source_id not in historical_ids:
-                raise GenerationError("Relazione storica con SOURCE sconosciuta")
+                logger.warning("DOCX historical fact rejected source_id=%s", fact.source_id)
+                continue
             if (contains_form_span(sources[fact.source_id - 1]["content"], fact.performance_quote)
                     and contains_form_span(fact.performance_quote, fact.performer_quote)
                     and contains_form_span(fact.performance_quote, fact.service_quote)):
@@ -389,25 +409,26 @@ async def review_sources(fields, matches, sources, coverage, request):
         "proposte dello stesso candidate. Ogni proposta una volta; non proporre nuovi valori.",
         {"proposals": offers}, SourceReview,
     )
-    seen = set()
+    requested = {(p["candidate_id"], p["kind"], p["index"]): p for p in offers}
+    counts = Counter((v.candidate_id, v.kind, v.index) for v in review.supports)
     for verdict in review.supports:
         key = (verdict.candidate_id, verdict.kind, verdict.index)
-        if verdict.candidate_id not in by_id:
-            raise GenerationError("Verifica SOURCE con candidate sconosciuto")
-        if key not in indexed or key in seen:
-            by_id[verdict.candidate_id].setdefault("source_review_errors", []).append(
-                f"Verifica SOURCE ignorata: proposta non richiesta/duplicata {verdict.kind} "
-                f"indice {verdict.index}",
-            )
-            if key in seen:
+        if key not in requested or counts[key] > 1:
+            logger.warning("DOCX SOURCE verdict rejected identity=%s duplicate=%s",
+                           key, counts[key] > 1)
+            if verdict.candidate_id in coverage:
+                by_id[verdict.candidate_id].setdefault("source_review_errors", []).append(
+                    f"Verifica SOURCE ignorata: proposta non richiesta/duplicata {verdict.kind} "
+                    f"indice {verdict.index}",
+                )
+            if key in requested and counts[key] > 1:
                 indexed[key][0]._semantic_review = {
                     "accepted": False, "reason": "Verdetto SOURCE duplicato: proposta respinta",
                 }
             continue
-        seen.add(key)
         support, source = indexed[key]
         result = verdict.model_dump()
-        offer = next(p for p in offers if (p["candidate_id"], p["kind"], p["index"]) == key)
+        offer = requested[key]
         if "historical_facts" in offer:
             result["historical_facts"] = offer["historical_facts"]
         if by_id[verdict.candidate_id]["semantic"]["context_role"] == "PAST_SERVICE" and (
@@ -445,7 +466,10 @@ def propagate_section_exclusions(state):
         if len(sections) != 1:
             continue  # Conflicting facts never select an arbitrary branch.
         for field in fields:
-            if (not field.get("condition") or known_applicability(field) is not None
+            if (field.get("provenance") == "USER"
+                    or field["status"] in {"RESOLVED", "USER_PROVIDED"}
+                    or not field.get("condition")
+                    or known_applicability(field) is not None
                     or field["semantic"]["section_id"] in sections):
                 continue
             proof = deepcopy(positives[0]["applicability"])

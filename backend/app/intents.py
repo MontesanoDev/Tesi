@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import logging
 import re
+from collections import Counter
 from dataclasses import dataclass
 from typing import Annotated, Literal
 
@@ -16,6 +17,7 @@ from app.compilation_chat import (
     ChatControl,
     ChatFieldReply,
     ClarificationDecision,
+    ClarificationReply,
     chat_view,
     normalized,
     single_active_target,
@@ -342,6 +344,29 @@ class ClarificationGroupPlan(ClarificationDecision):
         return self
 
 
+def parse_clarification_plan(data, allowed_slots):
+    """Salvage independent USER replies, never guess or remap a slot."""
+    if (isinstance(data, dict) and data.get("action") == "ANSWER"
+            and set(data) <= {"action", "replies", "chat"}
+            and isinstance(data.get("replies"), list) and len(data["replies"]) <= 4):
+        counts = Counter(r.get("slot") for r in data["replies"]
+                         if isinstance(r, dict) and type(r.get("slot")) is int)
+        valid = []
+        for raw in data["replies"]:
+            slot = raw.get("slot") if isinstance(raw, dict) else None
+            if type(slot) is not int or slot not in allowed_slots or counts[slot] > 1:
+                logger.warning("DOCX USER reply rejected slot=%s", slot)
+                continue
+            try:
+                valid.append(ClarificationReply.model_validate(raw).model_dump())
+            except ValueError:
+                logger.warning("DOCX USER reply schema rejected slot=%s", slot)
+        if data["replies"] and not valid:
+            raise ValueError("Nessuna risposta associabile agli slot attivi")
+        data = {**data, "replies": valid}
+    return ClarificationGroupPlan.model_validate(data)
+
+
 GROUP_QUESTION_PROMPT = """
 Hai posto un PICCOLO GRUPPO di chiarimenti. Il backend conosce i destinatari.
 Non restituire field_id, id, candidate_id o identificatori di sessione.
@@ -644,7 +669,7 @@ async def plan_chat_turn(
                     # target, identifier and all other schema constraints normally.
                     data = {**data, "answer": ""}
                 if group_question:
-                    proposed = ClarificationGroupPlan.model_validate(data)
+                    proposed = parse_clarification_plan(data, allowed_slots)
                     if any(r.slot not in allowed_slots for r in proposed.replies):
                         raise ValueError("Slot non presente nel gruppo attivo")
                     decision = (ChatDecision.model_validate(proposed.chat.model_dump())
