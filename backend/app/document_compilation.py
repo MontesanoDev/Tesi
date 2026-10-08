@@ -465,6 +465,11 @@ def validate_proposals(
                 }
             )
         if item.status == "proposed":
+            from app.compilation_semantics import empty_value_reason
+
+            if error := empty_value_reason(item.value, item.label):
+                checks.append(error)
+                codes.append("empty_information")
             user_confirmed = (
                 explicit_user_values is not None
                 and explicit_user_values.get(item.cell_id) == item.value

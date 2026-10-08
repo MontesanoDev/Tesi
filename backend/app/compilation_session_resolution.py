@@ -9,13 +9,33 @@ import json
 import httpx
 
 from app.compilation_applicability import known_applicability, validate_condition_source
+from app.compilation_semantics import (
+    FormReview,
+    FormVerdict,
+    HistoricalServiceFact,
+    HistoricalServices,
+    SourceReview,
+    SourceVerdict,
+    empty_value_reason,
+    form_material,
+    interpretation_digest,
+    require_source_review,
+    review_meanings,
+    review_sources,
+    validate_anchor,
+    validate_persisted_semantics,
+)
 from app.compilation_session_models import (
+    BATCH_SIZE,
     RESOLUTION_TIMEOUT,
+    CandidateMatch,
     CandidateMatches,
+    CandidateMeaning,
     CandidateMeanings,
 )
 from app.compilation_sessions import (
     claim_resolution,
+    claim_source_attempts,
     complete_resolution,
     mark_failed,
     now,
@@ -96,8 +116,75 @@ async def request_structured(task: str, data: dict, schema):
             timeout.read,
             response_schema=schema.model_json_schema(),
         )
+    return parse_structured(raw, schema)
+
+
+def parse_structured(raw, schema):
     try:
-        return schema.model_validate_json(raw)
+        if schema in (FormReview, SourceReview, HistoricalServices):
+            data = json.loads(raw)
+            key, item_schema, limit = (("fields", FormVerdict, BATCH_SIZE)
+                                      if schema is FormReview else ("supports", SourceVerdict, 108))
+            if schema is HistoricalServices:
+                key, item_schema, limit = "facts", HistoricalServiceFact, 96
+            if not isinstance(data, dict) or set(data) != {key} \
+                    or not isinstance(data[key], list) or len(data[key]) > limit:
+                raise ValueError("Envelope della verifica non valido")
+            valid, seen = [], set()
+            for item in data[key]:
+                if schema is HistoricalServices:
+                    if not isinstance(item, dict) or type(item.get("source_id")) is not int:
+                        raise ValueError("Fatto SOURCE non localizzabile")
+                    try:
+                        valid.append(item_schema.model_validate(item))
+                    except ValueError:
+                        continue
+                    continue
+                if not isinstance(item, dict) or not isinstance(item.get("candidate_id"), str):
+                    raise ValueError("Verifica non localizzabile")
+                identity = (item["candidate_id"],)
+                if schema is SourceReview:
+                    if item.get("kind") not in {"value", "applicability", "exclusion"} \
+                            or type(item.get("index")) is not int:
+                        raise ValueError("Proposta verificata non localizzabile")
+                    identity += (item["kind"], item["index"])
+                if identity in seen:
+                    if schema is SourceReview:
+                        # Conflicting duplicate verdicts cannot approve this
+                        # proposal. Other proposals retain their own reviews.
+                        valid = [v for v in valid if (v.candidate_id, v.kind, v.index) != identity]
+                        continue
+                    raise ValueError("Verifica duplicata")
+                seen.add(identity)
+                try:
+                    valid.append(item_schema.model_validate(item))
+                except ValueError:
+                    # Missing/malformed verdicts never approve an item; valid
+                    # siblings retain their own independent review.
+                    continue
+            return schema(**{key: valid})
+        if schema not in (CandidateMeanings, CandidateMatches):
+            return schema.model_validate_json(raw)
+        data = json.loads(raw)
+        if not isinstance(data, dict) or set(data) != {"fields"} \
+                or not isinstance(data["fields"], list) or len(data["fields"]) > BATCH_SIZE:
+            raise ValueError("Envelope del batch non valido")
+        item_schema = CandidateMeaning if schema is CandidateMeanings else CandidateMatch
+        valid, errors, seen = [], {}, set()
+        for item in data["fields"]:
+            candidate_id = item.get("candidate_id") if isinstance(item, dict) else None
+            if not isinstance(candidate_id, str) or not 1 <= len(candidate_id.strip()) <= 80 \
+                    or candidate_id.strip() in seen:
+                raise ValueError("Item non localizzabile o candidate duplicato")
+            candidate_id = candidate_id.strip()
+            seen.add(candidate_id)
+            try:
+                valid.append(item_schema.model_validate(item))
+            except ValueError:
+                errors[candidate_id] = "Output strutturato non valido per questo candidate"
+        result = schema(fields=valid)
+        result._item_errors = errors
+        return result
     except ValueError as exc:
         raise GenerationError("Output strutturato della risoluzione non valido") from exc
 
@@ -108,13 +195,17 @@ async def classify_candidates(fields: list[dict]) -> CandidateMeanings:
     contexts = list(dict.fromkeys(f["context"] for f in fields))
     data = {
         "form_contexts": contexts,
+        "form_sections": {s["id"]: s["text"] for f in fields
+                          for s in f["structural"].get("form_sections", [])},
         "candidates": [
             {
                 "candidate_id": f["id"],
                 "context_index": contexts.index(f["context"]),
                 "location": f["location"],
                 "label_hint": f["label_hint"],
-                "structural": f["structural"],
+                "structural": {k: v for k, v in f["structural"].items() if k != "form_sections"},
+                "section_ids": [s["id"] for s in f["structural"].get("form_sections", [])],
+                "previous_interpretation_errors": f.get("previous_interpretation_errors", []),
             }
             for f in fields
         ],
@@ -123,14 +214,34 @@ async def classify_candidates(fields: list[dict]) -> CandidateMeanings:
         raise GenerationError(
             "Contesto strutturale troppo ampio: richiedi meno candidate per passo",
         )
-    return await request_structured(
+    meanings = await request_structured(
         "Classifica i candidate strutturali di UN originale DOCX. Non cercare o inventare valori. "
         "Un candidate non è necessariamente un dato obbligatorio. Usa data per dati effettivi, "
         "review per scelte/dichiarazioni/firme o significato dubbio, decorative solo per spazi "
         "senza significato compilabile. Identifica ciascun segnaposto/cella nel suo contesto; "
-        "non trasferire la label da un altro campo. Per data restituisci un requirement atomico "
-        "con name e person_role letterali nel form_quote e form_citation_id=1 (contesto locale "
-        "del candidate). Non accorpare nome, qualifica, ordine, numero o date di una persona. "
+        "non trasferire la label da un altro campo. Per data restituisci semantic e un "
+        "requirement atomico: name è la proprietà normalizzata, non necessariamente "
+        "letterale; form_quote è un estratto letterale del FORM, form_citation_id=1. "
+        "Lascia semantic.form_anchor vuoto: il backend lo collega allo slot strutturale "
+        "[[candidate_id]] immutabile. Non ricostruire o concatenare anchor. "
+        "Usa estratti brevi e contigui; non ricopiare l'intero paragrafo per ogni slot. "
+        "Leggi la sintassi prima/dopo il blank e gli altri slot: se un ruolo rappresenta "
+        "un'organizzazione e il blank precede sede/contatti di quella organizzazione, "
+        "il blank identifica l'organizzazione, non chi ricopre il ruolo. Usa entity=company, "
+        "subject_relation=represented_organization e person_role vuoto per tutti i suoi dati. "
+        "Non accorpare nome, qualifica, ordine, numero o date di una persona. "
+        "semantic.subject_anchor è l'entità/ruolo letterale nella frase; per organizzazioni "
+        "rappresentate è SOLO l'organizzazione/tipologia, senza il ruolo della persona. "
+        "semantic.context_quote "
+        "è il passaggio FORM che determina il contesto. Usa form_sections per heading e "
+        "dichiarazioni precedenti: tabelle di contratti/servizi già eseguiti sono PAST_SERVICE, "
+        "mai CURRENT_PROCEDURE. I dati anagrafici societari sono ORGANIZATION_PROFILE. "
+        "Se una sezione alternativa riguarda una tipologia, condition è la tipologia "
+        "letterale, section_id identifica il passaggio form_sections che la introduce e "
+        "condition_kind=subject_type. Condividi questi riferimenti nei suoi slot. "
+        "Non includere la scelta del firmatario nella condizione di tipologia aziendale. "
+        "exclusive_group_id solo per un'istruzione FORM esplicita di scelta UNICA, "
+        "altrimenti vuoto. Per firme/review/decorative semantic può essere null. "
         "Il requirement serve a cercare SOURCE: il modulo non prova nessun valore. "
         "Riporta condition solo se una condizione di applicabilità è letteralmente nel FORM. "
         "Non dedurre che una sezione sia inapplicabile senza prove; questa fase non lo decide. "
@@ -138,32 +249,58 @@ async def classify_candidates(fields: list[dict]) -> CandidateMeanings:
         data,
         CandidateMeanings,
     )
+    retained = []
+    for meaning in meanings.fields:
+        if meaning.classification == "data" and meaning.semantic is None:
+            meanings._item_errors[meaning.candidate_id] = "Interpretazione senza anchor semantico"
+        else:
+            retained.append(meaning)
+    meanings.fields = retained
+    return meanings
 
 
 def apply_meanings(fields, meanings):
     by_id, seen = {f["id"]: f for f in fields}, set()
+    if set(meanings._item_errors) - set(by_id):
+        raise GenerationError("Classificazione con candidate sconosciuto")
+    for field_id, error in meanings._item_errors.items():
+        by_id[field_id].update(status="PENDING", requirement=None, validation_errors=[error])
     for meaning in meanings.fields:
         if meaning.candidate_id not in by_id or meaning.candidate_id in seen:
             raise GenerationError("Classificazione con candidate sconosciuto o duplicato")
         seen.add(meaning.candidate_id)
         field = by_id[meaning.candidate_id]
         try:
-            if not contains_form_span(field["context"], meaning.form_quote):
+            material = form_material(field) if meaning.semantic else field["context"]
+            if not contains_form_span(material, meaning.form_quote):
                 raise ValueError("Estratto strutturale non presente nel FORM")
-            if meaning.condition and not contains_form_span(field["context"], meaning.condition):
+            if meaning.condition and not contains_form_span(material, meaning.condition):
                 raise ValueError("Condizione di applicabilità non presente nel FORM")
             requirement = meaning.requirement
             if meaning.classification == "data":
                 if requirement is None:
                     raise ValueError("Candidate senza requisito documentale")
-                validate_requirements(
-                    RequirementPlan(requirements=[requirement]),
-                    [
-                        {"role": "form", "content": field["context"]},
-                    ],
-                )
+                if meaning.semantic:
+                    validate_anchor(field, meaning)
+                    review = meanings._semantic_reviews.get(field["id"], {})
+                    if not review.get("accepted"):
+                        raise ValueError("Interpretazione semantica FORM respinta: " + review.get(
+                            "reason", "verifica indipendente assente",
+                        ))
+                    field["semantic"] = meaning.semantic.model_dump()
+                    field["semantic_validation"] = {**review, "digest": interpretation_digest(
+                        requirement.model_dump(), field["semantic"], meaning.entity,
+                        meaning.condition,
+                    )}
+                else:
+                    field.pop("semantic", None)
+                    field.pop("semantic_validation", None)
+                    validate_requirements(
+                        RequirementPlan(requirements=[requirement]),
+                        [{"role": "form", "content": field["context"]}],
+                    )
                 # The table label/paragraph marks this candidate, not any other row.
-                if field["label_hint"] and not contains_form_span(
+                if not meaning.semantic and field["label_hint"] and not contains_form_span(
                     field["label_hint"],
                     requirement.name,
                 ):
@@ -210,7 +347,31 @@ def apply_meanings(fields, meanings):
             )
 
 
-def validate_support(field, source, quote, value):
+def validate_support(field, source, quote, value, *, semantic_review=None, condition_proof=False):
+    if not condition_proof and (error := empty_value_reason(value, field["label"])):
+        raise ValueError(error)
+    if field.get("semantic"):
+        validate_persisted_semantics(field)
+        if semantic_review is None:
+            semantic_review = next((p.get("semantic_review") for p in field.get(
+                "source_proposals", [],
+            ) if p.get("accepted") and p.get("chunk_id") == source.get("chunk_id")
+                and normalized(p["value"]) == normalized(value)
+                and normalized(p["quote"]) == normalized(quote)), None)
+        if not semantic_review or not semantic_review.get("accepted"):
+            raise ValueError("Verifica semantica SOURCE assente o non pertinente")
+        if field["semantic"]["context_role"] == "PAST_SERVICE" and not any(
+            contains_form_span(source["content"], fact["performance_quote"])
+            and contains_form_span(fact["performance_quote"], quote)
+            and contains_form_span(fact["performance_quote"], value)
+            for fact in semantic_review.get("historical_facts", [])
+        ):
+            raise ValueError("SOURCE senza relazione storica persistita e ancora verificabile")
+        if source.get("role") != "source" or not contains_form_span(
+            source["content"], quote,
+        ) or not contains_form_span(quote, value):
+            raise ValueError("Valore/estratto semantico non appartenente a SOURCE")
+        return
     requirement = Requirement.model_validate(field["requirement"])
     # Semantic SOURCE names never replace or bypass grounding of the original
     # structural FORM requirement. They bind a local factual property only.
@@ -237,6 +398,12 @@ async def retrieve_sources(project_id: str, fields: list[dict]):
     all_sources, by_chunk, coverage, searches = [], {}, {}, []
     for cluster in plan.clusters:
         queries = compilation_queries(cluster, requirements, semantic.names)
+        roles = {(fields[i - 1].get("semantic") or {}).get("context_role")
+                 for i in cluster.requirement_ids}
+        if roles == {"ORGANIZATION_PROFILE"}:
+            queries = ["anagrafica aziendale " + query for query in queries]
+        elif roles == {"PAST_SERVICE"}:
+            queries = ["servizi pregressi eseguiti " + query for query in queries]
         groups = []
         for query in queries:
             groups.append(
@@ -311,7 +478,8 @@ async def match_candidates(fields, sources, coverage):
     return await request_structured(
         "Confronta ciascun requisito strutturale con le sole SOURCE ammesse per quel candidate. "
         "FORM descrive la richiesta; USER CLAIM non è una prova; solo SOURCE può fornire valori. "
-        "Per ogni supporto copia value e quote letterali, includendo il soggetto/ruolo e "
+        "Per ogni supporto copia SOLO il valore effettivo, mai label, segnaposti o campi "
+        "vuoti. value e quote sono letterali, includendo il soggetto/ruolo e "
         "l'associazione al dato specifico. Le source_names indicano etichette equivalenti "
         "per la stessa proprietà: non occorre ripetere la label FORM nella SOURCE. "
         "Un profilo può sostenere più candidate, ma ogni valore deve appartenere alla "
@@ -325,6 +493,9 @@ async def match_candidates(fields, sources, coverage):
         "SOURCE che esplicitamente dichiara la condition FORM non applicabile/esclusa; non dedurre "
         "l'esclusione da una forma giuridica o dall'assenza di prove. Cita quella dichiarazione. "
         "Per una condition FORM, valuta prima se è vera per il soggetto/partecipazione attuale. "
+        "Se semantic.condition_kind=subject_type e il soggetto è l'organizzazione "
+        "rappresentata, la tipologia esplicitamente dichiarata dalla SOURCE basta a "
+        "verificare quella condizione: non serve anche designare chi firma la pratica. "
         "applicability contiene applies (boolean), source_id, quote e value: una dichiarazione "
         "letterale completa che attesti o neghi proprio la condizione, non il valore dipendente. "
         "Se manca questa prova lascia applicability=[]. Un valore del campo, la presenza di "
@@ -340,6 +511,8 @@ async def match_candidates(fields, sources, coverage):
                     "confirmed_applicability": known_applicability(f),
                     "allowed_source_ids": coverage[f["id"]],
                     "source_names": f.get("search", {}).get("source_names", []),
+                    "semantic": f.get("semantic"),
+                    "form_context": form_material(f) if f.get("semantic") else f.get("context", ""),
                 }
                 for f in fields
                 if f["id"] in coverage
@@ -368,7 +541,15 @@ def _exclusion(field, support, sources, allowed):
             form_citation_id=1,
         ).model_dump(),
     }
-    validate_support(copy_field, source, support.quote, support.value)
+    if field.get("semantic"):
+        validate_persisted_semantics(field)
+        require_source_review(support)
+        if source.get("role") != "source" or not contains_form_span(
+            source["content"], support.quote,
+        ) or not contains_form_span(support.quote, support.value):
+            raise ValueError("Esclusione non appartenente a SOURCE")
+    else:
+        validate_support(copy_field, source, support.quote, support.value, condition_proof=True)
     evidence = {**source, "quote": support.quote, "value": support.value}
     if known_applicability(field) is True:
         if (field.get("applicability") or {}).get("provenance") == "SOURCE":
@@ -397,10 +578,15 @@ def apply_matches(layout, fields, matches, sources, coverage):
                 provenance=None,
                 source_evidence=[],
                 alternatives=[],
-                validation_errors=[],
+                validation_errors=list(field.get("source_review_errors", [])),
                 updated_at=now(),
                 reason="Nessun valore verificato nelle SOURCE recuperate",
             )
+            field["source_proposals"] = []
+    if set(matches._item_errors) - set(coverage):
+        raise GenerationError("Matcher con candidate sconosciuto o non ricercato")
+    for field_id, error in matches._item_errors.items():
+        by_id[field_id]["validation_errors"] = [error]
     for match in matches.fields:
         if match.candidate_id not in coverage or match.candidate_id in seen:
             raise GenerationError("Matcher con candidate sconosciuto, duplicato o non ricercato")
@@ -413,7 +599,14 @@ def apply_matches(layout, fields, matches, sources, coverage):
                 if support.source_id not in coverage[field["id"]]:
                     raise ValueError("SOURCE di applicabilità non ammessa per questo candidate")
                 source = sources[support.source_id - 1]
-                validate_condition_source(field, support, source)
+                if field.get("semantic"):
+                    require_source_review(support)
+                    if not field.get("condition") or not contains_form_span(
+                        source["content"], support.quote,
+                    ) or not contains_form_span(support.quote, support.value):
+                        raise ValueError("Applicabilità senza condition/estratto SOURCE")
+                else:
+                    validate_condition_source(field, support, source)
                 condition_supports.append({
                     "applies": support.applies,
                     "evidence": {**source, "quote": support.quote, "value": support.value},
@@ -430,24 +623,35 @@ def apply_matches(layout, fields, matches, sources, coverage):
             else:
                 field["validation_errors"].append("SOURCE discordanti sulla condizione")
         for support in match.supports:
+            proposal = {**support.model_dump(), "accepted": False,
+                        "semantic_review": support._semantic_review}
+            field["source_proposals"].append(proposal)
             try:
+                if error := empty_value_reason(support.value, field["label"]):
+                    raise ValueError(error)
                 if support.source_id not in coverage[field["id"]]:
                     raise ValueError("SOURCE non ammessa per questo candidate")
                 source = sources[support.source_id - 1]
+                proposal["chunk_id"] = source["chunk_id"]
+                if field.get("semantic"):
+                    require_source_review(support)
                 support = support.model_copy(update={
                     "quote": source_span(source["content"], support.quote),
                 })
                 support = support.model_copy(update={
                     "value": source_span(support.quote, support.value),
                 })
-                validate_support(field, source, support.quote, support.value)
+                validate_support(field, source, support.quote, support.value,
+                                 semantic_review=support._semantic_review)
                 checked = validate_value(layout, field, support.value, source, support.quote)
                 if checked["validation_codes"]:
                     raise ValueError("; ".join(checked["validation_notes"]))
                 valid.append(
                     {"value": support.value, "evidence": {**source, "quote": support.quote}}
                 )
+                proposal["accepted"] = True
             except ValueError as exc:
+                proposal["error"] = str(exc)
                 field["validation_errors"].append(str(exc))
         values = {normalized(item["value"]) for item in valid}
         if len(values) > 1:
@@ -498,22 +702,34 @@ async def resolve_session(project_id: str, session_id: str, version: int, field_
             if layout.sha256 != claimed["template_sha256"]:
                 raise GenerationError("Originale della sessione non coerente")
             fields = copy.deepcopy(selected)
-            # Reset only this explicitly selected, unresolved batch.
+            # Explicit API reanalysis retains its existing full interpretation semantics.
+            uninterpreted = [f for f in fields if not automatic or not f.get("requirement")]
+            # On explicit reanalysis an old snapshot also receives physical context
+            # from its own immutable original, never from another/newer document.
+            from app.compilation_semantics import enrich_structure
+
+            enrich_structure(layout, uninterpreted)
+            for field in uninterpreted:
+                field["requirement"] = None
+                field["previous_interpretation_errors"] = field.get("validation_errors", [])
             for field in fields:
-                field.update(
-                    requirement=None,
-                    status="PENDING",
-                    value=None,
-                    provenance=None,
-                    source_evidence=[],
-                    validation_errors=[],
-                    alternatives=[],
-                    search={"status": "not_searched"},
-                    last_attempt_at=now(),
-                )
-            meanings = await classify_candidates(fields)
-            apply_meanings(fields, meanings)
+                field.update(status="PENDING", value=None, provenance=None,
+                             source_evidence=[], validation_errors=[], alternatives=[],
+                             search={"status": "not_searched"}, last_attempt_at=now())
+            if uninterpreted:
+                meanings = await classify_candidates(uninterpreted)
+                form_reviews = await review_meanings(uninterpreted, meanings, request_structured)
+                apply_meanings(uninterpreted, meanings)
+            else:
+                form_reviews = 0
             searchable = [f for f in fields if f["requirement"] and f["status"] == "PENDING"]
+            newly_interpreted = [f for f in searchable if f in uninterpreted]
+            if newly_interpreted:
+                persisted = claim_source_attempts(
+                    project_id, session_id, version, fields,
+                    [f["id"] for f in newly_interpreted],
+                )
+                version = persisted["version"]
             sources, coverage, searches = (
                 await retrieve_sources(project_id, searchable) if searchable else ([], {}, [])
             )
@@ -521,6 +737,9 @@ async def resolve_session(project_id: str, session_id: str, version: int, field_
                 await match_candidates(searchable, sources, coverage)
                 if sources
                 else CandidateMatches(fields=[])
+            )
+            source_reviews = await review_sources(
+                searchable, matches, sources, coverage, request_structured,
             )
             apply_matches(layout, searchable, matches, sources, coverage)
             return complete_resolution(
@@ -534,7 +753,8 @@ async def resolve_session(project_id: str, session_id: str, version: int, field_
                     "query_count": sum(len(c["queries"]) for c in searches),
                     "source_count": len(sources),
                     "covered_candidates": len(coverage),
-                    "model_requests": 1 + int(bool(searchable)) + int(bool(sources)),
+                    "model_requests": (int(bool(uninterpreted)) + int(bool(searchable))
+                                       + int(bool(sources)) + form_reviews + source_reviews),
                     "classification_retry": False,
                 },
             )
@@ -545,6 +765,6 @@ async def resolve_session(project_id: str, session_id: str, version: int, field_
             project_id,
             session_id,
             version,
-            "Risoluzione interrotta; nessuna modifica parziale ai candidate",
+            "Risoluzione interrotta; nessun valore SOURCE applicato dalla fase fallita",
         )
         raise

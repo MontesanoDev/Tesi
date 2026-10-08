@@ -1,10 +1,260 @@
 # Stato di Mapi RAG
 
-Aggiornato il **7 ottobre 2026**. Base verificata: branch `main`, commit
-`4516c45` (`fix: align project forms UI and accept only DOCX and TXT`).
+Aggiornato il **8 ottobre 2026**. Base verificata: branch `main`, commit
+`a5e2e2e` (`feat: add persistent DOCX compilation and grouped chat clarifications`).
 Ricontrollare Git all'inizio della prossima sessione.
 
+## Ripresa attuale: semantica FORM e contesto SOURCE — 8 ottobre 2026
+
+Implementazione e test software conclusi sopra le modifiche locali dei retry,
+**senza commit/push**. Dopo la ricarica DeepSeek, **criterio principale verificato
+sul codice finale**: otto dati societari utili RESOLVED/SOURCE, tipologia SOURCE,
+Fax MISSING, nessun firmatario inferito o valore della gara usato come servizio
+pregresso. Il modulo completo NON è READY: 30 PENDING e chiarimenti rinviati
+restano aperti. Non equiparare questo risultato al completamento dell'intero modulo.
+
+- Binding persistente fra slot fisico, proprietà semantica, soggetto, sezione e
+  ruolo temporale. Il backend ancora lo slot all'originale; una revisione FORM
+  indipendente ammette label normalizzate anche non letterali, conservando quote,
+  soggetti e condizioni ancorati al modulo. Organizzazione rappresentata distinta
+  da persona, professionista e firmatario.
+- Applicabilità condivisa per sezione/entità/condizione verificate. La tipologia
+  implicita di un'organizzazione rappresentata viene conservata come condizione
+  FORM; `condition_complete` controlla anche qualificatori esteri/giuridici.
+  SOURCE/USER determinano il fatto, non il FORM. Esclusioni fra alternative
+  soltanto con istruzione FORM esplicita di scelta unica.
+- `PAST_SERVICE` distinto da `CURRENT_PROCEDURE`: estrazione indipendente di
+  fatti di servizi già eseguiti, senza candidate/valori attesi nel prompt, poi
+  revisione della proposta e rilettura della prova in finalizzazione. Dati della
+  gara corrente e attività generiche non attestano incarichi pregressi.
+- Respinti placeholder, linee vuote, N/A, etichette senza valore e indicazioni
+  esplicite di campo non compilato. Le sigle informative restano ammesse.
+  `source_span` non estrae BA dal prefisso di Bari e conserva la grafia SOURCE.
+- Errori locali di revisione isolati; failure globali/provider espliciti.
+  Retry separati persistenti, massimo due tentativi per fase/candidate;
+  batch 12/6 e ciclo 36 passi/600 s preservati. Fino a sei chiamate modello per
+  resolve completo, nessuna chiamata per singolo field o riparazione illimitata.
+  UI/parser/renderer/orchestrazione chat invariati da questo intervento;
+  grouped collegato al contesto di sezione senza riprogettazione.
+
+**Verifiche finali effettive:** 46 regressioni nuove, **269 mirati passati** e
+**1.192 backend completi passati** in quattro gruppi sequenziali
+(385/343/398/66); Ruff e diff check passati. Provider simulati, DB/storage
+temporanei; frontend invariato e non ritestato. La prima suite in un processo
+era stata uccisa dall'OOM; non è conteggiata come passata. Nessun test disabilitato.
+
+**Benchmark finale dopo la ricarica:** DeepSeek `deepseek-flash`, Qdrant locale
+reale + BGE-M3, nuova sessione `a0122f66352848de94e14c94146c6419`, v59,
+WAITING_FOR_USER / deferred_summary. Stesso `manifestazione-interesse.docx`
+(hash `d125c7bf…`), Company KB e fonti Trapani in copie isolate.
+**115/115 tentati; 9 RESOLVED/SOURCE; 45 MISSING; 31 AMBIGUOUS; 30 PENDING;
+0 USER_PROVIDED/NOT_APPLICABLE; 76 DEFERRED** (sovrapposto agli stati).
+**15 checkpoint/15 turni USER**, soltanto SKIP numerati, 52 slot complessivi,
+media **3,4667**. Tutti e nove i SOURCE prima del primo checkpoint.
+17 resolve, 51 chiamate resolver, 335,8 s; zero failure/resume, codice congelato.
+Nessun valore manuale, nessun READY/DOCX forzato.
+
+Gli otto valori di `p75.s0–s8` (Fax escluso) sono esattamente quelli richiesti:
+Mapi Ingegneria S.r.l.; Via Giovanni Amendola 172/C; Bari; 70126; BA;
+IT01234567890; +39 080 000 2040; mapi.ingegneria@pec.demo.
+Tutti con SOURCE e applicability=true/SOURCE, tipologia attestata dalla visura.
+Fax MISSING. Il nono SOURCE è PEC comunicazioni `p107.s0`.
+Comune/CAP/Provincia inizialmente MISSING per SOURCE fuori bucket → RESOLVED al
+secondo tentativo SOURCE; interpretation fermo a uno. Nessun counter oltre due.
+30 slot della tabella t5 MISSING/PAST_SERVICE; otto slot firmatario p12 MISSING.
+Zero proposte current→past o placeholder nel benchmark, zero valori errati accettati.
+Replay negativo separato sul codice finale: una chiamata DeepSeek reale restituisce
+facts=[], **due offerte di importi correnti respinte**; in RAM senza modello
+**due CIG placeholder respinti**. Non sommare il replay alle metriche della sessione.
+
+**Limiti residui:** 30 PENDING (24 condizioni non ancorate alla sezione FORM,
+5 review indipendenti assenti, un estratto strutturale non presente). Non vengono
+chiesti come valori USER. 76 field chiaribili sono rinviati in 52 slot; SKIP non
+fornisce dati. Alcune condizioni del ramo dei prestatori esteri sono abbreviate
+al riferimento normativo mentre il qualificatore estero resta nel contesto FORM:
+nessuna SOURCE=true applicata a quel ramo, ma la condizione/questione richiede
+riesame prima di dichiarare completa la gestione dei qualificatori.
+
+Il codice è identico a quello dei **269 mirati/1.192 backend già passati** prima
+della ricarica; la suite non è stata ripetuta per il solo benchmark. Ruff e diff
+check rieseguiti e passati. Nessuna modifica al codice durante/dopo la prova.
+UI/parser/renderer/orchestrazione e counter non cambiati in questa ripresa.
+
+**Prova precedente, conservata:** sessione `6846e0553a74406f9c5937a9f46e9904`,
+v39 FAILED/402, 100 tentati/0 SOURCE/0 checkpoint; non riaperta o alterata.
+La precedente intermedia `f9346167a6f54712a3fb14b25c5a6bec` aveva verificato otto
+valori ma non era il codice finale; ora il risultato è confermato sulla versione
+finale. Tutti gli archivi precedenti conservati.
+
+**Prossimo passo minimo:** diagnosi dei 30 PENDING e dei qualificatori abbreviati
+nelle condizioni, separata dal benchmark concluso. Non aumentare retry né chiedere
+valori di candidate non interpretati. Per finire il modulo servono chiarimenti
+reali su alternative applicabili, firmatario, Fax e servizi pregressi documentati.
+Nessuna nuova implementazione avviata dopo il benchmark.
+Nessuna migrazione/reindicizzazione dei dati utente; sessioni legacy non riscritte.
+Sessione originale dell'app `85daf575481244cd934911c42b3567f4` invariata alla v77;
+README/start preservati byte per byte, testo locale precedente conservato sotto.
+Report con tracce, query, evidence, confronto PRIMA/DOPO e limiti:
+[manifestazione-interesse, 8 ottobre](docs/test-reale-manifestazione-interesse-2026-10-08.md).
+Audit finale ignorato: `backend/data/compilation-audit/semantic-slots-20261008-ready/`;
+precedente 402 in `semantic-slots-20261008-canonical/`. Snapshot dei documenti prima
+della ricarica in `ready/checks/*.before`; STATUS prima dell'intervento semantico
+in `canonical/checks/STATUS-before.md`.
+
+## Storico: retry separati — 7 ottobre 2026
+
+Completato il fix mirato sopra `a5e2e2e`, **senza commit/push**. Conservate
+integralmente le modifiche locali precedenti ad avvio, README, ambiente e
+progetti demo; README/start invariati rispetto all'inizio dell'intervento.
+
+- `analysis_attempts`: interpretazione senza requirement; `source_attempts`:
+  retrieval/proposta/validazione di requirement interpretati. Dizionari
+  persistenti nel workflow JSON, massimo due tentativi per fase/candidate.
+- Batch automatici omogenei; retry SOURCE conserva requisito/applicabilità,
+  senza riclassificazione. Dopo interpretazione valida, revisione `source_start`
+  prima del retrieval: riserva solo i tentativi SOURCE pertinenti e conserva
+  esiti FORM. Item validi del batch conservati, errori locali isolati; failure
+  globali/provider e controllo delle revisioni preservati.
+- `reopen_phase_attempts`: una conferma di applicabilità riapre soltanto la
+  fase necessaria, anche per review senza requisito dopo due interpretazioni.
+  SKIP/UNKNOWN/PAUSE/RESUME preservati; budget 12/6 e 36 passi/600 s invariati.
+  Sessioni legacy conservano budget speso, senza migrazione/reset automatico.
+  UI/parser/renderer/gate SOURCE e grouped non riprogettati.
+
+**Verifiche finali effettive:** 27 nuove regressioni (FTS5/Qdrant dove previsto),
+211 mirati finali, **1.146 backend completi passati in 302,18 s**, Ruff e diff
+check passati. Provider simulati, DB/storage temporanei; frontend non ritestato.
+Le esecuzioni precedenti (280/103 mirati, suite 1.142 passata, suite 1.144 con
+2 timeout ambientali poi passati al riesame) sono storiche, non l'esito finale.
+Un test finale ha riprodotto il blocco del reset per review senza requisito:
+corretto dopo il primo benchmark, test/suite e benchmark nuovo rieseguiti.
+Nessun codice modificato durante nessuna delle due prove reali.
+
+**Benchmark reale finale:** DeepSeek `deepseek-flash`, Qdrant locale + BGE-M3;
+nuova sessione `382b44b883524bc1a908d4b8515a36e2` in archivio isolato. Dati
+dell'app preservati. Company/General KB coerente con la locale e SOURCE
+bando/disciplinare Catanzaro. DOCX corrente 279 candidate, hash `5b3ad083…`,
+diverso dallo storico `aeb1bda3…` non recuperabile. Indice iniziale standard:
+timeout e Ollama OOM; preparato a un frammento per richiesta, stessi hash,
+metadati e filtri; riconciliazione ordinaria 214 chunk/1024 dimensioni,
+zero aggiornamenti pendenti. Archivio/indice riusati nella nuova prova.
+
+Finale: **279 processati; 17 RESOLVED/SOURCE formali; 0 USER_PROVIDED;
+6 NOT_APPLICABLE (tutti non-field/FORM); 123 MISSING; 10 AMBIGUOUS;
+123 PENDING; 129 DEFERRED** (disposizione sovrapposta agli stati).
+34 checkpoint/34 turni USER, solo SKIP, media 3,79412 chiarimenti;
+17 risolti prima del primo checkpoint. 69 passi automatici, counter entro due;
+61 claim interpretazione, 8 SOURCE e 29 transizioni verificati: zero consumi
+incrociati. Sei output misti conservano gli item validi. Caso positivo reale:
+`t25.r4.c1` MISSING al SOURCE attempt 1 («SOURCE non ammessa») → RESOLVED/SOURCE
+al attempt 2, interpretation fermo a 1. Fine `deferred_summary`,
+WAITING_FOR_USER, auto_continue=false; nessun READY o DOCX forzato.
+
+**Qualità ancora insufficiente:** i cinque field iniziali NON risolti nella
+prova reale (forma PENDING per name parafrasato, altri MISSING con Company fuori
+bucket); test software dei cinque valori passati. Ingegneria raggiunta:
+denominazione/forma/sede SOURCE; direttore/qualifica MISSING, ordine e 8421
+PENDING per person_role non grounded. CCIAA/numero iscrizione completo e data
+abilitazione assenti dalla KB. Almeno un RESOLVED errato: stazione appaltante
+per denominazione società tra professionisti `t31.r0.c1`. Nei 12 RESOLVED del benchmark
+preliminare comparivano anche REA per Registro Imprese/CCIAA e stazione appaltante
+per consorzio: non sono risultati corretti né modifiche dei gate. Non equiparare
+RESOLVED a dato giusto; confronto storico limitato da DOCX/corpus diversi.
+
+**Prossimo passo minimo:** query/bucket Company del primo batch, grounding
+name/person_role di direttore/ordine/8421 e falso positivo di soggetto `t31.r0.c1`;
+intervento distinto, senza rifare counter o grouped. Report con campi, metriche,
+confronto, limiti e acquisizioni:
+[retry separati e benchmark reale](docs/test-reale-retry-phases-2026-10-07.md).
+Audit ignorati da Git: `backend/data/compilation-audit/retry-phases-20261007-final/`;
+archivio preliminare `retry-phases-20261007/` conservato (12 SOURCE, 32 checkpoint,
+media 3,72, zero valori USER). Codice/DOCX invariati in ciascun benchmark.
+
+## Avvio e dipendenze — 7 ottobre 2026
+
+Su richiesta dell'utente, `start.sh` installa le dipendenze frontend con
+`npm ci --include=dev --include=optional` se `node_modules` manca o
+`npm ls --all --include=dev --include=optional` rileva pacchetti mancanti/non
+validi. Sincronizza il backend con `uv sync --locked` prima di avviare i servizi;
+Uvicorn usa poi `uv run --locked --no-sync`. Un errore di installazione interrompe
+l'avvio. Lockfile preservati. Su ulteriore richiesta, installazione automatica
+locale di `uv` in `.tools/uv` tramite installer ufficiale senza modificare il
+profilo shell, e Node.js 22.23.3 con npm in `.tools/node` tramite archivio
+ufficiale verificato SHA-256. Bootstrap Node anche per versione incompatibile
+o npm assente/non funzionante; Linux/macOS x64/arm64. Servono curl o wget e
+strumenti di estrazione/checksum; niente sudo. README e help aggiornati.
+Nessuna migrazione o reindicizzazione.
+
+Verifiche effettive: `bash -n start.sh`, `./start.sh --help`, `git diff --check`;
+cinque scenari in directory temporanee con comandi npm/uv simulati: dipendenze
+assenti, presenti, incomplete, errore npm e errore uv. Tutti passati. Nessun
+download reale o avvio dei servizi effettuato in questa verifica. Bootstrap
+verificato anche con otto scenari isolati e download/strumenti simulati:
+strumenti presenti, mancanti, Node vecchio, npm assente, checksum errato,
+download fallito, npm ci fallito e uv sync fallito; tutti passati. Il primo
+tentativo del test isolato mancava di gzip nel PATH di prova, corretto nel
+harness prima dell'esecuzione finale. Il punto di
+ripresa della compilazione descritto sotto resta aperto.
+
 ## Punto di ripresa
+
+### Progetti demo creati — 7 ottobre 2026
+
+Su richiesta dell'utente, esaminati `demo-documents/bandi/`, metadati `fonti.json`
+e contenuto degli avvisi/bando; creati tramite POST `/api/projects` tre progetti
+con titolo e descrizione documentati:
+- `catanzaro-direzione-lavori-e-sicurezza`: Catanzaro - Direzione lavori e sicurezza;
+- `minervino-di-lecce-elenco-sia`: Minervino di Lecce - Elenco SIA;
+- `trapani-green-progettazione-e-direzione-lavori`: Trapani Green - Progettazione e direzione lavori.
+
+Descrizioni marcate come casi didattici con dati aziendali simulati. Prima della
+creazione l'elenco progetti era vuoto; verificati titoli e descrizioni tramite
+GET dei singoli progetti dopo il salvataggio e totale finale pari a tre.
+Questa richiesta riguardava la creazione dei progetti: fonti e moduli di gara
+non caricati nei nuovi workspace. Fixture originali e profili AI preservati.
+Nessuna modifica al codice, migrazione o reindicizzazione; diff check passato.
+
+### Ambiente operativo locale — 7 ottobre 2026
+
+Su richiesta dell'utente, installato **Ollama 0.40.0** e scaricato **BGE-M3**;
+nessuna aggiunta a `start.sh` in questo intervento. Binari/librerie in
+`.tools/ollama`, modelli in `.tools/ollama-models` (esclusi da Git). Comando
+`ollama` disponibile tramite link in `~/.local/bin`; servizio systemd utente
+`~/.config/systemd/user/ollama.service`, abilitato e attivo su
+`127.0.0.1:11434`. Un solo modello caricato e una richiesta parallela per
+contenere la memoria sulla macchina da circa 4 GB; inferenza CPU rilevata.
+Verifica/riavvio: `systemctl --user status ollama` / `systemctl --user start ollama`.
+
+Configurata tramite API normale la ricerca **Qdrant locale + bge-m3**;
+indicizzazione effettiva di 17 frammenti, 1024 dimensioni, senza cancellazioni.
+Le dipendenze backend sono state sincronizzate con `uv sync --locked --offline`;
+Node 22.23.3 e controllo dei pacchetti frontend disponibili.
+All'inizio non c'erano profili AI; durante l'intervento è comparso il profilo
+utente **DeepSeek v4 / deepseek-flash**, lasciato predefinito. Installato anche
+**Qwen3 1.7B**, profilo locale alternativo con contesto 4096, senza sostituire
+DeepSeek. Modello piccolo di riserva: non valutato per moduli complessi.
+
+Verifiche reali effettive, distinte dai test simulati sopra:
+- API health backend, servizio Ollama e inventario modelli;
+- API retrieval/check: embedding BGE-M3 da 1024 dimensioni e Qdrant disponibili;
+- API retrieval/index: 17 frammenti aggiornati, zero eliminati;
+- API ai/check: Qwen3 disponibile per generazione;
+- query reale Qdrant/BGE-M3 su fonte sintetica in DB/storage temporanei;
+- compilazione DOCX reale con DeepSeek di un solo campo sintetico:
+  denominazione inserita correttamente, un campo scritto e zero irrisolti;
+- risposta strutturata reale Qwen3 via adapter applicativo e schema JSON;
+- `git diff --check` passato.
+
+Nessun progetto o modulo di prova creato nel DB dell'app, nessuna credenziale
+riportata. Queste prove verificano l'ambiente e un caso minimo: non attestano
+il completamento dei moduli reali o la qualità del workflow conversazionale.
+README aggiornato per distinguere embedding, generazione e servizio separato.
+Il prossimo intervento software resta quello descritto sotto.
+
+### Storico del punto di ripresa precedente al fix dei retry
+
+La separazione indicata sotto come non implementata è ora completata nella
+sezione «Ripresa attuale»; le prove seguenti restano storiche.
 
 **Intervento sui chiarimenti raggruppati interrotto su richiesta dell'utente
 per salvare il lavoro con un commit locale. Non considerarlo completato.**

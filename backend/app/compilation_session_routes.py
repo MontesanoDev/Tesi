@@ -70,8 +70,8 @@ async def resolve(project_id: str, session_id: str, body: ResolveRequest) -> dic
             return await resolve_session(project_id, session_id, body.version, body.field_ids,
                                          automatic=body.automatic)
         except GenerationError as exc:
-            # Workflow recovery only. The SOURCE engine and its validators reject
-            # the entire invalid batch; transport/parser/storage errors still fail.
+            # Only globally invalid schema output reaches this bounded recovery.
+            # Localizable item errors retain valid siblings; provider errors still fail.
             if body.automatic and str(exc) == "Output strutturato della risoluzione non valido":
                 recovered = await run_in_threadpool(
                     sessions.recover_invalid_automatic_step, project_id, session_id, body.version,

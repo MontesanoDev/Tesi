@@ -13,23 +13,55 @@ def grouped(state):
     return (state.get("chat_workflow") or {}).get("clarification_mode") == "grouped"
 
 
+def resolution_phase(field):
+    return "source" if field.get("requirement") else "interpretation"
+
+
+def phase_attempts(state, phase):
+    workflow = state.get("chat_workflow") or {}
+    if phase == "interpretation":
+        return workflow.get("analysis_attempts", {})
+    if "source_attempts" in workflow:
+        return workflow["source_attempts"]
+    # Old snapshots shared a counter: preserve their spent SOURCE budget.
+    legacy = workflow.get("analysis_attempts", {})
+    return {f["id"]: legacy.get(f["id"], 0) for f in state["fields"]
+            if f.get("requirement")}
+
+
+def reopen_phase_attempts(state, field):
+    """A new applicability fact reopens only the phase still needed by this field."""
+    phase = resolution_phase(field)
+    key = "source_attempts" if phase == "source" else "analysis_attempts"
+    state["chat_workflow"].setdefault(key, dict(phase_attempts(state, phase))).pop(
+        field["id"], None)
+
+
 def automatic_fields(state):
     from app.compilation_chat import is_deferred
 
-    attempts = (state.get("chat_workflow") or {}).get("analysis_attempts", {})
-    return sorted((f for f in state["fields"] if (f["status"] == "PENDING" or (
-                       f["status"] == "MISSING" and f.get("validation_errors")
-                       and f.get("requirement") and not is_deferred(f)
-                       and (not f.get("condition") or known_applicability(f) is True)
-                   ))
-                   and attempts.get(f["id"], 0) < MAX_ANALYSIS_ATTEMPTS),
+    def eligible(field):
+        return (field["status"] == "PENDING" or (
+            field["status"] == "MISSING" and field.get("validation_errors")
+            and field.get("requirement") and not is_deferred(field)
+            and (not field.get("condition") or known_applicability(field) is True)
+        )) and phase_attempts(state, resolution_phase(field)).get(field["id"], 0) \
+            < MAX_ANALYSIS_ATTEMPTS
+
+    return sorted((f for f in state["fields"] if eligible(f)),
                   key=lambda f: (not f.get("awaiting_dependency_resolution", False),
+                                 resolution_phase(f) != "source",
                                  not bool(f.get("validation_errors") and f["last_attempt_at"]),
                                  not bool(f["label_hint"].strip()),
-                                 attempts.get(f["id"], 0), f["last_attempt_at"] or ""))
+                                 phase_attempts(state, resolution_phase(f)).get(f["id"], 0),
+                                 f["last_attempt_at"] or ""))
 
 
 def condition_key(field):
+    semantic = field.get("semantic") or {}
+    if semantic.get("section_id") and (field.get("semantic_validation") or {}).get("accepted"):
+        return (normalized(field.get("condition", "")), field.get("entity"), "",
+                (field["form_evidence"]["template_sha256"], semantic["section_id"]))
     # Same literal predicate, subject and structural context. Never propagate a
     # generic negation to a different section/person or an unclassified field.
     return (normalized(field.get("condition", "")), field.get("entity"),
@@ -133,6 +165,9 @@ def synchronize(state):
     from app.compilation_chat import budget_available
 
     workflow = state["chat_workflow"]
+    from app.compilation_semantics import propagate_section_exclusions
+
+    propagate_section_exclusions(state)
     # Share only an already established, identical grounded dependency. A value
     # or company type by itself never establishes the predicate.
     proofs, polarities = {}, {}
@@ -155,7 +190,7 @@ def synchronize(state):
         elif field["status"] in {"MISSING", "AMBIGUOUS", "CONFLICTING"}:
             field.update(status="PENDING", last_attempt_at=None,
                          awaiting_dependency_resolution=True)
-            workflow.setdefault("analysis_attempts", {}).pop(field["id"], None)
+            reopen_phase_attempts(state, field)
     workflow["pending_clarifications"] = pending_slots(state)
     if state["status"] not in {"ANALYZING", "FAILED", "GENERATED"}:
         if (automatic_fields(state) and budget_available(workflow)

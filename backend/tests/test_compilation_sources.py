@@ -165,6 +165,13 @@ def test_canonical_source_span_is_conservative_and_restores_source_spelling():
         source_span(text, "Societa cooperativa")
 
 
+def test_source_span_uses_whole_tokens_not_city_prefix_for_province():
+    assert source_span("70126 Bari (BA), Italia", "BA") == "BA"
+    assert source_span("16100 GENOVA (GE), Italia", "ge") == "GE"
+    with pytest.raises(ValueError):
+        source_span("Sede: Bari, Italia", "BA")
+
+
 def test_query_names_are_bounded_without_repeating_long_form_descriptors():
     requirement = Requirement(name="Identità dell'entità che richiede la partecipazione",
                               form_quote="Identità dell'entità che richiede la partecipazione",

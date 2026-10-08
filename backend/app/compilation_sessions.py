@@ -17,7 +17,14 @@ from uuid import uuid4
 from fastapi import HTTPException
 
 from app.compilation_chat import budget_available, chat_view, field_fingerprint, new_cycle
-from app.compilation_clarifications import automatic_fields, grouped, synchronize
+from app.compilation_clarifications import (
+    automatic_fields,
+    grouped,
+    phase_attempts,
+    reopen_phase_attempts,
+    resolution_phase,
+    synchronize,
+)
 from app.compilation_session_models import BATCH_SIZE, LEASE_SECONDS, FieldStatus, UserFieldInput
 from app.db import connection, touch_project
 from app.document_compilation import CompilationSources, validate_proposals
@@ -130,6 +137,9 @@ def candidate_snapshots(layout, project_id: str, form_id: int, name: str) -> lis
                     **slot,
                 },
             )
+    from app.compilation_semantics import enrich_structure
+
+    enrich_structure(layout, snapshots)
     return snapshots
 
 
@@ -395,6 +405,9 @@ def claim_resolution(project_id: str, session_id: str, version: int, ids: list[s
                 key=lambda f: (not f.get("awaiting_dependency_resolution", False),
                                f["last_attempt_at"] or ""),
             )
+            if automatic and grouped(state) and pending:
+                phase = resolution_phase(pending[0])
+                pending = [f for f in pending if resolution_phase(f) == phase]
             retry = bool(automatic and grouped(state) and pending
                          and pending[0].get("validation_errors") and pending[0]["last_attempt_at"])
             # A smaller second pass narrows interpretation without a per-field
@@ -411,9 +424,15 @@ def claim_resolution(project_id: str, session_id: str, version: int, ids: list[s
         ):
             raise HTTPException(422, "Campo sconosciuto o già deciso: usa reset per riesaminarlo")
         if automatic and grouped(state):
-            attempts = state["chat_workflow"].setdefault("analysis_attempts", {})
-            state["chat_workflow"]["last_analysis_field_ids"] = selected
+            workflow = state["chat_workflow"]
+            workflow.setdefault("source_attempts", dict(phase_attempts(state, "source")))
+            workflow["last_analysis_field_ids"] = selected
+            workflow["last_analysis_requested_version"] = version
+            workflow["last_analysis_phase"] = resolution_phase(by_id[selected[0]])
             for field_id in selected:
+                key = ("source_attempts" if by_id[field_id].get("requirement")
+                       else "analysis_attempts")
+                attempts = workflow.setdefault(key, {})
                 attempts[field_id] = attempts.get(field_id, 0) + 1
         state.update(
             status="ANALYZING",
@@ -422,6 +441,24 @@ def claim_resolution(project_id: str, session_id: str, version: int, ids: list[s
         )
         claimed = save_state(db, row, state, "analyze_start")
         return claimed, bytes(row["original"]), [by_id[i] for i in selected]
+
+
+def claim_source_attempts(project_id, session_id, version, fields, source_ids):
+    """Persist SOURCE attempts and interpreted FORM data before retrieval."""
+    with connection() as db:
+        db.execute("BEGIN IMMEDIATE")
+        row = _row(db, project_id, session_id)
+        state = check_revision(row, version, allow_busy=True)
+        replacements = {f["id"]: f for f in fields}
+        state["fields"] = [replacements.get(f["id"], f) for f in state["fields"]]
+        workflow = state.get("chat_workflow") or {}
+        if grouped(state):
+            attempts = workflow.setdefault("source_attempts", dict(phase_attempts(state, "source")))
+            for field_id in source_ids:
+                attempts[field_id] = attempts.get(field_id, 0) + 1
+            workflow["last_analysis_field_ids"] = source_ids
+            workflow["last_analysis_phase"] = "source"
+        return save_state(db, row, state, "source_start")
 
 
 def complete_resolution(project_id, session_id, version, changed, diagnostics):
@@ -461,14 +498,16 @@ def mark_failed(project_id, session_id, version, message):
 
 
 def recover_invalid_automatic_step(project_id, session_id, requested_version):
-    """Reject the whole model output, then spend only the existing attempt budget."""
+    """Recover a global schema failure within the budget of its active phase."""
     with connection() as db:
         db.execute("BEGIN IMMEDIATE")
         row = _row(db, project_id, session_id)
         state = json.loads(row["state_json"])
-        # claim + failed are two revisions. A pause/correction must win over recovery.
-        if (row["version"] != requested_version + 2 or state["status"] != "FAILED"
-                or not grouped(state) or state["chat_workflow"].get("user_paused")):
+        # SOURCE reservation adds a revision. A newer pause/correction must win.
+        if (not grouped(state) or state["status"] != "FAILED"
+                or (state["chat_workflow"].get("last_analysis_requested_version")
+                    != requested_version)
+                or state["chat_workflow"].get("user_paused")):
             return None
         selected = state["chat_workflow"].get("last_analysis_field_ids", [])
         if not selected:
@@ -488,7 +527,8 @@ def recover_invalid_automatic_step(project_id, session_id, requested_version):
         if not automatic_fields(state) and not workflow["pending_clarifications"] \
                 and any(f["status"] == "PENDING" for f in state["fields"]):
             state.update(status="FAILED", last_error=(
-                "Non sono riuscito a interpretare le posizioni rimaste. Nessun valore inventato."
+                "Tentativi automatici esauriti sulle posizioni rimaste "
+                "(interpretazione o SOURCE). Nessun valore inventato."
             ))
         return save_state(db, row, state, "automatic_output_rejected")
 
@@ -607,7 +647,7 @@ def chat_clarification(project_id, session_id, version, message, *, applicable_f
                          awaiting_dependency_resolution=True)
             field.pop("conversation_disposition", None)
             state["chat_workflow"] = new_cycle(state["chat_workflow"])
-            state["chat_workflow"]["analysis_attempts"].pop(field["id"], None)
+            reopen_phase_attempts(state, field)
             state["status"] = session_status(state["fields"])
         elif question and question["field_ids"]:
             field = next(f for f in state["fields"] if f["id"] == question["field_ids"][0])
@@ -702,7 +742,7 @@ def apply_clarification_group(project_id, session_id, version, replies, message)
                             }
                             field.update(status="PENDING", last_attempt_at=None,
                                          awaiting_dependency_resolution=True)
-                            state["chat_workflow"]["analysis_attempts"].pop(field_id, None)
+                            reopen_phase_attempts(state, field)
                     continue
                 updates = user_updates(state, [ChatFieldReply(
                     field_id=slot["field_ids"][0], action="set", value=reply.value,

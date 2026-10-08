@@ -63,6 +63,7 @@ async def plan_compilation_search(fields: list[dict], request) -> CompilationSea
             {"form_contexts": contexts, "requirements": [
                 {"requirement_id": i, "requirement": f["requirement"],
                  "entity": f.get("entity"), "condition": f.get("condition", ""),
+                 "semantic": f.get("semantic"),
                  "context_index": contexts.index(f["context"])}
                 for i, f in enumerate(fields, 1)
             ]},
@@ -152,7 +153,11 @@ def source_span(text: str, span: str) -> str:
             chars.append(part)
             offsets.append(offset)
     target = normalized(span)
-    start = "".join(chars).find(target)
-    if not target or start < 0:
+    pattern = ((r"(?<!\w)" if target and target[0].isalnum() else "")
+               + re.escape(target)
+               + (r"(?!\w)" if target and target[-1].isalnum() else ""))
+    match = re.search(pattern, "".join(chars)) if target else None
+    if match is None:
         raise ValueError("Estratto/valore non presente nella SOURCE")
+    start = match.start()
     return text[offsets[start]:offsets[start + len(target) - 1] + 1]

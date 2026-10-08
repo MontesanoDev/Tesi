@@ -5,11 +5,13 @@ modifica dati persistiti; il file Word viene generato soltanto su richiesta.
 La chat esistente offre selezione `@`, avvio/ripresa, riepilogo, chiarimenti
 raggruppati e generazione/download inline. Il backend rimane la fonte dello stato.
 
-**Stato del 7 ottobre:** i chiarimenti raggruppati passano le regressioni
-software, ma la validazione reale è ancora incompleta. Il retry automatico può
-mescolare errori di interpretazione PENDING con errori di proposta SOURCE
-MISSING, consumando tentativi utili. La separazione dei batch per fase è il
-prossimo intervento, ancora da implementare. Vedi [STATUS.md](../STATUS.md).
+**Stato dell'8 ottobre:** retry di interpretazione e SOURCE separati e persistenti;
+implementata la semantica ancorata al FORM con contesto di sezione e distinzione
+fra procedura corrente e servizi pregressi. 1.192 test backend passati. Dopo la
+ricarica DeepSeek, la prova reale finale verifica otto dati societari SOURCE,
+tipologia SOURCE, Fax MISSING e nessun firmatario inferito o falso dato pregresso.
+Restano 30 PENDING e chiarimenti: il modulo non è READY. Vedi [STATUS.md](../STATUS.md) e
+il [report reale](test-reale-manifestazione-interesse-2026-10-08.md).
 
 ## Uso conversazionale nella chat
 
@@ -160,15 +162,16 @@ non vengono associate arbitrariamente a una conversazione.
 
 ### Budget del ciclo conversazionale
 
-Massimo **36 passi**, ciascuno da **12 candidate** e fino a **3 chiamate LLM**
-(rimangono i budget SOURCE della V1). Al massimo **108 chiamate di risoluzione**
+Massimo **36 passi**, ciascuno da **12 candidate** e fino a **6 chiamate LLM**
+con tutte le revisioni semantiche dell'8 ottobre. Al massimo **216 chiamate di risoluzione**
 per ciclo, più planner dei messaggi utente ed embedding. Non si ammettono nuovi
 passi dopo **600 secondi** dall'inizio; un passo già avviato può terminare entro
 il proprio timeout di 180 secondi. Stop su checkpoint senza altro lavoro
 automatico disponibile, pausa USER, READY, GENERATED, FAILED o errore HTTP.
 
-Ogni candidate ha al massimo **due tentativi automatici**, persistiti anche
-attraverso pausa/refresh e rinnovo del ciclo. La seconda analisi prioritaria dei
+Ogni candidate ha al massimo **due tentativi per fase** di interpretazione e
+risoluzione SOURCE, persistiti anche attraverso pausa/refresh e rinnovo del
+ciclo. La seconda analisi prioritaria dei
 candidate con errori di validazione usa un batch più piccolo, massimo **sei**,
 senza chiamate per singolo campo. Un'interpretazione PENDING o un estratto
 respinto possono così essere riesaminati una volta prima di chiedere un dato;
@@ -176,10 +179,12 @@ esauriti i tentativi, un PENDING non viene trasformato in una domanda USER.
 Una dipendenza esplicitamente confermata riabilita la ricerca dei soli field
 coinvolti. Non ci sono retry illimitati o nuovo motore SOURCE.
 
-Un JSON di risoluzione non conforme allo schema non applica **nessuna proposta**
-del batch. Solo nel workflow automatico raggruppato la API recupera questo
-specifico errore usando i medesimi due tentativi persistiti: una seconda analisi
-più piccola, poi gli altri candidate. `output_rejections` e l'ultima lista di
+Un envelope valido con item identificabili permette di conservare quelli validi
+e isolare gli errori locali. JSON malformato, envelope invalido o ID sconosciuti
+restano failure globali senza applicazione delle proposte del batch. Nel workflow
+automatico raggruppato la API recupera gli errori di output usando i due tentativi
+persistiti della fase attiva: una seconda analisi più piccola, poi gli altri
+candidate. `output_rejections` e l'ultima lista di
 candidate rifiutati restano nello snapshot e nelle revisioni. La risposta HTTP
 espone lo stato corrente; la UI prosegue solo se `chat.auto_continue=true`.
 Provider/timeout/parser/storage e gli altri errori tecnici restano FAILED.
@@ -346,9 +351,11 @@ posizioni selezionate, ciascuna con contesto della tabella o del paragrafo.
 Non è il vecchio motore DOCX a gruppi da 32: qui ogni richiesta termina con
 uno stato persistito e non produce né modifica Word.
 
-1. Una chiamata classifica i candidate e propone requisiti atomici, con nome,
-   ruolo personale ed estratto FORM. Gli estratti devono appartenere al
-   contesto del candidate e l'etichetta al suo riferimento strutturale.
+1. Una chiamata classifica i candidate e propone requisiti atomici, con proprietà,
+   soggetto, contesto e anchor FORM. Un reviewer indipendente approva il binding
+   semantico e la completezza della condizione; il backend controlla slot e quote
+   letterali. La label normalizzata può essere una parafrasi supportata. I retry
+   SOURCE riusano l'interpretazione persistita senza queste due chiamate.
 2. Il planner SOURCE già usato da MIXED raggruppa gli ID: al massimo una
    chiamata, saltata con uno/due requisiti. Rimangono sei gruppi, quattro
    requisiti per gruppo, due query e quattro evidenze per gruppo.
@@ -359,9 +366,12 @@ uno stato persistito e non produce né modifica Word.
 4. Una chiamata propone valori/alternative nei bucket ammessi. Nessuna
    chiamata se le SOURCE sono vuote. Grounding e associazione riusano
    `validated_supports`; `validate_proposals` conserva i controlli DOCX.
-   Non si sceglie un valore fra proposte diverse. Non ci sono retry automatici.
+   Un reviewer SOURCE verifica proprietà/soggetto/contesto; per servizi pregressi
+   una chiamata precedente estrae fatti di prestazioni già eseguite senza vedere
+   candidate o valori attesi. Non si sceglie un valore fra proposte diverse.
+   L'eventuale retry automatico usa il budget persistente della sola fase SOURCE.
 
-Massimo **tre chiamate chat LLM per richiesta**, oltre alle eventuali chiamate
+Massimo **sei chiamate chat LLM per richiesta**, oltre alle eventuali chiamate
 embedding del retriever esistente. `last_resolution` riporta candidate,
 gruppi, query, copertura, evidenze e numero di chiamate. Non ci sono confidence
 numeriche. Durata massima del passo: 180 secondi; claim persistito di 240
@@ -369,9 +379,9 @@ secondi. Dopo un crash, scaduto il claim, una richiesta con versione corrente
 può riprendere; un risultato vecchio non può sovrascrivere il nuovo stato.
 
 Con 279 candidate, un primo attraversamento richiede almeno 24 passi HTTP,
-automatizzati nel percorso chat entro il budget del ciclo; al massimo 72 chiamate
+automatizzati nel percorso chat entro il budget del ciclo; al massimo 144 chiamate
 chat se ogni passo arriva a tutte le fasi.
-Con 400 candidate: 34 richieste / 102 chiamate per un attraversamento.
+Con 400 candidate: 34 richieste / 204 chiamate per un attraversamento.
 Questi numeri non promettono una risoluzione completa: gli elementi ancora
 pending o ambigui possono richiedere interventi successivi. Non esiste un
 ciclo illimitato che consumi questo budget. Senza `field_ids`, i pending mai
@@ -559,7 +569,8 @@ Unicode/case/whitespace possono essere normalizzati ripristinando lo span
 letterale della SOURCE; quote parafrasate o valori assenti restano respinti.
 USER mantiene una provenienza distinta e non partecipa come SOURCE.
 
-Budget per passo: 12 candidate; al massimo tre chiamate modello, senza
+Budget originale del collegamento SOURCE del 7 ottobre: 12 candidate e tre
+chiamate modello; dall'8 ottobre fino a sei con le revisioni descritte sotto. Senza
 chiamate per singolo campo, un unico piano e nessun retry del piano;
 sei cluster di quattro requisiti, due query/cluster, 12 query totali,
 due anchor/query, quattro evidence/cluster, pool fino a 24 chunk,
@@ -578,17 +589,102 @@ completamento integrale del modulo. Diagnosi/raw prima e prove finali:
 [test-reale-candidate-source-2026-10-07.md](test-reale-candidate-source-2026-10-07.md).
 Le verifiche software finali effettive sono riportate in STATUS.md.
 
+## Retry separati di interpretazione e SOURCE — 7 ottobre 2026
+
+Nel workflow grouped il budget è persistito per fase e candidate:
+`chat_workflow.analysis_attempts` conta l'interpretazione di candidate senza
+requirement; `chat_workflow.source_attempts` conta retrieval/proposta/validazione
+per requirement già interpretati. Massimo due tentativi per ciascuna fase;
+restano batch fino a 12, retry fino a 6 e ciclo di 36 passi/600 secondi.
+La selezione automatica forma batch omogenei e dà precedenza alla risoluzione
+SOURCE disponibile; un retry SOURCE conserva requirement, grounding FORM e
+applicabilità, senza richiamare il classificatore.
+
+Dopo una prima interpretazione valida si può proseguire verso SOURCE nello
+stesso passo. Prima del retrieval una revisione `source_start` conserva gli
+esiti di interpretazione e riserva il tentativo SOURCE soltanto per i candidate
+che vi accedono. Timeout, crash con lease scaduta e failure non restituiscono
+il tentativo consumato. Il recupero di JSON globalmente invalido riguarda
+soltanto gli ID della fase attiva; pause e correzioni concorrenti vincono
+tramite revisione ottimistica. Il riesame esplicito API conserva la precedente
+semantica di riclassificazione; non è un retry automatico.
+
+Un envelope valido con item identificabili e distinti viene validato per
+item: gli item conformi proseguono, quelli invalidi ricevono un errore locale.
+JSON malformato, envelope invalido, ID assenti/duplicati/sconosciuti restano
+failure globali espliciti; provider e timeout restano failure tecnici. Nessuna
+modifica agli schemi inviati al provider, al parser DOCX, renderer o gate SOURCE.
+Le conferme nuove di applicabilità riaprono il budget della fase necessaria
+(SOURCE per requisito interpretato, interpretazione per review senza requisito);
+SKIP/UNKNOWN e PAUSE/RESUME conservano i rispettivi significati.
+
+Le vecchie sessioni senza `source_attempts` conservano prudenzialmente il
+budget condiviso già speso per i field interpretati; nessun azzeramento o
+migrazione automatica. La separazione piena è verificata su sessioni nuove.
+Prove software e benchmark effettivo sono riportati in
+[test-reale-retry-phases-2026-10-07.md](test-reale-retry-phases-2026-10-07.md)
+e in STATUS.md; i test con provider simulati non attestano qualità reale.
+
+## Semantica FORM e contesto SOURCE — 8 ottobre 2026
+
+`SemanticBinding` distingue `form_anchor`, `subject_anchor`, `subject_relation`,
+`context_role`, `context_quote`, `section_id`, `condition_kind` ed eventuale
+`exclusive_group_id`. La proprietà normalizzata rimane nel requirement. Il backend
+costruisce l'anchor fisico dal catalogo strutturale dell'originale e aggiunge fino
+a dodici paragrafi precedenti non vuoti, entro 6.500 caratteri; per le tabelle il
+contesto precede l'intera tabella. Parser e renderer non sono modificati.
+
+Il significato è proposto dal classificatore e approvato da un reviewer FORM
+indipendente. Anchor, quote, soggetto e condizione devono appartenere al contesto
+verificato; una label normalizzata non deve comparire letteralmente nel FORM.
+Il digest persistito del binding impedisce di riutilizzare una revisione per un
+requisito diverso. Le vecchie interpretazioni senza binding conservano i gate
+letterali precedenti; non vengono migrate automaticamente.
+
+Una proprietà dell'organizzazione rappresentata non diventa un dato della persona
+che ricopre il ruolo. Una tipologia rappresentata omessa dal classificatore viene
+conservata dal backend come condizione ancorata; `condition_complete` obbligatorio
+nel reviewer verifica anche qualificatori geografici/giuridici e partecipazione.
+La tipologia non determina il firmatario della pratica. Un fatto SOURCE/USER già
+validato può propagare l'applicabilità nella stessa sezione/entità/condizione.
+L'esclusione di altri rami richiede un gruppo FORM esplicito di scelta unica.
+
+`CURRENT_PROCEDURE`, `PAST_SERVICE`, `ORGANIZATION_PROFILE` e `PERSON_PROFILE`
+separano proprietà uguali con relazioni diverse. Prima di approvare offerte
+PAST_SERVICE il modello estrae fatti di servizi già eseguiti dalle sole SOURCE,
+senza candidate o valori desiderati. Esecutore e servizio devono essere nominati
+nella stessa prova letterale; quote e valore devono appartenervi. La prova viene
+persistita e ricontrollata rileggendo le SOURCE prima della finalizzazione.
+La revisione SOURCE controlla anche soggetto e ruolo temporale. Il planner usa
+contesto aziendale o di esperienza nelle query, mantenendo scope, bucket e filtri.
+
+Placeholder, linee vuote, etichette senza valore, N/A e dichiarazioni di campo
+non compilato non sono informazioni. La protezione vale anche quando il testo
+compare letteralmente nella SOURCE; sigle informative come NA rimangono ammesse.
+Gli span SOURCE rispettano token completi e grafia originale. Errori localizzabili
+nei verdetti non eliminano quelli validi; indici extra noti sono registrati e
+ignorati, duplicati disabilitano la sola proposta interessata. Errori globali o
+provider restano espliciti, senza consumo incrociato dei retry delle due fasi.
+
+269 test mirati e 1.192 backend completi passati; nessuna migrazione/reindicizzazione.
+Il benchmark finale dopo la ricarica ha risolto gli otto valori societari con
+tipologia SOURCE, mantenendo Fax MISSING e nessun firmatario inferito. Comune,
+CAP e Provincia si risolvono al secondo tentativo SOURCE senza riclassificazione.
+9 SOURCE prima del primo checkpoint; 15 checkpoint/SKIP, media 3,4667. La sessione
+resta WAITING_FOR_USER, con 30 PENDING e 76 field rinviati; nessun DOCX generato.
+Acquisizioni, replay negativo e limiti residui nel
+[report reale dell'8 ottobre](test-reale-manifestazione-interesse-2026-10-08.md).
+
 ## Limiti e prossimo passo
 
 - La semantica di classificazione e la proposta dei valori dipendono ancora
   dal modello. I gate conservativi possono produrre falsi negativi; nessun
   risultato software prova la qualità di un provider reale.
-- Non c'è un motore generale di applicabilità: si conserva una condizione
-  letterale per candidate. SOURCE può attestare esplicitamente vero/falso;
-  altrimenti serve conferma USER. I gate SOURCE prudenti possono rifiutare parafrasi
-  legittime; il chiarimento USER singolo usa la decisione semantica e il target
-  backend. Una S.r.l. non determina la forma di partecipazione. La completezza di
-  obblighi, allegati e rami condizionali non è certificata da READY.
+- L'applicabilità condivisa richiede condizioni ancorate e sezioni verificate;
+  non riconosce arbitrariamente esclusività o equivalenze fra sezioni diverse.
+  SOURCE può attestare vero/falso, altrimenti serve conferma USER. Una S.r.l.
+  non determina la forma di partecipazione. La completezza di obblighi, allegati
+  e rami condizionali non è certificata da READY.
 - Campi composti possono richiedere intervento utente; le proposte SOURCE sono
   valori letterali fino a 300 caratteri, i valori USER fino a 1.500 come nel
   renderer. Non c'è composizione automatica di valori da più fonti.
@@ -598,11 +694,11 @@ Le verifiche software finali effettive sono riportate in STATUS.md.
 - Persistenza sincrona, nessuna coda di lavoro o continuazione autonoma dopo
   errore. Non ci sono migrazioni delle bozze precedenti né garbage collection
   dello storico delle revisioni.
-- La chat collega la V1 tramite mention singola e chiarimento libero sul solo
-  campo chiesto. La comprensione semantica del messaggio dipende dal modello;
+- La chat collega la V1 tramite mention singola e chiarimenti liberi sui soli
+  slot attivi, singoli o raggruppati. La comprensione del messaggio dipende dal modello;
   grounding letterale e validatori non certificano la verità di quanto dice USER.
-  Non si correggono arbitrariamente altri campi con il testo libero, né si
-  propagano esclusioni a tutta una sezione senza confermare i candidate coinvolti.
+  Non si correggono arbitrariamente altri campi con il testo libero. Le esclusioni
+  condivise richiedono un contesto di condizione verificato e una prova esplicita.
   Per correzioni avanzate restano i controlli espliciti nei dettagli.
 - La domanda corrente è una proiezione persistibile dello stato, non un falso
   turno LLM. Dopo la risposta compare quella successiva; le revisioni conservano

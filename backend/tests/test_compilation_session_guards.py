@@ -47,11 +47,27 @@ async def test_bounded_pipeline_with_real_json_transport_and_schema(api, monkeyp
                         "form_citation_id": 1,
                     },
                     "entity": "company",
+                    "semantic": {
+                        "form_anchor": f["structural"]["slot_anchor"],
+                        "subject_anchor": "Dati aziendali",
+                        "subject_relation": "organization",
+                        "context_role": "ORGANIZATION_PROFILE",
+                    },
                     "reason": "Requisito della cella",
                 }
                 for f in user["candidates"]
             ]
             reply = {"fields": fields}
+        elif schema["title"] == "FormReview":
+            reply = {"fields": [{"candidate_id": p["candidate"]["id"], "accepted": True,
+                                 "condition_complete": True,
+                                 "reason": "Proprietà dello slot confermata"}
+                                for p in user["proposals"]]}
+        elif schema["title"] == "SourceReview":
+            reply = {"supports": [{"candidate_id": p["candidate_id"], "kind": p["kind"],
+                                   "index": p["index"], "accepted": True,
+                                   "reason": "Dato della società documentato"}
+                                  for p in user["proposals"]]}
         elif schema["title"] == "CompilationSourcePlan":
             reply = {"clusters": [{"requirement_ids": [1, 2, 3]}], "fields": []}
         else:
@@ -106,7 +122,8 @@ async def test_bounded_pipeline_with_real_json_transport_and_schema(api, monkeyp
         AISettings(api_key="mock", model="mock", provider=provider, base_url="http://mock.test")
     ):
         result = await resolution.resolve_session("alpha", state["id"], 1)
-    assert calls == ["CandidateMeanings", "CompilationSourcePlan", "CandidateMatches"]
+    assert calls == ["CandidateMeanings", "FormReview", "CompilationSourcePlan",
+                     "CandidateMatches", "SourceReview"]
     assert result["summary"]["resolved"] == 1
     assert result["summary"]["missing"] == 2
 
