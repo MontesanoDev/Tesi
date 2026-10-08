@@ -1,8 +1,164 @@
 # Stato di Mapi RAG
 
-Aggiornato il **8 ottobre 2026**. Base verificata: branch `main`, commit
-`f1e06fe` (`fix: stabilize semantic DOCX autofill and source grounding`).
+Aggiornato il **8 ottobre 2026**. Base precedente agli interventi: branch `main`, commit
+`dcb9557` (`fix: stabilize table autofill and DOCX finalization`).
 Ricontrollare Git all'inizio della prossima sessione.
+
+## Commit locali richiesti dall'utente — 8 ottobre 2026
+
+Su richiesta esplicita sono stati consolidati i fix locali precedenti e lo
+stability pass. Backend e regressioni nel commit `52a86ce`
+(`fix: isolate DOCX model failures and preserve compilation state`);
+il commit successivo contiene messaggi UI di recupero e questa continuità.
+Nessun push. DOCX compilati, report reali nuovi, DB, snapshot e tracce restano
+locali e ignorati da Git. README/start invariati. Il codice coincide con quello
+verificato dai 1.296 test backend, 84 frontend e dalla prova reale mirata sotto;
+nessuna suite o prova reale ripetuta per il solo commit. Restano aperti i
+quattro blocchi FORM e i problemi di pertinenza dei rami descritti sotto.
+
+## Ultimo intervento: stability pass CompilationSession — 8 ottobre 2026
+
+Preservati i fix locali matcher/classificatore e le modifiche di continuità
+preesistenti. Nessun commit/push; README/start invariati. Report completo locale,
+audit dei confini e tracce (ignorati da Git):
+[stability pass](backend/data/compilation-audit/stability-pass-20261008/report.md).
+
+- Revisioni FORM/SOURCE ora isolano ID estranei, duplicati e item invalidi,
+  conservando approvazioni indipendenti; un verdetto per una proposta storica
+  già filtrata non provoca più un lookup interno errato. Fatti con SOURCE
+  estranea scartati. Coverage backend incoerente resta ValueError esplicito.
+- Errori tipizzati soltanto al confine reale del modello: schema recuperabile
+  entro i due tentativi della propria fase; provider/timeout sospendono senza
+  consumare altri campi. Esaurimento non genera domande sui PENDING né READY.
+  Messaggio persistito comprensibile; nessun catch generale di bug interni.
+- Risposte USER di gruppo parzialmente invalide conservano gli slot validi
+  univoci. Condizioni USER già risposte non vengono dimenticate dalla rianalisi;
+  propagazione delle dipendenze non cancella valori SOURCE/USER persistiti.
+  Pausa/ripresa letterali disponibili anche se il planner non risponde.
+  Modifiche UI limitate a messaggi/avviso: dettagli tecnici nei log, nessun
+  nuovo workflow o modifica dell'orchestrazione dei batch.
+- **43 nuove regressioni**, **315 test mirati finali passati** (85,50 s).
+  **1.296 backend complessivi passati**, copertura disgiunta 315+348+336+297;
+  un primo processo unico interrotto non è conteggiato come suite passata.
+  **84 frontend passati**, Ruff, lint/build e diff check passati. Test includono
+  errori consecutivi, retry esauriti, due resume, decisione negativa già
+  registrata, conservazione prove, scope e DOCX parziale materializzato con
+  ready_for_submission=false. Nessuna migrazione/reindicizzazione richiesta.
+- I quattro blocchi sono `t38.r1.c1`, `t38.r2.c0`, `t38.r2.c1`, `t38.r3.c0`:
+  ragioni sociali/CF-P.IVA delle consorziate, non anagrafica dell'operatore.
+  La condizione consorzio stabile esiste in paragraph:573, ma il modello la
+  legava a paragraph:595. Rebind solo letterale/univoco, con revisione finale
+  rigorosa. **Restano bloccati nella prova reale**: modello/reviewer assegnano
+  ancora subject_type alle consorziate, confondendole col consorzio compilatore.
+  Nessuna deroga al controllo, nessun rimborso dei retry (interpretazione 2,
+  SOURCE 0). Distinguere i due soggetti richiede un intervento separato.
+- Prova reale mirata, DeepSeek flash/Qdrant/BGE reali su copie: quattro campi
+  espliciti + un solo batch automatico successivo di 12; 6 chiamate, 40,195 s,
+  nessuna eccezione, 11 query/7 chunk/9 candidate ricercati. **22 SOURCE
+  preservati, zero nuovi valori**, 263 altri candidate invariati. Copia v89
+  CREATED, auto_continue=true: 22 RESOLVED, 22 MISSING, 34 AMBIGUOUS, 1 NA,
+  200 PENDING. Nessun benchmark completo o DOCX reale generato, non READY.
+- Nella copia della precedente v102, due resume conservano tutte le **7
+  decisioni USER «non professionista singolo»** e tutti gli altri campi.
+  La sessione attuale v83 con 22 SOURCE non contiene tali decisioni: non
+  confondere i due test. Originali confermati invariati **v83 e v102**.
+
+**Problemi distinti da riprendere solo con un nuovo incarico:** i 22 valori
+preservati includono assegnazioni preesistenti non sufficientemente giustificate
+nei rami Studio Associato (t14/t15) e Società di Professionisti/soci (t19/t22/t23).
+Il report identifica 13 valori interessati e le evidenze; non riapprovati né
+cancellati durante questo pass. Serve valutare soggetto della condizione,
+eredità del contesto di sezione e identità delle entità elencate. La robustezza
+è verificata; la correttezza semantica di quei rami e dei quattro campi non è
+dichiarata risolta. I budget esauriti non si riaprono con il solo resume.
+
+## Ultimo intervento: classificazione fuori dal gruppo selezionato — 8 ottobre 2026
+
+Seguito del fix matcher sotto: nella **nuova sessione** Catanzaro
+`7945c99079a54d729f67855a4d03a956`, v83 FAILED, l'utente ha ricevuto
+`Classificazione con candidate sconosciuto`. Conservati **22 valori SOURCE**.
+Il gruppo interrotto riguarda sei celle della tabella delle consorziate,
+ciascuna con 2 tentativi di interpretazione e 0 SOURCE. La risposta grezza
+storica non è conservata: non è identificabile l'ID estraneo preciso.
+
+- Esteso il controllo degli ID al classificatore: `bind_meanings` filtra gli
+  output prima della revisione FORM e dell'applicazione. ID estranei, inclusi
+  errori item-local su ID estranei, non interrompono le interpretazioni valide.
+  Duplicati tutti respinti, senza scegliere una versione; target omessi restano
+  PENDING. Scarti persistiti in `last_resolution.interpretation_rejections`.
+  Prompt con lista di ID ammessi. Quote/anchor, revisione indipendente FORM e
+  controlli SOURCE restano obbligatori; nessun nuovo counter, retry o migrazione.
+  Modificato soltanto il resolver e i test, preservando il fix matcher locale.
+- **18 nuove regressioni FTS5/Qdrant**, con riproduzione del medesimo 502 prima
+  del fix: sibling valido risolto, precedente SOURCE intatto, filtro prima
+  della revisione FORM, ID estranei validi/invalidi, duplicati, FORM non grounded
+  respinto, contatori separati, stop dopo due tentativi e failure provider.
+  Aggiornata la vecchia aspettativa di test sui duplicati di interpretazione:
+  ora sono errori locali, non globali. **272 test mirati passati in 57,97 s**,
+  incluse tutte le 254 regressioni del fix precedente; Ruff backend completo e
+  diff check superati. Suite completa/frontend non rieseguiti.
+- **Prova reale dei soli sei candidate su copia isolata della v83**, con
+  rianalisi esplicita perché i tentativi automatici erano già esauriti.
+  DeepSeek `deepseek-flash`, 1 chiamata, 6,470 s, nessun errore globale.
+  **2 AMBIGUOUS** (barrature/scelte sulle consorziate), **4 PENDING**:
+  `Condizione non ancorata alla sezione FORM`. Zero SOURCE interrogate o nuovi
+  valori; Qdrant configurato, ma non chiamato perché i dati non superano FORM.
+  Nessuna prova di compilazione completa: il vincolo FORM delle quattro celle
+  è un limite distinto, non corretto in questo intervento. **273 altri candidate
+  identici**, inclusi i 22 SOURCE; codice invariato durante la prova.
+
+**Punto di ripresa:** il controllo di scope ora copre interpretazione e matcher.
+La sessione applicativa resta v83 FAILED, campi e counter invariati; **Prosegui
+compilazione** rinnova il ciclo sui candidate ancora analizzabili. I sei target
+con budget già esaurito non vengono riprovati automaticamente: per riesaminarli
+serve una rianalisi esplicita limitata, senza azzerare globalmente i counter.
+README/start e documenti preservati. **Nessun commit/push.** Report locale,
+snapshot e tracce sotto `backend/data/compilation-audit/classification-scope-20261008/`
+(ignorato da Git).
+
+## Ultimo intervento: matcher fuori dal gruppo ricercato — 8 ottobre 2026
+
+Corretto localmente il blocco `Matcher con candidate sconosciuto, duplicato o
+non ricercato` della sessione Catanzaro
+`7167b46dbb134e0db41ff9f092d55e6b`, v102 FAILED: **17 valori SOURCE conservati**,
+113 posizioni analizzate. Il failure era nel passo SOURCE dei dieci candidate
+relativi a socio unico/amministratore di fatto, già interpretati. La risposta
+grezza del failure storico non è disponibile: non è identificabile l'ID preciso
+che lo aveva causato.
+
+- `compilation_session_resolution.py` vincola il matcher agli ID effettivamente
+  ricercati, prima della revisione SOURCE e dell'applicazione. Output fuori ambito
+  e duplicati vengono scartati e registrati in `last_resolution.matcher_rejections`;
+  dei duplicati non viene scelta arbitrariamente una versione. Gli item validi
+  conservano le proprie verifiche. Se una risposta contaminata omette un target,
+  il suo retry SOURCE rimane limitato dai counter esistenti. Errori globali di
+  schema/provider restano espliciti. Nessun nuovo counter o limite, migrazione,
+  modifica UI, retrieval, semantica FORM, grouped o renderer.
+- **19 nuove regressioni**, incluse FTS5/Qdrant, valore precedente invariato,
+  risoluzione del sibling valido, scope prima della revisione SOURCE, duplicati,
+  campo non ricercato invariato, retry esaurito senza loop e failure globali.
+  **254 test mirati passati in 95,01 s**, incluse semantica, prima tabella,
+  retry separati, sessioni/guardie, grouped, active question e finalizzazione.
+  Ruff backend completo e diff check superati; suite completa/frontend non
+  rieseguiti. Questi sono test software con provider simulati.
+- **Prova reale di un solo passo su copia isolata della v102**: DeepSeek
+  `deepseek-flash`, Qdrant locale e BGE-M3 reali, stesse fonti/Company KB.
+  Superato il gruppo senza failure: **10 SOURCE cercati, 10 MISSING**, zero nuove
+  risoluzioni, perché mancano prove dei ruoli/dati personali richiesti. Non
+  trasferiti dati aziendali o di un amministratore unico ad altri ruoli/persona.
+  2 chiamate modello, 6 query, 7 chunk, 17,637 s. Nessuna interpretazione ripetuta;
+  counter interpretazione invariati a 1 e SOURCE a 2 per i dieci target.
+  **269 altri candidate invariati**, inclusi i 17 SOURCE; codice invariato durante
+  la prova. La copia passa a v105 CREATED con `auto_continue=true`, 123 posizioni
+  analizzate e 156 PENDING. Non eseguiti altri passi né generazioni DOCX.
+
+**Punto di ripresa:** la sessione originale è ancora v102 FAILED, campi invariati;
+usare **Prosegui compilazione** nella conversazione esistente con il backend
+aggiornato. Non serve ricreare la sessione o azzerare i tentativi. La prova
+verifica il superamento di quel gruppo, non il completamento dei 279 candidate.
+README/start e DOCX locali preservati. **Nessun commit/push.** Report e tracce
+restano fuori Git in
+`backend/data/compilation-audit/matcher-scope-20261008/report.md`.
 
 ## Commit locale richiesto — 8 ottobre 2026
 

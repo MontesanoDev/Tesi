@@ -77,7 +77,10 @@ export function CompilationSessionCard({ session, busy, error, onContinue, onUpd
       link.click()
       window.setTimeout(() => URL.revokeObjectURL(url), 1000)
     } catch (err) {
-      if (!controller.signal.aborted) setDownloadError(err instanceof Error ? err.message : 'Download non riuscito')
+      if (!controller.signal.aborted) {
+        console.warn('Download CompilationSession', err)
+        setDownloadError('Non riesco a scaricare la bozza. I dati sono conservati: puoi riprovare.')
+      }
     } finally {
       if (!controller.signal.aborted) setDownloading(false)
       if (downloadController.current === controller) downloadController.current = null
@@ -113,6 +116,7 @@ export function CompilationSessionCard({ session, busy, error, onContinue, onUpd
   return <section className="compilation-chat-card" aria-label={`Compilazione ${session.template_name}`} aria-busy={busy}>
     <header><strong>Compilazione · {session.template_name}</strong><span>{session.chat?.paused ? 'Analisi in pausa' : sessionStatus[session.status]}</span></header>
     <div className="compilation-conversation" aria-live="polite">
+      {!busy && session.chat?.notice && <p role="status">{session.chat.notice}</p>}
       {(busy || (session.status === 'ANALYZING' && !session.chat?.paused) || session.chat?.auto_continue) && <p className="compilation-activity" role="status">
         <LoaderCircle size={16} aria-hidden="true" />
         Verifico le informazioni nelle fonti e completo i campi supportati…
@@ -136,7 +140,9 @@ export function CompilationSessionCard({ session, busy, error, onContinue, onUpd
           <button type="button" className="button" disabled={locked} onClick={onResume}>Prosegui compilazione</button>
         </>}
     </div>
-    {(error || session.last_error) && <p role="alert" className="upload-feedback--error">{error || session.last_error}</p>}
+    {(error || session.last_error) && <p role="alert" className="upload-feedback--error">
+      {error || 'Ho conservato i dati già verificati. Alcuni campi non sono stati completati. Puoi continuare o esportare una bozza parziale.'}
+    </p>}
     {['READY', 'GENERATED'].includes(session.status) && session.open_issues.length === 0 &&
       <button type="button" className="button button--primary" disabled={locked}
         onClick={() => void onGenerate()}>Genera DOCX</button>}

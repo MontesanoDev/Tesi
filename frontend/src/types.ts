@@ -192,6 +192,7 @@ export interface CompilationChatState {
   auto_continue: boolean
   paused: boolean
   paused_by_user?: boolean
+  notice?: string | null
   deferred?: number
   question: { kind: 'value' | 'applicability' | 'clarifications' | 'generate' | 'deferred_summary'; field_ids: string[]; message: string } | null
   analyzed: number

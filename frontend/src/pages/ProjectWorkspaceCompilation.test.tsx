@@ -248,7 +248,8 @@ describe('CompilationSession nella chat', () => {
     await setup('/projects/alpha/conversations/chat-1')
     fireEvent.click(await screen.findByText('Dettagli compilazione'))
     fireEvent.click(await screen.findByRole('button', { name: 'Continua analisi' }))
-    await screen.findByText('Versione non aggiornata')
+    await screen.findByText('Ho conservato i dati già verificati. Non ho completato questa operazione. Puoi aggiornare lo stato e riprovare.')
+    expect(screen.queryByText('Versione non aggiornata')).not.toBeInTheDocument()
     expect(screen.getByText('Pronta per la generazione')).toBeInTheDocument()
     expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
   })
@@ -294,10 +295,25 @@ describe('CompilationSession nella chat', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Chiarisci PEC' }))
     fireEvent.change(screen.getByRole('textbox', { name: 'Valore fornito dall’utente' }), { target: { value: 'non-una-email' } })
     fireEvent.click(screen.getByRole('button', { name: 'Salva valore' }))
-    await screen.findByText('Email non valida')
+    await screen.findByText('Ho conservato i dati già verificati. Non ho completato questa operazione. Puoi aggiornare lo stato e riprovare.')
     expect(screen.getByRole('textbox', { name: 'Valore fornito dall’utente' })).toHaveValue('non-una-email')
     expect(screen.getByText('In attesa di informazioni')).toBeInTheDocument()
     expect(api.updateCompilationFields).toHaveBeenCalledTimes(1)
+  })
+
+  it('conserva conteggi e bozza parziale dopo un errore senza esporre eccezioni tecniche', async () => {
+    stored = conversational(session([field('f1', 'Denominazione', 'RESOLVED'), field('f2', 'Altro')], 'CREATED', 5), true)
+    stored.last_error = 'Traceback: sqlite3.OperationalError: database is locked'
+    stored.chat!.notice = 'Ho conservato i dati già verificati. Puoi continuare o esportare una bozza parziale.'
+    await setup('/projects/alpha/conversations/chat-1')
+    await screen.findByText(stored.chat!.notice)
+    expect(screen.queryByText(/Traceback|OperationalError|database is locked/)).not.toBeInTheDocument()
+    expect(screen.getByText(/Ho verificato 1 informazione nelle fonti/)).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Genera DOCX' })).not.toBeInTheDocument()
+    expect(api.resolveCompilationSession).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByText('Dettagli compilazione'))
+    fireEvent.click(await screen.findByRole('button', { name: 'Genera bozza con campi irrisolti' }))
+    await waitFor(() => expect(api.finalizeCompilationSession).toHaveBeenCalledWith('alpha', 'session-1', 5, true, expect.any(AbortSignal)))
   })
 
   it('me lo compili avvia il workflow senza risposta RAG, avanza da solo e riceve la data in chat', async () => {

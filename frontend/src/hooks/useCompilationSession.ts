@@ -35,8 +35,9 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
           }
         })
         .catch((reason) => {
+          if (!controller.signal.aborted) console.warn('Caricamento CompilationSession', reason)
           if (!controller.signal.aborted && activeKey.current === key) setState({ key, session: null,
-            loading: false, busy: false, error: reason instanceof Error ? reason.message : 'Sessione non disponibile' })
+            loading: false, busy: false, error: 'Non riesco a caricare la compilazione. Riprova.' })
         })
     }
     return () => {
@@ -75,13 +76,14 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
       return session
     } catch (reason) {
       if (controller.signal.aborted || activeKey.current !== key) return null
+      console.warn('Operazione CompilationSession', reason)
       // Errors and 409s can advance backend versions. Reload, never resubmit a mutation.
       const session = current.session
         ? await api.compilationSession(projectId, current.session.id, controller.signal).catch(() => null)
         : null
       if (!controller.signal.aborted && activeKey.current === key) setState((s) => ({ ...s,
         ...(session ? { session } : {}), busy: false,
-        error: reason instanceof Error ? reason.message : 'Operazione non riuscita',
+        error: 'Ho conservato i dati già verificati. Non ho completato questa operazione. Puoi aggiornare lo stato e riprovare.',
       }))
       return null
     } finally {
