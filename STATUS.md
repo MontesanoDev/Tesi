@@ -1,10 +1,177 @@
 # Stato di Mapi RAG
 
 Aggiornato il **8 ottobre 2026**. Base verificata: branch `main`, commit
-`a5e2e2e` (`feat: add persistent DOCX compilation and grouped chat clarifications`).
+`f1e06fe` (`fix: stabilize semantic DOCX autofill and source grounding`).
 Ricontrollare Git all'inizio della prossima sessione.
 
-## Ripresa attuale: semantica FORM e contesto SOURCE — 8 ottobre 2026
+## Commit locale richiesto — 8 ottobre 2026
+
+Richiesto dall'utente il commit dello stato funzionante, con push manuale a suo
+carico. Inclusi fix FORM delle tabelle, fix SQLite della finalizzazione, relativi
+test e modifiche intenzionali già presenti a README/start. Gli originali demo
+restano fixture versionate; i DOCX compilati nella radice restano ignorati.
+Aggiunte a `.gitignore` le esclusioni di `compilazioni-report.md` e dei due
+report locali nuovi in `docs/` (diagnosi Minervino e prima tabella Catanzaro):
+restano disponibili sul PC, fuori dal commit. I collegamenti sotto a questi
+artefatti si riferiscono alla copia locale.
+
+**Verifiche rieseguite prima del commit:** 24 test mirati passati in 10,89 s
+(`test_compilation_table_fields.py` e `test_compilation_finalization.py`), Ruff
+backend completo, sintassi Bash, `start.sh --help` e diff check superati.
+Nessun nuovo benchmark AI, installazione o avvio dei servizi in questi controlli.
+Le suite più ampie riportate sotto sono le esecuzioni precedenti.
+
+## Ultima operazione: DOCX della prima tabella Catanzaro — 8 ottobre 2026
+
+Su richiesta dell'utente, generato nella radice
+[catanzaro-domanda-partecipazione-prima-tabella-compilata.docx](catanzaro-domanda-partecipazione-prima-tabella-compilata.docx)
+dall'originale della prova limitata descritta sotto: **6 valori SOURCE scritti**,
+sede operativa lasciata vuota perché NOT_APPLICABLE/SOURCE. È una **bozza parziale**,
+`ready_for_submission=false`, con i restanti 272 candidate non analizzati.
+
+Esportazione con il finalizzatore esistente e `allow_unresolved=true` su una
+nuova copia del DB del benchmark; stato e campi della sessione del benchmark
+preservati. **Zero nuove chiamate AI**, nessuna analisi dell'intero documento.
+Verificati i sei valori nelle celle fisiche, le altre celle e i paragrafi
+invariati (salvo avviso di bozza), le parti DOCX esterne al corpo byte per byte
+e gli hash dell'originale/output. Codice, README/start e precedente DOCX Catanzaro
+preservati; nessun commit/push. Suite software non ripetute per il solo export.
+Report tecnico e verifiche in
+`backend/data/compilation-audit/catanzaro-first-table-20261008/export-01/`;
+nota aggiunta al report reale della prima tabella.
+
+## Ultimo intervento: anagrafica della prima tabella Catanzaro — 8 ottobre 2026
+
+Correzione circoscritta ai normali campi tabellari, sopra le modifiche locali
+precedenti, preservate. **Nessun commit/push.** Il codice non contiene riferimenti
+a Catanzaro, candidate ID o Mapi per decidere la validazione.
+
+- `compilation_semantics.py` espone sezioni FORM per tabella/riga, ricavate dal
+  catalogo dell'originale. Nelle celle tabellari non promuove più automaticamente
+  il soggetto aziendale generico a condizione di tipologia. La revisione FORM
+  indipendente e `condition_complete` restano obbligatori; le condizioni locali
+  letterali possono ancorarsi alla propria riga. Il percorso dei paragrafi non
+  cambia. Prompt classificatore/revisore precisati per citazioni locali,
+  soggetto corretto e rispetto delle condizioni effettive.
+- **16 nuove verifiche** su tabella generica; **227 test mirati passati in
+  46,21 s**, incluse semantica, sessioni, retry separati, grouped, active question
+  e guardie. Ruff backend completo e diff check passati. Suite backend completa
+  e frontend non rieseguite per questa modifica circoscritta.
+- **Prova reale limitata ai sette campi `t0.r5.c1`–`t0.r11.c1`**, nuova sessione
+  isolata `57cdd64bfb534f64817016f3e3ed81a2`: DeepSeek `deepseek-flash`, Qdrant e
+  BGE-M3/Ollama reali, stessa Company KB (contenuti confrontati con l'app).
+  **7 FORM accettati, 7 SOURCE cercati, 6 RESOLVED/SOURCE**, al primo passaggio.
+  Operatore economico, forma giuridica, sede legale, CF azienda, P.IVA, telefono.
+  **Sede operativa NOT_APPLICABLE/SOURCE**: la KB attesta che coincide con la
+  sede legale; preservata la condizione «se diversa dalla sede legale».
+  Zero valori USER e zero errori di validazione; 5 chiamate modello, 6 query,
+  28,893 s. Codice invariato durante la prova, **272 altri candidate invariati**.
+- Nessuna modifica a retrieval, provenance SOURCE/USER, placeholder gate, UI,
+  grouped, retry, parser/renderer o orchestrazione. Nessuna migrazione né
+  reindicizzazione dell'app. Nessun DOCX rigenerato o READY forzato. README/start
+  e le tre bozze precedenti nella radice preservati.
+
+**Punto di ripresa:** il blocco FORM dei sette campi è verificato risolto nella
+prova limitata; non è una verifica degli altri 272 candidate. I tentativi delle
+sessioni storiche non sono azzerati. Per riprovare una sessione esistente usare
+la rianalisi esplicita dei soli campi selezionati, che rilegge il contesto del
+proprio originale; non avviare automaticamente una nuova analisi completa.
+Report con valori, query, anchor, evidence e limiti:
+[prima tabella Catanzaro](docs/test-reale-catanzaro-prima-tabella-2026-10-08.md).
+Archivio ignorato:
+`backend/data/compilation-audit/catanzaro-first-table-20261008/run-01/`.
+
+## Ultima operazione: esportazione dei tre moduli — 8 ottobre 2026
+
+Su richiesta esplicita dell'utente, salvati nella **radice del progetto**:
+
+- `catanzaro-domanda-partecipazione-compilata.docx`: **1 valore SOURCE**.
+- `trapani-manifestazione-interesse-compilata.docx`: **9 valori SOURCE**.
+- `minervino-domanda-iscrizione-compilata.docx`: **6 valori SOURCE**.
+- [compilazioni-report.md](compilazioni-report.md): riepilogo, output chat,
+  chiarimenti, valori/prove e tabella completa dei **648 candidate**.
+
+Sono **bozze parziali**, generate con `allow_unresolved=true` su copie isolate:
+report nativi `needs_review`, `ready_for_submission=false`; nessun READY forzato,
+valore USER inventato o firmatario scelto. Sessioni/documenti originali preservati.
+Nessuna modifica al codice applicativo, README/start preservati, nessun commit/push.
+
+Trapani usa la sessione recente `88149be5f16041bbae2985010fea7fdb` v53
+(115 candidate: 9 SOURCE, 52 MISSING, 23 AMBIGUOUS, 31 PENDING).
+Minervino nel frattempo ha terminato il ciclo avviato dall'applicazione: esportata
+la v124 WAITING_FOR_USER (254 candidate: 6 SOURCE, 115 MISSING, 49 AMBIGUOUS,
+84 PENDING), distinta dalla v90 della diagnosi storica sotto.
+
+Per Catanzaro, assente una sessione nell'app, creata una **nuova sessione isolata**
+`5c863d37ee3d4a00b68ddd00bbb22a20`, usando originale/fonti dell'archivio retry
+Catanzaro e KB globale con chunk identici a quelli attuali. DeepSeek
+`deepseek-flash`, Qdrant e BGE-M3 reali; 88 chiamate strutturate / 324,49 s.
+Analisi **FAILED v74** al passo 28, `GenerationError` nella chiamata
+`CandidateMatches`; dettaglio testuale non conservato, causa provider/output
+non determinabile dalla traccia. 279 candidate: 1 SOURCE, 31 MISSING,
+37 AMBIGUOUS, 210 PENDING. Esportata la sede legale già accettata prima del failure,
+senza riusare valori dei benchmark precedenti né aggiungere retry.
+
+**Verifiche effettive dell'export:** 16 valori controllati nelle celle/paragrafi
+di destinazione; SHA-256 corretti e tutte le parti DOCX diverse dal corpo
+preservate byte per byte. Nessuna chiamata AI per gli export Trapani/Minervino.
+Suite software non ripetute per la sola generazione di artefatti; i 436 mirati
+sotto rimangono la verifica del precedente fix SQLite. Diff check passato.
+Archivio ignorato: `backend/data/compilation-audit/exports-three-20261008T110401Z/`.
+
+**Punto di ripresa:** le tre esportazioni non attestano moduli completi. Restano
+le diagnosi semantiche/di applicabilità dei PENDING e il failure Catanzaro;
+conservare i counter e i gate FORM/SOURCE. Non trattare le bozze come SOURCE.
+
+## Fix locale: blocco SQLite in finalizzazione Minervino — 8 ottobre 2026
+
+Corretto localmente il 500 `database is locked` durante l'esportazione della
+sessione `c34440fe726f4790acd586424e212078`, progetto
+`minervino-di-lecce-elenco-sia`. **Nessun nuovo commit/push.** All'inizio `main`
+era allineata a `origin/main`, con sole modifiche locali a README/start:
+preservate byte per byte. Il commit `f1e06fe` contiene già il precedente lavoro
+semantico e i report; lo storico sotto descrive le prove prima di quel commit.
+
+- `_persist` salva il report in una transazione SQLite; il callback della
+  sessione rileggeva le SOURCE aprendo una seconda connessione. Il report di
+  Minervino (circa 2,37 MB) riproduce il blocco con le impostazioni SQLite
+  ordinarie: il cache spill della scrittura impedisce la lettura separata.
+- `reload_evidence` accetta una connessione opzionale, senza chiuderla o fare
+  commit quando è fornita dal chiamante. `save_generation` la passa tramite
+  `check_current_sources`: rilettura SOURCE e salvataggio restano nella stessa
+  transazione. Conservati controllo versione, isolamento/provenance e rifiuto
+  delle SOURCE cambiate. Nessuna modifica a timeout, journal mode, schema,
+  migrazioni, UI, parser/renderer, retry o orchestrazione.
+- **8 regressioni nuove passate**, combinazioni FTS5/Qdrant e Company/project
+  SOURCE: salvataggio sotto lock esclusivo reale, valori SOURCE/USER nel DOCX,
+  rifiuto 409 di SOURCE cambiata e rollback di sessione/report/file.
+  **436 test mirati passati in 106,18 s**, incluse le otto regressioni, sessioni,
+  guardie, SOURCE/retrieval FORM, DOCX, semantica, retry separati, grouped,
+  active question e controlli. Ruff e diff check passati. La suite backend completa e il
+  frontend non sono stati rieseguiti per questo fix circoscritto.
+- Replay tecnico su due copie dello stesso DB/sessione: prima riprodotto
+  `OperationalError: database is locked` in 8,06 s; dopo GENERATED v91 in 2,59 s,
+  sei valori materializzati negli slot originali e field/provenance invariati.
+  Solo le copie usano `allow_unresolved=true`. **Non è un nuovo benchmark AI
+  né un modulo completo**: zero chiamate modello, nessuna sessione reale alterata.
+
+**Stato originale conservato:** v90 FAILED, nessuna generazione; 254 candidate,
+6 RESOLVED, 66 MISSING, 35 AMBIGUOUS, 147 PENDING. Il ciclo aveva già raggiunto
+36 passi (budget 36/600 s): distinto dal successivo errore in esportazione.
+Fra i PENDING: 52 senza tentativi, 12 con un tentativo, 83 con due; 61 riportano
+`Condizione non ancorata alla sezione FORM`. Il fix SQLite non risolve questi
+errori semantici e non ricarica i retry. La ripresa non garantisce il completamento.
+
+**Prossimo passo minimo:** dopo il reload del backend la finalizzazione usa il
+fix; la sessione esistente conserva tutti i valori. Per completare Minervino
+occorre una diagnosi separata dei PENDING, partendo dalle condizioni FORM
+respinte, e dei chiarimenti di applicabilità. Non azzerare sessioni/counter né
+allentare i gate. Nessuna migrazione/reindicizzazione necessaria per il fix.
+Dettagli e limiti in
+[diagnosi Minervino, 8 ottobre](docs/diagnosi-minervino-finalizzazione-2026-10-08.md).
+Archivio tecnico ignorato: `backend/data/compilation-audit/minervino-finalize-lock-20261008/`.
+
+## Storico: semantica FORM e contesto SOURCE — 8 ottobre 2026
 
 Implementazione e test software conclusi sopra le modifiche locali dei retry,
 **senza commit/push**. Dopo la ricarica DeepSeek, **criterio principale verificato

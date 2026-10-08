@@ -68,6 +68,7 @@ def enrich_structure(layout, fields):
 
     paragraphs = list(layout.document.element.body.iter(qn("w:p")))
     indices = {p: i for i, p in enumerate(paragraphs)}
+    tables = {t["table"]: t for t in layout.catalog}
     for field in fields:
         field_id = field["id"]
         element = (layout.slots[field_id].paragraph if field_id in layout.slots
@@ -88,6 +89,19 @@ def enrich_structure(layout, fields):
             size += len(text)
         sections.append({"id": f"paragraph:{position}", "text": text_of(first)})
         structural = field["structural"]
+        if field["location"]["kind"] == "table_cell":
+            location = field["location"]
+            table_id = f"table:{location['table']}"
+            row_id = f"{table_id}:row:{location['row']}"
+            structural["table_section_id"] = table_id
+            structural["row_section_id"] = row_id
+            sections.extend([
+                {"id": table_id, "text": "\n".join(
+                    " | ".join(c["text"] for c in row)
+                    for row in tables[location["table"]]["rows"]
+                )},
+                {"id": row_id, "text": " | ".join(c["text"] for c in structural["row"])},
+            ])
         structural["form_sections"] = sections
         if "text_with_fields" in structural:
             structural["slot_anchor"] = structural["text_with_fields"]
@@ -158,7 +172,8 @@ async def review_meanings(fields, meanings, request):
         field = by_id[meaning.candidate_id]
         if not meaning.semantic.form_anchor:
             meaning.semantic.form_anchor = field["structural"].get("slot_anchor", "")
-        if (not meaning.condition and meaning.semantic.section_id
+        table_cell = field["location"]["kind"] == "table_cell"
+        if (not table_cell and not meaning.condition and meaning.semantic.section_id
                 and meaning.semantic.subject_relation == "represented_organization"
                 and meaning.semantic.context_role == "ORGANIZATION_PROFILE"
                 and len(meaning.semantic.subject_anchor) <= 120):
@@ -167,6 +182,17 @@ async def review_meanings(fields, meanings, request):
             # generic entity name never silently drops foreign/other qualifiers.
             meaning.condition = meaning.semantic.subject_anchor
             meaning.semantic.condition_kind = "subject_type"
+        if table_cell and meaning.condition:
+            # A local qualifier belongs to the physical row, even when the
+            # classifier references the document heading instead of that row.
+            row_id = field["structural"].get("row_section_id")
+            local_sections = {s["id"]: s["text"]
+                              for s in field["structural"].get("form_sections", [])}
+            if (row_id and contains_form_span(local_sections[row_id], meaning.condition)
+                    and not contains_form_span(
+                        local_sections.get(meaning.semantic.section_id, ""), meaning.condition,
+                    )):
+                meaning.semantic.section_id = row_id
         try:
             validate_anchor(field, meaning)
         except ValueError as exc:
@@ -188,7 +214,14 @@ async def review_meanings(fields, meanings, request):
         "Un ruolo riferito a un'organizzazione seguito dal blank e dalla sua sede chiede "
         "l'organizzazione rappresentata, non il nome della persona. Distingui la persona "
         "che firma, l'organizzazione, il professionista specifico e i suoi dati. "
-        "Non approvare proprietà assenti o prese da un altro slot. Le sezioni disponibili "
+        "Non approvare proprietà assenti o prese da un altro slot. "
+        "In una tabella etichetta/cella vuota, la riga identifica la proprietà e il blank. "
+        "La tabella può alternare dati personali e aziendali: valuta il soggetto di ogni riga. "
+        "Un soggetto aziendale generico NON è una condizione di applicabilità; un titolo "
+        "del documento o section_id non rende condizionati i normali dati anagrafici. "
+        "Le parentesi condizionali della riga vanno invece conservate: restituisci "
+        "section_condition riferita al row_section_id se omesse, oppure condition_complete=false. "
+        "Le sezioni disponibili "
         "determinano se una tabella riepiloga esperienze/contratti già eseguiti: in quel caso "
         "context_role deve essere PAST_SERVICE, non CURRENT_PROCEDURE. La tipologia "
         "aziendale è una condizione subject_type distinta da firma/partecipazione. "
@@ -199,8 +232,8 @@ async def review_meanings(fields, meanings, request):
         "non solo il generico ruolo. Non confondere l'appartenenza alla tipologia con "
         "la designazione personale del firmatario. Per subject_type di un'organizzazione "
         "rappresentata usa solo la tipologia contenuta in semantic.subject_anchor, senza "
-        "anteporre il ruolo della persona che la rappresenta. Il backend propone questa "
-        "tipologia quando omessa. condition_complete è OBBLIGATORIO: true solo se la "
+        "anteporre il ruolo della persona che la rappresenta. condition_complete è "
+        "OBBLIGATORIO: true solo se la "
         "condizione finale include TUTTI i qualificatori necessari del blocco FORM; "
         "false se un generico nome di organizzazione perde limiti geografici, giuridici "
         "o di partecipazione. Per blocchi senza condizioni condition_complete=true. "
@@ -230,7 +263,8 @@ async def review_meanings(fields, meanings, request):
                 meaning.semantic.condition_kind = condition.condition_kind
             try:
                 validate_anchor(by_id[verdict.candidate_id], meaning)
-                if (meaning.semantic.subject_relation == "represented_organization"
+                if (by_id[verdict.candidate_id]["location"]["kind"] != "table_cell"
+                        and meaning.semantic.subject_relation == "represented_organization"
                         and meaning.semantic.section_id and not meaning.condition):
                     raise ValueError("Sezione di organizzazione senza condizione verificata")
             except ValueError as exc:

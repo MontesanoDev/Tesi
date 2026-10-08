@@ -5,6 +5,7 @@ import math
 import re
 import sqlite3
 import unicodedata
+from contextlib import nullcontext
 from uuid import uuid4
 
 from app.artifacts import get_project_artifact
@@ -629,11 +630,13 @@ def get_conversation_history(conversation_id: str, limit: int = 6) -> list[dict]
 
 def reload_evidence(
     project_id: str, evidence: list[dict], *, target: str = "source", form_id: int | None = None,
+    db: sqlite3.Connection | None = None,
 ) -> list[dict]:
+    """Reload sources, borrowing an existing transaction without committing or closing it."""
     evidence_filter = project_evidence_filter(target)
     current = []
     # Multiple searches may take time: recheck all selected sources before generation.
-    with connection() as db:
+    with (nullcontext(db) if db is not None else connection()) as db:
         if db.execute("SELECT 1 FROM projects WHERE id = ?", (project_id,)).fetchone() is None:
             return []
         for item in evidence:

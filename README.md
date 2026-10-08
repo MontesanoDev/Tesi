@@ -12,22 +12,27 @@ flussi, codice inutilizzato, verifiche e limiti ancora aperti.
 
 **Avvio**
 
-Servono Python 3.14 o successivo, `uv`, npm e Node.js 20.19+ della serie 20
-oppure 22.12+. Dalla radice del repository:
+Da Linux o macOS (x64/arm64), dalla radice del repository:
 
 ```bash
-cd backend
-uv sync
-cd ../frontend
-npm ci
-cd ..
 ./start.sh
 ```
 
 - Applicazione: `http://localhost:5173`
 - API e schema OpenAPI: `http://localhost:8000/docs`
 
-Lo script usa il Node locale in `.tools/node/bin`, se presente. `Ctrl+C`
+Lo script installa automaticamente le dipendenze frontend mancanti o non valide
+con `npm ci` e sincronizza quelle backend con `uv sync --locked` prima di
+avviare i servizi. Se manca `uv`, usa il suo [installer ufficiale](https://docs.astral.sh/uv/reference/installer/)
+per installarlo in `.tools/uv`, senza modificare il profilo della shell.
+Se Node o npm mancano o Node non è compatibile, scarica Node.js 22.23.3 con npm
+dal [sito ufficiale](https://nodejs.org/download/release/v22.23.3/) in
+`.tools/node`, verificando SHA-256. Usa gli strumenti locali con precedenza
+su quelli di sistema, senza `sudo`. Sono accettati anche Node 20.19+ della serie
+20, 22.12+ della serie 22 e versioni successive alla 22 già installati.
+`uv` può scaricare Python 3.14 se assente. Per il primo avvio servono Internet,
+Bash, `curl` o `wget`, `tar`/`gzip` e `sha256sum` o `shasum`.
+I lockfile non vengono aggiornati. `Ctrl+C`
 arresta entrambi i processi. Le porte sono configurabili:
 
 ```bash
@@ -38,6 +43,14 @@ Proxy e origini CORS locali seguono le porte scelte. `MAPI_HOST` imposta
 l'indirizzo di ascolto; `./start.sh --help` mostra le opzioni.
 
 **Configurazione e utilizzo**
+
+Ollama e i suoi modelli si installano separatamente da `start.sh`.
+BGE-M3 è un modello di embedding: per chat e compilazione serve anche un
+modello generativo, locale o tramite provider API. Con Ollama installato e
+attivo, il modello degli embedding si scarica con `ollama pull bge-m3`.
+Nell'installazione locale preparata per questo workspace, Ollama è un servizio
+dell'utente: `systemctl --user status ollama` ne verifica lo stato e
+`systemctl --user start ollama` lo avvia se arrestato.
 
 1. In **Impostazioni generali → Modelli AI**, aggiungere un provider o un
    endpoint Ollama e scegliere un modello. Le chiavi si inseriscono nella UI;

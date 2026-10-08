@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sqlite3
 from collections import Counter
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -815,12 +816,16 @@ def chat_control(project_id, session_id, version, control):
         return save_state(db, row, state, "chat_" + control.kind)
 
 
-def check_current_sources(project_id: str, fields: list[dict]):
+def check_current_sources(
+    project_id: str, fields: list[dict], *, db: sqlite3.Connection | None = None,
+):
     snapshots = [e for f in fields if f["provenance"] == "SOURCE" for e in f["source_evidence"]]
     snapshots += [e for f in fields for e in (f.get("applicability") or {}).get("evidence", [])]
     if not snapshots:
         return
-    current = {e["chunk_id"]: e for e in reload_evidence(project_id, snapshots, target="source")}
+    current = {
+        e["chunk_id"]: e for e in reload_evidence(project_id, snapshots, target="source", db=db)
+    }
     for evidence in snapshots:
         actual = current.get(evidence["chunk_id"])
         if actual is None or any(
@@ -903,7 +908,8 @@ def finalize_session(project_id, session_id, version, allow_unresolved=False) ->
         def save_generation(db, generated):
             current = _row(db, project_id, session_id)
             check_revision(current, version)
-            check_current_sources(project_id, state["fields"])
+            # A second connection can block on this transaction's spilled report pages.
+            check_current_sources(project_id, state["fields"], db=db)
             state.update(
                 status="GENERATED",
                 lease_until=None,

@@ -21,6 +21,9 @@ frontend/playwright-report/
 
 # Output delle prove e appunti personali, separati dalle fixture versionate.
 /*.docx
+/compilazioni-report.md
+/docs/diagnosi-minervino-finalizzazione-2026-10-08.md
+/docs/test-reale-catanzaro-prima-tabella-2026-10-08.md
 /presentazione-retrieval.*
 /appunti-locali/
 

@@ -7,10 +7,13 @@ BACKEND_PORT="${MAPI_BACKEND_PORT:-8000}"
 FRONTEND_PORT="${MAPI_FRONTEND_PORT:-5173}"
 HOST="${MAPI_HOST:-0.0.0.0}"
 PIDS=()
+BOOTSTRAP_TMP=""
 
 usage() {
   cat <<EOF
 Avvia backend e frontend di Mapi RAG.
+Installa automaticamente le dipendenze mancanti dai lockfile.
+Installa uv, Node.js e npm mancanti in .tools/ (senza sudo).
 
 Uso:
   ./start.sh
@@ -33,6 +36,60 @@ cleanup() {
   for pid in "${PIDS[@]}"; do
     wait "$pid" 2>/dev/null || true
   done
+  if [[ -n "$BOOTSTRAP_TMP" ]]; then
+    rm -rf -- "$BOOTSTRAP_TMP"
+  fi
+}
+
+download() {
+  if command -v curl >/dev/null 2>&1; then
+    curl --fail --location --silent --show-error --retry 3 "$1" --output "$2"
+  elif command -v wget >/dev/null 2>&1; then
+    wget -q "$1" -O "$2"
+  else
+    printf 'Errore: serve curl o wget per scaricare gli strumenti mancanti.\n' >&2
+    return 1
+  fi
+}
+
+node_ready() {
+  command -v node >/dev/null 2>&1 && command -v npm >/dev/null 2>&1 &&
+    node -e 'const [major, minor] = process.versions.node.split(".").map(Number); process.exit((major === 20 && minor >= 19) || (major === 22 && minor >= 12) || major > 22 ? 0 : 1)' &&
+    npm --version >/dev/null 2>&1
+}
+
+install_node() {
+  local platform arch archive checksum actual_checksum
+  case "$(uname -s)" in
+    Linux) platform=linux ;;
+    Darwin) platform=darwin ;;
+    *) printf 'Errore: installazione automatica Node supportata su Linux e macOS.\n' >&2; return 1 ;;
+  esac
+  case "$(uname -m)" in
+    x86_64|amd64) arch=x64 ;;
+    aarch64|arm64) arch=arm64 ;;
+    *) printf 'Errore: architettura non supportata per Node (richiesti x64 o arm64).\n' >&2; return 1 ;;
+  esac
+  archive="node-v22.23.3-${platform}-${arch}.tar.gz"
+  printf 'Installazione locale di Node.js 22.23.3 e npm...\n'
+  download "https://nodejs.org/dist/v22.23.3/$archive" "$BOOTSTRAP_TMP/$archive"
+  download 'https://nodejs.org/dist/v22.23.3/SHASUMS256.txt' "$BOOTSTRAP_TMP/SHASUMS256.txt"
+  checksum="$(awk -v file="$archive" '$2 == file {print $1}' "$BOOTSTRAP_TMP/SHASUMS256.txt")"
+  if command -v sha256sum >/dev/null 2>&1; then
+    actual_checksum="$(sha256sum "$BOOTSTRAP_TMP/$archive")"
+  elif command -v shasum >/dev/null 2>&1; then
+    actual_checksum="$(shasum -a 256 "$BOOTSTRAP_TMP/$archive")"
+  else
+    printf 'Errore: serve sha256sum o shasum per verificare Node.\n' >&2
+    return 1
+  fi
+  if [[ ! "$checksum" =~ ^[a-f0-9]{64}$ || "${actual_checksum%% *}" != "$checksum" ]]; then
+    printf 'Errore: checksum del download Node non valido.\n' >&2
+    return 1
+  fi
+  mkdir -p "$ROOT_DIR/.tools/node"
+  tar -xzf "$BOOTSTRAP_TMP/$archive" -C "$ROOT_DIR/.tools/node" --strip-components=1
+  hash -r
 }
 
 if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
@@ -55,28 +112,55 @@ BACKEND_PORT="$((10#$BACKEND_PORT))"
 FRONTEND_PORT="$((10#$FRONTEND_PORT))"
 export MAPI_BACKEND_PORT="$BACKEND_PORT" MAPI_FRONTEND_PORT="$FRONTEND_PORT"
 
-if [[ -x "$ROOT_DIR/.tools/node/bin/node" ]]; then
-  export PATH="$ROOT_DIR/.tools/node/bin:$PATH"
+trap cleanup EXIT
+trap 'exit 130' INT TERM
+
+export PATH="$ROOT_DIR/.tools/uv:$ROOT_DIR/.tools/node/bin:$PATH"
+
+if ! command -v uv >/dev/null 2>&1 || ! node_ready; then
+  BOOTSTRAP_TMP="$(mktemp -d)"
 fi
 
-for command_name in uv npm; do
+if ! command -v uv >/dev/null 2>&1; then
+  printf 'Installazione locale di uv...\n'
+  download 'https://astral.sh/uv/install.sh' "$BOOTSTRAP_TMP/uv-install.sh"
+  UV_INSTALL_DIR="$ROOT_DIR/.tools/uv" UV_NO_MODIFY_PATH=1 sh "$BOOTSTRAP_TMP/uv-install.sh"
+  hash -r
+fi
+
+if ! node_ready; then
+  install_node
+fi
+
+for command_name in uv node npm; do
   if ! command -v "$command_name" >/dev/null 2>&1; then
     printf 'Errore: comando richiesto non trovato: %s\n' "$command_name" >&2
     exit 1
   fi
 done
 
-if [[ ! -d "$ROOT_DIR/frontend/node_modules" ]]; then
-  printf 'Errore: dipendenze frontend assenti. Esegui npm install in frontend/.\n' >&2
+if ! node_ready; then
+  printf 'Errore: Node.js o npm non funzionanti dopo l installazione.\n' >&2
   exit 1
 fi
 
-trap cleanup EXIT
-trap 'exit 130' INT TERM
+(
+  cd "$ROOT_DIR/frontend"
+  if [[ ! -d node_modules ]] || ! npm ls --all --include=dev --include=optional >/dev/null 2>&1; then
+    printf 'Installazione delle dipendenze frontend dal lockfile...\n'
+    npm ci --include=dev --include=optional
+  fi
+)
+
+printf 'Verifica e sincronizzazione delle dipendenze backend...\n'
+(
+  cd "$ROOT_DIR/backend"
+  UV_CACHE_DIR="$ROOT_DIR/.uv-cache" uv sync --locked
+)
 
 (
   cd "$ROOT_DIR/backend"
-  UV_CACHE_DIR="$ROOT_DIR/.uv-cache" exec uv run uvicorn app.main:app \
+  UV_CACHE_DIR="$ROOT_DIR/.uv-cache" exec uv run --locked --no-sync uvicorn app.main:app \
     --reload --host "$HOST" --port "$BACKEND_PORT"
 ) &
 PIDS+=("$!")
