@@ -4,6 +4,266 @@ Aggiornato il **8 ottobre 2026**. Base precedente agli interventi: branch `main`
 `dcb9557` (`fix: stabilize table autofill and DOCX finalization`).
 Ricontrollare Git all'inizio della prossima sessione.
 
+## Correzione mirata soggetti/condizioni, replay offline — 8 ottobre 2026
+
+Nuova richiesta esplicita: correggere il prototipo usando le due risposte
+congelate, senza altri esperimenti DeepSeek né integrazione. Preservate tutte
+le modifiche pendenti. **Zero nuove chiamate AI, nessun nuovo agente/livello di
+orchestrazione, nessuna modifica a pipeline ordinaria/UI/sessioni, commit/push.**
+
+- Validatore prototipo `global-compilation-offline-v3`: decisioni USER verificate
+  prioritarie e conservate con prove, scope e condizione esatta, indipendentemente
+  da stato/soggetto/citazione LLM. Conflitti fra record verificati espliciti,
+  non risolti scegliendo una risposta del modello. SOURCE ammesse valutate prima
+  delle domande per le condizioni riconosciute; nessuna esclusività giuridica
+  implicita. Supportate anche risposte SOURCE sì/no alla qualificazione esatta;
+  consorziata esecutrice e partecipazione richiedono prove della pratica.
+- Decisione backend separata dalla proposta LLM: soggetto, origine, regola e
+  citazione integrale verificati. La proposta grezza non viene riscritta.
+  Contesti dei ruoli riletti dall'originale verificato: didascalia dei titolari
+  di poteri ora correttamente representative; direttori, firmatari, consorziate
+  e operatore separati. Record SOURCE consorziata non sovrascrive l'operatore;
+  amministratore unico non diventa rappresentante per inferenza.
+- Partecipazione: **una sola domanda logica predisposta**, con ID stabile per
+  originale; prima verificati USER e SOURCE della pratica. Nessuna deduzione da
+  S.r.l./tipologia. Include eventuale designazione esecutrice se il FORM la
+  richiede. Domande LLM ripetute accorpate, sottorichieste miste conservate per
+  revisione. Nessun invio in chat o nuovo registro persistente: prototipo isolato.
+- Replay offline su nuove copie, client provider/risoluzione profili bloccati.
+  **279/279 candidate e 15/15 sezioni in entrambi; valori scrivibili invariati,
+  esattamente 12 e 14.** Prima risposta: 12 VALIDATED, 10 NA, 6 REVIEW, 251 UNKNOWN;
+  thinking: **14 VALIDATED, 10 NA, 6 REVIEW, 249 UNKNOWN** (prima 14/7/6/252).
+  Entrambi ora **7 APPLICABLE, 1 NA, 7 UNKNOWN**; thinking prima 7/0/8.
+- Recupero concreto del thinking: 5.a esclusa con USER già verificato e soggetto
+  operatore; due slot dipendenti UNKNOWN → NA. Le sette decisioni USER locali,
+  già presenti, conservate tutte. Sede operativa UNKNOWN → NA per coincidenza
+  SOURCE esplicita, senza dipendere dalla proposta errata di scriverla.
+  Nessun nuovo valore né taglio/composizione di quelli proposti.
+- Restano UNKNOWN 5.b/b-bis/c/e/f/g/h per esclusioni non provate, i poteri/ruolo
+  rappresentativo di Luca Ferri, modalità di partecipazione, dati personali,
+  abilitazione ed estremi camerali mancanti. **0/13 sospette riproposte o
+  approvate**; nessun direttore trasferito ai rappresentanti/consorziate.
+  Non risolte in questo pass le altre omissioni/alternative delle domande LLM.
+- Export parziali verificati: 12/14 celle autorizzate, altre 497/495 e 13 parti
+  accessorie identiche; riapertura e confronto canonico XML passati, solo avviso
+  di bozza oltre ai valori. Mai completed/ready. Copertura/schema/troncamento,
+  firme e provenienza continuano a bloccare scritture non autorizzate.
+- **309 test mirati passati:** 121 prototipo (51 nuovi) + 188 regressioni
+  script/DOCX/fonti; provider simulati/storage temporanei. Ruff backend completo
+  passato; suite completa/frontend/E2E non eseguiti. Runner e moduli condivisi
+  invariati. Preservazione per hash di **33 tabelle, 29 file applicativi e 156
+  artefatti storici**. Nessuna migrazione/reindicizzazione o impostazione AI mutata.
+
+[Report e UNKNOWN residui](backend/data/compilation-audit/global-subject-conditions-20261008/report.md),
+[confronto macchina](backend/data/compilation-audit/global-subject-conditions-20261008/comparison-final.json),
+[replay senza thinking](backend/data/compilation-audit/global-subject-conditions-20261008/verified-without-thinking/validation-offline.json),
+[replay thinking](backend/data/compilation-audit/global-subject-conditions-20261008/verified-thinking/validation-offline.json).
+Gli esiti conclusivi sono nei percorsi `verified-*`; altri replay nella stessa
+cartella sono intermedi locali. Prototipo ancora separato. **Fermarsi qui**:
+nessuna ulteriore prova AI, integrazione o modifica ordinaria da avviare da soli.
+
+## Seconda prova globale con thinking — 8 ottobre 2026
+
+Successiva richiesta esplicita: **una sola nuova chiamata reale**, stessi input
+congelati e stesso validatore aggiornato, confronto senza integrazione; poi
+fermarsi. Preservate tutte le modifiche pendenti. **Nessun codice del prototipo,
+pipeline ordinaria o UI modificato; nessun commit/push.**
+
+- Supporto verificato prima della prova sulle pagine ufficiali DeepSeek:
+  `deepseek-flash`, thinking con JSON mode. Schema invariato nel prompt e
+  Pydantic, non imposto dal provider. Nessun completamento di preflight.
+  Unica differenza nel request: `thinking.type=enabled` anziché `disabled`;
+  effort default documentato high. Temperatura inviata 0.1 invariata ma ignorata
+  dal provider in thinking mode: limite esplicito del confronto.
+- FORM/SOURCE/USER, originale e messaggi copiati identici dalla prima prova;
+  schema identico. Validatore SHA-256
+  `60d89fc1b3665e117805fe092724fb031426ec44ec6feff9dbd8052112a166f1`
+  invariato rispetto alla baseline offline. Nessuna riparazione del piano.
+- **Thinking confermato effettivamente:** canale reasoning presente e
+  **29.087 reasoning token** dichiarati dal provider. Una chiamata, HTTP 200/stop,
+  nessun fallback/retry/troncamento. Fingerprint del modello uguale alla prima.
+  **213.653 input + 59.152 output = 272.805 token**, output finale 30.065 per
+  differenza. **178,392 s** complessivi registrati, **178,074 s HTTP**; prima
+  prova 94,407 s, senza misura HTTP separata. Input +25 a messaggi identici:
+  causa non dimostrata. Massimo richiesto invariato 98.304, non raggiunto.
+- **279/279 candidate, 15/15 sezioni**, zero ID inventati/omessi/duplicati;
+  conteggio dichiarato ora corretto 279. **17 valori proposti, 14 verificati e
+  scrivibili** contro 14/12. Zero composizioni non letterali contro 2: telefono
+  e albo sono i due guadagni. Tutti i 12 candidate già scrivibili conservati;
+  CF/P.IVA proposti ora letteralmente dalla scheda Markdown, sempre dati demo.
+  **14/18 riferimenti SOURCE ai valori ammessi**, da 9 posizioni distinte.
+- Tre nuove proposte bloccate: sede operativa nonostante «se diversa» e
+  coincidenza SOURCE esplicita; nome/carica di Luca Ferri con ruolo representative
+  non provato. Nome e carica sono documentati, poteri e firmatario no: non sono
+  tre fatti inventati né falsi negativi dimostrati. Direttore tecnico distinto
+  dai rappresentanti; quattro dati in 5.d e nome nella parte terza validati.
+- Regressione: tutte le otto sezioni NA del modello sono legate a un'entità
+  ignota invece che all'operatore. Backend: **7 APPLICABLE, 0 NA, 8 UNKNOWN**
+  contro 7/1/7. 5.a già risolta dalle 7 decisioni USER; niente nuova domanda.
+  Cinque rami di tipologia hanno anche esclusioni non certificate dal validatore
+  congelato, senza ontologia negativa generale: non implicano cinque nuove
+  domande obbligatorie. 5.g/5.h richiedono qualificazione/relazione documentata
+  o USER; S.r.l. non determina consorzio né designazione di consorziata.
+  SOURCE basta già a escludere la sede operativa coincidente. Nessuna di queste
+  valutazioni manuali applicata al piano. Stati candidate: 14 VALIDATED, 7 NA,
+  6 REVIEW, 252 UNKNOWN; le sette decisioni USER locali rimangono NA.
+- **0/13 vecchie assegnazioni sospette riproposte**, tutte UNKNOWN backend.
+  Quattro target consorziate ancora nella sezione corretta; perdita però del
+  ruolo distinto consortium_member, ora generico unknown/other.
+- **5 domande contro 11**, zero duplicati testuali. Tolte riconferme inutili,
+  ma omessi gli estremi camerali e la data di abilitazione, realmente mancanti;
+  registro pubblico chiesto insieme ai dati benché alternativa FORM. Domanda
+  concordato pertinente alla condizione reale, non attestata negativa da SOURCE.
+  Nessuna domanda inoltrata alla chat. Meno domande non prova copertura migliore.
+- **Export parziale reale:** 14 celle scritte, altre 495 e 13 parti accessorie
+  identiche; riapertura e confronto canonico XML riusciti, oltre alle celle
+  autorizzate solo avviso di bozza. Mai completato/pronto all'invio.
+  **70 test prototipo passati in 5,53 s**, Ruff backend completo passato.
+  Le 181 regressioni precedenti non rieseguite; niente frontend/E2E.
+  Preservati 33 tabelle SQLite, 29 file applicativi, codice e prima prova per hash.
+  Nessuna migrazione/reindicizzazione o modifica alle impostazioni AI.
+
+[Report comparativo completo](backend/data/compilation-audit/global-thinking-20261008/report.md),
+[metriche e verdetti](backend/data/compilation-audit/global-thinking-20261008/comparison.json),
+[DOCX parziale thinking](backend/data/compilation-audit/global-thinking-20261008/live-01/bozza-globale-parziale.docx).
+**Non dimostrato un miglioramento globale sufficiente:** due scritture in più,
+ma regressioni semantiche, chiarimenti omessi, tempo circa 1,89× e token totali
++9,33%. Una coppia di risposte non misura varianza/statistica. Prototipo separato;
+fermarsi qui, nessuna ulteriore chiamata o integrazione autorizzata automaticamente.
+
+## Rivalutazione offline del prototipo globale — 8 ottobre 2026
+
+Nuova richiesta esplicita: correggere i limiti dimostrati, rivalutare la risposta
+già ottenuta, distinguere le 14 proposte e provare l'export parziale. **Nessuna
+nuova chiamata DeepSeek, integrazione, modifica UI, commit o push.** Preservate
+tutte le modifiche pendenti del precedente esperimento e tutti i suoi artefatti.
+
+- Copertura ora calcolata dagli ID reali/univoci: **279/279 candidate, 15/15
+  sezioni**. Il `coverage_count=400` originale rimane invariato e genera un
+  avviso, senza bloccare da solo l'export. Omissioni, duplicati, ID estranei,
+  piano incompleto, output troncato e schema invalido continuano a bloccare
+  tutte le scritture. Nessuna correzione della risposta del modello.
+- Parser SOURCE esteso a righe di tabella PDF con etichette esplicite senza
+  `:`, mantenendo proprietario, proprietà e ruolo; ordine professionale nel
+  seguito immediato del record direttore. Applicabilità positiva verificata
+  anche per enumerazioni FORM riconosciute interamente, senza perdere ulteriori
+  qualificazioni o dedurre partecipazione/appartenenze dalla forma giuridica.
+- Revisione manuale dei 14 valori: **9 già corretti/validati, 3 falsi negativi
+  recuperati, 2 errori di composizione dell'output**. Recuperati CF e P.IVA
+  letterali nella riga 13 del PDF, annotazione inclusa, **solo come dati demo**;
+  recuperato il nome del direttore in parte terza, con tipologia esplicitamente
+  inclusa nella lista FORM. Telefono e numero albo hanno dati di base corretti
+  ma stringhe complete ricomposte/non letterali: restano UNKNOWN, senza ritagli
+  automatici. Nessuna attestazione di validità degli identificativi fittizi.
+- **12 valori e 21/27 riferimenti SOURCE validati**, da 12 posizioni documentali
+  distinte, con citazioni ripetute tra campi. Le due fonti non sono indipendenti.
+  Ulteriore falso negativo locale corretto: sede operativa «se diversa», esclusa
+  dalla relazione SOURCE esplicita di coincidenza delle sedi dello stesso
+  operatore. Stati finali: 12 VALIDATED, 10 NA, 6 REVIEW, 251 UNKNOWN.
+  Le 13 vecchie assegnazioni sospette non vengono riproposte e restano UNKNOWN;
+  esclusioni dei rami non provate e poteri di rappresentanza non approvati.
+- Domanda mista sul direttore conservata separatamente per riformulazione,
+  senza perdere la data di abilitazione mancante. Nove altre domande conservate
+  da valutare; una conferma interamente risolta scartata. Nessuna inoltrata alla
+  chat. Il filtro non certifica che tutte le domande residue siano necessarie.
+- CLI `--validate-only --replay-from STORICO --output NUOVO` crea una copia nuova,
+  verifica coerenza richiesta/input e hash/catalogo dell'originale, preserva
+  baseline e manifest e registra **zero chiamate aggiuntive**. Client provider
+  e risoluzione profili bloccati durante il replay effettivo. Le usage nei report
+  sono quelle della chiamata storica; nessun nuovo consumo di token AI.
+- **Export parziale reale riuscito:** 12 celle scritte con valori originali,
+  altre 497 celle e 13 parti accessorie identiche. Riapertura python-docx e
+  confronto canonico dell'intero XML: sole celle autorizzate e avviso di bozza
+  modificati. `document_completed=false`, `ready_for_submission=false`.
+- **181 test mirati finali passati in 13,94 s**: 70 del prototipo più 111
+  regressioni script/DOCX/validazione, provider simulati e dati temporanei.
+  Ruff backend completo passato. Suite completa/frontend/E2E non rieseguiti.
+  Originali invariati su **33 tabelle SQLite e 29 file applicativi**, incluse
+  tutte le sessioni e revisioni. Nessuna migrazione o reindicizzazione.
+
+[Report offline e 14 verdetti](backend/data/compilation-audit/global-one-shot-20261008/offline-review-20261008/report.md),
+[DOCX parziale](backend/data/compilation-audit/global-one-shot-20261008/offline-review-20261008/replay-final/bozza-globale-parziale.docx),
+[documentazione aggiornata](docs/global-compilation-experiment.md).
+Prototipo ancora separato. La rappresentazione FORM ridondante e la modalità
+`thinking=disabled` storica non sono cambiate: non sono state provate nuove
+configurazioni del modello. La revisione chiarisce i falsi negativi dimostrati,
+non misura l'accuratezza globale del modello né autorizza l'integrazione.
+Fermarsi dopo questa rivalutazione; ulteriori prove reali o integrazioni non autorizzate.
+
+## Esperimento globale one-shot DeepSeek — 8 ottobre 2026
+
+Richiesta esplicita dell'utente: prototipo separato, una sola chiamata globale
+reale su copia Catanzaro, confronto con stability pass; poi fermarsi. Base
+`main`, `bf998c5`, working tree inizialmente pulito. **Nessun commit/push.**
+Pipeline ordinaria, UI, README/start e tutte le sessioni originali invariati.
+
+- Aggiunti `backend/app/global_compilation.py`, CLI
+  `backend/scripts/global_compilation_experiment.py`, 34 test e
+  [documentazione del prototipo](docs/global-compilation-experiment.md).
+  Una richiesta con FORM completo/strutturato, SOURCE integrali e USER separati;
+  schema rigoroso, verifiche backend di provenienza, proprietà, identità/ruolo,
+  condizioni, ID, duplicati/omissioni e coverage. Nessun retrieval, batch,
+  revisore LLM, riparazione o fallback. `--validate-only` rilegge la medesima
+  risposta senza provider. Nessun nome/ID del caso codificato nel motore.
+- Profilo reale `deepseek-flash` ufficiale: `context_window=32768` salvato si
+  applica solo a Ollama, non al contesto remoto DeepSeek. Documentazione attuale
+  verificata: 1M contesto, massimo output dichiarato 393.216 token. Sessioni
+  ordinarie inviano 8.192 token/fase; vecchia API unica 32.768 e massimo 200.000
+  caratteri di risposta. Prototipo invia **98.304 token**, JSON mode con schema
+  nel prompt e validazione Pydantic: non schema imposto dal provider.
+- **Una chiamata reale**, HTTP 200/stop, **213.628 input + 35.887 output =
+  249.515 token**, **94,407 s** intorno a invio/ricezione e prima verifica locale.
+  Nessun troncamento. Tutti i **279 candidate e 15 sezioni** presenti, zero ID
+  estranei/omessi; il modello dichiara però **coverage_count=400**. Errore
+  globale esplicito: **zero scritture, zero DOCX**, mai completed/READY.
+  Il primo ConnectError del sandbox è avvenuto prima dell'invio, model_calls=0;
+  dopo l'autorizzazione di rete è stata inviata la sola richiesta reale.
+- Input dalla sola **v102**, con **7 decisioni USER non professionista singolo**;
+  nessuna fusione con la v83. Copia SQLite read-only, originali/fonti congelati:
+  **829 paragrafi** in ordine verificati, **50 tabelle**, titoli nelle celle,
+  note, footer, numerazione e stili; **3 SOURCE integrali / 15.824 caratteri**.
+  Nessuna SOURCE fattuale nel progetto attuale; project-facts separato come
+  USER, altre bozze/artefatti esclusi. Unica immagine: logo della Fondazione,
+  verificato localmente; il prototipo inventaria immagini, senza OCR implicito.
+- **14 valori proposti / 27 riferimenti SOURCE; 9 valori con 9 prove ammessi
+  localmente** nella verifica finale, tutti comunque bloccati dalla coverage.
+  Prima verifica: un solo valore, perché una prova PDF non supportata scartava
+  anche la prova Markdown valida. Corretto il controllo per prove indipendenti
+  e rivalidata **offline la stessa risposta**, senza alterare valori/prompt o
+  chiamare DeepSeek. Conservati codice al momento della chiamata, entrambi gli
+  esiti e risposta grezza. Il validatore resta limitato a proprietà testuali
+  esplicite; 10 riferimenti PDF non supportati non sono dichiarati falsi.
+- Confronto concreto: **0/13 vecchie assegnazioni sospette riproposte**, ma le
+  esclusioni sostitutive non sono provate e tutti i 13 restano UNKNOWN. I quattro
+  blocchi consorziate hanno ora section_id corretto 573 e soggetto distinto dal
+  consorzio; esclusioni di 5.g/5.h non approvate. Unica sezione esclusa con prova:
+  professionista singolo, USER. 5.d: tre dati aziendali e tre del direttore
+  ammessi localmente; albo/telefono contengono composizioni non letterali
+  respinte. Prima tabella: tre valori ammessi; CF/P.IVA e condizione sulle sedi
+  risentono anche dei limiti del validatore. Luca Ferri è proposto representative
+  senza prova di poteri: ruolo non approvato. Non equiparato il direttore tecnico
+  a firmatario o soggetto con poteri. **11 domande proposte**: revisione manuale
+  distingue 7 gruppi necessari, 2 condizionali, 1 ridondante, 1 alternativa;
+  il filtro automatico delle domande miste resta insufficiente. Nessuna domanda
+  del modello effettivamente inoltrata alla chat.
+- **145 test mirati finali passati in 12,57 s** (34 nuovi + regressioni
+  script/DOCX/validazione), provider simulati e dati temporanei. Ruff completo,
+  diff/whitespace e riferimenti controllati. Un processo nel sandbox interrotto
+  non è contato come passato; la diagnosi mostrava event loop in attesa e thread
+  inattivo; gli stessi test completati fuori sandbox. Nessuna suite completa o
+  frontend/E2E rieseguiti. Preservazione finale: **33 tabelle SQLite e 29 file
+  applicativi invariati**, incluse tutte le sessioni/revisioni e v83/v102.
+  Nessuna migrazione o reindicizzazione.
+
+Report locale con confronto campo per campo, 13 assegnazioni, domande, limiti
+e tracce: [esperimento globale](backend/data/compilation-audit/global-one-shot-20261008/report.md).
+**Non dimostrata una superiorità sufficiente: nessuna integrazione attivata.**
+Proposta soltanto condizionata a una prova migliore: ingresso opzionale nel
+resolver, unico piano globale verificato, importazione atomica con versione/hash,
+riuso di writer e chiarimenti USER esistenti, fallimento esplicito senza fallback.
+L'utente ha chiesto di fermarsi dopo questo esperimento: nessuna ulteriore prova
+reale o modifica della pipeline da avviare automaticamente.
+
 ## Commit locali richiesti dall'utente — 8 ottobre 2026
 
 Su richiesta esplicita sono stati consolidati i fix locali precedenti e lo
