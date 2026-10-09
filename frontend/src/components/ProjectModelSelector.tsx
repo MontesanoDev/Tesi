@@ -1,4 +1,4 @@
-import { Check, Settings2, Settings, ArrowUpRight } from 'lucide-react'
+import { Check, ChevronDown, Settings2, ArrowUpRight } from 'lucide-react'
 import { useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api'
@@ -85,16 +85,19 @@ export function ProjectModelSelector({ projectId, disabled = false, onChanging }
     return () => { controller.abort(); onChanging?.(false) }
   }, [projectId, reload, onChanging])
 
-  async function select(value: string) {
+  async function select(value: string, thinking?: boolean, close = true) {
     if (busy || disabled) return
     const controller = active.current
     setBusy(true); setError(null); setNotice(null); onChanging?.(true)
     try {
-      const result = await api.setProjectAiModel(projectId, value || null)
+      const result = thinking === undefined
+        ? await api.setProjectAiModel(projectId, value || null)
+        : await api.setProjectAiModel(projectId, value || null, thinking)
       if (!controller?.signal.aborted) {
         setSelection(result)
-        setNotice('Modello aggiornato per questo progetto.')
-        closeMenu()
+        setNotice(close ? 'Modello aggiornato per questo progetto.'
+          : 'Ragionamento aggiornato per questo progetto.')
+        if (close) closeMenu()
       }
     } catch (reason) {
       if (!controller?.signal.aborted) setError(reason instanceof Error ? reason.message : 'Cambio modello non riuscito')
@@ -110,13 +113,34 @@ export function ProjectModelSelector({ projectId, disabled = false, onChanging }
     <button ref={trigger} className={`composer-ai-trigger${open ? ' is-open' : ''}`}
       type="button" aria-label="Impostazioni AI" aria-haspopup="menu" aria-expanded={open}
       aria-controls={open ? `${id}-menu` : undefined}
-      title={selection?.effective_profile ? `Modello: ${selection.effective_profile.name} · ${selection.effective_profile.model}` : 'Impostazioni AI'}
+      title={selection?.effective_profile
+        ? `Modello: ${selection.effective_profile.name} · ${selection.effective_profile.model}`
+          + (selection.thinking ? ' · ragionamento attivo' : '')
+        : 'Impostazioni AI'}
       onClick={() => setOpen((value) => !value)}
       onKeyDown={(event) => {
         if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); setOpen(true) }
       }}>
-      <Settings size={20} strokeWidth={1.7} />
+      <span className="composer-ai-name">{selection?.effective_profile?.model ?? 'Modello'}</span>
+      <ChevronDown size={14} strokeWidth={1.8} aria-hidden="true" />
     </button>
+    {selection?.effective_profile?.provider === 'deepseek' && (
+      <button type="button" role="switch" aria-checked={selection.thinking}
+        className={`composer-ai-thinking-toggle${selection.thinking ? ' is-on' : ''}`}
+        aria-label="Ragionamento approfondito"
+        title={selection.profile_id === null
+          ? 'Seleziona un modello specifico per attivare il ragionamento'
+          : selection.thinking
+            ? 'Ragionamento attivo: più lento, più token'
+            : 'Attiva il ragionamento approfondito: più lento, più token'}
+        disabled={disabled || busy || selection.profile_id === null}
+        onClick={() => void select(selection.profile_id!, !selection.thinking, false)}>
+        <span className="composer-ai-thinking-label">thinking</span>
+        <span className={`ai-switch${selection.thinking ? ' is-on' : ''}`} aria-hidden="true">
+          <span className="ai-switch-knob" />
+        </span>
+      </button>
+    )}
     {open && <div ref={panel} id={`${id}-menu`} role="menu" aria-label="Modello AI" tabIndex={-1}
       className={`composer-ai-menu${placement.below ? ' opens-below' : ''}`}
       style={{ maxHeight: placement.maxHeight }} onKeyDown={menuKeyDown}>

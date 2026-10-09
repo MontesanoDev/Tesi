@@ -52,6 +52,7 @@ router = APIRouter(prefix="/api", tags=["Modelli AI"], route_class=PrivateSettin
 
 class ProfileChoice(BaseModel):
     profile_id: str | None = Field(default=None, max_length=100)
+    thinking: bool | None = None
 
 
 class ProbeInput(ProfileInput):
@@ -101,7 +102,7 @@ def selected_model(project_id: str) -> dict:
 
 @router.put("/projects/{project_id}/ai-model")
 def choose_model(project_id: str, payload: ProfileChoice) -> dict:
-    return select_project_profile(project_id, payload.profile_id)
+    return select_project_profile(project_id, payload.profile_id, payload.thinking)
 
 
 @router.post("/settings/ai/check")

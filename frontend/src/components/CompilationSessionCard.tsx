@@ -122,7 +122,7 @@ export function CompilationSessionCard({ session, busy, processing, loading, err
     </li>
   }
 
-  return <section className="compilation-chat-card" aria-label={`Compilazione ${session.template_name}`} aria-busy={processing || loading}>
+  return <section className="compilation-message" aria-label={`Compilazione ${session.template_name}`} aria-busy={processing || loading}>
     <header><strong>Compilazione · {session.template_name}</strong><span role="status">{statusLabel}</span></header>
     <div className="compilation-conversation" aria-live="polite">
       {!processing && session.chat?.notice && <p>{session.chat.notice}</p>}

@@ -79,7 +79,7 @@ async def test_persistence_encryption_defaults_and_selection(client):
     assert len(settings["profiles"]) == 2
     assert settings["default_profile_id"] == cloud["id"]
     selected = (await client.get(f"/api/projects/{PROJECT}/ai-model")).json()
-    assert selected == {"profile_id": None, "effective_profile": cloud}
+    assert selected == {"profile_id": None, "effective_profile": cloud, "thinking": False}
     await client.put(f"/api/projects/{PROJECT}/ai-model", json={"profile_id": local["id"]})
     assert resolve_project_settings(PROJECT).provider == "ollama"
     assert resolve_project_settings(PROJECT).context_window == 16384
@@ -90,6 +90,41 @@ async def test_persistence_encryption_defaults_and_selection(client):
     assert (await client.delete(f"/api/settings/ai/profiles/{cloud['id']}")).status_code == 204
     assert (await client.delete(f"/api/settings/ai/profiles/{local['id']}")).status_code == 204
     assert not resolve_project_settings(PROJECT).configured
+
+
+@pytest.mark.anyio
+async def test_project_thinking_persists_only_with_a_selected_profile(client):
+    profile = (await client.post("/api/settings/ai/profiles", json=DEEPSEEK)).json()
+    response = await client.put(
+        f"/api/projects/{PROJECT}/ai-model",
+        json={"profile_id": profile["id"], "thinking": True},
+    )
+    assert response.json()["thinking"] is True
+    assert resolve_project_settings(PROJECT).thinking is True
+    # Changing the model when thinking is not specified keeps the preference.
+    await client.put(f"/api/projects/{PROJECT}/ai-model", json={"profile_id": profile["id"]})
+    assert (await client.get(f"/api/projects/{PROJECT}/ai-model")).json()["thinking"] is True
+    # Returning to the shared default removes the project preference.
+    await client.put(f"/api/projects/{PROJECT}/ai-model", json={"profile_id": None})
+    assert resolve_project_settings(PROJECT).thinking is False
+
+
+@pytest.mark.anyio
+async def test_thinking_migration_preserves_existing_project_profile(client):
+    profile = (await client.post("/api/settings/ai/profiles", json=DEEPSEEK)).json()
+    await client.put(f"/api/projects/{PROJECT}/ai-model", json={"profile_id": profile["id"]})
+    # Reproduce the previous schema with an existing project selection.
+    with connection() as db:
+        db.execute("ALTER TABLE project_ai_settings DROP COLUMN thinking_mode")
+    init_database()
+    init_database()
+    selected = (await client.get(f"/api/projects/{PROJECT}/ai-model")).json()
+    assert selected == {
+        "profile_id": profile["id"], "effective_profile": profile, "thinking": False,
+    }
+    assert resolve_project_settings(PROJECT).api_key == SECRET
+    with connection() as db:
+        assert db.execute("PRAGMA foreign_key_check").fetchall() == []
 
 
 @pytest.mark.anyio

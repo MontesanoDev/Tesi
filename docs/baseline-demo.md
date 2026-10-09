@@ -1,9 +1,12 @@
-# Baseline della demo — 9 ottobre 2026
+# Baseline della demo — 10 ottobre 2026
 
 La versione destinata alla dimostrazione rimane in `/home/montesano/Tesi`,
 sul branch `prune-backend`. Si avvia come prima con `./start.sh`.
-Il riferimento Git locale `demo-baseline-20261009` identifica il codice
-congelato dopo la potatura e la correzione della ripresa senza rinvii.
+Il riferimento Git **`demo-baseline-20261010`** identifica la nuova base con UI
+chat aggiornata e thinking opzionale per progetto. Il branch remoto di
+riferimento è `origin/prune-backend`.
+Il precedente `demo-baseline-20261009` identifica il codice congelato dopo
+la potatura e la correzione della ripresa senza rinvii.
 Il precedente `2510418` conserva anche il codice prima della potatura.
 
 Il nuovo percorso a chiamata unica viene sviluppato in un worktree distinto,
@@ -12,6 +15,9 @@ Le prove devono usare database/storage temporanei o copie esplicite: non
 puntare le variabili `MAPI_*` ai dati della demo.
 
 ## Copia di sicurezza locale
+
+Il push e i tag proteggono il **codice**. Database, documenti e credenziali
+rimangono locali e non sono inclusi nel repository remoto.
 
 `/home/montesano/Tesi-snapshots/baseline-20261009T165627Z/` contiene:
 
@@ -28,6 +34,8 @@ puntare le variabili `MAPI_*` ai dati della demo.
 La cartella è privata e rimane fuori da Git. Le credenziali necessarie alla
 configurazione locale sono conservate soltanto nella copia privata; non sono
 incluse nel bundle del codice né in questo documento.
+Questa copia rappresenta i dati del 9 ottobre: non contiene le conversazioni
+o i file aggiunti successivamente.
 
 ## Ripristino
 
@@ -51,7 +59,15 @@ problemi tecnici non contiene campi realmente rinviati. Non certifica la
 correttezza delle risposte AI né introduce il percorso a chiamata unica.
 Le verifiche con provider simulati sono distinte dalle valutazioni AI reali.
 
-Verifiche del consolidamento: 1.332 test backend su tutti i 44 file, eseguiti
+Verifiche dell'aggiornamento del 10 ottobre: **295 test backend mirati**, **97
+test frontend**, **16 E2E desktop/mobile** con API simulate, Ruff, lint e build
+passati. Verificati anche migrazione automatica del thinking, flag/budget/timeout
+dei provider e conservazione del messaggio quando si apre il picker con **+**.
+Nessuna nuova chiamata AI. Il thinking riguarda la generazione finale RAG,
+non il planner o i passi della compilazione. Non è stato introdotto il nuovo
+motore a chiamata unica.
+
+Verifiche del consolidamento del 9 ottobre: 1.332 test backend su tutti i 44 file, eseguiti
 in processi separati per contenere la memoria; 94 test frontend; Ruff, lint
 frontend e build passati. Avvio Uvicorn/Vite su una copia dei dati, con pagina
 frontend e proxy API funzionanti, 3 progetti, 3 moduli, 4 compilazioni e 9

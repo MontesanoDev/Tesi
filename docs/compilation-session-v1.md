@@ -21,7 +21,8 @@ il [report reale](test-reale-manifestazione-interesse-2026-10-08.md).
 2. Scrivere **«me lo compili?»**. Il planner esistente riconosce l'incarico e
    l'API crea/riprende la sessione della conversazione/form, senza passare al
    generatore RAG. Risposta: «Certo. Analizzo il modulo e verifico le informazioni
-   disponibili». La scorciatoia **Avvia compilazione** rimane disponibile.
+   disponibili». Il comando in chat è l'unico avvio: il pulsante **Avvia
+   compilazione** è stato rimosso il 9 ottobre 2026.
 3. L'indicatore nel thread mostra attività e quantità reali, senza percentuali.
    La UI avanza in serie, un `resolve` per snapshot backend. Non serve premere
    un pulsante per ciascun gruppo da 12. Il budget è persistito, non React.

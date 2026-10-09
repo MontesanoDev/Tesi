@@ -1,8 +1,103 @@
 # Stato di Mapi RAG
 
-Aggiornato il **9 ottobre 2026**. Base precedente agli interventi: branch `main`, commit
+Aggiornato il **10 ottobre 2026**. Base precedente agli interventi: branch `main`, commit
 `dcb9557` (`fix: stabilize table autofill and DOCX finalization`).
 Ricontrollare Git all'inizio della prossima sessione.
+
+## Nuova base della demo: UI e thinking opzionale — 10 ottobre 2026
+
+L'utente ha provato RAG e compilazione in chat, apprezza in particolare il
+chiarimento conversazionale «in che senso, spiegati meglio» e ha autorizzato
+il consolidamento e il push di questa versione prima della semplificazione
+architetturale. Questo riscontro manuale non è un benchmark completo della
+qualità della compilazione.
+
+Riferimento della nuova base: **`demo-baseline-20261010`**, branch
+`prune-backend`, directory `/home/montesano/Tesi`; conserva anche il precedente
+tag `demo-baseline-20261009`. Il prototipo one-shot e le sue modifiche non
+committate restano nel worktree `/home/montesano/Tesi-one-shot`, senza essere
+integrati nella demo. Prima del successivo sviluppo occorre allineare quel
+worktree alla nuova base preservandone le modifiche pendenti.
+
+Revisione delle modifiche UI/thinking della sezione seguente:
+
+- Corretto il nuovo pulsante **+**: apre il picker senza cancellare il messaggio
+  già scritto; selezione del modulo ed Escape conservano anche il testo
+  selezionato nel composer. Aggiunta una regressione frontend.
+- Thinking per progetto: verificati persistenza, disattivazione al ritorno al
+  default, aggiornamento automatico dello schema precedente senza perdere
+  profilo/chiave e compatibilità con gli altri provider. Verificati sul
+  trasporto simulato flag, budget 8.192/16.384, timeout e retry per troncamento.
+  Il toggle riguarda la generazione finale RAG; planner e passi di compilazione
+  non ricevono il thinking. La spiegazione conversazionale mostrata dall'utente
+  usa il routing già esistente.
+- Allineati i selettori E2E alla nuova classe `compilation-message`; aggiunta
+  verifica browser dello switch, senza inviare involontariamente la chat.
+
+Verifiche **rieseguite in questo intervento**: **295 test backend mirati**
+(`ai_settings`, `ai_providers`, `generation`, `api`, `chat_flow`, `model_parsing`),
+**97 test frontend**, Ruff backend completo, lint e build frontend passati.
+**16 E2E desktop/mobile** passati sui quattro scenari con API simulate
+(`composer-model-menu`, `compilation-chat`, `document-review`, `project-forms`).
+Usato un Vite separato sulla porta 5187 e le librerie Chromium locali tramite
+`LD_LIBRARY_PATH`; il primo tentativo senza tali librerie non avviava il browser.
+Nessuna nuova chiamata AI o prova sui dati applicativi reali; l'intera suite
+backend non è stata ripetuta, resta documentata nel consolidamento del 9 ottobre.
+
+La colonna `thinking_mode` si aggiunge automaticamente all'avvio del backend:
+è una migrazione additiva, senza interventi manuali o reindicizzazione.
+Git conserva il codice; i dati e le credenziali locali restano esclusi dal push.
+Il backup privato del 9 ottobre resta la fotografia dei dati di quella data,
+non include le conversazioni successive. Riferimenti in
+[baseline-demo](docs/baseline-demo.md).
+
+Prossimo intervento: discutere il contratto unico di fatti, condizioni ed
+evidenze e i criteri di valutazione, mantenendo questa versione ripristinabile.
+Nessuna ulteriore potatura o sostituzione del motore effettuata in questa revisione.
+
+## UI chat: flusso compilazione, picker e modello+thinking — 9 ottobre 2026
+
+Richiesta esplicita dell'utente, dopo la valutazione del lavoro one-shot:
+sistemare la UI della demo in `/home/montesano/Tesi`. Al termine di questo
+intervento le modifiche erano nel working tree su `prune-backend`, non committate;
+il successivo consolidamento è descritto nella sezione del 10 ottobre.
+
+- **Compilazione in chat**: rimosso il tasto **Avvia compilazione**; si parte
+  scrivendo «me lo compili?». Il vecchio pannello è diventato un messaggio
+  (`compilation-message`) che vive **dentro l'ultimo turno, prima della
+  risposta**: la risposta è l'ultima cosa e resta leggibile. Restano domanda,
+  azione principale, download e il disclosure "Dettagli compilazione".
+- **Scroll**: ancoraggio solo se si è già vicini al fondo (soglia 140 px), i
+  cambi di versione della sessione non trascinano più la vista, il testo
+  digitato nel composer sopravvive all'invio in corso.
+- **Picker documenti**: menu `@` trasformato in popover ancorato al composer
+  (posizionamento assoluto, ombra, max-height 240, apertura verso l'alto) più
+  un bottone **+** nella toolbar; chip invariato.
+- **Modello + thinking**: il selettore mostra il nome del modello invece della
+  sola rotella; lo **switch on/off stile iPhone** per il "Ragionamento
+  approfondito", con etichetta **"thinking"**, sta **fuori dal menu, accanto al
+  nome del modello** (verde quando attivo), disponibile per DeepSeek con
+  profilo specifico selezionato. Default disattivato per ogni progetto.
+  Backend: colonna additiva
+  `project_ai_settings.thinking_mode`, campo `thinking` in
+  `ProjectAiSelection`/PUT `/ai-model`, `AISettings.thinking` applicato solo
+  alla risposta finale (thinking enabled, `reasoning_effort=low`, budget
+  8.192/16.384 token, timeout 300 s e read esteso). Planner, estrazione fatti,
+  bozze e fasi della sessione restano senza thinking.
+
+Verifiche: **96 test frontend** passati con `vitest run --maxWorkers=1` (il run
+parallelo ha prodotto timeout da 5 s per pressione di memoria della macchina,
+non legati alle modifiche), lint e build frontend passati; Ruff backend
+completo e **289 test mirati** passati (ai_settings, ai_providers, generation,
+api, chat_flow, model_parsing). E2E non rieseguiti stasera;
+`composer-model-menu.spec.ts` è stato aggiornato al nuovo body PUT. Serve il
+riavvio del backend per la migrazione additiva automatica. Nessuna migrazione
+manuale, reindicizzazione o modifica ai dati reali durante le verifiche.
+
+Prossimo punto: prova manuale della UI (ordine risposta/compilazione, picker,
+thinking reale su DeepSeek) e, se ok, commit del blocco. Restano non
+implementati il flusso interamente testuale con avanzamento persistito dal
+backend come turni e lo streaming delle risposte.
 
 ## Consolidamento della demo e nuovo punto di partenza — 9 ottobre 2026
 

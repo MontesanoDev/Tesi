@@ -25,12 +25,17 @@ from app.requirement_checks import (
 # JSON (stream=False). Its read timeout must include loading and generation.
 CHAT_TIMEOUT_SECONDS = 90
 OLLAMA_CHAT_TIMEOUT_SECONDS = 180
+# DeepSeek thinking emits hidden reasoning before the JSON: the answer needs a
+# larger completion budget and a longer wall clock than the ordinary chat.
+THINKING_CHAT_TIMEOUT_SECONDS = 300
 CHAT_READ_TIMEOUT_SECONDS = 30
 CHAT_CONNECT_TIMEOUT_SECONDS = 10
 # Output limits, independent of the retrieved context. A single larger attempt
 # is allowed on an explicit length stop; partial JSON is never accepted.
 ANSWER_OUTPUT_TOKENS = 2048
 ANSWER_RETRY_OUTPUT_TOKENS = 4096
+THINKING_ANSWER_OUTPUT_TOKENS = 8192
+THINKING_ANSWER_RETRY_OUTPUT_TOKENS = 16384
 logger = logging.getLogger(__name__)
 
 
@@ -349,7 +354,15 @@ def _parse_mixed_content(
     )
 
 
+def thinking_requested() -> bool:
+    """Thinking is only forwarded for DeepSeek, the provider that supports it."""
+    settings = get_ai_settings()
+    return settings.provider == "deepseek" and settings.thinking
+
+
 def chat_timeout_seconds() -> float:
+    if thinking_requested():
+        return THINKING_CHAT_TIMEOUT_SECONDS
     return (
         OLLAMA_CHAT_TIMEOUT_SECONDS
         if get_ai_settings().provider == "ollama" else CHAT_TIMEOUT_SECONDS
@@ -357,11 +370,12 @@ def chat_timeout_seconds() -> float:
 
 
 def chat_http_timeout() -> httpx.Timeout:
+    settings = get_ai_settings()
+    extended_read = settings.provider == "ollama" or thinking_requested()
     return httpx.Timeout(
         CHAT_READ_TIMEOUT_SECONDS,
         connect=CHAT_CONNECT_TIMEOUT_SECONDS,
-        read=(chat_timeout_seconds()
-              if get_ai_settings().provider == "ollama" else CHAT_READ_TIMEOUT_SECONDS),
+        read=(chat_timeout_seconds() if extended_read else CHAT_READ_TIMEOUT_SECONDS),
     )
 
 
@@ -486,6 +500,7 @@ async def generate_grounded_answer(
                 for index in range(1, len(requirements) + 1)
             ], ensure_ascii=False)
 
+    thinking = thinking_requested()
     request_body = {
         "model": settings.model,
         "messages": [
@@ -496,10 +511,13 @@ async def generate_grounded_answer(
             },
         ],
         "response_format": {"type": "json_object"},
-        "thinking": {"type": "disabled"},
+        "thinking": {"type": "enabled" if thinking else "disabled"},
         "temperature": 0.1,
-        "max_tokens": ANSWER_OUTPUT_TOKENS,
+        "max_tokens": THINKING_ANSWER_OUTPUT_TOKENS if thinking else ANSWER_OUTPUT_TOKENS,
     }
+    if thinking:
+        # Bound the hidden reasoning: the answer still has to fit the budget.
+        request_body["reasoning_effort"] = "low"
     timeout_seconds = chat_timeout_seconds()
     http_timeout = chat_http_timeout()
     repairing = False
@@ -514,7 +532,10 @@ async def generate_grounded_answer(
                     nonlocal length_retried
                     while True:
                         attempt = {**body, "max_tokens": (
-                            ANSWER_RETRY_OUTPUT_TOKENS if length_retried else ANSWER_OUTPUT_TOKENS
+                            (THINKING_ANSWER_RETRY_OUTPUT_TOKENS if thinking
+                             else ANSWER_RETRY_OUTPUT_TOKENS) if length_retried
+                            else (THINKING_ANSWER_OUTPUT_TOKENS if thinking
+                                  else ANSWER_OUTPUT_TOKENS)
                         )}
                         try:
                             result = await request_model_content(

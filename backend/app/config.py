@@ -23,6 +23,7 @@ class AISettings:
     provider: str = "deepseek"
     profile_id: str | None = None
     context_window: int = 32768
+    thinking: bool = False
 
     @property
     def configured(self) -> bool:

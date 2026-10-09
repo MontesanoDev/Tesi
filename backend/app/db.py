@@ -99,7 +99,8 @@ def init_database() -> None:
 
             CREATE TABLE IF NOT EXISTS project_ai_settings (
                 project_id TEXT PRIMARY KEY REFERENCES projects(id) ON DELETE CASCADE,
-                profile_id TEXT NOT NULL REFERENCES ai_profiles(id) ON DELETE RESTRICT
+                profile_id TEXT NOT NULL REFERENCES ai_profiles(id) ON DELETE RESTRICT,
+                thinking_mode INTEGER NOT NULL DEFAULT 0
             );
 
             CREATE TABLE IF NOT EXISTS project_files (
@@ -350,6 +351,7 @@ def init_database() -> None:
         )
         _ensure_column(db, "conversation_turns", "form_reference_json", "TEXT")
         _ensure_column(db, "conversation_turns", "compilation_json", "TEXT")
+        _ensure_column(db, "project_ai_settings", "thinking_mode", "INTEGER NOT NULL DEFAULT 0")
         db.execute(
             """
             UPDATE conversations

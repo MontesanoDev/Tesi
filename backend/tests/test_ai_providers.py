@@ -56,7 +56,7 @@ async def test_migration_preserves_keys_and_foreign_keys(client):
     assert result["profiles"] == [old] and result["default_profile_id"] == old["id"]
     assert {item["id"] for item in result["providers"]} == set(PROVIDERS)
     selected = (await client.get(f"/api/projects/{PROJECT}/ai-model")).json()
-    assert selected == {"profile_id": old["id"], "effective_profile": old}
+    assert selected == {"profile_id": old["id"], "effective_profile": old, "thinking": False}
     assert resolve_project_settings(PROJECT).api_key == SECRET
     with connection() as db:
         assert db.execute("PRAGMA foreign_key_check").fetchall() == []

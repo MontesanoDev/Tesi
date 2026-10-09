@@ -38,8 +38,9 @@
 .ai-login-steps { display: grid; gap: 14px; margin-top: 18px; }
 .ai-login-steps a, .ai-credentials-link { color: #ccd7bb; font-size: 13px; text-underline-offset: 3px; overflow-wrap: anywhere; }
 .ai-login-steps .ai-button { justify-self: start; }
-.composer-ai { position: relative; flex: 0 0 auto; }
-.composer-ai-trigger { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #a5a6a0; cursor: pointer; }
+.composer-ai { position: relative; flex: 0 0 auto; display: flex; align-items: center; gap: 6px; }
+.composer-ai-trigger { display: flex; align-items: center; gap: 5px; max-width: 190px; height: 40px; padding: 0 10px; border: 0; border-radius: 10px; background: transparent; color: #a5a6a0; cursor: pointer; }
+.composer-ai-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
 .composer-ai-trigger:hover, .composer-ai-trigger.is-open { background: #3b3c38; color: #eeede8; }
 .composer-ai-trigger:focus-visible { outline: 2px solid #b5c8aa; outline-offset: 2px; }
 .composer-ai-menu { position: absolute; z-index: 40; left: 0; bottom: calc(100% + 10px); display: flex; flex-direction: column; width: min(310px, calc(100vw - 72px)); overflow: hidden; padding: 6px; border: 1px solid #494a44; border-radius: 12px; background: #252622; box-shadow: 0 10px 36px #0006; outline: none; }
@@ -55,6 +56,19 @@
 .composer-ai-option[aria-checked="true"] { background: #34372f; }
 .composer-ai-option:hover:not(:disabled), .composer-ai-option:focus-visible, .composer-ai-manage:hover, .composer-ai-manage:focus-visible { background: #3a3c34; outline: none; }
 .composer-ai-option:disabled { opacity: .55; cursor: default; }
+.composer-ai-thinking-toggle { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
+.composer-ai-thinking-label { font-size: 12px; color: #a5a6a0; }
+.composer-ai-thinking-toggle.is-on .composer-ai-thinking-label { color: #ccd7bb; }
+.composer-ai-thinking-toggle:hover:not(:disabled) { background: #3b3c38; }
+.composer-ai-thinking-toggle:focus-visible { outline: 2px solid #b5c8aa; outline-offset: 2px; }
+.composer-ai-thinking-toggle:disabled { opacity: .5; cursor: default; }
+.ai-switch { position: relative; flex: 0 0 auto; width: 40px; height: 22px; border-radius: 999px; background: #4a4c44; transition: background .18s ease; }
+.ai-switch-knob { position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: #d7d8d0; transition: transform .18s ease, background .18s ease; }
+.ai-switch.is-on { background: #6f8f57; }
+.ai-switch.is-on .ai-switch-knob { transform: translateX(18px); background: #f2f3ec; }
+@media (prefers-reduced-motion: reduce) {
+  .ai-switch, .ai-switch-knob { transition: none; }
+}
 .composer-ai-manage { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; margin-top: 6px; padding: 12px 10px 8px; border-top: 1px solid #3e4037; border-radius: 0 0 7px 7px; color: #c4c6bb; font-size: 12px; text-decoration: none; }
 .composer-ai-manage span { flex: 1; }
 .composer-ai-hint, .composer-ai-error { margin: 0; padding: 8px 10px; font-size: 12px; line-height: 1.5; color: #a5a6a0; overflow-wrap: anywhere; }

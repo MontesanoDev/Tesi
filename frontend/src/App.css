@@ -428,6 +428,7 @@
 .composer {
   display: flex;
   flex-direction: column;
+  position: relative;
   min-height: 158px;
   border: 1px solid var(--border);
   border-radius: 8px;

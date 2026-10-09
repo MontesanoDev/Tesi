@@ -1,5 +1,6 @@
 import {
   ArrowUp,
+  Plus,
   ChevronDown,
   EllipsisVertical,
   FileText,
@@ -14,6 +15,7 @@ import {
   useState,
   type FormEvent,
   type KeyboardEvent,
+  type ReactNode,
 } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
@@ -50,7 +52,7 @@ function turnStatus(turn: ChatTurn) {
   return turn.result.notice ?? 'Nessuna evidenza pertinente trovata nelle fonti indicizzate.'
 }
 
-function ConversationTurn({ turn }: { turn: ChatTurn }) {
+function ConversationTurn({ turn, statusSlot }: { turn: ChatTurn; statusSlot?: ReactNode }) {
   const result = turn.result
   const evidence = result?.evidence ?? []
   const answerTitleId = `answer-title-${turn.id}`
@@ -73,6 +75,8 @@ function ConversationTurn({ turn }: { turn: ChatTurn }) {
         <span className={activityClass} />
         <p>{turnStatus(turn)}</p>
       </div>
+
+      {statusSlot}
 
       {result?.answer && (
         <section className="grounded-answer" aria-labelledby={answerTitleId}>
@@ -159,6 +163,7 @@ export function ProjectWorkspacePage() {
   const composerRef = useDismissibleMenu<HTMLFormElement>(Boolean(mention), () => setMention(null))
   const turnSequence = useRef(0)
   const chatThread = useRef<HTMLDivElement>(null)
+  const stickToBottom = useRef(true)
   const composerInput = useRef<HTMLTextAreaElement>(null)
   const activeConversation = useRef<string | null>(conversationId ?? null)
   const loadedConversation = useRef<string | null>(null)
@@ -243,13 +248,14 @@ export function ProjectWorkspacePage() {
 
   useEffect(() => {
     const thread = chatThread.current
-    if (!thread) return
+    if (!thread || !stickToBottom.current) return
     const frame = requestAnimationFrame(() => {
       thread.scrollTo({ top: thread.scrollHeight,
         behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
     })
     return () => cancelAnimationFrame(frame)
-  }, [turns, activeSession?.version])
+  }, [turns, activeSession?.chat?.question?.message, activeSession?.status,
+      activeSession?.last_generation?.id])
 
   useLayoutEffect(() => {
     const input = composerInput.current
@@ -273,6 +279,7 @@ export function ProjectWorkspacePage() {
     const controller = new AbortController()
     answerRequest.current = controller
     const turnId = `local-${++turnSequence.current}`
+    stickToBottom.current = true
     setTurns((current) => [
       ...current,
       { id: turnId, question: query, result: null, error: null,
@@ -414,6 +421,18 @@ export function ProjectWorkspacePage() {
     }
   }
 
+  const sessionMessage = activeSession ? (
+    <CompilationSessionCard key={activeSession.id}
+      session={activeSession} busy={compilation.busy || searching || changingModel}
+      processing={compilation.processing} loading={compilation.loading}
+      questionInChat={Boolean(activeSession.chat?.question && turns.some((turn) =>
+        turn.result?.compilation?.session_id === activeSession.id
+        && turn.result.answer?.includes(activeSession.chat!.question!.message)))}
+      error={compilation.error} onContinue={compilation.resolve} onUpdate={compilation.update}
+      onGenerate={compilation.finalize} onRefresh={compilation.refresh}
+      onResume={() => void startCompilation()} />
+  ) : null
+
   const composer = (
     <form
       ref={composerRef}
@@ -425,15 +444,10 @@ export function ProjectWorkspacePage() {
           <button type="button" className="icon-button" aria-label="Rimuovi riferimento al modulo" title="Rimuovi riferimento al modulo"
             disabled={compilation.processing || compilation.loading || searching} onClick={() => setFormReference(null)}><X size={14} /></button>
         </span>
-        {/\.docx$/i.test(selectedForm.name)
-          && !activeSession && <button type="button" className="button"
-          disabled={compilation.busy || compilation.loading || sessionStateUnavailable || searching || conversationLoading || changingModel}
-          onClick={() => void startCompilation()}>Avvia compilazione</button>}
       </div>}
       <textarea
         ref={composerInput}
         aria-label="Messaggio per Mapi RAG"
-        aria-describedby={compilation.processing ? 'composer-compilation-status' : undefined}
         placeholder="Come posso aiutarti? Usa @ per scegliere un modulo"
         maxLength={MAX_PROMPT_LENGTH}
         value={prompt}
@@ -459,10 +473,23 @@ export function ProjectWorkspacePage() {
         <button type="button" className="button" disabled={compilation.busy} onClick={compilation.refresh}>Riprova caricamento sessione</button>
       </div>}
       {compilation.busy && !activeSession && <p role="status">Preparazione della compilazione…</p>}
-      {compilation.processing && <p id="composer-compilation-status" className="composer-compilation-status">
-        Compilazione in corso. Puoi scrivere: il testo resta qui finché potrai inviarlo.
-      </p>}
       <div className="composer-tools">
+        <button
+          className={`composer-mention-trigger${mention ? ' is-active' : ''}`}
+          type="button"
+          aria-label="Aggiungi un modulo"
+          title="Aggiungi un modulo"
+          disabled={searching || conversationLoading || changingModel || compilation.loading
+            || compilation.processing || forms.length === 0}
+          onClick={() => {
+            const position = composerInput.current?.selectionStart ?? prompt.length
+            setMention({ start: position, end: position, query: '' })
+            setMentionIndex(0)
+            composerInput.current?.focus()
+          }}
+        >
+          <Plus size={19} />
+        </button>
         <ProjectModelSelector key={project.id} projectId={project.id}
           disabled={searching || conversationLoading || compilation.processing || compilation.loading} onChanging={setChangingModel} />
         <button
@@ -553,21 +580,21 @@ export function ProjectWorkspacePage() {
             </>
           ) : (
             <>
-              <div className="chat-thread" ref={chatThread}>
-                {turns.map((turn) => (
+              <div className="chat-thread" ref={chatThread}
+                onScroll={(event) => {
+                  const element = event.currentTarget
+                  stickToBottom.current =
+                    element.scrollHeight - element.scrollTop - element.clientHeight < 140
+                }}>
+                {turns.map((turn, index) => (
                   <div key={turn.id}>
-                    <ConversationTurn turn={turn} />
+                    <ConversationTurn
+                      turn={turn}
+                      statusSlot={index === turns.length - 1 ? sessionMessage ?? undefined : undefined}
+                    />
                   </div>
                 ))}
-                {activeSession && <CompilationSessionCard key={activeSession.id}
-                  session={activeSession} busy={compilation.busy || searching || changingModel}
-                  processing={compilation.processing} loading={compilation.loading}
-                  questionInChat={Boolean(activeSession.chat?.question && turns.some((turn) =>
-                    turn.result?.compilation?.session_id === activeSession.id
-                    && turn.result.answer?.includes(activeSession.chat!.question!.message)))}
-                  error={compilation.error} onContinue={compilation.resolve} onUpdate={compilation.update}
-                  onGenerate={compilation.finalize} onRefresh={compilation.refresh}
-                  onResume={() => void startCompilation()} />}
+                {!turns.length && sessionMessage}
               </div>
               {composer}
             </>

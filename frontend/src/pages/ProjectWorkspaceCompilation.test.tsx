@@ -66,9 +66,16 @@ function selectForm(name = form.name) {
 }
 async function start() {
   selectForm()
-  const button = screen.getByRole('button', { name: 'Avvia compilazione' })
-  await waitFor(() => expect(button).toBeEnabled())
-  fireEvent.click(button)
+  vi.mocked(api.projectAnswer).mockImplementation(async (_p, question, _c, _signal, formId) => {
+    if (!stored) stored = session()
+    expect(formId).toBe(10)
+    return { conversation_id: 'chat-1', turn_id: 1, question,
+      answer: 'Certo. Analizzo il modulo e verifico le informazioni disponibili.',
+      compilation: { session_id: 'session-1', action: 'start' }, generation_status: 'direct',
+      citations: [], evidence: [], missing_information: [], notice: null, model: 'simulato',
+      total_tokens: 1, form_reference: reference } as GroundedAnswer
+  })
+  submit('me lo compili?')
   await screen.findByRole('region', { name: 'Compilazione domanda.docx' })
 }
 function submit(text: string) {
@@ -142,6 +149,24 @@ describe('CompilationSession nella chat', () => {
     expect(screen.getByText('@domanda.docx')).toBeInTheDocument()
   })
 
+  it('il picker aperto con + conserva il messaggio anche dopo la selezione o Escape', async () => {
+    await setup()
+    const input = screen.getByRole<HTMLTextAreaElement>('textbox', { name: 'Messaggio per Mapi RAG' })
+    const draft = 'Puoi spiegarmi quali requisiti richiede questo modulo?'
+    fireEvent.change(input, { target: { value: draft } })
+    input.setSelectionRange(5, 12)
+    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi un modulo' }))
+    expect(input).toHaveValue(draft)
+    fireEvent.keyDown(input, { key: 'Escape' })
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument()
+    expect(input).toHaveValue(draft)
+    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi un modulo' }))
+    fireEvent.click(screen.getByRole('option', { name: form.name }))
+    expect(screen.getByText('@domanda.docx')).toBeInTheDocument()
+    expect(input).toHaveValue(draft)
+    expect(api.projectAnswer).not.toHaveBeenCalled()
+  })
+
   it('una domanda con mention usa la chat normale, senza creare una sessione', async () => {
     vi.mocked(api.projectAnswer).mockResolvedValue({ conversation_id: 'chat-1', turn_id: 1,
       question: 'riassumilo', answer: 'Requisiti del modulo', citations: [], evidence: [],
@@ -158,7 +183,9 @@ describe('CompilationSession nella chat', () => {
   it('avvia, analizza, chiarisce un field USER, riprende e genera il download nella chat', async () => {
     const view = await setup()
     await start()
-    expect(api.startCompilationSession).toHaveBeenCalledWith('alpha', 10, null, expect.any(AbortSignal))
+    expect(api.projectAnswer).toHaveBeenCalledWith('alpha', 'me lo compili?', null,
+      expect.any(AbortSignal), 10, undefined)
+    expect(api.startCompilationSession).not.toHaveBeenCalled()
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
     fireEvent.click(await screen.findByText('Dettagli compilazione'))
     fireEvent.click(await screen.findByRole('button', { name: 'Continua analisi' }))
@@ -224,14 +251,18 @@ describe('CompilationSession nella chat', () => {
   })
 
   it('ignora una creazione tardiva dopo il cambio di progetto', async () => {
-    let complete!: (s: CompilationSession) => void
-    vi.mocked(api.startCompilationSession).mockReturnValue(new Promise((resolve) => { complete = resolve }))
+    let complete!: (answer: GroundedAnswer) => void
+    vi.mocked(api.projectAnswer).mockReturnValue(new Promise((resolve) => { complete = resolve }))
     await setup()
     selectForm()
-    fireEvent.click(screen.getByRole('button', { name: 'Avvia compilazione' }))
+    submit('me lo compili?')
     fireEvent.click(screen.getByRole('link', { name: 'Vai a Beta' }))
     await screen.findByRole('heading', { name: 'beta' })
-    await act(async () => complete(session()))
+    await act(async () => complete({ conversation_id: 'chat-1', turn_id: 1, question: 'me lo compili?',
+      answer: 'Certo. Analizzo il modulo e verifico le informazioni disponibili.',
+      compilation: { session_id: 'session-1', action: 'start' }, generation_status: 'direct',
+      citations: [], evidence: [], missing_information: [], notice: null, model: null,
+      total_tokens: null, form_reference: reference }))
     expect(screen.queryByRole('region', { name: 'Compilazione domanda.docx' })).not.toBeInTheDocument()
     expect(screen.queryByText('@domanda.docx')).not.toBeInTheDocument()
     fireEvent.change(screen.getByRole('textbox'), { target: { value: '@' } })
@@ -524,25 +555,29 @@ describe('CompilationSession nella chat', () => {
     expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
   })
 
-  it('un doppio avvio crea una sola richiesta e conserva il draft anche nella nuova conversazione', async () => {
-    let complete!: (s: CompilationSession) => void
-    vi.mocked(api.startCompilationSession).mockReturnValue(new Promise((resolve) => { complete = resolve }))
+  it('un doppio invio di avvio crea una sola richiesta e conserva il draft anche nella nuova conversazione', async () => {
+    let complete!: (answer: GroundedAnswer) => void
+    vi.mocked(api.projectAnswer).mockReturnValue(new Promise((resolve) => { complete = resolve }))
     await setup()
     selectForm()
-    const startButton = screen.getByRole('button', { name: 'Avvia compilazione' })
-    fireEvent.click(startButton)
-    fireEvent.click(startButton)
     const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
-    fireEvent.change(input, { target: { value: 'Testo da conservare durante l’avvio' } })
-    fireEvent.submit(input.closest('form')!)
-    expect(api.startCompilationSession).toHaveBeenCalledTimes(1)
-    expect(api.projectAnswer).not.toHaveBeenCalled()
+    fireEvent.change(input, { target: { value: 'me lo compili?' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Invia' }))
+    const draftInput = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    fireEvent.change(draftInput, { target: { value: 'Testo da conservare durante l’avvio' } })
+    fireEvent.submit(draftInput.closest('form')!)
+    expect(api.projectAnswer).toHaveBeenCalledTimes(1)
     stored = conversational(session([field('f1', 'Qualifica', 'MISSING')], 'WAITING_FOR_USER', 2))
-    await act(async () => complete(stored!))
+    await act(async () => complete({ conversation_id: 'chat-1', turn_id: 1, question: 'me lo compili?',
+      answer: 'Certo. Analizzo il modulo e verifico le informazioni disponibili.',
+      compilation: { session_id: 'session-1', action: 'start' }, generation_status: 'direct',
+      citations: [], evidence: [], missing_information: [], notice: null, model: 'simulato',
+      total_tokens: 1, form_reference: reference }))
     await screen.findByText('Mi manca Qualifica. Qual è?')
-    expect(input).toHaveValue('Testo da conservare durante l’avvio')
-    expect(screen.getByRole('button', { name: 'Invia' })).toBeEnabled()
-    expect(screen.queryByRole('button', { name: 'Avvia compilazione' })).not.toBeInTheDocument()
+    expect(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }))
+      .toHaveValue('Testo da conservare durante l’avvio')
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Invia' })).toBeEnabled())
+    expect(api.resolveCompilationSession).not.toHaveBeenCalled()
   })
 
   it('un doppio invio di chiarimento invia una sola richiesta e conserva il nuovo draft', async () => {
