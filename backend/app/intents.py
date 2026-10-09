@@ -19,6 +19,7 @@ from app.compilation_chat import (
     ClarificationDecision,
     ClarificationReply,
     chat_view,
+    explicit_finish_request,
     normalized,
     single_active_target,
 )
@@ -131,12 +132,13 @@ def route_compilation_control(decision: ChatDecision, message: str, session) -> 
     literal = normalized(message).strip(" .!?")
     controls = {
         "salta": "skip", "passa oltre": "skip", "vediamolo dopo": "skip",
-        "non lo so": "unknown", "non ne sono sicuro": "unknown",
+        "non lo so": "unknown", "non so": "unknown", "non ne sono sicuro": "unknown",
         "non ne sono sicura": "unknown", "non ho questa informazione": "unknown",
         "basta": "pause", "fermati": "pause", "metti in pausa": "pause",
         "riprendiamo dopo": "pause", "riprendi": "resume",
+        "continua la compilazione": "resume", "prosegui la compilazione": "resume",
     }
-    kind = controls.get(literal)
+    kind = "finish" if explicit_finish_request(message) else controls.get(literal)
     if not kind:
         return decision
     question = chat_view(session)["question"]
@@ -258,6 +260,10 @@ una risposta fattuale anticipata. La mention da sola non avvia compilazione.
   kind="pause" quando vuole interrompere/fermarsi/riprendere più tardi, field_id=null:
   NON rispondere tramite reply lasciando la sessione attiva.
   kind="resume" quando chiede di riprendere la compilazione esistente, field_id=null.
+  kind="finish" quando chiede esplicitamente di finire/terminare la compilazione
+  o esportare una bozza parziale anche con dati mancanti, field_id=null. Ha priorità
+  sulla risposta al campo: 'no, finisci la compilazione' NON nega una condizione.
+  Non confondere 'continua/prosegui' con 'finisci': continuare non autorizza export.
   Pause/resume sono consentiti anche durante analisi, dopo riepilogo o senza mention.
   Una negazione della condizione corrente (anche espressa con ruolo/natura del
   partecipante) usa compilation_input/not_applicable; l'incertezza sulla condizione
@@ -320,7 +326,7 @@ class ChatRoute(BaseModel):
 class ActiveQuestionPlan(ActiveFieldDecision):
     action: Literal[
         "VALUE", "CONDITION_TRUE", "CONDITION_FALSE", "UNKNOWN", "SKIP",
-        "REFUSE", "PAUSE", "CLARIFY", "CHAT",
+        "REFUSE", "PAUSE", "FINISH", "CLARIFY", "CHAT",
     ]
     chat: ChatRoute | None = None
 
@@ -332,7 +338,7 @@ class ActiveQuestionPlan(ActiveFieldDecision):
 
 
 class ClarificationGroupPlan(ClarificationDecision):
-    action: Literal["ANSWER", "PAUSE", "CHAT"]
+    action: Literal["ANSWER", "PAUSE", "FINISH", "CHAT"]
     chat: ChatRoute | None = None
 
     @model_validator(mode="after")
@@ -368,6 +374,9 @@ def parse_clarification_plan(data, allowed_slots):
 
 
 GROUP_QUESTION_PROMPT = """
+FINISH (replies=[]) significa richiesta esplicita di finire/terminare la compilazione
+o esportare una bozza parziale. Ha priorità sul 'no' in 'no, finisci la compilazione':
+non è una negazione della condizione. Continuare/proseguire invece non è FINISH.
 Hai posto un PICCOLO GRUPPO di chiarimenti. Il backend conosce i destinatari.
 Non restituire field_id, id, candidate_id o identificatori di sessione.
 Interpreta solo l'ultimo messaggio USER rispetto agli slot numerati attivi.
@@ -409,6 +418,9 @@ conforme allo schema, che è riportato anche nella richiesta.
 - UNKNOWN: l'utente non sa o non è sicuro. Non trasformare l'incertezza in una negazione.
 - SKIP: vuole rinviare o passare oltre; REFUSE: non vuole fornire il dato.
 - PAUSE: vuole fermare o mettere in pausa la compilazione.
+- FINISH: chiede esplicitamente di finire/terminare la compilazione o esportare
+  una bozza parziale. Ha priorità su risposte ai campi, anche preceduto da 'no'.
+  'Continua/prosegui' richiede continuazione, non FINISH.
 - CLARIFY: risposta ambigua, alternative senza scelta o non interpretabile. Non
   scegliere un valore né una polarità arbitrariamente. Nessun valore viene scritto.
 Per tutte le azioni diverse da VALUE, value e normalized_value sono null.

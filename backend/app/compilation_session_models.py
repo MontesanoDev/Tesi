@@ -88,7 +88,7 @@ class CandidateMeaning(StrictModel):
     entity: Literal["company", "person", "project", "authority", "other"] = "other"
     kind: Literal["data", "choice", "declaration", "signature"] = "data"
     # Exclusion is automatic only with an explicit, grounded SOURCE exclusion.
-    condition: str = Field(default="", max_length=120)
+    condition: str = Field(default="", max_length=500)
     semantic: SemanticBinding | None = None
     reason: str = Field(min_length=1, max_length=2000)
 

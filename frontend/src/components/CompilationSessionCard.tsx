@@ -10,8 +10,8 @@ const fieldStatus: Record<CompilationFieldStatus, string> = {
   USER_PROVIDED: 'Fornito dall’utente',
 }
 const sessionStatus = {
-  CREATED: 'Da analizzare', ANALYZING: 'Analisi in corso', WAITING_FOR_USER: 'In attesa di informazioni',
-  READY: 'Pronta per la generazione', GENERATED: 'Documento generato', FAILED: 'Analisi interrotta',
+  CREATED: 'Pronta per l’analisi', ANALYZING: 'Elaborazione in corso', WAITING_FOR_USER: 'In attesa di informazioni',
+  READY: 'Pronta per la generazione', GENERATED: 'Bozza disponibile', FAILED: 'Compilazione in pausa',
 }
 const counts = {
   total: 'Candidate totali', pending: 'Da analizzare', resolved: 'Verificati da fonte', missing: 'Mancanti',
@@ -21,7 +21,10 @@ const counts = {
 interface Props {
   session: CompilationSession
   busy: boolean
+  processing: boolean
+  loading: boolean
   error: string | null
+  questionInChat?: boolean
   onContinue: (ids?: string[]) => Promise<CompilationSession | null>
   onUpdate: (field: CompilationFieldInput) => Promise<CompilationSession | null>
   onGenerate: (draft?: boolean) => Promise<CompilationSession | null>
@@ -34,7 +37,7 @@ function labelOf(field: CompilationSessionField) {
   return field.requirement?.person_role ? `${name} · ${field.requirement.person_role}` : name
 }
 
-export function CompilationSessionCard({ session, busy, error, onContinue, onUpdate, onGenerate, onRefresh, onResume }: Props) {
+export function CompilationSessionCard({ session, busy, processing, loading, error, questionInChat = false, onContinue, onUpdate, onGenerate, onRefresh, onResume }: Props) {
   const [detailsOpen, setDetailsOpen] = useState(false)
   const [editing, setEditing] = useState<string | null>(null)
   const [value, setValue] = useState('')
@@ -43,7 +46,13 @@ export function CompilationSessionCard({ session, busy, error, onContinue, onUpd
   const [downloadError, setDownloadError] = useState<string | null>(null)
   const downloadController = useRef<AbortController | null>(null)
   useEffect(() => () => downloadController.current?.abort(), [])
-  const locked = busy || (session.status === 'ANALYZING' && Boolean(session.lease_until && Date.parse(session.lease_until) > Date.now()))
+  const locked = busy || processing || loading
+  const paused = !processing && (session.chat?.paused || session.status === 'FAILED'
+    || session.status === 'ANALYZING' || Boolean(error))
+  const resumable = paused || (!session.chat?.enabled && session.summary.pending > 0)
+  const draftAvailable = session.status === 'GENERATED' && Boolean(session.last_generation)
+  const statusLabel = processing ? 'Elaborazione in corso'
+    : draftAvailable ? 'Bozza disponibile' : paused ? 'Compilazione in pausa' : sessionStatus[session.status]
   const selected = session.fields.find((field) => field.id === editing)
   const openFields = session.open_issues.filter((issue) => issue.status !== 'PENDING')
   const decided = session.fields.filter((field) => !['PENDING', 'MISSING', 'AMBIGUOUS', 'CONFLICTING'].includes(field.status))
@@ -113,39 +122,41 @@ export function CompilationSessionCard({ session, busy, error, onContinue, onUpd
     </li>
   }
 
-  return <section className="compilation-chat-card" aria-label={`Compilazione ${session.template_name}`} aria-busy={busy}>
-    <header><strong>Compilazione · {session.template_name}</strong><span>{session.chat?.paused ? 'Analisi in pausa' : sessionStatus[session.status]}</span></header>
+  return <section className="compilation-chat-card" aria-label={`Compilazione ${session.template_name}`} aria-busy={processing || loading}>
+    <header><strong>Compilazione · {session.template_name}</strong><span role="status">{statusLabel}</span></header>
     <div className="compilation-conversation" aria-live="polite">
-      {!busy && session.chat?.notice && <p role="status">{session.chat.notice}</p>}
-      {(busy || (session.status === 'ANALYZING' && !session.chat?.paused) || session.chat?.auto_continue) && <p className="compilation-activity" role="status">
+      {!processing && session.chat?.notice && <p>{session.chat.notice}</p>}
+      {processing && <p className="compilation-activity">
         <LoaderCircle size={16} aria-hidden="true" />
         Verifico le informazioni nelle fonti e completo i campi supportati…
       </p>}
       <p className="compilation-note">
         Ho verificato {session.summary.resolved} {session.summary.resolved === 1 ? 'informazione' : 'informazioni'} nelle fonti.
         {session.summary.user_provided > 0 && ` ${session.summary.user_provided} ${session.summary.user_provided === 1 ? 'valore è stato fornito' : 'valori sono stati forniti'} da te.`}
-        {(session.chat?.analyzed ?? (session.summary.total - session.summary.pending)) > 0 &&
-          ` ${session.chat?.analyzed ?? (session.summary.total - session.summary.pending)} ${(session.chat?.analyzed ?? (session.summary.total - session.summary.pending)) === 1 ? 'posizione analizzata' : 'posizioni analizzate'}.`}
       </p>
-      {!busy && session.status !== 'ANALYZING' && session.chat?.question &&
+      {!processing && !paused && !questionInChat && session.chat?.question &&
         <p className="compilation-question">{session.chat.question.message}</p>}
-      {!busy && session.status === 'WAITING_FOR_USER' && !session.chat?.paused && session.chat?.question?.field_ids.length !== 0 &&
+      {!processing && !paused && session.status === 'WAITING_FOR_USER' && Boolean(session.chat?.question?.field_ids.length) &&
         <p className="compilation-note">Rispondimi qui nella chat. La tua indicazione resterà distinta dai dati verificati nelle fonti.</p>}
-      {session.status === 'GENERATED' && <p>Ho terminato la compilazione. Puoi scaricare la copia e il report.</p>}
-      {(session.chat?.paused || session.status === 'FAILED' || !session.chat?.enabled) &&
-        (session.summary.pending > 0 || session.chat?.paused || session.status === 'FAILED') && <>
+      {draftAvailable && <p>{session.open_issues.length > 0
+        ? 'È disponibile una bozza parziale. Restano informazioni da chiarire prima di completare il modulo.'
+        : 'La bozza è disponibile. Puoi scaricarla e verificarla.'}</p>}
+      {resumable && !draftAvailable && !error &&
           <p>{session.chat?.paused_by_user
             ? 'La compilazione è in pausa. Potrai riprenderla quando vuoi.'
-            : 'L’analisi si è fermata prima di completare il modulo. Posso proseguire con un altro ciclo di lavoro.'}</p>
-          <button type="button" className="button" disabled={locked} onClick={onResume}>Prosegui compilazione</button>
-        </>}
+            : 'I dati già verificati sono conservati. Puoi proseguire la compilazione dal punto raggiunto.'}</p>}
     </div>
     {(error || session.last_error) && <p role="alert" className="upload-feedback--error">
       {error || 'Ho conservato i dati già verificati. Alcuni campi non sono stati completati. Puoi continuare o esportare una bozza parziale.'}
     </p>}
-    {['READY', 'GENERATED'].includes(session.status) && session.open_issues.length === 0 &&
-      <button type="button" className="button button--primary" disabled={locked}
-        onClick={() => void onGenerate()}>Genera DOCX</button>}
+    {(!processing || error) && <div className="compilation-primary-action">
+      {error ? <button type="button" className="button button--primary" disabled={busy || loading} onClick={onRefresh}>Aggiorna stato</button>
+        : draftAvailable ? <button type="button" className="button button--primary" disabled={locked || downloading}
+          onClick={() => void download('docx')}>Scarica DOCX</button>
+        : resumable ? <button type="button" className="button button--primary" disabled={locked} onClick={onResume}>Prosegui compilazione</button>
+        : session.status === 'READY' && session.open_issues.length === 0 ? <button type="button" className="button button--primary" disabled={locked}
+          onClick={() => void onGenerate()}>Genera DOCX</button> : null}
+    </div>}
     <details className="compilation-debug" onToggle={(event) => setDetailsOpen(event.currentTarget.open)}>
       <summary>Dettagli compilazione</summary>
       {detailsOpen && <>
@@ -156,9 +167,11 @@ export function CompilationSessionCard({ session, busy, error, onContinue, onUpd
     </dl>
     {session.summary.pending > 0 && <p className="compilation-note">Le posizioni da analizzare non sono ancora campi confermati. Ogni step analizza fino a 12 candidate.</p>}
     <div className="compilation-actions">
+      {draftAvailable && resumable && <button type="button" className="button" disabled={locked}
+        onClick={onResume}>Riprendi compilazione</button>}
       {session.summary.pending > 0 &&
         <button type="button" className="button" disabled={locked} onClick={() => void onContinue()}>Continua analisi</button>}
-      <button type="button" className="button" disabled={busy} onClick={onRefresh}>Aggiorna stato</button>
+      {!error && <button type="button" className="button" disabled={busy || loading} onClick={onRefresh}>Aggiorna stato</button>}
     </div>
     {openFields.length > 0 && <details className="compilation-issues">
       <summary>Informazioni da chiarire ({openFields.length})</summary>
@@ -188,15 +201,18 @@ export function CompilationSessionCard({ session, busy, error, onContinue, onUpd
     {session.open_issues.length > 0 && <button type="button" className="button" disabled={locked}
       onClick={() => void onGenerate(true)}>Genera bozza con campi irrisolti</button>}
     {session.last_generation && <p>Ultima bozza · versione {session.last_generation.session_version}</p>}
+    {draftAvailable && session.open_issues.length === 0 && <button type="button" className="button" disabled={locked}
+      onClick={() => void onGenerate()}>Genera nuova copia</button>}
+    {session.last_generation && <button type="button" className="button" disabled={downloading}
+      onClick={() => void download('report')}>Scarica report</button>}
       </>}
     </details>
     {session.last_generation && <div className="compilation-downloads">
       {session.version > session.last_generation.session_version + 1 &&
         <p>La copia scaricabile precede le ultime modifiche. Genera una nuova copia per includerle.</p>}
-      <div className="compilation-actions">
+      {!draftAvailable && <div className="compilation-actions">
         <button type="button" className="button" disabled={downloading} onClick={() => void download('docx')}>Scarica DOCX</button>
-        <button type="button" className="button" disabled={downloading} onClick={() => void download('report')}>Scarica report</button>
-      </div>
+      </div>}
     </div>}
     {downloadError && <p role="alert">{downloadError}</p>}
   </section>

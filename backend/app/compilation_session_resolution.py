@@ -11,6 +11,14 @@ from collections import Counter
 import httpx
 
 from app.compilation_applicability import known_applicability, validate_condition_source
+from app.compilation_document_plan import (
+    ConditionalSection,
+    DocumentPlan,
+    ExclusiveChoice,
+    needs_document_plan,
+    plan_document,
+)
+from app.compilation_evidence import profile_evidence, reusable_evidence, semantic_context
 from app.compilation_semantics import (
     FormReview,
     FormVerdict,
@@ -41,6 +49,7 @@ from app.compilation_sessions import (
     complete_resolution,
     mark_failed,
     now,
+    persist_document_plan,
     validate_value,
 )
 from app.compilation_sources import (
@@ -93,12 +102,16 @@ async def request_structured(task: str, data: dict, schema):
     settings, timeout = get_ai_settings(), chat_http_timeout()
     if not settings.configured:
         raise GenerationNotConfiguredError("Configura un modello AI per risolvere la sessione")
+    structural_plan = schema.__name__ in {"DocumentPlan", "DocumentPlanReview"}
+    if structural_plan:
+        timeout = httpx.Timeout(connect=timeout.connect, read=max(timeout.read, 90),
+                                write=timeout.write, pool=timeout.pool)
     body = {
         "model": settings.model,
         "temperature": 0.1,
-        "max_tokens": 8192,
+        "max_tokens": 24576 if structural_plan else 8192,
         "response_format": {"type": "json_object"},
-        "thinking": {"type": "disabled"},
+        "thinking": {"type": "enabled" if structural_plan else "disabled"},
         "messages": [
             {
                 "role": "system",
@@ -121,6 +134,8 @@ async def request_structured(task: str, data: dict, schema):
             },
         ],
     }
+    if structural_plan and settings.provider == "deepseek":
+        body["reasoning_effort"] = "low"
     async with httpx.AsyncClient(timeout=timeout) as client:
         try:
             raw, _, _ = await request_model_content(
@@ -138,6 +153,24 @@ async def request_structured(task: str, data: dict, schema):
 
 def parse_structured(raw, schema):
     try:
+        if schema is DocumentPlan:
+            data = json.loads(raw)
+            if not isinstance(data, dict) or set(data) != {"sections", "choices"}:
+                raise ValueError("Invalid document map envelope")
+            parsed, errors = {}, []
+            for key, item_schema, limit in [("sections", ConditionalSection, 64),
+                                             ("choices", ExclusiveChoice, 24)]:
+                if not isinstance(data[key], list) or len(data[key]) > limit:
+                    raise ValueError("Invalid document map collection")
+                parsed[key] = []
+                for index, item in enumerate(data[key]):
+                    try:
+                        parsed[key].append(item_schema.model_validate(item))
+                    except ValueError:
+                        errors.append(f"{key}:{index}: invalid item")
+            result = DocumentPlan(**parsed)
+            result._item_errors = errors
+            return result
         if schema in (FormReview, SourceReview, HistoricalServices):
             data = json.loads(raw)
             key, item_schema, limit = (("fields", FormVerdict, BATCH_SIZE)
@@ -245,6 +278,7 @@ async def classify_candidates(fields: list[dict]) -> CandidateMeanings:
                 "structural": {k: v for k, v in f["structural"].items() if k != "form_sections"},
                 "section_ids": [s["id"] for s in f["structural"].get("form_sections", [])],
                 "previous_interpretation_errors": f.get("previous_interpretation_errors", []),
+                "section_dependency": f.get("form_dependency"),
             }
             for f in fields
         ],
@@ -255,6 +289,10 @@ async def classify_candidates(fields: list[dict]) -> CandidateMeanings:
         )
     meanings = await request_structured(
         "Classifica i candidate strutturali di UN originale DOCX. Non cercare o inventare valori. "
+        "section_dependency, quando presente, è la mappa FORM già verificata del ramo: "
+        "usa la sua condition e il suo id per la condizione principale comune, anche se "
+        "lo slot contiene i dati di un membro elencato. Distingui eventuali condizioni "
+        "locali ulteriori, senza reinterpretare la tipologia come ruolo del firmatario. "
         "Restituisci solo candidate_id presenti in allowed_candidate_ids, copiandoli dalla "
         "lista candidates. Gli ID di altre celle/slot nei contesti FORM non sono target "
         "di questo passo. Ciascun candidate al massimo una volta. "
@@ -332,7 +370,7 @@ def bind_meanings(fields, meanings):
         field = by_id[meaning.candidate_id]
         proof = field.get("applicability") or {}
         if not meaning.condition and (
-            proof.get("provenance") == "USER" or field.get("applicability_confirmed")
+            proof.get("provenance") in {"USER", "SOURCE"} or field.get("applicability_confirmed")
         ):
             # The independent FORM reviewer must see an already answered
             # condition even if the classifier omits it on reanalysis.
@@ -361,9 +399,12 @@ def apply_meanings(fields, meanings):
             ):
                 condition = field["condition"]
             proof = field.get("applicability") or {}
-            if (proof.get("provenance") == "USER" or field.get("applicability_confirmed")) \
+            if (proof.get("provenance") in {"USER", "SOURCE"}
+                    or field.get("applicability_confirmed")) \
                     and field.get("condition") != condition:
-                raise ValueError("Interpretazione in conflitto con la condizione già chiarita USER")
+                raise ValueError(
+                    "Interpretazione in conflitto con la condizione già verificata USER/SOURCE",
+                )
             requirement = meaning.requirement
             if meaning.classification == "data":
                 if requirement is None:
@@ -431,6 +472,10 @@ def apply_meanings(fields, meanings):
 
 
 def validate_support(field, source, quote, value, *, semantic_review=None, condition_proof=False):
+    from app.compilation_form_conditions import require_writable
+
+    if not condition_proof:
+        require_writable(field)
     if not condition_proof and (error := empty_value_reason(value, field["label"])):
         raise ValueError(error)
     if field.get("semantic"):
@@ -474,7 +519,7 @@ def validate_support(field, source, quote, value, *, semantic_review=None, condi
     )
 
 
-async def retrieve_sources(project_id: str, fields: list[dict]):
+async def retrieve_sources(project_id: str, fields: list[dict], *, remembered=()):
     requirements = [Requirement.model_validate(f["requirement"]) for f in fields]
     semantic = await plan_compilation_search(fields, request_structured)
     plan = semantic.plan
@@ -505,7 +550,7 @@ async def retrieve_sources(project_id: str, fields: list[dict]):
             project_id,
             anchors,
             target="source",
-            max_results=MAX_CLUSTER_EVIDENCE,
+            max_results=MAX_CLUSTER_EVIDENCE * 2,
         )
         # Recheck IDs/role/project against SQL even for provider/retrieval outputs.
         sources = await asyncio.to_thread(reload_evidence, project_id, sources, target="source")
@@ -531,6 +576,18 @@ async def retrieve_sources(project_id: str, fields: list[dict]):
                 "source_ids": source_ids,
             }
         )
+    semantic_fields = [f for f in fields if semantic_context(f)]
+    pooled = []
+    if semantic_fields:
+        if any(f["semantic"]["context_role"] in {"ORGANIZATION_PROFILE", "PERSON_PROFILE"}
+               for f in semantic_fields):
+            pooled.extend(await asyncio.to_thread(profile_evidence, project_id))
+        pooled.extend(await asyncio.to_thread(
+            reload_evidence, project_id, list(remembered), target="source"))
+        for source in pooled:
+            if source["chunk_id"] not in by_chunk:
+                all_sources.append(source)
+                by_chunk[source["chunk_id"]] = len(all_sources)
     # Retrieval groups are query budgets, not semantic ownership. A chunk found
     # for another field may describe this company's property too. Admit it only
     # through a local equivalent header, keeping a separate bounded bucket.
@@ -538,8 +595,12 @@ async def retrieve_sources(project_id: str, fields: list[dict]):
         if field["id"] not in coverage:
             continue
         allowed = list(coverage[field["id"]])
-        for index, source in enumerate(all_sources, 1):
-            if index not in allowed and company_property(field, source["content"]):
+        priority = {s["chunk_id"] for s in pooled}
+        ordered = sorted(enumerate(all_sources, 1),
+                         key=lambda item: item[1]["chunk_id"] not in priority)
+        for index, source in ordered:
+            if index not in allowed and (field in semantic_fields
+                                        or company_property(field, source["content"])):
                 allowed.append(index)
                 if len(allowed) >= MAX_ALLOWED_EVIDENCE:
                     break
@@ -787,11 +848,14 @@ def apply_matches(layout, fields, matches, sources, coverage):
 
     for field in fields:
         field.pop("awaiting_dependency_resolution", None)
-        if not field.get("condition") or field["id"] not in coverage:
+        if not (field.get("condition") or field.get("form_dependency")) \
+                or field["id"] not in coverage:
             continue
-        applies = known_applicability(field)
+        from app.compilation_form_conditions import required_applicability
+
+        applies = required_applicability(field)
         if applies is False:
-            proof = field["applicability"]
+            proof = field.get("form_dependency_decision") or field["applicability"]
             field.update(status="NOT_APPLICABLE", value=None, provenance=proof["provenance"],
                          source_evidence=proof.get("evidence", []), alternatives=[])
         elif applies is None and field["status"] != "NOT_APPLICABLE":
@@ -811,6 +875,15 @@ async def resolve_session(project_id: str, session_id: str, version: int, field_
             layout = await asyncio.to_thread(inspect_docx, original)
             if layout.sha256 != claimed["template_sha256"]:
                 raise GenerationError("Originale della sessione non coerente")
+            if automatic and needs_document_plan(claimed):
+                plan = await plan_document(layout, request_structured)
+                claimed = persist_document_plan(project_id, session_id, version, plan)
+                version = claimed["version"]
+                return complete_resolution(project_id, session_id, version, [], {
+                    "phase": "document_plan", "candidate_ids": [], "model_requests": 2,
+                    "sections": len(plan["sections"]), "choices": len(plan["choices"]),
+                    "rejected_sections": plan["rejected_sections"],
+                })
             fields = copy.deepcopy(selected)
             # Explicit API reanalysis retains its existing full interpretation semantics.
             uninterpreted = [f for f in fields if not automatic or not f.get("requirement")]
@@ -842,7 +915,9 @@ async def resolve_session(project_id: str, session_id: str, version: int, field_
                 )
                 version = persisted["version"]
             sources, coverage, searches = (
-                await retrieve_sources(project_id, searchable) if searchable else ([], {}, [])
+                await retrieve_sources(project_id, searchable,
+                                       remembered=reusable_evidence(claimed["fields"]))
+                if searchable else ([], {}, [])
             )
             matches = (
                 await match_candidates(searchable, sources, coverage)

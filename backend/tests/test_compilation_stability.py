@@ -425,7 +425,8 @@ def test_dependency_propagation_never_discards_an_independent_persisted_value(
              "chat_workflow": {"clarification_mode": "grouped", "steps": MAX_AUTO_STEPS}}
     before = deepcopy(field)
     synchronize(state)
-    assert field == before
+    assert {k: v for k, v in field.items() if k != "write_blockers"} == before
+    assert field["write_blockers"]  # Preserve the value and expose the writing constraint.
 
 
 def test_omitted_user_condition_is_present_for_independent_form_review():

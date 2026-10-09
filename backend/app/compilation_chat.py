@@ -25,7 +25,7 @@ class ChatFieldReply(StrictModel):
 
 
 class ChatControl(StrictModel):
-    kind: str = Field(pattern="^(unknown|skip|refuse|pause|resume)$")
+    kind: str = Field(pattern="^(unknown|skip|refuse|pause|resume|finish)$")
     field_id: str | None = Field(default=None, max_length=80)
     user_quote: str = Field(min_length=1, max_length=2000)
 
@@ -35,7 +35,7 @@ class ActiveFieldDecision(StrictModel):
 
     action: Literal[
         "VALUE", "CONDITION_TRUE", "CONDITION_FALSE", "UNKNOWN", "SKIP",
-        "REFUSE", "PAUSE", "CLARIFY",
+        "REFUSE", "PAUSE", "FINISH", "CLARIFY",
     ]
     value: str | None = Field(default=None, min_length=1, max_length=1500)
     normalized_value: str | None = Field(default=None, min_length=1, max_length=1500)
@@ -57,17 +57,17 @@ class ClarificationReply(ActiveFieldDecision):
 
 
 class ClarificationDecision(StrictModel):
-    action: Literal["ANSWER", "PAUSE"]
+    action: Literal["ANSWER", "PAUSE", "FINISH"]
     replies: list[ClarificationReply] = Field(default_factory=list, max_length=4)
 
     @model_validator(mode="after")
     def distinct_slots(self):
         if len({r.slot for r in self.replies}) != len(self.replies):
             raise ValueError("Slot duplicato")
-        if self.action == "PAUSE" and self.replies:
-            raise ValueError("PAUSE non aggiorna campi")
-        if any(r.action == "PAUSE" for r in self.replies):
-            raise ValueError("PAUSE riguarda il gruppo/sessione, non un singolo elemento")
+        if self.action in {"PAUSE", "FINISH"} and self.replies:
+            raise ValueError("PAUSE/FINISH non aggiorna campi")
+        if any(r.action in {"PAUSE", "FINISH"} for r in self.replies):
+            raise ValueError("PAUSE/FINISH riguarda la sessione, non un singolo elemento")
         return self
 
 
@@ -82,8 +82,35 @@ async def handle_group_decision(project_id, conversation_id, decision, session, 
     protected = route_compilation_control(ChatDecision(
         action="reply", answer="Controllo", queries=[], target="source",
     ), message, session)
+    literal = normalized(message).strip(" .!?")
+    unknown = literal in {"non so", "non lo so"}
+    if protected.action == "compilation_control" and protected.control.kind == "resume":
+        return await handle_decision(project_id, conversation_id, protected, None, session,
+                                     message, expected_version)
+    if (decision.action == "FINISH" and not unknown) or (
+        protected.action == "compilation_control" and protected.control.kind == "finish"
+    ):
+        return await handle_decision(
+            project_id, conversation_id, ChatDecision(
+                action="compilation_control", answer="", target="form", queries=[],
+                control=ChatControl(kind="finish", user_quote=message),
+            ), None, session, message, expected_version,
+        )
     if protected.action == "compilation_control" and protected.control.kind == "pause":
         decision = ClarificationDecision(action="PAUSE")
+
+    slots = ((session.get("chat") or {}).get("question") or {}).get("slots", [])
+    collective = literal in {"no a entrambe", "no ad entrambe", "no a entrambi", "no ad entrambi"}
+    all_negative = (collective and len(slots) == 2
+                    and all(s["kind"] == "applicability" for s in slots))
+    if slots and (unknown or decision.action == "ANSWER" and all_negative):
+        targets = slots if all_negative or not decision.replies else [
+            s for s in slots if any(r.slot == s["slot"] for r in decision.replies)
+        ]
+        decision = ClarificationDecision(action="ANSWER", replies=[
+            ClarificationReply(slot=s["slot"], action="UNKNOWN" if unknown else "CONDITION_FALSE",
+                               user_quote=message) for s in targets
+        ])
 
     if decision.action == "PAUSE":
         after = await run_in_threadpool(
@@ -99,7 +126,7 @@ async def handle_group_decision(project_id, conversation_id, decision, session, 
             sessions.apply_clarification_group, project_id, session["id"],
             expected_version or session["version"], decision.replies, message,
         )
-    text = ("Ho registrato le indicazioni univoche. " if decision.replies else "")
+    text = ("Ho registrato le tue risposte. " if decision.replies else "")
     if errors:
         text += "Restano da chiarire solo le risposte non univoche. "
     if after["chat"]["auto_continue"]:
@@ -138,6 +165,7 @@ def new_cycle(previous=None):
         "clarification": None,
         "recovery_notice": None,
         "user_paused": False,
+        "finish_requested": False,
         "clarification_mode": "grouped",
         "analysis_attempts": (previous or {}).get("analysis_attempts", {}).copy(),
         "active_clarifications": (previous or {}).get("active_clarifications", []),
@@ -171,6 +199,7 @@ def budget_available(workflow):
 def field_label(field):
     requirement = field.get("requirement") or {}
     name = requirement.get("name") or field["label"] or "questa voce del modulo"
+    name = name.replace("_", " ")
     role = requirement.get("person_role")
     return f"{name} ({role})" if role else name
 
@@ -182,6 +211,7 @@ def chat_view(state):
         grouped,
         pending_slots,
     )
+    from app.compilation_document_plan import needs_document_plan
 
     workflow = state.get("chat_workflow")
     fields = state["fields"]
@@ -193,6 +223,8 @@ def chat_view(state):
         available = [f for f in available if f["id"] in eligible]
     dependency_pending = any(f["status"] == "PENDING" and f.get("awaiting_dependency_resolution")
                              for f in fields)
+    technical_issues = [f for f in fields if f["status"] in {"PENDING", "MISSING"}
+                        and f.get("validation_errors") and not is_deferred(f)]
     user_paused = bool(workflow and workflow.get("user_paused"))
     expired_lease = bool(
         state["status"] == "ANALYZING" and state.get("lease_until")
@@ -223,7 +255,10 @@ def chat_view(state):
             kind = "value"
             message = f"Devo chiarire la voce «{label}» del modulo. Che valore devo usare?"
         question = {"kind": kind, "field_ids": [field["id"]], "message": message}
-    if not question and issues and (not pending or grouped(state) and not automatic_fields(state)) \
+    automatic_pending = grouped(state) and (
+        automatic_fields(state) or needs_document_plan(state)) and budget_available(workflow)
+    if not question and issues and not automatic_pending \
+            and (not pending or grouped(state) and not automatic_fields(state)) \
             and not user_paused and not available:
         question = {
             "kind": "deferred_summary", "field_ids": [],
@@ -232,6 +267,11 @@ def chat_view(state):
             + (f" e altre {len(issues) - 5}" if len(issues) > 5 else "")
             + ". Non sono verificate. Potrai riprenderle quando avrai i dati.",
         }
+        if technical_issues:
+            question["message"] = (
+                "Alcuni campi restano aperti perché non sono riuscito a interpretarli o "
+                "a verificarli. Sono indicati nei dettagli della compilazione; puoi "
+                "rivederli oppure esportare una bozza con le informazioni già verificate.")
     elif not question and state["status"] == "READY" and not user_paused:
         question = {
             "kind": "generate",
@@ -246,11 +286,15 @@ def chat_view(state):
     return {
         "enabled": workflow is not None,
         "auto_continue": state["status"] in {"CREATED", "WAITING_FOR_USER"}
-        and (bool(automatic_fields(state)) if grouped(state) else pending > 0)
-        and (bool(automatic_fields(state)) if grouped(state) else
+        and (bool(automatic_fields(state)) or needs_document_plan(state) if grouped(state)
+             else pending > 0)
+        and (bool(automatic_fields(state)) or needs_document_plan(state) if grouped(state) else
              not available or dependency_pending)
         and budget_available(workflow),
-        "notice": (workflow or {}).get("recovery_notice"),
+        "notice": (workflow or {}).get("recovery_notice") or (
+            f"{len(technical_issues)} campi richiedono revisione per problemi di interpretazione "
+            "o verifica. I dettagli indicano il motivo."
+            if technical_issues and not automatic_fields(state) else None),
         "paused": user_paused or expired_lease or bool(
             workflow and workflow.get("paused_reason") == "model_error"
         ) or bool(
@@ -260,6 +304,7 @@ def chat_view(state):
             and not budget_available(workflow)
         ),
         "paused_by_user": user_paused,
+        "finish_requested": bool(workflow and workflow.get("finish_requested")),
         "deferred": sum(is_deferred(f) for f in issues),
         "question": question,
         "analyzed": len(fields) - pending,
@@ -307,6 +352,15 @@ def planner_context(session):
 
 def normalized(text):
     return " ".join(unicodedata.normalize("NFKC", text).casefold().split())
+
+
+def explicit_finish_request(message):
+    return bool(re.fullmatch(
+        r"(?:no[,;]?\s+)?(?:per favore[,;]?\s+)?(?:"
+        r"(?:finisci|termina|concludi) (?:la )?compilazione|"
+        r"(?:fermati (?:ed? )?)?esporta (?:una |la )?bozza parziale"
+        r")(?:[,;]? per favore)?", normalized(message).strip(" .!?"),
+    ))
 
 
 def contains_span(container, span):
@@ -485,12 +539,29 @@ async def handle_decision(
             control = decision.control
             if not contains_span(message, control.user_quote):
                 raise HTTPException(422, "Il controllo non è grounded nell'ultimo messaggio USER")
-            if control.kind in {"pause", "resume"} and control.field_id is not None:
+            if control.kind in {"pause", "resume", "finish"} and control.field_id is not None:
                 raise HTTPException(422, "Pausa/ripresa riguarda la sessione, non un valore")
             after = await run_in_threadpool(
                 sessions.chat_control, project_id, session["id"],
                 expected_version if expected_version is not None else session["version"], control,
             )
+            if control.kind == "finish":
+                # Persist the stop first: a failed export must not start new questions.
+                from app.docx_templates import DocumentInputError
+
+                try:
+                    after = await run_in_threadpool(
+                        sessions.finalize_session, project_id, session["id"],
+                        after["version"], True,
+                    )
+                except DocumentInputError:
+                    return ("Mi fermo qui e conservo i dati. Una verifica sui valori blocca "
+                            "l’export: puoi controllarli nei dettagli compilazione e riprovare.",
+                            {"session_id": after["id"], "action": "paused"})
+                return ("Va bene, mi fermo qui. Ho preparato una bozza parziale con i dati "
+                        "verificati; i campi irrisolti restano aperti. Puoi scaricare il DOCX "
+                        "e il report e revisionarli.",
+                        {"session_id": after["id"], "action": "generated"})
             if control.kind == "pause":
                 text = "Va bene, metto in pausa la compilazione. Potrai riprenderla quando vuoi."
                 outcome = "paused"
@@ -607,6 +678,19 @@ async def handle_active_decision(
 
     from app.intents import ChatDecision, route_compilation_control
 
+    protected = route_compilation_control(ChatDecision(
+        action="reply", answer="Controllo", target="source", queries=[],
+    ), message, session)
+    if protected.action == "compilation_control":
+        return await handle_decision(project_id, conversation_id, protected, selected_form,
+                                     session, message, expected_version)
+    if decision.action == "FINISH":
+        return await handle_decision(
+            project_id, conversation_id, ChatDecision(
+                action="compilation_control", answer="", target="form", queries=[],
+                control=ChatControl(kind="finish", user_quote=message),
+            ), selected_form, session, message, expected_version,
+        )
     target = single_active_target(planner_context(session)) if session else None
     if target is None:
         raise HTTPException(409, "Non esiste una sola domanda attiva: rileggi la conversazione")

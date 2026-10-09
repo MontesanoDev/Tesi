@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 import { api } from '../api'
 import type { CompilationFieldInput, CompilationSession } from '../types'
 
@@ -10,19 +10,31 @@ interface State {
   error: string | null
 }
 
+function hasActiveLease(session: CompilationSession | null) {
+  return session?.status === 'ANALYZING' && Boolean(session.lease_until
+    && Date.parse(session.lease_until) > Date.now())
+}
+
 // Backend owns progress and provenance. React holds only the displayed snapshot.
-export function useCompilationSession(projectId?: string, conversationId?: string, formId?: number, suspended = false) {
+export function useCompilationSession(projectId?: string, conversationId?: string, formId?: number,
+  suspended = false, chatRequest?: RefObject<AbortController | null>) {
   const key = JSON.stringify([projectId, conversationId, formId])
   const activeKey = useRef(key)
   activeKey.current = key
   const operation = useRef<AbortController | null>(null)
-  const [state, setState] = useState<State>({ key, session: null, loading: false, busy: false, error: null })
+  const [state, setState] = useState<State>({ key, session: null, loading: Boolean(conversationId), busy: false, error: null })
   const [reload, setReload] = useState(0)
+  const [poll, setPoll] = useState(0)
   const current = state.key === key ? state : { key, session: null, loading: Boolean(conversationId), busy: false, error: null }
+  const processing = current.busy || hasActiveLease(current.session) || Boolean(
+    current.session?.chat?.auto_continue && !current.session.chat.paused
+    && !current.error && !current.loading && !suspended)
 
   useEffect(() => {
     const controller = new AbortController()
-    setState({ key, session: null, loading: Boolean(conversationId), busy: false, error: null })
+    // A read refresh keeps the displayed session and any drafts in its details.
+    setState((s) => ({ key, session: s.key === key ? s.session : null,
+      loading: Boolean(conversationId), busy: false, error: null }))
     if (projectId && conversationId) {
       api.compilationSessions(projectId, conversationId, controller.signal)
         .then(async (summaries) => {
@@ -36,8 +48,8 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
         })
         .catch((reason) => {
           if (!controller.signal.aborted) console.warn('Caricamento CompilationSession', reason)
-          if (!controller.signal.aborted && activeKey.current === key) setState({ key, session: null,
-            loading: false, busy: false, error: 'Non riesco a caricare la compilazione. Riprova.' })
+          if (!controller.signal.aborted && activeKey.current === key) setState((s) => ({ ...s,
+            loading: false, busy: false, error: 'Non riesco a caricare la compilazione. Riprova.' }))
         })
     }
     return () => {
@@ -48,24 +60,29 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
   }, [key, projectId, conversationId, formId, reload])
 
   useEffect(() => {
-    if (!projectId || current.session?.status !== 'ANALYZING' || current.session.chat?.paused || current.busy) return
+    if (!projectId || current.session?.status !== 'ANALYZING' || current.session.chat?.paused || current.busy || current.loading) return
     const controller = new AbortController()
     const sessionId = current.session.id
     // Read-only polling recovers progress after a refresh; never starts another AI step.
     const timer = window.setTimeout(() => {
       api.compilationSession(projectId, sessionId, controller.signal).then((session) => {
-        if (!controller.signal.aborted && activeKey.current === key) setState((s) => ({ ...s, session }))
+        if (!controller.signal.aborted && activeKey.current === key) {
+          setState((s) => ({ ...s, session, error: null }))
+          setPoll((value) => value + 1)
+        }
       }).catch(() => {
-        if (!controller.signal.aborted && activeKey.current === key) setState((s) => ({
-          ...s, error: 'Impossibile aggiornare la compilazione. Riprova dal controllo dei dettagli.',
-        }))
+        if (!controller.signal.aborted && activeKey.current === key) {
+          setState((s) => ({ ...s, error: 'Impossibile aggiornare la compilazione. I dati sono conservati.' }))
+          setPoll((value) => value + 1)
+        }
       })
     }, 3000)
     return () => { clearTimeout(timer); controller.abort() }
-  }, [projectId, key, current.session, current.busy])
+  }, [projectId, key, current.session, current.busy, current.loading, poll])
 
   const run = useCallback(async (action: (signal: AbortSignal) => Promise<CompilationSession>) => {
-    if (!projectId || operation.current || current.loading) return null
+    if (!projectId || operation.current || chatRequest?.current || current.loading
+      || suspended || hasActiveLease(current.session)) return null
     const controller = new AbortController()
     operation.current = controller
     setState((s) => ({ ...s, key, busy: true, error: null }))
@@ -89,11 +106,11 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
     } finally {
       if (operation.current === controller) operation.current = null
     }
-  }, [projectId, current.loading, current.session, key])
+  }, [projectId, current.loading, current.session, key, suspended, chatRequest])
 
   useEffect(() => {
     const session = current.session
-    if (!projectId || !session?.chat?.auto_continue || session.conversation_id !== conversationId
+    if (!projectId || !session?.chat?.auto_continue || session.chat.paused || session.conversation_id !== conversationId
       || current.busy || current.loading
       || current.error || suspended || operation.current) return
     // One step per snapshot; the persisted backend budget authorizes every next step.
@@ -104,7 +121,10 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
 
   return {
     ...current,
-    refresh: () => setReload((value) => value + 1),
+    processing,
+    // The ref also closes the gap before React renders a newly started operation.
+    isProcessing: () => processing || Boolean(operation.current),
+    refresh: () => { if (!operation.current) setReload((value) => value + 1) },
     start: (id: number) => run((signal) => api.startCompilationSession(projectId!, id, conversationId ?? null, signal)),
     resolve: (fieldIds?: string[]) => current.session
       ? run((signal) => api.resolveCompilationSession(projectId!, current.session!.id, current.session!.version, fieldIds, signal)) : Promise.resolve(null),

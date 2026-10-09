@@ -185,3 +185,52 @@ def test_query_names_are_bounded_without_repeating_long_form_descriptors():
     queries = compilation_queries(SourceCluster(requirement_ids=[1, 2, 3, 4]), requirements,
                                   {i: ["Denominazione", "Nome dell'ente"] for i in range(1, 5)})
     assert len(queries) <= 2
+
+
+def test_underscores_do_not_outweigh_documentary_property_names_in_group_queries():
+    names = ["indirizzo_sede_organizzazione_rappresentata", "comune_sede_organizzazione"]
+    requirements = [Requirement(name=n, form_quote=n, form_citation_id=1) for n in names]
+    queries = compilation_queries(SourceCluster(requirement_ids=[1, 2]), requirements, {
+        1: [names[0], "indirizzo", "sede legale"],
+        2: [names[1], "comune", "località sede"],
+    })
+    assert queries == ["indirizzo comune", "sede legale località sede"]
+
+
+@pytest.mark.anyio
+async def test_reviewed_profile_can_use_pdf_facts_without_colon_or_search_hit(api, monkeypatch):
+    from test_compilation_semantics import classified, layout_fields
+
+    await source(api, "COOPERATIVA AURORA\nSEDE LEGALE Via del Porto 19, Genova")
+    await source(api, "Il servizio da affidare riguarda un edificio.", project="alpha")
+    await source(api, "SEDE LEGALE Via Segreta 22", project="beta")
+    _, fields = layout_fields()
+    await classified(fields, ["denominazione", "indirizzo sede", "comune"])
+    simulate(monkeypatch)
+    monkeypatch.setattr(resolution, "search_project_evidence", lambda *a, **kw: [])
+    sources, coverage, _ = await resolution.retrieve_sources("alpha", fields)
+    assert sources and all(s["role"] == "source" and s["scope"] == "global" for s in sources)
+    assert all(coverage[f["id"]] for f in fields)
+    assert all("Segreta" not in s["content"] for s in sources)
+    assert all("SEDE LEGALE" in s["content"] for s in sources)
+
+
+@pytest.mark.anyio
+async def test_pooled_evidence_does_not_bypass_semantic_value_approval(api, monkeypatch):
+    from test_compilation_semantics import classified, layout_fields
+
+    from app.compilation_session_models import CandidateMatches
+
+    await source(api, "COOPERATIVA AURORA\nSEDE LEGALE Via del Porto 19, Genova")
+    layout, fields = layout_fields()
+    await classified(fields, ["denominazione", "indirizzo sede", "comune"])
+    simulate(monkeypatch)
+    monkeypatch.setattr(resolution, "search_project_evidence", lambda *a, **kw: [])
+    sources, coverage, _ = await resolution.retrieve_sources("alpha", fields)
+    match = CandidateMatches(fields=[{
+        "candidate_id": fields[1]["id"], "reason": "Proposta errata",
+        "supports": [{"source_id": 1, "quote": sources[0]["content"], "value": "AURORA"}],
+    }])
+    resolution.apply_matches(layout, fields, match, sources, coverage)
+    assert fields[1]["value"] is None
+    assert any("semanticamente" in error for error in fields[1]["validation_errors"])

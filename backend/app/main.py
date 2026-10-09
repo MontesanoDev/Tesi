@@ -749,6 +749,19 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
             "generation_status": "failed",
         })
 
+    # An explicit finish is a session command, even at an applicability checkpoint.
+    # Handle it before planning so the leading 'no' cannot become a field answer.
+    direct_control = route_compilation_control(ChatDecision(
+        action="reply", answer="Controllo", target="source", queries=[],
+    ), payload.question, compilation_session)
+    if direct_control.action == "compilation_control" and direct_control.control.kind == "finish":
+        text, command = await handle_decision(
+            project_id, conversation_id, direct_control, form_reference, compilation_session,
+            payload.question, payload.compilation_version,
+        )
+        return persist({**base_response, "answer": text, "compilation": command,
+                        "generation_status": "direct"})
+
     try:
         # Pin the same provider/model for planning, answering and citation repair.
         with project_ai_context(project_id):

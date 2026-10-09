@@ -1,5 +1,6 @@
 """Additional transport, stale-evidence and structural validation regressions."""
 
+import asyncio
 import json
 from io import BytesIO
 
@@ -16,6 +17,47 @@ from app.compilation_session_models import CandidateMeanings
 from app.config import AISettings, use_ai_settings
 from app.db import connection
 from app.docx_templates import DocumentInputError
+
+
+@pytest.mark.anyio
+async def test_live_request_lease_rejects_competing_mutations_before_another_model_call(
+    api, monkeypatch,
+):
+    state = await create(api, docx(("Denominazione sociale",)))
+    calls = simulate(monkeypatch)
+    entered, release = asyncio.Event(), asyncio.Event()
+    classify = resolution.classify_candidates
+
+    async def held_classification(fields):
+        entered.set()
+        await release.wait()
+        return await classify(fields)
+
+    monkeypatch.setattr(resolution, "classify_candidates", held_classification)
+    url = f"{BASE}/{state['id']}"
+    running = asyncio.create_task(api.post(url + "/resolve", json={"version": state["version"]}))
+    try:
+        await asyncio.wait_for(entered.wait(), timeout=5)
+        active = (await api.get(url)).json()
+        assert active["status"] == "ANALYZING" and active["lease_until"]
+        for version in (state["version"], active["version"]):
+            duplicate = await api.post(url + "/resolve", json={"version": version})
+            assert duplicate.status_code == 409, duplicate.text
+        update = await api.patch(url + "/fields", json={"version": active["version"], "fields": [{
+            "field_id": active["fields"][0]["id"], "action": "set", "value": "Società di prova",
+        }]})
+        assert update.status_code == 409, update.text
+        export = await api.post(url + "/finalize", json={
+            "version": active["version"], "allow_unresolved": True,
+        })
+        assert export.status_code == 409, export.text
+        assert (await api.get(url)).json() == active
+        assert calls == {"classify": 0, "planner": 0, "match": 0}
+    finally:
+        release.set()
+        result = await running
+    assert result.status_code == 200, result.text
+    assert calls["classify"] == 1
 
 
 @pytest.mark.anyio

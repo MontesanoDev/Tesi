@@ -156,10 +156,24 @@ for (const reducedMotion of [false, true]) {
     const spinner = page.locator('.compilation-activity svg')
     await expect(spinner).toBeVisible()
     expect(await spinner.evaluate((element) => getComputedStyle(element).animationName)).toBe(reducedMotion ? 'none' : 'compilation-spin')
+    await expect(page.getByRole('status', { name: '' }).filter({ hasText: 'Elaborazione in corso' })).toBeVisible()
+    await expect(page.locator('.compilation-debug')).not.toHaveAttribute('open')
+    await composer.fill('Testo scritto durante l’elaborazione')
+    await expect(composer).toBeEditable()
+    await expect(page.getByRole('button', { name: 'Invia', exact: true })).toBeDisabled()
+    await composer.press('Enter')
+    await composer.evaluate((element) => (element as HTMLTextAreaElement).form!.requestSubmit())
+    expect(starts).toBe(1)
+    expect(steps).toBe(1)
+    await expect(composer).toHaveValue('Testo scritto durante l’elaborazione')
+    await page.screenshot({ path: `artifacts/${testInfo.project.name}-compilation-active${reducedMotion ? '-reduced' : ''}.png`, fullPage: true })
     await expect(page.getByRole('button', { name: 'Continua analisi' })).not.toBeVisible()
     release()
     await expect(page.getByText('Mi manca la data di abilitazione del direttore tecnico Elisa Romano. Qual è?')).toBeVisible()
     expect(steps).toBe(2)
+    await expect(spinner).toHaveCount(0)
+    await expect(composer).toHaveValue('Testo scritto durante l’elaborazione')
+    await expect(page.getByRole('button', { name: 'Invia', exact: true })).toBeEnabled()
     await expect(page.getByRole('button', { name: 'Genera DOCX' })).not.toBeVisible()
     await expect(page.getByRole('button', { name: 'Genera bozza con campi irrisolti' })).not.toBeVisible()
     await expect(page.getByText('Non posso compilare', { exact: false })).not.toBeVisible()
@@ -179,6 +193,9 @@ for (const reducedMotion of [false, true]) {
     await composer.fill('basta')
     await page.getByRole('button', { name: 'Invia', exact: true }).click()
     await expect(page.getByText('La compilazione è in pausa. Potrai riprenderla quando vuoi.')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Prosegui compilazione' })).toHaveCount(1)
+    await expect(page.getByRole('button', { name: 'Riprendi compilazione' })).toHaveCount(0)
+    await expect(page.locator('.compilation-activity')).toHaveCount(0)
     await expect(page.locator('.compilation-question')).toHaveCount(0)
     await page.reload()
     await expect(page.getByText('La compilazione è in pausa. Potrai riprenderla quando vuoi.')).toBeVisible()
@@ -204,6 +221,9 @@ for (const reducedMotion of [false, true]) {
     await page.getByText('Dettagli compilazione', { exact: true }).click()
     await page.getByRole('button', { name: 'Genera DOCX' }).click()
     await expect(page.getByRole('button', { name: 'Scarica DOCX' })).toBeVisible()
+    await expect(page.getByText('Bozza disponibile', { exact: true })).toBeVisible()
+    await expect(page.locator('.compilation-chat-card .button--primary')).toHaveCount(1)
+    await expect(page.getByRole('button', { name: 'Genera DOCX' })).toHaveCount(0)
     const download = page.waitForEvent('download')
     await page.getByRole('button', { name: 'Scarica DOCX' }).click()
     expect((await download).suggestedFilename()).toBe('domanda-partecipazione.compilato.docx')
@@ -212,3 +232,75 @@ for (const reducedMotion of [false, true]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
   })
 }
+
+test('refresh during a persisted lease recovers through a read error without concurrent mutations', async ({ page }) => {
+  const base = '/api/projects/compilation-refresh'
+  const form = { id: 42, name: 'modulo.docx', kind: 'form', metadata: '', status: 'Caricato' }
+  const field: CompilationSessionField = { id: 'f1', candidate_id: 'f1', label: 'Qualifica',
+    status: 'PENDING', value: null, provenance: null, reason: '', validation_errors: [],
+    requirement: null, source_evidence: [], alternatives: [],
+    form_evidence: { role: 'form', source_name: form.name, candidate_id: 'f1' } }
+  const state: CompilationSession = { id: 'session-1', project_id: 'compilation-refresh',
+    conversation_id: 'chat-1', form_id: 42, original_file_id: 42, template_name: form.name,
+    status: 'ANALYZING', version: 2, created_at: '', updated_at: '', last_error: null, last_generation: null,
+    lease_until: new Date(Date.now() + 240000).toISOString(), fields: [field], open_issues: [],
+    summary: { total: 1, pending: 1, resolved: 0, missing: 0, ambiguous: 0, conflicting: 0, not_applicable: 0, user_provided: 0 },
+    chat: { enabled: true, auto_continue: false, paused: false, question: null,
+      analyzed: 0, verified: 0, user_provided: 0, remaining_questions: 0, steps_used: 1, max_steps: 36 } }
+  let failedReads = 0
+  let mutations = 0
+  await page.route('**/api/**', async (route) => {
+    const request = route.request()
+    const path = new URL(request.url()).pathname
+    if (request.method() !== 'GET') {
+      mutations++
+      return route.fulfill({ status: 409, json: { detail: 'Nessuna mutazione attesa' } })
+    }
+    if (path === base) return route.fulfill({ json: { id: 'compilation-refresh', title: 'Progetto di prova',
+      description: '', status: 'Bozza', status_tone: 'info', updated_label: '', source_count: 0, model_count: 0,
+      instructions: '', call_fact_count: 0, missing_fact_count: 0, knowledge_sources: [], conversations: [], files: [form] } })
+    if (path === `${base}/conversations/chat-1`) return route.fulfill({ json: { id: 'chat-1',
+      project_id: 'compilation-refresh', title: 'Compilazione', metadata: '', target: 'chat', turns: [],
+      form_reference: { form_id: 42, name: form.name } } })
+    if (path === `${base}/compilation-sessions`) return route.fulfill({ json: [state] })
+    if (path === `${base}/compilation-sessions/session-1`) {
+      if (failedReads > 0) {
+        failedReads--
+        return route.fulfill({ status: 503, json: { detail: 'Lettura temporaneamente non disponibile' } })
+      }
+      return route.fulfill({ json: state })
+    }
+    if (path === '/api/settings/ai') return route.fulfill({ json: { profiles: [], default_profile_id: null } })
+    if (path.endsWith('/ai-model')) return route.fulfill({ json: { profile_id: null, effective_profile: null } })
+    return route.fulfill({ json: [] })
+  })
+  await page.goto('/projects/compilation-refresh/conversations/chat-1')
+  await expect(page.getByText('Elaborazione in corso', { exact: true })).toBeVisible()
+  await page.reload()
+  await expect(page.getByText('Elaborazione in corso', { exact: true })).toBeVisible()
+  await expect(page.locator('.compilation-debug')).not.toHaveAttribute('open')
+  const composer = page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+  await composer.fill('Risposta conservata')
+  await expect(page.getByRole('button', { name: 'Invia', exact: true })).toBeDisabled()
+  failedReads = 1
+  await expect(page.getByText('Impossibile aggiornare la compilazione. I dati sono conservati.')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Invia', exact: true })).toBeDisabled()
+  Object.assign(field, { status: 'MISSING' })
+  Object.assign(state, { status: 'WAITING_FOR_USER', version: 3, lease_until: null,
+    open_issues: [{ field_id: field.id, label: field.label, status: 'MISSING', reason: '', validation_errors: [] }],
+    summary: { ...state.summary, pending: 0, missing: 1 },
+    chat: { ...state.chat!, question: { kind: 'value', field_ids: [field.id], message: 'Qual è la qualifica?' } } })
+  await expect(page.getByText('Qual è la qualifica?', { exact: true })).toBeVisible()
+  await expect(page.getByRole('alert')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Invia', exact: true })).toBeEnabled()
+  await expect(composer).toHaveValue('Risposta conservata')
+  await expect(page.locator('.compilation-activity')).toHaveCount(0)
+  Object.assign(state, { status: 'FAILED', last_error: 'Errore interno di prova', chat: { ...state.chat!, paused: true } })
+  await page.reload()
+  await expect(page.getByText('Compilazione in pausa', { exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Prosegui compilazione' })).toBeEnabled()
+  await expect(page.locator('.compilation-chat-card .button--primary')).toHaveCount(1)
+  await expect(page.locator('.compilation-activity')).toHaveCount(0)
+  await expect(page.getByText('Errore interno di prova')).toHaveCount(0)
+  expect(mutations).toBe(0)
+})

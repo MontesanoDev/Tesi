@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 class SectionCondition(StrictModel):
-    condition: str = Field(min_length=1, max_length=120)
+    condition: str = Field(min_length=1, max_length=500)
     section_id: str = Field(min_length=1, max_length=80)
     condition_kind: Literal["subject_type", "participation", "other"]
 
@@ -114,6 +114,9 @@ def enrich_structure(layout, fields):
                 for cell in structural["row"]
             )
 
+    from app.compilation_form_conditions import attach_form_dependencies
+
+    attach_form_dependencies(layout, fields)
 
 def form_material(field):
     return "\n".join([field["context"], *[

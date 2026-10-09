@@ -106,6 +106,11 @@ def simulate(monkeypatch, values=None, *, role="", relationship="single", classi
     calls = {"classify": 0, "planner": 0, "match": 0}
     values = values or {}
 
+    # These tests concern field resolution; document planning has dedicated tests.
+    from app import compilation_document_plan
+    monkeypatch.setattr(compilation_document_plan, "needs_document_plan", lambda state: False)
+    monkeypatch.setattr(resolution, "needs_document_plan", lambda state: False)
+
     async def classify(fields):
         calls["classify"] += 1
         if classify_hook:
@@ -559,6 +564,20 @@ async def test_false_form_quote_and_wrong_field_source_never_resolve(api, monkey
 async def test_real_demo_structural_candidates_verified_separately(api, monkeypatch):
     state = await create(api, DEMO.read_bytes())
     assert state["summary"]["total"] == 279
+    # Names, legal form and director data alone do not prove branch applicability.
+    # This focused placement test starts from an explicit, already verified USER
+    # type decision; UNKNOWN and rejected type proofs have generic regressions.
+    with connection() as db:
+        saved = json.loads(db.execute(
+            "SELECT state_json FROM compilation_sessions WHERE id=?", (state["id"],),
+        ).fetchone()[0])
+        engineering = next(f for f in saved["fields"] if f["id"] == "t25.r0.c1")
+        engineering["form_dependency_user"] = {
+            "condition": engineering["form_dependency"]["condition"], "applies": True,
+            "provenance": "USER", "user_quote": "Siamo una società di ingegneria",
+        }
+        db.execute("UPDATE compilation_sessions SET state_json=? WHERE id=?",
+                   (json.dumps(saved), state["id"]))
     text = (
         "Denominazione sociale: Mapi Ingegneria S.r.l.\n"
         "Forma giuridica: Società a responsabilità limitata\nSede legale: Via Test 12, Bari.\n"
@@ -586,7 +605,9 @@ async def test_real_demo_structural_candidates_verified_separately(api, monkeypa
         assert fields[candidate]["status"] == "RESOLVED"
         assert fields[candidate]["source_evidence"][0]["role"] == "source"
     assert fields["t26.r2.c1"]["status"] == "MISSING"  # qualification date
-    assert second["summary"]["pending"] == 271
+    assert second["summary"]["pending"] + second["summary"]["not_applicable"] == 271
+    assert second["summary"]["not_applicable"] > 0
+    assert fields["t40.r0.c1"]["status"] == "PENDING"  # Participation remains UNKNOWN.
     # Fixture data are simulated: this is not an evaluation of a live model.
 
 

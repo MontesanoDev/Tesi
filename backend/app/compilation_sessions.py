@@ -26,6 +26,7 @@ from app.compilation_clarifications import (
     resolution_phase,
     synchronize,
 )
+from app.compilation_form_conditions import DEPENDENCY_VERSION, blocked_previous_writes
 from app.compilation_session_models import BATCH_SIZE, LEASE_SECONDS, FieldStatus, UserFieldInput
 from app.db import connection, touch_project
 from app.document_compilation import CompilationSources, validate_proposals
@@ -145,6 +146,8 @@ def candidate_snapshots(layout, project_id: str, form_id: int, name: str) -> lis
 
 
 def session_status(fields: list[dict]) -> str:
+    if any(f.get("write_blockers") for f in fields):
+        return "WAITING_FOR_USER"
     states = {field["status"] for field in fields}
     if states & {"MISSING", "AMBIGUOUS", "CONFLICTING"}:
         return "WAITING_FOR_USER"
@@ -161,8 +164,18 @@ def _row(db, project_id: str, session_id: str):
     return row
 
 
+def ensure_form_dependencies(row, state):
+    from app.compilation_form_conditions import DEPENDENCY_VERSION, attach_form_dependencies
+
+    if state.get("form_dependency_version") != DEPENDENCY_VERSION:
+        attach_form_dependencies(read_original(row), state["fields"])
+        state["form_dependency_version"] = DEPENDENCY_VERSION
+
+
 def payload(row) -> dict:
     state = json.loads(row["state_json"])
+    ensure_form_dependencies(row, state)
+    synchronize(state)  # Reuse verified decisions also after a refresh (read-only).
     counts = Counter(field["status"] for field in state["fields"])
     return {
         **state,
@@ -174,7 +187,11 @@ def payload(row) -> dict:
         "version": row["version"],
         "created_at": row["created_at"],
         "updated_at": row["updated_at"],
+        "blocked_previous_writes": blocked_previous_writes(state),
         "summary": {
+            "blocked_writes": len(blocked_previous_writes(state)),
+            "writable": sum(f["status"] in {"RESOLVED", "USER_PROVIDED"}
+                            and not f.get("write_blockers") for f in state["fields"]),
             "total": len(state["fields"]),
             **{status.lower(): counts[status] for status in FIELD_STATUSES},
         },
@@ -183,11 +200,12 @@ def payload(row) -> dict:
                 "field_id": f["id"],
                 "status": f["status"],
                 "label": f["label"],
-                "reason": f["reason"],
+                "reason": "; ".join(f["write_blockers"]) if f.get("write_blockers")
+                else f["reason"],
                 "validation_errors": f["validation_errors"],
             }
             for f in state["fields"]
-            if f["status"] in UNRESOLVED
+            if f["status"] in UNRESOLVED or f.get("write_blockers")
         ],
     }
 
@@ -285,7 +303,10 @@ def create_session(
                                       or chat_view(existing_state)["paused"]):
                     check_revision(existing, existing["version"])
                     existing_state["chat_workflow"] = new_cycle(existing_state.get("chat_workflow"))
-                    if existing_state["status"] in {"FAILED", "ANALYZING"}:
+                    if existing_state["status"] in {"FAILED", "ANALYZING"} or (
+                        existing_state["status"] == "GENERATED"
+                        and any(f["status"] in UNRESOLVED for f in existing_state["fields"])
+                    ):
                         existing_state["status"] = session_status(existing_state["fields"])
                     existing_state.update(lease_until=None, last_error=None)
                     return save_state(db, existing, existing_state, "chat_resume")
@@ -295,6 +316,7 @@ def create_session(
         session_id, timestamp = uuid4().hex, now()
         state = {
             "chat_workflow": new_cycle() if start_in_chat else None,
+            "form_dependency_version": DEPENDENCY_VERSION,
             "status": "CREATED",
             "template_name": form["name"],
             "template_sha256": layout.sha256,
@@ -344,6 +366,8 @@ def check_revision(row, version: int, *, allow_busy: bool = False) -> dict:
         and (state["lease_until"] and state["lease_until"] > now())
     ):
         raise HTTPException(409, "Risoluzione già in corso")
+    ensure_form_dependencies(row, state)
+    synchronize(state)  # Reconcile before choosing automatic work or a question.
     return state
 
 
@@ -391,6 +415,7 @@ def read_original(row):
 
 def claim_resolution(project_id: str, session_id: str, version: int, ids: list[str] | None,
                      *, automatic=False):
+    from app.compilation_document_plan import needs_document_plan
     with connection() as db:
         db.execute("BEGIN IMMEDIATE")
         row = _row(db, project_id, session_id)
@@ -416,7 +441,10 @@ def claim_resolution(project_id: str, session_id: str, version: int, ids: list[s
             selected = [f["id"] for f in pending[:BATCH_SIZE // 2 if retry else BATCH_SIZE]]
         else:
             selected = ids
-        if not selected or len(set(selected)) != len(selected) or len(selected) > BATCH_SIZE:
+        if automatic and needs_document_plan(state):
+            selected = []  # Mapping has its own lease/step and consumes no field attempts.
+        if (not selected and not (automatic and needs_document_plan(state))
+                or len(set(selected)) != len(selected) or len(selected) > BATCH_SIZE):
             raise HTTPException(422, "Indica da 1 a 12 candidate distinti da analizzare")
         by_id = {f["id"]: f for f in fields}
         if any(
@@ -429,7 +457,8 @@ def claim_resolution(project_id: str, session_id: str, version: int, ids: list[s
             workflow.setdefault("source_attempts", dict(phase_attempts(state, "source")))
             workflow["last_analysis_field_ids"] = selected
             workflow["last_analysis_requested_version"] = version
-            workflow["last_analysis_phase"] = resolution_phase(by_id[selected[0]])
+            workflow["last_analysis_phase"] = (
+                resolution_phase(by_id[selected[0]]) if selected else "document_plan")
             for field_id in selected:
                 key = ("source_attempts" if by_id[field_id].get("requirement")
                        else "analysis_attempts")
@@ -442,6 +471,29 @@ def claim_resolution(project_id: str, session_id: str, version: int, ids: list[s
         )
         claimed = save_state(db, row, state, "analyze_start")
         return claimed, bytes(row["original"]), [by_id[i] for i in selected]
+
+
+def persist_document_plan(project_id, session_id, version, plan):
+    from app.compilation_chat import is_deferred
+
+    with connection() as db:
+        db.execute("BEGIN IMMEDIATE")
+        row = _row(db, project_id, session_id)
+        state = check_revision(row, version, allow_busy=True)
+        state["document_plan"] = plan
+        # A new structural/evidence policy can recover old false negatives once.
+        # Preserve facts, user choices and explicitly deferred questions.
+        for field in state["fields"]:
+            if (field["status"] not in {"MISSING", "PENDING", "AMBIGUOUS"}
+                    or field.get("provenance") == "USER" or is_deferred(field)):
+                continue
+            if field.get("requirement"):
+                field.update(status="PENDING", last_attempt_at=None)
+                state["chat_workflow"].setdefault("source_attempts", {}).pop(field["id"], None)
+            elif field.get("last_attempt_at"):
+                field.update(status="PENDING", last_attempt_at=None)
+                state["chat_workflow"].setdefault("analysis_attempts", {}).pop(field["id"], None)
+        return save_state(db, row, state, "document_plan")
 
 
 def claim_source_attempts(project_id, session_id, version, fields, source_ids):
@@ -688,15 +740,18 @@ def defer_field(field, kind, user_quote):
 
 def apply_clarification_group(project_id, session_id, version, replies, message):
     """One transaction; valid slots survive ambiguity/validation in other slots."""
+    from app.compilation_applicability import explicit_condition_reply
     from app.compilation_chat import (
         ChatFieldReply,
         ClarificationReply,
         contains_span,
         has_user_alternatives,
         normalize_date,
+        normalized,
         numbered_answers,
         user_updates,
     )
+    from app.compilation_conditions import negative_parent_reply
 
     with connection() as db:
         db.execute("BEGIN IMMEDIATE")
@@ -740,8 +795,29 @@ def apply_clarification_group(project_id, session_id, version, replies, message)
                         raise ValueError("Conferma breve senza destinatario univoco nel gruppo")
                     if slot["kind"] != "applicability":
                         raise ValueError("Questo slot chiede un valore, non una condizione")
+                    applies = reply.action == "CONDITION_TRUE"
+                    collective = normalized(message).strip(" .!?") in {
+                        "no a entrambe", "no ad entrambe", "no a entrambi", "no ad entrambi",
+                    } and len(slots) == 2 and all(s["kind"] == "applicability"
+                                                for s in slots.values())
+                    clause = numbered.get(reply.slot, reply.user_quote)
+                    if not ((collective and not applies) or explicit_condition_reply(
+                        slot["condition"], clause, applies=applies,
+                    ) or (not applies and negative_parent_reply(slot["condition"], clause))):
+                        raise ValueError("La risposta USER non prova questa condizione/polarità")
                     for field_id in slot["field_ids"]:
                         field = fields[field_id]
+                        branch = field.get("form_dependency")
+                        if branch and slot["condition"] == branch["condition"]:
+                            field["form_dependency_user"] = {
+                                "condition": branch["condition"], "applies": applies,
+                                "provenance": "USER", "user_quote": reply.user_quote,
+                            }
+                            if applies:
+                                field.update(status="PENDING", last_attempt_at=None,
+                                             awaiting_dependency_resolution=True)
+                                reopen_phase_attempts(state, field)
+                            continue
                         if reply.action == "CONDITION_FALSE":
                             apply_field_input(field, UserFieldInput(
                                 field_id=field_id, action="not_applicable",
@@ -801,7 +877,13 @@ def chat_control(project_id, session_id, version, control):
             state["lease_until"] = None
         else:
             state = check_revision(row, version)
-            if control.kind == "resume":
+            if control.kind == "finish":
+                state["chat_workflow"] = state.get("chat_workflow") or new_cycle()
+                state["chat_workflow"].update(
+                    user_paused=True, finish_requested=True, clarification=None,
+                    active_clarifications=[],
+                )
+            elif control.kind == "resume":
                 if not state.get("chat_workflow"):
                     raise HTTPException(409, "Avvia prima la compilazione nella chat")
                 clean = {**state, "chat_workflow": {
@@ -813,7 +895,10 @@ def chat_control(project_id, session_id, version, control):
                     field = next(f for f in state["fields"] if f.get("conversation_disposition"))
                     field.pop("conversation_disposition", None)
                 state["chat_workflow"] = new_cycle(state["chat_workflow"])
-                if state["status"] in {"ANALYZING", "FAILED"}:
+                if state["status"] in {"ANALYZING", "FAILED"} or (
+                    state["status"] == "GENERATED"
+                    and any(f["status"] in UNRESOLVED for f in state["fields"])
+                ):
                     state["status"] = session_status(state["fields"])
                 state.update(lease_until=None, last_error=None)
             else:
@@ -862,12 +947,14 @@ def finalize_session(project_id, session_id, version, allow_unresolved=False) ->
         state = check_revision(row, version)
     try:
         layout = read_original(row)
-        if not allow_unresolved and any(f["status"] in UNRESOLVED for f in state["fields"]):
+        if not allow_unresolved and any(
+            f["status"] in UNRESOLVED or f.get("write_blockers") for f in state["fields"]
+        ):
             raise HTTPException(409, "Problemi aperti: risolvi i campi o richiedi allow_unresolved")
         check_current_sources(project_id, state["fields"])
         values, checks = {}, []
         for field in state["fields"]:
-            if field["status"] not in {"RESOLVED", "USER_PROVIDED"}:
+            if field["status"] not in {"RESOLVED", "USER_PROVIDED"} or field.get("write_blockers"):
                 continue
             user = field["status"] == "USER_PROVIDED" and field["provenance"] == "USER"
             if not user and (field["provenance"] != "SOURCE" or not field["source_evidence"]):
@@ -894,7 +981,7 @@ def finalize_session(project_id, session_id, version, allow_unresolved=False) ->
             values[field["id"]] = checked["written_value"]
         draft = fill_docx(layout, values)
         report = {
-            "schema_version": 5,
+            "schema_version": 6,
             "created_at": now(),
             "project_id": project_id,
             "session_id": session_id,
@@ -909,10 +996,14 @@ def finalize_session(project_id, session_id, version, allow_unresolved=False) ->
             "summary": payload(row)["summary"],
             "open_issues": payload(row)["open_issues"],
             "written_field_count": len(values),
+            "blocked_previous_writes": blocked_previous_writes(state),
             "unsupported_locations": layout.unsupported_locations,
             "warnings": [
                 "Bozza da revisionare: verificare applicabilità, allegati e impaginazione.",
                 "I candidate non rappresentano una lista completa di obblighi del modulo.",
+                *(["Scritture precedenti escluse dall’export e conservate nel report: "
+                   + ", ".join(f["field_id"] for f in blocked_previous_writes(state))]
+                  if blocked_previous_writes(state) else []),
             ],
         }
 

@@ -150,17 +150,18 @@ export function ProjectWorkspacePage() {
   const forms = project?.files.filter((file) => file.kind === 'form') ?? []
   const selectedForm = forms.find((file) => file.id === formReference?.form_id)
   const mentionOptions = forms.filter((file) => file.name.toLocaleLowerCase().includes(mention?.query.toLocaleLowerCase() ?? ''))
+  const answerRequest = useRef<AbortController | null>(null)
   const compilation = useCompilationSession(projectId, conversationId, selectedForm?.id,
-    searching || conversationLoading || changingModel)
+    searching || conversationLoading || changingModel, answerRequest)
   // A freshly created chat must finish navigation before it can accept another mutation.
   const activeSession = compilation.session?.conversation_id === conversationId ? compilation.session : null
+  const sessionStateUnavailable = Boolean(conversationId && compilation.error && !compilation.session)
   const composerRef = useDismissibleMenu<HTMLFormElement>(Boolean(mention), () => setMention(null))
   const turnSequence = useRef(0)
   const chatThread = useRef<HTMLDivElement>(null)
   const composerInput = useRef<HTMLTextAreaElement>(null)
   const activeConversation = useRef<string | null>(conversationId ?? null)
   const loadedConversation = useRef<string | null>(null)
-  const answerRequest = useRef<AbortController | null>(null)
   const projectMenuRef = useDismissibleMenu<HTMLDivElement>(
     menuOpen,
     () => setMenuOpen(false),
@@ -268,7 +269,7 @@ export function ProjectWorkspacePage() {
     event.preventDefault()
     const query = prompt.trim()
     if (!query || answerRequest.current || searching || conversationLoading || changingModel
-      || (compilation.busy && !activeSession?.chat?.enabled)) return
+      || compilation.loading || sessionStateUnavailable || compilation.isProcessing()) return
     const controller = new AbortController()
     answerRequest.current = controller
     const turnId = `local-${++turnSequence.current}`
@@ -341,7 +342,7 @@ export function ProjectWorkspacePage() {
   }
 
   function selectMention(form: ProjectFile) {
-    if (!mention || compilation.busy || searching) return
+    if (!mention || compilation.isProcessing() || compilation.loading || searching) return
     setFormReference({ form_id: form.id, name: form.name })
     setPrompt(prompt.slice(0, mention.start) + prompt.slice(mention.end))
     setMention(null)
@@ -349,10 +350,14 @@ export function ProjectWorkspacePage() {
   }
 
   async function startCompilation() {
-    if (!selectedForm || searching || conversationLoading || changingModel) return
+    if (!selectedForm || answerRequest.current || searching || conversationLoading || changingModel
+      || sessionStateUnavailable || compilation.isProcessing()) return
     const session = await compilation.start(selectedForm.id)
     if (!session?.conversation_id) return
     if (conversationId !== session.conversation_id) {
+      // This navigation belongs to the current composer: keep text typed during start.
+      activeConversation.current = session.conversation_id
+      loadedConversation.current = session.conversation_id
       navigate(`/projects/${activeProjectId}/conversations/${session.conversation_id}`, { replace: true })
     }
   }
@@ -418,16 +423,17 @@ export function ProjectWorkspacePage() {
       {selectedForm && <div className="composer-mention">
         <span className="composer-mention-chip"><FileText size={14} /><span>@{selectedForm.name}</span>
           <button type="button" className="icon-button" aria-label="Rimuovi riferimento al modulo" title="Rimuovi riferimento al modulo"
-            disabled={compilation.busy || searching} onClick={() => setFormReference(null)}><X size={14} /></button>
+            disabled={compilation.processing || compilation.loading || searching} onClick={() => setFormReference(null)}><X size={14} /></button>
         </span>
         {/\.docx$/i.test(selectedForm.name)
-          && (!activeSession || !activeSession.chat?.enabled || activeSession.chat.paused || activeSession.status === 'FAILED') && <button type="button" className="button"
-          disabled={compilation.busy || compilation.loading || searching || conversationLoading || changingModel}
-          onClick={() => void startCompilation()}>{activeSession ? 'Riprendi compilazione' : 'Avvia compilazione'}</button>}
+          && !activeSession && <button type="button" className="button"
+          disabled={compilation.busy || compilation.loading || sessionStateUnavailable || searching || conversationLoading || changingModel}
+          onClick={() => void startCompilation()}>Avvia compilazione</button>}
       </div>}
       <textarea
         ref={composerInput}
         aria-label="Messaggio per Mapi RAG"
+        aria-describedby={compilation.processing ? 'composer-compilation-status' : undefined}
         placeholder="Come posso aiutarti? Usa @ per scegliere un modulo"
         maxLength={MAX_PROMPT_LENGTH}
         value={prompt}
@@ -439,7 +445,7 @@ export function ProjectWorkspacePage() {
           const match = /(?:^|\s)@([^@\s]*)$/.exec(text.slice(0, end))
           setPrompt(text)
           setMentionIndex(0)
-          setMention(match && !compilation.busy && !searching ? { start: end - match[1].length - 1, end, query: match[1] } : null)
+          setMention(match && !compilation.processing && !compilation.loading && !searching ? { start: end - match[1].length - 1, end, query: match[1] } : null)
         }}
         onKeyDown={handleComposerKeyDown}
       />
@@ -453,14 +459,17 @@ export function ProjectWorkspacePage() {
         <button type="button" className="button" disabled={compilation.busy} onClick={compilation.refresh}>Riprova caricamento sessione</button>
       </div>}
       {compilation.busy && !activeSession && <p role="status">Preparazione della compilazione…</p>}
+      {compilation.processing && <p id="composer-compilation-status" className="composer-compilation-status">
+        Compilazione in corso. Puoi scrivere: il testo resta qui finché potrai inviarlo.
+      </p>}
       <div className="composer-tools">
         <ProjectModelSelector key={project.id} projectId={project.id}
-          disabled={searching || conversationLoading || compilation.busy} onChanging={setChangingModel} />
+          disabled={searching || conversationLoading || compilation.processing || compilation.loading} onChanging={setChangingModel} />
         <button
           className="send-button"
           type="submit"
           aria-label="Invia"
-          disabled={!prompt.trim() || searching || conversationLoading || changingModel || (compilation.busy && !activeSession?.chat?.enabled)}
+          disabled={!prompt.trim() || searching || conversationLoading || changingModel || compilation.processing || compilation.loading || sessionStateUnavailable}
         >
           <ArrowUp size={20} />
         </button>
@@ -552,6 +561,10 @@ export function ProjectWorkspacePage() {
                 ))}
                 {activeSession && <CompilationSessionCard key={activeSession.id}
                   session={activeSession} busy={compilation.busy || searching || changingModel}
+                  processing={compilation.processing} loading={compilation.loading}
+                  questionInChat={Boolean(activeSession.chat?.question && turns.some((turn) =>
+                    turn.result?.compilation?.session_id === activeSession.id
+                    && turn.result.answer?.includes(activeSession.chat!.question!.message)))}
                   error={compilation.error} onContinue={compilation.resolve} onUpdate={compilation.update}
                   onGenerate={compilation.finalize} onRefresh={compilation.refresh}
                   onResume={() => void startCompilation()} />}

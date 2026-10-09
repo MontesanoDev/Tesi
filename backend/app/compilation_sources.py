@@ -24,7 +24,7 @@ from app.source_planning import (
 )
 
 MAX_SOURCE_NAMES = 3
-MAX_ALLOWED_EVIDENCE = 8
+MAX_ALLOWED_EVIDENCE = 24
 logger = logging.getLogger(__name__)
 
 
@@ -98,16 +98,19 @@ def compilation_queries(cluster, requirements, names) -> list[str]:
         # Repeating the long FORM label beside every synonym gives generic
         # tender vocabulary disproportionate weight in a vector query. Search
         # the property name; the grounded original stays in matcher/validation.
-        equivalent = sorted(dict.fromkeys(names[index]), key=lambda name: len(name.split()))
+        equivalent = sorted(dict.fromkeys(re.sub(r"[_\s]+", " ", name).strip()
+                                         for name in names[index]),
+                            key=lambda name: (len(name.split()), len(name)))
         terms.append(" ".join(filter(None, [requirement.person_role, equivalent[0]])))
         alternatives.append(" ".join(filter(None, [
             requirement.person_role, equivalent[min(1, len(equivalent) - 1)],
         ])))
     if len(terms) == 1:
         return list(dict.fromkeys([*terms, *alternatives]))
-    size = 1 if len(terms) <= MAX_CLUSTER_QUERIES else 2
-    return list(dict.fromkeys(" ".join(terms[start:start + size])
-                             for start in range(0, len(terms), size)))
+    # Each bounded query covers the group; the second actually uses alternative
+    # documentary names, instead of repeating normalized FORM identifiers.
+    return list(dict.fromkeys([" ".join(dict.fromkeys(terms)),
+                              " ".join(dict.fromkeys(alternatives))]))[:MAX_CLUSTER_QUERIES]
 
 
 def company_property(field: dict, text: str, value: str | None = None) -> str | None:

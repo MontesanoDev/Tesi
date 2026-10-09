@@ -3,7 +3,7 @@
 from copy import deepcopy
 
 from app.compilation_applicability import known_applicability
-from app.requirement_checks import normalized
+from app.compilation_conditions import expression, implication, key, owner, proven_relations
 
 MAX_CLARIFICATIONS = 4
 MAX_ANALYSIS_ATTEMPTS = 2
@@ -58,19 +58,12 @@ def automatic_fields(state):
 
 
 def condition_key(field):
-    semantic = field.get("semantic") or {}
-    if semantic.get("section_id") and (field.get("semantic_validation") or {}).get("accepted"):
-        return (normalized(field.get("condition", "")), field.get("entity"), "",
-                (field["form_evidence"]["template_sha256"], semantic["section_id"]))
-    # Same literal predicate, subject and structural context. Never propagate a
-    # generic negation to a different section/person or an unclassified field.
-    return (normalized(field.get("condition", "")), field.get("entity"),
-            normalized((field.get("requirement") or {}).get("person_role", "")),
-            field["context"])
+    return key(field)
 
 
 def pending_slots(state):
     from app.compilation_chat import field_fingerprint, field_label, is_deferred
+    from app.compilation_form_conditions import question_condition
 
     slots = {}
     for field in state["fields"]:
@@ -80,14 +73,19 @@ def pending_slots(state):
             not field.get("requirement") or field.get("search", {}).get("status") != "searched"
         )):
             continue  # An interpretation/retrieval not attempted is NOT a USER question.
-        condition = field.get("condition", "")
-        kind = "applicability" if condition and known_applicability(field) is None else "value"
-        key = condition_key(field) if kind == "applicability" else field["id"]
+        condition = question_condition(field)
+        if not condition and field.get("validation_errors") and not field.get("alternatives"):
+            continue  # A failed check is not evidence that the user lacks this fact.
+        kind = "applicability" if condition else "value"
+        key = condition_key({**field, "condition": condition}) if kind == "applicability" \
+            else field["id"]
         if key not in slots:
             slots[key] = {"kind": kind, "label": field_label(field), "condition": condition,
                           "field_ids": [], "fingerprints": {}, "alternatives": [],
-                          "subject": (field.get("entity"),
-                                      (field.get("requirement") or {}).get("person_role", "")),
+                          "subject": owner({**field, "condition": condition})
+                          if kind == "applicability" else (
+                              field.get("entity"),
+                              (field.get("requirement") or {}).get("person_role", "")),
                           "context": field["context"]}
         slot = slots[key]
         slot["field_ids"].append(field["id"])
@@ -96,6 +94,16 @@ def pending_slots(state):
             *slot["alternatives"], *[a["value"] for a in field["alternatives"]],
         ]))
     result = list(slots.values())
+    by_id = {f["id"]: f for f in state["fields"]}
+    # Ask the explicit parent first. A denial excludes its children; a positive
+    # reply still leaves genuinely different qualifiers to be established.
+    result = [s for s in result if s["kind"] != "applicability" or not any(
+        p["kind"] == "applicability" and owner({**by_id[p["field_ids"][0]],
+                                               "condition": p["condition"]})
+        == owner({**by_id[s["field_ids"][0]], "condition": s["condition"]})
+        and expression(p["condition"])
+        < expression(s["condition"]) for p in result
+    )]
     for slot in result:
         slot["impact"] = len(slot["field_ids"])
     return sorted(result, key=lambda s: (-s["impact"], s["kind"] != "applicability"))
@@ -103,18 +111,20 @@ def pending_slots(state):
 
 def clarification_question(state):
     from app.compilation_chat import budget_available
+    from app.compilation_document_plan import needs_document_plan
 
     workflow = state.get("chat_workflow") or {}
     if (workflow.get("user_paused") or workflow.get("paused_reason") == "model_error"
             or state["status"] in {"ANALYZING", "FAILED", "GENERATED"}):
         return None
-    if automatic_fields(state) and budget_available(workflow):
+    if (automatic_fields(state) or needs_document_plan(state)) and budget_available(workflow):
         return None
     pending = pending_slots(state)
     eligible = {field_id: slot for slot in pending for field_id in slot["field_ids"]}
     active = []
     saved = workflow.get("active_clarifications", [])
-    if any(i in eligible and eligible[i]["fingerprints"].get(i) != s["fingerprints"].get(i)
+    if any(i in eligible and (eligible[i]["fingerprints"].get(i) != s["fingerprints"].get(i)
+                             or set(eligible[i]["field_ids"]) != set(s["field_ids"]))
            for s in saved for i in s["field_ids"]):
         saved = []  # A changed dependency needs a newly prioritized checkpoint.
     for slot in saved:
@@ -133,7 +143,9 @@ def clarification_question(state):
         )]
     if not active:
         return None
-    if len(active) == 1 and len(active[0]["field_ids"]) == 1:
+    if (len(active) == 1 and len(active[0]["field_ids"]) == 1
+            and not next(f for f in state["fields"]
+                         if f["id"] == active[0]["field_ids"][0]).get("form_dependency")):
         # Preserve the proven single-active-field semantic contract.
         slot = active[0]
         message = (f"Per «{slot['label']}», il modulo specifica «{slot['condition']}». "
@@ -152,39 +164,55 @@ def clarification_question(state):
         if slot.get("clarify"):
             question = f"Per «{slot['label']}» serve un'indicazione univoca. " + question
         lines.append(f"{slot['slot']}. {question}")
+    intro = ("Per proseguire, chiarisco questo punto:" if len(active) == 1
+             else f"Per proseguire, chiarisco questi {len(active)} punti:")
     return {"kind": "clarifications",
             "field_ids": [i for s in active for i in s["field_ids"]], "slots": active,
-            "message": f"Ho compilato automaticamente {verified} informazioni. "
-                       f"Per continuare mi servono {len(active)} chiarimenti:\n"
+            "message": f"Ho compilato {verified} campi con dati verificati nelle fonti. {intro}\n"
                        + "\n".join(lines) + "\nPuoi rispondere anche in un unico messaggio."}
 
 
 def synchronize(state):
     """Called inside the existing transaction; no new table or in-memory state."""
+    from app.compilation_document_plan import attach_document_plan
+    from app.compilation_form_conditions import synchronize_form_dependencies
+
+    attach_document_plan(state)
+
     if not grouped(state):
+        synchronize_form_dependencies(state)
         return
-    from app.compilation_chat import budget_available
+    from app.compilation_chat import budget_available, explicit_finish_request
 
     workflow = state["chat_workflow"]
     from app.compilation_semantics import propagate_section_exclusions
 
-    propagate_section_exclusions(state)
-    # Share only an already established, identical grounded dependency. A value
-    # or company type by itself never establishes the predicate.
-    proofs, polarities = {}, {}
+    # Older routing could store the leading 'no' of a finish command as a USER
+    # denial. That command proves no predicate. Retain it for audit, not as a fact.
     for field in state["fields"]:
-        if field.get("condition") and field.get("applicability") \
-                and known_applicability(field) is not None:
-            key = condition_key(field)
-            polarities.setdefault(key, set()).add(known_applicability(field))
-            proofs[key] = field["applicability"]
+        proof = field.get("applicability") or {}
+        quote = proof.get("user_quote") or proof.get("reason", "").removeprefix(
+            "Indicazione USER:").strip()
+        if (field["status"] == "NOT_APPLICABLE" and field.get("value") is None
+                and proof.get("provenance") == "USER" and explicit_finish_request(quote)):
+            field["invalidated_applicability"] = field.pop("applicability")
+            field.pop("applicability_confirmed", None)
+            field.update(status="AMBIGUOUS", provenance=None, source_evidence=[],
+                         reason="La richiesta di terminare non dimostra questa condizione.")
+    synchronize_form_dependencies(state)
+    propagate_section_exclusions(state)
+    facts = proven_relations(state["fields"])
     for field in state["fields"]:
         if (field.get("provenance") == "USER" or field["status"] in {"RESOLVED", "USER_PROVIDED"}
                 or not field.get("condition") or known_applicability(field) is not None):
             continue
-        proof = proofs.get(condition_key(field))
-        if not proof or len(polarities[condition_key(field)]) != 1:
+        relation = implication(field, facts)
+        if relation is None:
             continue
+        applies, origin = relation
+        proof = {**origin["applicability"], "condition": field["condition"], "applies": applies,
+                 "dependency": {"field_id": origin["id"], "condition": origin["condition"],
+                                "rule": "verified_predicate_implication"}}
         field["applicability"] = deepcopy(proof)
         if proof["applies"] is False:
             field.update(status="NOT_APPLICABLE", value=None, provenance=proof["provenance"],
@@ -193,12 +221,15 @@ def synchronize(state):
             field.update(status="PENDING", last_attempt_at=None,
                          awaiting_dependency_resolution=True)
             reopen_phase_attempts(state, field)
+    synchronize_form_dependencies(state)
     workflow["pending_clarifications"] = pending_slots(state)
     if state["status"] not in {"ANALYZING", "FAILED", "GENERATED"}:
         if (automatic_fields(state) and budget_available(workflow)
                 and not workflow.get("user_paused")):
             state["status"] = "CREATED"
         elif workflow["pending_clarifications"]:
+            state["status"] = "WAITING_FOR_USER"
+        elif any(f.get("write_blockers") for f in state["fields"]):
             state["status"] = "WAITING_FOR_USER"
         elif not any(f["status"] in {"PENDING", "MISSING", "AMBIGUOUS", "CONFLICTING"}
                      for f in state["fields"]):

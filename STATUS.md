@@ -1,8 +1,278 @@
 # Stato di Mapi RAG
 
-Aggiornato il **8 ottobre 2026**. Base precedente agli interventi: branch `main`, commit
+Aggiornato il **9 ottobre 2026**. Base precedente agli interventi: branch `main`, commit
 `dcb9557` (`fix: stabilize table autofill and DOCX finalization`).
 Ricontrollare Git all'inizio della prossima sessione.
+
+## Diagnosi Trapani Green: duplicati, rami e copertura SOURCE — 9 ottobre 2026
+
+Richiesta corrente: capire le domande inadeguate/duplicate e valutare se rifare
+il backend; prove DeepSeek esplicitamente autorizzate. Diagnosi conclusa,
+**nessuna modifica al codice applicativo né nuova architettura implementata**.
+Conservate tutte le modifiche pendenti; HEAD `b8071d3`, nessun commit/push.
+
+- Caso corrente `81bc4d657ff44bdbac538c22d4b53ac5`, conversazione
+  `conv-202292d12f3b4e94`, modulo Trapani 29, v59 WAITING_FOR_USER:
+  115 candidate, 23 passi, 5 RESOLVED, 47 MISSING, 38 AMBIGUOUS, 25 PENDING.
+  Il provider della sessione è già `deepseek-flash`.
+- Duplicato riprodotto sul codice attuale: stessa condizione/sezione della
+  tabella Studio Associato, 18 celle con `person_role=professionista associato`
+  e 6 con ruolo vuoto. `owner()` usa il ruolo della cella per identificare la
+  condizione, creando due slot dal testo identico. Uniformarlo solo in memoria
+  produce un unico slot da 24 celle; è un controfattuale diagnostico, non una fix.
+- Zero dipendenze FORM riconosciute: Trapani usa paragrafi non numerati sotto
+  «IN QUALITA’ DI / eliminare le opzioni non pertinenti», mentre il riconoscitore
+  richiede intestazioni numerate e «da compilare in caso di». Anche tutti gli
+  `exclusive_group_id` sono vuoti. La tipologia SOURCE Società di Ingegneria è
+  verificata, ma manca il collegamento fra le alternative. Firma/poteri e forma
+  di partecipazione restano fatti distinti; non dedurli dalla tipologia.
+- Revisione 46: DeepSeek aveva già proposto la via corretta dalla visura `-1`;
+  rifiutata come SOURCE non ammessa per `p75.s1`, mentre la provincia `p75.s4`
+  usa la stessa riga nello stesso passo. Via/comune/CAP hanno copertura
+  `[91,-2,-5,90]`, insufficiente. Query con etichette underscore, budget quattro
+  frammenti senza spazio per vicini quando saturo, riuso fra gruppi vincolato a
+  intestazioni con `:`; la riga PDF non le ha. Il retry v48 non recupera la sede.
+- **Quattro nuove chiamate DeepSeek riuscite**, stesso matcher/revisore/validatori
+  su copie in memoria di via/comune/CAP: copertura salvata **0/3**, aggiungendo
+  soltanto il frammento aziendale esistente `-1` **3/3 valori accettati**.
+  Per la via, una seconda proposta errata (ragione sociale) è respinta e lascia
+  un errore registrato. Nessun export o benchmark completo: non dichiarare tre
+  campi completati end-to-end né correttezza generale. Primo tentativo sandbox
+  fallito nel trasporto/interrotto; prova riuscita dopo escalation di rete.
+- «Ancora 2 chiarimenti» conta il checkpoint, con **54 slot potenziali** dietro;
+  non 54 domande tutte necessarie. «5 informazioni» conta posizioni: PEC ripetuta,
+  quattro valori distinti. I 25 PENDING sono errori d'interpretazione, non dati
+  tutti da chiedere. Le 30 celle esperienze non equivalgono a 30 fatti obbligatori.
+- Raccomandazione **da discutere prima di implementare**: riorganizzare il nucleo
+  semantico con mappa coerente sezioni/soggetti/condizioni, fatti riutilizzabili e
+  domande sui soli fatti necessari; mantenere API, persistenza e writer. Una patch
+  al duplicato copre soltanto il sintomo; nessuna evidenza per rifare tutto o per
+  integrare automaticamente il prototipo globale già presente.
+- Verifiche effettive: replay offline, quattro chiamate reali su tre campi,
+  confronto identico prima/dopo di dieci tabelle applicative (incluse sessioni,
+  revisioni, conversazioni, originali BLOB e chunk), controlli documentali/diff.
+  Nessuna suite software rieseguita; nessuna migrazione/reindicizzazione.
+
+Report e alternative:
+[diagnosi Trapani Green](docs/diagnosi-trapani-green-2026-10-09.md).
+Audit ignorato: `backend/data/compilation-audit/trapani-diagnosis-20261009/`,
+con script, stato v59, revisioni, richieste/risposte parsate e preservazione.
+Prossimo punto: concordare il perimetro del nucleo semantico e i criteri di qualità
+sui tre moduli prima di implementare. La sessione reale è ancora alla v59;
+la prova non ne ha corretto domande o dati.
+
+## Applicabilità dei rami e collocazione SOURCE — 9 ottobre 2026
+
+Richiesta conclusa localmente: diagnosi dell’ultima CompilationSession Catanzaro,
+correzione mirata backend e nuova esportazione su copia. Nessuna chiamata AI,
+nuovo prototipo, benchmark completo, modifica UI/retrieval/parser, commit o push.
+Preservate le modifiche preesistenti; HEAD `b8071d3`, index Git vuoto.
+
+- Ultima sessione reale `5c6666c952be4d0ba16af5994dd3d6a1`, revisione **154**,
+  conversazione `conv-c3a56340e3cd4f79`: **279 candidate, 22 SOURCE**, zero esclusioni.
+  È diversa dalla sessione con 23 SOURCE del pass precedente: nessun trasferimento
+  automatico delle decisioni USER fra conversazioni.
+- Causa: intestazioni condizionali in tabelle autonome, perse nel contesto delle
+  tabelle interne dopo dodici paragrafi XML. Classificatore/revisore accettavano
+  condizioni vuote; gate ed export verificavano il valore, senza richiedere la
+  condizione del padre. Il riuso precedente non ricostruiva le alternative della
+  famiglia identificativa; l’intestazione Società di Ingegneria, priva della formula
+  «dati identificativi», non condivideva l’ambito riconosciuto per altri rami.
+- Confermate nell’XML della bozza originale **otto collocazioni errate**: tre
+  qualifiche/iscrizioni di Elisa Romano nello Studio Associato; quattro dati della
+  stessa direttrice tecnica nelle tabelle dei soci di Società di Professionisti;
+  il nome nel direttore tecnico di Altro soggetto abilitato. SOURCE reali, ramo
+  sbagliato; non otto fatti aziendali inventati.
+- Contatore **20→22**: il turno di incertezza del 9 ottobre alle 09:00:13 UTC
+  («Non posso confermare questa condizione…», non letteralmente «non lo so»)
+  lascia 20 SOURCE e rinvia il fatto. La prosecuzione automatica aggiunge
+  `t25.r5.c0` alla revisione **138**, ore 09:03:07.691 UTC, e `t25.r5.c1` alla
+  **141**, ore 09:03:31.748 UTC. Entrambe riportano la sede legale, provata da
+  `generalita-mapi.md` chunk -6 e visura chunk -1, ma in una riga completamente
+  vuota senza etichette. Dato reale, associazione alla proprietà non provata;
+  la sede è già nella cella etichettata `t25.r4.c3`. Ora bloccate anche queste due.
+- Vincoli FORM derivati dall’originale immutabile in
+  `compilation_form_conditions.py`: attraversamento delle tabelle distanti,
+  parentela fra sezioni e candidate, limiti della famiglia identificativa esplicita.
+  Nessun nome aziendale, progetto o candidate ID nel codice. FORM dimostra la
+  struttura delle alternative; SOURCE/USER dimostrano il fatto. Nessuna deduzione
+  della tipologia professionale o della partecipazione dalla sola forma giuridica.
+- Riuso delle decisioni verificate prima di analisi, domande, refresh ed export.
+  Il diniego USER esplicito del genitore Studio Associato raggiunge i qualificatori;
+  un «no» generico al sottoramo non nega il genitore. Condizioni dei rappresentanti,
+  direttori e membri conservano soggetto/ruolo/ambito separati. Prove contraddittorie
+  restano UNKNOWN e non vengono aggirate da una prova positiva locale. Protezione
+  anche delle condizioni SOURCE dalla loro rimozione nella riinterpretazione LLM.
+- Gate SOURCE e finalizzatore richiedono applicabilità positiva di padre e
+  condizione locale. Citazione/revisione semantica positive non bastano. Celle in
+  righe senza etichette non autorizzano copie di proprietà delle righe vicine.
+  Partecipazione come **consorziata esecutrice resta UNKNOWN**: società di ingegneria
+  può partecipare come consorziata. Escluso il ramo proprio Consorzio Stabile e
+  le sue tabelle dipendenti, senza estendere l’esclusione alla partecipazione.
+- **Tutti i 22 record SOURCE conservati**, con stato/valore/provenienza/evidenze e
+  condizioni originali. Dieci scritture segnalate da `write_blockers`,
+  `blocked_previous_writes`, `open_issues` e conteggi scrivibili/bloccati. Nessuna
+  cancellazione silenziosa. Export ordinario impedito con problemi aperti;
+  export parziale lascia vuote le collocazioni bloccate e le documenta nel report
+  versione 6, senza dichiarare READY.
+- Replay ed export finali sul codice installato, in SQLite/storage isolati:
+  **147 NOT_APPLICABLE**, **22 SOURCE conservati**, **12 valori esportati**,
+  **10 bloccati**, **110 candidate irrisolti**. Verificati nell’XML tutti i 22
+  candidate: dodici valori mantenuti, dieci celle vuote. Conservati i cinque dati
+  aziendali della prima tabella e i sette corretti della Società di Ingegneria /
+  direttore tecnico. Report `needs_review`, `ready_for_submission=false`; nessuna
+  domanda né auto-continuazione dopo il termine. Restano UNKNOWN partecipazione,
+  poteri di rappresentanza non provati e proprietà delle due celle senza etichetta.
+- Verifiche effettivamente eseguite: **499 test backend mirati passati** sulla
+  copia del codice finale (form_conditions, condition_reuse, finish, clarifications,
+  controls, active_question, stability, sessions, guards, semantics, finalization,
+  conversation, compilation_chat, retry_phases, chat_flow). **78 test del sottoinsieme
+  form_conditions/condition_reuse/sessions rieseguiti e passati nel repository**;
+  sono un sottoinsieme, non 78 casi ulteriori. Ruff backend completo passato.
+  Provider simulati e FTS5/Qdrant temporanei; replay dati congelati senza provider.
+  Nessun test/build frontend aggiunto, perché la UI è rimasta identica.
+- Audit ignorato:
+  `backend/data/compilation-audit/branch-placement-20261009T091052Z/REPORT.md`,
+  con snapshot, timeline revisioni, controlli SOURCE, confronto XML, nuova
+  `bozza-verificata.docx` e `report-verificato.json`. Preservati tutti i **32 file
+  originali**, sessioni, revisioni, generazioni, conversazioni, fonti globali e
+  **106 chunk SOURCE/FORM di progetto**. Le dodici modifiche pendenti non toccate
+  da questo intervento sono identiche. Il server `uvicorn --reload` preesistente
+  ha rigenerato ID/timestamp di **tre chunk di artefatti derivati**, a contenuto
+  invariato, e pagine FTS: dettaglio in `preservation.json`. Non si dichiara il
+  database originale identico byte per byte.
+
+Nessuna migrazione/reindicizzazione richiesta. Arricchimento delle sessioni
+precedenti in sola lettura; persistenza soltanto alla successiva mutazione
+ordinaria autorizzata. Riconoscimento conservativo delle intestazioni condizionali
+numerate e delle alternative esplicite, non interprete generale delle condizioni
+italiane. Fermarsi qui, senza integrare il prototipo globale.
+
+## Stop chiarimenti ripetuti e termine esplicito — 8 ottobre 2026
+
+Richiesta corrente conclusa localmente: correggere la CompilationSession reale,
+con riproduzione su copia, senza nuove chiamate DeepSeek, benchmark completo,
+modifiche a retrieval/parser/prototipo globale o commit/push. Preservate le
+modifiche UX/UI già presenti; HEAD rimane `b8071d3`, index Git vuoto.
+
+- Riprodotto il bug dalla revisione 146, immediatamente prima del messaggio
+  «no, finisci la compilazione», su backup SQLite e storage isolati. Replay della
+  decisione archiviata, non una nuova valutazione AI: il backend precedente
+  registrava sei falsi `NOT_APPLICABLE` sull’amministratore di fatto, non esportava
+  e chiedeva quattro slot Studio Associato (due condizioni duplicate per entità).
+  I valori SOURCE erano realmente **23**.
+- Separati risposta, prosecuzione/ripresa e **FINISH**. Il comando esplicito
+  viene intercettato prima del planner; anche i contratti semantici distinguono
+  FINISH. Prima si persiste l’arresto, poi si usa il finalizzatore esistente con
+  `allow_unresolved=True`: nessun nuovo checkpoint, nessuna dichiarazione READY.
+  Se una validazione blocca l’export, la compilazione resta ferma e conserva i
+  dati; versione, lease, provenienza e controlli fattuali restano obbligatori.
+- Riuso conservativo di predicati già verificati USER/SOURCE: soggetto della
+  condizione distinto dal soggetto della cella; equivalenze esplicite nel FORM,
+  congiunzioni e qualificatori di presenza/assenza. Il falso del genitore esclude
+  i sottorami, il falso di un sottoramo non nega il genitore. Un genitore positivo
+  non decide i qualificatori. Ambiti/persona/ruolo/progetto/template e anchor
+  revisionato con digest limitano la propagazione; contraddizioni restano UNKNOWN.
+  Nessuna deduzione di partecipazione dalla forma giuridica, nessuna ontologia
+  di esclusione reciproca delle forme societarie. Sintassi non riconosciute
+  rimangono opache. Non è un interprete logico generale di tutte le frasi italiane.
+- Le decisioni valide già persistite non cambiano. Soltanto le esclusioni USER
+  che citano esattamente un comando di fine vengono invalidate come prova,
+  conservandone traccia di audit: non sono risposte alla condizione. Riconciliazione
+  anche in lettura dopo refresh, senza scrittura implicita; persistenza alla
+  successiva mutazione autorizzata, senza migrazioni o reindicizzazioni richieste.
+- Domande equivalenti accorpate tra celle/sezioni dello stesso operatore; prima
+  il genitore, poi soltanto eventuali qualificatori ancora necessari. «No a
+  entrambe» richiede due condizioni effettivamente chieste; «non so» rinvia il
+  fatto senza negarlo. Un «no» ambiguo a più destinatari non viene inventato.
+- Replay finale sulla **revisione 147 realmente attuale**, in copia: **11**
+  candidate Studio Associato esclusi grazie al precedente USER valido; **6**
+  false esclusioni del comando tornate UNKNOWN. **23/23 record SOURCE identici**,
+  **23 valori esportati e verificati anche nelle rispettive celle XML**. Restano
+  **214 candidate irrisolti**, non 214 domande obbligatorie. DOCX/report scaricati
+  via API, stato `GENERATED`, report `needs_review`, `ready_for_submission=false`,
+  domanda assente e auto-continuazione disattivata anche dopo refresh. Ripresa
+  esplicita senza domande Studio Associato già risolte e senza alterare i SOURCE.
+- Chat: formulazione più naturale; la card non ripete una domanda già presente
+  nella chat, anche dopo refresh, ma mostra una domanda nuova. La bozza parziale
+  fermata offre **Scarica DOCX** come azione principale; ripresa nei dettagli.
+- Verifiche eseguite ora: **403 test backend mirati passati** (condition_reuse,
+  finish, clarifications, controls, active_question, stability, sessions, guards,
+  semantics, finalization, conversation), più **43 test compilation_chat/chat_flow**;
+  **30 test frontend compilazione**, lint frontend, build frontend e Ruff sugli
+  otto file backend modificati/aggiunti passati. `git diff --check` passato.
+  Test con provider simulati, FTS5/Qdrant temporanei; replay reale dei dati congelati
+  senza provider. Nessun benchmark completo né E2E aggiuntivo in questo pass.
+- Audit locale ignorato: `backend/data/compilation-audit/finish-clarifications-20261008T195259Z/REPORT.md`,
+  con baseline, snapshot, output `verified-v147`, bozza/report e preservazione.
+  **29 originali/storage identici**, sessioni, revisioni, conversazioni, generazioni
+  originali e chunk SOURCE identici. Il server locale preesistente `uvicorn --reload`
+  ha rieseguito il bootstrap durante gli edit: rigenerati ID/timestamp di tre
+  chunk di artefatti derivati e pagine FTS, con contenuti invariati. Annotato
+  nell’audit; il database originale non viene descritto come identico byte per byte.
+
+Fermarsi qui. Nessun commit/push, integrazione globale o esperimento AI autorizzato.
+
+## UX/UI mirato compilazione in chat — 8 ottobre 2026
+
+Richiesta corrente: consolidare prima il lavoro concluso, quindi intervenire
+soltanto sulla UX della CompilationSession, senza integrare il prototipo globale
+o avviare chiamate DeepSeek/benchmark. **Il pass UI resta locale: nessun suo
+commit/push autorizzato.** Nessun agente aggiunto.
+
+- Prima del pass: letti AGENTS/STATUS e mappa/README, controllati Git e remoto.
+  Le sole modifiche pendenti erano STATUS, prototipo globale, CLI, test e report
+  versionato. Rieseguiti **309 test mirati** e Ruff backend completo, controllato
+  il diff. Salvati quei cinque file nel commit **`b8071d3`**, pubblicato su
+  `origin/main`; audit ignorati esclusi, nessun file estraneo incluso. Working
+  tree pulito al termine del push. Nessuna modifica permanente alla config Git.
+- UI esistente conservata, nessuna pagina o dipendenza applicativa nuova.
+  Animazione discreta e stato accessibile solo per operazioni di compilazione,
+  lease attiva o prosecuzione automatica autorizzata; pausa e chat normale non
+  simulano attività. Rispettato `prefers-reduced-motion`, senza percentuali/ETA.
+- Invia e invio da tastiera bloccati durante elaborazione e ripristino stato;
+  composer editabile, testo conservato anche durante avvio/navigazione alla nuova
+  conversazione. Riabilitazione ai chiarimenti USER. Guardie sincrone condivise
+  fra chat e comandi della sessione, anche prima del prossimo render: doppio
+  clic e invii incrociati nello stesso tick non lanciano una seconda richiesta.
+- Stato leggibile per elaborazione, chiarimenti, pausa recuperabile e bozza.
+  Una sola azione principale della compilazione: ripresa, generazione, download
+  o aggiornamento dopo errore. Eliminata la ripresa duplicata nel composer.
+  Conteggi tecnici, revisione campi, export parziale/report e rigenerazione nei
+  **Dettagli compilazione**, chiusi di default. Una bozza parziale non viene
+  descritta come documento completato.
+- Refresh: snapshot reale riletto dal backend, lease rispettata senza duplicare
+  l'analisi; polling di sola lettura riprendibile dopo errori di rete. Aggiornare
+  lo stato non smonta la scheda né cancella i valori digitati nei dettagli,
+  anche se la lettura fallisce. Nessun reset del budget persistito. Il draft
+  chat è conservato durante le operazioni, senza introdurre persistenza del testo
+  non inviato attraverso un ricaricamento completo del browser.
+- Backend applicativo invariato: test HTTP realmente concorrente verifica
+  lease/versione con vecchia e nuova revisione; secondo resolve, modifica USER
+  ed export ricevono **409**, senza ulteriori chiamate al modello simulato né
+  sovrascritture. Test eseguito con FTS5 e Qdrant temporanei. Restano le semantiche
+  e protezioni FORM/SOURCE/USER esistenti.
+- Verifiche: **200 test backend mirati passati** (guards, controls, conversation,
+  active_question, finalization), Ruff backend completo passato. **93 test
+  frontend passati**, più **28 test compilazione rieseguiti** dopo l'ultima
+  correzione sul fallimento della rilettura; lint e build passati sul codice finale.
+  **6 E2E passati** su desktop/mobile: flusso conversazionale con movimento
+  normale/ridotto e refresh durante lease con errore di lettura recuperabile.
+  Coperti chiarimenti, pause/errori, bozza parziale, doppio invio, draft, chat
+  normale e richieste incrociate. AI/API simulate; dati backend isolati.
+- Ambiente verifiche: primo lancio frontend della baseline con un timeout,
+  test isolato poi passato; lanci conclusivi con `--maxWorkers=1`. Chromium
+  scaricato nella cache; librerie native mancanti estratte in `.tools/playwright-libs`
+  ignorata, senza nuove dipendenze del progetto o installazioni di sistema.
+  E2E con `LD_LIBRARY_PATH=$PWD/../.tools/playwright-libs/usr/lib/x86_64-linux-gnu`,
+  `PLAYWRIGHT_BASE_URL=http://127.0.0.1:5174` e `--workers=1`; server frontend di
+  prova separato, arrestato al termine. Screenshot in `frontend/artifacts/`,
+  ignorati da Git.
+
+Nessuna chiamata AI reale, integrazione globale, migrazione o reindicizzazione.
+Suite backend completa non rieseguita. Originali/sessioni applicative non usati
+per scritture. **Fermarsi qui**: UI/test/questo aggiornamento non committati;
+un eventuale commit/push del pass richiede una nuova richiesta.
 
 ## Correzione mirata soggetti/condizioni, replay offline — 8 ottobre 2026
 
