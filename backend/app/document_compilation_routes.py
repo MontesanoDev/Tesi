@@ -4,18 +4,14 @@ import json
 from collections.abc import Callable
 from pathlib import Path
 from shutil import rmtree
-from typing import Annotated, Literal
+from typing import Literal
 from uuid import uuid4
 
-from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
-from starlette.concurrency import run_in_threadpool
 
-from app.ai_profiles import project_ai_context
 from app.db import connection, get_storage_path, touch_project
-from app.document_compilation import compile_document
-from app.docx_templates import MAX_DOCX_BYTES, DocumentInputError, DocxTooLargeError
-from app.generation import GenerationError, GenerationNotConfiguredError
+from app.docx_templates import DocumentInputError
 from app.repository import get_project
 
 router = APIRouter(
@@ -86,46 +82,6 @@ def _persist(
             rmtree(folder, ignore_errors=True)
         raise
     return _payload(row)
-
-
-@router.post("", status_code=201)
-async def create_compilation(
-    project_id: str,
-    file: Annotated[
-        UploadFile, File(description="Modello DOCX con celle vuote o segnaposti nei paragrafi")
-    ],
-    instructions: Annotated[str, Form(max_length=4000)] = "",
-) -> dict:
-    try:
-        project = get_project(project_id)
-        if project is None:
-            raise HTTPException(status_code=404, detail="Progetto non trovato")
-        filename = Path((file.filename or "").replace("\\", "/")).name
-        if Path(filename).suffix.lower() != ".docx":
-            raise HTTPException(
-                status_code=415, detail="Carica un modello DOCX, non DOC, PDF o Markdown"
-            )
-        if len(filename) > 180 or any(ord(c) < 32 for c in filename):
-            raise HTTPException(status_code=422, detail="Nome del modello non valido")
-        data = await file.read(MAX_DOCX_BYTES + 1)
-    finally:
-        await file.close()
-    try:
-        with project_ai_context(project_id):
-            draft, report = await compile_document(
-                project_id, project["title"], data, instructions.strip()
-            )
-        return await run_in_threadpool(_persist, project_id, filename, data, draft, report)
-    except DocxTooLargeError as exc:
-        raise HTTPException(status_code=413, detail=str(exc)) from exc
-    except DocumentInputError as exc:
-        raise HTTPException(status_code=422, detail=str(exc)) from exc
-    except GenerationNotConfiguredError as exc:
-        raise HTTPException(status_code=503, detail=str(exc)) from exc
-    except GenerationError as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
-    except OSError as exc:
-        raise HTTPException(status_code=500, detail="Impossibile salvare la compilazione") from exc
 
 
 @router.get("")

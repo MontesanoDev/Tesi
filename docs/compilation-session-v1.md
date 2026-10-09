@@ -221,9 +221,9 @@ con ID `t{tabella}.r{riga}.c{cella}`, e i segnaposti di paragrafo, con ID
 dall'originale. Celle unite, controlli Word, firme e contenuti complessi
 mantengono i controlli del parser esistente. Le firme non vengono scritte.
 
-Il percorso precedente, ancora disponibile su `/document-compilations`,
-invia tutti i cataloghi e le fonti selezionate in una chiamata. Lo schema
-`ModelProposals` contiene `cell_id`, `label`, `entity`, `kind`, `status`,
+Il percorso precedente, con il suo motore a chiamata unica, è stato rimosso il
+9 ottobre 2026; restano elenco, dettaglio e download dei risultati salvati.
+Lo schema `ModelProposals` contiene `cell_id`, `label`, `entity`, `kind`, `status`,
 `value`, `evidence[{source_id,quote}]`, `reason`. `validate_proposals()`
 verifica ID, estratti, valori, integrità numerica, email e protezioni;
 `fill_docx()` riapre l'originale e applica i valori validi. Gli script esistenti

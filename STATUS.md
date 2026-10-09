@@ -4,6 +4,87 @@ Aggiornato il **9 ottobre 2026**. Base precedente agli interventi: branch `main`
 `dcb9557` (`fix: stabilize table autofill and DOCX finalization`).
 Ricontrollare Git all'inizio della prossima sessione.
 
+## Consolidamento della demo e nuovo punto di partenza — 9 ottobre 2026
+
+L'utente ha autorizzato il consolidamento della versione attuale, recuperabile
+e dimostrabile ai relatori, e il successivo sviluppo a chiamata unica in
+isolamento. Il percorso scelto è bottom-up: rappresentazione completa e
+compatta di FORM/SOURCE/USER, una chiamata, controlli locali ed export; nessuna
+nuova orchestrazione per gruppi o revisori AI separati. Le proposte storiche
+delle sezioni seguenti non sono istruzioni per riprendere quel percorso.
+
+Riferimento della demo: `demo-baseline-20261009`, branch `prune-backend`,
+directory `/home/montesano/Tesi`. Backup privato di codice e dati:
+`/home/montesano/Tesi-snapshots/baseline-20261009T165627Z/`.
+Il database è copiato con SQLite backup; integrità `ok`, 32 tabelle,
+3.856 file nella copia dei dati, inclusi audit. Nessun push o modifica alla
+configurazione Git. Procedura in [baseline-demo](docs/baseline-demo.md).
+
+Riprodotti i due fallimenti noti in `test_compilation_stability.py` (FTS5/Qdrant)
+prima della correzione. Risolto `StopIteration` in `chat_control`: la ripresa
+riapre un campo rinviato solo se presente. Dopo la correzione **145 test**
+stability/controls/finish passati. Completata l'intera suite backend in processi
+separati (44 file): **1.332 test passati**, inclusi quei 145, senza fallimenti.
+Frontend **94 test**, lint, build e Ruff backend passati. Avvio reale Uvicorn e
+Vite su copie dei dati: health, pagina frontend e proxy API funzionanti;
+accessibili 3 progetti, 3 moduli, 4 compilazioni e 9 sessioni. Nessuna chiamata
+AI durante questi controlli. Log e risultati nel backup privato.
+
+Le nuove implementazioni devono avvenire in `/home/montesano/Tesi-one-shot`,
+branch `feat/compilation-one-shot`, dopo il congelamento. Nessuna migrazione,
+reindicizzazione o prova AI sui dati reali effettuata nel consolidamento.
+
+## Potatura backend, primo taglio — 9 ottobre 2026
+
+Richiesta esplicita dell'utente: iniziare a potare il backend con risoluzione
+bottom-up. Checkpoint locale su branch `prune-backend`, commit `2510418`
+("chore: freeze pre-pruning working tree (compilation backend)"), nessun push,
+config Git invariata. La potatura di questo intervento è nel working tree, **non
+ancora committata**.
+
+Rimossi (recuperabili dal commit di congelamento):
+- prototipo globale: `app/global_compilation.py`,
+  `scripts/global_compilation_experiment.py`, `tests/test_global_compilation.py`;
+  il documento dell'esperimento resta come registrazione storica;
+- vecchio motore DOCX a chiamata unica: `load_compilation_sources`,
+  `build_prompt`, `request_field_proposals`, `compile_fields_once`,
+  `compile_document` e prompt/trasporto in `document_compilation.py`; endpoint
+  POST `/document-compilations`;
+- script `compile_docx_demo.py`, `compile_docx_ollama.py`,
+  `replay_docx_audit.py` e `tests/test_compilation_scripts.py`;
+- metodi client morti in `api.ts` (`projectArtifacts`, `projectArtifact`,
+  `updateProjectArtifact`, `generateDraft`, `documentCompilations`,
+  `documentCompilation`, `compileDocument`, `projectEvidence`) e i tipi usati
+  solo da essi.
+
+Conservati: validatori condivisi (`StrictModel`, `CompilationSources`,
+`validate_proposals` con controlli numerici/email/protetti), storico delle
+compilazioni (elenco, dettaglio, download), `_persist` condiviso con la
+finalizzazione delle sessioni, parser/writer DOCX, persistenza, provenienza e
+guardie. `document_compilation_routes.py` è passato da quattro a tre operazioni.
+
+Verifiche effettive: Ruff backend completo passato; frontend **94 test**, lint e
+build passati. Backend eseguito **a blocchi** per il limite di memoria (3,7 GiB
+totali): 127 ai_providers/ai_settings/artifact_storage/call_facts/chat_flow; 222
+docx_compilation/tender_cases/validation/numeric/email/api/finalization; 348
+compilation A; 203 retry/semantics/guards/sessions/sources/stability/table con
+**2 fallimenti preesistenti**; 333 blocco finale; 66 form_retrieval; 41
+retrieval/vector. `pytest -q` completo ucciso due volte per memoria (exit 137)
+intorno al 64%: nessuna suite completa in un unico processo.
+
+Fallimenti **non introdotti** da questo intervento (i file coinvolti non sono
+toccati dalla potatura ed erano già nel congelamento):
+`test_consecutive_model_errors_two_resumes_and_partial_export_preserve_source_user`
+(fts5/qdrant) fallisce con `StopIteration` in `chat_control` alla ripresa di un
+riepilogo senza rinvii. Solo la firma dello stub di
+`test_internal_coverage_bug_is_not_recovered_as_model_output` è stata allineata a
+`remembered=`. Da decidere se correggere il difetto o riportarlo all'altro
+agente.
+
+Prossimo punto: decidere la potatura successiva (nucleo semantico e percorsi
+legacy delle sessioni) e se committare questo taglio. Nessuna migrazione,
+reindicizzazione o modifica ai dati reali.
+
 ## Diagnosi Trapani Green: duplicati, rami e copertura SOURCE — 9 ottobre 2026
 
 Richiesta corrente: capire le domande inadeguate/duplicate e valutare se rifare

@@ -2,11 +2,9 @@
 
 import asyncio
 import json
-from io import BytesIO
 
 import httpx
 import pytest
-from docx import Document
 
 from app.ai_profiles import (
     ProfileInput,
@@ -357,7 +355,7 @@ async def test_provider_wire_format_and_usage(provider, use_schema):
 
 
 @pytest.mark.anyio
-@pytest.mark.parametrize("operation", ["chat", "facts", "draft", "docx"])
+@pytest.mark.parametrize("operation", ["chat", "facts", "draft"])
 @pytest.mark.parametrize("provider", list(PROVIDERS))
 async def test_selected_provider_routes_all_generation_paths(
     client, monkeypatch, operation, provider
@@ -398,21 +396,6 @@ async def test_selected_provider_routes_all_generation_paths(
             "markdown": "# Bozza\n\n[TODO: confermare il requisito]",
             "used_fact_ids": [],
             "missing_information": ["Conferma requisito"],
-        },
-        "docx": {
-            "fields": [
-                {
-                    "cell_id": "t0.r0.c1",
-                    "label": "Ragione sociale",
-                    "entity": "company",
-                    "kind": "data",
-                    "status": "missing",
-                    "value": None,
-                    "evidence": [],
-                    "reason": "Fonte non disponibile",
-                }
-            ],
-            "warnings": [],
         },
     }
     calls = []
@@ -481,20 +464,11 @@ async def test_selected_provider_routes_all_generation_paths(
             f"/api/projects/{PROJECT}/answer", json={"question": "Quale requisito tecnico?"}
         )
         assert response.json()["generation_status"] == "completed"
-    elif operation == "docx":
-        document = Document()
-        document.add_table(rows=1, cols=2).cell(0, 0).text = "Ragione sociale"
-        stream = BytesIO()
-        document.save(stream)
-        response = await client.post(
-            f"/api/projects/{PROJECT}/document-compilations",
-            files={"file": ("modello.docx", stream.getvalue(), "application/octet-stream")},
-        )
     else:
         path = "call-facts/extract" if operation == "facts" else "draft/generate"
         response = await client.post(f"/api/projects/{PROJECT}/{path}")
     assert response.status_code in {200, 201}, response.text
     assert len(calls) == (2 if operation == "chat" else 1)
-    payload = response.json()["report"] if operation == "docx" else response.json()
+    payload = response.json()
     assert payload["model"] == profile["model"]
     assert payload["total_tokens"] == (260 if operation == "chat" else 130)

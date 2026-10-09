@@ -8,11 +8,6 @@ from app import document_compilation as compilation
 from app.docx_templates import fill_docx, inspect_docx
 
 
-@pytest.fixture
-def anyio_backend():
-    return "asyncio"
-
-
 def inputs(value, source, quote=None):
     document = Document()
     document.add_paragraph("Identificativo: ____; Denominazione: ____")
@@ -75,27 +70,13 @@ def test_complete_tokens_and_explicit_date_components_keep_their_literal_values(
     assert document.paragraphs[1].text == f"Identificativo: {value}; Denominazione: ____"
 
 
-@pytest.mark.anyio
 @pytest.mark.parametrize("fixed", [True, False])
-async def test_numeric_validation_in_one_call_preserves_unrelated_fields(monkeypatch, fixed):
+def test_numeric_validation_preserves_unrelated_fields(fixed):
     layout, sources, bad = inputs("1234567890", "Partita IVA: 01234567890. Societa: Esempio.")
     if fixed:
         bad["value"] = "01234567890"
     good = {**bad, "cell_id": "p0.s1", "label": "Denominazione", "value": "Esempio"}
-    calls = []
-
-    async def model(prompt, **_options):
-        payload = json.loads(prompt)
-        calls.append(payload)
-        assert payload["target_ids"] == ["p0.s0", "p0.s1"]
-        return response(bad, good), "test", 10
-
-    monkeypatch.setattr(compilation, "request_field_proposals", model)
-    report, _, tokens, execution = await compilation.compile_fields_once(
-        layout, sources, "Progetto", "",
-    )
-    assert len(calls) == execution["requests"] == 1
-    assert tokens == 10
+    report = compilation.validate_proposals(response(bad, good), layout, sources)
     assert report["fields"][0]["validation_codes"] == (
         [] if fixed else ["partial_numeric_evidence"]
     )

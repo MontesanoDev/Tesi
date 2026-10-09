@@ -1,5 +1,10 @@
 # Compilazione globale: prototipo separato e prova del 8 ottobre 2026
 
+> Nota del 9 ottobre 2026: il codice del prototipo (`global_compilation.py`, la
+> CLI e i test) è stato rimosso con il primo taglio di potatura del backend,
+> branch `prune-backend`. Questo documento resta come registrazione storica
+> dell'esperimento; per rieseguirlo servirà una nuova implementazione.
+
 È un esperimento attivabile da CLI, senza route, UI o collegamento alla pipeline
 ordinaria. Il modello legge simultaneamente FORM, SOURCE e USER e propone un
 piano. Il backend decide quali prove e associazioni ammettere. Non vengono

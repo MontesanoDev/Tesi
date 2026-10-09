@@ -8,11 +8,6 @@ from app import document_compilation as compilation
 from app.docx_templates import DocumentInputError, fill_docx, inspect_docx
 
 
-@pytest.fixture
-def anyio_backend():
-    return "asyncio"
-
-
 def email_layout(text="E-mail: ....\u2026..", *, table=False):
     doc = Document()
     if table:
@@ -192,29 +187,15 @@ def test_named_marker_and_column_header_are_typed():
     assert inspect_docx(buffer.getvalue()).field_types == {"t0.r1.c1": "email"}
 
 
-@pytest.mark.anyio
 @pytest.mark.parametrize("fixed", [True, False])
-async def test_email_validation_in_one_call_keeps_other_fields(monkeypatch, fixed):
+def test_email_validation_keeps_other_fields(fixed):
     layout = email_layout("Email: ....\u2026...; Nome: ____")
     quote = "Email: ufficio@impresa.demo. Nome: Impresa"
     bad = proposal(layout, "ufficio", quote, target="p0.s0")
     if fixed:
         bad["value"] = "ufficio@impresa.demo"
     good = proposal(layout, "Impresa", quote, target="p0.s1", label="Nome")
-    calls = []
-
-    async def model(prompt, **_options):
-        payload = json.loads(prompt)
-        calls.append(payload)
-        assert payload["target_ids"] == ["p0.s0", "p0.s1"]
-        return response(bad, good), "test-model", 10
-
-    monkeypatch.setattr(compilation, "request_field_proposals", model)
-    report, _, tokens, execution = await compilation.compile_fields_once(
-        layout, sources(quote), "Progetto diverso", "Solo dati disponibili",
-    )
-    assert len(calls) == execution["requests"] == 1
-    assert tokens == 10
+    report = compilation.validate_proposals(response(bad, good), layout, sources(quote))
     assert report["fields"][1]["written_value"] == "Impresa"
     first = report["fields"][0]
     assert first["written_value"] == ("ufficio@impresa.demo" if fixed else None)

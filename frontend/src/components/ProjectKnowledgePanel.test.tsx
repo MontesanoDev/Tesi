@@ -11,8 +11,6 @@ vi.mock('../api', () => ({
     projectFileContent: vi.fn(),
     updateProjectFileContent: vi.fn(),
     deleteProjectFile: vi.fn(),
-    projectArtifacts: vi.fn(),
-    documentCompilations: vi.fn(),
   },
 }))
 
@@ -48,13 +46,10 @@ describe('ProjectKnowledgePanel', () => {
   afterEach(cleanup)
 
   beforeEach(() => {
-    vi.mocked(api.documentCompilations).mockReset().mockResolvedValue([])
     vi.mocked(api.uploadProjectFile).mockReset()
     vi.mocked(api.projectFileContent).mockReset()
     vi.mocked(api.updateProjectFileContent).mockReset()
     vi.mocked(api.deleteProjectFile).mockReset()
-    vi.mocked(api.projectArtifacts).mockReset()
-    vi.mocked(api.projectArtifacts).mockResolvedValue([])
   })
 
   it('uploads a source and refreshes the project', async () => {

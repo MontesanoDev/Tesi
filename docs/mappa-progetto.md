@@ -34,7 +34,7 @@ le ambiguità richiedono chiarimento. I controlli tecnici sono nei dettagli.
 |---|---|
 | `backend/app/` | 30 moduli Python, incluso `__init__.py`: API, persistenza, AI, retrieval, compilazione. Circa 8.800 righe prima degli interventi. |
 | `backend/tests/` | Regressioni API e di dominio, provider simulati, fixture DOCX reali, Qdrant locale con embedding simulati. |
-| `backend/scripts/` | Sei strumenti per creare progetti/fixture, eseguire compilazioni dimostrative, ripetere prove registrate e reindicizzare i moduli archiviati. |
+| `backend/scripts/` | Tre strumenti per creare progetti/fixture e reindicizzare i moduli archiviati. |
 | `frontend/src/` | React e TypeScript: pagine, componenti, hook, client API, tipi, CSS e test. |
 | `frontend/e2e/` | Dieci file di scenari Playwright e una fixture JSON; progetti desktop e mobile. |
 | `demo-documents/` | 27 file versionati: bandi, moduli, fonti aziendali simulate e conoscenza tecnica. Input di test e script, da conservare. |
@@ -79,10 +79,10 @@ flowchart TD
     BOZZA --> FILE
 ```
 
-L'API DOCX precedente richiede un upload e usa fonti selezionate per budget.
-Le nuove sessioni partono invece dal `form_id` archiviato e riusano
-planner/retrieval SOURCE. Il diagramma sopra descrive il percorso precedente;
-la guida delle sessioni contiene il nuovo flusso persistente.
+L'API DOCX a chiamata unica è stata rimossa il 9 ottobre 2026; restano elenco,
+dettaglio e download delle compilazioni salvate. Le nuove sessioni partono
+invece dal `form_id` archiviato e riusano planner/retrieval SOURCE. La guida
+delle sessioni contiene il nuovo flusso persistente.
 La generazione Markdown costituisce un terzo percorso, distinto da chat e DOCX.
 La chat seleziona `form` con un identificativo del modulo oppure `source`; FTS5,
 Qdrant e rilettura delle evidenze applicano ruolo e progetto. I moduli non sono
@@ -157,8 +157,8 @@ Tutti i percorsi della tabella sono relativi a [backend/app](../backend/app).
 | `vector_retrieval.py` | Corpus SQLite, sincronizzazione Qdrant per hash, filtri per progetto, rilettura dei risultati dalla fonte corrente. |
 | `project_forms.py` | Quattro operazioni HTTP per upload, elenco, download e rimozione di originali DOCX/TXT; estrazione documentale, frammenti form e reindicizzazione esplicita dagli originali. |
 | `docx_templates.py` | Validazione del contenitore DOCX, scoperta delle posizioni scrivibili, riconoscimento dei campi protetti e scrittura dall'originale. |
-| `document_compilation.py` | Catalogo fonti, prompt, proposte strutturate, validazione e report. Una sola chiamata per tutto il documento, senza gruppi o correzioni automatiche. |
-| `document_compilation_routes.py` | Quattro operazioni HTTP per creazione/elenco/dettaglio/download delle compilazioni; conserva originale, bozza e report. |
+| `document_compilation.py` | Validatori condivisi delle proposte DOCX: schemi, citazioni, controlli numerici/email e protezioni. Il motore a chiamata unica è stato rimosso il 9 ottobre 2026. |
+| `document_compilation_routes.py` | Storico delle compilazioni: elenco, dettaglio e download di originale, bozza e report; `_persist` è condiviso con la finalizzazione delle sessioni. La creazione dalla API è stata rimossa il 9 ottobre 2026. |
 | `compilation_sessions.py` | Snapshot dell'originale/candidate, revisioni/versioni, aggiornamenti USER, finalizzazione con validatore e renderer esistenti. |
 | `compilation_session_models.py`, `compilation_session_resolution.py`, `compilation_session_routes.py` | Contratti, risoluzione di massimo 12 candidate per richiesta tramite SOURCE e API della V1 backend. |
 | `config.py` | Impostazioni AI e `ContextVar` per mantenere provider e modello durante un'operazione; importazione della configurazione ambiente preesistente. |
@@ -175,7 +175,7 @@ Tutti i percorsi della tabella sono relativi a [backend/app](../backend/app).
 
 ## API e persistenza
 
-Sono dichiarate **50 operazioni HTTP applicative**, oltre alle route generate
+Sono dichiarate **49 operazioni HTTP applicative**, oltre alle route generate
 da FastAPI per la documentazione.
 
 | Prefisso o risorsa | Operazioni |
@@ -247,9 +247,6 @@ Gli URL principali sono `/projects`, `/projects/:id`,
 |---|---|
 | `create_tender_projects.py` | Crea i progetti di studio Catanzaro/Minervino nel database configurato. |
 | `create_paragraph_template.py` | Genera una fixture DOCX con tabelle e segnaposti; non sovrascrive file esistenti. |
-| `compile_docx_demo.py` | Prova end-to-end con database temporaneo e documenti simulati; `--live` abilita le chiamate AI. |
-| `compile_docx_ollama.py` | Prova con il profilo Ollama salvato nel progetto; può salvare il risultato se richiesto. |
-| `replay_docx_audit.py` | Ripete una compilazione su template e fonti congelati, inoltrando le opzioni al provider. Legge `request-01.prompt.json` e il nome storico `batch-01.prompt.json`; esegue sempre una chiamata unica. Non supporta tutti i formati degli altri script. |
 | `reindex_project_forms.py` | Riestrae/suddivide gli originali DOCX/TXT di un progetto o singolo modulo; aggiorna SQLite/FTS5 senza modificare i file. Sincronizzazione Qdrant opzionale con `--sync-vectors`. |
 
 `demo-documents/bandi/` contiene Catanzaro, Minervino e Trapani; `general-kb/`
@@ -265,20 +262,25 @@ installati/bloccati, senza aggiungerne altre. Il bundle già non li utilizzava:
 questo intervento alleggerisce le dipendenze, non dimostra un guadagno di velocità
 durante l'uso della pagina.
 
-**Client frontend senza utilizzatori applicativi:** nove metodi in `api.ts`:
-`projectArtifacts`, `projectArtifact`, `updateProjectArtifact`, `generateDraft`,
+**Rimosso il 9 ottobre 2026 (primo taglio di potatura, branch `prune-backend`):**
+il prototipo globale a chiamata unica (`global_compilation.py`, CLI e test), il
+vecchio motore DOCX (`compile_document`, prompt e trasporto in
+`document_compilation.py`, endpoint POST `/document-compilations`), gli script
+`compile_docx_demo.py`, `compile_docx_ollama.py`, `replay_docx_audit.py` con i
+relativi test, e gli otto metodi client morti (`projectArtifacts`,
+`projectArtifact`, `updateProjectArtifact`, `generateDraft`,
 `documentCompilations`, `documentCompilation`, `compileDocument`,
-`downloadCompilation`, `projectEvidence`. Alcuni compaiono soltanto nei test.
-Sono residui della UI rimossa; restano inventariati perché le API backend
-corrispondenti esistono e il lavoro successivo sulla compilazione può riusarli.
-I tipi raggiunti soltanto da questi metodi seguono lo stesso stato.
+`projectEvidence`) con i tipi collegati. Conservati i validatori condivisi
+(`StrictModel`, `CompilationSources`, `validate_proposals`), lo storico con
+download e `_persist`.
 
-**Da conservare:** il motore DOCX è raggiungibile da API e script. La modalità a
-gruppi da 32 è stata rimossa insieme alla divisione delle risposte troncate e ai
-tentativi automatici di correzione; i test dei controlli sui valori restano attivi.
-Le API Markdown sono ancora esposte. La demo e la revisione hanno route attive. Il
-redirect e la migrazione dei template legacy gestiscono compatibilità reale.
-La mancanza di una voce visibile nel menu non prova che questi moduli siano morti.
+**Da conservare:** il parser/writer DOCX, i validatori condivisi, la persistenza
+delle sessioni e lo storico delle compilazioni restano raggiungibili da API,
+sessioni e test. La modalità a gruppi da 32 era già stata rimossa; i test dei
+controlli sui valori restano attivi. Le API Markdown sono ancora esposte. La
+demo e la revisione hanno route attive. Il redirect e la migrazione dei template
+legacy gestiscono compatibilità reale. La mancanza di una voce visibile nel menu
+non prova che questi moduli siano morti.
 
 La ricerca dei riferimenti non ha trovato funzioni top-level Python prive di
 riferimenti tra applicazione e script dopo aver escluso gli entry point
@@ -316,7 +318,7 @@ unica resistente a un arresto improvviso del processo o del sistema.
 | Alta per affidabilità dei dati | Controlli prevalentemente sintattici e letterali. | Un valore autentico può essere assegnato al soggetto/sezione sbagliati; una citazione valida non prova l'affermazione. |
 | Media | Il percorso DOCX precedente seleziona fonti distribuite per budget: 40.000 caratteri aziendali, 90.000 di progetto e 20.000 generali. | Le sessioni usano invece retrieval SOURCE mirato; rimangono falsi negativi conservativi e limiti del contesto. |
 | Media | Il percorso DOCX precedente mantiene la chiamata unica da 1.800 secondi/32.768 token. | Le sessioni offrono passi da massimo 180 secondi e stato riprendibile; non è ancora misurata la qualità con provider reali del nuovo workflow. |
-| Media | `repository.py`, `main.py` e `document_compilation.py` concentrano molte responsabilità. | Separare routing/orchestrazione, persistenza e validatori durante gli interventi funzionali; evitare una riscrittura generale solo per ridurre le righe. |
+| Media | `repository.py` e `main.py` concentrano molte responsabilità. | Separare routing/orchestrazione, persistenza e validatori durante gli interventi funzionali; evitare una riscrittura generale solo per ridurre le righe. |
 | Media | `_finish_ingestion` estrae PDF e suddivide il testo sincronicamente dentro una funzione async. | Un PDF impegnativo può occupare l'event loop; da spostare in un worker/thread con limiti espliciti. È una valutazione del percorso, non un benchmark di carico. |
 | Media | File caricati come fonti vengono scritti prima dell'inserimento nel database; la compensazione non copre ogni errore successivo. | Possibili file orfani su errore di persistenza. Da uniformare al salvataggio dei moduli. |
 | Media | Qdrant riconcilia l'intero corpus prima di ogni ricerca e serializza il lavoro con un lock. | Adeguato al corpus del prototipo; costo e contesa crescono con documenti e utenti. Non misurati sotto carico. |

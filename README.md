@@ -9,6 +9,8 @@ dall'interfaccia; Ollama può essere locale o remoto.
 
 La [mappa del progetto e audit del codice](docs/mappa-progetto.md) descrive moduli,
 flussi, codice inutilizzato, verifiche e limiti ancora aperti.
+La [baseline della demo](docs/baseline-demo.md) documenta il punto di ripristino
+locale e la separazione dal nuovo sviluppo a chiamata unica.
 
 **Avvio**
 
@@ -144,18 +146,14 @@ Riaprire la conversazione ricostruisce stato e domanda dal backend senza azzerar
 il budget. Riavviare il backend aggiornato per le colonne additive dei riferimenti
 e dello storico workflow; non serve reindicizzare.
 
-Il backend conserva anche le API precedenti e i documenti già generati.
-Nel percorso precedente `/document-compilations`, il backend individua
-celle vuote e segnaposti, valida le proposte del modello e produce una bozza con
-report. Tutti i candidati del documento vengono inviati in una sola chiamata AI,
-insieme alle istruzioni e alle fonti selezionate entro i budget di contesto.
-La modalità a gruppi da 32 è stata rimossa. Una proposta bloccata resta vuota
-nel documento ed è segnalata nel report; risposte troncate, JSON malformati e
-identificatori sconosciuti interrompono la compilazione senza ulteriori chiamate
-o salvataggi parziali. Il contesto non usa il retrieval della chat.
-Le bozze richiedono revisione umana.
+Il backend conserva lo storico delle compilazioni generate: elenco, dettaglio e
+download dei documenti già prodotti restano disponibili. Il percorso precedente
+`/document-compilations`, che creava una nuova bozza con una sola chiamata AI su
+tutto il documento, è stato rimosso il 9 ottobre 2026: la creazione passa dalla
+CompilationSession V1 nella chat, con retrieval SOURCE mirato e passi limitati.
+I validatori delle proposte restano condivisi con le sessioni. Le bozze
+richiedono revisione umana.
 
-Ollama riceve lo schema JSON delle proposte anche per la compilazione DOCX.
 I controlli dei recapiti verificano l'indirizzo completo nella fonte originale,
 anche quando il modello ne cita soltanto una parte. Questi controlli non
 garantiscono che il dato appartenga al soggetto o alla sezione corretti.

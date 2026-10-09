@@ -12,11 +12,6 @@ COMPANY = "Impresa Esempio S.r.l."
 LEGAL_FORM = "Societa a responsabilita limitata"
 
 
-@pytest.fixture
-def anyio_backend():
-    return "asyncio"
-
-
 def layout_for(kind="table"):
     doc = Document()
     doc.add_paragraph("Modulo dimostrativo indipendente dal bando Catanzaro")
@@ -124,14 +119,14 @@ def test_user_input_is_citable_without_becoming_a_document_or_affecting_coverage
     layout, sources = layout_for(), context()
     before = sources.coverage()
     entered = "Sottoscrittore: Giulia Bianchi. Partecipazione singola."
-    payload = json.loads(compilation.build_prompt(layout, sources, "Altro progetto", entered))
-    user = next(s for s in payload["sources"] if s["id"] == "user:instructions")
+    catalog = compilation.source_catalog(sources, entered)
+    user = next(s for s in catalog if s["id"] == "user:instructions")
     assert user["origin"] == "user"
     assert user["scope"] == "user"
     assert user["source_kind"] == "user_instructions"
     assert user["document_id"] is None
     assert user["chunk_index"] is None
-    assert payload["source_coverage"] == sources.coverage() == before
+    assert sources.coverage() == before
     assert "origin" not in sources.selected[0]
     raw = proposal(targets(layout)[0], entity="person", value="Giulia Bianchi", evidence=[{
         "source_id": "user:instructions", "quote": "Sottoscrittore: Giulia Bianchi.",
@@ -146,9 +141,6 @@ def test_user_input_is_citable_without_becoming_a_document_or_affecting_coverage
     absent = compilation.validate_proposals(response(raw), layout, sources)["fields"][0]
     assert absent["written_value"] is None
     assert "unknown_source" in absent["validation_codes"]
-    assert json.loads(compilation.build_prompt(layout, sources, "Altro", "  "))[
-        "user_instructions_source_id"
-    ] is None
 
 
 @pytest.mark.parametrize("kind,origin", [
@@ -212,10 +204,9 @@ def test_complete_document_keeps_evidence_and_signature_checks():
     assert "protected_field" in report["fields"][2]["validation_codes"]
 
 
-@pytest.mark.anyio
 @pytest.mark.parametrize("kind", ["table", "shifted", "paragraph"])
 @pytest.mark.parametrize("error", ["bad_value", "bad_quote", "unknown_source"])
-async def test_blocked_proposal_stays_unwritten_without_another_call(monkeypatch, kind, error):
+def test_blocked_proposal_stays_unwritten(kind, error):
     layout = layout_for(kind)
     first, second, _ = targets(layout)
     bad = proposal(second, label="Forma", value=LEGAL_FORM)
@@ -225,48 +216,28 @@ async def test_blocked_proposal_stays_unwritten_without_another_call(monkeypatch
         bad["evidence"][0]["quote"] = "Citazione inventata"
     else:
         bad["evidence"][0]["source_id"] = "company:inesistente"
-    calls = []
-
-    async def model(prompt, **_options):
-        calls.append(json.loads(prompt))
-        return response(proposal(first), bad), "test", None
-
-    monkeypatch.setattr(compilation, "request_field_proposals", model)
-    report, _, tokens, execution = await compilation.compile_fields_once(
-        layout, context(), "Progetto diverso", "",
+    report = compilation.validate_proposals(
+        response(proposal(first), bad), layout, context(),
     )
-    assert len(calls) == execution["requests"] == 1
-    assert set(calls[0]["target_ids"]) == layout.candidate_ids
-    assert tokens is None
     assert report["fields"][0]["written_value"] == COMPANY
     assert report["fields"][1]["written_value"] is None
     assert report["fields"][1]["status"] == "needs_review"
     assert report["fields"][1]["validation_codes"]
 
 
-@pytest.mark.anyio
 @pytest.mark.parametrize("kind", ["declaration", "choice", "signature", "disguised_signature"])
-async def test_user_sources_cannot_enable_protected_fields(monkeypatch, kind):
+def test_user_sources_cannot_enable_protected_fields(kind):
     layout = layout_for()
     target = targets(layout)[2 if kind == "disguised_signature" else 0]
-    calls = 0
-
-    async def model(_prompt, **_options):
-        nonlocal calls
-        calls += 1
-        return response(proposal(
+    report = compilation.validate_proposals(
+        response(proposal(
             target, kind="data" if kind == "disguised_signature" else kind,
             value="Giulia Bianchi", entity="person", evidence=[{
                 "source_id": "user:instructions", "quote": "Giulia Bianchi",
             }],
-        )), "test", 4
-
-    monkeypatch.setattr(compilation, "request_field_proposals", model)
-    report, _, _, execution = await compilation.compile_fields_once(
-        layout, context(), "Altro", "Giulia Bianchi",
+        )),
+        layout, context(), instructions="Giulia Bianchi",
     )
-    assert calls == 1
-    assert execution["requests"] == 1
     assert report["fields"][0]["written_value"] is None
     assert report["fields"][0]["validation_codes"] == ["protected_field"]
 

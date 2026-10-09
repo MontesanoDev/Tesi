@@ -12,17 +12,11 @@ import type {
   ProjectAiSelection,
   ConversationDetail,
   CompilationDownload,
-  DocumentCompilation,
-  DocumentCompilationSummary,
   DocumentReview,
-  DraftGenerationResult,
-  EvidenceSearch,
   GroundedAnswer,
   GlobalKnowledgeDocument,
   GlobalKnowledgeDocumentContent,
   GlobalKnowledgeOverview,
-  KnowledgeArtifactDetail,
-  KnowledgeArtifactSummary,
   ProjectDetail,
   ProjectFile,
   ProjectFileContent,
@@ -188,8 +182,6 @@ export const api = {
       method: 'PUT',
       body: JSON.stringify({ content }),
     }),
-  projectArtifacts: (projectId: string, signal?: AbortSignal) =>
-    request<KnowledgeArtifactSummary[]>(`/projects/${projectId}/artifacts`, { signal }),
   uploadProjectForm: (projectId: string, file: File, signal?: AbortSignal) => {
     const body = new FormData()
     body.append('file', file)
@@ -201,25 +193,6 @@ export const api = {
   },
   deleteProjectForm: (projectId: string, formId: number, signal?: AbortSignal) =>
     request<void>(`/projects/${projectId}/forms/${formId}`, { method: 'DELETE', signal }),
-  projectArtifact: (projectId: string, artifactId: string, signal?: AbortSignal) =>
-    request<KnowledgeArtifactDetail>(
-      `/projects/${projectId}/artifacts/${encodeURIComponent(artifactId)}`,
-      { signal },
-    ),
-  updateProjectArtifact: (projectId: string, artifactId: string, content: string) =>
-    request<KnowledgeArtifactDetail>(
-      `/projects/${projectId}/artifacts/${encodeURIComponent(artifactId)}`,
-      {
-        method: 'PUT',
-        body: JSON.stringify({ content }),
-      },
-    ),
-  generateDraft: (projectId: string) =>
-    request<DraftGenerationResult>(`/projects/${projectId}/draft/generate`, {
-      method: 'POST',
-    }),
-  documentCompilations: (projectId: string, signal?: AbortSignal) =>
-    request<DocumentCompilationSummary[]>(`/projects/${projectId}/document-compilations`, { signal }),
   compilationSessions: (projectId: string, conversationId: string, signal?: AbortSignal) =>
     request<CompilationSessionSummary[]>(`/projects/${projectId}/compilation-sessions?${new URLSearchParams({ conversation_id: conversationId })}`, { signal }),
   compilationSession: (projectId: string, sessionId: string, signal?: AbortSignal) =>
@@ -241,28 +214,12 @@ export const api = {
     request<CompilationSession>(`/projects/${projectId}/compilation-sessions/${encodeURIComponent(sessionId)}/finalize`, {
       method: 'POST', signal, body: JSON.stringify({ version, allow_unresolved: allowUnresolved }),
     }),
-  documentCompilation: (projectId: string, runId: string, signal?: AbortSignal) =>
-    request<DocumentCompilation>(`/projects/${projectId}/document-compilations/${encodeURIComponent(runId)}`, { signal }),
-  compileDocument: (projectId: string, file: File, instructions: string) => {
-    const body = new FormData()
-    body.append('file', file)
-    body.append('instructions', instructions)
-    return request<DocumentCompilation>(`/projects/${projectId}/document-compilations`, {
-      method: 'POST', body,
-    })
-  },
   downloadCompilation: async (projectId: string, runId: string, kind: CompilationDownload, signal?: AbortSignal) => {
     const response = await requestResponse(
       `/projects/${projectId}/document-compilations/${encodeURIComponent(runId)}/download/${kind}`,
       { signal },
     )
     return response.blob()
-  },
-  projectEvidence: (projectId: string, query: string, signal?: AbortSignal) => {
-    const params = new URLSearchParams({ q: query })
-    return request<EvidenceSearch>(`/projects/${projectId}/evidence?${params}`, {
-      signal,
-    })
   },
   conversation: (projectId: string, conversationId: string, signal?: AbortSignal) =>
     request<ConversationDetail>(

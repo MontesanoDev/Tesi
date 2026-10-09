@@ -892,8 +892,10 @@ def chat_control(project_id, session_id, version, control):
                 view = chat_view(clean)
                 if view["question"] and view["question"]["kind"] == "deferred_summary":
                     # An explicit request to revisit the summary reopens one issue.
-                    field = next(f for f in state["fields"] if f.get("conversation_disposition"))
-                    field.pop("conversation_disposition", None)
+                    field = next((f for f in state["fields"]
+                                  if f.get("conversation_disposition")), None)
+                    if field is not None:
+                        field.pop("conversation_disposition", None)
                 state["chat_workflow"] = new_cycle(state["chat_workflow"])
                 if state["status"] in {"ANALYZING", "FAILED"} or (
                     state["status"] == "GENERATED"

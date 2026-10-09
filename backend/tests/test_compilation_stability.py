@@ -190,7 +190,7 @@ async def test_internal_coverage_bug_is_not_recovered_as_model_output(chat, monk
     state, _ = await start(chat)
     simulate(monkeypatch)
 
-    async def corrupt(*args):
+    async def corrupt(*args, **kwargs):
         return [], {"internal-wrong-id": []}, []
 
     monkeypatch.setattr(resolution, "retrieve_sources", corrupt)

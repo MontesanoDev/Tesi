@@ -58,34 +58,6 @@ export interface KnowledgeSource {
   item_count: number
 }
 
-export interface KnowledgeArtifactSummary {
-  id: string
-  kind: string
-  scope: 'global' | 'project'
-  title: string
-  filename: string
-  status: string
-  byte_size: number
-  version: number
-  updated_at: string
-  editable: boolean
-  chunk_count: number
-}
-
-export interface KnowledgeArtifactDetail extends KnowledgeArtifactSummary {
-  content: string
-}
-
-export interface DraftGenerationResult {
-  available_fact_count: number
-  artifact: KnowledgeArtifactDetail
-  verified_fact_count: number
-  used_fact_count: number
-  missing_information: string[]
-  model: string
-  total_tokens: number | null
-}
-
 export type CompilationDownload = 'docx' | 'report' | 'template'
 
 export interface DocumentCompilationSummary {
@@ -95,76 +67,6 @@ export interface DocumentCompilationSummary {
   created_at: string
   status: 'needs_review'
   downloads: Record<CompilationDownload, string>
-}
-
-export interface CompilationField {
-  cell_id: string
-  label: string
-  entity: 'company' | 'person' | 'project' | 'authority' | 'other'
-  kind: 'data' | 'choice' | 'declaration' | 'signature'
-  status: 'proposed' | 'missing' | 'needs_review' | 'not_applicable'
-  value: string | null
-  written_value: string | null
-  reason: string
-  validation_notes: string[]
-  validation_codes?: string[]
-  rejected_evidence?: { source_id: string; quote: string; reason: string }[]
-  // Optional metadata in previously saved reports; new compilations use one request.
-  repair?: {
-    status: 'corrected' | 'unresolved'
-    attempted: boolean
-    message: string
-    initial_proposal: {
-      value: string | null
-      validation_notes: string[]
-      rejected_evidence: { source_id: string; quote: string; reason: string }[]
-    }
-  }
-  location?: { kind: 'table_cell' } | { kind: 'paragraph'; paragraph: number; slot: number; placeholder: string }
-  evidence: {
-    source_id: string
-    document_id: number | null
-    source_name: string
-    scope: 'company' | 'project' | 'general' | 'user'
-    source_kind?: string
-    origin?: 'document' | 'extracted' | 'user'
-    fragment: number | null
-    page: number | null
-    quote: string
-    content_sha256: string
-  }[]
-}
-
-export interface DocumentCompilation extends DocumentCompilationSummary {
-  report: {
-    schema_version: number
-    project_id: string
-    created_at: string
-    status: 'needs_review'
-    ready_for_submission: false
-    model: string
-    prompt_version: string
-    template_sha256: string
-    output_sha256: string
-    total_tokens: number | null
-    instructions: string
-    fields: CompilationField[]
-    warnings: string[]
-    unclassified_cells: string[]
-    unclassified_fields?: string[]
-    unsupported_locations?: { paragraph: number; reason: string }[]
-    written_field_count: number
-    blocked_field_count?: number
-    unresolved_field_count: number
-    source_coverage: {
-      total_chunks: number
-      selected_chunks: number
-      total_characters: number
-      selected_characters: number
-      partial: boolean
-      strategy: string
-    }
-  }
 }
 
 export interface Conversation {
@@ -304,11 +206,6 @@ export interface Evidence {
   document_metadata?: string
   scope?: string | null
   category?: 'company' | 'general' | null
-}
-
-export interface EvidenceSearch {
-  query: string
-  results: Evidence[]
 }
 
 export type GenerationStatus =

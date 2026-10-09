@@ -11,7 +11,6 @@ from app.artifacts import (
     seed_markdown_artifacts,
 )
 from app.db import connection, get_knowledge_path, get_storage_path, init_database
-from app.document_compilation import load_compilation_sources
 from app.draft_generation import GeneratedDraft
 from app.fact_extraction import (
     CallFactsExtraction,
@@ -51,6 +50,22 @@ async def client(tmp_path, monkeypatch):
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as value:
         yield value
+
+
+def artifact_chunk_texts(project_id: str, kind: str) -> list[str]:
+    """Chunks of a project artifact, the sources the old compilation exposed."""
+    with connection() as db:
+        rows = db.execute(
+            """
+            SELECT c.content
+            FROM document_chunks c
+            JOIN project_artifact_links l ON l.file_id = c.file_id
+            JOIN knowledge_artifacts a ON a.id = l.artifact_id
+            WHERE c.project_id = ? AND a.kind = ?
+            """,
+            (project_id, kind),
+        ).fetchall()
+    return [row["content"] for row in rows]
 
 
 def test_question_limit_accepts_operational_prompts() -> None:
@@ -545,16 +560,12 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
     assert payload["evidence_count"] == 1
     assert payload["model"] == "deepseek-test"
     assert (await client.get(entered_url)).json() == entered_before
-    from app.document_compilation import load_compilation_sources
 
-    compilation_sources = load_compilation_sources(project_id).selected
     assert any(
-        item["source_kind"] == "call_facts" and "15 settembre" in item["content"]
-        for item in compilation_sources
+        "15 settembre" in content for content in artifact_chunk_texts(project_id, "call_facts")
     )
     assert any(
-        item["source_kind"] == "project_facts" and "Persona demo" in item["content"]
-        for item in compilation_sources
+        "Persona demo" in content for content in artifact_chunk_texts(project_id, "project_facts")
     )
 
     review = await client.get(f"/api/projects/{project_id}/call-facts")
@@ -619,8 +630,7 @@ async def test_call_facts_extraction_updates_markdown_and_project_metrics(client
     assert discarded.json()["discarded_count"] == 1
     assert discarded.json()["artifact"]["chunk_count"] == 0
     assert not any(
-        item["source_kind"] == "call_facts"
-        for item in load_compilation_sources(project_id).selected
+        "15 settembre" in content for content in artifact_chunk_texts(project_id, "call_facts")
     )
 
     restored = await client.patch(
@@ -1656,8 +1666,6 @@ async def test_delete_source_removes_file_chunks_fts_and_follow_up_evidence(
         await client.get(f"{url}/evidence", params={"q": query})
     ).json()["results"])
     assert all(item["file_id"] != file_id for item in load_project_source_chunks(project_id))
-    assert all(item["document_id"] != file_id or item["scope"] != "project"
-               for item in load_compilation_sources(project_id).selected)
     assert (await client.get(f"{url}/files/{file_id}/content")).status_code == 404
     assert (await client.put(
         f"{url}/files/{file_id}/content", json={"content": "Non ricreare"},
