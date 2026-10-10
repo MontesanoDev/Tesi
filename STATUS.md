@@ -1,5 +1,24 @@
 # Stato di Mapi RAG
 
+## Prima proposta globale reale DeepSeek — 10 ottobre 2026
+
+Codice congelato `79e6950`, originale upload 153 SHA `aeb1bda3…`, 307 posizioni
+(279 testo/28 checkbox), tutte le 51 SOURCE documentali ammesse del corpus piccolo.
+Una chiamata reale, zero USER/retry/scritture: **71,72 s**, input 62.588 token,
+output 28.929, totale **91.517**. La V1 storica: 7 chiamate/116.741 token/151,25 s
+per mappa e primi 12, non l'intero documento; selezione SOURCE diversa.
+Cinque proposte aziendali controllate manualmente corrette e grounded, non ancora
+RESOLVED di sessione. 307 ID coperti; 156 proposte grounded, 151 rifiutate.
+Difetti osservati: quote FORM vuote (145, di cui 52 decorative); citazioni del
+direttore tecnico attribuite al primo chunk della visura anziché quello reale;
+sede operativa proposta ignorando «se diversa»; checkbox tipologia ancora incerte
+nonostante SOURCE e condizione procura non distinta da valore assente.
+Report versionato `docs/benchmarks/2026-10-10-compilation-global-run1.json`;
+grezzi permanenti `backend/data/compilation-audit/global-20261010-run1/`.
+Controlli effettivi: 62 mirati, **1.458 backend completi** con DB/storage temporanei,
+Ruff, help CLI e diff. Prossimo passo circoscritto: migliorare riferimenti/contratto
+del prototipo e ripetere la misura, senza ridurre i gate semantici V1.
+
 ## Proposta globale isolata: contratto e runner — 10 ottobre 2026
 
 Salvato il catalogo nel commit `b0c0ef4`. Implementati contratto/input globale,
