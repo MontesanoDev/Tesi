@@ -154,6 +154,7 @@ def test_composite_profile_is_not_a_fact_for_each_atomic_property(case):
     payload["facts"]["name"] = {**payload["facts"]["profile"],
                                 "property": "nome responsabile", "value": "Ada Neri"}
     payload["fields"]["t0.r2.c1"]["fact_id"] = "name"
+    del payload["facts"]["profile"]
     field = audit(case)["fields"][2]
     assert field["validation"] == "GROUNDED_PROPOSAL"
     assert field["value"] == "Ada Neri"
@@ -177,6 +178,11 @@ def test_legitimate_negative_fact_is_not_an_availability_placeholder(case):
     case[2]["facts"]["negative"] = {**copy.deepcopy(case[2]["facts"]["main"]),
         "property": "qualifica aggiuntiva", "value": text,
         "evidence": [{"chunk_id": -7, "quote": text}]}
+    case[2]["conditions"]["qualification"] = {
+        "form": {"paragraph_id": "paragraph:4", "quote": "Responsabile"},
+        "aspect": "location", "operator": "semantic", "fact_ids": ["negative"],
+        "reason": "Proposta da valutare", "applies_to": ["t0.r2.c1"]}
+    case[2]["condition_scan"]["paragraph:4"] = ["qualification"]
     assert audit(case)["facts"]["negative"]["validation"] == "GROUNDED_PROPOSAL"
 
 
@@ -204,6 +210,19 @@ def test_invalid_assignment_remains_local_without_weakening_partition(case):
     result = audit(case)
     assert result["fields"][0]["validation"] == "GROUNDED_PROPOSAL"
     assert result["fields"][2]["validation"] == "REJECTED"
+
+
+def test_unreferenced_source_facts_are_rejected_instead_of_cataloguing_kb(case):
+    case[2]["facts"]["unrelated"] = copy.deepcopy(case[2]["facts"]["main"])
+    with pytest.raises(ValueError, match="non referenziati"):
+        audit(case)
+
+
+@pytest.mark.parametrize("disposition", ["review", "missing", "ignore"])
+def test_unresolved_or_decorative_details_must_use_compact_deferred_group(case, disposition):
+    case[2]["fields"]["t0.r0.c1"].update(disposition=disposition, fact_id=None)
+    # The main fact remains a dependency of the comparison, not an orphan.
+    assert audit(case)["fields"][0]["validation"] == "REJECTED"
 
 
 @pytest.mark.parametrize("origin", ["form", "user", "other_project"])

@@ -21,7 +21,8 @@ Le versioni precedenti restano leggibili soltanto per gli audit storici.
   ancora classificare male le proprietà; questa identità non è una prova
   semantica indipendente. Gli indicatori di indisponibilità/placeholder non
   possono diventare fatti utilizzabili, neppure nelle condizioni.
-- `fields`: massimo 128 assegnazioni dettagliate. `deferred`: soli ID delle
+- `fields`: massimo 128 assegnazioni value/NA; nessun record dettagliato
+  missing/review/ignore. `deferred`: soli ID delle
   altre posizioni, fino a 400 totali. Unione esatta e senza duplicati, nessun
   default implicito. Deferred è **ancora da interpretare**, non missing né
   decorativo e non una nuova domanda all'utente. Riduce l'output ripetitivo;

@@ -68,13 +68,19 @@ Ordine di lavoro nella STESSA risposta:
 condition_scan_paragraph_ids. Per ogni paragrafo non vuoto: lista degli ID delle
 condizioni espresse lì, [] se non individui condizioni, null se incerto.
 Includi condizioni nei titoli, sezioni, sottosezioni e istruzioni locali.
+Condizione significa dipendenza specifica che determina QUANDO il campo/ramo
+si applica; un generico obbligo di compilare/firmare non rende ignoti tutti i campi.
 Ogni condizione ha form.paragraph_id e quote LETTERALE della clausola, aspect,
 operator, fact_ids, reason breve e applies_to: ID dei candidate cui si applica.
 Una condizione può riguardare un'intera sezione; condividila, non ripeterla.
 Non dedurre condizioni dal nome dell'azienda o dalla domanda dell'utente.
 Non basta citare una clausola: indica tutti i candidate dipendenti dal suo ramo.
 
-2. FATTI ATOMICI SOURCE. Metti ogni proprietà distinta in un fatto distinto:
+2. Individua le sole assegnazioni/condizioni sostenibili. NON catalogare la KB.
+FATTI ATOMICI SOURCE: massimo 128 in TUTTO, SOLO quelli referenziati da un
+field.fact_id o da una condition.fact_ids. Nessun fatto isolato, nessun inventario
+dei requisiti del bando o di General KB. Non creare duplicati con suffissi.
+Metti ogni proprietà necessaria distinta in un fatto distinto:
 subject, entity, aspect, property, value e 1-2 evidence con chunk_id effettivo e
 quote breve LETTERALE che include il valore COMPLETO. Una riga SOURCE può
 provare più proprietà: estrai separatamente i loro valori, non copiare l'intera
@@ -85,8 +91,8 @@ ruolo e ramo. Non disponibile/non documentato NON è un valore fattuale utile.
 General KB non prova dati anagrafici aziendali o personali. Non fondere chunk,
 non citare il primo chunk del file per testo contenuto nei successivi.
 
-3. ASSEGNAZIONI COMPATTE. fields contiene massimo 128 candidate per cui hai una
-proposta concreta o un problema specifico da rappresentare. Le altre posizioni
+3. ASSEGNAZIONI COMPATTE. fields contiene massimo 128 candidate, ESCLUSIVAMENTE
+disposition=value o not_applicable con le prove richieste. Le altre posizioni
 vanno in deferred, come soli ID: non ripetere per centinaia di celle review,
 etichetta, quote e motivazione. L'unione di fields e deferred deve coprire TUTTI
 e SOLI gli ID in form.candidates, senza duplicati o sovrapposizioni.
@@ -107,15 +113,18 @@ supporto, e disposizione review/deferred: la sola classificazione del modello
 non rende automaticamente vero/falso un ramo. Non inventare un secondo fatto.
 Tipologia aziendale, partecipazione e poteri di rappresentanza sono dimensioni
 diverse: non trasferire fatti fra queste dimensioni per escludere una sezione.
-Condizione falsa locale => not_applicable senza valore; sconosciuta => review
-oppure deferred, NON value/missing/not_applicable. missing solo per requisito
-pertinente ma valore assente nelle SOURCE. Per value serve sempre un fact_id.
+Condizione falsa locale => not_applicable senza valore; sconosciuta => deferred,
+NON value/not_applicable. Valore assente nelle SOURCE => deferred.
+Non creare record fields con missing/review/ignore. Per value serve sempre un fact_id.
 Firme, dichiarazioni non provate, ruoli non attestati e scelte di partecipazione
-restano review/deferred. Non assumere candidate=campo obbligatorio.
+restano deferred. Non assumere candidate=campo obbligatorio.
 Checkbox: choice booleano + fatto che sostiene quella scelta nelle SOURCE e
 istruzioni FORM; casella vuota non significa false. Nessuna scrittura in questa
 prova. reason solo se aggiunge un'informazione specifica; evita boilerplate.
 
+Rispondi con JSON COMPATTO, senza indentazione. Ordine: version, condition_scan,
+conditions, fields, deferred, facts. Scrivi i facts dopo le assegnazioni per
+includere SOLO quelli effettivamente referenziati. NON esaurire tutte le SOURCE.
 Rispetta schema_output. Prima di chiudere il JSON controlla inventario,
 condizioni, proprietà atomiche, riferimenti e copertura esatta degli ID.
 """
@@ -480,6 +489,12 @@ def _validate_compact_proposal(payload, layout, catalog, source_map):
     for candidate_id, candidate in catalog["candidates"].items():
         for paragraph_id in local[candidate["context_id"]]:
             scope[candidate_id].update(proposal.condition_scan.get(paragraph_id) or [])
+
+    referenced = {ref for condition in proposal.conditions.values() for ref in condition.fact_ids}
+    referenced.update(record.get("fact_id") for record in records.values()
+                      if isinstance(record, dict) and isinstance(record.get("fact_id"), str))
+    if set(proposal.facts) - referenced:
+        raise ValueError("Fatti SOURCE non referenziati: inventario estraneo alla proposta")
 
     expanded, errors = {}, {}
     for candidate_id in catalog["candidates"]:

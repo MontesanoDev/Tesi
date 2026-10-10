@@ -69,16 +69,17 @@ class ScopedCondition(SharedCondition):
 
 
 class AtomicField(SharedField):
+    disposition: Literal["value", "not_applicable"]
     property: str | None = Field(default=None, min_length=1, max_length=150)
 
 
 class CompactGlobalProposal(StrictModel):
     version: Literal[3]
-    facts: dict[Reference, SharedFact] = Field(max_length=128)
-    conditions: dict[Reference, ScopedCondition] = Field(max_length=128)
     # Every nonempty FORM paragraph: [] = no clause proposed, null = uncertain.
     # Exact coverage is checked against the catalog, not a model count.
     condition_scan: dict[Reference, list[Reference] | None] = Field(max_length=2048)
+    conditions: dict[Reference, ScopedCondition] = Field(max_length=128)
     fields: dict[Reference, AtomicField] = Field(max_length=128)
     # Explicitly accounted for, not silently defaulted to missing/decorative.
     deferred: list[Reference] = Field(max_length=400)
+    facts: dict[Reference, SharedFact] = Field(max_length=128)

@@ -1,6 +1,20 @@
 # Stato di Mapi RAG
 
-## Passo compatto in verifica — 10 ottobre 2026
+## Correzione del budget compatto in verifica — 10 ottobre 2026
+
+Prime due prove sul commit `c2ec520`: 126,05 s/119.375 token, output troncato
+mentre enumera almeno 290 fatti; 87,56 s/106.921 token, JSON completo ma 304
+fields (280 review) oltre limite, più un ID inventato. Entrambe rifiutate
+integralmente; audit permanente `global-compact-20261010-run{1,2}`. Nessun
+miglioramento dimostrato in queste due prove, nessun valore accettato.
+
+Ristretto il compito nello stesso schema sperimentale: fields soltanto value/NA,
+altri ID deferred; fatti solo se referenziati da field/condizione, rifiuto degli
+orfani; richiesta di JSON senza indentazione. Stesso corpus e gate. Nessun
+retry o riparazione del JSON. Prossime prove su un nuovo commit congelato;
+mai alterato il codice durante le due chiamate concluse.
+
+## Passo compatto iniziale — 10 ottobre 2026
 
 Implementato nel solo prototipo globale il contratto 3: inventario esplicito
 dei paragrafi FORM, condizioni con candidate dipendenti, proprietà dei fatti
