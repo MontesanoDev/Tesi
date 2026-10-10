@@ -1,7 +1,9 @@
 # Strategia bottom-up della compilazione — proposta del 10 ottobre 2026
 
-Stato: **direzione a chiamata unica confermata dall'utente**; contratto e dettagli
-progettuali da comunicare prima del codice. Nessun nuovo motore implementato.
+Stato: **direzione a chiamata unica confermata dall'utente**; avvio graduale
+autorizzato dopo il brainstorming. Implementata la prima milestone del
+[catalogo strutturale condiviso](catalogo-compilazione.md); nuovo resolver
+ancora da implementare. Comunicare le scelte concrete prima dei prossimi passi.
 La direzione a chiamata unica è già scelta nello storico; questo documento
 propone contratto, ordine di lavoro e criteri per valutarla. Conservare la demo
 V1 e recuperare prima il lavoro non pubblicato di `Tesi-one-shot`, se disponibile.
@@ -78,6 +80,56 @@ Compattare senza perdere significato: deduplicare contesti comuni, riferire
 SOURCE e sezioni tramite ID, conservare ordine delle righe, titoli e qualificatori.
 Evitare copie del medesimo paragrafo per ciascuna cella. Non sostituire le fonti
 con riassunti LLM non verificabili e non nascondere testo escluso dal budget.
+
+### Brainstorming: catalogo compatto e checkbox — 10 ottobre 2026
+
+L'utente propone meno chiamate, un JSON centrato sulle posizioni candidate e
+l'inclusione delle checkbox. È una discussione progettuale: non sono stati
+implementati un nuovo contratto, parser o renderer. Ridurre chiamate evita
+ripetizioni, ma il risparmio di token e il miglioramento della qualità vanno
+misurati; un input globale troppo grande può ancora perdere informazioni.
+
+Verifica strutturale in sola lettura delle fixture e del codice corrente:
+
+- `catanzaro-dl-cse/modello/domanda-partecipazione.docx`: **28** checkbox legacy
+  Word (`w:checkBox`). Le prime nove hanno il testo dell'opzione in un'altra
+  cella della stessa riga: il solo testo della posizione risulta vuoto.
+- `minervino-elenco-sia/originali/domanda-iscrizione.docx`: **13** checkbox
+  content control (`w14:checkbox`), con 13 glifi visibili `☐`. Controllo e glifo
+  rappresentano lo stesso elemento: non contarli come candidate distinti.
+- `docx_templates.py` espone celle vuote e segnaposti; esclude controlli Word
+  dalle scritture. Il test Catanzaro verifica la conservazione delle 28
+  checkbox, non la loro compilazione. Nessun test rieseguito in questa lettura.
+
+Proposta da discutere:
+
+1. Il parser mantiene localmente la mappa ID/posizione originale. Alla chiamata
+   invia candidate tipizzati e contesti condivisi con riferimenti: etichette,
+   intestazioni di riga/colonna, istruzioni pertinenti, ordine e condizioni.
+   Eliminare dettagli grafici/XML e duplicazioni, senza eliminare il significato
+   dei campi. Non aggiungere una chiamata LLM di sintesi del documento.
+2. Rappresentare nello stesso catalogo campi testuali e checkbox, ciascuno con
+   ID stabile, stato originale e contesto. Rilevamento strutturale e associazione
+   semantica sono responsabilità diverse; il modello non inventa posizioni.
+3. Per le checkbox distinguere decisione positiva, negativa e non verificata;
+   una casella vuota nell'originale non è prova di una risposta negativa.
+   Conservare NOT_APPLICABLE separato. Gruppi esclusivi, selezioni multiple e
+   condizioni devono essere sostenuti dalle istruzioni FORM, non dalla sola
+   vicinanza grafica. Una scelta di gruppo verificata può sbloccare più campi.
+4. Una spunta richiede supporto SOURCE pertinente oppure scelta/conferma USER.
+   Una dichiarazione prestampata, o una proprietà aziendale solo indirettamente
+   collegata, non autorizza automaticamente la selezione. Decisioni sulla
+   partecipazione e dichiarazioni non documentate restano da confermare.
+5. Prima integrare in isolamento lettura/identità dei due formati Word presenti
+   nelle fixture, poi scrittura mirata e controlli di gruppo. Checkbox disegnate,
+   immagini e glifi senza un controllo associato richiedono supporto esplicito;
+   non promettere riconoscimento/scrittura universali.
+
+Prima milestone proposta: fixture piccole con testo, checkbox, gruppi e rami
+condizionali; verifica di ID, contesti, provenienza e modifiche XML autorizzate.
+Poi confronto del payload compatto con la baseline e prova della proposta unica.
+La sessione/chat esistente rimane la persistenza dell'iterazione; una chiamata
+iniziale non significa una sola chiamata per tutta la conversazione.
 
 ## 3. Una proposta globale, controlli locali
 

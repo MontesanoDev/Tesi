@@ -5,6 +5,12 @@ modifica dati persistiti; il file Word viene generato soltanto su richiesta.
 La chat esistente offre selezione `@`, avvio/ripresa, riepilogo, chiarimenti
 raggruppati e generazione/download inline. Il backend rimane la fonte dello stato.
 
+**Prima milestone del 10 ottobre verso la proposta unica:** disponibile il
+[catalogo FORM condiviso](catalogo-compilazione.md), con contesto completo e
+riconoscimento strutturale delle checkbox native. È ispezione backend in sola
+lettura: il resolver V1, i suoi campi persistiti, le chiamate AI e il renderer
+restano attivi come prima. Nessuna migrazione o reindicizzazione richiesta.
+
 **Stato dell'8 ottobre:** retry di interpretazione e SOURCE separati e persistenti;
 implementata la semantica ancorata al FORM con contesto di sezione e distinzione
 fra procedura corrente e servizi pregressi. 1.192 test backend passati. Dopo la

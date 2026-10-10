@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-10",
+  "measurement_kind": "deterministic_form_catalog",
+  "base_commit": "b271335e9de58677c13d0cd46b994f723037aa8f",
+  "implementation_committed": false,
+  "ai_calls": 0,
+  "samples": [
+    {
+      "document": "../demo-documents/bandi/catanzaro-dl-cse/modello/domanda-partecipazione.docx",
+      "original_sha256": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563",
+      "candidate_counts": {
+        "text": 279,
+        "checkbox": 28
+      },
+      "catalog_characters": 124175,
+      "catalog_utf8_bytes": 124531,
+      "inspect_seconds": 0.17009082000004128,
+      "catalog_seconds": 0.22036399100034032,
+      "ai_calls": 0,
+      "checkbox_write_supported": false,
+      "v1_all_candidate_form_context_characters": 418910,
+      "comparison_note": "Contesti FORM di tutti i candidate V1, non il payload di una singola chiamata reale. Il catalogo aggiunge checkbox e contesto completo; nessuna misura token.",
+      "original_unchanged": true
+    },
+    {
+      "document": "../demo-documents/bandi/minervino-elenco-sia/originali/domanda-iscrizione.docx",
+      "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+      "candidate_counts": {
+        "text": 254,
+        "checkbox": 13
+      },
+      "catalog_characters": 67594,
+      "catalog_utf8_bytes": 69174,
+      "inspect_seconds": 0.07084208699961891,
+      "catalog_seconds": 0.05261633299960522,
+      "ai_calls": 0,
+      "checkbox_write_supported": false,
+      "v1_all_candidate_form_context_characters": 1018482,
+      "comparison_note": "Contesti FORM di tutti i candidate V1, non il payload di una singola chiamata reale. Il catalogo aggiunge checkbox e contesto completo; nessuna misura token.",
+      "original_unchanged": true
+    }
+  ],
+  "integrity": [
+    {
+      "sample": "catanzaro-final",
+      "paragraphs": 829,
+      "physical_cells": 509,
+      "candidate_contexts_valid": true,
+      "checkbox_identity_valid": true,
+      "paragraphs_stored_once": true,
+      "no_factual_values_or_provenance": true
+    },
+    {
+      "sample": "minervino-final",
+      "paragraphs": 246,
+      "physical_cells": 110,
+      "candidate_contexts_valid": true,
+      "checkbox_identity_valid": true,
+      "paragraphs_stored_once": true,
+      "no_factual_values_or_provenance": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "targeted",
+      "command": [
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_compilation_catalog.py",
+        "tests/test_compilation_document_plan.py"
+      ],
+      "exit_code": 0,
+      "seconds": 5.194496269999945,
+      "log": "data/compilation-audit/catalog-20261010/targeted.log"
+    },
+    {
+      "name": "backend-full-final",
+      "command": [
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "seconds": 177.8672532160017,
+      "log": "data/compilation-audit/catalog-20261010/backend-full-final.log"
+    },
+    {
+      "name": "ruff",
+      "command": [
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "seconds": 0.056184892000601394,
+      "log": "data/compilation-audit/catalog-20261010/ruff.log"
+    }
+  ],
+  "targeted_tests": 32,
+  "full_backend_tests": 1428,
+  "frontend_changed": false,
+  "source_sha256": {
+    "backend/app/compilation_catalog.py": "144d679a499be1146d0055ebe551a4009b642e6bab423fcdc06ec49bfde0b924",
+    "backend/app/compilation_document_plan.py": "cfacf36fc70bafd4834c1f9a973cb6a96b0dc165c30623e0be24b0f3a9b5f7fc",
+    "backend/app/docx_templates.py": "20362a4ba7ad3e06705f4b9656e02d1824b9b7f9ed4d32c24f5101af8c633762",
+    "backend/scripts/export_compilation_catalog.py": "7aca31d1295ce843743a9eca430f482ed0436698c2b22b3656ee6e0be0f7ec49",
+    "backend/tests/test_compilation_catalog.py": "568b70d2567c14c0d2a2478a0abdde0a96232ad5fdaf90a543581823eca135d2"
+  },
+  "raw_directory": "backend/data/compilation-audit/catalog-20261010",
+  "limitations": [
+    "Current chat resolver/call count unchanged",
+    "Native checkboxes catalogued but not written",
+    "Sizes compare representations, not tokens or real AI latency",
+    "No semantic applicability inferred by the catalog",
+    "Final samples use the -final directories; preliminary exports retained"
+  ]
+}

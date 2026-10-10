@@ -1,5 +1,69 @@
 # Stato di Mapi RAG
 
+## Passi piccoli e prove DeepSeek autorizzati — 10 ottobre 2026
+
+L'utente ha autorizzato commit per ogni passo e uso delle API DeepSeek per
+misurare token, tempi e correttezza. Primo checkpoint: catalogo strutturale
+già verificato, senza attivare un nuovo resolver nella chat. Passo successivo:
+proposta globale sperimentale isolata, con input FORM/SOURCE distinti,
+validazioni locali esplicite e acquisizione durevole di prompt, risposte e usage.
+La V1 resta la baseline fino al confronto; nessun push automatico richiesto.
+
+## Avvio del pruning: catalogo strutturale condiviso — 10 ottobre 2026
+
+Richiesta corrente: «iniziamo a sfoltire», dopo il confronto sulla mappa globale
+del Word e sulle condizioni già determinabili dalle SOURCE. Autorizzato l'avvio
+graduale; spiegate prima del codice le scelte della prima milestone.
+
+- Implementato `compilation_catalog.py`: contesto FORM presente una volta,
+  ordine dei paragrafi, righe/celle fisiche, merge, tabelle annidate, gerarchia
+  esplicita degli outline, richiami alle note e parti accessorie in sola lettura.
+  Candidate testuali con ID esistenti e checkbox native legacy/content control,
+  inline o a blocco, con ID stabili e stato originale distinto da qualsiasi fatto.
+  Titoli/condizioni non strutturati restano testo completo, senza euristiche legali.
+- Riutilizzata la proiezione `document_blocks` dalla mappa V1, eliminando la
+  vecchia implementazione locale. Stesso contratto verificato: nessun reviewer
+  bypassato. Il parser ammette `require_candidates=False` per ispezionare anche
+  moduli con sole checkbox; default, sicurezza e insieme scrivibile invariati.
+- Nuova CLI esplicita `export_compilation_catalog.py`, senza provider/DB/retrieval,
+  output in una directory nuova. Originali verificati invariati. Catanzaro:
+  **279 testuali + 28 checkbox**, JSON **124.175 caratteri**, contro 418.910 dei
+  contesti FORM ripetuti di tutti i candidate V1. Minervino: **254 + 13**,
+  **67.594** contro 1.018.482. Non sono token né risparmi di latenza AI;
+  il confronto non rappresenta il payload di una singola richiesta V1.
+- Report: [catalogo e limiti](docs/catalogo-compilazione.md); misure versionabili
+  in `docs/benchmarks/2026-10-10-compilation-catalog.json`; grezzi/log permanenti
+  in `backend/data/compilation-audit/catalog-20261010/`, esclusi da Git.
+- Verifiche effettivamente eseguite sulla versione finale: **32 test mirati**
+  catalogo/mappa, **1.428 test backend completi**, Ruff completo, `--help` CLI,
+  esportazione delle due fixture, integrità dei riferimenti/ID e originali,
+  diff/whitespace. Suite con provider simulati e DB/storage temporanei; le
+  esportazioni sono prove strutturali senza AI. Nessun nuovo benchmark semantico
+  o misura DeepSeek. Frontend non toccato, quindi non rieseguito.
+- **Limite attuale**: nessun nuovo resolver globale o adapter di sessione attivo,
+  nessuna chiamata AI ancora eliminata dalla chat. Checkbox catalogate ma non
+  scritte (`checkbox_write_supported=false`). RAG/SOURCE, chat, sessioni persistite
+  e renderer invariati. Nessuna migrazione/reindicizzazione o modifica dei dati
+  locali; preservate le modifiche documentali preesistenti. Nessun commit/push.
+- Prossimo punto: contratto della proposta globale e validazione di applicabilità,
+  soggetto/ruolo e prove SOURCE/USER; poi scrittura mirata checkbox, adapter della
+  sessione e confronto reale congelato prima della rimozione della catena V1.
+
+## Brainstorming catalogo compatto e checkbox — 10 ottobre 2026
+
+L'utente propone di ridurre chiamate/token, concentrare il JSON sui candidate e
+includere le checkbox nel nuovo motore. Registrata la discussione in
+[strategia bottom-up](docs/strategia-bottom-up-compilazione.md#brainstorming-catalogo-compatto-e-checkbox--10-ottobre-2026):
+candidate tipizzati con contesti condivisi, senza XML/formattazione ripetuti;
+istruzioni, condizioni e provenienza restano necessarie. Dettagli **da discutere**.
+Lettura effettiva delle fixture: 28 checkbox Word legacy nel modulo Catanzaro,
+13 content control nel modulo Minervino; oggi sono preservate, non compilate.
+Verificato nel codice/test, senza eseguire suite né provider. Solo documentazione,
+controllo diff/whitespace; nessuna modifica applicativa, dati, commit o push.
+Git iniziale pulito su `prune-backend`, HEAD `b271335`, già pubblicato con il tag
+baseline. Prossimo punto: definire il contratto minimo comune testo/checkbox e
+le fixture positive/negative prima di implementare o collegare il nuovo resolver.
+
 ## Checkpoint GitHub prima del nuovo motore — 10 ottobre 2026
 
 Richiesta esplicita dell'utente: salvare prima tutto il lavoro corrente su GitHub

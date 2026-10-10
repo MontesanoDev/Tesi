@@ -12,8 +12,8 @@ from typing import Literal
 
 from pydantic import Field, PrivateAttr
 
+from app.compilation_catalog import document_blocks
 from app.document_compilation import StrictModel
-from app.docx_templates import text_of
 from app.requirement_checks import contains_form_span
 
 PLAN_VERSION = 1
@@ -51,30 +51,6 @@ class DocumentPlanReview(StrictModel):
     revised_sections: list[ConditionalSection] = Field(default_factory=list, max_length=64)
     revised_choices: list[ExclusiveChoice] = Field(default_factory=list, max_length=24)
     reason: str = Field(min_length=2, max_length=3000)
-
-
-def document_blocks(layout):
-    from docx.oxml.ns import qn
-
-    paragraphs = list(layout.document.element.body.iter(qn("w:p")))
-    positions = {p: i for i, p in enumerate(paragraphs)}
-    locations, blocks = {}, []
-    for element in layout.document.element.body:
-        elements = list(element.iter(qn("w:p")))
-        if not elements:
-            continue
-        block_id = f"paragraph:{positions[elements[0]]}"
-        text = "\n".join(text_of(p) for p in elements if text_of(p).strip())
-        for p in elements:
-            locations[p] = block_id
-        blocks.append({"id": block_id, "text": text, "candidate_ids": []})
-    by_id = {b["id"]: b for b in blocks}
-    for candidate_id in sorted(layout.candidate_ids):
-        element = (layout.slots[candidate_id].paragraph if candidate_id in layout.slots
-                   else layout.cells[candidate_id])
-        first = next(element.iter(qn("w:p")))
-        by_id[locations[first]]["candidate_ids"].append(candidate_id)
-    return blocks
 
 
 def verified_plan(layout, proposed, review):

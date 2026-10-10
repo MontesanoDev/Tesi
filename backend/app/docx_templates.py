@@ -370,7 +370,11 @@ class DocxLayout:
         return {"kind": "table_cell"}
 
 
-def inspect_docx(data: bytes) -> DocxLayout:
+def inspect_docx(data: bytes, *, require_candidates: bool = True) -> DocxLayout:
+    """Inspect immutable structure; catalog-only callers may accept no text slots.
+
+    This option does not add Word controls to the current writer's allowed set.
+    """
     validate_docx_package(data)
     try:
         document = Document(BytesIO(data))
@@ -422,7 +426,7 @@ def inspect_docx(data: bytes) -> DocxLayout:
             rows.append(row_cells)
         catalog.append({"table": ti, "preceding_context": context, "rows": rows})
     slots, paragraph_catalog, unsupported = _paragraph_slots(paragraphs, cells, unsafe)
-    if not cells and not slots:
+    if require_candidates and not cells and not slots:
         raise DocumentInputError(
             "Nessun campo supportato: servono celle vuote o segnaposti nei paragrafi "
             "(___, ...., {{campo}}). Controlli Word e spazi senza segnaposto non sono supportati"

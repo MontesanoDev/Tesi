@@ -3,6 +3,16 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Catalogo strutturale, 10 ottobre 2026
+
+- [Contratto, limiti e comando di ripetizione](../catalogo-compilazione.md).
+- [Misure JSON](2026-10-10-compilation-catalog.json): candidate testo/checkbox,
+  dimensioni e tempi dell'estrazione deterministica, originali verificati.
+- Grezzi permanenti: `backend/data/compilation-audit/catalog-20261010/`, con
+  cataloghi delle fixture Catanzaro/Minervino, misure e log dei controlli.
+- Zero chiamate AI: non è una valutazione semantica del modello né una nuova
+  misura della latenza di compilazione. Dati grezzi locali esclusi da Git.
+
 ## Latenza compilazione, 10 ottobre 2026
 
 - [Report e confronto Gemma/DeepSeek](../diagnosi-latenza-compilazione-2026-10-10.md).
