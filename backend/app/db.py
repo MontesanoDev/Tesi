@@ -99,7 +99,7 @@ def init_database() -> None:
 
             CREATE TABLE IF NOT EXISTS project_ai_settings (
                 project_id TEXT PRIMARY KEY REFERENCES projects(id) ON DELETE CASCADE,
-                profile_id TEXT NOT NULL REFERENCES ai_profiles(id) ON DELETE RESTRICT,
+                profile_id TEXT REFERENCES ai_profiles(id) ON DELETE RESTRICT,
                 thinking_mode INTEGER NOT NULL DEFAULT 0
             );
 
@@ -352,6 +352,7 @@ def init_database() -> None:
         _ensure_column(db, "conversation_turns", "form_reference_json", "TEXT")
         _ensure_column(db, "conversation_turns", "compilation_json", "TEXT")
         _ensure_column(db, "project_ai_settings", "thinking_mode", "INTEGER NOT NULL DEFAULT 0")
+        _migrate_project_ai_settings(db)
         db.execute(
             """
             UPDATE conversations
@@ -371,6 +372,27 @@ def init_database() -> None:
             SELECT id, document_id, content FROM global_document_chunks
             """
         )
+
+
+def _migrate_project_ai_settings(db: sqlite3.Connection) -> None:
+    """Allow default inheritance, preserving project preferences in init's transaction."""
+    columns = {row["name"]: row for row in db.execute("PRAGMA table_info(project_ai_settings)")}
+    if not columns["profile_id"]["notnull"]:
+        return
+    # This child table has no inbound references; FK enforcement can stay enabled.
+    db.execute("""CREATE TABLE project_ai_settings_nullable (
+        project_id TEXT PRIMARY KEY REFERENCES projects(id) ON DELETE CASCADE,
+        profile_id TEXT REFERENCES ai_profiles(id) ON DELETE RESTRICT,
+        thinking_mode INTEGER NOT NULL DEFAULT 0
+    )""")
+    db.execute(
+        "INSERT INTO project_ai_settings_nullable(project_id, profile_id, thinking_mode) "
+        "SELECT project_id, profile_id, thinking_mode FROM project_ai_settings"
+    )
+    db.execute("DROP TABLE project_ai_settings")
+    db.execute("ALTER TABLE project_ai_settings_nullable RENAME TO project_ai_settings")
+    if db.execute("PRAGMA foreign_key_check(project_ai_settings)").fetchone():
+        raise RuntimeError("La migrazione delle preferenze AI viola i collegamenti del database")
 
 
 def _migrate_ai_providers(db: sqlite3.Connection) -> None:

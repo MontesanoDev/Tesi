@@ -4,6 +4,51 @@ Aggiornato il **10 ottobre 2026**. Base precedente agli interventi: branch `main
 `dcb9557` (`fix: stabilize table autofill and DOCX finalization`).
 Ricontrollare Git all'inizio della prossima sessione.
 
+## Thinking disponibile anche con «Usa predefinito» — 10 ottobre 2026
+
+- Corretto il vincolo segnalato dall'utente: lo switch DeepSeek è abilitato
+  anche quando il progetto eredita il modello predefinito. Il salvataggio usa
+  `profile_id=null`, senza fissare implicitamente il modello corrente.
+- Il backend conserva il thinking per progetto quando si sceglie un altro
+  modello o si torna al predefinito. Un successivo cambio del predefinito
+  generale viene seguito normalmente; le preferenze degli altri progetti
+  restano indipendenti. Il thinking è inizialmente disattivato.
+- `project_ai_settings.profile_id` ammette ora NULL. Migrazione automatica
+  transazionale all'avvio, preservando profili, preferenze e vincoli FK;
+  supportati i database precedenti con o senza `thinking_mode`. La migrazione
+  è già avvenuta nel backend locale con reload; successivo controllo SQLite
+  in sola lettura: colonna nullable, zero violazioni FK. Nessun bisogno di
+  reindicizzare e nessuna preferenza utente impostata dalle prove.
+- Lo switch resta disponibile per DeepSeek; con un altro provider la preferenza
+  è conservata e l'interfaccia non indica erroneamente «ragionamento attivo».
+  Questo secondo difetto è emerso nel primo E2E ed è stato corretto. L'ambito
+  delle chiamate che usano il thinking resta quello precedente: risposta finale
+  RAG; nessuna estensione al planner o alle fasi della compilazione.
+- Verifiche eseguite: **164 test backend** (`ai_settings`, `ai_providers`,
+  `generation`), **96 test frontend**, Ruff completo, lint e build frontend,
+  `git diff --check`; **2 E2E desktop/mobile** con API simulate passati dopo
+  la correzione dell'etichetta. Dopo l'ultimo ritocco UI ripetuti i **17 test**
+  di `AiSettings`, lint e build. Le prove usano database temporanei e provider
+  simulati; nessuna chiamata AI a pagamento.
+- Aggiornato README e allineati gli stessi cambiamenti in `Tesi-one-shot`,
+  preservando prototipo e modifiche pendenti. Nessun commit o push; conservata
+  anche la precedente rimozione del download originale dalla lista moduli.
+
+## Download originale rimosso dalla lista moduli — 10 ottobre 2026
+
+- Su richiesta dell'utente, rimosso il pulsante «Scarica originale» da
+  `ProjectFormsPanel`, insieme al relativo handler e all'import dell'icona.
+  Upload e rimozione restano nella lista; la bozza compilata si scarica dalla
+  risposta di Mapi. Originali e API di download sono conservati.
+- Aggiornato l'E2E esistente `project-forms`: verifica la lista dopo ricarica,
+  l'assenza del pulsante e i percorsi di upload/rimozione con errori parziali.
+- Verifiche eseguite: lint e build frontend, **2 E2E desktop/mobile** con API
+  simulate, `git diff --check`. Il primo avvio Chromium senza librerie locali
+  falliva per `libnspr4.so`; ripetuto con `LD_LIBRARY_PATH` verso
+  `.tools/playwright-libs/usr/lib/x86_64-linux-gnu`, entrambi gli E2E passati.
+- Allineati componente e scenario anche in `Tesi-one-shot`. Modifiche locali
+  non committate; nessun push, modifica backend o migrazione.
+
 ## Commit locali e proposta di estensione di @ — 10 ottobre 2026
 
 - L'utente ha autorizzato i commit delle modifiche già verificate; il push sarà

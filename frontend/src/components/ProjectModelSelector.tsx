@@ -85,7 +85,7 @@ export function ProjectModelSelector({ projectId, disabled = false, onChanging }
     return () => { controller.abort(); onChanging?.(false) }
   }, [projectId, reload, onChanging])
 
-  async function select(value: string, thinking?: boolean, close = true) {
+  async function select(value: string | null, thinking?: boolean, close = true) {
     if (busy || disabled) return
     const controller = active.current
     setBusy(true); setError(null); setNotice(null); onChanging?.(true)
@@ -106,6 +106,7 @@ export function ProjectModelSelector({ projectId, disabled = false, onChanging }
     }
   }
   const defaultProfile = settings?.profiles.find((profile) => profile.id === settings.default_profile_id)
+  const supportsThinking = selection?.effective_profile?.provider === 'deepseek'
   return <div className="composer-ai" ref={menu}
     onBlur={(event) => {
       if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget)) setOpen(false)
@@ -115,7 +116,7 @@ export function ProjectModelSelector({ projectId, disabled = false, onChanging }
       aria-controls={open ? `${id}-menu` : undefined}
       title={selection?.effective_profile
         ? `Modello: ${selection.effective_profile.name} · ${selection.effective_profile.model}`
-          + (selection.thinking ? ' · ragionamento attivo' : '')
+          + (supportsThinking && selection.thinking ? ' · ragionamento attivo' : '')
         : 'Impostazioni AI'}
       onClick={() => setOpen((value) => !value)}
       onKeyDown={(event) => {
@@ -124,17 +125,15 @@ export function ProjectModelSelector({ projectId, disabled = false, onChanging }
       <span className="composer-ai-name">{selection?.effective_profile?.model ?? 'Modello'}</span>
       <ChevronDown size={14} strokeWidth={1.8} aria-hidden="true" />
     </button>
-    {selection?.effective_profile?.provider === 'deepseek' && (
+    {supportsThinking && selection && (
       <button type="button" role="switch" aria-checked={selection.thinking}
         className={`composer-ai-thinking-toggle${selection.thinking ? ' is-on' : ''}`}
         aria-label="Ragionamento approfondito"
-        title={selection.profile_id === null
-          ? 'Seleziona un modello specifico per attivare il ragionamento'
-          : selection.thinking
-            ? 'Ragionamento attivo: più lento, più token'
-            : 'Attiva il ragionamento approfondito: più lento, più token'}
-        disabled={disabled || busy || selection.profile_id === null}
-        onClick={() => void select(selection.profile_id!, !selection.thinking, false)}>
+        title={selection.thinking
+          ? 'Ragionamento attivo: più lento, più token'
+          : 'Attiva il ragionamento approfondito: più lento, più token'}
+        disabled={disabled || busy}
+        onClick={() => void select(selection.profile_id, !selection.thinking, false)}>
         <span className="composer-ai-thinking-label">thinking</span>
         <span className={`ai-switch${selection.thinking ? ' is-on' : ''}`} aria-hidden="true">
           <span className="ai-switch-knob" />

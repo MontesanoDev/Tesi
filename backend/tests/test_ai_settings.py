@@ -93,37 +93,105 @@ async def test_persistence_encryption_defaults_and_selection(client):
 
 
 @pytest.mark.anyio
-async def test_project_thinking_persists_only_with_a_selected_profile(client):
+@pytest.mark.parametrize("explicit_profile", [False, True])
+async def test_project_thinking_is_independent_of_model_override(client, explicit_profile):
     profile = (await client.post("/api/settings/ai/profiles", json=DEEPSEEK)).json()
+    profile_id = profile["id"] if explicit_profile else None
+    url = f"/api/projects/{PROJECT}/ai-model"
     response = await client.put(
-        f"/api/projects/{PROJECT}/ai-model",
-        json={"profile_id": profile["id"], "thinking": True},
+        url, json={"profile_id": profile_id, "thinking": True},
     )
-    assert response.json()["thinking"] is True
+    assert response.status_code == 200
+    assert response.json() == {
+        "profile_id": profile_id, "effective_profile": profile, "thinking": True,
+    }
     assert resolve_project_settings(PROJECT).thinking is True
-    # Changing the model when thinking is not specified keeps the preference.
-    await client.put(f"/api/projects/{PROJECT}/ai-model", json={"profile_id": profile["id"]})
-    assert (await client.get(f"/api/projects/{PROJECT}/ai-model")).json()["thinking"] is True
-    # Returning to the shared default removes the project preference.
-    await client.put(f"/api/projects/{PROJECT}/ai-model", json={"profile_id": None})
+    # Neither model selection nor returning to the default clears thinking.
+    await client.put(url, json={"profile_id": profile["id"]})
+    await client.put(url, json={"profile_id": None})
+    init_database()
+    assert (await client.get(url)).json() == {
+        "profile_id": None, "effective_profile": profile, "thinking": True,
+    }
+    # Inherited selection follows later defaults; thinking stays local to the project.
+    other = (await client.post(
+        "/api/settings/ai/profiles", json={**DEEPSEEK, "model": "new-default"},
+    )).json()
+    await client.put("/api/settings/ai/default", json={"profile_id": other["id"]})
+    assert (await client.get(url)).json() == {
+        "profile_id": None, "effective_profile": other, "thinking": True,
+    }
+    with project_ai_context(PROJECT):
+        assert get_ai_settings().model == "new-default"
+        assert get_ai_settings().thinking is True
+    with connection() as db:
+        other_project = db.execute(
+            "SELECT id FROM projects WHERE id != ?", (PROJECT,),
+        ).fetchone()[0]
+    assert (await client.get(f"/api/projects/{other_project}/ai-model")).json()["thinking"] is False
+    # Switching providers preserves the preference without pinning the old default.
+    local = (await client.post("/api/settings/ai/profiles", json=OLLAMA)).json()
+    await client.put(url, json={"profile_id": local["id"]})
+    await client.put(url, json={"profile_id": None})
+    assert (await client.get(url)).json() == {
+        "profile_id": None, "effective_profile": other, "thinking": True,
+    }
+    # Invalid selections cannot overwrite the existing project preference.
+    rejected = await client.put(url, json={"profile_id": "missing", "thinking": False})
+    assert rejected.status_code == 404
+    assert (await client.get(url)).json()["thinking"] is True
+    # An inherited profile is not an explicit reference that blocks its deletion.
+    assert (await client.delete(f"/api/settings/ai/profiles/{other['id']}")).status_code == 204
+    assert (await client.get(url)).json() == {
+        "profile_id": None, "effective_profile": None, "thinking": True,
+    }
+    await client.put("/api/settings/ai/default", json={"profile_id": profile["id"]})
+    await client.put(url, json={"profile_id": None, "thinking": False})
+    init_database()
+    assert (await client.get(url)).json() == {
+        "profile_id": None, "effective_profile": profile, "thinking": False,
+    }
     assert resolve_project_settings(PROJECT).thinking is False
 
 
 @pytest.mark.anyio
-async def test_thinking_migration_preserves_existing_project_profile(client):
+@pytest.mark.parametrize("thinking", [None, False, True])
+async def test_thinking_migration_preserves_existing_project_profile(client, thinking):
     profile = (await client.post("/api/settings/ai/profiles", json=DEEPSEEK)).json()
-    await client.put(f"/api/projects/{PROJECT}/ai-model", json={"profile_id": profile["id"]})
-    # Reproduce the previous schema with an existing project selection.
+    url = f"/api/projects/{PROJECT}/ai-model"
+    await client.put(url, json={"profile_id": profile["id"], "thinking": bool(thinking)})
+    # Reproduce both legacy schemas: mandatory profile, with/without thinking_mode.
     with connection() as db:
-        db.execute("ALTER TABLE project_ai_settings DROP COLUMN thinking_mode")
+        db.execute("CREATE TABLE project_ai_settings_legacy ("
+                   "project_id TEXT PRIMARY KEY REFERENCES projects(id) ON DELETE CASCADE, "
+                   "profile_id TEXT NOT NULL REFERENCES ai_profiles(id) ON DELETE RESTRICT, "
+                   "thinking_mode INTEGER NOT NULL DEFAULT 0)")
+        db.execute("INSERT INTO project_ai_settings_legacy SELECT * FROM project_ai_settings")
+        db.execute("DROP TABLE project_ai_settings")
+        db.execute("ALTER TABLE project_ai_settings_legacy RENAME TO project_ai_settings")
+        if thinking is None:
+            db.execute("ALTER TABLE project_ai_settings DROP COLUMN thinking_mode")
     init_database()
     init_database()
-    selected = (await client.get(f"/api/projects/{PROJECT}/ai-model")).json()
+    selected = (await client.get(url)).json()
     assert selected == {
-        "profile_id": profile["id"], "effective_profile": profile, "thinking": False,
+        "profile_id": profile["id"], "effective_profile": profile, "thinking": bool(thinking),
     }
     assert resolve_project_settings(PROJECT).api_key == SECRET
+    assert (await client.delete(f"/api/settings/ai/profiles/{profile['id']}")).status_code == 422
     with connection() as db:
+        assert db.execute("PRAGMA foreign_key_check").fetchall() == []
+        columns = {row["name"]: row for row in db.execute("PRAGMA table_info(project_ai_settings)")}
+        assert columns["profile_id"]["notnull"] == 0
+    assert (await client.put(url, json={"profile_id": None, "thinking": True})).status_code == 200
+    init_database()
+    assert (await client.get(url)).json()["thinking"] is True
+    # The table replacement preserves cascade deletion of a project's preferences.
+    with connection() as db:
+        db.execute("DELETE FROM projects WHERE id=?", (PROJECT,))
+        assert db.execute(
+            "SELECT 1 FROM project_ai_settings WHERE project_id=?", (PROJECT,),
+        ).fetchone() is None
         assert db.execute("PRAGMA foreign_key_check").fetchall() == []
 
 

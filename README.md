@@ -57,7 +57,10 @@ dell'utente: `systemctl --user status ollama` ne verifica lo stato e
 1. In **Impostazioni generali → Modelli AI**, aggiungere un provider o un
    endpoint Ollama e scegliere un modello. Le chiavi si inseriscono nella UI;
    il file `.env` non è necessario. L'ingranaggio nella chat cambia il modello
-   del progetto.
+   del progetto. Con DeepSeek, lo switch **thinking** funziona anche con
+   **Usa predefinito**: la preferenza resta salvata per progetto quando si cambia
+   modello. Il progetto continua a seguire il predefinito generale. Le vecchie
+   impostazioni si aggiornano automaticamente all'avvio del backend.
 2. In **Ricerca nelle fonti**, scegliere FTS5 oppure Qdrant. La ricerca
    vettoriale usa **BGE-M3** tramite Ollama; Qdrant
    può usare un archivio locale oppure un servizio raggiungibile tramite URL.

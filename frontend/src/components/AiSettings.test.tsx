@@ -194,10 +194,27 @@ describe('project model selection', () => {
     expect(screen.queryByRole('menu')).not.toBeInTheDocument()
   })
 
-  it('disabilita lo switch senza un profilo specifico selezionato', async () => {
+  it('salva il thinking usando il predefinito senza selezionare un profilo specifico', async () => {
+    vi.mocked(api.setProjectAiModel).mockResolvedValue({
+      profile_id: null, effective_profile: cloud, thinking: true })
     setup()
-    expect(await screen.findByRole('switch', { name: 'Ragionamento approfondito' }))
-      .toBeDisabled()
+    const toggle = await screen.findByRole('switch', { name: 'Ragionamento approfondito' })
+    expect(toggle).toBeEnabled()
+    fireEvent.click(toggle)
+    await waitFor(() => expect(api.setProjectAiModel).toHaveBeenCalledWith('project', null, true))
+    expect(toggle).toHaveAttribute('aria-checked', 'true')
+    expect(await openMenu()).toHaveAttribute('aria-checked', 'true')
+  })
+
+  it('conserva lo stato del thinking quando il salvataggio fallisce', async () => {
+    vi.mocked(api.setProjectAiModel).mockRejectedValue(new Error('Salvataggio non riuscito'))
+    setup()
+    const toggle = await screen.findByRole('switch', { name: 'Ragionamento approfondito' })
+    fireEvent.click(toggle)
+    await openMenu()
+    expect(await screen.findByRole('alert')).toHaveTextContent('Salvataggio non riuscito')
+    expect(toggle).toHaveAttribute('aria-checked', 'false')
+    expect(toggle).toBeEnabled()
   })
 
   it('keeps the old selection when saving fails', async () => {
@@ -212,6 +229,7 @@ describe('project model selection', () => {
 
   it('disables changes while an operation is running', async () => {
     setup(true)
+    expect(await screen.findByRole('switch', { name: 'Ragionamento approfondito' })).toBeDisabled()
     expect(await openMenu()).toBeDisabled()
     expect(screen.getByRole('menuitemradio', { name: /Ollama ufficio/ })).toBeDisabled()
   })

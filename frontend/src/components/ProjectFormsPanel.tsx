@@ -1,4 +1,4 @@
-import { Download, FileText, LoaderCircle, Plus, Trash2 } from 'lucide-react'
+import { FileText, LoaderCircle, Plus, Trash2 } from 'lucide-react'
 import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { api } from '../api'
 import type { ProjectFile } from '../types'
@@ -77,25 +77,6 @@ export function ProjectFormsPanel({ projectId, forms, onProjectChange }: Props) 
     } finally { finish(signal) }
   }
 
-  async function download(form: ProjectFile) {
-    const signal = begin()
-    if (!signal) return
-    try {
-      const blob = await api.downloadProjectForm(projectId, form.id, signal)
-      if (signal.aborted) return
-      const url = URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.download = form.name
-      document.body.append(link)
-      link.click()
-      link.remove()
-      window.setTimeout(() => URL.revokeObjectURL(url), 1000)
-    } catch (reason) {
-      if (!signal.aborted) setErrors([messageOf(reason)])
-    } finally { finish(signal) }
-  }
-
   async function remove(form: ProjectFile) {
     const signal = begin()
     if (!signal) return
@@ -139,10 +120,6 @@ export function ProjectFormsPanel({ projectId, forms, onProjectChange }: Props) 
             <div><strong title={form.name}>{form.name}</strong><span>{form.metadata}</span></div>
             <StatusPill>{form.status}</StatusPill>
             <div className="context-file-actions">
-              <button className="icon-button context-file-download" type="button" disabled={busy}
-                title="Scarica originale" aria-label={`Scarica originale ${form.name}`} onClick={() => void download(form)}>
-                <Download size={16} />
-              </button>
               <button className="icon-button context-file-delete" type="button" disabled={busy}
                 title="Rimuovi modulo" aria-label={`Rimuovi ${form.name}`} onClick={() => setRemoving(form.id)}>
                 <Trash2 size={16} />

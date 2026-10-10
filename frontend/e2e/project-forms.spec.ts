@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test('multiple originals persist separately from sources, with download and partial failures', async ({ page }, testInfo) => {
+test('multiple originals persist separately from sources, with partial upload and removal failures', async ({ page }, testInfo) => {
   const forms: { id: number; name: string; metadata: string; kind: string; status: string; byte_size: number; page_count: number; chunk_count: number }[] = []
   const original = Buffer.from('Ragione sociale: ___\r\nPEC: ___\r\n', 'utf8')
   const projectId = 'moduli-test'
@@ -33,7 +33,6 @@ test('multiple originals persist separately from sources, with download and part
       const id = Number(path.split('/')[5])
       const index = forms.findIndex((item) => item.id === id)
       if (index < 0) return route.fulfill({ status: 404, json: { detail: 'Modulo non trovato' } })
-      if (path.endsWith('/download')) return route.fulfill({ body: original, contentType: 'text/plain' })
       if (route.request().method() === 'DELETE') {
         if (failRemoval) {
           failRemoval = false
@@ -73,15 +72,8 @@ test('multiple originals persist separately from sources, with download and part
   expect(uploads).toBe(3)
 
   await page.reload()
-  await expect(panel.getByRole('button', { name: 'Scarica originale domanda.txt' })).toBeVisible()
-  const pending = page.waitForEvent('download')
-  await panel.getByRole('button', { name: 'Scarica originale domanda.txt' }).click()
-  const download = await pending
-  expect(download.suggestedFilename()).toBe('domanda.txt')
-  const stream = await download.createReadStream()
-  const chunks: Buffer[] = []
-  for await (const chunk of stream!) chunks.push(Buffer.from(chunk))
-  expect(Buffer.concat(chunks)).toEqual(original)
+  await expect(panel.getByText('domanda.txt', { exact: true })).toBeVisible()
+  await expect(panel.getByRole('button', { name: /^Scarica/ })).toHaveCount(0)
   await panel.getByRole('button', { name: 'Rimuovi domanda.txt', exact: true }).click()
   await panel.getByRole('button', { name: 'Annulla' }).click()
   expect(forms).toHaveLength(2)

@@ -283,22 +283,20 @@ def select_project_profile(
         db.execute("BEGIN IMMEDIATE")
         if db.execute("SELECT 1 FROM projects WHERE id=?", (project_id,)).fetchone() is None:
             raise LookupError("Progetto non trovato")
-        if profile_id is None:
-            db.execute("DELETE FROM project_ai_settings WHERE project_id=?", (project_id,))
-        else:
+        if profile_id is not None:
             _get_row(db, profile_id)
-            current = db.execute(
-                "SELECT thinking_mode FROM project_ai_settings WHERE project_id=?", (project_id,),
-            ).fetchone()
-            value = current["thinking_mode"] if current else 0
-            if thinking is not None:
-                value = int(thinking)
-            db.execute(
-                "INSERT INTO project_ai_settings(project_id, profile_id, thinking_mode) "
-                "VALUES (?, ?, ?) ON CONFLICT(project_id) DO UPDATE SET "
-                "profile_id=excluded.profile_id, thinking_mode=excluded.thinking_mode",
-                (project_id, profile_id, value),
-            )
+        current = db.execute(
+            "SELECT thinking_mode FROM project_ai_settings WHERE project_id=?", (project_id,),
+        ).fetchone()
+        value = current["thinking_mode"] if current else 0
+        if thinking is not None:
+            value = int(thinking)
+        db.execute(
+            "INSERT INTO project_ai_settings(project_id, profile_id, thinking_mode) "
+            "VALUES (?, ?, ?) ON CONFLICT(project_id) DO UPDATE SET "
+            "profile_id=excluded.profile_id, thinking_mode=excluded.thinking_mode",
+            (project_id, profile_id, value),
+        )
     return project_selection(project_id)
 
 
