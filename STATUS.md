@@ -1,5 +1,35 @@
 # Stato di Mapi RAG
 
+## Condizioni esplicite della proposta unica — 10 ottobre 2026
+
+Autorizzato proseguire dopo il confronto: stessa chiamata globale, fatti SOURCE
+condivisi, condizioni FORM e riferimenti dai candidate. Implementato contratto
+sperimentale versione 2; il primo resta leggibile per gli audit storici.
+Confronti conservativi su fatti grounded dello stesso soggetto/dimensione:
+valori identici possono provare same/different; grafie differenti, condizioni
+semantiche e ambiti di sezione non verificati restano unknown/review. Valore
+vietato se condizione falsa o ignota; NA richiede condizione calcolabile falsa
+locale. Tipologia/partecipazione/poteri sono dimensioni distinte. Dettagli in
+[proposta globale](docs/proposta-globale-compilazione.md).
+
+Budget: 128 fatti, 128 condizioni, 8 riferimenti per candidate; invariati
+400 candidate, 96 chunk/100.000 caratteri SOURCE, 350.000 caratteri input,
+49.152 token output/300 s. Un'unica chiamata, nessun retry o reviewer aggiunto.
+RAG, chat, parser/renderer e sessioni V1 invariati; zero valori scrivibili,
+nessuna migrazione/reindicizzazione. La classificazione di soggetto/proprietà,
+la completezza delle condizioni e il legame semantico col FORM richiedono
+ancora valutazione: il risultato del confronto non sostituisce questi controlli.
+
+Verifiche effettive prima della prova reale: **108 mirati, 1.504 backend
+completi**, Ruff completo, diff check; DB/storage temporanei. CLI help riuscito
+con `PYTHONPATH=.` (primo comando senza questo parametro fallito in import;
+entrambi i log conservati). Acquisizioni in
+`backend/data/compilation-audit/global-conditions-20261010-checks/`.
+Prossimo punto: congelare il codice, ripetere DeepSeek sullo stesso originale
+e corpus, annotare condizioni/valori, confrontare usage e latenza e archiviare
+anche gli errori. Non attivare ancora adapter di sessione o scrittura checkbox.
+Commit piccoli autorizzati; nessun push automatico richiesto.
+
 ## Proposta unica: risultati reali e punto di ripresa — 10 ottobre 2026
 
 Autorizzati commit piccoli e API DeepSeek. Commit intermedi: `b0c0ef4` catalogo,

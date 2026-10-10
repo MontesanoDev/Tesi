@@ -22,7 +22,6 @@ import httpx
 
 from app.ai_profiles import resolve_project_settings
 from app.compilation_global import (
-    GlobalProposal,
     build_global_input,
     global_request,
     validate_global_proposal,
@@ -99,7 +98,8 @@ def run(args):
         "status": subprocess.check_output(["git", "status", "--short", "--branch"],
                                           cwd=repo, text=True),
     })
-    for relative in ["app/compilation_global.py", "app/compilation_catalog.py",
+    for relative in ["app/compilation_global.py", "app/compilation_global_contract.py",
+                     "app/compilation_catalog.py",
                      "app/docx_templates.py", "app/document_compilation.py",
                      "scripts/benchmark_compilation_global.py"]:
         target = root / "code" / relative
@@ -149,7 +149,7 @@ def run(args):
                 report["semantic_calls"] += 1
                 return await asyncio.wait_for(request_model_content(
                     client, settings, body, timeout.read,
-                    response_schema=GlobalProposal.model_json_schema(),
+                    response_schema=data["schema_output"],
                 ), timeout=args.max_seconds)
 
         started = time.perf_counter()
@@ -160,6 +160,10 @@ def run(args):
             audit = validate_global_proposal(raw, layout, args.project, sources)
             save("validation.json", audit)
             report.update(validation_counts=audit["counts"], dispositions=audit["dispositions"],
+                          contract_version=audit.get("version", 1),
+                          facts=len(audit.get("facts", {})),
+                          conditions=len(audit.get("conditions", {})),
+                          condition_results=audit.get("condition_results", {}),
                           state="proposal_audited", resolved=audit["resolved"])
         except Exception as exc:
             report.update(state="failed", error_type=type(exc).__name__,

@@ -1,5 +1,48 @@
 # Proposta globale sperimentale — 10 ottobre 2026
 
+## Secondo contratto: fatti e condizioni condivisi
+
+Il nuovo input richiede `version=2`, `facts`, `conditions`, `fields`. Una sola
+chiamata riceve ancora tutto il FORM e il corpus SOURCE piccolo completo.
+La versione precedente resta leggibile per riprodurre gli audit archiviati;
+non è un secondo percorso operativo né una migrazione delle sessioni.
+
+- `facts`: soggetto, entity, dimensione (`aspect`), proprietà, valore letterale
+  e citazioni SOURCE conservate una volta. Un field referenzia `fact_id`;
+  non può ripetere un valore/evidence alternativi per eludere il controllo.
+- `conditions`: estratto FORM, dimensione, operatore e riferimenti ai fatti.
+  `same`/`different` richiedono due fatti distinti dello stesso soggetto/entity,
+  stessa dimensione e proprietà distinte. Tipologia, partecipazione e poteri
+  sono dimensioni separate. Non si possono confrontare per escludere un ramo.
+- Valori identici dopo sola normalizzazione Unicode NFC/whitespace permettono
+  di calcolare `same=true` / `different=false`. Testi diversi restano unknown:
+  abbreviazioni o grafie diverse non provano valori reali differenti.
+  La dimensione `other` e gli operatori `semantic` restano unknown.
+- Ogni field elenca esplicitamente le proprie condizioni (`[]` se non ne
+  propone). Condizione falsa: niente value/missing; unknown: solo review;
+  non applicabile: necessaria almeno una condizione calcolabile falsa.
+  Un vincolo fuori dalla riga/intestazione locale non può autorizzare un valore
+  o escludere la destinazione: la sua associazione di sezione resta da verificare.
+- Le checkbox possono proporre `choice` booleano con riferimento a un fatto;
+  restano non scrivibili. Firme e dichiarazioni conservano le protezioni esistenti.
+
+Budget aggiuntivi: massimo **128 fatti**, **128 condizioni**, **8 riferimenti a
+condizioni per field**; invariati 400 candidate, 96 chunk/100.000 caratteri
+SOURCE, 350.000 caratteri input, 49.152 token output e timeout 300 s. Nessun
+reviewer, retry o chiamata per field. Il validator riusa i controlli letterali
+precedenti; gli errori dei fatti/condizioni isolano le assegnazioni dipendenti.
+Tutte le prove restano nell'audit, incluse quote effettive, ID citato/ripristinato,
+hash, scope e categoria. La copertura dei candidate è ancora esatta.
+
+**Limite intenzionale:** questi risultati sono subordinati alla correttezza
+semantica della mappa proposta. Non provano che il modello abbia individuato
+tutte le condizioni, classificato bene ogni dimensione o scelto l'operatore
+corrispondente al FORM. L'assenza di una condizione proposta non dimostra
+incondizionalità. Perciò restano `semantic_review_required=true`, zero RESOLVED
+e zero scritture. La V1, chat, parser, renderer e RAG non cambiano.
+
+Il resto della pagina descrive il primo contratto e le misure storiche.
+
 Passo successivo al catalogo FORM condiviso. Una sola chiamata reale DeepSeek
 riceve l'intero modulo, un piccolo corpus documentale SOURCE e lo schema di
 output. Nessuna mappa/review/ricerca per gruppi né retry AI in questo percorso.

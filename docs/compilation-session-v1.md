@@ -5,6 +5,12 @@ modifica dati persistiti; il file Word viene generato soltanto su richiesta.
 La chat esistente offre selezione `@`, avvio/ripresa, riepilogo, chiarimenti
 raggruppati e generazione/download inline. Il backend rimane la fonte dello stato.
 
+**Secondo contratto sperimentale del 10 ottobre:** fatti SOURCE condivisi e
+condizioni FORM esplicite, con riferimenti dai candidate e confronti conservativi
+nel backend. [Contratto e limiti](proposta-globale-compilazione.md). Continua a
+essere isolato: nessuna proposta viene promossa a RESOLVED o scritta nel DOCX.
+La V1 descritta qui resta il percorso attivo.
+
 **Prima milestone del 10 ottobre verso la proposta unica:** disponibile il
 [catalogo FORM condiviso](catalogo-compilazione.md), con contesto completo e
 riconoscimento strutturale delle checkbox native. È ispezione backend in sola
