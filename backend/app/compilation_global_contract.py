@@ -74,10 +74,11 @@ class AtomicField(SharedField):
 
 
 class CompactGlobalProposal(StrictModel):
-    version: Literal[3]
-    # Every nonempty FORM paragraph: [] = no clause proposed, null = uncertain.
-    # Exact coverage is checked against the catalog, not a model count.
-    condition_scan: dict[Reference, list[Reference] | None] = Field(max_length=2048)
+    version: Literal[4]
+    # Receipt/uncertainty only. The inverse clause map is derived by the backend
+    # from each condition's grounded FORM origin, not supplied a second time.
+    reviewed_paragraph_ids: list[Reference] = Field(max_length=2048)
+    uncertain_paragraph_ids: list[Reference] = Field(max_length=2048)
     conditions: dict[Reference, ScopedCondition] = Field(max_length=128)
     fields: dict[Reference, AtomicField] = Field(max_length=128)
     # Explicitly accounted for, not silently defaulted to missing/decorative.

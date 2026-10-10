@@ -1,6 +1,29 @@
 # Proposta globale sperimentale — 10 ottobre 2026
 
-## Terzo contratto: inventario e assegnazioni compatte
+## Contratto corrente 4: origine canonica delle condizioni
+
+Le prime quattro prove del contratto 3 sono state rifiutate: espansione inutile
+SOURCE, fields review oltre budget, poi inventario duplicato/incoerente. Non
+vengono riparate o accettate parzialmente. Sono riproducibili con il codice
+congelato allegato ai rispettivi audit, non tramite un nuovo percorso operativo.
+
+La versione 4 toglie una responsabilità ridondante al modello: l'origine della
+condizione compare soltanto in `conditions[id].form.paragraph_id` e quote.
+Il backend deriva la mappa inversa paragrafo-condizioni e ne controlla le quote,
+poi collega clausole locali e scope proposti agli ID strutturali già noti.
+`reviewed_paragraph_ids` è la ricevuta esatta dei paragrafi forniti;
+`uncertain_paragraph_ids` è un sottoinsieme esplicito. Queste liste non provano
+che ogni condizione sia stata capita: completezza semantica ancora non verificata.
+L'assenza di una condizione resta insufficiente a promuovere un valore.
+
+Invariati i limiti del contratto compatto: 128 fatti solo referenziati, 128
+condizioni, 128 fields soltanto value/NA, 400 candidate inclusi deferred, 2.048
+paragrafi. Grounding, proprietà, SOURCE/FORM e gate di applicabilità invariati.
+Non si ammettono quote da paragrafi sbagliati o nuove destinazioni. Nessun
+RESOLVED/scrittura/adapter. Le versioni storiche 1/2 restano leggibili per i
+precedenti audit; il contratto 3 rifiutato usa il codice congelato delle prove.
+
+## Terzo contratto storico: inventario e assegnazioni compatte
 
 Passo sperimentale autorizzato, **non attivo nella chat**. Una sola chiamata
 riceve ancora tutto il catalogo originale e il corpus SOURCE piccolo completo.

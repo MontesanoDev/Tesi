@@ -1,6 +1,20 @@
 # Stato di Mapi RAG
 
-## Correzione del budget compatto in verifica — 10 ottobre 2026
+## Origine canonica delle condizioni in verifica — 10 ottobre 2026
+
+Due prove sul commit `0972077`: 29,21 s/81.623 token e 39,77 s/86.117 token,
+output molto ridotto ma entrambi rifiutati per mappe paragrafo-condizione
+incoerenti. Il modello usa la mappa inversa anche per i paragrafi dipendenti,
+mentre ogni condizione cita già la propria origine canonica nel FORM.
+
+Nuovo contratto sperimentale 4: origine dichiarata una sola volta; il backend
+deriva la mappa inversa e valida quote/scope. Ricevuta esatta dei paragrafi e
+sottoinsieme degli incerti separati, mai prove semantiche. Gate di proprietà,
+SOURCE, condizioni false/ignote e zero scritture invariati. Nuove prove dopo
+commit congelato; V1/chat/RAG non cambiano. Quattro fallimenti conservati,
+nessun prefisso/JSON riparato o accettato parzialmente.
+
+## Correzione del budget compatto — 10 ottobre 2026
 
 Prime due prove sul commit `c2ec520`: 126,05 s/119.375 token, output troncato
 mentre enumera almeno 290 fatti; 87,56 s/106.921 token, JSON completo ma 304
