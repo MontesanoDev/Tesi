@@ -270,8 +270,8 @@ def chat_view(state):
         if technical_issues:
             question["message"] = (
                 "Alcuni campi restano aperti perché non sono riuscito a interpretarli o "
-                "a verificarli. Sono indicati nei dettagli della compilazione; puoi "
-                "rivederli oppure esportare una bozza con le informazioni già verificate.")
+                "a verificarli. Possiamo chiarirli qui oppure preparare una bozza "
+                "con le informazioni già verificate.")
     elif not question and state["status"] == "READY" and not user_paused:
         question = {
             "kind": "generate",
@@ -342,12 +342,37 @@ def planner_context(session):
                 "label": field_label(f),
                 "kind": f.get("kind"),
                 "condition": f.get("condition"),
+                "context": f.get("context", "")[:1500],
                 "alternatives": [a["value"] for a in f["alternatives"]],
             }
             for f in session["fields"]
             if f["id"] in asked
         ],
     }
+
+
+def retain_compilation_question(db, row, state):
+    """Finish the current assistant turn before a later user message can replace it."""
+    view = chat_view(state)
+    if (not row["conversation_id"] or not view["enabled"] or view["auto_continue"]
+            or view["paused"] or not view["question"]):
+        return
+    turn = db.execute(
+        "SELECT id,answer,compilation_json FROM conversation_turns "
+        "WHERE conversation_id=? ORDER BY id DESC LIMIT 1", (row["conversation_id"],),
+    ).fetchone()
+    if turn is None:
+        return
+    command = json.loads(turn["compilation_json"] or "null")
+    if not isinstance(command, dict) or command.get("session_id") != row["id"]:
+        return  # A later conversational answer or another module owns this turn.
+    question = view["question"]["message"]
+    answer = turn["answer"] or ""
+    if command.get("action") == "start":
+        answer = question
+    elif question not in answer:
+        answer = f"{answer}\n\n{question}".strip()
+    db.execute("UPDATE conversation_turns SET answer=? WHERE id=?", (answer, turn["id"]))
 
 
 def normalized(text):
@@ -556,11 +581,11 @@ async def handle_decision(
                     )
                 except DocumentInputError:
                     return ("Mi fermo qui e conservo i dati. Una verifica sui valori blocca "
-                            "l’export: puoi controllarli nei dettagli compilazione e riprovare.",
+                            "la generazione del documento. Possiamo chiarirli qui e riprovare.",
                             {"session_id": after["id"], "action": "paused"})
                 return ("Va bene, mi fermo qui. Ho preparato una bozza parziale con i dati "
-                        "verificati; i campi irrisolti restano aperti. Puoi scaricare il DOCX "
-                        "e il report e revisionarli.",
+                        "verificati; i campi irrisolti restano aperti. Puoi scaricare "
+                        "il documento e verificarlo.",
                         {"session_id": after["id"], "action": "generated"})
             if control.kind == "pause":
                 text = "Va bene, metto in pausa la compilazione. Potrai riprenderla quando vuoi."
@@ -591,7 +616,7 @@ async def handle_decision(
                 session["version"],
                 False,
             )
-            return "Ho terminato la compilazione. Puoi scaricare il DOCX e il report.", {
+            return "Ho preparato la bozza. Puoi scaricare il documento e verificarlo.", {
                 "session_id": session["id"],
                 "action": "generated",
             }

@@ -161,7 +161,7 @@ async def test_finish_keeps_validation_gates_and_stops_even_if_export_fails(chat
         "compilation_session_id": s["id"], "compilation_version": s["version"],
     })
     assert r.status_code == 200 and r.json()["compilation"]["action"] == "paused"
-    assert "blocca l’export" in r.json()["answer"] and "?" not in r.json()["answer"]
+    assert "blocca la generazione" in r.json()["answer"] and "?" not in r.json()["answer"]
     s = await current(chat[0], s)
     assert s["last_generation"] is None
     assert s["chat"]["question"] is None and not s["chat"]["auto_continue"]

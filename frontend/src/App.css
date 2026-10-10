@@ -570,23 +570,6 @@
   overflow-wrap: anywhere;
 }
 
-.turn-status {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 42px;
-  margin-top: 12px;
-  color: #9b9c96;
-  font-size: 12px;
-}
-
-.turn-status .activity-dot {
-  flex: 0 0 auto;
-  width: 12px;
-  height: 12px;
-  margin: 0;
-}
-
 .chat-turn .grounded-answer {
   padding-top: 14px;
 }
@@ -623,6 +606,14 @@
   font-size: 13px;
   line-height: 21px;
   white-space: pre-wrap;
+}
+
+.grounded-answer > .assistant-activity { display: flex; align-items: center; gap: 8px; color: var(--text-muted); }
+.assistant-activity svg { flex-shrink: 0; animation: assistant-spin 1.6s linear infinite; }
+.assistant-attachment { margin-top: 14px; }
+@keyframes assistant-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .assistant-activity svg { animation: none; }
 }
 
 .missing-information {

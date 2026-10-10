@@ -403,6 +403,10 @@ def save_state(db, row, state: dict, action: str) -> dict:
             timestamp,
         ),
     )
+    if action in {"analyze_complete", "automatic_output_rejected"}:
+        from app.compilation_chat import retain_compilation_question
+
+        retain_compilation_question(db, row, state)
     return payload(_row(db, row["project_id"], row["id"]))
 
 

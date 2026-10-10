@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import type { CompilationSession, CompilationSessionField } from '../src/types'
+import type { CompilationChatAction, CompilationSession, CompilationSessionField, ConversationTurnData } from '../src/types'
 
 // API and AI are simulated. Neither browser project touches the user's backend data.
 for (const reducedMotion of [false, true]) {
@@ -7,13 +7,14 @@ for (const reducedMotion of [false, true]) {
     await page.emulateMedia({ reducedMotion: reducedMotion ? 'reduce' : 'no-preference' })
     const form = { id: 42, name: 'domanda-partecipazione.docx', kind: 'form', metadata: 'Word', status: 'Caricato' }
     const reference = { form_id: form.id, name: form.name }
+    const explanation = 'Mi riferisco alla data in cui il direttore tecnico ha ottenuto l’abilitazione professionale. Se non la conosci, possiamo lasciarla da verificare e proseguire.'
     const fields: CompilationSessionField[] = ['Denominazione sociale', 'Data abilitazione direttore tecnico'].map((label, i) => ({
       id: `t0.r${i}.c1`, candidate_id: `t0.r${i}.c1`, label, status: 'PENDING', provenance: null,
       value: null, reason: '', validation_errors: [], requirement: null, source_evidence: [], alternatives: [],
       form_evidence: { role: 'form', source_name: form.name, candidate_id: `t0.r${i}.c1` },
     }))
     let state: CompilationSession | null = null
-    const turns: object[] = []
+    const turns: ConversationTurnData[] = []
     let starts = 0
     let steps = 0
     let paused = false
@@ -49,7 +50,7 @@ for (const reducedMotion of [false, true]) {
       if (path === `${base}/answer`) {
         expect(body.form_id).toBe(42)
         let answer = 'Il modulo richiede dati aziendali e del direttore tecnico.'
-        let compilation: { session_id: string; action: string } | null = null
+        let compilation: CompilationChatAction | null = null
         if (body.question === 'me lo compili?') {
           starts++
           state ??= { id: 'session-1', project_id: 'compilation-chat', form_id: 42, original_file_id: 42,
@@ -60,6 +61,19 @@ for (const reducedMotion of [false, true]) {
           view()
           compilation = { session_id: 'session-1', action: 'start' }
           answer = 'Certo. Analizzo il modulo e verifico le informazioni disponibili.'
+        } else if (body.question === 'spiegati meglio') {
+          expect(body.compilation_session_id).toBe('session-1')
+          answer = explanation
+        } else if (body.question === 'sì, genera la bozza') {
+          expect(body.compilation_version).toBe(state!.version)
+          expect(state!.status).toBe('READY')
+          state!.last_generation = { id: 'run-1', project_id: 'compilation-chat', template_name: form.name, created_at: '',
+            status: 'needs_review', session_version: state!.version, downloads: { docx: '/download', report: '/report', template: '/template' } }
+          state!.status = 'GENERATED'
+          state!.version++
+          view()
+          compilation = { session_id: 'session-1', action: 'generated' }
+          answer = 'Ho preparato la bozza. Puoi scaricare il documento e verificarlo.'
         } else if (['salta', 'non lo so', 'basta', 'riprendi'].includes(body.question)) {
           expect(body.compilation_session_id).toBe('session-1')
           state!.version++
@@ -88,7 +102,7 @@ for (const reducedMotion of [false, true]) {
           compilation = { session_id: 'session-1', action: 'updated' }
           answer = 'Ho registrato la tua indicazione.'
         } else expect(body.question).toBe('riassumilo')
-        const turn = { id: turns.length + 1, question: body.question, answer, compilation,
+        const turn: ConversationTurnData = { id: turns.length + 1, question: body.question, answer, compilation,
           generation_status: compilation ? 'direct' : 'completed', citations: [], evidence: [], missing_information: [], notice: null,
           model: 'simulato', total_tokens: 1, form_reference: reference }
         turns.push(turn)
@@ -123,18 +137,13 @@ for (const reducedMotion of [false, true]) {
         }
         state!.version += 2
         view()
+        const turn = turns.at(-1)
+        if (!state!.chat!.auto_continue && state!.chat!.question && turn?.compilation?.action === 'start') {
+          turn.answer = state!.chat!.question.message
+        }
         return route.fulfill({ json: state })
       }
-      if (path.endsWith('/session-1/finalize')) {
-        expect(body).toEqual({ version: state!.version, allow_unresolved: false })
-        expect(state!.status).toBe('READY')
-        state!.last_generation = { id: 'run-1', project_id: 'compilation-chat', template_name: form.name, created_at: '',
-          status: 'needs_review', session_version: state!.version, downloads: { docx: '/download', report: '/report', template: '/template' } }
-        state!.status = 'GENERATED'
-        state!.version++
-        view()
-        return route.fulfill({ json: state })
-      }
+      if (path.endsWith('/session-1/finalize')) throw new Error('La generazione deve passare dalla chat')
       if (path.endsWith('/session-1')) return route.fulfill({ json: state })
       if (path.endsWith('/download/docx')) return route.fulfill({ body: 'simulated-docx-bytes',
         contentType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' })
@@ -142,6 +151,7 @@ for (const reducedMotion of [false, true]) {
     })
     await page.goto('/projects/compilation-chat')
     const composer = page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    const assistantReply = page.getByRole('region', { name: 'Risposta Mapi' }).last()
     await composer.fill('@')
     await expect(page.getByRole('option')).toHaveCount(1)
     await page.getByRole('option', { name: form.name }).click()
@@ -153,11 +163,11 @@ for (const reducedMotion of [false, true]) {
     await composer.fill('me lo compili?')
     await page.getByRole('button', { name: 'Invia', exact: true }).click()
     await expect(page.getByText('Certo. Analizzo il modulo e verifico le informazioni disponibili.')).toBeVisible()
-    const spinner = page.locator('.compilation-activity svg')
+    const spinner = page.locator('.assistant-activity svg')
     await expect(spinner).toBeVisible()
-    expect(await spinner.evaluate((element) => getComputedStyle(element).animationName)).toBe(reducedMotion ? 'none' : 'compilation-spin')
-    await expect(page.getByRole('status', { name: '' }).filter({ hasText: 'Elaborazione in corso' })).toBeVisible()
-    await expect(page.locator('.compilation-debug')).not.toHaveAttribute('open')
+    expect(await spinner.evaluate((element) => getComputedStyle(element).animationName)).toBe(reducedMotion ? 'none' : 'assistant-spin')
+    await expect(page.getByRole('status', { name: 'Mapi sta elaborando' })).toBeVisible()
+    await expect(page.locator('.compilation-message, .compilation-debug, .compilation-counts')).toHaveCount(0)
     await composer.fill('Testo scritto durante l’elaborazione')
     await expect(composer).toBeEditable()
     await expect(page.getByRole('button', { name: 'Invia', exact: true })).toBeDisabled()
@@ -179,31 +189,50 @@ for (const reducedMotion of [false, true]) {
     await expect(page.getByText('Non posso compilare', { exact: false })).not.toBeVisible()
     await page.reload()
     await expect(page.getByText('Mi manca la data di abilitazione del direttore tecnico Elisa Romano. Qual è?')).toBeVisible()
+    const versionBeforeExplanation = state!.version
+    await composer.fill('spiegati meglio')
+    await page.getByRole('button', { name: 'Invia', exact: true }).click()
+    await expect(assistantReply).toContainText(explanation)
+    await expect(assistantReply.getByRole('heading', { name: 'Risposta Mapi' })).toHaveCount(1)
+    await expect(assistantReply.locator('details, dl')).toHaveCount(0)
+    await expect(assistantReply.getByText(/Qual è\?/)).toHaveCount(0)
+    const originalCompilationReply = page.getByRole('region', { name: 'Risposta Mapi' }).nth(1)
+    await expect(originalCompilationReply).toContainText('Mi manca la data di abilitazione')
+    await expect(page.getByText(`Compilazione · ${form.name}`, { exact: true })).toHaveCount(0)
+    expect(state!.version).toBe(versionBeforeExplanation)
+    expect(fields[1].value).toBeNull()
+    await page.screenshot({ path: `artifacts/${testInfo.project.name}-compilation-explanation${reducedMotion ? '-reduced' : ''}.png`, fullPage: true })
+    await page.reload()
+    await expect(assistantReply).toContainText(explanation)
+    await expect(assistantReply.locator('details, dl')).toHaveCount(0)
+    await expect(originalCompilationReply).toContainText('Mi manca la data di abilitazione')
     for (const reply of ['salta', 'non lo so']) {
       await composer.fill(reply)
       await page.getByRole('button', { name: 'Invia', exact: true }).click()
       await expect(page.getByText('La data di abilitazione resta non verificata e rinviata.')).toBeVisible()
-      await expect(page.locator('.compilation-question')).not.toContainText('Qual è?')
+      await expect(assistantReply).not.toContainText('Qual è?')
       expect(fields[1].value).toBeNull()
       expect(fields[1].status).toBe('MISSING')
       await composer.fill('riprendi')
       await page.getByRole('button', { name: 'Invia', exact: true }).click()
-      await expect(page.locator('.compilation-question')).toContainText('Qual è?')
+      await expect(assistantReply).toContainText('Qual è?')
     }
     await composer.fill('basta')
     await page.getByRole('button', { name: 'Invia', exact: true }).click()
-    await expect(page.getByText('La compilazione è in pausa. Potrai riprenderla quando vuoi.')).toBeVisible()
-    await expect(page.getByRole('button', { name: 'Prosegui compilazione' })).toHaveCount(1)
+    await expect(page.getByText('Va bene, metto in pausa la compilazione.')).toBeVisible()
+    await expect(originalCompilationReply).toContainText('Mi manca la data di abilitazione')
+    await expect(page.getByRole('button', { name: 'Prosegui compilazione' })).toHaveCount(0)
     await expect(page.getByRole('button', { name: 'Riprendi compilazione' })).toHaveCount(0)
-    await expect(page.locator('.compilation-activity')).toHaveCount(0)
-    await expect(page.locator('.compilation-question')).toHaveCount(0)
+    await expect(page.locator('.assistant-activity')).toHaveCount(0)
+    await expect(assistantReply.getByText(/Qual è\?/)).toHaveCount(0)
     await page.reload()
-    await expect(page.getByText('La compilazione è in pausa. Potrai riprenderla quando vuoi.')).toBeVisible()
-    await expect(page.locator('.compilation-question')).toHaveCount(0)
+    await expect(page.getByText('Va bene, metto in pausa la compilazione.')).toBeVisible()
+    await expect(originalCompilationReply).toContainText('Mi manca la data di abilitazione')
+    await expect(assistantReply.getByText(/Qual è\?/)).toHaveCount(0)
     expect(steps).toBe(2)
     await composer.fill('riprendi')
     await page.getByRole('button', { name: 'Invia', exact: true }).click()
-    await expect(page.locator('.compilation-question')).toContainText('Qual è?')
+    await expect(assistantReply).toContainText('Qual è?')
     await composer.fill('Forse 2014 oppure 2015')
     await page.getByRole('button', { name: 'Invia', exact: true }).click()
     await expect(page.getByText('Non ho modificato i valori. Qual è la data completa da usare?')).toBeVisible()
@@ -214,15 +243,14 @@ for (const reducedMotion of [false, true]) {
     await page.screenshot({ path: `artifacts/${testInfo.project.name}-compilation-conversational${reducedMotion ? '-reduced' : ''}.png`, fullPage: true })
     await page.reload()
     await expect(page.getByText('Vuoi che generi il DOCX?')).toBeVisible()
-    await page.getByText('Dettagli compilazione', { exact: true }).click()
-    await page.getByText('Valori e sezioni già valutati (2)').click()
-    await expect(page.getByText('USER · Indicazione dell’utente, non verificata da una fonte.')).toBeVisible()
-    await expect(page.getByText('12/06/2014', { exact: true })).toBeVisible()
-    await page.getByText('Dettagli compilazione', { exact: true }).click()
-    await page.getByRole('button', { name: 'Genera DOCX' }).click()
+    await expect(assistantReply.locator('details, dl')).toHaveCount(0)
+    expect(fields[1].provenance).toBe('USER')
+    expect(fields[1].value).toBe('12/06/2014')
+    await composer.fill('sì, genera la bozza')
+    await page.getByRole('button', { name: 'Invia', exact: true }).click()
     await expect(page.getByRole('button', { name: 'Scarica DOCX' })).toBeVisible()
-    await expect(page.getByText('Bozza disponibile', { exact: true })).toBeVisible()
-    await expect(page.locator('.compilation-message .button--primary')).toHaveCount(1)
+    await expect(assistantReply).toContainText('Ho preparato la bozza.')
+    await expect(assistantReply.getByRole('button')).toHaveCount(1)
     await expect(page.getByRole('button', { name: 'Genera DOCX' })).toHaveCount(0)
     const download = page.waitForEvent('download')
     await page.getByRole('button', { name: 'Scarica DOCX' }).click()
@@ -275,10 +303,10 @@ test('refresh during a persisted lease recovers through a read error without con
     return route.fulfill({ json: [] })
   })
   await page.goto('/projects/compilation-refresh/conversations/chat-1')
-  await expect(page.getByText('Elaborazione in corso', { exact: true })).toBeVisible()
+  await expect(page.getByRole('status', { name: 'Mapi sta elaborando' })).toBeVisible()
   await page.reload()
-  await expect(page.getByText('Elaborazione in corso', { exact: true })).toBeVisible()
-  await expect(page.locator('.compilation-debug')).not.toHaveAttribute('open')
+  await expect(page.getByRole('status', { name: 'Mapi sta elaborando' })).toBeVisible()
+  await expect(page.locator('.compilation-message, .compilation-debug, .compilation-counts')).toHaveCount(0)
   const composer = page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
   await composer.fill('Risposta conservata')
   await expect(page.getByRole('button', { name: 'Invia', exact: true })).toBeDisabled()
@@ -294,13 +322,13 @@ test('refresh during a persisted lease recovers through a read error without con
   await expect(page.getByRole('alert')).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Invia', exact: true })).toBeEnabled()
   await expect(composer).toHaveValue('Risposta conservata')
-  await expect(page.locator('.compilation-activity')).toHaveCount(0)
+  await expect(page.locator('.assistant-activity')).toHaveCount(0)
   Object.assign(state, { status: 'FAILED', last_error: 'Errore interno di prova', chat: { ...state.chat!, paused: true } })
   await page.reload()
-  await expect(page.getByText('Compilazione in pausa', { exact: true })).toBeVisible()
-  await expect(page.getByRole('button', { name: 'Prosegui compilazione' })).toBeEnabled()
-  await expect(page.locator('.compilation-message .button--primary')).toHaveCount(1)
-  await expect(page.locator('.compilation-activity')).toHaveCount(0)
+  await expect(page.getByRole('alert')).toContainText('Ho conservato il lavoro fatto finora')
+  await expect(page.getByRole('button', { name: 'Prosegui compilazione' })).toHaveCount(0)
+  await expect(page.locator('.compilation-message, .compilation-debug, .compilation-counts')).toHaveCount(0)
+  await expect(page.locator('.assistant-activity')).toHaveCount(0)
   await expect(page.getByText('Errore interno di prova')).toHaveCount(0)
   expect(mutations).toBe(0)
 })

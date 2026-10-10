@@ -71,6 +71,19 @@ describe('ProjectWorkspacePage pending requests', () => {
   })
   afterEach(() => { cleanup(); vi.unstubAllGlobals() })
 
+  it('uses the assistant response and its animation while waiting for a normal RAG answer', async () => {
+    const request = deferred<GroundedAnswer>()
+    vi.mocked(api.projectAnswer).mockReturnValue(request.promise)
+    await setup()
+    submit('Prima domanda')
+    const reply = screen.getByRole('region', { name: 'Risposta Mapi' })
+    expect(reply.querySelector('.assistant-activity')).toBeInTheDocument()
+    expect(reply.querySelector('details, dl')).not.toBeInTheDocument()
+    await act(async () => request.resolve(answer('nuova')))
+    expect(await screen.findByText('Risposta precedente')).toBeInTheDocument()
+    expect(screen.queryByRole('status', { name: 'Mapi sta elaborando' })).not.toBeInTheDocument()
+  })
+
   it('keeps a successful answer and opens its conversation when the user stays', async () => {
     vi.mocked(api.projectAnswer).mockResolvedValue(answer('nuova'))
     await setup()

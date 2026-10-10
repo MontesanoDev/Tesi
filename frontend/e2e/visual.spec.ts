@@ -586,7 +586,7 @@ test('conversation preserves earlier turns without project evidence', async ({ p
   await composer.fill('Chi sei?')
   await composer.press('Enter')
 
-  await expect(page.getByText('Risposta diretta di Mapi RAG.')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Risposta Mapi' })).toBeVisible()
   await expect(page.getByText('Sono Mapi RAG, un assistente tecnico')).toBeVisible()
 
   await composer.fill('Come ti chiami?')

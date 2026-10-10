@@ -19,8 +19,11 @@ import {
 } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
+import { compilationReplyParagraphs } from '../compilationReply'
 import { AppShell } from '../components/AppShell'
-import { CompilationSessionCard } from '../components/CompilationSessionCard'
+import { AssistantMessage } from '../components/AssistantMessage'
+import { CompilationReply } from '../components/CompilationReply'
+import '../components/ChatComposer.css'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
 import { ProjectModelSelector } from '../components/ProjectModelSelector'
@@ -39,29 +42,13 @@ interface ChatTurn {
 
 const MAX_PROMPT_LENGTH = 4_000
 
-function turnStatus(turn: ChatTurn) {
-  if (turn.error) return turn.error
-  if (!turn.result) return 'Elaborazione della richiesta...'
-  if (turn.result.compilation) return 'Compilazione nella conversazione.'
-  if (turn.result.generation_status === 'direct') return 'Risposta diretta di Mapi RAG.'
-  if (turn.result.generation_status === 'completed') {
-    return turn.result.evidence.length === 1
-      ? 'Risposta generata con 1 evidenza recuperata.'
-      : `Risposta generata con ${turn.result.evidence.length} evidenze recuperate.`
-  }
-  return turn.result.notice ?? 'Nessuna evidenza pertinente trovata nelle fonti indicizzate.'
-}
-
-function ConversationTurn({ turn, statusSlot }: { turn: ChatTurn; statusSlot?: ReactNode }) {
+function ConversationTurn({ turn, assistantContent, processing = false }: {
+  turn: ChatTurn; assistantContent?: ReactNode; processing?: boolean
+}) {
   const result = turn.result
   const evidence = result?.evidence ?? []
   const answerTitleId = `answer-title-${turn.id}`
   const evidenceTitleId = `evidence-title-${turn.id}`
-  const activityClass = turn.error
-    ? 'activity-dot activity-dot--error'
-    : result
-      ? 'activity-dot activity-dot--done'
-      : 'activity-dot'
 
   return (
     <article className="chat-turn">
@@ -71,21 +58,11 @@ function ConversationTurn({ turn, statusSlot }: { turn: ChatTurn; statusSlot?: R
         {turn.form_reference && <small className="chat-form-reference">@{turn.form_reference.name}</small>}
       </div>
 
-      <div className="turn-status" aria-live="polite">
-        <span className={activityClass} />
-        <p>{turnStatus(turn)}</p>
-      </div>
-
-      {statusSlot}
-
-      {result?.answer && (
-        <section className="grounded-answer" aria-labelledby={answerTitleId}>
-          <div className="grounded-answer-heading">
-            <h2 id={answerTitleId}>Risposta Mapi</h2>
-            {result.model && <span>{result.model}</span>}
-          </div>
-          <p>{result.answer}</p>
-          {result.missing_information.length > 0 && (
+      <AssistantMessage id={answerTitleId} model={result?.model}
+        busy={(!result && !turn.error) || processing} error={turn.error}>
+          {assistantContent ?? (result?.answer && <p>{result.answer}</p>)}
+          {!result?.answer && result?.notice && <p>{result.notice}</p>}
+          {result && result.missing_information.length > 0 && (
             <div className="missing-information">
               <strong>Informazioni mancanti</strong>
               <ul>
@@ -95,8 +72,7 @@ function ConversationTurn({ turn, statusSlot }: { turn: ChatTurn; statusSlot?: R
               </ul>
             </div>
           )}
-        </section>
-      )}
+      </AssistantMessage>
 
       {evidence.length > 0 && (
         <details className="evidence-results" aria-labelledby={evidenceTitleId}>
@@ -281,7 +257,11 @@ export function ProjectWorkspacePage() {
     const turnId = `local-${++turnSequence.current}`
     stickToBottom.current = true
     setTurns((current) => [
-      ...current,
+      ...current.map((turn, index) => {
+        if (index !== current.length - 1 || !turn.result || !activeSession) return turn
+        const answer = compilationReplyParagraphs(activeSession, turn.result, false, compilation.error).join('\n\n')
+        return answer ? { ...turn, result: { ...turn.result, answer } } : turn
+      }),
       { id: turnId, question: query, result: null, error: null,
         form_reference: selectedForm ? { form_id: selectedForm.id, name: selectedForm.name } : null },
     ])
@@ -356,19 +336,6 @@ export function ProjectWorkspacePage() {
     composerInput.current?.focus()
   }
 
-  async function startCompilation() {
-    if (!selectedForm || answerRequest.current || searching || conversationLoading || changingModel
-      || sessionStateUnavailable || compilation.isProcessing()) return
-    const session = await compilation.start(selectedForm.id)
-    if (!session?.conversation_id) return
-    if (conversationId !== session.conversation_id) {
-      // This navigation belongs to the current composer: keep text typed during start.
-      activeConversation.current = session.conversation_id
-      loadedConversation.current = session.conversation_id
-      navigate(`/projects/${activeProjectId}/conversations/${session.conversation_id}`, { replace: true })
-    }
-  }
-
   async function deleteCurrentProject() {
     if (deletingProject) return
     setDeletingProject(true)
@@ -421,16 +388,13 @@ export function ProjectWorkspacePage() {
     }
   }
 
+  const latestTurn = turns.at(-1)
+  const sessionProcessing = compilation.processing || compilation.loading
   const sessionMessage = activeSession ? (
-    <CompilationSessionCard key={activeSession.id}
-      session={activeSession} busy={compilation.busy || searching || changingModel}
-      processing={compilation.processing} loading={compilation.loading}
-      questionInChat={Boolean(activeSession.chat?.question && turns.some((turn) =>
-        turn.result?.compilation?.session_id === activeSession.id
-        && turn.result.answer?.includes(activeSession.chat!.question!.message)))}
-      error={compilation.error} onContinue={compilation.resolve} onUpdate={compilation.update}
-      onGenerate={compilation.finalize} onRefresh={compilation.refresh}
-      onResume={() => void startCompilation()} />
+    <CompilationReply key={activeSession.id} session={activeSession} response={latestTurn?.result}
+      pending={Boolean(latestTurn && !latestTurn.result && !latestTurn.error)}
+      processing={sessionProcessing} locked={sessionProcessing || searching || changingModel}
+      error={compilation.error} onRetry={compilation.refresh} />
   ) : null
 
   const composer = (
@@ -590,11 +554,14 @@ export function ProjectWorkspacePage() {
                   <div key={turn.id}>
                     <ConversationTurn
                       turn={turn}
-                      statusSlot={index === turns.length - 1 ? sessionMessage ?? undefined : undefined}
+                      assistantContent={index === turns.length - 1 ? sessionMessage ?? undefined : undefined}
+                      processing={index === turns.length - 1 && Boolean(activeSession) && sessionProcessing}
                     />
                   </div>
                 ))}
-                {!turns.length && sessionMessage}
+                {!turns.length && sessionMessage && <AssistantMessage id="recovered-answer" busy={sessionProcessing}>
+                  {sessionMessage}
+                </AssistantMessage>}
               </div>
               {composer}
             </>

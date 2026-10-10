@@ -64,20 +64,6 @@ function selectForm(name = form.name) {
   fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }), { target: { value: '@' } })
   fireEvent.click(screen.getByRole('option', { name }))
 }
-async function start() {
-  selectForm()
-  vi.mocked(api.projectAnswer).mockImplementation(async (_p, question, _c, _signal, formId) => {
-    if (!stored) stored = session()
-    expect(formId).toBe(10)
-    return { conversation_id: 'chat-1', turn_id: 1, question,
-      answer: 'Certo. Analizzo il modulo e verifico le informazioni disponibili.',
-      compilation: { session_id: 'session-1', action: 'start' }, generation_status: 'direct',
-      citations: [], evidence: [], missing_information: [], notice: null, model: 'simulato',
-      total_tokens: 1, form_reference: reference } as GroundedAnswer
-  })
-  submit('me lo compili?')
-  await screen.findByRole('region', { name: 'Compilazione domanda.docx' })
-}
 function submit(text: string) {
   fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }), { target: { value: text } })
   fireEvent.click(screen.getByRole('button', { name: 'Invia' }))
@@ -86,6 +72,8 @@ function submit(text: string) {
 describe('CompilationSession nella chat', () => {
   beforeEach(() => {
     vi.resetAllMocks()
+    vi.stubGlobal('URL', { createObjectURL: vi.fn(() => 'blob:docx'), revokeObjectURL: vi.fn() })
+    vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {})
     Object.defineProperty(HTMLElement.prototype, 'scrollTo', { configurable: true, value: vi.fn() })
     stored = null
     vi.stubGlobal('requestAnimationFrame', () => 1)
@@ -180,76 +168,6 @@ describe('CompilationSession nella chat', () => {
     expect(api.startCompilationSession).not.toHaveBeenCalled()
   })
 
-  it('avvia, analizza, chiarisce un field USER, riprende e genera il download nella chat', async () => {
-    const view = await setup()
-    await start()
-    expect(api.projectAnswer).toHaveBeenCalledWith('alpha', 'me lo compili?', null,
-      expect.any(AbortSignal), 10, undefined)
-    expect(api.startCompilationSession).not.toHaveBeenCalled()
-    expect(api.resolveCompilationSession).not.toHaveBeenCalled()
-    fireEvent.click(await screen.findByText('Dettagli compilazione'))
-    fireEvent.click(await screen.findByRole('button', { name: 'Continua analisi' }))
-    await screen.findByText('In attesa di informazioni')
-    expect(api.resolveCompilationSession).toHaveBeenCalledWith('alpha', 'session-1', 1, undefined, expect.any(AbortSignal))
-    expect(screen.getByText('Informazioni da chiarire (1)')).toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: 'Genera DOCX' })).not.toBeInTheDocument()
-    fireEvent.click(await screen.findByText('Informazioni da chiarire (1)'))
-    fireEvent.click(screen.getByRole('button', { name: 'Chiarisci Data abilitazione' }))
-    fireEvent.change(screen.getByRole('textbox', { name: 'Valore fornito dall’utente' }), { target: { value: '12/06/2010' } })
-    fireEvent.click(screen.getByRole('button', { name: 'Salva valore' }))
-    await screen.findByText('Pronta per la generazione')
-    expect(api.updateCompilationFields).toHaveBeenCalledWith('alpha', 'session-1', 3,
-      [{ field_id: 't0:r1:c1', action: 'set', value: '12/06/2010' }], expect.any(AbortSignal))
-    expect(stored!.fields[0].status).toBe('RESOLVED')
-    // A fresh React tree recovers the backend state, including the mention and USER value.
-    view.unmount()
-    await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText('Pronta per la generazione')
-    expect(screen.getByText('@domanda.docx')).toBeInTheDocument()
-    fireEvent.click(screen.getByText('Dettagli compilazione'))
-    fireEvent.click(await screen.findByText('Valori e sezioni già valutati (2)'))
-    expect(screen.getByText('12/06/2010')).toBeInTheDocument()
-    expect(screen.getByText('USER · Indicazione dell’utente, non verificata da una fonte.')).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Correggi Denominazione' }).parentElement).toHaveTextContent('Verificato da fonte')
-    fireEvent.click(screen.getByRole('button', { name: 'Genera DOCX' }))
-    await screen.findByRole('button', { name: 'Scarica DOCX' })
-    expect(api.finalizeCompilationSession).toHaveBeenCalledWith('alpha', 'session-1', 4, false, expect.any(AbortSignal))
-    vi.stubGlobal('URL', { createObjectURL: vi.fn(() => 'blob:docx'), revokeObjectURL: vi.fn() })
-    vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {})
-    fireEvent.click(screen.getByRole('button', { name: 'Scarica DOCX' }))
-    await waitFor(() => expect(api.downloadCompilation).toHaveBeenCalledWith('alpha', 'run-1', 'docx', expect.any(AbortSignal)))
-  })
-
-  it('riprende una sessione esistente e mostra tutti i conteggi del backend', async () => {
-    const statuses = ['PENDING', 'RESOLVED', 'MISSING', 'AMBIGUOUS', 'CONFLICTING', 'NOT_APPLICABLE', 'USER_PROVIDED'] as const
-    stored = session(statuses.map((s, i) => field(`f${i}`, `Campo ${i}`, s)), 'WAITING_FOR_USER', 8)
-    await setup('/projects/alpha/conversations/chat-1')
-    const card = await screen.findByRole('region', { name: 'Compilazione domanda.docx' })
-    fireEvent.click(screen.getByText('Dettagli compilazione'))
-    await waitFor(() => expect(card.querySelectorAll('dd')).toHaveLength(8))
-    const definitions = card.querySelectorAll('dd')
-    expect(Array.from(definitions).map((d) => d.textContent)).toEqual(['7', '1', '1', '1', '1', '1', '1', '1'])
-    fireEvent.click(screen.getByRole('button', { name: 'Prosegui compilazione' }))
-    await waitFor(() => expect(api.startCompilationSession).toHaveBeenCalledWith('alpha', 10, 'chat-1', expect.any(AbortSignal)))
-    expect(api.resolveCompilationSession).not.toHaveBeenCalled()
-  })
-
-  it('una sessione legacy non avanza senza avvio esplicito e la bozza incompleta resta nei dettagli', async () => {
-    stored = session()
-    vi.mocked(api.resolveCompilationSession).mockImplementation(async () => {
-      stored = session([field('f1', 'Uno', 'RESOLVED'), field('f2', 'Due')], 'CREATED', 3)
-      return stored
-    })
-    await setup('/projects/alpha/conversations/chat-1')
-    fireEvent.click(await screen.findByText('Dettagli compilazione'))
-    fireEvent.click(await screen.findByRole('button', { name: 'Continua analisi' }))
-    await waitFor(() => expect(screen.getByRole('button', { name: 'Continua analisi' })).toBeEnabled())
-    expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
-    expect(api.finalizeCompilationSession).not.toHaveBeenCalled()
-    fireEvent.click(screen.getByRole('button', { name: 'Genera bozza con campi irrisolti' }))
-    await waitFor(() => expect(api.finalizeCompilationSession).toHaveBeenCalledWith('alpha', 'session-1', 3, true, expect.any(AbortSignal)))
-  })
-
   it('ignora una creazione tardiva dopo il cambio di progetto', async () => {
     let complete!: (answer: GroundedAnswer) => void
     vi.mocked(api.projectAnswer).mockReturnValue(new Promise((resolve) => { complete = resolve }))
@@ -263,109 +181,62 @@ describe('CompilationSession nella chat', () => {
       compilation: { session_id: 'session-1', action: 'start' }, generation_status: 'direct',
       citations: [], evidence: [], missing_information: [], notice: null, model: null,
       total_tokens: null, form_reference: reference }))
-    expect(screen.queryByRole('region', { name: 'Compilazione domanda.docx' })).not.toBeInTheDocument()
+    expect(screen.queryByText('Mi manca Data abilitazione. Qual è?')).not.toBeInTheDocument()
     expect(screen.queryByText('@domanda.docx')).not.toBeInTheDocument()
     fireEvent.change(screen.getByRole('textbox'), { target: { value: '@' } })
     expect(screen.getAllByRole('option')).toHaveLength(1)
     expect(screen.getByRole('option', { name: 'privato-beta.docx' })).toBeInTheDocument()
   })
 
-  it('su conflitto di versione rilegge lo stato senza ripetere la mutazione', async () => {
-    stored = session()
-    vi.mocked(api.resolveCompilationSession).mockImplementation(async () => {
-      stored = session([field('f1', 'A', 'RESOLVED')], 'READY', 5)
-      throw new Error('Versione non aggiornata')
-    })
-    await setup('/projects/alpha/conversations/chat-1')
-    fireEvent.click(await screen.findByText('Dettagli compilazione'))
-    fireEvent.click(await screen.findByRole('button', { name: 'Continua analisi' }))
-    await screen.findByText('Ho conservato i dati già verificati. Non ho completato questa operazione. Puoi aggiornare lo stato e riprovare.')
-    expect(screen.queryByText('Versione non aggiornata')).not.toBeInTheDocument()
-    expect(screen.getByText('Compilazione in pausa')).toBeInTheDocument()
-    expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
-  })
-
-  it('una sessione ANALYZING riaperta aggiorna solo lo stato, senza avviare nuovi step', async () => {
+  it('una sessione in elaborazione riaperta legge lo stato senza avviare nuovi passi', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
     stored = { ...session(), status: 'ANALYZING', lease_until: new Date(Date.now() + 240000).toISOString() }
     await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText('Elaborazione in corso')
+    await screen.findByText('Sto lavorando…')
     const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
-    fireEvent.change(input, { target: { value: 'Testo scritto dopo il refresh' } })
+    fireEvent.change(input, { target: { value: 'Testo conservato' } })
     expect(screen.getByRole('button', { name: 'Invia' })).toBeDisabled()
-    expect(screen.getByRole('region', { name: 'Compilazione domanda.docx' }).querySelector('.compilation-debug')).not.toHaveAttribute('open')
-    fireEvent.click(screen.getByText('Dettagli compilazione'))
-    expect(await screen.findByRole('button', { name: 'Continua analisi' })).toBeDisabled()
-    vi.useFakeTimers()
-    // Install the read-only polling timer under the fake clock while still ANALYZING.
-    await act(async () => fireEvent.click(screen.getByRole('button', { name: 'Aggiorna stato' })))
-    expect(screen.getByText('Elaborazione in corso')).toBeInTheDocument()
-    const readsBeforePoll = vi.mocked(api.compilationSession).mock.calls.length
-    stored = session([field('f1', 'Denominazione', 'RESOLVED')], 'READY', 3)
+    stored = conversational(session([field('f1', 'Denominazione', 'RESOLVED')], 'READY', 3))
     await act(async () => { await vi.advanceTimersByTimeAsync(3000) })
-    expect(screen.getByText('Pronta per la generazione')).toBeInTheDocument()
-    expect(input).toHaveValue('Testo scritto dopo il refresh')
+    expect(screen.getByText('Vuoi che generi il DOCX?')).toBeInTheDocument()
+    expect(input).toHaveValue('Testo conservato')
     expect(screen.getByRole('button', { name: 'Invia' })).toBeEnabled()
-    expect(api.compilationSession).toHaveBeenCalledTimes(readsBeforePoll + 1)
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
   })
 
-  it('ignora anche un risultato di analisi tardivo dopo il cambio di progetto', async () => {
-    stored = session()
+  it('ignora un risultato di analisi tardivo dopo il cambio di progetto', async () => {
+    stored = conversational(session())
     let complete!: (s: CompilationSession) => void
     vi.mocked(api.resolveCompilationSession).mockReturnValue(new Promise((resolve) => { complete = resolve }))
     await setup('/projects/alpha/conversations/chat-1')
-    fireEvent.click(await screen.findByText('Dettagli compilazione'))
-    fireEvent.click(await screen.findByRole('button', { name: 'Continua analisi' }))
+    await waitFor(() => expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1))
     fireEvent.click(screen.getByRole('link', { name: 'Vai a Beta' }))
     await screen.findByRole('heading', { name: 'beta' })
-    await act(async () => complete(session([field('f1', 'Dato privato', 'RESOLVED')], 'READY', 3)))
-    expect(screen.queryByText('Dato privato')).not.toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: 'Genera DOCX' })).not.toBeInTheDocument()
+    await act(async () => complete(conversational(session([field('f1', 'Dato privato', 'MISSING')], 'WAITING_FOR_USER', 3))))
+    expect(screen.queryByText(/Dato privato/)).not.toBeInTheDocument()
   })
 
-  it('conserva il valore digitato se la validazione backend lo rifiuta', async () => {
-    stored = session([field('f1', 'PEC', 'MISSING')], 'WAITING_FOR_USER', 3)
-    vi.mocked(api.updateCompilationFields).mockRejectedValue(new Error('Email non valida'))
-    await setup('/projects/alpha/conversations/chat-1')
-    fireEvent.click(await screen.findByText('Dettagli compilazione'))
-    fireEvent.click(await screen.findByText('Informazioni da chiarire (1)'))
-    fireEvent.click(screen.getByRole('button', { name: 'Chiarisci PEC' }))
-    fireEvent.change(screen.getByRole('textbox', { name: 'Valore fornito dall’utente' }), { target: { value: 'non-una-email' } })
-    fireEvent.click(screen.getByRole('button', { name: 'Salva valore' }))
-    await screen.findByText('Ho conservato i dati già verificati. Non ho completato questa operazione. Puoi aggiornare lo stato e riprovare.')
-    expect(screen.getByRole('textbox', { name: 'Valore fornito dall’utente' })).toHaveValue('non-una-email')
-    expect(screen.getByText('Compilazione in pausa')).toBeInTheDocument()
-    expect(api.updateCompilationFields).toHaveBeenCalledTimes(1)
-    vi.mocked(api.compilationSessions).mockRejectedValueOnce(new Error('Lettura non disponibile'))
-    fireEvent.click(screen.getByRole('button', { name: 'Aggiorna stato' }))
-    await screen.findByText('Non riesco a caricare la compilazione. Riprova.')
-    expect(screen.getByRole('textbox', { name: 'Valore fornito dall’utente' })).toHaveValue('non-una-email')
-    fireEvent.click(screen.getByRole('button', { name: 'Aggiorna stato' }))
-    await screen.findByText('In attesa di informazioni')
-    expect(screen.getByRole('textbox', { name: 'Valore fornito dall’utente' })).toHaveValue('non-una-email')
-    expect(api.updateCompilationFields).toHaveBeenCalledTimes(1)
-  })
-
-  it('conserva conteggi e bozza parziale dopo un errore senza esporre eccezioni tecniche', async () => {
+  it('spiega un errore nella risposta senza esporre dettagli interni o perdere i dati', async () => {
     stored = conversational(session([field('f1', 'Denominazione', 'RESOLVED'), field('f2', 'Altro')], 'CREATED', 5), true)
     stored.last_error = 'Traceback: sqlite3.OperationalError: database is locked'
-    stored.chat!.notice = 'Ho conservato i dati già verificati. Puoi continuare o esportare una bozza parziale.'
     await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText(stored.chat!.notice)
+    expect(await screen.findByRole('alert')).toHaveTextContent('Ho conservato il lavoro fatto finora')
     expect(screen.queryByText(/Traceback|OperationalError|database is locked/)).not.toBeInTheDocument()
-    expect(screen.getByText(/Ho verificato 1 informazione nelle fonti/)).toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: 'Genera DOCX' })).not.toBeInTheDocument()
+    expect(screen.queryByText(/Ho verificato|Dettagli compilazione|Dati e fonti/)).not.toBeInTheDocument()
+    expect(stored.fields[0].value).toBe('Mapi S.r.l.')
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
-    fireEvent.click(screen.getByText('Dettagli compilazione'))
-    fireEvent.click(await screen.findByRole('button', { name: 'Genera bozza con campi irrisolti' }))
-    await waitFor(() => expect(api.finalizeCompilationSession).toHaveBeenCalledWith('alpha', 'session-1', 5, true, expect.any(AbortSignal)))
   })
 
   it('me lo compili avvia il workflow senza risposta RAG, avanza da solo e riceve la data in chat', async () => {
     vi.mocked(api.projectAnswer).mockImplementation(async (_p, question, _c, _signal, formId, context) => {
       const creating = !stored
       if (creating) stored = conversational(session())
-      else {
+      else if (question === 'sì, genera la bozza') {
+        stored = { ...stored!, status: 'GENERATED', version: stored!.version + 1, last_generation: {
+          id: 'run-1', project_id: 'alpha', template_name: form.name, created_at: '', status: 'needs_review',
+          session_version: stored!.version, downloads: { docx: '/file', report: '/report', template: '/original' },
+        }, chat: { ...stored!.chat!, question: null, auto_continue: false } }
+      } else {
         expect(context).toEqual({ session_id: stored!.id, version: stored!.version })
         const fields = stored!.fields.map((f) => f.status === 'MISSING'
           ? { ...f, status: 'USER_PROVIDED' as const, value: '12/06/2014', provenance: 'USER' as const } : f)
@@ -374,7 +245,7 @@ describe('CompilationSession nella chat', () => {
       expect(formId).toBe(10)
       return { conversation_id: 'chat-1', turn_id: creating ? 1 : 2, question,
         answer: creating ? 'Certo. Analizzo il modulo e verifico le informazioni disponibili.' : 'Ho registrato la tua indicazione.',
-        compilation: { session_id: 'session-1', action: creating ? 'start' : 'updated' },
+        compilation: { session_id: 'session-1', action: creating ? 'start' : question === 'sì, genera la bozza' ? 'generated' : 'updated' },
         generation_status: 'direct', citations: [], evidence: [], missing_information: [],
         notice: null, model: 'simulato', total_tokens: 1, form_reference: reference }
     })
@@ -402,9 +273,10 @@ describe('CompilationSession nella chat', () => {
     await setup('/projects/alpha/conversations/chat-1')
     await screen.findByText('Vuoi che generi il DOCX?')
     expect(api.finalizeCompilationSession).not.toHaveBeenCalled()
-    fireEvent.click(screen.getByRole('button', { name: 'Genera DOCX' }))
-    await screen.findByRole('button', { name: 'Scarica DOCX' })
-    expect(api.finalizeCompilationSession).toHaveBeenCalledWith('alpha', 'session-1', 4, false, expect.any(AbortSignal))
+    submit('sì, genera la bozza')
+    fireEvent.click(await screen.findByRole('button', { name: 'Scarica DOCX' }))
+    await waitFor(() => expect(api.downloadCompilation).toHaveBeenCalledWith('alpha', 'run-1', 'docx', expect.any(AbortSignal)))
+    expect(api.finalizeCompilationSession).not.toHaveBeenCalled()
   })
 
   it('avanza più batch automaticamente, si ferma al budget persistito e non genera una bozza', async () => {
@@ -416,15 +288,45 @@ describe('CompilationSession nella chat', () => {
       return structuredClone(stored)
     })
     const view = await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByRole('button', { name: 'Prosegui compilazione' })
+    await screen.findByText('Ho conservato il lavoro fatto finora. Chiedimi di riprendere quando vuoi proseguire.')
     expect(api.resolveCompilationSession).toHaveBeenCalledTimes(3)
     expect(screen.queryByRole('button', { name: 'Genera DOCX' })).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Genera bozza con campi irrisolti' })).not.toBeInTheDocument()
     expect(api.finalizeCompilationSession).not.toHaveBeenCalled()
     view.unmount()
     await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByRole('button', { name: 'Prosegui compilazione' })
+    await screen.findByText('Ho conservato il lavoro fatto finora. Chiedimi di riprendere quando vuoi proseguire.')
     expect(api.resolveCompilationSession).toHaveBeenCalledTimes(3)
+  })
+
+  it.each(['basta', 'Roma', 'spiegati meglio'])('conserva la domanda precedente durante e dopo «%s»', async (message) => {
+    stored = conversational(session([field('f1', 'Sede', 'MISSING')], 'WAITING_FOR_USER', 3))
+    const previousQuestion = stored.chat!.question!.message
+    vi.mocked(api.conversation).mockResolvedValue({ id: 'chat-1', project_id: 'alpha', title: 'Chat',
+      metadata: '', target: 'chat', form_reference: reference, turns: [{ id: 1, question: 'compila',
+        answer: 'Certo. Analizzo il modulo e verifico le informazioni disponibili.',
+        compilation: { session_id: 'session-1', action: 'start' }, generation_status: 'direct',
+        citations: [], evidence: [], missing_information: [], notice: null, model: 'test', total_tokens: 1,
+      }] })
+    let complete!: (answer: GroundedAnswer) => void
+    vi.mocked(api.projectAnswer).mockReturnValue(new Promise((resolve) => { complete = resolve }))
+    await setup('/projects/alpha/conversations/chat-1')
+    await screen.findByText(previousQuestion)
+    submit(message)
+    const previousReply = screen.getAllByRole('region', { name: 'Risposta Mapi' })[0]
+    expect(previousReply).toHaveTextContent(previousQuestion)
+    expect(previousReply).not.toHaveTextContent('Certo. Analizzo')
+    if (message === 'basta') stored.chat = { ...stored.chat!, paused: true, paused_by_user: true, question: null }
+    else if (message === 'Roma') stored.chat!.question = { kind: 'generate', field_ids: [], message: 'Vuoi che generi il DOCX?' }
+    await act(async () => complete({ conversation_id: 'chat-1', turn_id: 2, question: message,
+      answer: 'Risposta successiva.', citations: [], evidence: [], missing_information: [],
+      generation_status: 'direct', model: 'test', total_tokens: 1, notice: null,
+      compilation: message === 'spiegati meglio' ? null : { session_id: 'session-1',
+        action: message === 'basta' ? 'paused' : 'updated' },
+    }))
+    await screen.findByText('Risposta successiva.')
+    expect(previousReply).toHaveTextContent(previousQuestion)
+    expect(api.resolveCompilationSession).not.toHaveBeenCalled()
   })
 
   it('una risposta ambigua chiede chiarimento senza aggiornamenti e resta riprendibile', async () => {
@@ -487,12 +389,12 @@ describe('CompilationSession nella chat', () => {
     let view = await setup('/projects/alpha/conversations/chat-1')
     await screen.findByText('Mi manca Estremi procura. Qual è?')
     submit('basta')
-    await screen.findByText('La compilazione è in pausa. Potrai riprenderla quando vuoi.')
+    await screen.findByText('Va bene, metto in pausa la compilazione.')
     expect(screen.queryByText('Mi manca Estremi procura. Qual è?')).not.toBeInTheDocument()
     expect(screen.queryByText(/Rispondimi qui nella chat/)).not.toBeInTheDocument()
     view.unmount()
     view = await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText('La compilazione è in pausa. Potrai riprenderla quando vuoi.')
+    await screen.findByText('Va bene, mi fermo qui. Quando vuoi, chiedimi di riprendere.')
     expect(screen.queryByText('Mi manca Estremi procura. Qual è?')).not.toBeInTheDocument()
     submit('riprendi')
     await screen.findByText('Mi manca Estremi procura. Qual è?')
@@ -543,15 +445,15 @@ describe('CompilationSession nella chat', () => {
     fireEvent.submit(input.closest('form')!)
     expect(api.projectAnswer).not.toHaveBeenCalled()
     expect(input).toHaveValue('12 giugno 2014')
-    const card = screen.getByRole('region', { name: 'Compilazione domanda.docx' })
-    expect(card.querySelector('.compilation-activity')).toBeInTheDocument()
-    expect(card.querySelector('.compilation-debug')).not.toHaveAttribute('open')
+    const card = screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!
+    expect(card.querySelector('.assistant-activity')).toBeInTheDocument()
+    expect(card.querySelector('details')).not.toBeInTheDocument()
     stored = conversational(session([field('f1', 'Data abilitazione', 'MISSING')], 'WAITING_FOR_USER', 3))
     await act(async () => complete(stored!))
     await screen.findByText('Mi manca Data abilitazione. Qual è?')
     expect(screen.getByRole('button', { name: 'Invia' })).toBeEnabled()
     expect(input).toHaveValue('12 giugno 2014')
-    expect(card.querySelector('.compilation-activity')).not.toBeInTheDocument()
+    expect(card.querySelector('.assistant-activity')).not.toBeInTheDocument()
     expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
   })
 
@@ -595,7 +497,7 @@ describe('CompilationSession nella chat', () => {
     expect(api.projectAnswer).toHaveBeenCalledTimes(1)
     expect(screen.getByRole('button', { name: 'Invia' })).toBeDisabled()
     expect(input).toHaveValue('Una seconda annotazione')
-    expect(screen.getByRole('region', { name: 'Compilazione domanda.docx' }).querySelector('.compilation-activity')).not.toBeInTheDocument()
+    expect(screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!.querySelector('.assistant-activity')).toBeInTheDocument()
     await act(async () => complete({ conversation_id: 'chat-1', turn_id: 1,
       question: 'Ingegnere', answer: 'Indicazione ricevuta.', citations: [], evidence: [],
       missing_information: [], generation_status: 'direct', model: null, total_tokens: null, notice: null }))
@@ -604,18 +506,14 @@ describe('CompilationSession nella chat', () => {
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
   })
 
-  it('una pausa recuperabile ha una sola azione principale, senza animazione né riprese implicite', async () => {
+  it('una pausa recuperabile è una risposta normale senza pannelli o riprese implicite', async () => {
     stored = conversational(session(), true)
-    // A pause is authoritative even if a stale snapshot still advertises continuation.
     stored.chat!.auto_continue = true
     await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText('Compilazione in pausa')
-    const card = screen.getByRole('region', { name: 'Compilazione domanda.docx' })
-    expect(card.querySelectorAll('.button--primary')).toHaveLength(1)
-    expect(within(card).getByRole('button', { name: 'Prosegui compilazione' })).toBeEnabled()
-    expect(screen.queryByRole('button', { name: 'Riprendi compilazione' })).not.toBeInTheDocument()
-    expect(card.querySelector('.compilation-activity')).not.toBeInTheDocument()
-    expect(card.querySelector('.compilation-debug')).not.toHaveAttribute('open')
+    await screen.findByText('Ho conservato il lavoro fatto finora. Chiedimi di riprendere quando vuoi proseguire.')
+    const reply = screen.getByRole('region', { name: 'Risposta Mapi' })
+    expect(reply.querySelector('details, dl, .assistant-activity')).not.toBeInTheDocument()
+    expect(within(reply).queryByRole('button')).not.toBeInTheDocument()
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
     fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }), { target: { value: 'riprendi' } })
     expect(screen.getByRole('button', { name: 'Invia' })).toBeEnabled()
@@ -627,8 +525,8 @@ describe('CompilationSession nella chat', () => {
     stored.chat!.paused = true
     stored.chat!.auto_continue = false
     await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByRole('button', { name: 'Prosegui compilazione' })
-    expect(screen.getByRole('region', { name: 'Compilazione domanda.docx' }).querySelector('.compilation-activity')).not.toBeInTheDocument()
+    await screen.findByText('Ho conservato il lavoro fatto finora. Chiedimi di riprendere quando vuoi proseguire.')
+    expect(screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!.querySelector('.assistant-activity')).not.toBeInTheDocument()
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
     fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }), { target: { value: 'riprendi' } })
     expect(screen.getByRole('button', { name: 'Invia' })).toBeEnabled()
@@ -642,10 +540,10 @@ describe('CompilationSession nella chat', () => {
       created_at: '', status: 'needs_review', session_version: 4,
       downloads: { docx: '/file', report: '/report', template: '/original' } }
     await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText('Bozza disponibile')
-    const card = screen.getByRole('region', { name: 'Compilazione domanda.docx' })
-    expect(within(card).getByText(/È disponibile una bozza parziale/)).toBeInTheDocument()
-    expect(card.querySelectorAll('.button--primary')).toHaveLength(1)
+    await screen.findByRole('button', { name: 'Scarica DOCX' })
+    const card = screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!
+    expect(within(card).getByText(/Ho preparato una bozza parziale/)).toBeInTheDocument()
+    expect(within(card).getAllByRole('button')).toHaveLength(1)
     expect(within(card).getByRole('button', { name: 'Scarica DOCX' })).toBeEnabled()
     expect(screen.queryByRole('button', { name: 'Genera DOCX' })).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: 'Scarica report' })).not.toBeInTheDocument()
@@ -654,32 +552,23 @@ describe('CompilationSession nella chat', () => {
     expect(api.finalizeCompilationSession).not.toHaveBeenCalled()
   })
 
-  it('mostra il chiarimento una sola volta nella chat anche dopo refresh, ma mostra una nuova domanda nella card', async () => {
+  it('mostra la domanda una sola volta nella risposta anche dopo refresh', async () => {
     stored = conversational(session([field('f1', 'Recapito', 'MISSING')], 'WAITING_FOR_USER', 5))
     const question = stored.chat!.question!.message
     const answer = `Ho registrato la tua risposta. ${question}`
     vi.mocked(api.conversation).mockResolvedValue({ id: 'chat-1', project_id: 'alpha',
       title: 'Chat', metadata: '', target: 'chat', form_reference: reference, turns: [{
         id: 1, question: 'Il ramo non si applica', answer,
-        compilation: { session_id: 'session-1', action: 'updated' },
-        citations: [], evidence: [], missing_information: [], generation_status: 'direct',
-        notice: null, model: null, total_tokens: null,
+        compilation: { session_id: 'session-1', action: 'updated' }, citations: [], evidence: [],
+        missing_information: [], generation_status: 'direct', notice: null, model: null, total_tokens: null,
       }] })
     const view = await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText(/Ho registrato la tua risposta/)
-    let card = screen.getByRole('region', { name: 'Compilazione domanda.docx' })
-    expect(within(card).queryByText(question)).not.toBeInTheDocument()
-    expect(screen.getAllByText((_, el) => el?.tagName === 'P' && el.textContent === answer)).toHaveLength(1)
+    await screen.findByText(answer)
+    expect(screen.getAllByRole('heading', { name: 'Risposta Mapi' })).toHaveLength(1)
+    expect(screen.queryByText(question, { exact: true })).not.toBeInTheDocument()
     view.unmount()
     await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText(/Ho registrato la tua risposta/)
-    card = screen.getByRole('region', { name: 'Compilazione domanda.docx' })
-    expect(within(card).queryByText(question)).not.toBeInTheDocument()
-    stored.chat!.question = { kind: 'value', field_ids: ['f1'], message: 'Quale recapito devo usare?' }
-    stored.version += 1
-    fireEvent.click(screen.getByText('Dettagli compilazione'))
-    fireEvent.click(await screen.findByRole('button', { name: 'Aggiorna stato' }))
-    await waitFor(() => expect(within(card).getByText('Quale recapito devo usare?')).toBeInTheDocument())
+    expect(await screen.findAllByText(answer)).toHaveLength(1)
   })
 
   it('attende il ripristino della sessione e conserva il draft quando la prima lettura fallisce', async () => {
@@ -707,19 +596,16 @@ describe('CompilationSession nella chat', () => {
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
   })
 
-  it('una lettura di polling fallita non sblocca la lease e riprova soltanto la lettura', async () => {
+  it('una lettura fallita non sblocca l’elaborazione e riprova soltanto la lettura', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
     stored = { ...session(), status: 'ANALYZING', lease_until: new Date(Date.now() + 240000).toISOString() }
     await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText('Elaborazione in corso')
+    await screen.findByText('Sto lavorando…')
     const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
     fireEvent.change(input, { target: { value: 'Risposta conservata' } })
-    fireEvent.click(screen.getByText('Dettagli compilazione'))
-    await screen.findByRole('button', { name: 'Aggiorna stato' })
-    vi.useFakeTimers()
-    await act(async () => fireEvent.click(screen.getByRole('button', { name: 'Aggiorna stato' })))
     vi.mocked(api.compilationSession).mockRejectedValueOnce(new Error('Rete non disponibile'))
     await act(async () => { await vi.advanceTimersByTimeAsync(3000) })
-    expect(screen.getByText('Impossibile aggiornare la compilazione. I dati sono conservati.')).toBeInTheDocument()
+    expect(screen.getByRole('alert')).toHaveTextContent('Impossibile aggiornare la compilazione. I dati sono conservati.')
     expect(screen.getByRole('button', { name: 'Invia' })).toBeDisabled()
     stored = conversational(session([field('f1', 'Qualifica', 'MISSING')], 'WAITING_FOR_USER', 3))
     await act(async () => { await vi.advanceTimersByTimeAsync(3000) })
@@ -731,24 +617,29 @@ describe('CompilationSession nella chat', () => {
     expect(api.projectAnswer).not.toHaveBeenCalled()
   })
 
-  it.each(['chat', 'analisi'])('blocca richieste incrociate nello stesso tick, iniziando da %s', async (first) => {
-    stored = session()
-    vi.mocked(api.projectAnswer).mockReturnValue(new Promise(() => {}))
-    vi.mocked(api.resolveCompilationSession).mockReturnValue(new Promise(() => {}))
+
+  it('non mostra pannelli o conteggi e risponde a spiegati meglio senza ripetere la domanda', async () => {
+    stored = conversational(session([field('f1', 'Qualifica', 'MISSING')], 'WAITING_FOR_USER', 3))
+    stored.chat!.notice = '11 campi richiedono revisione per problemi di interpretazione o verifica.'
+    const question = stored.chat!.question!.message
+    const explanation = 'Mi riferisco alla qualifica professionale con cui partecipi, ad esempio ingegnere o architetto.'
+    vi.mocked(api.projectAnswer).mockResolvedValue({ conversation_id: 'chat-1', turn_id: 1,
+      question: 'spiegati meglio', answer: explanation, citations: [], evidence: [],
+      missing_information: [], generation_status: 'direct', model: 'simulato', total_tokens: 1,
+      notice: null, form_reference: reference })
     await setup('/projects/alpha/conversations/chat-1')
-    fireEvent.click(await screen.findByText('Dettagli compilazione'))
-    const analyze = await screen.findByRole('button', { name: 'Continua analisi' })
-    const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
-    fireEvent.change(input, { target: { value: 'Messaggio pronto' } })
-    const send = () => input.closest('form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
-    // Native events inside one React batch exercise the refs before disabled re-renders.
-    act(() => {
-      if (first === 'chat') { send(); analyze.click() }
-      else { analyze.click(); send() }
-    })
-    expect(api.projectAnswer).toHaveBeenCalledTimes(first === 'chat' ? 1 : 0)
-    expect(api.resolveCompilationSession).toHaveBeenCalledTimes(first === 'analisi' ? 1 : 0)
-    if (first === 'analisi') expect(input).toHaveValue('Messaggio pronto')
+    await screen.findByText(question)
+    expect(screen.queryByText(stored.chat!.notice)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Dettagli compilazione|Dati e fonti|Candidate totali/)).not.toBeInTheDocument()
+    submit('spiegati meglio')
+    const reply = await screen.findByText(explanation)
+    const message = reply.closest('.grounded-answer')! as HTMLElement
+    expect(within(message).getAllByRole('heading', { name: 'Risposta Mapi' })).toHaveLength(1)
+    expect(message.querySelector('details, dl, .compilation-message')).not.toBeInTheDocument()
+    expect(within(message).queryByText(question)).not.toBeInTheDocument()
+    expect(stored.version).toBe(3)
+    expect(stored.fields[0].value).toBeNull()
+    expect(api.updateCompilationFields).not.toHaveBeenCalled()
   })
 
 })

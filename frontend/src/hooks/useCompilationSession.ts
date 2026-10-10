@@ -32,7 +32,7 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
 
   useEffect(() => {
     const controller = new AbortController()
-    // A read refresh keeps the displayed session and any drafts in its details.
+    // A read refresh keeps the displayed session and the text in the composer.
     setState((s) => ({ key, session: s.key === key ? s.session : null,
       loading: Boolean(conversationId), busy: false, error: null }))
     if (projectId && conversationId) {
