@@ -30,17 +30,25 @@ import { ProjectModelSelector } from '../components/ProjectModelSelector'
 import { useDismissibleMenu } from '../hooks/useDismissibleMenu'
 import { useProject } from '../hooks/useProject'
 import { useCompilationSession } from '../hooks/useCompilationSession'
-import type { FormReference, GroundedAnswer, ProjectFile } from '../types'
+import type { DocumentReference, FormReference, GroundedAnswer, ProjectFile } from '../types'
 
 interface ChatTurn {
   id: string
   question: string
   result: GroundedAnswer | null
   error: string | null
-  form_reference?: FormReference | null
+  document_reference?: DocumentReference | null
 }
 
 const MAX_PROMPT_LENGTH = 4_000
+
+function documentReferenceOf(value: {
+  document_reference?: DocumentReference | null; form_reference?: FormReference | null
+}): DocumentReference | null {
+  if (value.document_reference) return value.document_reference
+  const form = value.form_reference
+  return form ? { document_id: form.form_id, name: form.name, role: 'form' } : null
+}
 
 function ConversationTurn({ turn, assistantContent, processing = false }: {
   turn: ChatTurn; assistantContent?: ReactNode; processing?: boolean
@@ -55,7 +63,7 @@ function ConversationTurn({ turn, assistantContent, processing = false }: {
       <div className="user-message">
         <span>Tu</span>
         <p>{turn.question}</p>
-        {turn.form_reference && <small className="chat-form-reference">@{turn.form_reference.name}</small>}
+        {turn.document_reference && <small className="chat-form-reference">@{turn.document_reference.name}</small>}
       </div>
 
       <AssistantMessage id={answerTitleId} model={result?.model}
@@ -124,14 +132,15 @@ export function ProjectWorkspacePage() {
   const [changingModel, setChangingModel] = useState(false)
   const [conversationLoading, setConversationLoading] = useState(false)
   const [conversationError, setConversationError] = useState<string | null>(null)
-  const [formReference, setFormReference] = useState<FormReference | null>(null)
+  const [documentReference, setDocumentReference] = useState<DocumentReference | null>(null)
   const [mention, setMention] = useState<{ start: number; end: number; query: string } | null>(null)
   const [mentionIndex, setMentionIndex] = useState(0)
-  const forms = project?.files.filter((file) => file.kind === 'form') ?? []
-  const selectedForm = forms.find((file) => file.id === formReference?.form_id)
-  const mentionOptions = forms.filter((file) => file.name.toLocaleLowerCase().includes(mention?.query.toLocaleLowerCase() ?? ''))
+  const documents = (project?.files.filter((file) => ['form', 'source'].includes(file.kind)) ?? [])
+    .sort((a, b) => Number(b.kind === 'form') - Number(a.kind === 'form'))
+  const selectedDocument = documents.find((file) => file.id === documentReference?.document_id)
+  const mentionOptions = documents.filter((file) => file.name.toLocaleLowerCase().includes(mention?.query.toLocaleLowerCase() ?? ''))
   const answerRequest = useRef<AbortController | null>(null)
-  const compilation = useCompilationSession(projectId, conversationId, selectedForm?.id,
+  const compilation = useCompilationSession(projectId, conversationId, undefined,
     searching || conversationLoading || changingModel, answerRequest)
   // A freshly created chat must finish navigation before it can accept another mutation.
   const activeSession = compilation.session?.conversation_id === conversationId ? compilation.session : null
@@ -161,7 +170,7 @@ export function ProjectWorkspacePage() {
     setTurns([])
     setSearching(false)
     setConversationError(null)
-    setFormReference(null)
+    setDocumentReference(null)
     setMention(null)
     turnSequence.current = 0
     activeConversation.current = null
@@ -176,7 +185,7 @@ export function ProjectWorkspacePage() {
       setTurns([])
       setConversationLoading(false)
       setConversationError(null)
-      setFormReference(null)
+      setDocumentReference(null)
       setMention(null)
       return
     }
@@ -186,7 +195,7 @@ export function ProjectWorkspacePage() {
     activeConversation.current = conversationId
     setTurns([])
     setPrompt('')
-    setFormReference(null)
+    setDocumentReference(null)
     setMention(null)
     setConversationLoading(true)
     setConversationError(null)
@@ -195,11 +204,11 @@ export function ProjectWorkspacePage() {
         if (controller.signal.aborted) return
         activeConversation.current = conversation.id
         loadedConversation.current = conversation.id
-        setFormReference(conversation.form_reference ?? null)
+        setDocumentReference(documentReferenceOf(conversation))
         setTurns(conversation.turns.map((turn) => ({
           id: `turn-${turn.id}`,
           question: turn.question,
-          form_reference: turn.form_reference,
+          document_reference: documentReferenceOf(turn),
           result: {
             ...turn,
             conversation_id: conversation.id,
@@ -263,7 +272,7 @@ export function ProjectWorkspacePage() {
         return answer ? { ...turn, result: { ...turn.result, answer } } : turn
       }),
       { id: turnId, question: query, result: null, error: null,
-        form_reference: selectedForm ? { form_id: selectedForm.id, name: selectedForm.name } : null },
+        document_reference: selectedDocument ? documentReference : null },
     ])
     setPrompt('')
     setMention(null)
@@ -274,7 +283,7 @@ export function ProjectWorkspacePage() {
         query,
         activeConversation.current,
         controller.signal,
-        selectedForm?.id,
+        selectedDocument?.id,
         activeSession ? { session_id: activeSession.id, version: activeSession.version } : undefined,
       )
       if (controller.signal.aborted) return
@@ -328,9 +337,10 @@ export function ProjectWorkspacePage() {
     event.currentTarget.form?.requestSubmit()
   }
 
-  function selectMention(form: ProjectFile) {
+  function selectMention(document: ProjectFile) {
     if (!mention || compilation.isProcessing() || compilation.loading || searching) return
-    setFormReference({ form_id: form.id, name: form.name })
+    setDocumentReference({ document_id: document.id, name: document.name,
+      role: document.kind === 'form' ? 'form' : 'source' })
     setPrompt(prompt.slice(0, mention.start) + prompt.slice(mention.end))
     setMention(null)
     composerInput.current?.focus()
@@ -403,20 +413,20 @@ export function ProjectWorkspacePage() {
       className={`composer${turns.length > 0 || activeSession ? ' composer--docked' : ''}`}
       onSubmit={submitPrompt}
     >
-      {selectedForm && <div className="composer-mention">
-        <span className="composer-mention-chip"><FileText size={14} /><span>@{selectedForm.name}</span>
-          <button type="button" className="icon-button" aria-label="Rimuovi riferimento al modulo" title="Rimuovi riferimento al modulo"
-            disabled={compilation.processing || compilation.loading || searching} onClick={() => setFormReference(null)}><X size={14} /></button>
+      {selectedDocument && <div className="composer-mention">
+        <span className="composer-mention-chip"><FileText size={14} /><span>@{selectedDocument.name}</span>
+          <button type="button" className="icon-button" aria-label="Rimuovi riferimento al documento" title="Rimuovi riferimento al documento"
+            disabled={compilation.processing || compilation.loading || searching} onClick={() => setDocumentReference(null)}><X size={14} /></button>
         </span>
       </div>}
       <textarea
         ref={composerInput}
         aria-label="Messaggio per Mapi RAG"
-        placeholder="Come posso aiutarti? Usa @ per scegliere un modulo"
+        placeholder="Come posso aiutarti? Usa @ per scegliere un documento"
         maxLength={MAX_PROMPT_LENGTH}
         value={prompt}
-        aria-controls={mention ? 'composer-form-options' : undefined}
-        aria-activedescendant={mention && mentionOptions[mentionIndex] ? `form-option-${mentionOptions[mentionIndex].id}` : undefined}
+        aria-controls={mention ? 'composer-document-options' : undefined}
+        aria-activedescendant={mention && mentionOptions[mentionIndex] ? `document-option-${mentionOptions[mentionIndex].id}` : undefined}
         onChange={(event) => {
           const text = event.target.value
           const end = event.target.selectionStart
@@ -427,10 +437,18 @@ export function ProjectWorkspacePage() {
         }}
         onKeyDown={handleComposerKeyDown}
       />
-      {mention && <div className="composer-mention-menu" id="composer-form-options" role="listbox" aria-label="Moduli del progetto">
-        {mentionOptions.length === 0 && <p>Nessun modulo corrispondente nel progetto</p>}
-        {mentionOptions.map((form, index) => <button type="button" role="option" id={`form-option-${form.id}`}
-          aria-selected={index === mentionIndex} key={form.id} onClick={() => selectMention(form)}>{form.name}</button>)}
+      {mention && <div className="composer-mention-menu" id="composer-document-options" role="listbox" aria-label="Documenti del progetto">
+        {mentionOptions.length === 0 && <p>Nessun documento corrispondente nel progetto</p>}
+        {(['form', 'source'] as const).map((role) => {
+          const options = mentionOptions.filter((file) => file.kind === role)
+          const label = role === 'form' ? 'Moduli da compilare' : 'Bandi e fonti'
+          return options.length > 0 && <div role="group" aria-label={label} key={role}>
+            <p className="composer-mention-heading" aria-hidden="true">{label}</p>
+            {options.map((document) => <button type="button" role="option" id={`document-option-${document.id}`}
+              aria-selected={mentionOptions[mentionIndex]?.id === document.id} key={document.id}
+              onClick={() => selectMention(document)}>{document.name}</button>)}
+          </div>
+        })}
       </div>}
       {!compilation.session && compilation.error && <div>
         <p role="alert">{compilation.error}</p>
@@ -441,10 +459,10 @@ export function ProjectWorkspacePage() {
         <button
           className={`composer-mention-trigger${mention ? ' is-active' : ''}`}
           type="button"
-          aria-label="Aggiungi un modulo"
-          title="Aggiungi un modulo"
+          aria-label="Aggiungi un documento"
+          title="Aggiungi un documento"
           disabled={searching || conversationLoading || changingModel || compilation.loading
-            || compilation.processing || forms.length === 0}
+            || compilation.processing || documents.length === 0}
           onClick={() => {
             const position = composerInput.current?.selectionStart ?? prompt.length
             setMention({ start: position, end: position, query: '' })

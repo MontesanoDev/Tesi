@@ -547,13 +547,22 @@ async def handle_decision(
             )
             if form_id is None:
                 return "Seleziona con @ il modulo DOCX da compilare.", None
-            session = await run_in_threadpool(
-                sessions.create_session,
-                project_id,
-                form_id,
-                conversation_id,
-                start_in_chat=True,
-            )
+            from app.docx_templates import DocumentInputError, DocxTooLargeError
+
+            try:
+                session = await run_in_threadpool(
+                    sessions.create_session,
+                    project_id,
+                    form_id,
+                    conversation_id,
+                    start_in_chat=True,
+                )
+            except DocxTooLargeError:
+                raise
+            except DocumentInputError:
+                return ("Non riesco a individuare campi compilabili supportati in questo DOCX. "
+                        "Posso aiutarti a consultarlo; per compilarlo serve un modulo con "
+                        "celle vuote o segnaposti riconoscibili.", None)
             return "Certo. Analizzo il modulo e verifico le informazioni disponibili.", {
                 "session_id": session["id"],
                 "action": "start",

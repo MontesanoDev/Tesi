@@ -183,9 +183,11 @@ def _expand_neighbor_evidence(
     *,
     target: str = "source",
     form_id: int | None = None,
+    document_id: int | None = None,
 ) -> list[dict]:
     evidence_filter = project_evidence_filter(target)
-    anchors = reload_evidence(project_id, anchors, target=target, form_id=form_id)
+    anchors = reload_evidence(project_id, anchors, target=target, form_id=form_id,
+                              document_id=document_id)
     if len(anchors) >= max_results:
         return anchors[:max_results]
 
@@ -631,6 +633,7 @@ def get_conversation_history(conversation_id: str, limit: int = 6) -> list[dict]
 def reload_evidence(
     project_id: str, evidence: list[dict], *, target: str = "source", form_id: int | None = None,
     db: sqlite3.Connection | None = None,
+    document_id: int | None = None,
 ) -> list[dict]:
     """Reload sources, borrowing an existing transaction without committing or closing it."""
     evidence_filter = project_evidence_filter(target)
@@ -642,6 +645,8 @@ def reload_evidence(
         for item in evidence:
             chunk_id, file_id = item.get("chunk_id"), item.get("file_id")
             if type(chunk_id) is not int or type(file_id) is not int:
+                continue
+            if document_id is not None and file_id != document_id:
                 continue
             if target == "form" and (file_id < 0 or (form_id is not None and file_id != form_id)):
                 continue
@@ -699,8 +704,15 @@ def _public_evidence(evidence: list[dict]) -> list[dict]:
     ]
 
 
+def _legacy_document_reference(reference: dict | None) -> dict | None:
+    return ({"document_id": reference["form_id"], "name": reference["name"], "role": "form"}
+            if reference else None)
+
+
 def save_conversation_turn(conversation_id: str, response: dict) -> int | None:
     evidence = _public_evidence(response.get("evidence", []))
+    document_reference = (response.get("document_reference")
+                          or _legacy_document_reference(response.get("form_reference")))
     with connection() as db:
         db.execute("BEGIN IMMEDIATE")
         conversation = db.execute(
@@ -713,8 +725,9 @@ def save_conversation_turn(conversation_id: str, response: dict) -> int | None:
             INSERT INTO conversation_turns (
                 conversation_id, question, answer, citations_json,
                 missing_information_json, evidence_json, generation_status,
-                model, total_tokens, notice, form_reference_json, compilation_json
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                model, total_tokens, notice, form_reference_json, compilation_json,
+                document_reference_json
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 conversation_id,
@@ -729,6 +742,7 @@ def save_conversation_turn(conversation_id: str, response: dict) -> int | None:
                 response.get("notice"),
                 json.dumps(response.get("form_reference"), ensure_ascii=False),
                 json.dumps(response.get("compilation"), ensure_ascii=False),
+                json.dumps(document_reference, ensure_ascii=False),
             ),
         )
         turn_id = cursor.lastrowid
@@ -756,6 +770,14 @@ def save_conversation_turn(conversation_id: str, response: dict) -> int | None:
             (reference["form_id"] if reference else None, conversation["project_id"],
              conversation_id),
         )
+        db.execute(
+            """UPDATE conversations SET selected_document_id=(
+                   SELECT id FROM project_files WHERE id=? AND project_id=?
+                     AND kind IN ('source', 'form')
+               ) WHERE id=?""",
+            (document_reference["document_id"] if document_reference else None,
+             conversation["project_id"], conversation_id),
+        )
     return int(turn_id)
 
 
@@ -778,7 +800,7 @@ def get_conversation(project_id: str, conversation_id: str) -> dict | None:
                 id, question, answer, citations_json,
                 missing_information_json, evidence_json,
                 generation_status, model, total_tokens, notice,
-                form_reference_json, compilation_json
+                form_reference_json, compilation_json, document_reference_json
             FROM conversation_turns
             WHERE conversation_id = ?
             ORDER BY id
@@ -792,8 +814,16 @@ def get_conversation(project_id: str, conversation_id: str) -> dict | None:
                WHERE c.id=? AND c.project_id=? AND f.project_id=c.project_id AND f.kind='form'""",
             (conversation_id, project_id),
         ).fetchone()
+        selected_document = db.execute(
+            """SELECT f.id AS document_id, f.name, f.kind AS role FROM project_files f
+               JOIN conversations c ON COALESCE(c.selected_document_id,c.selected_form_id)=f.id
+               WHERE c.id=? AND c.project_id=? AND f.project_id=c.project_id
+                 AND f.kind IN ('source', 'form')""",
+            (conversation_id, project_id),
+        ).fetchone()
     result = dict(conversation)
     result["form_reference"] = dict(selected_form) if selected_form else None
+    result["document_reference"] = dict(selected_document) if selected_document else None
     result["turns"] = [
         {
             "id": turn["id"],
@@ -807,6 +837,9 @@ def get_conversation(project_id: str, conversation_id: str) -> dict | None:
             "total_tokens": turn["total_tokens"],
             "notice": turn["notice"],
             "form_reference": json.loads(turn["form_reference_json"] or "null"),
+            "document_reference": (json.loads(turn["document_reference_json"] or "null")
+                                   or _legacy_document_reference(
+                                       json.loads(turn["form_reference_json"] or "null"))),
             "compilation": json.loads(turn["compilation_json"] or "null"),
         }
         for turn in turns
@@ -1144,6 +1177,7 @@ def search_project_evidence(
     *,
     target: str = "source",
     form_id: int | None = None,
+    document_id: int | None = None,
 ) -> list[dict] | None:
     evidence_filter = project_evidence_filter(target)
     fts_query = _build_fts_query(query)
@@ -1171,10 +1205,12 @@ def search_project_evidence(
             WHERE document_chunks_fts MATCH ? AND c.project_id = ?
               AND f.project_id = c.project_id AND {evidence_filter}
               AND (? IS NULL OR f.id = ?)
+              AND (? IS NULL OR f.id = ?)
             ORDER BY rank
             LIMIT ?
             """,
-            (target, fts_query, project_id, form_id, form_id, max(limit * 6, 24)),
+            (target, fts_query, project_id, form_id, form_id, document_id, document_id,
+             max(limit * 6, 24)),
         )
         global_candidates = _rows(
             db,
@@ -1198,12 +1234,13 @@ def search_project_evidence(
             LIMIT ?
             """,
             (fts_query, max(limit * 6, 24)),
-        ) if target == "source" else []
+        ) if target == "source" and document_id is None else []
         candidates = project_candidates + global_candidates
     anchors = _rerank_evidence(query, candidates, limit)
     if include_neighbors:
         return _expand_neighbor_evidence(
             project_id, anchors, max_results=limit * 2, target=target, form_id=form_id,
+            document_id=document_id,
         )
     return anchors
 

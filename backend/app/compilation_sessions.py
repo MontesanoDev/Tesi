@@ -292,8 +292,9 @@ def create_session(
             # BEGIN IMMEDIATE serializes starts, preserving any historical duplicates.
             if start_in_chat:
                 db.execute(
-                    "UPDATE conversations SET selected_form_id=?, updated_at=CURRENT_TIMESTAMP "
-                    "WHERE id=? AND project_id=?", (form_id, conversation_id, project_id),
+                    "UPDATE conversations SET selected_form_id=?, selected_document_id=?, "
+                    "updated_at=CURRENT_TIMESTAMP WHERE id=? AND project_id=?",
+                    (form_id, form_id, conversation_id, project_id),
                 )
                 touch_project(db, project_id)
             if existing:

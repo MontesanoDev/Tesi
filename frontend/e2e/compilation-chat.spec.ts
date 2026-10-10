@@ -48,7 +48,7 @@ for (const reducedMotion of [false, true]) {
         files: [form, { ...form, id: 43, name: 'fonte.txt', kind: 'source' }],
       } })
       if (path === `${base}/answer`) {
-        expect(body.form_id).toBe(42)
+        expect(body.document_id).toBe(42)
         let answer = 'Il modulo richiede dati aziendali e del direttore tecnico.'
         let compilation: CompilationChatAction | null = null
         if (body.question === 'me lo compili?') {
@@ -153,7 +153,7 @@ for (const reducedMotion of [false, true]) {
     const composer = page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
     const assistantReply = page.getByRole('region', { name: 'Risposta Mapi' }).last()
     await composer.fill('@')
-    await expect(page.getByRole('option')).toHaveCount(1)
+    await expect(page.getByRole('option')).toHaveCount(2)
     await page.getByRole('option', { name: form.name }).click()
     await expect(page.locator('.composer-mention-chip')).toContainText(form.name)
     await composer.fill('riassumilo')

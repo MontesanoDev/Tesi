@@ -119,12 +119,14 @@ describe('CompilationSession nella chat', () => {
     else Reflect.deleteProperty(HTMLElement.prototype, 'scrollTo')
   })
 
-  it('mostra solo i moduli del progetto e seleziona una mention strutturata anche da tastiera', async () => {
+  it('raggruppa fonti e moduli del progetto e seleziona una mention anche da tastiera', async () => {
     await setup()
     const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
     fireEvent.change(input, { target: { value: '@' } })
-    expect(screen.getAllByRole('option')).toHaveLength(2)
-    expect(screen.queryByRole('option', { name: 'fonte.txt' })).not.toBeInTheDocument()
+    expect(screen.getAllByRole('option')).toHaveLength(3)
+    expect(screen.getByRole('option', { name: 'fonte.txt' })).toBeInTheDocument()
+    expect(screen.getByRole('group', { name: 'Bandi e fonti' })).toBeInTheDocument()
+    expect(screen.getByRole('group', { name: 'Moduli da compilare' })).toBeInTheDocument()
     expect(screen.queryByRole('option', { name: 'privato-beta.docx' })).not.toBeInTheDocument()
     fireEvent.keyDown(input, { key: 'ArrowDown' })
     fireEvent.keyDown(input, { key: 'Enter' })
@@ -132,7 +134,7 @@ describe('CompilationSession nella chat', () => {
     expect(input).toHaveValue('')
     expect(screen.queryByRole('button', { name: 'Avvia compilazione' })).not.toBeInTheDocument()
     expect(api.startCompilationSession).not.toHaveBeenCalled()
-    fireEvent.click(screen.getByRole('button', { name: 'Rimuovi riferimento al modulo' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Rimuovi riferimento al documento' }))
     selectForm()
     expect(screen.getByText('@domanda.docx')).toBeInTheDocument()
   })
@@ -143,12 +145,12 @@ describe('CompilationSession nella chat', () => {
     const draft = 'Puoi spiegarmi quali requisiti richiede questo modulo?'
     fireEvent.change(input, { target: { value: draft } })
     input.setSelectionRange(5, 12)
-    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi un modulo' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi un documento' }))
     expect(input).toHaveValue(draft)
     fireEvent.keyDown(input, { key: 'Escape' })
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument()
     expect(input).toHaveValue(draft)
-    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi un modulo' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi un documento' }))
     fireEvent.click(screen.getByRole('option', { name: form.name }))
     expect(screen.getByText('@domanda.docx')).toBeInTheDocument()
     expect(input).toHaveValue(draft)
@@ -165,6 +167,41 @@ describe('CompilationSession nella chat', () => {
     submit('riassumilo')
     await screen.findByText('Requisiti del modulo')
     expect(api.projectAnswer).toHaveBeenCalledWith('alpha', 'riassumilo', null, expect.any(AbortSignal), 10, undefined)
+    expect(api.startCompilationSession).not.toHaveBeenCalled()
+  })
+
+  it('consulta una fonte conservando la compilazione e la sua versione in attesa', async () => {
+    stored = conversational(session([field('f1', 'Data abilitazione', 'MISSING')], 'WAITING_FOR_USER', 7))
+    const before = structuredClone(stored)
+    vi.mocked(api.projectAnswer).mockResolvedValue({ conversation_id: 'chat-1', turn_id: 2,
+      question: 'spiegami la fonte', answer: 'La fonte descrive i requisiti del bando.', citations: [], evidence: [],
+      missing_information: [], generation_status: 'completed', model: 'test', total_tokens: 1,
+      notice: null, document_reference: { document_id: 12, name: 'fonte.txt', role: 'source' } })
+    await setup('/projects/alpha/conversations/chat-1')
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Aggiungi un documento' })).toBeEnabled())
+    selectForm('fonte.txt')
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Aggiungi un documento' })).toBeEnabled())
+    submit('spiegami la fonte')
+    await screen.findByText('La fonte descrive i requisiti del bando.')
+    expect(api.projectAnswer).toHaveBeenCalledWith('alpha', 'spiegami la fonte', 'chat-1',
+      expect.any(AbortSignal), 12, { session_id: before.id, version: 7 })
+    expect(stored).toEqual(before)
+    expect(api.resolveCompilationSession).not.toHaveBeenCalled()
+    expect(api.startCompilationSession).not.toHaveBeenCalled()
+    expect(screen.getAllByText('@fonte.txt')).toHaveLength(2)
+  })
+
+  it('abilita il picker anche quando il progetto contiene soltanto fonti', async () => {
+    const getProject = vi.mocked(api.project).getMockImplementation()!
+    vi.mocked(api.project).mockImplementation(async (...args) => {
+      const project = await getProject(...args)
+      return { ...project, files: project.files.filter((file) => file.kind === 'source') }
+    })
+    await setup()
+    fireEvent.click(screen.getByRole('button', { name: 'Aggiungi un documento' }))
+    expect(screen.getAllByRole('option')).toHaveLength(1)
+    fireEvent.click(screen.getByRole('option', { name: 'fonte.txt' }))
+    expect(screen.getByText('@fonte.txt')).toBeInTheDocument()
     expect(api.startCompilationSession).not.toHaveBeenCalled()
   })
 

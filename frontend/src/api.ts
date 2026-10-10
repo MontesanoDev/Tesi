@@ -230,11 +230,11 @@ export const api = {
       `/projects/${projectId}/conversations/${conversationId}`,
       { signal },
     ),
-  projectAnswer: (projectId: string, question: string, conversationId?: string | null, signal?: AbortSignal, formId?: number | null, compilation?: { session_id: string; version: number }) =>
+  projectAnswer: (projectId: string, question: string, conversationId?: string | null, signal?: AbortSignal, documentId?: number | null, compilation?: { session_id: string; version: number }) =>
     request<GroundedAnswer>(`/projects/${projectId}/answer`, {
       method: 'POST',
       body: JSON.stringify({ question, conversation_id: conversationId ?? null,
-        ...(formId != null ? { form_id: formId } : {}),
+        ...(documentId != null ? { document_id: documentId } : {}),
         ...(compilation ? { compilation_session_id: compilation.session_id, compilation_version: compilation.version } : {}) }),
       signal,
     }),

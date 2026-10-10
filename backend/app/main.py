@@ -5,6 +5,7 @@ import logging
 import os
 from contextlib import asynccontextmanager
 from dataclasses import replace
+from pathlib import Path
 from shutil import rmtree
 from typing import Annotated, Literal
 from uuid import uuid4
@@ -676,13 +677,28 @@ async def project_evidence(
 
 @app.post("/api/projects/{project_id}/answer", response_model=GroundedAnswerResponse)
 async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
-    if get_project(project_id) is None:
+    project = get_project(project_id)
+    if project is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
     form_reference = None
+    document_reference = None
+    selected_document = None
     mentioned_forms = None
-    if payload.form_id is not None:
+    document_id = payload.document_id if payload.document_id is not None else payload.form_id
+    if document_id is not None:
+        document = next((file for file in project["files"]
+                         if file["id"] == document_id and file["kind"] in {"source", "form"}), None)
+        if document is None or (payload.form_id is not None and document["kind"] != "form"):
+            raise HTTPException(404, "Documento menzionato non trovato nel progetto")
+        document_reference = {
+            "document_id": document_id, "name": document["name"], "role": document["kind"],
+        }
+        selected_document = {**document_reference, "can_compile": (
+            document["kind"] == "form" and Path(document["name"]).suffix.lower() == ".docx"
+        )}
+    if document_reference and document_reference["role"] == "form":
         mentioned_forms = [f for f in await run_in_threadpool(list_forms, project_id)
-                           if f["id"] == payload.form_id]
+                           if f["id"] == document_id]
         if not mentioned_forms:
             raise HTTPException(404, "Modulo menzionato non trovato nel progetto")
         form = mentioned_forms[0]
@@ -697,7 +713,8 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
     conversation_id = conversation["id"]
     history = get_conversation_history(conversation_id)
     compilation_session = await run_in_threadpool(
-        active_session, project_id, conversation_id, payload.form_id,
+        active_session, project_id, conversation_id,
+        payload.form_id if payload.document_id is None else None,
         payload.compilation_session_id,
     )
 
@@ -717,6 +734,7 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
     base_response = {
         "question": payload.question,
         "form_reference": form_reference,
+        "document_reference": document_reference,
         "answer": None,
         "citations": [],
         "missing_information": [],
@@ -771,7 +789,9 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
                          else await run_in_threadpool(list_forms, project_id))
                 planned = await plan_chat_turn(
                     payload.question, history, forms,
-                    **({"selected_form": form_reference} if form_reference else {}),
+                    **({"selected_document": selected_document}
+                       if payload.document_id is not None else
+                       {"selected_form": form_reference} if form_reference else {}),
                     **({"compilation": planner_context(compilation_session)}
                        if compilation_session else {}),
                 )
@@ -794,6 +814,18 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
                 workflow_decision = route_compilation_control(
                     planned.decision, payload.question, compilation_session,
                 )
+                if (workflow_decision.action == "compile" and selected_document
+                        and not selected_document["can_compile"]):
+                    available_forms = await run_in_threadpool(list_forms, project_id)
+                    available = [f["name"] for f in available_forms
+                                 if Path(f["name"]).suffix.lower() == ".docx"]
+                    text = (f"Posso consultare «{selected_document['name']}», ma questo documento "
+                            "non è un modulo DOCX compilabile. ")
+                    text += ("Seleziona con @ il modulo da compilare: " + ", ".join(available)
+                             if available else
+                             "Carica il modulo DOCX da compilare e selezionalo con @.")
+                    return persist({**base_response, "answer": text, "generation_status": "direct",
+                                    "model": planned.model, "total_tokens": planned.total_tokens})
                 if workflow_decision.action not in {"reply", "retrieve"}:
                     text, command = await handle_decision(
                         project_id, conversation_id, workflow_decision, form_reference,
@@ -802,9 +834,15 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
                     return persist({**base_response, "answer": text, "compilation": command,
                                     "generation_status": "direct", "model": planned.model,
                                     "total_tokens": planned.total_tokens})
-                decision = route_availability_request(planned.decision, payload.question, forms)
+                source_mention = bool(document_reference and document_reference["role"] == "source")
+                decision = (planned.decision if source_mention else
+                            route_availability_request(planned.decision, payload.question, forms))
+                if source_mention and decision.action == "retrieve":
+                    decision = decision.model_copy(update={
+                        "target": "source", "form_id": None, "source_queries": [],
+                    })
                 if form_reference and decision.target in {"form", "mixed"}:
-                    decision = decision.model_copy(update={"form_id": payload.form_id})
+                    decision = decision.model_copy(update={"form_id": form_reference["form_id"]})
                 logger.info(
                     "Chat routing project=%s planned=%s effective=%s form_id=%s",
                     project_id, planned.decision.target, decision.target, decision.form_id,
@@ -928,12 +966,14 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
                         "Chat search project=%s target=%s queries=%s", project_id, target, queries,
                     )
                     selected_form = form_id if target == "form" else None
+                    document_scope = {"document_id": document_id} if source_mention else {}
                     anchor_limit = 2 if mixed and target == "form" else 4
                     for query in queries:
                         results = await run_in_threadpool(
                             search_project_evidence, project_id, query,
                             limit=anchor_limit, include_neighbors=False,
                             target=target, form_id=selected_form,
+                            **document_scope,
                         )
                         if results is None:
                             raise HTTPException(
@@ -949,6 +989,7 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
                     evidence = await run_in_threadpool(
                         expand_evidence_context, project_id, contexts[target],
                         target=target, form_id=selected_form, max_results=4 if mixed else 8,
+                        **document_scope,
                     )
                     contexts[target] = evidence
                     logger.info(

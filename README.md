@@ -70,7 +70,8 @@ dell'utente: `systemctl --user status ollama` ne verifica lo stato e
 3. Caricare le fonti PDF, TXT o Markdown nel progetto o nella conoscenza
    aziendale. La chat cerca nelle fonti e mostra le evidenze utilizzate.
 4. In **Moduli da compilare**, caricare uno o più originali DOCX o TXT,
-   fino a 20 MB per file. Si possono scaricare e rimuovere singolarmente.
+   fino a 20 MB per file. Si possono rimuovere singolarmente; il download della
+   bozza compilata compare nella risposta di Mapi.
    I file vengono conservati senza modifiche, con ruolo `form`, separato dalle
    fonti. Il testo del corpo DOCX (incluse le tabelle) o del TXT viene estratto
    e frammentato negli stessi indici delle fonti, conservando il ruolo del file.
@@ -137,8 +138,15 @@ la **CompilationSession V1 nella chat**: creazione da un DOCX archiviato, candid
 persistiti, risoluzione SOURCE limitata per richiesta, correzioni utente con
 revisioni e generazione di nuove copie dall'originale. API, budget e prova manuale
 sono in [docs/compilation-session-v1.md](docs/compilation-session-v1.md).
-Nel composer digitare `@` e scegliere un modulo: le domande normali lo usano come
-contesto senza compilare. Scrivere **«me lo compili?»** avvia/riprende la sessione
+Nel composer digitare `@`, oppure usare **+**, e scegliere un documento del progetto:
+il menu distingue **Moduli da compilare** e **Bandi e fonti**. Un riferimento per
+messaggio, conservato anche nello storico e dopo la ricarica. `Spiegami @avviso.pdf`
+consulta soltanto quel bando; `spiegami @domanda.docx` interroga il modulo senza
+compilarlo. Consultare un documento conserva l'eventuale compilazione in attesa.
+Ruolo e formato sono verificati dal backend: una fonte PDF o un TXT non avviano
+una compilazione DOCX; un DOCX privo di campi supportati viene segnalato nella chat.
+I nomi dei file non determinano il ruolo. Scrivere **«me lo compili?»** con il modulo
+DOCX selezionato avvia/riprende la sessione
 tramite il planner della chat. L'analisi avanza automaticamente con un budget
 persistito (36 passi / 10 minuti per ciclo), fermandosi per un chiarimento o errore.
 Rispondere alla domanda aperta direttamente nella chat: un valore univoco diventa
@@ -152,7 +160,11 @@ come «spiegati meglio» può ricevere una spiegazione senza modificare campi o
 rinviare la domanda; pausa e ripresa sono intenzioni distinte dalle risposte.
 Riaprire la conversazione ricostruisce stato e domanda dal backend senza azzerare
 il budget. Riavviare il backend aggiornato per le colonne additive dei riferimenti
-e dello storico workflow; non serve reindicizzare.
+e dello storico workflow, incluse `selected_document_id` e `document_reference_json`;
+non serve reindicizzare. `/answer` accetta `document_id`; `form_id` resta compatibile
+per i client precedenti. Il filtro del documento si applica a FTS5, Qdrant, vicini
+e rilettura delle evidenze, escludendo altre fonti e KB globali nella consultazione
+di una fonte selezionata. Le ricerche fattuali senza questo vincolo restano condivise.
 
 Il backend conserva lo storico delle compilazioni generate: elenco, dettaglio e
 download dei documenti già prodotti restano disponibili. Il percorso precedente

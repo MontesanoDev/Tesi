@@ -16,8 +16,12 @@ il [report reale](test-reale-manifestazione-interesse-2026-10-08.md).
 ## Uso conversazionale nella chat
 
 1. Caricare il DOCX nei **Moduli da compilare**. Digitare `@` nel composer e
-   scegliere il modulo: la chip conserva `form_id`. «Riassumilo» e «cosa richiede?»
+   scegliere il modulo: la chip conserva `document_id` e ruolo. «Riassumilo» e «cosa richiede?»
    usano FORM RAG, senza creare sessioni. I TXT sono contesto, non template DOCX.
+   Lo stesso menu, accessibile anche da **+**, include **Bandi e fonti** del
+   progetto. Selezionare `@avviso.pdf` per consultarlo limita le evidenze a quel
+   documento e conserva la compilazione eventualmente in attesa. Il ruolo
+   registrato e il parser determinano le operazioni ammesse, non il nome del file.
 2. Scrivere **«me lo compili?»**. Il planner esistente riconosce l'incarico e
    l'API crea/riprende la sessione della conversazione/form, senza passare al
    generatore RAG. Risposta: «Certo. Analizzo il modulo e verifico le informazioni
@@ -88,7 +92,9 @@ Domande che richiedono nuove informazioni documentali restano sul percorso RAG.
 
 ### Routing, API e persistenza
 
-- `/answer` accetta `form_id` e, per una domanda della sessione visualizzata,
+- `/answer` accetta `document_id` (modulo o fonte del progetto) e conserva
+  `form_id` per i vecchi client. Non si possono indicare due documenti diversi.
+  Per una domanda della sessione visualizzata accetta
   `compilation_session_id` + `compilation_version`. Il backend verifica progetto,
   conversazione, documento e revisione prima di aggiornare. Un cambio concorrente
   risponde 409: rilettura, nessuna ripetizione della mutazione. Unica eccezione:
@@ -140,6 +146,11 @@ Domande che richiedono nuove informazioni documentali restano sul percorso RAG.
 - Risposte e turni conservano `compilation={session_id,action}` opzionale in
   `conversation_turns.compilation_json`, nuova colonna additiva. Restano
   `form_reference`, `selected_form_id` e `form_reference_json` già implementati.
+  `document_reference={document_id,name,role}` è salvato nei turni e nelle
+  risposte; `selected_document_id` e `document_reference_json` sono colonne
+  additive aggiornate automaticamente all'avvio. I vecchi FORM sono convertiti
+  in lettura, senza riscrivere lo storico. La selezione di lettura è distinta
+  dalla sessione attiva e non ne modifica campi, revisioni, domanda o budget.
 - `chat_workflow` nello snapshot JSON conserva inizio ciclo, passi consumati,
   pausa, tentativi automatici per field e chiarimenti pendenti/attivi con slot,
   destinatari e fingerprint. `user_paused` è distinto da pausa per budget/errore;

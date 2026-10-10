@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 MAX_QUESTION_LENGTH = 4_000
 
@@ -219,6 +219,12 @@ class FormReference(BaseModel):
     name: str
 
 
+class DocumentReference(BaseModel):
+    document_id: int
+    name: str
+    role: Literal["form", "source"]
+
+
 class CompilationChatAction(BaseModel):
     session_id: str
     action: Literal["start", "updated", "clarify", "generated", "deferred", "paused", "resumed"]
@@ -236,6 +242,7 @@ class ConversationTurn(BaseModel):
     total_tokens: int | None
     notice: str | None
     form_reference: FormReference | None = None
+    document_reference: DocumentReference | None = None
     compilation: CompilationChatAction | None = None
 
 
@@ -243,6 +250,7 @@ class ConversationDetail(Conversation):
     project_id: str
     turns: list[ConversationTurn]
     form_reference: FormReference | None = None
+    document_reference: DocumentReference | None = None
 
 
 class EvidenceSearch(BaseModel):
@@ -254,8 +262,16 @@ class QuestionRequest(BaseModel):
     question: str = Field(min_length=2, max_length=MAX_QUESTION_LENGTH)
     conversation_id: str | None = Field(default=None, max_length=80)
     form_id: int | None = Field(default=None, gt=0)
+    document_id: int | None = Field(default=None, gt=0)
     compilation_session_id: str | None = Field(default=None, max_length=100)
     compilation_version: int | None = Field(default=None, ge=1)
+
+    @model_validator(mode="after")
+    def consistent_document(self):
+        if (self.form_id is not None and self.document_id is not None
+                and self.form_id != self.document_id):
+            raise ValueError("Indica un solo documento per messaggio")
+        return self
 
 
 class GroundedAnswerResponse(BaseModel):
@@ -271,4 +287,5 @@ class GroundedAnswerResponse(BaseModel):
     total_tokens: int | None
     notice: str | None
     form_reference: FormReference | None = None
+    document_reference: DocumentReference | None = None
     compilation: CompilationChatAction | None = None

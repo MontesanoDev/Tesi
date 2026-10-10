@@ -33,6 +33,17 @@ Il planner usa ora un solo contratto `TurnPlan` in tutti gli stati della chat:
 spiegazioni, dati USER e comandi di sessione hanno vincoli distinti, senza una
 seconda chiamata classificatrice. I guard sui controlli preesistenti restano.
 
+Il selettore `@` include ora fonti e moduli del progetto, distinti per ruolo.
+`document_id` e `document_reference` identificano il documento da consultare;
+la sessione di compilazione mantiene una propria identità e domanda. Il backend
+verifica appartenenza e ruolo prima della chat, senza dedurre la compilabilità
+dal nome. Una fonte selezionata vincola FTS5, Qdrant, espansione dei vicini e
+rilettura delle evidenze. La selezione e i riferimenti storici sono persistiti
+con colonne additive; i vecchi riferimenti FORM sono letti senza backfill.
+Un formato non supportato o un DOCX senza campi non crea sessioni alternative.
+Il menu mantiene un riferimento alla volta; la compilazione conserva il limite
+di un originale per sessione. Non è introdotta una coda di compilazione multipla.
+
 ## Struttura del repository
 
 | Percorso | Responsabilità |

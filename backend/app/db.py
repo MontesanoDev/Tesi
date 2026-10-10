@@ -350,6 +350,11 @@ def init_database() -> None:
             "INTEGER REFERENCES project_files(id) ON DELETE SET NULL",
         )
         _ensure_column(db, "conversation_turns", "form_reference_json", "TEXT")
+        _ensure_column(
+            db, "conversations", "selected_document_id",
+            "INTEGER REFERENCES project_files(id) ON DELETE SET NULL",
+        )
+        _ensure_column(db, "conversation_turns", "document_reference_json", "TEXT")
         _ensure_column(db, "conversation_turns", "compilation_json", "TEXT")
         _ensure_column(db, "project_ai_settings", "thinking_mode", "INTEGER NOT NULL DEFAULT 0")
         _migrate_project_ai_settings(db)

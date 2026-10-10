@@ -4,8 +4,9 @@
 .composer-mention-chip button { flex-shrink: 0; width: 24px; height: 24px; }
 .composer-mention .button { font-size: 12px; min-height: 30px; padding: 5px 9px; }
 .composer-mention-menu { position: absolute; left: 12px; right: 12px; bottom: calc(100% + 8px); z-index: 40; margin: 0; padding: 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); max-height: 240px; overflow: auto; box-shadow: 0 16px 34px rgba(0, 0, 0, .45); }
-.composer-mention-menu > button { display: block; width: 100%; text-align: left; border: 0; background: transparent; padding: 8px; border-radius: 6px; font: inherit; font-size: 13px; overflow-wrap: anywhere; }
-.composer-mention-menu > button[aria-selected=true], .composer-mention-menu > button:hover { background: var(--control-hover); }
+.composer-mention-menu [role=option] { display: block; width: 100%; text-align: left; border: 0; background: transparent; padding: 8px; border-radius: 6px; font: inherit; font-size: 13px; overflow-wrap: anywhere; }
+.composer-mention-menu [role=option][aria-selected=true], .composer-mention-menu [role=option]:hover { background: var(--control-hover); }
+.composer-mention-heading { margin: 8px; color: var(--text-muted); font-size: 11px; font-weight: 600; }
 .composer-mention-trigger { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--text-muted); cursor: pointer; }
 .composer-mention-trigger:hover, .composer-mention-trigger.is-active { color: var(--text); background: var(--control-hover); }
 .composer-mention-trigger:disabled { opacity: .45; cursor: default; }

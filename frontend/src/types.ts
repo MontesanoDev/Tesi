@@ -81,6 +81,12 @@ export interface FormReference {
   name: string
 }
 
+export interface DocumentReference {
+  document_id: number
+  name: string
+  role: 'form' | 'source'
+}
+
 export type CompilationFieldStatus = 'PENDING' | 'RESOLVED' | 'MISSING' | 'AMBIGUOUS'
   | 'CONFLICTING' | 'NOT_APPLICABLE' | 'USER_PROVIDED'
 
@@ -229,6 +235,7 @@ export interface GroundedAnswer {
   notice: string | null
   compilation?: CompilationChatAction | null
   form_reference?: FormReference | null
+  document_reference?: DocumentReference | null
 }
 
 export interface ConversationTurnData {
@@ -244,6 +251,7 @@ export interface ConversationTurnData {
   notice: string | null
   compilation?: CompilationChatAction | null
   form_reference?: FormReference | null
+  document_reference?: DocumentReference | null
 }
 
 export interface ConversationDetail extends Conversation {
@@ -251,6 +259,7 @@ export interface ConversationDetail extends Conversation {
   turns: ConversationTurnData[]
   compilation?: CompilationChatAction | null
   form_reference?: FormReference | null
+  document_reference?: DocumentReference | null
 }
 export type AiProvider = 'openai' | 'anthropic' | 'google' | 'deepseek' | 'mistral'
   | 'xai' | 'groq' | 'openrouter' | 'ollama' | 'compatible'

@@ -4,6 +4,80 @@ Aggiornato il **10 ottobre 2026**. Base precedente agli interventi: branch `main
 `dcb9557` (`fix: stabilize table autofill and DOCX finalization`).
 Ricontrollare Git all'inizio della prossima sessione.
 
+## Consolidamento prima della selezione multipla — 10 ottobre 2026
+
+L'utente ha chiesto di creare prima i commit da pushare. Consolidati in un nuovo
+commit locale il selettore @ per fonti/moduli, le regressioni, la documentazione
+e l'aumento del font già verificati nelle sezioni seguenti. Nessuna suite
+rieseguita per il solo commit; ricontrollato il diff. Nessun push dell'agente.
+Autorizzato il passo successivo: selezione multipla dei documenti, consultazione
+e compilazione di un modulo con fonti di riferimento. Nessun nuovo comando
+«Analizza bando» o «Report»; eventuali scorciatoie restano da valutare.
+
+## Font della chat aumentato di 1 px — 10 ottobre 2026
+
+Su richiesta dell'utente aumentati di 1 px risposte RAG/compilazione (13→14),
+messaggi utente (14→15), titolo della risposta (15→16) e campo di scrittura
+(16→17) in `App.css`. Allineata la copia sperimentale; build frontend e
+`git diff --check` passati. Nessun nuovo test, commit o push.
+
+## Consolidamento locale e selettore @ per documenti — 10 ottobre 2026
+
+Richiesta autorizzata dall'utente: «ok fai 1 e 2 ora». Consolidare le correzioni
+già verificate e implementare il selettore unico per fonti/bandi e moduli.
+Questa sezione supera la proposta ancora da discutere riportata nello storico.
+
+- Creato il commit locale **`b543fd7`** su `prune-backend`: correzione del thinking
+  con modello ereditato e rimozione del download originale dalla lista moduli,
+  con test e documentazione già verificati. Branch avanti di un commit rispetto
+  a `origin/prune-backend`; nessun push e nessuna modifica alla configurazione Git.
+  I precedenti checkpoint e il tag `demo-baseline-20261010` restano conservati.
+- Implementato un solo menu **@ / +**, con gruppi **Moduli da compilare** e
+  **Bandi e fonti**. Include i documenti del progetto, un riferimento alla volta;
+  funziona anche nei progetti con sole fonti. Selezione, riferimenti nei messaggi
+  e storico sono conservati dopo la ricarica. Le KB globali non sono nel menu.
+- Contratto canonico `document_id` / `document_reference={document_id,name,role}`;
+  `form_id` e i riferimenti FORM precedenti restano compatibili. Il backend
+  verifica appartenenza al progetto e ruolo prima della chat. Riferimenti
+  incompatibili vengono rifiutati, senza creare conversazioni o chiamare AI.
+- Riutilizzato il planner semantico unico, senza nuove keyword o classificatori.
+  Consultare un documento non avvia una compilazione. La sessione aperta è
+  indipendente dalla selezione: cambiare documento o interrogarlo conserva campi,
+  revisioni, domanda e budget. Non è introdotta una coda per più compilazioni.
+- Una fonte selezionata vincola FTS5, Qdrant, vicini e rilettura delle evidenze
+  allo stesso documento, escludendo altri file, altri progetti e KB globali.
+  Restano distinti richieste FORM e fatti SOURCE. Nessun ruolo dedotto dai nomi.
+- Compilazione consentita soltanto per originali FORM DOCX supportati. Chiedere
+  di compilare una fonte/PDF o un TXT produce indicazioni nella chat, senza
+  avviare un modulo alternativo. Anche un DOCX senza celle/segnaposti supportati
+  riceve una risposta leggibile senza creare una sessione invalida.
+- Migrazione additiva automatica: `conversations.selected_document_id` e
+  `conversation_turns.document_reference_json`. I vecchi riferimenti sono
+  convertiti in lettura, senza riscrivere lo storico. Backend locale riavviato;
+  confermate entrambe le colonne e zero violazioni FK con SQLite in sola lettura.
+  Nessuna reindicizzazione. Backend e frontend rispondono HTTP 200.
+- Verifiche backend a blocchi: **135** test chat/retrieval/routing, **199** test
+  vettoriale/provider/settings/generation, **30** nuove regressioni delle mention
+  con FTS5 e Qdrant locale, PDF reale e database/storage temporanei. Nel blocco
+  più ampio (394 casi raccolti) **390 passati**, poi interruzione manuale dopo
+  circa 7 minuti con pressione di memoria e servizi locali non più disponibili;
+  non è una suite completata in quel processo. Ripetuto separatamente tutto
+  `compilation_active_question`: **47 passati**, inclusi i casi rimasti. Ultimo
+  controllo dopo le modifiche finali: **70 passati** (mention/chat/routing).
+  Ruff backend completo passato.
+- Frontend: **98 test**, lint e build passati; **8 E2E desktop/mobile** con API
+  simulate passati (nuovo selettore, ricarica, consultazione durante una domanda
+  aperta, guard compilazione, tastiera, storico, lease e movimento ridotto).
+  `git diff --check` passato. Queste sono verifiche software con provider
+  simulati, non benchmark della qualità semantica del modello reale; nessuna
+  nuova chiamata AI a pagamento eseguita in questo intervento.
+- Aggiornati README, mappa e guida V1. Modifiche condivise allineate anche in
+  `Tesi-one-shot` tramite patch, preservando il prototipo; verifiche eseguite
+  nella worktree principale. **La nuova funzione @ resta nel working tree,
+  non committata; nessun push.** Prossimo punto: prova manuale del percorso
+  bando → consultazione → modulo → compilazione; architettura del motore e
+  valutazione delle risposte reali restano interventi separati.
+
 ## Thinking disponibile anche con «Usa predefinito» — 10 ottobre 2026
 
 - Corretto il vincolo segnalato dall'utente: lo switch DeepSeek è abilitato

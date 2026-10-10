@@ -45,7 +45,7 @@ describe('API errors', () => {
     const fetch = vi.fn().mockImplementation(async () => new Response('{}', { status: 200 }))
     vi.stubGlobal('fetch', fetch)
     await api.projectAnswer('alpha', 'riassumilo', 'chat', undefined, 42)
-    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ question: 'riassumilo', conversation_id: 'chat', form_id: 42 })
+    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ question: 'riassumilo', conversation_id: 'chat', document_id: 42 })
     await api.startCompilationSession('alpha', 42, 'chat')
     expect(JSON.parse(fetch.mock.calls[1][1].body)).toEqual({ form_id: 42, conversation_id: 'chat', start_in_chat: true })
     await api.compilationSessions('alpha', 'chat/with space')
@@ -73,7 +73,7 @@ describe('API errors', () => {
     await api.projectAnswer('alpha', '12 giugno 2014', 'chat', undefined, 42,
       { session_id: 'session', version: 5 })
     expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ question: '12 giugno 2014',
-      conversation_id: 'chat', form_id: 42, compilation_session_id: 'session', compilation_version: 5 })
+      conversation_id: 'chat', document_id: 42, compilation_session_id: 'session', compilation_version: 5 })
     await api.resolveCompilationSession('alpha', 'session', 5, undefined, undefined, true)
     expect(JSON.parse(fetch.mock.calls[1][1].body)).toEqual({ version: 5, automatic: true })
   })

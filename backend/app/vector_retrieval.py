@@ -198,6 +198,7 @@ def run_vector_search(
     *,
     target: str = "source",
     form_id: int | None = None,
+    document_id: int | None = None,
 ) -> list[Document] | dict:
     if target not in {"source", "form"}:
         raise ValueError("Target del retrieval non valido")
@@ -214,7 +215,7 @@ def run_vector_search(
             if query is None:
                 return status | {"dimensions": len(vector), "embedding_digest": digest}
             scopes = [f"project:{project_id}"]
-            if target == "source":
+            if target == "source" and document_id is None:
                 scopes.append("global")
             conditions = [
                 models.FieldCondition(key="metadata.scope", match=models.MatchAny(any=scopes)),
@@ -223,6 +224,10 @@ def run_vector_search(
             if form_id is not None:
                 conditions.append(models.FieldCondition(
                     key="metadata.file_id", match=models.MatchValue(value=form_id),
+                ))
+            if document_id is not None:
+                conditions.append(models.FieldCondition(
+                    key="metadata.file_id", match=models.MatchValue(value=document_id),
                 ))
             hits = store.similarity_search_with_score_by_vector(
                 vector,
@@ -240,6 +245,7 @@ def run_vector_search(
                 or chunk["scope"] not in scopes
                 or chunk["role"] != target
                 or (form_id is not None and chunk["file_id"] != form_id)
+                or (document_id is not None and chunk["file_id"] != document_id)
                 or payload.get("content_hash") != content_hash(chunk)
                 or not math.isfinite(score)
             ):
@@ -258,6 +264,7 @@ def run_vector_search(
         if include_neighbors:
             anchors = _expand_neighbor_evidence(
                 project_id, anchors, max_results=limit * 2, target=target, form_id=form_id,
+                document_id=document_id,
             )
         return [evidence_document(item) for item in anchors]
 
