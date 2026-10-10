@@ -1,5 +1,20 @@
 # Stato di Mapi RAG
 
+## Proposta globale isolata: contratto e runner — 10 ottobre 2026
+
+Salvato il catalogo nel commit `b0c0ef4`. Implementati contratto/input globale,
+validator di struttura/grounding e runner a una chiamata DeepSeek, in isolamento:
+[dettagli](docs/proposta-globale-compilazione.md). Completo corpus documentale
+piccolo, FORM/SOURCE distinti, zero USER, nessuna modifica a chat/sessioni/renderer.
+Coverage esatta; errori locali isolati. Limiti espliciti e nessun retry AI.
+Verifiche realmente eseguite: 62 test mirati catalogo/mappa/proposta globale
+(30 nuovi test globali), Ruff completo, CLI `--help` e diff check. Test software,
+nessuna prova semantica DeepSeek ancora eseguita in questo checkpoint.
+Le proposte letteralmente grounded NON diventano RESOLVED senza valutazione
+semantica: tutti i valori restano non scrivibili. Nessun reviewer V1 bypassato.
+Prossimo punto: congelare questo codice ed eseguire la prova reale autorizzata,
+salvando usage, tempi, risposta e confronto annotato con la baseline V1.
+
 ## Passi piccoli e prove DeepSeek autorizzati — 10 ottobre 2026
 
 L'utente ha autorizzato commit per ogni passo e uso delle API DeepSeek per
