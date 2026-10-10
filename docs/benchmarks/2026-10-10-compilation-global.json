@@ -1,0 +1,865 @@
+{
+  "date": "2026-10-10",
+  "measurement": "real_deepseek_single_proposal_experiment",
+  "production_changed": false,
+  "baseline": {
+    "scope": "document map + first 12 text candidates, 267 pending",
+    "usage": {
+      "prompt_tokens": 83798,
+      "completion_tokens": 32943,
+      "total_tokens": 116741,
+      "prompt_cache_hit_tokens": 33536,
+      "prompt_cache_miss_tokens": 50262
+    },
+    "seconds": 151.2527,
+    "calls": 7,
+    "estimated_usd_current_off_peak_rates": 0.027405707999999997,
+    "ai_seconds": 141.1405
+  },
+  "runs": [
+    {
+      "id": 1,
+      "code_commit": "79e6950",
+      "metrics": {
+        "started_at": "2026-10-10T17:58:41.612286+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 198588,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 62588,
+          "completion_tokens": 28929,
+          "total_tokens": 91517,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 62588
+        },
+        "ai_seconds": 71.72160799799894,
+        "validation_counts": {
+          "GROUNDED_PROPOSAL": 156,
+          "REJECTED": 151
+        },
+        "dispositions": {
+          "missing": 25,
+          "value": 14,
+          "review": 24,
+          "not_applicable": 99,
+          "invalid": 145
+        },
+        "state": "proposal_audited",
+        "resolved": 0,
+        "original_unchanged": true
+      },
+      "raw_directory": "data/compilation-audit/global-20261010-run1",
+      "input_sha256": "f8d2f64b0576eb073fbabc9c70ef2374764e75263b4d621d256a027af50cca64",
+      "estimated_usd_current_off_peak_rates": 0.026745599999999998
+    },
+    {
+      "id": 2,
+      "code_commit": "2954034",
+      "metrics": {
+        "started_at": "2026-10-10T18:06:12.887584+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 219984,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 68204,
+          "completion_tokens": 33295,
+          "total_tokens": 101499,
+          "prompt_tokens_details": {
+            "cached_tokens": 128
+          },
+          "prompt_cache_hit_tokens": 128,
+          "prompt_cache_miss_tokens": 68076
+        },
+        "ai_seconds": 81.24193709000247,
+        "state": "failed",
+        "error_type": "JSONDecodeError",
+        "error": "Extra data: line 1 column 119378 (char 119377)",
+        "original_unchanged": true
+      },
+      "raw_directory": "data/compilation-audit/global-20261010-run2",
+      "input_sha256": "9a5842f6b253b670fddd16138a2ed0df8971d3355c463330115bd483214991dd",
+      "estimated_usd_current_off_peak_rates": 0.030188784
+    },
+    {
+      "id": 3,
+      "code_commit": "2954034",
+      "metrics": {
+        "started_at": "2026-10-10T18:06:12.878131+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 219984,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 68204,
+          "completion_tokens": 30547,
+          "total_tokens": 98751,
+          "prompt_tokens_details": {
+            "cached_tokens": 128
+          },
+          "prompt_cache_hit_tokens": 128,
+          "prompt_cache_miss_tokens": 68076
+        },
+        "ai_seconds": 75.68782423000084,
+        "validation_counts": {
+          "GROUNDED_PROPOSAL": 306,
+          "REJECTED": 1
+        },
+        "dispositions": {
+          "missing": 83,
+          "value": 15,
+          "review": 34,
+          "not_applicable": 122,
+          "ignore": 53
+        },
+        "state": "proposal_audited",
+        "resolved": 0,
+        "original_unchanged": true
+      },
+      "raw_directory": "data/compilation-audit/global-20261010-run3",
+      "input_sha256": "9a5842f6b253b670fddd16138a2ed0df8971d3355c463330115bd483214991dd",
+      "estimated_usd_current_off_peak_rates": 0.028539984
+    }
+  ],
+  "comparison_run3_vs_v1": {
+    "token_reduction_percent": 15.410181512921772,
+    "fairness_limits": [
+      "Same original SHA but full 51 source chunks supplied instead of V1 search selections",
+      "All 307 positions vs map + 12 text candidates; not same completed work",
+      "Different cache hit counts; alias model server version not pinned",
+      "Only one usable result in two final-code real calls; no latency percentile or broad reliability claim",
+      "AI durations are compared separately from V1 service duration; no session/render time in global experiment"
+    ],
+    "ai_latency_reduction_percent": 46.37412774504778
+  },
+  "five_target_fields": [
+    {
+      "candidate_id": "t0.r5.c1",
+      "validation": "GROUNDED_PROPOSAL",
+      "semantic_review_required": true,
+      "written_value": null,
+      "label": "Operatore economico",
+      "entity": "company",
+      "kind": "data",
+      "disposition": "value",
+      "value": "Mapi Ingegneria S.r.l.",
+      "form": {
+        "paragraph_id": "paragraph:28",
+        "quote": "Operatore economico"
+      },
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l."
+        }
+      ],
+      "reason": "Denominazione dell'operatore economico nella visura simulata.",
+      "form_evidence": {
+        "paragraph_id": "paragraph:28",
+        "quote": "Operatore economico"
+      },
+      "validation_errors": [],
+      "source_evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r6.c1",
+      "validation": "GROUNDED_PROPOSAL",
+      "semantic_review_required": true,
+      "written_value": null,
+      "label": "Forma giuridica",
+      "entity": "company",
+      "kind": "data",
+      "disposition": "value",
+      "value": "Societa a responsabilita limitata",
+      "form": {
+        "paragraph_id": "paragraph:30",
+        "quote": "Forma giuridica"
+      },
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "quote": "FORMA GIURIDICA Societa a responsabilita limitata"
+        }
+      ],
+      "reason": "Forma giuridica riportata nella visura simulata.",
+      "form_evidence": {
+        "paragraph_id": "paragraph:30",
+        "quote": "Forma giuridica"
+      },
+      "validation_errors": [],
+      "source_evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r7.c1",
+      "validation": "GROUNDED_PROPOSAL",
+      "semantic_review_required": true,
+      "written_value": null,
+      "label": "Sede legale (via, città, prov.)",
+      "entity": "company",
+      "kind": "data",
+      "disposition": "value",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "form": {
+        "paragraph_id": "paragraph:32",
+        "quote": "Sede legale (via, città, prov.)"
+      },
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        }
+      ],
+      "reason": "Sede legale indicata nella visura simulata.",
+      "form_evidence": {
+        "paragraph_id": "paragraph:32",
+        "quote": "Sede legale (via, città, prov.)"
+      },
+      "validation_errors": [],
+      "source_evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r9.c1",
+      "validation": "GROUNDED_PROPOSAL",
+      "semantic_review_required": true,
+      "written_value": null,
+      "label": "Codice fiscale operatore economico",
+      "entity": "company",
+      "kind": "data",
+      "disposition": "value",
+      "value": "IT01234567890",
+      "form": {
+        "paragraph_id": "paragraph:37",
+        "quote": "Codice fiscale operatore economico"
+      },
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)"
+        }
+      ],
+      "reason": "Codice fiscale dell'operatore nella visura simulata.",
+      "form_evidence": {
+        "paragraph_id": "paragraph:37",
+        "quote": "Codice fiscale operatore economico"
+      },
+      "validation_errors": [],
+      "source_evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r10.c1",
+      "validation": "GROUNDED_PROPOSAL",
+      "semantic_review_required": true,
+      "written_value": null,
+      "label": "Partita IVA operatore economico",
+      "entity": "company",
+      "kind": "data",
+      "disposition": "value",
+      "value": "IT01234567890",
+      "form": {
+        "paragraph_id": "paragraph:39",
+        "quote": "Partita IVA operatore economico"
+      },
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)"
+        }
+      ],
+      "reason": "La visura simulata di Mapi Ingegneria S.r.l. riporta codice fiscale e partita IVA IT01234567890.",
+      "form_evidence": {
+        "paragraph_id": "paragraph:39",
+        "quote": "Partita IVA operatore economico"
+      },
+      "validation_errors": [],
+      "source_evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    }
+  ],
+  "manual_value_annotations": [
+    {
+      "candidate_id": "t0.r10.c1",
+      "requirement": "Partita IVA operatore economico",
+      "value": "IT01234567890",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r11.c1",
+      "requirement": "Cellulare + Telefono",
+      "value": "+39 080 000 2040",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "TELEFONO +39 080 000 2040 (recapito simulato)",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r5.c1",
+      "requirement": "Operatore economico",
+      "value": "Mapi Ingegneria S.r.l.",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r6.c1",
+      "requirement": "Forma giuridica",
+      "value": "Societa a responsabilita limitata",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r7.c1",
+      "requirement": "Sede legale (via, città, prov.)",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r8.c1",
+      "requirement": "Sede operativa (se diversa dalla sede legale)",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "wrong_applicability",
+      "reason": "FORM requires this only if operational and legal addresses differ; SOURCE says same, so must remain empty/NA",
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r9.c1",
+      "requirement": "Codice fiscale operatore economico",
+      "value": "IT01234567890",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t25.r0.c1",
+      "requirement": "Denominazione sociale (società di ingegneria)",
+      "value": "Mapi Ingegneria S.r.l.",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t25.r4.c1",
+      "requirement": "Forma giuridica (società di ingegneria)",
+      "value": "Societa a responsabilita limitata",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t25.r4.c3",
+      "requirement": "Sede legale (società di ingegneria)",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -30,
+          "file_id": -9,
+          "chunk_index": 0,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": false,
+          "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t26.r0.c1",
+      "requirement": "Nome e cognome del direttore tecnico (società di ingegneria)",
+      "value": "Ing. Elisa Romano",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -32,
+          "file_id": -9,
+          "chunk_index": 2,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": true,
+          "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421,\nOrdine degli Ingegneri di Bari",
+          "content_sha256": "ea9431f9f958d8ff872a7b5bf8164a9ef766261396be934ca55925a0b3d6daa8"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t26.r1.c1",
+      "requirement": "Qualifica professionale del direttore tecnico",
+      "value": "Ingegnere",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -45,
+          "file_id": -7,
+          "chunk_index": 2,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -45,
+          "citation_rebound": false,
+          "quote": "Qualifica professionale nello scenario: Ingegnere.",
+          "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t26.r3.c1",
+      "requirement": "Ordine professionale di appartenenza del direttore tecnico",
+      "value": "Ordine degli Ingegneri di Bari",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -32,
+          "file_id": -9,
+          "chunk_index": 2,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": true,
+          "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421,\nOrdine degli Ingegneri di Bari",
+          "content_sha256": "ea9431f9f958d8ff872a7b5bf8164a9ef766261396be934ca55925a0b3d6daa8"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t26.r4.c1",
+      "requirement": "Numero di iscrizione all'Albo professionale del direttore tecnico",
+      "value": "8421",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -32,
+          "file_id": -9,
+          "chunk_index": 2,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": true,
+          "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421,\nOrdine degli Ingegneri di Bari",
+          "content_sha256": "ea9431f9f958d8ff872a7b5bf8164a9ef766261396be934ca55925a0b3d6daa8"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t44.r1.c0",
+      "requirement": "Nome e cognome (direttore tecnico)",
+      "value": "Ing. Elisa Romano",
+      "literal_source_grounded": true,
+      "manual_semantic_result": "supported_value",
+      "reason": "Value, property and subject checked against actual FORM position and supplied SOURCE; no session acceptance implied",
+      "evidence": [
+        {
+          "chunk_id": -32,
+          "file_id": -9,
+          "chunk_index": 2,
+          "source_name": "visura-mapi-ingegneria-simulata.pdf",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -30,
+          "citation_rebound": true,
+          "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421,\nOrdine degli Ingegneri di Bari",
+          "content_sha256": "ea9431f9f958d8ff872a7b5bf8164a9ef766261396be934ca55925a0b3d6daa8"
+        }
+      ]
+    }
+  ],
+  "manual_controls": [
+    {
+      "candidate_id": "t0.r4.c1",
+      "model_disposition": "review",
+      "manual_semantic_result": "correct_review",
+      "reason": "Condition of personal procuration is unknown; no factual value supported"
+    },
+    {
+      "candidate_id": "t26.r2.c1",
+      "model_disposition": "missing",
+      "manual_semantic_result": "correct_missing",
+      "reason": "SOURCE explicitly says date of professional qualification unavailable"
+    },
+    {
+      "candidate_id": "t25.r3.c1",
+      "model_disposition": "missing",
+      "manual_semantic_result": "correct_missing",
+      "reason": "REA is not registration number; compound field cannot be completed from registration date alone"
+    },
+    {
+      "candidate_id": "p57.cb0",
+      "model_disposition": "review",
+      "manual_semantic_result": "unresolved_choice",
+      "reason": "Company type appears in SOURCE; native checkbox recognized but no selection proposed"
+    },
+    {
+      "candidate_id": "t40.r0.c1",
+      "model_disposition": "not_applicable",
+      "manual_semantic_result": "unsupported_exclusion",
+      "reason": "Company type does not exclude participation as executing consortium member"
+    },
+    {
+      "candidate_id": "t40.r3.c1",
+      "model_disposition": "not_applicable",
+      "manual_semantic_result": "unsupported_exclusion",
+      "reason": "Company type does not establish the participation condition"
+    },
+    {
+      "candidate_id": "t40.r4.c1",
+      "model_disposition": "not_applicable",
+      "manual_semantic_result": "unsupported_exclusion",
+      "reason": "Company type does not establish the participation condition"
+    },
+    {
+      "candidate_id": "t40.r4.c3",
+      "model_disposition": "not_applicable",
+      "manual_semantic_result": "unsupported_exclusion",
+      "reason": "Company type does not establish the participation condition"
+    }
+  ],
+  "semantic_counts": {
+    "value_proposals_reviewed": 15,
+    "supported_values": 14,
+    "wrong_applicability_value": 1,
+    "unsupported_exclusions_in_reviewed_controls": 4,
+    "all_307_semantically_reviewed": false,
+    "production_resolved": 0,
+    "docx_writes": 0
+  },
+  "cost_note": {
+    "currency": "USD",
+    "status": "estimate under documented current off-peak rates, not billing receipt",
+    "official_source": "https://api-docs.deepseek.com/quick_start/pricing/",
+    "per_million": {
+      "input_cache_hit": 0.003,
+      "input_cache_miss": 0.15,
+      "output": 0.6
+    },
+    "total_three_experiment_calls_estimated": 0.085474368
+  },
+  "checks": {
+    "targeted": 74,
+    "full_backend": 1470,
+    "ruff": "passed",
+    "frontend_changed": false,
+    "originals_unchanged": true,
+    "final_two_inputs_identical": true,
+    "source_content_fingerprint": "c0addec2b641ba46a147dc4376f2aa0e40532c99e6af5ab1601fcc2b2ab2191d",
+    "execution_logs": "backend/data/compilation-audit/global-20261010-checks-closed"
+  },
+  "decision": "Do not replace V1 yet. Next: typed shared condition/fact proofs and smaller output; retain conservative semantic gate. No brace repair or implicit acceptance.",
+  "portable_raw_archive": {
+    "path": "docs/benchmarks/2026-10-10-global-proposal-audit.tar.gz",
+    "sha256": "80dadca3844de1fbf43a714b03b7e5b574a23e81ebac77681d5774ace81a445a",
+    "files": 78,
+    "no_credentials_or_database": true
+  }
+}

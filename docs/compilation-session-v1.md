@@ -11,6 +11,14 @@ riconoscimento strutturale delle checkbox native. È ispezione backend in sola
 lettura: il resolver V1, i suoi campi persistiti, le chiamate AI e il renderer
 restano attivi come prima. Nessuna migrazione o reindicizzazione richiesta.
 
+**Proposta globale sperimentale del 10 ottobre:** realizzati un
+[contratto isolato](proposta-globale-compilazione.md) e
+[tre prove reali DeepSeek](benchmark-proposta-globale-2026-10-10.md), con tutte
+le 307 posizioni in una chiamata. Non è collegata a sessione/chat/export: le
+proposte restano non scrivibili finché proprietà, soggetto e condizioni non
+sono verificati. Rilevati errori di applicabilità e una risposta JSON invalida;
+nessuna modifica della V1 o dei dati locali, nessun nuovo DOCX generato.
+
 **Stato dell'8 ottobre:** retry di interpretazione e SOURCE separati e persistenti;
 implementata la semantica ancorata al FORM con contesto di sezione e distinzione
 fra procedura corrente e servizi pregressi. 1.192 test backend passati. Dopo la

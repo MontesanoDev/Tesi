@@ -2,8 +2,11 @@
 
 Stato: **direzione a chiamata unica confermata dall'utente**; avvio graduale
 autorizzato dopo il brainstorming. Implementata la prima milestone del
-[catalogo strutturale condiviso](catalogo-compilazione.md); nuovo resolver
-ancora da implementare. Comunicare le scelte concrete prima dei prossimi passi.
+[catalogo strutturale condiviso](catalogo-compilazione.md) e un
+[prototipo globale isolato con tre prove reali](benchmark-proposta-globale-2026-10-10.md).
+Adapter alla sessione e sostituzione V1 ancora da implementare: gli errori di
+applicabilità osservati impediscono l'attivazione. API DeepSeek e commit per
+piccoli passi ora autorizzati. Comunicare le scelte prima dei prossimi passi.
 La direzione a chiamata unica è già scelta nello storico; questo documento
 propone contratto, ordine di lavoro e criteri per valutarla. Conservare la demo
 V1 e recuperare prima il lavoro non pubblicato di `Tesi-one-shot`, se disponibile.

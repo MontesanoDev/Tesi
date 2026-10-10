@@ -3,6 +3,23 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Proposta globale reale, 10 ottobre 2026
+
+- [Report, limiti e decisione](../benchmark-proposta-globale-2026-10-10.md).
+- [Riepilogo JSON e annotazioni semantiche](2026-10-10-compilation-global.json)
+  e [prima prova](2026-10-10-compilation-global-run1.json).
+- Tre chiamate DeepSeek reali, intero catalogo 307 posizioni, corpus completo
+  piccolo di 51 SOURCE. Stesso originale della baseline V1, zero USER.
+- Grezzi permanenti `backend/data/compilation-audit/global-20261010-run1/`,
+  `global-20261010-run2/`, `global-20261010-run3/`, con manifest e codice congelato.
+- Nessuna modifica di sessioni/renderer/chat: grounded non significa RESOLVED.
+  Un JSON è rifiutato; rilevati falsi positivi di applicabilità, conservati nel report.
+- [Bundle grezzi versionato](2026-10-10-global-proposal-audit.tar.gz) e
+  [checksum SHA-256](2026-10-10-global-proposal-audit.tar.gz.sha256): 78 file,
+  tre prove, replay, log software e cataloghi strutturali precedenti. Confrontato
+  byte per byte con le acquisizioni locali; escluse credenziali/configurazioni
+  private/database. Sarà trasferibile con Git, senza dipendere da `backend/data/`.
+
 ## Catalogo strutturale, 10 ottobre 2026
 
 - [Contratto, limiti e comando di ripetizione](../catalogo-compilazione.md).

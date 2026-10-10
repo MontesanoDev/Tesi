@@ -1,5 +1,47 @@
 # Stato di Mapi RAG
 
+## Proposta unica: risultati reali e punto di ripresa — 10 ottobre 2026
+
+Autorizzati commit piccoli e API DeepSeek. Commit intermedi: `b0c0ef4` catalogo,
+`79e6950` contratto/runner isolato, `6ceff03` prima misura, `2954034` riferimenti
+FORM espliciti e correzione conservativa dei puntatori a chunk dello stesso file.
+RAG, UI, parser/renderer operativi e CompilationSession V1 restano invariati.
+
+- Tre chiamate reali, stesso originale upload 153 della baseline, 307 posizioni
+  e tutte le 51 SOURCE documentali ammesse nel corpus piccolo, nessun USER/retry.
+  Prima proposta: 71,72 s/91.517 token. Ultime due prove a codice congelato e
+  input identico: 81,24 s/101.499 token (JSON rifiutato per `}` extra) e
+  75,69 s/98.751 token (306 grounded, una proposta locale rifiutata).
+- V1 storica: 7 chiamate/116.741 token/141,14 s AI (151,25 s service) per mappa
+  e primi 12, non un documento completo. Ultima proposta globale: -15,41% token
+  e -46,37% tempo AI nel campione; differiscono lavoro e selezione/cache SOURCE,
+  non è una stima del risparmio per compilazione completa. Stima delle tre prove
+  ~0,0855 USD alle tariffe consultate; usage completo conservato.
+- Cinque dati aziendali corretti nelle proposte senza USER; nella prova valida
+  finale anche direttore tecnico, qualifica, ordine e albo **8421**. Data di
+  abilitazione resta missing. Valutazione manuale dei 15 valori: 14 supportati,
+  uno improprio per condizione falsa (sede operativa richiesta solo se diversa).
+  Quattro esclusioni della sezione consorziata esecutrice non supportate dalla
+  sola tipologia aziendale. Checkbox riconosciute ma ancora senza selezione.
+- **Non promuovere ancora il prototipo alla chat**: grounded non è RESOLVED.
+  Tutti i valori restano non scrivibili/da valutare semanticamente, nessun
+  verdetto V1 fabbricato, nessuna sessione locale modificata, zero DOCX generati.
+  Il JSON invalido non viene riparato né accettato parzialmente.
+- Verifiche finali effettive: **74 mirati, 1.470 backend completi**, Ruff,
+  help CLI, diff check; DB/storage temporanei nei test software. Frontend intatto.
+  Originali invariati; ultimi input identici, quote/chunk/provenance conservati.
+- [Report](docs/benchmark-proposta-globale-2026-10-10.md), riepilogo/annotazioni
+  `docs/benchmarks/2026-10-10-compilation-global.json`, raw persistenti in
+  `backend/data/compilation-audit/global-20261010-run{1,2,3}/` e log/replay separati.
+  Il bundle versionato indicato nell'archivio benchmark conserva le acquisizioni
+  senza credenziali/database. Nessuna migrazione/reindicizzazione. Nessun push.
+
+Prossimo passo concreto, da spiegare prima del codice: output più compatto con
+fatti/condizioni condivisi e riferimenti espliciti per l'applicabilità di ogni
+assegnazione. Prima test negativi per i falsi positivi rilevati, poi nuova prova
+congelata; soltanto dopo adapter alla sessione/checkbox/export e rimozione V1.
+Non aggiungere reviewer per gruppi né allentare il gate semantico per attivarla.
+
 ## Secondo passo misurato: riferimenti della proposta globale — 10 ottobre 2026
 
 Dalla prima prova, senza toccare V1/RAG: anchor FORM non vuoti esplicitati per

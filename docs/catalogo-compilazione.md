@@ -94,7 +94,11 @@ temporanei; cataloghi esportati senza alcun provider. Frontend non modificato.
 
 ## Prossimo passo
 
-Definire e verificare il contratto di output della singola proposta globale:
+Aggiornamento successivo: realizzati il
+[contratto sperimentale](proposta-globale-compilazione.md) e
+[tre prove reali](benchmark-proposta-globale-2026-10-10.md), con quote SOURCE,
+budget e copertura esatti. Nessuna sostituzione della V1: ora serve verificare
+semanticamente il contratto della singola proposta globale:
 candidate/ramo → applicabilità → valore → prova SOURCE o USER. Poi adapter della
 sessione, scrittura mirata delle checkbox e benchmark congelato prima di rimuovere
 la catena precedente. Nessuna autodichiarazione del modello sostituisce un controllo

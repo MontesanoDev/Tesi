@@ -304,3 +304,13 @@ def test_chunk_pointer_can_only_be_restored_by_unique_exact_quote_in_same_file(
         assert proof["chunk_id"] == -8 and proof["cited_chunk_id"] == -7
         assert proof["file_id"] == -3 and proof["citation_rebound"] is True
     assert result["resolved"] == result["writes"] == 0
+
+
+@pytest.mark.parametrize("suffix", ["}", " spiegazione extra", '{}'])
+def test_trailing_output_is_rejected_without_brace_repair_or_partial_acceptance(
+        layout, source, suffix):
+    # Observed in a real DeepSeek response: all 307 IDs followed by an extra }.
+    # A useful prefix is never silently converted into a valid proposal.
+    raw = json.dumps(response(layout, source)) + suffix
+    with pytest.raises(ValueError):
+        validate_global_proposal(raw, layout, "alpha", [source])
