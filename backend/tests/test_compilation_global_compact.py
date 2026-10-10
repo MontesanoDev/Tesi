@@ -184,7 +184,8 @@ def test_composite_profile_is_not_a_fact_for_each_atomic_property(case):
 
 
 @pytest.mark.parametrize("value", ["non disponibile nel dataset", "non noto",
-                                       "Not provided in the sources", "____", "N/A"])
+                                       "Not provided in the sources", "____", "N/A",
+                                       "non documentati", "non disponibili"])
 def test_unavailability_is_not_a_usable_source_value(case, value):
     case[1][0]["content"] += "; Informazione: " + value
     case[2]["facts"]["main"].update(value=value, evidence=[{

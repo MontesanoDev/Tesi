@@ -1,5 +1,15 @@
 # Stato di Mapi RAG
 
+## Guard di indisponibilità dopo il benchmark — 10 ottobre 2026
+
+Concluse tutte le sei chiamate reali, aggiunte le forme plurali generiche
+«non documentati»/«non disponibili» al rifiuto dei valori indisponibili nel
+solo prototipo (nessun campo/azienda hardcoded). **148 mirati e Ruff passati**;
+suite completa finale in corso. Nessuna nuova chiamata DeepSeek su questo
+ritocco: i sei audit conservano il codice effettivamente usato. Tutte le
+risposte sperimentali restano rifiutate, V1 invariata.
+
+
 ## Origine canonica delle condizioni in verifica — 10 ottobre 2026
 
 Due prove sul commit `0972077`: 29,21 s/81.623 token e 39,77 s/86.117 token,

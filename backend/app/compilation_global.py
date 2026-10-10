@@ -288,8 +288,8 @@ def _shared_facts(records, source_map, *, reject_empty=False):
             fact = SharedFact.model_validate(record)
             output.update(fact.model_dump())
             if reject_empty and (empty_value_reason(fact.value) or re.match(
-                    r"^(?:non (?:disponibile|not[oa]|presente|documentat[oa]|specificat[oa]|"
-                    r"indicat[oa]|fornit[oa])|not "
+                    r"^(?:non (?:disponibil[ei]|not[oaie]|present[ei]|documentat[oaie]|"
+                    r"specificat[oaie]|indicat[oaie]|fornit[oaie])|not "
                     r"(?:available|provided|known|documented|specified))\b",
                     fact.value.casefold())):
                 raise ValueError("Indisponibilità/placeholder non costituisce un valore SOURCE")
