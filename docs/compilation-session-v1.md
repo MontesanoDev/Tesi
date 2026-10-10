@@ -11,6 +11,10 @@ nel backend. [Contratto e limiti](proposta-globale-compilazione.md). Continua a
 essere isolato: nessuna proposta viene promossa a RESOLVED o scritta nel DOCX.
 La V1 descritta qui resta il percorso attivo.
 
+Le [nuove prove reali](benchmark-condizioni-globali-2026-10-10.md) non dimostrano
+ancora un miglioramento: condizioni omesse senza thinking e JSON troncato con
+thinking low. Nessuna attivazione sperimentale nella chat.
+
 **Prima milestone del 10 ottobre verso la proposta unica:** disponibile il
 [catalogo FORM condiviso](catalogo-compilazione.md), con contesto completo e
 riconoscimento strutturale delle checkbox native. È ispezione backend in sola

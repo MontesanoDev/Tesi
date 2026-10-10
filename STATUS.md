@@ -1,5 +1,46 @@
 # Stato di Mapi RAG
 
+## Risultato del secondo esperimento globale — 10 ottobre 2026
+
+Commit `a29b6f2` (fatti/condizioni condivisi e guard backend), `e7d9e1a`
+(opzione isolata thinking low). Le tre nuove chiamate DeepSeek sono terminate,
+codice congelato durante ogni prova, stesso originale e 51 SOURCE, zero USER.
+[Report completo](docs/benchmark-condizioni-globali-2026-10-10.md) e
+`docs/benchmarks/2026-10-10-compilation-global-conditions.json`.
+
+- Senza thinking: 80,79 s/103.002 token e 76,01 s/99.462 token. Entrambe
+  omettono tutte le condizioni; 247/202 grounded non misurano correttezza.
+  I cinque dati aziendali restano corretti, ma il fatto composito del direttore
+  tecnico è riutilizzato per nome/qualifica/ordine/numero e rami non attestati.
+  NA senza condizioni rifiutate; sede operativa ancora impropria, rifiutata per
+  quote FORM errata, non per il vincolo omesso. Nessun risparmio dimostrato.
+- Con thinking low, stesso input/schema/validator: **156,10 s/118.242 token**,
+  `finish_reason=length` a 49.152 output (37.418 reasoning). Tutta la risposta
+  rifiutata. Il prefisso contiene 16 fatti/20 condizioni ma non è utilizzabile
+  né accettato parzialmente. Nessun retry/aumento automatico del budget.
+- Conservati prompt/schema/HTTP/output/usage, validazioni disponibili, codice,
+  originale e 16 annotazioni manuali per risposta completa. Grezzi permanenti
+  `backend/data/compilation-audit/global-conditions-20261010-*`, anche nel
+  bundle versionato documentato nel report, con manifest/checksum e senza chiavi/DB.
+- Verifiche finali effettive: **110 mirati, 1.506 backend completi**, Ruff,
+  CLI help con PYTHONPATH e diff check. DB/storage temporanei; frontend intatto.
+  I primi controlli 108/1.504 e il primo help fallito sono archiviati separatamente.
+  Originale invariato. Nessuna migrazione/reindicizzazione, nessun push.
+
+**Decisione: prototipo ancora isolato; nessuna promozione a RESOLVED/scrittura,
+nessun adapter alla sessione.** Controlli locali aggiunti, miglioramento semantico
+reale non ancora dimostrato. RAG/chat/parser/renderer/V1 invariati. I confronti
+dipendono dalla mappa semantica del modello; conditions=[] non dimostra assenza
+di condizioni. Anche un valore dichiarato indisponibile nella SOURCE non deve
+diventare un fatto utilizzabile: rafforzare questo caso prima dell'attivazione.
+
+Prossimo piccolo passo da spiegare prima del codice: output più essenziale,
+fatti atomici e inventario di sezioni/condizioni effettivamente estratto nella
+stessa chiamata. Prima regressioni per condizioni omesse, proprietà diverse,
+valori indisponibili e fatti compositi, poi nuovo confronto congelato.
+Non aggiungere catene/reviewer per gruppi e non allentare grounding/provenance.
+Commit piccoli/API autorizzati; push solo se richiesto.
+
 ## Condizioni esplicite della proposta unica — 10 ottobre 2026
 
 Prime due prove reali sul commit `a29b6f2`, input identico, thinking disabilitato:

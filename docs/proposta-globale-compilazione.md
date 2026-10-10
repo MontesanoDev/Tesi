@@ -2,6 +2,10 @@
 
 ## Secondo contratto: fatti e condizioni condivisi
 
+**Esito reale:** due risposte omettono tutte le condizioni; la prova thinking
+low viene troncata. Non attivare nella chat e non assumere un miglioramento
+dal nuovo schema. [Misure e diagnosi](benchmark-condizioni-globali-2026-10-10.md).
+
 Il nuovo input richiede `version=2`, `facts`, `conditions`, `fields`. Una sola
 chiamata riceve ancora tutto il FORM e il corpus SOURCE piccolo completo.
 La versione precedente resta leggibile per riprodurre gli audit archiviati;

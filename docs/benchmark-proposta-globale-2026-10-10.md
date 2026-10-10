@@ -1,5 +1,8 @@
 # Proposta unica DeepSeek: tre prove reali, 10 ottobre 2026
 
+Esperimento successivo: [fatti e condizioni condivisi](benchmark-condizioni-globali-2026-10-10.md).
+Le misure qui sotto restano quelle del primo contratto.
+
 Il catalogo completo permette una proposta iniziale in una sola chiamata.
 La riduzione dei passaggi è misurabile, ma **il prototipo non è pronto per
 sostituire la V1 nella chat**. Una prova fallisce sul JSON; un'altra propone

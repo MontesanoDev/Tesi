@@ -3,6 +3,19 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Fatti e condizioni condivisi, 10 ottobre 2026
+
+- [Report del secondo esperimento](../benchmark-condizioni-globali-2026-10-10.md)
+  e [riepilogo/annotazioni](2026-10-10-compilation-global-conditions.json).
+- Due proposte complete senza condizioni estratte; confronto con thinking low
+  troncato/rifiutato. Nessun miglioramento semantico o token dimostrato.
+- Cinque valori aziendali ancora supportati, ma fatti compositi e rami non
+  verificati: nessuna promozione a RESOLVED o attivazione nella chat.
+- [Bundle completo](2026-10-10-global-conditions-audit.tar.gz) e
+  [checksum](2026-10-10-global-conditions-audit.tar.gz.sha256): prompt, risposte,
+  errori, usage, codice, controlli e annotazioni senza database o credenziali.
+- 110 test mirati/1.506 backend completi, Ruff, help e diff; originali invariati.
+
 ## Proposta globale reale, 10 ottobre 2026
 
 - [Report, limiti e decisione](../benchmark-proposta-globale-2026-10-10.md).
