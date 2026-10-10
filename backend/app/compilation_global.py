@@ -191,15 +191,19 @@ def build_global_input(layout, project_id, sources):
     return data
 
 
-def global_request(settings, data):
-    return {
+def global_request(settings, data, *, thinking=False):
+    body = {
         "model": settings.model, "temperature": 0.1, "max_tokens": MAX_OUTPUT_TOKENS,
-        "thinking": {"type": "disabled"}, "response_format": {"type": "json_object"},
+        "thinking": {"type": "enabled" if thinking else "disabled"},
+        "response_format": {"type": "json_object"},
         "messages": [{"role": "system", "content": TASK},
                      {"role": "user", "content": json.dumps(
                          data, ensure_ascii=False, separators=(",", ":"),
                      )}],
     }
+    if thinking:
+        body["reasoning_effort"] = "low"
+    return body
 
 
 def _unique_object(pairs):

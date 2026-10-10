@@ -7,7 +7,8 @@ from io import BytesIO
 import pytest
 from docx import Document
 
-from app.compilation_global import build_global_input, validate_global_proposal
+from app.compilation_global import build_global_input, global_request, validate_global_proposal
+from app.config import AISettings
 from app.docx_templates import inspect_docx
 
 
@@ -58,6 +59,19 @@ def test_shared_contract_is_requested_without_a_second_call(case):
     layout, sources, _ = case
     schema = build_global_input(layout, "alpha", sources)["schema_output"]
     assert set(schema["properties"]) == {"version", "facts", "conditions", "fields"}
+
+
+@pytest.mark.parametrize("thinking", [False, True])
+def test_thinking_comparison_preserves_input_contract_and_budgets(case, thinking):
+    layout, sources, _ = case
+    data = build_global_input(layout, "alpha", sources)
+    settings = AISettings("secret", "deepseek-flash", "https://example.invalid")
+    body = global_request(settings, data, thinking=thinking)
+    assert body["thinking"]["type"] == ("enabled" if thinking else "disabled")
+    assert body.get("reasoning_effort") == ("low" if thinking else None)
+    assert body["max_tokens"] == 49152
+    assert len(body["messages"]) == 2
+    assert json.loads(body["messages"][1]["content"]) == data
 
 
 def test_same_addresses_block_value_under_different_condition(case):

@@ -34,6 +34,12 @@ precedenti; gli errori dei fatti/condizioni isolano le assegnazioni dipendenti.
 Tutte le prove restano nell'audit, incluse quote effettive, ID citato/ripristinato,
 hash, scope e categoria. La copertura dei candidate è ancora esatta.
 
+Il runner offre `--thinking` per un confronto isolato con ragionamento DeepSeek
+`low` (modalità già impiegata dalla mappa V1). Default disabilitato, invariati
+schema/input/validator, budget e numero di chiamate. I token di ragionamento
+possono incidere sul limite di output e sulla latenza; salvare il response HTTP
+completo e usage, non considerare questo confronto una scelta di produzione.
+
 **Limite intenzionale:** questi risultati sono subordinati alla correttezza
 semantica della mappa proposta. Non provano che il modello abbia individuato
 tutte le condizioni, classificato bene ogni dimensione o scelto l'operatore

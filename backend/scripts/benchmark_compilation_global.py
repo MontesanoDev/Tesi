@@ -61,6 +61,8 @@ def arguments():
     parser.add_argument("--profile-project", required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--max-seconds", type=int, default=300)
+    parser.add_argument("--thinking", action="store_true",
+                        help="Confronto isolato: ragionamento low, sempre una chiamata")
     args = parser.parse_args()
     if not 1 <= args.max_seconds <= 600:
         parser.error("Use 1..600 seconds")
@@ -90,6 +92,7 @@ def run(args):
               "project_id": args.project, "form_id": args.form_id, "http_calls": 0,
               "semantic_calls": 0, "automatic_retries": 0, "session_writes": 0,
               "docx_writes": 0, "user_values": 0, "max_seconds": args.max_seconds,
+              "thinking": args.thinking,
               "saved_profile_context_window": settings.context_window,
               "scope": "complete small document corpus, proposal + local audit only"}
     save("code.json", {
@@ -123,7 +126,7 @@ def run(args):
         (root / "original.docx").write_bytes(original)
         layout = inspect_docx(original, require_candidates=False)
         data = build_global_input(layout, args.project, sources)
-        body = global_request(settings, data)
+        body = global_request(settings, data, thinking=args.thinking)
         save("input.json", data)
         save("request.json", body)
         report.update(original_sha256=layout.sha256,

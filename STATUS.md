@@ -2,6 +2,21 @@
 
 ## Condizioni esplicite della proposta unica — 10 ottobre 2026
 
+Prime due prove reali sul commit `a29b6f2`, input identico, thinking disabilitato:
+80,79 s/103.002 token e 76,01 s/99.462 token. Cinque dati aziendali ancora
+corretti, ma entrambe propongono **zero condizioni**. Fatti compositi del
+direttore tecnico riutilizzati impropriamente fra proprietà; dati trasferiti a
+rami non verificati. Le NA senza condizioni sono rifiutate; la sede operativa
+è rifiutata per estratto FORM errato, non per valutazione del vincolo omesso.
+**Nessun miglioramento semantico/costo dimostrato.** Audit e output completi in
+`backend/data/compilation-audit/global-conditions-20261010-run{1,2}/`.
+
+Prossimo confronto annunciato: stessa chiamata/contratto/input/validator con
+ragionamento DeepSeek low, già supportato dalla V1. Solo opzione `--thinking`
+del runner, default disabilitato invariato; stesso timeout/limite output.
+Non è un reviewer aggiuntivo. Costi/latenza potrebbero aumentare. Congelare
+prima il codice, conservare anche l'eventuale fallimento; nessuna attivazione.
+
 Autorizzato proseguire dopo il confronto: stessa chiamata globale, fatti SOURCE
 condivisi, condizioni FORM e riferimenti dai candidate. Implementato contratto
 sperimentale versione 2; il primo resta leggibile per gli audit storici.
