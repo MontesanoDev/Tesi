@@ -37,6 +37,21 @@ silenzioso. Un'unica chiamata con thinking disattivato, timeout totale default
   review, ignore o non applicabile. Non applicabilità proposta richiede SOURCE.
 - Errore locale: candidate rifiutato, altre proposte conservate per l'audit.
 
+Dopo la prima prova reale, aggiunti riferimenti espliciti ai paragrafi locali
+non vuoti (`anchor_paragraph_ids`), senza duplicare testo o dedurre etichette.
+Quote vuota consentita esclusivamente per `ignore` + `decorative`, senza valore
+né SOURCE: un campo informativo continua a richiedere grounding. Apostrofi e
+virgolette tipografiche FORM possono essere normalizzati deterministicamente;
+la quote originale viene conservata, nessun fuzzy matching.
+
+Se il modello cita un chunk errato, la quote può essere ricondotta a un altro
+chunk **dello stesso file già fornito** solo quando compare integralmente e
+univocamente. File diverso, quote ambigua/riscritta o corpus esterno: rifiuto.
+L'audit conserva sia `cited_chunk_id` sia chunk effettivo e `citation_rebound`.
+Questa correzione di riferimento non approva significato/proprietà/soggetto.
+Il prompt distingue meglio condizione falsa/ignota e dati comuni/partecipazione;
+non aggiunge regole per il modulo demo o per aziende/candidate particolari.
+
 **GROUNDED_PROPOSAL non significa RESOLVED.** I controlli letterali non provano
 che proprietà, soggetto, ruolo e ramo siano corretti, né che una condizione
 discenda semanticamente da una SOURCE. Tutte le proposte conservano

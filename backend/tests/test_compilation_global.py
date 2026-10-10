@@ -119,7 +119,7 @@ def test_coverage_ids_are_checked_by_backend_not_model_counter(layout, source, m
     ({"value": "Inventato"}, "letteralmente"),
     ({"evidence": []}, "senza SOURCE"),
     ({"evidence": [{"chunk_id": -99, "quote": "Identificativo: AZ-98765"}]}, "fuori"),
-    ({"evidence": [{"chunk_id": -7, "quote": "Identificativo: INESISTENTE"}]}, "non presente"),
+    ({"evidence": [{"chunk_id": -7, "quote": "Identificativo: INESISTENTE"}]}, "assente"),
     ({"kind": "signature"}, "protetta"),
     ({"disposition": "missing"}, "inatteso"),
     ({"value": True}, "testuale"),
@@ -236,3 +236,71 @@ def test_real_sql_corpus_reread_excludes_forms_artifacts_and_other_projects():
         assert all(s["role"] == "source" for s in sources)
         assert {s["category"] for s in sources} == {None, "company", "general"}
         assert load_document_corpus(db, "missing") == []
+
+
+def test_input_points_to_real_nonempty_structural_anchors(layout, source):
+    data = build_global_input(layout, "alpha", [source])
+    anchors = data["form"]["candidates"]["t0.r1.c1"]["anchor_paragraph_ids"]
+    assert "paragraph:2" in anchors
+    assert "paragraph:3" not in anchors  # The destination itself is blank.
+
+
+@pytest.mark.parametrize("disposition,kind,expected", [
+    ("ignore", "decorative", "GROUNDED_PROPOSAL"),
+    ("missing", "data", "REJECTED"),
+    ("not_applicable", "data", "REJECTED"),
+    ("ignore", "data", "REJECTED"),
+])
+def test_empty_quote_only_for_nonwriting_decorative_position(layout, source,
+                                                          disposition, kind, expected):
+    payload = response(layout, source)
+    payload["fields"]["t0.r0.c1"].update(
+        disposition=disposition, kind=kind, value=None, evidence=[],
+        form={"paragraph_id": "paragraph:1", "quote": ""},
+    )
+    result = check(payload, layout, source)
+    assert result["fields"][0]["validation"] == expected
+    assert result["writes"] == 0
+
+
+def test_typographic_form_apostrophe_is_restored_without_fuzzy_matching(source):
+    doc = Document()
+    doc.add_paragraph("Identificativo dell’ente: __________")
+    stream = BytesIO()
+    doc.save(stream)
+    layout = inspect_docx(stream.getvalue())
+    payload = {"fields": {"p0.s0": {
+        "label": "Identificativo", "entity": "company", "kind": "data",
+        "disposition": "missing", "value": None,
+        "form": {"paragraph_id": "paragraph:0", "quote": "Identificativo dell'ente"},
+        "evidence": [], "reason": "Non disponibile",
+    }}}
+    result = check(payload, layout, source)
+    assert result["counts"] == {"GROUNDED_PROPOSAL": 1}
+    assert result["fields"][0]["form_evidence"]["quote"] == "Identificativo dell’ente"
+    payload["fields"]["p0.s0"]["form"]["quote"] = "Identificativo della persona"
+    assert check(payload, layout, source)["counts"] == {"REJECTED": 1}
+
+
+@pytest.mark.parametrize("case,expected", [
+    ("unique_same_file", "GROUNDED_PROPOSAL"),
+    ("another_file", "REJECTED"),
+    ("ambiguous_same_file", "REJECTED"),
+])
+def test_chunk_pointer_can_only_be_restored_by_unique_exact_quote_in_same_file(
+        layout, source, case, expected):
+    payload = response(layout, source)
+    supporting = dict(source, chunk_id=-8, chunk_index=1)
+    if case == "another_file":
+        supporting["file_id"] = -99
+    source["content"] = "Introduzione del documento, senza valori."
+    sources = [source, supporting]
+    if case == "ambiguous_same_file":
+        sources.append(dict(supporting, chunk_id=-9, chunk_index=2))
+    result = validate_global_proposal(json.dumps(payload), layout, "alpha", sources)
+    assert result["counts"] == {expected: 2}
+    if case == "unique_same_file":
+        proof = result["fields"][0]["source_evidence"][0]
+        assert proof["chunk_id"] == -8 and proof["cited_chunk_id"] == -7
+        assert proof["file_id"] == -3 and proof["citation_rebound"] is True
+    assert result["resolved"] == result["writes"] == 0

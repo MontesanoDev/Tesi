@@ -1,5 +1,19 @@
 # Stato di Mapi RAG
 
+## Secondo passo misurato: riferimenti della proposta globale — 10 ottobre 2026
+
+Dalla prima prova, senza toccare V1/RAG: anchor FORM non vuoti esplicitati per
+candidate; vuoto consentito solo a posizioni decorative non scrivibili;
+normalizzazione conservativa delle virgolette FORM; riferimento SOURCE recuperato
+solo da quote letterale univoca nello stesso file già fornito, con puntatore
+originale/effettivo entrambi conservati. Nessuna approvazione semantica automatica.
+Prompt generale più esplicito su condizioni e distinzione tipologia/partecipazione.
+Verifiche: **71 test mirati**, Ruff completo; replay offline della prima risposta
+da 156 a 212 grounded (95 rifiutate), inclusi nome/ordine/albo del direttore tecnico.
+Il replay non è una nuova risposta DeepSeek e non autorizza scritture.
+Grezzi replay in `backend/data/compilation-audit/global-20261010-replay1/`.
+Prossimo punto: seconda prova reale a codice congelato e confronto semantico.
+
 ## Prima proposta globale reale DeepSeek — 10 ottobre 2026
 
 Codice congelato `79e6950`, originale upload 153 SHA `aeb1bda3…`, 307 posizioni
