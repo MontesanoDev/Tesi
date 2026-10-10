@@ -34,7 +34,7 @@ il [report reale](test-reale-manifestazione-interesse-2026-10-08.md).
    conferma di applicabilità. I pending e i dati mai ricercati non diventano
    domande o campi obbligatori.
 5. Rispondere nel composer, ad esempio «12 giugno 2014». Con una domanda attiva
-   singola il planner restituisce soltanto una decisione semantica e l'eventuale
+   singola il planner usa `answer_fields` e lo slot attivo con l'eventuale
    valore, **senza ID di campo**. Il backend conosce già il destinatario dalla
    domanda persistita e conserva il messaggio USER; verifica revisione e
    appartenenza letterale del valore al messaggio. Le date
@@ -55,8 +55,9 @@ il [report reale](test-reale-manifestazione-interesse-2026-10-08.md).
    riguardare un singolo elemento. Dopo l'input valido la sessione continua
    automaticamente se ha lavoro disponibile, altrimenti conserva solo le domande
    non risposte del gruppo prima di proporne un altro. Con READY chiede **«Vuoi che generi
-   il DOCX?»**: confermare in chat o premere **Genera DOCX**. Non viene prodotta
-   una bozza incompleta implicitamente. Download DOCX e report nel thread.
+   il DOCX?»**: confermare in chat. Non viene prodotta
+   una bozza incompleta implicitamente. Download DOCX nella risposta di Mapi;
+   il report resta disponibile tramite API.
 8. «salta»/«passa oltre» registra SKIP senza cambiare valore, status fattuale o
    provenance; «non lo so» registra UNKNOWN. La chat passa al prossimo problema
    oppure continua sui pending. I rinvii non vengono richiesti immediatamente.
@@ -69,11 +70,21 @@ il [report reale](test-reale-manifestazione-interesse-2026-10-08.md).
    Un claim attivo viene seguito con polling GET; scaduto, si propone una ripresa
    esplicita ad alto livello, senza chiedere all'utente di gestire i batch.
 
-**Dettagli compilazione**, chiuso inizialmente, contiene la precedente scheda:
-conteggi candidate/pending, ID e prove, Continua analisi, Aggiorna stato,
-Chiarisci/Correggi e input manuale, ricerca singolo campo, reset, motivo di
-non applicabilità e generazione incompleta **esplicita**. Serve per trasparenza,
-compatibilità e correzioni avanzate, non come percorso primario.
+Dal 10 ottobre il pannello **Dettagli compilazione** è rimosso dalla UI.
+RAG e compilazione usano lo stesso messaggio, stile e animazione di attesa.
+La domanda corrente sostituisce l'annuncio iniziale al termine dell'analisi;
+un chiarimento conversazionale compare come normale risposta. Pausa, ripresa
+e generazione si richiedono nella chat; il documento disponibile è scaricabile
+dalla risposta. Conteggi, revisioni, evidenze e operazioni manuali restano
+nei contratti API, senza controlli tecnici nella conversazione.
+
+La domanda prodotta dall'analisi automatica viene salvata nel turno di Mapi
+che ha avviato il passaggio. Rimane nello storico dopo risposte, pause e ricariche
+ed entra nella cronologia del modello. La UI conserva subito il testo visualizzato
+prima di inviare il messaggio successivo. Le richieste di spiegare o riformulare
+la domanda usano il routing conversazionale `CHAT/reply`, con domanda ed estratto
+FORM come contesto: non registrano risposte ai campi e non riavviano l'analisi.
+Domande che richiedono nuove informazioni documentali restano sul percorso RAG.
 
 ### Routing, API e persistenza
 
@@ -85,42 +96,42 @@ compatibilità e correzioni avanzate, non come percorso primario.
   appena incrementata. La transazione conserva lo stato corrente e invalida il
   claim; risultati/fallimenti tardivi non possono sovrascrivere la pausa. Il
   provider già in volo può terminare, ma il risultato non viene applicato.
-- Con una sola domanda attiva, il planner usa `ActiveQuestionPlan`:
-  `VALUE`, `CONDITION_TRUE`, `CONDITION_FALSE`, `UNKNOWN`, `SKIP`, `REFUSE`,
-  `PAUSE`, `CLARIFY`; eventuali `value`, `normalized_value` e `rationale`.
-  Il modello non vede né restituisce ID di campo/sessione/versione; il backend
-  lega la risposta al target del proprio snapshot, controllandone la revisione.
-  CONDITION_FALSE è ammessa soltanto per una domanda di applicabilità e non
-  scrive un valore; CONDITION_TRUE richiede poi la ricerca SOURCE. Il messaggio
-  USER intero rimane la provenienza; rationale non è una prova fattuale.
-  `CHAT` contiene il normale routing se l'utente fa una nuova domanda, senza
-  aggiungere una chiamata di classificazione. Non accetta selezioni di field.
-  Nessuna nuova keyword/polarità hardcoded; gli stessi guard di controlli e
-  alternative già esistenti restano come protezioni conservative.
-- Per un gruppo attivo persistito il planner usa `ClarificationGroupPlan`:
-  `ANSWER` con massimo quattro `replies[{slot,action,value,normalized_value,
-  user_quote,rationale}]`, `PAUSE` senza risposte, oppure `CHAT` con normale
-  routing. Le azioni per slot sono VALUE, CONDITION_TRUE/FALSE, UNKNOWN, SKIP,
-  REFUSE e CLARIFY. Il prompt espone soltanto posizioni, domande e contesto,
-  **non field_id/session_id/version**. Il backend verifica slot ammessi e unici,
-  estratti USER e revisione, poi applica ai destinatari già noti. Nelle risposte
-  numerate, l'estratto deve appartenere proprio alla clausola di quello slot;
-  alternative nella stessa clausola impediscono una scelta arbitraria.
-  Un «sì/no» isolato con più destinatari non aggiorna arbitrariamente un field.
-  Una risposta non associata viene chiarita e, dopo un secondo tentativo,
-  differita; nessun loop e nessun valore inventato.
-- Senza target singolo o gruppo coerente (nessuna domanda, workflow non abilitato
-  o sospeso) rimane il planner generale; non si sceglie arbitrariamente un campo.
-  Questo conserva reply/retrieve (FORM/SOURCE/MIXED) e `compile`,
-  `compilation_input`, `compilation_clarify`, `compilation_generate`,
-  `compilation_control`. Quest'ultima ha `control={kind,field_id,user_quote}`:
-  kind unknown/skip/refuse riguarda soltanto la domanda corrente;
-  pause/resume riguarda la sessione. Estratto grounded nell'ultimo messaggio USER,
-  nessun valore proposto. Il routing è semantico; un guard circoscritto ai comandi
-  interi inequivoci impedisce reply/set errati anche se il planner sbaglia.
-  Nessuna seconda chiamata classificatrice. Le azioni
-  workflow passano al service esistente **prima** del RAG. Il guard non sostituisce
-  il planner semantico. La sola mention non dà incarico né prova valori.
+- Dal 10 ottobre il modello usa un unico contratto `TurnPlan`, con lo stesso
+  prompt e schema JSON per chat normale, domanda singola, gruppo e sessione
+  sospesa. `intent` distingue `reply`, `explain`, `retrieve`, `compile`,
+  `answer_fields`, `pause`, `resume`, `finish`, `generate`. Non ci sono wrapper
+  `CHAT` né un classificatore aggiuntivo: una chiamata di pianificazione nel
+  normale percorso, al massimo un retry per risposta strutturalmente invalida.
+- Il contesto comune conserva stato, pausa, domanda effettiva e slot attivi con
+  etichetta, condizione, alternative ed estratto FORM di massimo 1.500 caratteri.
+  Il modello non riceve ID di campo/sessione/versione. Se resta un solo elemento
+  di un gruppo, conserva il suo numero originale: non viene rinumerato.
+- `explain` restituisce una spiegazione in `answer` e non può contenere risposte
+  ai campi. Anche «non so, prima spiegami» mantiene aperta la domanda, senza
+  consumare budget o registrare UNKNOWN. Le nuove domande documentali usano
+  `retrieve`, conservando la distinzione FORM/SOURCE/mixed.
+- Solo `answer_fields` ammette fino a quattro
+  `replies[{slot,action,value,normalized_value,user_quote,rationale}]`.
+  Le azioni per slot sono VALUE, CONDITION_TRUE/FALSE, UNKNOWN, SKIP, REFUSE e
+  CLARIFY. Una risposta non associabile usa `replies=[]`, chiedendo chiarimento
+  senza scegliere un campo. Senza slot attivi, la risposta viene rifiutata.
+  Il backend lega gli slot ai destinatari del proprio snapshot e verifica
+  revisione e grounding USER. Gli slot invalidi/duplicati non vengono rimappati;
+  gli altri aggiornamenti indipendenti e validi restano applicabili.
+- CONDITION_FALSE riguarda soltanto l'applicabilità e non scrive un valore;
+  CONDITION_TRUE richiede poi ricerca SOURCE. I valori devono appartenere
+  all'ultimo messaggio, non al modulo o alla cronologia. Per la domanda singola
+  il messaggio intero resta la provenienza; nei gruppi l'estratto deve contenere
+  la clausola pertinente completa. Restano i validatori del dominio V1.
+- `pause`, `resume`, `finish`, `generate` richiedono una sessione abilitata e non
+  accettano `replies` o valori. In una sessione sospesa non sono esposti slot
+  rispondibili; spiegazione e retrieval rimangono disponibili. Pausa e fine hanno
+  priorità sulla risposta al campo nei messaggi misti; riprendere deve essere
+  esplicito. Il backend verifica comunque le condizioni per esportare.
+- Le decisioni vengono tradotte nelle operazioni interne esistenti prima del
+  RAG. I guard circoscritti ai comandi interi inequivoci restano invariati come
+  protezione; non sono aggiunte keyword per spiegazioni o regole specifiche dei
+  moduli. Il routing semantico è valutato anche senza questi guard.
 - `field_replies` contiene internamente `field_id`, `action=set|not_applicable|applicable`,
   `value`, `user_quote`: per la domanda singola questi input sono costruiti dal
   backend, non restituiti dal modello. Il backend accetta soltanto il campo
@@ -336,7 +347,7 @@ Una risposta ambigua/non valida permette **un chiarimento** sullo stesso stato.
 Una seconda non interpretabile differisce il campo invece di chiedere ancora la
 stessa cosa. SKIP, UNKNOWN e rifiuto differiscono subito. I problemi irrisolti
 continuano a bloccare una generazione completa; una bozza incompleta rimane una
-scelta esplicita nei dettagli. Se tutti sono rinviati, la chat mostra max cinque
+scelta esplicita nella chat. Se tutti sono rinviati, la chat mostra max cinque
 nomi e il conteggio residuo: una richiesta esplicita di ripresa può rivederne uno.
 
 Nessuna migrazione/reindicizzazione richiesta per questa correzione. Riavviare
@@ -700,7 +711,7 @@ Acquisizioni, replay negativo e limiti residui nel
   grounding letterale e validatori non certificano la verità di quanto dice USER.
   Non si correggono arbitrariamente altri campi con il testo libero. Le esclusioni
   condivise richiedono un contesto di condizione verificato e una prova esplicita.
-  Per correzioni avanzate restano i controlli espliciti nei dettagli.
+  Le operazioni manuali avanzate restano disponibili tramite API.
 - La domanda corrente è una proiezione persistibile dello stato, non un falso
   turno LLM. Dopo la risposta compare quella successiva; le revisioni conservano
   il prima/dopo. Non è ancora presente un diario testuale di tutte le domande

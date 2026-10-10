@@ -139,9 +139,14 @@ contesto senza compilare. Scrivere **«me lo compili?»** avvia/riprende la sess
 tramite il planner della chat. L'analisi avanza automaticamente con un budget
 persistito (36 passi / 10 minuti per ciclo), fermandosi per un chiarimento o errore.
 Rispondere alla domanda aperta direttamente nella chat: un valore univoco diventa
-USER, distinto dai dati verificati SOURCE. Con READY confermare **Genera DOCX**;
-download DOCX/report nella chat. **Dettagli compilazione** contiene i conteggi e
-controlli tecnici, inclusa la scelta esplicita di una bozza incompleta.
+USER, distinto dai dati verificati SOURCE. Confermare la generazione nella chat;
+la risposta di Mapi presenta il download DOCX quando il documento è disponibile.
+Analisi, chiarimenti, pausa e ripresa condividono la stessa presentazione delle
+risposte RAG, senza pannelli o conteggi tecnici. Una bozza incompleta richiede
+una richiesta esplicita nella conversazione.
+Il routing usa un solo contratto semantico per chat e compilazione: una richiesta
+come «spiegati meglio» può ricevere una spiegazione senza modificare campi o
+rinviare la domanda; pausa e ripresa sono intenzioni distinte dalle risposte.
 Riaprire la conversazione ricostruisce stato e domanda dal backend senza azzerare
 il budget. Riavviare il backend aggiornato per le colonne additive dei riferimenti
 e dello storico workflow; non serve reindicizzare.

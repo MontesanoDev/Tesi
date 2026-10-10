@@ -83,7 +83,7 @@ async def global_source(client, text, category="company"):
 
 
 def plan(target, form_id=None, query="Domanda partecipazione requisiti dichiarazioni allegati"):
-    return {"action": "retrieve", "target": target, "form_id": form_id,
+    return {"intent": "retrieve", "target": target, "form_id": form_id,
             "answer": "", "queries": [query]}
 
 

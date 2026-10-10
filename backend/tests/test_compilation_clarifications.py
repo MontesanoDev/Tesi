@@ -25,8 +25,59 @@ async def checkpoint(chat, monkeypatch, labels=("Recapito", "Referente", "Data a
     return state
 
 
+@pytest.mark.anyio
+async def test_automatic_question_remains_in_history_after_answer_and_pause(chat, monkeypatch):
+    state = await checkpoint(chat, monkeypatch)
+    client = chat[0]
+    url = f"/api/projects/alpha/conversations/{state['conversation_id']}"
+    question = state["chat"]["question"]["message"]
+    history = (await client.get(url)).json()["turns"]
+    assert history[0]["answer"] == question
+    await say(chat, state, "Il referente è Anna Bianchi.", answer(
+        reply(2, value="Anna Bianchi", quote="Il referente è Anna Bianchi."),
+    ))
+    state = await current(client, state)
+    await say(chat, state, "basta", {"action": "PAUSE"})
+    history = (await client.get(url)).json()["turns"]
+    assert len(history) == 3
+    assert history[0]["answer"] == question
+    assert "Anna Bianchi" not in history[0]["answer"]
+    assert "Ho registrato le tue risposte" in history[1]["answer"]
+    assert "pausa" in history[2]["answer"]
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("message", [
+    "spiegati meglio", "Non ho capito cosa mi stai chiedendo", "Puoi riformulare il secondo punto?",
+])
+async def test_explanation_keeps_checkpoint_fields_budget_and_history(chat, monkeypatch, message):
+    state = await checkpoint(chat, monkeypatch)
+    explanation = "Per referente intendo la persona da indicare nel modulo come contatto."
+    before_requests = len(chat[2])
+    response = await say(chat, state, message, {
+        "action": "reply", "answer": explanation, "queries": [], "target": "source",
+    })
+    assert response.status_code == 200, response.text
+    assert response.json()["answer"] == explanation
+    assert response.json()["compilation"] is None
+    assert await current(chat[0], state) == state
+    assert len(chat[2]) == before_requests + 1
+    prompt = chat[2][-1]["messages"]
+    assert "explain" in prompt[0]["content"]
+    assert state["chat"]["question"]["message"] in json.loads(
+        prompt[1]["content"].split("CRONOLOGIA NON FATTUALE (JSON):\n", 1)[1]
+        .split("\n\nMODULI DEL PROGETTO", 1)[0]
+    )[0]["answer"]
+    history = (await chat[0].get(
+        f"/api/projects/alpha/conversations/{state['conversation_id']}",
+    )).json()["turns"]
+    assert history[0]["answer"] == state["chat"]["question"]["message"]
+    assert history[1]["answer"] == explanation
+
+
 def answer(*replies):
-    return {"action": "ANSWER", "replies": list(replies)}
+    return {"intent": "answer_fields", "answer": "", "queries": [], "target": "form",
+            "replies": list(replies)}
 
 
 def reply(slot, action="VALUE", value=None, quote=None):

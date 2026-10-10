@@ -77,7 +77,7 @@ async def test_conversational_reply_is_one_call_without_search(chat, monkeypatch
     client, replies, requests = chat
     conversation = previous_turn()
     replies.append({
-        "action": "reply", "target": "source", "answer": "Prego, a disposizione!", "queries": [],
+        "intent": "reply", "target": "source", "answer": "Prego, a disposizione!", "queries": [],
     })
     monkeypatch.setattr(main, "search_project_evidence", no_search)
     response = await client.post(f"{URL}/answer", json={
@@ -118,7 +118,7 @@ async def test_compound_request_searches_both_objectives_and_deduplicates(chat, 
 
     monkeypatch.setattr(main, "search_project_evidence", recorded_search)
     replies.extend([
-        {"action": "retrieve", "target": "source", "answer": "", "queries": [
+        {"intent": "retrieve", "target": "source", "answer": "", "queries": [
             "Oggetto appalto", "Responsabile telefono PEC", "oggetto appalto",
         ]},
         {"answer": "Direzione lavori [1]. Telefono 0123456789 [2].", "citation_ids": [1, 2]},
@@ -149,7 +149,7 @@ async def test_follow_up_uses_resolved_query_and_fresh_sources(chat):
         "file": ("recapito.txt", b"Recapito responsabile Rossi: 0123456789.", "text/plain"),
     })
     replies.extend([
-        {"action": "retrieve", "target": "source", "answer": "",
+        {"intent": "retrieve", "target": "source", "answer": "",
          "queries": ["Recapito responsabile Rossi"]},
         {"answer": "Il recapito e 0123456789 [1].", "citation_ids": [1]},
     ])
@@ -166,20 +166,20 @@ async def test_follow_up_uses_resolved_query_and_fresh_sources(chat):
 @pytest.mark.anyio
 @pytest.mark.parametrize("plan", [
     "not json", "[]",
-    {"action": "retrieve", "target": "source", "answer": "", "queries": []},
-    {"action": "reply", "target": "source", "answer": "Dato [1]", "queries": []},
-    {"action": "retrieve", "target": "source", "answer": "Dato inventato", "queries": ["Contatti"]},
-    {"action": "reply", "target": "source", "answer": "Prego!", "queries": ["Contatti"]},
-    {"action": "retrieve", "target": "source", "answer": "", "queries": ["   "]},
-    {"action": "retrieve", "target": "source", "answer": "", "queries": ["a", "b", "c", "d"]},
-    {"action": "retrieve", "answer": "", "queries": ["partita IVA"]},
-    {"action": "retrieve", "target": "invalid", "answer": "", "queries": ["partita IVA"]},
-    {"action": "retrieve", "target": "source", "form_id": 1, "answer": "", "queries": ["IVA"]},
-    {"action": "retrieve", "target": "form", "form_id": -1, "answer": "", "queries": ["IVA"]},
-    {"action": "retrieve", "target": "mixed", "answer": "", "queries": []},
-    {"action": "retrieve", "target": "source", "answer": "", "queries": ["partita IVA"],
+    {"intent": "retrieve", "target": "source", "answer": "", "queries": []},
+    {"intent": "reply", "target": "source", "answer": "Dato [1]", "queries": []},
+    {"intent": "retrieve", "target": "source", "answer": "Dato inventato", "queries": ["Contatti"]},
+    {"intent": "reply", "target": "source", "answer": "Prego!", "queries": ["Contatti"]},
+    {"intent": "retrieve", "target": "source", "answer": "", "queries": ["   "]},
+    {"intent": "retrieve", "target": "source", "answer": "", "queries": ["a", "b", "c", "d"]},
+    {"intent": "retrieve", "answer": "", "queries": ["partita IVA"]},
+    {"intent": "retrieve", "target": "invalid", "answer": "", "queries": ["partita IVA"]},
+    {"intent": "retrieve", "target": "source", "form_id": 1, "answer": "", "queries": ["IVA"]},
+    {"intent": "retrieve", "target": "form", "form_id": -1, "answer": "", "queries": ["IVA"]},
+    {"intent": "retrieve", "target": "mixed", "answer": "", "queries": []},
+    {"intent": "retrieve", "target": "source", "answer": "", "queries": ["partita IVA"],
      "source_queries": ["partita IVA"]},
-    {"action": "retrieve", "target": "mixed", "answer": "", "queries": ["requisiti", "allegati"],
+    {"intent": "retrieve", "target": "mixed", "answer": "", "queries": ["requisiti", "allegati"],
      "source_queries": ["partita IVA", "sede"]},
 ])
 async def test_invalid_plan_does_not_trigger_arbitrary_search_or_answer(chat, monkeypatch, plan):
@@ -198,13 +198,13 @@ async def test_invalid_plan_does_not_trigger_arbitrary_search_or_answer(chat, mo
 @pytest.mark.anyio
 @pytest.mark.parametrize("first,corrected", [
     (
-        {"action": "reply", "target": "source", "answer": "Sono Mapi RAG."},
-        {"action": "reply", "target": "source", "answer": "Sono Mapi RAG.", "queries": []},
+        {"intent": "reply", "target": "source", "answer": "Sono Mapi RAG."},
+        {"intent": "reply", "target": "source", "answer": "Sono Mapi RAG.", "queries": []},
     ),
     (
-        {"action": "retrieve", "target": "source", "answer": "Fornisci il documento",
+        {"intent": "retrieve", "target": "source", "answer": "Fornisci il documento",
          "queries": ["Scadenza"]},
-        {"action": "retrieve", "target": "source", "answer": "", "queries": ["Scadenza"]},
+        {"intent": "retrieve", "target": "source", "answer": "", "queries": ["Scadenza"]},
     ),
 ])
 async def test_invalid_decision_is_repaired_before_search_or_reply(chat, first, corrected):
@@ -213,7 +213,7 @@ async def test_invalid_decision_is_repaired_before_search_or_reply(chat, first, 
         "file": ("scadenza.txt", b"Scadenza: 15 settembre", "text/plain"),
     })
     replies.extend([first, corrected])
-    retrieving = corrected["action"] == "retrieve"
+    retrieving = corrected["intent"] == "retrieve"
     if retrieving:
         replies.append({"answer": "Scadenza 15 settembre [1].", "citation_ids": [1]})
     payload = (await client.post(f"{URL}/answer", json={"question": "Mi aiuti?"})).json()
@@ -231,12 +231,12 @@ async def test_invalid_decision_is_repaired_before_search_or_reply(chat, first, 
 async def test_truncated_plan_has_one_retry_and_includes_its_usage(chat, recovered, known_usage):
     client, replies, requests = chat
     truncated = httpx.Response(200, json={
-        "choices": [{"message": {"content": '{"action":'}, "finish_reason": "length"}],
+        "choices": [{"message": {"content": '{"intent":'}, "finish_reason": "length"}],
         "usage": {"total_tokens": 30} if known_usage else {},
     })
     replies.extend([
         truncated,
-        {"action": "reply", "target": "source", "answer": "Ciao!", "queries": []}
+        {"intent": "reply", "target": "source", "answer": "Ciao!", "queries": []}
         if recovered else truncated,
     ])
     payload = (await client.post(f"{URL}/answer", json={"question": "Ciao"})).json()
@@ -258,7 +258,7 @@ async def test_citation_repair_cost_includes_planning(chat):
         "file": ("recapito.txt", b"Recapito responsabile: 0123456789.", "text/plain"),
     })
     replies.extend([
-        {"action": "retrieve", "target": "source", "answer": "",
+        {"intent": "retrieve", "target": "source", "answer": "",
          "queries": ["Recapito responsabile"]},
         {"answer": "Recapito 0123456789 [24].", "citation_ids": [24]},
         {"answer": "Recapito 0123456789 [1].", "citation_ids": [1]},

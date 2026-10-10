@@ -11,10 +11,7 @@ from test_form_retrieval import plan
 from app.compilation_chat import (
     MAX_AUTO_STEPS,
     normalize_date,
-    planner_context,
-    single_active_target,
 )
-from app.compilation_clarifications import active_group
 from app.db import connection
 
 chat = retrieval_chat
@@ -47,7 +44,7 @@ async def start(chat, text="me lo compili?", content=None):
     form = (await client.post("/api/projects/alpha/forms", files={
         "file": ("domanda.docx", content or docx()),
     })).json()
-    replies.append(command("compile", form_id=form["id"]))
+    replies.append(model_turn(command("compile", form_id=form["id"]), text))
     response = await client.post("/api/projects/alpha/answer", json={
         "question": text, "form_id": form["id"],
     })
@@ -65,34 +62,35 @@ async def step(client, session):
     return response.json()
 
 
+def model_turn(decision, message, state=None):
+    """Express domain scenarios using the single provider contract."""
+    if "intent" in decision:
+        return decision
+    decision = dict(decision)
+    action = decision.pop("action")
+    control = decision.get("control", {})
+    if action in {"reply", "retrieve", "compile", "compilation_generate"}:
+        return {**decision, "intent": "generate" if action == "compilation_generate" else action}
+    if action == "compilation_control":
+        action = control["kind"].upper()
+        decision = {}
+    if action in {"PAUSE", "RESUME", "FINISH"}:
+        return {"intent": action.lower(), "answer": "", "queries": [], "target": "form"}
+    if action == "ANSWER":
+        replies = decision["replies"]
+    else:
+        slots = (state["chat"]["question"] or {}).get("slots", []) if state else []
+        slot = next((s for s in slots if control.get("field_id") in s["field_ids"]),
+                    slots[0] if slots else {"slot": 1})
+        replies = [{**{k: v for k, v in decision.items() if k != "control"},
+                    "action": action, "slot": slot["slot"], "user_quote": message}]
+    return {"intent": "answer_fields", "answer": "", "queries": [], "target": "form",
+            "replies": replies}
+
+
 async def say(chat, state, message, decision):
     client, replies, _, _ = chat
-    if active_group(planner_context(state)):
-        slots = state["chat"]["question"]["slots"]
-        if decision["action"] == "compilation_control":
-            control = decision["control"]
-            if control["kind"] == "pause":
-                decision = {"action": "PAUSE"}
-            else:
-                slot = next((s for s in slots if control.get("field_id") in s["field_ids"]),
-                            slots[0])
-                decision = {"action": "ANSWER", "replies": [{
-                    "slot": slot["slot"], "action": control["kind"].upper(),
-                    "user_quote": message,
-                }]}
-        elif decision["action"] in {"reply", "retrieve", "compile", "compilation_generate"}:
-            decision = {"action": "CHAT", "chat": decision}
-        elif decision["action"] in {"VALUE", "CLARIFY", "UNKNOWN", "SKIP", "REFUSE",
-                                     "CONDITION_TRUE", "CONDITION_FALSE"}:
-            decision = {"action": "ANSWER", "replies": [{
-                **decision, "slot": slots[0]["slot"], "user_quote": message,
-            }]}
-    elif single_active_target(planner_context(state)) is not None:
-        if decision["action"] == "compilation_control":
-            decision = {"action": decision["control"]["kind"].upper()}
-        elif decision["action"] in {"reply", "retrieve", "compile", "compilation_generate"}:
-            decision = {"action": "CHAT", "chat": decision}
-    replies.append(decision)
+    replies.append(model_turn(decision, message, state))
     return await client.post("/api/projects/alpha/answer", json={
         "question": message, "conversation_id": state["conversation_id"],
         "form_id": state["original_file_id"], "compilation_session_id": state["id"],
@@ -297,9 +295,9 @@ async def test_normal_form_question_during_compilation_does_not_mutate_state(cha
     state, _ = await start(chat)
     simulate(monkeypatch)
     state = await step(client, state)
-    replies.extend([{"action": "CHAT", "chat": plan(
+    replies.extend([plan(
         "form", state["form_id"], "denominazione sociale",
-    )}, {
+    ), {
         "answer": "Il modulo richiede la denominazione sociale [1].", "citation_ids": [1],
     }])
     response = await client.post("/api/projects/alpha/answer", json={

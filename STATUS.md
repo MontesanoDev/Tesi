@@ -4,6 +4,219 @@ Aggiornato il **10 ottobre 2026**. Base precedente agli interventi: branch `main
 `dcb9557` (`fix: stabilize table autofill and DOCX finalization`).
 Ricontrollare Git all'inizio della prossima sessione.
 
+## Commit locali e proposta di estensione di @ — 10 ottobre 2026
+
+- L'utente ha autorizzato i commit delle modifiche già verificate; il push sarà
+  eseguito dall'utente. Branch della worktree principale: `prune-backend`.
+  Primo commit: `f677aff`, integrazione della compilazione nelle risposte di Mapi
+  e permanenza dello storico. Il commit successivo consolida routing unificato,
+  relative regressioni e documentazione. Nessun push eseguito dall'agente.
+  Usata per i commit l'identità Codex già presente nei due commit precedenti,
+  tramite opzioni temporanee; configurazione Git non modificata.
+- Revisione finale del diff e `git diff --check` eseguiti prima dei commit.
+  Le verifiche software e le valutazioni reali restano quelle documentate nelle
+  sezioni seguenti; nessuna nuova suite ripetuta per il solo consolidamento.
+- Nuova richiesta/preferenza: poter selezionare con `@` anche il bando PDF
+  (`spiegami @avviso.pdf`), mantenendo distinta la consultazione dalla compilazione.
+  Per ora va bene lavorare su un modulo alla volta; in futuro è desiderata la
+  compilazione di più bandi/moduli. **Estensione non ancora implementata.**
+- Verificato nel codice: il menu filtra `project.files` su `kind=form`; le fonti
+  PDF sono escluse. La richiesta chat e lo storico espongono solo `form_id` /
+  `form_reference`; il retrieval vincola già il modulo, ma non offre lo stesso
+  filtro esplicito per una fonte menzionata. Le sessioni richiedono un originale
+  registrato come form e in formato DOCX.
+- **Proposta da discutere:** unico menu @ per fonti e moduli del progetto,
+  riusando archivi e ruoli attuali. Riferimento al documento selezionato validato
+  nel backend, distinto dalla sessione di compilazione attiva. Per domande sul
+  documento, filtro coerente FTS5/Qdrant/espansione vicini/rilettura delle evidenze.
+  L'intenzione è scelta dal modello; il backend autorizza la compilazione in base
+  a ruolo e capacità supportate, mai in base al nome «avviso». Se è un bando di
+  sola lettura, si può consultare e scegliere il modulo adatto da compilare.
+  Il bando descrive requisiti, non dimostra che l'azienda li possieda.
+- **Evoluzione proposta, non avviata:** prima un riferimento per messaggio e un
+  modulo attivo alla volta, conservando la sessione se si interroga il bando;
+  poi eventuale coda con sessioni separate e isolamento fra progetti/bandi.
+  Unificare anche gli archivi/upload è un'alternativa più ampia, con maggiore
+  impatto e possibili migrazioni, non necessaria per unificare il selettore.
+
+## Routing semantico unificato — 10 ottobre 2026
+
+Richiesta corrente: unificare il routing della chat e della compilazione, senza
+nuove liste di frasi o una seconda chiamata classificatrice.
+
+- `intents.py` espone al modello un solo `TurnPlan`, con prompt, schema JSON e
+  contesto comuni per chat normale, domanda singola, gruppo e sessione sospesa.
+  Rimossi `ChatRoute`, `ActiveQuestionPlan`, `ClarificationGroupPlan` e relativi
+  prompt/retry separati. Le decisioni sono tradotte nei tipi interni esistenti:
+  persistenza, revisione e validatori del dominio rimangono condivisi.
+- Intenzioni esplicite: reply/explain/retrieve/compile/answer_fields/pause/
+  resume/finish/generate. Solo answer_fields può contenere risposte ai campi;
+  spiegazioni e comandi con valori vengono rifiutati. Senza slot attivi non si
+  può rispondere a un campo. Nessun ID di campo/sessione/versione è esposto al
+  modello. Gli slot mantengono la posizione anche quando ne resta soltanto uno.
+- Le spiegazioni non modificano stato, revisione o budget. «Non so, prima
+  spiegami» mantiene aperta la domanda; «no, fermiamoci» non applica una negazione.
+  Spiegare durante una pausa non riprende la sessione. I guard letterali
+  preesistenti sui controlli restano invariati; nessuna nuova keyword introdotta.
+  Percorso normale: una chiamata di pianificazione, massimo un retry strutturale.
+- Aggiornate le fixture dei provider al contratto unico, senza parser di
+  compatibilità in produzione. Nuove regressioni in `test_unified_routing.py`:
+  stesso schema/prompt in ogni stato, confini fra spiegazione/comandi/dati,
+  assenza di target attivo, binding singolo/gruppo, risposte miste, pausa/ripresa
+  e conservazione della posizione. Allineata un'asserzione di export al testo
+  della UI già modificato nel precedente intervento.
+- Verifiche software: **552 test backend distinti passati in blocchi**, inclusi
+  dialogo, chiarimenti, controlli, stabilità, finalizzazione, routing RAG,
+  FORM/SOURCE/mixed, API e trasporto dei provider. Ultimo controllo dopo il prompt
+  finale: **102 test** (unified_routing, active_question, chat_flow). Ruff completo
+  e `git diff --check` passati. Nella worktree sperimentale passati anche **51
+  test** (routing unificato e prototipo whole_document). Frontend invariato: non
+  rieseguiti test/build/E2E. Health backend e proxy frontend verificati.
+- Valutazione reale separata, DeepSeek Flash configurato, senza applicare le
+  decisioni alle sessioni reali: primo confronto **16/16 prima e 16/16 dopo**, una
+  chiamata per caso, senza guard letterali. Quindi non è dimostrato un aumento
+  dell'accuratezza di routing rispetto al prompt già corretto nell'intervento
+  precedente: il beneficio verificato è la coerenza del contratto e dei vincoli.
+  Nel controllo delle spiegazioni una parafrasi aggiungeva un'equivalenza fra
+  categorie non documentata: rafforzato il vincolo di mantenere letterali ruoli
+  e categorie e usare retrieval per definizioni/differenze normative.
+- Prova finale ampliata: **20/20 intenzioni corrette**, 20 chiamate, nessun retry,
+  **68.454 token**. Nei 16 casi confrontabili: 54.525 contro 48.981 token precedenti
+  (**+11,3%**); lo schema nel prompt è ora serializzato compatto. Totale delle due
+  prove reali: 52 chiamate e 173.259 token. Misura il routing su casi selezionati,
+  non garantisce correttezza di ogni spiegazione o della compilazione completa.
+  Report, snapshot precedente e script ripetibile nella worktree principale,
+  locali ed esclusi da Git in
+  `backend/data/compilation-audit/unified-routing-20261010/`:
+  `paired-104700.json`, `paired-105030.json`, `before_intents.py`, `evaluate.py`.
+  Lo script apre SQLite in sola lettura e ricostruisce il checkpoint Minervino 81.
+- Modifiche condivise allineate anche in `Tesi-one-shot`, preservando prototipo e
+  documentazione sperimentale. Nessun commit/push, migrazione o reindicizzazione.
+  La base con tag resta intatta. Prossimo punto: valutare la qualità del motore
+  di compilazione separatamente; ottimizzare ulteriormente il payload solo con
+  confronto delle regressioni. Nessuna riscrittura del motore avviata qui.
+
+## Storico della compilazione e richieste di spiegazione — 10 ottobre 2026
+
+Segnalazioni dell'utente: domande/informazioni che scompaiono dopo un input o
+una pausa; «spiegati meglio» trattato come risposta ambigua al modulo.
+
+- Riprodotta la prima regressione: `CompilationReply` proiettava la domanda solo
+  sull'ultimo turno, mentre lo storico conservava il semplice annuncio iniziale.
+  Ora i paragrafi visualizzati sono conservati nella UI prima del nuovo invio.
+  Al completamento automatico il backend salva la domanda nel turno di Mapi
+  corrispondente, nella stessa transazione della sessione. Verificati permanenza
+  dopo risposta/pausa/ricarica e disponibilità della domanda nella cronologia AI.
+  Un turno conversazionale successivo o relativo ad altro modulo non viene
+  sovrascritto da questa proiezione.
+- Verificato il caso reale nel database in sola lettura: turno 61, Minervino,
+  «spiegati meglio» associato alla sessione come `clarify`; il turno 60 conservava
+  soltanto l'annuncio iniziale. Il planner a gruppi distingueva insufficientemente
+  richieste di spiegazione e risposte ambigue agli slot.
+- Chiarite le istruzioni dei percorsi generale, singolo e raggruppato: spiegare
+  o riformulare la domanda usa `reply`/`CHAT/reply`, con domanda ed estratto FORM
+  limitato a 1.500 caratteri per elemento. Non sono aggiunti riconoscimenti
+  letterali di «spiegati meglio» né nuove chiamate nel normale percorso.
+  Le regressioni verificano che spiegazione, campi, revisione e budget restino
+  separati; domande documentali continuano a usare il retrieval.
+- Verifiche eseguite: **202 test backend** (`compilation_conversation`,
+  `compilation_clarifications`, `compilation_controls`, `chat_flow`), **95 test
+  frontend**, Ruff sui quattro file Python modificati, lint e build frontend;
+  **6 E2E desktop/mobile** di `compilation-chat` passati, inclusi storico,
+  spiegazione, pausa e ricarica. Queste verifiche usano provider simulati.
+- Prova reale separata con il DeepSeek configurato: **6/6 intenzioni riconosciute**
+  (tre richieste di spiegazione, negazione, incertezza, pausa), **19.319 token**.
+  Usato in memoria il checkpoint precedente al messaggio errato, ricostruito
+  dalle revisioni; nessuna modifica della sessione reale da parte della prova.
+  Report locale escluso da Git:
+  `backend/data/compilation-audit/dialogue-20261010/results-101411.json`.
+  Questo risultato misura il routing su sei casi, non garantisce accuratezza
+  generale delle spiegazioni o qualità della compilazione completa.
+- Modifiche applicative, test e guida allineati anche in `Tesi-one-shot`,
+  preservandone il prototipo. Nessun commit/push o nuova migrazione. Le domande
+  precedenti mai salvate nei turni non sono state ricostruite nello storico:
+  nessun backfill dei dati reali. La base con tag resta intatta.
+
+## Diagnosi dell’avviso «Non ho completato questa operazione» — 10 ottobre 2026
+
+- L’avviso dello screenshot è il fallback del `catch` in
+  `useCompilationSession.run`: non identifica la causa della richiesta fallita.
+  Il motivo tecnico viene scritto nella console del browser; non è persistito
+  dal frontend. Nessuna prova che si tratti di limiti o errori di DeepSeek.
+- Ispezionato `backend/data/mapi.db` tramite SQLite in sola lettura. Le ultime
+  due sessioni (Minervino e Catanzaro) hanno un ultimo `analyze_start`/
+  `source_start` senza conclusione, stato `ANALYZING`, lease ormai scaduta e
+  `last_error: null`. Risultano conservati i passaggi precedenti; Minervino non
+  aveva ancora valori `SOURCE` risolti, Catanzaro ne aveva sei. Il testo generico
+  «dati già verificati» non implica che esistano valori verificati nella sessione.
+- All’inizio di questa diagnosi entrambe le porte 8000/5173 erano senza servizi
+  in ascolto. Questi elementi sono compatibili con un arresto durante il lavoro,
+  ma non dimostrano la causa esatta della richiesta nello screenshot: mancano
+  i log di quell’istante e lo screenshot non identifica la sessione.
+- Riavviati Uvicorn e Vite separatamente, con log locali esclusi da Git in
+  `backend/data/runtime-logs/backend.log` e `frontend.log`. Verificate le risposte
+  `{"status":"ok"}` sia direttamente sulla 8000 sia dal proxy sulla 5173.
+  Nessuna compilazione, chiamata AI o ripresa automatica avviata dalla diagnosi.
+- Il pulsante «Riprova» esegue una rilettura: una lease scaduta richiede poi
+  una ripresa esplicita nella chat. Non modificati codice applicativo o sessioni;
+  nessuna suite rieseguita. Restano da migliorare distinzione delle cause e
+  chiarezza dell’azione proposta quando la sessione è interrotta.
+
+## UI unica per RAG e compilazione — 10 ottobre 2026
+
+Richiesta esplicita dell'utente: eliminare completamente il box della
+compilazione e i dettagli tecnici; analisi, animazione, chiarimenti e documento
+devono comparire come normali risposte di Mapi.
+
+- Modificato il frontend effettivamente usato in `/home/montesano/Tesi`
+  sulla porta 5173. La precedente modifica solo in `Tesi-one-shot` lasciava
+  visibile la vecchia UI nella demo; il primo tentativo conservava inoltre
+  un disclosure di dettagli che l'utente ha chiesto di eliminare.
+- Rimosso `CompilationSessionCard`, insieme a conteggi, stato separato,
+  dettagli/evidenze per candidato e controlli manuali della scheda.
+  RAG e compilazione condividono `AssistantMessage`, stile e animazione.
+  `CompilationReply` produce solo paragrafi e il download DOCX disponibile.
+- L'annuncio iniziale lascia posto alla domanda corrente dopo l'analisi.
+  Una spiegazione conversazionale non riaggiunge la vecchia domanda.
+  Pausa, ripresa e generazione passano dalla chat già esistente.
+  Restano visibili errori, natura parziale della bozza e copia non aggiornata.
+- Adeguati pochi testi backend che rimandavano alla scheda eliminata e
+  aggiornate README, guida e mappa. Le API mantengono evidenze, revisioni,
+  report e operazioni manuali; motore e validazione invariati.
+- Allineati gli stessi file in `Tesi-one-shot`, preservando prototipo e
+  modifiche documentali sperimentali. Nessun commit o push; la base
+  `1d7f868` resta recuperabile dal tag `demo-baseline-20261010`.
+
+Verifiche concluse: **92 test frontend**, lint e build; **133 test backend**
+(`compilation_chat`, `compilation_controls`, `compilation_clarifications`)
+e Ruff sul modulo Python modificato. Dopo l'ultimo controllo di appartenenza
+della risposta alla sessione, ripetuti anche i **25 test UI della compilazione**.
+Rimossi i test dei comandi manuali eliminati; mantenute regressioni di chat,
+isolamento, risposte ambigue, budget, ripristino, errori e download.
+Tutti questi test usano provider simulati e dati temporanei.
+
+Conclusi anche i **16 E2E desktop/mobile** sui quattro scenari con API
+simulate (`composer-model-menu`, `compilation-chat`, `document-review`,
+`project-forms`), inclusi chiarimenti, refresh, pausa/ripresa e generazione
+richiesta nella chat. Esito finale: `16 passed`; report `.last-run.json` con
+`status: passed`. Controllate le schermate desktop e mobile in
+`frontend/artifacts/*-compilation-active.png` e `*-compilation-explanation.png`.
+I tentativi precedenti hanno incontrato frontend non raggiungibile e forte
+pressione di memoria; un run è stato interrotto dall'utente. La verifica finale
+è completa. Eseguire le suite pesanti in sequenza su questa macchina.
+
+Servizi della demo riavviati separatamente: Vite sulla **5173**, Uvicorn con
+reload sulla **8000**. Verificato `/api/health` anche attraverso il proxy Vite:
+`{"status":"ok"}`. Per vedere la UI aggiornata ricaricare la pagina. Non sono
+state effettuate prove di compilazione sui dati reali; i normali inizializzatori
+applicativi sono eseguiti dal riavvio del backend. Nessuna migrazione specifica
+per questo intervento. Prima di rilanciare `start.sh`, fermare queste istanze
+per evitare porte già occupate.
+Nessuna nuova chiamata AI o reindicizzazione in questo intervento.
+Non è implementato streaming dei token o un diario di turni automatici:
+l'avanzamento resta una proiezione dello stato backend nella risposta corrente.
+Il contratto compatto di fatti, condizioni ed evidenze resta da discutere.
+
 ## Nuova base della demo: UI e thinking opzionale — 10 ottobre 2026
 
 L'utente ha provato RAG e compilazione in chat, apprezza in particolare il

@@ -26,7 +26,12 @@ generazioni dall'originale. Guida e limiti in
 chat e il menu `@` usano una selezione singola e routing semantico per avvio/ripresa.
 L'avanzamento è automatico ma limitato da un budget persistito. La chat interpreta
 risposte libere soltanto sul campo chiesto, con grounding USER e validazione;
-le ambiguità richiedono chiarimento. I controlli tecnici sono nei dettagli.
+le ambiguità richiedono chiarimento. Dal 10 ottobre RAG e compilazione usano
+lo stesso messaggio di Mapi; pannello e dettagli tecnici sono rimossi dalla UI.
+Le API mantengono revisioni, provenienza, evidenze e operazioni manuali.
+Il planner usa ora un solo contratto `TurnPlan` in tutti gli stati della chat:
+spiegazioni, dati USER e comandi di sessione hanno vincoli distinti, senza una
+seconda chiamata classificatrice. I guard sui controlli preesistenti restano.
 
 ## Struttura del repository
 

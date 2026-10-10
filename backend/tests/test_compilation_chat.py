@@ -105,7 +105,7 @@ async def test_mention_pins_form_retrieval_persists_reference_but_never_starts_s
     assert conversation["turns"][0]["form_reference"] == result["form_reference"]
     assert (await client.get("/api/projects/alpha/compilation-sessions")).json() == []
     # Removing the mention clears the next turn's context, not historical references.
-    replies.append({"action": "reply", "target": "source", "form_id": None,
+    replies.append({"intent": "reply", "target": "source", "form_id": None,
                     "answer": "Prego!", "queries": []})
     await client.post("/api/projects/alpha/answer", json={
         "question": "grazie", "conversation_id": cid,

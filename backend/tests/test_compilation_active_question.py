@@ -48,7 +48,7 @@ async def test_semantic_false_binds_to_backend_target_without_model_ids(chat, mo
     prompt = requests[-1]["messages"][1]["content"]
     assert target not in prompt and '"field_ids"' not in prompt
     schema = json.loads(prompt.split("SCHEMA OUTPUT:\n")[1].split("\n\nULTIMO MESSAGGIO:")[0])
-    assert "field_id" not in json.dumps(schema) and "user_quote" not in json.dumps(schema)
+    assert "field_id" not in json.dumps(schema) and "user_quote" in json.dumps(schema)
 
 
 @pytest.mark.anyio
@@ -163,12 +163,12 @@ async def test_single_target_shortcut_rejects_multiple_fields(chat, monkeypatch)
     context["fields"].append({**context["fields"][0], "id": "other"})
     assert single_active_target(context) is None
     responses = chat[1]
-    responses.append({"action": "compilation_clarify", "target": "form", "queries": [],
+    responses.append({"intent": "explain", "target": "source", "queries": [],
                       "answer": "A quale delle due voci ti riferisci?"})
     planned = await intents.plan_chat_turn("no", [], compilation=context)
     assert isinstance(planned.decision, intents.ChatDecision)
-    assert planned.decision.action == "compilation_clarify"
-    assert "SCHEMA OUTPUT:" not in chat[2][-1]["messages"][1]["content"]
+    assert planned.decision.action == "reply"
+    assert "SCHEMA OUTPUT:" in chat[2][-1]["messages"][1]["content"]
     # An active semantic reply without a coherent backend target is never applied.
     monkeypatch.setattr("app.compilation_chat.planner_context", lambda _: context)
     from fastapi import HTTPException
@@ -214,7 +214,7 @@ async def test_new_question_uses_existing_document_routing(chat, monkeypatch, ta
     route = plan(target, state["form_id"] if target == "form" else None,
                  "Estremi procura" if target == "form" else "sede legale")
     # Insert the planner result before the generator result, not an extra call.
-    replies.insert(0, {"action": "CHAT", "chat": route})
+    replies.insert(0, route)
     result = await client.post("/api/projects/alpha/answer", json={
         "question": question, "conversation_id": state["conversation_id"],
         "form_id": state["form_id"],
@@ -226,7 +226,7 @@ async def test_new_question_uses_existing_document_routing(chat, monkeypatch, ta
 
 
 def test_semantic_contract_cannot_contain_field_selection():
-    schema = json.dumps(intents.ActiveQuestionPlan.model_json_schema())
+    schema = json.dumps(intents.TurnPlan.model_json_schema())
     assert "field_id" not in schema and "field_replies" not in schema
     with pytest.raises(ValidationError):
         ActiveFieldDecision(action="CONDITION_FALSE", normalized_value="inventato")
