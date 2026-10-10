@@ -120,6 +120,7 @@ export function ProjectFormsPanel({ projectId, forms, onProjectChange }: Props) 
             <div><strong title={form.name}>{form.name}</strong><span>{form.metadata}</span></div>
             <StatusPill>{form.status}</StatusPill>
             <div className="context-file-actions">
+              <span className="context-file-action-spacer" aria-hidden="true" />
               <button className="icon-button context-file-delete" type="button" disabled={busy}
                 title="Rimuovi modulo" aria-label={`Rimuovi ${form.name}`} onClick={() => setRemoving(form.id)}>
                 <Trash2 size={16} />

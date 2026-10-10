@@ -81,6 +81,48 @@
   min-height: 100vh;
 }
 
+.app-shell--conversation {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-shell--conversation > .app-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-shell--conversation .back-link {
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+
+.app-shell--conversation .workspace-layout {
+  flex: 1 1 auto;
+  min-height: 0;
+  grid-template-rows: minmax(0, 1fr);
+  margin-bottom: 24px;
+}
+
+.workspace-context {
+  min-width: 0;
+}
+
+.app-shell--conversation .workspace-context {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #555650 transparent;
+  scrollbar-width: thin;
+}
+
+.workspace-context-toggle {
+  display: none;
+}
+
 .page-container {
   width: min(100% - 48px, 840px);
   margin-inline: auto;
@@ -335,8 +377,7 @@
 .workspace-main--conversation {
   display: flex;
   flex-direction: column;
-  height: calc(100dvh - 120px);
-  min-height: 620px;
+  min-height: 0;
 }
 
 .workspace-main--conversation .project-heading {
@@ -368,6 +409,9 @@
 
 .project-menu-wrap {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .project-menu-trigger.is-active {
@@ -539,8 +583,8 @@
 }
 
 .chat-thread > div + div {
-  margin-top: 26px;
-  padding-top: 26px;
+  margin-top: 24px;
+  padding-top: 24px;
   border-top: 1px solid var(--border);
 }
 
@@ -571,7 +615,13 @@
 }
 
 .chat-turn .grounded-answer {
-  padding-top: 14px;
+  margin-top: 24px;
+  padding: 0;
+  border-top: 0;
+}
+
+.chat-turn .evidence-results {
+  margin-top: 20px;
 }
 
 .grounded-answer {
@@ -1679,6 +1729,26 @@
     width: min(100% - 48px, 760px);
   }
 
+  .app-shell--conversation .workspace-layout {
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 16px;
+  }
+
+  .app-shell--conversation .workspace-context {
+    display: none;
+    max-height: 32dvh;
+  }
+
+  .app-shell--conversation .workspace-context.is-open {
+    display: block;
+  }
+
+  .workspace-context-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
   .knowledge-panel {
     width: 100%;
   }
@@ -1754,9 +1824,8 @@
     margin-top: 24px;
   }
 
-  .workspace-main--conversation {
-    height: calc(100dvh - 128px);
-    min-height: 620px;
+  .app-shell--conversation .workspace-layout {
+    margin-bottom: 16px;
   }
 
   .project-heading h1 { font-size: 24px; }

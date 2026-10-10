@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-10",
+  "branch": "prune-backend",
+  "tag": "baseline-pre-one-call-20261010",
+  "purpose": "Checkpoint del sistema V1 prima del nuovo resolver a chiamata unica; nessun nuovo motore o benchmark AI in questo intervento.",
+  "checks": [
+    {
+      "command": "npm test -- --maxWorkers=1",
+      "passed": true,
+      "tests": 98,
+      "test_files": 12,
+      "seconds": 28.5
+    },
+    {
+      "command": "npm run lint",
+      "passed": true
+    },
+    {
+      "command": "npm run build",
+      "passed": true
+    },
+    {
+      "command": "PLAYWRIGHT_BASE_URL=http://127.0.0.1:5173 npm run test:e2e -- document-mentions.spec.ts compilation-chat.spec.ts project-forms.spec.ts",
+      "passed": true,
+      "tests": 10,
+      "seconds": 39.1,
+      "providers": "API simulate; desktop/mobile, reduced motion e refresh/lease"
+    },
+    {
+      "command": "uv run --locked pytest -q tests/test_compilation_sessions.py tests/test_compilation_retry_phases.py tests/test_compilation_stability.py",
+      "passed": true,
+      "tests": 104,
+      "seconds": 26.76,
+      "providers": "simulati; database/storage temporanei"
+    },
+    {
+      "command": "uv run --locked ruff check .",
+      "passed": true
+    },
+    {
+      "command": "git diff --cached --check",
+      "passed": true
+    },
+    {
+      "check": "SHA-256 bundle e manifest interni",
+      "passed": true
+    }
+  ],
+  "full_backend_suite_run": false,
+  "real_ai_calls_this_checkpoint": 0,
+  "local_logs": "backend/data/compilation-audit/checkpoint-20261010-pre-one-call/",
+  "versioned_benchmark_bundle": "docs/benchmarks/2026-10-10-latency-audit.tar.gz",
+  "excluded": "Database, credenziali, sessioni storiche e altri dati applicativi locali."
+}

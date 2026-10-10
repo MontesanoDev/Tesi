@@ -119,6 +119,7 @@ export function ProjectWorkspacePage() {
   const navigate = useNavigate()
   const { project, loading, error, refresh } = useProject(projectId)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [contextOpen, setContextOpen] = useState(false)
   const [renameDialogOpen, setRenameDialogOpen] = useState(false)
   const [renameTitle, setRenameTitle] = useState('')
   const [renamingProject, setRenamingProject] = useState(false)
@@ -144,6 +145,7 @@ export function ProjectWorkspacePage() {
     searching || conversationLoading || changingModel, answerRequest)
   // A freshly created chat must finish navigation before it can accept another mutation.
   const activeSession = compilation.session?.conversation_id === conversationId ? compilation.session : null
+  const hasConversation = turns.length > 0 || Boolean(activeSession)
   const sessionStateUnavailable = Boolean(conversationId && compilation.error && !compilation.session)
   const composerRef = useDismissibleMenu<HTMLFormElement>(Boolean(mention), () => setMention(null))
   const turnSequence = useRef(0)
@@ -487,16 +489,22 @@ export function ProjectWorkspacePage() {
   )
 
   return (
-    <AppShell active="projects" project={project} contentClassName="workspace-content">
+    <AppShell active="projects" project={project} contentClassName="workspace-content"
+      shellClassName={hasConversation ? 'app-shell--conversation' : ''}>
       <Link className="back-link" to="/projects">← Tutti i progetti</Link>
       <div className="workspace-layout">
-        <section className={`workspace-main${turns.length > 0 || activeSession ? ' workspace-main--conversation' : ''}`}>
+        <section className={`workspace-main${hasConversation ? ' workspace-main--conversation' : ''}`}>
           <header className="project-heading">
             <div>
               <h1>{project.title}</h1>
               <p>{project.description}</p>
             </div>
             <div className="project-menu-wrap" ref={projectMenuRef}>
+              {hasConversation && <button type="button" className="button button--compact workspace-context-toggle"
+                aria-expanded={contextOpen} aria-controls="workspace-context"
+                onClick={() => setContextOpen((value) => !value)}>
+                <FileText size={15} aria-hidden="true" /> Documenti
+              </button>}
               <button
                 className={`icon-button project-menu-trigger${menuOpen ? ' is-active' : ''}`}
                 type="button"
@@ -586,7 +594,9 @@ export function ProjectWorkspacePage() {
           )}
         </section>
 
-        <ProjectKnowledgePanel project={project} onProjectChange={refresh} />
+        <div id="workspace-context" className={`workspace-context${contextOpen ? ' is-open' : ''}`}>
+          <ProjectKnowledgePanel project={project} onProjectChange={refresh} />
+        </div>
       </div>
 
       {renameDialogOpen && (

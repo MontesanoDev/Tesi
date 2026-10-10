@@ -15,6 +15,7 @@ interface AppShellProps {
   active: 'projects' | 'documents' | 'company' | 'settings'
   project?: ProjectDetail | null
   contentClassName?: string
+  shellClassName?: string
 }
 
 const navClass = ({ isActive }: { isActive: boolean }) =>
@@ -25,11 +26,12 @@ export function AppShell({
   active,
   project,
   contentClassName = '',
+  shellClassName = '',
 }: AppShellProps) {
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${shellClassName}`}>
       <aside className="icon-rail" aria-label="Navigazione principale">
         <button
           className="rail-button rail-button--panel"

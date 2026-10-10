@@ -1,5 +1,204 @@
 # Stato di Mapi RAG
 
+## Checkpoint GitHub prima del nuovo motore — 10 ottobre 2026
+
+Richiesta esplicita dell'utente: salvare prima tutto il lavoro corrente su GitHub
+e partire dal sistema parzialmente funzionante, poi procedere gradualmente.
+Questa autorizzazione supera i precedenti divieti di commit/push per il solo
+checkpoint. Branch `prune-backend`, tag **`baseline-pre-one-call-20261010`**;
+il commit che contiene questa sezione è il nuovo riferimento della demo.
+
+- Inclusi layout/scroll e separatori chat, allineamento azioni dei moduli,
+  regressioni UI, runner diagnostico, report, dati JSON dei benchmark,
+  strategia proposta e markdown di ripresa. Conservate tutte le modifiche locali.
+- Incluso un bundle versionato dei soli benchmark isolati Gemma/DeepSeek:
+  `docs/benchmarks/2026-10-10-latency-audit.tar.gz`, con checksum e manifest
+  interni verificati. Prompt/schema acquisiti, risposte, evidenze, stati e tempi
+  saranno disponibili anche dopo un clone. Nessuna credenziale o database.
+  Le acquisizioni storiche delle sessioni utente, i dati applicativi e le chiavi
+  restano locali/esclusi da Git; non sono pubblicati dal checkpoint.
+- Verifiche **rieseguite per questo checkpoint**: **98 test frontend**,
+  lint/build, **10 E2E desktop/mobile** document-mentions/compilation-chat/
+  project-forms, **104 test backend** sessioni/retry/stabilità e Ruff completo.
+  Test software con provider/API simulati e dati temporanei, non nuove misure
+  semantiche. Controllati diff/whitespace, bundle e contenuti prima del commit.
+  Non rieseguita l'intera suite backend; nessuna nuova chiamata AI reale.
+- Esiti strutturati in `docs/benchmarks/2026-10-10-checkpoint-checks.json`;
+  log locali in `backend/data/compilation-audit/checkpoint-20261010-pre-one-call/`.
+- Il resolver rimane V1: nuovo motore a chiamata unica **non implementato**,
+  nessuna migrazione, reindicizzazione o modifica dei dati locali. La direzione
+  globale è confermata; prima del prossimo codice esplicitare le scelte concrete.
+  Prossimo punto: recuperare/valutare l'eventuale prototipo non pubblicato e
+  definire contratto/validator/test della prima milestone in isolamento.
+
+## Spiegazione del percorso attuale — 10 ottobre 2026
+
+Ricostruito il flusso chat → sessione → mappa/review → batch → SOURCE/review →
+checkpoint → USER → export in
+[docs/flusso-compilazione-attuale.md](docs/flusso-compilazione-attuale.md).
+Il sistema supporta già iterazione, persistenza e raggruppamento; i limiti sono
+costi/decisioni distribuite e dominio centrato sulle posizioni candidate, con
+dialogo ricavato dagli esiti dei batch. Sono presenti riuso/propagazione,
+senza un unico catalogo globale dei fatti. PENDING non significa dato assente
+o domanda obbligatoria. Continuazione dei passi pilotata dal frontend, stato DB.
+Sola lettura del codice e documentazione; nessuna nuova prova AI, suite, modifica
+applicativa o dati. Diff/whitespace controllati. Nessun commit/push.
+
+## Proposta operativa bottom-up — 10 ottobre 2026
+
+Su richiesta dell'utente, descritta la strategia in
+[docs/strategia-bottom-up-compilazione.md](docs/strategia-bottom-up-compilazione.md).
+**Da discutere**, nessun nuovo motore o contratto implementato: partire dalle
+scritture ammesse e dai test; catalogo compatto FORM/prove/fatti/assegnazioni;
+una proposta globale validata localmente; riuso di sessione, chat e renderer;
+potatura del resolver/reviewer precedente solo dopo confronto reale verificato.
+Il matching letterale non sostituisce il controllo di soggetto/ruolo/condizione;
+una sola chiamata non garantisce velocità né correttezza. Recuperare il prototipo
+non pubblicato prima di duplicarlo. Benchmark e test software restano distinti,
+con export XML, casi negativi e coverage esplicita fra i criteri di accettazione.
+Sola documentazione: `git diff --check` e whitespace dei file nuovi controllati;
+nessuna suite, chiamata AI, modifica dati, commit o push in questo passaggio.
+
+## Chiarimento sulla direzione di pruning già scelta — 10 ottobre 2026
+
+Ricontrollati `RIPRESA-MAPI.md`, lo storico di questo file e `baseline-demo.md`.
+La direzione era già autorizzata: sviluppo isolato bottom-up di una
+rappresentazione completa/compatta FORM/SOURCE/USER, una chiamata, controlli
+locali ed export, senza nuova orchestrazione per gruppi o reviewer AI separati.
+La V1 resta la demo di riferimento. Il contratto preciso di fatti/condizioni/
+evidenze rimane da discutere, non la direzione generale da decidere da zero.
+Le proposte della recente diagnosi di latenza descrivono costi della V1:
+non sostituiscono il percorso scelto con un nuovo piano di ottimizzazione V1.
+Il markdown segnala un prototipo non committato in `Tesi-one-shot` sul PC di
+origine; questo clone contiene soltanto la worktree `tesi` e non quel prototipo.
+Per riprenderlo servono i file/diff originali, preservando la demo e i dati.
+Nessuna modifica applicativa, test, commit o push per questo chiarimento.
+
+## Confronto reale DeepSeek e conservazione benchmark — 10 ottobre 2026
+
+- Richiesta corrente: provare DeepSeek e salvare stabilmente tutti i dati
+  prodotti da benchmark/diagnosi. Aggiunta questa regola di continuità in
+  AGENTS.md. Nessuna modifica al motore, ai prompt/schema applicativi, ai
+  validator, alle impostazioni AI o alle sessioni locali.
+- Nuovo benchmark **reale deepseek-flash**, stesso progetto/form 153/originale
+  e KB della prova Gemma, profilo DeepSeek letto da `prova` soltanto nel
+  processo diagnostico. Backup SQLite/storage/Qdrant temporanei, nessun USER.
+  Mappa/review **117,61 s**, primi 12 candidate **33,56 s**, totale **151,25 s**.
+  Cinque campi tutti RESOLVED/SOURCE alla prima ricerca: operatore economico,
+  forma giuridica, sede legale, CF e PIVA. Zero errori per questi cinque,
+  chunk Company KB `-43`/`-30` ammessi nei rispettivi bucket. Restano 267 PENDING,
+  cinque MISSING, una AMBIGUOUS e una NOT_APPLICABLE; nessun READY o DOCX.
+- DeepSeek emette il binding `semantic` per tutti e 12 i candidate, senza
+  rifiuti di interpretazione. Sette chiamate generative totali, 141,14 s;
+  solo mappa/review producono 24.762 token di ragionamento con thinking attivo.
+  Cambiare modello permette qui di avanzare ma non elimina l'attesa iniziale.
+  Un solo campione, cache prompt attiva: non è una graduatoria generale di velocità.
+- Nuovo runner diagnostico bounded e riutilizzabile:
+  `backend/scripts/benchmark_compilation_latency.py`. Delega a provider/service
+  veri, default sei passi/420 s, stop dopo i target risolti. Non è un E2E browser
+  né una prova di completamento del modulo; non genera bozze incomplete.
+- Salvati i grezzi DeepSeek, recuperati quelli Gemma da `/tmp` e salvate in
+  sola lettura anche le due sessioni storiche. Percorsi permanenti, contenuti,
+  archivio trasportabile e comando di ripetizione in
+  [docs/benchmarks/README.md](docs/benchmarks/README.md).
+  [Report aggiornato](docs/diagnosi-latenza-compilazione-2026-10-10.md) e
+  [JSON delle misure](docs/benchmarks/2026-10-10-compilation-latency.json)
+  versionabili. I grezzi in `backend/data/` sono esclusi da Git: serve backup
+  separato; non affidarsi al solo push. Nessuna credenziale esportata. Per
+  Gemma i prompt non erano acquisiti; il limite è documentato.
+- Verifiche di questa ripresa: esecuzione reale del runner, Ruff completo
+  backend, `--help` del runner, controllo manifest SHA-256, originale invariato,
+  sessione assente dal DB live, source_evidence ammesse e scan credenziali.
+  `git diff --check` passato. Nessuna suite software/frontend ripetuta: gli
+  esiti riportati sotto sono precedenti, non misure appena rieseguite.
+- Preservate tutte le modifiche UI/locali. Nessun commit/push. Riprendere la
+  direzione bottom-up/una chiamata già scelta nello storico. Contratto preciso
+  e criteri di valutazione restano da discutere; le tracce V1 ne sono la baseline.
+
+## Diagnosi reale della lentezza e icone allineate — 10 ottobre 2026
+
+- Su richiesta dell'utente, misurata la compilazione prima di avviare un pruning
+  del backend. Nessuna modifica al motore, ai prompt, alle impostazioni o alle
+  sessioni locali. Report: [diagnosi dei tempi](docs/diagnosi-latenza-compilazione-2026-10-10.md).
+- Prova reale Gemma `gemma4:e2b`, configurazione corrente (contesto 131072,
+  Qdrant/BGE-M3), backup SQLite/storage/indice temporanei: creazione 0,48 s;
+  mappa completa + review **100,32 s**; primi 12 candidate **16,03 s**, tutti
+  respinti perché il modello omette `semantic`. La proprietà è opzionale nello
+  schema ma necessaria per i candidate data: il parsing passa, il guard del
+  dominio li scarta. SOURCE non parte e i campi restano PENDING. Circa il 98%
+  del tempo dei due passi è nelle tre chiamate AI. Nessun dato USER o export.
+- Prove I/O separate: parser 0,093 s, lettura sessione 0,111 s (JSON circa
+  1,16 MB), FTS5 0,006 s, Qdrant prima ricerca 6,624 s e ripetizione 0,128 s;
+  quattro evidenze SOURCE per ricerca. Non sono percentili né confronti di
+  qualità semantica, e queste ricerche non appartengono al batch respinto.
+- Lettura storica delle revisioni locali: Gemma circa **374 s** per 22 passi,
+  zero RESOLVED, con un successivo claim senza completamento e lease scaduto
+  (API paused=true). DeepSeek circa **812 s** per 52 passi su due cicli: i cinque
+  campi societari restano RESOLVED/SOURCE. Lo status GENERATED di quest'ultima
+  sessione riguarda una bozza incompleta, non un modulo interamente risolto.
+- Osservazioni diagnostiche sulla V1, non implementate: schema di interpretazione
+  coerente con il dominio, riuso della mappa verificata dello stesso originale/hash,
+  meno passaggi/payload duplicati e tempi/rifiuti per fase. Non alleggerire i
+  guard FORM/SOURCE/USER per recuperare velocità. Il contesto ampio non è stato
+  dimostrato come causa principale; non modificato.
+- Correzione UI richiesta durante la diagnosi: cestino dei moduli allineato a
+  quello delle fonti tramite lo stesso spazio riservato nella colonna azioni;
+  SVG, dimensioni e stile hover/focus restano condivisi.
+- Verifiche appena eseguite: **104 test backend** sessioni/retry/stabilità
+  passati con provider simulati; Ruff completo backend, lint/build frontend e **2 E2E project-forms**
+  desktop/mobile con API simulate passati. Misure reali separate dai test
+  software. `git diff --check` passato. Artefatti trasferiti successivamente
+  nell'archivio permanente indicato nella sezione di confronto DeepSeek.
+  Nessun commit o push; preservate le altre modifiche locali. Prossimo punto:
+  riprendere il percorso bottom-up già scelto e usare queste misure come baseline.
+
+## Chat: separatori coerenti e scroll nella viewport — 10 ottobre 2026
+
+- Corretta la separazione dei messaggi: la risposta aveva un bordo superiore
+  immediatamente sotto la bolla utente, oltre al separatore fra turni. Tolto il
+  bordo interno, mantenuti un solo divisore fra scambi e spazi di 24 px coerenti;
+  il pannello evidenze conserva la propria separazione.
+- Rimossa l'altezza minima di 620 px della conversazione e il calcolo fisso che,
+  sommato ai margini del workspace, superava la viewport. La sola shell della
+  conversazione occupa `100dvh`, con cronologia e documenti a scroll indipendente;
+  il composer rimane visibile. Il workspace iniziale e le altre pagine conservano
+  il layout precedente. Su schermi fino a 1100 px il pannello documenti si apre
+  dal controllo «Documenti», senza allungare la pagina.
+- Esteso l'E2E document-mentions con verifiche comportamentali: conversazione
+  breve senza scroll superfluo, storico e documenti lunghi, apertura/chiusura
+  del contesto su mobile, composer raggiungibile e `window.scrollY=0`, anche a
+  700 px di altezza. Verificati screenshot desktop/mobile.
+- Verifiche effettivamente eseguite: **98 test frontend**, lint e build passati;
+  **8 E2E** document-mentions/compilation-chat desktop/mobile passati, quindi
+  ripetuti e passati i **2 E2E document-mentions** dopo l'aggiunta delle verifiche
+  di scroll. API simulate negli E2E; nessun dato locale, provider reale, parser,
+  renderer, RAG o workflow backend modificato. `git diff --check` passato.
+- Nessuna migrazione/reindicizzazione, commit o push. Preservati il precedente
+  aggiornamento locale di questo file e `RIPRESA-MAPI.md` non tracciato.
+  Prossimo punto: diagnosticare l'attesa reale segnalata su «Certo. Analizzo il
+  modulo… / Sto lavorando…», controllando avanzamento e tempi della compilazione;
+  questo intervento UI non dimostra né corregge un eventuale blocco del modello.
+
+## Ripresa su questo PC e accesso GitHub — 10 ottobre 2026
+
+- Letto `RIPRESA-MAPI.md`, preservato come file locale non tracciato. Recuperati
+  i commit pubblicati: `main` aggiornato in fast-forward a `b8071d3`, poi aperto
+  `prune-backend` a `26976fa`, allineato a `origin/prune-backend`.
+- `origin` usa ora `https://github.com/MontesanoDev/Tesi.git`. Riutilizzato il
+  Git Credential Manager di Windows già configurato: credenziale esistente
+  verificata tramite API GitHub, account MontesanoDev e permesso push=true.
+  `git push --dry-run origin prune-backend` con interazione disabilitata termina
+  con «Everything up-to-date», senza password e senza inviare modifiche.
+  Rinnovo login annullato perché la credenziale conservata è già valida.
+  Nessun token riportato o salvato nei file del progetto; chiavi SSH intatte.
+- Confermato nel codice recuperato: selettore documentale ancora singolo;
+  contratti multipli e correzione scroll descritti nel markdown non sono stati
+  pubblicati sul branch remoto e non sono stati ricostruiti in questa ripresa.
+- Nessuna suite applicativa o benchmark AI rieseguiti per il recupero Git;
+  nessun avvio dei servizi, migrazione locale, commit o push. Prossimo punto:
+  riprendere selezione multipla/scroll dal markdown, preservando il routing
+  TurnPlan e la UI conversazionale già consolidati nel branch recuperato.
+
 Aggiornato il **10 ottobre 2026**. Base precedente agli interventi: branch `main`, commit
 `dcb9557` (`fix: stabilize table autofill and DOCX finalization`).
 Ricontrollare Git all'inizio della prossima sessione.

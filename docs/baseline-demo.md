@@ -1,5 +1,28 @@
 # Baseline della demo — 10 ottobre 2026
 
+## Checkpoint prima del nuovo motore a chiamata unica
+
+Su richiesta dell'utente, consolidato il sistema attuale sul branch
+`prune-backend`, con riferimento **`baseline-pre-one-call-20261010`**.
+Questo checkpoint comprende layout/scroll della chat, allineamento delle azioni
+dei moduli, runner diagnostico, report e benchmark Gemma/DeepSeek; il resolver
+V1 rimane quello già esistente. Il nuovo motore globale non è implementato.
+È una base parzialmente funzionante con limiti documentati, non una certificazione
+di compilazione completa. Le baseline precedenti restano conservate.
+
+Il bundle versionato in `docs/benchmarks/2026-10-10-latency-audit.tar.gz` conserva
+le acquisizioni dei due benchmark isolati, senza credenziali o database. Dati
+applicativi, chiavi e sessioni storiche restano locali ed esclusi dal push.
+Verifiche del checkpoint e prossimo punto in [STATUS.md](../STATUS.md).
+
+Per identificare il codice della base senza modificare il working tree:
+
+```bash
+git show baseline-pre-one-call-20261010 --stat
+```
+
+## Baseline precedente della demo
+
 La versione destinata alla dimostrazione rimane in `/home/montesano/Tesi`,
 sul branch `prune-backend`. Si avvia come prima con `./start.sh`.
 Il riferimento Git **`demo-baseline-20261010`** identifica la nuova base con UI

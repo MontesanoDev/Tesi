@@ -1,0 +1,841 @@
+{
+  "date": "2026-10-10",
+  "git_head": "26976fa",
+  "scope": "Diagnosi reale limitata a mappa e primi 12 candidate; nessun USER, nessun DOCX, nessuna modifica backend applicativo.",
+  "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+  "gemma": {
+    "configuration": {
+      "project": "minervino-di-lecce-elenco-sia",
+      "model": "gemma4:e2b",
+      "provider": "ollama",
+      "context_window": 131072,
+      "retrieval": "qdrant"
+    },
+    "create_seconds": 0.4775,
+    "steps": [
+      {
+        "step": 1,
+        "seconds": 100.3151,
+        "status": "CREATED",
+        "summary": {
+          "blocked_writes": 0,
+          "writable": 0,
+          "total": 279,
+          "pending": 279,
+          "resolved": 0,
+          "missing": 0,
+          "ambiguous": 0,
+          "conflicting": 0,
+          "not_applicable": 0,
+          "user_provided": 0
+        },
+        "diagnostics": {
+          "phase": "document_plan",
+          "candidate_ids": [],
+          "model_requests": 2,
+          "sections": 22,
+          "choices": 0,
+          "rejected_sections": [
+            "paragraph:48",
+            "paragraph:145",
+            "paragraph:152",
+            "paragraph:170",
+            "paragraph:172",
+            "paragraph:639",
+            "paragraph:646",
+            "paragraph:648",
+            "paragraph:175",
+            "paragraph:176",
+            "paragraph:18",
+            "paragraph:180",
+            "paragraph:182",
+            "paragraph:184",
+            "paragraph:193",
+            "paragraph:231",
+            "paragraph:253",
+            "paragraph:260",
+            "paragraph:278",
+            "paragraph:296",
+            "paragraph:314",
+            "paragraph:338",
+            "paragraph:367",
+            "paragraph:380",
+            "paragraph:392",
+            "paragraph:404",
+            "paragraph:417",
+            "paragraph:437",
+            "paragraph:452",
+            "paragraph:47",
+            "paragraph:472",
+            "paragraph:485",
+            "paragraph:508",
+            "paragraph:521",
+            "paragraph:523",
+            "paragraph:536",
+            "paragraph:549",
+            "paragraph:564",
+            "paragraph:578",
+            "paragraph:595",
+            "paragraph:623",
+            "paragraph:73"
+          ]
+        }
+      },
+      {
+        "step": 2,
+        "seconds": 16.0252,
+        "status": "CREATED",
+        "summary": {
+          "blocked_writes": 0,
+          "writable": 0,
+          "total": 279,
+          "pending": 279,
+          "resolved": 0,
+          "missing": 0,
+          "ambiguous": 0,
+          "conflicting": 0,
+          "not_applicable": 0,
+          "user_provided": 0
+        },
+        "diagnostics": {
+          "candidate_ids": [
+            "t0.r0.c1",
+            "t0.r1.c1",
+            "t0.r2.c1",
+            "t0.r3.c1",
+            "t0.r4.c1",
+            "t0.r5.c1",
+            "t0.r6.c1",
+            "t0.r7.c1",
+            "t0.r8.c1",
+            "t0.r9.c1",
+            "t0.r10.c1",
+            "t0.r11.c1"
+          ],
+          "clusters": [],
+          "query_count": 0,
+          "source_count": 0,
+          "covered_candidates": 0,
+          "model_requests": 1,
+          "classification_retry": false,
+          "interpretation_rejections": {
+            "t0.r0.c1": "Interpretazione senza anchor semantico",
+            "t0.r1.c1": "Interpretazione senza anchor semantico",
+            "t0.r2.c1": "Interpretazione senza anchor semantico",
+            "t0.r3.c1": "Interpretazione senza anchor semantico",
+            "t0.r4.c1": "Interpretazione senza anchor semantico",
+            "t0.r5.c1": "Interpretazione senza anchor semantico",
+            "t0.r6.c1": "Interpretazione senza anchor semantico",
+            "t0.r7.c1": "Interpretazione senza anchor semantico",
+            "t0.r8.c1": "Interpretazione senza anchor semantico",
+            "t0.r9.c1": "Interpretazione senza anchor semantico",
+            "t0.r10.c1": "Interpretazione senza anchor semantico",
+            "t0.r11.c1": "Interpretazione senza anchor semantico"
+          },
+          "matcher_rejections": {}
+        }
+      }
+    ],
+    "model_calls": [
+      {
+        "schema": "DocumentPlan",
+        "max_tokens": 24576,
+        "input_characters": 35567,
+        "output_characters": 21446,
+        "total_tokens": 18494,
+        "seconds": 85.9378
+      },
+      {
+        "schema": "DocumentPlanReview",
+        "max_tokens": 24576,
+        "input_characters": 56760,
+        "output_characters": 1712,
+        "total_tokens": 19118,
+        "seconds": 13.2562
+      },
+      {
+        "schema": "CandidateMeanings",
+        "max_tokens": 8192,
+        "input_characters": 21979,
+        "output_characters": 3959,
+        "total_tokens": 8352,
+        "seconds": 15.2504
+      }
+    ],
+    "io": [
+      {
+        "operation": "parser_original",
+        "seconds": 0.09301
+      },
+      {
+        "operation": "session_read",
+        "seconds": 0.11107,
+        "response_json_bytes": 1158734
+      },
+      {
+        "operation": "fts5",
+        "seconds": 0.00556,
+        "source_evidence": 4,
+        "roles": [
+          "source"
+        ]
+      },
+      {
+        "operation": "qdrant",
+        "seconds": 6.62389,
+        "source_evidence": 4,
+        "roles": [
+          "source"
+        ]
+      },
+      {
+        "operation": "qdrant_warm",
+        "seconds": 0.12757,
+        "source_evidence": 4,
+        "roles": [
+          "source"
+        ]
+      }
+    ],
+    "final_summary": {
+      "blocked_writes": 0,
+      "writable": 0,
+      "total": 279,
+      "pending": 279,
+      "resolved": 0,
+      "missing": 0,
+      "ambiguous": 0,
+      "conflicting": 0,
+      "not_applicable": 0,
+      "user_provided": 0
+    },
+    "artifact_directory": "backend/data/compilation-audit/latency-20261010-gemma",
+    "limitations": [
+      "Prompt/schema non acquisiti nel benchmark Gemma originale.",
+      "I/O misurato separatamente, non nel batch rifiutato."
+    ]
+  },
+  "deepseek": {
+    "configuration": {
+      "project": "minervino-di-lecce-elenco-sia",
+      "form_id": 153,
+      "document": "domanda-partecipazione.docx",
+      "profile_project": "prova",
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "context_window": 32768,
+      "retrieval": "qdrant",
+      "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+      "scope": "create_session + automatic resolve service; no USER input, no DOCX generation"
+    },
+    "create_seconds": 0.4927,
+    "elapsed_seconds": 151.2527,
+    "stop_reason": "requested_candidates_resolved",
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 420
+    },
+    "steps": [
+      {
+        "step": 1,
+        "seconds": 117.6136,
+        "status": "CREATED",
+        "summary": {
+          "blocked_writes": 0,
+          "writable": 0,
+          "total": 279,
+          "pending": 279,
+          "resolved": 0,
+          "missing": 0,
+          "ambiguous": 0,
+          "conflicting": 0,
+          "not_applicable": 0,
+          "user_provided": 0
+        },
+        "diagnostics": {
+          "phase": "document_plan",
+          "candidate_ids": [],
+          "model_requests": 2,
+          "sections": 11,
+          "choices": 0,
+          "rejected_sections": [
+            "paragraph:73",
+            "paragraph:172",
+            "paragraph:187",
+            "paragraph:249",
+            "paragraph:333",
+            "paragraph:639"
+          ]
+        }
+      },
+      {
+        "step": 2,
+        "seconds": 33.557,
+        "status": "CREATED",
+        "summary": {
+          "blocked_writes": 0,
+          "writable": 5,
+          "total": 279,
+          "pending": 267,
+          "resolved": 5,
+          "missing": 5,
+          "ambiguous": 1,
+          "conflicting": 0,
+          "not_applicable": 1,
+          "user_provided": 0
+        },
+        "diagnostics": {
+          "candidate_ids": [
+            "t0.r0.c1",
+            "t0.r1.c1",
+            "t0.r2.c1",
+            "t0.r3.c1",
+            "t0.r4.c1",
+            "t0.r5.c1",
+            "t0.r6.c1",
+            "t0.r7.c1",
+            "t0.r8.c1",
+            "t0.r9.c1",
+            "t0.r10.c1",
+            "t0.r11.c1"
+          ],
+          "clusters": [
+            {
+              "field_ids": [
+                "t0.r0.c1",
+                "t0.r1.c1",
+                "t0.r2.c1",
+                "t0.r11.c1"
+              ],
+              "queries": [
+                "nominativo nato a CF telefono",
+                "denominazione data di nascita codice fiscale cellulare"
+              ],
+              "source_ids": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "field_ids": [
+                "t0.r3.c1",
+                "t0.r4.c1",
+                "t0.r5.c1",
+                "t0.r6.c1"
+              ],
+              "queries": [
+                "ruolo procuratore procura denominazione forma giuridica",
+                "qualifica procuratore estremi procura ragione sociale tipo societario"
+              ],
+              "source_ids": [
+                8,
+                2,
+                1,
+                9,
+                10,
+                4,
+                11,
+                12
+              ]
+            },
+            {
+              "field_ids": [
+                "t0.r7.c1",
+                "t0.r8.c1",
+                "t0.r9.c1",
+                "t0.r10.c1"
+              ],
+              "queries": [
+                "anagrafica aziendale sede unità locale CF P.IVA",
+                "anagrafica aziendale sede legale sede operativa codice fiscale partita IVA"
+              ],
+              "source_ids": [
+                2,
+                13,
+                14,
+                15,
+                4,
+                16,
+                17
+              ]
+            }
+          ],
+          "query_count": 6,
+          "source_count": 21,
+          "covered_candidates": 12,
+          "model_requests": 5,
+          "classification_retry": false,
+          "interpretation_rejections": {},
+          "matcher_rejections": {}
+        }
+      }
+    ],
+    "model_calls": [
+      {
+        "id": 1,
+        "schema": "DocumentPlan",
+        "max_tokens": 24576,
+        "input_characters": 35567,
+        "output_characters": 5522,
+        "usage": {
+          "prompt_tokens": 11797,
+          "completion_tokens": 13094,
+          "total_tokens": 24891,
+          "prompt_tokens_details": {
+            "cached_tokens": 11648
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 11634
+          },
+          "prompt_cache_hit_tokens": 11648,
+          "prompt_cache_miss_tokens": 149
+        },
+        "seconds": 53.6875
+      },
+      {
+        "id": 2,
+        "schema": "DocumentPlanReview",
+        "max_tokens": 24576,
+        "input_characters": 41027,
+        "output_characters": 2727,
+        "usage": {
+          "prompt_tokens": 13392,
+          "completion_tokens": 13855,
+          "total_tokens": 27247,
+          "prompt_tokens_details": {
+            "cached_tokens": 11008
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 13128
+          },
+          "prompt_cache_hit_tokens": 11008,
+          "prompt_cache_miss_tokens": 2384
+        },
+        "seconds": 62.9172
+      },
+      {
+        "id": 3,
+        "schema": "CandidateMeanings",
+        "max_tokens": 8192,
+        "input_characters": 21979,
+        "output_characters": 8039,
+        "usage": {
+          "prompt_tokens": 7292,
+          "completion_tokens": 2228,
+          "total_tokens": 9520,
+          "prompt_tokens_details": {
+            "cached_tokens": 7040
+          },
+          "prompt_cache_hit_tokens": 7040,
+          "prompt_cache_miss_tokens": 252
+        },
+        "seconds": 7.7285
+      },
+      {
+        "id": 4,
+        "schema": "FormReview",
+        "max_tokens": 8192,
+        "input_characters": 25979,
+        "output_characters": 2350,
+        "usage": {
+          "prompt_tokens": 8585,
+          "completion_tokens": 676,
+          "total_tokens": 9261,
+          "prompt_tokens_details": {
+            "cached_tokens": 1152
+          },
+          "prompt_cache_hit_tokens": 1152,
+          "prompt_cache_miss_tokens": 7433
+        },
+        "seconds": 2.995
+      },
+      {
+        "id": 5,
+        "schema": "CompilationSourcePlan",
+        "max_tokens": 8192,
+        "input_characters": 9795,
+        "output_characters": 1570,
+        "usage": {
+          "prompt_tokens": 3061,
+          "completion_tokens": 507,
+          "total_tokens": 3568,
+          "prompt_tokens_details": {
+            "cached_tokens": 1536
+          },
+          "prompt_cache_hit_tokens": 1536,
+          "prompt_cache_miss_tokens": 1525
+        },
+        "seconds": 2.5591
+      },
+      {
+        "id": 6,
+        "schema": "CandidateMatches",
+        "max_tokens": 8192,
+        "input_characters": 76820,
+        "output_characters": 4715,
+        "usage": {
+          "prompt_tokens": 25092,
+          "completion_tokens": 1477,
+          "total_tokens": 26569,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "prompt_cache_hit_tokens": 640,
+          "prompt_cache_miss_tokens": 24452
+        },
+        "seconds": 6.3065
+      },
+      {
+        "id": 7,
+        "schema": "SourceReview",
+        "max_tokens": 8192,
+        "input_characters": 43884,
+        "output_characters": 3293,
+        "usage": {
+          "prompt_tokens": 14579,
+          "completion_tokens": 1106,
+          "total_tokens": 15685,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 14067
+        },
+        "seconds": 4.9467
+      }
+    ],
+    "stages": [
+      {
+        "phase": "plan_document",
+        "seconds": 116.6379
+      },
+      {
+        "phase": "classify_candidates",
+        "seconds": 7.7395
+      },
+      {
+        "phase": "review_meanings",
+        "seconds": 3.0207
+      },
+      {
+        "phase": "retrieve_sources",
+        "seconds": 10.5947
+      },
+      {
+        "phase": "match_candidates",
+        "seconds": 6.3166
+      },
+      {
+        "phase": "review_sources",
+        "seconds": 4.963
+      }
+    ],
+    "final_summary": {
+      "blocked_writes": 0,
+      "writable": 5,
+      "total": 279,
+      "pending": 267,
+      "resolved": 5,
+      "missing": 5,
+      "ambiguous": 1,
+      "conflicting": 0,
+      "not_applicable": 1,
+      "user_provided": 0
+    },
+    "processed_fields": [
+      {
+        "id": "t0.r0.c1",
+        "label": "nome e cognome del sottoscritto",
+        "value": null,
+        "status": "MISSING",
+        "provenance": null,
+        "condition": "",
+        "validation_errors": [],
+        "source_evidence": []
+      },
+      {
+        "id": "t0.r1.c1",
+        "label": "data e luogo di nascita",
+        "value": null,
+        "status": "MISSING",
+        "provenance": null,
+        "condition": "",
+        "validation_errors": [],
+        "source_evidence": []
+      },
+      {
+        "id": "t0.r2.c1",
+        "label": "codice fiscale del sottoscritto",
+        "value": null,
+        "status": "MISSING",
+        "provenance": null,
+        "condition": "",
+        "validation_errors": [],
+        "source_evidence": []
+      },
+      {
+        "id": "t0.r3.c1",
+        "label": "carica sociale del sottoscritto",
+        "value": null,
+        "status": "MISSING",
+        "provenance": null,
+        "condition": "",
+        "validation_errors": [],
+        "source_evidence": []
+      },
+      {
+        "id": "t0.r4.c1",
+        "label": "estremi procura",
+        "value": null,
+        "status": "AMBIGUOUS",
+        "provenance": null,
+        "condition": "se procuratore",
+        "validation_errors": [],
+        "source_evidence": []
+      },
+      {
+        "id": "t0.r5.c1",
+        "label": "denominazione operatore economico",
+        "value": "Mapi Ingegneria S.r.l.",
+        "status": "RESOLVED",
+        "provenance": "SOURCE",
+        "condition": "",
+        "validation_errors": [],
+        "source_evidence": [
+          {
+            "chunk_id": -43,
+            "file_id": -7,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "Ragione sociale: Mapi Ingegneria S.r.l."
+          },
+          {
+            "chunk_id": -30,
+            "file_id": -9,
+            "source_name": "visura-mapi-ingegneria-simulata.pdf",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l."
+          }
+        ]
+      },
+      {
+        "id": "t0.r6.c1",
+        "label": "forma giuridica dell'operatore economico",
+        "value": "Societa a responsabilita limitata",
+        "status": "RESOLVED",
+        "provenance": "SOURCE",
+        "condition": "",
+        "validation_errors": [],
+        "source_evidence": [
+          {
+            "chunk_id": -43,
+            "file_id": -7,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "Forma giuridica: Societa a responsabilita limitata."
+          },
+          {
+            "chunk_id": -30,
+            "file_id": -9,
+            "source_name": "visura-mapi-ingegneria-simulata.pdf",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "FORMA GIURIDICA Societa a responsabilita limitata"
+          }
+        ]
+      },
+      {
+        "id": "t0.r7.c1",
+        "label": "sede legale dell'operatore economico",
+        "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+        "status": "RESOLVED",
+        "provenance": "SOURCE",
+        "condition": "",
+        "validation_errors": [],
+        "source_evidence": [
+          {
+            "chunk_id": -43,
+            "file_id": -7,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+          },
+          {
+            "chunk_id": -30,
+            "file_id": -9,
+            "source_name": "visura-mapi-ingegneria-simulata.pdf",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+          }
+        ]
+      },
+      {
+        "id": "t0.r8.c1",
+        "label": "sede operativa dell'operatore economico",
+        "value": null,
+        "status": "NOT_APPLICABLE",
+        "provenance": "SOURCE",
+        "condition": "se diversa dalla sede legale",
+        "validation_errors": [
+          "Sezione/condizione esclusa",
+          "SOURCE semanticamente non verificata: Il valore proposto 'sede operativa coincidente con la sede legale' è una descrizione del rapporto tra le sedi, non l'indirizzo della sede operativa richiesto dal campo."
+        ],
+        "source_evidence": [
+          {
+            "chunk_id": -44,
+            "file_id": -7,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "Rapporto tra le sedi: sede operativa coincidente con la sede legale."
+          }
+        ]
+      },
+      {
+        "id": "t0.r9.c1",
+        "label": "codice fiscale dell'operatore economico",
+        "value": "IT01234567890",
+        "status": "RESOLVED",
+        "provenance": "SOURCE",
+        "condition": "",
+        "validation_errors": [],
+        "source_evidence": [
+          {
+            "chunk_id": -43,
+            "file_id": -7,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+          },
+          {
+            "chunk_id": -30,
+            "file_id": -9,
+            "source_name": "visura-mapi-ingegneria-simulata.pdf",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)"
+          }
+        ]
+      },
+      {
+        "id": "t0.r10.c1",
+        "label": "partita IVA dell'operatore economico",
+        "value": "IT01234567890",
+        "status": "RESOLVED",
+        "provenance": "SOURCE",
+        "condition": "",
+        "validation_errors": [],
+        "source_evidence": [
+          {
+            "chunk_id": -43,
+            "file_id": -7,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+          },
+          {
+            "chunk_id": -30,
+            "file_id": -9,
+            "source_name": "visura-mapi-ingegneria-simulata.pdf",
+            "role": "source",
+            "scope": "global",
+            "category": "company",
+            "project_id": null,
+            "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)"
+          }
+        ]
+      },
+      {
+        "id": "t0.r11.c1",
+        "label": "cellulare e telefono",
+        "value": null,
+        "status": "MISSING",
+        "provenance": null,
+        "condition": "",
+        "validation_errors": [
+          "SOURCE semanticamente non verificata: Il campo riguarda il cellulare e telefono del sottoscritto (persona firmataria), mentre la fonte attesta il telefono aziendale di Mapi Ingegneria S.r.l.; dato appartenente a soggetto diverso.",
+          "SOURCE semanticamente non verificata: Il recapito '+39 080 000 2040' è il telefono aziendale della società, non il cellulare/telefono del sottoscritto richiesto dal campo."
+        ],
+        "source_evidence": []
+      }
+    ],
+    "checks": {
+      "original_sha256_unchanged": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+      "benchmark_session_absent_in_live_db": true,
+      "credential_scan_files": 69,
+      "credential_matches": 0,
+      "providers_simulated": false,
+      "source_checks": {
+        "t0.r5.c1": {
+          "status": "RESOLVED",
+          "provenance": "SOURCE",
+          "allowed_bucket": true,
+          "errors": []
+        },
+        "t0.r6.c1": {
+          "status": "RESOLVED",
+          "provenance": "SOURCE",
+          "allowed_bucket": true,
+          "errors": []
+        },
+        "t0.r7.c1": {
+          "status": "RESOLVED",
+          "provenance": "SOURCE",
+          "allowed_bucket": true,
+          "errors": []
+        },
+        "t0.r9.c1": {
+          "status": "RESOLVED",
+          "provenance": "SOURCE",
+          "allowed_bucket": true,
+          "errors": []
+        },
+        "t0.r10.c1": {
+          "status": "RESOLVED",
+          "provenance": "SOURCE",
+          "allowed_bucket": true,
+          "errors": []
+        }
+      }
+    },
+    "artifact_directory": "backend/data/compilation-audit/latency-20261010-deepseek",
+    "limitations": [
+      "Un solo campione per provider, con cache prompt DeepSeek attiva.",
+      "Benchmark del service automatico, non browser/chat end-to-end.",
+      "Il resto dei 267 candidate non è analizzato."
+    ]
+  },
+  "historical_artifacts": "backend/data/compilation-audit/latency-20261010-historical"
+}

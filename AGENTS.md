@@ -24,6 +24,10 @@ Se STATUS.md indica che una scelta architetturale o di prodotto è ancora
 Presentare prima alternative e trade-off all'utente, salvo richiesta esplicita
 di implementazione.
 
+Prima di scrivere codice per il nuovo motore di compilazione, comunicare le
+scelte progettuali concrete, i trade-off e i criteri di verifica. Procedere
+per passi misurati, conservando una baseline recuperabile del sistema attuale.
+
 ## Struttura e punti di ingresso
 
 Prototipo di tesi per consultare fonti aziendali/documenti di gara e compilare
@@ -74,6 +78,12 @@ embedding hanno configurazioni distinte. Il modello predefinito degli embedding
   dati esistenti preferire letture senza modifiche; per i test usare database e
   storage temporanei. Non riportare credenziali, contenuti di `.env` o `.ai-key`
   nei documenti di passaggio. Conservare le fixture di `demo-documents/`.
+- Salvare diagnosi e benchmark in modo durevole: report e riepiloghi in `docs/`,
+  acquisizioni grezze in `backend/data/compilation-audit/`, con riferimenti nel
+  report. Non lasciare gli unici risultati in `/tmp`. Conservare prompt/schema,
+  output reali, tempi, validazioni e stato quando acquisiti, senza credenziali;
+  dichiarare eventuali dati non acquisiti. Gli artefatti locali esclusi da Git
+  richiedono un backup separato e non vengono pubblicati con il solo push.
 - Distinguere sempre test del software con provider simulati da valutazioni
   della qualità delle risposte reali. Citazioni formalmente valide e stato
   `completed` non garantiscono una risposta pertinente o supportata dalle fonti.

@@ -5,6 +5,7 @@ test('document mentions consult sources and preserve the pending form across rel
   const root = '/api/projects/document-mentions'
   const form = { id: 42, name: 'domanda.docx', kind: 'form', metadata: 'DOCX', status: 'Indicizzato' }
   const source = { id: 43, name: 'avviso.pdf', kind: 'source', metadata: 'PDF', status: 'Indicizzato' }
+  const files = [form, source]
   let reference: DocumentReference = { document_id: form.id, name: form.name, role: 'form' }
   const question = 'Mi manca la data di abilitazione. Qual è?'
   const session: CompilationSession = {
@@ -35,7 +36,7 @@ test('document mentions consult sources and preserve the pending form across rel
     if (path === root) return route.fulfill({ json: {
       id: 'document-mentions', title: 'Documenti di gara', description: 'Progetto di prova', status: 'Bozza',
       status_tone: 'info', updated_label: '', source_count: 1, model_count: 1, instructions: '',
-      call_fact_count: 0, missing_fact_count: 0, files: [form, source], knowledge_sources: [], conversations: [],
+      call_fact_count: 0, missing_fact_count: 0, files, knowledge_sources: [], conversations: [],
     } })
     if (path === `${root}/conversations/chat-1`) return route.fulfill({ json: {
       id: 'chat-1', project_id: 'document-mentions', title: 'Chat', metadata: '', target: 'chat',
@@ -65,6 +66,8 @@ test('document mentions consult sources and preserve the pending form across rel
   await page.goto('/projects/document-mentions/conversations/chat-1')
   const add = page.getByRole('button', { name: 'Aggiungi un documento' })
   await expect(add).toBeEnabled()
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true)
+  expect(await page.locator('.chat-thread').evaluate((element) => element.scrollHeight <= element.clientHeight)).toBe(true)
   await add.click()
   await expect(page.getByRole('group', { name: 'Moduli da compilare' })).toBeVisible()
   await expect(page.getByRole('group', { name: 'Bandi e fonti' })).toBeVisible()
@@ -93,4 +96,45 @@ test('document mentions consult sources and preserve the pending form across rel
   expect(turns).toHaveLength(3)
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
   await page.screenshot({ path: `artifacts/${testInfo.project.name}-document-mentions.png`, fullPage: true })
+
+  // Long histories and document lists must scroll independently without hiding the composer.
+  for (let index = 0; index < 15; index++) {
+    turns.push({ ...turns[0], id: index + 100, question: `Domanda precedente ${index + 1}`,
+      answer: 'Risposta conservata nello storico della conversazione. '.repeat(8), compilation: null })
+    files.push({ ...source, id: index + 100, name: `allegato-${index + 1}.pdf` })
+  }
+  await page.reload()
+  await expect(page.locator('.chat-turn')).toHaveCount(turns.length)
+  const width = page.viewportSize()!.width
+  for (const height of [700, testInfo.project.name === 'mobile' ? 915 : 960]) {
+    await page.setViewportSize({ width, height })
+    await expect(input).toBeInViewport()
+    await expect(page.getByRole('button', { name: 'Invia', exact: true })).toBeInViewport()
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true)
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
+    await page.evaluate(() => window.scrollTo(0, 1000))
+    expect(await page.evaluate(() => window.scrollY)).toBe(0)
+    const thread = page.locator('.chat-thread')
+    await expect.poll(() => thread.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(true)
+    await thread.evaluate((element) => { element.scrollTop = 80 })
+    await expect.poll(() => thread.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+
+    const documentsToggle = page.getByRole('button', { name: 'Documenti', exact: true })
+    if (width <= 1100) {
+      await documentsToggle.click()
+      await expect(documentsToggle).toHaveAttribute('aria-expanded', 'true')
+    }
+    const context = page.locator('#workspace-context')
+    await expect(context).toBeVisible()
+    await expect.poll(() => context.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(true)
+    await context.evaluate((element) => { element.scrollTop = 80 })
+    expect(await context.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+    await expect(input).toBeInViewport()
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true)
+    await page.screenshot({ path: `artifacts/${testInfo.project.name}-chat-layout-${height}.png`, fullPage: true })
+    if (width <= 1100) {
+      await documentsToggle.click()
+      await expect(context).toBeHidden()
+    }
+  }
 })
