@@ -103,6 +103,8 @@ def run(args):
     })
     for relative in ["app/compilation_global.py", "app/compilation_global_contract.py",
                      "app/compilation_catalog.py",
+                     "app/compilation_semantics.py", "app/compilation_sessions.py",
+                     "app/compilation_sources.py",
                      "app/docx_templates.py", "app/document_compilation.py",
                      "scripts/benchmark_compilation_global.py"]:
         target = root / "code" / relative
@@ -167,6 +169,8 @@ def run(args):
                           facts=len(audit.get("facts", {})),
                           conditions=len(audit.get("conditions", {})),
                           condition_results=audit.get("condition_results", {}),
+                          condition_inventory=audit.get("condition_inventory", {}),
+                          deferred=audit.get("deferred_count", 0),
                           state="proposal_audited", resolved=audit["resolved"])
         except Exception as exc:
             report.update(state="failed", error_type=type(exc).__name__,

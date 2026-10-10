@@ -58,7 +58,8 @@ def audit(case):
 def test_shared_contract_is_requested_without_a_second_call(case):
     layout, sources, _ = case
     schema = build_global_input(layout, "alpha", sources)["schema_output"]
-    assert set(schema["properties"]) == {"version", "facts", "conditions", "fields"}
+    assert set(schema["properties"]) == {
+        "version", "facts", "conditions", "condition_scan", "fields", "deferred"}
 
 
 @pytest.mark.parametrize("thinking", [False, True])

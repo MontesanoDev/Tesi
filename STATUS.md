@@ -1,5 +1,19 @@
 # Stato di Mapi RAG
 
+## Passo compatto in verifica — 10 ottobre 2026
+
+Implementato nel solo prototipo globale il contratto 3: inventario esplicito
+dei paragrafi FORM, condizioni con candidate dipendenti, proprietà dei fatti
+collegate alle assegnazioni e lista compatta deferred. Riusa i gate precedenti;
+nessuna attivazione nella chat, nessun RESOLVED o scrittura. Dettagli e limiti in
+[proposta globale](docs/proposta-globale-compilazione.md).
+Regressioni iniziali osservate fallire prima del codice: 24 fail/3 pass.
+Controlli prima del benchmark: **139 mirati e 1.535 backend completi** passati,
+Ruff completo, CLI help con PYTHONPATH e diff check; DB/storage temporanei.
+Prova reale DeepSeek ancora da eseguire in questo checkpoint. Commit piccoli autorizzati,
+nessun push; nessuna modifica di dati originali/sessioni, frontend invariato.
+
+
 ## Risultato del secondo esperimento globale — 10 ottobre 2026
 
 Commit `a29b6f2` (fatti/condizioni condivisi e guard backend), `e7d9e1a`

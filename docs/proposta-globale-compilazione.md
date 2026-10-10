@@ -1,5 +1,39 @@
 # Proposta globale sperimentale — 10 ottobre 2026
 
+## Terzo contratto: inventario e assegnazioni compatte
+
+Passo sperimentale autorizzato, **non attivo nella chat**. Una sola chiamata
+riceve ancora tutto il catalogo originale e il corpus SOURCE piccolo completo.
+Le versioni precedenti restano leggibili soltanto per gli audit storici.
+
+- `condition_scan`: un elemento per ogni paragrafo FORM non vuoto, inclusi
+  titoli e istruzioni. Lista di condizioni lì espresse, `[]` se non proposte,
+  `null` se incerto. Copertura esatta verificata dal backend, massimo 2.048
+  paragrafi; oltre budget errore, nessun troncamento. Non è un detector basato
+  su parole del bando e non prova la completezza semantica dell'inventario.
+- `conditions.applies_to`: mappa proposta dal modello fra clausole e candidate,
+  con estratto FORM. Il backend collega anche tutte le condizioni locali
+  inventariate, così un'assegnazione non può ometterne il riferimento. Scope
+  non locale ancora da verificare: non autorizza automaticamente valori o NA.
+- `facts`: proprietà SOURCE distinte, valori atomici e citazioni condivise.
+  `fields.property` deve coincidere con la proprietà del fatto referenziato:
+  un generico profilo non può essere usato come nome e numero. Il modello può
+  ancora classificare male le proprietà; questa identità non è una prova
+  semantica indipendente. Gli indicatori di indisponibilità/placeholder non
+  possono diventare fatti utilizzabili, neppure nelle condizioni.
+- `fields`: massimo 128 assegnazioni dettagliate. `deferred`: soli ID delle
+  altre posizioni, fino a 400 totali. Unione esatta e senza duplicati, nessun
+  default implicito. Deferred è **ancora da interpretare**, non missing né
+  decorativo e non una nuova domanda all'utente. Riduce l'output ripetitivo;
+  non equivale a una compilazione completata di tutti i candidate.
+
+Invariati i gate SOURCE/FORM, le quote, i confronti conservativi, i limiti
+corpus/input/output e la singola chiamata senza retry. Inventario locale
+incerto impedisce value/missing/NA. Nessun valore scrivibile e nessun RESOLVED;
+chat, sessioni V1, parser e renderer invariati. Nessuna migrazione/reindicizzazione.
+Prima della prova reale: regressioni generiche su copertura, condizioni omesse,
+proprietà diverse, fatto composito, indisponibilità, scope e provenance.
+
 ## Secondo contratto: fatti e condizioni condivisi
 
 **Esito reale:** due risposte omettono tutte le condizioni; la prova thinking
