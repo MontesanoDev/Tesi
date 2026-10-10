@@ -5,6 +5,13 @@ modifica dati persistiti; il file Word viene generato soltanto su richiesta.
 La chat esistente offre selezione `@`, avvio/ripresa, riepilogo, chiarimenti
 raggruppati e generazione/download inline. Il backend rimane la fonte dello stato.
 
+**Esperimento compatto successivo del 10 ottobre:** output ridotto e fatti
+professionali separati, ma tutte le sei risposte sono state rifiutate per
+troncamento/budget/inventario/ID. Ultime due ~47 s, nessun valore accettato.
+[Report e acquisizioni](benchmark-proposta-compatta-2026-10-10.md). Contratto
+sperimentale corrente 4, mappa inversa delle condizioni derivata dal backend;
+non attivo nella chat. Questa V1 resta il percorso di produzione invariato.
+
 **Secondo contratto sperimentale del 10 ottobre:** fatti SOURCE condivisi e
 condizioni FORM esplicite, con riferimenti dai candidate e confronti conservativi
 nel backend. [Contratto e limiti](proposta-globale-compilazione.md). Continua a

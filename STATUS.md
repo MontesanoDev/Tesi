@@ -1,56 +1,44 @@
 # Stato di Mapi RAG
 
-## Guard di indisponibilità dopo il benchmark — 10 ottobre 2026
+## Esito finale proposta compatta — 10 ottobre 2026
 
-Concluse tutte le sei chiamate reali, aggiunte le forme plurali generiche
-«non documentati»/«non disponibili» al rifiuto dei valori indisponibili nel
-solo prototipo (nessun campo/azienda hardcoded). **148 mirati e Ruff passati**;
-suite completa finale in corso. Nessuna nuova chiamata DeepSeek su questo
-ritocco: i sei audit conservano il codice effettivamente usato. Tutte le
-risposte sperimentali restano rifiutate, V1 invariata.
+[Report completo](docs/benchmark-proposta-compatta-2026-10-10.md) e
+`docs/benchmarks/2026-10-10-compilation-global-compact.json`.
+Commit piccoli: `c2ec520` contratto compatto, `0972077` facts solo referenziati
+/fields value-NA, `bb41dcc` origine canonica delle condizioni, `cc0485e` guard
+plurali di indisponibilità (solo test software dopo il benchmark).
 
+Sei chiamate reali DeepSeek, tre coppie a codice congelato, input identico dentro
+ogni coppia; stesso originale/307 candidate/51 SOURCE, zero USER. Tutte e sei
+rifiutate integralmente: troncamento, budget superato, mappa duplicata incoerente,
+poi ID mancanti/inventati/sovrapposti. Nessun output riparato o accettato in parte.
+Ultime due: **46,73/46,88 s e 88.650/88.816 token**, circa −38% tempo/−11% token
+vs precedente V2 run2, ma non compilazioni utilizzabili. Totale sei esperimenti:
+**571.502 token/376,20 s AI**. Nessuna promessa di risparmio in produzione.
 
-## Origine canonica delle condizioni in verifica — 10 ottobre 2026
+Le condizioni sono ora presenti (24/19 ultime prove), origine derivata dal
+backend senza mappa inversa duplicata. Non sono semantiche verificate: tutte
+operator=semantic/unknown. Cinque valori societari ancora proposti correttamente
+nelle SOURCE; direttore tecnico/qualifica/ordine/**8421** separati invece del
+profilo composito. Restano sottoscrittore inferito, rami di partecipazione non
+attestati, sede operativa proposta ignorando coincidenza e qualche value senza
+fact_id/di indisponibilità. **Grounding/provenance non allentati. Nessun RESOLVED,
+nessuna scrittura, nessun adapter di sessione o attivazione chat.** V1 invariata.
 
-Due prove sul commit `0972077`: 29,21 s/81.623 token e 39,77 s/86.117 token,
-output molto ridotto ma entrambi rifiutati per mappe paragrafo-condizione
-incoerenti. Il modello usa la mappa inversa anche per i paragrafi dipendenti,
-mentre ogni condizione cita già la propria origine canonica nel FORM.
+Controlli finali realmente eseguiti: **148 mirati, 1.544 backend completi**,
+Ruff, help CLI con PYTHONPATH e diff check, DB/storage temporanei. Controlli
+intermedi salvati separatamente, frontend invariato/non rieseguito. Tutti gli
+originali invariati, nessuna migrazione/reindicizzazione, nessun push.
+Grezzi permanenti `backend/data/compilation-audit/global-compact-20261010-*`,
+più bundle versionato con codice/prompt/output/HTTP/usage/diagnosi/log e checksum
+nel report; escluse chiavi, DB e configurazioni private.
 
-Nuovo contratto sperimentale 4: origine dichiarata una sola volta; il backend
-deriva la mappa inversa e valida quote/scope. Ricevuta esatta dei paragrafi e
-sottoinsieme degli incerti separati, mai prove semantiche. Gate di proprietà,
-SOURCE, condizioni false/ignote e zero scritture invariati. Nuove prove dopo
-commit congelato; V1/chat/RAG non cambiano. Quattro fallimenti conservati,
-nessun prefisso/JSON riparato o accettato parzialmente.
-
-## Correzione del budget compatto — 10 ottobre 2026
-
-Prime due prove sul commit `c2ec520`: 126,05 s/119.375 token, output troncato
-mentre enumera almeno 290 fatti; 87,56 s/106.921 token, JSON completo ma 304
-fields (280 review) oltre limite, più un ID inventato. Entrambe rifiutate
-integralmente; audit permanente `global-compact-20261010-run{1,2}`. Nessun
-miglioramento dimostrato in queste due prove, nessun valore accettato.
-
-Ristretto il compito nello stesso schema sperimentale: fields soltanto value/NA,
-altri ID deferred; fatti solo se referenziati da field/condizione, rifiuto degli
-orfani; richiesta di JSON senza indentazione. Stesso corpus e gate. Nessun
-retry o riparazione del JSON. Prossime prove su un nuovo commit congelato;
-mai alterato il codice durante le due chiamate concluse.
-
-## Passo compatto iniziale — 10 ottobre 2026
-
-Implementato nel solo prototipo globale il contratto 3: inventario esplicito
-dei paragrafi FORM, condizioni con candidate dipendenti, proprietà dei fatti
-collegate alle assegnazioni e lista compatta deferred. Riusa i gate precedenti;
-nessuna attivazione nella chat, nessun RESOLVED o scrittura. Dettagli e limiti in
-[proposta globale](docs/proposta-globale-compilazione.md).
-Regressioni iniziali osservate fallire prima del codice: 24 fail/3 pass.
-Controlli prima del benchmark: **139 mirati e 1.535 backend completi** passati,
-Ruff completo, CLI help con PYTHONPATH e diff check; DB/storage temporanei.
-Prova reale DeepSeek ancora da eseguire in questo checkpoint. Commit piccoli autorizzati,
-nessun push; nessuna modifica di dati originali/sessioni, frontend invariato.
-
+**Prossimo punto da discutere prima del codice:** eliminare altre ripetizioni
+che il backend conosce già (partizione degli ID) e distinguere scope strutturali
+reali delle condizioni da destinazioni compilabili. Mantenere unresolved ogni
+posizione non assegnata e rifiutare ID inventati; nessun nuovo reviewer a gruppi.
+Completezza dell'inventario e correttezza di proprietà/soggetto/ramo restano
+limiti semantici da misurare prima dell'adapter. Chat/parser/renderer/RAG intatti.
 
 ## Risultato del secondo esperimento globale — 10 ottobre 2026
 

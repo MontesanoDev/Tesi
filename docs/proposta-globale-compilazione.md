@@ -1,5 +1,9 @@
 # Proposta globale sperimentale — 10 ottobre 2026
 
+**Esito dell'esperimento compatto:** tutte le sei risposte rifiutate, nessuna
+attivazione nella chat. Output finale più breve, ma ID/applicabilità ancora
+incoerenti. [Report reale completo](benchmark-proposta-compatta-2026-10-10.md).
+
 ## Contratto corrente 4: origine canonica delle condizioni
 
 Le prime quattro prove del contratto 3 sono state rifiutate: espansione inutile

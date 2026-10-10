@@ -3,6 +3,18 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Proposta compatta e origine canonica, 10 ottobre 2026
+
+- [Report completo](../benchmark-proposta-compatta-2026-10-10.md),
+  [usage/errori/annotazioni](2026-10-10-compilation-global-compact.json).
+- Sei chiamate reali, tre coppie a codice congelato; stesso Word e 51 SOURCE.
+  Tutte rifiutate, ultime due ~47 s/~88.700 token. Nessuna attivazione/RESOLVED.
+- [Bundle completo](2026-10-10-global-compact-audit.tar.gz) e
+  [checksum](2026-10-10-global-compact-audit.tar.gz.sha256): prompt, risposte anche
+  fallite, codice congelato, originali, manifest, annotazioni e controlli.
+  Niente DB/credenziali. Grezzi locali `global-compact-20261010-*`.
+- Finali 148 test mirati/1.544 backend, Ruff/help/diff; V1 e frontend invariati.
+
 ## Fatti e condizioni condivisi, 10 ottobre 2026
 
 - [Report del secondo esperimento](../benchmark-condizioni-globali-2026-10-10.md)

@@ -1,0 +1,3825 @@
+{
+  "date": "2026-10-10",
+  "experiment": "compact single-call FORM inventory and atomic SOURCE proposals",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "real_calls": 6,
+  "automatic_retries": 0,
+  "frozen_pairs": [
+    [
+      1,
+      2
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      5,
+      6
+    ]
+  ],
+  "same_form_and_corpus_all_runs": true,
+  "pair_inputs_byte_identical": [
+    true,
+    true,
+    true
+  ],
+  "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+  "candidate_count": 307,
+  "source_count": 51,
+  "session_writes": 0,
+  "docx_writes": 0,
+  "resolved": 0,
+  "user_values": 0,
+  "production_v1_changed": false,
+  "runs": [
+    {
+      "name": "global-compact-20261010-run1",
+      "metrics": {
+        "started_at": "2026-10-10T20:02:44.908602+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 227900,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "state": "failed",
+        "error_type": "GenerationTruncatedError",
+        "error": "Il modello ha raggiunto il limite di 49152 token di risposta prima di completarla. Riprova con una richiesta piu breve.",
+        "ai_seconds": 126.05141138600447,
+        "usage": {
+          "prompt_tokens": 70223,
+          "completion_tokens": 49152,
+          "total_tokens": 119375,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 70223
+        },
+        "original_unchanged": true
+      },
+      "frozen_commit": "c2ec5201ad04702a033a390176bf8365d4d7307e",
+      "code_status": "## prune-backend...origin/prune-backend [ahead 9]\n",
+      "input_sha256": "0a73516410e5af55b675468ab3e34bbef2788878c3ce1823df26deb5d1eafed9",
+      "same_form_as_previous": true,
+      "same_sources_as_previous": true,
+      "accepted_proposals": 0,
+      "resolved": 0,
+      "writes": 0,
+      "comparison_previous_v2_run2": {
+        "total_token_change_percent": 20.02071142747983,
+        "ai_time_change_percent": 65.83404729551714,
+        "output_token_change_percent": 61.7001677797151,
+        "note": "Different contract/work allocation; failures are not usable compilations."
+      },
+      "diagnostic_prefix": {
+        "diagnostic_only": true,
+        "used_for_validation": false,
+        "accepted_fields": 0,
+        "finish_reason": "length",
+        "complete_fact_records_in_truncated_prefix": 290,
+        "all_properties": [
+          "denominazione",
+          "forma_giuridica",
+          "codice_fiscale_partita_iva",
+          "sede_legale",
+          "sede_operativa",
+          "telefono",
+          "amministratore_unico",
+          "direttore_tecnico",
+          "qualifica_professionale",
+          "ordine_professionale",
+          "numero_iscrizione_albo",
+          "ricavi_2024",
+          "ricavi_2025",
+          "patrimonio_netto_2025",
+          "certificazione_qualita",
+          "polizza_massimale",
+          "polizza_scadenza",
+          "codice_ateco",
+          "oggetto_sociale",
+          "numero_rea",
+          "pec",
+          "email",
+          "addetti",
+          "nome_cognome",
+          "carica",
+          "data_nomina",
+          "nome_cognome",
+          "ruolo",
+          "nome_cognome",
+          "ruolo",
+          "nome_cognome",
+          "ruolo",
+          "certificato_qualita_id",
+          "certificato_qualita_scadenza",
+          "polizza_id",
+          "data_costituzione",
+          "capitale_sociale",
+          "ambito_territoriale",
+          "oggetto_avviso",
+          "importo_stimato",
+          "validita_elenco",
+          "responsabile_procedimento",
+          "data_avviso",
+          "fasce_incarichi",
+          "requisiti_importo_per_fascia",
+          "piattaforma",
+          "obbligo_mepa",
+          "limite_cumulo_incarichi",
+          "soglia_affidamento_diretto",
+          "soglia_procedura_negoziata",
+          "modalita_iscrizione",
+          "documenti_richiesti",
+          "cause_non_ammissione",
+          "obbligo_aggiornamento",
+          "requisito_curricula",
+          "requisiti_generali",
+          "dichiarazioni_professionali",
+          "requisiti_progettazione_direzione_lavori",
+          "requisiti_coordinatore_sicurezza",
+          "requisiti_collaudatore_statico",
+          "requisiti_collaudatore_tecnico_amministrativo",
+          "requisiti_collaudatore_funzionale",
+          "requisiti_prevenzione_incendi",
+          "requisiti_visure_catastali",
+          "requisiti_relazioni_geotecniche",
+          "requisiti_indagini_geologiche",
+          "requisiti_pianificazione",
+          "requisiti_assistenza_archeologica",
+          "requisiti_ape",
+          "servizi_giunti_a_buon_fine",
+          "elenco_aperto",
+          "verifiche_veridicita",
+          "divieto_partecipazione_contemporanea",
+          "soggetti_ammessi",
+          "requisiti_professionali_incarico",
+          "criterio_rotazione",
+          "pubblicita_avviso",
+          "organizzazione_elenco",
+          "privacy_titolare",
+          "privacy_dpo",
+          "iscrizione_non_prova_requisiti",
+          "nessuna_graduatoria",
+          "nessun_impegno_amministrazione",
+          "helpdesk",
+          "modalita_chiarimenti",
+          "limiti_curricula",
+          "requisiti_collaudo_statico_curricula",
+          "requisiti_collaudo_tecnico_curricula",
+          "requisiti_collaudo_funzionale_curricula",
+          "requisiti_visure_curricula",
+          "requisiti_geotecnica_curricula",
+          "requisiti_geologia_curricula",
+          "requisiti_pianificazione_curricula",
+          "requisiti_archeologia_curricula",
+          "requisiti_ape_dichiarazione",
+          "requisiti_prevenzione_incendi_dichiarazione",
+          "requisiti_collaudo_statico_dichiarazione",
+          "requisiti_collaudo_tecnico_dichiarazione",
+          "requisiti_coordinatore_dichiarazione",
+          "requisiti_professionali_dichiarazione",
+          "requisiti_generali_dichiarazione",
+          "requisiti_specifici_dichiarazione",
+          "curriculum_vitae",
+          "istanza_iscrizione",
+          "documento_identita",
+          "firma_digitale",
+          "responsabilita_veridicita",
+          "data_approvazione_elenco",
+          "inserimento_trimestrale",
+          "inserimento_mensile",
+          "elenco_preferenziale",
+          "affidamenti_elenchi_annuali",
+          "tipologie_prestazioni",
+          "categorie_opere_edilizia",
+          "categorie_collaudo",
+          "categorie_altri_servizi",
+          "fascia_A",
+          "fascia_B",
+          "fascia_C",
+          "requisiti_fascia_A",
+          "requisiti_fascia_B",
+          "requisiti_fascia_C",
+          "requisiti_fascia_A_coordinatore",
+          "requisiti_fascia_B_coordinatore",
+          "requisiti_fascia_C_coordinatore",
+          "requisiti_fascia_A_progettazione",
+          "requisiti_fascia_B_progettazione",
+          "requisiti_fascia_C_progettazione",
+          "requisiti_collaudo_statico_iscrizione",
+          "requisiti_collaudo_tecnico_iscrizione",
+          "requisiti_collaudo_tecnico_titolo",
+          "requisiti_collaudo_funzionale_iscrizione",
+          "requisiti_prevenzione_incendi_iscrizione",
+          "requisiti_prevenzione_incendi_elenchi",
+          "requisiti_visure_iscrizione",
+          "requisiti_geotecnica_iscrizione",
+          "requisiti_geologia_iscrizione",
+          "requisiti_pianificazione_iscrizione",
+          "requisiti_ape_iscrizione",
+          "requisiti_archeologia_iscrizione",
+          "requisiti_collaudo_statico_laurea",
+          "requisiti_collaudo_tecnico_laurea",
+          "requisiti_collaudo_tecnico_abilitazione",
+          "requisiti_collaudo_statico_abilitazione",
+          "requisiti_collaudo_statico_incarichi",
+          "requisiti_collaudo_tecnico_incarichi",
+          "requisiti_collaudo_funzionale_incarichi",
+          "requisiti_visure_incarichi",
+          "requisiti_geotecnica_incarichi",
+          "requisiti_geologia_incarichi",
+          "requisiti_pianificazione_incarichi",
+          "requisiti_archeologia_incarichi",
+          "requisiti_ape_incarichi",
+          "requisiti_prevenzione_incendi_incarichi",
+          "requisiti_visure_iscrizione_albo",
+          "requisiti_geotecnica_iscrizione_albo",
+          "requisiti_geologia_iscrizione_albo",
+          "requisiti_pianificazione_iscrizione_albo",
+          "requisiti_ape_iscrizione_albo",
+          "requisiti_archeologia_iscrizione_albo",
+          "requisiti_collaudo_statico_iscrizione_albo",
+          "requisiti_collaudo_tecnico_iscrizione_albo",
+          "requisiti_collaudo_funzionale_iscrizione_albo",
+          "requisiti_prevenzione_incendi_iscrizione_albo",
+          "requisiti_prevenzione_incendi_elenchi_albo",
+          "requisiti_visure_incarichi_albo",
+          "requisiti_geotecnica_incarichi_albo",
+          "requisiti_geologia_incarichi_albo",
+          "requisiti_pianificazione_incarichi_albo",
+          "requisiti_archeologia_incarichi_albo",
+          "requisiti_ape_incarichi_albo",
+          "requisiti_collaudo_statico_laurea_albo",
+          "requisiti_collaudo_tecnico_laurea_albo",
+          "requisiti_collaudo_tecnico_abilitazione_albo",
+          "requisiti_collaudo_statico_abilitazione_albo",
+          "requisiti_collaudo_statico_incarichi_albo",
+          "requisiti_collaudo_tecnico_incarichi_albo",
+          "requisiti_collaudo_funzionale_incarichi_albo",
+          "requisiti_visure_incarichi_albo2",
+          "requisiti_geotecnica_incarichi_albo2",
+          "requisiti_geologia_incarichi_albo2",
+          "requisiti_pianificazione_incarichi_albo2",
+          "requisiti_archeologia_incarichi_albo2",
+          "requisiti_ape_incarichi_albo2",
+          "requisiti_collaudo_statico_laurea_albo2",
+          "requisiti_collaudo_tecnico_laurea_albo2",
+          "requisiti_collaudo_tecnico_abilitazione_albo2",
+          "requisiti_collaudo_statico_abilitazione_albo2",
+          "requisiti_collaudo_statico_incarichi_albo2",
+          "requisiti_collaudo_tecnico_incarichi_albo2",
+          "requisiti_collaudo_funzionale_incarichi_albo2",
+          "requisiti_visure_incarichi_albo3",
+          "requisiti_geotecnica_incarichi_albo3",
+          "requisiti_geologia_incarichi_albo3",
+          "requisiti_pianificazione_incarichi_albo3",
+          "requisiti_archeologia_incarichi_albo3",
+          "requisiti_ape_incarichi_albo3",
+          "requisiti_collaudo_statico_laurea_albo3",
+          "requisiti_collaudo_tecnico_laurea_albo3",
+          "requisiti_collaudo_tecnico_abilitazione_albo3",
+          "requisiti_collaudo_statico_abilitazione_albo3",
+          "requisiti_collaudo_statico_incarichi_albo3",
+          "requisiti_collaudo_tecnico_incarichi_albo3",
+          "requisiti_collaudo_funzionale_incarichi_albo3",
+          "requisiti_visure_incarichi_albo4",
+          "requisiti_geotecnica_incarichi_albo4",
+          "requisiti_geologia_incarichi_albo4",
+          "requisiti_pianificazione_incarichi_albo4",
+          "requisiti_archeologia_incarichi_albo4",
+          "requisiti_ape_incarichi_albo4",
+          "requisiti_collaudo_statico_laurea_albo4",
+          "requisiti_collaudo_tecnico_laurea_albo4",
+          "requisiti_collaudo_tecnico_abilitazione_albo4",
+          "requisiti_collaudo_statico_abilitazione_albo4",
+          "requisiti_collaudo_statico_incarichi_albo4",
+          "requisiti_collaudo_tecnico_incarichi_albo4",
+          "requisiti_collaudo_funzionale_incarichi_albo4",
+          "requisiti_visure_incarichi_albo5",
+          "requisiti_geotecnica_incarichi_albo5",
+          "requisiti_geologia_incarichi_albo5",
+          "requisiti_pianificazione_incarichi_albo5",
+          "requisiti_archeologia_incarichi_albo5",
+          "requisiti_ape_incarichi_albo5",
+          "requisiti_collaudo_statico_laurea_albo5",
+          "requisiti_collaudo_tecnico_laurea_albo5",
+          "requisiti_collaudo_tecnico_abilitazione_albo5",
+          "requisiti_collaudo_statico_abilitazione_albo5",
+          "requisiti_collaudo_statico_incarichi_albo5",
+          "requisiti_collaudo_tecnico_incarichi_albo5",
+          "requisiti_collaudo_funzionale_incarichi_albo5",
+          "requisiti_visure_incarichi_albo6",
+          "requisiti_geotecnica_incarichi_albo6",
+          "requisiti_geologia_incarichi_albo6",
+          "requisiti_pianificazione_incarichi_albo6",
+          "requisiti_archeologia_incarichi_albo6",
+          "requisiti_ape_incarichi_albo6",
+          "requisiti_collaudo_statico_laurea_albo6",
+          "requisiti_collaudo_tecnico_laurea_albo6",
+          "requisiti_collaudo_tecnico_abilitazione_albo6",
+          "requisiti_collaudo_statico_abilitazione_albo6",
+          "requisiti_collaudo_statico_incarichi_albo6",
+          "requisiti_collaudo_tecnico_incarichi_albo6",
+          "requisiti_collaudo_funzionale_incarichi_albo6",
+          "requisiti_visure_incarichi_albo7",
+          "requisiti_geotecnica_incarichi_albo7",
+          "requisiti_geologia_incarichi_albo7",
+          "requisiti_pianificazione_incarichi_albo7",
+          "requisiti_archeologia_incarichi_albo7",
+          "requisiti_ape_incarichi_albo7",
+          "requisiti_collaudo_statico_laurea_albo7",
+          "requisiti_collaudo_tecnico_laurea_albo7",
+          "requisiti_collaudo_tecnico_abilitazione_albo7",
+          "requisiti_collaudo_statico_abilitazione_albo7",
+          "requisiti_collaudo_statico_incarichi_albo7",
+          "requisiti_collaudo_tecnico_incarichi_albo7",
+          "requisiti_collaudo_funzionale_incarichi_albo7",
+          "requisiti_visure_incarichi_albo8",
+          "requisiti_geotecnica_incarichi_albo8",
+          "requisiti_geologia_incarichi_albo8",
+          "requisiti_pianificazione_incarichi_albo8",
+          "requisiti_archeologia_incarichi_albo8",
+          "requisiti_ape_incarichi_albo8",
+          "requisiti_collaudo_statico_laurea_albo8",
+          "requisiti_collaudo_tecnico_laurea_albo8",
+          "requisiti_collaudo_tecnico_abilitazione_albo8",
+          "requisiti_collaudo_statico_abilitazione_albo8",
+          "requisiti_collaudo_statico_incarichi_albo8",
+          "requisiti_collaudo_tecnico_incarichi_albo8",
+          "requisiti_collaudo_funzionale_incarichi_albo8",
+          "requisiti_visure_incarichi_albo9",
+          "requisiti_geotecnica_incarichi_albo9",
+          "requisiti_geologia_incarichi_albo9",
+          "requisiti_pianificazione_incarichi_albo9",
+          "requisiti_archeologia_incarichi_albo9",
+          "requisiti_ape_incarichi_albo9",
+          "requisiti_collaudo_statico_laurea_albo9",
+          "requisiti_collaudo_tecnico_laurea_albo9",
+          "requisiti_collaudo_tecnico_abilitazione_albo9",
+          "requisiti_collaudo_statico_abilitazione_albo9",
+          "requisiti_collaudo_statico_incarichi_albo9",
+          "requisiti_collaudo_tecnico_incarichi_albo9",
+          "requisiti_collaudo_funzionale_incarichi_albo9",
+          "requisiti_visure_incarichi_albo10",
+          "requisiti_geotecnica_incarichi_albo10",
+          "requisiti_geologia_incarichi_albo10",
+          "requisiti_pianificazione_incarichi_albo10",
+          "requisiti_archeologia_incarichi_albo10",
+          "requisiti_ape_incarichi_albo10",
+          "requisiti_collaudo_statico_laurea_albo10",
+          "requisiti_collaudo_tecnico_laurea_albo10"
+        ],
+        "last_property": "requisiti_collaudo_tecnico_laurea_albo10"
+      }
+    },
+    {
+      "name": "global-compact-20261010-run2",
+      "metrics": {
+        "started_at": "2026-10-10T20:05:31.423879+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 227900,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 70223,
+          "completion_tokens": 36698,
+          "total_tokens": 106921,
+          "prompt_tokens_details": {
+            "cached_tokens": 70016
+          },
+          "prompt_cache_hit_tokens": 70016,
+          "prompt_cache_miss_tokens": 207
+        },
+        "ai_seconds": 87.55571545299608,
+        "state": "failed",
+        "error_type": "ValueError",
+        "error": "Dizionario fields non valido/oltre budget",
+        "original_unchanged": true
+      },
+      "frozen_commit": "c2ec5201ad04702a033a390176bf8365d4d7307e",
+      "code_status": "## prune-backend...origin/prune-backend [ahead 9]\n",
+      "input_sha256": "0a73516410e5af55b675468ab3e34bbef2788878c3ce1823df26deb5d1eafed9",
+      "same_form_as_previous": true,
+      "same_sources_as_previous": true,
+      "accepted_proposals": 0,
+      "resolved": 0,
+      "writes": 0,
+      "comparison_previous_v2_run2": {
+        "total_token_change_percent": 7.499346484084368,
+        "ai_time_change_percent": 15.188862209258236,
+        "output_token_change_percent": 20.729019311116236,
+        "note": "Different contract/work allocation; failures are not usable compilations."
+      },
+      "raw_counts": {
+        "facts": 17,
+        "conditions": 12,
+        "fields": 304,
+        "deferred": 4,
+        "dispositions": {
+          "review": 280,
+          "value": 24
+        }
+      },
+      "candidate_partition_issues": {
+        "missing": [],
+        "unknown_fields": [
+          "p188.s0"
+        ],
+        "unknown_deferred": [],
+        "overlap": [],
+        "duplicate_deferred": 0
+      },
+      "condition_scope_unknown_targets": {
+        "c_operatore_non_residente": [
+          "p161.s0",
+          "p164.s0"
+        ],
+        "c_copie_conformi": [
+          "p188.s0"
+        ]
+      },
+      "unreferenced_facts": [
+        "f_amministratore_unico",
+        "f_ateco",
+        "f_iso_certificato",
+        "f_polizza_massimale",
+        "f_polizza_numero",
+        "f_ricavi_2024",
+        "f_ricavi_2025"
+      ],
+      "reviewed_paragraphs_match": true,
+      "manual_annotations": [
+        {
+          "candidate_id": "t0.r5.c1",
+          "proposal": {
+            "label": "Operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:28",
+              "quote": "Operatore economico"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_ragione_sociale",
+            "property": "ragione_sociale"
+          },
+          "model_proposed_value": "Mapi Ingegneria S.r.l.",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -30,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "file_id": -9,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            },
+            {
+              "chunk_id": -43,
+              "quote": "Ragione sociale: Mapi Ingegneria S.r.l.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:30",
+              "quote": "Forma giuridica"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma_giuridica"
+          },
+          "model_proposed_value": "Societa a responsabilita limitata",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -30,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "file_id": -9,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            },
+            {
+              "chunk_id": -43,
+              "quote": "Forma giuridica: Societa a responsabilita limitata.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "proposal": {
+            "label": "Sede legale (via, città, prov.)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:32",
+              "quote": "Sede legale (via, città, prov.)"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_sede_legale",
+            "property": "sede_legale"
+          },
+          "model_proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -30,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "file_id": -9,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            },
+            {
+              "chunk_id": -43,
+              "quote": "Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "proposal": {
+            "label": "Codice fiscale operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:37",
+              "quote": "Codice fiscale operatore economico"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_cf_piva",
+            "property": "codice_fiscale_partita_iva"
+          },
+          "model_proposed_value": "IT01234567890",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -30,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "file_id": -9,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            },
+            {
+              "chunk_id": -43,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "proposal": {
+            "label": "Partita IVA operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:39",
+              "quote": "Partita IVA operatore economico"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_cf_piva",
+            "property": "codice_fiscale_partita_iva"
+          },
+          "model_proposed_value": "IT01234567890",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -30,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "file_id": -9,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            },
+            {
+              "chunk_id": -43,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r0.c1",
+          "proposal": {
+            "label": "Il/La sottoscritto/a",
+            "kind": "data",
+            "disposition": "review",
+            "form": {
+              "paragraph_id": "paragraph:18",
+              "quote": "Il/La sottoscritto/a"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "reason": "Dati personali del sottoscrittore non disponibili nelle SOURCE."
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten",
+          "reason": "Proposta senza valore; output comunque rifiutato integralmente.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "proposal": {
+            "label": "In qualità di (carica sociale)",
+            "kind": "data",
+            "disposition": "review",
+            "form": {
+              "paragraph_id": "paragraph:24",
+              "quote": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "reason": "Carica del sottoscrittore non determinata dalla scheda."
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten",
+          "reason": "Proposta senza valore; output comunque rifiutato integralmente.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "proposal": {
+            "label": "(se procuratore) estremi procura",
+            "kind": "data",
+            "disposition": "review",
+            "form": {
+              "paragraph_id": "paragraph:26",
+              "quote": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "reason": "Procure non documentate nella scheda."
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten",
+          "reason": "Proposta senza valore; output comunque rifiutato integralmente.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "proposal": {
+            "label": "Sede operativa (se diversa dalla sede legale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_sede_operativa",
+            "property": "sede_operativa"
+          },
+          "model_proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            },
+            {
+              "chunk_id": -44,
+              "quote": "Rapporto tra le sedi: sede operativa coincidente con la sede legale.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "wrong_applicability",
+          "reason": "FORM richiede la sede operativa solo se diversa; SOURCE indica coincidenza. Operatore semantic non verifica il vincolo.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r11.c1",
+          "proposal": {
+            "label": "Cellulare + Telefono",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:41",
+              "quote": "Cellulare + Telefono"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_telefono",
+            "property": "telefono"
+          },
+          "model_proposed_value": "+39 080 000 2040",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -30,
+              "quote": "TELEFONO +39 080 000 2040 (recapito simulato)",
+              "file_id": -9,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            },
+            {
+              "chunk_id": -44,
+              "quote": "Telefono aziendale simulato: +39 080 000 2040.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "telephone_only_not_both_contacts",
+          "reason": "Telefono aziendale attestato; non dimostra anche un cellulare.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "proposal": {
+            "label": "Nome e cognome",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:452",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_direttore_tecnico",
+            "property": "direttore_tecnico"
+          },
+          "model_proposed_value": "Ing. Elisa Romano",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -32,
+              "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421, Ordine degli Ingegneri di Bari",
+              "file_id": -9,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            },
+            {
+              "chunk_id": -45,
+              "quote": "Nominativo completo: Ing. Elisa Romano.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "proposal": {
+            "label": "qualifica professionale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:454",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_dt_qualifica",
+            "property": "qualifica_professionale"
+          },
+          "model_proposed_value": "Ingegnere",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Qualifica professionale nello scenario: Ingegnere.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "proposal": {
+            "label": "Ordine professionale di appartenenza",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:458",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_dt_ordine",
+            "property": "ordine_professionale"
+          },
+          "model_proposed_value": "Ordine degli Ingegneri di Bari",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -32,
+              "quote": "Ordine degli Ingegneri di Bari",
+              "file_id": -9,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            },
+            {
+              "chunk_id": -45,
+              "quote": "Ordine professionale simulato: Ordine degli Ingegneri di Bari.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "proposal": {
+            "label": "numero di iscrizione all’Albo professionale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:460",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "fact_id": "f_dt_numero_iscrizione",
+            "property": "numero_iscrizione_albo"
+          },
+          "model_proposed_value": "8421",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -32,
+              "quote": "iscrizione professionale simulata n. 8421",
+              "file_id": -9,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            },
+            {
+              "chunk_id": -45,
+              "quote": "Numero di iscrizione professionale simulato: 8421.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r2.c1",
+          "proposal": {
+            "label": "Data di abilitazione",
+            "kind": "data",
+            "disposition": "review",
+            "form": {
+              "paragraph_id": "paragraph:456",
+              "quote": "Data di abilitazione"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "reason": "Data di abilitazione non disponibile."
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten",
+          "reason": "Proposta senza valore; output comunque rifiutato integralmente.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "proposal": {
+            "label": "numero e data d’iscrizione",
+            "kind": "data",
+            "disposition": "review",
+            "form": {
+              "paragraph_id": "paragraph:441",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "reason": "Numero e data di iscrizione al Registro non disponibili."
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten",
+          "reason": "Proposta senza valore; output comunque rifiutato integralmente.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "review",
+            "form": {
+              "paragraph_id": "paragraph:623",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "c_compilazione_allegato1"
+            ],
+            "reason": "Sezione consorziata esecutrice non pertinente."
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten",
+          "reason": "Proposta senza valore; output comunque rifiutato integralmente.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "p55.cb0",
+          "proposal": {
+            "label": "Società di professionisti di cui all’art. 35 dell’allegato II.12 al D.lgs. n. 36/2023",
+            "kind": "choice",
+            "disposition": "review",
+            "form": {
+              "paragraph_id": "paragraph:56",
+              "quote": "Società di professionisti di cui all’art. 35 dell’allegato II.12 al D.lgs. n. 36/2023"
+            },
+            "conditions": [
+              "c_tipologia_operatore"
+            ],
+            "reason": "La scheda indica societa di ingegneria, non societa di professionisti."
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten",
+          "reason": "Proposta senza valore; output comunque rifiutato integralmente.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "name": "global-compact-20261010-run3",
+      "metrics": {
+        "started_at": "2026-10-10T20:09:54.199047+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 228566,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 70419,
+          "completion_tokens": 11204,
+          "total_tokens": 81623,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 70419
+        },
+        "ai_seconds": 29.213593369997398,
+        "state": "failed",
+        "error_type": "ValueError",
+        "error": "Inventario condizioni duplicato, assente o su altro paragrafo",
+        "original_unchanged": true
+      },
+      "frozen_commit": "0972077050ebd5b36142542924be9a5bb06b2802",
+      "code_status": "## prune-backend...origin/prune-backend [ahead 10]\n",
+      "input_sha256": "2189b18ef820ccb240c1b6130b87b3143095af103edecfbdbb2ee237107dc410",
+      "same_form_as_previous": true,
+      "same_sources_as_previous": true,
+      "accepted_proposals": 0,
+      "resolved": 0,
+      "writes": 0,
+      "comparison_previous_v2_run2": {
+        "total_token_change_percent": -17.9354929520822,
+        "ai_time_change_percent": -61.566408727018406,
+        "output_token_change_percent": -63.141099450603676,
+        "note": "Different contract/work allocation; failures are not usable compilations."
+      },
+      "raw_counts": {
+        "facts": 14,
+        "conditions": 17,
+        "fields": 24,
+        "deferred": 283,
+        "dispositions": {
+          "value": 24
+        }
+      },
+      "candidate_partition_issues": {
+        "missing": [],
+        "unknown_fields": [],
+        "unknown_deferred": [],
+        "overlap": [],
+        "duplicate_deferred": 0
+      },
+      "condition_scope_unknown_targets": {},
+      "unreferenced_facts": [],
+      "reviewed_paragraphs_match": true,
+      "manual_annotations": [
+        {
+          "candidate_id": "t0.r5.c1",
+          "proposal": {
+            "label": "Operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:28",
+              "quote": "Operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_ragione_sociale",
+            "property": "denominazione operatore economico"
+          },
+          "model_proposed_value": "Mapi Ingegneria S.r.l.",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Ragione sociale: Mapi Ingegneria S.r.l.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:30",
+              "quote": "Forma giuridica"
+            },
+            "conditions": [],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma giuridica"
+          },
+          "model_proposed_value": "Societa a responsabilita limitata",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Forma giuridica: Societa a responsabilita limitata.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "proposal": {
+            "label": "Sede legale (via, città, prov.)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:32",
+              "quote": "Sede legale (via, città, prov.)"
+            },
+            "conditions": [],
+            "fact_id": "f_sede_legale",
+            "property": "sede legale"
+          },
+          "model_proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "proposal": {
+            "label": "Codice fiscale operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:37",
+              "quote": "Codice fiscale operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_cf_operatore",
+            "property": "codice fiscale operatore economico"
+          },
+          "model_proposed_value": "IT01234567890",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "proposal": {
+            "label": "Partita IVA operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:39",
+              "quote": "Partita IVA operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_piva_operatore",
+            "property": "partita IVA operatore economico"
+          },
+          "model_proposed_value": "IT01234567890",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r0.c1",
+          "proposal": {
+            "label": "Il/La sottoscritto/a",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:18",
+              "quote": "Il/La sottoscritto/a"
+            },
+            "conditions": [],
+            "fact_id": "f_sottoscrittore",
+            "property": "nominativo sottoscrittore"
+          },
+          "model_proposed_value": "Ing. Luca Ferri",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Nominativo completo: Ing. Luca Ferri.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "unsupported_signatory_role",
+          "reason": "Il ruolo aziendale non prova chi sottoscrive questa specifica domanda.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "proposal": {
+            "label": "In qualità di (carica sociale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:24",
+              "quote": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"
+            },
+            "conditions": [],
+            "fact_id": "f_carica",
+            "property": "carica sociale"
+          },
+          "model_proposed_value": "Amministratore unico",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Carica in Mapi Ingegneria S.r.l.: Amministratore unico.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "unsupported_signatory_role",
+          "reason": "Il ruolo aziendale non prova chi sottoscrive questa specifica domanda.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "proposal": {
+            "label": "(se procuratore) estremi procura (notaio, repertorio, raccolta)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:26",
+              "quote": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"
+            },
+            "conditions": [
+              "c_procura"
+            ],
+            "fact_id": "f_procura",
+            "property": "estremi procura"
+          },
+          "model_proposed_value": "non disponibile",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Procure, deleghe e dettaglio dei poteri di rappresentanza: non documentati nella scheda.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "unavailability_is_not_a_value",
+          "reason": "Indisponibilità della procura non è un estremo di procura; condizione non determinata.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "proposal": {
+            "label": "Sede operativa (se diversa dalla sede legale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa"
+            },
+            "conditions": [
+              "c_sede_operativa"
+            ],
+            "fact_id": "f_sede_operativa",
+            "property": "sede operativa"
+          },
+          "model_proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "wrong_applicability",
+          "reason": "FORM richiede la sede operativa solo se diversa; SOURCE indica coincidenza. Operatore semantic non verifica il vincolo.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r11.c1",
+          "proposal": {
+            "label": "Cellulare + Telefono",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:41",
+              "quote": "Cellulare + Telefono"
+            },
+            "conditions": [],
+            "fact_id": "f_telefono",
+            "property": "telefono"
+          },
+          "model_proposed_value": "+39 080 000 2040",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Telefono aziendale simulato: +39 080 000 2040.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "telephone_only_not_both_contacts",
+          "reason": "Telefono aziendale attestato; non dimostra anche un cellulare.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "proposal": null,
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten_unclassified",
+          "reason": "ID rinviato/assente; non è un requisito missing né un valore risolto.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "proposal": null,
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten_unclassified",
+          "reason": "ID rinviato/assente; non è un requisito missing né un valore risolto.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "proposal": null,
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten_unclassified",
+          "reason": "ID rinviato/assente; non è un requisito missing né un valore risolto.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "proposal": null,
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten_unclassified",
+          "reason": "ID rinviato/assente; non è un requisito missing né un valore risolto.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r2.c1",
+          "proposal": null,
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten_unclassified",
+          "reason": "ID rinviato/assente; non è un requisito missing né un valore risolto.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "proposal": null,
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten_unclassified",
+          "reason": "ID rinviato/assente; non è un requisito missing né un valore risolto.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "proposal": null,
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten_unclassified",
+          "reason": "ID rinviato/assente; non è un requisito missing né un valore risolto.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "p55.cb0",
+          "proposal": {
+            "label": "Società di professionisti",
+            "kind": "choice",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:56",
+              "quote": "Società di professionisti di cui all’art. 35 dell’allegato II.12 al D.lgs. n. 36/2023"
+            },
+            "conditions": [],
+            "fact_id": "f_tipologia",
+            "property": "tipologia operatore economico",
+            "choice": false
+          },
+          "model_proposed_value": "societa' di ingegneria civile",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Tipologia di attivita': societa' di ingegneria civile.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "checkbox_not_approved",
+          "reason": "Selezione non approvata; checkbox strutturale non scritta e ambito da verificare.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "name": "global-compact-20261010-run4",
+      "metrics": {
+        "started_at": "2026-10-10T20:10:37.936027+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 228566,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 70419,
+          "completion_tokens": 15698,
+          "total_tokens": 86117,
+          "prompt_tokens_details": {
+            "cached_tokens": 70272
+          },
+          "prompt_cache_hit_tokens": 70272,
+          "prompt_cache_miss_tokens": 147
+        },
+        "ai_seconds": 39.774890091997804,
+        "state": "failed",
+        "error_type": "ValueError",
+        "error": "Inventario condizioni duplicato, assente o su altro paragrafo",
+        "original_unchanged": true
+      },
+      "frozen_commit": "0972077050ebd5b36142542924be9a5bb06b2802",
+      "code_status": "## prune-backend...origin/prune-backend [ahead 10]\n",
+      "input_sha256": "2189b18ef820ccb240c1b6130b87b3143095af103edecfbdbb2ee237107dc410",
+      "same_form_as_previous": true,
+      "same_sources_as_previous": true,
+      "accepted_proposals": 0,
+      "resolved": 0,
+      "writes": 0,
+      "comparison_previous_v2_run2": {
+        "total_token_change_percent": -13.41718445235366,
+        "ai_time_change_percent": -47.67189885330614,
+        "output_token_change_percent": -48.35674573148666,
+        "note": "Different contract/work allocation; failures are not usable compilations."
+      },
+      "raw_counts": {
+        "facts": 26,
+        "conditions": 16,
+        "fields": 77,
+        "deferred": 230,
+        "dispositions": {
+          "value": 49,
+          "not_applicable": 28
+        }
+      },
+      "candidate_partition_issues": {
+        "missing": [],
+        "unknown_fields": [],
+        "unknown_deferred": [],
+        "overlap": [],
+        "duplicate_deferred": 0
+      },
+      "condition_scope_unknown_targets": {},
+      "unreferenced_facts": [],
+      "reviewed_paragraphs_match": true,
+      "manual_annotations": [
+        {
+          "candidate_id": "t0.r5.c1",
+          "proposal": {
+            "label": "Operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:28",
+              "quote": "Operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_ragione_sociale",
+            "property": "denominazione",
+            "choice": null
+          },
+          "model_proposed_value": "Mapi Ingegneria S.r.l.",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Ragione sociale: Mapi Ingegneria S.r.l.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:30",
+              "quote": "Forma giuridica"
+            },
+            "conditions": [],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma giuridica",
+            "choice": null
+          },
+          "model_proposed_value": "Societa a responsabilita limitata",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Forma giuridica: Societa a responsabilita limitata.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "proposal": {
+            "label": "Sede legale (via, città, prov.)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:32",
+              "quote": "Sede legale (via, città, prov.)"
+            },
+            "conditions": [],
+            "fact_id": "f_sede_legale",
+            "property": "sede legale",
+            "choice": null
+          },
+          "model_proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "proposal": {
+            "label": "Codice fiscale operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:37",
+              "quote": "Codice fiscale operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_cf_operatore",
+            "property": "codice fiscale",
+            "choice": null
+          },
+          "model_proposed_value": "IT01234567890",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "proposal": {
+            "label": "Partita IVA operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:39",
+              "quote": "Partita IVA operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_piva_operatore",
+            "property": "partita IVA",
+            "choice": null
+          },
+          "model_proposed_value": "IT01234567890",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r0.c1",
+          "proposal": {
+            "label": "Il/La sottoscritto/a",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:18",
+              "quote": "Il/La sottoscritto/a"
+            },
+            "conditions": [],
+            "fact_id": "f_amministratore_nome",
+            "property": "nome e cognome",
+            "choice": null
+          },
+          "model_proposed_value": "Ing. Luca Ferri",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Nominativo completo: Ing. Luca Ferri.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "unsupported_signatory_role",
+          "reason": "Il ruolo aziendale non prova chi sottoscrive questa specifica domanda.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "proposal": {
+            "label": "In qualità di (carica sociale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:24",
+              "quote": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"
+            },
+            "conditions": [],
+            "fact_id": "f_amministratore_carica",
+            "property": "carica",
+            "choice": null
+          },
+          "model_proposed_value": "Amministratore unico",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Carica in Mapi Ingegneria S.r.l.: Amministratore unico.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "unsupported_signatory_role",
+          "reason": "Il ruolo aziendale non prova chi sottoscrive questa specifica domanda.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "proposal": {
+            "label": "(se procuratore) estremi procura (notaio, repertorio, raccolta)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:26",
+              "quote": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"
+            },
+            "conditions": [
+              "c_procura"
+            ],
+            "fact_id": "f_procura_estremi",
+            "property": "estremi procura",
+            "choice": null
+          },
+          "model_proposed_value": "non documentati",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Procure, deleghe e dettaglio dei poteri di rappresentanza: non documentati nella scheda.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "unavailability_is_not_a_value",
+          "reason": "Indisponibilità della procura non è un estremo di procura; condizione non determinata.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "proposal": {
+            "label": "Sede operativa (se diversa dalla sede legale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa"
+            },
+            "conditions": [
+              "c_sede_operativa"
+            ],
+            "fact_id": "f_sede_operativa",
+            "property": "sede operativa",
+            "choice": null
+          },
+          "model_proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "wrong_applicability",
+          "reason": "FORM richiede la sede operativa solo se diversa; SOURCE indica coincidenza. Operatore semantic non verifica il vincolo.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r11.c1",
+          "proposal": {
+            "label": "Cellulare + Telefono",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:41",
+              "quote": "Cellulare + Telefono"
+            },
+            "conditions": [],
+            "fact_id": "f_telefono",
+            "property": "telefono",
+            "choice": null
+          },
+          "model_proposed_value": "+39 080 000 2040",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Telefono aziendale simulato: +39 080 000 2040.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "telephone_only_not_both_contacts",
+          "reason": "Telefono aziendale attestato; non dimostra anche un cellulare.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "proposal": {
+            "label": "Direttore tecnico - Nome e cognome",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:452",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "c_soc_ing"
+            ],
+            "fact_id": "f_dt_nome",
+            "property": "nome e cognome",
+            "choice": null
+          },
+          "model_proposed_value": "Ing. Elisa Romano",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Nominativo completo: Ing. Elisa Romano.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "proposal": {
+            "label": "Direttore tecnico - Qualifica professionale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:454",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "c_soc_ing"
+            ],
+            "fact_id": "f_dt_qualifica",
+            "property": "qualifica professionale",
+            "choice": null
+          },
+          "model_proposed_value": "Ingegnere",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Qualifica professionale nello scenario: Ingegnere.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "proposal": {
+            "label": "Direttore tecnico - Ordine professionale di appartenenza",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:458",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "c_soc_ing"
+            ],
+            "fact_id": "f_dt_ordine",
+            "property": "ordine professionale",
+            "choice": null
+          },
+          "model_proposed_value": "Ordine degli Ingegneri di Bari",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Ordine professionale simulato: Ordine degli Ingegneri di Bari.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "proposal": {
+            "label": "Direttore tecnico - Numero di iscrizione all'Albo professionale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:460",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "c_soc_ing"
+            ],
+            "fact_id": "f_dt_iscrizione",
+            "property": "numero di iscrizione all'albo",
+            "choice": null
+          },
+          "model_proposed_value": "8421",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Numero di iscrizione professionale simulato: 8421.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r2.c1",
+          "proposal": null,
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten_unclassified",
+          "reason": "ID rinviato/assente; non è un requisito missing né un valore risolto.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "proposal": {
+            "label": "Numero e data d'iscrizione",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:441",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "c_soc_ing"
+            ],
+            "fact_id": "f_numero_rea",
+            "property": "numero d'iscrizione",
+            "choice": null
+          },
+          "model_proposed_value": "BA - 654321",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Numero REA simulato: BA - 654321.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "wrong_property_or_unavailable",
+          "reason": "REA non equivale al numero/data CCIAA; una dichiarazione di indisponibilità non è un valore utilizzabile.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:623",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "c_consorziata"
+            ],
+            "fact_id": "f_ragione_sociale",
+            "property": "denominazione",
+            "choice": null
+          },
+          "model_proposed_value": "Mapi Ingegneria S.r.l.",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Ragione sociale: Mapi Ingegneria S.r.l.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "unsupported_participation_branch",
+          "reason": "La denominazione aziendale non dimostra il ruolo di consorziata esecutrice nella pratica.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "p55.cb0",
+          "proposal": {
+            "label": "Società di professionisti",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:56",
+              "quote": "Società di professionisti di cui all’art. 35 dell’allegato II.12 al D.lgs. n. 36/2023"
+            },
+            "conditions": [],
+            "choice": false
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "checkbox_not_approved",
+          "reason": "Selezione non approvata; checkbox strutturale non scritta e ambito da verificare.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "name": "global-compact-20261010-run5",
+      "metrics": {
+        "started_at": "2026-10-10T20:14:06.346831+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 228837,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 70486,
+          "completion_tokens": 18164,
+          "total_tokens": 88650,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 70486
+        },
+        "ai_seconds": 46.725890989997424,
+        "state": "failed",
+        "error_type": "ValueError",
+        "error": "Coverage candidate compatta non valida",
+        "original_unchanged": true
+      },
+      "frozen_commit": "bb41dccf277cb588f3c800c2a035ac08eda26645",
+      "code_status": "## prune-backend...origin/prune-backend [ahead 11]\n",
+      "input_sha256": "8a740ebf8d97e271a88cfab353254cb08672e5c8a0f37d964ab18a3e6733693b",
+      "same_form_as_previous": true,
+      "same_sources_as_previous": true,
+      "accepted_proposals": 0,
+      "resolved": 0,
+      "writes": 0,
+      "comparison_previous_v2_run2": {
+        "total_token_change_percent": -10.870483199613922,
+        "ai_time_change_percent": -38.52711737886374,
+        "output_token_change_percent": -40.24410303648386,
+        "note": "Different contract/work allocation; failures are not usable compilations."
+      },
+      "raw_counts": {
+        "facts": 13,
+        "conditions": 24,
+        "fields": 119,
+        "deferred": 188,
+        "dispositions": {
+          "value": 119
+        }
+      },
+      "candidate_partition_issues": {
+        "missing": [
+          "t32.r4.c0",
+          "t32.r4.c1"
+        ],
+        "unknown_fields": [
+          "p164.s0",
+          "paragraph:188"
+        ],
+        "unknown_deferred": [],
+        "overlap": [],
+        "duplicate_deferred": 0
+      },
+      "condition_scope_unknown_targets": {
+        "cond.non.residenti": [
+          "p164.s0"
+        ],
+        "cond.copie.conformi": [
+          "paragraph:188"
+        ]
+      },
+      "unreferenced_facts": [],
+      "reviewed_paragraphs_match": true,
+      "manual_annotations": [
+        {
+          "candidate_id": "t0.r5.c1",
+          "proposal": {
+            "label": "Operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:28",
+              "quote": "Operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.denominazione",
+            "property": "denominazione"
+          },
+          "model_proposed_value": "Mapi Ingegneria S.r.l.",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Ragione sociale: Mapi Ingegneria S.r.l.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:30",
+              "quote": "Forma giuridica"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.forma",
+            "property": "forma giuridica"
+          },
+          "model_proposed_value": "Societa a responsabilita limitata",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Forma giuridica: Societa a responsabilita limitata.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "proposal": {
+            "label": "Sede legale (via, città, prov.)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:32",
+              "quote": "Sede legale (via, città, prov.)"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.sede.legale",
+            "property": "sede legale"
+          },
+          "model_proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "proposal": {
+            "label": "Codice fiscale operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:37",
+              "quote": "Codice fiscale operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.cf",
+            "property": "codice fiscale"
+          },
+          "model_proposed_value": "IT01234567890",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "proposal": {
+            "label": "Partita IVA operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:39",
+              "quote": "Partita IVA operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.piva",
+            "property": "partita IVA"
+          },
+          "model_proposed_value": "IT01234567890",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r0.c1",
+          "proposal": {
+            "label": "Il/La sottoscritto/a",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:18",
+              "quote": "Il/La sottoscritto/a"
+            },
+            "conditions": [],
+            "fact_id": "f.sottoscrittore.nome",
+            "property": "nome e cognome"
+          },
+          "model_proposed_value": "Ing. Luca Ferri",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Nominativo completo: Ing. Luca Ferri.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "unsupported_signatory_role",
+          "reason": "Il ruolo aziendale non prova chi sottoscrive questa specifica domanda.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "proposal": {
+            "label": "In qualità di (carica sociale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:24",
+              "quote": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"
+            },
+            "conditions": [],
+            "fact_id": "f.sottoscrittore.carica",
+            "property": "carica sociale"
+          },
+          "model_proposed_value": "Amministratore unico",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Carica in Mapi Ingegneria S.r.l.: Amministratore unico.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "unsupported_signatory_role",
+          "reason": "Il ruolo aziendale non prova chi sottoscrive questa specifica domanda.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "proposal": {
+            "label": "(se procuratore) estremi procura (notaio, repertorio, raccolta)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:26",
+              "quote": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"
+            },
+            "conditions": [
+              "cond.procuratore"
+            ],
+            "fact_id": "f.procura.estremi",
+            "property": "estremi procura"
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "invalid_value_without_fact",
+          "reason": "Dichiara value ma non referenzia un fatto SOURCE valido.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "proposal": {
+            "label": "Sede operativa (se diversa dalla sede legale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa"
+            },
+            "conditions": [
+              "cond.sede.operativa.diversa"
+            ],
+            "fact_id": "f.oe.sede.operativa",
+            "property": "sede operativa"
+          },
+          "model_proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "wrong_applicability",
+          "reason": "FORM richiede la sede operativa solo se diversa; SOURCE indica coincidenza. Operatore semantic non verifica il vincolo.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r11.c1",
+          "proposal": {
+            "label": "Cellulare + Telefono",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:41",
+              "quote": "Cellulare + Telefono"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.telefono",
+            "property": "telefono"
+          },
+          "model_proposed_value": "+39 080 000 2040",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Telefono aziendale simulato: +39 080 000 2040.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "telephone_only_not_both_contacts",
+          "reason": "Telefono aziendale attestato; non dimostra anche un cellulare.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "proposal": {
+            "label": "Nome e cognome",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:452",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.dt.nome",
+            "property": "nome e cognome"
+          },
+          "model_proposed_value": "Ing. Elisa Romano",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Nominativo completo: Ing. Elisa Romano.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "proposal": {
+            "label": "qualifica professionale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:454",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.dt.qualifica",
+            "property": "qualifica professionale"
+          },
+          "model_proposed_value": "Ingegnere",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Qualifica professionale nello scenario: Ingegnere.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "proposal": {
+            "label": "Ordine professionale di appartenenza",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:458",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.dt.ordine",
+            "property": "ordine professionale di appartenenza"
+          },
+          "model_proposed_value": "Ordine degli Ingegneri di Bari",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Ordine professionale simulato: Ordine degli Ingegneri di Bari.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "proposal": {
+            "label": "numero di iscrizione all’Albo professionale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:460",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.dt.albo",
+            "property": "numero di iscrizione all'albo professionale"
+          },
+          "model_proposed_value": "8421",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Numero di iscrizione professionale simulato: 8421.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r2.c1",
+          "proposal": {
+            "label": "Data di abilitazione",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:456",
+              "quote": "Data di abilitazione"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.dt.abilitazione",
+            "property": "data di abilitazione"
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "invalid_value_without_fact",
+          "reason": "Dichiara value ma non referenzia un fatto SOURCE valido.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "proposal": {
+            "label": "numero e data d’iscrizione",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:441",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.oe.cciaa.numero",
+            "property": "numero di iscrizione CCIAA"
+          },
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "invalid_value_without_fact",
+          "reason": "Dichiara value ma non referenzia un fatto SOURCE valido.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:623",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond.cons.esec"
+            ],
+            "fact_id": "f.oe.denominazione",
+            "property": "denominazione"
+          },
+          "model_proposed_value": "Mapi Ingegneria S.r.l.",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Ragione sociale: Mapi Ingegneria S.r.l.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "unsupported_participation_branch",
+          "reason": "La denominazione aziendale non dimostra il ruolo di consorziata esecutrice nella pratica.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "p55.cb0",
+          "proposal": {
+            "label": "Società di professionisti",
+            "kind": "choice",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:56",
+              "quote": "Società di professionisti di cui all’art. 35 dell’allegato II.12 al D.lgs. n. 36/2023"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.forma",
+            "property": "forma giuridica",
+            "choice": false
+          },
+          "model_proposed_value": "Societa a responsabilita limitata",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Forma giuridica: Societa a responsabilita limitata.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "checkbox_not_approved",
+          "reason": "Selezione non approvata; checkbox strutturale non scritta e ambito da verificare.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "name": "global-compact-20261010-run6",
+      "metrics": {
+        "started_at": "2026-10-10T20:15:39.901260+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 228837,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 70486,
+          "completion_tokens": 18330,
+          "total_tokens": 88816,
+          "prompt_tokens_details": {
+            "cached_tokens": 70272
+          },
+          "prompt_cache_hit_tokens": 70272,
+          "prompt_cache_miss_tokens": 214
+        },
+        "ai_seconds": 46.88215671200305,
+        "state": "failed",
+        "error_type": "ValueError",
+        "error": "Coverage candidate compatta non valida",
+        "original_unchanged": true
+      },
+      "frozen_commit": "bb41dccf277cb588f3c800c2a035ac08eda26645",
+      "code_status": "## prune-backend...origin/prune-backend [ahead 11]\n",
+      "input_sha256": "8a740ebf8d97e271a88cfab353254cb08672e5c8a0f37d964ab18a3e6733693b",
+      "same_form_as_previous": true,
+      "same_sources_as_previous": true,
+      "accepted_proposals": 0,
+      "resolved": 0,
+      "writes": 0,
+      "comparison_previous_v2_run2": {
+        "total_token_change_percent": -10.703585288854034,
+        "ai_time_change_percent": -38.3215331902473,
+        "output_token_change_percent": -39.69799651281376,
+        "note": "Different contract/work allocation; failures are not usable compilations."
+      },
+      "raw_counts": {
+        "facts": 36,
+        "conditions": 19,
+        "fields": 92,
+        "deferred": 225,
+        "dispositions": {
+          "value": 92
+        }
+      },
+      "candidate_partition_issues": {
+        "missing": [
+          "t32.r4.c0",
+          "t32.r4.c1"
+        ],
+        "unknown_fields": [],
+        "unknown_deferred": [],
+        "overlap": [
+          "t0.r0.c1",
+          "t0.r1.c1",
+          "t0.r10.c1",
+          "t0.r11.c1",
+          "t0.r2.c1",
+          "t0.r3.c1",
+          "t0.r4.c1",
+          "t0.r5.c1",
+          "t0.r6.c1",
+          "t0.r7.c1",
+          "t0.r8.c1",
+          "t0.r9.c1"
+        ],
+        "duplicate_deferred": 0
+      },
+      "condition_scope_unknown_targets": {
+        "cond.non.residenti": [
+          "paragraph:161",
+          "paragraph:164"
+        ],
+        "cond.copie.conformi": [
+          "paragraph:188"
+        ]
+      },
+      "unreferenced_facts": [],
+      "reviewed_paragraphs_match": true,
+      "manual_annotations": [
+        {
+          "candidate_id": "t0.r5.c1",
+          "proposal": {
+            "label": "Operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:28",
+              "quote": "Operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.denominazione",
+            "property": "denominazione dell'operatore economico"
+          },
+          "model_proposed_value": "Mapi Ingegneria S.r.l.",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Ragione sociale: Mapi Ingegneria S.r.l.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:30",
+              "quote": "Forma giuridica"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.forma",
+            "property": "forma giuridica dell'operatore economico"
+          },
+          "model_proposed_value": "Societa a responsabilita limitata",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Forma giuridica: Societa a responsabilita limitata.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "proposal": {
+            "label": "Sede legale (via, città, prov.)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:32",
+              "quote": "Sede legale (via, città, prov.)"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.sedelegale",
+            "property": "sede legale dell'operatore economico"
+          },
+          "model_proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "proposal": {
+            "label": "Codice fiscale operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:37",
+              "quote": "Codice fiscale operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.cf",
+            "property": "codice fiscale dell'operatore economico"
+          },
+          "model_proposed_value": "IT01234567890",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "proposal": {
+            "label": "Partita IVA operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:39",
+              "quote": "Partita IVA operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.piva",
+            "property": "partita IVA dell'operatore economico"
+          },
+          "model_proposed_value": "IT01234567890",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "supported_standard_value_proposal",
+          "reason": "Valore societario presente nelle SOURCE demo; non accettato/RESOLVED perché envelope rifiutato.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r0.c1",
+          "proposal": {
+            "label": "Il/La sottoscritto/a",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:18",
+              "quote": "Il/La sottoscritto/a"
+            },
+            "conditions": [],
+            "fact_id": "f.sottoscrittore.nome",
+            "property": "nome e cognome del sottoscrittore"
+          },
+          "model_proposed_value": "Ing. Luca Ferri",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Nominativo completo: Ing. Luca Ferri.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "unsupported_signatory_role",
+          "reason": "Il ruolo aziendale non prova chi sottoscrive questa specifica domanda.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "proposal": {
+            "label": "In qualità di (carica sociale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:24",
+              "quote": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"
+            },
+            "conditions": [],
+            "fact_id": "f.sottoscrittore.carica",
+            "property": "carica sociale del sottoscrittore"
+          },
+          "model_proposed_value": "Amministratore unico",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Carica in Mapi Ingegneria S.r.l.: Amministratore unico.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "unsupported_signatory_role",
+          "reason": "Il ruolo aziendale non prova chi sottoscrive questa specifica domanda.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "proposal": {
+            "label": "(se procuratore) estremi procura (notaio, repertorio, raccolta)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:26",
+              "quote": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"
+            },
+            "conditions": [
+              "cond.procuratore"
+            ],
+            "fact_id": "f.procura.estremi",
+            "property": "estremi della procura"
+          },
+          "model_proposed_value": "non documentati",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Procure, deleghe e dettaglio dei poteri di rappresentanza: non documentati nella scheda.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "unavailability_is_not_a_value",
+          "reason": "Indisponibilità della procura non è un estremo di procura; condizione non determinata.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "proposal": {
+            "label": "Sede operativa (se diversa dalla sede legale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.sedeoperativa",
+            "property": "sede operativa dell'operatore economico"
+          },
+          "model_proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "wrong_applicability",
+          "reason": "FORM richiede la sede operativa solo se diversa; SOURCE indica coincidenza. Operatore semantic non verifica il vincolo.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t0.r11.c1",
+          "proposal": {
+            "label": "Cellulare + Telefono",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:41",
+              "quote": "Cellulare + Telefono"
+            },
+            "conditions": [],
+            "fact_id": "f.oe.telefono",
+            "property": "telefono dell'operatore economico"
+          },
+          "model_proposed_value": "+39 080 000 2040",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -44,
+              "quote": "Telefono aziendale simulato: +39 080 000 2040.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 1
+            }
+          ],
+          "manual_verdict": "telephone_only_not_both_contacts",
+          "reason": "Telefono aziendale attestato; non dimostra anche un cellulare.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "proposal": {
+            "label": "Nome e cognome",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:452",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.direttoretecnico.nome",
+            "property": "nome e cognome del direttore tecnico"
+          },
+          "model_proposed_value": "Ing. Elisa Romano",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Nominativo completo: Ing. Elisa Romano.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "proposal": {
+            "label": "qualifica professionale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:454",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.direttoretecnico.qualifica",
+            "property": "qualifica professionale del direttore tecnico"
+          },
+          "model_proposed_value": "Ingegnere",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Qualifica professionale nello scenario: Ingegnere.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "proposal": {
+            "label": "Ordine professionale di appartenenza",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:458",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.direttoretecnico.ordine",
+            "property": "ordine professionale di appartenenza del direttore tecnico"
+          },
+          "model_proposed_value": "Ordine degli Ingegneri di Bari",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Ordine professionale simulato: Ordine degli Ingegneri di Bari.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "proposal": {
+            "label": "numero di iscrizione all’Albo professionale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:460",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.direttoretecnico.albo",
+            "property": "numero di iscrizione all'albo professionale del direttore tecnico"
+          },
+          "model_proposed_value": "8421",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -45,
+              "quote": "Numero di iscrizione professionale simulato: 8421.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 2
+            }
+          ],
+          "manual_verdict": "supported_atomic_professional_value_proposal",
+          "reason": "Proprietà separata supportata dalle SOURCE del direttore tecnico; ramo/assegnazione non approvati dal backend.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t26.r2.c1",
+          "proposal": null,
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten_unclassified",
+          "reason": "ID rinviato/assente; non è un requisito missing né un valore risolto.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "proposal": {
+            "label": "numero e data d’iscrizione",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:441",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond.soc.ing"
+            ],
+            "fact_id": "f.oe.cciaa",
+            "property": "numero di iscrizione alla CCIAA"
+          },
+          "model_proposed_value": "non disponibili",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Gli estremi completi della CCIAA e del Registro delle Imprese non sono disponibili in questa scheda.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "wrong_property_or_unavailable",
+          "reason": "REA non equivale al numero/data CCIAA; una dichiarazione di indisponibilità non è un valore utilizzabile.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:623",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond.consorziata.esec"
+            ],
+            "fact_id": "f.oe.denominazione",
+            "property": "denominazione dell'operatore economico"
+          },
+          "model_proposed_value": "Mapi Ingegneria S.r.l.",
+          "proposed_source_evidence": [
+            {
+              "chunk_id": -43,
+              "quote": "Ragione sociale: Mapi Ingegneria S.r.l.",
+              "file_id": -7,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "chunk_index": 0
+            }
+          ],
+          "manual_verdict": "unsupported_participation_branch",
+          "reason": "La denominazione aziendale non dimostra il ruolo di consorziata esecutrice nella pratica.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        },
+        {
+          "candidate_id": "p55.cb0",
+          "proposal": null,
+          "model_proposed_value": null,
+          "proposed_source_evidence": [],
+          "manual_verdict": "safe_unwritten_unclassified",
+          "reason": "ID rinviato/assente; non è un requisito missing né un valore risolto.",
+          "backend_acceptance": "whole response rejected; no per-field audit was reached",
+          "written_value": null,
+          "resolved": false
+        }
+      ]
+    }
+  ],
+  "aggregate_usage": {
+    "prompt_tokens": 422256,
+    "completion_tokens": 149246,
+    "total_tokens": 571502
+  },
+  "aggregate_ai_seconds": 376.20365800299624,
+  "decision": "DO_NOT_ACTIVATE: output shortened and facts more atomic, but all six responses rejected; no usable correctness improvement demonstrated",
+  "limits": [
+    "Literal grounding and semantic applicability are different guarantees.",
+    "Model metadata/property/scope can still be wrong; no independently accepted values.",
+    "Reviewed paragraph receipt does not prove semantic condition completeness.",
+    "Deferred is unclassified, not necessarily missing/mandatory.",
+    "Known SOURCE values can be proposed for wrong participation/signatory roles.",
+    "All final conditions are semantic/unknown; same/different inference not observed.",
+    "Sampled manual annotations; not a review of every candidate.",
+    "Post-benchmark generic plural unavailability guard tested with software, not another real model call."
+  ],
+  "next_step_proposal": "Discuss removing redundant model-generated partitions and representing condition scopes with real structural context; keep all omitted positions unresolved, reject invented destinations. No automatic activation.",
+  "checks": {
+    "targeted_final": 148,
+    "backend_full_final": 1544,
+    "backend_full_seconds": 102.83,
+    "ruff": "passed",
+    "cli_help": "passed with PYTHONPATH=. on canonical contract, unchanged runner afterward",
+    "diff_check": "passed after final report/documentation updates",
+    "temporary_db_storage": true,
+    "frontend": "unchanged, not run",
+    "intermediate_passes": [
+      {
+        "targeted": 139,
+        "backend": 1535
+      },
+      {
+        "targeted": 143,
+        "backend": 1539
+      },
+      {
+        "targeted": 146,
+        "backend": 1542
+      }
+    ],
+    "logs": [
+      "backend/data/compilation-audit/global-compact-20261010-canonical-checks",
+      "backend/data/compilation-audit/global-compact-20261010-checks",
+      "backend/data/compilation-audit/global-compact-20261010-final-checks",
+      "backend/data/compilation-audit/global-compact-20261010-refined-checks"
+    ]
+  },
+  "post_benchmark_guard_commit": "cc0485e",
+  "portable_raw_archive": {
+    "path": "docs/benchmarks/2026-10-10-global-compact-audit.tar.gz",
+    "sha256": "9c6056d04da608946474d18e6953043badccb19dad5f0a80d2e48dfcc64f75d9",
+    "files": 142,
+    "bytes": 1489411,
+    "manifest_checked": true,
+    "byte_comparison_checked": true,
+    "credential_scan": "passed",
+    "excluded": "DB, settings, keys, auth headers"
+  }
+}
