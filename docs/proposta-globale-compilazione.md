@@ -62,6 +62,20 @@ live/UI e default del runner restano invariati. Misurare anche latenza e token
 del ragionamento: non è un risparmio dimostrato né una decisione di produzione.
 Esiti finali da leggere nel report, non dedurre successo dal solo replay.
 
+La seconda serie thinking recupera 4/5/7 proposte condizionate Trapani; nei
+primi due omette i componenti dell'indirizzo e nel terzo due citazioni hanno
+solo lunghezza placeholder errata. Thinking da solo non garantisce copertura.
+Rimossa l'ambiguità: la granularità di ogni fatto segue la destinazione FORM;
+componenti separati richiedono fatti separati letterali, campo completo richiede
+valore completo. Il matcher FORM normalizza anche la larghezza dei run di almeno
+due underscore, preservando il run originale negli offset; non cambia underscore
+singoli o interni a identificativi alfanumerici. SOURCE resta identico.
+
+Ultimo protocollo: tre Trapani e un Labirinto con thinking low; una Trapani senza
+thinking per misurare il limite residuo, senza fallback fra modalità. Codice
+congelato, una chiamata per prova, gold invariato fuori dal prompt. Nessun minimo
+di assegnazioni imposto e nessun dato inventato quando manca supporto.
+
 ## Contratto storico 7: legame letterale persona/ruolo
 
 Passo autorizzato successivo alle alternative, sempre sperimentale e con una

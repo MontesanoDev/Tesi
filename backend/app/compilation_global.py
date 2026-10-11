@@ -137,7 +137,11 @@ subject, entity, aspect, property, value e 1-2 evidence con chunk_id effettivo e
 quote breve LETTERALE che include il valore COMPLETO. Una riga SOURCE può
 provare più proprietà: estrai separatamente i loro valori, non copiare l'intera
 riga come nome, qualifica, registro o numero. Il value contiene solo il valore
-della property, non altri dati. Un indirizzo completo resta una singola proprietà.
+della property, non altri dati.
+La granularità segue la destinazione FORM, non l'impaginazione SOURCE:
+se il modulo chiede componenti in posizioni distinte, proponi fatti distinti
+per quei componenti, ognuno letteralmente presente nella stessa SOURCE.
+Se la destinazione chiede invece il dato completo, conserva il valore completo.
 La medesima property può alimentare più candidate SOLO dello stesso soggetto,
 ruolo e ramo. Non disponibile/non documentato NON è un valore fattuale utile.
 General KB non prova dati anagrafici aziendali o personali. Non fondere chunk,
@@ -349,8 +353,9 @@ def _form_quote(text, quote):
     """Restore a FORM span, treating placeholder underscores as delimiters.
 
     Like SOURCE spans, comparison normalizes Unicode/case/spacing. FORM also
-    permits typographic quotes and a terminal vowel apostrophe used for an
-    accent. No edit distance, word reordering or numeric prefix matching.
+    permits typographic quotes, a terminal vowel apostrophe used for an accent
+    and different widths of an underscore placeholder. No edit distance, word
+    reordering or numeric prefix matching.
     This does not alter factual SOURCE matching or structural anchor checks.
     """
     punctuation = str.maketrans({"’": "'", "‘": "'", "“": '"', "”": '"'})
@@ -358,8 +363,18 @@ def _form_quote(text, quote):
     def comparable(value):
         value = value.translate(punctuation)
         chars, offsets = [], []
+        # Width is layout, not a requirement. Keep two underscores, with an
+        # offset covering the complete original run. Do not normalize internal
+        # identifiers such as AB__12 or turn a single underscore into a blank.
+        placeholder_tail = set()
+        for run in re.finditer(r"_{2,}", value):
+            before = value[run.start() - 1] if run.start() else ""
+            after = value[run.end()] if run.end() < len(value) else ""
+            if not (before.isalnum() and after.isalnum()):
+                placeholder_tail.update(range(run.start() + 2, run.end()))
         for index, char in enumerate(value):
-            if (char == "'" and index and value[index - 1].casefold() in "aeiou"
+            if index in placeholder_tail or (
+                    char == "'" and index and value[index - 1].casefold() in "aeiou"
                     and (index + 1 == len(value)
                          or not re.match(r"\w", value[index + 1]))):
                 if offsets:

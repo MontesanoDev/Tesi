@@ -1,5 +1,21 @@
 # Stato di Mapi RAG
 
+## Trapani — ultima verifica della granularità, 11 ottobre 2026
+
+Seconda serie conclusa `4a0b7a8`: Trapani thinking low non è più vuoto ma conserva
+4/5/7 proposte condizionate; quattro dati societari stabili, indirizzo variabile.
+Labirinto 12/13/13 grounded, zero conditional grounded: alcuni value con condizione
+unknown restano giustamente rifiutati. Tutte le acquisizioni e i costi conservati.
+
+Corretta ambiguità del TASK: fatti con granularità richiesta dalla destinazione
+FORM, non dalla riga SOURCE. Matcher FORM normalizza larghezza dei placeholder
+di almeno due underscore, ripristina originale; identificativi alfanumerici,
+underscore singoli, valori SOURCE e ancore invariati. Nessun hardcoding.
+327 mirati/25,12 s e Ruff passati; completa in corso. Protocollo finale da
+eseguire su commit congelato: tre Trapani + un Labirinto con thinking low e
+una Trapani senza thinking per verificare il limite, senza retry/fallback.
+Non dichiarare la compilazione completa o attivata in chat. Nessun push.
+
 ## Trapani — secondo protocollo in preparazione, 11 ottobre 2026
 
 V8 da solo non basta: prima serie congelata `c2f3b11`, Trapani senza thinking

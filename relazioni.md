@@ -848,3 +848,38 @@ proclamare risolto il comportamento sulla base di una sola risposta positiva.
 Verifiche prima del congelamento del secondo protocollo: **321 mirati/19,52 s,
 1.748 backend/175,33 s**, Ruff, fixture --check e diff passati. Frontend invariato
 e non rieseguito. Nessuna modifica a parser/renderer/RAG/V1 o dati live.
+
+### Seconda serie completa e granularità della destinazione
+
+Sei chiamate congelate `4a0b7a8`, tutte thinking low: Trapani produce 4/5/7
+proposte condizionate grounded in 60,1837/74,7100/84,6493 s e
+38.157/41.165/45.220 token. Quattro dati stabili nel ramo ingegneria: denominazione,
+PIVA, telefono, PEC. Nel secondo compare anche PEC comunicazioni condizionata;
+nel terzo proposti tutti i componenti dell'indirizzo, due rifiutati per lunghezza
+degli underscore nelle quote FORM. Mancanza di fax rispettata, nessun valore
+promosso. Labirinto: 12/13/13 grounded, zero conditional grounded, 17/18/16
+target letterali (non entailment), 33.082/34.149/32.491 token e
+64,8494/70,6139/62,6596 s. Valori direttore proposti con disposition value e
+condizione unknown rimangono rifiutati: il ragionamento non elimina questi
+errori né rende la V1 compilabile. Non mascherare questo limite.
+
+Analisi offline: 21 nuove chiamate fin qui, **613.569 token/572,0536 s AI**,
+manifest/codice/replay storico e cinque fingerprint live identici. Replay
+effettuati con il codice acquisito per ciascuna risposta, senza riscriverne
+gli audit; separato il controfattuale del matcher FORM corretto.
+
+Ambiguità concreta del TASK: «Un indirizzo completo resta una singola proprietà»
+scoraggia l'estrazione delle componenti quando il FORM ha posizioni distinte.
+La traccia acquisita del modello la riconosce; non è una prova SOURCE/validator.
+Scelta comunicata prima del codice: granularità determinata dalla destinazione,
+componenti letterali distinti se separati nel FORM, dato intero se richiesto intero.
+Quote FORM: normalizzare larghezza grafica dei run di almeno due underscore,
+con offset al testo originale, escludendo gli underscore interni a identificativi
+alfanumerici e quelli singoli. Nessun fuzzy o cambio di corpus/proprietà/numero.
+Il precedente test che rifiutava una larghezza diversa è aggiornato a questa
+semantica esplicita; aggiunti casi negativi per identificativi e SOURCE invariati.
+
+**327 mirati/25,12 s**, Ruff passato; suite completa in corso. Ultimo protocollo
+salvato prima delle chiamate: tre Trapani + un Labirinto thinking low, una Trapani
+senza thinking come controllo. Sempre una chiamata/prova, nessun retry/fallback,
+codice congelato e zero USER/scritture; non scegliere il risultato migliore.
