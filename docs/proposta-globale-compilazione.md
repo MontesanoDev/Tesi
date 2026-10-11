@@ -1,6 +1,43 @@
 # Proposta globale sperimentale — 11 ottobre 2026
 
-## Contratto corrente 7: legame letterale persona/ruolo
+## Contratto corrente 8: dato proposto e applicabilità distinti
+
+Correzione circoscritta del caso Trapani: il prompt V7 permetteva solo valori
+con condizioni verificabili, ma operator=semantic rimane sempre unknown nel
+backend. Un documento interamente condizionale poteva quindi produrre il JSON
+vuoto pur avendo dati SOURCE pertinenti. Diagnosi: baseline invariata e due
+ablation del prompt ancora vuote; una risposta documentale separata riconosce
+i dati e i blocchi di rappresentanza/partecipazione, ma non è una proposta
+compilabile. Nessuna prova che bastasse correggere una singola frase del prompt.
+
+V8 aggiunge solo `disposition=conditional`: fact_id/property SOURCE, condizione
+FORM reale non vuota e motivo. Riusa gli stessi gate di ancore, schema, valori,
+provenance, alternative e persona/ruolo. Una condizione sconosciuta può differire
+l'uso del dato senza cancellarne la proposta. False, condizioni malformate o
+SOURCE invalide restano rifiutate; `value` con unknown resta rifiutato.
+
+Audit: `validation=REVIEW_REQUIRED`, `value=null`, `fact_id=null`,
+`written_value=null`, con `proposed_value`, `proposed_fact_id`, prove SOURCE e
+condition_checks separati. I valori proposti sono conservati solo se passano
+tutti gli altri controlli. Alternative non scelgono un valore e binding invalidi
+non producono proposed_value. Nessun RESOLVED, renderer o integrazione nella V1.
+Un JSON vuoto resta consentito e viene indicato come `assessment=empty_proposal`;
+non si impone un numero minimo di valori o si inventano dati dal backend.
+
+Budget invariati, una chiamata per documento, nessun retry/reviewer/batch nuovo.
+V5/V6/V7 mantengono la validazione storica per replay. FORM non prova valori,
+SOURCE non dimostra automaticamente rappresentanza/scelta dell'utente.
+Applicabilità e entailment di proprietà/soggetto restano da verificare.
+
+Protocollo prima delle acquisizioni: tre chiamate congelate su Trapani con lo
+stesso DOCX/corpus della prova casuale, tre sulla fixture Labirinto V1 invariata,
+nessun gold nel prompt. Misurare proposte condizionate separatamente dai valori
+grounded e da RESOLVED; conservare tutte le risposte e i costi. Criterio minimo:
+recuperare dati aziendali pertinenti nel ramo appropriato mantenendo i blocchi,
+senza CF aziendale usato come CF personale o numero di un professionista usato
+per altri. Nessuna modifica durante le serie; report in relazioni.md.
+
+## Contratto storico 7: legame letterale persona/ruolo
 
 Passo autorizzato successivo alle alternative, sempre sperimentale e con una
 sola chiamata. `bindings` è una mappa condivisa (massimo 128) con origine FORM,

@@ -1,5 +1,37 @@
 # Stato di Mapi RAG
 
+## Trapani — intervento V8 in verifica, 11 ottobre 2026
+
+Richiesta autorizzata: risolvere l'output vuoto del compilatore globale sul
+bando casuale Trapani, senza attivazione nella V1/chat o modifiche a RAG/parser/
+renderer. Git iniziale pulito su `02524d8`, preservati dati e originali.
+
+Quattro chiamate diagnostiche reali, prima di modificare codice applicativo:
+baseline V7 ancora vuota; ablation della sola omissione e prompt compatto ancora
+vuoti; risposta diagnostica fuori dal contratto legge SOURCE e spiega blocchi
+di rappresentanza/scelta del sottoscrittore. Quest'ultima è rifiutata dal validator
+come atteso e NON è un insieme di valori verificati. La causa contrattuale
+riscontrata: condizioni semantiche sempre unknown + emissione di soli valori
+già applicabili, senza rappresentazione di un dato documentato ma condizionato.
+Non attribuire l'intero comportamento a una singola frase del prompt.
+
+Implementato V8 sperimentale: proposta `conditional` con dato SOURCE, condizioni
+FORM e motivo; riuso dei gate esistenti, field.value e written_value restano null.
+Solo una proposta che supera grounding/tipo/ancore/ruolo e ha condizione unknown
+conserva proposed_value; condizioni false/invalide restano rifiuti. Alternative
+non scelgono valori, FORM/USER non diventano SOURCE; replay V5/V6/V7 preservati.
+Vuoto indicato esplicitamente empty_proposal, nessuna quota minima imposta.
+
+Verifiche software concluse: **302 mirati/24,71 s**, **1.729 backend/177,39 s**,
+Ruff, fixture --check e diff passati. Failure iniziali schema V7 atteso e due
+righe Ruff conservate. Frontend invariato/non eseguito. Benchmark reali ancora
+da eseguire; non dichiarare risolto il test prima delle acquisizioni congelate.
+Protocollo: tre Trapani stesso input,
+tre Labirinto V1 con gold fuori dal prompt; metriche proposte condizionate
+distinte dai valori grounded/RESOLVED. Una chiamata per prova, zero USER/retry/
+scritture. Commit piccoli autorizzati, nessun push. La sezione verrà aggiornata
+con esiti realmente acquisiti e limiti, non con aspettative.
+
 ## Prova occasionale su un altro bando — 11 ottobre 2026, nessuna proposta
 
 Preferenza dell'utente registrata in AGENTS.md: benchmark fisso congelato per

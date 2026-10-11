@@ -199,6 +199,9 @@ def run(args):
             save("validation.json", audit)
             report.update(validation_counts=audit["counts"], dispositions=audit["dispositions"],
                           contract_version=audit.get("version", 1),
+                          proposal_assessment=audit.get("assessment", "legacy_audit_only"),
+                          grounded_conditional_proposals=audit.get(
+                              "grounded_conditional_proposals", 0),
                           facts=len(audit.get("facts", {})),
                           conditions=len(audit.get("conditions", {})),
                           bindings=len(audit.get("bindings", {})),

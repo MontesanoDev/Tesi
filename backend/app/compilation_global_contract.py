@@ -173,3 +173,26 @@ class SubjectBoundProposal(AlternativeAwareProposal):
     version: Literal[7]
     bindings: dict[Reference, SubjectBinding] = Field(default_factory=dict, max_length=128)
     fields: dict[Reference, SubjectBoundAssignment] = Field(max_length=400)
+
+
+class ConditionalValue(SubjectBoundValue):
+    """Documented data whose destination still depends on an unknown condition.
+
+    This is never a selected/writable value or evidence that the condition holds.
+    """
+
+    disposition: Literal["conditional"]
+    kind: Literal["data", "choice"]
+    conditions: list[Reference] = Field(min_length=1, max_length=8)
+    reason: str = Field(min_length=1, max_length=200)
+
+
+ConditionalAssignment = Annotated[
+    SubjectBoundValue | NonApplicableAssignment | AlternativeAssignment | ConditionalValue,
+    Field(discriminator="disposition"),
+]
+
+
+class ConditionalAwareProposal(SubjectBoundProposal):
+    version: Literal[8]
+    fields: dict[Reference, ConditionalAssignment] = Field(max_length=400)

@@ -287,7 +287,7 @@ def test_person_alternatives_stay_nonwritable_without_inventing_a_role(case):
 
 def test_schema_and_envelope_are_bounded_and_do_not_change_v6_replay(case):
     schema = build_global_input(case[0], "alpha", case[1])["schema_output"]
-    assert schema["properties"]["version"]["const"] == 7
+    assert schema["properties"]["version"]["const"] == 8
     assert schema["properties"]["bindings"]["maxProperties"] == 128
     assert schema["$defs"]["SubjectBinding"]["properties"]["evidence"]["maxItems"] == 2
     case[2]["bindings"] = {f"role-{i}": {} for i in range(129)}
@@ -300,3 +300,26 @@ def test_schema_and_envelope_are_bounded_and_do_not_change_v6_replay(case):
     result = audit(case)
     assert result["counts"] == {"GROUNDED_PROPOSAL": 2}
     assert "bindings" not in result
+
+
+@pytest.mark.parametrize("valid_binding", [True, False])
+def test_conditional_person_keeps_the_full_role_gate_and_unknown_condition(case, valid_binding):
+    case[2]["version"] = 8
+    case[2]["conditions"]["unknown"] = {
+        "form": {"paragraph_id": "paragraph:2", "quote": "Nome e cognome"},
+        "aspect": "professional", "operator": "semantic", "fact_ids": [],
+        "reason": "Applicabilità da confermare", "scope": [{"kind": "table", "id": "table:0"}]}
+    for record in case[2]["fields"].values():
+        record.update(disposition="conditional", conditions=["unknown"],
+                      reason="Ramo da confermare")
+    if not valid_binding:
+        case[2]["bindings"]["role"]["source_role"] = "Altro ruolo"
+    result = audit(case)
+    assert result["counts"] == {"REVIEW_REQUIRED": 2}
+    for field in result["fields"]:
+        assert field["value"] is field["written_value"] is None
+        assert ("proposed_value" in field) is valid_binding
+        assert field["condition_checks"]["unknown"]["result"] == "unknown"
+        assert field["subject_binding"]["result"] == (
+            "literal_match" if valid_binding else "review_required")
+    assert result["resolved"] == result["writes"] == 0

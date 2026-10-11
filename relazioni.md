@@ -751,3 +751,56 @@ precedente; non dimostrata migliore completezza. Questa prova rende visibile
 un limite fuori dalla fixture. Prossima scelta ancora da discutere:
 applicabilità/copertura, includendo output vuoto, senza allentare provenance
 o attivare prototipo in chat/renderer. Nessuna correzione durante questo test.
+
+## 11 ottobre 2026 — Trapani: diagnosi e contratto V8 prima dei benchmark
+
+Richiesta autorizzata successiva: risolvere l'output vuoto del bando estratto,
+senza rifare RAG, parser, renderer, V1 o UI. Git pulito su `02524d8`.
+Prima del codice, quattro chiamate reali sullo stesso input congelato Trapani:
+
+| Prova diagnostica | Risultato | Token totali | Secondi AI |
+|---|---|---:|---:|
+| Baseline V7 invariata | JSON vuoto | 25.362 | 1,6020 |
+| Sola istruzione sull'omissione modificata | JSON vuoto | 25.406 | 1,4228 |
+| TASK compatto, stesso schema | Nessun fatto/valore, 13 paragrafi incerti | 23.396 | 1,9511 |
+| Risposta diagnostica fuori dal contratto compilazione | Riconosce dati e blocchi, validator la rifiuta | 25.729 | 14,6140 |
+
+L'ultima risposta non è una proposta valida: include anche assenze come valori,
+associazioni improprie e più dei 12 link richiesti. Nessun dato promosso o scritto.
+Dimostra che il modello legge le SOURCE; la sua spiegazione non costituisce
+una verità sulle motivazioni interne delle chiamate precedenti. Non basta
+modificare una frase o accorciare il prompt, come mostrano le due ablation.
+
+Limite contrattuale concreto: V7 esige applicabilità verificata per emettere
+value; operator=semantic resta unknown nel backend, e i fatti non referenziati
+sono vietati. Nel FORM Trapani la società si trova in un ramo di rappresentanza
+e il firmatario non è designato nelle SOURCE; la disponibilità aziendale si
+perde insieme all'assegnazione. Nessuna evidenza di un problema di retrieval,
+troncamento, dati assenti o serializzazione; schema/input/HTTP/raw acquisiti.
+
+Scelta comunicata prima del codice: rappresentare il dato documentato ma ancora
+condizionato, senza dichiarare vera la condizione. V8 aggiunge conditional con
+fact_id/property, conditions non vuoto e motivo. Stessi gate SOURCE/FORM, ruolo,
+tipo, ancore e alternative; source_value diventa solo proposed_value e field.value
+resta null/REVIEW_REQUIRED. False/invalide e value con unknown restano rifiuti.
+Nessun nuovo corpus, seconda chiamata, retry, loop, scrittura o migrazione.
+V5/V6/V7 conservati per replay. Vuoto esplicito empty_proposal, nessuna quota.
+
+Prime verifiche: 59 mirati passati/6,04 s; Ruff segnala due righe lunghe nei
+test, corrette. Prima suite mirata: 301 passati/1 fallito per aspettativa schema
+ancora V7 in un test storico; corretta alla V8. Mirati finali **302/24,71 s**.
+Prima completa, raccolta prima della correzione dell'aspettativa: 1.728 passati/
+1 fallito/191,12 s, stessa aspettativa; log conservato. Nuova completa in corso.
+Ruff e fixture fissa --check passati. Queste sono prove software, non esiti AI.
+
+Protocollo salvato prima dei benchmark: tre acquisizioni su Trapani originale/
+17 SOURCE congelate e tre su Labirinto V1 con gold fuori dal prompt. Congelare
+codice, non modificarlo durante la serie, conservare ogni esito. Contare dati
+condizionati separatamente da valori grounded e RESOLVED, niente accuracy %
+su Trapani senza gold. Non dichiarare risolto prima dei risultati reali.
+Acquisizioni in `backend/data/compilation-audit/trapani-diagnosis-20261011/`
+e `trapani-conditional-v8-20261011/`, report finale da completare. Nessun push.
+
+Suite completa successiva corretta: **1.729 passati/177,39 s**; Ruff, fixture
+--check e diff passati. Frontend invariato/non eseguito. Codice pronto al commit
+congelato; i benchmark reali V8 non sono ancora stati eseguiti a questo punto.

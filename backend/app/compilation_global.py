@@ -23,6 +23,9 @@ from app.compilation_global_contract import (
     AlternativeAwareProposal,
     AtomicField,
     CompactGlobalProposal,
+    ConditionalAssignment,
+    ConditionalAwareProposal,
+    ConditionalValue,
     ConditionTarget,
     FormSpan,
     SharedCondition,
@@ -50,6 +53,7 @@ MAX_OUTPUT_TOKENS = 49_152
 SPARSE_ASSIGNMENT = TypeAdapter(SparseAssignment)
 ALTERNATIVE_ASSIGNMENT = TypeAdapter(AlternativeAwareAssignment)
 SUBJECT_ASSIGNMENT = TypeAdapter(SubjectBoundAssignment)
+CONDITIONAL_ASSIGNMENT = TypeAdapter(ConditionalAssignment)
 
 
 class GlobalField(StrictModel):
@@ -68,7 +72,7 @@ class GlobalProposal(StrictModel):
     fields: dict[str, GlobalField] = Field(max_length=400)
 
 
-TASK = """Produci UNA proposta globale JSON versione 7. Leggi prima l'intero Word FORM
+TASK = """Produci UNA proposta globale JSON versione 8. Leggi prima l'intero Word FORM
 nei blocks e tutte le SOURCE. L'ordine dei blocks è quello del documento; celle,
 righe e titoli precedenti determinano soggetto, ruolo, sezione e sottosezione.
 section_ids vuoto significa assenza di outline Word esplicito, NON assenza di
@@ -82,12 +86,20 @@ classificazione di tutte le posizioni. Prima di emettere ciascun record verifica
   da quella destinazione; tutte le condizioni sono verificabili. Un fatto su
   una persona con un ruolo noto non dimostra che ricopra un altro ruolo nel
   procedimento. L'idoneità o plausibilità del soggetto non prova la relazione.
+- conditional: il valore è documentato da SOURCE per il soggetto/proprietà
+  richiesti, ma una condizione del ramo resta sconosciuta. Conserva il dato,
+  fact_id e tutte le conditions, con reason breve; NON significa compilabile.
+  Il backend verifica il dato separatamente e ne blocca comunque l'utilizzo.
+  Non trasferire dati in rami destinati a soggetti/tipologie incompatibili.
 - not_applicable: esiste una condizione locale realmente calcolabile falsa;
   nessun dato disponibile NON significa campo non applicabile.
 - review: esistono almeno due alternative SOURCE della STESSA proprietà e dello
   STESSO soggetto/ruolo. Non usare due fatti qualsiasi per riempire la lista.
   Questa proposta riguarda valori testuali, non checkbox o ruoli non attestati.
-Se manca una di queste prove, OMETTI il record. L'omissione è l'esito corretto:
+Se manca il dato SOURCE pertinente, OMETTI il record. Se manca soltanto la
+verifica della condizione, usa conditional invece di perdere anche il dato.
+Non inventare condizioni per giustificare dati o ruoli non pertinenti.
+L'omissione è l'esito corretto per posizioni senza supporto:
 non serve spiegare ogni vuoto in fields. Non usare NA/review come sostituti di
 missing e non assegnare valori per completare l'inventario. Il backend conserva
 ogni posizione omessa. Preferisci poche proposte fondate a tutte le posizioni.
@@ -131,7 +143,7 @@ ruolo e ramo. Non disponibile/non documentato NON è un valore fattuale utile.
 General KB non prova dati anagrafici aziendali o personali. Non fondere chunk,
 non citare il primo chunk del file per testo contenuto nei successivi.
 
-PERSONE E RUOLI. Ogni value riferito a un fatto entity=person deve avere
+PERSONE E RUOLI. Ogni value/conditional riferito a un fatto entity=person deve avere
 binding_id verso bindings (max 128). Il binding collega il ruolo FORM a quello
 SOURCE per il subject del fatto; non rinominare il ruolo della fonte per adattarlo
 al campo. Conserva il contesto completo in form.quote e usa la designazione
@@ -154,10 +166,25 @@ fields["ID_CANDIDATE"] = {"label":"Nome","kind":"data","disposition":"value",
 "form":{"paragraph_id":"ID_PARAGRAFO_LOCALE","quote":"Nome"},"conditions":[],
 "property":"nome","fact_id":"f","binding_id":"b"}
 Nella risposta usa soltanto ID/estratti reali dell'input. Se manca il ruolo
-attestato per quel subject, ometti il value. Altri ruoli documentati non lo provano.
+attestato per quel subject, ometti value e conditional: non aggirare il binding.
+Altri ruoli documentati non lo provano.
+
+ESEMPIO DI PROPOSTA CONDIZIONATA (solo segnaposto, nessun dato da copiare):
+conditions["c"] = {"form":{"paragraph_id":"ID_PARAGRAFO_CONDIZIONE",
+"quote":"CONDIZIONE"},"aspect":"other","operator":"semantic","fact_ids":[],
+"reason":"Condizione da confermare","scope":[{"kind":"candidate","id":"ID_CAMPO"}]}
+fields["ID_CAMPO"] = {"label":"Dato organizzazione","kind":"data",
+"disposition":"conditional","form":{"paragraph_id":"ID_PARAGRAFO_LOCALE",
+"quote":"ETICHETTA"},"conditions":["c"],"property":"PROPRIETÀ","fact_id":"f",
+"reason":"Valore documentato; condizione non stabilita"}
+facts["f"] = {"subject":"ORGANIZZAZIONE","entity":"company","aspect":"identity",
+"property":"PROPRIETÀ","value":"VALORE","evidence":[{"chunk_id":0,"quote":"VALORE"}]}
+Usa soltanto ID e testi reali. Non serve sapere già chi firmerà per conservare
+un dato dell'organizzazione con la relativa condizione da verificare.
 
 3. ASSEGNAZIONI COMPATTE. fields contiene ESCLUSIVAMENTE
-disposition=value, not_applicable o review con le prove richieste. Ometti semplicemente
+disposition=value, conditional, not_applicable o review con le prove richieste.
+Ometti semplicemente
 le altre posizioni: il backend le conserva come ancora da verificare, NON
 missing, decorative o non applicabili. NON restituire deferred o liste di ID
 da coprire. fields contiene SOLO ID esistenti in form.candidates: paragraph e
@@ -166,6 +193,8 @@ Il tetto strutturale è 400, NON un numero di record da raggiungere. Non elencar
 i requisiti privi di valore: per loro non va emesso alcun record fields.
 Per ogni field: label, kind, disposition, form, conditions; fact_id se pertinente,
 property IDENTICA alla property del fatto associato, choice solo per checkbox.
+Per conditional fact_id/property sono obbligatori, conditions non vuoto e reason
+spiega il blocco: un dato documentato non dimostra che il ramo si applichi.
 Il form.quote del field è un estratto LETTERALE locale della richiesta: scegli
 un anchor_paragraph_ids del candidate. Le condizioni di sezione possono stare
 altrove ma NON la label locale. Non accorpare testi di paragrafi diversi.
@@ -176,12 +205,12 @@ Confronti: same/different richiedono due fatti distinti dello stesso subject,
 entity e aspect, con property diverse. Solo valori identici dopo spazi/Unicode
 permettono same=true o different=false. Testi diversi non provano diversità
 reale: unknown. Per gli altri casi operator=semantic, con eventuali fatti di
-supporto, e ometti le assegnazioni dipendenti: la sola classificazione del modello
+supporto; usa conditional per i dati documentati dipendenti: la classificazione
 non rende automaticamente vero/falso un ramo. Non inventare un secondo fatto.
 Tipologia aziendale, partecipazione e poteri di rappresentanza sono dimensioni
 diverse: non trasferire fatti fra queste dimensioni per escludere una sezione.
-Condizione falsa locale => not_applicable senza valore; sconosciuta => ometti
-l'assegnazione, NON value/not_applicable. Valore assente nelle SOURCE => ometti.
+Condizione falsa locale => not_applicable senza valore; sconosciuta => conditional
+se esiste un dato SOURCE pertinente, NON value/not_applicable. Dato assente => ometti.
 Non creare record fields con missing/ignore. Per value serve sempre un fact_id.
 fact_id e property sono OBBLIGATORI e NON NULL per value: la sola label FORM
 non è un'assegnazione. Se manca il fatto SOURCE, ometti INTERAMENTE il field.
@@ -266,7 +295,7 @@ def build_global_input(layout, project_id, sources):
         "user_values": [],
         "source_coverage": {"strategy": "complete_small_corpus", "partial": False,
                             "chunks": len(source_map)},
-        "schema_output": SubjectBoundProposal.model_json_schema(),
+        "schema_output": ConditionalAwareProposal.model_json_schema(),
     }
     if sum(bool(text.strip()) for text in paragraphs.values()) > 2048:
         raise ValueError("Inventario FORM oltre budget: nessun troncamento implicito")
@@ -434,7 +463,7 @@ def _shared_conditions(records, paragraphs, facts):
     return conditions
 
 
-def _expand_shared_field(item, candidate, facts, conditions, local):
+def _expand_shared_field(item, candidate, facts, conditions, local, *, defer_unknown=False):
     if len(set(item.conditions)) != len(item.conditions):
         raise ValueError("Riferimento a condizione duplicato")
     linked = []
@@ -455,8 +484,10 @@ def _expand_shared_field(item, candidate, facts, conditions, local):
     if item.disposition in {"value", "missing"}:
         if false:
             raise ValueError("Condizione falsa: il campo deve restare vuoto")
-        if unknown:
+        if unknown and not defer_unknown:
             raise ValueError("Condizione sconosciuta: applicabilità da chiarire, non dato missing")
+        if defer_unknown and not unknown:
+            raise ValueError("Proposta condizionata senza condizione sconosciuta")
     if item.disposition == "not_applicable" and not false:
         raise ValueError("Non applicabilità senza condizione calcolabile falsa")
     if item.disposition == "ignore" and (
@@ -490,7 +521,8 @@ def _expand_shared_field(item, candidate, facts, conditions, local):
     return expanded, proofs, checks
 
 
-def _validate_shared_proposal(payload, layout, catalog, source_map, *, reject_empty=False):
+def _validate_shared_proposal(payload, layout, catalog, source_map, *, reject_empty=False,
+                              conditional_ids=()):
     if type(payload.get("version")) is not int or payload["version"] != 2 or set(payload) != {
             "version", "facts", "conditions", "fields"}:
         raise ValueError("Versione/envelope globale non valido")
@@ -512,6 +544,7 @@ def _validate_shared_proposal(payload, layout, catalog, source_map, *, reject_em
             item = SharedField.model_validate(record)
             expanded[candidate_id], proofs, checks = _expand_shared_field(
                 item, catalog["candidates"][candidate_id], facts, conditions, local,
+                defer_unknown=candidate_id in conditional_ids,
             )
             extra[candidate_id] = {"fact_id": item.fact_id, "conditions": item.conditions,
                                    "condition_checks": checks,
@@ -851,7 +884,8 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     fact and condition errors cannot discard independent grounded proposals.
     Missing proposals are unassessed, never fabricated missing/NA/value records.
     """
-    subjects_enabled = payload["version"] == 7
+    conditional_enabled = payload["version"] == 8
+    subjects_enabled = payload["version"] in {7, 8}
     budgets = [("fields", 400), ("facts", 128), ("conditions", 128)]
     if subjects_enabled:
         budgets.append(("bindings", 128))
@@ -860,10 +894,12 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         if (not isinstance(records, dict) or len(records) > maximum
                 or any(not 1 <= len(key) <= 80 for key in records)):
             raise ValueError(f"Dizionario {name} non valido/oltre budget")
-    alternatives_enabled = payload["version"] in {6, 7}
-    schema = (SubjectBoundProposal if subjects_enabled else
+    alternatives_enabled = payload["version"] in {6, 7, 8}
+    schema = (ConditionalAwareProposal if conditional_enabled else
+              SubjectBoundProposal if subjects_enabled else
               AlternativeAwareProposal if alternatives_enabled else SparseGlobalProposal)
-    assignment = (SUBJECT_ASSIGNMENT if subjects_enabled else
+    assignment = (CONDITIONAL_ASSIGNMENT if conditional_enabled else
+                  SUBJECT_ASSIGNMENT if subjects_enabled else
                   ALTERNATIVE_ASSIGNMENT if alternatives_enabled else SPARSE_ASSIGNMENT)
     envelope = {**payload, "fields": {}, "facts": {}, "conditions": {}}
     if subjects_enabled:
@@ -892,6 +928,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     facts = {key: record for key, record in payload["facts"].items() if key in referenced}
     unused = sorted(set(payload["facts"]) - referenced)
     expanded, errors, items = {key: {} for key in catalog["candidates"]}, {}, {}
+    conditional_ids = set()
     unknown = {key: {"proposal": record, "validation": "REJECTED",
                      "validation_errors": ["Destinazione non presente nei candidate originali"]}
                for key, record in payload["fields"].items() if key not in expanded}
@@ -915,11 +952,17 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                 "property", "alternative_fact_ids", "review_kind", "binding_id",
             }),
                              "conditions": sorted(set(item.conditions) | links[key])}
+            if isinstance(item, ConditionalValue):
+                # Reuse all value/quote/type gates. Only the applicability gate
+                # may defer unknown; false or invalid conditions still reject.
+                conditional_ids.add(key)
+                expanded[key]["disposition"] = "value"
         except ValueError as exc:
             errors[key] = str(exc)
     result = _validate_shared_proposal({"version": 2, "facts": facts,
                                        "conditions": conditions, "fields": expanded},
-                                      layout, catalog, source_map, reject_empty=True)
+                                      layout, catalog, source_map, reject_empty=True,
+                                      conditional_ids=conditional_ids)
     for field in result["fields"]:
         key = field["candidate_id"]
         if key in unassigned:
@@ -939,7 +982,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                 fact_ids = None
                 if isinstance(item, AlternativeAssignment):
                     fact_ids = item.alternative_fact_ids
-                elif item.disposition == "value":
+                elif item.disposition in {"value", "conditional"}:
                     chosen = result["facts"][item.fact_id]
                     siblings = {}
                     for ref, fact in result["facts"].items():
@@ -966,7 +1009,8 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                         # An invalid alternative must not silently restore a chosen value.
                         field.update(validation="REJECTED", value=None, fact_id=None,
                                      validation_errors=[str(exc)])
-            if subjects_enabled and key in items and items[key].disposition == "value":
+            if (subjects_enabled and key in items
+                    and items[key].disposition in {"value", "conditional"}):
                 item = items[key]
                 fact = result["facts"][item.fact_id]
                 if fact.get("entity") == "person" or item.binding_id is not None:
@@ -977,6 +1021,17 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                         field["validation_errors"].extend(check["validation_errors"])
                         if field["validation"] != "REJECTED":
                             field.update(validation="REVIEW_REQUIRED", value=None, fact_id=None)
+            if key in conditional_ids:
+                if field["validation"] == "GROUNDED_PROPOSAL":
+                    # This is a grounded *proposal*, never a selected field value.
+                    # Alternatives and failed personal-role gates cannot enter here.
+                    field.update(proposed_value=field["value"],
+                                 proposed_fact_id=items[key].fact_id,
+                                 proposal_grounding="GROUNDED_PROPOSAL",
+                                 validation="REVIEW_REQUIRED")
+                if field.get("disposition") == "value":
+                    field["disposition"] = "conditional"
+                field.update(value=None, fact_id=None)
     for key, condition in result["conditions"].items():
         condition.update(metadata[key])
         if key in condition_errors:
@@ -995,6 +1050,11 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         result.update(bindings=bindings, binding_checks=dict(Counter(
             field["subject_binding"]["result"] for field in result["fields"]
             if "subject_binding" in field)))
+    if conditional_enabled:
+        result.update(
+            assessment="empty_proposal" if not payload["fields"] else "proposal_requires_review",
+            grounded_conditional_proposals=sum("proposed_value" in f for f in result["fields"]),
+        )
     return result
 
 
@@ -1010,7 +1070,7 @@ def validate_global_proposal(raw, layout, project_id, sources):
     catalog = build_compilation_catalog(layout)
     source_map = _allowed_sources(project_id, sources)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
-            and payload["version"] in {5, 6, 7}):
+            and payload["version"] in {5, 6, 7, 8}):
         return _validate_sparse_proposal(payload, layout, catalog, source_map)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
             and payload["version"] == 4):
