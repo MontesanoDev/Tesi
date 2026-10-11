@@ -131,35 +131,30 @@ ruolo e ramo. Non disponibile/non documentato NON è un valore fattuale utile.
 General KB non prova dati anagrafici aziendali o personali. Non fondere chunk,
 non citare il primo chunk del file per testo contenuto nei successivi.
 
-PERSONE E RUOLI. Non rinominare una proprietà SOURCE usando il ruolo desiderato
-dal FORM: un nome documentato per un ruolo non prova che la persona ne ricopra
-un altro. Per ogni value il cui fatto ha entity=person serve binding_id verso
-bindings, mappa condivisa massimo 128. Crea un binding soltanto se SOURCE
-attesta esplicitamente quel ruolo per quella persona: form con estratto reale
-del ruolo richiesto, required_role letterale nell'estratto, source_role letterale
-nelle evidence SOURCE. Ogni evidence deve affermare il ruolo, non solo menzionarlo.
-Il primo gate riconosce prudentemente la forma esplicita «ruolo: persona» all'inizio
-di una clausola SOURCE, con subject del fatto. Sinonimi/ruoli diversi, attribuzioni
-negate o narrative richiedono revisione; non inventare una corrispondenza.
-In form.quote conserva l'intera designazione FORM, incluse qualificazioni e
-contesto dell'organizzazione. required_role indica il ruolo funzionale letterale
-all'interno di tale estratto, source_role quello letterale nella SOURCE: non
-confondere il ruolo con il complemento che descrive l'organizzazione. Devono
-essere la stessa designazione, mai un sinonimo o una sottostringa arbitraria.
-Non eliminare attributi che cambiano il ruolo, negazioni o differenze di soggetto.
-Se la relazione col contesto completo non è sostenibile, ometti l'assegnazione.
-Il form del binding deve stare nella riga/header locale, nell'ultimo paragrafo
-del corpo precedente il blocco o nell'ultima sezione outline del candidate.
-Non prendere il ruolo da un altro ramo o da una riga precedente non header.
-Condividi il binding fra dati della stessa persona e dello stesso ruolo; le
-prove di ruolo e di valore devono provenire dallo stesso chunk SOURCE. Ogni
-proprietà resta un fatto atomico distinto. Il binding non verifica applicabilità,
-non cambia condizioni unknown e non dimostra da solo l'associazione di ogni
-proprietà alla persona. Se manca il legame esplicito, ometti l'assegnazione.
-Non riclassificare una persona come company/other per evitare questo controllo.
-Il binding riguarda soltanto ruoli personali: non limita le assegnazioni dei
-fatti aziendali né le scelte booleane supportate. Conserva ogni proprietà atomica
-distinta con valore e prova propri, anche se proviene dalla stessa riga SOURCE.
+PERSONE E RUOLI. Ogni value riferito a un fatto entity=person deve avere
+binding_id verso bindings (max 128). Il binding collega il ruolo FORM a quello
+SOURCE per il subject del fatto; non rinominare il ruolo della fonte per adattarlo
+al campo. Conserva il contesto completo in form.quote e usa la designazione
+funzionale letterale in required_role/source_role, senza sinonimi, negazioni
+rimosse o qualificatori che cambiano il ruolo. Il gate accetta solo ruoli uguali
+(NFC/case/spazi) e «ruolo: persona» affermativo a inizio clausola nel chunk reale.
+Origine FORM: riga/header locale, ultimo paragrafo precedente il blocco oppure
+ultima sezione outline. Ruolo e valore devono essere nello stesso chunk SOURCE.
+Condividi un binding tra proprietà atomiche della stessa persona/ruolo. Non
+cambiare entity per eluderlo. Questo gate non verifica condizioni/proprietà né
+limita i fatti aziendali o le checkbox. Applicabilità unknown resta unknown.
+
+ESEMPIO SOLO DI COLLEGAMENTO (ID e testi seguenti sono segnaposto, non evidenze):
+bindings["b"] = {"form":{"paragraph_id":"ID_PARAGRAFO_RUOLO",
+"quote":"RUOLO nel contesto completo"},"required_role":"RUOLO",
+"source_role":"RUOLO","evidence":[{"chunk_id":0,"quote":"RUOLO: PERSONA."}]}
+facts["f"] = {"subject":"PERSONA","entity":"person","aspect":"identity",
+"property":"nome","value":"PERSONA","evidence":[{"chunk_id":0,"quote":"RUOLO: PERSONA."}]}
+fields["ID_CANDIDATE"] = {"label":"Nome","kind":"data","disposition":"value",
+"form":{"paragraph_id":"ID_PARAGRAFO_LOCALE","quote":"Nome"},"conditions":[],
+"property":"nome","fact_id":"f","binding_id":"b"}
+Nella risposta usa soltanto ID/estratti reali dell'input. Se manca il ruolo
+attestato per quel subject, ometti il value. Altri ruoli documentati non lo provano.
 
 3. ASSEGNAZIONI COMPATTE. fields contiene ESCLUSIVAMENTE
 disposition=value, not_applicable o review con le prove richieste. Ometti semplicemente

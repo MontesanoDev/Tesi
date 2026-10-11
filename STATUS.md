@@ -20,8 +20,10 @@ Prima serie DeepSeek sul commit `97d84fb`: firmatario improprio bloccato,
 cinque valori societari/alternative conservati, ma 17/16/13 target proposti
 contro 22/17/22 V6b. Ruolo direttore esteso/breve non coincide; due valori ordine
 includono il numero e una proposta numero è omessa. Copertura non soddisfacente.
-Seconda iterazione soltanto sulle istruzioni ruolo/contesto/fatti aziendali,
-validator/schema invariati; tre nuove prove ancora da eseguire.
+Seconda serie `c2b30b0`: 17/16/17 target, cinque dati societari/alternative
+conservati ma binding omessi in tutte le prove. Ultima iterazione bounded sulle
+istruzioni: un esempio JSON generico del legame, stesso validator/schema/budget;
+tre prove ancora da eseguire. Non allentare gate per compensare le omissioni.
 Fixture V1, originali, dati locali, V1/RAG/parser/
 renderer/catalogo invariati; nessuna migrazione/reindicizzazione. Commit piccoli
 autorizzati, nessun push. Aggiornare questa sezione con esito e limiti finali.

@@ -578,3 +578,23 @@ prima serie e acquisire altre tre prove su nuovo commit, stesso corpus/gold/budg
 
 Seconda iterazione: 295 mirati passati/12,06 s, Ruff e diff passati prima del
 nuovo commit congelato. Nessuna modifica di schema o funzioni di validazione.
+
+### Seconda serie V7 — omissione sistematica dei binding
+
+Commit `c2b30b0`, tre acquisizioni reali congelate: 17/16/17 target attesi,
+11/11/11 grounded corretti, zero valori impropri grounded; cinque dati societari
+e alternative mantenuti. Direttore/5739 presenti grezzi in tutte le prove;
+ordine composto col numero nel secondo run. Binding completamente omessi 3/3,
+quindi correttamente bloccati. Firmatario omesso 3/3. 57.112 token/33,98 s AI.
+La sola spiegazione ruolo funzionale vs contesto non ha risolto la regressione.
+
+Ultima iterazione bounded annunciata: sostituire il paragrafo verbose sul legame
+con istruzioni compatte e un unico esempio JSON di riferimenti collegati,
+interamente segnaposto e non tratto dalla fixture. Stessi schema/validator/budget,
+nessun fatto o ruolo hardcoded del modulo. Conservare tutti i risultati, tre
+nuove acquisizioni congelate, poi fermare questa serie e documentare anche
+un eventuale mancato recupero. Nessun passaggio ad applicabilità/rendering.
+
+Suite sul secondo prompt congelato: 1.701 passati/104,52 s. Prima di congelare
+l'esempio JSON: 295 mirati passati/11,95 s, Ruff e diff passati. Le funzioni
+backend di validazione non sono cambiate nelle due iterazioni del prompt.
