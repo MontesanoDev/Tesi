@@ -1,5 +1,56 @@
 # Stato di Mapi RAG
 
+## Prova occasionale su un altro bando — 11 ottobre 2026, nessuna proposta
+
+Preferenza dell'utente registrata in AGENTS.md: benchmark fisso congelato per
+i confronti, più prove occasionali su altri bandi scelti a caso, separate
+e salvate anche quando falliscono. Non necessarie a ogni passo. Nessuna modifica
+a codice applicativo, V1/chat/RAG/parser/renderer o contratti.
+
+Estrazione uniforme fra gli originali Minervino e Trapani, seed
+`2732483673986547453`, zero nuove estrazioni: **Trapani Green**, 115 candidate
+testuali. Non esiste un progetto locale Trapani: preflight con quel scope
+restituisce zero fonti, **nessuna chiamata AI**. Stesso originale poi provato
+nel corpus autorizzato `prova`: 17 chunk globali, 13 Company/4 General,
+nessuna fonte di progetto o bypass di isolamento. Nessun upload/sessione/USER.
+
+Una chiamata reale deepseek-flash sul codice `eacecbc`, identico prompt/schema
+V7/catalogo V3: **JSON interamente vuoto**, zero fatti/condizioni/binding/valori.
+HTTP 200/stop, 25.332 input + 30 output = **25.362 token**, **1,4473 s AI**.
+Il modello non propone nulla PRIMA del validator; non sono 115 valori rifiutati.
+Tutte le posizioni restano REVIEW_REQUIRED/non valutate; zero RESOLVED/scritture.
+Il contratto sparso consente il vuoto ma non certifica completezza. Non acquisita
+motivazione interna del modello: causa semantica dell'omissione non stabilita.
+Nessun gold per Trapani: score del runner ignorato, nessuna percentuale di qualità.
+SOURCE demo del 2026 e bando storico non dimostrano requisiti alla data della gara.
+
+Questo conferma che migliori controlli **non equivalgono a maggiore copertura
+generale**. Dati societari nelle SOURCE, ramo ingegneria non valutato; non
+attribuire automaticamente l'omissione al retrieval né dichiarare corretta
+l'applicabilità. Nessun codice corretto o prova ripetuta per migliorare l'esito.
+
+Verifiche eseguite: replay identico, manifest, dieci file congelati contro commit,
+estrazione riprodotta, input/corpus canonico, originali invariati, cinque
+fingerprint tabelle live prima/dopo identici, Ruff, fixture fissa --check,
+diff/link. Non rieseguite suite pytest/frontend/browser, codice invariato.
+Conservata failure iniziale del confronto offline di metadata non inviati,
+poi corretto alla proiezione canonica. Nessuna migrazione/reindicizzazione.
+
+[Report](docs/benchmark-trapani-casuale-2026-10-11.md),
+[audit delle posizioni](docs/benchmarks/2026-10-11-trapani-casuale.json),
+[registro](relazioni.md). Bundle `docs/benchmarks/2026-10-11-trapani-casuale-audit.tar.gz`:
+46 file/227.201 byte, SHA-256
+`dbfced38011073f2c67eede173b30dbab565073945d9009a500a305c259a7886`;
+raw/prompt/schema/codice/usage/replay/preflight/log, verificato byte per byte,
+senza DB/credenziali. Grezzi `backend/data/compilation-audit/bando-casuale-20261011/`.
+Commit piccoli autorizzati, nessun push.
+
+**Prossima ripresa, da discutere prima del codice:** copertura e applicabilità
+dei rami, includendo l'output vuoto. Non dedurre la causa da una sola risposta,
+non abbassare i gate e non attivare il prototipo nella chat. Ripetere confronti
+sulla fixture fissa; tenere Trapani come prova supplementare, senza adattare
+le aspettative al modello.
+
 ## Legame persona/ruolo — 11 ottobre 2026, gate utile e copertura ancora limitata
 
 Implementato il passo autorizzato nel solo compilatore globale sperimentale:

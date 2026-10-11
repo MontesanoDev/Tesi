@@ -672,3 +672,82 @@ Bundle versionato `docs/benchmarks/2026-10-11-labirinto-subject-binding-audit.ta
 Verificato byte per byte: nove acquisizioni nuove, una storica usata nel replay,
 code/request/schema/HTTP/raw/usage/quote/provenance/validator, fixture/fonti/gold,
 analisi/script di riproduzione e log. Nessuna credenziale, DB o configurazione locale.
+
+## 11 ottobre 2026 — Prova occasionale casuale su Trapani Green
+
+Richiesta: non limitare ogni valutazione alla fixture sintetica; ogni tanto
+provare un altro bando scelto a caso. Preferenza aggiunta ad AGENTS.md.
+Labirinto V1 resta congelato per confronti ripetibili; queste prove supplementari
+non sono aggregate ai suoi punteggi e non servono ogni volta. Nessun cambio
+di codice applicativo, prompt/schema/validator, V1, chat, parser o renderer.
+
+Pool: originali Minervino di Lecce e Trapani Green; esclusi Labirinto e Catanzaro
+già usato estesamente. Estrazione uniforme, seed `2732483673986547453`, scelta
+Trapani, nessuna nuova estrazione. Originale
+`demo-documents/bandi/trapani-green/originali/manifestazione-interesse.docx`,
+SHA-256 `d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701`:
+115 posizioni testuali, zero checkbox individuati. Nessun original modificato,
+upload/sessione creato o valore USER. Nessuna misura di copertura delle caselle.
+
+Preflight: Trapani non corrisponde a un progetto locale, quindi il gate restituisce
+zero fonti. Nessuna chiamata AI su quell'input. Conservata la scelta, usato
+lo stesso DOCX con le KB autorizzate di `prova`: zero fonti di progetto,
+13 chunk Company/4 General da tre documenti. Nessun gate role/scope allentato
+o documento di altro progetto. Entrambi gli input/setup conservati.
+Runner esistente `--fixture`, pacchetto isolato **senza gold**: fields=[] nel
+manual-only non sono aspettative di vuoto. Score generato ignorato, nessuna
+accuratezza/pass rate. Istruzioni demo non iniettate come SOURCE o decisioni USER.
+SOURCE simulate del 2026 e bando storico non dimostrano eleggibilità alla gara.
+
+Una chiamata reale deepseek-flash, commit congelato `eacecbc`, catalogo V3,
+contratto V7, thinking off, temperatura 0,1, zero retry. HTTP 200/stop;
+25.332 token prompt (2.560 cache hit) + 30 output = **25.362 token**;
+**1,4473 s AI**. Risposta grezza completa:
+
+```json
+{"version":7,"uncertain_paragraph_ids":[],"conditions":{},"bindings":{},"fields":{},"facts":{}}
+```
+
+**Esito negativo:** zero proposte/fatti/condizioni/binding, 115 posizioni
+unassigned conservate REVIEW_REQUIRED, zero grounded/RESOLVED/scritture.
+Il vuoto nasce nel modello, prima del validator: non sono valori rifiutati.
+Nessun troncamento/errore schema/provider segnalato. Il contratto sparso consente
+mappe vuote e TASK prescrive omissione senza supporto/applicabilità; non c'è
+una restrizione dello schema che imponga fields={}. Non restituita una
+motivazione: causa semantica dell'omissione totale non identificata.
+Non corretto codice o ripetuta la prova per mascherare l'esito. proposal_audited
+e uncertain=[] non provano compilazione/completezza.
+
+Controlli manuali: ramo società di ingegneria `p75.s0`–`p75.s8` tutto omesso,
+pur essendo denominazione/indirizzo/PIVA/telefono/PEC nelle SOURCE -43/-44/-30.
+La disponibilità non risolve da sola rappresentanza/applicabilità/destinazione,
+quindi non etichettati automaticamente falsi negativi certi. Nessun CF aziendale
+nel CF personale `p12.s3`, amministratore nel firmatario `p12.s0` o numero 8421
+negli albi dichiarante/paesaggista/agronomo `p97.s0`/`p112.s0`/`p113.s0`.
+Firma protetta `p175.s0` intatta. Zero falsi positivi in output vuoto non
+dimostrano precisione delle associazioni. Nessun DOCX generato.
+
+Eseguiti: manifest, dieci file congelati contro commit, input=request, corpus
+canonico identico alle SOURCE congelate, estrazione riprodotta, replay identico,
+hash dei due originali invariati. Cinque fingerprint tabelle live prima/dopo
+identici: projects/project_files/document_compilations/compilation_sessions/
+conversations. Non acquisiti hash preventivi delle altre tabelle, nessun test
+chat/browser. Ruff completo e fixture fissa --check passati, diff/link controllati.
+Non ripetute suite pytest/frontend, codice e contratti invariati. Una failure
+offline confrontava anche metadata non inviati: corretta alla proiezione canonica,
+log conservato; acquisizione reale immutata.
+
+[Report](docs/benchmark-trapani-casuale-2026-10-11.md),
+[JSON delle posizioni](docs/benchmarks/2026-10-11-trapani-casuale.json).
+Grezzi `backend/data/compilation-audit/bando-casuale-20261011/`; bundle
+`docs/benchmarks/2026-10-11-trapani-casuale-audit.tar.gz`, **46 file/227.201 byte**,
+SHA-256 `dbfced38011073f2c67eede173b30dbab565073945d9009a500a305c259a7886`.
+Confrontato byte per byte, include preflight anche senza fonti, prompt/schema/
+raw HTTP/usage/audit/codice/analisi/replay/fingerprint/log; esclude DB/config/
+credenziali, verificata assenza della chiave reale senza stamparla. Nessun push.
+
+**Valutazione:** migliorata la protezione da assegnazioni improprie nel passo
+precedente; non dimostrata migliore completezza. Questa prova rende visibile
+un limite fuori dalla fixture. Prossima scelta ancora da discutere:
+applicabilità/copertura, includendo output vuoto, senza allentare provenance
+o attivare prototipo in chat/renderer. Nessuna correzione durante questo test.

@@ -3,6 +3,20 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Prove occasionali su altri bandi
+
+Affiancano il benchmark fisso senza cambiarne gold/fonti/aspettative. Scelta
+casuale registrata, tutti gli esiti conservati; senza gold nessuna accuratezza %.
+
+- [Trapani Green, 11 ottobre 2026](../benchmark-trapani-casuale-2026-10-11.md):
+  una chiamata reale deepseek-flash, 115 candidate e 17 SOURCE ammesse; risposta
+  vuota, zero proposte, nessuna scrittura. **Esito negativo di copertura**,
+  nessuna modifica al motore. [Audit/metriche](2026-10-11-trapani-casuale.json),
+  [bundle](2026-10-11-trapani-casuale-audit.tar.gz) e
+  [checksum](2026-10-11-trapani-casuale-audit.tar.gz.sha256).
+  Replay/manifest/codice/originali/fingerprint/Ruff/fixture check verificati;
+  suite software/frontend non ripetute, codice e contratti invariati.
+
 ## Modulo labirinto dedicato, 11 ottobre 2026
 
 - [Alternative SOURCE](../benchmark-alternative-source-2026-10-11.md): contratto

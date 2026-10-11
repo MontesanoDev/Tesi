@@ -90,6 +90,11 @@ embedding hanno configurazioni distinte. Il modello predefinito degli embedding
   Gold e risultati attesi non entrano nel prompt. Congelare fixture/fonti/gold
   nei confronti; nuovi scenari richiedono una nuova versione, senza adattare
   le aspettative agli output del modello.
+- Affiancare ogni tanto al benchmark fisso una prova su un altro bando reale
+  scelto a caso, come richiesto dall'utente. Registrare pool, estrazione e tutti
+  gli esiti, senza ripetere l'estrazione per ottenere un risultato migliore.
+  Tenere queste prove separate dai confronti sulla fixture congelata; senza
+  gold non dichiarare percentuali di accuratezza. Non serve farle a ogni passo.
 - Distinguere sempre test del software con provider simulati da valutazioni
   della qualità delle risposte reali. Citazioni formalmente valide e stato
   `completed` non garantiscono una risposta pertinente o supportata dalle fonti.
