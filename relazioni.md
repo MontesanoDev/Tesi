@@ -509,3 +509,47 @@ invariati e scansione credenziali/DB superata. Verifica byte per byte del bundle
 Lo script di archivio ha inizialmente usato il nome `catalog_version` al posto
 reale di `version`; corretto soltanto nello script di analisi, dopo le prove,
 senza modificare motore o risultati. Prima failure fermata prima del bundle.
+
+## 11 ottobre 2026 — legame persona/ruolo, protocollo V7 prima delle prove
+
+Richiesta «ok procedi» sul passo discusso: impedire il salto da persona citata
+come amministratore a firmatario del modulo. Nel run `alternatives-v6b-20261011-run3`
+`t2.r0.c1` riceve Paolo Conti da «Amministratore unico: Paolo Conti.».
+La proprietà «nome del sottoscrittore» è proposta dal modello: il gate V6
+controlla presenza del valore, ma non quel ruolo. Resta semantic_review_required,
+non è una scrittura; il limite è tuttavia concreto.
+
+Scelta annunciata prima del codice: mappa `bindings` V7, condivisa, massimo 128;
+1–2 prove SOURCE per ruolo, `binding_id` obbligatorio dal backend per fatti person.
+Ruolo FORM ancorato a riga/header, ultimo paragrafo precedente o outline corrente;
+label del campo mantiene il gate locale distinto. Ruoli uguali dopo NFC/casefold/
+spazi e coppia esplicita «ruolo: persona» nella SOURCE intera, stesso chunk del
+valore. Nessun elenco di ruoli, nomi, campi o fixture nel motore. Niente sinonimi,
+join inter-chunk, reviewer/retry o una chiamata per persona. Non risolve applicabilità.
+Binding assente/non supportato -> revisione, nessun valore selezionato. Il controllo
+non prova completezza del ruolo, entity/property né entailment generale o negazioni
+arbitrarie: semantic_review_required rimane obbligatorio. V5/V6 replay storici.
+
+Protocollo congelato: tre acquisizioni reali deepseek-flash con stesso commit,
+fixture/fonti/gold Labirinto V1 immutati, gold escluso dai messaggi. Nessuna modifica
+durante la serie, USER, ingestion, sessione o DOCX. Confronto con V6b: cinque
+valori societari, quattro direttore incluso 5739, alternative corrispondenza/polizza,
+firmatario non documentato. Il positivo con ruolo esplicito è test software:
+la fixture reale V1 non designa il firmatario. Non confondere assenza dell'errore
+in tre campioni con prova di assenza universale. Nessun benchmark E2E.
+
+Prime verifiche realmente eseguite: 109 passati/5,06 s; Ruff segnala una riga
+101 caratteri, corretta. Mirati estesi: 294 passati/1 fallito in 12,87 s, perché
+un test del vecchio schema non ammetteva bindings; aspettativa aggiornata.
+Mirati corretti: 295 passati/13,38 s. Log completi in
+`backend/data/compilation-audit/subject-binding-v7-20261011-checks/`.
+Ruff, fixture check, CLI help e diff passati; suite completa ancora in corso.
+Questo protocollo non anticipa l'esito delle chiamate reali.
+
+Prima suite completa: 1.700 passati/1 fallito in 110,36 s, per la stessa
+aspettativa schema raccolta prima della correzione; esecuzione conservata.
+Suite corretta: **1.701 passati/106,31 s**, Ruff finale passato. Replay offline
+separato della risposta V6b run 3: validator V6 identico al report storico;
+controfattuale V7 con bindings vuoto rende il firmatario REVIEW_REQUIRED,
+value=null. Non è una nuova risposta AI né una modifica al raw storico.
+Codice e protocollo pronti al commit congelato per le tre acquisizioni reali.

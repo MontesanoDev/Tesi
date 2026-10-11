@@ -1,6 +1,47 @@
 # Proposta globale sperimentale — 11 ottobre 2026
 
-## Contratto corrente 6: alternative SOURCE esplicite
+## Contratto corrente 7: legame letterale persona/ruolo
+
+Passo autorizzato successivo alle alternative, sempre sperimentale e con una
+sola chiamata. `bindings` è una mappa condivisa (massimo 128) con origine FORM,
+`required_role`, `source_role` e 1–2 quote SOURCE. Un'assegnazione `value` che
+referenzia un fatto `entity=person` deve indicare `binding_id`. Se manca, il
+valore resta da rivedere. Se un binding è fornito per altre entità viene comunque
+controllato. Review/alternative non scelgono un valore e restano invariate.
+
+Il backend rilegge gli estratti e richiede ruoli letteralmente uguali dopo NFC,
+casefold e spazi; niente sinonimi/cariche hardcoded. Il ruolo FORM può provenire
+dalla riga/header esplicito, dall'ultimo paragrafo del corpo precedente il blocco
+o dall'ultima sezione outline del candidate. Questo non estende le ancore del
+requisito locale. La SOURCE deve attestare il soggetto con la forma conservativa
+«ruolo: persona» all'inizio di una clausola del chunk reale, non soltanto in una
+quote ritagliata dal modello. Ogni prova del valore deve appartenere a un chunk
+che attesta quel ruolo per quella persona. Stessa persona, più proprietà:
+binding condiviso, fatti atomici distinti. Nessun join fra chunk diversi.
+
+Controllo non superato => REVIEW_REQUIRED senza valore scelto; rifiuti precedenti
+restano rifiuti. Binding e prove sono conservati anche quando l'applicabilità
+unknown blocca il campo. Il controllo non promuove mai a RESOLVED né autorizza
+scritture. Il nome di un amministratore non diventa automaticamente firmatario.
+Contratti V5/V6 conservati per replay con la loro validazione storica.
+
+**Limiti espliciti:** `literal_match` è tracciabilità necessaria, non entailment
+indipendente. Tipo dell'entità, proprietà e completezza del ruolo/condizioni
+restano proposti dall'AI. Il gate non certifica che una proprietà nello stesso
+chunk appartenga a quella persona, né interpreta negazioni/narrazioni generali.
+Sinonimi, ruoli narrativi, titoli intermedi e prove su chunk diversi producono
+falsi negativi conservativi. `semantic_review_required=true` rimane obbligatorio.
+Applicabilità dei rami, chat, V1, RAG, parser e renderer non vengono modificati.
+
+Protocollo prima delle chiamate: tre prove reali DeepSeek sullo stesso commit
+congelato, fixture Labirinto V1 invariata e gold fuori dal prompt; nessun cambio
+durante la serie, retry, USER o scrittura. Verificare cinque dati societari,
+quattro dati direttore incluso 5739, alternative recapiti/polizze e mancata
+promozione del firmatario senza prova. Il caso positivo di un ruolo esplicito
+è coperto da test software; la fixture V1 non designa il firmatario.
+Esiti, costo e limiti in relazioni.md e nel report dedicato dopo le acquisizioni.
+
+## Contratto storico 6: alternative SOURCE esplicite
 
 Passo sperimentale autorizzato l'11 ottobre, senza attivazione nella chat. Stesso
 catalogo V3, corpus ammesso e singola chiamata. Il contratto 5 resta disponibile

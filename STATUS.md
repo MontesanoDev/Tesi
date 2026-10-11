@@ -1,5 +1,26 @@
 # Stato di Mapi RAG
 
+## Legame persona/ruolo — 11 ottobre 2026, verifica in corso
+
+Autorizzato dall'utente il passo successivo: contratto sperimentale V7 con
+binding condiviso FORM ruolo richiesto / SOURCE ruolo attestato / soggetto del
+fatto. Una persona non diventa firmatario perché il nome compare nella fonte
+dell'amministratore. Gate letterale conservativo, nessun ruolo/sinonimo hardcoded,
+nessuna chiamata aggiuntiva. Valori senza legame restano da rivedere; applicabilità
+unknown non viene promossa. Nessun RESOLVED, scrittura o attivazione nella chat.
+
+Regressioni software e protocollo in
+[proposta globale](docs/proposta-globale-compilazione.md). Mirati corretti:
+295 passati/13,38 s; Ruff, fixture check, CLI help e diff passati. Prima verifica:
+109 passati; una successiva aspettativa schema V6 e una riga Ruff corrette,
+log conservati. Suite completa corretta: **1.701 passati/106,31 s**, dopo un
+primo 1.700 passati/1 fallito per la stessa aspettativa schema. Replay offline
+dell'errore storico: V6 invariato, V7 senza binding blocca il firmatario inferito.
+Tre prove DeepSeek ancora da eseguire; non sono risultati acquisiti.
+Fixture V1, originali, dati locali, V1/RAG/parser/
+renderer/catalogo invariati; nessuna migrazione/reindicizzazione. Commit piccoli
+autorizzati, nessun push. Aggiornare questa sezione con esito e limiti finali.
+
 ## Alternative SOURCE — 11 ottobre 2026, esito circoscritto positivo
 
 Autorizzato il passo successivo: una sola proposta globale può esprimere due o

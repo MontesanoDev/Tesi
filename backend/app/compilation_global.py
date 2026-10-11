@@ -32,6 +32,9 @@ from app.compilation_global_contract import (
     SparseAssignment,
     SparseGlobalProposal,
     StructuralCondition,
+    SubjectBinding,
+    SubjectBoundAssignment,
+    SubjectBoundProposal,
 )
 from app.compilation_semantics import empty_value_reason
 from app.compilation_sessions import validate_value
@@ -46,6 +49,7 @@ MAX_OUTPUT_CHARACTERS = 500_000
 MAX_OUTPUT_TOKENS = 49_152
 SPARSE_ASSIGNMENT = TypeAdapter(SparseAssignment)
 ALTERNATIVE_ASSIGNMENT = TypeAdapter(AlternativeAwareAssignment)
+SUBJECT_ASSIGNMENT = TypeAdapter(SubjectBoundAssignment)
 
 
 class GlobalField(StrictModel):
@@ -64,7 +68,7 @@ class GlobalProposal(StrictModel):
     fields: dict[str, GlobalField] = Field(max_length=400)
 
 
-TASK = """Produci UNA proposta globale JSON versione 6. Leggi prima l'intero Word FORM
+TASK = """Produci UNA proposta globale JSON versione 7. Leggi prima l'intero Word FORM
 nei blocks e tutte le SOURCE. L'ordine dei blocks è quello del documento; celle,
 righe e titoli precedenti determinano soggetto, ruolo, sezione e sottosezione.
 section_ids vuoto significa assenza di outline Word esplicito, NON assenza di
@@ -127,6 +131,28 @@ ruolo e ramo. Non disponibile/non documentato NON è un valore fattuale utile.
 General KB non prova dati anagrafici aziendali o personali. Non fondere chunk,
 non citare il primo chunk del file per testo contenuto nei successivi.
 
+PERSONE E RUOLI. Non rinominare una proprietà SOURCE usando il ruolo desiderato
+dal FORM: un nome documentato per un ruolo non prova che la persona ne ricopra
+un altro. Per ogni value il cui fatto ha entity=person serve binding_id verso
+bindings, mappa condivisa massimo 128. Crea un binding soltanto se SOURCE
+attesta esplicitamente quel ruolo per quella persona: form con estratto reale
+del ruolo richiesto, required_role letterale nell'estratto, source_role letterale
+nelle evidence SOURCE. Ogni evidence deve affermare il ruolo, non solo menzionarlo.
+Il primo gate riconosce prudentemente la forma esplicita «ruolo: persona» all'inizio
+di una clausola SOURCE, con subject del fatto. Sinonimi/ruoli diversi, attribuzioni
+negate o narrative richiedono revisione; non inventare una corrispondenza.
+required_role e source_role conservano le parole effettive, non un nome canonico
+inventato. Usa un estratto breve affermativo, senza tagliare qualifiche o negazioni.
+Il form del binding deve stare nella riga/header locale, nell'ultimo paragrafo
+del corpo precedente il blocco o nell'ultima sezione outline del candidate.
+Non prendere il ruolo da un altro ramo o da una riga precedente non header.
+Condividi il binding fra dati della stessa persona e dello stesso ruolo; le
+prove di ruolo e di valore devono provenire dallo stesso chunk SOURCE. Ogni
+proprietà resta un fatto atomico distinto. Il binding non verifica applicabilità,
+non cambia condizioni unknown e non dimostra da solo l'associazione di ogni
+proprietà alla persona. Se manca il legame esplicito, ometti l'assegnazione.
+Non riclassificare una persona come company/other per evitare questo controllo.
+
 3. ASSEGNAZIONI COMPATTE. fields contiene ESCLUSIVAMENTE
 disposition=value, not_applicable o review con le prove richieste. Ometti semplicemente
 le altre posizioni: il backend le conserva come ancora da verificare, NON
@@ -179,7 +205,7 @@ Il backend verifica riferimenti e grounding, NON certifica il giudizio semantico
 ambiguous/conflicting. Applicabilità sconosciuta resta sconosciuta anche in review.
 
 Rispondi con JSON COMPATTO, senza indentazione. Ordine: version,
-uncertain_paragraph_ids, conditions, fields,
+uncertain_paragraph_ids, conditions, bindings, fields,
 facts. Scrivi i facts dopo le assegnazioni per
 includere SOLO quelli effettivamente referenziati. NON esaurire tutte le SOURCE.
 Rispetta schema_output. Prima di chiudere il JSON controlla inventario,
@@ -237,7 +263,7 @@ def build_global_input(layout, project_id, sources):
         "user_values": [],
         "source_coverage": {"strategy": "complete_small_corpus", "partial": False,
                             "chunks": len(source_map)},
-        "schema_output": AlternativeAwareProposal.model_json_schema(),
+        "schema_output": SubjectBoundProposal.model_json_schema(),
     }
     if sum(bool(text.strip()) for text in paragraphs.values()) > 2048:
         raise ValueError("Inventario FORM oltre budget: nessun troncamento implicito")
@@ -723,6 +749,98 @@ def _grounded_alternatives(fact_ids, property_name, facts, candidate, layout, la
             for key, fact in zip(fact_ids, selected, strict=True)]
 
 
+def _role_text(text):
+    # No accent folding, aliases, fuzzy matching or inferred role equivalence.
+    return " ".join(unicodedata.normalize("NFC", text).casefold().split())
+
+
+def _role_contexts(catalog, local):
+    blocks = {block["id"]: block for block in catalog["blocks"]}
+    contexts = {}
+    for key, candidate in catalog["candidates"].items():
+        allowed = set(local[candidate["context_id"]])
+        preceding = blocks[candidate["location"]["block_id"]].get(
+            "preceding_body_paragraph_ids", [])
+        allowed.update(preceding[-1:])
+        allowed.update(candidate.get("section_ids", [])[-1:])
+        contexts[key] = allowed
+    return contexts
+
+
+def _subject_bindings(records, paragraphs, source_map):
+    bindings = {}
+    for key, record in records.items():
+        output = {"proposal": record, "validation": "REJECTED",
+                  "semantic_review_required": True, "source_evidence": [],
+                  "validation_errors": []}
+        try:
+            item = SubjectBinding.model_validate(record)
+            output.update(item.model_dump())
+            quote = _form_quote(paragraphs.get(item.form.paragraph_id, ""), item.form.quote)
+            if not quote or not re.search(r"(?<!\w)" + re.escape(_role_text(item.required_role))
+                                         + r"(?!\w)", _role_text(quote)):
+                raise ValueError("Ruolo richiesto assente nell'estratto FORM")
+            output["form_evidence"] = {"paragraph_id": item.form.paragraph_id, "quote": quote}
+            for citation in item.evidence:
+                source, quote = _source_quote(citation, source_map)
+                if not re.search(r"(?<!\w)" + re.escape(_role_text(item.source_role)) + r"(?!\w)",
+                                 _role_text(quote)):
+                    raise ValueError("Ruolo attestato assente nell'estratto SOURCE")
+                if source["category"] == "general":
+                    raise ValueError("General KB non attesta il ruolo personale/aziendale")
+                output["source_evidence"].append(_citation_audit(citation, source, quote))
+            output["validation"] = "GROUNDED_PROPOSAL"
+        except ValueError as exc:
+            output["validation_errors"].append(str(exc))
+        bindings[key] = output
+    return bindings
+
+
+def _asserted_role(source, quote, role, subject):
+    """Necessary literal attribute check, NOT general semantic entailment.
+
+    Require an explicit role: subject pair at a clause boundary in the actual
+    SOURCE, not merely in a model-cropped quote. Narratives/synonyms stay under
+    review. Words inside 'non è ruolo: persona' cannot pass.
+    """
+    pair = re.escape(_role_text(role)) + r"\s*:\s*" + re.escape(_role_text(subject)) + r"(?!\w)"
+    if not re.search(r"(?<!\w)" + pair, _role_text(quote)):
+        return False
+    normalized = "\n".join(_role_text(line) for line in source.splitlines())
+    return bool(re.search(r"(?:^|[;\n—]|\.(?=\s|$))\s*" + pair, normalized))
+
+
+def _binding_check(binding_id, fact, candidate_id, contexts, bindings, source_map):
+    check = {"binding_id": binding_id, "result": "review_required",
+             "semantic_review_required": True, "validation_errors": []}
+    try:
+        if not binding_id or binding_id not in bindings:
+            raise ValueError("Fatto personale senza binding di ruolo reale")
+        binding = bindings[binding_id]
+        check.update(form_evidence=binding.get("form_evidence"),
+                     source_evidence=binding["source_evidence"])
+        if binding["validation"] != "GROUNDED_PROPOSAL":
+            raise ValueError("Binding di ruolo rifiutato")
+        if binding["form"]["paragraph_id"] not in contexts[candidate_id]:
+            raise ValueError("Ruolo FORM esterno al contesto del candidate")
+        if _role_text(binding["required_role"]) != _role_text(binding["source_role"]):
+            raise ValueError("Ruolo richiesto e ruolo attestato differenti: "
+                             "equivalenza non provata")
+        if fact["validation"] != "GROUNDED_PROPOSAL":
+            raise ValueError("Binding senza fatto SOURCE grounded")
+        supported = {proof["chunk_id"] for proof in binding["source_evidence"]
+                     if _asserted_role(source_map[proof["chunk_id"]]["content"], proof["quote"],
+                                       binding["source_role"], fact["subject"])}
+        if not supported or any(proof["chunk_id"] not in supported
+                                for proof in fact["source_evidence"]):
+            raise ValueError("SOURCE non attribuisce esplicitamente ruolo e soggetto "
+                             "nello stesso chunk del valore")
+        check["result"] = "literal_match"
+    except ValueError as exc:
+        check["validation_errors"].append(str(exc))
+    return check
+
+
 def _validate_sparse_proposal(payload, layout, catalog, source_map):
     """Keep the canonical inventory in the backend and quarantine each proposal.
 
@@ -730,16 +848,28 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     fact and condition errors cannot discard independent grounded proposals.
     Missing proposals are unassessed, never fabricated missing/NA/value records.
     """
-    for name, maximum in (("fields", 400), ("facts", 128), ("conditions", 128)):
-        records = payload.get(name)
+    subjects_enabled = payload["version"] == 7
+    budgets = [("fields", 400), ("facts", 128), ("conditions", 128)]
+    if subjects_enabled:
+        budgets.append(("bindings", 128))
+    for name, maximum in budgets:
+        records = payload.get(name, {} if name == "bindings" else None)
         if (not isinstance(records, dict) or len(records) > maximum
                 or any(not 1 <= len(key) <= 80 for key in records)):
             raise ValueError(f"Dizionario {name} non valido/oltre budget")
-    alternatives_enabled = payload["version"] == 6
-    schema = AlternativeAwareProposal if alternatives_enabled else SparseGlobalProposal
-    assignment = ALTERNATIVE_ASSIGNMENT if alternatives_enabled else SPARSE_ASSIGNMENT
-    proposal = schema.model_validate({**payload, "fields": {}, "facts": {}, "conditions": {}})
+    alternatives_enabled = payload["version"] in {6, 7}
+    schema = (SubjectBoundProposal if subjects_enabled else
+              AlternativeAwareProposal if alternatives_enabled else SparseGlobalProposal)
+    assignment = (SUBJECT_ASSIGNMENT if subjects_enabled else
+                  ALTERNATIVE_ASSIGNMENT if alternatives_enabled else SPARSE_ASSIGNMENT)
+    envelope = {**payload, "fields": {}, "facts": {}, "conditions": {}}
+    if subjects_enabled:
+        envelope["bindings"] = {}
+    proposal = schema.model_validate(envelope)
     paragraphs, local = _form_bindings(catalog)
+    bindings = _subject_bindings(payload.get("bindings", {}), paragraphs, source_map) \
+        if subjects_enabled else {}
+    role_contexts = _role_contexts(catalog, local) if subjects_enabled else {}
     uncertain = set(proposal.uncertain_paragraph_ids)
     if not uncertain <= paragraphs.keys():
         raise ValueError("Incertezza FORM con paragrafi sconosciuti")
@@ -779,7 +909,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                 raise ValueError("Riferimento a condizione duplicato")
             items[key] = item
             expanded[key] = {**item.model_dump(exclude={
-                "property", "alternative_fact_ids", "review_kind",
+                "property", "alternative_fact_ids", "review_kind", "binding_id",
             }),
                              "conditions": sorted(set(item.conditions) | links[key])}
         except ValueError as exc:
@@ -833,6 +963,17 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                         # An invalid alternative must not silently restore a chosen value.
                         field.update(validation="REJECTED", value=None, fact_id=None,
                                      validation_errors=[str(exc)])
+            if subjects_enabled and key in items and items[key].disposition == "value":
+                item = items[key]
+                fact = result["facts"][item.fact_id]
+                if fact.get("entity") == "person" or item.binding_id is not None:
+                    check = _binding_check(item.binding_id, fact, key, role_contexts,
+                                           bindings, source_map)
+                    field["subject_binding"] = check
+                    if check["result"] != "literal_match":
+                        field["validation_errors"].extend(check["validation_errors"])
+                        if field["validation"] != "REJECTED":
+                            field.update(validation="REVIEW_REQUIRED", value=None, fact_id=None)
     for key, condition in result["conditions"].items():
         condition.update(metadata[key])
         if key in condition_errors:
@@ -847,6 +988,10 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                                        "uncertain": len(uncertain),
                                        "semantic_completeness_verified": False},
                   uncertain_paragraph_ids=sorted(uncertain))
+    if subjects_enabled:
+        result.update(bindings=bindings, binding_checks=dict(Counter(
+            field["subject_binding"]["result"] for field in result["fields"]
+            if "subject_binding" in field)))
     return result
 
 
@@ -862,7 +1007,7 @@ def validate_global_proposal(raw, layout, project_id, sources):
     catalog = build_compilation_catalog(layout)
     source_map = _allowed_sources(project_id, sources)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
-            and payload["version"] in {5, 6}):
+            and payload["version"] in {5, 6, 7}):
         return _validate_sparse_proposal(payload, layout, catalog, source_map)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
             and payload["version"] == 4):

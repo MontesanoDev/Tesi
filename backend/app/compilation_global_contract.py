@@ -147,3 +147,29 @@ AlternativeAwareAssignment = Annotated[
 class AlternativeAwareProposal(SparseGlobalProposal):
     version: Literal[6]
     fields: dict[Reference, AlternativeAwareAssignment] = Field(max_length=400)
+
+
+class SubjectBinding(StrictModel):
+    """Proposed role association, with independently reloaded FORM/SOURCE spans."""
+
+    form: FormSpan
+    required_role: str = Field(min_length=2, max_length=150)
+    source_role: str = Field(min_length=2, max_length=150)
+    evidence: list[SourceSpan] = Field(min_length=1, max_length=2)
+
+
+class SubjectBoundValue(ValueAssignment):
+    # Required by the backend for person facts, whose entity is in another record.
+    binding_id: Reference | None = None
+
+
+SubjectBoundAssignment = Annotated[
+    SubjectBoundValue | NonApplicableAssignment | AlternativeAssignment,
+    Field(discriminator="disposition"),
+]
+
+
+class SubjectBoundProposal(AlternativeAwareProposal):
+    version: Literal[7]
+    bindings: dict[Reference, SubjectBinding] = Field(default_factory=dict, max_length=128)
+    fields: dict[Reference, SubjectBoundAssignment] = Field(max_length=400)

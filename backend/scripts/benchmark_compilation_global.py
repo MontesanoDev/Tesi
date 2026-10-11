@@ -201,6 +201,8 @@ def run(args):
                           contract_version=audit.get("version", 1),
                           facts=len(audit.get("facts", {})),
                           conditions=len(audit.get("conditions", {})),
+                          bindings=len(audit.get("bindings", {})),
+                          binding_checks=audit.get("binding_checks", {}),
                           condition_results=audit.get("condition_results", {}),
                           condition_inventory=audit.get("condition_inventory", {}),
                           deferred=audit.get("deferred_count", 0),
