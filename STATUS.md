@@ -16,7 +16,12 @@ Regressioni software e protocollo in
 log conservati. Suite completa corretta: **1.701 passati/106,31 s**, dopo un
 primo 1.700 passati/1 fallito per la stessa aspettativa schema. Replay offline
 dell'errore storico: V6 invariato, V7 senza binding blocca il firmatario inferito.
-Tre prove DeepSeek ancora da eseguire; non sono risultati acquisiti.
+Prima serie DeepSeek sul commit `97d84fb`: firmatario improprio bloccato,
+cinque valori societari/alternative conservati, ma 17/16/13 target proposti
+contro 22/17/22 V6b. Ruolo direttore esteso/breve non coincide; due valori ordine
+includono il numero e una proposta numero è omessa. Copertura non soddisfacente.
+Seconda iterazione soltanto sulle istruzioni ruolo/contesto/fatti aziendali,
+validator/schema invariati; tre nuove prove ancora da eseguire.
 Fixture V1, originali, dati locali, V1/RAG/parser/
 renderer/catalogo invariati; nessuna migrazione/reindicizzazione. Commit piccoli
 autorizzati, nessun push. Aggiornare questa sezione con esito e limiti finali.

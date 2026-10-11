@@ -41,6 +41,16 @@ promozione del firmatario senza prova. Il caso positivo di un ruolo esplicito
 è coperto da test software; la fixture V1 non designa il firmatario.
 Esiti, costo e limiti in relazioni.md e nel report dedicato dopo le acquisizioni.
 
+Prima serie V7: firmatario improprio bloccato, ma 17/16/13 valori attesi contro
+22/17/22 V6b. Direttore esteso nel FORM / breve nella SOURCE non coincidono;
+ordine unito al numero in due run e numero omesso nel terzo. Seconda iterazione
+limitata al prompt: conservare designazione FORM completa e distinguere il ruolo
+funzionale letterale dal complemento organizzativo, senza sinonimi/sottostringhe
+arbitrarie, e ribadire che i binding personali non limitano i fatti aziendali.
+Validatore/schema invariati. Non è un controllo indipendente della completezza
+del ruolo: il limite semantico resta dichiarato. Tre nuove prove congelate,
+prima serie conservata come regressione; esito non ancora acquisito qui.
+
 ## Contratto storico 6: alternative SOURCE esplicite
 
 Passo sperimentale autorizzato l'11 ottobre, senza attivazione nella chat. Stesso

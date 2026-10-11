@@ -553,3 +553,28 @@ separato della risposta V6b run 3: validator V6 identico al report storico;
 controfattuale V7 con bindings vuoto rende il firmatario REVIEW_REQUIRED,
 value=null. Non è una nuova risposta AI né una modifica al raw storico.
 Codice e protocollo pronti al commit congelato per le tre acquisizioni reali.
+
+### Prima serie reale V7 — esito non soddisfacente per copertura
+
+Commit congelato `97d84fb`, tre chiamate reali, input/request identici, nessuna
+modifica durante la serie. 17/16/13 valori e ID SOURCE attesi; 11/11/11 grounded
+corretti, nessun valore improprio grounded. Firmatario ancora proposto senza
+binding nei run 1/2 ma bloccato; omesso nel run 3. Cinque dati aziendali e due
+alternative conservati in tutte le prove. Tutti i direttore binding associano
+«Direttore tecnico della società di ingegneria» a «direttore tecnico»: disuguaglianza
+letterale conservativa, oltre al blocco applicabilità già presente. Due ordini
+professionali includono il numero nel valore; terzo run omette il numero.
+Tutte le prove omettono i cinque checkbox tipologia; coincidenza sedi NA soltanto
+nel run 1. 58.053 token/39,14 s AI totali, zero USER/retry/scritture.
+Questo non è un miglioramento generale del compilatore: copertura regredita.
+
+Seconda iterazione annunciata prima del codice: modifica soltanto le istruzioni
+per conservare il contesto FORM completo distinguendolo dal ruolo funzionale
+letterale, e per non estendere i binding personali a dati aziendali/checkbox.
+Nessun elenco di ruoli/campi, sinonimi, cambio del validator/schema o gate allentato.
+La scelta del ruolo resta proposta semantica, non verificata indipendentemente;
+un modello potrebbe omettere un qualificatore, limite già dichiarato. Conservare
+prima serie e acquisire altre tre prove su nuovo commit, stesso corpus/gold/budget.
+
+Seconda iterazione: 295 mirati passati/12,06 s, Ruff e diff passati prima del
+nuovo commit congelato. Nessuna modifica di schema o funzioni di validazione.

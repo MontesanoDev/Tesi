@@ -141,8 +141,13 @@ nelle evidence SOURCE. Ogni evidence deve affermare il ruolo, non solo menzionar
 Il primo gate riconosce prudentemente la forma esplicita «ruolo: persona» all'inizio
 di una clausola SOURCE, con subject del fatto. Sinonimi/ruoli diversi, attribuzioni
 negate o narrative richiedono revisione; non inventare una corrispondenza.
-required_role e source_role conservano le parole effettive, non un nome canonico
-inventato. Usa un estratto breve affermativo, senza tagliare qualifiche o negazioni.
+In form.quote conserva l'intera designazione FORM, incluse qualificazioni e
+contesto dell'organizzazione. required_role indica il ruolo funzionale letterale
+all'interno di tale estratto, source_role quello letterale nella SOURCE: non
+confondere il ruolo con il complemento che descrive l'organizzazione. Devono
+essere la stessa designazione, mai un sinonimo o una sottostringa arbitraria.
+Non eliminare attributi che cambiano il ruolo, negazioni o differenze di soggetto.
+Se la relazione col contesto completo non è sostenibile, ometti l'assegnazione.
 Il form del binding deve stare nella riga/header locale, nell'ultimo paragrafo
 del corpo precedente il blocco o nell'ultima sezione outline del candidate.
 Non prendere il ruolo da un altro ramo o da una riga precedente non header.
@@ -152,6 +157,9 @@ proprietà resta un fatto atomico distinto. Il binding non verifica applicabilit
 non cambia condizioni unknown e non dimostra da solo l'associazione di ogni
 proprietà alla persona. Se manca il legame esplicito, ometti l'assegnazione.
 Non riclassificare una persona come company/other per evitare questo controllo.
+Il binding riguarda soltanto ruoli personali: non limita le assegnazioni dei
+fatti aziendali né le scelte booleane supportate. Conserva ogni proprietà atomica
+distinta con valore e prova propri, anche se proviene dalla stessa riga SOURCE.
 
 3. ASSEGNAZIONI COMPATTE. fields contiene ESCLUSIVAMENTE
 disposition=value, not_applicable o review con le prove richieste. Ometti semplicemente
