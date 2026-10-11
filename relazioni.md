@@ -189,3 +189,39 @@ completo, fixture `--check`, diff check passati. Suite completa: **1.635 passati
 in 106,56 s**; benchmark reale da concludere. Il primo Ruff ha segnalato un
 ordinamento import, corretto.
 Non presentare questi test software come risultati del modello reale.
+
+### Esito reale V2, codice congelato `d14fa9d`
+
+Tre chiamate DeepSeek reali, fixture/input/request identici fra le prove,
+prompt/schema/output budget uguali alla baseline. Gold escluso dal prompt;
+nessun USER/sessione/export. Tutte e tre arrivano al validator locale.
+
+| Misura | Run 1 | Run 2 | Run 3 |
+|---|---:|---:|---:|
+| Secondi AI | 15,34 | 9,48 | 10,16 |
+| Token input | 15.092 | 15.092 | 15.092 |
+| Token output | 5.850 | 3.350 | 3.616 |
+| Valori/booleani e ID SOURCE attesi | 22/22 | 18/22 | 17/22 |
+| Di questi, grounding locale superato | 16 | 12 | 11 |
+| Valori impropri grezzi | 8 | 1 | 4 |
+| Valori impropri grounded | 3 | 1 | 3 |
+| NA improprie grezze | 7 | 0 | 0 |
+
+Totale 58.092 token/34,98 s; token input +30,68%, token totali medi +25,80%
+contro baseline. Campione piccolo e cache diversa: non prova un aumento
+universale di costo/latenza. I cinque dati societari restano corretti nelle
+tre prove. Tutti i valori direttore, incluso **5739**, sono proposti, ma ancora
+bloccati da applicability unknown. Il run 1 compila tutti i checkbox di tipo,
+ma inventa anche ruolo firmatario e partecipazione; sette NA senza supporto.
+Le checkbox firmatario passano il grounding locale; nel run 3 passano nome e
+carica inferiti. La polizza è scelta arbitrariamente in tutte e tre le prove.
+Tutto rimane proposta, zero RESOLVED/scritture.
+
+**Esito non soddisfacente come miglioramento semantico**: la rappresentazione
+più ricca non dà un beneficio stabile. Manteniamo la correzione delle prime
+righe, eliminiamo la seconda mappa che ripete i riferimenti già nelle tabelle,
+e misuriamo un contesto fisico più diretto sul candidate. Nessun allentamento
+dei gate o modifica del gold. Riepilogo completo in
+`docs/benchmarks/2026-10-11-labirinto-context-v2.json`; grezzi
+`backend/data/compilation-audit/context-v2-20261011-*`, da includere nel bundle
+finale insieme alla seconda iterazione.
