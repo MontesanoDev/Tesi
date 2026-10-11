@@ -30,6 +30,7 @@ from app.db import get_db_path, get_storage_path
 from app.docx_templates import inspect_docx
 from app.generation import request_model_content
 from app.repository import project_evidence_filter, reload_evidence
+from scripts.compilation_benchmark_fixture import load_fixture, score_fixture
 
 
 def load_document_corpus(db, project_id):
@@ -54,22 +55,32 @@ def load_document_corpus(db, project_id):
     return reload_evidence(project_id, [dict(r) for r in rows], target="source", db=db)
 
 
-def arguments():
+def arguments(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--project", required=True)
-    parser.add_argument("--form-id", type=int, required=True)
+    parser.add_argument("--project")
+    parser.add_argument("--form-id", type=int)
+    parser.add_argument("--fixture", type=Path,
+                        help="Versioned synthetic DOCX/corpus, without DB ingestion")
     parser.add_argument("--profile-project", required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--max-seconds", type=int, default=300)
     parser.add_argument("--thinking", action="store_true",
                         help="Confronto isolato: ragionamento low, sempre una chiamata")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+    if args.fixture:
+        if args.project is not None or args.form_id is not None:
+            parser.error("--fixture cannot be combined with --project/--form-id")
+    elif args.project is None or args.form_id is None:
+        parser.error("Use --fixture or both --project and --form-id")
     if not 1 <= args.max_seconds <= 600:
         parser.error("Use 1..600 seconds")
     return args
 
 
 def run(args):
+    fixture = load_fixture(args.fixture) if args.fixture else None
+    if fixture:
+        args.project = fixture["manifest"]["project_id"]
     settings = resolve_project_settings(args.profile_project)
     if settings.provider != "deepseek" or not settings.configured:
         raise ValueError("Questa prova richiede un profilo DeepSeek reale configurato")
@@ -106,25 +117,38 @@ def run(args):
                      "app/compilation_semantics.py", "app/compilation_sessions.py",
                      "app/compilation_sources.py",
                      "app/docx_templates.py", "app/document_compilation.py",
-                     "scripts/benchmark_compilation_global.py"]:
+                     "scripts/benchmark_compilation_global.py",
+                     "scripts/compilation_benchmark_fixture.py"]:
         target = root / "code" / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(backend / relative, target)
+    if fixture:
+        for name in [*fixture["manifest"]["files"], "manifest.json"]:
+            target = root / "fixture" / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(fixture["root"] / name, target)
+        report.update(fixture_version=fixture["gold"]["version"],
+                      fixture_manifest_sha256=hashlib.sha256(
+                          (fixture["root"] / "manifest.json").read_bytes()).hexdigest())
 
     with tempfile.TemporaryDirectory(prefix="mapi-global-proposal-") as directory:
-        copied_db = Path(directory) / "snapshot.db"
-        with sqlite3.connect(f"file:{get_db_path().resolve()}?mode=ro", uri=True) as live:
-            with sqlite3.connect(copied_db) as snapshot:
-                live.backup(snapshot)
-        with sqlite3.connect(f"file:{copied_db}?mode=ro", uri=True) as db:
-            db.row_factory = sqlite3.Row
-            row = db.execute("SELECT * FROM project_files WHERE id=? AND project_id=? "
-                             "AND kind='form'", (args.form_id, args.project)).fetchone()
-            if row is None:
-                raise ValueError("Modulo non presente nel progetto richiesto")
-            path = get_storage_path().resolve() / row["storage_path"]
+        if fixture:
+            path, sources = fixture["path"], fixture["sources"]
             original = path.read_bytes()
-            sources = load_document_corpus(db, args.project)
+        else:
+            copied_db = Path(directory) / "snapshot.db"
+            with sqlite3.connect(f"file:{get_db_path().resolve()}?mode=ro", uri=True) as live:
+                with sqlite3.connect(copied_db) as snapshot:
+                    live.backup(snapshot)
+            with sqlite3.connect(f"file:{copied_db}?mode=ro", uri=True) as db:
+                db.row_factory = sqlite3.Row
+                row = db.execute("SELECT * FROM project_files WHERE id=? AND project_id=? "
+                                 "AND kind='form'", (args.form_id, args.project)).fetchone()
+                if row is None:
+                    raise ValueError("Modulo non presente nel progetto richiesto")
+                path = get_storage_path().resolve() / row["storage_path"]
+                original = path.read_bytes()
+                sources = load_document_corpus(db, args.project)
         (root / "original.docx").write_bytes(original)
         layout = inspect_docx(original, require_candidates=False)
         data = build_global_input(layout, args.project, sources)
@@ -162,7 +186,16 @@ def run(args):
             raw, model, usage = asyncio.run(call())
             report.update(model=model, usage=usage, ai_seconds=time.perf_counter() - started)
             save("response.txt", raw)
-            audit = validate_global_proposal(raw, layout, args.project, sources)
+            audit = None
+            try:
+                audit = validate_global_proposal(raw, layout, args.project, sources)
+            finally:
+                if fixture:
+                    try:
+                        save("fixture-score.json", score_fixture(raw, audit, fixture["gold"]))
+                    except Exception as exc:
+                        save("fixture-score-error.json", {"type": type(exc).__name__,
+                                                          "error": str(exc)})
             save("validation.json", audit)
             report.update(validation_counts=audit["counts"], dispositions=audit["dispositions"],
                           contract_version=audit.get("version", 1),

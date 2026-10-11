@@ -1,0 +1,20 @@
+{
+  "fixture_version": 1,
+  "project_id": "benchmark-compilazione-v1",
+  "form": "modulo-benchmark.docx",
+  "sources": "sources.json",
+  "gold": "gold.json",
+  "files": {
+    "excluded-sources.json": "76d6ab2c2e696ed17169290546c0d6af67bde0f716204c20010297fff22a8fa6",
+    "gold.json": "5de82f7c86c330f5eeb43d04cb383da5d6cd6c3400488bd6dc9963ed21679fe0",
+    "modulo-benchmark.docx": "eaa3c2b8e45e147d35766e71f77b90bbb0bdc9a339ee79dd12e6ab007ad9c7ca",
+    "sources.json": "122710c9a42949dfd361c89f94b7fcd49444b6d18d2f47ebce097423418f2989",
+    "sources/01-profilo-aziendale.txt": "68c752860d0eb2eed5ef864d876c823a7489c2903b6c3b2f3e926dee18a2eef5",
+    "sources/02-direttore-tecnico.txt": "e8224cd18e289671fca62a6dace361cc342406d490c6ec579494bff35f2f82bc",
+    "sources/03-recapiti.txt": "9240f04320a2b314230c7a02a1f2a4da4d6a4858791d30d346180369aefc459c",
+    "sources/04-polizza-a.txt": "d3fe8884f35e95f8051d9cd75df7597af62d0adc9d520652b0e484b5fea0788a",
+    "sources/05-polizza-b.txt": "3799e6796c4c13685fe4ab9d41839732192c0b2df38b1741eab4d42f729b80ab",
+    "sources/06-procedura.txt": "d7471390a9afef552270090279061eb69a93fd34bf1b701778c155a19e4fa369",
+    "sources/07-conoscenza-generale.txt": "a2efa44b603a46602fa146b7d7ffde817a0fcb09bd24eb46997b4fabed84a21e"
+  }
+}

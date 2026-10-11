@@ -1,0 +1,79 @@
+[
+  {
+    "chunk_id": -1,
+    "file_id": -1,
+    "chunk_index": 0,
+    "source_name": "01-profilo-aziendale.txt",
+    "role": "source",
+    "scope": "global",
+    "project_id": null,
+    "category": "company",
+    "content": "Dati interamente fittizi. Denominazione: Orione Tecnica S.r.l.\nForma giuridica: società a responsabilità limitata. Tipologia operatore: società di ingegneria. Codice fiscale operatore: 01234567897. Partita IVA: 01234567897.\nSede legale: Via delle Querce 18, 60121 Ancona (AN). Telefono: +39 071 000 1234. PEC: orione@pec.example.org.\nIscrizione CCIAA: Camera di Commercio delle Marche. Numero REA: AN-204060. Data iscrizione CCIAA: 14/03/2019. Capitale sociale: EUR 50000.\nAmministratore unico: Paolo Conti. Questo profilo non designa il sottoscrittore della presente domanda né la modalità di partecipazione alla procedura."
+  },
+  {
+    "chunk_id": -2,
+    "file_id": -2,
+    "chunk_index": 0,
+    "source_name": "02-direttore-tecnico.txt",
+    "role": "source",
+    "scope": "global",
+    "project_id": null,
+    "category": "company",
+    "content": "Orione Tecnica S.r.l. — direttore tecnico: Giulia Serra. Qualifica professionale: Ingegnere. Ordine professionale: Ordine degli Ingegneri di Ancona, n. 5739. Telefono ufficio: +39 071 000 5678. Identificativo documento: DT-8821. Il numero 8821 identifica il documento, non l'iscrizione all'albo. Questa scheda non riporta la data di abilitazione e non contiene un organigramma."
+  },
+  {
+    "chunk_id": -3,
+    "file_id": -3,
+    "chunk_index": 0,
+    "source_name": "03-recapiti.txt",
+    "role": "source",
+    "scope": "global",
+    "project_id": null,
+    "category": "company",
+    "content": "Orione Tecnica S.r.l. — sede operativa: Via delle Querce 18, 60121 Ancona (AN). La sede operativa coincide con la sede legale. Per la corrispondenza sono utilizzabili due recapiti, senza preferenza indicata: Via del Porto 2, Ancona; Via dei Tigli 7, Jesi. Nessuno dei due è indicato come nuova sede legale."
+  },
+  {
+    "chunk_id": -4,
+    "file_id": -4,
+    "chunk_index": 0,
+    "source_name": "04-polizza-a.txt",
+    "role": "source",
+    "scope": "global",
+    "project_id": null,
+    "category": "company",
+    "content": "Attestazione del 01/09/2026: Orione Tecnica S.r.l., polizza professionale vigente RC-OR-2026-A. Nessuna priorità su altre attestazioni della stessa data."
+  },
+  {
+    "chunk_id": -5,
+    "file_id": -5,
+    "chunk_index": 0,
+    "source_name": "05-polizza-b.txt",
+    "role": "source",
+    "scope": "global",
+    "project_id": null,
+    "category": "company",
+    "content": "Attestazione del 01/09/2026: Orione Tecnica S.r.l., polizza professionale vigente RC-OR-2026-B. Nessuna priorità su altre attestazioni della stessa data."
+  },
+  {
+    "chunk_id": 101,
+    "file_id": 101,
+    "chunk_index": 0,
+    "source_name": "06-procedura.txt",
+    "role": "source",
+    "scope": "project:benchmark-compilazione-v1",
+    "project_id": "benchmark-compilazione-v1",
+    "category": null,
+    "content": "La presente procedura ha codice LAB-ORIONE-2026. Importo stimato: EUR 250000. Il codice della procedura non è il protocollo assegnato alla domanda del partecipante."
+  },
+  {
+    "chunk_id": -201,
+    "file_id": -201,
+    "chunk_index": 0,
+    "source_name": "07-conoscenza-generale.txt",
+    "role": "source",
+    "scope": "global",
+    "project_id": null,
+    "category": "general",
+    "content": "Esempio didattico riferito a un soggetto diverso: Vega Restauri S.r.l., partita IVA 09999999999, referente Marco Riva, certificato ISO 9001 GEN-7788. Non sono dati dell'operatore che presenta questa domanda."
+  }
+]

@@ -1,0 +1,975 @@
+{
+  "version": 1,
+  "project_id": "benchmark-compilazione-v1",
+  "form": "modulo-benchmark.docx",
+  "original_sha256": "eaa3c2b8e45e147d35766e71f77b90bbb0bdc9a339ee79dd12e6ab007ad9c7ca",
+  "annotation_origin": "Authored fixture semantics, independent of model responses",
+  "sections": {
+    "operatore": {
+      "title": "1. Dati dell'operatore economico",
+      "parent": null,
+      "condition": null,
+      "word_heading": true,
+      "paragraph_id": "paragraph:3"
+    },
+    "firma": {
+      "title": "2. Il sottoscritto — dati della persona che firma questa domanda",
+      "parent": null,
+      "condition": null,
+      "word_heading": true,
+      "paragraph_id": "paragraph:22"
+    },
+    "tipo": {
+      "title": "3. Tipologia dell'operatore richiedente",
+      "parent": null,
+      "condition": null,
+      "word_heading": true,
+      "paragraph_id": "paragraph:34"
+    },
+    "rami": {
+      "title": "4. Identificazione — compilare esclusivamente il ramo pertinente",
+      "parent": null,
+      "condition": null,
+      "word_heading": true,
+      "paragraph_id": "paragraph:41"
+    },
+    "singolo": {
+      "title": "4.a — Da compilare solo in caso di professionista singolo",
+      "parent": "rami",
+      "condition": "professionista singolo",
+      "word_heading": false,
+      "paragraph_id": "paragraph:42"
+    },
+    "associato": {
+      "title": "4.b — Da compilare solo in caso di studio associato",
+      "parent": "rami",
+      "condition": "studio associato",
+      "word_heading": false,
+      "paragraph_id": "paragraph:49"
+    },
+    "ingegneria": {
+      "title": "4.c — Da compilare solo in caso di società di ingegneria",
+      "parent": "rami",
+      "condition": "società di ingegneria",
+      "word_heading": false,
+      "paragraph_id": "paragraph:57"
+    },
+    "direttore": {
+      "title": "Direttore tecnico della società di ingegneria",
+      "parent": "ingegneria",
+      "condition": null,
+      "word_heading": false,
+      "paragraph_id": "paragraph:63"
+    },
+    "secondo_dt": {
+      "title": "Solo se è stato nominato un secondo direttore tecnico",
+      "parent": "ingegneria",
+      "condition": "nomina di un secondo direttore tecnico",
+      "word_heading": false,
+      "paragraph_id": "paragraph:76"
+    },
+    "consorzio": {
+      "title": "4.d — Da compilare solo in caso di consorzio stabile",
+      "parent": "rami",
+      "condition": "consorzio stabile",
+      "word_heading": false,
+      "paragraph_id": "paragraph:83"
+    },
+    "partecipazione": {
+      "title": "5. Modalità di partecipazione alla presente procedura",
+      "parent": null,
+      "condition": null,
+      "word_heading": true,
+      "paragraph_id": "paragraph:88"
+    },
+    "requisiti": {
+      "title": "6. Requisiti, registrazioni e allegati",
+      "parent": null,
+      "condition": null,
+      "word_heading": true,
+      "paragraph_id": "paragraph:97"
+    },
+    "finale": {
+      "title": "7. Protocollo, annotazioni e firma",
+      "parent": null,
+      "condition": null,
+      "word_heading": true,
+      "paragraph_id": "paragraph:114"
+    }
+  },
+  "fields": [
+    {
+      "key": "denominazione",
+      "label": "Denominazione sociale",
+      "section": "operatore",
+      "expected_state": "RESOLVED",
+      "expected_value": "Orione Tecnica S.r.l.",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t0.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "forma",
+      "label": "Forma giuridica",
+      "section": "operatore",
+      "expected_state": "RESOLVED",
+      "expected_value": "società a responsabilità limitata",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t0.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "cf",
+      "label": "Codice fiscale operatore",
+      "section": "operatore",
+      "expected_state": "RESOLVED",
+      "expected_value": "01234567897",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t0.r2.c1",
+      "type": "text"
+    },
+    {
+      "key": "piva",
+      "label": "Partita IVA",
+      "section": "operatore",
+      "expected_state": "RESOLVED",
+      "expected_value": "01234567897",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t0.r3.c1",
+      "type": "text"
+    },
+    {
+      "key": "sede",
+      "label": "Sede legale",
+      "section": "operatore",
+      "expected_state": "RESOLVED",
+      "expected_value": "Via delle Querce 18, 60121 Ancona (AN)",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t0.r4.c1",
+      "type": "text"
+    },
+    {
+      "key": "telefono",
+      "label": "Telefono",
+      "section": "operatore",
+      "expected_state": "RESOLVED",
+      "expected_value": "+39 071 000 1234",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t0.r5.c1",
+      "type": "text"
+    },
+    {
+      "key": "pec",
+      "label": "PEC",
+      "section": "operatore",
+      "expected_state": "RESOLVED",
+      "expected_value": "orione@pec.example.org",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t0.r6.c1",
+      "type": "text"
+    },
+    {
+      "key": "operativa",
+      "label": "Sede operativa (compilare solo se diversa dalla sede legale)",
+      "section": "operatore",
+      "expected_state": "NOT_APPLICABLE",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -1,
+        -3
+      ],
+      "subject": "operatore",
+      "reason": "Le fonti attestano lo stesso indirizzo per entrambe le sedi.",
+      "tags": [
+        "local_condition",
+        "same_address"
+      ],
+      "candidate_id": "t1.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "corrispondenza",
+      "label": "Recapito per la corrispondenza",
+      "section": "operatore",
+      "expected_state": "AMBIGUOUS",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -3
+      ],
+      "subject": "operatore",
+      "reason": "Due recapiti ammessi senza priorità; nessuna scelta autorizzata.",
+      "tags": [],
+      "candidate_id": "t1.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "firmatario",
+      "label": "Il sottoscritto — Nome e cognome",
+      "section": "firma",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "firmatario pratica",
+      "reason": "La fonte nomina l'amministratore, non designa il firmatario.",
+      "tags": [
+        "same_label",
+        "administrator_is_not_signer"
+      ],
+      "candidate_id": "t2.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "carica",
+      "label": "Ruolo/carica nella presente domanda",
+      "section": "firma",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "firmatario pratica",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t2.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "procura",
+      "label": "Estremi procura (solo se il sottoscrittore agisce come procuratore)",
+      "section": "firma",
+      "expected_state": "NEEDS_APPLICABILITY",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "firmatario pratica",
+      "reason": "Non è noto se il firmatario agisca come procuratore.",
+      "tags": [
+        "unknown_condition"
+      ],
+      "candidate_id": "t2.r2.c1",
+      "type": "text"
+    },
+    {
+      "key": "notaio",
+      "label": "Notaio della procura (stessa condizione della voce precedente)",
+      "section": "firma",
+      "expected_state": "NEEDS_APPLICABILITY",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "firmatario pratica",
+      "reason": "",
+      "tags": [
+        "inherited_condition"
+      ],
+      "candidate_id": "t2.r3.c1",
+      "type": "text"
+    },
+    {
+      "key": "firma_legale",
+      "label": "Il firmatario agisce come legale rappresentante",
+      "section": "firma",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "firmatario pratica",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "p32.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "firma_procura",
+      "label": "Il firmatario agisce come procuratore",
+      "section": "firma",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "firmatario pratica",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "p33.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "tipo_0",
+      "label": "Società di ingegneria",
+      "section": "tipo",
+      "expected_state": "RESOLVED",
+      "expected_value": true,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [
+        "exclusive_choice"
+      ],
+      "candidate_id": "p36.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "tipo_1",
+      "label": "Professionista singolo",
+      "section": "tipo",
+      "expected_state": "RESOLVED",
+      "expected_value": false,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [
+        "exclusive_choice"
+      ],
+      "candidate_id": "p37.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "tipo_2",
+      "label": "Studio associato",
+      "section": "tipo",
+      "expected_state": "RESOLVED",
+      "expected_value": false,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [
+        "exclusive_choice"
+      ],
+      "candidate_id": "p38.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "tipo_3",
+      "label": "Società di professionisti",
+      "section": "tipo",
+      "expected_state": "RESOLVED",
+      "expected_value": false,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [
+        "exclusive_choice"
+      ],
+      "candidate_id": "p39.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "tipo_4",
+      "label": "Consorzio stabile",
+      "section": "tipo",
+      "expected_state": "RESOLVED",
+      "expected_value": false,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [
+        "exclusive_choice"
+      ],
+      "candidate_id": "p40.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "singolo_nome",
+      "label": "Nome e cognome",
+      "section": "singolo",
+      "expected_state": "NOT_APPLICABLE",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "professionista singolo",
+      "reason": "",
+      "tags": [
+        "visual_heading",
+        "excluded_branch",
+        "same_label"
+      ],
+      "candidate_id": "t3.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "singolo_ordine",
+      "label": "Ordine professionale",
+      "section": "singolo",
+      "expected_state": "NOT_APPLICABLE",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "professionista singolo",
+      "reason": "",
+      "tags": [
+        "visual_heading",
+        "excluded_branch",
+        "same_label"
+      ],
+      "candidate_id": "t3.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "singolo_albo",
+      "label": "Numero iscrizione albo",
+      "section": "singolo",
+      "expected_state": "NOT_APPLICABLE",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "professionista singolo",
+      "reason": "",
+      "tags": [
+        "visual_heading",
+        "excluded_branch",
+        "same_label"
+      ],
+      "candidate_id": "t3.r2.c1",
+      "type": "text"
+    },
+    {
+      "key": "studio_denom",
+      "label": "Denominazione sociale",
+      "section": "associato",
+      "expected_state": "NOT_APPLICABLE",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "studio associato",
+      "reason": "",
+      "tags": [
+        "visual_heading",
+        "excluded_branch",
+        "same_label"
+      ],
+      "candidate_id": "t4.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "studio_nome",
+      "label": "Il sottoscritto — Nome e cognome",
+      "section": "associato",
+      "expected_state": "NOT_APPLICABLE",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "studio associato",
+      "reason": "",
+      "tags": [
+        "visual_heading",
+        "excluded_branch",
+        "same_label"
+      ],
+      "candidate_id": "t4.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "studio_albo",
+      "label": "Numero iscrizione albo",
+      "section": "associato",
+      "expected_state": "NOT_APPLICABLE",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "studio associato",
+      "reason": "",
+      "tags": [
+        "visual_heading",
+        "excluded_branch",
+        "same_label"
+      ],
+      "candidate_id": "t4.r2.c1",
+      "type": "text"
+    },
+    {
+      "key": "ing_denom",
+      "label": "Denominazione sociale",
+      "section": "ingegneria",
+      "expected_state": "RESOLVED",
+      "expected_value": "Orione Tecnica S.r.l.",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t5.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "ing_forma",
+      "label": "Forma giuridica",
+      "section": "ingegneria",
+      "expected_state": "RESOLVED",
+      "expected_value": "società a responsabilità limitata",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t5.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "dt_nome",
+      "label": "Nome e cognome",
+      "section": "direttore",
+      "expected_state": "RESOLVED",
+      "expected_value": "Giulia Serra",
+      "source_chunk_ids": [
+        -2
+      ],
+      "subject": "direttore tecnico",
+      "reason": "",
+      "tags": [
+        "same_label"
+      ],
+      "candidate_id": "t6.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "dt_qualifica",
+      "label": "Qualifica professionale",
+      "section": "direttore",
+      "expected_state": "RESOLVED",
+      "expected_value": "Ingegnere",
+      "source_chunk_ids": [
+        -2
+      ],
+      "subject": "direttore tecnico",
+      "reason": "",
+      "tags": [
+        "same_label"
+      ],
+      "candidate_id": "t6.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "dt_ordine",
+      "label": "Ordine professionale",
+      "section": "direttore",
+      "expected_state": "RESOLVED",
+      "expected_value": "Ordine degli Ingegneri di Ancona",
+      "source_chunk_ids": [
+        -2
+      ],
+      "subject": "direttore tecnico",
+      "reason": "",
+      "tags": [
+        "same_label"
+      ],
+      "candidate_id": "t6.r2.c1",
+      "type": "text"
+    },
+    {
+      "key": "dt_albo",
+      "label": "Numero iscrizione albo",
+      "section": "direttore",
+      "expected_state": "RESOLVED",
+      "expected_value": "5739",
+      "source_chunk_ids": [
+        -2
+      ],
+      "subject": "direttore tecnico",
+      "reason": "",
+      "tags": [
+        "same_label"
+      ],
+      "candidate_id": "t6.r3.c1",
+      "type": "text"
+    },
+    {
+      "key": "dt_data",
+      "label": "Data di abilitazione",
+      "section": "direttore",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "direttore tecnico",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t6.r4.c1",
+      "type": "text"
+    },
+    {
+      "key": "organigramma",
+      "label": "Riferimento all'organigramma allegato",
+      "section": "direttore",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t6.r5.c1",
+      "type": "text"
+    },
+    {
+      "key": "secondo_nome",
+      "label": "Nome e cognome",
+      "section": "secondo_dt",
+      "expected_state": "NEEDS_APPLICABILITY",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "secondo direttore tecnico",
+      "reason": "",
+      "tags": [
+        "nested_table",
+        "unknown_condition"
+      ],
+      "candidate_id": "t8.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "secondo_albo",
+      "label": "Numero iscrizione albo",
+      "section": "secondo_dt",
+      "expected_state": "NEEDS_APPLICABILITY",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "secondo direttore tecnico",
+      "reason": "",
+      "tags": [
+        "nested_table",
+        "unknown_condition"
+      ],
+      "candidate_id": "t8.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "consorzio_denom",
+      "label": "Denominazione sociale",
+      "section": "consorzio",
+      "expected_state": "NOT_APPLICABLE",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "consorzio",
+      "reason": "",
+      "tags": [
+        "excluded_branch"
+      ],
+      "candidate_id": "t9.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "consorzio_nome",
+      "label": "Il sottoscritto — Nome e cognome",
+      "section": "consorzio",
+      "expected_state": "NOT_APPLICABLE",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "consorzio",
+      "reason": "",
+      "tags": [
+        "excluded_branch"
+      ],
+      "candidate_id": "t9.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "singola",
+      "label": "Partecipazione singola",
+      "section": "partecipazione",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "partecipazione pratica",
+      "reason": "",
+      "tags": [
+        "legal_type_is_not_participation"
+      ],
+      "candidate_id": "p90.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "mandataria",
+      "label": "Mandataria di RTI",
+      "section": "partecipazione",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "partecipazione pratica",
+      "reason": "",
+      "tags": [
+        "legal_type_is_not_participation"
+      ],
+      "candidate_id": "p91.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "mandante",
+      "label": "Mandante di RTI",
+      "section": "partecipazione",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "partecipazione pratica",
+      "reason": "",
+      "tags": [
+        "legal_type_is_not_participation"
+      ],
+      "candidate_id": "p92.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "rti_denom",
+      "label": "Denominazione raggruppamento (solo se si partecipa in RTI)",
+      "section": "partecipazione",
+      "expected_state": "NEEDS_APPLICABILITY",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "raggruppamento",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t10.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "partner",
+      "label": "Denominazione sociale dell'altro componente (solo in RTI)",
+      "section": "partecipazione",
+      "expected_state": "NEEDS_APPLICABILITY",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "altro componente",
+      "reason": "",
+      "tags": [
+        "same_label",
+        "different_subject"
+      ],
+      "candidate_id": "t10.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "polizza",
+      "label": "Numero della polizza professionale vigente",
+      "section": "requisiti",
+      "expected_state": "CONFLICTING",
+      "expected_value": null,
+      "source_chunk_ids": [
+        -4,
+        -5
+      ],
+      "subject": "operatore",
+      "reason": "Due attestazioni di pari data indicano numeri incompatibili.",
+      "tags": [],
+      "candidate_id": "t11.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "iso_numero",
+      "label": "Numero certificazione ISO 9001",
+      "section": "requisiti",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t11.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "iso_scadenza",
+      "label": "Scadenza certificazione ISO 9001",
+      "section": "requisiti",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t11.r2.c1",
+      "type": "text"
+    },
+    {
+      "key": "iso_possesso",
+      "label": "Dichiaro il possesso della ISO 9001",
+      "section": "requisiti",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [
+        "form_is_not_fact"
+      ],
+      "candidate_id": "p105.cb0",
+      "type": "checkbox"
+    },
+    {
+      "key": "cciaa",
+      "label": "Iscrizione CCIAA",
+      "section": "requisiti",
+      "expected_state": "RESOLVED",
+      "expected_value": "Camera di Commercio delle Marche",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t12.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "rea",
+      "label": "Numero iscrizione REA",
+      "section": "requisiti",
+      "expected_state": "RESOLVED",
+      "expected_value": "AN-204060",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t12.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "data_cciaa",
+      "label": "Data iscrizione CCIAA",
+      "section": "requisiti",
+      "expected_state": "RESOLVED",
+      "expected_value": "14/03/2019",
+      "source_chunk_ids": [
+        -1
+      ],
+      "subject": "operatore",
+      "reason": "",
+      "tags": [],
+      "candidate_id": "t12.r2.c1",
+      "type": "text"
+    },
+    {
+      "key": "procedura",
+      "label": "Codice della presente procedura",
+      "section": "requisiti",
+      "expected_state": "RESOLVED",
+      "expected_value": "LAB-ORIONE-2026",
+      "source_chunk_ids": [
+        101
+      ],
+      "subject": "procedura",
+      "reason": "",
+      "tags": [
+        "project_source"
+      ],
+      "candidate_id": "t13.r0.c1",
+      "type": "text"
+    },
+    {
+      "key": "protocollo",
+      "label": "Numero protocollo della domanda",
+      "section": "finale",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "pratica",
+      "reason": "",
+      "tags": [
+        "merged_table",
+        "do_not_use_unrelated_number"
+      ],
+      "candidate_id": "t14.r1.c1",
+      "type": "text"
+    },
+    {
+      "key": "data_domanda",
+      "label": "Data di sottoscrizione della domanda",
+      "section": "finale",
+      "expected_state": "MISSING",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "pratica",
+      "reason": "",
+      "tags": [
+        "merged_table",
+        "do_not_use_unrelated_number"
+      ],
+      "candidate_id": "t14.r2.c1",
+      "type": "text"
+    },
+    {
+      "key": "firma_manuale",
+      "label": "Firma del sottoscrittore",
+      "section": "finale",
+      "expected_state": "MANUAL",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "firmatario pratica",
+      "reason": "",
+      "tags": [
+        "signature_protected"
+      ],
+      "candidate_id": "p120.s0",
+      "type": "text"
+    },
+    {
+      "key": "spazio",
+      "label": "Spazio riservato all'ufficio — non compilare",
+      "section": "finale",
+      "expected_state": "DO_NOT_FILL",
+      "expected_value": null,
+      "source_chunk_ids": [],
+      "subject": "ufficio",
+      "reason": "",
+      "tags": [
+        "candidate_is_not_required"
+      ],
+      "candidate_id": "t15.r0.c1",
+      "type": "text"
+    }
+  ],
+  "notes": [
+    "Expected states are evaluation targets, not current resolver states.",
+    "A source-supported value in a conditional branch still requires applicability.",
+    "Model output and local grounding are scored separately; neither is a DOCX."
+  ]
+}

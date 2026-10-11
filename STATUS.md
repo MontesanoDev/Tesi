@@ -1,5 +1,20 @@
 # Stato di Mapi RAG
 
+## Benchmark dedicato — 11 ottobre 2026, preparazione
+
+Richiesta corrente: un documento complesso dedicato al nuovo compilatore e
+registro permanente [relazioni.md](relazioni.md). Creato
+`demo-documents/benchmark-compilazione/v1/`: Word sintetico con 55 posizioni
+(44 testo/11 checkbox), sette SOURCE fittizie, gold autoriale e manifest.
+Titoli visuali, rami e soggetti omonimi, condizioni ignote/annidate, ambiguità,
+conflitti e fonti distrattore. Nessun caricamento nei dati locali.
+
+Il runner globale accetta `--fixture` senza documenti/ingestion nel DB e
+conserva gold soltanto nell'audit; confronto automatico limitato a valori e
+ID SOURCE, non un gate semantico. Motore/V1/RAG/UI/parser/renderer invariati.
+Controlli e prima baseline reale in corso; non sono ancora nuovi risultati.
+La mappa semantica condivisa rimane **da discutere** prima di implementarla.
+
 ## Esito finale proposte sparse — 11 ottobre 2026
 
 [Report completo](docs/benchmark-proposte-sparse-2026-10-11.md) e

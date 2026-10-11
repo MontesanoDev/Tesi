@@ -84,6 +84,12 @@ embedding hanno configurazioni distinte. Il modello predefinito degli embedding
   output reali, tempi, validazioni e stato quando acquisiti, senza credenziali;
   dichiarare eventuali dati non acquisiti. Gli artefatti locali esclusi da Git
   richiedono un backup separato e non vengono pubblicati con il solo push.
+- Per il nuovo motore usare la fixture dedicata
+  `demo-documents/benchmark-compilazione/v1/` e registrare ogni esperimento in
+  [relazioni.md](relazioni.md), incluse prove fallite e limiti delle misure.
+  Gold e risultati attesi non entrano nel prompt. Congelare fixture/fonti/gold
+  nei confronti; nuovi scenari richiedono una nuova versione, senza adattare
+  le aspettative agli output del modello.
 - Distinguere sempre test del software con provider simulati da valutazioni
   della qualità delle risposte reali. Citazioni formalmente valide e stato
   `completed` non garantiscono una risposta pertinente o supportata dalle fonti.
