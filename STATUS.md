@@ -1,5 +1,26 @@
 # Stato di Mapi RAG
 
+## Contesto JSON dei candidate — 11 ottobre 2026, in verifica
+
+Autorizzato il primo intervento sul contesto in ingresso, con test iterativi e
+confronto sul Labirinto congelato. Corretta l'assunzione che ogni prima riga
+sia un header: il grounding locale ammette riga corrente e sole intestazioni
+Word esplicite. Catalogo V2 con contesti fisici condivisi, percorsi delle
+tabelle annidate, fino a sei paragrafi precedenti per blocchi con candidate e
+segnale di grassetto diretto; nessuna sezione semantica inventata dal backend.
+
+Prima verifica: 228 test passati/uno fallito per catalogo Catanzaro oltre
+200.000 caratteri; eliminate ripetizioni di riferimenti sui blocchi privi di
+candidate, senza eliminare testo o aumentare budget. Nuova verifica mirata:
+**229 passati in 11,23 s**; Ruff completo, fixture `--check`, diff check passati.
+Suite backend completa: **1.635 passati in 106,56 s**. Tre acquisizioni reali
+ancora da concludere. Prompt/schema di risposta, fixture/fonti/gold e budget invariati;
+V1/chat/RAG/parser/renderer non modificati. Nessuna migrazione o reindicizzazione.
+
+Commit piccoli autorizzati; nessun push. Prossimo punto: completare le misure
+prima di decidere se il contesto migliore dà benefici semantici; accettazione
+semantica e nuova mappa delle condizioni restano fuori da questo primo task.
+
 ## Benchmark dedicato — 11 ottobre 2026, completato
 
 Richiesta corrente: un documento complesso dedicato al nuovo compilatore e

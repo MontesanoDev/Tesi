@@ -36,6 +36,34 @@ Il parser accetta l'opzione `require_candidates=False` per l'ispezione in sola
 lettura di documenti senza celle/segnaposti, per esempio con sole checkbox.
 Il default e l'insieme scrivibile del renderer restano invariati.
 
+## Contesto di lettura V2 — 11 ottobre 2026
+
+Il catalogo passa a **versione 2**, senza cambiare gli ID scrivibili o il
+contratto delle proposte. Ogni candidate ha `reading_context_id`, riferimento
+alla mappa condivisa `reading_contexts`. Per le tabelle il contesto identifica
+blocco, percorso delle tabelle annidate, indice della riga e paragrafi della
+riga. `parent_cell_id` collega una tabella annidata alla cella contenitrice.
+Per le posizioni fuori tabella il riferimento resta al paragrafo fisico.
+
+I blocchi con candidate conservano fino a sei paragrafi di corpo non vuoti
+precedenti (`preceding_body_paragraph_ids`), in ordine. Sono riferimenti di
+lettura: non diventano label locali, soggetti o condizioni approvate. Tutti i
+paragrafi restano nel catalogo completo, compresi quelli fuori dalla finestra.
+Il segnale `all_text_direct_bold=true` registra solo testo interamente in
+grassetto esplicito: non crea sezioni né interpreta nomi di stili.
+
+La prima riga **non è più assunta come intestazione**. `repeat_header_rows`
+conserva soltanto le righe con `w:tblHeader` attivo. Il grounding locale ammette
+la riga corrente e queste intestazioni esplicite della stessa tabella.
+Una prima riga ordinaria resta visibile ma non può etichettare automaticamente
+tutti i campi successivi. Un'intestazione visiva senza marcatore può quindi
+richiedere revisione: non è riconosciuta come header per euristiche permissive.
+
+Prompt, schema di risposta, SOURCE e budget restano quelli della baseline.
+La proiezione `document_blocks` usata dalla V1, il parser e il renderer non
+cambiano. Il benchmark dedicato misura l'effetto di questa rappresentazione;
+grounding locale continua a non equivalere a RESOLVED o scrittura.
+
 ## Checkbox e limiti espliciti
 
 Riconosciuti i controlli legacy `w:checkBox` e i content control `w14:checkbox`,

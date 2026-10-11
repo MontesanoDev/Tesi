@@ -170,3 +170,22 @@ misure del provider reale. Nessun costo monetario stimato.
 Per il prossimo intervento conservare gli stessi file/hash, cambiare una sola
 ipotesi alla volta, ripetere tre volte e aggiungere qui la nuova relazione.
 Non sostituire questa baseline o il gold con gli output del tentativo successivo.
+
+## 11 ottobre 2026 — contesto fisico V2, preparazione
+
+Ipotesi: separare riga corrente/intestazioni esplicite e rendere navigabili i
+contesti fisici riduce le associazioni improprie fra soggetti e rami. Aggiunti
+contesti condivisi riga/blocco, percorso annidato, paragrafi precedenti e
+grassetto diretto come osservazione; nessuna inferenza semantica dal backend.
+Prompt, schema output, fonti, gold, modello e budget rimangono quelli della
+baseline. Il gate locale elimina l'ammissione implicita di ogni prima riga;
+gli altri gate non cambiano. Produzione V1, RAG, chat e renderer invariati.
+
+Primo giro software: **228 passati e uno fallito** perché il nuovo catalogo
+Catanzaro supera il limite esistente di 200.000 caratteri. Eliminati riferimenti
+precedenti ripetuti nei blocchi senza candidate, senza tagliare testo o alzare
+limiti. Secondo giro: **229 passati in 11,23 s**, inclusi 20 nuovi casi; Ruff
+completo, fixture `--check`, diff check passati. Suite completa: **1.635 passati
+in 106,56 s**; benchmark reale da concludere. Il primo Ruff ha segnalato un
+ordinamento import, corretto.
+Non presentare questi test software come risultati del modello reale.

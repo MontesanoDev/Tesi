@@ -238,9 +238,9 @@ def _form_bindings(catalog):
     local = {key: {key} for key in paragraphs}
     for block in catalog["blocks"]:
         for table in block.get("tables", []):
-            # Physical header and row references, never an unrelated table's label.
-            header = {p for c in table["rows"][0] for p in c["paragraph_ids"]} \
-                if table["rows"] else set()
+            # Only explicit Word repeat headers, never an assumed first-row label.
+            header = {p for index in table.get("repeat_header_rows", [])
+                      for c in table["rows"][index] for p in c["paragraph_ids"]}
             for row in table["rows"]:
                 row_paragraphs = {p for cell in row for p in cell["paragraph_ids"]}
                 for cell in row:
