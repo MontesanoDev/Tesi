@@ -3939,5 +3939,23 @@
         "polizza"
       ]
     }
+  ],
+  "software_checks": {
+    "targeted_passed": 229,
+    "full_backend_passed": 1635,
+    "provider_in_software_tests": "simulated where needed; no semantic provider evaluation",
+    "ruff": "passed",
+    "fixture_reproducibility": "passed",
+    "diff_check": "passed",
+    "frontend": "unchanged/not run"
+  },
+  "review_notes": [
+    "Only literal value/boolean and authored SOURCE IDs are scored; semantic acceptance remains false.",
+    "All five core company values remain correct in every run; no USER values supplied.",
+    "All director values, including 5739 rather than 8821, are correct proposals blocked on unknown applicability.",
+    "No factual field is promoted to RESOLVED and no document is written.",
+    "Policy A is selected in all runs without resolving the discordant attestation.",
+    "V2 creates unsupported signer, participation and NA proposals in run 1; signer values also in run 3.",
+    "More metadata does not yield stable semantic gains."
   ]
 }

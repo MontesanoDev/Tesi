@@ -5,6 +5,15 @@ Distinguere prove reali dei provider da test software con risposte simulate.
 
 ## Modulo labirinto dedicato, 11 ottobre 2026
 
+- Contesto fisico: [V2](2026-10-11-labirinto-context-v2.json),
+  [V3 corrente](2026-10-11-labirinto-context-v3.json),
+  [registro](../../relazioni.md). Sei chiamate reali; V3 conserva 18/22 valori
+  attesi, cinque societari corretti, sede coincidente NA in 2/3. Beneficio
+  semantico parziale, polizza/recapiti ancora impropri e nessuna scrittura.
+  [Bundle delle due iterazioni](2026-10-11-labirinto-context-audit.tar.gz) e
+  [checksum](2026-10-11-labirinto-context-audit.tar.gz.sha256).
+  Finali 230 mirati/1.636 backend, Ruff/check/help/diff; frontend invariato.
+
 - [Fixture V1](../../demo-documents/benchmark-compilazione/v1/README.md): Word
   sintetico con 55 posizioni/11 checkbox, sette SOURCE fittizie, gold autoriale
   escluso dal prompt e manifest. Runner `--fixture`, senza ingestion o corpus DB.

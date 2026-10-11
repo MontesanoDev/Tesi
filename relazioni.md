@@ -244,3 +244,96 @@ un errore dei nuovi metadati su XML Word valido con prefisso diverso da `w`:
 le ricerche grassetto/header dipendevano dal prefisso. Corrette usando QName
 espansi e aggiunta regressione. Stato finale: **230 mirati in 10,00 s**, Ruff,
 fixture/diff passati; suite completa finale e benchmark da concludere.
+
+### Esito reale V3, codice congelato `971c5d8`
+
+Tre nuove chiamate reali, medesima fixture V1/hash/fonti/gold, una chiamata per
+prova, zero retry/reviewer/USER. Stesso prompt e schema output della baseline;
+modello `deepseek-flash`, temperatura 0,1, thinking disabilitato, timeout 300 s,
+49.152 token output. Nessuna modifica di codice durante ciascuna serie congelata.
+
+| Misura | Run 1 | Run 2 | Run 3 |
+|---|---:|---:|---:|
+| Secondi AI | 10,17 | 9,96 | 10,05 |
+| Token input | 13.433 | 13.433 | 13.433 |
+| Token output | 3.664 | 3.553 | 3.539 |
+| Token totali | 17.097 | 16.986 | 16.972 |
+| Token input in cache | 1.536 | 13.184 | 13.184 |
+| Valori/booleani e ID SOURCE attesi | 18/22 | 18/22 | 18/22 |
+| Di questi, grounding locale superato | 12 | 12 | 12 |
+| Valori impropri grezzi | 2 | 1 | 3 |
+| Valori impropri grounded | 1 | 1 | 2 |
+| NA corrette come disposition | 1 | 1 | 0 |
+| NA improprie | 0 | 0 | 0 |
+| Posizioni omesse/non valutate | 34 | 35 | 34 |
+
+Input identico nelle tre prove (44.805 caratteri messaggi), SHA-256
+`467a3e55a7f8d0570535eda049cb6b42a77b4a5026b98cf9551e99afcd0c7ac9`;
+request identica `77790378bf18d0c5532b657479bdcf6618667335ed01bd6c7deac8cd74f23805`.
+Fixture/Word invariati, gold fuori dal prompt; nessun ID candidate inventato.
+Totale **51.055 token/30,19 s**, media 17.018 token/10,06 s. Rispetto a V2:
+−10,99% input, −12,11% token totali medi. Rispetto alla baseline: **+16,31%
+input, +10,56% token totali medi**. Questi dati non dimostrano risparmi in
+produzione; campione piccolo, cache diversa, nessuna compilazione E2E.
+Totale dell'intervento: sei chiamate, **109.147 token/65,17 s** AI.
+
+Revisione dei casi critici:
+
+- Denominazione, forma giuridica, sede legale, CF e PIVA: corretti da SOURCE
+  in tutte le sei nuove prove, mai forniti da USER. V3 conferma anche telefono,
+  PEC, CCIAA/REA/data e codice procedura. Nessun valore diventa RESOLVED.
+- Direttore: Giulia Serra, Ingegnere, Ordine degli Ingegneri di Ancona,
+  **5739**, distinti da 8821. Proposte corrette nelle tre V3; restano bloccate
+  con denominazione/forma del ramo ingegneria per applicabilità unknown.
+- Due V3 usano il confronto `different` fra indirizzi coincidenti: condizione
+  false e sede operativa NA. La terza usa semantic/unknown e propone comunque
+  l'indirizzo, bloccato. Segnale parziale, non soluzione generale dimostrata.
+  Lo scope di tabella proposto nei due confronti include anche la riga recapito:
+  la relazione semantica non locale resta da verificare, non è prova di confini.
+- Quattro checkbox alternative di tipologia omesse in tutte le V3: non
+  interpretarle come false. Nessuna proposta firmatario/carica in V3, ma nel
+  run 1 partecipazione singola inferita e bloccata. Le condizioni possono ancora
+  essere omesse: 8/8/5 condizioni, completezza mai attestata dal backend.
+- Polizza A scelta in tutte le V3 fra attestazioni discordanti, grounding
+  superato senza risolvere il contrasto. Terza V3 copia entrambi i recapiti
+  alternativi in un unico valore: quote vera, ma campo ambiguo secondo gold.
+  I gate letterali non garantiscono unicità/atomicità o risoluzione dei conflitti.
+- Nessuna data abilitazione, organigramma o ISO inventata in V3; rami esclusi,
+  secondo direttore e procura omessi, non classificati come NA verificata.
+  Fonte General KB distrattore non usata per dati aziendali, fonte di altro
+  progetto esclusa prima dell'input. Firma protetta e spazio ufficio non scritti.
+
+**Decisione:** mantenere la correzione concreta delle intestazioni e la
+posizione diretta V3, che è più semplice della V2 e conserva i dati corretti.
+La fedeltà strutturale è verificata; il miglioramento semantico resta **parziale**,
+non soddisfa ancora zero assegnazioni improprie. Non promuovere grounded a
+RESOLVED, non attivare il prototipo nella chat, non allargare questo task al
+renderer o inventare un esito positivo. Il prossimo intervento su applicabilità,
+soggetti e conflitti richiede una scelta progettuale discussa separatamente.
+
+Verifiche finali: **230 test mirati in 10,00 s**, **1.636 backend in 105,70 s**,
+Ruff completo, fixture `--check`, CLI help e diff check. Le precedenti suite
+V2/V3 sono intermedie, con log distinti. Il primo fallimento budget è riportato
+dal tool e riassunto qui; non è disponibile un log shell completo di quel giro.
+Provider simulati nei test software, DB/storage temporanei; solo le sei
+acquisizioni descritte misurano DeepSeek reale. Frontend non toccato/rieseguito.
+Originali, sessioni e dati locali dell'applicazione invariati. Nessuna migrazione
+o reindicizzazione; nessun DOCX generato, turni USER non misurati.
+
+Riepiloghi [V2](docs/benchmarks/2026-10-11-labirinto-context-v2.json) e
+[V3](docs/benchmarks/2026-10-11-labirinto-context-v3.json), confronto di tutte le
+55 posizioni per ciascuna prova. [Bundle completo](docs/benchmarks/2026-10-11-labirinto-context-audit.tar.gz)
+e [checksum](docs/benchmarks/2026-10-11-labirinto-context-audit.tar.gz.sha256):
+sei acquisizioni con input/schema/request/HTTP/raw/usage/validator, codice e
+fixture congelati, controlli strutturali, analisi e log senza credenziali/DB.
+Grezzi in `backend/data/compilation-audit/context-v{2,3}-20261011-*`.
+
+Controllati anche i nuovi riferimenti Markdown. Il controllo dell'intero
+storico incontra 17 riferimenti preesistenti ad audit locali non presenti su
+questa macchina: non sono nuovi link rotti e non sono stati alterati o ricreati.
+
+Bundle finale: **219 file, 1.054.963 byte**, SHA-256
+`0d5bb111dee1dffceff6c541bc23ff7bfc4a55b97f663d2a0f547619fb7cbf05`.
+Verificati tutti i manifest delle sei prove, corrispondenza del codice catturato
+ai commit congelati, byte dell'archivio, assenza di credenziali/database e gold
+escluso dalle request. Entrambe le iterazioni rimangono recuperabili; nessun push.

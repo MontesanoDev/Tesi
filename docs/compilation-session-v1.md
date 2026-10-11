@@ -5,6 +5,12 @@ modifica dati persistiti; il file Word viene generato soltanto su richiesta.
 La chat esistente offre selezione `@`, avvio/ripresa, riepilogo, chiarimenti
 raggruppati e generazione/download inline. Il backend rimane la fonte dello stato.
 
+**Contesto JSON sperimentale dell'11 ottobre:** catalogo V3 con posizione
+blocco/tabella/riga e intestazioni esplicite, senza prima riga assunta come
+header. Sei prove reali sul Labirinto, miglioramento strutturale verificato e
+benefici semantici parziali; nessuna sostituzione della V1 descritta qui.
+Dettagli nel [catalogo](catalogo-compilazione.md) e nel [registro](../relazioni.md).
+
 **Esperimento sparse dell'11 ottobre:** contratto 5 con inventario dei candidate
 nel backend, proposte validate singolarmente e scope strutturali tipizzati.
 Nessuna attivazione nella chat o promozione automatica a RESOLVED. La V1 e

@@ -1,31 +1,49 @@
 # Stato di Mapi RAG
 
-## Contesto JSON dei candidate — 11 ottobre 2026, in verifica
+## Contesto JSON dei candidate — 11 ottobre 2026, esito misurato
 
-Autorizzato il primo intervento sul contesto in ingresso, con test iterativi e
-confronto sul Labirinto congelato. Corretta l'assunzione che ogni prima riga
-sia un header: il grounding locale ammette riga corrente e sole intestazioni
-Word esplicite. Prima iterazione V2 con contesti fisici condivisi: tre prove
-reali `d14fa9d`, 22/18/17 valori attesi, +30,68% token input, errori residui;
-beneficio semantico non stabile. Risultati conservati in `relazioni.md` e JSON.
-Seconda iterazione V3: `location` diretta sul candidate, nessuna seconda mappa
-delle righe. Tabelle annidate, fino a sei paragrafi precedenti per blocchi con
-candidate e grassetto diretto; nessuna sezione semantica inventata dal backend.
+Primo intervento autorizzato sul contesto in ingresso. Corretta l'assunzione
+che ogni prima riga sia un header: il grounding locale ammette riga corrente
+e sole intestazioni Word esplicite. Catalogo corrente **V3**, commit `971c5d8`:
+`location` diretta blocco/tabella/riga, tabelle annidate via `parent_cell_id`,
+fino a sei paragrafi precedenti per blocchi con candidate e grassetto diretto
+come segnale visuale. Nessuna sezione/applicabilità semantica inventata dal backend.
 
-Prima verifica: 228 test passati/uno fallito per catalogo Catanzaro oltre
-200.000 caratteri; eliminate ripetizioni di riferimenti sui blocchi privi di
-candidate, senza eliminare testo o aumentare budget. Nuova verifica mirata:
-**229 passati in 11,23 s**; Ruff completo, fixture `--check`, diff check passati.
-Suite backend V2: **1.635 passati in 106,56 s**. V3: **229 mirati in 10,28 s**,
-prima suite V3 **1.635 in 111,17 s**. Aggiunta regressione per prefisso namespace
-Word alternativo e corrette le letture dei due nuovi metadati: **230 mirati
-in 10,00 s**, suite finale e tre acquisizioni reali da concludere. Prompt/schema
-di risposta, fixture/fonti/gold e budget invariati;
-V1/chat/RAG/parser/renderer non modificati. Nessuna migrazione o reindicizzazione.
+Due iterazioni e **sei chiamate reali deepseek-flash**, tre per commit congelato,
+con stessi Word/fonti/gold, prompt/schema output/budget. V2 (`d14fa9d`), con
+seconda mappa di righe: 22/18/17 valori attesi e +30,68% token input, risultato
+non stabile. V3 elimina quella ripetizione: **18/22 valori attesi in tutte le
+prove**, come baseline; 12 passano i gate, zero RESOLVED/scritture. Tempi
+**9,96–10,17 s**, 16.972–17.097 token. Token input +16,31% vs baseline, −10,99%
+vs V2; non è dimostrato un risparmio E2E o un aumento generale della precisione.
 
-Commit piccoli autorizzati; nessun push. Prossimo punto: completare le misure
-prima di decidere se il contesto migliore dà benefici semantici; accettazione
-semantica e nuova mappa delle condizioni restano fuori da questo primo task.
+Cinque dati societari corretti nelle sei prove senza USER. V3: sede operativa
+coincidente riconosciuta NA in 2/3, ancora proposta impropriamente nella terza
+e bloccata. Direttore e **5739** sempre corretti come proposta, bloccati da
+applicabilità unknown. Polizza arbitraria ancora presente in tutte le prove;
+terza V3 concatena due recapiti alternativi. Questi due casi possono superare
+grounding letterale: NON sono valori semanticamente verificati o scrivibili.
+Restano soggetto, completezza dei rami e conflitti/ambiguità da verificare.
+
+Verifiche finali realmente eseguite: **230 mirati in 10,00 s, 1.636 backend
+in 105,70 s**, Ruff completo, fixture `--check`, CLI help e diff check. Prima
+iterazione fallita per budget Catanzaro e correzione namespace Word alternativo
+documentate, con controlli intermedi separati in `relazioni.md`. Confronto in
+sola lettura su Catanzaro/Minervino: testo/posizioni/originali invariati e budget
+rispettati. Frontend invariato, non rieseguito. Nessuna migrazione/reindicizzazione.
+
+Registro e per-candidate: [relazioni.md](relazioni.md),
+`docs/benchmarks/2026-10-11-labirinto-context-v{2,3}.json`; grezzi, codice,
+request/HTTP/raw/quote/usage/validator e log nel bundle
+`docs/benchmarks/2026-10-11-labirinto-context-audit.tar.gz`. V1/chat/RAG/parser/
+renderer invariati. Questo è un miglioramento strutturale verificato con
+benefici semantici parziali; NON considerare completata la compilazione globale.
+
+**Prossimo punto da discutere prima del codice:** rapporto fra ramo/soggetto,
+applicabilità e SOURCE discordanti nella stessa proposta globale. Non continuare
+ad aggiungere metadati né allentare i gate per aumentare i grounded. Non attivare
+il prototipo nella chat o passare al renderer con questi risultati.
+Commit piccoli autorizzati, nessun push; nessuna modifica durante i benchmark.
 
 ## Benchmark dedicato — 11 ottobre 2026, completato
 
