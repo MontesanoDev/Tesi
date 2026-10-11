@@ -1,32 +1,55 @@
 # Stato di Mapi RAG
 
-## Legame persona/ruolo — 11 ottobre 2026, verifica in corso
+## Legame persona/ruolo — 11 ottobre 2026, gate utile e copertura ancora limitata
 
-Autorizzato dall'utente il passo successivo: contratto sperimentale V7 con
-binding condiviso FORM ruolo richiesto / SOURCE ruolo attestato / soggetto del
-fatto. Una persona non diventa firmatario perché il nome compare nella fonte
-dell'amministratore. Gate letterale conservativo, nessun ruolo/sinonimo hardcoded,
-nessuna chiamata aggiuntiva. Valori senza legame restano da rivedere; applicabilità
-unknown non viene promossa. Nessun RESOLVED, scrittura o attivazione nella chat.
+Implementato il passo autorizzato nel solo compilatore globale sperimentale:
+contratto V7, binding condiviso FORM ruolo / SOURCE ruolo / soggetto del fatto,
+massimo 128 binding e 1–2 prove ciascuno. `value` da person richiede binding;
+ruoli letterali uguali, coppia esplicita «ruolo: persona» nel chunk SOURCE reale,
+origine FORM strutturalmente pertinente e stesso chunk del valore. Nessun elenco
+di nomi/cariche/campi hardcoded, nuova chiamata, retry o reviewer. Binding invalido
+blocca il valore, senza promuovere altri rifiuti/applicabilità unknown. Preservati
+raw, prove/identità SOURCE e replay V5/V6. Mai RESOLVED/scrittura/attivazione chat.
 
-Regressioni software e protocollo in
-[proposta globale](docs/proposta-globale-compilazione.md). Mirati corretti:
-295 passati/13,38 s; Ruff, fixture check, CLI help e diff passati. Prima verifica:
-109 passati; una successiva aspettativa schema V6 e una riga Ruff corrette,
-log conservati. Suite completa corretta: **1.701 passati/106,31 s**, dopo un
-primo 1.700 passati/1 fallito per la stessa aspettativa schema. Replay offline
-dell'errore storico: V6 invariato, V7 senza binding blocca il firmatario inferito.
-Prima serie DeepSeek sul commit `97d84fb`: firmatario improprio bloccato,
-cinque valori societari/alternative conservati, ma 17/16/13 target proposti
-contro 22/17/22 V6b. Ruolo direttore esteso/breve non coincide; due valori ordine
-includono il numero e una proposta numero è omessa. Copertura non soddisfacente.
-Seconda serie `c2b30b0`: 17/16/17 target, cinque dati societari/alternative
-conservati ma binding omessi in tutte le prove. Ultima iterazione bounded sulle
-istruzioni: un esempio JSON generico del legame, stesso validator/schema/budget;
-tre prove ancora da eseguire. Non allentare gate per compensare le omissioni.
-Fixture V1, originali, dati locali, V1/RAG/parser/
-renderer/catalogo invariati; nessuna migrazione/reindicizzazione. Commit piccoli
-autorizzati, nessun push. Aggiornare questa sezione con esito e limiti finali.
+Tre iterazioni, **nove chiamate reali deepseek-flash**, tre per commit congelato,
+stessa fixture Labirinto V1/fonti/gold fuori dal prompt. `97d84fb`: 17/16/13
+valori attesi, ruolo completo/breve non coincide. `c2b30b0`: 17/16/17, tutti
+binding omessi. Finale `5962cb6`, esempio JSON generico al posto di istruzioni
+verbose, stesso schema/validator: **17/17/17 target, 11/11/11 grounded corretti**;
+quattro dati direttore incluso **5739** con ruolo literal_match in **3/3**.
+Firmatario/carica inferiti nei run 2/3 sono bloccati, non valori accettati.
+Cinque dati societari e alternative recapito/polizza conservati in tutte le nove.
+
+**Regressione non nascosta:** V6b aveva 22/17/22 target; ultima serie omette
+cinque checkbox tipologia. Sede coincidente NA soltanto 1/3; applicabilità
+blocca ancora direttore/ramo. Literal_match NON è entailment indipendente:
+entity/property, completezza del ruolo/qualificatori e condizioni restano proposte
+AI; narrativa/sinonimi/altro chunk possono essere falsi negativi. Lo stesso chunk
+non prova da solo ogni proprietà di una persona. semantic_review_required=true
+rimane obbligatorio. Positivo firmatario esplicito testato soltanto nel software;
+positivo reale direttore verificato. Nessun miglioramento generale di completezza.
+
+Ultima serie **57.683 token/37,18 s AI**; intero intervento **172.848/110,30 s**.
+−1,47% token totali medi vs V6b, input +5,15%, copertura inferiore/cache diversa:
+nessun risparmio E2E dimostrato. Finali realmente eseguiti: **295 mirati/11,95 s,
+1.701 backend/105,41 s**, Ruff, fixture check, CLI help, diff, nove replay identici,
+manifest/codice congelato e bundle verificati. Failure iniziali di aspettativa
+schema e Ruff conservate. Frontend invariato/non eseguito, nessuna migrazione/
+reindicizzazione. V1/chat/RAG/parser/renderer/catalogo V3 e dati locali invariati.
+
+[Report completo](docs/benchmark-persona-ruolo-2026-10-11.md), [registro](relazioni.md),
+JSON per tutte le posizioni `docs/benchmarks/2026-10-11-labirinto-subject-binding-v7{,b,c}.json`.
+Bundle `docs/benchmarks/2026-10-11-labirinto-subject-binding-audit.tar.gz`:
+**361 file/1.904.168 byte**, SHA-256
+`e3fff5dca5ebcfd867e2ddc3ff99f2914c35f0f6eca2d7a6019415b199a07c78`.
+Include nove raw/codice/fixture/prompt/schema/HTTP/usage/audit, risposta storica
+usata nel controfattuale, replay e log; esclude credenziali/DB. Nessun push.
+
+**Prossimo punto da discutere prima del codice:** legame condizioni/ramo e SOURCE,
+con verifica della copertura checkbox. Non passare all'adapter, non attivare il
+prototipo nella chat, non sostituire revisione semantica con literal_match.
+Il gate persona/ruolo è una protezione concreta; l'intero compilatore resta
+incompleto. Commit piccoli autorizzati; preservare tutti gli esiti anche negativi.
 
 ## Alternative SOURCE — 11 ottobre 2026, esito circoscritto positivo
 

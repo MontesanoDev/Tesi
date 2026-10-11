@@ -48,8 +48,13 @@ limitata al prompt: conservare designazione FORM completa e distinguere il ruolo
 funzionale letterale dal complemento organizzativo, senza sinonimi/sottostringhe
 arbitrarie, e ribadire che i binding personali non limitano i fatti aziendali.
 Validatore/schema invariati. Non è un controllo indipendente della completezza
-del ruolo: il limite semantico resta dichiarato. Tre nuove prove congelate,
-prima serie conservata come regressione; esito non ancora acquisito qui.
+del ruolo: il limite semantico resta dichiarato. Tre nuove prove congelate:
+binding omessi 3/3, seconda serie conservata come regressione. Ultima iterazione
+solo prompt: un esempio JSON generico del legame. Ruolo direttore literal_match
+per quattro proprietà in 3/3, firmatario non provato bloccato, cinque dati
+societari/alternative conservati. Copertura 17/17/17 contro 22/17/22 V6b,
+checkbox tipologia omessi e applicabilità unknown: nessun progresso generale
+di completezza dichiarato. [Tutte le prove e limiti](benchmark-persona-ruolo-2026-10-11.md).
 
 ## Contratto storico 6: alternative SOURCE esplicite
 

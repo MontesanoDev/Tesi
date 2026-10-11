@@ -598,3 +598,77 @@ un eventuale mancato recupero. Nessun passaggio ad applicabilità/rendering.
 Suite sul secondo prompt congelato: 1.701 passati/104,52 s. Prima di congelare
 l'esempio JSON: 295 mirati passati/11,95 s, Ruff e diff passati. Le funzioni
 backend di validazione non sono cambiate nelle due iterazioni del prompt.
+
+### Terza serie V7 — esito finale del passo, con regressione di copertura dichiarata
+
+Commit `5962cb6`, tre nuove acquisizioni reali su codice congelato e input/request
+identici; nessuna modifica durante la serie. Il singolo esempio JSON di collegamento
+recupera i binding per tutti e quattro i dati del direttore: nome Giulia Serra,
+qualifica Ingegnere, Ordine degli Ingegneri di Ancona e **5739**. Ogni proprietà
+resta atomica; quote FORM completa e ruolo funzionale letterale separati. Tutti
+12 controlli di ruolo risultano literal_match, senza promozione del campo:
+applicabilità del ramo resta unknown. Non è una verifica semantica generale.
+
+| Misura | Run 1 | Run 2 | Run 3 |
+|---|---:|---:|---:|
+| Valori/booleani e ID SOURCE attesi su 22 | 17 | 17 | 17 |
+| Di questi grounded | 11 | 11 | 11 |
+| Valori impropri grounded | 0 | 0 | 0 |
+| Proprietà direttore con literal_match | 4 | 4 | 4 |
+| Alternative grounded senza valore scelto | 2 | 2 | 2 |
+| Rifiuti locali | 7 | 7 | 7 |
+| Omissioni/non valutati | 35 | 33 | 32 |
+| Secondi AI | 12,0154 | 12,3669 | 12,7965 |
+| Token totali | 19.064 | 19.247 | 19.372 |
+
+Cinque dati societari (denominazione/forma/sede/CF/PIVA) sempre corretti da SOURCE
+-1, mai USER; recapiti/polizze review con prove individuali sempre conservati.
+Il modello omette il firmatario/carica nel run 1 ma li inferisce da amministratore
+nei run 2/3: il nuovo gate li lascia REVIEW_REQUIRED con value=null. Questo è
+il beneficio concreto; non dichiarare che il modello non tenti più l'inferenza.
+Controfattuale offline del vecchio errore conservato separatamente e replay V6
+invariato. Condizioni e scope non allentati. Nessun valore RESOLVED/scrivibile.
+
+**Copertura generale regredita:** tutti i cinque checkbox di tipologia sono
+omessi, contro due serie V6b con 22 target. Omissione non significa false/NA.
+17 valori testuali corretti ma solo 11 grounded perché sei appartengono al ramo
+ancora unknown. Sede operativa coincidente: valore improprio proposto nei primi
+due run e bloccato, NA grounded soltanto nel terzo. NA ISO improprio nel terzo
+rifiutato. Nessuna data abilitazione o certificazione inventata. Nessuna SOURCE
+vietata accettata; prima serie aveva un ID inventato -201 rifiutato.
+
+Ultima serie 57.683 token/37,18 s AI, media 19.227,67/12,39 s. Vs V6b: token
+medi −1,47%, input +5,15%, tempo −12,22%, ma campione piccolo, cache differente
+e copertura inferiore: nessun risparmio E2E o guadagno generale di precisione
+certificato. Intervento completo **9 chiamate/172.848 token/110,30 s AI**.
+Tutte tre le iterazioni conservate; non selezionate soltanto le prove migliori.
+
+**Decisione:** mantenere la protezione sperimentale e il collegamento esplicito,
+ma NON dichiarare pronto l'intero compilatore. Il requisito di ruolo esplicito
+positivo funziona nel test software e nel caso reale direttore; mancano verifica
+semantica di entity/property/qualificatori, appartenenza e applicabilità.
+Un dato riferito ad altra persona nello stesso chunk non è automaticamente
+associato correttamente; un'entità mal classificata può eludere il gate personale.
+Tutto rimane semantic_review_required e non scrivibile. Falsi negativi su narrativa,
+sinonimi, titoli intermedi e prove in chunk diversi dichiarati. Il prossimo
+passo da discutere è condizioni/rami/SOURCE e copertura checkbox, senza nuovi
+reviewer/batch né attivazione nella chat. Nessun intervento oltre questo passo.
+
+Verifiche finali realmente eseguite: **295 mirati/11,95 s**, **1.701 backend
+completi/105,41 s**, Ruff, fixture check, CLI help e diff. Suite intermedie/failure
+conservate separatamente, nessuna presentata come nuovo successo. Provider
+simulati dove serve nei test software; le nove prove AI usano DeepSeek reale.
+Frontend invariato/non eseguito, nessuna migrazione o reindicizzazione; V1/chat/
+RAG/parser/renderer/catalogo V3/dati locali/originali invariati. Nove manifest,
+snapshot confrontati ai commit e replay identici; catalogo/fonti uguali a V6b,
+gold escluso dai messaggi, originali per hash invariati. Nessun push.
+
+[Report persona/ruolo](docs/benchmark-persona-ruolo-2026-10-11.md), JSON per ogni
+candidate `docs/benchmarks/2026-10-11-labirinto-subject-binding-v7{,b,c}.json`;
+grezzi `backend/data/compilation-audit/subject-binding-v7{,b,c}-20261011-run{1,2,3}/`.
+Bundle versionato `docs/benchmarks/2026-10-11-labirinto-subject-binding-audit.tar.gz`,
+**361 file/1.904.168 byte**, SHA-256
+`e3fff5dca5ebcfd867e2ddc3ff99f2914c35f0f6eca2d7a6019415b199a07c78`.
+Verificato byte per byte: nove acquisizioni nuove, una storica usata nel replay,
+code/request/schema/HTTP/raw/usage/quote/provenance/validator, fixture/fonti/gold,
+analisi/script di riproduzione e log. Nessuna credenziale, DB o configurazione locale.

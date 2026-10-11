@@ -13687,6 +13687,54 @@
     "Entity/property/full role are model proposals; no general semantic verifier.",
     "No applicability, source-property attribution or completeness improvement claimed.",
     "All raw responses retained; unchanged gold excluded from input.",
-    "Positive explicit role case tested in software, not a new positive real signer fixture."
-  ]
+    "Explicit signer designation positive covered in software; final real director literal role check passes in 3/3.",
+    "Final coverage 17/22, five type checkbox omissions; no claim of general completeness improvement."
+  ],
+  "experiment": "subject-binding-v7",
+  "software_checks": {
+    "initial_targeted": {
+      "passed": 109,
+      "seconds": 5.06
+    },
+    "extended_before_schema_expectation_fix": {
+      "passed": 294,
+      "failed": 1,
+      "seconds": 12.87
+    },
+    "full_before_schema_expectation_fix": {
+      "passed": 1700,
+      "failed": 1,
+      "seconds": 110.36
+    },
+    "targeted_corrected": {
+      "passed": 295,
+      "seconds": 13.38
+    },
+    "full_corrected": {
+      "passed": 1701,
+      "seconds": 106.31
+    },
+    "targeted_second_prompt": {
+      "passed": 295,
+      "seconds": 12.06
+    },
+    "full_second_prompt": {
+      "passed": 1701,
+      "seconds": 104.52
+    },
+    "targeted_final": {
+      "passed": 295,
+      "seconds": 11.95
+    },
+    "full_final": {
+      "passed": 1701,
+      "seconds": 105.41
+    },
+    "ruff": "passed after fixing one long line; initial failure saved",
+    "fixture_check": "passed; original, corpus, gold unchanged across nine captures",
+    "cli_help": "passed",
+    "diff_check": "passed",
+    "frontend": "unchanged/not run",
+    "providers": "software suites simulated where needed, new role gates without LLM; nine separate real DeepSeek calls"
+  }
 }
