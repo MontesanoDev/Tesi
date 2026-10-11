@@ -75,6 +75,13 @@ class GlobalProposal(StrictModel):
 TASK = """Produci UNA proposta globale JSON versione 8. Leggi prima l'intero Word FORM
 nei blocks e tutte le SOURCE. L'ordine dei blocks è quello del documento; celle,
 righe e titoli precedenti determinano soggetto, ruolo, sezione e sottosezione.
+proposal_stage=source_backed_hypotheses: prepara ipotesi di riempimento con dati
+documentati, NON una dichiarazione che l'operatore abbia già scelto di partecipare.
+Un modulo bianco non deve essere già intestato al soggetto SOURCE per proporne
+i dati aziendali nei campi compatibili. Scelta del partecipante o rappresentanza
+non confermate bloccano l'USO del dato, non la sua proposta conditional con le
+condizioni FORM pertinenti. Non scegliere arbitrariamente fra soggetti alternativi
+né attribuire a una persona un ruolo non attestato: i relativi gate restano validi.
 section_ids vuoto significa assenza di outline Word esplicito, NON assenza di
 sezioni o condizioni: ricavale dal testo. Non usare conoscenze esterne.
 FORM descrive richieste/condizioni, MAI fatti dell'operatore; SOURCE sostiene
@@ -293,6 +300,7 @@ def build_global_input(layout, project_id, sources):
             p for p in local[candidate["context_id"]] if paragraphs[p].strip()
         )
     data = {
+        "proposal_stage": "source_backed_hypotheses",
         "project_id": project_id,
         "form": catalog,
         "sources": [{key: s[key] for key in (

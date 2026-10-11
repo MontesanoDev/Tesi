@@ -1,5 +1,19 @@
 # Stato di Mapi RAG
 
+## Trapani — contesto della proposta ipotetica in verifica, 11 ottobre 2026
+
+Quarta serie `1d31d60`: Trapani thinking 8/0/8 conditional grounded, quindi
+non stabile. Nel run vuoto il modello richiede implicitamente un'intestazione
+del FORM al soggetto SOURCE; non è mancanza di dati/retrieval. Labirinto 12
+grounded/sei conditional; controllo senza thinking ancora vuoto.
+
+Scopo ora esplicito in JSON/TASK: proposal_stage=source_backed_hypotheses.
+Proposte documentate per destinazioni compatibili, non attestazione della
+partecipazione. Unknown di scelta/rappresentanza blocca uso, non conservazione
+dell'ipotesi; nessuna scelta arbitraria fra soggetti alternativi. Corpus/schema/
+gate invariati, nessun RESOLVED o scrittura. Verifica software e ultima serie
+congelata in corso, non proclamare successo. Nessun push.
+
 ## Trapani — verifica del solo chiarimento di contratto, 11 ottobre 2026
 
 Terza serie `f2430dd`: otto dati SOURCE corretti in 3/3, ma conditional validi

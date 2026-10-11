@@ -900,3 +900,23 @@ che operator=semantic produce SEMPRE unknown nel backend, anche se il modello
 lo ritiene vero; per questo richiede conditional. Nessun rilassamento o
 riclassificazione nel validator. Stesso protocollo di cinque chiamate congelate
 per verificare il solo chiarimento; schema/input/fonti/gold/gate invariati.
+
+### Quarta serie: il compito non esplicita ancora l'ipotesi sul template bianco
+
+`1d31d60`: Trapani thinking 8/0/8 conditional grounded; il run vuoto contiene
+sei condizioni ma nessuna assegnazione/fatto. Tempi 62,5701/42,8133/50,2289 s,
+41.211/33.994/36.185 token. La traccia acquisita interpreta il template bianco
+non intestato al soggetto SOURCE come motivo di omissione: non è assenza di
+dati né rifiuto del validator. La traccia è solo diagnosi del modello, non prova
+factuale né spiegazione universale delle altre risposte vuote. Labirinto:
+12 grounded + sei conditional, 29.991 token/66,1185 s. Senza thinking vuoto,
+26.293 token/1,7199 s. **Non dichiarare il bug stabilmente risolto.**
+
+327 mirati/19,58 s e Ruff passati dopo il solo TASK. Scelta comunicata: aggiungere
+al JSON `proposal_stage=source_backed_hypotheses` ed esplicitarlo nel TASK.
+È il compito del prototipo, non una scelta fattuale del partecipante: dati
+SOURCE per destinazioni compatibili possono essere proposti conditional pur
+senza intestazione preesistente; uso/rappresentanza restano bloccati. Nessuna
+scelta fra soggetti alternativi o elusione del binding persona/ruolo. Un solo
+metadata di contesto, FORM/SOURCE/schema/gold/gate invariati. Nuova verifica
+congelata stesso protocollo di cinque chiamate, risultati precedenti conservati.

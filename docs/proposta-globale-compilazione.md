@@ -84,6 +84,16 @@ condizione, e richiede conditional. Validator/schema invariati, nessuna
 riclassificazione automatica di un value respinto. Un'ultima serie identica
 verifica il solo chiarimento del contratto, senza ulteriori modifiche ai gate.
 
+Quel chiarimento recupera otto conditional in due prove, ma la terza resta vuota:
+il modello interpreta la mancata intestazione del FORM bianco al soggetto SOURCE
+come motivo per omettere anche le ipotesi. L'input ora dichiara
+`proposal_stage=source_backed_hypotheses`: documentare possibili dati per campi
+compatibili non significa scegliere il partecipante o attestare rappresentanza.
+TASK esplicita lo stesso scopo; quelle incognite bloccano l'uso, non cancellano
+la proposta condizionata. Nessuna scelta arbitraria fra soggetti alternativi,
+valori USER o rilassamento dei gate personali/fattuali. Un solo metadata di
+compito aggiunto, corpus/schema invariati. Serie congelata di verifica separata.
+
 ## Contratto storico 7: legame letterale persona/ruolo
 
 Passo autorizzato successivo alle alternative, sempre sperimentale e con una
