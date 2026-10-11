@@ -21,9 +21,20 @@ restano da verificare semanticamente. RAG/chat/parser/renderer/V1 invariati.
 Verifiche concluse: **185 mirati, 1.591 backend completi**, Ruff e help CLI.
 Prima Ruff ha segnalato una riga lunga, corretta; entrambi i log conservati in
 `backend/data/compilation-audit/global-sparse-20261011-checks/`.
-Prossimo passo: congelare il codice e misurare due chiamate DeepSeek reali con
-lo stesso originale/51 SOURCE delle prove precedenti, annotando separatamente
-grounding e correttezza semantica. Nessun dato locale/sessione da modificare.
+Prime due prove DeepSeek a codice congelato `7190d2d`: 58,43/43,34 s,
+92.451/86.331 token, entrambe rifiutate per 256/165 record contro il tetto 128;
+249/126 record value senza fact_id. Non è un nuovo errore di copertura.
+Acquisizioni complete in `global-sparse-20261011-run1/2`, nessuna riparazione.
+
+Correzione successiva annunciata: schema separato value/NA, fact_id e property
+obbligatori non null per value. Il tetto delle assegnazioni coincide con le 400
+posizioni strutturali già ammesse; non è un obiettivo di output. Restano 128
+fatti/condizioni e invariati i limiti input/output/tempo: nessuna nuova chiamata
+per campo. Regressione 130 proposte con una valida e 129 invalide locali.
+**188 mirati**, Ruff e help passati; nuova suite completa in corso.
+Prossimo passo: congelare questa revisione e misurare altre due chiamate,
+conservando anche i primi fallimenti e distinguendo grounding da semantica.
+Nessun dato locale/sessione da modificare.
 Nessuna migrazione/reindicizzazione; commit piccoli autorizzati, niente push.
 
 ## Esito finale proposta compatta — 10 ottobre 2026

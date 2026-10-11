@@ -63,6 +63,9 @@ def test_sparse_input_has_no_inventory_receipt_or_partition(case):
         "version", "facts", "conditions", "fields", "uncertain_paragraph_ids"}
     assert len(data["form"]["candidates"]) == 3
     assert data["sources"][0]["role"] == "source"
+    schema = data["schema_output"]
+    assert {"fact_id", "property"} <= set(schema["$defs"]["ValueAssignment"]["required"])
+    assert schema["properties"]["fields"]["maxProperties"] == 400
 
 
 def test_omitted_positions_stay_unassessed_in_canonical_backend_inventory(case):
@@ -169,7 +172,7 @@ def test_malformed_condition_does_not_discard_siblings_or_unguard_known_targets(
 
 
 def test_false_local_condition_allows_only_non_applicability_without_value(case):
-    case[2]["fields"]["t0.r2.c1"].update(disposition="not_applicable", fact_id=None)
+    case[2]["fields"]["t0.r2.c1"].update(disposition="not_applicable", fact_id=None, property=None)
     result = audit(case)
     field = result["fields"][2]
     assert field["validation"] == "GROUNDED_PROPOSAL"
@@ -243,7 +246,7 @@ def test_unusable_global_json_is_still_rejected(case, mutation):
     if mutation == "envelope":
         case[2]["deferred"] = []
     elif mutation == "budget":
-        case[2]["fields"] = {str(i): {} for i in range(129)}
+        case[2]["fields"] = {str(i): {} for i in range(401)}
     raw = json.dumps(case[2])
     if mutation == "truncated":
         raw = raw[:-1]
@@ -251,3 +254,33 @@ def test_unusable_global_json_is_still_rejected(case, mutation):
         raw = raw.replace('"version": 5', '"version": 5, "version": 5')
     with pytest.raises(ValueError):
         validate_global_proposal(raw, case[0], "alpha", case[1])
+
+
+@pytest.mark.parametrize("change", [{"fact_id": None}, {"property": None}])
+def test_value_assignment_cannot_conform_to_schema_without_a_source_fact(case, change):
+    case[2]["fields"]["t0.r0.c1"].update(change)
+    result = audit(case)
+    assert result["fields"][0]["validation"] == "REJECTED"
+    assert result["fields"][1]["validation"] == "GROUNDED_PROPOSAL"
+
+
+def test_large_document_does_not_discard_valid_value_because_other_proposals_exceed_128(case):
+    doc = Document()
+    table = doc.add_table(rows=130, cols=2)
+    for index in range(130):
+        table.cell(index, 0).text = f"Identificativo organizzazione {index}"
+    stream = BytesIO()
+    doc.save(stream)
+    layout = inspect_docx(stream.getvalue())
+    base = case[2]["fields"]["t0.r0.c1"]
+    records = {f"t0.r{i}.c1": {**base, "form": {
+        "paragraph_id": f"paragraph:{i * 2}", "quote": f"Identificativo organizzazione {i}"}}
+        for i in range(130)}
+    # These malformed proposals must fail locally, not erase the valid sibling.
+    for i in range(1, 130):
+        records[f"t0.r{i}.c1"]["fact_id"] = None
+    result = audit((layout, case[1], {"version": 5, "fields": records,
+                                    "facts": case[2]["facts"], "conditions": {}}))
+    assert result["candidate_count"] == 130
+    assert result["counts"] == {"GROUNDED_PROPOSAL": 1, "REJECTED": 129}
+    assert result["fields"][0]["value"] == "AZ-98765"

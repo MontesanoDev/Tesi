@@ -23,15 +23,19 @@ riconoscibili. Errori di scope non eliminano una clausola dal suo contesto
 locale. Fatti orfani elencati in `unused_fact_ids` e inutilizzati. Un JSON
 troncato, chiavi duplicate, envelope o budget invalidi restano rifiuti globali.
 
-Budget invariati: 400 posizioni, 128 assegnazioni/fatti/condizioni, 96 SOURCE,
+Budget: 400 posizioni/assegnazioni, 128 fatti/condizioni, 96 SOURCE,
 100.000 caratteri SOURCE, 350.000 input, 49.152 token output; nessun retry,
 reviewer o chiamata per field. Incertezza FORM locale, proprietà diverse,
 assenza SOURCE e condizioni false/ignote impediscono ancora il valore.
 Grounding non è accettazione semantica: **zero RESOLVED, zero scritture**.
 V1/chat/RAG/parser/renderer invariati. I contratti storici restano per gli audit.
 
-Prove reali da eseguire a codice congelato; non usare i risultati storici
-come verifica della nuova versione.
+Le prime due prove (`7190d2d`) hanno prodotto 256/165 record contro il precedente
+tetto di 128: entrambe rifiutate; molti value senza fact_id. Dopo questa coppia
+conclusa, separati gli schemi value/NA: fact_id e property obbligatori non null
+per value; limite record pari al catalogo, così 129 record invalidi non eliminano
+un'assegnazione valida. Nessuna modifica retroattiva dei risultati acquisiti.
+Nuova coppia a codice congelato da misurare, senza cambiare corpus/budget token.
 
 **Esito dell'esperimento compatto:** tutte le sei risposte rifiutate, nessuna
 attivazione nella chat. Output finale più breve, ma ID/applicabilità ancora

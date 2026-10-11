@@ -96,10 +96,30 @@ class StructuralCondition(SharedCondition):
     scope: list[ConditionTarget] = Field(max_length=400)
 
 
+class ValueAssignment(AtomicField):
+    disposition: Literal["value"]
+    fact_id: Reference
+    property: str = Field(min_length=1, max_length=150)
+
+
+class NonApplicableAssignment(AtomicField):
+    disposition: Literal["not_applicable"]
+    fact_id: None = None
+    property: None = None
+    choice: None = None
+
+
+SparseAssignment = Annotated[
+    ValueAssignment | NonApplicableAssignment, Field(discriminator="disposition"),
+]
+
+
 class SparseGlobalProposal(StrictModel):
     version: Literal[5]
     conditions: dict[Reference, StructuralCondition] = Field(max_length=128)
-    fields: dict[Reference, AtomicField] = Field(max_length=128)
+    # The structural inventory already bounds destinations; no second, smaller
+    # partition budget can discard valid siblings before local validation.
+    fields: dict[Reference, SparseAssignment] = Field(max_length=400)
     facts: dict[Reference, SharedFact] = Field(max_length=128)
     # Only substantive uncertainty; the model need not repeat the FORM inventory.
     uncertain_paragraph_ids: list[Reference] = Field(default_factory=list, max_length=2048)

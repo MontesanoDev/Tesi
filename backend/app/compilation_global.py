@@ -14,7 +14,7 @@ import unicodedata
 from collections import Counter
 from typing import Literal
 
-from pydantic import Field
+from pydantic import Field, TypeAdapter
 
 from app.compilation_catalog import build_compilation_catalog
 from app.compilation_global_contract import (
@@ -26,6 +26,7 @@ from app.compilation_global_contract import (
     SharedFact,
     SharedField,
     SourceSpan,
+    SparseAssignment,
     SparseGlobalProposal,
     StructuralCondition,
 )
@@ -40,6 +41,7 @@ MAX_SOURCE_CHARACTERS = 100_000
 MAX_INPUT_CHARACTERS = 350_000
 MAX_OUTPUT_CHARACTERS = 500_000
 MAX_OUTPUT_TOKENS = 49_152
+SPARSE_ASSIGNMENT = TypeAdapter(SparseAssignment)
 
 
 class GlobalField(StrictModel):
@@ -104,12 +106,14 @@ ruolo e ramo. Non disponibile/non documentato NON è un valore fattuale utile.
 General KB non prova dati anagrafici aziendali o personali. Non fondere chunk,
 non citare il primo chunk del file per testo contenuto nei successivi.
 
-3. ASSEGNAZIONI COMPATTE. fields contiene massimo 128 candidate, ESCLUSIVAMENTE
+3. ASSEGNAZIONI COMPATTE. fields contiene ESCLUSIVAMENTE
 disposition=value o not_applicable con le prove richieste. Ometti semplicemente
 le altre posizioni: il backend le conserva come ancora da verificare, NON
 missing, decorative o non applicabili. NON restituire deferred o liste di ID
 da coprire. fields contiene SOLO ID esistenti in form.candidates: paragraph e
 table sono contesto/scope, MAI destinazioni scrivibili. Nessun nuovo candidate.
+Il tetto strutturale è 400, NON un numero di record da raggiungere. Non elencare
+i requisiti privi di valore: per loro non va emesso alcun record fields.
 Per ogni field: label, kind, disposition, form, conditions; fact_id se pertinente,
 property IDENTICA alla property del fatto associato, choice solo per checkbox.
 Il form.quote del field è un estratto LETTERALE locale della richiesta: scegli
@@ -129,6 +133,8 @@ diverse: non trasferire fatti fra queste dimensioni per escludere una sezione.
 Condizione falsa locale => not_applicable senza valore; sconosciuta => ometti
 l'assegnazione, NON value/not_applicable. Valore assente nelle SOURCE => ometti.
 Non creare record fields con missing/review/ignore. Per value serve sempre un fact_id.
+fact_id e property sono OBBLIGATORI e NON NULL per value: la sola label FORM
+non è un'assegnazione. Se manca il fatto SOURCE, ometti INTERAMENTE il field.
 Firme, dichiarazioni non provate, ruoli non attestati e scelte di partecipazione
 restano senza assegnazione. Non assumere candidate=campo obbligatorio.
 Checkbox: choice booleano + fatto che sostiene quella scelta nelle SOURCE e
@@ -645,9 +651,9 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     fact and condition errors cannot discard independent grounded proposals.
     Missing proposals are unassessed, never fabricated missing/NA/value records.
     """
-    for name in ("fields", "facts", "conditions"):
+    for name, maximum in (("fields", 400), ("facts", 128), ("conditions", 128)):
         records = payload.get(name)
-        if (not isinstance(records, dict) or len(records) > 128
+        if (not isinstance(records, dict) or len(records) > maximum
                 or any(not 1 <= len(key) <= 80 for key in records)):
             raise ValueError(f"Dizionario {name} non valido/oltre budget")
     proposal = SparseGlobalProposal.model_validate({**payload, "fields": {},
@@ -675,7 +681,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         if key in unassigned:
             continue
         try:
-            item = AtomicField.model_validate(payload["fields"][key])
+            item = SPARSE_ASSIGNMENT.validate_python(payload["fields"][key])
             if item.fact_id is not None:
                 fact = SharedFact.model_validate(facts.get(item.fact_id))
                 if (item.property is None or
