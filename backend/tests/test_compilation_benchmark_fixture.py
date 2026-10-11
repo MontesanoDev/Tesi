@@ -146,6 +146,34 @@ def test_empty_response_is_55_omissions_not_55_missing_values(material):
     assert score["unexpected_values"] == score["unexpected_na"] == 0
 
 
+@pytest.mark.parametrize("key,kind", [("polizza", "conflicting"), ("corrispondenza", "ambiguous")])
+def test_review_scoring_is_explicitly_limited_to_kind_and_source_ids(material, key, kind):
+    expected = next(f for f in material["gold"]["fields"] if f["key"] == key)
+    proof = {"chunk_id": expected["source_chunk_ids"][0]}
+    proposal = {"version": 6, "conditions": {}, "facts": {
+        "a": {"value": "Alternativa A", "evidence": [proof]},
+        "b": {"value": "Alternativa B", "evidence": [proof]}},
+        "fields": {expected["candidate_id"]: {
+            "disposition": "review", "review_kind": kind, "alternative_fact_ids": ["a", "b"]}}}
+    score = score_fixture(json.dumps(proposal), None, material["gold"])
+    assert score["review_kind_and_source_matches"] == 1
+    assert score["grounded_review_kind_and_source_matches"] == 0
+    assert score["unexpected_values"] == 0
+    assert score["semantic_acceptance"] is False
+    proposal["facts"]["b"]["evidence"] = [{"chunk_id": 999999}]
+    assert score_fixture(json.dumps(proposal), None, material["gold"])[
+        "review_kind_and_source_matches"] == 0
+
+
+def test_review_cannot_be_counted_for_a_single_known_value(material):
+    proposal = sample_proposal(material)
+    assignment = next(iter(proposal["fields"].values()))
+    assignment.update(disposition="review", review_kind="ambiguous",
+                      alternative_fact_ids=["f", "f"])
+    score = score_fixture(json.dumps(proposal), None, material["gold"])
+    assert score["review_kind_and_source_matches"] == score["value_and_source_matches"] == 0
+
+
 def test_cli_requires_exactly_one_input_mode(tmp_path):
     common = ["--profile-project", "profile", "--output", str(tmp_path)]
     assert runner.arguments(common + ["--fixture", str(FIXTURE)]).fixture == FIXTURE

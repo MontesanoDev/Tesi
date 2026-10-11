@@ -18,6 +18,9 @@ from pydantic import Field, TypeAdapter
 
 from app.compilation_catalog import build_compilation_catalog
 from app.compilation_global_contract import (
+    AlternativeAssignment,
+    AlternativeAwareAssignment,
+    AlternativeAwareProposal,
     AtomicField,
     CompactGlobalProposal,
     ConditionTarget,
@@ -42,6 +45,7 @@ MAX_INPUT_CHARACTERS = 350_000
 MAX_OUTPUT_CHARACTERS = 500_000
 MAX_OUTPUT_TOKENS = 49_152
 SPARSE_ASSIGNMENT = TypeAdapter(SparseAssignment)
+ALTERNATIVE_ASSIGNMENT = TypeAdapter(AlternativeAwareAssignment)
 
 
 class GlobalField(StrictModel):
@@ -60,7 +64,7 @@ class GlobalProposal(StrictModel):
     fields: dict[str, GlobalField] = Field(max_length=400)
 
 
-TASK = """Produci UNA proposta globale JSON versione 5. Leggi prima l'intero Word FORM
+TASK = """Produci UNA proposta globale JSON versione 6. Leggi prima l'intero Word FORM
 nei blocks e tutte le SOURCE. L'ordine dei blocks è quello del documento; celle,
 righe e titoli precedenti determinano soggetto, ruolo, sezione e sottosezione.
 section_ids vuoto significa assenza di outline Word esplicito, NON assenza di
@@ -93,8 +97,9 @@ Non basta citare una clausola: indica gli ambiti strutturali dipendenti dal ramo
 
 2. Individua le sole assegnazioni/condizioni sostenibili. NON catalogare la KB.
 FATTI ATOMICI SOURCE: massimo 128 in TUTTO, SOLO quelli referenziati da un
-field.fact_id o da una condition.fact_ids. Nessun fatto isolato, nessun inventario
-dei requisiti del bando o di General KB. Non creare duplicati con suffissi.
+field.fact_id, field.alternative_fact_ids o condition.fact_ids. Nessun fatto isolato,
+nessun inventario dei requisiti del bando o di General KB. Non duplicare lo stesso
+fatto con suffissi: valori alternativi distinti sono invece fatti distinti.
 Metti ogni proprietà necessaria distinta in un fatto distinto:
 subject, entity, aspect, property, value e 1-2 evidence con chunk_id effettivo e
 quote breve LETTERALE che include il valore COMPLETO. Una riga SOURCE può
@@ -107,7 +112,7 @@ General KB non prova dati anagrafici aziendali o personali. Non fondere chunk,
 non citare il primo chunk del file per testo contenuto nei successivi.
 
 3. ASSEGNAZIONI COMPATTE. fields contiene ESCLUSIVAMENTE
-disposition=value o not_applicable con le prove richieste. Ometti semplicemente
+disposition=value, not_applicable o review con le prove richieste. Ometti semplicemente
 le altre posizioni: il backend le conserva come ancora da verificare, NON
 missing, decorative o non applicabili. NON restituire deferred o liste di ID
 da coprire. fields contiene SOLO ID esistenti in form.candidates: paragraph e
@@ -132,7 +137,7 @@ Tipologia aziendale, partecipazione e poteri di rappresentanza sono dimensioni
 diverse: non trasferire fatti fra queste dimensioni per escludere una sezione.
 Condizione falsa locale => not_applicable senza valore; sconosciuta => ometti
 l'assegnazione, NON value/not_applicable. Valore assente nelle SOURCE => ometti.
-Non creare record fields con missing/review/ignore. Per value serve sempre un fact_id.
+Non creare record fields con missing/ignore. Per value serve sempre un fact_id.
 fact_id e property sono OBBLIGATORI e NON NULL per value: la sola label FORM
 non è un'assegnazione. Se manca il fatto SOURCE, ometti INTERAMENTE il field.
 Firme, dichiarazioni non provate, ruoli non attestati e scelte di partecipazione
@@ -140,6 +145,22 @@ restano senza assegnazione. Non assumere candidate=campo obbligatorio.
 Checkbox: choice booleano + fatto che sostiene quella scelta nelle SOURCE e
 istruzioni FORM; casella vuota non significa false. Nessuna scrittura in questa
 prova. reason solo se aggiunge un'informazione specifica; evita boilerplate.
+
+ALTERNATIVE SOURCE. Prima di scegliere un valore considera TUTTE le SOURCE
+pertinenti allo stesso soggetto, ruolo e proprietà. Se più valori restano
+plausibili e nessuna fonte ne stabilisce la priorità, NON sceglierne uno,
+NON concatenarli e NON scartare silenziosamente gli altri. Per un campo testuale
+emetti disposition=review, kind=data, property, review_kind=ambiguous se manca
+un criterio di scelta o conflicting se le fonti fanno affermazioni incompatibili,
+alternative_fact_ids con 2-4 fatti atomici distinti, reason breve, form e conditions.
+Ogni alternativa deve avere lo STESSO subject, entity, aspect e property;
+quote SOURCE proprie e value singolo. Nessun fact_id o choice nel record review.
+Valori di soggetti, ruoli, proprietà o periodi diversi non sono automaticamente
+alternative dello stesso campo. Non dichiarare risolto un conflitto per ordine
+dei documenti. Se la priorità è realmente documentata, motivala con prove;
+altrimenti conserva le alternative come review. Non creare review senza SOURCE.
+Il backend verifica riferimenti e grounding, NON certifica il giudizio semantico
+ambiguous/conflicting. Applicabilità sconosciuta resta sconosciuta anche in review.
 
 Rispondi con JSON COMPATTO, senza indentazione. Ordine: version,
 uncertain_paragraph_ids, conditions, fields,
@@ -200,7 +221,7 @@ def build_global_input(layout, project_id, sources):
         "user_values": [],
         "source_coverage": {"strategy": "complete_small_corpus", "partial": False,
                             "chunks": len(source_map)},
-        "schema_output": SparseGlobalProposal.model_json_schema(),
+        "schema_output": AlternativeAwareProposal.model_json_schema(),
     }
     if sum(bool(text.strip()) for text in paragraphs.values()) > 2048:
         raise ValueError("Inventario FORM oltre budget: nessun troncamento implicito")
@@ -644,6 +665,48 @@ def _sparse_conditions(records, catalog, paragraphs, local):
     return adapted, metadata, errors, links
 
 
+def _fact_identity(fact):
+    # This checks the proposed identity, not whether SOURCE entails that identity.
+    # Only deterministic Unicode/space normalization; no aliases or fuzzy grouping.
+    return tuple(_comparison_text(fact[key]) for key in (
+        "subject", "entity", "aspect", "property",
+    ))
+
+
+def _grounded_alternatives(fact_ids, property_name, facts, candidate, layout, label):
+    """Require distinct, individually valid SOURCE values for one proposed property.
+
+    Different strings warrant review, NOT an automatic semantic conflict verdict.
+    Even a fully grounded list is never a writable field or semantic approval.
+    """
+    if len(set(fact_ids)) != len(fact_ids):
+        raise ValueError("Alternative SOURCE duplicate")
+    selected = []
+    for fact_id in fact_ids:
+        fact = facts.get(fact_id)
+        if fact is None or fact["validation"] != "GROUNDED_PROPOSAL":
+            raise ValueError("Alternativa SOURCE assente o rifiutata")
+        if _comparison_text(fact["property"]) != _comparison_text(property_name):
+            raise ValueError("Alternativa su proprietà diversa")
+        selected.append(fact)
+    if len({_fact_identity(fact) for fact in selected}) != 1:
+        raise ValueError("Alternative su soggetti/dimensioni/proprietà differenti")
+    if len({_comparison_text(fact["value"]) for fact in selected}) != len(selected):
+        raise ValueError("Alternative con valori identici, non scelte distinte")
+    if candidate["type"] != "text" or is_signature_target(layout, candidate["id"]):
+        raise ValueError("Alternative testuali non ammesse per questa posizione")
+    for fact in selected:
+        for proof in fact["source_evidence"]:
+            checked = validate_value(layout, {
+                "id": candidate["id"], "label": label, "entity": fact["entity"], "kind": "data",
+            }, fact["value"], {**proof, "content": proof["quote"]}, proof["quote"])
+            if checked["written_value"] is None:
+                raise ValueError("; ".join(checked["validation_notes"]))
+    return [{"fact_id": key, "value": fact["value"],
+             "source_evidence": fact["source_evidence"]}
+            for key, fact in zip(fact_ids, selected, strict=True)]
+
+
 def _validate_sparse_proposal(payload, layout, catalog, source_map):
     """Keep the canonical inventory in the backend and quarantine each proposal.
 
@@ -656,8 +719,10 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         if (not isinstance(records, dict) or len(records) > maximum
                 or any(not 1 <= len(key) <= 80 for key in records)):
             raise ValueError(f"Dizionario {name} non valido/oltre budget")
-    proposal = SparseGlobalProposal.model_validate({**payload, "fields": {},
-                                                    "facts": {}, "conditions": {}})
+    alternatives_enabled = payload["version"] == 6
+    schema = AlternativeAwareProposal if alternatives_enabled else SparseGlobalProposal
+    assignment = ALTERNATIVE_ASSIGNMENT if alternatives_enabled else SPARSE_ASSIGNMENT
+    proposal = schema.model_validate({**payload, "fields": {}, "facts": {}, "conditions": {}})
     paragraphs, local = _form_bindings(catalog)
     uncertain = set(proposal.uncertain_paragraph_ids)
     if not uncertain <= paragraphs.keys():
@@ -670,9 +735,14 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                   for ref in record["fact_ids"] if isinstance(ref, str)}
     referenced.update(record.get("fact_id") for record in payload["fields"].values()
                       if isinstance(record, dict) and isinstance(record.get("fact_id"), str))
+    if alternatives_enabled:
+        referenced.update(ref for record in payload["fields"].values()
+                          if isinstance(record, dict)
+                          and isinstance(record.get("alternative_fact_ids"), list)
+                          for ref in record["alternative_fact_ids"] if isinstance(ref, str))
     facts = {key: record for key, record in payload["facts"].items() if key in referenced}
     unused = sorted(set(payload["facts"]) - referenced)
-    expanded, errors = {key: {} for key in catalog["candidates"]}, {}
+    expanded, errors, items = {key: {} for key in catalog["candidates"]}, {}, {}
     unknown = {key: {"proposal": record, "validation": "REJECTED",
                      "validation_errors": ["Destinazione non presente nei candidate originali"]}
                for key, record in payload["fields"].items() if key not in expanded}
@@ -681,7 +751,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         if key in unassigned:
             continue
         try:
-            item = SPARSE_ASSIGNMENT.validate_python(payload["fields"][key])
+            item = assignment.validate_python(payload["fields"][key])
             if item.fact_id is not None:
                 fact = SharedFact.model_validate(facts.get(item.fact_id))
                 if (item.property is None or
@@ -691,7 +761,10 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                 raise ValueError("Inventario locale incerto: applicabilità da verificare")
             if len(set(item.conditions)) != len(item.conditions):
                 raise ValueError("Riferimento a condizione duplicato")
-            expanded[key] = {**item.model_dump(exclude={"property"}),
+            items[key] = item
+            expanded[key] = {**item.model_dump(exclude={
+                "property", "alternative_fact_ids", "review_kind",
+            }),
                              "conditions": sorted(set(item.conditions) | links[key])}
         except ValueError as exc:
             errors[key] = str(exc)
@@ -712,11 +785,43 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                 if isinstance(payload["fields"][key], dict) else None
             if key in errors:
                 field["validation_errors"] = [errors[key]]
+            elif alternatives_enabled and field["validation"] != "REJECTED":
+                item = items[key]
+                fact_ids = None
+                if isinstance(item, AlternativeAssignment):
+                    fact_ids = item.alternative_fact_ids
+                elif item.disposition == "value":
+                    chosen = result["facts"][item.fact_id]
+                    siblings = {}
+                    for ref, fact in result["facts"].items():
+                        if (fact["validation"] == "GROUNDED_PROPOSAL"
+                                and _fact_identity(fact) == _fact_identity(chosen)
+                                and _comparison_text(fact["value"]) !=
+                                _comparison_text(chosen["value"])):
+                            siblings.setdefault(_comparison_text(fact["value"]), ref)
+                    if siblings:
+                        fact_ids = [item.fact_id, *siblings.values()]
+                if fact_ids:
+                    try:
+                        alternatives = _grounded_alternatives(
+                            fact_ids, item.property, result["facts"],
+                            {"id": key, **catalog["candidates"][key]}, layout, item.label,
+                        )
+                        field.update(validation="REVIEW_REQUIRED", disposition="review",
+                                     value=None, fact_id=None, alternatives=alternatives,
+                                     review_kind=getattr(item, "review_kind",
+                                                         "unselected_alternatives"),
+                                     source_evidence=[proof for alternative in alternatives
+                                                      for proof in alternative["source_evidence"]])
+                    except ValueError as exc:
+                        # An invalid alternative must not silently restore a chosen value.
+                        field.update(validation="REJECTED", value=None, fact_id=None,
+                                     validation_errors=[str(exc)])
     for key, condition in result["conditions"].items():
         condition.update(metadata[key])
         if key in condition_errors:
             condition["validation_errors"] = [condition_errors[key]]
-    result.update(version=5, unassigned_count=len(unassigned),
+    result.update(version=payload["version"], unassigned_count=len(unassigned),
                   rejected_assignments=unknown, unused_fact_ids=unused,
                   counts=dict(Counter(f["validation"] for f in result["fields"])),
                   dispositions=dict(Counter(f.get("disposition", "unassigned" if
@@ -741,7 +846,7 @@ def validate_global_proposal(raw, layout, project_id, sources):
     catalog = build_compilation_catalog(layout)
     source_map = _allowed_sources(project_id, sources)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
-            and payload["version"] == 5):
+            and payload["version"] in {5, 6}):
         return _validate_sparse_proposal(payload, layout, catalog, source_map)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
             and payload["version"] == 4):

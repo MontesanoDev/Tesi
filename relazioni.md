@@ -337,3 +337,41 @@ Bundle finale: **219 file, 1.054.963 byte**, SHA-256
 Verificati tutti i manifest delle sei prove, corrispondenza del codice catturato
 ai commit congelati, byte dell'archivio, assenza di credenziali/database e gold
 escluso dalle request. Entrambe le iterazioni rimangono recuperabili; nessun push.
+
+## 11 ottobre 2026 — alternative SOURCE, protocollo prima della misura
+
+Causa osservata nelle nove prove reali precedenti: contratto sparse value/NA,
+nessun modo esplicito per proporre alternative da chiarire. Polizza scelta
+arbitrariamente in tutte le prove V3; terza V3 concatena recapiti alternativi.
+Questi errori possono superare grounding letterale. Ipotesi circoscritta:
+consentire review grounded nella stessa risposta rende rappresentabile il dubbio
+senza una seconda chiamata o nuovi metadati di ingresso.
+
+Contratto sperimentale 6: alternative_fact_ids 2–4, review_kind proposto,
+proprietà/soggetto/entity/aspect uguali, valori SOURCE atomici e prove separate.
+Nessun valore scritto; condizioni unknown restano unknown. Il backend blocca
+anche un value quando altri fatti referenziati e grounded della stessa proprietà
+sono già discordanti; non certifica semanticamente conflitto/applicabilità.
+Non rileva alternative omesse dall'output o completezza delle fonti considerate.
+V1, UI, RAG, parser, renderer, fixture V1/fonti/gold e originali invariati.
+
+Protocollo: tre chiamate reali deepseek-flash sul commit congelato, una per run,
+temperatura 0,1, thinking disabilitato, timeout 300 s/49.152 token output,
+nessun retry/reviewer/USER. Stesso input nelle tre prove, gold escluso dal prompt.
+Confronto con catalogo V3/output V5: non soltanto numero di grounded, ma polizza,
+recapiti, soggetti/rami, cinque dati societari, direttore/5739, omissioni e token.
+Le nuove metriche review confrontano tipo e ID SOURCE con il gold: non valutano
+entailment, completezza o correttezza semantica del conflitto.
+
+Software: primo gruppo 102 passati; successivo test scorer fallito per chiave
+fixture errata (`recapito` invece di `corrispondenza`), corretto prima della misura.
+Ruff iniziale con righe oltre limite poi corrette. Nessun benchmark reale ancora
+avviato in questa fase. Mirati finali 264 passati/11,06 s, Ruff completo/diff
+passati; log in `backend/data/compilation-audit/alternatives-v6-20261011-checks/`.
+Suite completa in corso; esiti finali e bundle seguiranno senza nascondere prove.
+
+Suite completa pre-benchmark: **1.670 passati in 106,43 s**. Ruff completo,
+fixture `--check`, CLI help e diff check passati. Frontend invariato/non eseguito.
+Codice e protocollo vengono congelati prima delle tre chiamate; nessuna modifica
+prevista durante la serie. I test software usano provider simulati/storage
+temporaneo e non sono una misura della qualità di DeepSeek.

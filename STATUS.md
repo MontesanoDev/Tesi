@@ -1,5 +1,24 @@
 # Stato di Mapi RAG
 
+## Alternative SOURCE — 11 ottobre 2026, verifica in corso
+
+Autorizzato il passo successivo: una sola proposta globale può esprimere due o
+più alternative grounded senza scegliere arbitrariamente. Contratto sperimentale
+6: review con 2–4 fact ID, stesso soggetto/dimensione/proprietà dichiarati,
+prove individuali e nessun valore scelto. Il backend blocca anche una scelta
+value quando nella proposta esistono altri fatti referenziati e grounded della
+stessa proprietà con valori differenti. Gate FORM/SOURCE e applicabilità invariati;
+nessuna promozione a RESOLVED, scrittura, attivazione nella V1 o migrazione.
+
+Contesto strutturale V3 invariato; soggetto/ruolo/applicabilità non sono ancora
+verificati semanticamente. Il backend non scopre alternative omesse dal modello;
+review_kind non è un verdetto. Budget/chiamate invariati. Test mirati: **264
+passati**, **1.670 backend in 106,43 s**, Ruff, fixture check, CLI help e diff.
+Tre acquisizioni
+reali deepseek-flash previste solo dopo il congelamento del codice. Il registro
+e gli esiti verranno completati in questo intervento; non riusare questa nota
+come esito di un benchmark già concluso.
+
 ## Contesto JSON dei candidate — 11 ottobre 2026, esito misurato
 
 Primo intervento autorizzato sul contesto in ingresso. Corretta l'assunzione

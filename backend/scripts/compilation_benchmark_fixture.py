@@ -59,6 +59,23 @@ def score_fixture(raw, audit, gold):
         citations = [e.get("chunk_id") for e in evidence if isinstance(e, dict)] \
             if isinstance(evidence, list) else []
         disposition = assignment.get("disposition")
+        alternatives = []
+        refs = assignment.get("alternative_fact_ids", [])
+        for ref in refs if isinstance(refs, list) else []:
+            alternative = facts.get(ref, {}) if isinstance(ref, str) else {}
+            if not isinstance(alternative, dict):
+                continue
+            proofs = alternative.get("evidence", [])
+            alternatives.append({"fact_id": ref, "value": alternative.get("value"),
+                                 "source_chunk_ids": [p.get("chunk_id") for p in proofs
+                                    if isinstance(p, dict)] if isinstance(proofs, list) else []})
+        review_match = (
+            disposition == "review"
+            and assignment.get("review_kind") in {"ambiguous", "conflicting"}
+            and assignment["review_kind"].upper() == expected["expected_state"]
+            and len(alternatives) >= 2 and all(
+                a["source_chunk_ids"] and all(c in expected["source_chunk_ids"]
+                    for c in a["source_chunk_ids"]) for a in alternatives))
         actual = assignment.get("choice") if expected["type"] == "checkbox" else fact.get("value")
         source_ok = bool(citations) and all(c in expected["source_chunk_ids"] for c in citations)
         value_match = False
@@ -81,12 +98,18 @@ def score_fixture(raw, audit, gold):
             "value_and_source_match": value_match, "na_disposition_match": na_match,
             "unexpected_value": unexpected_write, "unexpected_na": unexpected_na,
             "local_validation": result, "semantic_review_required": True,
+            "review_kind": assignment.get("review_kind"), "alternatives": alternatives,
+            "review_kind_and_source_match": bool(review_match),
+            "grounded_review_kind_and_source_match": bool(
+                review_match and result == "REVIEW_REQUIRED"
+                and validated.get(candidate_id, {}).get("alternatives")),
         })
     expected_ids = {e["candidate_id"] for e in gold["fields"]}
     return {
         "fixture_version": gold["version"], "original_sha256": gold["original_sha256"],
         "scoring_scope": "literal values/booleans and authored SOURCE IDs only; "
-                         "NA checks disposition only, not condition evidence",
+                         "NA checks disposition only; review checks kind/SOURCE IDs, "
+                         "not semantic correctness or completeness of alternatives",
         "semantic_acceptance": False, "session_writes": 0, "docx_writes": 0,
         "expected_states": dict(Counter(e["expected_state"] for e in gold["fields"])),
         "expected_value_targets": sum(e["expected_state"] == "RESOLVED" for e in gold["fields"]),
@@ -97,6 +120,9 @@ def score_fixture(raw, audit, gold):
         "na_disposition_matches": sum(r["na_disposition_match"] for r in results),
         "unexpected_values": sum(r["unexpected_value"] for r in results),
         "unexpected_na": sum(r["unexpected_na"] for r in results),
+        "review_kind_and_source_matches": sum(r["review_kind_and_source_match"] for r in results),
+        "grounded_review_kind_and_source_matches": sum(
+            r["grounded_review_kind_and_source_match"] for r in results),
         "omitted": sum(not r["proposed"] for r in results),
         "unknown_candidate_ids": sorted(set(fields) - expected_ids), "fields": results,
     }

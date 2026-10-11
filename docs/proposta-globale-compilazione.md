@@ -1,6 +1,44 @@
 # Proposta globale sperimentale — 11 ottobre 2026
 
-## Contratto corrente 5: proposte sparse, inventario nel backend
+## Contratto corrente 6: alternative SOURCE esplicite
+
+Passo sperimentale autorizzato l'11 ottobre, senza attivazione nella chat. Stesso
+catalogo V3, corpus ammesso e singola chiamata. Il contratto 5 resta disponibile
+per rileggere gli audit storici. Il nuovo schema aggiunge soltanto un terzo tipo
+di proposta: `disposition=review`, `kind=data`, `property`, `review_kind`
+(`ambiguous`/`conflicting`), `alternative_fact_ids` (2–4), motivo, FORM e condizioni.
+Non contiene `value`, `fact_id` scelto o `choice`.
+
+Ogni alternativa è un fatto SOURCE atomico con quote e riferimenti propri. Il
+backend richiede stesso soggetto/entity/aspect/property dichiarati, valori
+distinti dopo normalizzazione conservativa, grounding di ogni valore e validità
+sintattica per il candidate. Ancore locali, ID e condizioni restano controllati
+dai gate esistenti. Errori locali non eliminano le proposte indipendenti.
+Review grounded => `REVIEW_REQUIRED`, `value=null`, `written_value=null`;
+conserva separatamente tutte le prove e gli eventuali condition_checks unknown.
+
+Se una proposta value ha già altri fatti referenziati e grounded dello stesso
+soggetto/dimensione/proprietà con valori differenti, il backend blocca la scelta
+e conserva le alternative. Non calcola CONFLICTING da stringhe diverse: alias,
+periodi o significati potrebbero differire. Un'alternativa invalida non ripristina
+silenziosamente il valore scelto. I fatti orfani restano esclusi come nel V5.
+
+**Limiti:** identità e property sono ancora metadati proposti dall'AI, non
+entailment verificato. Il gate non scopre una seconda SOURCE omessa dall'output
+né certifica che tutte le alternative siano state individuate. Review kind è
+un giudizio da verificare, non uno stato persistito. Nessuna risoluzione automatica
+delle priorità temporali o delle checkbox discordanti. Soggetto/applicabilità
+restano aperti: grounding non diventa RESOLVED. Nessuna modifica di V1, parser,
+renderer, RAG, UI, originali o sessioni; nessuna migrazione/reindicizzazione.
+
+Budget invariati: massimo 400 proposte, 128 fatti/condizioni, 96 SOURCE/100.000
+caratteri, 350.000 input, 49.152 token output e 300 s nel runner. Le alternative
+consumano lo stesso budget di fatti; nessun reviewer, retry o chiamata per campo.
+La misura usa tre chiamate reali a codice congelato sulla fixture Labirinto V1,
+gold fuori dal prompt; registro, esiti anche negativi e acquisizioni in
+[relazioni.md](../relazioni.md). Non è un benchmark E2E della V1.
+
+## Contratto storico 5: proposte sparse, inventario nel backend
 
 Autorizzata la semplificazione dopo i sei rifiuti del contratto compatto.
 Una sola chiamata riceve ancora l'intero catalogo e le SOURCE ammesse. Output:

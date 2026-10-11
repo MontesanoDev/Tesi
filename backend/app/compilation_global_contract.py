@@ -123,3 +123,27 @@ class SparseGlobalProposal(StrictModel):
     facts: dict[Reference, SharedFact] = Field(max_length=128)
     # Only substantive uncertainty; the model need not repeat the FORM inventory.
     uncertain_paragraph_ids: list[Reference] = Field(default_factory=list, max_length=2048)
+
+
+class AlternativeAssignment(SharedField):
+    """Grounded alternatives are proposals to review, never a chosen value."""
+
+    disposition: Literal["review"]
+    kind: Literal["data"]
+    property: str = Field(min_length=1, max_length=150)
+    review_kind: Literal["ambiguous", "conflicting"]
+    alternative_fact_ids: list[Reference] = Field(min_length=2, max_length=4)
+    fact_id: None = None
+    choice: None = None
+    reason: str = Field(min_length=1, max_length=200)
+
+
+AlternativeAwareAssignment = Annotated[
+    ValueAssignment | NonApplicableAssignment | AlternativeAssignment,
+    Field(discriminator="disposition"),
+]
+
+
+class AlternativeAwareProposal(SparseGlobalProposal):
+    version: Literal[6]
+    fields: dict[Reference, AlternativeAwareAssignment] = Field(max_length=400)
