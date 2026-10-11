@@ -64,8 +64,9 @@ def arguments(argv=None):
     parser.add_argument("--profile-project", required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--max-seconds", type=int, default=300)
-    parser.add_argument("--thinking", action="store_true",
-                        help="Confronto isolato: ragionamento low, sempre una chiamata")
+    parser.add_argument("--thinking", action=argparse.BooleanOptionalAction, default=True,
+                        help="Ragionamento low predefinito; --no-thinking per il controllo, "
+                             "sempre una chiamata")
     args = parser.parse_args(argv)
     if args.fixture:
         if args.project is not None or args.form_id is not None:

@@ -947,3 +947,27 @@ Zero RESOLVED/scritture. **335 mirati/26,96 s**, Ruff passato; completa in corso
 Ultimo protocollo: una nuova Trapani e un nuovo Labirinto reali sul commit
 congelato, stesso input/TASK della serie appena riletta, sempre una chiamata,
 nessun retry/USER/scrittura. Nessun nuovo sorteggio o gold adattato.
+
+### Esito finale del gate e default del solo prototipo
+
+`396e7a6`, due nuove chiamate, input/TASK identici alla serie hypothesis-stage:
+Trapani **nove conditional grounded**, gli otto dati aziendali più PEC
+comunicazioni, **39.318 token/53,5899 s**. Labirinto **13 grounded + sei
+conditional, 17 target letterali**, 32.419 token/62,8407 s. Alternative recapito/
+polizza conservate. Limiti: ordine direttore unito al numero e quattro checkbox
+di tipologia omessi; grounding non è entailment. Zero RESOLVED/scritture.
+Tre replay controllati + nuova chiamata preservano gli otto dati corretti,
+senza fax/CF personale/firmatario/altri albi/firma impropri. Originale invariato.
+
+38 nuove chiamate in tutto, **1.223.138 token/1.484,9211 s AI aggregati**:
+includono tutte le iterazioni fallite, nessuna cancellata. Non è tempo E2E o
+risparmio di token. Ultima suite: **1.762/158,63 s**, 335 mirati/26,96 s;
+Ruff/fixture, manifest/codice/replay/fingerprint passati. Frontend invariato.
+
+Scelta comunicata: SOLO prototipo/runner thinking low predefinito, flag esplicito
+--no-thinking per controlli. Fonte del cambio: le risposte senza ragionamento
+restano vuote; qualità prima della latenza in questa fase. Una chiamata comunque,
+nessun fallback dopo vuoto né modifica a profilo UI/V1. Le richieste prodotte dal
+nuovo default sono identiche alle ultime due reali: confronto salvato, nessuna
+nuova API necessaria per lo stesso body. Dopo default: **338 mirati/14,08 s**,
+Ruff passato; ultima completa in corso. Report e bundle da completare, nessun push.

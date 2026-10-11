@@ -319,7 +319,7 @@ def build_global_input(layout, project_id, sources):
     return data
 
 
-def global_request(settings, data, *, thinking=False):
+def global_request(settings, data, *, thinking=True):
     body = {
         "model": settings.model, "temperature": 0.1, "max_tokens": MAX_OUTPUT_TOKENS,
         "thinking": {"type": "enabled" if thinking else "disabled"},

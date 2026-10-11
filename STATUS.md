@@ -1,116 +1,59 @@
 # Stato di Mapi RAG
 
-## Trapani — verifica finale del grounding indipendente, 11 ottobre 2026
+## Trapani — proposte SOURCE recuperate, 11 ottobre 2026
 
-Quinta serie hypothesis-stage: tre risposte con gli stessi otto dati corretti,
-tutte conditional. Primo run respinto per supporto SOURCE errato della condizione,
-non per valori dei campi. Separati i due grounding solo in V8: FORM prova che la
-clausola esiste; SOURCE opzionale invalida mantiene unknown con errori visibili;
-ciascun valore viene verificato contro le sue prove. Nessuna condizione resa vera,
-nessun SOURCE match permissivo o f_tipo riparato, value+unknown ancora rifiutato.
-FORM/campi invalidi e same/different invalidi restano rifiuti; V2–V7 invariati.
+Intervento autorizzato sul compilatore globale sperimentale, Git iniziale pulito
+`02524d8`. V1/chat/RAG/parser/renderer e dati live invariati, nessuna migrazione,
+reindicizzazione, sessione creata o DOCX generato. Commit piccoli, nessun push.
 
-Replay tre raw: 9/8/9 conditional grounded, otto dati nel ramo corretto in 3/3,
-zero RESOLVED/scritture. 335 mirati/26,96 s e Ruff passati; completa in corso.
-Da eseguire due nuove chiamate congelate, Trapani + Labirinto, stesso input/TASK,
-e completare report/bundle/STATUS. Tutti i 36 esiti precedenti conservati; nessun
-push o modifica live. Non confondere proposte condizionate con DOCX compilato.
+Cause concrete e correzioni:
+- V7 accoppiava disponibilità del dato e applicabilità del ramo, perdendo dati
+  SOURCE quando il ramo era sconosciuto. V8 aggiunge conditional: conserva solo
+  proposed_value/proposed_fact_id, value e written_value restano null.
+- TASK ambiguo su dati completi/componenti: ora granularità della destinazione
+  FORM; fatti separati solo quando il modulo separa le posizioni.
+- Falsi negativi quote FORM (accento con apostrofo, whitespace/Unicode, underscore
+  adiacenti/larghezza). Normalizzazione deterministica con ripristino originale,
+  niente fuzzy/prefissi numerici/identificativi interni/cambio di ancora.
+- Compito non esplicito su template bianco: proposal_stage=source_backed_hypotheses,
+  non attesta scelta dell'operatore o rappresentanza. Semantic resta SEMPRE unknown.
+- Supporto SOURCE errato della condizione contaminava campi con prove corrette.
+  Solo V8: clausola FORM grounded rimane unknown; supporto opzionale invalido
+  resta REJECTED con errori visibili. Ogni valore mantiene il proprio grounding
+  SOURCE. FORM invalido, same/different invalidi, ruoli/fonti/valori errati e
+  value+unknown restano rifiutati. V2–V7 preservati.
 
-## Trapani — contesto della proposta ipotetica in verifica, 11 ottobre 2026
+Misure: tre output reali hypothesis-stage rivalidati sul gate finale -> 9/8/9
+conditional grounded, **gli stessi otto dati del ramo ingegneria in 3/3**.
+Nuova chiamata reale congelata `396e7a6`: **nove** proposte (otto dati più PEC
+comunicazioni), **39.318 token/53,5899 s**. Tutti REVIEW_REQUIRED, zero RESOLVED/
+scritture. Otto dati: denominazione, via, comune, CAP, provincia, PIVA, telefono,
+PEC. Fax, CF personale, firmatario, altri albi e firma omessi. Non sono 115 campi
+obbligatori mancanti; 115 è l'inventario, posizioni omesse restano da valutare.
 
-Quarta serie `1d31d60`: Trapani thinking 8/0/8 conditional grounded, quindi
-non stabile. Nel run vuoto il modello richiede implicitamente un'intestazione
-del FORM al soggetto SOURCE; non è mancanza di dati/retrieval. Labirinto 12
-grounded/sei conditional; controllo senza thinking ancora vuoto.
+Labirinto V1 congelato: nuova chiamata 13 grounded + sei conditional,
+17 target letterali, 32.419 token/62,8407 s. Cinque dati societari e alternative
+recapito/polizza conservati. Limiti concreti: ordine direttore ancora unito al
+numero, quattro checkbox di tipologia omessi. Nessun progresso generale di
+completezza/entailment dichiarato e nessun gold modificato o inviato al modello.
 
-Scopo ora esplicito in JSON/TASK: proposal_stage=source_backed_hypotheses.
-Proposte documentate per destinazioni compatibili, non attestazione della
-partecipazione. Unknown di scelta/rappresentanza blocca uso, non conservazione
-dell'ipotesi; nessuna scelta arbitraria fra soggetti alternativi. Corpus/schema/
-gate invariati, nessun RESOLVED o scrittura. Verifica software e ultima serie
-congelata in corso, non proclamare successo. Nessun push.
+**38 nuove chiamate reali**, incluse ablation fallite e controlli vuoti:
+**1.223.138 token/1.484,92 s AI aggregati**, non durata E2E. Senza ragionamento
+Trapani resta vuoto nei controlli: ora il SOLO prototipo/runner usa thinking low
+come default, --no-thinking per il confronto. Nessuna modifica a profilo UI/V1.
+Una chiamata/documento, zero retry/fallback automatici. Più token/latenza della
+risposta vuota: nessun risparmio dimostrato. Richieste default identiche alle
+ultime due reali acquisite con flag esplicito; equivalenza salvata.
 
-## Trapani — verifica del solo chiarimento di contratto, 11 ottobre 2026
+Ultima completa prima del solo cambio default: **1.762/158,63 s**, mirati
+335/26,96 s. Dopo default: **338 mirati/14,08 s**, completa in corso; Ruff,
+fixture check, manifest/codice/replay e cinque fingerprint live passati.
+Frontend invariato/non eseguito. Report/bundle finali in preparazione.
 
-Terza serie `f2430dd`: otto dati SOURCE corretti in 3/3, ma conditional validi
-solo nei primi due; terzo usa value con condizione semantic e viene rifiutato.
-Labirinto 13 grounded/zero conditional; senza thinking Trapani ancora vuoto.
-Ora TASK esplicita che semantic è SEMPRE unknown per il backend e richiede
-conditional, anche se il modello ritiene la condizione vera. Nessuna modifica
-a schema/validator/gate, nessun value rifiutato promosso. Da verificare con
-cinque nuove chiamate congelate, stesso protocollo precedente. Suite completa
-prima del solo chiarimento: 1.754/189,09 s; mirati 327/25,12 s. Nessun push.
-
-## Trapani — ultima verifica della granularità, 11 ottobre 2026
-
-Seconda serie conclusa `4a0b7a8`: Trapani thinking low non è più vuoto ma conserva
-4/5/7 proposte condizionate; quattro dati societari stabili, indirizzo variabile.
-Labirinto 12/13/13 grounded, zero conditional grounded: alcuni value con condizione
-unknown restano giustamente rifiutati. Tutte le acquisizioni e i costi conservati.
-
-Corretta ambiguità del TASK: fatti con granularità richiesta dalla destinazione
-FORM, non dalla riga SOURCE. Matcher FORM normalizza larghezza dei placeholder
-di almeno due underscore, ripristina originale; identificativi alfanumerici,
-underscore singoli, valori SOURCE e ancore invariati. Nessun hardcoding.
-327 mirati/25,12 s e Ruff passati; completa in corso. Protocollo finale da
-eseguire su commit congelato: tre Trapani + un Labirinto con thinking low e
-una Trapani senza thinking per verificare il limite, senza retry/fallback.
-Non dichiarare la compilazione completa o attivata in chat. Nessun push.
-
-## Trapani — secondo protocollo in preparazione, 11 ottobre 2026
-
-V8 da solo non basta: prima serie congelata `c2f3b11`, Trapani senza thinking
-vuoto in 3/3. Labirinto mantiene 12/11/11 proposte grounded e 8/7/6 condizionate.
-Cinque diagnosi successive conservate: contesto degli slot e distinzione dato
-simulato/autentico ancora vuoti; TASK compatto troppo largo, non adottato.
-Stesso TASK completo + thinking low produce otto dati aziendali nel solo ramo
-ingegneria: sei validi, due respinti per quote FORM (accento ASCII/underscore).
-
-Correzione circoscritta al matcher FORM: ripristino deterministico di tipografia,
-accento con apostrofo e underscore come delimitatori. SOURCE, controlli numerici,
-ancore e condizioni invariati. Stessa risposta ora conserva otto proposte
-condizionate grounded, ma value=null e zero RESOLVED/scritture. Nessun retry,
-attivazione V1/chat o modifica del profilo live/default thinking. La modalità
-viene selezionata esplicitamente PRIMA della singola chiamata.
-
-Verifiche finali: **321 mirati/19,52 s**, **1.748 backend/175,33 s**, Ruff,
-fixture --check e diff passati. Seconda serie da eseguire dopo commit:
-tre Trapani + tre Labirinto
-con thinking low. Non dichiarare risolto sulla base del solo replay; conservare
-tutti i risultati precedenti e nuovi. Relazioni aggiornate, report finale in
-preparazione. Nessun push.
-
-## Trapani — intervento V8 in verifica, 11 ottobre 2026
-
-Richiesta autorizzata: risolvere l'output vuoto del compilatore globale sul
-bando casuale Trapani, senza attivazione nella V1/chat o modifiche a RAG/parser/
-renderer. Git iniziale pulito su `02524d8`, preservati dati e originali.
-
-Quattro chiamate diagnostiche reali, prima di modificare codice applicativo:
-baseline V7 ancora vuota; ablation della sola omissione e prompt compatto ancora
-vuoti; risposta diagnostica fuori dal contratto legge SOURCE e spiega blocchi
-di rappresentanza/scelta del sottoscrittore. Quest'ultima è rifiutata dal validator
-come atteso e NON è un insieme di valori verificati. La causa contrattuale
-riscontrata: condizioni semantiche sempre unknown + emissione di soli valori
-già applicabili, senza rappresentazione di un dato documentato ma condizionato.
-Non attribuire l'intero comportamento a una singola frase del prompt.
-
-Implementato V8 sperimentale: proposta `conditional` con dato SOURCE, condizioni
-FORM e motivo; riuso dei gate esistenti, field.value e written_value restano null.
-Solo una proposta che supera grounding/tipo/ancore/ruolo e ha condizione unknown
-conserva proposed_value; condizioni false/invalide restano rifiuti. Alternative
-non scelgono valori, FORM/USER non diventano SOURCE; replay V5/V6/V7 preservati.
-Vuoto indicato esplicitamente empty_proposal, nessuna quota minima imposta.
-
-Verifiche software concluse: **302 mirati/24,71 s**, **1.729 backend/177,39 s**,
-Ruff, fixture --check e diff passati. Failure iniziali schema V7 atteso e due
-righe Ruff conservate. Frontend invariato/non eseguito. Benchmark reali ancora
-da eseguire; non dichiarare risolto il test prima delle acquisizioni congelate.
-Protocollo: tre Trapani stesso input,
-tre Labirinto V1 con gold fuori dal prompt; metriche proposte condizionate
-distinte dai valori grounded/RESOLVED. Una chiamata per prova, zero USER/retry/
-scritture. Commit piccoli autorizzati, nessun push. La sezione verrà aggiornata
-con esiti realmente acquisiti e limiti, non con aspettative.
+**Prossimo punto da discutere prima del codice:** verifica semantica indipendente
+applicabilità/soggetto/proprietà prima dell'adapter o attivazione in chat. Questo
+passo recupera proposte, non produce un DOCX pronto o valori RESOLVED. Conservare
+anche i risultati negativi e tenere distinta la prova casuale dal gold Labirinto.
 
 ## Prova occasionale su un altro bando — 11 ottobre 2026, nessuna proposta
 

@@ -68,7 +68,18 @@ def test_complete_input_has_form_sources_separate_with_provenance(layout, source
     body = global_request(AISettings("secret", "model", "https://example.invalid"), data)
     assert "secret" not in json.dumps(body)
     assert len(body["messages"]) == 2
-    assert body["thinking"] == {"type": "disabled"}
+    assert body["thinking"] == {"type": "enabled"}
+    assert body["reasoning_effort"] == "low"
+
+
+@pytest.mark.parametrize("flags,expected", [([], True), (["--thinking"], True),
+                                           (["--no-thinking"], False)])
+def test_experimental_runner_defaults_to_measured_quality_mode(tmp_path, flags, expected):
+    from scripts.benchmark_compilation_global import arguments
+
+    args = arguments(["--fixture", str(tmp_path / "fixture"), "--profile-project", "alpha",
+                      "--output", str(tmp_path / "audit"), *flags])
+    assert args.thinking is expected
 
 
 @pytest.mark.parametrize("change", [

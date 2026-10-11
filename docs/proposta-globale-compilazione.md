@@ -1,5 +1,12 @@
 # Proposta globale sperimentale — 11 ottobre 2026
 
+Esito circoscritto: Trapani recupera otto dati aziendali come ipotesi SOURCE
+condizionate (tre raw reali rivalidati + una nuova chiamata sul gate finale).
+Il solo prototipo usa ora thinking low predefinito; --no-thinking per confronto.
+Nessuna modifica ai profili UI/V1. Grounding non significa applicabilità,
+RESOLVED o scrittura: il renderer non è collegato. Le diagnosi cronologiche
+seguenti conservano anche le iterazioni insufficienti.
+
 ## Contratto corrente 8: dato proposto e applicabilità distinti
 
 Correzione circoscritta del caso Trapani: il prompt V7 permetteva solo valori
@@ -357,10 +364,12 @@ Tutte le prove restano nell'audit, incluse quote effettive, ID citato/ripristina
 hash, scope e categoria. La copertura dei candidate è ancora esatta.
 
 Il runner offre `--thinking` per un confronto isolato con ragionamento DeepSeek
-`low` (modalità già impiegata dalla mappa V1). Default disabilitato, invariati
+`low` (modalità già impiegata dalla mappa V1). Ora predefinito nel solo prototipo;
+`--no-thinking` conserva il controllo senza ragionamento. Invariati
 schema/input/validator, budget e numero di chiamate. I token di ragionamento
 possono incidere sul limite di output e sulla latenza; salvare il response HTTP
-completo e usage, non considerare questo confronto una scelta di produzione.
+completo e usage. La scelta del default sperimentale non modifica i profili UI
+o la V1 e non costituisce attivazione in produzione.
 
 **Limite intenzionale:** questi risultati sono subordinati alla correttezza
 semantica della mappa proposta. Non provano che il modello abbia individuato
