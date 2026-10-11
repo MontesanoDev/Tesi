@@ -1,5 +1,21 @@
 # Stato di Mapi RAG
 
+## Trapani — verifica finale del grounding indipendente, 11 ottobre 2026
+
+Quinta serie hypothesis-stage: tre risposte con gli stessi otto dati corretti,
+tutte conditional. Primo run respinto per supporto SOURCE errato della condizione,
+non per valori dei campi. Separati i due grounding solo in V8: FORM prova che la
+clausola esiste; SOURCE opzionale invalida mantiene unknown con errori visibili;
+ciascun valore viene verificato contro le sue prove. Nessuna condizione resa vera,
+nessun SOURCE match permissivo o f_tipo riparato, value+unknown ancora rifiutato.
+FORM/campi invalidi e same/different invalidi restano rifiuti; V2–V7 invariati.
+
+Replay tre raw: 9/8/9 conditional grounded, otto dati nel ramo corretto in 3/3,
+zero RESOLVED/scritture. 335 mirati/26,96 s e Ruff passati; completa in corso.
+Da eseguire due nuove chiamate congelate, Trapani + Labirinto, stesso input/TASK,
+e completare report/bundle/STATUS. Tutti i 36 esiti precedenti conservati; nessun
+push o modifica live. Non confondere proposte condizionate con DOCX compilato.
+
 ## Trapani — contesto della proposta ipotetica in verifica, 11 ottobre 2026
 
 Quarta serie `1d31d60`: Trapani thinking 8/0/8 conditional grounded, quindi

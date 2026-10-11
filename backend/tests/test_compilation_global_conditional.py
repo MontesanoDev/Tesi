@@ -162,6 +162,63 @@ def test_empty_is_reported_explicitly_without_forcing_values_or_conditions(case)
     assert result["resolved"] == result["writes"] == 0
 
 
+@pytest.mark.parametrize("support", ["absent", "invalid_value", "wrong_dimension"])
+def test_bad_optional_source_support_does_not_erase_real_unknown_form_condition(case, support):
+    condition = case[2]["conditions"]["branch"]
+    condition["fact_ids"] = ["support"]
+    if support != "absent":
+        case[2]["facts"]["support"] = {**case[2]["facts"]["code"]}
+        if support == "invalid_value":
+            case[2]["facts"]["support"]["value"] = "Inventato"
+        else:
+            case[2]["facts"]["support"]["aspect"] = "legal_type"
+    result = audit(case)
+    field, checked = result["fields"][0], result["conditions"]["branch"]
+    assert checked["result"] == "unknown"
+    assert checked["grounding_basis"] == "form_only_unknown"
+    assert checked["source_support_validation"] == "REJECTED"
+    assert checked["source_support_validation_errors"]
+    assert field["proposed_value"] == "AZ-98765"
+    assert field["proposed_fact_id"] == "code"
+    assert field["value"] is field["written_value"] is None
+    assert result["writes"] == result["resolved"] == 0
+
+
+def test_unknown_condition_support_does_not_repair_a_bad_field_source(case):
+    case[2]["facts"]["code"]["value"] = "Inventato"
+    case[2]["conditions"]["branch"]["fact_ids"] = ["code"]
+    field = audit(case)["fields"][0]
+    assert field["validation"] == "REJECTED"
+    assert "proposed_value" not in field
+
+
+@pytest.mark.parametrize("operator", ["same", "different"])
+def test_invalid_source_for_a_real_comparison_still_rejects_condition(case, operator):
+    case[2]["conditions"]["branch"].update(operator=operator, fact_ids=["absent", "code"])
+    result = audit(case)
+    assert result["conditions"]["branch"]["validation"] == "REJECTED"
+    assert result["fields"][0]["validation"] == "REJECTED"
+    assert "proposed_value" not in result["fields"][0]
+
+
+def test_form_condition_itself_must_be_grounded_despite_missing_source_support(case):
+    case[2]["conditions"]["branch"].update(
+        form={"paragraph_id": "paragraph:0", "quote": "Clausola inventata"},
+        fact_ids=["absent"],
+    )
+    result = audit(case)
+    assert result["conditions"]["branch"]["validation"] == "REJECTED"
+    assert "proposed_value" not in result["fields"][0]
+
+
+def test_unknown_value_is_still_rejected_when_optional_condition_support_is_bad(case):
+    case[2]["fields"]["t0.r0.c1"]["disposition"] = "value"
+    case[2]["conditions"]["branch"]["fact_ids"] = ["absent"]
+    field = audit(case)["fields"][0]
+    assert field["validation"] == "REJECTED"
+    assert "proposed_value" not in field
+
+
 def test_schema_bounded_and_historical_v7_does_not_accept_new_disposition(case):
     schema = build_global_input(case[0], "alpha", case[1])["schema_output"]
     assert schema["properties"]["version"]["const"] == 8

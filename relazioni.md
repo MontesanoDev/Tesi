@@ -920,3 +920,30 @@ senza intestazione preesistente; uso/rappresentanza restano bloccati. Nessuna
 scelta fra soggetti alternativi o elusione del binding persona/ruolo. Un solo
 metadata di contesto, FORM/SOURCE/schema/gold/gate invariati. Nuova verifica
 congelata stesso protocollo di cinque chiamate, risultati precedenti conservati.
+
+### Quinta serie e separazione finale dei due grounding
+
+`936df7a`, hypothesis-stage: otto dati aziendali corretti e conditional in tutte
+le tre risposte; 0/8/9 conditional grounded perché nel primo run la condizione
+si appoggia a f_tipo non letterale (accento vs apostrofo SOURCE) e a dimensioni
+diverse. Il validator rifiuta il supporto della condizione e di conseguenza
+tutti i campi, pur avendo loro SOURCE valide. Tempi 61,5860/66,8716/59,5798 s;
+token 37.618/40.609/40.087. Labirinto 12 grounded/quattro conditional,
+33.422 token/82,4086 s. Controllo senza thinking ancora vuoto (metriche nel
+bundle). Cinque serie conservate; 36 chiamate, 1.151.401 token/1.368,4905 s AI.
+
+Suite completa dopo input stage: **1.754/192,00 s**, mirati 327/28,38 s,
+Ruff/fixture passati. Scelta comunicata: in V8 una clausola FORM realmente
+grounded resta una condizione sconosciuta quando il supporto SOURCE opzionale
+è invalido; l'errore SOURCE resta visibile e NON attesta il risultato. I campi
+mantengono tutti i controlli indipendenti sulla propria fonte. Nessuna modifica
+a SOURCE matching/RAG/persona/ruolo, e non si ripara f_tipo. same/different,
+FORM non grounded e valori SOURCE invalidi restano rifiutati. value+unknown
+continua a essere respinto, nessuna riclassificazione. Versioni V2–V7 invariate.
+
+Replay controllato degli stessi raw: 9/8/9 conditional grounded, sempre gli otto
+dati del ramo ingegneria; due PEC comunicazioni ulteriori restano bloccate.
+Zero RESOLVED/scritture. **335 mirati/26,96 s**, Ruff passato; completa in corso.
+Ultimo protocollo: una nuova Trapani e un nuovo Labirinto reali sul commit
+congelato, stesso input/TASK della serie appena riletta, sempre una chiamata,
+nessun retry/USER/scrittura. Nessun nuovo sorteggio o gold adattato.

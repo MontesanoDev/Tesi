@@ -486,7 +486,7 @@ def _comparison_text(value):
     return " ".join(unicodedata.normalize("NFC", value).split())
 
 
-def _shared_conditions(records, paragraphs, facts):
+def _shared_conditions(records, paragraphs, facts, *, preserve_form_unknown=False):
     conditions = {}
     for condition_id, record in records.items():
         output = {"result": "unknown", "validation": "REJECTED",
@@ -501,12 +501,23 @@ def _shared_conditions(records, paragraphs, facts):
                 "quote": _form_quote(paragraphs[condition.form.paragraph_id], condition.form.quote),
             }
             operands = []
-            for fact_id in condition.fact_ids:
-                if fact_id not in facts or facts[fact_id]["validation"] != "GROUNDED_PROPOSAL":
-                    raise ValueError("Condizione con fatto SOURCE assente o rifiutato")
-                operands.append(facts[fact_id])
-            if any(f["aspect"] != condition.aspect for f in operands):
-                raise ValueError("Condizione e fatti su dimensioni differenti")
+            try:
+                for fact_id in condition.fact_ids:
+                    if fact_id not in facts or facts[fact_id]["validation"] != "GROUNDED_PROPOSAL":
+                        raise ValueError("Condizione con fatto SOURCE assente o rifiutato")
+                    operands.append(facts[fact_id])
+                if any(f["aspect"] != condition.aspect for f in operands):
+                    raise ValueError("Condizione e fatti su dimensioni differenti")
+            except ValueError as exc:
+                if not preserve_form_unknown or condition.operator != "semantic":
+                    raise
+                # FORM proves that the condition exists, never that it holds.
+                # Bad optional SOURCE support cannot erase that literal clause
+                # or poison an independently grounded field hypothesis. Keep
+                # unknown, retain the support error, and never enable a value.
+                output.update(grounding_basis="form_only_unknown",
+                              source_support_validation="REJECTED",
+                              source_support_validation_errors=[str(exc)])
             if condition.operator != "semantic":
                 if len(set(condition.fact_ids)) != 2:
                     raise ValueError("Confronto richiede due fatti SOURCE distinti")
@@ -584,7 +595,7 @@ def _expand_shared_field(item, candidate, facts, conditions, local, *, defer_unk
 
 
 def _validate_shared_proposal(payload, layout, catalog, source_map, *, reject_empty=False,
-                              conditional_ids=()):
+                              conditional_ids=(), preserve_form_unknown=False):
     if type(payload.get("version")) is not int or payload["version"] != 2 or set(payload) != {
             "version", "facts", "conditions", "fields"}:
         raise ValueError("Versione/envelope globale non valido")
@@ -599,7 +610,8 @@ def _validate_shared_proposal(payload, layout, catalog, source_map, *, reject_em
                          f"sconosciuti={sorted(actual - expected)}")
     paragraphs, local = _form_bindings(catalog)
     facts = _shared_facts(payload["facts"], source_map, reject_empty=reject_empty)
-    conditions = _shared_conditions(payload["conditions"], paragraphs, facts)
+    conditions = _shared_conditions(payload["conditions"], paragraphs, facts,
+                                    preserve_form_unknown=preserve_form_unknown)
     expanded, extra = {}, {}
     for candidate_id, record in payload["fields"].items():
         try:
@@ -1024,7 +1036,8 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     result = _validate_shared_proposal({"version": 2, "facts": facts,
                                        "conditions": conditions, "fields": expanded},
                                       layout, catalog, source_map, reject_empty=True,
-                                      conditional_ids=conditional_ids)
+                                      conditional_ids=conditional_ids,
+                                      preserve_form_unknown=conditional_enabled)
     for field in result["fields"]:
         key = field["candidate_id"]
         if key in unassigned:

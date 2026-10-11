@@ -94,6 +94,25 @@ la proposta condizionata. Nessuna scelta arbitraria fra soggetti alternativi,
 valori USER o rilassamento dei gate personali/fattuali. Un solo metadata di
 compito aggiunto, corpus/schema invariati. Serie congelata di verifica separata.
 
+Ultimo gate corretto solo in V8: il grounding della clausola FORM è distinto
+dal supporto SOURCE facoltativo di una condizione `semantic`, il cui risultato
+rimane sempre unknown. Un riferimento SOURCE assente/rifiutato o su dimensione
+diversa è conservato come `source_support_validation=REJECTED`, errori espliciti
+e `grounding_basis=form_only_unknown`; non cancella una clausola FORM reale.
+I dati dei campi vengono verificati indipendentemente contro le proprie SOURCE
+e possono restare solo proposed_value/REVIEW_REQUIRED. Non è una prova della
+verità della condizione. Clausola FORM inesistente, confronti same/different
+invalidi, fonte del valore invalida, ruolo o ancora errati restano rifiuti.
+`value` con unknown resta rifiutato, non viene riclassificato automaticamente.
+Versioni V2–V7 conservano il gate storico.
+
+Replay delle tre acquisizioni hypothesis-stage: 9/8/9 proposte condizionate
+grounded, con gli stessi otto dati aziendali nel ramo corretto in 3/3; due run
+includono anche PEC comunicazioni, bloccata. Dati/opzioni non selezionati, zero
+RESOLVED/scritture. Protocollo finale: una Trapani e un Labirinto reali su codice
+congelato, input/TASK identici alla serie appena riletta, una chiamata ciascuno.
+Il replay controllato misura il gate; le nuove chiamate misurano anche il modello.
+
 ## Contratto storico 7: legame letterale persona/ruolo
 
 Passo autorizzato successivo alle alternative, sempre sperimentale e con una
