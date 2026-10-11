@@ -1,0 +1,11 @@
+{
+  "archive_members": 1211,
+  "all_hashes_and_bytes_verified": true,
+  "new_markdown_links_valid": true,
+  "public_metrics_verified": true,
+  "sha256": "7035ffc9c7701e69fe5ec9c08a5616c76d6ad10ff2df7ae25991cd2ca3a66d2b",
+  "initial_whole_history_link_check": "failed on pre-existing local audit reference",
+  "historical_missing_reference": "backend/data/compilation-audit/global-subject-conditions-20261008/report.md",
+  "present_before_intervention": true,
+  "historical_reference_unchanged": true
+}

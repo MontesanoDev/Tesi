@@ -45,10 +45,20 @@ Una chiamata/documento, zero retry/fallback automatici. Più token/latenza della
 risposta vuota: nessun risparmio dimostrato. Richieste default identiche alle
 ultime due reali acquisite con flag esplicito; equivalenza salvata.
 
-Ultima completa prima del solo cambio default: **1.762/158,63 s**, mirati
-335/26,96 s. Dopo default: **338 mirati/14,08 s**, completa in corso; Ruff,
-fixture check, manifest/codice/replay e cinque fingerprint live passati.
-Frontend invariato/non eseguito. Report/bundle finali in preparazione.
+Verifiche finali realmente eseguite dopo il default: **338 mirati/14,08 s**,
+**1.765 backend/110,03 s**, Ruff, fixture --check, manifest/codice/replay,
+uguaglianza richieste default e cinque fingerprint live passati. Frontend
+invariato/non eseguito. Failure e controlli intermedi conservati nel registro.
+
+[Report completo](docs/diagnosi-trapani-compilazione-2026-10-11.md),
+[JSON di tutti i candidate/esiti](docs/benchmarks/2026-10-11-trapani-diagnosis.json),
+[registro](relazioni.md). Bundle docs/benchmarks/2026-10-11-trapani-diagnosis-audit.tar.gz:
+**1.211 file/7.976.279 byte**, SHA-256
+`7035ffc9c7701e69fe5ec9c08a5616c76d6ad10ff2df7ae25991cd2ca3a66d2b`.
+Include tutti i 38 raw più tre storici, protocolli/input/schema/HTTP/code/fixture/
+usage/validazioni/replay/log/default-patch; verificato byte per byte e senza DB,
+config o chiave API. Grezzi in backend/data/compilation-audit/trapani-*/;
+non affidarsi al solo data ignorato da Git. Nessun push.
 
 **Prossimo punto da discutere prima del codice:** verifica semantica indipendente
 applicabilità/soggetto/proprietà prima dell'adapter o attivazione in chat. Questo

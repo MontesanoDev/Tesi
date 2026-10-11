@@ -7,6 +7,12 @@ Nessuna modifica ai profili UI/V1. Grounding non significa applicabilità,
 RESOLVED o scrittura: il renderer non è collegato. Le diagnosi cronologiche
 seguenti conservano anche le iterazioni insufficienti.
 
+[Diagnosi, misure e raw Trapani](diagnosi-trapani-compilazione-2026-10-11.md):
+338 test mirati, 1.765 backend, Ruff/fixture/replay/fingerprint passati.
+Nuova acquisizione: nove conditional, di cui gli otto dati del ramo ingegneria,
+39.318 token/53,5899 s; nessun RESOLVED/scrittura. Il benchmark fisso conserva
+limiti concreti (ordine unito al numero e checkbox omesse), riportati nel report.
+
 ## Contratto corrente 8: dato proposto e applicabilità distinti
 
 Correzione circoscritta del caso Trapani: il prompt V7 permetteva solo valori
