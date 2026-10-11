@@ -804,3 +804,47 @@ e `trapani-conditional-v8-20261011/`, report finale da completare. Nessun push.
 Suite completa successiva corretta: **1.729 passati/177,39 s**; Ruff, fixture
 --check e diff passati. Frontend invariato/non eseguito. Codice pronto al commit
 congelato; i benchmark reali V8 non sono ancora stati eseguiti a questo punto.
+
+### V8: prime sei acquisizioni e cinque diagnosi successive
+
+Codice congelato `c2f3b11`: Trapani senza thinking vuoto in 3/3 (26.176 token
+ciascuno, 1,2396/1,1301/0,9642 s). Labirinto: 12/11/11 proposte grounded,
+8/7/6 condizionate grounded, 18/17/17 target letterali includendo conditional;
+22.946/20.035/20.008 token e 19,2677/11,4844/11,4734 s. Il dato condizionato
+resta bloccato, non è un valore compilabile. Prima iterazione insufficiente
+per Trapani; nessuna acquisizione eliminata o nuovo sorteggio del bando.
+
+Sul medesimo codice, sole ablation diagnostiche fuori dall'applicazione:
+
+| Diagnosi | Esito | Token | Secondi AI |
+|---|---|---:|---:|
+| Contesto testuale vicino agli slot | Vuoto | 27.344 | 1,0201 |
+| Dato riportato vs validità/autenticità | Vuoto | 26.382 | 1,2720 |
+| TASK V8 compatto | 27 proposte, tutte rifiutate; confonde unknown e inventario incerto | 30.167 | 21,2387 |
+| TASK compatto chiarito | 19 proposte, cinque PEC condizionate in rami diversi, associazioni troppo larghe | 28.929 | 18,9397 |
+| TASK completo invariato + thinking low | Otto proposte aziendali nel ramo ingegneria, sei grounded e due falsi negativi FORM | 35.073 | 46,7679 |
+
+Nessun TASK compatto/contesto aggiunto adottato. Thinking low viene selezionato
+prima della singola chiamata; non un retry. Le due citazioni rifiutate nella
+prova positiva: accento ASCII anziché Unicode, e label seguita da underscore
+che il matcher SOURCE considera parte di una parola. Valori e SOURCE già
+corretti, nessuna modifica a dati/fatti per superarli.
+
+Scelta comunicata prima del codice: matcher FORM dedicato conservativo,
+normalizzazione Unicode/spazi/case/virgolette, apostrofo terminale dopo vocale
+come accento, underscore delimitatore delle label. Prefissi numerici/parole,
+riordini e altre proprietà restano vietati; ancore strutturali e matcher SOURCE
+invariati. Replay della risposta thinking: otto proposte condizionate grounded,
+value=null, zero RESOLVED/scritture. Prima verifica: 86 passati/1 fallito per
+quote che terminava a metà placeholder; aggiunto controllo sul bordo del run
+underscore. Tentativo suite mirata con nome file inesistente: nessun test,
+log conservato; rilancio mediante glob reale. Suite globale: 275/21,48 s.
+
+Protocollo successivo: tre Trapani + tre Labirinto, codice congelato e thinking
+low esplicito, nessun cambiamento durante le sei chiamate. Fixture/gold invariati
+ed esclusi dal prompt, niente USER/retry/scritture. Misure da acquisire; non
+proclamare risolto il comportamento sulla base di una sola risposta positiva.
+
+Verifiche prima del congelamento del secondo protocollo: **321 mirati/19,52 s,
+1.748 backend/175,33 s**, Ruff, fixture --check e diff passati. Frontend invariato
+e non rieseguito. Nessuna modifica a parser/renderer/RAG/V1 o dati live.

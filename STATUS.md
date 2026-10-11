@@ -1,5 +1,28 @@
 # Stato di Mapi RAG
 
+## Trapani — secondo protocollo in preparazione, 11 ottobre 2026
+
+V8 da solo non basta: prima serie congelata `c2f3b11`, Trapani senza thinking
+vuoto in 3/3. Labirinto mantiene 12/11/11 proposte grounded e 8/7/6 condizionate.
+Cinque diagnosi successive conservate: contesto degli slot e distinzione dato
+simulato/autentico ancora vuoti; TASK compatto troppo largo, non adottato.
+Stesso TASK completo + thinking low produce otto dati aziendali nel solo ramo
+ingegneria: sei validi, due respinti per quote FORM (accento ASCII/underscore).
+
+Correzione circoscritta al matcher FORM: ripristino deterministico di tipografia,
+accento con apostrofo e underscore come delimitatori. SOURCE, controlli numerici,
+ancore e condizioni invariati. Stessa risposta ora conserva otto proposte
+condizionate grounded, ma value=null e zero RESOLVED/scritture. Nessun retry,
+attivazione V1/chat o modifica del profilo live/default thinking. La modalità
+viene selezionata esplicitamente PRIMA della singola chiamata.
+
+Verifiche finali: **321 mirati/19,52 s**, **1.748 backend/175,33 s**, Ruff,
+fixture --check e diff passati. Seconda serie da eseguire dopo commit:
+tre Trapani + tre Labirinto
+con thinking low. Non dichiarare risolto sulla base del solo replay; conservare
+tutti i risultati precedenti e nuovi. Relazioni aggiornate, report finale in
+preparazione. Nessun push.
+
 ## Trapani — intervento V8 in verifica, 11 ottobre 2026
 
 Richiesta autorizzata: risolvere l'output vuoto del compilatore globale sul

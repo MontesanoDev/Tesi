@@ -37,6 +37,31 @@ recuperare dati aziendali pertinenti nel ramo appropriato mantenendo i blocchi,
 senza CF aziendale usato come CF personale o numero di un professionista usato
 per altri. Nessuna modifica durante le serie; report in relazioni.md.
 
+### Diagnosi successiva: modalità di ragionamento ed estratti FORM
+
+Prima serie V8 senza ragionamento: Trapani ancora vuoto in 3/3; Labirinto
+conserva proposte, comprese quelle condizionate. Le ablation del contesto slot
+e del carattere simulato delle fonti non recuperano Trapani; un TASK compatto
+produce associazioni troppo larghe e non viene adottato. Il solo contratto
+conditional non basta. Tutte queste acquisizioni vengono conservate.
+
+Stesso TASK completo V8 e input, `--thinking` low: otto dati aziendali nel ramo
+corretto, sei grounding validi e due falsi negativi negli estratti FORM. Questi
+ultimi dipendono da accento riscritto con apostrofo e underscore immediatamente
+successivo a una label. Correzione FORM-only: normalizzazione deterministica
+Unicode/case/spazi/virgolette, apostrofo terminale dopo vocale come accento e
+underscore come delimitatore. Il testo originale viene ripristinato, senza
+distanza fuzzy, riordino, prefissi numerici o cambio di paragrafo/ancora.
+SOURCE e suoi controlli sui valori restano identici. Replay della stessa
+risposta: otto proposte condizionate grounded, zero RESOLVED/scritture.
+
+Secondo protocollo: tre Trapani e tre Labirinto sul codice congelato con
+ragionamento attivo, sempre una chiamata ciascuno. Non si introducono fallback
+o retry per attivarlo dopo una risposta vuota. Il flag è esplicito; impostazioni
+live/UI e default del runner restano invariati. Misurare anche latenza e token
+del ragionamento: non è un risparmio dimostrato né una decisione di produzione.
+Esiti finali da leggere nel report, non dedurre successo dal solo replay.
+
 ## Contratto storico 7: legame letterale persona/ruolo
 
 Passo autorizzato successivo alle alternative, sempre sperimentale e con una

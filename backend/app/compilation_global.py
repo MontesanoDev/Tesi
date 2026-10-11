@@ -346,12 +346,48 @@ def _form_bindings(catalog):
 
 
 def _form_quote(text, quote):
-    """Only deterministic typographic punctuation differences, never fuzzy text."""
+    """Restore a FORM span, treating placeholder underscores as delimiters.
+
+    Like SOURCE spans, comparison normalizes Unicode/case/spacing. FORM also
+    permits typographic quotes and a terminal vowel apostrophe used for an
+    accent. No edit distance, word reordering or numeric prefix matching.
+    This does not alter factual SOURCE matching or structural anchor checks.
+    """
     punctuation = str.maketrans({"’": "'", "‘": "'", "“": '"', "”": '"'})
-    translated = text.translate(punctuation)
-    restored = source_span(translated, quote.translate(punctuation))
-    offset = translated.index(restored)
-    return text[offset:offset + len(restored)]
+
+    def comparable(value):
+        value = value.translate(punctuation)
+        chars, offsets = [], []
+        for index, char in enumerate(value):
+            if (char == "'" and index and value[index - 1].casefold() in "aeiou"
+                    and (index + 1 == len(value)
+                         or not re.match(r"\w", value[index + 1]))):
+                if offsets:
+                    offsets[-1] = (offsets[-1][0], index + 1)
+                continue
+            for part in unicodedata.normalize("NFKD", char.casefold()):
+                if unicodedata.combining(part):
+                    continue
+                if part.isspace():
+                    if not chars or chars[-1] == " ":
+                        continue
+                    part = " "
+                chars.append(part)
+                offsets.append((index, index + 1))
+        return "".join(chars), offsets
+
+    haystack, offsets = comparable(text)
+    target = comparable(quote)[0].strip()
+    # Underscores delimit FORM labels; letters/digits still prevent truncation.
+    pattern = ((r"(?<![^\W_])" if target and target[0].isalnum()
+                else r"(?<!_)" if target.startswith("_") else "")
+               + re.escape(target)
+               + (r"(?![^\W_])" if target and target[-1].isalnum()
+                  else r"(?!_)" if target.endswith("_") else ""))
+    match = re.search(pattern, haystack) if target else None
+    if match is None:
+        raise ValueError("Estratto non presente nel FORM")
+    return text[offsets[match.start()][0]:offsets[match.end() - 1][1]]
 
 
 def _source_quote(citation, source_map):
