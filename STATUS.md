@@ -1,6 +1,6 @@
 # Stato di Mapi RAG
 
-## Benchmark dedicato — 11 ottobre 2026, preparazione
+## Benchmark dedicato — 11 ottobre 2026, completato
 
 Richiesta corrente: un documento complesso dedicato al nuovo compilatore e
 registro permanente [relazioni.md](relazioni.md). Creato
@@ -12,8 +12,27 @@ conflitti e fonti distrattore. Nessun caricamento nei dati locali.
 Il runner globale accetta `--fixture` senza documenti/ingestion nel DB e
 conserva gold soltanto nell'audit; confronto automatico limitato a valori e
 ID SOURCE, non un gate semantico. Motore/V1/RAG/UI/parser/renderer invariati.
-Controlli e prima baseline reale in corso; non sono ancora nuovi risultati.
-La mappa semantica condivisa rimane **da discutere** prima di implementarla.
+Baseline congelata `5e8cecc`: **tre chiamate reali deepseek-flash**, stesso
+input/request, 9,49–12,01 s e 15.003–16.040 token. Ogni prova propone 18/22
+valori/booleani con valore e ID SOURCE attesi; solo 12 di questi superano i gate.
+GROUNDED totali 13/15/13 includono 1/3/1 errori semantici: polizza scelta fra
+attestazioni discordanti e, nel run 2, firmatario/carica inferiti. Il run 2
+riempie anche rami esclusi e secondo direttore ignoto: bloccati dalle condizioni.
+Otto condizioni semantic/unknown per prova; direttore e **5739** proposti
+correttamente ma ancora bloccati. Zero RESOLVED/scritture/sessioni modificate.
+Non confondere omissioni con MISSING/NA verificati o tempi con E2E completo.
+
+Verifiche effettive: **209 mirati, 1.615 backend**, Ruff completo, fixture
+`--check`, CLI help, riferimenti/diff. Frontend invariato/non rieseguito.
+Codice/gold/input/raw/HTTP/usage/validazioni/confronti/log conservati nei grezzi
+locali e nel bundle `docs/benchmarks/2026-10-11-labirinto-v1-audit.tar.gz`;
+[registro](relazioni.md) e riepilogo JSON adiacente. Nuova regola in AGENTS:
+ogni benchmark futuro del nuovo motore va registrato in `relazioni.md`.
+
+La mappa semantica condivisa e l'accettazione di soggetto/applicabilità rimangono
+**da discutere** prima del codice. Prossimo punto: scegliere un solo cambiamento
+e confrontarlo con questa fixture/hash, senza nuovi reviewer per gruppi né gate
+allentati. Commit piccoli autorizzati, nessun push.
 
 ## Esito finale proposte sparse — 11 ottobre 2026
 

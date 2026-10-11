@@ -3,6 +3,21 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Modulo labirinto dedicato, 11 ottobre 2026
+
+- [Fixture V1](../../demo-documents/benchmark-compilazione/v1/README.md): Word
+  sintetico con 55 posizioni/11 checkbox, sette SOURCE fittizie, gold autoriale
+  escluso dal prompt e manifest. Runner `--fixture`, senza ingestion o corpus DB.
+- [Registro permanente](../../relazioni.md) e
+  [baseline per candidate](2026-10-11-labirinto-v1-baseline.json).
+- Tre chiamate reali DeepSeek su `5e8cecc`, stesso input: 18/22 valori attesi
+  proposti, 12 passano i gate; errori semantici variabili, nessuna attivazione
+  o scrittura. Tempi 9,49–12,01 s sul corpus piccolo, non una misura E2E.
+- [Bundle](2026-10-11-labirinto-v1-audit.tar.gz) e
+  [checksum](2026-10-11-labirinto-v1-audit.tar.gz.sha256): tutte le acquisizioni,
+  codice e fixture congelati, confronto e controlli; nessuna chiave/DB.
+- 209 mirati/1.615 backend passati, Ruff/check/help/diff; frontend invariato.
+
 ## Proposte sparse e validazione locale, 11 ottobre 2026
 
 - [Report completo](../benchmark-proposte-sparse-2026-10-11.md) e
