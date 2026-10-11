@@ -84,3 +84,22 @@ class CompactGlobalProposal(StrictModel):
     # Explicitly accounted for, not silently defaulted to missing/decorative.
     deferred: list[Reference] = Field(max_length=400)
     facts: dict[Reference, SharedFact] = Field(max_length=128)
+
+
+class ConditionTarget(StrictModel):
+    kind: Literal["candidate", "paragraph", "table", "section"]
+    id: Reference
+
+
+class StructuralCondition(SharedCondition):
+    # These are existing structural scopes, not alternative writable positions.
+    scope: list[ConditionTarget] = Field(max_length=400)
+
+
+class SparseGlobalProposal(StrictModel):
+    version: Literal[5]
+    conditions: dict[Reference, StructuralCondition] = Field(max_length=128)
+    fields: dict[Reference, AtomicField] = Field(max_length=128)
+    facts: dict[Reference, SharedFact] = Field(max_length=128)
+    # Only substantive uncertainty; the model need not repeat the FORM inventory.
+    uncertain_paragraph_ids: list[Reference] = Field(default_factory=list, max_length=2048)

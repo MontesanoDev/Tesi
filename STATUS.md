@@ -1,5 +1,31 @@
 # Stato di Mapi RAG
 
+## Proposte sparse: inventario autoritativo backend — 11 ottobre 2026
+
+Richiesta «ok fallo» dopo la diagnosi dei sei rifiuti strutturali: autorizzata
+la semplificazione del prototipo isolato, non l'attivazione nella chat.
+Il contratto sperimentale 5 elimina `deferred`, partizione esatta e ricevuta dei
+paragrafi letti. Il backend conserva tutti i candidate dell'originale; quelli
+senza proposta restano REVIEW_REQUIRED/non valutati, mai missing/NA inventati.
+
+Scope delle condizioni tipizzati candidate/paragraph/table/section, verificati
+nel catalogo reale; destinazioni scrivibili sempre e soltanto candidate.
+ID inventato o record invalido: quarantena locale; fatto/condizione invalida:
+blocco delle dipendenze riconoscibili, conservazione delle proposte indipendenti.
+JSON troncato/duplicato, envelope e budget invalidi restano rifiuti globali.
+Fatti orfani segnalati e inutilizzati; incertezza FORM locale ancora bloccante.
+Confronti, quote, proprietà e provenance invariati: grounded non è RESOLVED,
+nessun valore scrivibile o adapter di sessione. Le condizioni di scope non locale
+restano da verificare semanticamente. RAG/chat/parser/renderer/V1 invariati.
+
+Verifiche concluse: **185 mirati, 1.591 backend completi**, Ruff e help CLI.
+Prima Ruff ha segnalato una riga lunga, corretta; entrambi i log conservati in
+`backend/data/compilation-audit/global-sparse-20261011-checks/`.
+Prossimo passo: congelare il codice e misurare due chiamate DeepSeek reali con
+lo stesso originale/51 SOURCE delle prove precedenti, annotando separatamente
+grounding e correttezza semantica. Nessun dato locale/sessione da modificare.
+Nessuna migrazione/reindicizzazione; commit piccoli autorizzati, niente push.
+
 ## Esito finale proposta compatta — 10 ottobre 2026
 
 [Report completo](docs/benchmark-proposta-compatta-2026-10-10.md) e

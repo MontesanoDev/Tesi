@@ -7,7 +7,8 @@ from io import BytesIO
 import pytest
 from docx import Document
 
-from app.compilation_global import build_global_input, validate_global_proposal
+from app.compilation_global import validate_global_proposal
+from app.compilation_global_contract import CompactGlobalProposal
 from app.docx_templates import inspect_docx
 
 
@@ -49,10 +50,8 @@ def audit(case):
     return validate_global_proposal(json.dumps(case[2]), case[0], "alpha", case[1])
 
 
-def test_compact_input_requests_exact_scan_without_interpreting_docx(case):
-    data = build_global_input(case[0], "alpha", case[1])
-    assert data["form_review_paragraph_ids"] == ["paragraph:0", "paragraph:2", "paragraph:4"]
-    assert set(data["schema_output"]["properties"]) == {
+def test_historical_compact_schema_still_declares_receipt_and_exact_partition():
+    assert set(CompactGlobalProposal.model_json_schema()["properties"]) == {
         "version", "facts", "conditions", "reviewed_paragraph_ids",
         "uncertain_paragraph_ids", "fields", "deferred"}
 

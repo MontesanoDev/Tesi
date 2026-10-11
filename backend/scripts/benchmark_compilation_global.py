@@ -171,6 +171,9 @@ def run(args):
                           condition_results=audit.get("condition_results", {}),
                           condition_inventory=audit.get("condition_inventory", {}),
                           deferred=audit.get("deferred_count", 0),
+                          unassigned=audit.get("unassigned_count", 0),
+                          rejected_unknown_assignments=len(audit.get("rejected_assignments", {})),
+                          unused_facts=len(audit.get("unused_fact_ids", [])),
                           state="proposal_audited", resolved=audit["resolved"])
         except Exception as exc:
             report.update(state="failed", error_type=type(exc).__name__,

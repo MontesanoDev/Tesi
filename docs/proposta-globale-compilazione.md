@@ -1,10 +1,43 @@
-# Proposta globale sperimentale — 10 ottobre 2026
+# Proposta globale sperimentale — 11 ottobre 2026
+
+## Contratto corrente 5: proposte sparse, inventario nel backend
+
+Autorizzata la semplificazione dopo i sei rifiuti del contratto compatto.
+Una sola chiamata riceve ancora l'intero catalogo e le SOURCE ammesse. Output:
+`version=5`, `conditions`, `fields`, `facts`, opzionale `uncertain_paragraph_ids`.
+Niente `deferred`, ricevuta di lettura o partizione da ripetere. L'inventario
+autoritativo deriva dall'originale: tutte le posizioni omesse restano
+REVIEW_REQUIRED/non valutate, senza valore, requisito o obbligatorietà inventati.
+
+Le condizioni conservano origine FORM e prove; `scope` usa `{kind,id}` con
+kind candidate/paragraph/table/section. Il backend verifica che l'oggetto
+esista realmente e deriva gli ID coinvolti, incluse tabelle annidate e outline
+Word. Un titolo senza outline non diventa una sezione strutturale inventata.
+Uno scope di paragrafo copre solo il contesto fisico locale, non automaticamente
+tutti i paragrafi successivi. L'associazione semantica non locale resta unknown.
+
+Il JSON originale non viene riscritto. La validazione locale riusa i gate
+precedenti: ID inventati in `rejected_assignments`; assegnazioni invalide
+rifiutate singolarmente; fatti/condizioni invalidi bloccano le dipendenze
+riconoscibili. Errori di scope non eliminano una clausola dal suo contesto
+locale. Fatti orfani elencati in `unused_fact_ids` e inutilizzati. Un JSON
+troncato, chiavi duplicate, envelope o budget invalidi restano rifiuti globali.
+
+Budget invariati: 400 posizioni, 128 assegnazioni/fatti/condizioni, 96 SOURCE,
+100.000 caratteri SOURCE, 350.000 input, 49.152 token output; nessun retry,
+reviewer o chiamata per field. Incertezza FORM locale, proprietà diverse,
+assenza SOURCE e condizioni false/ignote impediscono ancora il valore.
+Grounding non è accettazione semantica: **zero RESOLVED, zero scritture**.
+V1/chat/RAG/parser/renderer invariati. I contratti storici restano per gli audit.
+
+Prove reali da eseguire a codice congelato; non usare i risultati storici
+come verifica della nuova versione.
 
 **Esito dell'esperimento compatto:** tutte le sei risposte rifiutate, nessuna
 attivazione nella chat. Output finale più breve, ma ID/applicabilità ancora
 incoerenti. [Report reale completo](benchmark-proposta-compatta-2026-10-10.md).
 
-## Contratto corrente 4: origine canonica delle condizioni
+## Contratto storico 4: origine canonica delle condizioni
 
 Le prime quattro prove del contratto 3 sono state rifiutate: espansione inutile
 SOURCE, fields review oltre budget, poi inventario duplicato/incoerente. Non
