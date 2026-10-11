@@ -14,10 +14,14 @@ Contesto strutturale V3 invariato; soggetto/ruolo/applicabilità non sono ancora
 verificati semanticamente. Il backend non scopre alternative omesse dal modello;
 review_kind non è un verdetto. Budget/chiamate invariati. Test mirati: **264
 passati**, **1.670 backend in 106,43 s**, Ruff, fixture check, CLI help e diff.
-Tre acquisizioni
-reali deepseek-flash previste solo dopo il congelamento del codice. Il registro
-e gli esiti verranno completati in questo intervento; non riusare questa nota
-come esito di un benchmark già concluso.
+Prima serie reale su `fd016dd`: tre chiamate deepseek-flash, recapiti/polizze
+separati correttamente in 3/3, 22/22 valori attesi proposti (16 grounded), zero
+scritture. Restano molti NA impropri rifiutati e firmatario inferito/grounded
+in 2/3. Tempi 16,06–18,06 s, 60.728 token totali. Acquisizioni e confronto in
+`docs/benchmarks/2026-10-11-labirinto-alternatives-v6.json` e `relazioni.md`.
+Avviata una seconda iterazione limitata alle istruzioni di emissione sparsa e
+legame soggetto/ruolo, stessi schema/gate; seconda serie reale prevista dopo
+congelamento. Questo paragrafo sarà completato con gli esiti finali.
 
 ## Contesto JSON dei candidate — 11 ottobre 2026, esito misurato
 

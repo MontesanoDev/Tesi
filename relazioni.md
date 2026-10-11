@@ -375,3 +375,48 @@ fixture `--check`, CLI help e diff check passati. Frontend invariato/non eseguit
 Codice e protocollo vengono congelati prima delle tre chiamate; nessuna modifica
 prevista durante la serie. I test software usano provider simulati/storage
 temporaneo e non sono una misura della qualità di DeepSeek.
+
+### Prima serie V6, commit fd016dd — risultati conservati
+
+Tre chiamate reali senza modifiche durante il benchmark. Tutte distinguono
+recapiti e polizze in due alternative SOURCE grounded, nessuna selezione o
+concatenazione. Polizza proposta ambiguous/ambiguous/conflicting: il gold è
+CONFLICTING ma le fonti non dichiarano esclusività della polizza, quindi il
+nome dello stato non è una prova semantica; nessuna aspettativa modificata.
+22/22 valori/booleani e ID SOURCE attesi nelle tre prove; 16 passano i gate,
+zero RESOLVED/scritture. I quattro checkbox alternativi di tipologia ora sono
+proposti false: valore/gold corretti, semantica ancora da verificare.
+
+| Misura | Run 1 | Run 2 | Run 3 |
+|---|---:|---:|---:|
+| Secondi AI | 18,06 | 16,06 | 16,64 |
+| Token input | 14.082 | 14.082 | 14.082 |
+| Token output | 6.501 | 5.840 | 6.141 |
+| Token totali | 20.583 | 19.922 | 20.223 |
+| Valori impropri grezzi | 0 | 7 | 8 |
+| Valori impropri grounded | 0 | 1 | 1 |
+| NA improprie grezze | 12 | 5 | 8 |
+| Alternative grounded da chiarire | 2 | 2 | 2 |
+| Rifiuti locali | 33 | 25 | 29 |
+| Omissioni | 3 | 10 | 7 |
+
+Totale 60.728 token/50,76 s. Input SHA
+`7d90faf53f844233617d567b75c0d4f864b067cd321c618848884c2cc677177b`,
+request `6320902b2397b08ba64dfd55960e86feddde4504cd6a8cd302de05e37ba91bd4`.
+Cinque dati societari e direttore/5739 corretti grezzi; direttore bloccato per
+condizioni unknown o invalide (run 1 usa same/different con un solo fatto,
+rifiutato). Sede coincidente NA grounded in run 1/2. Fonte General distrattore
+non usata e fonte esterna assente dall'input, originali invariati.
+
+Regressioni osservate: due run inferiscono il firmatario dall'amministratore,
+che passa il grounding letterale ma NON diventa RESOLVED. NA improprie per dati
+assenti/condizioni sconosciute e review firmatario con fatti su proprietà diverse
+sono rifiutate. L'AI tenta di classificare quasi tutto, aumentando token/rumore.
+**Il miglioramento sui due casi alternativi è stabile; il risultato globale non
+è ancora accettabile per scrivere.** Nessuna promozione o gate allentato.
+
+Seconda iterazione circoscritta, annunciata prima del codice: istruzione di
+emissione sparsa subito all'inizio, prove distinte per value/NA/review e legame
+SOURCE fra soggetto e ruolo richiesto. Nessun nuovo campo, parser o checker.
+Conservare anche questa prima serie, senza sostituirla con il risultato migliore.
+Tre nuove prove a commit congelato, stessi fixture/fonti/schema e budget.
