@@ -883,3 +883,20 @@ semantica esplicita; aggiunti casi negativi per identificativi e SOURCE invariat
 salvato prima delle chiamate: tre Trapani + un Labirinto thinking low, una Trapani
 senza thinking come controllo. Sempre una chiamata/prova, nessun retry/fallback,
 codice congelato e zero USER/scritture; non scegliere il risultato migliore.
+
+### Terza serie: otto dati stabili, emissione ancora incoerente
+
+`f2430dd`: Trapani propone gli stessi otto dati corretti in 3/3. Primi due:
+otto conditional grounded ciascuno; terzo: otto value con condizione semantic
+ritenuta vera dal modello, tutti respinti per unknown backend. Tempi
+67,2782/71,2704/69,0587 s; token 41.017/43.219/41.571. Indirizzo corretto e
+quote FORM recuperate, ma non dichiarare 3/3 proposte accettate. Labirinto:
+13 grounded, zero conditional, 33.324 token/71,2260 s. Controllo senza thinking:
+ancora vuoto, 26.238 token/1,2859 s. Nessun dato promosso o scritto.
+
+Suite completa successiva: **1.754 passati/189,09 s**, 327 mirati/25,12 s,
+Ruff/fixture/diff passati. Ultimo cambiamento comunicato: solo TASK, esplicitare
+che operator=semantic produce SEMPRE unknown nel backend, anche se il modello
+lo ritiene vero; per questo richiede conditional. Nessun rilassamento o
+riclassificazione nel validator. Stesso protocollo di cinque chiamate congelate
+per verificare il solo chiarimento; schema/input/fonti/gold/gate invariati.

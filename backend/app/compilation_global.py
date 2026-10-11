@@ -209,8 +209,11 @@ Confronti: same/different richiedono due fatti distinti dello stesso subject,
 entity e aspect, con property diverse. Solo valori identici dopo spazi/Unicode
 permettono same=true o different=false. Testi diversi non provano diversità
 reale: unknown. Per gli altri casi operator=semantic, con eventuali fatti di
-supporto; usa conditional per i dati documentati dipendenti: la classificazione
-non rende automaticamente vero/falso un ramo. Non inventare un secondo fatto.
+supporto. REGOLA DEL VALIDATOR: operator=semantic restituisce SEMPRE unknown,
+anche quando ritieni semanticamente vera la condizione grazie alle SOURCE.
+Per i dati documentati dipendenti usa SEMPRE conditional, MAI value o
+not_applicable. Il tuo giudizio non cambia quel risultato del backend.
+Non inventare un secondo fatto o un confronto same per aggirare questa regola.
 Tipologia aziendale, partecipazione e poteri di rappresentanza sono dimensioni
 diverse: non trasferire fatti fra queste dimensioni per escludere una sezione.
 Condizione falsa locale => not_applicable senza valore; sconosciuta => conditional

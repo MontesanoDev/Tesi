@@ -76,6 +76,14 @@ thinking per misurare il limite residuo, senza fallback fra modalità. Codice
 congelato, una chiamata per prova, gold invariato fuori dal prompt. Nessun minimo
 di assegnazioni imposto e nessun dato inventato quando manca supporto.
 
+Terza serie: gli otto dati sono proposti correttamente in 3/3, ma solo 2/3
+usano conditional; il terzo usa value su condizione semantic, quindi tutti
+respinti. Esplicitata nel TASK la semantica già reale del validator:
+`operator=semantic` dà SEMPRE unknown, anche se il modello giudica vera la
+condizione, e richiede conditional. Validator/schema invariati, nessuna
+riclassificazione automatica di un value respinto. Un'ultima serie identica
+verifica il solo chiarimento del contratto, senza ulteriori modifiche ai gate.
+
 ## Contratto storico 7: legame letterale persona/ruolo
 
 Passo autorizzato successivo alle alternative, sempre sperimentale e con una

@@ -1,5 +1,16 @@
 # Stato di Mapi RAG
 
+## Trapani — verifica del solo chiarimento di contratto, 11 ottobre 2026
+
+Terza serie `f2430dd`: otto dati SOURCE corretti in 3/3, ma conditional validi
+solo nei primi due; terzo usa value con condizione semantic e viene rifiutato.
+Labirinto 13 grounded/zero conditional; senza thinking Trapani ancora vuoto.
+Ora TASK esplicita che semantic è SEMPRE unknown per il backend e richiede
+conditional, anche se il modello ritiene la condizione vera. Nessuna modifica
+a schema/validator/gate, nessun value rifiutato promosso. Da verificare con
+cinque nuove chiamate congelate, stesso protocollo precedente. Suite completa
+prima del solo chiarimento: 1.754/189,09 s; mirati 327/25,12 s. Nessun push.
+
 ## Trapani — ultima verifica della granularità, 11 ottobre 2026
 
 Seconda serie conclusa `4a0b7a8`: Trapani thinking low non è più vuoto ma conserva
