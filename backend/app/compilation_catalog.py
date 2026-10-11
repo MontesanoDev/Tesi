@@ -17,7 +17,7 @@ from lxml import etree
 from app.docx_templates import MAX_CANDIDATES, DocumentInputError, is_signature_target, text_of
 
 W14 = "http://schemas.microsoft.com/office/word/2010/wordml"
-CATALOG_VERSION = 2
+CATALOG_VERSION = 3
 MAX_CATALOG_CHARACTERS = 200_000
 MAX_PRECEDING_PARAGRAPHS = 6
 
@@ -147,7 +147,7 @@ def _all_text_direct_bold(paragraph):
             if (node.text or "").strip()
             and next(node.iterancestors(qn("w:p")), None) is paragraph}
     return bool(runs) and all(
-        _boolean(run.find("w:rPr/w:b", namespaces=run.nsmap), qn("w:val"))
+        _boolean(run.find(f"{qn('w:rPr')}/{qn('w:b')}"), qn("w:val"))
         for run in runs
     )
 
@@ -203,44 +203,26 @@ def _read_only_parts(original):
     return parts
 
 
-def _reading_contexts(blocks, candidates):
-    """Share physical row/ancestor references; do not infer semantic boundaries."""
-    contexts, locations = {}, {}
+def _bind_locations(blocks, candidates):
+    """Point directly into the canonical structure, without a second row map."""
+    locations = {}
     for block in blocks:
         for paragraph in block["paragraphs"]:
-            key = paragraph["id"]
-            contexts[key] = {"block_id": block["id"], "paragraph_ids": [key]}
-            locations[key] = key
+            locations[paragraph["id"]] = {"block_id": block["id"]}
         tables = {table["id"]: table for table in block.get("tables", [])}
-        parents = {nested: (table["id"], cell["id"])
-                   for table in tables.values() for row in table["rows"] for cell in row
-                   for nested in cell.get("table_ids", [])}
         for table in tables.values():
-            path, parent = [table["id"]], table["id"]
-            while parent in parents:
-                parent = parents[parent][0]
-                path.insert(0, parent)
-            if table["id"] in parents:
-                table["parent_cell_id"] = parents[table["id"]][1]
-            headers = [p for index in table.get("repeat_header_rows", [])
-                       for cell in table["rows"][index] for p in cell["paragraph_ids"]]
             for index, row in enumerate(table["rows"]):
-                key = f"{table['id']}.row:{index}"
-                row_ids = [p for cell in row for p in cell["paragraph_ids"]]
-                contexts[key] = {"block_id": block["id"], "table_path": path,
-                                 "row_index": index, "row_paragraph_ids": row_ids}
-                if headers:
-                    contexts[key]["header_paragraph_ids"] = headers
+                location = {"block_id": block["id"], "table_id": table["id"],
+                            "row_index": index}
                 for cell in row:
-                    locations[cell["id"]] = key
+                    locations[cell["id"]] = location
                     for p in cell["paragraph_ids"]:
-                        locations[p] = key
-    selected = {}
+                        locations[p] = location
+                    for nested in cell.get("table_ids", []):
+                        tables[nested]["parent_cell_id"] = cell["id"]
     for candidate in candidates.values():
-        key = locations[candidate["context_id"]]
-        candidate["reading_context_id"] = key
-        selected[key] = contexts[key]
-    return selected
+        candidate["location"] = locations[candidate["context_id"]]
+    return {candidate["location"]["block_id"] for candidate in candidates.values()}
 
 
 def build_compilation_catalog(layout):
@@ -291,7 +273,7 @@ def build_compilation_catalog(layout):
             record = {"id": f"table:{ti}",
                       "rows": _table_rows(table, ti, positions, tables)}
             headers = [index for index, row in enumerate(table.findall(qn("w:tr")))
-                       if _boolean(row.find("w:trPr/w:tblHeader", namespaces=row.nsmap),
+                       if _boolean(row.find(f"{qn('w:trPr')}/{qn('w:tblHeader')}"),
                                    qn("w:val"))]
             if headers:
                 record["repeat_header_rows"] = headers
@@ -319,15 +301,14 @@ def build_compilation_catalog(layout):
     candidates.update(controls)
     if len(candidates) > MAX_CANDIDATES:
         raise DocumentInputError("Il catalogo supera 400 candidate inclusi i controlli Word")
-    contexts = _reading_contexts(blocks, candidates)
-    candidate_blocks = {context["block_id"] for context in contexts.values()}
+    candidate_blocks = _bind_locations(blocks, candidates)
     for block in blocks:
         if block["id"] not in candidate_blocks:
             # The full ordered text stays; nearby references help only targets.
             block.pop("preceding_body_paragraph_ids", None)
     catalog = {"version": CATALOG_VERSION, "role": "form", "template_sha256": layout.sha256,
                "candidate_scope": "document_body", "checkbox_write_supported": False,
-               "blocks": blocks, "reading_contexts": contexts, "candidates": candidates,
+               "blocks": blocks, "candidates": candidates,
                "read_only_parts": _read_only_parts(layout.original)}
     if len(json.dumps(catalog, ensure_ascii=False, separators=(",", ":"))) > MAX_CATALOG_CHARACTERS:
         raise DocumentInputError("Catalogo completo oltre 200.000 caratteri: nessun testo omesso")

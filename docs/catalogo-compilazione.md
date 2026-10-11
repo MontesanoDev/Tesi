@@ -36,14 +36,16 @@ Il parser accetta l'opzione `require_candidates=False` per l'ispezione in sola
 lettura di documenti senza celle/segnaposti, per esempio con sole checkbox.
 Il default e l'insieme scrivibile del renderer restano invariati.
 
-## Contesto di lettura V2 — 11 ottobre 2026
+## Contesto di lettura — 11 ottobre 2026
 
-Il catalogo passa a **versione 2**, senza cambiare gli ID scrivibili o il
-contratto delle proposte. Ogni candidate ha `reading_context_id`, riferimento
-alla mappa condivisa `reading_contexts`. Per le tabelle il contesto identifica
-blocco, percorso delle tabelle annidate, indice della riga e paragrafi della
-riga. `parent_cell_id` collega una tabella annidata alla cella contenitrice.
-Per le posizioni fuori tabella il riferimento resta al paragrafo fisico.
+Il catalogo corrente è **versione 3**, senza cambiare gli ID scrivibili o il
+contratto delle proposte. Ogni candidate ha `location` con `block_id` e,
+nelle tabelle, `table_id`/`row_index`. Punta direttamente all'unica struttura
+canonica delle celle: nessuna seconda mappa di righe o duplicazione di testo.
+`parent_cell_id` collega una tabella annidata alla cella contenitrice, mantenendo
+ricostruibile il percorso esterno. Fuori tabella resta il blocco del paragrafo.
+La prima iterazione V2 con `reading_contexts`/`reading_context_id` è conservata
+nel benchmark: più metadati non hanno prodotto un beneficio semantico stabile.
 
 I blocchi con candidate conservano fino a sei paragrafi di corpo non vuoti
 precedenti (`preceding_body_paragraph_ids`), in ordine. Sono riferimenti di

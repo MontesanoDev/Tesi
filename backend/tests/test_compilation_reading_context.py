@@ -1,6 +1,8 @@
 """Physical reading contexts and strict local anchors, without an AI provider."""
 
 import json
+from io import BytesIO
+from zipfile import ZipFile
 
 import pytest
 from docx import Document
@@ -32,11 +34,11 @@ def test_first_data_row_is_not_a_header_or_local_anchor_of_later_rows():
     table.cell(1, 0).text = "Organizzazione rappresentata"
     _, data = data_for(doc)
     form = data["form"]
-    assert form["version"] == 2
+    assert form["version"] == 3
     assert form["candidates"]["t0.r1.c1"]["anchor_paragraph_ids"] == ["paragraph:2"]
-    context = form["reading_contexts"][form["candidates"]["t0.r1.c1"]["reading_context_id"]]
-    assert context == {"block_id": "paragraph:0", "table_path": ["table:0"],
-                       "row_index": 1, "row_paragraph_ids": ["paragraph:2", "paragraph:3"]}
+    location = form["candidates"]["t0.r1.c1"]["location"]
+    assert location == {"block_id": "paragraph:0", "table_id": "table:0", "row_index": 1}
+    assert "reading_contexts" not in form
 
 
 @pytest.mark.parametrize("marker,expected", [(None, True), ("true", True), ("1", True),
@@ -54,9 +56,7 @@ def test_only_explicit_enabled_headers_supply_header_context_and_anchors(marker,
     assert ("paragraph:1" in field["anchor_paragraph_ids"]) is expected
     table_data = data["form"]["blocks"][0]["tables"][0]
     assert table_data.get("repeat_header_rows", []) == ([0] if expected else [])
-    context = data["form"]["reading_contexts"][field["reading_context_id"]]
-    assert context.get("header_paragraph_ids", []) == (
-        ["paragraph:0", "paragraph:1"] if expected else [])
+    assert field["location"]["row_index"] == 1
 
 
 @pytest.mark.parametrize("header", [False, True])
@@ -114,8 +114,8 @@ def test_visual_bold_titles_are_observations_without_invented_sections_or_condit
     assert form["blocks"][2]["paragraphs"][0]["all_text_direct_bold"] is True
     assert form["candidates"]["p1.s0"]["section_ids"] == []
     assert form["candidates"]["p3.s0"]["section_ids"] == []
-    assert form["candidates"]["p1.s0"]["reading_context_id"] != (
-        form["candidates"]["p3.s0"]["reading_context_id"])
+    assert form["candidates"]["p1.s0"]["location"] == {"block_id": "paragraph:1"}
+    assert form["candidates"]["p3.s0"]["location"] == {"block_id": "paragraph:3"}
     assert "applicability" not in json.dumps(form)
 
 
@@ -148,8 +148,8 @@ def test_nested_table_has_its_own_row_and_parent_path_without_outer_label_contam
     tables = form["blocks"][0]["tables"]
     assert tables[1]["parent_cell_id"] == "t0.r0.c1"
     field = form["candidates"]["t1.r0.c1"]
-    context = form["reading_contexts"][field["reading_context_id"]]
-    assert context["table_path"] == ["table:0", "table:1"]
+    assert field["location"] == {"block_id": "paragraph:0", "table_id": "table:1",
+                                 "row_index": 0}
     assert "paragraph:0" not in field["anchor_paragraph_ids"]
     assert set(form["candidates"]) == layout.candidate_ids
 
@@ -161,9 +161,9 @@ def test_checkbox_and_text_positions_share_physical_row_but_not_writable_identit
     table.cell(0, 1).text = "Opzione con valore associato"
     _, data = data_for(doc)
     form = data["form"]
-    assert form["candidates"]["p0.cb0"]["reading_context_id"] == (
-        form["candidates"]["t0.r0.c2"]["reading_context_id"])
-    assert len(form["reading_contexts"]) == 1
+    assert form["candidates"]["p0.cb0"]["location"] == (
+        form["candidates"]["t0.r0.c2"]["location"])
+    assert "reading_contexts" not in form
     assert form["candidates"]["p0.cb0"]["type"] == "checkbox"
     assert form["checkbox_write_supported"] is False
 
@@ -188,3 +188,27 @@ def test_header_cannot_cross_table_boundaries():
     second.cell(0, 0).text = "Dato Beta"
     _, data = data_for(doc)
     assert data["form"]["candidates"]["t1.r0.c1"]["anchor_paragraph_ids"] == ["paragraph:2"]
+
+
+def test_word_namespace_prefix_is_not_assumed_for_visual_or_header_metadata():
+    doc = Document()
+    doc.add_paragraph().add_run("Titolo visuale").bold = True
+    table = doc.add_table(rows=2, cols=2)
+    table.cell(0, 0).text = "Categoria"
+    table.cell(0, 1).text = "Identificativo"
+    table.cell(1, 0).text = "Categoria Alfa"
+    mark_header(table.rows[0])
+    stream = BytesIO()
+    with ZipFile(BytesIO(encoded(doc))) as original, ZipFile(stream, "w") as output:
+        for name in original.namelist():
+            data = original.read(name)
+            if name == "word/document.xml":
+                data = (data.replace(b"xmlns:w=", b"xmlns:alias=")
+                        .replace(b"<w:", b"<alias:").replace(b"</w:", b"</alias:")
+                        .replace(b" w:", b" alias:"))
+            output.writestr(name, data)
+    layout = inspect_docx(stream.getvalue())
+    form = build_global_input(layout, "alpha", [])["form"]
+    assert form["blocks"][0]["paragraphs"][0]["all_text_direct_bold"] is True
+    assert form["blocks"][1]["tables"][0]["repeat_header_rows"] == [0]
+    assert "paragraph:2" in form["candidates"]["t0.r1.c1"]["anchor_paragraph_ids"]

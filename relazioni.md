@@ -225,3 +225,22 @@ dei gate o modifica del gold. Riepilogo completo in
 `docs/benchmarks/2026-10-11-labirinto-context-v2.json`; grezzi
 `backend/data/compilation-audit/context-v2-20261011-*`, da includere nel bundle
 finale insieme alla seconda iterazione.
+
+### Seconda iterazione: posizione diretta V3, preparazione
+
+Rimossa la seconda mappa `reading_contexts` e il suo riferimento: `location`
+contiene direttamente blocco/tabella/riga del candidate. La struttura canonica
+contiene già celle e paragrafi della riga; il percorso annidato si ricostruisce
+tramite `parent_cell_id`. Conservati grassetto diretto, contesto precedente e
+gate sulle intestazioni esplicite; nessuna nuova inferenza o modifica del prompt.
+Input fixture compatto 38.551 caratteri, contro 43.725 V2 e 31.873 baseline:
+questa misura non include system prompt e non è una misura di token.
+Catalogo Catanzaro nel payload: 166.460 caratteri incluse anchor, Minervino
+101.509, entrambi entro il limite. Primo giro V3: **229 mirati in 10,28 s**,
+Ruff completo, riproducibilità fixture e diff check passati.
+
+Prima suite completa V3: **1.635 in 111,17 s**. Durante la revisione riprodotto
+un errore dei nuovi metadati su XML Word valido con prefisso diverso da `w`:
+le ricerche grassetto/header dipendevano dal prefisso. Corrette usando QName
+espansi e aggiunta regressione. Stato finale: **230 mirati in 10,00 s**, Ruff,
+fixture/diff passati; suite completa finale e benchmark da concludere.

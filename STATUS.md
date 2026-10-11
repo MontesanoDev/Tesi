@@ -5,16 +5,22 @@
 Autorizzato il primo intervento sul contesto in ingresso, con test iterativi e
 confronto sul Labirinto congelato. Corretta l'assunzione che ogni prima riga
 sia un header: il grounding locale ammette riga corrente e sole intestazioni
-Word esplicite. Catalogo V2 con contesti fisici condivisi, percorsi delle
-tabelle annidate, fino a sei paragrafi precedenti per blocchi con candidate e
-segnale di grassetto diretto; nessuna sezione semantica inventata dal backend.
+Word esplicite. Prima iterazione V2 con contesti fisici condivisi: tre prove
+reali `d14fa9d`, 22/18/17 valori attesi, +30,68% token input, errori residui;
+beneficio semantico non stabile. Risultati conservati in `relazioni.md` e JSON.
+Seconda iterazione V3: `location` diretta sul candidate, nessuna seconda mappa
+delle righe. Tabelle annidate, fino a sei paragrafi precedenti per blocchi con
+candidate e grassetto diretto; nessuna sezione semantica inventata dal backend.
 
 Prima verifica: 228 test passati/uno fallito per catalogo Catanzaro oltre
 200.000 caratteri; eliminate ripetizioni di riferimenti sui blocchi privi di
 candidate, senza eliminare testo o aumentare budget. Nuova verifica mirata:
 **229 passati in 11,23 s**; Ruff completo, fixture `--check`, diff check passati.
-Suite backend completa: **1.635 passati in 106,56 s**. Tre acquisizioni reali
-ancora da concludere. Prompt/schema di risposta, fixture/fonti/gold e budget invariati;
+Suite backend V2: **1.635 passati in 106,56 s**. V3: **229 mirati in 10,28 s**,
+prima suite V3 **1.635 in 111,17 s**. Aggiunta regressione per prefisso namespace
+Word alternativo e corrette le letture dei due nuovi metadati: **230 mirati
+in 10,00 s**, suite finale e tre acquisizioni reali da concludere. Prompt/schema
+di risposta, fixture/fonti/gold e budget invariati;
 V1/chat/RAG/parser/renderer non modificati. Nessuna migrazione o reindicizzazione.
 
 Commit piccoli autorizzati; nessun push. Prossimo punto: completare le misure
