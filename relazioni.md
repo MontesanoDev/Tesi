@@ -420,3 +420,92 @@ emissione sparsa subito all'inizio, prove distinte per value/NA/review e legame
 SOURCE fra soggetto e ruolo richiesto. Nessun nuovo campo, parser o checker.
 Conservare anche questa prima serie, senza sostituirla con il risultato migliore.
 Tre nuove prove a commit congelato, stessi fixture/fonti/schema e budget.
+
+### Seconda serie V6, commit a405f3d — esito finale del passo
+
+Tre nuove chiamate reali, nessuna modifica durante la serie. Input strutturale,
+fonti e schema identici alla prima serie; cambia soltanto TASK con i criteri di
+emissione all'inizio. Input SHA identico
+`7d90faf53f844233617d567b75c0d4f864b067cd321c618848884c2cc677177b`, request
+`6260816d628ff7b2f341c567cc68479826f214192e88f3628356f2882ae95351`.
+Golden e fixture invariati, nessun dato USER, retry o reviewer.
+
+| Misura | Run 1 | Run 2 | Run 3 |
+|---|---:|---:|---:|
+| Secondi AI | 15,32 | 10,59 | 16,44 |
+| Token input | 14.390 | 14.390 | 14.390 |
+| Token output | 5.682 | 3.644 | 6.049 |
+| Token totali | 20.072 | 18.034 | 20.439 |
+| Valori/booleani e ID SOURCE attesi | 22/22 | 17/22 | 22/22 |
+| Di questi, grounding superato | 16 | 11 | 16 |
+| Valori impropri grezzi | 7 | 0 | 7 |
+| Valori impropri grounded | 0 | 0 | 1 |
+| NA improprie grezze | 2 | 0 | 6 |
+| Alternative grounded da chiarire | 2 | 2 | 2 |
+| Rifiuti locali | 23 | 6 | 26 |
+| Omissioni/non valutati | 13 | 35 | 9 |
+
+Recapiti separati ambiguous e polizze conflicting in tutte le tre prove finali;
+quote e ID SOURCE corretti, nessun valore selezionato o concatenato. In tutte
+le **sei** acquisizioni sono due review grounded, anche se la prima serie chiama
+due volte ambiguous la polizza. Nessun adattamento del gold. Il criterio di
+scelta semantica/conflicting vs ambiguous resta da verificare, non basta il nome.
+
+I cinque dati societari, telefono/PEC, CCIAA/REA/data e codice procedura restano
+corretti dalle rispettive SOURCE. Direttore Giulia Serra, Ingegnere, Ordine di
+Ancona e **5739** corretti grezzi in tutte le sei prove, distinti da 8821; bloccati
+con denominazione/forma di ramo da condizioni unknown/invalide. Nel run 2 finale
+sono omessi tutti e cinque i checkbox tipologia: per questo 17/22, non perdita
+dei dati societari o direttore. Omissioni non significano false/MISSING/NA.
+Sede operativa coincidente NA grounded nelle tre finali (5/6 complessive).
+
+Revisione manuale dei grounded: polizza/recapiti non producono più assegnazioni
+improprie; tuttavia il run 3 finale propone il firmatario Paolo Conti con sola
+quote «Amministratore unico: Paolo Conti.» e supera grounding. Non è prova che
+firmi questa domanda: resta semantic_review_required, written_value=null.
+Il run 1 propone lo stesso firmatario ma lo vincola a condizione unknown, quindi
+rifiutato. Carica e scelte di rappresentanza/partecipazione non provate sono
+rifiutate; alcuni NA per condizioni ignote restano impropri e rifiutati.
+Nessuna data abilitazione/ISO/organigramma inventata, nessun uso della fonte
+General distrattore o di altro progetto. Non dichiarare risolti soggetto/ruolo,
+completezza dei rami o associazione semantica perché è migliorato il prompt.
+
+Totale seconda serie: **58.545 token/42,35 s**, media 19.515 token/14,12 s.
+Rispetto alla baseline V3: input **+7,12%**, token totali medi **+14,67%**,
+tempo medio **+40,32%** nel piccolo campione. Rispetto alla prima V6: meno
+output/tempo medi, ma ancora variabilità significativa. Cache diversa, nessuna
+misura di risparmio E2E; nessuna compilazione completa. Totale dell'intervento:
+**sei chiamate, 119.273 token/93,11 s AI**, zero RESOLVED/scritture/sessioni.
+
+**Decisione:** il passo circoscritto sulle alternative è soddisfacente sulle sei
+prove congelate: mantenere il contratto 6 e le prove separate, senza reviewer
+aggiuntivi. NON considerare soddisfacente l'intero compilatore: prossimo passo
+da discutere è il legame SOURCE soggetto/ruolo e l'applicabilità del ramo prima
+di qualsiasi adapter/rendering/attivazione chat. Un backend che vede solo i fatti
+scelti dal modello non scopre alternative omesse, non certifica atomicità e non
+risolve priorità temporali. I test verificano il gate sui fatti presenti, non
+la completezza semantica del corpus.
+
+Verifiche finali realmente eseguite: **264 mirati/10,50 s**, **1.670 backend
+completi/106,64 s**, Ruff completo, fixture check, CLI help e diff check. Prima
+suite completa 1.670/106,43 s e primi mirati 264/11,06 s conservati distinti.
+Test software con provider simulati dove serve, nuove regressioni senza LLM;
+solo le sei acquisizioni misurano DeepSeek reale. Frontend invariato/non eseguito.
+Nessuna migrazione/reindicizzazione, dati locali/sessioni/originali invariati.
+
+Report [alternative SOURCE](docs/benchmark-alternative-source-2026-10-11.md),
+[prima serie](docs/benchmarks/2026-10-11-labirinto-alternatives-v6.json) e
+[seconda serie](docs/benchmarks/2026-10-11-labirinto-alternatives-v6b.json).
+Grezzi in `backend/data/compilation-audit/alternatives-v6{,b}-20261011-run{1,2,3}/`;
+bundle trasferibile e checksum in `docs/benchmarks/2026-10-11-labirinto-alternatives-audit.tar.gz`.
+Contiene input/request/schema/raw HTTP/usage/validator, fixture e codice congelati,
+analisi per tutte le posizioni e log. Niente credenziali, configurazioni o DB.
+
+Verifica archivio finale: **215 file/1.134.389 byte**, SHA-256
+`1ecb3bbcd816aa42d120bf57f01206c9c4785d0ee89d2b00f871a6c258630d63`.
+Tutti i sei manifest e snapshot confrontati ai rispettivi commit; sei replay
+del validator identici agli audit acquisiti, richieste senza gold, originali
+invariati e scansione credenziali/DB superata. Verifica byte per byte del bundle.
+Lo script di archivio ha inizialmente usato il nome `catalog_version` al posto
+reale di `version`; corretto soltanto nello script di analisi, dopo le prove,
+senza modificare motore o risultati. Prima failure fermata prima del bundle.

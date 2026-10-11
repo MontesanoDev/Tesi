@@ -14961,5 +14961,38 @@
       "input_sha256": "7d90faf53f844233617d567b75c0d4f864b067cd321c618848884c2cc677177b",
       "request_sha256": "6320902b2397b08ba64dfd55960e86feddde4504cd6a8cd302de05e37ba91bd4"
     }
+  ],
+  "software_checks": {
+    "targeted_initial": {
+      "passed": 264,
+      "seconds": 11.06
+    },
+    "full_initial": {
+      "passed": 1670,
+      "seconds": 106.43
+    },
+    "targeted_final": {
+      "passed": 264,
+      "seconds": 10.5
+    },
+    "full_final": {
+      "passed": 1670,
+      "seconds": 106.64
+    },
+    "ruff": "passed",
+    "fixture_check": "passed",
+    "cli_help": "passed",
+    "frontend": "unchanged/not run",
+    "providers": "simulated where needed in software suites; alternatives tests without LLM"
+  },
+  "review_notes": [
+    "All proposals remain semantic_review_required; no RESOLVED or document/session writes.",
+    "Five company values and director/5739 remain correct raw proposals in all runs.",
+    "Correspondence/policy alternatives have individual correct SOURCE references in all runs.",
+    "Identity/property are model proposals, not independently proved entailment.",
+    "The backend cannot detect source alternatives omitted from the output.",
+    "NA/review noise and signer inference remain; none of these is approved for rendering.",
+    "Review-kind scoring checks authored state and SOURCE IDs only, not completeness or semantics.",
+    "One call per run, no retries; fixture/gold unchanged and gold excluded from prompt."
   ]
 }

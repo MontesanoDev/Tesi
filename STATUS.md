@@ -1,6 +1,6 @@
 # Stato di Mapi RAG
 
-## Alternative SOURCE — 11 ottobre 2026, verifica in corso
+## Alternative SOURCE — 11 ottobre 2026, esito circoscritto positivo
 
 Autorizzato il passo successivo: una sola proposta globale può esprimere due o
 più alternative grounded senza scegliere arbitrariamente. Contratto sperimentale
@@ -10,18 +10,36 @@ value quando nella proposta esistono altri fatti referenziati e grounded della
 stessa proprietà con valori differenti. Gate FORM/SOURCE e applicabilità invariati;
 nessuna promozione a RESOLVED, scrittura, attivazione nella V1 o migrazione.
 
-Contesto strutturale V3 invariato; soggetto/ruolo/applicabilità non sono ancora
-verificati semanticamente. Il backend non scopre alternative omesse dal modello;
-review_kind non è un verdetto. Budget/chiamate invariati. Test mirati: **264
-passati**, **1.670 backend in 106,43 s**, Ruff, fixture check, CLI help e diff.
-Prima serie reale su `fd016dd`: tre chiamate deepseek-flash, recapiti/polizze
-separati correttamente in 3/3, 22/22 valori attesi proposti (16 grounded), zero
-scritture. Restano molti NA impropri rifiutati e firmatario inferito/grounded
-in 2/3. Tempi 16,06–18,06 s, 60.728 token totali. Acquisizioni e confronto in
-`docs/benchmarks/2026-10-11-labirinto-alternatives-v6.json` e `relazioni.md`.
-Avviata una seconda iterazione limitata alle istruzioni di emissione sparsa e
-legame soggetto/ruolo, stessi schema/gate; seconda serie reale prevista dopo
-congelamento. Questo paragrafo sarà completato con gli esiti finali.
+Sei chiamate reali deepseek-flash su due commit congelati `fd016dd`/`a405f3d`,
+tre per iterazione, stessi Word/fonti/gold: **recapiti e polizze separati in 6/6**,
+nessuna scelta/concatenazione. Cinque dati societari corretti in tutte le prove;
+direttore e **5739** corretti grezzi ma applicabilità blocca il valore. Finale:
+22/17/22 target proposti, 16/11/16 grounded. Run 2 omette cinque checkbox tipologia;
+non sono valori false verificati. Sede coincidente NA in 3/3 finali, 5/6 totali.
+
+Restano NA impropri rifiutati e, in 1/3 finali, firmatario inferito/grounded con
+sola attestazione dell'amministratore. La seconda iterazione rafforza soltanto
+istruzioni di emissione/ruolo, beneficio non stabile. **Non risolti soggetto,
+applicabilità e completezza dei rami**; semantic_review_required=true resta
+obbligatorio. Il backend non scopre alternative omesse dal modello; review_kind
+non è un verdetto. Nessun RESOLVED, scrittura/sessione o attivazione chat.
+
+Ultima serie 10,59–16,44 s, token totali medi **+14,67%** vs V3; nessun risparmio
+E2E dimostrato. Intervento totale **119.273 token/93,11 s AI**, zero USER/retry.
+Finali realmente eseguiti: **264 mirati in 10,50 s, 1.670 backend in 106,64 s**,
+Ruff, fixture check, CLI help, replay/manifest/diff. Frontend invariato/non eseguito.
+V1/RAG/parser/renderer/catalogo V3 invariati; nessuna migrazione/reindicizzazione.
+
+[Report e limiti](docs/benchmark-alternative-source-2026-10-11.md),
+[registro](relazioni.md), JSON per tutte le posizioni
+`docs/benchmarks/2026-10-11-labirinto-alternatives-v6{,b}.json` e bundle
+`docs/benchmarks/2026-10-11-labirinto-alternatives-audit.tar.gz` con checksum,
+sei acquisizioni/codice congelato/raw/usage/validator/log, senza DB/credenziali.
+
+**Prossimo punto da discutere prima del codice:** legame fra SOURCE,
+soggetto/ruolo richiesto dal FORM e applicabilità del ramo nella stessa chiamata.
+Non sostituire semantic_review_required con l'autodichiarazione del modello,
+né passare all'adapter/rendering. Commit piccoli autorizzati, nessun push.
 
 ## Contesto JSON dei candidate — 11 ottobre 2026, esito misurato
 

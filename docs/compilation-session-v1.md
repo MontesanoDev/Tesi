@@ -5,6 +5,12 @@ modifica dati persistiti; il file Word viene generato soltanto su richiesta.
 La chat esistente offre selezione `@`, avvio/ripresa, riepilogo, chiarimenti
 raggruppati e generazione/download inline. Il backend rimane la fonte dello stato.
 
+**Alternative SOURCE sperimentali dell'11 ottobre:** contratto globale 6 con
+review e 2–4 fatti/prove distinti, sempre una chiamata. Sei prove reali mantengono
+due recapiti e due polizze separati senza scelta arbitraria; restano inferenze
+sul firmatario e applicabilità unknown, quindi nessuna attivazione nella V1.
+[Report e acquisizioni](benchmark-alternative-source-2026-10-11.md).
+
 **Contesto JSON sperimentale dell'11 ottobre:** catalogo V3 con posizione
 blocco/tabella/riga e intestazioni esplicite, senza prima riga assunta come
 header. Sei prove reali sul Labirinto, miglioramento strutturale verificato e

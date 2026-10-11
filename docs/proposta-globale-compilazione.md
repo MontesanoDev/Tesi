@@ -34,9 +34,14 @@ renderer, RAG, UI, originali o sessioni; nessuna migrazione/reindicizzazione.
 Budget invariati: massimo 400 proposte, 128 fatti/condizioni, 96 SOURCE/100.000
 caratteri, 350.000 input, 49.152 token output e 300 s nel runner. Le alternative
 consumano lo stesso budget di fatti; nessun reviewer, retry o chiamata per campo.
-La misura usa tre chiamate reali a codice congelato sulla fixture Labirinto V1,
+La misura usa tre chiamate reali per commit congelato sulla fixture Labirinto V1,
 gold fuori dal prompt; registro, esiti anche negativi e acquisizioni in
 [relazioni.md](../relazioni.md). Non è un benchmark E2E della V1.
+
+Esito delle due iterazioni: alternative separate in **6/6** acquisizioni, cinque
+dati societari sempre corretti, ma soggetto/ruolo e applicabilità ancora aperti.
+Ultima serie 22/17/22 valori attesi grezzi, zero RESOLVED/scritture; +14,67% token
+totali medi vs V3. [Report completo](benchmark-alternative-source-2026-10-11.md).
 
 ## Contratto storico 5: proposte sparse, inventario nel backend
 

@@ -5,6 +5,16 @@ Distinguere prove reali dei provider da test software con risposte simulate.
 
 ## Modulo labirinto dedicato, 11 ottobre 2026
 
+- [Alternative SOURCE](../benchmark-alternative-source-2026-10-11.md): contratto
+  6, una chiamata per prova, sei acquisizioni su due commit congelati. Recapiti
+  e polizze separati in 6/6; soggetto/ruolo e applicabilità ancora da verificare.
+  [Prima serie](2026-10-11-labirinto-alternatives-v6.json),
+  [finale](2026-10-11-labirinto-alternatives-v6b.json),
+  [bundle](2026-10-11-labirinto-alternatives-audit.tar.gz) e
+  [checksum](2026-10-11-labirinto-alternatives-audit.tar.gz.sha256).
+  Finali 264 mirati/1.670 backend, Ruff/check/help/replay/diff. Zero scritture;
+  ultima serie +14,67% token medi vs V3, nessun risparmio E2E dimostrato.
+
 - Contesto fisico: [V2](2026-10-11-labirinto-context-v2.json),
   [V3 corrente](2026-10-11-labirinto-context-v3.json),
   [registro](../../relazioni.md). Sei chiamate reali; V3 conserva 18/22 valori
