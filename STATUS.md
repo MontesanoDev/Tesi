@@ -1,41 +1,53 @@
 # Stato di Mapi RAG
 
-## Proposte sparse: inventario autoritativo backend — 11 ottobre 2026
+## Esito finale proposte sparse — 11 ottobre 2026
 
-Richiesta «ok fallo» dopo la diagnosi dei sei rifiuti strutturali: autorizzata
-la semplificazione del prototipo isolato, non l'attivazione nella chat.
-Il contratto sperimentale 5 elimina `deferred`, partizione esatta e ricevuta dei
-paragrafi letti. Il backend conserva tutti i candidate dell'originale; quelli
-senza proposta restano REVIEW_REQUIRED/non valutati, mai missing/NA inventati.
+[Report completo](docs/benchmark-proposte-sparse-2026-10-11.md) e
+`docs/benchmarks/2026-10-11-compilation-global-sparse.json`.
+Commit `7190d2d` inventario backend/quarantena locale, `46128f5` schema value/NA
+e tetto delle proposte coerente con il catalogo. V1/chat/RAG/parser/renderer
+ancora invariati; nessuna migrazione/reindicizzazione, originali/sessioni locali invariati.
 
-Scope delle condizioni tipizzati candidate/paragraph/table/section, verificati
-nel catalogo reale; destinazioni scrivibili sempre e soltanto candidate.
-ID inventato o record invalido: quarantena locale; fatto/condizione invalida:
-blocco delle dipendenze riconoscibili, conservazione delle proposte indipendenti.
-JSON troncato/duplicato, envelope e budget invalidi restano rifiuti globali.
-Fatti orfani segnalati e inutilizzati; incertezza FORM locale ancora bloccante.
-Confronti, quote, proprietà e provenance invariati: grounded non è RESOLVED,
-nessun valore scrivibile o adapter di sessione. Le condizioni di scope non locale
-restano da verificare semanticamente. RAG/chat/parser/renderer/V1 invariati.
+Quattro chiamate DeepSeek reali, due coppie congelate, stesso originale/307
+candidate/51 SOURCE delle prove precedenti, zero USER/retry. Le prime due sono
+rifiutate per tetto 128 e numerosi value senza fact_id; sono conservate come
+fallimenti, non corrette retroattivamente. Nelle due finali il JSON arriva alla
+validazione locale: **9/8 grounded, 40/75 rifiuti locali, 258/224 non valutati**.
+ID inventati e value senza fact_id: zero. Cinque dati societari e telefono
+correttamente proposti da SOURCE in entrambe; nessun RESOLVED o valore scritto.
 
-Verifiche concluse: **185 mirati, 1.591 backend completi**, Ruff e help CLI.
-Prima Ruff ha segnalato una riga lunga, corretta; entrambi i log conservati in
-`backend/data/compilation-audit/global-sparse-20261011-checks/`.
-Prime due prove DeepSeek a codice congelato `7190d2d`: 58,43/43,34 s,
-92.451/86.331 token, entrambe rifiutate per 256/165 record contro il tetto 128;
-249/126 record value senza fact_id. Non è un nuovo errore di copertura.
-Acquisizioni complete in `global-sparse-20261011-run1/2`, nessuna riparazione.
+Ultime prove **20,26/31,00 s, 76.611/81.160 token**. Medie rispetto alle ultime
+due compatte: −45,24% tempo, −11,10% token totali, −49,42% output nel campione.
+Non è un risparmio dimostrato di compilazione completa/produzione: schema e
+cache diversi, due risposte stocastiche. Totale quattro prove: 336.553 token,
+153,03 s AI; originali e input di ogni coppia verificati, codice congelato.
 
-Correzione successiva annunciata: schema separato value/NA, fact_id e property
-obbligatori non null per value. Il tetto delle assegnazioni coincide con le 400
-posizioni strutturali già ammesse; non è un obiettivo di output. Restano 128
-fatti/condizioni e invariati i limiti input/output/tempo: nessuna nuova chiamata
-per campo. Regressione 130 proposte con una valida e 129 invalide locali.
-**188 mirati**, Ruff e help passati; nuova suite completa in corso.
-Prossimo passo: congelare questa revisione e misurare altre due chiamate,
-conservando anche i primi fallimenti e distinguendo grounding da semantica.
-Nessun dato locale/sessione da modificare.
-Nessuna migrazione/reindicizzazione; commit piccoli autorizzati, niente push.
+Inventario non ripetuto dall'IA; omissioni restano non valutate. Destinazioni
+inventate e proposte invalide isolate, dipendenze da fatti/condizioni invalidi
+bloccate. Scope candidate/paragrafo/tabella/outline verificati nel catalogo.
+Limiti: 400 posizioni/proposte, 128 fatti/condizioni, 96 SOURCE/100.000 caratteri,
+350.000 input, 49.152 token output/300 s. Nessuna chiamata per campo/reviewer.
+
+**Non attivare ancora nella chat:** la revisione umana di tutti i grounded
+trova 3/2 assegnazioni semanticamente improprie (sottoscrittore/carica inferiti,
+più sede operativa «se diversa» omessa in una prova). Grounding non è RESOLVED;
+semantic_review_required=true e written_value=null restano invarianti.
+Le 9/19 condizioni sono grounded ma tutte semantic/unknown. Direttore tecnico,
+qualifica, ordine e **8421** sono fatti SOURCE atomici proposti ma bloccati per
+applicabilità del ramo non verificata; data abilitazione non proposta. Restano
+false negative conservativi e completezza delle condizioni non dimostrata.
+
+Verifiche finali realmente concluse: **188 mirati, 1.594 backend completi**,
+Ruff, CLI help e diff check. Prima revisione 185/1.591 conservata separatamente;
+primo Ruff con una riga lunga poi corretto. Provider simulati nei test software,
+DB/storage temporanei; frontend invariato/non rieseguito. Grezzi e log in
+`backend/data/compilation-audit/global-sparse-20261011-*`, anche nel bundle
+versionato del report, con manifest/hash e senza credenziali/database.
+
+**Prossimo punto da discutere prima del codice:** accettazione semantica di
+soggetto/ruolo e applicabilità sulla proposta globale, senza reintrodurre
+reviewer per gruppi o allentare SOURCE. Non passare all'adapter/export solo
+perché il JSON ora è valido. Commit piccoli autorizzati; nessun push.
 
 ## Esito finale proposta compatta — 10 ottobre 2026
 

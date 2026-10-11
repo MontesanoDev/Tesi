@@ -9,6 +9,10 @@ raggruppati e generazione/download inline. Il backend rimane la fonte dello stat
 nel backend, proposte validate singolarmente e scope strutturali tipizzati.
 Nessuna attivazione nella chat o promozione automatica a RESOLVED. La V1 e
 il renderer restano invariati. [Contratto e limiti](proposta-globale-compilazione.md).
+Le due prove finali conservano 9/8 proposte grounded invece del rifiuto globale,
+in 20,26/31,00 s, ma restano assegnazioni semanticamente improprie. Per questo
+il percorso operativo descritto qui non cambia.
+[Report reale e acquisizioni](benchmark-proposte-sparse-2026-10-11.md).
 
 **Esperimento compatto successivo del 10 ottobre:** output ridotto e fatti
 professionali separati, ma tutte le sei risposte sono state rifiutate per

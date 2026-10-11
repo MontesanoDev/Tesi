@@ -35,7 +35,14 @@ tetto di 128: entrambe rifiutate; molti value senza fact_id. Dopo questa coppia
 conclusa, separati gli schemi value/NA: fact_id e property obbligatori non null
 per value; limite record pari al catalogo, così 129 record invalidi non eliminano
 un'assegnazione valida. Nessuna modifica retroattiva dei risultati acquisiti.
-Nuova coppia a codice congelato da misurare, senza cambiare corpus/budget token.
+Nuova coppia misurata a codice congelato, senza cambiare corpus/budget token.
+
+**Esito finale:** due risposte validate per assegnazione sul commit `46128f5`:
+9/8 grounded, 40/75 rifiuti locali e 258/224 posizioni non valutate. 20,26/31,00 s,
+76.611/81.160 token. Cinque dati societari corretti, ma errori semantici di
+sottoscrittore/carica/sede operativa restano: nessuna attivazione nella chat.
+[Report completo e acquisizioni](benchmark-proposte-sparse-2026-10-11.md).
+Verifiche finali: 188 mirati/1.594 backend, Ruff, help e diff; frontend invariato.
 
 **Esito dell'esperimento compatto:** tutte le sei risposte rifiutate, nessuna
 attivazione nella chat. Output finale più breve, ma ID/applicabilità ancora
@@ -48,7 +55,7 @@ SOURCE, fields review oltre budget, poi inventario duplicato/incoerente. Non
 vengono riparate o accettate parzialmente. Sono riproducibili con il codice
 congelato allegato ai rispettivi audit, non tramite un nuovo percorso operativo.
 
-La versione 4 toglie una responsabilità ridondante al modello: l'origine della
+La versione 4 toglieva una responsabilità ridondante al modello: l'origine della
 condizione compare soltanto in `conditions[id].form.paragraph_id` e quote.
 Il backend deriva la mappa inversa paragrafo-condizioni e ne controlla le quote,
 poi collega clausole locali e scope proposti agli ID strutturali già noti.

@@ -1,0 +1,5486 @@
+{
+  "benchmark": "compilation-global-sparse",
+  "date": "2026-10-11",
+  "protocol": {
+    "real_provider": "deepseek-flash",
+    "independent_calls": 4,
+    "calls_per_experiment": 1,
+    "retries": 0,
+    "user_values": 0,
+    "session_writes": 0,
+    "docx_writes": 0,
+    "semantic_acceptance": false,
+    "manifests_verified": true,
+    "frozen_pairs": [
+      [
+        "7190d2d7e296ce6c24ef9f966371082ca7c6fc3e",
+        1,
+        2
+      ],
+      [
+        "46128f5396192e01aab83e1cfba5cf78780d5064",
+        3,
+        4
+      ]
+    ],
+    "identical_inputs_within_pairs": true,
+    "identical_requests_within_pairs": true,
+    "catalog_and_sources_identical_to_previous_compact": true
+  },
+  "runs": [
+    {
+      "run": 1,
+      "metrics": {
+        "started_at": "2026-10-11T00:05:41.633664+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 224255,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 69322,
+          "completion_tokens": 23129,
+          "total_tokens": 92451,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 69322
+        },
+        "ai_seconds": 58.43154091799806,
+        "state": "failed",
+        "error_type": "ValueError",
+        "error": "Dizionario fields non valido/oltre budget",
+        "original_unchanged": true
+      },
+      "code": {
+        "head": "7190d2d7e296ce6c24ef9f966371082ca7c6fc3e",
+        "status": "## prune-backend...origin/prune-backend [ahead 14]\n"
+      },
+      "input_sha256": "92509533d2b44c923d386f204c7c6477786eb5518c4a3fd9bd9d36eaeee147de",
+      "request_sha256": "318e663110cb115c765dceee9c97c2bd4ee9801e45a3443c16bf9046b3234331",
+      "source_roles": {
+        "source": 51
+      },
+      "source_categories": {
+        "project": 34,
+        "company": 13,
+        "general": 4
+      },
+      "raw_fields": 256,
+      "raw_facts": 7,
+      "raw_conditions": 20,
+      "proposed_dispositions": {
+        "value": 256
+      },
+      "scope_kinds": {
+        "table": 33,
+        "candidate": 26,
+        "paragraph": 3
+      },
+      "validation_counts": {},
+      "rejected_unknown_assignments": {},
+      "rejected_fields": [],
+      "facts_counts": {},
+      "condition_counts": {},
+      "condition_errors": {},
+      "samples": [
+        {
+          "candidate_id": "t0.r0.c1",
+          "benchmark_label": "Sottoscrittore",
+          "proposal": {
+            "label": "Nome e cognome del sottoscrittore",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:18",
+              "quote": "Il/La sottoscritto/a"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile"
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "benchmark_label": "Carica sottoscrittore",
+          "proposal": {
+            "label": "Carica sociale del sottoscrittore",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:24",
+              "quote": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile"
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "benchmark_label": "Estremi procura",
+          "proposal": {
+            "label": "Estremi procura (notaio, repertorio, raccolta)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:26",
+              "quote": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Poteri di amministratore non escludono automaticamente la procura; nessun valore o NA verificato"
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "benchmark_label": "Operatore economico",
+          "proposal": {
+            "label": "Operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:28",
+              "quote": "Operatore economico"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Nessun valore proposto, nonostante la SOURCE presente: fact_id null"
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "benchmark_label": "Forma giuridica",
+          "proposal": {
+            "label": "Forma giuridica dell'operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:30",
+              "quote": "Forma giuridica"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Nessun valore proposto, nonostante la SOURCE presente: fact_id null"
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "benchmark_label": "Sede legale",
+          "proposal": {
+            "label": "Sede legale (via, città, prov.)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:32",
+              "quote": "Sede legale (via, città, prov.)"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Nessun valore proposto, nonostante la SOURCE presente: fact_id null"
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "benchmark_label": "Sede operativa",
+          "proposal": {
+            "label": "Sede operativa (se diversa dalla sede legale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Coincide con la sede legale: value improprio se proposto; NA richiede la condizione calcolata, non la sola conclusione del modello"
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "benchmark_label": "Codice fiscale",
+          "proposal": {
+            "label": "Codice fiscale operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:37",
+              "quote": "Codice fiscale operatore economico"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Nessun valore proposto, nonostante la SOURCE presente: fact_id null"
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "benchmark_label": "Partita IVA",
+          "proposal": {
+            "label": "Partita IVA operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:39",
+              "quote": "Partita IVA operatore economico"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Nessun valore proposto, nonostante la SOURCE presente: fact_id null"
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "benchmark_label": "Numero/data CCIAA",
+          "proposal": {
+            "label": "Numero e data d'iscrizione della società di ingegneria",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:441",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_tipologia_5d"
+            ],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "REA non equivale al numero/data di iscrizione CCIAA; la combinazione di dati non è un valore letterale unico"
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "benchmark_label": "Direttore tecnico nome",
+          "proposal": {
+            "label": "Nome e cognome del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:452",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond_tipologia_5d"
+            ],
+            "fact_id": "f_dt_nome",
+            "property": "nome"
+          },
+          "fact_id": "f_dt_nome",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "nome",
+            "value": "Ing. Elisa Romano",
+            "evidence": [
+              {
+                "chunk_id": -32,
+                "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421, Ordine degli Ingegneri di Bari"
+              }
+            ]
+          },
+          "proposed_value": "Ing. Elisa Romano",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "benchmark_label": "Qualifica direttore",
+          "proposal": {
+            "label": "Qualifica professionale del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:454",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond_tipologia_5d"
+            ],
+            "fact_id": "f_dt_qualifica",
+            "property": "qualifica_professionale"
+          },
+          "fact_id": "f_dt_qualifica",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "qualifica_professionale",
+            "value": "Ingegnere",
+            "evidence": [
+              {
+                "chunk_id": -45,
+                "quote": "- Qualifica professionale nello scenario: Ingegnere."
+              }
+            ]
+          },
+          "proposed_value": "Ingegnere",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r2.c1",
+          "benchmark_label": "Data abilitazione",
+          "proposal": {
+            "label": "Data di abilitazione del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:456",
+              "quote": "Data di abilitazione"
+            },
+            "conditions": [
+              "cond_tipologia_5d"
+            ],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Nessun valore utilizzabile attestato per questa posizione nel campione"
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "benchmark_label": "Ordine professionale",
+          "proposal": {
+            "label": "Ordine professionale di appartenenza del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:458",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond_tipologia_5d"
+            ],
+            "fact_id": "f_dt_ordine",
+            "property": "ordine_professionale"
+          },
+          "fact_id": "f_dt_ordine",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "ordine_professionale",
+            "value": "Ordine degli Ingegneri di Bari",
+            "evidence": [
+              {
+                "chunk_id": -45,
+                "quote": "- Ordine professionale simulato: Ordine degli Ingegneri di Bari."
+              }
+            ]
+          },
+          "proposed_value": "Ordine degli Ingegneri di Bari",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "benchmark_label": "Numero albo",
+          "proposal": {
+            "label": "Numero di iscrizione all'Albo professionale del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:460",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "cond_tipologia_5d"
+            ],
+            "fact_id": "f_dt_numero",
+            "property": "numero_iscrizione_albo"
+          },
+          "fact_id": "f_dt_numero",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "numero_iscrizione_albo",
+            "value": "8421",
+            "evidence": [
+              {
+                "chunk_id": -45,
+                "quote": "- Numero di iscrizione professionale simulato: 8421."
+              }
+            ]
+          },
+          "proposed_value": "8421",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "benchmark_label": "Consorziata esecutrice",
+          "proposal": {
+            "label": "Denominazione sociale della consorziata esecutrice",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:623",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_tipologia_5h"
+            ],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Il profilo aziendale non prova il ruolo di consorziata esecutrice né la sua esclusione"
+        }
+      ],
+      "manifest_verified": true,
+      "raw_value_without_fact": 249,
+      "form_catalog_sha256": "9da8b62a658a35e956e5c58d4adabe4a6343e2539e424dacfe2eda960559d754",
+      "sources_sha256": "d76eeafed3d606d163a5ad36a607671c20493215193c2910d339d0d30156cfac"
+    },
+    {
+      "run": 2,
+      "metrics": {
+        "started_at": "2026-10-11T00:07:14.029356+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 224255,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 69322,
+          "completion_tokens": 17009,
+          "total_tokens": 86331,
+          "prompt_tokens_details": {
+            "cached_tokens": 69120
+          },
+          "prompt_cache_hit_tokens": 69120,
+          "prompt_cache_miss_tokens": 202
+        },
+        "ai_seconds": 43.33847496400267,
+        "state": "failed",
+        "error_type": "ValueError",
+        "error": "Dizionario fields non valido/oltre budget",
+        "original_unchanged": true
+      },
+      "code": {
+        "head": "7190d2d7e296ce6c24ef9f966371082ca7c6fc3e",
+        "status": "## prune-backend...origin/prune-backend [ahead 14]\n"
+      },
+      "input_sha256": "92509533d2b44c923d386f204c7c6477786eb5518c4a3fd9bd9d36eaeee147de",
+      "request_sha256": "318e663110cb115c765dceee9c97c2bd4ee9801e45a3443c16bf9046b3234331",
+      "source_roles": {
+        "source": 51
+      },
+      "source_categories": {
+        "project": 34,
+        "company": 13,
+        "general": 4
+      },
+      "raw_fields": 165,
+      "raw_facts": 11,
+      "raw_conditions": 19,
+      "proposed_dispositions": {
+        "value": 165
+      },
+      "scope_kinds": {
+        "table": 76,
+        "paragraph": 10
+      },
+      "validation_counts": {},
+      "rejected_unknown_assignments": {},
+      "rejected_fields": [],
+      "facts_counts": {},
+      "condition_counts": {},
+      "condition_errors": {},
+      "samples": [
+        {
+          "candidate_id": "t0.r0.c1",
+          "benchmark_label": "Sottoscrittore",
+          "proposal": {
+            "label": "Nome e cognome del sottoscritto",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:18",
+              "quote": "Il/La sottoscritto/a"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile"
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "benchmark_label": "Carica sottoscrittore",
+          "proposal": {
+            "label": "Carica sociale del sottoscritto",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:24",
+              "quote": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile"
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "benchmark_label": "Estremi procura",
+          "proposal": {
+            "label": "Estremi procura (notaio, repertorio, raccolta)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:26",
+              "quote": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"
+            },
+            "conditions": [],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Poteri di amministratore non escludono automaticamente la procura; nessun valore o NA verificato"
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "benchmark_label": "Operatore economico",
+          "proposal": {
+            "label": "Operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:28",
+              "quote": "Operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_denominazione",
+            "property": "denominazione"
+          },
+          "fact_id": "f_denominazione",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "denominazione",
+            "value": "Mapi Ingegneria S.r.l.",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l."
+              }
+            ]
+          },
+          "proposed_value": "Mapi Ingegneria S.r.l.",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "benchmark_label": "Forma giuridica",
+          "proposal": {
+            "label": "Forma giuridica dell'operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:30",
+              "quote": "Forma giuridica"
+            },
+            "conditions": [],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma_giuridica"
+          },
+          "fact_id": "f_forma_giuridica",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "legal_type",
+            "property": "forma_giuridica",
+            "value": "Societa a responsabilita limitata",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "FORMA GIURIDICA Societa a responsabilita limitata"
+              }
+            ]
+          },
+          "proposed_value": "Societa a responsabilita limitata",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "benchmark_label": "Sede legale",
+          "proposal": {
+            "label": "Sede legale (via, città, prov.)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:32",
+              "quote": "Sede legale (via, città, prov.)"
+            },
+            "conditions": [],
+            "fact_id": "f_sede_legale",
+            "property": "sede_legale"
+          },
+          "fact_id": "f_sede_legale",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "location",
+            "property": "sede_legale",
+            "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+              }
+            ]
+          },
+          "proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "benchmark_label": "Sede operativa",
+          "proposal": {
+            "label": "Sede operativa (se diversa dalla sede legale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa"
+            },
+            "conditions": [],
+            "fact_id": "f_sede_operativa",
+            "property": "sede_operativa"
+          },
+          "fact_id": "f_sede_operativa",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "location",
+            "property": "sede_operativa",
+            "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+              }
+            ]
+          },
+          "proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Coincide con la sede legale: value improprio se proposto; NA richiede la condizione calcolata, non la sola conclusione del modello"
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "benchmark_label": "Codice fiscale",
+          "proposal": {
+            "label": "Codice fiscale operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:37",
+              "quote": "Codice fiscale operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_codice_fiscale",
+            "property": "codice_fiscale"
+          },
+          "fact_id": "f_codice_fiscale",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "codice_fiscale",
+            "value": "IT01234567890",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)"
+              }
+            ]
+          },
+          "proposed_value": "IT01234567890",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "benchmark_label": "Partita IVA",
+          "proposal": {
+            "label": "Partita IVA operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:39",
+              "quote": "Partita IVA operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_partita_iva",
+            "property": "partita_iva"
+          },
+          "fact_id": "f_partita_iva",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "partita_iva",
+            "value": "IT01234567890",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)"
+              }
+            ]
+          },
+          "proposed_value": "IT01234567890",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "benchmark_label": "Numero/data CCIAA",
+          "proposal": {
+            "label": "Numero e data d'iscrizione della società di ingegneria",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:441",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "REA non equivale al numero/data di iscrizione CCIAA; la combinazione di dati non è un valore letterale unico"
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "benchmark_label": "Direttore tecnico nome",
+          "proposal": {
+            "label": "Nome e cognome del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:452",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_nome",
+            "property": "nome"
+          },
+          "fact_id": "f_dt_nome",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "nome",
+            "value": "Elisa Romano",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421, Ordine degli Ingegneri di Bari"
+              }
+            ]
+          },
+          "proposed_value": "Elisa Romano",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "benchmark_label": "Qualifica direttore",
+          "proposal": {
+            "label": "Qualifica professionale del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:454",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_qualifica",
+            "property": "qualifica_professionale"
+          },
+          "fact_id": "f_dt_qualifica",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "qualifica_professionale",
+            "value": "Ingegnere",
+            "evidence": [
+              {
+                "chunk_id": -45,
+                "quote": "Qualifica professionale nello scenario: Ingegnere."
+              }
+            ]
+          },
+          "proposed_value": "Ingegnere",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r2.c1",
+          "benchmark_label": "Data abilitazione",
+          "proposal": {
+            "label": "Data di abilitazione del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:456",
+              "quote": "Data di abilitazione"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Nessun valore utilizzabile attestato per questa posizione nel campione"
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "benchmark_label": "Ordine professionale",
+          "proposal": {
+            "label": "Ordine professionale di appartenenza del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:458",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_ordine",
+            "property": "ordine_professionale"
+          },
+          "fact_id": "f_dt_ordine",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "ordine_professionale",
+            "value": "Ordine degli Ingegneri di Bari",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421, Ordine degli Ingegneri di Bari"
+              }
+            ]
+          },
+          "proposed_value": "Ordine degli Ingegneri di Bari",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "benchmark_label": "Numero albo",
+          "proposal": {
+            "label": "Numero di iscrizione all'Albo professionale del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:460",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_numero",
+            "property": "numero_iscrizione_albo"
+          },
+          "fact_id": "f_dt_numero",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "numero_iscrizione_albo",
+            "value": "8421",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421, Ordine degli Ingegneri di Bari"
+              }
+            ]
+          },
+          "proposed_value": "8421",
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "benchmark_label": "Consorziata esecutrice",
+          "proposal": {
+            "label": "Denominazione sociale della consorziata esecutrice",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:623",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_consorziata_esecutrice"
+            ],
+            "fact_id": null,
+            "property": null
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": null,
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Il profilo aziendale non prova il ruolo di consorziata esecutrice né la sua esclusione"
+        }
+      ],
+      "manifest_verified": true,
+      "raw_value_without_fact": 126,
+      "form_catalog_sha256": "9da8b62a658a35e956e5c58d4adabe4a6343e2539e424dacfe2eda960559d754",
+      "sources_sha256": "d76eeafed3d606d163a5ad36a607671c20493215193c2910d339d0d30156cfac"
+    },
+    {
+      "run": 3,
+      "metrics": {
+        "started_at": "2026-10-11T03:13:26.576377+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 225512,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 69657,
+          "completion_tokens": 6954,
+          "total_tokens": 76611,
+          "prompt_tokens_details": {
+            "cached_tokens": 768
+          },
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 68889
+        },
+        "ai_seconds": 20.25855282699922,
+        "validation_counts": {
+          "REJECTED": 40,
+          "GROUNDED_PROPOSAL": 9,
+          "REVIEW_REQUIRED": 258
+        },
+        "dispositions": {
+          "invalid": 40,
+          "value": 9,
+          "unassigned": 258
+        },
+        "contract_version": 5,
+        "facts": 16,
+        "conditions": 9,
+        "condition_results": {
+          "unknown": 9
+        },
+        "condition_inventory": {
+          "paragraphs": 324,
+          "uncertain": 0,
+          "semantic_completeness_verified": false
+        },
+        "deferred": 0,
+        "unassigned": 258,
+        "rejected_unknown_assignments": 0,
+        "unused_facts": 0,
+        "state": "proposal_audited",
+        "resolved": 0,
+        "original_unchanged": true
+      },
+      "code": {
+        "head": "46128f5396192e01aab83e1cfba5cf78780d5064",
+        "status": "## prune-backend...origin/prune-backend [ahead 15]\n"
+      },
+      "input_sha256": "67fe1c1f05042b180bf8104d2a16a566a4fbb75732dd60cb5562a5e01b62140c",
+      "request_sha256": "7d645099cf28a295197a4b5fca438886843fefc4bb4dd7b3a2a9f4c8164c2e1f",
+      "source_roles": {
+        "source": 51
+      },
+      "source_categories": {
+        "project": 34,
+        "company": 13,
+        "general": 4
+      },
+      "raw_fields": 49,
+      "raw_facts": 16,
+      "raw_conditions": 9,
+      "proposed_dispositions": {
+        "not_applicable": 14,
+        "value": 35
+      },
+      "scope_kinds": {
+        "table": 35,
+        "candidate": 12,
+        "paragraph": 3
+      },
+      "validation_counts": {
+        "REJECTED": 40,
+        "GROUNDED_PROPOSAL": 9,
+        "REVIEW_REQUIRED": 258
+      },
+      "rejected_unknown_assignments": {},
+      "rejected_fields": [
+        {
+          "candidate_id": "p175.s0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Estremi del provvedimento di ammissione al concordato (Tribunale di)",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:175",
+              "quote": "gli estremi del provvedimento di ammissione rilasciato dal Tribunale di ____________ sono i seguenti: _____________________________________________________________________;"
+            },
+            "conditions": [
+              "cond_concordato_ammesso"
+            ],
+            "reason": "Nessuna evidenza di ammissione al concordato preventivo con continuità aziendale"
+          }
+        },
+        {
+          "candidate_id": "p175.s1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Estremi del provvedimento di ammissione al concordato",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:175",
+              "quote": "gli estremi del provvedimento di ammissione rilasciato dal Tribunale di ____________ sono i seguenti: _____________________________________________________________________;"
+            },
+            "conditions": [
+              "cond_concordato_ammesso"
+            ],
+            "reason": "Nessuna evidenza di ammissione al concordato preventivo con continuità aziendale"
+          }
+        },
+        {
+          "candidate_id": "p176.s0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Estremi del provvedimento di autorizzazione a partecipare alle gare rilasciato dal giudice delegato",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:176",
+              "quote": "gli estremi del provvedimento di autorizzazione a partecipare alle gare rilasciato dal giudice delegato sono i seguenti: ________________________________________________________;"
+            },
+            "conditions": [
+              "cond_concordato_ammesso"
+            ],
+            "reason": "Nessuna evidenza di ammissione al concordato preventivo con continuità aziendale"
+          }
+        },
+        {
+          "candidate_id": "p180.s0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Estremi del deposito della domanda di ammissione al concordato (prot.n.)",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:180",
+              "quote": "gli estremi del deposito della domanda di ammissione sono i seguenti: prot.n. ________ del _____________ presentata al _____________________;"
+            },
+            "conditions": [
+              "cond_concordato_domanda"
+            ],
+            "reason": "Nessuna evidenza di domanda di ammissione al concordato senza decreto"
+          }
+        },
+        {
+          "candidate_id": "p180.s1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Data del deposito della domanda di ammissione al concordato",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:180",
+              "quote": "gli estremi del deposito della domanda di ammissione sono i seguenti: prot.n. ________ del _____________ presentata al _____________________;"
+            },
+            "conditions": [
+              "cond_concordato_domanda"
+            ],
+            "reason": "Nessuna evidenza di domanda di ammissione al concordato senza decreto"
+          }
+        },
+        {
+          "candidate_id": "p180.s2",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Soggetto al quale è stata presentata la domanda di ammissione al concordato",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:180",
+              "quote": "gli estremi del deposito della domanda di ammissione sono i seguenti: prot.n. ________ del _____________ presentata al _____________________;"
+            },
+            "conditions": [
+              "cond_concordato_domanda"
+            ],
+            "reason": "Nessuna evidenza di domanda di ammissione al concordato senza decreto"
+          }
+        },
+        {
+          "candidate_id": "p182.s0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Tribunale che ha rilasciato il provvedimento di autorizzazione a partecipare alle gare",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:182",
+              "quote": "il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di_____________________ è il seguente: prot.n. ________ del _____________;"
+            },
+            "conditions": [
+              "cond_concordato_domanda"
+            ],
+            "reason": "Nessuna evidenza di domanda di ammissione al concordato senza decreto"
+          }
+        },
+        {
+          "candidate_id": "p182.s1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Numero di protocollo del provvedimento di autorizzazione a partecipare alle gare",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:182",
+              "quote": "il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di_____________________ è il seguente: prot.n. ________ del _____________;"
+            },
+            "conditions": [
+              "cond_concordato_domanda"
+            ],
+            "reason": "Nessuna evidenza di domanda di ammissione al concordato senza decreto"
+          }
+        },
+        {
+          "candidate_id": "p182.s2",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Data del provvedimento di autorizzazione a partecipare alle gare",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:182",
+              "quote": "il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di_____________________ è il seguente: prot.n. ________ del _____________;"
+            },
+            "conditions": [
+              "cond_concordato_domanda"
+            ],
+            "reason": "Nessuna evidenza di domanda di ammissione al concordato senza decreto"
+          }
+        },
+        {
+          "candidate_id": "p184.s0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Soggetto di cui l'operatore intende avvalersi ai sensi dell'articolo 372 del D.Lgs. 14/2019",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:184",
+              "quote": "il soggetto di cui intende avvalersi, ai sensi dell'articolo 372 del D.Lgs. 14/2019, è il seguente: ____________________;"
+            },
+            "conditions": [
+              "cond_concordato_domanda"
+            ],
+            "reason": "Nessuna evidenza di domanda di ammissione al concordato senza decreto"
+          }
+        },
+        {
+          "candidate_id": "p63.s0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Stato membro di stabilimento del prestatore di servizi",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:63",
+              "quote": "Prestatore di servizi di ingegneria e architettura, stabilito nello Stato membro di ___________, costituito conformemente alla legislazione vigente nel medesimo Paese come da allegata documentazione (art. 66, comma 1, lett. d)"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "reason": "La tipologia dichiarata è società di ingegneria italiana, non prestatore stabilito in altro Stato membro"
+          }
+        },
+        {
+          "candidate_id": "p799.s0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Banca dati ufficiale o pubblico registro da cui ricavare i soggetti",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:799",
+              "quote": "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: _____________________________________."
+            },
+            "conditions": [],
+            "reason": "Nessuna evidenza che i soggetti siano ricavati da banca dati o pubblico registro"
+          }
+        },
+        {
+          "candidate_id": "p807.s0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Giovane professionista abilitato da meno di 5 anni quale progettista",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:807",
+              "quote": "………………………………………"
+            },
+            "conditions": [
+              "cond_giovane_professionista"
+            ],
+            "reason": "Nessuna evidenza di partecipazione in raggruppamento temporaneo"
+          }
+        },
+        {
+          "candidate_id": "p822.s0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Altra documentazione prevista in caso di RTI, consorzi e imprese retiste",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:822",
+              "quote": "(eventuale altra documentazione prevista in caso di RTI, consorzi e imprese retiste) _____________________________."
+            },
+            "conditions": [
+              "cond_altra_documentazione"
+            ],
+            "reason": "Nessuna evidenza di partecipazione in RTI, consorzio o impresa retista"
+          }
+        },
+        {
+          "candidate_id": "t0.r1.c1",
+          "errors": [
+            "Fatto SOURCE assente o rifiutato"
+          ],
+          "proposal": {
+            "label": "Data e luogo di nascita",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:20",
+              "quote": "Data e luogo di nascita"
+            },
+            "conditions": [],
+            "fact_id": "f_luogo_nascita",
+            "property": "luogo di nascita"
+          }
+        },
+        {
+          "candidate_id": "t0.r2.c1",
+          "errors": [
+            "Fatto SOURCE assente o rifiutato"
+          ],
+          "proposal": {
+            "label": "Codice fiscale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:22",
+              "quote": "Codice fiscale"
+            },
+            "conditions": [],
+            "fact_id": "f_cf_persona",
+            "property": "codice fiscale"
+          }
+        },
+        {
+          "candidate_id": "t19.r0.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:367",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_denominazione",
+            "property": "denominazione"
+          }
+        },
+        {
+          "candidate_id": "t19.r3.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Numero d'iscrizione",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:371",
+              "quote": "numero d’iscrizione:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_numero_rea",
+            "property": "numero REA"
+          }
+        },
+        {
+          "candidate_id": "t19.r4.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:373",
+              "quote": "forma giuridica:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma giuridica"
+          }
+        },
+        {
+          "candidate_id": "t19.r4.c3",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:375",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_sede_legale",
+            "property": "sede legale"
+          }
+        },
+        {
+          "candidate_id": "t25.r0.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:437",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_denominazione",
+            "property": "denominazione"
+          }
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Numero e data d'iscrizione",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:441",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_numero_rea",
+            "property": "numero REA"
+          }
+        },
+        {
+          "candidate_id": "t25.r4.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:443",
+              "quote": "forma giuridica:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma giuridica"
+          }
+        },
+        {
+          "candidate_id": "t25.r4.c3",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:445",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_sede_legale",
+            "property": "sede legale"
+          }
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Nome e cognome del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:452",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_dt_nome",
+            "property": "nominativo"
+          }
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Qualifica professionale del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:454",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_dt_qualifica",
+            "property": "qualifica professionale"
+          }
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Ordine professionale di appartenenza del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:458",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_dt_ordine",
+            "property": "ordine professionale"
+          }
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Numero di iscrizione all'Albo professionale del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:460",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_dt_numero",
+            "property": "numero iscrizione albo"
+          }
+        },
+        {
+          "candidate_id": "t31.r0.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:508",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_denominazione",
+            "property": "denominazione"
+          }
+        },
+        {
+          "candidate_id": "t31.r3.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Numero e data d'iscrizione",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:512",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_numero_rea",
+            "property": "numero REA"
+          }
+        },
+        {
+          "candidate_id": "t31.r4.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:514",
+              "quote": "forma giuridica:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma giuridica"
+          }
+        },
+        {
+          "candidate_id": "t31.r4.c3",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:516",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_sede_legale",
+            "property": "sede legale"
+          }
+        },
+        {
+          "candidate_id": "t37.r0.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:578",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_denominazione",
+            "property": "denominazione"
+          }
+        },
+        {
+          "candidate_id": "t37.r3.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Numero e data d'iscrizione",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:582",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_numero_rea",
+            "property": "numero REA"
+          }
+        },
+        {
+          "candidate_id": "t37.r4.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:584",
+              "quote": "forma giuridica:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma giuridica"
+          }
+        },
+        {
+          "candidate_id": "t37.r4.c3",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:586",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_sede_legale",
+            "property": "sede legale"
+          }
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:623",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_denominazione",
+            "property": "denominazione"
+          }
+        },
+        {
+          "candidate_id": "t40.r3.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Numero e data d'iscrizione",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:627",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_numero_rea",
+            "property": "numero REA"
+          }
+        },
+        {
+          "candidate_id": "t40.r4.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:629",
+              "quote": "forma giuridica:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma giuridica"
+          }
+        },
+        {
+          "candidate_id": "t40.r4.c3",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:631",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_sede_legale",
+            "property": "sede legale"
+          }
+        }
+      ],
+      "facts_counts": {
+        "GROUNDED_PROPOSAL": 14,
+        "REJECTED": 2
+      },
+      "condition_counts": {
+        "GROUNDED_PROPOSAL": 9
+      },
+      "condition_errors": {},
+      "samples": [
+        {
+          "candidate_id": "t0.r0.c1",
+          "benchmark_label": "Sottoscrittore",
+          "proposal": {
+            "label": "Il/La sottoscritto/a",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:18",
+              "quote": "Il/La sottoscritto/a"
+            },
+            "conditions": [],
+            "fact_id": "f_sottoscrittore",
+            "property": "nominativo"
+          },
+          "fact_id": "f_sottoscrittore",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "person",
+            "aspect": "identity",
+            "property": "nominativo",
+            "value": "Ing. Luca Ferri",
+            "evidence": [
+              {
+                "chunk_id": -44,
+                "quote": "Nominativo completo: Ing. Luca Ferri."
+              }
+            ]
+          },
+          "proposed_value": "Ing. Luca Ferri",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Ing. Luca Ferri",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -44,
+              "file_id": -7,
+              "chunk_index": 1,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -44,
+              "citation_rebound": false,
+              "quote": "Nominativo completo: Ing. Luca Ferri.",
+              "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+            }
+          ],
+          "semantic_annotation": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile"
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "benchmark_label": "Carica sottoscrittore",
+          "proposal": {
+            "label": "In qualità di (carica sociale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:24",
+              "quote": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"
+            },
+            "conditions": [],
+            "fact_id": "f_carica",
+            "property": "carica"
+          },
+          "fact_id": "f_carica",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "person",
+            "aspect": "representation",
+            "property": "carica",
+            "value": "Amministratore unico",
+            "evidence": [
+              {
+                "chunk_id": -44,
+                "quote": "Carica in Mapi Ingegneria S.r.l.: Amministratore unico."
+              }
+            ]
+          },
+          "proposed_value": "Amministratore unico",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Amministratore unico",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -44,
+              "file_id": -7,
+              "chunk_index": 1,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -44,
+              "citation_rebound": false,
+              "quote": "Carica in Mapi Ingegneria S.r.l.: Amministratore unico.",
+              "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+            }
+          ],
+          "semantic_annotation": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile"
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "benchmark_label": "Estremi procura",
+          "proposal": null,
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": "REVIEW_REQUIRED",
+          "value": null,
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Poteri di amministratore non escludono automaticamente la procura; nessun valore o NA verificato"
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "benchmark_label": "Operatore economico",
+          "proposal": {
+            "label": "Operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:28",
+              "quote": "Operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_denominazione",
+            "property": "denominazione"
+          },
+          "fact_id": "f_denominazione",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "denominazione",
+            "value": "Mapi Ingegneria S.r.l.",
+            "evidence": [
+              {
+                "chunk_id": -43,
+                "quote": "Ragione sociale: Mapi Ingegneria S.r.l."
+              }
+            ]
+          },
+          "proposed_value": "Mapi Ingegneria S.r.l.",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Mapi Ingegneria S.r.l.",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Ragione sociale: Mapi Ingegneria S.r.l.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "benchmark_label": "Forma giuridica",
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:30",
+              "quote": "Forma giuridica"
+            },
+            "conditions": [],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma giuridica"
+          },
+          "fact_id": "f_forma_giuridica",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "legal_type",
+            "property": "forma giuridica",
+            "value": "Societa a responsabilita limitata",
+            "evidence": [
+              {
+                "chunk_id": -43,
+                "quote": "Forma giuridica: Societa a responsabilita limitata."
+              }
+            ]
+          },
+          "proposed_value": "Societa a responsabilita limitata",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Societa a responsabilita limitata",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Forma giuridica: Societa a responsabilita limitata.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "benchmark_label": "Sede legale",
+          "proposal": {
+            "label": "Sede legale (via, città, prov.)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:32",
+              "quote": "Sede legale (via, città, prov.)"
+            },
+            "conditions": [],
+            "fact_id": "f_sede_legale",
+            "property": "sede legale"
+          },
+          "fact_id": "f_sede_legale",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "location",
+            "property": "sede legale",
+            "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+            "evidence": [
+              {
+                "chunk_id": -43,
+                "quote": "Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+              }
+            ]
+          },
+          "proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "benchmark_label": "Sede operativa",
+          "proposal": {
+            "label": "Sede operativa (se diversa dalla sede legale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa "
+            },
+            "conditions": [],
+            "fact_id": "f_sede_operativa",
+            "property": "sede operativa"
+          },
+          "fact_id": "f_sede_operativa",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "location",
+            "property": "sede operativa",
+            "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+            "evidence": [
+              {
+                "chunk_id": -43,
+                "quote": "Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+              }
+            ]
+          },
+          "proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ],
+          "semantic_annotation": "Coincide con la sede legale: value improprio se proposto; NA richiede la condizione calcolata, non la sola conclusione del modello"
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "benchmark_label": "Codice fiscale",
+          "proposal": {
+            "label": "Codice fiscale operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:37",
+              "quote": "Codice fiscale operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_cf_impresa",
+            "property": "codice fiscale"
+          },
+          "fact_id": "f_cf_impresa",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "codice fiscale",
+            "value": "IT01234567890",
+            "evidence": [
+              {
+                "chunk_id": -43,
+                "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+              }
+            ]
+          },
+          "proposed_value": "IT01234567890",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "IT01234567890",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "benchmark_label": "Partita IVA",
+          "proposal": {
+            "label": "Partita IVA operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:39",
+              "quote": "Partita IVA operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_piva",
+            "property": "partita IVA"
+          },
+          "fact_id": "f_piva",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "partita IVA",
+            "value": "IT01234567890",
+            "evidence": [
+              {
+                "chunk_id": -43,
+                "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+              }
+            ]
+          },
+          "proposed_value": "IT01234567890",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "IT01234567890",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "benchmark_label": "Numero/data CCIAA",
+          "proposal": {
+            "label": "Numero e data d'iscrizione",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:441",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_numero_rea",
+            "property": "numero REA"
+          },
+          "fact_id": "f_numero_rea",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "numero REA",
+            "value": "BA - 654321",
+            "evidence": [
+              {
+                "chunk_id": -43,
+                "quote": "Numero REA simulato: BA - 654321."
+              }
+            ]
+          },
+          "proposed_value": "BA - 654321",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "REA non equivale al numero/data di iscrizione CCIAA; la combinazione di dati non è un valore letterale unico"
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "benchmark_label": "Direttore tecnico nome",
+          "proposal": {
+            "label": "Nome e cognome del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:452",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_dt_nome",
+            "property": "nominativo"
+          },
+          "fact_id": "f_dt_nome",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "nominativo",
+            "value": "Ing. Elisa Romano",
+            "evidence": [
+              {
+                "chunk_id": -45,
+                "quote": "Nominativo completo: Ing. Elisa Romano."
+              }
+            ]
+          },
+          "proposed_value": "Ing. Elisa Romano",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "benchmark_label": "Qualifica direttore",
+          "proposal": {
+            "label": "Qualifica professionale del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:454",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_dt_qualifica",
+            "property": "qualifica professionale"
+          },
+          "fact_id": "f_dt_qualifica",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "qualifica professionale",
+            "value": "Ingegnere",
+            "evidence": [
+              {
+                "chunk_id": -45,
+                "quote": "Qualifica professionale nello scenario: Ingegnere."
+              }
+            ]
+          },
+          "proposed_value": "Ingegnere",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r2.c1",
+          "benchmark_label": "Data abilitazione",
+          "proposal": null,
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": "REVIEW_REQUIRED",
+          "value": null,
+          "errors": [],
+          "conditions": [
+            "cond_tipologia"
+          ],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Nessun valore utilizzabile attestato per questa posizione nel campione"
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "benchmark_label": "Ordine professionale",
+          "proposal": {
+            "label": "Ordine professionale di appartenenza del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:458",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_dt_ordine",
+            "property": "ordine professionale"
+          },
+          "fact_id": "f_dt_ordine",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "ordine professionale",
+            "value": "Ordine degli Ingegneri di Bari",
+            "evidence": [
+              {
+                "chunk_id": -45,
+                "quote": "Ordine professionale simulato: Ordine degli Ingegneri di Bari."
+              }
+            ]
+          },
+          "proposed_value": "Ordine degli Ingegneri di Bari",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "benchmark_label": "Numero albo",
+          "proposal": {
+            "label": "Numero di iscrizione all'Albo professionale del direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:460",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_dt_numero",
+            "property": "numero iscrizione albo"
+          },
+          "fact_id": "f_dt_numero",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "numero iscrizione albo",
+            "value": "8421",
+            "evidence": [
+              {
+                "chunk_id": -45,
+                "quote": "Numero di iscrizione professionale simulato: 8421."
+              }
+            ]
+          },
+          "proposed_value": "8421",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "benchmark_label": "Consorziata esecutrice",
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:623",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_tipologia"
+            ],
+            "fact_id": "f_denominazione",
+            "property": "denominazione"
+          },
+          "fact_id": "f_denominazione",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "denominazione",
+            "value": "Mapi Ingegneria S.r.l.",
+            "evidence": [
+              {
+                "chunk_id": -43,
+                "quote": "Ragione sociale: Mapi Ingegneria S.r.l."
+              }
+            ]
+          },
+          "proposed_value": "Mapi Ingegneria S.r.l.",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Il profilo aziendale non prova il ruolo di consorziata esecutrice né la sua esclusione"
+        }
+      ],
+      "manifest_verified": true,
+      "all_grounded_manual_review": [
+        {
+          "candidate_id": "t0.r0.c1",
+          "value": "Ing. Luca Ferri",
+          "manual_result": "unsupported_assignment",
+          "reason": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile",
+          "source_evidence": [
+            {
+              "chunk_id": -44,
+              "file_id": -7,
+              "chunk_index": 1,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -44,
+              "citation_rebound": false,
+              "quote": "Nominativo completo: Ing. Luca Ferri.",
+              "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "value": "IT01234567890",
+          "manual_result": "supported_assignment",
+          "reason": "Valore SOURCE corretto per la proprietà aziendale",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r11.c1",
+          "value": "+39 080 000 2040",
+          "manual_result": "supported_assignment",
+          "reason": "Recapito telefonico aziendale attestato nella SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -44,
+              "file_id": -7,
+              "chunk_index": 1,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -44,
+              "citation_rebound": false,
+              "quote": "Telefono aziendale simulato: +39 080 000 2040.",
+              "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "value": "Amministratore unico",
+          "manual_result": "unsupported_assignment",
+          "reason": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile",
+          "source_evidence": [
+            {
+              "chunk_id": -44,
+              "file_id": -7,
+              "chunk_index": 1,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -44,
+              "citation_rebound": false,
+              "quote": "Carica in Mapi Ingegneria S.r.l.: Amministratore unico.",
+              "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "value": "Mapi Ingegneria S.r.l.",
+          "manual_result": "supported_assignment",
+          "reason": "Valore SOURCE corretto per la proprietà aziendale",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Ragione sociale: Mapi Ingegneria S.r.l.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "value": "Societa a responsabilita limitata",
+          "manual_result": "supported_assignment",
+          "reason": "Valore SOURCE corretto per la proprietà aziendale",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Forma giuridica: Societa a responsabilita limitata.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "manual_result": "supported_assignment",
+          "reason": "Valore SOURCE corretto per la proprietà aziendale",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "manual_result": "unsupported_assignment",
+          "reason": "Coincide con la sede legale: value improprio se proposto; NA richiede la condizione calcolata, non la sola conclusione del modello",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "value": "IT01234567890",
+          "manual_result": "supported_assignment",
+          "reason": "Valore SOURCE corretto per la proprietà aziendale",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        }
+      ],
+      "manual_counts": {
+        "grounded_inspected": 9,
+        "supported_assignments": 6,
+        "unsupported_assignments": 3
+      },
+      "local_errors": {
+        "Non applicabilità senza condizione calcolabile falsa": 14,
+        "Fatto SOURCE assente o rifiutato": 2,
+        "Condizione sconosciuta: applicabilità da chiarire, non dato missing": 24
+      },
+      "raw_value_without_fact": 0,
+      "form_catalog_sha256": "9da8b62a658a35e956e5c58d4adabe4a6343e2539e424dacfe2eda960559d754",
+      "sources_sha256": "d76eeafed3d606d163a5ad36a607671c20493215193c2910d339d0d30156cfac"
+    },
+    {
+      "run": 4,
+      "metrics": {
+        "started_at": "2026-10-11T03:14:08.117860+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "prova",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 153,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+        "candidate_count": 307,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 51
+        },
+        "input_characters": 225512,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 69657,
+          "completion_tokens": 11503,
+          "total_tokens": 81160,
+          "prompt_tokens_details": {
+            "cached_tokens": 69504
+          },
+          "prompt_cache_hit_tokens": 69504,
+          "prompt_cache_miss_tokens": 153
+        },
+        "ai_seconds": 31.00089350900089,
+        "validation_counts": {
+          "REVIEW_REQUIRED": 224,
+          "REJECTED": 75,
+          "GROUNDED_PROPOSAL": 8
+        },
+        "dispositions": {
+          "unassigned": 224,
+          "invalid": 75,
+          "value": 8
+        },
+        "contract_version": 5,
+        "facts": 19,
+        "conditions": 19,
+        "condition_results": {
+          "unknown": 19
+        },
+        "condition_inventory": {
+          "paragraphs": 324,
+          "uncertain": 0,
+          "semantic_completeness_verified": false
+        },
+        "deferred": 0,
+        "unassigned": 224,
+        "rejected_unknown_assignments": 0,
+        "unused_facts": 0,
+        "state": "proposal_audited",
+        "resolved": 0,
+        "original_unchanged": true
+      },
+      "code": {
+        "head": "46128f5396192e01aab83e1cfba5cf78780d5064",
+        "status": "## prune-backend...origin/prune-backend [ahead 15]\n"
+      },
+      "input_sha256": "67fe1c1f05042b180bf8104d2a16a566a4fbb75732dd60cb5562a5e01b62140c",
+      "request_sha256": "7d645099cf28a295197a4b5fca438886843fefc4bb4dd7b3a2a9f4c8164c2e1f",
+      "source_roles": {
+        "source": 51
+      },
+      "source_categories": {
+        "project": 34,
+        "company": 13,
+        "general": 4
+      },
+      "raw_fields": 83,
+      "raw_facts": 19,
+      "raw_conditions": 19,
+      "proposed_dispositions": {
+        "value": 24,
+        "not_applicable": 59
+      },
+      "scope_kinds": {
+        "table": 34,
+        "candidate": 3,
+        "paragraph": 9
+      },
+      "validation_counts": {
+        "REVIEW_REQUIRED": 224,
+        "REJECTED": 75,
+        "GROUNDED_PROPOSAL": 8
+      },
+      "rejected_unknown_assignments": {},
+      "rejected_fields": [
+        {
+          "candidate_id": "p807.s0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Giovane professionista abilitato da meno di 5 anni",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:807",
+              "quote": "………………………………………"
+            },
+            "conditions": [
+              "cond_rti_giovane_professionista"
+            ],
+            "reason": "L'operatore partecipa in forma singola, non in raggruppamento temporaneo."
+          }
+        },
+        {
+          "candidate_id": "t0.r1.c1",
+          "errors": [
+            "Fatto SOURCE assente o rifiutato"
+          ],
+          "proposal": {
+            "label": "Data e luogo di nascita",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:20",
+              "quote": "Data e luogo di nascita"
+            },
+            "conditions": [],
+            "fact_id": "f_sottoscrittore_nascita",
+            "property": "data e luogo di nascita"
+          }
+        },
+        {
+          "candidate_id": "t0.r2.c1",
+          "errors": [
+            "Fatto SOURCE assente o rifiutato"
+          ],
+          "proposal": {
+            "label": "Codice fiscale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:22",
+              "quote": "Codice fiscale"
+            },
+            "conditions": [],
+            "fact_id": "f_sottoscrittore_cf",
+            "property": "codice fiscale"
+          }
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "(se procuratore) estremi procura (notaio, repertorio, raccolta)",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:26",
+              "quote": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"
+            },
+            "conditions": [
+              "cond_procuratore"
+            ],
+            "reason": "Il sottoscrittore è amministratore unico, non procuratore."
+          }
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Sede operativa (se diversa dalla sede legale)",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa "
+            },
+            "conditions": [
+              "cond_sede_operativa_diversa"
+            ],
+            "reason": "La sede operativa coincide con la sede legale."
+          }
+        },
+        {
+          "candidate_id": "t11.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Denominazione dello studio associato",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:253",
+              "quote": "Denominazione dello studio associato:"
+            },
+            "conditions": [
+              "cond_studio_associato_rappresentante"
+            ],
+            "reason": "Sezione 5.b non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t11.r3.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Liberi professionisti costituenti lo studio associato",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:256",
+              "quote": "Lo studio associato è costituito dai seguenti liberi professionisti:"
+            },
+            "conditions": [
+              "cond_studio_associato_rappresentante"
+            ],
+            "reason": "Sezione 5.b non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t17.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Denominazione dello studio associato",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:338",
+              "quote": "Denominazione dello studio associato:"
+            },
+            "conditions": [
+              "cond_studio_associato_senza_rappresentante"
+            ],
+            "reason": "Sezione 5.b-bis non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t17.r3.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Nome e cognome dell'associato",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:343",
+              "quote": "Nome e cognome dell’associato:"
+            },
+            "conditions": [
+              "cond_studio_associato_senza_rappresentante"
+            ],
+            "reason": "Sezione 5.b-bis non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t19.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:367",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t19.r3.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Numero d'iscrizione CCIAA",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:371",
+              "quote": "numero d’iscrizione:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t19.r4.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:373",
+              "quote": "forma giuridica:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t19.r4.c3",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:375",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t20.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Nome e cognome socio",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:380",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t20.r1.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Qualifica professionale socio",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:382",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t20.r2.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Ordine professionale di appartenenza socio",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:384",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t20.r3.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Numero di iscrizione all'Albo professionale socio",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:386",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t25.r0.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:437",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_ragione_sociale",
+            "property": "denominazione"
+          }
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Numero e data d'iscrizione CCIAA",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:441",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_iscrizione_cciaa",
+            "property": "numero e data iscrizione CCIAA"
+          }
+        },
+        {
+          "candidate_id": "t25.r4.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:443",
+              "quote": "forma giuridica:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma giuridica"
+          }
+        },
+        {
+          "candidate_id": "t25.r4.c3",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:445",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_sede_legale",
+            "property": "sede legale"
+          }
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Nome e cognome direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:452",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_nome",
+            "property": "nome e cognome"
+          }
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Qualifica professionale direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:454",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_qualifica",
+            "property": "qualifica professionale"
+          }
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Ordine professionale di appartenenza direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:458",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_ordine",
+            "property": "ordine professionale di appartenenza"
+          }
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Numero di iscrizione all'Albo professionale direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:460",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_numero_iscrizione",
+            "property": "numero di iscrizione all'albo professionale"
+          }
+        },
+        {
+          "candidate_id": "t28.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:472",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_altro_soggetto_abilitato"
+            ],
+            "reason": "Sezione 5.e non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t28.r3.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Natura giuridica",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:476",
+              "quote": "Natura giuridica:"
+            },
+            "conditions": [
+              "cond_altro_soggetto_abilitato"
+            ],
+            "reason": "Sezione 5.e non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t28.r3.c3",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:478",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_altro_soggetto_abilitato"
+            ],
+            "reason": "Sezione 5.e non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t29.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Nome e cognome direttore tecnico",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:485",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond_altro_soggetto_abilitato"
+            ],
+            "reason": "Sezione 5.e non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t31.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:508",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_societa_tra_professionisti"
+            ],
+            "reason": "Sezione 5.f non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t31.r3.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Numero e data d'iscrizione CCIAA",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:512",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_societa_tra_professionisti"
+            ],
+            "reason": "Sezione 5.f non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t31.r4.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:514",
+              "quote": "forma giuridica:"
+            },
+            "conditions": [
+              "cond_societa_tra_professionisti"
+            ],
+            "reason": "Sezione 5.f non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t31.r4.c3",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:516",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_societa_tra_professionisti"
+            ],
+            "reason": "Sezione 5.f non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t32.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Nome e cognome socio professionista",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:523",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t32.r1.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Qualifica professionale socio",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:525",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t32.r2.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Albo/Ordine/collegio professionale di appartenenza",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:528",
+              "quote": "Albo/Ordine/collegio professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t32.r3.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Numero di iscrizione Albo/Ordine/collegio",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:531",
+              "quote": "numero di iscrizione Albo/Ordine/collegio:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t35.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Nome e cognome / Denominazione socio non professionista",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:564",
+              "quote": "Nome e cognome / Denominazione:"
+            },
+            "conditions": [
+              "cond_societa_professionisti"
+            ],
+            "reason": "Sezione 5.c non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t37.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:578",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_consorzio_stabile_sezione"
+            ],
+            "reason": "Sezione 5.g non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t37.r3.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Numero e data d'iscrizione CCIAA",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:582",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_consorzio_stabile_sezione"
+            ],
+            "reason": "Sezione 5.g non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t37.r4.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:584",
+              "quote": "forma giuridica:"
+            },
+            "conditions": [
+              "cond_consorzio_stabile_sezione"
+            ],
+            "reason": "Sezione 5.g non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t37.r4.c3",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:586",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_consorzio_stabile_sezione"
+            ],
+            "reason": "Sezione 5.g non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t38.r1.c0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Ragione sociale consorziata",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:597",
+              "quote": "Ragione sociale"
+            },
+            "conditions": [
+              "cond_consorzio_stabile_sezione"
+            ],
+            "reason": "Sezione 5.g non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t38.r1.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "C. Fiscale e P.IVA consorziata",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:598",
+              "quote": "C. Fiscale e P.IVA"
+            },
+            "conditions": [
+              "cond_consorzio_stabile_sezione"
+            ],
+            "reason": "Sezione 5.g non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t38.r1.c2",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Barrare per conto delle quali partecipa / esecutrici",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:599",
+              "quote": "Barrare per conto delle quali partecipa / esecutrici "
+            },
+            "conditions": [
+              "cond_consorzio_stabile_sezione"
+            ],
+            "reason": "Sezione 5.g non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:623",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_consorziata_esecutrice"
+            ],
+            "reason": "Sezione 5.h non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t40.r3.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Numero e data d'iscrizione CCIAA",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:627",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_consorziata_esecutrice"
+            ],
+            "reason": "Sezione 5.h non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t40.r4.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:629",
+              "quote": "forma giuridica:"
+            },
+            "conditions": [
+              "cond_consorziata_esecutrice"
+            ],
+            "reason": "Sezione 5.h non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t40.r4.c3",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Sede legale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:631",
+              "quote": "sede legale:"
+            },
+            "conditions": [
+              "cond_consorziata_esecutrice"
+            ],
+            "reason": "Sezione 5.h non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t41.r1.c0",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Nome e cognome soggetto con poteri di amministrazione e rappresentanza",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:650",
+              "quote": "Nome e cognome"
+            },
+            "conditions": [
+              "cond_parte_terza"
+            ],
+            "fact_id": "f_au_nome",
+            "property": "nome e cognome"
+          }
+        },
+        {
+          "candidate_id": "t41.r1.c4",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Poteri conferiti / qualifica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:654",
+              "quote": "Poteri conferiti / qualifica"
+            },
+            "conditions": [
+              "cond_parte_terza"
+            ],
+            "fact_id": "f_au_carica",
+            "property": "carica sociale"
+          }
+        },
+        {
+          "candidate_id": "t44.r1.c0",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Nome e cognome direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:713",
+              "quote": "Nome e cognome"
+            },
+            "conditions": [
+              "cond_parte_terza"
+            ],
+            "fact_id": "f_dt_nome",
+            "property": "nome e cognome"
+          }
+        },
+        {
+          "candidate_id": "t44.r1.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Data e luogo di nascita direttore tecnico",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:714",
+              "quote": "Data e luogo di nascita "
+            },
+            "conditions": [
+              "cond_parte_terza"
+            ],
+            "reason": "Dato non disponibile nelle fonti."
+          }
+        },
+        {
+          "candidate_id": "t44.r1.c2",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Residenza direttore tecnico",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:715",
+              "quote": "Residenza"
+            },
+            "conditions": [
+              "cond_parte_terza"
+            ],
+            "reason": "Dato non disponibile nelle fonti."
+          }
+        },
+        {
+          "candidate_id": "t44.r1.c3",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Codice fiscale direttore tecnico",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:716",
+              "quote": "Codice fiscale "
+            },
+            "conditions": [
+              "cond_parte_terza"
+            ],
+            "reason": "Dato non disponibile nelle fonti."
+          }
+        },
+        {
+          "candidate_id": "t9.r0.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Nome e cognome",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:231",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond_professionista_singolo"
+            ],
+            "reason": "Sezione 5.a non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t9.r1.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Data e luogo di nascita",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:233",
+              "quote": "Data e luogo di nascita:"
+            },
+            "conditions": [
+              "cond_professionista_singolo"
+            ],
+            "reason": "Sezione 5.a non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t9.r2.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Codice fiscale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:235",
+              "quote": "Codice fiscale:"
+            },
+            "conditions": [
+              "cond_professionista_singolo"
+            ],
+            "reason": "Sezione 5.a non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t9.r3.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Residenza",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:237",
+              "quote": "Residenza:"
+            },
+            "conditions": [
+              "cond_professionista_singolo"
+            ],
+            "reason": "Sezione 5.a non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t9.r4.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Qualifica professionale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:239",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond_professionista_singolo"
+            ],
+            "reason": "Sezione 5.a non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t9.r5.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Ordine professionale di appartenenza",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:241",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond_professionista_singolo"
+            ],
+            "reason": "Sezione 5.a non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "t9.r6.c1",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Numero ed anno di iscrizione all'Albo professionale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:243",
+              "quote": "numero ed anno di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "cond_professionista_singolo"
+            ],
+            "reason": "Sezione 5.a non applicabile: l'operatore è una società di ingegneria."
+          }
+        },
+        {
+          "candidate_id": "p49.cb0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Professionista singolo",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:50",
+              "quote": "Professionista singolo"
+            },
+            "conditions": [],
+            "reason": "L'operatore è una società di ingegneria, non un professionista singolo."
+          }
+        },
+        {
+          "candidate_id": "p51.cb0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Professionista associato con potere di legale rappresentanza",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:52",
+              "quote": "Professionista associato nelle forme di cui alla legge n. 1815 del 1939, cosiddetti “studi associati” o “associazioni professionali”, con potere di legale rappresentanza dello studio associato / dell’associazione professionale."
+            },
+            "conditions": [],
+            "reason": "L'operatore è una società di ingegneria, non uno studio associato."
+          }
+        },
+        {
+          "candidate_id": "p53.cb0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Professionista associato senza potere di rappresentanza",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:54",
+              "quote": "Professionista associato nelle forme di cui alla legge n. 1815 del 1939, cosiddetti “studi associati” o “associazioni professionali”, senza potere di rappresentanza dello studio associato / dell’associazione professionale."
+            },
+            "conditions": [],
+            "reason": "L'operatore è una società di ingegneria, non uno studio associato."
+          }
+        },
+        {
+          "candidate_id": "p55.cb0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Società di professionisti",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:56",
+              "quote": "Società di professionisti di cui all’art. 35 dell’allegato II.12 al D.lgs. n. 36/2023"
+            },
+            "conditions": [],
+            "reason": "L'operatore è una società di ingegneria, non una società di professionisti."
+          }
+        },
+        {
+          "candidate_id": "p57.cb0",
+          "errors": [
+            "Fatto SOURCE assente o rifiutato"
+          ],
+          "proposal": {
+            "label": "Società di ingegneria",
+            "kind": "choice",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:58",
+              "quote": "Società di ingegneria in forma di società di capitali o di società cooperativa di cui all’art. 36 dell’allegato II.12 al D.lgs. n. 36/2023"
+            },
+            "conditions": [],
+            "fact_id": "f_tipologia_societa_ingegneria",
+            "property": "tipologia operatore economico",
+            "choice": true
+          }
+        },
+        {
+          "candidate_id": "p60.cb0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Consorzio stabile",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:61",
+              "quote": "Consorzio stabile di società di professionisti o di ingegneria di cui all’art. 66, comma 1, lett. g) del D.Lgs. 36/2023"
+            },
+            "conditions": [],
+            "reason": "L'operatore è una società di ingegneria, non un consorzio stabile."
+          }
+        },
+        {
+          "candidate_id": "p62.cb0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Prestatore di servizi stabilito in altro Stato membro",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:63",
+              "quote": "Prestatore di servizi di ingegneria e architettura, stabilito nello Stato membro di ___________, costituito conformemente alla legislazione vigente nel medesimo Paese come da allegata documentazione (art. 66, comma 1, lett. d)"
+            },
+            "conditions": [],
+            "reason": "L'operatore è stabilito in Italia."
+          }
+        },
+        {
+          "candidate_id": "p64.cb0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Società tra professionisti",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:65",
+              "quote": "Società tra professionisti, anche multidisciplinari, di cui al decreto ministeriale n. 34 del 2013"
+            },
+            "conditions": [],
+            "reason": "L'operatore è una società di ingegneria, non una società tra professionisti."
+          }
+        },
+        {
+          "candidate_id": "p69.cb0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Consorziata per la quale il consorzio stabile concorre / esecutrice",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:70",
+              "quote": "Consorziata per la quale il consorzio stabile concorre / esecutrice nell’ipotesi di partecipazione di cui all’art. 66, comma 1, lett. g) del D.Lgs. n. 36/2023."
+            },
+            "conditions": [
+              "cond_consorzio_stabile"
+            ],
+            "reason": "L'operatore non partecipa come consorzio stabile."
+          }
+        },
+        {
+          "candidate_id": "p76.cb0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "Partecipa alla procedura insieme ad altri - SI",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:76",
+              "quote": " SI    NO"
+            },
+            "conditions": [],
+            "reason": "L'operatore partecipa in forma singola."
+          }
+        },
+        {
+          "candidate_id": "p76.cb1",
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "proposal": {
+            "label": "Partecipa alla procedura insieme ad altri - NO",
+            "kind": "choice",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:76",
+              "quote": " SI    NO"
+            },
+            "conditions": [],
+            "fact_id": "f_partecipazione_singola",
+            "property": "partecipazione insieme ad altri",
+            "choice": false
+          }
+        },
+        {
+          "candidate_id": "p147.cb0",
+          "errors": [
+            "Assegnazione e fatto SOURCE su proprietà differenti/ignote"
+          ],
+          "proposal": {
+            "label": "NO - non partecipa contemporaneamente in forme diverse",
+            "kind": "choice",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:147",
+              "quote": " NO"
+            },
+            "conditions": [],
+            "fact_id": "f_partecipazione_singola",
+            "property": "partecipazione contemporanea in forme diverse",
+            "choice": false
+          }
+        },
+        {
+          "candidate_id": "p149.cb0",
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "proposal": {
+            "label": "SI - partecipa contemporaneamente in forme diverse",
+            "kind": "choice",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:149",
+              "quote": " SI (in tal caso occorre allegare idonea documentazione con la quale dimostrare che la circostanza non abbia influito sulla gara né sia idonea a incidere sulla capacità di rispettare gli obblighi contrattuali); "
+            },
+            "conditions": [],
+            "reason": "L'operatore partecipa in forma singola."
+          }
+        }
+      ],
+      "facts_counts": {
+        "GROUNDED_PROPOSAL": 14,
+        "REJECTED": 5
+      },
+      "condition_counts": {
+        "GROUNDED_PROPOSAL": 19
+      },
+      "condition_errors": {},
+      "samples": [
+        {
+          "candidate_id": "t0.r0.c1",
+          "benchmark_label": "Sottoscrittore",
+          "proposal": {
+            "label": "Il/La sottoscritto/a",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:18",
+              "quote": "Il/La sottoscritto/a"
+            },
+            "conditions": [],
+            "fact_id": "f_sottoscrittore_nome",
+            "property": "nome e cognome"
+          },
+          "fact_id": "f_sottoscrittore_nome",
+          "raw_fact": {
+            "subject": "Ing. Luca Ferri",
+            "entity": "person",
+            "aspect": "identity",
+            "property": "nome e cognome",
+            "value": "Ing. Luca Ferri",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "AMMINISTRATORE UNICO Ing. Luca Ferri - nominato il 18 aprile 2024, in carica ﬁno ad\napprovazione del bilancio 2026"
+              }
+            ]
+          },
+          "proposed_value": "Ing. Luca Ferri",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Ing. Luca Ferri",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -32,
+              "file_id": -9,
+              "chunk_index": 2,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": true,
+              "quote": "AMMINISTRATORE UNICO Ing. Luca Ferri - nominato il 18 aprile 2024, in carica ﬁno ad\napprovazione del bilancio 2026",
+              "content_sha256": "ea9431f9f958d8ff872a7b5bf8164a9ef766261396be934ca55925a0b3d6daa8"
+            }
+          ],
+          "semantic_annotation": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile"
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "benchmark_label": "Carica sottoscrittore",
+          "proposal": {
+            "label": "In qualità di (carica sociale)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:24",
+              "quote": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"
+            },
+            "conditions": [],
+            "fact_id": "f_sottoscrittore_carica",
+            "property": "carica sociale"
+          },
+          "fact_id": "f_sottoscrittore_carica",
+          "raw_fact": {
+            "subject": "Ing. Luca Ferri",
+            "entity": "person",
+            "aspect": "representation",
+            "property": "carica sociale",
+            "value": "Amministratore unico",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "AMMINISTRATORE UNICO Ing. Luca Ferri - nominato il 18 aprile 2024, in carica ﬁno ad\napprovazione del bilancio 2026"
+              }
+            ]
+          },
+          "proposed_value": "Amministratore unico",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Amministratore unico",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -32,
+              "file_id": -9,
+              "chunk_index": 2,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": true,
+              "quote": "AMMINISTRATORE UNICO Ing. Luca Ferri - nominato il 18 aprile 2024, in carica ﬁno ad\napprovazione del bilancio 2026",
+              "content_sha256": "ea9431f9f958d8ff872a7b5bf8164a9ef766261396be934ca55925a0b3d6daa8"
+            }
+          ],
+          "semantic_annotation": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile"
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "benchmark_label": "Estremi procura",
+          "proposal": {
+            "label": "(se procuratore) estremi procura (notaio, repertorio, raccolta)",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:26",
+              "quote": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"
+            },
+            "conditions": [
+              "cond_procuratore"
+            ],
+            "reason": "Il sottoscrittore è amministratore unico, non procuratore."
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Poteri di amministratore non escludono automaticamente la procura; nessun valore o NA verificato"
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "benchmark_label": "Operatore economico",
+          "proposal": {
+            "label": "Operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:28",
+              "quote": "Operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_ragione_sociale",
+            "property": "denominazione"
+          },
+          "fact_id": "f_ragione_sociale",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "denominazione",
+            "value": "Mapi Ingegneria S.r.l.",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l."
+              }
+            ]
+          },
+          "proposed_value": "Mapi Ingegneria S.r.l.",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Mapi Ingegneria S.r.l.",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "benchmark_label": "Forma giuridica",
+          "proposal": {
+            "label": "Forma giuridica",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:30",
+              "quote": "Forma giuridica"
+            },
+            "conditions": [],
+            "fact_id": "f_forma_giuridica",
+            "property": "forma giuridica"
+          },
+          "fact_id": "f_forma_giuridica",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "legal_type",
+            "property": "forma giuridica",
+            "value": "Societa a responsabilita limitata",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "FORMA GIURIDICA Societa a responsabilita limitata"
+              }
+            ]
+          },
+          "proposed_value": "Societa a responsabilita limitata",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Societa a responsabilita limitata",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "benchmark_label": "Sede legale",
+          "proposal": {
+            "label": "Sede legale (via, città, prov.)",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:32",
+              "quote": "Sede legale (via, città, prov.)"
+            },
+            "conditions": [],
+            "fact_id": "f_sede_legale",
+            "property": "sede legale"
+          },
+          "fact_id": "f_sede_legale",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "location",
+            "property": "sede legale",
+            "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+              }
+            ]
+          },
+          "proposed_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r8.c1",
+          "benchmark_label": "Sede operativa",
+          "proposal": {
+            "label": "Sede operativa (se diversa dalla sede legale)",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa "
+            },
+            "conditions": [
+              "cond_sede_operativa_diversa"
+            ],
+            "reason": "La sede operativa coincide con la sede legale."
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Coincide con la sede legale: value improprio se proposto; NA richiede la condizione calcolata, non la sola conclusione del modello"
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "benchmark_label": "Codice fiscale",
+          "proposal": {
+            "label": "Codice fiscale operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:37",
+              "quote": "Codice fiscale operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_cf_operatore",
+            "property": "codice fiscale"
+          },
+          "fact_id": "f_cf_operatore",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "codice fiscale",
+            "value": "IT01234567890",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)"
+              }
+            ]
+          },
+          "proposed_value": "IT01234567890",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "IT01234567890",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "benchmark_label": "Partita IVA",
+          "proposal": {
+            "label": "Partita IVA operatore economico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:39",
+              "quote": "Partita IVA operatore economico"
+            },
+            "conditions": [],
+            "fact_id": "f_piva_operatore",
+            "property": "partita IVA"
+          },
+          "fact_id": "f_piva_operatore",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "partita IVA",
+            "value": "IT01234567890",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)"
+              }
+            ]
+          },
+          "proposed_value": "IT01234567890",
+          "validation": "GROUNDED_PROPOSAL",
+          "value": "IT01234567890",
+          "errors": [],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ],
+          "semantic_annotation": "Valore SOURCE corretto per la proprietà aziendale"
+        },
+        {
+          "candidate_id": "t25.r3.c1",
+          "benchmark_label": "Numero/data CCIAA",
+          "proposal": {
+            "label": "Numero e data d'iscrizione CCIAA",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:441",
+              "quote": "numero e data d’iscrizione:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_iscrizione_cciaa",
+            "property": "numero e data iscrizione CCIAA"
+          },
+          "fact_id": "f_iscrizione_cciaa",
+          "raw_fact": {
+            "subject": "Mapi Ingegneria S.r.l.",
+            "entity": "company",
+            "aspect": "identity",
+            "property": "numero e data iscrizione CCIAA",
+            "value": "BA - 654321; 14 marzo 2019",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "NUMERO REA BA - 654321 (dato simulato)"
+              },
+              {
+                "chunk_id": -30,
+                "quote": "DATA ISCRIZIONE 14 marzo 2019"
+              }
+            ]
+          },
+          "proposed_value": "BA - 654321; 14 marzo 2019",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "REA non equivale al numero/data di iscrizione CCIAA; la combinazione di dati non è un valore letterale unico"
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "benchmark_label": "Direttore tecnico nome",
+          "proposal": {
+            "label": "Nome e cognome direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:452",
+              "quote": "Nome e cognome:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_nome",
+            "property": "nome e cognome"
+          },
+          "fact_id": "f_dt_nome",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "identity",
+            "property": "nome e cognome",
+            "value": "Ing. Elisa Romano",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421,\nOrdine degli Ingegneri di Bari"
+              }
+            ]
+          },
+          "proposed_value": "Ing. Elisa Romano",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "benchmark_label": "Qualifica direttore",
+          "proposal": {
+            "label": "Qualifica professionale direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:454",
+              "quote": "qualifica professionale:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_qualifica",
+            "property": "qualifica professionale"
+          },
+          "fact_id": "f_dt_qualifica",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "qualifica professionale",
+            "value": "Ingegnere",
+            "evidence": [
+              {
+                "chunk_id": -45,
+                "quote": "- Qualifica professionale nello scenario: Ingegnere."
+              }
+            ]
+          },
+          "proposed_value": "Ingegnere",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r2.c1",
+          "benchmark_label": "Data abilitazione",
+          "proposal": null,
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": "REVIEW_REQUIRED",
+          "value": null,
+          "errors": [],
+          "conditions": [
+            "cond_societa_ingegneria"
+          ],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Nessun valore utilizzabile attestato per questa posizione nel campione"
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "benchmark_label": "Ordine professionale",
+          "proposal": {
+            "label": "Ordine professionale di appartenenza direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:458",
+              "quote": "Ordine professionale di appartenenza:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_ordine",
+            "property": "ordine professionale di appartenenza"
+          },
+          "fact_id": "f_dt_ordine",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "ordine professionale di appartenenza",
+            "value": "Ordine degli Ingegneri di Bari",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421,\nOrdine degli Ingegneri di Bari"
+              }
+            ]
+          },
+          "proposed_value": "Ordine degli Ingegneri di Bari",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "benchmark_label": "Numero albo",
+          "proposal": {
+            "label": "Numero di iscrizione all'Albo professionale direttore tecnico",
+            "kind": "data",
+            "disposition": "value",
+            "form": {
+              "paragraph_id": "paragraph:460",
+              "quote": "numero di iscrizione all’Albo professionale:"
+            },
+            "conditions": [
+              "cond_societa_ingegneria"
+            ],
+            "fact_id": "f_dt_numero_iscrizione",
+            "property": "numero di iscrizione all'albo professionale"
+          },
+          "fact_id": "f_dt_numero_iscrizione",
+          "raw_fact": {
+            "subject": "Ing. Elisa Romano",
+            "entity": "person",
+            "aspect": "professional",
+            "property": "numero di iscrizione all'albo professionale",
+            "value": "8421",
+            "evidence": [
+              {
+                "chunk_id": -30,
+                "quote": "DIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421,\nOrdine degli Ingegneri di Bari"
+              }
+            ]
+          },
+          "proposed_value": "8421",
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Condizione sconosciuta: applicabilità da chiarire, non dato missing"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Fatto professionale atomico presente nella SOURCE; applicabilità del ramo non verificata"
+        },
+        {
+          "candidate_id": "t40.r0.c1",
+          "benchmark_label": "Consorziata esecutrice",
+          "proposal": {
+            "label": "Denominazione sociale",
+            "kind": "data",
+            "disposition": "not_applicable",
+            "form": {
+              "paragraph_id": "paragraph:623",
+              "quote": "Denominazione sociale:"
+            },
+            "conditions": [
+              "cond_consorziata_esecutrice"
+            ],
+            "reason": "Sezione 5.h non applicabile: l'operatore è una società di ingegneria."
+          },
+          "fact_id": null,
+          "raw_fact": {},
+          "proposed_value": null,
+          "validation": "REJECTED",
+          "value": null,
+          "errors": [
+            "Non applicabilità senza condizione calcolabile falsa"
+          ],
+          "conditions": [],
+          "condition_checks": {},
+          "source_evidence": [],
+          "semantic_annotation": "Il profilo aziendale non prova il ruolo di consorziata esecutrice né la sua esclusione"
+        }
+      ],
+      "manifest_verified": true,
+      "all_grounded_manual_review": [
+        {
+          "candidate_id": "t0.r0.c1",
+          "value": "Ing. Luca Ferri",
+          "manual_result": "unsupported_assignment",
+          "reason": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile",
+          "source_evidence": [
+            {
+              "chunk_id": -32,
+              "file_id": -9,
+              "chunk_index": 2,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": true,
+              "quote": "AMMINISTRATORE UNICO Ing. Luca Ferri - nominato il 18 aprile 2024, in carica ﬁno ad\napprovazione del bilancio 2026",
+              "content_sha256": "ea9431f9f958d8ff872a7b5bf8164a9ef766261396be934ca55925a0b3d6daa8"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "value": "IT01234567890",
+          "manual_result": "supported_assignment",
+          "reason": "Valore SOURCE corretto per la proprietà aziendale",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r11.c1",
+          "value": "+39 080 000 2040",
+          "manual_result": "supported_assignment",
+          "reason": "Recapito telefonico aziendale attestato nella SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "TELEFONO +39 080 000 2040 (recapito simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "value": "Amministratore unico",
+          "manual_result": "unsupported_assignment",
+          "reason": "La carica aziendale non prova chi sottoscrive questa pratica; nessuna assegnazione automaticamente accettabile",
+          "source_evidence": [
+            {
+              "chunk_id": -32,
+              "file_id": -9,
+              "chunk_index": 2,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": true,
+              "quote": "AMMINISTRATORE UNICO Ing. Luca Ferri - nominato il 18 aprile 2024, in carica ﬁno ad\napprovazione del bilancio 2026",
+              "content_sha256": "ea9431f9f958d8ff872a7b5bf8164a9ef766261396be934ca55925a0b3d6daa8"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "value": "Mapi Ingegneria S.r.l.",
+          "manual_result": "supported_assignment",
+          "reason": "Valore SOURCE corretto per la proprietà aziendale",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "value": "Societa a responsabilita limitata",
+          "manual_result": "supported_assignment",
+          "reason": "Valore SOURCE corretto per la proprietà aziendale",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "manual_result": "supported_assignment",
+          "reason": "Valore SOURCE corretto per la proprietà aziendale",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "value": "IT01234567890",
+          "manual_result": "supported_assignment",
+          "reason": "Valore SOURCE corretto per la proprietà aziendale",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        }
+      ],
+      "manual_counts": {
+        "grounded_inspected": 8,
+        "supported_assignments": 6,
+        "unsupported_assignments": 2
+      },
+      "local_errors": {
+        "Non applicabilità senza condizione calcolabile falsa": 59,
+        "Fatto SOURCE assente o rifiutato": 3,
+        "Condizione sconosciuta: applicabilità da chiarire, non dato missing": 12,
+        "Assegnazione e fatto SOURCE su proprietà differenti/ignote": 1
+      },
+      "raw_value_without_fact": 0,
+      "form_catalog_sha256": "9da8b62a658a35e956e5c58d4adabe4a6343e2539e424dacfe2eda960559d754",
+      "sources_sha256": "d76eeafed3d606d163a5ad36a607671c20493215193c2910d339d0d30156cfac"
+    }
+  ],
+  "total_tokens": 336553,
+  "total_ai_seconds": 153.02946221800084,
+  "software_checks": {
+    "initial": {
+      "targeted": 185,
+      "backend_full": 1591,
+      "backend_seconds": 104.18
+    },
+    "final": {
+      "targeted": 188,
+      "backend_full": 1594,
+      "backend_seconds": 101.6
+    },
+    "ruff": true,
+    "cli_help": true,
+    "diff_check": true,
+    "frontend": "unchanged, not rerun",
+    "providers": "simulated in software tests; real DeepSeek only in the four experiments"
+  },
+  "comparison": {
+    "reference": "previous compact runs 5/6, rejected globally",
+    "new_mean_ai_seconds": 25.629723168000055,
+    "old_mean_ai_seconds": 46.804024,
+    "ai_seconds_change_percent": -45.24034265087964,
+    "new_mean_tokens": 78885.5,
+    "old_mean_tokens": 88733.0,
+    "tokens_change_percent": -11.097900442901743,
+    "new_mean_output_tokens": 9228.5,
+    "old_mean_output_tokens": 18247.0,
+    "output_tokens_change_percent": -49.42456294185346,
+    "production_savings_demonstrated": false,
+    "limits": "Two stochastic responses, changed contracts, variable cache; not full compilation"
+  }
+}

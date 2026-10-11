@@ -3,6 +3,19 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Proposte sparse e validazione locale, 11 ottobre 2026
+
+- [Report completo](../benchmark-proposte-sparse-2026-10-11.md) e
+  [metriche/annotazioni](2026-10-11-compilation-global-sparse.json).
+- Quattro chiamate reali in due coppie congelate: prime due rifiutate, ultime
+  due con 9/8 grounded conservati e rifiuti locali, ~20/31 s. Errori semantici
+  ancora presenti: nessuna attivazione, RESOLVED o scrittura.
+- [Bundle completo](2026-10-11-global-sparse-audit.tar.gz) e
+  [checksum](2026-10-11-global-sparse-audit.tar.gz.sha256): tutti i grezzi,
+  codice/input/schema/request/HTTP/output, validazioni, manifest, analisi e log.
+  Esclusi database, configurazioni private e credenziali.
+- Finali 188 test mirati/1.594 backend, Ruff/help/diff; V1/frontend invariati.
+
 ## Proposta compatta e origine canonica, 10 ottobre 2026
 
 - [Report completo](../benchmark-proposta-compatta-2026-10-10.md),
