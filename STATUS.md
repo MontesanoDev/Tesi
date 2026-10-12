@@ -1,5 +1,60 @@
 # Stato di Mapi RAG
 
+## Conferme del gruppo attivo — 12 ottobre 2026, fix verificato
+
+Corretto il falso negativo Catanzaro del turno «Confermo entrambe ... il
+partecipante è quello indicato nelle fonti». Il router era corretto; il gate
+indipendente perdeva la domanda naturale per slot, già persistita, e non
+esplicitava l'ambito dei riferimenti al gruppo. `routing_context` conserva
+ora question (600 caratteri massimo, default vuoto per i checkpoint storici);
+il task del verificatore distingue riferimenti univoci, conferme estese al
+gruppo, eccezioni locali e richieste di valori mai forniti. Nessuna keyword
+USER, ID/label del demo hardcodati, nuovo schema/API o chiamata aggiuntiva.
+Restano guard indipendente, solo SUPPORTED, quote USER, validator DOCX e CAS;
+un sì senza ambito a più condizioni resta ambiguo. SOURCE/FORM/RAG/parser/
+renderer/UI invariati; nessuna promozione a RESOLVED o migrazione/reindex.
+
+Congelati 16 casi separati prima delle API: DeepSeek Flash reale **BEFORE
+14/16**, **AFTER 15/16**, precisazione sul gruppo misto **AFTER-2 16/16**.
+Conservati tutti gli esiti intermedi; gold mai cambiato, niente ripetizioni
+selettive. Regressioni reali: **9/9** guard storico, **43/43** Dialogo V1,
+un retry strutturale export-no rifiutato prima di qualsiasi scrittura/export.
+Sono proposte/checkpoint preparati, non accuratezza di moduli completi.
+
+Replay dichiarato del checkpoint reale Catanzaro, nuova sessione in snapshot
+privato, raw dell'analisi precedente rivalidato contro originale e corpus:
+due conferme USER salvate in **un turno anziché due**, nessun valore fattuale
+USER, nessuna nuova analisi. Quattro chiamate reali routing/gate/sintesi nei
+due turni (conferma + richiesta esplicita di bozza), 12.810 token /5,83 s AI.
+Bozza generata con **otto valori SOURCE** correttamente scritti, inclusi i
+cinque aziendali. **Criterio dei 12 export NON superato**: sintesi indipendente
+sospende quattro proposte del direttore tecnico per dubbio sul ruolo. Tutte
+le 12 proposte SOURCE restano persistite, zero RESOLVED. Limite conservativo
+distinto, non corretto o attribuito causalmente al fix dei riferimenti.
+Originali, tabelle live e codice invariati durante il replay; nessuna cella
+aggiuntiva modificata, parti Word/checkbox inalterate salvo banner. Snapshot
+e chiavi private eliminati; errore iniziale del setup prima delle API archiviato.
+
+Totale prove: 100 casi indipendenti +2 turni replay, **117 chiamate /282.267
+token /142,30 s AI**. Nessuna chiamata aggiunta nel percorso applicativo;
+prompt più esplicito costa 500 token input in più per verifica del caso
+reale. Singole serie, affinamento sullo stesso set: non valutazione held-out.
+Software (provider simulati): **270 mirati /47,74 s**, **1.972 backend finali
+/151,49 s**, Ruff backend/runner e diff check. Prima suite completa sul codice
+intermedio: 1.972 /146,40 s; mirati iniziali 72 /7,39 s; quattro test protocollo
+/0,54 s. Errore di path in un comando mirato senza test eseguiti conservato.
+Frontend/browser non ripetuti: nessun contratto/UI cambiato; HTTP del replay ASGI.
+
+[Report](docs/conferme-gruppo-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-group-confirmations.json),
+[acquisizioni sanificate](docs/benchmarks/2026-10-12-group-confirmations-audit.tar.gz).
+Grezzi backend/data/compilation-audit/group-confirmations-20261012/.
+Commit piccoli con protocollo/fix/prove; nessun push in questo intervento.
+**Prossimo punto:** valutare separatamente i falsi negativi della sintesi sulle
+proposte già grounded, soprattutto ruolo del direttore tecnico. Composizione
+«salva valore e poi pausa/export» ancora da discutere; nessuna scelta presa.
+Copertura sparse, checkbox e separazione Ordine/numero restano limiti noti.
+
 ## Conversazioni complete reali — 12 ottobre 2026, prima dei turni composti
 
 Eseguito il passo autorizzato: nuove conversazioni con DeepSeek Flash reale,

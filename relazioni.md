@@ -1810,3 +1810,46 @@ permessi. Congelati 16 casi separati positivi/avversariali, BEFORE/AFTER complet
 guard-v1 (9) e Dialogo V1 (43) invariati per le regressioni. Quattro test del
 protocollo /0,54 s, Ruff runner/test e diff check passati, nessuna API ancora.
 [Diagnosi e protocollo](docs/conferme-gruppo-2026-10-12.md). Nessun push.
+
+## 12 ottobre — conferme del gruppo attivo, risultati
+
+BEFORE congelato 0ef3bd5: 14/16, falso negativo reale riprodotto. Proiezione
+question per slot (600 caratteri, già persistita) e task guard indipendente
+c6bd0ff: 15/16. Residuo conservativo su conferma di gruppo misto: respinti
+giustamente i valori assenti, ma anche la condizione. Precisata indipendenza
+degli slot booleani b8c88f8: 16/16 sull'intera nuova serie, gold invariato.
+Tutti i raw intermedi conservati; niente ripetizioni selettive o nuovi permessi.
+Regressioni DeepSeek Flash reali 9/9 guard e 43/43 Dialogo V1, un retry strutturale
+export-no prima di qualsiasi mutazione, cinque export della fixture verificati.
+
+Replay esplicito del checkpoint Catanzaro reale in nuova sessione/snapshot privato:
+raw dell'analisi precedente rivalidato sul corpus/originale, nessuna nuova analisi.
+Entrambe le conferme USER salvate in un turno anziché due; zero valori fattuali
+USER. Due turni conferma+export, quattro chiamate reali /12.810 token /5,83 s AI.
+Bozza con otto valori SOURCE corretti, inclusi i cinque aziendali. Criterio dei
+12 valori NON superato: nuova sintesi sospende nome/qualifica/Ordine/8421 per
+dubbio sul ruolo. Tutte le 12 proposte ancora persistite, SOURCE non modificato;
+non forzati i valori né adattato il criterio. Limite distinto della sintesi,
+da misurare separatamente, non attribuito causalmente al fix del gate USER.
+Word/originali/checkbox/altre posizioni e tabelle live verificati invariati salvo
+gli otto valori e il banner. Snapshot/chiavi private eliminati. Setup iniziale
+prima delle API fallito per chiavi risposte assenti, corretto solo il runner e
+conservati log/protocollo; nessun output modello scartato.
+
+Totale 100 casi +2 turni /117 chiamate /282.267 token /142,30 s AI. Nuove
+verifiche non aggiunte: il gate esistente costa +500 token input nel caso reale congelato.
+Singole serie sul set di affinamento, non held-out o accuratezza del modulo.
+Software: quattro controlli protocollo /0,54 s, 72 mirati iniziali /7,39 s,
+270 mirati finali /47,74 s, 1.972 backend finali /151,49 s; suite intermedia
+1.972 /146,40 s, Ruff/diff check passati. Provider simulati nei test software.
+Errore path in un comando mirato senza test eseguiti archiviato. Nessun test
+frontend/browser, contratti/UI invariati. Nessuna migrazione/reindex/push.
+[Report](docs/conferme-gruppo-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-group-confirmations.json),
+[bundle](docs/benchmarks/2026-10-12-group-confirmations-audit.tar.gz).
+Ripresa proposta: gate delle esclusioni della sintesi/ruoli. Turni composti
+salva+pausa/export ancora da discutere, nessuna decisione automatica.
+
+Bundle sanificato verificato byte per byte: **629 file /1.297.367 byte**,
+SHA-256 `09355f5429c68a71fd42e238a0b3739397af3befd0e6f36ec28dc2fa0259a522`.
+Nessun database/chiave privata; manifest e verifiche finali in docs/benchmarks.

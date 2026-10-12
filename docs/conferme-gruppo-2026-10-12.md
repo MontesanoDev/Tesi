@@ -84,3 +84,111 @@ non contiene ancora le chiavi answers/user_values. Corretto solo l'harness
 usando i default vuoti già previsti dal dominio, conservati protocollo/log della
 preparazione fallita e rimossi snapshot/chiave privata; nuova preparazione in
 cartella distinta. Nessun raw modello o risultato escluso/ripetuto selettivamente.
+
+## Esiti reali e costi
+
+| Serie | Conformi | Chiamate | Token totali | Secondi AI |
+|---|---:|---:|---:|---:|
+| BEFORE, 0ef3bd5 | 14/16 | 16 | 21.125 | 19,26 |
+| AFTER, c6bd0ff | 15/16 | 16 | 27.743 | 20,18 |
+| AFTER-2, b8c88f8 | 16/16 | 16 | 29.094 | 21,30 |
+| Guard storico V1 | 9/9 | 9 | 12.424 | 9,51 |
+| Dialogo storico V1 | 43/43 | 56 | 179.071 | 66,21 |
+| Replay reale, conferma + export | conferma riuscita, export 8/12 | 4 | 12.810 | 5,83 |
+
+Totale: **100 casi indipendenti +2 turni replay /117 chiamate /282.267 token
+/142,30 s AI**. Sono costi di più serie, non di una singola compilazione.
+Nessun retry del verificatore, timeout/768 token invariati. Nel Dialogo V1
+44 routing +12 guard: export-no produce prima uno schema/intent invalido, il
+retry strutturale lo corregge senza scrivere o esportare. Cinque export della
+fixture confrontati con stato/report/Word; originali invariati, USER esplicito.
+Nessun caso già conforme diventa scorretto. Guard 9/9 preserva il blocco della
+denominazione nel recapito, numeri estranei, alternative e sì ambiguo.
+
+La maggiore chiarezza costa token: nel caso reale congelato il prompt del gate
+passa da 1.233 a 1.733 token input (+500), con numero di chiamate invariato. Non è una
+riduzione del costo per turno. Latenze/costo e singola variabilità sono dichiarati;
+il set è stato usato per affinare il prompt, non è una valutazione held-out.
+Gold, fixture e codice congelati durante ogni serie, nessuna selezione dei raw.
+
+## Replay Catanzaro: aggiornamenti e Word
+
+Nuova sessione `252f84a7a8f846e09ca37d0fb20b9251`, due processi HTTP ASGI;
+checkpoint reale riutilizzato e rivalidato, nessuna nuova analisi globale.
+Il router propone due CONDITION_TRUE con estratti USER. Verificatore reale:
+
+```json
+{"checks":[
+  {"slot":1,"result":"SUPPORTED","rationale":"L'utente conferma esplicitamente che la sezione delle società di ingegneria si applica, rispondendo alla domanda 1."},
+  {"slot":2,"result":"SUPPORTED","rationale":"L'utente conferma che il partecipante è quello indicato nelle fonti, cioè Mapi Ingegneria S.r.l., rispondendo alla domanda 2."}
+]}
+```
+
+Backend: `condition:c_socing` e `condition:c_domanda` -> CONDITION_TRUE,
+`applies=true`, provenance USER, estratti conservati. Zero valori fattuali USER.
+Stessa sessione/versioni persistite -> sintesi -> consenso esplicito alla bozza
+-> GENERATED. Le due conferme richiedono un turno anziché i due del test precedente.
+La bozza resta parziale: nessuna dichiarazione di compilazione completa/RESOLVED.
+
+| Posizione | Valore nel Word | Provenienza |
+|---|---|---|
+| Operatore economico, t0.r5.c1 | Mapi Ingegneria S.r.l. | SOURCE Company KB, visura, chunk -30 /file -9 |
+| Forma giuridica, t0.r6.c1 | Societa a responsabilita limitata | SOURCE, stessa visura |
+| Sede legale, t0.r7.c1 | Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia | SOURCE, stessa visura |
+| Codice fiscale, t0.r9.c1 | IT01234567890 | SOURCE, stessa visura |
+| Partita IVA, t0.r10.c1 | IT01234567890 | SOURCE, stessa visura |
+| Tre campi omologhi della sezione 5.d | Denominazione, forma giuridica, sede legale | SOURCE, stessa visura |
+
+**Criterio dei dodici valori NON superato**, conservato come fallimento del
+replay completo: la nuova sintesi restituisce held_proposal_slots=[9,10,11,12],
+sospendendo nome/qualifica/Ordine/8421 del direttore tecnico per dubbio sul ruolo.
+Otto valori esportati, tutti effettivamente scritti nelle celle di stato/report.
+Le 12 proposte SOURCE restano persistite, niente perso nel retrieval/gate USER;
+quattro sono esclusioni conservative della sintesi. Non abbassato il criterio,
+non forzati valori o ripetuto il replay per ottenere 12. Sintesi e contesto di
+risposte cambiano fra le conversazioni: non è un confronto causale isolato per
+quel limite. SOURCE, parser e renderer non sono stati modificati.
+
+Originale immutato, nessuna cella aggiuntiva cambiata; paragrafi invariati salvo
+banner, checkbox native identiche, ZIP modificato solo in document.xml. Tabelle
+live inalterate dall'inizio del replay; nessuna modifica ai dati dell'utente.
+Snapshot e chiave privata eliminati dopo le verifiche, anche dopo l'assert del
+conteggio 12 fallito. Il fallimento e la verifica degli otto valori sono archiviati.
+
+## Verifiche software e ripresa
+
+Provider simulati soltanto nei test software; DB/storage temporanei. **72 test
+mirati iniziali /7,39 s**, **270 mirati finali /47,74 s**, **1.972 backend finali
+/151,49 s**, Ruff backend/runner e diff check superati. Suite intermedia: 1.972
+/146,40 s. Quattro controlli del protocollo /0,54 s senza provider. Primo comando
+mirato finale senza test eseguiti per un nome di file errato, corretto; preflight
+Ruff del runner replay con una riga lunga corretto prima delle API. Log conservati.
+Frontend/browser non ripetuti perché nessun contratto/UI è cambiato.
+
+Il falso negativo di conferma del gruppo è corretto nei casi misurati; non è
+garanzia matematica di interpretazione. Gate indipendente, slot attivi, USER
+letterale/normalizzazione consentita, CAS e validazione DOCX restano richiesti.
+Nessuna migrazione/reindex, checkbox o allargamento di SOURCE. Prossimo tema
+proposto: sospensioni conservative della sintesi per i ruoli, misurate separatamente.
+«Salva valore e poi pausa/export» resta da discutere, comportamento invariato.
+
+[Metriche complete](benchmarks/2026-10-12-group-confirmations.json),
+[bundle dei grezzi](benchmarks/2026-10-12-group-confirmations-audit.tar.gz).
+Grezzi: `backend/data/compilation-audit/group-confirmations-20261012/`, prompt,
+schema, raw, usage/tempi, checkpoint e stati dopo ciascun caso, Word/report reali,
+log anche dei fallimenti. Piccoli commit di protocollo/fix/test, nessun push.
+
+Archivio verificato byte per byte: **629 file /1.297.367 byte**,
+SHA-256 `09355f5429c68a71fd42e238a0b3739397af3befd0e6f36ec28dc2fa0259a522`.
+[Manifest pubblico](benchmarks/2026-10-12-group-confirmations-audit-manifest.json),
+[verifiche finali](benchmarks/2026-10-12-group-confirmations-final-checks.json).
+Nessun database, chiave o runtime privato incluso.
+
+Per riprovare dalla chat: una nuova compilazione del modulo con il profilo
+DeepSeek e le stesse fonti; quando sono attive le due domande, rispondere
+«Confermo entrambe: la sezione delle società di ingegneria si applica e il
+partecipante è quello indicato nelle fonti». Devono essere acquisite entrambe
+come decisioni USER, senza nuova ricerca SOURCE né secondo consenso sul nome.
+Se si chiede esplicitamente una bozza, i dati non verificati/esclusi restano vuoti;
+le quattro proposte del direttore tecnico possono ancora essere sospese dalla
+sintesi. Un sì senza ambito davanti a più condizioni richiede chiarimento.

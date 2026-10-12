@@ -1,5 +1,27 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Conferme riferite al gruppo — 12 ottobre, aggiornamento
+
+La proiezione ai modelli conserva la domanda naturale di ciascuno slot già
+persistita (600 caratteri, default vuoto per lo storico); i destinatari
+rimangono backend. Il verificatore indipendente può risolvere un riferimento
+univoco alla scelta appena chiesta e una conferma esplicita di più condizioni.
+Eccezioni, polarità e incertezza si valutano per slot; un sì senza ambito a più
+condizioni non viene distribuito a tutte. Confermare il gruppo non inventa
+email/date mai comunicate. Solo SUPPORTED consente le mutazioni già validate,
+con provenance USER; nessun valore viene trasformato in SOURCE o RESOLVED.
+Nessuna nuova chiamata, schema/API, migrazione o modifica UI/RAG/DOCX.
+
+[Prove congelate e acquisizioni](conferme-gruppo-2026-10-12.md): DeepSeek
+14/16 ->15/16 ->16/16, regressioni 9/9 guard e 43/43 dialogo. Nel replay
+dell'analisi reale Catanzaro entrambe le conferme passano in un turno; export
+esplicito genera otto valori SOURCE. Il confronto previsto di 12 export non
+passa: la nuova sintesi sospende quattro proposte del direttore tecnico, ancora
+presenti nello stato. È un limite distinto della sintesi, non del gate USER;
+nessuna nuova analisi SOURCE o misura di completezza del documento.
+270 test software mirati, 1.972 backend finali, Ruff/diff check. Frontend/browser
+non ripetuti. Il riepilogo seguente conserva i risultati storici precedenti al fix.
+
 ## Conversazioni complete — 12 ottobre, dopo i test dei comandi
 
 Il [nuovo test reale](test-conversazione-completa-2026-10-12.md) attraversa

@@ -1,0 +1,9 @@
+{
+  "path": "docs/benchmarks/2026-10-12-group-confirmations-audit.tar.gz",
+  "files": 629,
+  "bytes": 1297367,
+  "sha256": "09355f5429c68a71fd42e238a0b3739397af3befd0e6f36ec28dc2fa0259a522",
+  "byte_for_byte_verified": true,
+  "credentials_excluded": true,
+  "private_databases_excluded": true
+}

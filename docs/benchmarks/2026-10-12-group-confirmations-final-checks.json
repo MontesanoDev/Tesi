@@ -1,0 +1,57 @@
+{
+  "application_commit": "b8c88f8",
+  "backend_final": {
+    "passed": 1972,
+    "seconds": 151.49,
+    "log": "checks/backend-final.log"
+  },
+  "backend_intermediate": {
+    "passed": 1972,
+    "seconds": 146.4,
+    "log": "checks/backend-complete.log"
+  },
+  "targeted_final": {
+    "passed": 270,
+    "seconds": 47.74,
+    "log": "checks/targeted-final.log"
+  },
+  "ruff_backend_and_replay": "passed",
+  "diff_check": "passed",
+  "frontend_browser": "not run: no UI or public contracts changed",
+  "real_benchmarks": {
+    "group": {
+      "before": [
+        14,
+        16
+      ],
+      "after": [
+        15,
+        16
+      ],
+      "after_2": [
+        16,
+        16
+      ]
+    },
+    "regression_guard": [
+      9,
+      9
+    ],
+    "regression_dialogue": [
+      43,
+      43
+    ],
+    "replay_group_confirmation": "passed",
+    "replay_source_export_count": {
+      "expected": 12,
+      "actual": 8,
+      "passed": false
+    }
+  },
+  "setup_failures_preserved": [
+    "replay missing empty answer dictionaries before API calls",
+    "targeted test path not found, no tests ran",
+    "preflight replay Ruff long line corrected before API"
+  ],
+  "private_runtime_removed": true
+}

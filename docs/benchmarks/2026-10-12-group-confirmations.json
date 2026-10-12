@@ -1,0 +1,1660 @@
+{
+  "version": 1,
+  "application_commit": "b8c88f8",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "new_analysis_calls": 0,
+  "simulated_providers_in_real_benchmarks": false,
+  "gold_unchanged": true,
+  "series": {
+    "before": {
+      "cases": 16,
+      "passed": 14,
+      "failed": [
+        "recorded-real",
+        "bare-confirmation-no-values"
+      ],
+      "calls": 16,
+      "prompt_tokens": 19300,
+      "completion_tokens": 1825,
+      "total_tokens": 21125,
+      "ai_seconds": 19.25704130298982,
+      "median_call_seconds": 1.216450594500202,
+      "schema_errors": 0,
+      "results": [
+        {
+          "case": "recorded-real",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1341,
+          "passed": false
+        },
+        {
+          "case": "explicit-both",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1334,
+          "passed": true
+        },
+        {
+          "case": "anaphoric-reference",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1351,
+          "passed": true
+        },
+        {
+          "case": "numbered-reference",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1324,
+          "passed": true
+        },
+        {
+          "case": "negative-both",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_FALSE",
+              "2": "CONDITION_FALSE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1329,
+          "passed": true
+        },
+        {
+          "case": "local-exception",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_FALSE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1350,
+          "passed": true
+        },
+        {
+          "case": "wrong-polarity",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1364,
+          "passed": true
+        },
+        {
+          "case": "uncertain-second",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1343,
+          "passed": true
+        },
+        {
+          "case": "bare-yes",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1303,
+          "passed": true
+        },
+        {
+          "case": "source-mention-not-adoption",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1387,
+          "passed": true
+        },
+        {
+          "case": "unrelated-conditions",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1361,
+          "passed": true
+        },
+        {
+          "case": "bare-confirmation-no-values",
+          "allowed": [],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1160,
+          "passed": false
+        },
+        {
+          "case": "partial-mixed",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "VALUE"
+            },
+            "values": {
+              "2": "tecnico@studio.example"
+            },
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1190,
+          "passed": true
+        },
+        {
+          "case": "other-field-correction",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1343,
+          "passed": true
+        },
+        {
+          "case": "first-only",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1338,
+          "passed": true
+        },
+        {
+          "case": "ambiguous-demonstrative",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1307,
+          "passed": true
+        }
+      ]
+    },
+    "after": {
+      "cases": 16,
+      "passed": 15,
+      "failed": [
+        "bare-confirmation-no-values"
+      ],
+      "calls": 16,
+      "prompt_tokens": 25988,
+      "completion_tokens": 1755,
+      "total_tokens": 27743,
+      "ai_seconds": 20.182804413008853,
+      "median_call_seconds": 1.245162008501211,
+      "schema_errors": 0,
+      "results": [
+        {
+          "case": "recorded-real",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1752,
+          "passed": true
+        },
+        {
+          "case": "explicit-both",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1758,
+          "passed": true
+        },
+        {
+          "case": "anaphoric-reference",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1788,
+          "passed": true
+        },
+        {
+          "case": "numbered-reference",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1742,
+          "passed": true
+        },
+        {
+          "case": "negative-both",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_FALSE",
+              "2": "CONDITION_FALSE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1756,
+          "passed": true
+        },
+        {
+          "case": "local-exception",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_FALSE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1768,
+          "passed": true
+        },
+        {
+          "case": "wrong-polarity",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1779,
+          "passed": true
+        },
+        {
+          "case": "uncertain-second",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1753,
+          "passed": true
+        },
+        {
+          "case": "bare-yes",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1720,
+          "passed": true
+        },
+        {
+          "case": "source-mention-not-adoption",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1806,
+          "passed": true
+        },
+        {
+          "case": "unrelated-conditions",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1763,
+          "passed": true
+        },
+        {
+          "case": "bare-confirmation-no-values",
+          "allowed": [],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1551,
+          "passed": false
+        },
+        {
+          "case": "partial-mixed",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "VALUE"
+            },
+            "values": {
+              "2": "tecnico@studio.example"
+            },
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1564,
+          "passed": true
+        },
+        {
+          "case": "other-field-correction",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1755,
+          "passed": true
+        },
+        {
+          "case": "first-only",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1758,
+          "passed": true
+        },
+        {
+          "case": "ambiguous-demonstrative",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1730,
+          "passed": true
+        }
+      ]
+    },
+    "after-2": {
+      "cases": 16,
+      "passed": 16,
+      "failed": [],
+      "calls": 16,
+      "prompt_tokens": 27284,
+      "completion_tokens": 1810,
+      "total_tokens": 29094,
+      "ai_seconds": 21.301144156008377,
+      "median_call_seconds": 1.3279136450037186,
+      "schema_errors": 0,
+      "results": [
+        {
+          "case": "recorded-real",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1848,
+          "passed": true
+        },
+        {
+          "case": "explicit-both",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1839,
+          "passed": true
+        },
+        {
+          "case": "anaphoric-reference",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1869,
+          "passed": true
+        },
+        {
+          "case": "numbered-reference",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1834,
+          "passed": true
+        },
+        {
+          "case": "negative-both",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_FALSE",
+              "2": "CONDITION_FALSE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1823,
+          "passed": true
+        },
+        {
+          "case": "local-exception",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "CONDITION_FALSE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1853,
+          "passed": true
+        },
+        {
+          "case": "wrong-polarity",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1853,
+          "passed": true
+        },
+        {
+          "case": "uncertain-second",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1821,
+          "passed": true
+        },
+        {
+          "case": "bare-yes",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1813,
+          "passed": true
+        },
+        {
+          "case": "source-mention-not-adoption",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1877,
+          "passed": true
+        },
+        {
+          "case": "unrelated-conditions",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1845,
+          "passed": true
+        },
+        {
+          "case": "bare-confirmation-no-values",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1665,
+          "passed": true
+        },
+        {
+          "case": "partial-mixed",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "VALUE"
+            },
+            "values": {
+              "2": "tecnico@studio.example"
+            },
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1652,
+          "passed": true
+        },
+        {
+          "case": "other-field-correction",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1847,
+          "passed": true
+        },
+        {
+          "case": "first-only",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1848,
+          "passed": true
+        },
+        {
+          "case": "ambiguous-demonstrative",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1807,
+          "passed": true
+        }
+      ]
+    },
+    "regression-guard": {
+      "cases": 9,
+      "passed": 9,
+      "failed": [],
+      "calls": 9,
+      "prompt_tokens": 11828,
+      "completion_tokens": 596,
+      "total_tokens": 12424,
+      "ai_seconds": 9.511929332002182,
+      "median_call_seconds": 1.0213047020006343,
+      "schema_errors": 0,
+      "results": [
+        {
+          "case": "old-real-wrong-proposal",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1339,
+          "passed": true
+        },
+        {
+          "case": "unrelated-code",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1317,
+          "passed": true
+        },
+        {
+          "case": "unrelated-negative",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1340,
+          "passed": true
+        },
+        {
+          "case": "bare-date",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "VALUE"
+            },
+            "values": {
+              "1": "14/08/2018"
+            },
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1301,
+          "passed": true
+        },
+        {
+          "case": "natural-contact",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "VALUE"
+            },
+            "values": {
+              "1": "tecnico@studio.example"
+            },
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1322,
+          "passed": true
+        },
+        {
+          "case": "semantic-negative",
+          "allowed": [
+            1
+          ],
+          "expected": [
+            1
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_FALSE"
+            },
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1341,
+          "passed": true
+        },
+        {
+          "case": "partial-group",
+          "allowed": [
+            1,
+            2
+          ],
+          "expected": [
+            1,
+            2
+          ],
+          "effects": {
+            "actions": {
+              "1": "CONDITION_TRUE",
+              "2": "VALUE"
+            },
+            "values": {
+              "2": "tecnico@studio.example"
+            },
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1634,
+          "passed": true
+        },
+        {
+          "case": "ambiguous-two-conditions",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1491,
+          "passed": true
+        },
+        {
+          "case": "ambiguous-value",
+          "allowed": [],
+          "expected": [],
+          "effects": {
+            "actions": {},
+            "values": {},
+            "unexpected_recipients": [],
+            "provenance_ok": true,
+            "paused": false
+          },
+          "total_tokens": 1339,
+          "passed": true
+        }
+      ]
+    },
+    "regression-dialogue": {
+      "head": "b8c88f8918f718cad4d19050cc17fd8130c5b035",
+      "cases": 43,
+      "passed": 43,
+      "failed_checks": {},
+      "calls": 56,
+      "routing_calls": 44,
+      "scope_check_calls": 12,
+      "retries": 1,
+      "total_tokens": 179071,
+      "seconds": 66.21408283797791,
+      "generated": 5,
+      "fixture_original_unchanged": true,
+      "live_db_writes": 0
+    },
+    "replay": {
+      "candidate_count": 307,
+      "proposal_count": 12,
+      "omitted_positions": 293,
+      "resolved": 0,
+      "state": "GENERATED",
+      "source_written": 8,
+      "user_written": 0,
+      "written_count": 8,
+      "checks": [
+        {
+          "candidate_id": "t0.r10.c1",
+          "label": "Partita IVA operatore economico",
+          "expected": "IT01234567890",
+          "actual": "IT01234567890",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "label": "Operatore economico",
+          "expected": "Mapi Ingegneria S.r.l.",
+          "actual": "Mapi Ingegneria S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "label": "Forma giuridica",
+          "expected": "Societa a responsabilita limitata",
+          "actual": "Societa a responsabilita limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "label": "Sede legale (via, città, prov.)",
+          "expected": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "actual": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "label": "Codice fiscale operatore economico",
+          "expected": "IT01234567890",
+          "actual": "IT01234567890",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r0.c1",
+          "label": "Denominazione sociale:",
+          "expected": "Mapi Ingegneria S.r.l.",
+          "actual": "Mapi Ingegneria S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r4.c1",
+          "label": "forma giuridica:",
+          "expected": "Societa a responsabilita limitata",
+          "actual": "Societa a responsabilita limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r4.c3",
+          "label": "sede legale:",
+          "expected": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "actual": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        }
+      ],
+      "changed_cells": [
+        "t0.r5.c1",
+        "t0.r6.c1",
+        "t0.r7.c1",
+        "t0.r9.c1",
+        "t0.r10.c1",
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3"
+      ],
+      "unselected_cells_unchanged": true,
+      "paragraphs_unchanged_except_banner": true,
+      "native_controls_unchanged": true,
+      "package_changed_parts": [
+        "word/document.xml"
+      ],
+      "deferred_fields_not_written": [],
+      "original_unchanged": true,
+      "partial_draft": true,
+      "ready_for_submission": false,
+      "costs": {
+        "narration": {
+          "calls": 1,
+          "seconds": 1.7592722850022255,
+          "prompt_tokens": 2607,
+          "completion_tokens": 161,
+          "total_tokens": 2768
+        },
+        "routing": {
+          "calls": 2,
+          "seconds": 2.6581060069947853,
+          "prompt_tokens": 7996,
+          "completion_tokens": 201,
+          "total_tokens": 8197
+        },
+        "user_scope": {
+          "calls": 1,
+          "seconds": 1.4123485309974058,
+          "prompt_tokens": 1740,
+          "completion_tokens": 105,
+          "total_tokens": 1845
+        }
+      },
+      "api_calls": 4,
+      "total_tokens": 12810,
+      "ai_seconds": 5.829726822994417,
+      "user_turns_including_start": 2,
+      "answer_actions": {
+        "CONDITION_TRUE": 2
+      },
+      "turns": [
+        {
+          "turn": "turn-01",
+          "request": {
+            "question": "Confermo entrambe: la sezione delle società di ingegneria si applica e il partecipante è quello indicato nelle fonti.",
+            "document_id": 155,
+            "conversation_id": "conv-abae7ebd8eae4331",
+            "compilation_session_id": "252f84a7a8f846e09ca37d0fb20b9251",
+            "compilation_version": 2
+          },
+          "answer": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+          "command": {
+            "session_id": "252f84a7a8f846e09ca37d0fb20b9251",
+            "action": "updated"
+          },
+          "seconds_answer": 2.801845644004061,
+          "version": 5,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "generate",
+            "field_ids": [],
+            "slots": [],
+            "message": "Dalle fonti risultano i dati identificativi dell'operatore (denominazione, forma giuridica, sede legale, partita IVA e codice fiscale) e, per il direttore tecnico, nome, qualifica, ordine e numero di iscrizione. Restano molte posizioni non valutate, quindi la bozza è parziale. Segnalo un dubbio: i dati del direttore tecnico sono proposti in una sezione professionale, ma non è attestato che sia lui a sottoscrivere; li lascio da controllare. Non ho domande da porre al momento.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-01/call-01-routing",
+              "seconds": 1.3184613709963742,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 4116,
+                "completion_tokens": 160,
+                "total_tokens": 4276,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2944
+                },
+                "prompt_cache_hit_tokens": 2944,
+                "prompt_cache_miss_tokens": 1172
+              }
+            },
+            {
+              "stage": "user_scope",
+              "path": "turn-01/call-02-user_scope",
+              "seconds": 1.4123485309974058,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 1740,
+                "completion_tokens": 105,
+                "total_tokens": 1845,
+                "prompt_tokens_details": {
+                  "cached_tokens": 1536
+                },
+                "prompt_cache_hit_tokens": 1536,
+                "prompt_cache_miss_tokens": 204
+              }
+            },
+            {
+              "stage": "narration",
+              "path": "turn-01/call-03-narration",
+              "seconds": 1.7592722850022255,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 2607,
+                "completion_tokens": 161,
+                "total_tokens": 2768,
+                "prompt_tokens_details": {
+                  "cached_tokens": 768
+                },
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 1839
+              }
+            }
+          ],
+          "pid": 122043
+        },
+        {
+          "turn": "turn-02",
+          "request": {
+            "question": "Sì, genera una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte.",
+            "document_id": 155,
+            "conversation_id": "conv-abae7ebd8eae4331",
+            "compilation_session_id": "252f84a7a8f846e09ca37d0fb20b9251",
+            "compilation_version": 5
+          },
+          "answer": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+          "command": {
+            "session_id": "252f84a7a8f846e09ca37d0fb20b9251",
+            "action": "generated"
+          },
+          "seconds_answer": 2.5106559180057957,
+          "version": 6,
+          "status": "GENERATED",
+          "paused": false,
+          "question": null,
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-02/call-01-routing",
+              "seconds": 1.339644635998411,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3880,
+                "completion_tokens": 41,
+                "total_tokens": 3921,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 1320
+              }
+            }
+          ],
+          "pid": 122684
+        }
+      ],
+      "revisions": [
+        {
+          "version": 1,
+          "created_at": "2026-10-12T21:03:56.664125+00:00",
+          "event": {
+            "action": "create",
+            "template_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0"
+          }
+        },
+        {
+          "version": 2,
+          "created_at": "2026-10-12T21:03:57.036949+00:00",
+          "event": {
+            "action": "benchmark_real_checkpoint_replay",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 3,
+          "created_at": "2026-10-12T21:04:25.528601+00:00",
+          "event": {
+            "action": "global_dialogue_user_reply",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 4,
+          "created_at": "2026-10-12T21:04:25.577380+00:00",
+          "event": {
+            "action": "global_dialogue_start",
+            "changes": [],
+            "status": "ANALYZING",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 5,
+          "created_at": "2026-10-12T21:04:27.366843+00:00",
+          "event": {
+            "action": "global_dialogue_complete",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 6,
+          "created_at": "2026-10-12T21:04:49.701527+00:00",
+          "event": {
+            "action": "global_draft_generate",
+            "changes": [],
+            "status": "GENERATED",
+            "last_generation": {
+              "session_version": 5,
+              "id": "d67ba37d923b4d0fb5742b98cfe25d87",
+              "project_id": "prova",
+              "template_name": "domanda-partecipazione.docx",
+              "created_at": "2026-10-12T21:04:49.280011+00:00",
+              "status": "needs_review",
+              "downloads": {
+                "docx": "/api/projects/prova/document-compilations/d67ba37d923b4d0fb5742b98cfe25d87/download/docx",
+                "report": "/api/projects/prova/document-compilations/d67ba37d923b4d0fb5742b98cfe25d87/download/report",
+                "template": "/api/projects/prova/document-compilations/d67ba37d923b4d0fb5742b98cfe25d87/download/template"
+              }
+            },
+            "last_error": null,
+            "chat_workflow": null
+          }
+        }
+      ],
+      "integrity": {
+        "application_unchanged": true,
+        "live_tables_unchanged": true,
+        "live_original_unchanged": true,
+        "private_original_unchanged": true
+      },
+      "group_confirmation_passed": true,
+      "expected_source_written": 12,
+      "export_count_criterion_passed": false,
+      "gate_raw": "{\"checks\":[{\"slot\":1,\"result\":\"SUPPORTED\",\"rationale\":\"L'utente conferma esplicitamente che la sezione delle società di ingegneria si applica, rispondendo alla domanda 1.\"},{\"slot\":2,\"result\":\"SUPPORTED\",\"rationale\":\"L'utente conferma che il partecipante è quello indicato nelle fonti, cioè Mapi Ingegneria S.r.l., rispondendo alla domanda 2.\"}]}",
+      "held_candidate_ids": [
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "all_twelve_source_proposals_preserved": true,
+      "user_fact_values": 0,
+      "five_company_fields_written": true
+    }
+  },
+  "totals": {
+    "cases": 100,
+    "replay_turns": 2,
+    "calls": 117,
+    "total_tokens": 282267,
+    "ai_seconds": 142.29672886498156
+  },
+  "limitations": [
+    "Single run per version, sequential iterative tuning on frozen cases; not independent held-out evaluation.",
+    "Checkpoint replay reuses recorded real SOURCE analysis, not a fresh complete compilation.",
+    "Replay 8/12 exports: 4 technical-director proposals held conservatively by independent narration; expected 12 count failed, not weakened.",
+    "No quality inference for other providers; no UI/browser evaluation."
+  ]
+}
