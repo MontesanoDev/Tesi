@@ -1,51 +1,75 @@
 # Stato di Mapi RAG
 
-## Ruolo fra paragrafi — 12 ottobre 2026, prima serie parziale
+## Ruolo fra paragrafi — 12 ottobre 2026, passo V10 verificato
 
-Autorizzato il passo successivo al legame slot/citazione. Diagnosi Minervino:
-ruolo nel paragrafo 50 perso dai candidate nei paragrafi 52/53; SOURCE con heading
-persona-ruolo o riga tabellare maiuscola rifiutate dal solo formato ruolo:persona.
-Nella prova 3 ruolo citato in un chunk e valori in un altro: questo caso resta
-bloccato, nessun join personale inventato fra chunk.
+Catalogo V5 / contratto V10, prototipo a una chiamata. Diagnosi concreta:
+Minervino perdeva il ruolo in paragraph:50 per candidate 52/53; SOURCE con
+heading persona-ruolo o riga maiuscola respinte dal solo formato ruolo:persona.
+Ora continuation_origin_paragraph_id conserva l'introduzione letterale per max
+sei paragrafi consecutivi con candidate. Prosa nuova, blank, outline, tabelle
+e checkbox interrompono il riferimento; non inferisce ruoli/sezioni e non
+amplia le ancore field.form. Il binding V10 accetta due formati personali
+letterali aggiuntivi, ruolo/persona completi, valori nello stesso record/chunk.
+Negazioni/narrative, altri record/ruoli/persone e General KB non li attestano.
+Join personale fra chunk sempre bloccato, titoli non inferiscono qualifiche.
 
-Catalogo V5 aggiunge continuation_origin_paragraph_id al massimo a sei paragrafi
-consecutivi del corpo con candidate, dopo un'introduzione letterale senza campi.
-Nuove istruzioni, spazi vuoti, titoli outline, tabelle e checkbox interrompono
-il riferimento. Non inferisce un ruolo né una sezione semantica e non amplia le
-ancore della citazione field.form. V10 riusa quel contesto solo per il binding
-di ruolo. Nuovo helper SOURCE accetta heading Markdown persona-ruolo e righe
-RUOLO persona con ruolo maiuscolo; persona completa, eventuali abbreviazioni
-sintattiche, ruolo uguale a FORM. Valori nello stesso record e chunk della prova
-di ruolo, prima della prossima intestazione/riga in maiuscolo. Negazioni,
-narrative, altre persone/ruoli e General KB non diventano prove personali.
+**12 prove reali deepseek-flash**, seriali/thinking low, tutte HTTP200/stop:
+sette congelate su 660bf0e, poi cinque su a037314. Dopo la prima serie, solo
+TASK ricorda la copertura di tutte le occorrenze compatibili, senza cambiare
+schema/gate. Nessuna modifica durante ciascuna serie; nessun retry/batch/reviewer
+nuovo. V2–V9 conservano replay storico, runner attivo impone V10. Stessi fonti/
+gold/originali, gold mai nel prompt. Chat/V1/RAG/parser/renderer/UI invariati.
 
-Una chiamata globale, nessun retry/batch/reviewer nuovo. V2–V9 mantengono replay
-storico; runner impone V10. Chat/V1/RAG/parser/renderer/UI invariati, nessuna
-promozione RESOLVED/scrittura. Etichette a cavallo di paragrafi aiutate dal compito
-di lettura, non certificate semanticamente dal backend.
+Esiti circoscritti, inclusi gli insuccessi:
 
-417 mirati /19,74 s, 1.823 backend /121,23 s e Ruff passati. Prima mirata:
-112/5,44 s, poi Ruff segnala import order e tre righe lunghe, corretti. Diagnosi,
-replay e controfattuale offline in backend/data/compilation-audit/role-context-20261012/.
-Protocollo prima delle API: tre Minervino, tre Labirinto V1 e un Catanzaro,
-seriali, deepseek-flash/thinking low, timeout 300 s, stessi SOURCE/gold congelati.
-Gold fuori dal prompt. Misurare recupero dati personali, valore/record corretto,
-recapiti senza slittamento e cinque dati societari, copertura/token/tempi.
-Nessuna modifica durante il benchmark. Commit piccoli autorizzati, nessun push.
+- Minervino: dati personali conservati 5/0/4/5, 8421 incluso nelle tre prove
+  con direttore, contro zero personali conservati nella baseline V9. La seconda
+  omette il direttore, non rifiuto SOURCE. Tre recapiti corretti 4/4, nessuno
+  slittamento osservato; riga critica sei/quattro/tre/sei componenti corretti.
+  Via+civico uniti in una prova e due indirizzi nel campo città da rivedere.
+  Quote p16.s0 resta semanticamente debole, sebbene marker/valore siano corretti.
+- Catanzaro: prima serie omette cinque dati iniziali (criterio NON passato).
+  Dopo TASK conserva operatore/forma/sede/CF/PIVA in 3/3. Direttore/ordine/8421
+  proposti sempre ma conservati solo nella prima di ciascuna serie. Seconda
+  successiva: binding SOURCE valido, disposition=value con condizione unknown
+  respinta. Terza: quote FORM «i requisiti» invece di «dei requisiti» non passa
+  il confine di parola, binding respinto. Non nascondere questi falsi negativi.
+- Labirinto V1: 18/22 target letterali in 4/4, dopo tutti i gate 18/18/17/18.
+  Terza iniziale perde 5739 perché una citation aggiuntiva reale non contiene
+  quel valore: gate SOURCE invariato. Alternative conservate, ma polizza
+  ambiguous invece di conflicting in due prove, quattro checkbox omesse 4/4.
+  NA sede operativa grounded solo 2/4, non dichiarare il benchmark tutto passato.
 
-Prima serie congelata 660bf0e conclusa: sette risposte complete. Minervino
-recupera direttore/qualifica/ordine/8421 in 2/3 (nella seconda omessi, non respinti).
-Catanzaro recupera il direttore ma omette la tabella iniziale e CF/PIVA: controllo
-cinque dati NON superato. Labirinto conserva cinque dati in 3/3; nella terza una
-seconda citation senza il valore fa rifiutare 5739, gate SOURCE invariato.
-Serie conservata integralmente, non presentata come successo completo.
+201 record, **170 ipotesi SOURCE** (62 senza condizioni unknown, 108 conditional),
+due NA locali, otto review alternative, 21 rifiuti. **Zero RESOLVED/USER/sessioni/
+scritture DOCX**; il prototipo resta review-only. 765.186 token /1.093,31 s AI
+sommati, non E2E. Nessun risparmio input o causalità sulla latenza dimostrati.
+Corpus piccolo completo (17 chunk reali autorizzati; sette fixture Labirinto),
+non misura retrieval FTS5/Qdrant né completezza di compilazione. Nessuna % sui
+bandi reali senza gold. Non promuovere GROUNDED_PROPOSAL a valore scrivibile.
 
-Refinement dopo le sette API: soltanto TASK ricorda di riesaminare tutto il
-catalogo e proporre ogni occorrenza compatibile, con ancore/condizioni proprie.
-Schema e gate identici V10. Nuovo protocollo separato, codice da congelare:
-tre Catanzaro, un Minervino, un Labirinto, stessi input/fonti, una chiamata per
-prova, zero retry. Non sostituisce le sette acquisizioni precedenti e non serve
-per mascherarne gli esiti. Grezzi role-coverage-20261012/.
+Test eseguiti: **417 mirati /19,74 s e 1.823 backend /121,23 s**, Ruff/fixture
+passati prima della prima serie; **417 mirati /19,19 s e Ruff** dopo il solo TASK.
+Completa non ripetuta dopo quel refinement; frontend invariato/non eseguito.
+17 replay storici esatti, 12 V10 esatti, body/input ricostruiti identici agli
+snapshot, cataloghi invariati eccetto versione/continuazione. Intero DB live e
+originali invariati fra entrambe le serie e verifica finale. Nessuna migrazione
+o reindicizzazione. Errori Ruff/import/cwd e stdout del protocollo conservati
+e distinti dagli esiti reali. Commit piccoli autorizzati, nessun push.
+
+[Report completo](docs/benchmark-contesto-ruoli-2026-10-12.md),
+[JSON completo](docs/benchmarks/2026-10-12-role-context.json),
+[verifiche finali](docs/benchmarks/2026-10-12-role-context-final-checks.json),
+[registro](relazioni.md). Bundle pubblico **431 file /3.900.981 byte**, SHA-256
+`dca4599fa9b17928a4799ef39dc4b548bac903dab024500fdc1835e1e8590066`.
+Grezzi locali role-context-20261012/ e role-coverage-20261012/ sotto
+backend/data/compilation-audit/, anche archiviati in Git senza credenziali/DB.
+
+**Prossimo punto da discutere:** derivare dal backend la distinzione proposta/
+utilizzabilità invece di affidare value/conditional al modello; stabilizzare
+quote/etichette fra paragrafi, granularità e copertura prima dell'adapter
+scrivibile. Non reinterpretare ora rifiuti unknown come valori validi. Il ruolo
+è migliorato, il prototipo non è pronto per compilazione completa automatica.
 
 
 ## Destinazioni inline — 12 ottobre 2026, primo passo misurato concluso

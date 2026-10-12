@@ -1,0 +1,319 @@
+{
+  "archive": {
+    "members": 431,
+    "bytes": 3900981,
+    "sha256": "dca4599fa9b17928a4799ef39dc4b548bac903dab024500fdc1835e1e8590066",
+    "inventory_byte_for_byte_checked": true,
+    "configured_api_key_absent": true,
+    "no_db_or_private_config": true
+  },
+  "verification": {
+    "checks": [
+      {
+        "study": "role_context",
+        "case": "minervino",
+        "run": 1,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "role_context",
+        "case": "labirinto",
+        "run": 1,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "role_context",
+        "case": "minervino",
+        "run": 2,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "role_context",
+        "case": "labirinto",
+        "run": 2,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "role_context",
+        "case": "minervino",
+        "run": 3,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "role_context",
+        "case": "labirinto",
+        "run": 3,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "role_context",
+        "case": "catanzaro",
+        "run": 1,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "coverage_refinement",
+        "case": "catanzaro",
+        "run": 1,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "coverage_refinement",
+        "case": "minervino",
+        "run": 1,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "coverage_refinement",
+        "case": "labirinto",
+        "run": 1,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "coverage_refinement",
+        "case": "catanzaro",
+        "run": 2,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      },
+      {
+        "study": "coverage_refinement",
+        "case": "catanzaro",
+        "run": 3,
+        "manifest_valid": true,
+        "code_matches_frozen_head": true,
+        "exact_expected_v10_replay": true,
+        "rebuilt_input_and_request_identical": true,
+        "structure_matches_v9": true,
+        "sources_originals_unchanged": true,
+        "all_values_have_source_provenance": true,
+        "written_values_null": true,
+        "http_complete_stop": true
+      }
+    ],
+    "all_12_expected_v10_replays": true,
+    "historical_exact_replays": 17,
+    "live_database_and_originals_unchanged_across_both_studies": true,
+    "fixture_and_gold_frozen": true,
+    "gold_never_in_model_input": true,
+    "scope": "Local grounding and acquisition integrity, not independent semantic approval or DOCX export"
+  },
+  "software": {
+    "targeted": 417,
+    "targeted_seconds": 19.74,
+    "backend": 1823,
+    "backend_seconds": 121.23,
+    "ruff": "passed",
+    "fixture_check": "passed",
+    "initial_targeted": 112,
+    "initial_targeted_seconds": 5.44,
+    "initial_ruff_failure": {
+      "I001": 1,
+      "E501": 3,
+      "fixed": true,
+      "full_output": "Tool output only; summary persisted here"
+    },
+    "harness_start_failure": {
+      "type": "ModuleNotFoundError",
+      "message": "No module named 'app'",
+      "cause": "direct execution of helper outside import root",
+      "fixed": "run with PYTHONPATH=.",
+      "model_calls": 0,
+      "stderr_capture": "tool output, not initial tee stdout; transcribed here"
+    },
+    "historical_exact_replays": 17,
+    "frontend": "unchanged, not run",
+    "scope": "software tests; provider simulations are not real-model quality measurements"
+  },
+  "post_task_refinement_checks": {
+    "targeted": 417,
+    "targeted_seconds": 19.19,
+    "ruff": "passed",
+    "backend_full": "1823 before TASK-only refinement; not repeated afterwards",
+    "frontend": "unchanged, not run"
+  },
+  "all_12_results_and_all_candidates_present": true,
+  "resolved": 0,
+  "docx_writes": 0,
+  "scope": "Integrity and local grounding only, not independent semantic approval",
+  "public_json_matches_all_12_raw_results": true,
+  "all_candidates_and_omissions_preserved": true,
+  "archive_members_match_local_bytes": true,
+  "token_totals_and_counts_consistent": true,
+  "five_company_fields_retained_in_all_three_refined_catanzaro": true,
+  "live_database_unchanged_at_final_check": true,
+  "configured_key_absent_from_public_files": true,
+  "software_logs_checked": true,
+  "final_ruff": "passed",
+  "diff_check": "passed",
+  "added_document_links": [
+    [
+      "STATUS.md",
+      "docs/benchmark-contesto-ruoli-2026-10-12.md"
+    ],
+    [
+      "STATUS.md",
+      "docs/benchmarks/2026-10-12-role-context.json"
+    ],
+    [
+      "STATUS.md",
+      "docs/benchmarks/2026-10-12-role-context-final-checks.json"
+    ],
+    [
+      "STATUS.md",
+      "relazioni.md"
+    ],
+    [
+      "docs/benchmarks/README.md",
+      "../benchmark-contesto-ruoli-2026-10-12.md"
+    ],
+    [
+      "docs/benchmarks/README.md",
+      "2026-10-12-role-context.json"
+    ],
+    [
+      "docs/benchmarks/README.md",
+      "2026-10-12-role-context-audit.tar.gz"
+    ],
+    [
+      "docs/benchmarks/README.md",
+      "2026-10-12-role-context-audit.tar.gz.sha256"
+    ],
+    [
+      "docs/benchmarks/README.md",
+      "2026-10-12-role-context-final-checks.json"
+    ],
+    [
+      "docs/catalogo-compilazione.md",
+      "benchmark-contesto-ruoli-2026-10-12.md"
+    ],
+    [
+      "docs/proposta-globale-compilazione.md",
+      "benchmark-contesto-ruoli-2026-10-12.md"
+    ],
+    [
+      "relazioni.md",
+      "docs/benchmark-contesto-ruoli-2026-10-12.md"
+    ],
+    [
+      "relazioni.md",
+      "docs/benchmarks/2026-10-12-role-context.json"
+    ],
+    [
+      "relazioni.md",
+      "docs/benchmarks/2026-10-12-role-context-final-checks.json"
+    ],
+    [
+      "docs/benchmark-contesto-ruoli-2026-10-12.md",
+      "benchmarks/2026-10-12-role-context.json"
+    ],
+    [
+      "docs/benchmark-contesto-ruoli-2026-10-12.md",
+      "benchmarks/2026-10-12-role-context-audit.tar.gz"
+    ],
+    [
+      "docs/benchmark-contesto-ruoli-2026-10-12.md",
+      "benchmarks/2026-10-12-role-context-audit.tar.gz.sha256"
+    ],
+    [
+      "docs/benchmark-contesto-ruoli-2026-10-12.md",
+      "benchmarks/2026-10-12-role-context-final-checks.json"
+    ],
+    [
+      "docs/benchmark-contesto-ruoli-2026-10-12.md",
+      "../relazioni.md"
+    ],
+    [
+      "docs/benchmark-contesto-ruoli-2026-10-12.md",
+      "../STATUS.md"
+    ]
+  ],
+  "no_pending_placeholders": true
+}

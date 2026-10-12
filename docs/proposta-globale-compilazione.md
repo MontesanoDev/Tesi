@@ -1,5 +1,30 @@
 # Proposta globale sperimentale — 11 ottobre 2026
 
+## Contesto e ruoli V10, passo del 12 ottobre
+
+Catalogo V5 conserva un'introduzione FORM tramite riferimento per massimo sei
+paragrafi consecutivi con candidate. V10 la usa soltanto per il binding del
+ruolo; le ancore di destinazione restano locali. Nuovo helper SOURCE ammette
+heading Markdown persona-ruolo e righe con ruolo maiuscolo seguito dalla persona,
+con persona/ruolo completi e valori nello stesso record/chunk. Nessun sinonimo,
+inferenza di qualifica o join personale fra chunk. V2–V9 mantengono replay;
+runner attivo impone V10. Una chiamata, zero nuovi retry/batch/reviewer.
+
+[Dodici acquisizioni reali](benchmark-contesto-ruoli-2026-10-12.md): Minervino
+recupera direttore/ordine/8421 in tre delle quattro prove; prima erano bloccati.
+Prima serie Catanzaro omette cinque dati societari; dopo il richiamo TASK a
+tutte le occorrenze compatibili li conserva 3/3. Due prove successive perdono
+però il direttore: value con condizione unknown oppure quote FORM riscritta.
+Labirinto 18 target letterali in 4/4, conservati dopo i gate 18/18/17/18;
+checkbox/polizza/NA restano incompleti. Tutti gli insuccessi archiviati.
+
+765.186 token/1.093,31 s AI sommati, nessun risparmio input dimostrato. 170
+ipotesi SOURCE, **zero RESOLVED/scritture/sessioni/USER**. 417 mirati/1.823 backend,
+Ruff e fixture passati; dopo il refinement del solo TASK rieseguiti 417 e Ruff,
+non la completa. 17 replay storici e 12 nuovi esatti; DB/originali invariati.
+Nessun adattamento alla chat/renderer ora. Prossimo punto da discutere:
+distinzione proposta/utilizzabilità autoritativa nel backend, quote e copertura.
+
 ## Destinazioni inline V9, passo misurato del 12 ottobre
 
 Catalogo V4 espone `text_with_fields` già prodotto dal parser e `slot_context`

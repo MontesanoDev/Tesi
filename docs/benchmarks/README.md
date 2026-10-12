@@ -3,6 +3,25 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Contesto e ruoli, 12 ottobre 2026
+
+[Report](../benchmark-contesto-ruoli-2026-10-12.md),
+[JSON completo](2026-10-12-role-context.json),
+[bundle delle due serie](2026-10-12-role-context-audit.tar.gz),
+[checksum](2026-10-12-role-context-audit.tar.gz.sha256),
+[verifiche finali](2026-10-12-role-context-final-checks.json).
+
+Dodici chiamate reali deepseek-flash V10/catalogo V5, due serie congelate: sette
+sul contesto/record personali, cinque dopo il solo richiamo TASK alla copertura.
+Minervino recupera personali in 3/4, recapiti corretti 4/4. Catanzaro prima omette
+cinque dati societari, poi li conserva 3/3; direttore ancora perso per quote FORM
+o disposition=value con unknown. Labirinto 18 target letterali in 4/4 ma 17
+conservati nella terza iniziale. Checkbox/ambiguous vs conflicting/NA non chiusi.
+Tutti gli esiti negativi conservati. 170 ipotesi SOURCE, zero RESOLVED/DOCX/USER/
+sessioni, DB e originali invariati. 765.186 token, nessun risparmio input provato.
+417 mirati/1.823 backend passati prima della prima serie; dopo il solo TASK
+417 mirati e Ruff, non completa/frontend. Bundle 431 file, 3.900.981 byte.
+
 ## Destinazioni inline, 12 ottobre 2026
 
 [Report](../benchmark-destinazioni-inline-2026-10-12.md),

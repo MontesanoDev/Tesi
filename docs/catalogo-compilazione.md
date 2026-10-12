@@ -1,5 +1,14 @@
 # Catalogo unico FORM — prima milestone, 10 ottobre 2026
 
+**Aggiornamento corrente V5, 12 ottobre:** aggiunto
+`continuation_origin_paragraph_id` per leggere l'introduzione letterale di una
+sequenza del corpo di massimo sei paragrafi con candidate. Prosa nuova, blank,
+outline, tabelle e checkbox interrompono il riferimento. Nessun testo duplicato
+o ruolo/sezione dedotti, ID/range/coordinate invariati. È contesto del binding
+di ruolo V10, non una nuova ancora `field.form` né prova di applicabilità.
+[Dodici prove reali, miglioramenti e insuccessi](benchmark-contesto-ruoli-2026-10-12.md).
+Una chiamata resta una; chat/V1/parser generale/renderer invariati.
+
 **Aggiornamento V4, 12 ottobre:** i paragrafi con slot espongono anche
 `text_with_fields`, già prodotto dal parser, e i candidate `slot_context.before`
 e `after` (massimo 120 caratteri per lato fra slot adiacenti). Il testo originale
@@ -48,8 +57,8 @@ Il default e l'insieme scrivibile del renderer restano invariati.
 
 ## Contesto di lettura — 11 ottobre 2026
 
-Il catalogo corrente è **versione 3**, senza cambiare gli ID scrivibili o il
-contratto delle proposte. Ogni candidate ha `location` con `block_id` e,
+In questo passo storico il catalogo passa a **versione 3**, senza cambiare gli
+ID scrivibili o il contratto delle proposte. Ogni candidate ha `location` con `block_id` e,
 nelle tabelle, `table_id`/`row_index`. Punta direttamente all'unica struttura
 canonica delle celle: nessuna seconda mappa di righe o duplicazione di testo.
 `parent_cell_id` collega una tabella annidata alla cella contenitrice, mantenendo

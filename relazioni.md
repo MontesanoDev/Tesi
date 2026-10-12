@@ -1285,3 +1285,78 @@ conservare tutti i cinque esiti insieme ai sette precedenti. Scopo: verificare
 regressione cinque dati e recupero personale, non selezionare un'unica risposta
 favorevole. Nessuna modifica durante questa seconda serie. Esiti da registrare
 anche se il criterio non è raggiunto. Nessun push.
+
+## 12 ottobre 2026 — conclusione delle due serie V10, esiti completi
+
+Sette prove congelate 660bf0e e cinque successive a037314, tutti i dodici output
+HTTP200/stop. Prima serie fallisce copertura Catanzaro; successiva cambia solo
+TASK, senza schema/gate diversi. Nessuna modifica durante ciascuna serie,
+nessun retry/USER/sessione/DOCX. Gold/fonti/originali identici alla baseline,
+nessuna nuova estrazione casuale: controlli degli stessi bandi già confrontati.
+
+Minervino dati personali conservati 5/0/4/5, 8421 incluso nelle tre risposte
+con direttore. V9 li bloccava tutti: il riferimento all'introduzione FORM e i
+record SOURCE letterali recuperano un caso concreto. La seconda prova omette
+il direttore (non validator). Recapiti corretti 4/4, componenti riga critica
+sei/quattro/tre/sei: cinque proposte nella seconda, ma via include civico e
+civico omesso. Due indirizzi nel campo città da rivedere; nuova prova città=Bari.
+Quote p16.s0 semanticamente debole resta aperta, nessuna promozione scrivibile.
+
+Catanzaro iniziale omette tabella generale/CF/PIVA: criterio NON raggiunto.
+Dopo TASK cinque dati conservati in 3/3: Mapi Ingegneria S.r.l.; Societa a
+responsabilita limitata; Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia;
+CF e PIVA IT01234567890, tutti SOURCE -43/generalita-mapi.md. Nessun USER.
+Direttore/qualifica/ordine/8421 proposti in tutte le quattro risposte, conservati
+nella prima iniziale e prima successiva. Successiva2: binding literal_match,
+ma value con condizione semantic unknown rifiutato per sette campi ingegneria
+più altra occorrenza personale, oltre una NA non calcolabile. Successiva3:
+FORM quote «i requisiti» comincia dentro «dei requisiti» in paragraph:451,
+non passa il confine; quattro binding personali bloccati. Non è SOURCE assente.
+Questi due casi non vengono reinterpretati/corretti dopo il benchmark.
+
+Labirinto 18/22 target letterali in 4/4, dopo i gate 18/18/17/18. Terza iniziale
+aggiunge citation su numero documento 8821 senza valore 5739: fatto rifiutato
+dal gate SOURCE esistente; non allentato. Cinque societari in 4/4. Alternative
+recapiti/polizza sempre conservate senza scelta, ma polizza ambiguous anziché
+conflicting in due prove. NA sede operativa grounded 2/4, quattro checkbox
+omesse 4/4. Gold immutato, nessun signer o data non documentata inventati.
+Nessuna accuratezza % per bandi privi di gold o pretesa di entailment completo.
+
+201 record: 170 ipotesi SOURCE (62 senza condizioni unknown, 108 conditional),
+due NA locali, otto review alternative, 21 rifiuti; 37 ipotesi personali.
+2.516 posizioni nell'inventario completo, 2.315 omesse, non requisiti obbligatori.
+**Zero RESOLVED/USER/sessioni/scritture**. Prima serie 398.747 token/631,07 s AI;
+seconda 366.439/462,23; totale 765.186/1.093,31, non E2E. Nessun risparmio input
+provato: Minervino input47.109/47.317, Labirinto16.856/17.064, Catanzaro65.986/
+66.194. Una chiamata richiede comunque 74,51–114,62 s, output/cache variabili.
+
+Test realmente eseguiti: 417 mirati/19,74 s, 1.823 backend/121,23 s, Ruff/fixture
+prima della prima serie; dopo refinement solo TASK 417/19,19 s e Ruff, completa
+non ripetuta. Frontend invariato/non eseguito. 17 replay storici e 12 V10 esatti,
+12 body/input ricostruiti identici; ID/range/coordinate/testo/sezioni invariati
+rispetto V9 salvo nuova continuazione/versione. Manifest, fonti/gold, record
+SOURCE/provenance/hash e assenza scritture verificati. Intero DB live/originali
+invariati fra le due serie e dopo la verifica finale, nessun reset manuale.
+
+Failure helper preservate: import app mancante e cwd test errata (zero API/test
+per quelle invocazioni); stdout seconda registrazione ereditato calls:7, mentre
+protocollo/jobs/loop e chiamate effettive sono cinque. Ruff iniziale nel tool,
+riepilogo durevole: non dichiarare un log integrale non acquisito.
+
+[Report](docs/benchmark-contesto-ruoli-2026-10-12.md),
+[JSON completo](docs/benchmarks/2026-10-12-role-context.json),
+[verifiche finali](docs/benchmarks/2026-10-12-role-context-final-checks.json).
+Bundle pubblico **431 file /3.900.981 byte**, SHA-256
+`dca4599fa9b17928a4799ef39dc4b548bac903dab024500fdc1835e1e8590066`.
+Grezzi role-context-20261012/ e role-coverage-20261012/ sotto
+backend/data/compilation-audit/, pubblicati anche nel bundle senza credenziali/
+DB/config privata. Prompt/schema, HTTP/raw, codice/input/fonti/gold, omissioni,
+validazioni, tempi/token, diagnosi/controfattuale e log conservati integralmente
+quando acquisiti. Review mirata non certifica tutti i 201 record semanticamente.
+
+Prossimo punto **da discutere prima di codice**: rendere backend autoritativa
+la distinzione proposta/utilizzabilità invece di delegare value/conditional,
+stabilizzare quote/etichette e completezza. Nessun passaggio ad adapter
+scrivibile, chat/V1 o renderer ora. Nessuna migrazione/reindicizzazione.
+Miglioramento concreto sui ruoli, affidabilità globale ancora incompleta.
+Commit piccoli autorizzati, nessun push.
