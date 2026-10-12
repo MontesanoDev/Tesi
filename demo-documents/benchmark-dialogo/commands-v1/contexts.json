@@ -1,0 +1,174 @@
+{
+  "generate": {
+    "kind": "generate",
+    "message": "Posso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?",
+    "slots": []
+  },
+  "generate_empty": {
+    "kind": "generate",
+    "message": "Nessun valore può essere inserito in sicurezza. Posso preparare una copia senza aggiungere valori, lasciando vuote le parti irrisolte. Vuoi che la generi?",
+    "slots": []
+  },
+  "condition": {
+    "kind": "clarifications",
+    "message": "Il firmatario opera come delegato?",
+    "slots": [
+      {
+        "slot": 1,
+        "kind": "applicability",
+        "label": "Firmatario delegato",
+        "condition": "se il firmatario opera come delegato",
+        "context": "Riferimento delega, se il firmatario opera come delegato.",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r0.c1"
+        ],
+        "key": "condition:delega",
+        "condition_id": "delega"
+      }
+    ]
+  },
+  "email": {
+    "kind": "clarifications",
+    "message": "Quale recapito devo usare per le comunicazioni?",
+    "slots": [
+      {
+        "slot": 1,
+        "kind": "value",
+        "label": "Recapito comunicazioni",
+        "condition": "",
+        "context": "Recapito comunicazioni",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r1.c1"
+        ],
+        "key": "field:t0.r1.c1"
+      }
+    ]
+  },
+  "date": {
+    "kind": "clarifications",
+    "message": "Qual è la data di abilitazione?",
+    "slots": [
+      {
+        "slot": 1,
+        "kind": "value",
+        "label": "Data abilitazione",
+        "condition": "",
+        "context": "Data abilitazione",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r2.c1"
+        ],
+        "key": "field:t0.r2.c1"
+      }
+    ]
+  },
+  "group": {
+    "kind": "clarifications",
+    "message": "1. Il firmatario opera come delegato?\n2. Quale recapito devo usare per le comunicazioni?\n3. Qual è la data di abilitazione?",
+    "slots": [
+      {
+        "slot": 1,
+        "kind": "applicability",
+        "label": "Firmatario delegato",
+        "condition": "se il firmatario opera come delegato",
+        "context": "Riferimento delega, se il firmatario opera come delegato.",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r0.c1"
+        ],
+        "key": "condition:delega",
+        "condition_id": "delega"
+      },
+      {
+        "slot": 2,
+        "kind": "value",
+        "label": "Recapito comunicazioni",
+        "condition": "",
+        "context": "Recapito comunicazioni",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r1.c1"
+        ],
+        "key": "field:t0.r1.c1"
+      },
+      {
+        "slot": 3,
+        "kind": "value",
+        "label": "Data abilitazione",
+        "condition": "",
+        "context": "Data abilitazione",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r2.c1"
+        ],
+        "key": "field:t0.r2.c1"
+      }
+    ]
+  },
+  "conditions": {
+    "kind": "clarifications",
+    "message": "1. Il firmatario opera come delegato?\n2. La partecipazione avviene in gruppo?",
+    "slots": [
+      {
+        "slot": 1,
+        "kind": "applicability",
+        "label": "Firmatario delegato",
+        "condition": "se il firmatario opera come delegato",
+        "context": "Riferimento delega, se il firmatario opera come delegato.",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r0.c1"
+        ],
+        "key": "condition:delega",
+        "condition_id": "delega"
+      },
+      {
+        "slot": 2,
+        "kind": "applicability",
+        "label": "Partecipazione in gruppo",
+        "condition": "se la partecipazione avviene in gruppo",
+        "context": "Riferimenti gruppo, se la partecipazione avviene in gruppo.",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r3.c1"
+        ],
+        "key": "condition:gruppo",
+        "condition_id": "gruppo"
+      }
+    ]
+  },
+  "paused": {
+    "kind": "clarifications",
+    "message": "Il firmatario opera come delegato?",
+    "slots": [
+      {
+        "slot": 1,
+        "kind": "applicability",
+        "label": "Firmatario delegato",
+        "condition": "se il firmatario opera come delegato",
+        "context": "Riferimento delega, se il firmatario opera come delegato.",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r0.c1"
+        ],
+        "key": "condition:delega",
+        "condition_id": "delega"
+      }
+    ],
+    "paused": true
+  },
+  "idle": {
+    "kind": null,
+    "message": null,
+    "slots": [],
+    "mode": "idle"
+  },
+  "generated": {
+    "kind": null,
+    "message": "Ho preparato la bozza parziale.",
+    "slots": [],
+    "generated": true
+  }
+}

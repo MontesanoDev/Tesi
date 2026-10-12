@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "max_cases": 48,
+  "files": {
+    "cases.json": "38aec9334d25e75b55ea91ec929d98d2b7a3b8b5f95c875d2d5333b173c4a776",
+    "README.md": "c21a0b860928b859e50bc189f3a8f32c2befca11f8111466367acf71da65a641",
+    "modulo-dialogo.docx": "077f4353c4c9d989edfe7496933796eaf258d0b1461c0da07c1f95e77e24bf6b",
+    "contexts.json": "6a16d70cf648f5b4f4bbc908160392a5e058e4f2c5236be3990678e1dc9b6ba2"
+  },
+  "production_changes": false,
+  "gold_in_prompt": false,
+  "base_fixture": "../v1",
+  "scope": "Commands only; prepared checkpoints; no new analysis or SOURCE evaluation"
+}

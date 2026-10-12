@@ -1669,3 +1669,21 @@ byte-per-byte e per SHA di ogni file, senza chiave/DB/runtime. SHA-256
 Un vecchio link STATUS a un report locale ignorato del 8 ottobre è assente
 in questo checkout: conservato, verificati tutti i nuovi link. Note offline
 nel bundle; nessun nuovo benchmark API necessario per i controlli documentali.
+
+## 12 ottobre 2026 — comandi, protocollo prima delle API
+
+Focus autorizzato: distinguere rinvio del chiarimento e pausa della sessione,
+priorità dei comandi nei messaggi misti, finish/generate. Nessuna modifica a
+UI, parser, renderer o RAG; invarianti SOURCE/USER e gate di pertinenza fermi.
+Regola attuale conservata: PAUSE/FINISH non acquisiscono nuovi valori nel turno.
+
+Congelati **28 scenari nuovi** in benchmark-dialogo/commands-v1, con Word e
+contesti del Dialogo V1 ma gold separato; i 43 originali rimangono invariati.
+Valutazione BEFORE sul codice attuale, poi intervento minimo sul prompt unico
+ed eventuale normalizzazione deterministica di export rispetto al checkpoint;
+nessuna nuova chiamata AI classificatrice. AFTER sugli stessi 28 e sui 43
+originali; massimo tre chiamate per turno, nessuna selezione dei risultati.
+DB/storage temporanei, provider DeepSeek reale, gold escluso dai prompt,
+nessuna nuova analisi SOURCE. Non è un test di completezza del DOCX.
+Otto test fixture/harness passati /1,11 s, senza provider. Risultati reali da
+acquisire; nessun cambiamento applicativo durante le singole serie.

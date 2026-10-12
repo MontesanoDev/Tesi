@@ -1,0 +1,435 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "local-point",
+      "category": "condition",
+      "context": "condition",
+      "message": "Questo punto lo possiamo lasciare in sospeso.",
+      "expected": {
+        "intents": [
+          "answer_fields"
+        ],
+        "actions": {
+          "1": "SKIP"
+        },
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "local-confirmation",
+      "category": "condition",
+      "context": "condition",
+      "message": "La conferma richiesta la verificheremo più avanti.",
+      "expected": {
+        "intents": [
+          "answer_fields"
+        ],
+        "actions": {
+          "1": "SKIP"
+        },
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "local-next",
+      "category": "email",
+      "context": "email",
+      "message": "Per questa voce preferisco passare alla successiva.",
+      "expected": {
+        "intents": [
+          "answer_fields"
+        ],
+        "actions": {
+          "1": "SKIP"
+        },
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "group-local-contact",
+      "category": "group",
+      "context": "group",
+      "message": "Per il recapito rimandiamo, continuiamo con il resto.",
+      "expected": {
+        "intents": [
+          "answer_fields"
+        ],
+        "actions": {
+          "2": "SKIP"
+        },
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "group-skip-and-value",
+      "category": "group",
+      "context": "group",
+      "message": "Saltiamo soltanto la data, il recapito è contatti@aurora.example.",
+      "expected": {
+        "intents": [
+          "answer_fields"
+        ],
+        "actions": {
+          "2": "VALUE",
+          "3": "SKIP"
+        },
+        "values": {
+          "2": "contatti@aurora.example"
+        },
+        "export_requested": false
+      }
+    },
+    {
+      "id": "local-unknown",
+      "category": "email",
+      "context": "email",
+      "message": "Non conosco il recapito, ma andiamo avanti.",
+      "expected": {
+        "intents": [
+          "answer_fields"
+        ],
+        "actions": {
+          "1": "UNKNOWN"
+        },
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "session-stop",
+      "category": "group",
+      "context": "group",
+      "message": "Interrompiamo tutto per oggi.",
+      "expected": {
+        "intents": [
+          "pause"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false,
+        "paused": true
+      }
+    },
+    {
+      "id": "session-tomorrow",
+      "category": "group",
+      "context": "group",
+      "message": "Conserva quanto fatto, ripartiamo domani.",
+      "expected": {
+        "intents": [
+          "pause"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false,
+        "paused": true
+      }
+    },
+    {
+      "id": "session-stop-no-export",
+      "category": "group",
+      "context": "group",
+      "message": "Per ora sospendi la compilazione, non produrre nessun file.",
+      "expected": {
+        "intents": [
+          "pause"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false,
+        "paused": true
+      }
+    },
+    {
+      "id": "session-value-and-stop",
+      "category": "group",
+      "context": "group",
+      "message": "Il recapito è contatti@aurora.example, ma preferisco interrompere il lavoro.",
+      "expected": {
+        "intents": [
+          "pause"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false,
+        "paused": true
+      }
+    },
+    {
+      "id": "negated-pause",
+      "category": "email",
+      "context": "email",
+      "message": "Non mettere in pausa: salta solo questa voce.",
+      "expected": {
+        "intents": [
+          "answer_fields"
+        ],
+        "actions": {
+          "1": "SKIP"
+        },
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "negated-skip",
+      "category": "condition",
+      "context": "condition",
+      "message": "Non saltare questa conferma, prima spiegamela.",
+      "expected": {
+        "intents": [
+          "explain"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "negated-export",
+      "category": "generate",
+      "context": "generate",
+      "message": "Non esportare: voglio sapere cosa rimarrà vuoto.",
+      "expected": {
+        "intents": [
+          "explain",
+          "retrieve"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "group-unknown-and-value",
+      "category": "group",
+      "context": "group",
+      "message": "Per la data non lo so; per il recapito usa contatti@aurora.example.",
+      "expected": {
+        "intents": [
+          "answer_fields"
+        ],
+        "actions": {
+          "2": "VALUE",
+          "3": "UNKNOWN"
+        },
+        "values": {
+          "2": "contatti@aurora.example"
+        },
+        "export_requested": false
+      }
+    },
+    {
+      "id": "export-current",
+      "category": "group",
+      "context": "group",
+      "message": "Prepara il documento con quanto è già disponibile.",
+      "expected": {
+        "intents": [
+          "finish"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": true
+      }
+    },
+    {
+      "id": "export-no-questions",
+      "category": "group",
+      "context": "group",
+      "message": "Non chiedermi altri dati, esporta una bozza.",
+      "expected": {
+        "intents": [
+          "finish"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": true
+      }
+    },
+    {
+      "id": "export-mixed",
+      "category": "group",
+      "context": "group",
+      "message": "Il recapito è contatti@aurora.example; chiudi e genera il documento con i dati già acquisiti.",
+      "expected": {
+        "intents": [
+          "finish"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": true
+      }
+    },
+    {
+      "id": "export-blank",
+      "category": "group",
+      "context": "group",
+      "message": "Genera adesso una bozza lasciando vuoti i campi mancanti.",
+      "expected": {
+        "intents": [
+          "finish"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": true
+      }
+    },
+    {
+      "id": "session-resume-reference",
+      "category": "paused",
+      "context": "paused",
+      "message": "Possiamo ripartire da dove ci eravamo fermati.",
+      "expected": {
+        "intents": [
+          "resume"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false,
+        "paused": false
+      }
+    },
+    {
+      "id": "session-resume-preserve",
+      "category": "paused",
+      "context": "paused",
+      "message": "Riprendi, conservando tutte le risposte precedenti.",
+      "expected": {
+        "intents": [
+          "resume"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false,
+        "paused": false
+      }
+    },
+    {
+      "id": "negated-resume",
+      "category": "paused",
+      "context": "paused",
+      "message": "Non riprendere ancora, devo chiarire un dubbio.",
+      "expected": {
+        "intents": [
+          "explain",
+          "reply"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false,
+        "paused": true
+      }
+    },
+    {
+      "id": "paused-status",
+      "category": "paused",
+      "context": "paused",
+      "message": "Vorrei solo sapere a che punto eravamo, senza riprendere.",
+      "expected": {
+        "intents": [
+          "explain"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false,
+        "paused": true
+      }
+    },
+    {
+      "id": "session-resume-command",
+      "category": "paused",
+      "context": "paused",
+      "message": "Continua a compilare.",
+      "expected": {
+        "intents": [
+          "resume"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false,
+        "paused": false
+      }
+    },
+    {
+      "id": "consent-checkpoint",
+      "category": "generate",
+      "context": "generate",
+      "message": "Puoi procedere con la generazione.",
+      "expected": {
+        "intents": [
+          "generate",
+          "finish"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": true
+      }
+    },
+    {
+      "id": "explain-before-export",
+      "category": "generate",
+      "context": "generate",
+      "message": "Prima di generare, aiutami a capire cosa manca.",
+      "expected": {
+        "intents": [
+          "explain",
+          "retrieve"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "courtesy-after-export",
+      "category": "generated",
+      "context": "generated",
+      "message": "Va bene, grazie!",
+      "expected": {
+        "intents": [
+          "reply"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "local-blank-not-false",
+      "category": "condition",
+      "context": "condition",
+      "message": "Lascia vuota questa voce, non sto dicendo che non si applica.",
+      "expected": {
+        "intents": [
+          "answer_fields"
+        ],
+        "actions": {
+          "1": "SKIP"
+        },
+        "values": {},
+        "export_requested": false
+      }
+    },
+    {
+      "id": "resume-no-export",
+      "category": "paused",
+      "context": "paused",
+      "message": "Prosegui con l’analisi, senza esportare nulla.",
+      "expected": {
+        "intents": [
+          "resume"
+        ],
+        "actions": {},
+        "values": {},
+        "export_requested": false,
+        "paused": false
+      }
+    }
+  ]
+}
