@@ -345,6 +345,7 @@ def planner_context(session):
     asked = set(question["field_ids"]) if question else set()
     return {
         "session_id": session["id"],
+        "engine": session.get("engine", "legacy"),
         "enabled": view["enabled"],
         "version": session["version"],
         "status": session["status"],

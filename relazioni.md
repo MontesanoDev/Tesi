@@ -1687,3 +1687,19 @@ DB/storage temporanei, provider DeepSeek reale, gold escluso dai prompt,
 nessuna nuova analisi SOURCE. Non è un test di completezza del DOCX.
 Otto test fixture/harness passati /1,11 s, senza provider. Risultati reali da
 acquisire; nessun cambiamento applicativo durante le singole serie.
+
+BEFORE Comandi V1 su b468ea5: **24/28**, 28 routing +3 verifiche di pertinenza,
+zero retry/schema error/eccezioni, 96.019 token /35,54 s turni, un export reale
+con recapito USER preesistente. Tre FAIL di nomenclatura generate/finish;
+un FAIL locale con negazione interpretato come explain. I rinvii semplici
+passano in questa serie: non presumere che il precedente errore sistematico
+condition-skip sia scomparso; va riprovato nei 43 originari.
+
+Fix proposto/implementato: prompt unico esplicita oggetto/polarità e priorità
+sessione -> dati; rinvio locale e incertezza restano diversi. Normalizzazione
+deterministica solo del generate globale fuori dal checkpoint di generazione
+in finish: stessa operazione senza nuovi permessi, nessun matching del testo.
+Engine nel contesto backend, non nuovo stato o API. Legacy preservato per gli
+effetti diversi di finish/generate. Nessuna chiamata AI nuova. 248 test mirati
+/37,67 s con provider simulati, inclusi HTTP/DB reali isolati; primo Ruff con
+due righe lunghe nel test, corrette. AFTER ancora da acquisire; gold congelato.

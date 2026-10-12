@@ -1,5 +1,26 @@
 # Stato di Mapi RAG
 
+## Comandi conversazionali — 12 ottobre 2026, confronto in corso
+
+Congelati 28 scenari separati in benchmark-dialogo/commands-v1. BEFORE su
+b468ea5: **24/28**, 28 routing +3 gate di pertinenza, zero retry/schema error,
+96.019 token /35,54 s. Tre scambi generate/finish, un rinvio con negazione
+interpretato come explain (nessuna scrittura errata). Nessun gold cambiato.
+
+Intervento minimo: prompt unico distingue oggetto e polarità del comando,
+rinvio locale SKIP, incertezza UNKNOWN, pausa globale, richieste di spiegazione
+e priorità PAUSE/FINISH nei messaggi misti. Solo nel motore globale generate
+fuori dal checkpoint di generazione diventa finish, stessa operazione e stessi
+gate già esistenti. Nessuna nuova autorizzazione o chiamata AI; engine resta
+metadato backend per la normalizzazione, senza cambiare contratti frontend.
+Legacy invariato perché generate e finish hanno effetti diversi in quel motore.
+Regola conservata: un turno PAUSE/FINISH non acquisisce nuovi valori.
+
+248 test mirati /37,67 s passati, provider simulati; Ruff e verifica completa
+da concludere, benchmark AFTER ancora da eseguire sullo stesso gold e sui 43
+Dialogo V1. Nessuna modifica a parser, renderer, RAG, UI, gate USER o SOURCE.
+Checkpoint temporanei, profilo reale letto senza mutare dati locali.
+
 ## Pertinenza delle risposte USER — 12 ottobre 2026, fix verificato
 
 Implementato un controllo semantico indipendente dopo il routing e prima delle

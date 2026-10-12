@@ -322,7 +322,8 @@ Con CAPACITÀ DI COMPILAZIONE DISPONIBILE puoi inoltre scegliere:
   non una richiesta di spiegazione. Ometti gli slot non risposti; un sì/no senza
   destinatario fra più condizioni richiede CLARIFY, non un'associazione arbitraria.
   SOURCE, FORM, cronologia e alternative non sostituiscono una scelta USER.
-- pause: vuole fermare la compilazione o riprenderla più tardi.
+- pause: vuole sospendere il LAVORO COMPLESSIVO della compilazione.
+  Rinviare una voce o una conferma non significa sospendere la sessione.
 - resume: vuole riprendere esplicitamente la sessione esistente.
 - finish: vuole esplicitamente terminare o esportare una bozza anche incompleta.
   Continuare/proseguire non autorizza a finire o esportare.
@@ -333,8 +334,24 @@ Con CAPACITÀ DI COMPILAZIONE DISPONIBILE puoi inoltre scegliere:
 Per compile/answer_fields/pause/resume/finish/generate: answer="", target=form,
 queries=[], source_queries=[]. Solo compile seleziona form_id; gli altri null.
 Pause/resume/finish/generate richiedono una sessione abilitata e replies=[].
-Pause e finish hanno priorità su una risposta al campo in un messaggio misto:
-non applicare dati quando l'utente chiede di fermarsi o terminare. Una sessione
+Prima di elaborare i dati, determina l'OGGETTO e la POLARITÀ dei comandi:
+1. Un comando affermativo sull'intera sessione (pause/resume/finish) prevale
+   sulle risposte ai campi, anche se queste vengono prima nel messaggio.
+   Non acquisire valori nello stesso turno di pausa o esportazione.
+2. Un rinvio riferito alla domanda corrente, a una voce o a un sottoinsieme
+   degli slot è answer_fields/SKIP, non pause. Continua con gli altri punti;
+   seleziona solo gli slot indicati. Non conoscere un dato è UNKNOWN.
+   Lasciare vuota una risposta non conferma né nega la condizione del modulo:
+   anche per uno slot di applicabilità il rinvio è SKIP, mai CONDITION_FALSE.
+3. Un comando negato, ipotetico o menzionato per chiedere una spiegazione non
+   autorizza la sua esecuzione. Interpreta le clausole complete: una negazione
+   può riguardare la pausa, l'export o l'applicabilità, senza negare il rinvio.
+   Una richiesta di capire resta explain/retrieve e non modifica gli slot.
+4. Una richiesta esplicita di produrre la bozza è finish anche fuori dalla
+   domanda di generazione. generate è il consenso alla bozza appena proposta;
+   non è un modo per rispondere a un campo. Continuare l'analisi non è export.
+Non dedurre il comando da una sola parola: interpreta azione, oggetto e contesto.
+Una sessione
 in pausa non ha slot rispondibili: explain/retrieve rimangono disponibili,
 resume deve essere esplicito. Senza slot non usare answer_fields.
 Senza capacità di compilazione usa soltanto reply/explain/retrieve.
@@ -424,6 +441,19 @@ def bind_turn_plan(plan, compilation, message):
     return ChatDecision.model_validate({
         **plan.model_dump(exclude={"intent", "replies"}), "action": action,
     })
+
+
+def canonical_turn_plan(plan, compilation):
+    """Global export has one operation; its name follows the backend checkpoint.
+
+    No text matching and no new authorization: only an already validated export
+    intent is normalized. Legacy generate/finish have different side effects.
+    """
+    if (plan.intent == "generate" and compilation
+            and compilation.get("engine") == "global"
+            and (compilation.get("question") or {}).get("kind") != "generate"):
+        return plan.model_copy(update={"intent": "finish"})
+    return plan
 
 
 @dataclass(frozen=True)
@@ -670,7 +700,7 @@ async def plan_chat_turn(
                     # Discard any anticipatory answer; still validate every query,
                     # target, identifier and all other schema constraints normally.
                     data = {**data, "answer": ""}
-                proposed = parse_turn_plan(data, allowed_slots)
+                proposed = canonical_turn_plan(parse_turn_plan(data, allowed_slots), compilation)
                 decision = bind_turn_plan(proposed, compilation, question)
             except (ValueError, RecursionError) as exc:
                 logger.warning(
