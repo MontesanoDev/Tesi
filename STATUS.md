@@ -1,5 +1,35 @@
 # Stato di Mapi RAG
 
+## Destinazioni inline — 12 ottobre 2026, implementazione in verifica
+
+Autorizzato il passo sul JSON e sul legame citazione/destinazione dopo il test
+Minervino. Catalogo V4 riusa i marker già prodotti dal parser e aggiunge contesto
+prima/dopo (massimo 120 caratteri per lato, limitato agli slot adiacenti).
+Contratto V9 richiede quote FORM con il solo marker della destinazione inline,
+più testo locale; ripristina il placeholder originale e applica i gate esistenti.
+Celle vuote/checkbox, SOURCE, ruoli e condizioni mantengono le regole precedenti.
+V2–V8 restano riproducibili: dieci replay storici identici. Zero nuovo batch,
+chiamata o retry, nessun collegamento alla chat/renderer e nessun RESOLVED.
+
+La nuova prova della posizione **non è verifica semantica indipendente** della
+proprietà/valore. Un marker corretto con una proprietà sbagliata richiede ancora
+revisione: test esplicito conservato. Prima failure su oggetti Word non testuali:
+testo visibile e coordinate parser possono differire. Corretto l'adapter usando
+il placeholder del parser, senza cambiare parser generale. Ruff import-order
+iniziale corretto. **340 mirati / 14,70 s**, **1.791 backend / 113,10 s**,
+Ruff/fixture check passati. Prima completa: 1.790 passati e una assertion rimasta
+alla versione catalogo 3; aggiornata al nuovo contratto V4, poi completa passata.
+47 test contesto/slot passati; undici replay storici identici, incluso Labirinto.
+Frontend invariato. Nessuna migrazione/reindicizzazione.
+
+Protocollo reale da eseguire dopo il congelamento: tre Minervino, tre Labirinto
+V1, un Catanzaro di controllo, una chiamata per prova, seriali, timeout 300 s,
+thinking low. Fonti e gold congelati, confronto con la serie archiviata precedente;
+gold fuori dal prompt. Misurare copertura reale degli slot, slittamenti, rifiuti,
+cinque dati societari, token e tempi, senza confondere omissione e correttezza.
+Grezzi `backend/data/compilation-audit/slot-anchors-20261012/`; report/bundle ed
+esiti finali ancora da completare. Commit piccoli autorizzati, nessun push.
+
 ## Tre bandi reali — 12 ottobre 2026, recupero utile ma affidabilità insufficiente
 
 Richiesta corrente: provare tutti e tre i bandi senza risparmiare sulle API;

@@ -287,7 +287,7 @@ def test_person_alternatives_stay_nonwritable_without_inventing_a_role(case):
 
 def test_schema_and_envelope_are_bounded_and_do_not_change_v6_replay(case):
     schema = build_global_input(case[0], "alpha", case[1])["schema_output"]
-    assert schema["properties"]["version"]["const"] == 8
+    assert schema["properties"]["version"]["const"] == 9
     assert schema["properties"]["bindings"]["maxProperties"] == 128
     assert schema["$defs"]["SubjectBinding"]["properties"]["evidence"]["maxItems"] == 2
     case[2]["bindings"] = {f"role-{i}": {} for i in range(129)}

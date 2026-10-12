@@ -1094,3 +1094,43 @@ JSON coerente con dodici acquisizioni, hash originali/bundle e inventario passat
 Conservata la failure del checker che inizialmente assumeva REVIEW_REQUIRED anche
 per righe timeout NOT_VALIDATED e una NA rifiutata; corretta soltanto la verifica,
 nessun nuovo output AI o cambio al motore.
+
+## 12 ottobre 2026 — ancoraggio delle destinazioni, protocollo prima delle prove
+
+Passo autorizzato: correggere lo slittamento Minervino mantenendo una chiamata.
+Catalogo V4 riusa text_with_fields del parser e aggiunge slot_context bounded
+120 caratteri per lato fra placeholder adiacenti. Output V9: quote del field
+inline con il suo solo marker e testo locale, poi ripristino del placeholder e
+validator esistenti. Etichette prima/dopo supportate. Nessuna modifica a SOURCE,
+ruoli/condizioni/checkbox, parser generale, renderer, V1/chat/UI.
+
+La posizione della quote non approva semanticamente la proprietà: test esplicito
+con quote del civico e fatto telefono rimane review-only/non scrivibile. Nessuna
+promozione RESOLVED. Dieci replay storici V8 identici; versioni precedenti
+conservate. 340 mirati/14,70 s, Ruff/fixture passati; completa backend in corso.
+Prima esecuzione: 336 passati/due failure su Minervino (sentinelle degli oggetti
+Word nel parser, assenti nel testo visibile del catalogo). Corretto ripristino
+dal placeholder del parser, non dagli offset del testo visibile; nessuna
+modifica al parser. Seconda 338/15,24 s; finale 340 include due nuovi test.
+Ruff iniziale con un import fuori ordine corretto. Log grezzi conservati.
+
+Protocollo preregistrato: tre chiamate reali Minervino, tre Labirinto V1 e un
+controllo Catanzaro, seriali, deepseek-flash/thinking low, timeout 300 s.
+Fonti identiche alla serie tre-bandi e fixture/gold Labirinto invariati, gold
+fuori dal prompt. Codice congelato prima delle chiamate; zero retry/USER/sessioni/
+scritture. Tutti gli esiti, inclusi timeout e omissioni, conservati.
+
+Criteri: nessuno slittamento nei recapiti Minervino, copertura della riga con
+sei slot osservata e non soltanto omissione di tutti i recapiti; conservazione
+dei cinque dati societari e dei target benchmark senza abbassare i gate.
+Token/tempi confrontati dichiarando cache/ordine/servizio non controllati.
+Nessuna accuratezza percentuale su Minervino/Catanzaro privi di gold.
+Questo passo non conclude verifica di applicabilità/ruoli né autorizza export.
+Grezzi in backend/data/compilation-audit/slot-anchors-20261012/. Esiti da aggiungere
+dopo la serie, senza cambiare il codice durante le acquisizioni. Nessun push.
+
+Prima delle API: **1.791 backend/113,10 s passati**. Prima completa 1.790 passati
+e una assertion storica sulla versione catalogo 3 aggiornata a 4; nessuna
+regola di isolamento indebolita. 47 test contesto/slot passati, undicesimo replay
+Labirinto storico identico. Frontend invariato/non eseguito. Codice pronto
+al congelamento per le sette acquisizioni preregistrate.

@@ -31,6 +31,7 @@ from app.compilation_global_contract import (
     SharedCondition,
     SharedFact,
     SharedField,
+    SlotAwareProposal,
     SourceSpan,
     SparseAssignment,
     SparseGlobalProposal,
@@ -72,7 +73,7 @@ class GlobalProposal(StrictModel):
     fields: dict[str, GlobalField] = Field(max_length=400)
 
 
-TASK = """Produci UNA proposta globale JSON versione 8. Leggi prima l'intero Word FORM
+TASK = """Produci UNA proposta globale JSON versione 9. Leggi prima l'intero Word FORM
 nei blocks e tutte le SOURCE. L'ordine dei blocks è quello del documento; celle,
 righe e titoli precedenti determinano soggetto, ruolo, sezione e sottosezione.
 proposal_stage=source_backed_hypotheses: prepara ipotesi di riempimento con dati
@@ -207,7 +208,22 @@ property IDENTICA alla property del fatto associato, choice solo per checkbox.
 Per conditional fact_id/property sono obbligatori, conditions non vuoto e reason
 spiega il blocco: un dato documentato non dimostra che il ramo si applichi.
 Il form.quote del field è un estratto LETTERALE locale della richiesta: scegli
-un anchor_paragraph_ids del candidate. Le condizioni di sezione possono stare
+un anchor_paragraph_ids del candidate.
+DESTINAZIONE INLINE: quando il candidate ha range e slot_context, il paragrafo
+contiene text_with_fields, con gli spazi sostituiti da [[ID_CANDIDATE]]. Per
+field.form.quote copia un estratto CONTIGUO di text_with_fields che contenga
+ESATTAMENTE il marker del field e il testo locale che ne spiega la richiesta.
+Non includere marker di altri candidate. Il solo marker non è una richiesta.
+slot_context.before/after sono testo originale vicino, NON label inferite:
+l'etichetta può precedere o seguire lo spazio. Non spostare i valori quando
+una riga ha più spazi: ogni marker rimane la sua destinazione, anche se la
+SOURCE riporta componenti uniti. Non contare puntini/offset per ricostruire gli ID.
+Esempio solo strutturale: «A [[ID_A]] B [[ID_B]]» consente «B [[ID_B]]» per
+ID_B, mai per ID_A. Copia marker e testi reali dell'input. Il backend ripristina
+il placeholder originale e verifica la posizione; ciò NON approva la semantica.
+Per celle vuote senza range e checkbox usa le quote FORM originali come prima.
+conditions.form e bindings.form restano estratti del text ORIGINALE, senza marker.
+Le condizioni di sezione possono stare
 altrove ma NON la label locale. Non accorpare testi di paragrafi diversi.
 Ogni assegnazione referenzia tutte le condizioni pertinenti. Non omettere una
 condizione solo perché ne conosci già il risultato o possiedi il valore.
@@ -310,7 +326,7 @@ def build_global_input(layout, project_id, sources):
         "user_values": [],
         "source_coverage": {"strategy": "complete_small_corpus", "partial": False,
                             "chunks": len(source_map)},
-        "schema_output": ConditionalAwareProposal.model_json_schema(),
+        "schema_output": SlotAwareProposal.model_json_schema(),
     }
     if sum(bool(text.strip()) for text in paragraphs.values()) > 2048:
         raise ValueError("Inventario FORM oltre budget: nessun troncamento implicito")
@@ -951,6 +967,33 @@ def _binding_check(binding_id, fact, candidate_id, contexts, bindings, source_ma
     return check
 
 
+def _slot_destination(candidate_id, candidate, form, paragraphs, marked_paragraphs, layout):
+    """Bind a citation to one physical inline slot, never to an inferred label.
+
+    An exact marker in a contiguous parser projection is required. Restoring
+    the placeholder keeps the existing literal FORM/SOURCE gates independent.
+    This is not semantic approval of label, property, subject or applicability.
+    """
+    if "range" not in candidate:
+        return form, {"result": "not_required"}
+    if form.paragraph_id != candidate["context_id"]:
+        raise ValueError("Destinazione inline citata in un altro paragrafo")
+    marker = f"[[{candidate_id}]]"
+    marked = marked_paragraphs[form.paragraph_id]
+    quote = _form_quote(marked, form.quote)
+    if re.findall(r"\[\[[^\[\]]+\]\]", quote) != [marker]:
+        raise ValueError("Quote destinazione senza il solo marker del candidate corretto")
+    if not re.search(r"\w", quote.replace(marker, "")):
+        raise ValueError("Il solo marker non documenta la richiesta del campo")
+    restored = quote.replace(marker, layout.slots[candidate_id].placeholder)
+    restored = _form_quote(paragraphs[form.paragraph_id], restored)
+    return FormSpan(paragraph_id=form.paragraph_id, quote=restored), {
+        "result": "literal_slot_match", "paragraph_id": form.paragraph_id,
+        "range": candidate["range"], "marked_quote": quote, "original_quote": restored,
+        "semantic_review_required": True,
+    }
+
+
 def _validate_sparse_proposal(payload, layout, catalog, source_map):
     """Keep the canonical inventory in the backend and quarantine each proposal.
 
@@ -958,8 +1001,9 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     fact and condition errors cannot discard independent grounded proposals.
     Missing proposals are unassessed, never fabricated missing/NA/value records.
     """
-    conditional_enabled = payload["version"] == 8
-    subjects_enabled = payload["version"] in {7, 8}
+    slot_enabled = payload["version"] == 9
+    conditional_enabled = payload["version"] in {8, 9}
+    subjects_enabled = payload["version"] in {7, 8, 9}
     budgets = [("fields", 400), ("facts", 128), ("conditions", 128)]
     if subjects_enabled:
         budgets.append(("bindings", 128))
@@ -968,8 +1012,9 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         if (not isinstance(records, dict) or len(records) > maximum
                 or any(not 1 <= len(key) <= 80 for key in records)):
             raise ValueError(f"Dizionario {name} non valido/oltre budget")
-    alternatives_enabled = payload["version"] in {6, 7, 8}
-    schema = (ConditionalAwareProposal if conditional_enabled else
+    alternatives_enabled = payload["version"] in {6, 7, 8, 9}
+    schema = (SlotAwareProposal if slot_enabled else
+              ConditionalAwareProposal if conditional_enabled else
               SubjectBoundProposal if subjects_enabled else
               AlternativeAwareProposal if alternatives_enabled else SparseGlobalProposal)
     assignment = (CONDITIONAL_ASSIGNMENT if conditional_enabled else
@@ -980,6 +1025,9 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         envelope["bindings"] = {}
     proposal = schema.model_validate(envelope)
     paragraphs, local = _form_bindings(catalog)
+    marked_paragraphs = {p["id"]: p["text_with_fields"] for block in catalog["blocks"]
+                         for p in block["paragraphs"] if "text_with_fields" in p}
+    destination_checks = {}
     bindings = _subject_bindings(payload.get("bindings", {}), paragraphs, source_map) \
         if subjects_enabled else {}
     role_contexts = _role_contexts(catalog, local) if subjects_enabled else {}
@@ -1010,8 +1058,20 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     for key, candidate in catalog["candidates"].items():
         if key in unassigned:
             continue
+        if slot_enabled:
+            destination_checks[key] = {"result": "not_validated"}
         try:
             item = assignment.validate_python(payload["fields"][key])
+            if slot_enabled:
+                try:
+                    form, destination_checks[key] = _slot_destination(
+                        key, candidate, item.form, paragraphs, marked_paragraphs, layout,
+                    )
+                except ValueError as exc:
+                    destination_checks[key] = {"result": "rejected",
+                                               "validation_errors": [str(exc)]}
+                    raise
+                item = item.model_copy(update={"form": form})
             if item.fact_id is not None:
                 fact = SharedFact.model_validate(facts.get(item.fact_id))
                 if (item.property is None or
@@ -1048,6 +1108,8 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                          validation_errors=[], proposal=None)
         else:
             field["proposal"] = payload["fields"][key]
+            if slot_enabled:
+                field["destination_check"] = destination_checks[key]
             field["property"] = payload["fields"][key].get("property") \
                 if isinstance(payload["fields"][key], dict) else None
             if key in errors:
@@ -1145,7 +1207,7 @@ def validate_global_proposal(raw, layout, project_id, sources):
     catalog = build_compilation_catalog(layout)
     source_map = _allowed_sources(project_id, sources)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
-            and payload["version"] in {5, 6, 7, 8}):
+            and payload["version"] in {5, 6, 7, 8, 9}):
         return _validate_sparse_proposal(payload, layout, catalog, source_map)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
             and payload["version"] == 4):

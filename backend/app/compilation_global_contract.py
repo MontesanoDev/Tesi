@@ -196,3 +196,13 @@ ConditionalAssignment = Annotated[
 class ConditionalAwareProposal(SubjectBoundProposal):
     version: Literal[8]
     fields: dict[Reference, ConditionalAssignment] = Field(max_length=400)
+
+
+class SlotAwareProposal(ConditionalAwareProposal):
+    """Inline field FORM quotes include their canonical destination marker.
+
+    This proves quote location, not semantic entailment of a proposed value.
+    Historical envelopes keep their original validation behavior.
+    """
+
+    version: Literal[9]

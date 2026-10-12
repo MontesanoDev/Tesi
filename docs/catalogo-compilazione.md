@@ -1,5 +1,15 @@
 # Catalogo unico FORM — prima milestone, 10 ottobre 2026
 
+**Aggiornamento V4, 12 ottobre:** i paragrafi con slot espongono anche
+`text_with_fields`, già prodotto dal parser, e i candidate `slot_context.before`
+e `after` (massimo 120 caratteri per lato fra slot adiacenti). Il testo originale
+completo rimane presente; la proiezione con marker evita di ricostruire gli ID
+contando puntini. Gli offset restano quelli del parser, inclusi eventuali oggetti
+non testuali. Il [contratto globale V9](proposta-globale-compilazione.md) verifica
+la posizione delle quote inline, senza attestare proprietà o applicabilità.
+La descrizione storica seguente resta il punto di partenza; l'aggiunta V4 ha un
+costo di contesto da misurare, non è una riduzione di token già dimostrata.
+
 Implementato il primo passo verso la proposta globale a chiamata unica: una
 rappresentazione deterministica condivisa del documento, senza copie del
 contesto per ogni candidate. Non è ancora il nuovo resolver: la chat continua

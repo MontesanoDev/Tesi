@@ -17,9 +17,10 @@ from lxml import etree
 from app.docx_templates import MAX_CANDIDATES, DocumentInputError, is_signature_target, text_of
 
 W14 = "http://schemas.microsoft.com/office/word/2010/wordml"
-CATALOG_VERSION = 3
+CATALOG_VERSION = 4
 MAX_CATALOG_CHARACTERS = 200_000
 MAX_PRECEDING_PARAGRAPHS = 6
+MAX_SLOT_CONTEXT_CHARACTERS = 120
 
 
 def _regions(layout):
@@ -225,6 +226,29 @@ def _bind_locations(blocks, candidates):
     return {candidate["location"]["block_id"] for candidate in candidates.values()}
 
 
+def _bind_slot_context(layout, paragraphs, candidates):
+    """Expose the parser's exact slot map without guessing labels or direction.
+
+    Surrounding snippets stop at the next/previous placeholder. Full original
+    text is retained independently; markers are a structural projection only.
+    """
+    for entry in layout.paragraph_catalog:
+        slots = [(field["id"], layout.slots[field["id"]]) for field in entry["fields"]]
+        paragraph = paragraphs[slots[0][1].paragraph]
+        # Parser coordinates include non-text object sentinels; visible text can
+        # differ. Never recalculate slot offsets against the visible projection.
+        if any(f"[[{key}]]" in entry["text"] for key in candidates):
+            raise DocumentInputError("Marker candidate già presente nel testo originale")
+        paragraph["text_with_fields"] = entry["text_with_fields"]
+        for index, (key, slot) in enumerate(slots):
+            previous_end = slots[index - 1][1].end if index else 0
+            next_start = slots[index + 1][1].start if index + 1 < len(slots) else len(entry["text"])
+            candidates[key]["slot_context"] = {
+                "before": entry["text"][previous_end:slot.start][-MAX_SLOT_CONTEXT_CHARACTERS:],
+                "after": entry["text"][slot.end:next_start][:MAX_SLOT_CONTEXT_CHARACTERS],
+            }
+
+
 def build_compilation_catalog(layout):
     """Catalog every supported body position and literal context, without AI/DB."""
     positions, regions = _regions(layout)
@@ -301,6 +325,7 @@ def build_compilation_catalog(layout):
     candidates.update(controls)
     if len(candidates) > MAX_CANDIDATES:
         raise DocumentInputError("Il catalogo supera 400 candidate inclusi i controlli Word")
+    _bind_slot_context(layout, paragraphs, candidates)
     candidate_blocks = _bind_locations(blocks, candidates)
     for block in blocks:
         if block["id"] not in candidate_blocks:

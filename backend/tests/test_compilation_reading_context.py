@@ -34,7 +34,7 @@ def test_first_data_row_is_not_a_header_or_local_anchor_of_later_rows():
     table.cell(1, 0).text = "Organizzazione rappresentata"
     _, data = data_for(doc)
     form = data["form"]
-    assert form["version"] == 3
+    assert form["version"] == 4
     assert form["candidates"]["t0.r1.c1"]["anchor_paragraph_ids"] == ["paragraph:2"]
     location = form["candidates"]["t0.r1.c1"]["location"]
     assert location == {"block_id": "paragraph:0", "table_id": "table:0", "row_index": 1}

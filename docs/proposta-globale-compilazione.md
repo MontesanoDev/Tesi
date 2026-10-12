@@ -1,5 +1,35 @@
 # Proposta globale sperimentale — 11 ottobre 2026
 
+## Passo in verifica del 12 ottobre: destinazioni inline V9
+
+Catalogo V4: espone `text_with_fields` già prodotto dal parser strutturale,
+con marker `[[candidate_id]]` al posto dei placeholder, e `slot_context` con
+massimo 120 caratteri prima/dopo, fermandosi ai placeholder adiacenti. Il testo
+originale, gerarchia e struttura restano disponibili. Nessuna label semantica
+inventata dal backend, nessuna modifica a parser/renderer/V1 o RAG.
+
+Contratto V9: per un candidate inline `field.form.quote` deve essere un estratto
+contiguo della proiezione con esattamente il suo marker e testo locale leggibile.
+Il backend ripristina il placeholder del parser e applica i gate FORM/SOURCE
+esistenti, registrando `destination_check`. Non ricalcola gli offset sul testo
+visibile: il parser conta anche oggetti non testuali. Celle vuote senza range e
+checkbox conservano gli ancoraggi precedenti. Condizioni/binding citano il testo
+originale. Etichetta prima o dopo lo spazio supportata, nessuna parola di dominio.
+
+Questo verifica la posizione della citazione, **non entailment semantico** di
+proprietà/valore. Citare correttamente «n. [[ID]]» non prova da solo che il valore
+sia un civico. Revisione semantica ancora obbligatoria, zero RESOLVED/scritture.
+V2–V8 mantengono la validazione storica; dieci acquisizioni precedenti rivalidate
+con esito identico. Una sola chiamata AI, nessun nuovo batch/reviewer/retry.
+
+340 test mirati e 1.791 backend passati; prove reali da completare. Protocollo:
+tre Minervino, tre Labirinto congelato, un Catanzaro per i cinque dati societari,
+in serie, stessa configurazione thinking low e timeout 300 s. Fonti/gold invariati,
+nessun gold nel prompt, conservare anche omissioni/rifiuti/fallimenti. Criteri:
+assenza dello slittamento osservato, copertura degli slot senza mascherare errori
+con omissioni, dati societari conservati e provenance invariata. Non dimostra
+ancora completezza/applicabilità del documento. Esiti nel registro e STATUS.md.
+
 **Verifica successiva del 12 ottobre, motore invariato:**
 [dodici prove su tre bandi reali](benchmark-tre-bandi-2026-10-12.md), dieci
 risposte complete/due timeout. Dati societari ripetuti a Catanzaro/Trapani,
