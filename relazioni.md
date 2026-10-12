@@ -1543,3 +1543,20 @@ Bundle del consenso: **142 file /1.816.941 byte**, verificato byte-per-byte e
 senza chiave reale, database o runtime. SHA-256
 `e5f574f4832997f6fb543164c0e75f0218c128eda7d5ce41c0b4829e2bd7da5b`.
 [Verifiche finali](docs/benchmarks/2026-10-12-blank-draft-consent-final-checks.json).
+
+## 12 ottobre 2026 — protocollo Dialogo V1, prima delle API
+
+Congelati 43 turni indipendenti in `demo-documents/benchmark-dialogo/v1/`:
+consenso/negazione/cortesia, valori e date, condizioni singole/multiple,
+risposte parziali/ambigue, SKIP/UNKNOWN/REFUSE, pausa/ripresa, export e routing
+normale. Gold escluso dal prompt; nuovo benchmark separato da Labirinto V1.
+Planner reale di produzione, applicazione delle decisioni in DB/storage
+isolati, massimo 48 casi seriali × due tentativi strutturali. Nessuna nuova
+analisi globale, RAG o sintesi AI; non misura copertura SOURCE. Al checkpoint
+con valori esiste un recapito USER autoriale; al checkpoint vuoto nessun valore.
+Il guard finish viene applicato come in chat; si misura comunque il planner
+anche dove la chat reale lo anticiperebbe, dichiarando la chiamata diagnostica.
+Nessun cambiamento al motore durante la serie. Le prove reali seguono questo
+commit; risultati ancora da acquisire. Sei test dell'harness passati /1,02 s;
+prime failure di setup/import/Ruff conservate in
+`backend/data/compilation-audit/dialogue-v1-preflight/initial-failures.txt`.

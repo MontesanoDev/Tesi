@@ -1,5 +1,17 @@
 # Stato di Mapi RAG
 
+## Benchmark del dialogo V1 — 12 ottobre 2026, protocollo congelato
+
+Richiesto un benchmark dell’interpretazione prima di altre correzioni.
+43 casi/gold fissati in demo-documents/benchmark-dialogo/v1/, separati dal
+benchmark DOCX Labirinto. Runner con planner DeepSeek reale, checkpoint
+autoriali e persistenza/export temporanei; nessuna nuova analisi o sintesi,
+nessuna misura di copertura SOURCE. Massimo 48 casi seriali e un retry
+strutturale per caso. Motore applicativo e dati locali invariati.
+Sei test dell’harness passati; esecuzione reale e report ancora da acquisire.
+Prossimo punto: eseguire la serie senza cambiare codice/gold, registrare anche
+i fallimenti e stabilire la prossima correzione dai risultati.
+
 ## Consenso alla bozza senza loop — 12 ottobre 2026
 
 Diagnosi read-only della sessione segnalata: «si» e «siii» arrivavano già a
