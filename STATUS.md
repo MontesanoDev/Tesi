@@ -1,16 +1,56 @@
 # Stato di Mapi RAG
 
-## Benchmark del dialogo V1 — 12 ottobre 2026, protocollo congelato
+## Benchmark del dialogo V1 — 12 ottobre 2026, baseline reale conclusa
 
-Richiesto un benchmark dell’interpretazione prima di altre correzioni.
-43 casi/gold fissati in demo-documents/benchmark-dialogo/v1/, separati dal
-benchmark DOCX Labirinto. Runner con planner DeepSeek reale, checkpoint
-autoriali e persistenza/export temporanei; nessuna nuova analisi o sintesi,
-nessuna misura di copertura SOURCE. Massimo 48 casi seriali e un retry
-strutturale per caso. Motore applicativo e dati locali invariati.
-Sei test dell’harness passati; esecuzione reale e report ancora da acquisire.
-Prossimo punto: eseguire la serie senza cambiare codice/gold, registrare anche
-i fallimenti e stabilire la prossima correzione dai risultati.
+Richiesto misurare l'interpretazione prima di altre correzioni. Fixture/gold
+congelati in e16f87e: 43 casi su checkpoint autoriali, separati da Labirinto
+DOCX V1. Primo avvio interrotto PRIMA delle API per descrizione del progetto
+temporaneo troppo corta; corretto solo il runner. Serie reale sul commit
+4820b95, produzione invariata: **39/43 conformi**, 43 chiamate deepseek-flash,
+zero retry/errori schema/eccezioni backend, **142.816 token /47,92 s** totali
+(46,41 s API, mediana turno 1,10 s). Una serie, non una misura di compilazione
+completa, qualità SOURCE o varianza del modello. Nessuna modifica motore/gold
+nel corso della serie, nessun caso fallito ripetuto per selezionare un esito.
+
+Problemi osservati e persistiti:
+
+1. «Correggi la denominazione aziendale in Aurora Servizi S.r.l.» con recapito
+   attivo -> VALUE sul recapito, USER: destinatario semanticamente errato.
+   Il gate verifica slot, estratto letterale e validità DOCX; manca un controllo
+   indipendente della pertinenza messaggio->campo. Label generica non tipizzata
+   email. PRIORITÀ per il prossimo fix, ancora NON implementato.
+2. Valore + «prepara una bozza con quello che hai già» -> salva il valore e
+   ignora la conclusione, violando la priorità attuale finish sui field.
+3. «Lasciamo questa conferma per dopo» -> pausa globale invece di SKIP locale.
+4. Richiesta esplicita di bozza -> generate invece di finish: divergenza di
+   contratto, stessa richiesta al servizio, nessuna scrittura impropria.
+
+Consensi «sì», «ok sì va bene», «siii» e consenso esteso: quattro export reali
+con un valore USER autoriale preesistente correttamente scritto; consenso alla
+copia vuota: zero valori scritti. Cinque report/DOCX confrontati offline,
+originale/altre celle invariati salvo banner. Nessuna SOURCE fittizia o promozione
+RESOLVED. DB live solo in lettura per il profilo; DB/storage temporanei,
+nessun intervento sui dati/sessioni locali. Nessuna nuova analisi, retrieval o
+sintesi AI: gli intent normali sono misurati soltanto per routing. Una provenance
+USER corretta non garantisce da sola l'associazione al campo giusto.
+
+Verifiche effettive: **79 backend mirati /12,30 s**, Ruff completo, diff check.
+Sei test dell'harness senza provider; gli altri software con provider simulati.
+Nessuna suite completa/frontend/browser rieseguita, applicazione invariata.
+Preflight e failure del runner/import/catalogo/Ruff conservati e distinti
+dagli esiti DeepSeek. Grezzi: backend/data/compilation-audit/dialogue-v1-20261012-r1/.
+Bundle pubblico verificato: 251 file /715.315 byte, SHA-256
+42d6d271e6a313d7eda40c6c1f19feb3f2b1d3bc72c920a9d191e33c8091c669,
+nessun DB/credenziali, runtime privato eliminato. Commit piccoli eseguiti;
+nessun push di questo intervento.
+
+[Report con tutti i casi](docs/benchmark-dialogo-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-dialogue-v1.json),
+[bundle](docs/benchmarks/2026-10-12-dialogue-v1-audit.tar.gz),
+[fixture](demo-documents/benchmark-dialogo/v1/README.md), registro relazioni.md.
+**Ripresa:** progettare il gate semantico per risposte fuori contesto, poi
+priorità dei messaggi misti e SKIP locale/PAUSE. Benchmark ripetibile con lo
+stesso gold; modifiche di scenario in V2. UI, parser, renderer e RAG congelati.
 
 ## Consenso alla bozza senza loop — 12 ottobre 2026
 

@@ -1566,3 +1566,42 @@ progetto temporaneo «V1» viola min_length=3. Nessuna chiamata DeepSeek. Corret
 solo il runner, senza cambiare fixture/gold/motore. Conservati protocollo vuoto
 in dialogue-v1-20261012/ e traceback in dialogue-v1-preflight/real-run.log;
 serie effettiva prevista in dialogue-v1-20261012-r1/.
+
+
+## 12 ottobre 2026 — Dialogo V1, risultati reali su 4820b95
+
+**39/43 gold conformi**, 43 chiamate deepseek-flash seriali/thinking disabled,
+zero retry/schema error/eccezioni, 138.803 input +4.013 output =142.816 token,
+47,92 s turni /46,41 s AI, mediana 1,10 s. Nessun cambiamento produzione o gold,
+nessun caso reale rieseguito. Checkpoint autoriali e DB/storage temporanei,
+nessuna nuova analisi/RAG/sintesi. Un solo confronto selezionato di dialogo,
+non una percentuale di affidabilità della compilazione completa.
+
+Tre effetti errati: rinvio locale -> PAUSE; valore+finish -> solo VALUE; cambio
+alla denominazione -> VALUE nel recapito attivo. Quest'ultimo persiste davvero
+USER nel campo sbagliato pur con slot e quote validi: priorità prossima.
+Quarto FAIL di contratto: generate anziché finish, stessa richiesta di export,
+nessuna scrittura impropria. Non modificato il gold per far salire il risultato.
+28 mutazioni di slot, otto valori USER (due con effetto vietato dal gold).
+Nessun destinatario fuori dai soli slot attivi, ma una scelta entro gli slot
+può essere semanticamente sbagliata; nessuna promozione a SOURCE/RESOLVED.
+
+Cinque export reali: quattro con un recapito USER autoriale preesistente e uno
+senza alcun valore. Scritture/report/posizioni verificate, originali e altre
+celle invariati salvo banner. «ok sì va bene» e «siii» corretti. Nessuna misura
+SOURCE in questo benchmark. DB live aperto solo in lettura per il profilo;
+nessun database/chiave copiato, runtime temporaneo eliminato automaticamente.
+Verifiche: 79 backend mirati /12,30 s, Ruff completo e diff check. Sei test
+harness senza provider, rimanenti con provider simulati; nessuna suite completa
+frontend/browser ripetuta perché non ci sono cambi applicativi.
+
+[Report](docs/benchmark-dialogo-2026-10-12.md),
+[JSON](docs/benchmarks/2026-10-12-dialogue-v1.json),
+[bundle](docs/benchmarks/2026-10-12-dialogue-v1-audit.tar.gz).
+Grezzi dialogue-v1-20261012-r1/ e preflight sotto backend/data/compilation-audit/.
+Bundle 251 file /715.315 byte, SHA-256
+42d6d271e6a313d7eda40c6c1f19feb3f2b1d3bc72c920a9d191e33c8091c669,
+verificato byte per byte e senza credenziali/database. Offline verifier prima
+richiamato da un cwd errato, poi corretto: nessuna ripetizione API. Conservati
+setup fallito e risultati negativi. Prossimo punto: gate di pertinenza USER,
+poi composizione/priorità e scope dei controlli; nessuna patch durante la prova.

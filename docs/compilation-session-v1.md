@@ -1,5 +1,13 @@
 # CompilationSession V1: backend, chat e verifica
 
+Benchmark del dialogo del 12 ottobre: [43 casi reali, 39 conformi al gold](benchmark-dialogo-2026-10-12.md).
+Il consenso naturale funziona nei casi fissati, ma una correzione fuori dagli
+slot può ancora essere applicata al campo attivo sbagliato. Estratto USER e
+slot valido non garantiscono la pertinenza semantica. Noti anche messaggi misti
+con export ignorato e rinvio locale interpretato come pausa. Motore invariato;
+queste correzioni sono il prossimo intervento. Il benchmark usa checkpoint
+isolati preparati, senza una nuova analisi SOURCE o una compilazione completa.
+
 ## Motore attivo dal 12 ottobre: proposta globale e revisione
 
 Avviare `./start.sh`, scegliere il modello del progetto (DeepSeek per le prove

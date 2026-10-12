@@ -1,0 +1,21 @@
+{
+  "backend_targeted": {
+    "passed": 79,
+    "seconds": 12.3,
+    "log": "preflight/targeted-tests.txt"
+  },
+  "ruff_backend": "passed",
+  "diff_check": "passed",
+  "fixture_unchanged": true,
+  "application_unchanged_since_benchmark": true,
+  "runner_unchanged_since_benchmark": true,
+  "archive_hash_and_all_file_hashes_verified": true,
+  "local_document_links": "passed",
+  "frontend_browser_and_full_backend_rerun": false,
+  "reason": "Only standalone benchmark harness/tests and documentation changed; production unchanged.",
+  "real_provider": "deepseek-flash",
+  "real_cases": 43,
+  "strict_gold_passed": 39,
+  "real_retry": 0,
+  "unexpected_export": 0
+}
