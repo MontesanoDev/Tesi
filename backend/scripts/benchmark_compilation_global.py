@@ -189,7 +189,10 @@ def run(args):
             save("response.txt", raw)
             audit = None
             try:
-                audit = validate_global_proposal(raw, layout, args.project, sources)
+                audit = validate_global_proposal(
+                    raw, layout, args.project, sources,
+                    expected_version=data["schema_output"]["properties"]["version"]["const"],
+                )
             finally:
                 if fixture:
                     try:

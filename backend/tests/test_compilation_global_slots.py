@@ -208,6 +208,25 @@ def test_current_schema_requires_version_nine_but_keeps_one_request(case):
     assert data["schema_output"]["properties"]["fields"]["maxProperties"] == 400
 
 
+@pytest.mark.parametrize("version", [5, 6, 7, 8, True])
+def test_active_contract_cannot_be_downgraded_to_skip_slot_validation(case, version):
+    case[2]["version"] = version
+    for field in case[2]["fields"].values():
+        field["form"]["quote"] = field["label"]
+    with pytest.raises(ValueError, match="contratto richiesto V9"):
+        validate_global_proposal(json.dumps(case[2]), case[0], "alpha", case[1],
+                                 expected_version=9)
+
+
+def test_expected_contract_preserves_current_grounding_and_historical_replay(case):
+    assert validate_global_proposal(json.dumps(case[2]), case[0], "alpha", case[1],
+                                    expected_version=9) == audit(case)
+    case[2]["version"] = 8
+    for field in case[2]["fields"].values():
+        field["form"]["quote"] = field["label"]
+    assert audit(case)["counts"] == {"GROUNDED_PROPOSAL": 6}
+
+
 def test_context_windows_are_bounded_without_truncating_original_paragraph():
     text = "Prefisso " + "a" * 150 + " ________ " + "b" * 150
     catalog = build_compilation_catalog(layout_for(text))

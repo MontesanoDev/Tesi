@@ -1195,7 +1195,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     return result
 
 
-def validate_global_proposal(raw, layout, project_id, sources):
+def validate_global_proposal(raw, layout, project_id, sources, *, expected_version=None):
     """Check structure/literal grounding only; return audit, no writable values.
 
     Never synthesizes the V1 independent semantic verdict. A wrong property
@@ -1204,6 +1204,10 @@ def validate_global_proposal(raw, layout, project_id, sources):
     if len(raw) > MAX_OUTPUT_CHARACTERS:
         raise ValueError("Output globale oltre budget")
     payload = json.loads(raw, object_pairs_hook=_unique_object)
+    if expected_version is not None and (
+            not isinstance(payload, dict) or type(payload.get("version")) is not int
+            or payload["version"] != expected_version):
+        raise ValueError(f"Versione output diversa dal contratto richiesto V{expected_version}")
     catalog = build_compilation_catalog(layout)
     source_map = _allowed_sources(project_id, sources)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
