@@ -3,6 +3,24 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Destinazioni inline, 12 ottobre 2026
+
+[Report](../benchmark-destinazioni-inline-2026-10-12.md),
+[JSON completo](2026-10-12-slot-anchors.json),
+[bundle](2026-10-12-slot-anchors-audit.tar.gz),
+[checksum](2026-10-12-slot-anchors-audit.tar.gz.sha256) e
+[verifiche finali](2026-10-12-slot-anchors-final-checks.json).
+
+Sette chiamate reali deepseek-flash, V9/catalogo V4, una chiamata per prova:
+Minervino recapiti corretti 3/3, riga critica sei/tre/sei proposte; Labirinto
+18/22 corrispondenze letterali in 3/3; Catanzaro cinque dati societari conservati.
+Nessuno slittamento osservato, copertura/ruoli/applicabilità ancora incompleti,
+una quote semanticamente debole. 368.132 token, 505,02 s AI sommati, input più
+grande. Zero RESOLVED/DOCX/USER/sessioni; intero DB live/originali invariati.
+**391 mirati / 18,40 s e 1.797 backend / 119,09 s passati**, Ruff/fixture/diff/replay/body/archive verificati.
+Il controllo versione aggiunto dopo le API conserva audit/body identici per tutte
+le sette acquisizioni; raw e codice congelato restano quelli realmente usati.
+
 ## Tre bandi reali, 12 ottobre 2026
 
 Richiesta esplicita su tutti e tre, nessun sorteggio: Catanzaro, Minervino,

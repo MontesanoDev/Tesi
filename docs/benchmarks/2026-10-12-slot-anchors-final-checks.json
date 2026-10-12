@@ -1,0 +1,235 @@
+{
+  "archive": {
+    "members": 259,
+    "bytes": 2066565,
+    "sha256": "414f43a52018547d3e317dc784910b2c0565074684e115a15f347d70abd13fd7",
+    "inventory_byte_for_byte_checked": true,
+    "configured_api_key_absent": true,
+    "no_db_or_private_config": true
+  },
+  "software": {
+    "targeted": 391,
+    "targeted_seconds": 18.4,
+    "context_and_slots": 47,
+    "context_and_slots_seconds": 2.36,
+    "backend": 1797,
+    "backend_seconds": 119.09,
+    "initial_full_suite": {
+      "passed": 1790,
+      "failed": 1,
+      "seconds": 121.26,
+      "cause": "stale expected catalog version 3 updated to 4"
+    },
+    "ruff": "passed",
+    "fixture_check": "passed",
+    "historical_replays": 11,
+    "frontend": "unchanged, not run",
+    "scope": "software verification, not real DeepSeek semantic performance",
+    "before_final_active_version_guard": {
+      "targeted": 340,
+      "targeted_seconds": 14.7,
+      "backend": 1791,
+      "backend_seconds": 113.1
+    },
+    "final_active_version_guard_replays": 7,
+    "active_version_guard_intermediate_failures": [
+      {
+        "passed": 1796,
+        "failed": 1,
+        "seconds": 123.4,
+        "cause": "runner software mock still V5"
+      },
+      {
+        "passed": 1796,
+        "failed": 1,
+        "seconds": 119.06,
+        "cause": "first mock update hit wrong occurrence, target runner mock still V5"
+      },
+      {
+        "passed": 390,
+        "failed": 1,
+        "seconds": 18.31,
+        "cause": "same wrong mock occurrence; corrected before final 391 pass"
+      }
+    ]
+  },
+  "verification": {
+    "new_real_calls": 7,
+    "complete_outputs_stop": 7,
+    "automatic_retries": 0,
+    "exact_new_replays": 7,
+    "exact_historical_replays": 11,
+    "code_snapshots_match_frozen_head": true,
+    "frozen_head": "d86953b66cb194683d3a78a8a5f6d86a669570cb",
+    "requests_identical_per_case": {
+      "minervino": 3,
+      "labirinto": 3,
+      "catanzaro": 1
+    },
+    "gold_and_sources_unchanged": true,
+    "all_written_values_null": true,
+    "all_values_with_source_provenance": true,
+    "no_user_values": true,
+    "live_database_unchanged": true,
+    "originals_unchanged": true,
+    "configured_key_absent": true,
+    "scope": "Literal location/grounding and acquisition integrity, not independent semantic approval",
+    "active_version_guard": "Expected V9 enforced by current runner, historical replay remains opt-in default",
+    "final_guard_added_after_real_series": true,
+    "exact_guarded_replays": 7,
+    "rebuilt_requests_identical": 7
+  },
+  "version_guard": {
+    "scope": "Offline replay after active-version guard; no additional model call or change during seven-call series",
+    "checks": [
+      {
+        "case": "minervino",
+        "repetition": 1,
+        "expected_version": 9,
+        "exact_validation_replay": true,
+        "rebuilt_input_identical": true,
+        "request_body_identical": true
+      },
+      {
+        "case": "labirinto",
+        "repetition": 1,
+        "expected_version": 9,
+        "exact_validation_replay": true,
+        "rebuilt_input_identical": true,
+        "request_body_identical": true
+      },
+      {
+        "case": "minervino",
+        "repetition": 2,
+        "expected_version": 9,
+        "exact_validation_replay": true,
+        "rebuilt_input_identical": true,
+        "request_body_identical": true
+      },
+      {
+        "case": "labirinto",
+        "repetition": 2,
+        "expected_version": 9,
+        "exact_validation_replay": true,
+        "rebuilt_input_identical": true,
+        "request_body_identical": true
+      },
+      {
+        "case": "minervino",
+        "repetition": 3,
+        "expected_version": 9,
+        "exact_validation_replay": true,
+        "rebuilt_input_identical": true,
+        "request_body_identical": true
+      },
+      {
+        "case": "labirinto",
+        "repetition": 3,
+        "expected_version": 9,
+        "exact_validation_replay": true,
+        "rebuilt_input_identical": true,
+        "request_body_identical": true
+      },
+      {
+        "case": "catanzaro",
+        "repetition": 1,
+        "expected_version": 9,
+        "exact_validation_replay": true,
+        "rebuilt_input_identical": true,
+        "request_body_identical": true
+      }
+    ],
+    "new_api_calls": 0,
+    "historical_replay_default_preserved": true,
+    "request_prompt_schema_unchanged": true
+  },
+  "resolved": 0,
+  "docx_writes": 0,
+  "public_json_matches_all_raw_results": true,
+  "all_seven_manifests_originals_valid": true,
+  "token_totals_and_counts_consistent": true,
+  "all_citations_source_role": true,
+  "all_written_values_null": true,
+  "software_final_logs_valid": true,
+  "added_document_links": [
+    [
+      "STATUS.md",
+      "docs/benchmark-destinazioni-inline-2026-10-12.md"
+    ],
+    [
+      "STATUS.md",
+      "docs/benchmarks/2026-10-12-slot-anchors.json"
+    ],
+    [
+      "STATUS.md",
+      "docs/benchmarks/2026-10-12-slot-anchors-final-checks.json"
+    ],
+    [
+      "STATUS.md",
+      "relazioni.md"
+    ],
+    [
+      "docs/proposta-globale-compilazione.md",
+      "benchmark-destinazioni-inline-2026-10-12.md"
+    ],
+    [
+      "docs/benchmarks/README.md",
+      "../benchmark-destinazioni-inline-2026-10-12.md"
+    ],
+    [
+      "docs/benchmarks/README.md",
+      "2026-10-12-slot-anchors.json"
+    ],
+    [
+      "docs/benchmarks/README.md",
+      "2026-10-12-slot-anchors-audit.tar.gz"
+    ],
+    [
+      "docs/benchmarks/README.md",
+      "2026-10-12-slot-anchors-audit.tar.gz.sha256"
+    ],
+    [
+      "docs/benchmarks/README.md",
+      "2026-10-12-slot-anchors-final-checks.json"
+    ],
+    [
+      "relazioni.md",
+      "docs/benchmark-destinazioni-inline-2026-10-12.md"
+    ],
+    [
+      "relazioni.md",
+      "docs/benchmarks/2026-10-12-slot-anchors.json"
+    ],
+    [
+      "relazioni.md",
+      "docs/benchmarks/2026-10-12-slot-anchors-final-checks.json"
+    ],
+    [
+      "docs/benchmark-destinazioni-inline-2026-10-12.md",
+      "benchmarks/2026-10-12-slot-anchors.json"
+    ],
+    [
+      "docs/benchmark-destinazioni-inline-2026-10-12.md",
+      "benchmarks/2026-10-12-slot-anchors-audit.tar.gz"
+    ],
+    [
+      "docs/benchmark-destinazioni-inline-2026-10-12.md",
+      "benchmarks/2026-10-12-slot-anchors-audit.tar.gz.sha256"
+    ],
+    [
+      "docs/benchmark-destinazioni-inline-2026-10-12.md",
+      "benchmarks/2026-10-12-slot-anchors-final-checks.json"
+    ],
+    [
+      "docs/benchmark-destinazioni-inline-2026-10-12.md",
+      "../relazioni.md"
+    ],
+    [
+      "docs/benchmark-destinazioni-inline-2026-10-12.md",
+      "../STATUS.md"
+    ]
+  ],
+  "diff_check": "passed",
+  "no_pending_placeholders": true,
+  "scope": "Final integrity/documentation checks; not independent semantic validation"
+}

@@ -1,34 +1,59 @@
 # Stato di Mapi RAG
 
-## Destinazioni inline — 12 ottobre 2026, implementazione in verifica
+## Destinazioni inline — 12 ottobre 2026, primo passo misurato concluso
 
-Autorizzato il passo sul JSON e sul legame citazione/destinazione dopo il test
-Minervino. Catalogo V4 riusa i marker già prodotti dal parser e aggiunge contesto
-prima/dopo (massimo 120 caratteri per lato, limitato agli slot adiacenti).
-Contratto V9 richiede quote FORM con il solo marker della destinazione inline,
-più testo locale; ripristina il placeholder originale e applica i gate esistenti.
-Celle vuote/checkbox, SOURCE, ruoli e condizioni mantengono le regole precedenti.
-V2–V8 restano riproducibili: dieci replay storici identici. Zero nuovo batch,
-chiamata o retry, nessun collegamento alla chat/renderer e nessun RESOLVED.
+Catalogo V4 riusa i marker strutturali del parser e aggiunge contesto prima/dopo
+(max 120 caratteri per lato fra slot adiacenti). Contratto V9 vincola la quote
+FORM al solo marker della destinazione, poi ripristina il placeholder originale
+ed esegue i gate precedenti. Una chiamata globale, zero nuovi batch/retry.
+SOURCE/ruoli/condizioni/checkbox, parser generale, renderer, V1/chat/UI invariati.
+Il runner attivo impone la versione richiesta V9; V2–V8 restano per replay storico.
+Quest'ultimo controllo è stato aggiunto dopo le API: sette rivalidazioni e body
+ricostruiti identici, nessuna chiamata aggiuntiva né modifica durante la serie.
 
-La nuova prova della posizione **non è verifica semantica indipendente** della
-proprietà/valore. Un marker corretto con una proprietà sbagliata richiede ancora
-revisione: test esplicito conservato. Prima failure su oggetti Word non testuali:
-testo visibile e coordinate parser possono differire. Corretto l'adapter usando
-il placeholder del parser, senza cambiare parser generale. Ruff import-order
-iniziale corretto. **340 mirati / 14,70 s**, **1.791 backend / 113,10 s**,
-Ruff/fixture check passati. Prima completa: 1.790 passati e una assertion rimasta
-alla versione catalogo 3; aggiornata al nuovo contratto V4, poi completa passata.
-47 test contesto/slot passati; undici replay storici identici, incluso Labirinto.
-Frontend invariato. Nessuna migrazione/reindicizzazione.
+**Sette chiamate reali deepseek-flash** sul codice congelato `d86953b`, seriali,
+thinking low, timeout 300 s: tre Minervino, tre Labirinto V1, un Catanzaro.
+Tutte complete, zero timeout, gold fuori dal prompt/fonti congelate.
+Minervino: sei/tre/sei proposte corrette nella riga critica; telefono/e-mail/PEC
+corretti in 3/3, nessuno slittamento osservato. Tre componenti indirizzo omesse
+nella prova 2: posizione migliorata, completezza ancora variabile.
+Labirinto: 18/22 corrispondenze letterali valore/SOURCE in 3/3 (ultima V8: 17/22),
+cinque dati societari conservati, ordine/numero distinti nelle tre risposte.
+Alternative recapito/polizza conservate senza scelta; quattro checkbox omesse.
+Catanzaro: operatore/forma/sede/CF/PIVA presenti con SOURCE; ramo ingegneria e
+direttore omessi in questo controllo. Nessuna accuratezza % sui moduli senza gold.
 
-Protocollo reale da eseguire dopo il congelamento: tre Minervino, tre Labirinto
-V1, un Catanzaro di controllo, una chiamata per prova, seriali, timeout 300 s,
-thinking low. Fonti e gold congelati, confronto con la serie archiviata precedente;
-gold fuori dal prompt. Misurare copertura reale degli slot, slittamenti, rifiuti,
-cinque dati societari, token e tempi, senza confondere omissione e correttezza.
-Grezzi `backend/data/compilation-audit/slot-anchors-20261012/`; report/bundle ed
-esiti finali ancora da completare. Commit piccoli autorizzati, nessun push.
+106 record: 89 ipotesi di valore grounded SOURCE (42 senza condizioni, 47
+conditional), quattro NA locali, sei review alternative, sette proposte personali
+bloccate. **Zero RESOLVED/USER/scritture DOCX/sessioni create.** 368.132 token,
+505,02 s AI sommati, non E2E. Input più grande: nessun risparmio input dimostrato.
+
+Limiti espliciti: marker corretto non prova entailment proprietà/valore;
+`p16.s0` prova 2 cita la label P.E.C. dello spazio successivo, pur proponendo
+l'e-mail nella posizione corretta. Due indirizzi con granularità da rivedere;
+ruoli ereditati fra paragrafi ancora bloccati; Cellulare + Telefono solo parziale.
+Tutto resta review-only. Non attivare il prototipo nella chat/renderer ora.
+
+Verifiche finali: **391 mirati / 18,40 s e 1.797 backend / 119,09 s passati**,
+Ruff/fixture/diff, undici replay storici,
+sette replay V9 con versione attesa, body/input identici, coordinate/sezioni/testo
+originale invariati. Failure intermedie e log conservati (placeholder oggetti
+Word, import order, assertion catalogo, mock runner V5 aggiornato a V9 dopo una
+prima modifica alla fixture sbagliata). Frontend invariato/non eseguito.
+Intero DB live e originali invariati in questa serie e dopo il guard. Nessuna
+migrazione o reindicizzazione richiesta. Commit piccoli autorizzati, nessun push.
+
+[Report completo](docs/benchmark-destinazioni-inline-2026-10-12.md),
+[JSON completo](docs/benchmarks/2026-10-12-slot-anchors.json),
+[verifiche finali](docs/benchmarks/2026-10-12-slot-anchors-final-checks.json),
+[registro](relazioni.md). Bundle: **259 file / 2.066.565 byte**, SHA-256
+`414f43a52018547d3e317dc784910b2c0565074684e115a15f347d70abd13fd7`.
+Grezzi anche in `backend/data/compilation-audit/slot-anchors-20261012/`.
+
+**Prossimo punto da discutere:** ruolo/etichetta semantica ereditati lungo il
+blocco, associazione soggetto e applicabilità prima di un adapter scrivibile.
+Il passo sulla posizione ha risultati soddisfacenti, non chiude la completezza
+né il problema delle citazioni semanticamente deboli. Conservare baseline/gate.
 
 ## Tre bandi reali — 12 ottobre 2026, recupero utile ma affidabilità insufficiente
 

@@ -1134,3 +1134,90 @@ e una assertion storica sulla versione catalogo 3 aggiornata a 4; nessuna
 regola di isolamento indebolita. 47 test contesto/slot passati, undicesimo replay
 Labirinto storico identico. Frontend invariato/non eseguito. Codice pronto
 al congelamento per le sette acquisizioni preregistrate.
+
+## 12 ottobre 2026 — destinazioni V9, tutte le sette acquisizioni
+
+Protocollo precedente eseguito senza modifiche applicative durante la serie:
+`d86953b`, deepseek-flash/thinking low, seriale, timeout 300 s, una chiamata
+per documento/prova, nessun retry. Minervino/Catanzaro: stessi 17 SOURCE congelati
+(13 Company/4 General); Labirinto: sette fonti V1, gold congelato fuori dal prompt.
+Nessun sorteggio: due regressioni mirate, controllo Catanzaro concordato.
+
+| Ordine | Caso/prova | Record | Grounded senza condizioni (incl. NA) | Valori conditional | Omissioni | Secondi AI | Token |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 1 | Minervino 1 | 14 | 0 | 9 | 253 | 104,61 | 70.335 |
+| 2 | Labirinto 1 | 21 | 13 | 6 | 34 | 58,55 | 30.814 |
+| 3 | Minervino 2 | 11 | 0 | 11 | 256 | 69,46 | 60.822 |
+| 4 | Labirinto 2 | 21 | 13 | 6 | 34 | 57,92 | 30.712 |
+| 5 | Minervino 3 | 11 | 0 | 9 | 256 | 110,31 | 70.731 |
+| 6 | Labirinto 3 | 21 | 13 | 6 | 34 | 49,63 | 28.824 |
+| 7 | Catanzaro 1 | 7 | 7 | 0 | 300 | 54,54 | 75.894 |
+
+Tutte complete HTTP 200/stop; zero timeout, zero nuovi tentativi selettivi.
+106 record: 89 ipotesi di valore con grounding SOURCE (42 senza condizioni +47
+conditional), quattro NA locali, sei review alternative e sette proposte
+personali bloccate. Zero RESOLVED, sessioni, USER o scritture DOCX.
+505,02 s AI sommati e 368.132 token osservati, non durata E2E. Input più grande
+(Minervino 45.964 vs39.792, Labirinto 16.623 vs16.249, Catanzaro 65.657 vs64.485).
+Nessun risparmio input o miglioramento causale di latenza dimostrato: cache,
+output/ragionamento/copertura differenti. Nessuna spesa monetaria completa stimata.
+
+Minervino: `p42.s0` provincia BA, `s1` via Giovanni Amendola, `s2` civico 172/C,
+`s3` telefono, `s4` e-mail, `s5` PEC nelle destinazioni corrette. Sei/tre/sei
+proposte nella riga: seconda prova omette provincia/via/civico, ma tutti i tre
+recapiti corretti in 3/3. Nessuno slittamento osservato; vecchia prova 2 ne aveva
+tre, vecchia seriale 4 già corretta. Non è una garanzia per ogni futura chiamata.
+Due proposte indirizzo completo in `p41.s1` richiedono revisione di granularità.
+Sette proposte personali bloccate dai gate invariati, direttore omesso in prova 2.
+
+Failure semantica residua acquisita: `p16.s0` prova 2 propone correttamente
+l'e-mail ordinaria, ma cita `[[p16.s0]] P.E.C.` (label dello spazio successivo;
+label e-mail nel paragrafo precedente). Marker corretto non implica proprietà
+correttamente dimostrata dalla quote isolata. Review obbligatoria mantenuta,
+nessuna correzione durante il benchmark o promozione scrivibile.
+
+Labirinto: 18/22 target letterali valore/SOURCE in 3/3 (ultima V8:17/22), cinque
+dati societari conservati, direttore/qualifica/ordine/5739 distinti in 3/3.
+Separazione ordine/numero osservata senza modificare la logica dell'albo.
+Recapiti alternativi e polizze incompatibili conservati senza scelta; quattro
+checkbox omesse, firmatario/data non documentati non inventati. Nessun gold
+modificato. 13 grounded =12 valori +1 NA locale, sei conditional e due review.
+
+Catanzaro: operatore Mapi Ingegneria S.r.l., forma Societa a responsabilita
+limitata, sede Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia, CF/PIVA
+IT01234567890 presenti con SOURCE, senza USER. Sei valori più NA sede operativa.
+Cellulare + Telefono solo parziale (telefono disponibile, cellulare no);
+ramo ingegneria/direttore omesso, copertura inferiore ai controlli precedenti.
+Nessuna accuratezza % per documenti reali senza gold.
+
+Controllo finale del contratto: il validator storico accetta V2–V8 per replay;
+il runner attivo ora impone expected_version=9 per impedire di evitare il nuovo
+gate restituendo il vecchio formato. Aggiunto dopo le sette chiamate, mai durante:
+raw tutti V9, sette rivalidazioni esatte e body/input ricostruiti identici,
+zero chiamate aggiuntive. Il mock del test runner era V5 (inizialmente descritto
+erroneamente come V8 nell'aggiornamento): aggiornato a V9 dopo una prima patch
+sull'occorrenza sbagliata. Due suite intermedie 1.796 passati/una failure, log
+conservati; la regressione di replay storico resta V5. **391 mirati / 18,40 s e 1.797 backend / 119,09 s passati**.
+Ruff/fixture/diff, 11 replay storici, sette guardati, struttura e fingerprint DB
+passati. Frontend invariato/non eseguito; nessuna migrazione/reindicizzazione.
+
+Originali e **intero DB live** invariati in questa serie (diversamente dalla
+precedente, con reload live osservato). Nessuna manipolazione manuale dei dati.
+Helper locali .py.txt, nessun server live attivo durante le acquisizioni.
+Un controfattuale offline applica i marker delle label realmente citate alle
+tre vecchie proposte slittate e ottiene tre rifiuti: non nuova risposta AI,
+non riparazione automatica né metrica semantica.
+
+[Report](docs/benchmark-destinazioni-inline-2026-10-12.md),
+[JSON completo](docs/benchmarks/2026-10-12-slot-anchors.json),
+[verifiche finali](docs/benchmarks/2026-10-12-slot-anchors-final-checks.json).
+Bundle: **259 file / 2.066.565 byte**, SHA-256
+`414f43a52018547d3e317dc784910b2c0565074684e115a15f347d70abd13fd7`. Grezzi anche in
+`backend/data/compilation-audit/slot-anchors-20261012/`; tutti i 106 record annotati,
+proposte omesse incluse nell'inventario, input/output/code/usage e failure salvati.
+
+Primo passo sulla posizione concluso con risultato soddisfacente; non è ancora
+compilazione completa affidabile. Prossimo punto **da discutere**: conservare
+ruoli/etichette lungo il blocco, applicabilità e soggetto prima di un adapter
+scrivibile. Una citazione al marker non sostituisce entailment semantico.
+Commit piccoli autorizzati, nessun push.

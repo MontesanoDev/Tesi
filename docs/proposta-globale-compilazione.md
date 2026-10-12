@@ -1,36 +1,35 @@
 # Proposta globale sperimentale — 11 ottobre 2026
 
-## Passo in verifica del 12 ottobre: destinazioni inline V9
+## Destinazioni inline V9, passo misurato del 12 ottobre
 
-Catalogo V4: espone `text_with_fields` già prodotto dal parser strutturale,
-con marker `[[candidate_id]]` al posto dei placeholder, e `slot_context` con
-massimo 120 caratteri prima/dopo, fermandosi ai placeholder adiacenti. Il testo
-originale, gerarchia e struttura restano disponibili. Nessuna label semantica
-inventata dal backend, nessuna modifica a parser/renderer/V1 o RAG.
+Catalogo V4 espone `text_with_fields` già prodotto dal parser e `slot_context`
+con massimo 120 caratteri prima/dopo fra placeholder adiacenti. Originale,
+gerarchia e coordinate restano disponibili. Contratto V9 richiede una quote
+contigua con il solo marker del candidate inline più testo leggibile. Il backend
+ripristina il placeholder autoritativo del parser (anche con oggetti Word non
+testuali), poi applica i gate FORM/SOURCE esistenti e registra `destination_check`.
+Celle vuote senza range/checkbox mantengono i controlli precedenti; condizioni
+e binding citano il testo originale. Nessuna modifica a parser generale,
+renderer/V1/chat/RAG o fonti. Nessun hardcoding di campi/documenti/azienda.
 
-Contratto V9: per un candidate inline `field.form.quote` deve essere un estratto
-contiguo della proiezione con esattamente il suo marker e testo locale leggibile.
-Il backend ripristina il placeholder del parser e applica i gate FORM/SOURCE
-esistenti, registrando `destination_check`. Non ricalcola gli offset sul testo
-visibile: il parser conta anche oggetti non testuali. Celle vuote senza range e
-checkbox conservano gli ancoraggi precedenti. Condizioni/binding citano il testo
-originale. Etichetta prima o dopo lo spazio supportata, nessuna parola di dominio.
+Il runner impone l'output V9 richiesto; V2–V8 rimangono disponibili per replay.
+Una chiamata AI, nessun nuovo batch/reviewer/retry. La posizione della quote
+**non è verifica semantica** della proprietà: revisione ancora necessaria,
+zero RESOLVED/scritture. Il gate non approva applicabilità sconosciute.
 
-Questo verifica la posizione della citazione, **non entailment semantico** di
-proprietà/valore. Citare correttamente «n. [[ID]]» non prova da solo che il valore
-sia un civico. Revisione semantica ancora obbligatoria, zero RESOLVED/scritture.
-V2–V8 mantengono la validazione storica; dieci acquisizioni precedenti rivalidate
-con esito identico. Una sola chiamata AI, nessun nuovo batch/reviewer/retry.
+[Sette prove reali e limiti](benchmark-destinazioni-inline-2026-10-12.md):
+Minervino sei/tre/sei spazi corretti, recapiti corretti 3/3, nessuno slittamento
+osservato ma copertura variabile. Labirinto 18/22 corrispondenze letterali in 3/3;
+Catanzaro conserva i cinque dati societari ma omette il ramo ingegneria.
+Un caso di quote semanticamente debole a cavallo di paragrafi rimane review-only.
+368.132 token/505,02 s AI sommati, input più grande, nessun risparmio input.
+**391 mirati / 18,40 s e 1.797 backend / 119,09 s passati**; Ruff/fixture/diff/replay/integrità passati.
+Prossimo punto da discutere: eredità di ruolo/etichetta e verifica applicabilità,
+prima dell'adapter e dell'integrazione nella chat.
 
-340 test mirati e 1.791 backend passati; prove reali da completare. Protocollo:
-tre Minervino, tre Labirinto congelato, un Catanzaro per i cinque dati societari,
-in serie, stessa configurazione thinking low e timeout 300 s. Fonti/gold invariati,
-nessun gold nel prompt, conservare anche omissioni/rifiuti/fallimenti. Criteri:
-assenza dello slittamento osservato, copertura degli slot senza mascherare errori
-con omissioni, dati societari conservati e provenance invariata. Non dimostra
-ancora completezza/applicabilità del documento. Esiti nel registro e STATUS.md.
+## Storia precedente V8, conservata per confronto
 
-**Verifica successiva del 12 ottobre, motore invariato:**
+**Verifica del 12 ottobre precedente al passo V9, motore V8 invariato:**
 [dodici prove su tre bandi reali](benchmark-tre-bandi-2026-10-12.md), dieci
 risposte complete/due timeout. Dati societari ripetuti a Catanzaro/Trapani,
 copertura variabile e tre destinazioni sbagliate a Minervino pur con SOURCE
@@ -51,7 +50,7 @@ Nuova acquisizione: nove conditional, di cui gli otto dati del ramo ingegneria,
 39.318 token/53,5899 s; nessun RESOLVED/scrittura. Il benchmark fisso conserva
 limiti concreti (ordine unito al numero e checkbox omesse), riportati nel report.
 
-## Contratto corrente 8: dato proposto e applicabilità distinti
+## Contratto precedente 8: dato proposto e applicabilità distinti
 
 Correzione circoscritta del caso Trapani: il prompt V7 permetteva solo valori
 con condizioni verificabili, ma operator=semantic rimane sempre unknown nel
