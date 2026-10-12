@@ -1,0 +1,24 @@
+{
+  "archive": "docs/benchmarks/2026-10-12-blank-draft-consent-audit.tar.gz",
+  "sha256": "e5f574f4832997f6fb543164c0e75f0218c128eda7d5ce41c0b4829e2bd7da5b",
+  "files": 142,
+  "bytes": 1816941,
+  "byte_verified": true,
+  "contains_database_or_key": false,
+  "actual_provider_secret_scan_passed": true,
+  "software": {
+    "backend_targeted": 71,
+    "backend_full": 1894,
+    "frontend": 102,
+    "browser": 2,
+    "ruff": true,
+    "lint": true,
+    "build": true,
+    "diff_check": true
+  },
+  "real": {
+    "live_session_unchanged": true,
+    "original_unchanged": true
+  },
+  "private_runtime_removed": true
+}

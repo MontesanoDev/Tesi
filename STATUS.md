@@ -26,12 +26,28 @@ visibile invece del riepilogo obsoleto. FTS5/Qdrant coperti dai test parametrizz
 nessuna modifica al retrieval. Prime asserzioni corrette per rispettare il banner
 del renderer, il formato cell_id del report e lo scope della fixture condizionale.
 
-Prova DeepSeek reale prevista sul codice congelato: replay del checkpoint
-persistito e del dialogo iniziale archiviato, su SQLite/storage privati, senza
-nuova analisi globale né modifiche alla sessione live. Acquisizioni in
-backend/data/compilation-audit/blank-consent-20261012/; esiti da aggiungere dopo
-l'esecuzione. Richiesti dall'utente commit e push. Prossimo punto: completare la
-verifica reale, poi tornare alla revisione semantica dei campi ancora aperti.
+Prova DeepSeek reale conclusa su **fb30ff5**, senza cambiare codice durante
+la serie: replay del checkpoint persistito «si» e «siii» -> GENERATED, copia
+senza valori in 2,22/2,18 s. Dal dialogo iniziale archiviato: «lascia in bianco»
+-> «si» -> copia senza valori /5,17 s; conferma esplicita delle due condizioni
+-> «si» -> **13/13 valori SOURCE materializzati** /5,03 s, inclusi i cinque
+societari e 8421. Zero valori fattuali USER. Sei routing +2 sintesi /29.205
+token, nessuna nuova analisi globale o retry automatico: non è un benchmark
+di copertura o della latenza di una compilazione nuova. SQLite/storage privati;
+sessione live e originale invariati. Harness iniziale fallito per PYTHONPATH
+prima delle chiamate, log conservato. Copie private rimosse dopo backup
+verificato dei grezzi senza DB/chiavi: 142 file /1.816.941 byte, SHA-256
+e5f574f4832997f6fb543164c0e75f0218c128eda7d5ce41c0b4829e2bd7da5b.
+
+[Report](docs/test-consenso-bozza-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-blank-draft-consent.json),
+[bundle](docs/benchmarks/2026-10-12-blank-draft-consent-audit.tar.gz),
+[verifiche finali](docs/benchmarks/2026-10-12-blank-draft-consent-final-checks.json).
+Grezzi in backend/data/compilation-audit/blank-consent-20261012/.
+Non occorre rifare l'analisi delle chat già in attesa. Richiesti dall'utente
+commit e push. Limiti invariati: troppe condizioni ancora da confermare,
+copertura incompleta, checkbox e correzioni libere. Prossimo punto: revisione
+semantica dei campi ancora aperti; comandi UI da discutere separatamente.
 
 ## Report tecnico rimosso dalle risposte chat — 12 ottobre 2026
 

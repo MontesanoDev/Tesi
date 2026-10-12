@@ -1,0 +1,267 @@
+{
+  "head": "fb30ff5",
+  "method": "Real DeepSeek checkpoint replay; no new global analysis. Archived dialogue restored in private fixtures for skip/confirm branches.",
+  "cases": [
+    {
+      "case": "current-si",
+      "status": "GENERATED",
+      "version": 7,
+      "planner_calls": 1,
+      "seconds": 2.218330261999654,
+      "written": 0,
+      "user_factual_values": 0,
+      "answers": {
+        "condition:c_operatore": {
+          "action": "SKIP",
+          "user_quote": "lascia in bianco",
+          "provenance": "USER",
+          "label": "Il soggetto partecipante/sottoscrittore non e' determinato: i dati dell'operatore sono proposti solo se il concorrente e' Mapi Ingegneria S.r.l."
+        },
+        "condition:c_sec_d": {
+          "action": "SKIP",
+          "user_quote": "lascia in bianco",
+          "provenance": "USER",
+          "label": "La sezione si applica solo se l'operatore e' una societa' di ingegneria e partecipa alla procedura."
+        }
+      },
+      "materialized_cells": [],
+      "message": "Ho preparato una copia del modulo senza inserire alcun valore. I campi irrisolti e quelli con condizioni non confermate restano vuoti. Puoi scaricarla e controllarla.",
+      "calls": [
+        {
+          "type": "routing",
+          "model": "deepseek-flash",
+          "intent": "generate",
+          "usage": {
+            "prompt_tokens": 3803,
+            "completion_tokens": 41,
+            "total_tokens": 3844,
+            "prompt_tokens_details": {
+              "cached_tokens": 2432
+            },
+            "prompt_cache_hit_tokens": 2432,
+            "prompt_cache_miss_tokens": 1371
+          },
+          "seconds": 1.0846251030015992
+        }
+      ]
+    },
+    {
+      "case": "current-siii",
+      "status": "GENERATED",
+      "version": 7,
+      "planner_calls": 1,
+      "seconds": 2.1773508519981988,
+      "written": 0,
+      "user_factual_values": 0,
+      "answers": {
+        "condition:c_operatore": {
+          "action": "SKIP",
+          "user_quote": "lascia in bianco",
+          "provenance": "USER",
+          "label": "Il soggetto partecipante/sottoscrittore non e' determinato: i dati dell'operatore sono proposti solo se il concorrente e' Mapi Ingegneria S.r.l."
+        },
+        "condition:c_sec_d": {
+          "action": "SKIP",
+          "user_quote": "lascia in bianco",
+          "provenance": "USER",
+          "label": "La sezione si applica solo se l'operatore e' una societa' di ingegneria e partecipa alla procedura."
+        }
+      },
+      "materialized_cells": [],
+      "message": "Ho preparato una copia del modulo senza inserire alcun valore. I campi irrisolti e quelli con condizioni non confermate restano vuoti. Puoi scaricarla e controllarla.",
+      "calls": [
+        {
+          "type": "routing",
+          "model": "deepseek-flash",
+          "intent": "generate",
+          "usage": {
+            "prompt_tokens": 3804,
+            "completion_tokens": 41,
+            "total_tokens": 3845,
+            "prompt_tokens_details": {
+              "cached_tokens": 3584
+            },
+            "prompt_cache_hit_tokens": 3584,
+            "prompt_cache_miss_tokens": 220
+          },
+          "seconds": 1.1603666270020767
+        }
+      ]
+    },
+    {
+      "case": "skip-si",
+      "status": "GENERATED",
+      "version": 10,
+      "planner_calls": 2,
+      "seconds": 5.171017634002055,
+      "written": 0,
+      "user_factual_values": 0,
+      "answers": {
+        "condition:c_operatore": {
+          "action": "SKIP",
+          "user_quote": "lascia in bianco",
+          "provenance": "USER",
+          "label": "Il soggetto partecipante/sottoscrittore non e' determinato: i dati dell'operatore sono proposti solo se il concorrente e' Mapi Ingegneria S.r.l."
+        },
+        "condition:c_sec_d": {
+          "action": "SKIP",
+          "user_quote": "lascia in bianco",
+          "provenance": "USER",
+          "label": "La sezione si applica solo se l'operatore e' una societa' di ingegneria e partecipa alla procedura."
+        }
+      },
+      "materialized_cells": [],
+      "message": "Ho preparato una copia del modulo senza inserire alcun valore. I campi irrisolti e quelli con condizioni non confermate restano vuoti. Puoi scaricarla e controllarla.",
+      "calls": [
+        {
+          "type": "routing",
+          "model": "deepseek-flash",
+          "intent": "answer_fields",
+          "usage": {
+            "prompt_tokens": 3921,
+            "completion_tokens": 120,
+            "total_tokens": 4041,
+            "prompt_tokens_details": {
+              "cached_tokens": 3712
+            },
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 209
+          },
+          "seconds": 1.195389864002209
+        },
+        {
+          "type": "routing",
+          "model": "deepseek-flash",
+          "intent": "generate",
+          "usage": {
+            "prompt_tokens": 3727,
+            "completion_tokens": 41,
+            "total_tokens": 3768,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 783
+          },
+          "seconds": 0.9969582949997857
+        },
+        {
+          "type": "narration",
+          "model": "deepseek-flash",
+          "usage": {
+            "prompt_tokens": 2755,
+            "completion_tokens": 210,
+            "total_tokens": 2965,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 195
+          },
+          "seconds": 1.7614319250023982,
+          "http_calls": 1
+        }
+      ]
+    },
+    {
+      "case": "confirm-si",
+      "status": "GENERATED",
+      "version": 10,
+      "planner_calls": 2,
+      "seconds": 5.025165633000142,
+      "written": 13,
+      "user_factual_values": 0,
+      "answers": {
+        "condition:c_operatore": {
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo entrambe le condizioni indicate.",
+          "provenance": "USER",
+          "label": "Il soggetto partecipante/sottoscrittore non e' determinato: i dati dell'operatore sono proposti solo se il concorrente e' Mapi Ingegneria S.r.l.",
+          "applies": true
+        },
+        "condition:c_sec_d": {
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo entrambe le condizioni indicate.",
+          "provenance": "USER",
+          "label": "La sezione si applica solo se l'operatore e' una societa' di ingegneria e partecipa alla procedura.",
+          "applies": true
+        }
+      },
+      "materialized_cells": [
+        "t0.r5.c1",
+        "t0.r6.c1",
+        "t0.r7.c1",
+        "t0.r9.c1",
+        "t0.r10.c1",
+        "t0.r11.c1",
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "message": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+      "calls": [
+        {
+          "type": "routing",
+          "model": "deepseek-flash",
+          "intent": "answer_fields",
+          "usage": {
+            "prompt_tokens": 3924,
+            "completion_tokens": 169,
+            "total_tokens": 4093,
+            "prompt_tokens_details": {
+              "cached_tokens": 3712
+            },
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 212
+          },
+          "seconds": 1.4795469470009266
+        },
+        {
+          "type": "routing",
+          "model": "deepseek-flash",
+          "intent": "generate",
+          "usage": {
+            "prompt_tokens": 3693,
+            "completion_tokens": 41,
+            "total_tokens": 3734,
+            "prompt_tokens_details": {
+              "cached_tokens": 2432
+            },
+            "prompt_cache_hit_tokens": 2432,
+            "prompt_cache_miss_tokens": 1261
+          },
+          "seconds": 0.8109570880005776
+        },
+        {
+          "type": "narration",
+          "model": "deepseek-flash",
+          "usage": {
+            "prompt_tokens": 2775,
+            "completion_tokens": 140,
+            "total_tokens": 2915,
+            "prompt_tokens_details": {
+              "cached_tokens": 1280
+            },
+            "prompt_cache_hit_tokens": 1280,
+            "prompt_cache_miss_tokens": 1495
+          },
+          "seconds": 1.533128539002064,
+          "http_calls": 1
+        }
+      ]
+    }
+  ],
+  "planner_calls": 6,
+  "narration_calls": 2,
+  "total_tokens": 29205,
+  "new_global_analysis_calls": 0,
+  "automatic_retries": 0,
+  "integrity": {
+    "live_session_unchanged": true,
+    "original_unchanged": true
+  }
+}

@@ -1501,3 +1501,45 @@ con l'utente prima di estendere correzioni e scrittura checkbox.
 Bundle verificato: **193 file /1,039,762 byte**, SHA-256
 `e09e888dd2786cd56e1c88d4be24578043fd1314d039822f0a41e29775dba709`. Copie temporanee con DB e chiavi rimosse
 dopo backup/verifica; grezzi non sensibili conservati anche in locale.
+
+## 12 ottobre 2026 — consenso alla bozza dopo rinvio, regressione reale
+
+Priorità dell'utente: «lascia in bianco» -> «si»/«siii» ripetevano la proposta
+di generazione. Osservazione read-only: il planner raggiungeva già generate,
+ma tutte le proposte dipendevano da condizioni rinviate, quindi zero valori
+esportabili. Il backend bloccava la selezione vuota; la UI mostrava il vecchio
+riepilogo al posto del vero motivo di blocco. Raw del vecchio planner non
+acquisito, diagnosi basata su stato e comandi effettivamente persistiti.
+
+Codice congelato **fb30ff5**: risposta clarify visibile; selezione vuota
+consentita soltanto esplicitamente, con allow_empty/allow_unresolved e
+consenso USER, senza confermare condizioni né promuovere fatti. Il dialogo
+dichiara quando propone una copia senza valori. RAG/parser/renderer invariati.
+
+DeepSeek reale su quattro copie private dello stesso checkpoint/audit:
+«si» -> copia senza valori /2,22 s; «siii» -> stessa /2,18 s;
+dialogo iniziale archiviato + «lascia in bianco» -> «si» -> stessa /5,17 s;
+dialogo iniziale + conferma delle due condizioni -> «si» -> **13/13 scritture
+SOURCE corrette** /5,03 s. Incluse denominazione, forma giuridica, sede, CF,
+PIVA e 8421. Zero valori fattuali USER, nessun nuovo valore nei casi vuoti.
+Sei routing +2 sintesi, **29.205 token**, zero retry automatici. Nessuna nuova
+analisi globale: misura del checkpoint, non di copertura/qualità completa o
+riduzione causale della latenza iniziale. Nessun gold/fixture V1 modificato.
+
+Software: **71 backend mirati**, **1.894 completi /141,32 s**, **102 frontend**,
+**2 browser desktop/mobile**, Ruff/lint/build/diff check passati. Provider
+simulati per software; reali soltanto nella serie dichiarata sopra. Asserzioni
+iniziali corrette per banner, cell_id e scope della fixture; harness reale
+iniziale senza PYTHONPATH fallito prima delle chiamate, log conservato.
+
+Sessione live/state_json e originale invariati. Copie private rimosse dopo
+backup verificato, grezzi in backend/data/compilation-audit/blank-consent-20261012/.
+[Report](docs/test-consenso-bozza-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-blank-draft-consent.json),
+[bundle](docs/benchmarks/2026-10-12-blank-draft-consent-audit.tar.gz).
+Restano conferme eccessive, copertura incompleta, checkbox e correzioni libere.
+
+Bundle del consenso: **142 file /1.816.941 byte**, verificato byte-per-byte e
+senza chiave reale, database o runtime. SHA-256
+`e5f574f4832997f6fb543164c0e75f0218c128eda7d5ce41c0b4829e2bd7da5b`.
+[Verifiche finali](docs/benchmarks/2026-10-12-blank-draft-consent-final-checks.json).

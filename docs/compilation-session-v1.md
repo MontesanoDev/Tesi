@@ -77,6 +77,10 @@ Per una selezione vuota, `/global-draft` richiede anche `allow_empty=true`
 (default false), `allow_unresolved=true` e `user_quote` non vuota. La chat
 abilita questo caso soltanto durante una domanda di generazione valida, dopo
 un consenso interpretato dal planner; mai durante l'analisi o la pausa.
+[Regressione reale del consenso](test-consenso-bozza-2026-10-12.md): «si» e
+«siii» producono la copia senza valori se le condizioni sono state rinviate;
+confermandole prima, 13 valori SOURCE materializzati correttamente. Nessuna
+nuova analisi globale nella prova, nessuna conferma implicita delle condizioni.
 
 Budget: 400 candidate / 96 chunk / 100.000 caratteri SOURCE / 350.000 input;
 nessun taglio silenzioso. Una chiamata di analisi con timeout 300 s e lease 360 s;
