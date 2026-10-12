@@ -48,6 +48,14 @@ caselle, premere pulsanti, leggere una checklist o usare un editor.
 message deve essere conciso, circa 100 parole. Non attribuire a una persona ruoli
 o relazioni non attestati: usa required_role_context quando presente. Un nome
 in una sezione professionale non identifica automaticamente chi sottoscrive.
+role_contexts conserva soggetto, ruolo richiesto dal FORM e prove SOURCE della
+relazione; role_context_slot collega ogni proposta SOLO al proprio contesto.
+Valuta quella destinazione: l'assenza di prova per un altro ruolo nel documento
+non invalida un ruolo supportato. Il grounding letterale non certifica un incarico
+attuale: confronta anche condizioni temporali, cessazioni e riserve nelle prove
+del ruolo. Se il FORM richiede l'attuale incaricato e la SOURCE ne attesta soltanto
+un incarico cessato, sospendi le proposte coinvolte. Non trasferire ruoli o numeri
+fra soggetti diversi. Una prova troncata non giustifica la parte non disponibile.
 Non dire che mancano tutti i dati di una sezione se hai proposte per quella
 sezione; distingue sempre dati trovati e posizioni ancora non valutate.
 Puoi porre al massimo tre domande, scegliendole dal pool di slot del backend:
@@ -112,17 +120,62 @@ def question_pool(data):
     return [{**item, "slot": i + 1} for i, item in enumerate(pool[:MAX_POOL])]
 
 
+def _role_context(audit, field):
+    """Serialize only the role linkage already grounded for this field's fact.
+
+    No new attribution or validation: the narrator can still reject the link.
+    Facts sharing a binding and subject share context, never across subjects.
+    """
+    checked = field.get("subject_binding") or {}
+    binding_id = checked.get("binding_id")
+    binding = audit.get("bindings", {}).get(binding_id) or {}
+    fact = audit.get("facts", {}).get(field.get("fact_id") or field.get("proposed_fact_id")) or {}
+    if (checked.get("result") != "literal_match" or checked.get("validation_errors")
+            or binding.get("validation") != "GROUNDED_PROPOSAL"
+            or binding.get("validation_errors") or fact.get("validation_errors")
+            or fact.get("validation") != "GROUNDED_PROPOSAL"):
+        return None
+    evidence = [e for e in checked.get("source_evidence", [])
+                if e.get("role") == "source" and e.get("category") != "general"][:2]
+    if not evidence:
+        return None
+    key = (binding_id, fact.get("subject", ""), fact.get("entity", ""))
+    return key, {"subject": fact.get("subject", "")[:200],
+                 "entity": fact.get("entity", "")[:100],
+                 "required_role": binding.get("required_role", "")[:200],
+                 "source_role": binding.get("source_role", "")[:200],
+                 "form_quote": checked.get("form_evidence", {}).get("quote", "")[:600],
+                 "grounding": "literal_match", "semantic_review_required": True,
+                 "sources": [{"name": e["source_name"][:150], "quote": e["quote"][:800],
+                              "truncated": len(e["quote"]) > 800, "role": e["role"],
+                              "scope": e["scope"], "category": e.get("category")}
+                             for e in evidence]}
+
+
 def model_context(data, pool):
     from app.compilation_global_sessions import review_fields
 
     dialogue = data.get("dialogue") or {}
     answers = dialogue.get("answers", {})
-    audited = {f["candidate_id"]: f for f in (data.get("audit") or {}).get("fields", [])}
+    audit = data.get("audit") or {}
+    audited = {f["candidate_id"]: f for f in audit.get("fields", [])}
     proposals = [f for f in review_fields(data) if f["selectable"] and not any(
         answers.get("condition:" + c, {}).get("applies") is False
         for c in f["conditions"])][:40]
-    return {"document_values": [
+    role_contexts, role_slots, proposal_roles = [], {}, {}
+    for i, proposal in enumerate(proposals):
+        role = _role_context(audit, audited[proposal["candidate_id"]])
+        if role is None:
+            continue
+        key, context = role
+        if key not in role_slots:
+            slot = len(role_contexts) + 1
+            role_slots[key] = slot
+            role_contexts.append({"slot": slot, **context})
+        proposal_roles[i + 1] = role_slots[key]
+    return {"role_contexts": role_contexts, "document_values": [
         {"proposal_slot": i + 1, "label": f["label"][:200], "value": f["value"][:500],
+         "role_context_slot": proposal_roles.get(i + 1),
          "form_context": f["form_context"][:1200], "form_quote": f["form_quote"][:500],
          "required_role_context": audited[f["candidate_id"]].get("subject_binding", {}).get(
              "form_evidence", {}).get("quote", "")[:600],
