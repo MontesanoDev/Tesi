@@ -61,3 +61,11 @@ deterministica. Task generico: riferimenti univoci alla domanda attiva, ambito
 esplicito del gruppo, eccezioni locali; una conferma non inventa valori VALUE.
 **72 test software mirati /7,39 s**, provider simulati per i test di stato,
 Ruff file modificati superato. Non misurano DeepSeek; la serie AFTER segue.
+
+Prima serie AFTER su c6bd0ff: **15/16**. Il caso reale è corretto, entrambi
+SUPPORTED e aggiornamenti USER distinti; i casi già conformi restano conformi.
+Rimane il gruppo misto «Confermo tutti e tre i punti»: respinti correttamente
+email/data inventati, ma erroneamente anche la conferma della condizione.
+Precisata soltanto l'indipendenza delle condizioni booleane dalle richieste
+di valori assenti nello stesso gruppo. Nuova serie completa AFTER-2 con lo
+stesso gold congelato, nessuna ripetizione selettiva; AFTER precedente conservata.

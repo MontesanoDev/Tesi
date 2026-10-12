@@ -79,6 +79,10 @@ distinte resta AMBIGUOUS: non distribuirlo arbitrariamente a tutti gli slot.
 La conferma generale risponde alle condizioni, ma NON fornisce i dati mancanti
 chiesti dagli slot VALUE: per questi serve il valore pertinente effettivamente
 espresso. Non accettare valori inventati, presi da altri slot o dal contesto.
+In un gruppo misto, l'ambito esplicito di tutti i punti include le condizioni
+booleane, anche se le altre domande richiedono valori ancora assenti. L'assenza
+di quei valori non rende ambiguo l'assenso alle condizioni del medesimo gruppo:
+valuta separatamente ciascuna proposta, senza respingere l'intero gruppo.
 Non scegliere ID, cambiare valori, recuperare fatti o giudicare altri intent.
 Le proposte di un gruppo sono indipendenti: un errore non invalida le altre.
 Restituisci solo JSON secondo SCHEMA OUTPUT, un check per ciascuna proposta.
