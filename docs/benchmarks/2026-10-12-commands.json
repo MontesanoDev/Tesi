@@ -1,0 +1,5702 @@
+{
+  "summary": {
+    "before": {
+      "head": "b468ea52075c9e3c8225e20abb96d725939da106",
+      "cases": 28,
+      "passed": 24,
+      "failed_checks": {
+        "intent": 4,
+        "actions": 1
+      },
+      "calls": 31,
+      "routing_calls": 28,
+      "scope_check_calls": 3,
+      "retries": 0,
+      "total_tokens": 96019,
+      "seconds": 35.53566152299027,
+      "generated": 1,
+      "fixture_original_unchanged": true,
+      "live_db_writes": 0
+    },
+    "after": {
+      "head": "802c483677a5b7f57126c3c34a61b886f4b244e2",
+      "cases": 28,
+      "passed": 28,
+      "failed_checks": {},
+      "calls": 30,
+      "routing_calls": 28,
+      "scope_check_calls": 2,
+      "retries": 0,
+      "total_tokens": 105035,
+      "seconds": 35.78063196899893,
+      "generated": 1,
+      "fixture_original_unchanged": true,
+      "live_db_writes": 0
+    },
+    "dialogue-after": {
+      "head": "802c483677a5b7f57126c3c34a61b886f4b244e2",
+      "cases": 43,
+      "passed": 43,
+      "failed_checks": {},
+      "calls": 56,
+      "routing_calls": 44,
+      "scope_check_calls": 12,
+      "retries": 1,
+      "total_tokens": 173265,
+      "seconds": 66.76837333496951,
+      "generated": 5,
+      "fixture_original_unchanged": true,
+      "live_db_writes": 0
+    }
+  },
+  "verification": {
+    "before": {
+      "cases": 28,
+      "passed": 24,
+      "failed_cases": [
+        "export-current",
+        "export-mixed",
+        "export-blank",
+        "local-blank-not-false"
+      ],
+      "model_response_names": {
+        "deepseek-flash": 31
+      },
+      "all_final_schema_valid": true,
+      "backend_exceptions": 0,
+      "retries": 0,
+      "invalid_raw": [],
+      "user_slot_mutations": 10,
+      "user_value_mutations": 2,
+      "turn_seconds": 35.53566152299027,
+      "median_turn_seconds": 1.0639039295019757,
+      "max_turn_seconds": 2.846285658000852,
+      "all": {
+        "calls": 31,
+        "seconds": 35.01770900097472,
+        "input_tokens": 93711,
+        "output_tokens": 2308,
+        "total_tokens": 96019
+      },
+      "routing": {
+        "calls": 28,
+        "seconds": 32.03725258697523,
+        "input_tokens": 90937,
+        "output_tokens": 2148,
+        "total_tokens": 93085
+      },
+      "scope_check": {
+        "calls": 3,
+        "seconds": 2.980456413999491,
+        "input_tokens": 2774,
+        "output_tokens": 160,
+        "total_tokens": 2934
+      },
+      "materialization": [
+        {
+          "case": "consent-checkpoint",
+          "written": 1,
+          "actual_cells": [
+            "t0.r1.c1"
+          ],
+          "original_unchanged": true
+        }
+      ],
+      "source_promotions": 0
+    },
+    "after": {
+      "cases": 28,
+      "passed": 28,
+      "failed_cases": [],
+      "model_response_names": {
+        "deepseek-flash": 30
+      },
+      "all_final_schema_valid": true,
+      "backend_exceptions": 0,
+      "retries": 0,
+      "invalid_raw": [],
+      "user_slot_mutations": 11,
+      "user_value_mutations": 2,
+      "turn_seconds": 35.78063196899893,
+      "median_turn_seconds": 1.1561585005038069,
+      "max_turn_seconds": 2.8603644980030367,
+      "all": {
+        "calls": 30,
+        "seconds": 35.25949367400608,
+        "input_tokens": 102742,
+        "output_tokens": 2293,
+        "total_tokens": 105035
+      },
+      "routing": {
+        "calls": 28,
+        "seconds": 33.10752276500716,
+        "input_tokens": 100821,
+        "output_tokens": 2205,
+        "total_tokens": 103026
+      },
+      "scope_check": {
+        "calls": 2,
+        "seconds": 2.151970908998919,
+        "input_tokens": 1921,
+        "output_tokens": 88,
+        "total_tokens": 2009
+      },
+      "materialization": [
+        {
+          "case": "consent-checkpoint",
+          "written": 1,
+          "actual_cells": [
+            "t0.r1.c1"
+          ],
+          "original_unchanged": true
+        }
+      ],
+      "source_promotions": 0
+    },
+    "dialogue-after": {
+      "cases": 43,
+      "passed": 43,
+      "failed_cases": [],
+      "model_response_names": {
+        "deepseek-flash": 56
+      },
+      "all_final_schema_valid": true,
+      "backend_exceptions": 0,
+      "retries": 1,
+      "invalid_raw": [
+        {
+          "case": "export-no",
+          "stage": "routing",
+          "error": "Non ci sono slot attivi a cui rispondere"
+        }
+      ],
+      "user_slot_mutations": 27,
+      "user_value_mutations": 6,
+      "turn_seconds": 66.76837333496951,
+      "median_turn_seconds": 1.2559768229984911,
+      "max_turn_seconds": 2.837260451997281,
+      "all": {
+        "calls": 56,
+        "seconds": 65.29077123501338,
+        "input_tokens": 168447,
+        "output_tokens": 4818,
+        "total_tokens": 173265
+      },
+      "routing": {
+        "calls": 44,
+        "seconds": 52.61794294601714,
+        "input_tokens": 157644,
+        "output_tokens": 4019,
+        "total_tokens": 161663
+      },
+      "scope_check": {
+        "calls": 12,
+        "seconds": 12.672828288996243,
+        "input_tokens": 10803,
+        "output_tokens": 799,
+        "total_tokens": 11602
+      },
+      "materialization": [
+        {
+          "case": "consent-1",
+          "written": 1,
+          "actual_cells": [
+            "t0.r1.c1"
+          ],
+          "original_unchanged": true
+        },
+        {
+          "case": "consent-2",
+          "written": 1,
+          "actual_cells": [
+            "t0.r1.c1"
+          ],
+          "original_unchanged": true
+        },
+        {
+          "case": "consent-3",
+          "written": 1,
+          "actual_cells": [
+            "t0.r1.c1"
+          ],
+          "original_unchanged": true
+        },
+        {
+          "case": "consent-4",
+          "written": 1,
+          "actual_cells": [
+            "t0.r1.c1"
+          ],
+          "original_unchanged": true
+        },
+        {
+          "case": "empty-consent",
+          "written": 0,
+          "actual_cells": [],
+          "original_unchanged": true
+        }
+      ],
+      "source_promotions": 0
+    },
+    "scope": "Prepared checkpoints, not SOURCE quality or full compilation"
+  },
+  "archive": {
+    "file": "2026-10-12-commands-audit.tar.gz",
+    "file_count": 592,
+    "bytes": 1425816,
+    "sha256": "d47c6280078942bf96475475252d3894788f28270c5e07486d7833f624339566",
+    "verified_byte_for_byte": true,
+    "credentials_scan_passed": true
+  },
+  "previous_dialogue_baseline": {
+    "head": "132bc6a3eff69a9786fe9aacf9c00391360ba018",
+    "cases": 43,
+    "passed": 40,
+    "failed_checks": {
+      "intent": 3,
+      "actions": 1
+    },
+    "calls": 55,
+    "routing_calls": 43,
+    "scope_check_calls": 12,
+    "retries": 0,
+    "total_tokens": 154371,
+    "seconds": 66.1988226500107,
+    "generated": 5,
+    "fixture_original_unchanged": true,
+    "live_db_writes": 0
+  },
+  "cases": {
+    "before": [
+      {
+        "id": "local-point",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia la risposta sulla condizione del firmatario delegato.",
+              "slot": 1,
+              "user_quote": "Questo punto lo possiamo lasciare in sospeso."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "2ea1b9d10d7741a792a47724eed25313",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.3784623379979166,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "local-confirmation",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia la verifica della conferma richiesta.",
+              "slot": 1,
+              "user_quote": "La conferma richiesta la verificheremo più avanti."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "861603bdc4314f23897f7dd198619e55",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.0524385180033278,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "local-next",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia la risposta sul recapito comunicazioni.",
+              "slot": 1,
+              "user_quote": "Per questa voce preferisco passare alla successiva."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "aae4dfa9e67f41e6927ba226b6ff40cd",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.0500140250005643,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-local-contact",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "",
+              "slot": 2,
+              "user_quote": "Per il recapito rimandiamo"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "2": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "35019fb90f6649cdb3b158626f6bdeb8",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 0.924053519993322,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-skip-and-value",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia la data di abilitazione.",
+              "slot": 3,
+              "user_quote": "Saltiamo soltanto la data"
+            },
+            {
+              "action": "VALUE",
+              "value": "contatti@aurora.example",
+              "normalized_value": null,
+              "rationale": "Recapito comunicazioni fornito.",
+              "slot": 2,
+              "user_quote": "il recapito è contatti@aurora.example"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "2": "VALUE",
+            "3": "SKIP"
+          },
+          "values": {
+            "2": "contatti@aurora.example"
+          },
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "214997465e7c4803854598cdc94b9371",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.846285658000852,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "local-unknown",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "UNKNOWN",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente dichiara di non conoscere il recapito richiesto.",
+              "slot": 1,
+              "user_quote": "Non conosco il recapito, ma andiamo avanti."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "UNKNOWN"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "e51359aaa2374579a26c283531d00281",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.3589702999961446,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "session-stop",
+        "category": "group",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Interrompiamo tutto per oggi."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Interrompiamo tutto per oggi."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "5c5eb31225624517a486637610663d37",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 1.0247771229987848,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "session-tomorrow",
+        "category": "group",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Conserva quanto fatto, ripartiamo domani."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Conserva quanto fatto, ripartiamo domani."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "82ecf60fba114cf69af8c4ef4def8f1d",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 0.7585325469990494,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "session-stop-no-export",
+        "category": "group",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Per ora sospendi la compilazione, non produrre nessun file."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Per ora sospendi la compilazione, non produrre nessun file."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "bca6e2f0d6ac4d5885faa3303d0c8ca1",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 1.0237219289992936,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "session-value-and-stop",
+        "category": "group",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Il recapito è contatti@aurora.example, ma preferisco interrompere il lavoro."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Il recapito è contatti@aurora.example, ma preferisco interrompere il lavoro."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "10eb3c975f104ce2af6188c63cdc0bbc",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 1.1812268249996123,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "negated-pause",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente chiede di saltare la voce corrente senza mettere in pausa la compilazione.",
+              "slot": 1,
+              "user_quote": "salta solo questa voce"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "61211236359d418db35b4d4705c8fd50",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.4521387900022091,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "negated-skip",
+        "category": "condition",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La domanda chiede se il firmatario del modulo opera come delegato, cioè se firma in qualità di delegato. Serve a stabilire se la condizione \"se il firmatario opera come delegato\" si applica al tuo caso, così da sapere se il riferimento alla delega va compilato oppure no.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La domanda chiede se il firmatario del modulo opera come delegato, cioè se firma in qualità di delegato. Serve a stabilire se la condizione \"se il firmatario opera come delegato\" si applica al tuo caso, così da sapere se il riferimento alla delega va compilato oppure no.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.440442309998616,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "negated-export",
+        "category": "generate",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La domanda chiede quali parti della bozza resterebbero vuote: per rispondere serve leggere i requisiti e i campi del modulo selezionato e confrontarli con i dati disponibili, così da indicare gli slot non risolti. Non esporto nulla e non avvio la generazione.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La domanda chiede quali parti della bozza resterebbero vuote: per rispondere serve leggere i requisiti e i campi del modulo selezionato e confrontarli con i dati disponibili, così da indicare gli slot non risolti. Non esporto nulla e non avvio la generazione.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.2440808120009024,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-unknown-and-value",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "UNKNOWN",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente dichiara di non conoscere la data di abilitazione.",
+              "slot": 3,
+              "user_quote": "Per la data non lo so"
+            },
+            {
+              "action": "VALUE",
+              "value": "contatti@aurora.example",
+              "normalized_value": null,
+              "rationale": "Recapito comunicazioni fornito dall'utente.",
+              "slot": 2,
+              "user_quote": "per il recapito usa contatti@aurora.example"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "2": "VALUE",
+            "3": "UNKNOWN"
+          },
+          "values": {
+            "2": "contatti@aurora.example"
+          },
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "3070e7489eca4abd8538ab4239fad24d",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.1371883930041804,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "export-current",
+        "category": "group",
+        "intent": "generate",
+        "decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": false,
+        "message": "Non ho ancora valori utilizzabili per la bozza. Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+        "command": {
+          "session_id": "58e032761a754a77a2fcc405591e7aa4",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 0.9009370300045703,
+        "score": {
+          "passed": false,
+          "checks": {
+            "intent": false,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "export-no-questions",
+        "category": "group",
+        "intent": "finish",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Non chiedermi altri dati, esporta una bozza."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Non chiedermi altri dati, esporta una bozza."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": false,
+        "message": "Non ho ancora valori utilizzabili per la bozza. Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+        "command": {
+          "session_id": "b47cff8a2b2a41e2a89daa1587e4775d",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 0.8749935689993436,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "export-mixed",
+        "category": "group",
+        "intent": "generate",
+        "decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": false,
+        "message": "Non ho ancora valori utilizzabili per la bozza. Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+        "command": {
+          "session_id": "984c903aeaa44b53bb3157a841ae2174",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 0.8796160939964466,
+        "score": {
+          "passed": false,
+          "checks": {
+            "intent": false,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "export-blank",
+        "category": "group",
+        "intent": "generate",
+        "decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": false,
+        "message": "Non ho ancora valori utilizzabili per la bozza. Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+        "command": {
+          "session_id": "8d06b02910a948c3941828cba399c601",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 0.9760620209999615,
+        "score": {
+          "passed": false,
+          "checks": {
+            "intent": false,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "session-resume-reference",
+        "category": "paused",
+        "intent": "resume",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Possiamo ripartire da dove ci eravamo fermati."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Possiamo ripartire da dove ci eravamo fermati."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Riprendo la stessa compilazione globale.",
+        "command": {
+          "session_id": "29039080e2fb46e88092bffd4c872afd",
+          "action": "resumed"
+        },
+        "error": null,
+        "seconds": 0.894712339999387,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "session-resume-preserve",
+        "category": "paused",
+        "intent": "resume",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Riprendi, conservando tutte le risposte precedenti."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Riprendi, conservando tutte le risposte precedenti."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Riprendo la stessa compilazione globale.",
+        "command": {
+          "session_id": "bc5817573a124a0ca28f84b33d84f39c",
+          "action": "resumed"
+        },
+        "error": null,
+        "seconds": 1.0371227150026243,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "negated-resume",
+        "category": "paused",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La sessione di compilazione è in pausa e non verrà ripresa finché non lo chiedi esplicitamente. Sono a disposizione per chiarire il tuo dubbio: dimmi pure quale punto del modulo o della domanda vuoi approfondire.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La sessione di compilazione è in pausa e non verrà ripresa finché non lo chiedi esplicitamente. Sono a disposizione per chiarire il tuo dubbio: dimmi pure quale punto del modulo o della domanda vuoi approfondire.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.251656116997765,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "paused-status",
+        "category": "paused",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La compilazione del modulo è attualmente in pausa, su tua richiesta, e non ci sono domande attive in attesa di risposta. Eravamo quindi fermi al punto in cui avevi sospeso la sessione: nessun campo è stato compilato o modificato dopo la pausa. Se vuoi, posso riprendere da lì quando decidi di continuare.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La compilazione del modulo è attualmente in pausa, su tua richiesta, e non ci sono domande attive in attesa di risposta. Eravamo quindi fermi al punto in cui avevi sospeso la sessione: nessun campo è stato compilato o modificato dopo la pausa. Se vuoi, posso riprendere da lì quando decidi di continuare.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.5204720800029463,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "session-resume-command",
+        "category": "paused",
+        "intent": "resume",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Continua a compilare."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Continua a compilare."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Riprendo la stessa compilazione globale.",
+        "command": {
+          "session_id": "a77ee872375641adb45b3da673eb9868",
+          "action": "resumed"
+        },
+        "error": null,
+        "seconds": 0.6547176029998809,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "consent-checkpoint",
+        "category": "generate",
+        "intent": "generate",
+        "decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": true,
+        "message": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+        "command": {
+          "session_id": "b1fc2a2d77824990a5b72752bf226cd2",
+          "action": "generated"
+        },
+        "error": null,
+        "seconds": 1.2718408519940567,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "explain-before-export",
+        "category": "generate",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La domanda chiede se generare una bozza parziale del modulo selezionato, lasciando vuote le parti non risolte. Per capire cosa manca, devo prima leggere quali sezioni, dichiarazioni, requisiti e allegati richiede il modulo e confrontarli con i dati effettivamente disponibili nei documenti: solo da questo confronto emergono i punti ancora da completare.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La domanda chiede se generare una bozza parziale del modulo selezionato, lasciando vuote le parti non risolte. Per capire cosa manca, devo prima leggere quali sezioni, dichiarazioni, requisiti e allegati richiede il modulo e confrontarli con i dati effettivamente disponibili nei documenti: solo da questo confronto emergono i punti ancora da completare.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.7179011420012102,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "courtesy-after-export",
+        "category": "generated",
+        "intent": "reply",
+        "decision": {
+          "action": "reply",
+          "answer": "Di nulla! Se ti serve altro sul modulo o sui dati aziendali, sono qui.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "Di nulla! Se ti serve altro sul modulo o sui dati aziendali, sono qui.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.0753693410006235,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "local-blank-not-false",
+        "category": "condition",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "Sto chiedendo «Firmatario delegato». Non posso associare con sicurezza la tua indicazione a questa richiesta. Puoi precisare?",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "Sto chiedendo «Firmatario delegato». Non posso associare con sicurezza la tua indicazione a questa richiesta. Puoi precisare?",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 2.5908872700019856,
+        "score": {
+          "passed": false,
+          "checks": {
+            "intent": false,
+            "actions": false,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "resume-no-export",
+        "category": "paused",
+        "intent": "resume",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Prosegui con l’analisi, senza esportare nulla."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Prosegui con l’analisi, senza esportare nulla."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Riprendo la stessa compilazione globale.",
+        "command": {
+          "session_id": "4a0ad853f35d449a973ca7d978117cc4",
+          "action": "resumed"
+        },
+        "error": null,
+        "seconds": 1.0170402609946905,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      }
+    ],
+    "after": [
+      {
+        "id": "local-point",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia la domanda corrente sull'applicabilità, senza confermare né negare la condizione.",
+              "slot": 1,
+              "user_quote": "Questo punto lo possiamo lasciare in sospeso."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "4134440a91364644b1099f64fe84d859",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.4953290570047102,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "local-confirmation",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia la verifica della conferma richiesta, senza fornire il dato.",
+              "slot": 1,
+              "user_quote": "La conferma richiesta la verificheremo più avanti."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "623b8f2249434b83ba4370e3a4b13f58",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.233935181000561,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "local-next",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia la voce corrente senza fornire il recapito.",
+              "slot": 1,
+              "user_quote": "Per questa voce preferisco passare alla successiva."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "4f005a6b687145e9a3d115a45096d821",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.0120709330003592,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-local-contact",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "",
+              "slot": 2,
+              "user_quote": "Per il recapito rimandiamo"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "2": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "cd6a1ec0b4164de3b797499828d22d08",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.3121910090048914,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-skip-and-value",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia solo la data di abilitazione.",
+              "slot": 3,
+              "user_quote": "Saltiamo soltanto la data"
+            },
+            {
+              "action": "VALUE",
+              "value": "contatti@aurora.example",
+              "normalized_value": null,
+              "rationale": "Recapito comunicazioni fornito dall'utente.",
+              "slot": 2,
+              "user_quote": "il recapito è contatti@aurora.example"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "2": "VALUE",
+            "3": "SKIP"
+          },
+          "values": {
+            "2": "contatti@aurora.example"
+          },
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "03c7d5be5ffa4d9da4b64a4abdb2a553",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.5203084989989293,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "local-unknown",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "UNKNOWN",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente dichiara di non conoscere il recapito per le comunicazioni.",
+              "slot": 1,
+              "user_quote": "Non conosco il recapito, ma andiamo avanti."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "UNKNOWN"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "2c8c846252db4479ad2444a949907379",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.4472212139953626,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "session-stop",
+        "category": "group",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Interrompiamo tutto per oggi."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Interrompiamo tutto per oggi."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "21805406eff142929b61ca98ad60f23a",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 0.9925782950012945,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "session-tomorrow",
+        "category": "group",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Conserva quanto fatto, ripartiamo domani."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Conserva quanto fatto, ripartiamo domani."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "9d741efd9e694e08a354847a98b34cb1",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 1.0392964750062674,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "session-stop-no-export",
+        "category": "group",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Per ora sospendi la compilazione, non produrre nessun file."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Per ora sospendi la compilazione, non produrre nessun file."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "5d6f2416949f4566b5606323033b20d1",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 1.006606507995457,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "session-value-and-stop",
+        "category": "group",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Il recapito è contatti@aurora.example, ma preferisco interrompere il lavoro."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Il recapito è contatti@aurora.example, ma preferisco interrompere il lavoro."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "35e97e0075d04481a5f019d718b4e8f5",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 0.7565457809978398,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "negated-pause",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia solo la voce corrente, non sospende la sessione",
+              "slot": 1,
+              "user_quote": "salta solo questa voce"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "1bd38fdfa78a4198b01ec416ea964bae",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.0718366840010276,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "negated-skip",
+        "category": "condition",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La conferma richiesta riguarda la domanda di applicabilità \"Il firmatario opera come delegato?\": serve a stabilire se nel modulo va indicato il riferimento alla delega del firmatario. In pratica devi dire se il firmatario agisce in qualità di delegato oppure no, così il backend può registrare la condizione corretta prima di proseguire nella compilazione.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La conferma richiesta riguarda la domanda di applicabilità \"Il firmatario opera come delegato?\": serve a stabilire se nel modulo va indicato il riferimento alla delega del firmatario. In pratica devi dire se il firmatario agisce in qualità di delegato oppure no, così il backend può registrare la condizione corretta prima di proseguire nella compilazione.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.514349200995639,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "negated-export",
+        "category": "generate",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La domanda attuale chiede se vuoi che generi una bozza parziale del modulo, lasciando vuote le parti per cui non risultano dati disponibili. Vuoi capire, prima di confermare, quali sezioni o voci resterebbero vuote nella bozza: per risponderti serve indicare quali parti del modulo non sono ancora compilate e quali dati mancano per completarle.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La domanda attuale chiede se vuoi che generi una bozza parziale del modulo, lasciando vuote le parti per cui non risultano dati disponibili. Vuoi capire, prima di confermare, quali sezioni o voci resterebbero vuote nella bozza: per risponderti serve indicare quali parti del modulo non sono ancora compilate e quali dati mancano per completarle.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.648028023999359,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-unknown-and-value",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "UNKNOWN",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente dichiara di non conoscere la data di abilitazione.",
+              "slot": 3,
+              "user_quote": "Per la data non lo so"
+            },
+            {
+              "action": "VALUE",
+              "value": "contatti@aurora.example",
+              "normalized_value": null,
+              "rationale": "Recapito comunicazioni fornito dall'utente.",
+              "slot": 2,
+              "user_quote": "per il recapito usa contatti@aurora.example"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "2": "VALUE",
+            "3": "UNKNOWN"
+          },
+          "values": {
+            "2": "contatti@aurora.example"
+          },
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "ec64a41f5d224f6d90815a6b6c470d63",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.8603644980030367,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "export-current",
+        "category": "group",
+        "intent": "finish",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Prepara il documento con quanto è già disponibile."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Prepara il documento con quanto è già disponibile."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": false,
+        "message": "Non ho ancora valori utilizzabili per la bozza. Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+        "command": {
+          "session_id": "3f1bac40f2764cc8be203145691111cb",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 0.7522996650004643,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "export-no-questions",
+        "category": "group",
+        "intent": "finish",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Non chiedermi altri dati, esporta una bozza."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Non chiedermi altri dati, esporta una bozza."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": false,
+        "message": "Non ho ancora valori utilizzabili per la bozza. Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+        "command": {
+          "session_id": "ab66a9af6e6947bb920313295bb2e151",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 0.9331026969957747,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "export-mixed",
+        "category": "group",
+        "intent": "finish",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Il recapito è contatti@aurora.example; chiudi e genera il documento con i dati già acquisiti."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Il recapito è contatti@aurora.example; chiudi e genera il documento con i dati già acquisiti."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": false,
+        "message": "Non ho ancora valori utilizzabili per la bozza. Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+        "command": {
+          "session_id": "52dfc2f9c6bd4e50a78e6957461102bf",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 1.2147329099971103,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "export-blank",
+        "category": "group",
+        "intent": "finish",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Genera adesso una bozza lasciando vuoti i campi mancanti."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Genera adesso una bozza lasciando vuoti i campi mancanti."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": false,
+        "message": "Non ho ancora valori utilizzabili per la bozza. Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+        "command": {
+          "session_id": "945fc5d982374490a8cc68263ec55ef2",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 1.1990527660018415,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "session-resume-reference",
+        "category": "paused",
+        "intent": "resume",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Possiamo ripartire da dove ci eravamo fermati."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Possiamo ripartire da dove ci eravamo fermati."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Riprendo la stessa compilazione globale.",
+        "command": {
+          "session_id": "2527f346926840a8b341eb11a7b9ed9f",
+          "action": "resumed"
+        },
+        "error": null,
+        "seconds": 0.8947373299961328,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "session-resume-preserve",
+        "category": "paused",
+        "intent": "resume",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Riprendi, conservando tutte le risposte precedenti."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Riprendi, conservando tutte le risposte precedenti."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Riprendo la stessa compilazione globale.",
+        "command": {
+          "session_id": "54af79072f734438a1fcbef592d55bdb",
+          "action": "resumed"
+        },
+        "error": null,
+        "seconds": 1.0025276099986513,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "negated-resume",
+        "category": "paused",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La sessione di compilazione è attualmente in pausa e non riprenderà finché non lo chiederai esplicitamente. Nel frattempo posso aiutarti a chiarire il dubbio: dimmi quale punto vuoi capire, ad esempio una voce del modulo, una richiesta di dati o il motivo per cui ti è stata posta una certa domanda.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La sessione di compilazione è attualmente in pausa e non riprenderà finché non lo chiederai esplicitamente. Nel frattempo posso aiutarti a chiarire il dubbio: dimmi quale punto vuoi capire, ad esempio una voce del modulo, una richiesta di dati o il motivo per cui ti è stata posta una certa domanda.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.5135763170037535,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "paused-status",
+        "category": "paused",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La sessione di compilazione del modulo-dialogo.docx è attualmente in pausa, su tua richiesta. Non ci sono domande attive né slot da compilare in questo momento. Quando vorrai riprendere, potrai dirmelo esplicitamente e ripartiremo dal punto in cui ci eravamo fermati.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La sessione di compilazione del modulo-dialogo.docx è attualmente in pausa, su tua richiesta. Non ci sono domande attive né slot da compilare in questo momento. Quando vorrai riprendere, potrai dirmelo esplicitamente e ripartiremo dal punto in cui ci eravamo fermati.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.335812340999837,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "session-resume-command",
+        "category": "paused",
+        "intent": "resume",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Continua a compilare."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Continua a compilare."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Riprendo la stessa compilazione globale.",
+        "command": {
+          "session_id": "ce47594156754c6cb44b405abb986fbd",
+          "action": "resumed"
+        },
+        "error": null,
+        "seconds": 1.0285261600001832,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "consent-checkpoint",
+        "category": "generate",
+        "intent": "generate",
+        "decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": true,
+        "message": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+        "command": {
+          "session_id": "f15eb0ca4b7149dda56ad7167da291cd",
+          "action": "generated"
+        },
+        "error": null,
+        "seconds": 1.210611995004001,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "explain-before-export",
+        "category": "generate",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La domanda attuale chiede se generare una bozza parziale del modulo, lasciando vuote le parti non risolte. Prima di procedere, l'indicazione utile è capire quali sezioni o informazioni del modulo risultano ancora mancanti o non compilate, così da valutare cosa resterebbe vuoto nella bozza. In questa fase non posso dirti quali dati mancano: serve prima leggere i requisiti del modulo e confrontarli con i dati disponibili.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La domanda attuale chiede se generare una bozza parziale del modulo, lasciando vuote le parti non risolte. Prima di procedere, l'indicazione utile è capire quali sezioni o informazioni del modulo risultano ancora mancanti o non compilate, così da valutare cosa resterebbe vuoto nella bozza. In questa fase non posso dirti quali dati mancano: serve prima leggere i requisiti del modulo e confrontarli con i dati disponibili.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.7963734379954985,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "courtesy-after-export",
+        "category": "generated",
+        "intent": "reply",
+        "decision": {
+          "action": "reply",
+          "answer": "Di nulla! Se ti serve altro sul modulo o sui dati aziendali, sono qui.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "Di nulla! Se ti serve altro sul modulo o sui dati aziendali, sono qui.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.1132642350057722,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "local-blank-not-false",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia la voce senza confermare né negare l'applicabilità.",
+              "slot": 1,
+              "user_quote": "Lascia vuota questa voce, non sto dicendo che non si applica."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "f9c4ad0132df400ab1b864dbd207680d",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.0364474289963255,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "resume-no-export",
+        "category": "paused",
+        "intent": "resume",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Prosegui con l’analisi, senza esportare nulla."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Prosegui con l’analisi, senza esportare nulla."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Riprendo la stessa compilazione globale.",
+        "command": {
+          "session_id": "de58d80b31b6440682667622a7a2cf67",
+          "action": "resumed"
+        },
+        "error": null,
+        "seconds": 0.8389057169988519,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      }
+    ],
+    "dialogue-after": [
+      {
+        "id": "consent-1",
+        "category": "generate",
+        "intent": "generate",
+        "decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": true,
+        "message": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+        "command": {
+          "session_id": "b7fc3a05221c4fc3b59dec2357c49f55",
+          "action": "generated"
+        },
+        "error": null,
+        "seconds": 1.2121219229957205,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "consent-2",
+        "category": "generate",
+        "intent": "generate",
+        "decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": true,
+        "message": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+        "command": {
+          "session_id": "576987c793eb443ca99f5ea41a663de0",
+          "action": "generated"
+        },
+        "error": null,
+        "seconds": 1.047523788001854,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "consent-3",
+        "category": "generate",
+        "intent": "generate",
+        "decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": true,
+        "message": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+        "command": {
+          "session_id": "81a9afadb0a54cb1a129496839f4eb85",
+          "action": "generated"
+        },
+        "error": null,
+        "seconds": 1.3242919129988877,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "consent-4",
+        "category": "generate",
+        "intent": "generate",
+        "decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": true,
+        "message": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+        "command": {
+          "session_id": "21a28da647c44cda9bd4ebef89821bba",
+          "action": "generated"
+        },
+        "error": null,
+        "seconds": 1.035214192001149,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "empty-consent",
+        "category": "generate_empty",
+        "intent": "generate",
+        "decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compilation_generate",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": true,
+        "message": "Ho preparato una copia del modulo senza inserire alcun valore. I campi irrisolti e quelli con condizioni non confermate restano vuoti. Puoi scaricarla e controllarla.",
+        "command": {
+          "session_id": "9729296059074d2d8c0833577b78f0e2",
+          "action": "generated"
+        },
+        "error": null,
+        "seconds": 1.1598865940031828,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "export-no",
+        "category": "generate",
+        "intent": "reply",
+        "decision": {
+          "action": "reply",
+          "answer": "Va bene, non genero la bozza. Resto in attesa: posso riprendere quando vuoi.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "Va bene, non genero la bozza. Resto in attesa: posso riprendere quando vuoi.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 2.051243993002572,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "export-later",
+        "category": "generate",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Aspetta, riprendiamo domani."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Aspetta, riprendiamo domani."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "b5852fcb4f4540228961c8de8eb9886f",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 1.0988983389979694,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "export-question",
+        "category": "generate",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La domanda riguarda la bozza parziale del modulo selezionato: prima di generarla vuoi sapere quali sezioni o campi rimarrebbero non compilati. Per risponderti con precisione devo confrontare ciò che il modulo richiede con i dati effettivamente disponibili nelle fonti; in questo modo posso indicarti quali parti resterebbero vuote e perché.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La domanda riguarda la bozza parziale del modulo selezionato: prima di generarla vuoi sapere quali sezioni o campi rimarrebbero non compilati. Per risponderti con precisione devo confrontare ciò che il modulo richiede con i dati effettivamente disponibili nelle fonti; in questo modo posso indicarti quali parti resterebbero vuote e perché.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.299520026994287,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "courtesy-generated",
+        "category": "generated",
+        "intent": "reply",
+        "decision": {
+          "action": "reply",
+          "answer": "Grazie a te! Se vuoi riprendere la compilazione o hai altre domande sul modulo, sono qui.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "Grazie a te! Se vuoi riprendere la compilazione o hai altre domande sul modulo, sono qui.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.3229644680031925,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "courtesy-paused",
+        "category": "paused",
+        "intent": "reply",
+        "decision": {
+          "action": "reply",
+          "answer": "Perfetto! Se vuoi, posso riassumere il modulo selezionato, elencare gli allegati richiesti o verificare se hai i dati necessari per compilarlo.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "Perfetto! Se vuoi, posso riassumere il modulo selezionato, elencare gli allegati richiesti o verificare se hai i dati necessari per compilarlo.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.1393006529979175,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "condition-no",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CONDITION_FALSE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente nega che il firmatario operi come delegato.",
+              "slot": 1,
+              "user_quote": "no"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "CONDITION_FALSE"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "499e897581734dc5b6d99ff17bcec3d2",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.18797697500122,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "condition-negative",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CONDITION_FALSE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "Negazione esplicita dell'applicabilità della condizione.",
+              "slot": 1,
+              "user_quote": "Il firmatario non opera come delegato."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "CONDITION_FALSE"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "0c684babd9de4f26981b1ffa90eb11e5",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.1593643649976,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "condition-yes",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CONDITION_TRUE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "Conferma l'applicabilità della condizione sul firmatario delegato.",
+              "slot": 1,
+              "user_quote": "Sì, opera come delegato."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "CONDITION_TRUE"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "a498122a31814a75ab3437942db9263e",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.5522188550021383,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "condition-unknown",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "UNKNOWN",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente dichiara incertezza sul fatto se il firmatario operi come delegato.",
+              "slot": 1,
+              "user_quote": "Non ne sono sicuro."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "UNKNOWN"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "baf93f2bae1144c9b95b0424c4f5d8aa",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.2156401460015331,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "condition-skip",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia la conferma sulla domanda corrente, non sospende l'intera sessione.",
+              "slot": 1,
+              "user_quote": "Lasciamo questa conferma per dopo."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "7d2ef867df9f4fba805288e7a35a6ae9",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.0413060290011344,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "condition-ambiguous",
+        "category": "condition",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CLARIFY",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "Risposta ambigua: non è chiaro se il firmatario operi come delegato.",
+              "slot": 1,
+              "user_quote": "Forse sì, ma potrebbe firmare un’altra persona."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Non ho modificato i dati: serve un'indicazione univoca. Il firmatario opera come delegato?",
+        "command": {
+          "session_id": "ade2b9efd348425582d4ca63eff761fd",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 1.056566542996734,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "condition-explain",
+        "category": "condition",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "Ti sto chiedendo se, nel modulo, il firmatario agisce in qualità di delegato. Nel modulo è presente una voce di applicabilità collegata al riferimento della delega: devi indicare se questa condizione vale per il firmatario, così possiamo capire se quella parte va compilata o meno. Se vuoi, posso spiegarti meglio a quale punto del modulo si riferisce.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "Ti sto chiedendo se, nel modulo, il firmatario agisce in qualità di delegato. Nel modulo è presente una voce di applicabilità collegata al riferimento della delega: devi indicare se questa condizione vale per il firmatario, così possiamo capire se quella parte va compilata o meno. Se vuoi, posso spiegarti meglio a quale punto del modulo si riferisce.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.3265537849947577,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "email-value",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "VALUE",
+              "value": "contatti@aurora.example",
+              "normalized_value": null,
+              "rationale": "Recapito email fornito dall'utente per le comunicazioni",
+              "slot": 1,
+              "user_quote": "Usa contatti@aurora.example"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "VALUE"
+          },
+          "values": {
+            "1": "contatti@aurora.example"
+          },
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "5e933b02080b469f826b06cc0d8190cf",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.443898135999916,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "date-value",
+        "category": "date",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "VALUE",
+              "value": "12 giugno 2014",
+              "normalized_value": "12/06/2014",
+              "rationale": "",
+              "slot": 1,
+              "user_quote": "12 giugno 2014"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "VALUE"
+          },
+          "values": {
+            "1": "12/06/2014"
+          },
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "3e0c03adc66b411c86aa5a698e5b9b54",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.1196011809952324,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "email-unknown",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "UNKNOWN",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente dichiara di non possedere il dato richiesto per il recapito comunicazioni.",
+              "slot": 1,
+              "user_quote": "Non ho questa informazione."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "UNKNOWN"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "27d493d2b9d24ec9a2b6ef5021f9d5cf",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.4548014789979788,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "email-skip",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente chiede di rinviare la voce corrente sul recapito comunicazioni.",
+              "slot": 1,
+              "user_quote": "Salta questa voce"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "53cd7f27a5af42cca35c81daa5d7a7e7",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.2083095199996023,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "email-refuse",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "REFUSE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rifiuta di fornire il recapito richiesto.",
+              "slot": 1,
+              "user_quote": "Preferisco non fornire il recapito."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "REFUSE"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "2bffe2872d214b2b90aa1fc3f8974da6",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.0719727350005996,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "email-alternatives",
+        "category": "email",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CLARIFY",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente propone due recapiti alternativi senza sceglierne uno.",
+              "slot": 1,
+              "user_quote": "Usa uno@aurora.example oppure due@aurora.example"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Non ho modificato i dati: serve un'indicazione univoca. Quale recapito devo usare per le comunicazioni?",
+        "command": {
+          "session_id": "4662f6b8ad96467298c667bedf71cc48",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 1.2241142200000468,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-all",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CONDITION_FALSE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "",
+              "slot": 1,
+              "user_quote": "Non opera come delegato"
+            },
+            {
+              "action": "VALUE",
+              "value": "contatti@aurora.example",
+              "normalized_value": null,
+              "rationale": "",
+              "slot": 2,
+              "user_quote": "usa contatti@aurora.example"
+            },
+            {
+              "action": "VALUE",
+              "value": "12 giugno 2014",
+              "normalized_value": "12/06/2014",
+              "rationale": "",
+              "slot": 3,
+              "user_quote": "la data è 12 giugno 2014"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "CONDITION_FALSE",
+            "2": "VALUE",
+            "3": "VALUE"
+          },
+          "values": {
+            "2": "contatti@aurora.example",
+            "3": "12/06/2014"
+          },
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "53ddb09ffa124eba822082ccc5ba18a4",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.644173556996975,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-partial",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "VALUE",
+              "value": "contatti@aurora.example",
+              "normalized_value": null,
+              "rationale": "Recapito email fornito per le comunicazioni",
+              "slot": 2,
+              "user_quote": "Per le comunicazioni usa contatti@aurora.example"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "2": "VALUE"
+          },
+          "values": {
+            "2": "contatti@aurora.example"
+          },
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "7f77fd45af994d2aa14a094580ce1425",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.231740171999263,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-controls",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CONDITION_FALSE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "Negazione dell'applicabilità della condizione delega.",
+              "slot": 1,
+              "user_quote": "Il firmatario non opera come delegato."
+            },
+            {
+              "action": "UNKNOWN",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "Dato non conosciuto.",
+              "slot": 2,
+              "user_quote": "Il recapito non lo so."
+            },
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "Rinvio della voce, non pausa della sessione.",
+              "slot": 3,
+              "user_quote": "La data saltiamola."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "CONDITION_FALSE",
+            "2": "UNKNOWN",
+            "3": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "670562da3d544198bbe6cfed25b0023a",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.837260451997281,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-ambiguous-part",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CONDITION_FALSE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "Il firmatario non opera come delegato.",
+              "slot": 1,
+              "user_quote": "Non opera come delegato"
+            },
+            {
+              "action": "CLARIFY",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente propone due recapiti alternativi senza sceglierne uno.",
+              "slot": 2,
+              "user_quote": "Per il recapito usa uno@aurora.example oppure due@aurora.example"
+            },
+            {
+              "action": "VALUE",
+              "value": "12 giugno 2014",
+              "normalized_value": "12/06/2014",
+              "rationale": "Data di abilitazione indicata dall'utente.",
+              "slot": 3,
+              "user_quote": "La data è 12 giugno 2014"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "CONDITION_FALSE",
+            "3": "VALUE"
+          },
+          "values": {
+            "3": "12/06/2014"
+          },
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "2853d0fd5bb54036a9ed7889c5b6d8b7",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 2.7021118449993082,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-one-blank",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia esplicitamente solo lo slot del recapito comunicazioni.",
+              "slot": 2,
+              "user_quote": "Lascia in bianco soltanto il recapito per le comunicazioni."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "2": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "eb9a2fb4a54747a3b0ab7ef08586e2f4",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.1639750050017028,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "group-all-blank",
+        "category": "group",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia esplicitamente la risposta.",
+              "slot": 1,
+              "user_quote": "Lascia in bianco tutte e tre le risposte."
+            },
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia esplicitamente la risposta.",
+              "slot": 2,
+              "user_quote": "Lascia in bianco tutte e tre le risposte."
+            },
+            {
+              "action": "SKIP",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "L'utente rinvia esplicitamente la risposta.",
+              "slot": 3,
+              "user_quote": "Lascia in bianco tutte e tre le risposte."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "SKIP",
+            "2": "SKIP",
+            "3": "SKIP"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "f48ebd1d32d34c1ea55d5c328cf818b1",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 1.6058655729939346,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "two-conditions-yes",
+        "category": "conditions",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CLARIFY",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "Un sì senza destinatario tra due domande di applicabilità è ambiguo.",
+              "slot": 1,
+              "user_quote": "sì"
+            },
+            {
+              "action": "CLARIFY",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "Un sì senza destinatario tra due domande di applicabilità è ambiguo.",
+              "slot": 2,
+              "user_quote": "sì"
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Non ho modificato i dati: serve un'indicazione univoca. 1. Il firmatario opera come delegato?\n2. La partecipazione avviene in gruppo?",
+        "command": {
+          "session_id": "b649fd2792ad44d8903bdc582a800651",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 1.4107012480017147,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "two-conditions-all",
+        "category": "conditions",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CONDITION_TRUE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "",
+              "slot": 1,
+              "user_quote": "Confermo entrambe le condizioni."
+            },
+            {
+              "action": "CONDITION_TRUE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "",
+              "slot": 2,
+              "user_quote": "Confermo entrambe le condizioni."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "CONDITION_TRUE",
+            "2": "CONDITION_TRUE"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "10883168f8e94ddba56fe0d07e62327e",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.1823817570038955,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "two-conditions-negative",
+        "category": "conditions",
+        "intent": "answer_fields",
+        "decision": {
+          "action": "ANSWER",
+          "replies": [
+            {
+              "action": "CONDITION_FALSE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "",
+              "slot": 1,
+              "user_quote": "Nessuna delle due condizioni si applica."
+            },
+            {
+              "action": "CONDITION_FALSE",
+              "value": null,
+              "normalized_value": null,
+              "rationale": "",
+              "slot": 2,
+              "user_quote": "Nessuna delle due condizioni si applica."
+            }
+          ]
+        },
+        "effective_decision": null,
+        "effects": {
+          "actions": {
+            "1": "CONDITION_FALSE",
+            "2": "CONDITION_FALSE"
+          },
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+        "command": {
+          "session_id": "adfa60c9cf074f6ebc9e4b3dd07556a8",
+          "action": "updated"
+        },
+        "error": null,
+        "seconds": 2.366682261999813,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "pause",
+        "category": "group",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Basta, fermiamoci qui."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Basta, fermiamoci qui."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "dc5bc662aa054877bf678f474c3cf2a6",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 1.1307717689996934,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "pause-mixed",
+        "category": "group",
+        "intent": "pause",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Usa contatti@aurora.example, però ferma la compilazione adesso."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "pause",
+            "field_id": null,
+            "user_quote": "Usa contatti@aurora.example, però ferma la compilazione adesso."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Metto in pausa la compilazione.",
+        "command": {
+          "session_id": "c8926818a3e54a3ea85bb46d1bdf17aa",
+          "action": "paused"
+        },
+        "error": null,
+        "seconds": 0.9796660540014273,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "resume",
+        "category": "paused",
+        "intent": "resume",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Riprendiamo la compilazione."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "resume",
+            "field_id": null,
+            "user_quote": "Riprendiamo la compilazione."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": "Riprendo la stessa compilazione globale.",
+        "command": {
+          "session_id": "27e4558507054092b0860ab71dab8b6f",
+          "action": "resumed"
+        },
+        "error": null,
+        "seconds": 0.8788236690015765,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "paused-explain",
+        "category": "paused",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "La domanda corrente chiede se il firmatario del modulo opera come delegato. In pratica devi indicare se la persona che firma il modulo agisce in qualità di delegato, cioè se partecipa o firma per conto di un altro soggetto. Serve a chiarire il ruolo del firmatario prima di riprendere la compilazione.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "La domanda corrente chiede se il firmatario del modulo opera come delegato. In pratica devi indicare se la persona che firma il modulo agisce in qualità di delegato, cioè se partecipa o firma per conto di un altro soggetto. Serve a chiarire il ruolo del firmatario prima di riprendere la compilazione.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": true
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.51079129500431,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "paused": true
+          }
+        }
+      },
+      {
+        "id": "finish-mixed",
+        "category": "group",
+        "intent": "finish",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Il recapito è contatti@aurora.example; per ora basta, prepara una bozza con quello che hai già."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Il recapito è contatti@aurora.example; per ora basta, prepara una bozza con quello che hai già."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": false,
+        "message": "Non ho ancora valori utilizzabili per la bozza. Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+        "command": {
+          "session_id": "5638e762b56e4129b02eda7b11a281fc",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 0.9088563499972224,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "blank-export",
+        "category": "group",
+        "intent": "finish",
+        "decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Lascia vuoto quello che manca e genera la bozza parziale."
+          }
+        },
+        "effective_decision": {
+          "action": "compilation_control",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": {
+            "kind": "finish",
+            "field_id": null,
+            "user_quote": "Lascia vuoto quello che manca e genera la bozza parziale."
+          }
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": true,
+        "generated": false,
+        "message": "Non ho ancora valori utilizzabili per la bozza. Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+        "command": {
+          "session_id": "5d4e6595e4674c9f891878d3b7d48816",
+          "action": "clarify"
+        },
+        "error": null,
+        "seconds": 1.2559768229984911,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "normal-form",
+        "category": "idle",
+        "intent": "retrieve",
+        "decision": {
+          "action": "retrieve",
+          "answer": "",
+          "queries": [
+            "sezioni e contenuto del modulo di dialogo",
+            "forma di partecipazione e dichiarazioni richieste nel modulo",
+            "requisiti, servizi pregressi e allegati richiesti dal modulo"
+          ],
+          "target": "form",
+          "form_id": 1,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "retrieve",
+          "answer": "",
+          "queries": [
+            "sezioni e contenuto del modulo di dialogo",
+            "forma di partecipazione e dichiarazioni richieste nel modulo",
+            "requisiti, servizi pregressi e allegati richiesti dal modulo"
+          ],
+          "target": "form",
+          "form_id": 1,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 0.9230484240033547,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "target": true
+          }
+        }
+      },
+      {
+        "id": "normal-compile",
+        "category": "idle",
+        "intent": "compile",
+        "decision": {
+          "action": "compile",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": 1,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "compile",
+          "answer": "",
+          "queries": [],
+          "target": "form",
+          "form_id": 1,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.2508700819962542,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "normal-factual",
+        "category": "idle",
+        "intent": "retrieve",
+        "decision": {
+          "action": "retrieve",
+          "answer": "",
+          "queries": [
+            "partita IVA dell'azienda"
+          ],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "retrieve",
+          "answer": "",
+          "queries": [
+            "partita IVA dell'azienda"
+          ],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.1364050329939346,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true,
+            "target": true
+          }
+        }
+      },
+      {
+        "id": "correction-outside",
+        "category": "email",
+        "intent": "explain",
+        "decision": {
+          "action": "reply",
+          "answer": "Sto chiedendo «Recapito comunicazioni». Non posso associare con sicurezza la tua indicazione a questa richiesta. Puoi precisare?",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "Sto chiedendo «Recapito comunicazioni». Non posso associare con sicurezza la tua indicazione a questa richiesta. Puoi precisare?",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 2.6439930429987726,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      },
+      {
+        "id": "injection",
+        "category": "condition",
+        "intent": "reply",
+        "decision": {
+          "action": "reply",
+          "answer": "Non posso ignorare la domanda né impostare dati come verificati: posso solo aiutarti a consultare le fonti e a preparare bozze da revisionare. Se vuoi, rispondi alla domanda sul firmatario oppure chiedimi di riassumere il modulo o di cercare informazioni.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effective_decision": {
+          "action": "reply",
+          "answer": "Non posso ignorare la domanda né impostare dati come verificati: posso solo aiutarti a consultare le fonti e a preparare bozze da revisionare. Se vuoi, rispondi alla domanda sul firmatario oppure chiedimi di riassumere il modulo o di cercare informazioni.",
+          "queries": [],
+          "target": "source",
+          "form_id": null,
+          "source_queries": [],
+          "field_replies": [],
+          "control": null
+        },
+        "effects": {
+          "actions": {},
+          "values": {},
+          "unexpected_recipients": [],
+          "provenance_ok": true,
+          "paused": false
+        },
+        "export_requested": false,
+        "generated": false,
+        "message": null,
+        "command": null,
+        "error": null,
+        "seconds": 1.2509890629953588,
+        "score": {
+          "passed": true,
+          "checks": {
+            "intent": true,
+            "actions": true,
+            "values": true,
+            "export_intent": true,
+            "recipients": true,
+            "provenance": true,
+            "no_execution_error": true
+          }
+        }
+      }
+    ]
+  }
+}

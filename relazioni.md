@@ -1703,3 +1703,41 @@ Engine nel contesto backend, non nuovo stato o API. Legacy preservato per gli
 effetti diversi di finish/generate. Nessuna chiamata AI nuova. 248 test mirati
 /37,67 s con provider simulati, inclusi HTTP/DB reali isolati; primo Ruff con
 due righe lunghe nel test, corrette. AFTER ancora da acquisire; gold congelato.
+
+## 12 ottobre 2026 — comandi AFTER su 802c483
+
+Comandi V1 **28/28**, prima 24/28 sul gold fissato in b468ea5; Dialogo V1
+**43/43**, prima 40/43, gold originario invariato. Nessuna modifica applicativa
+nelle serie, nessun caso selettivamente ripetuto. Il rinvio della conferma ora
+è SKIP/USER locale. Nel caso «lascia vuota ... non sto dicendo che non si applica»
+BEFORE il router proponeva CONDITION_FALSE ma il gate lo bloccava (AMBIGUOUS,
+intent finale explain); AFTER direttamente SKIP, condizione non negata.
+I cambi di nome generate/finish sono in parte normalizzazione deterministica:
+non aumentano valori/campi compilati. Priorità attuale PAUSE/FINISH sui valori
+preservata, turni composti ancora da discutere. Nessuna keyword/candidate/azienda
+hardcodata; nessuna nuova chiamata AI o schema pubblico.
+
+28 AFTER: 28 routing +2 gate, zero retry/schema error, 105.035 token /35,78 s.
+43 AFTER: 44 routing +12 gate, 173.265 token /66,77 s, un retry: «No, non generare
+ancora» inizialmente answer_fields senza slot, rifiutato; retry reply, nessuna
+mutazione/export. Tutti i raw e l'errore conservati, 43/43 è l'esito finale.
+Prompt +353 input token/router, nessun risparmio dichiarato; la chiamata gate
+risparmiata nei 28 deriva dalla decisione SKIP anziché dalla condizione falsa.
+Singole serie, nessuna stima di varianza. Totale BEFORE+AFTER+43: 99 checkpoint,
+117 chiamate reali, non compilazioni intere o qualità SOURCE.
+
+Software: 248 mirati /37,67 s, **1.950 backend completi /145,97 s**, Ruff/diff.
+Provider simulati nei test; otto harness/fixture senza provider /1,11 s.
+Frontend/browser non ripetuti perché invariati. Sette export realmente confrontati:
+sei con un recapito USER preesistente, uno vuoto; stato/report/posizioni coerenti,
+originale/altre celle invariati salvo banner. Gate di pertinenza invariato e
+correction-outside ancora bloccato. Nessun valore USER promosso a SOURCE.
+
+[Report](docs/comandi-conversazionali-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-commands.json),
+[bundle](docs/benchmarks/2026-10-12-commands-audit.tar.gz).
+Bundle **592 file /1.425.816 byte**, verificato byte-per-byte e per hash di ogni
+file, senza chiavi/DB/runtime, SHA-256
+`d47c6280078942bf96475475252d3894788f28270c5e07486d7833f624339566`.
+Grezzi in commands-20261012/. Nessuna migrazione/reindicizzazione/push.
+Prossimo: concordare il comportamento dei turni composti prima di implementarli.

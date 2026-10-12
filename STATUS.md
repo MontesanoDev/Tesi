@@ -1,25 +1,55 @@
 # Stato di Mapi RAG
 
-## Comandi conversazionali — 12 ottobre 2026, confronto in corso
+## Comandi conversazionali — 12 ottobre 2026, verificati
 
-Congelati 28 scenari separati in benchmark-dialogo/commands-v1. BEFORE su
-b468ea5: **24/28**, 28 routing +3 gate di pertinenza, zero retry/schema error,
-96.019 token /35,54 s. Tre scambi generate/finish, un rinvio con negazione
-interpretato come explain (nessuna scrittura errata). Nessun gold cambiato.
+Intervento circoscritto al routing dei comandi, senza modifiche a UI, parser,
+renderer, RAG o gate SOURCE/USER. Prompt unico esplicita oggetto e polarità:
+rinvio locale SKIP, dato non conosciuto UNKNOWN, sospensione del lavoro PAUSE,
+negazioni e richieste di spiegazione. PAUSE/FINISH mantengono la precedenza sui
+nuovi dati nel turno. Solo nel motore globale generate fuori dal checkpoint
+di generazione diventa finish, stessa operazione e stessi gate già esistenti.
+Il backend usa engine/checkpoint già noti, senza matching USER o nuovi permessi;
+legacy preservato perché quei due comandi lì hanno effetti diversi.
+Nessuna chiamata AI o schema pubblico aggiunto, nessuna migrazione/reindex.
 
-Intervento minimo: prompt unico distingue oggetto e polarità del comando,
-rinvio locale SKIP, incertezza UNKNOWN, pausa globale, richieste di spiegazione
-e priorità PAUSE/FINISH nei messaggi misti. Solo nel motore globale generate
-fuori dal checkpoint di generazione diventa finish, stessa operazione e stessi
-gate già esistenti. Nessuna nuova autorizzazione o chiamata AI; engine resta
-metadato backend per la normalizzazione, senza cambiare contratti frontend.
-Legacy invariato perché generate e finish hanno effetti diversi in quel motore.
-Regola conservata: un turno PAUSE/FINISH non acquisisce nuovi valori.
+Congelati **28 scenari** separati in benchmark-dialogo/commands-v1 prima delle
+API. BEFORE su b468ea5: **24/28**, 31 chiamate, 96.019 token /35,54 s. AFTER
+su **802c483: 28/28**, 30 chiamate, 105.035 token /35,78 s, nessun retry.
+Tre FAIL precedenti di nomenclatura generate/finish; un rinvio con negazione:
+il router proponeva CONDITION_FALSE, il gate indipendente lo respingeva e
+chiedeva chiarimento. Ora registra SKIP senza negare l'applicabilità.
+I 43 Dialogo V1 originali, gold invariato: **43/43** (prima 40/43), 44 routing
++12 gate, 173.265 token /66,77 s. Un primo output answer_fields senza slot in
+export-no rifiutato; unico retry -> reply, nessuna scrittura/export. Nessuna
+regressione dei casi già conformi, né del blocco della denominazione nel recapito.
+La correzione di due intent è in parte normalizzazione, non nuova copertura.
 
-248 test mirati /37,67 s passati, provider simulati; Ruff e verifica completa
-da concludere, benchmark AFTER ancora da eseguire sullo stesso gold e sui 43
-Dialogo V1. Nessuna modifica a parser, renderer, RAG, UI, gate USER o SOURCE.
-Checkpoint temporanei, profilo reale letto senza mutare dati locali.
+Stesso codice durante ogni serie, nessun caso selettivamente ripetuto. 99 turni
+indipendenti /117 chiamate reali complessive; non una compilazione completa.
+Checkpoint autoriali e DB/storage temporanei; profilo live solo in lettura.
+Sette export confrontati realmente con Word/stato/report: sei con recapito
+USER preesistente, uno vuoto. Originali/altre posizioni invariati salvo banner,
+nessuna SOURCE inventata. Prompt +353 token input/router nei casi originari;
+nessuna nuova chiamata: costo e singola variabilità dichiarati, nessuna
+pretesa di risparmio o misura di accuratezza dei moduli interi.
+
+Verifiche effettive: **248 mirati /37,67 s**, **1.950 backend completi /145,97 s**,
+Ruff e diff check. Provider simulati nei test software; otto test fixture/harness
+senza provider /1,11 s. Prime due righe lunghe Ruff del test corrette, log
+conservato. Frontend/browser non ripetuti: nessuna UI/contratto cambiato.
+Codice in 802c483, protocollo in b468ea5, commit locali; nessun push.
+
+[Report](docs/comandi-conversazionali-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-commands.json),
+[bundle](docs/benchmarks/2026-10-12-commands-audit.tar.gz),
+[verifiche finali](docs/benchmarks/2026-10-12-commands-final-checks.json).
+Grezzi backend/data/compilation-audit/commands-20261012/ e archivio sanificato.
+
+**Limiti e ripresa:** interpretazione LLM ancora fallibile, retry osservato;
+altri provider non valutati. Composizione «salva il valore e poi pausa/export»
+ancora **da discutere**: per ora il comando prevale e non acquisisce il valore.
+Nessuna nuova misura SOURCE/copertura/checkbox. Passo sui comandi concluso;
+concordare il prossimo cambiamento prima di estendere il dominio.
 
 ## Pertinenza delle risposte USER — 12 ottobre 2026, fix verificato
 

@@ -1,0 +1,54 @@
+{
+  "backend_targeted": {
+    "passed": 248,
+    "seconds": 37.67
+  },
+  "backend_full": {
+    "passed": 1950,
+    "seconds": 145.97
+  },
+  "fixture_harness": {
+    "passed": 8,
+    "seconds": 1.11
+  },
+  "ruff_backend": "passed",
+  "diff_check": "passed",
+  "frontend_and_browser_rerun": false,
+  "reason": "No UI/API contract change",
+  "fixture_and_gold_unchanged_during_each_series": true,
+  "production_unchanged_during_each_series": true,
+  "routing_schema_unchanged": true,
+  "real_provider": "deepseek-flash",
+  "commands_before": {
+    "cases": 28,
+    "passed": 24
+  },
+  "commands_after": {
+    "cases": 28,
+    "passed": 28
+  },
+  "dialogue_after": {
+    "cases": 43,
+    "passed": 43,
+    "retry": 1,
+    "invalid_initial_output": 1
+  },
+  "total_real_calls": 117,
+  "total_real_tokens": 374319,
+  "backend_exceptions": 0,
+  "unauthorized_exports": 0,
+  "wrong_field_state_unchanged": true,
+  "no_regressions_in_previously_passing_cases": true,
+  "new_source_quality_or_full_compilation_measured": false,
+  "archive_hash_and_all_file_hashes_verified": true,
+  "archive": {
+    "file": "2026-10-12-commands-audit.tar.gz",
+    "file_count": 592,
+    "bytes": 1425816,
+    "sha256": "d47c6280078942bf96475475252d3894788f28270c5e07486d7833f624339566",
+    "verified_byte_for_byte": true,
+    "credentials_scan_passed": true
+  },
+  "local_document_links": "passed",
+  "local_document_link_scope": "All new report links and newly added references; old missing ignored artifacts unchanged"
+}

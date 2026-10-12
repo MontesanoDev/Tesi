@@ -1,5 +1,38 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Comandi conversazionali — 12 ottobre
+
+Il routing unico distingue azione, oggetto e polarità: rinvio di una voce
+SKIP, dato non conosciuto UNKNOWN, sospensione dell'intero lavoro PAUSE.
+Comandi negati o citati in una spiegazione non autorizzano la loro esecuzione.
+Le risposte libere continuano a riguardare solo gli slot attivi del backend.
+
+| Indicazione | Effetto |
+|---|---|
+| «Questa conferma la vediamo dopo» | Rinvio locale, sessione attiva; nessuna applicabilità inventata. |
+| «Non conosco il recapito» | UNKNOWN sulla voce, nessun valore inserito. |
+| «Interrompiamo tutto per oggi» | Pausa persistita, domanda conservata per la ripresa. |
+| «Ripartiamo da dove eravamo» | Ripresa della stessa sessione. |
+| «Prepara una bozza con quanto disponibile» | Richiesta esplicita di export, soggetta ai gate correnti. |
+
+La regola attuale resta conservativa: PAUSE/FINISH prevalgono sui nuovi dati
+presenti nello stesso messaggio; non c'è ancora un turno composto che prima
+salva il valore e poi sospende/esporta. Questa evoluzione resta da discutere.
+Nel motore globale generate fuori dalla domanda di generazione viene
+normalizzato in finish, usando soltanto il checkpoint backend: stessa operazione,
+nessun nuovo consenso o permesso. Legacy invariato, perché lì i due comandi
+hanno effetti diversi. Nessuna nuova chiamata AI o modifica agli schemi pubblici.
+
+Prove DeepSeek reali sul codice 802c483: **28/28** Comandi V1 (BEFORE 24/28),
+**43/43** Dialogo V1 (baseline precedente 40/43), fixture/gold invariati.
+Un primo output invalido in export-no è respinto, poi corretto dall'unico retry;
+nessuna scrittura/export nel frattempo. Il controllo semantico delle risposte
+USER resta attivo; nessun falso valore acquisito nei casi di pausa/esportazione.
+Sono checkpoint preparati, non una misura della completezza del DOCX reale.
+[Report, costi e acquisizioni](comandi-conversazionali-2026-10-12.md).
+
+## Pertinenza delle risposte USER
+
 Dal 12 ottobre le proposte di aggiornamento conversazionale attraversano anche
 `compilation_reply_guard.py`: controllo semantico indipendente di pertinenza
 USER -> domanda/slot, prima della scrittura. Una sola verifica per gruppo,
@@ -22,9 +55,10 @@ Provider failure/timeout bloccano conservativamente l'aggiornamento.
 Benchmark del dialogo del 12 ottobre: [43 casi reali, 39 conformi al gold](benchmark-dialogo-2026-10-12.md).
 Il consenso naturale funziona nei casi fissati, ma una correzione fuori dagli
 slot veniva applicata al campo attivo sbagliato. Estratto USER e
-slot valido non garantiscono la pertinenza semantica. Noti anche messaggi misti
-con export ignorato e rinvio locale interpretato come pausa. Questi ultimi
-restano aperti; il nuovo gate corregge soltanto la pertinenza. Il benchmark usa checkpoint
+slot valido non garantiscono la pertinenza semantica. Nella baseline erano noti
+anche messaggi misti con export ignorato e rinvio locale interpretato come pausa:
+sono affrontati dal successivo intervento sui comandi descritto sopra, mentre
+il gate corregge soltanto la pertinenza. Il benchmark usa checkpoint
 isolati preparati, senza una nuova analisi SOURCE o una compilazione completa.
 
 ## Motore attivo dal 12 ottobre: proposta globale e revisione

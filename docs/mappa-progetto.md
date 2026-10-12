@@ -36,6 +36,12 @@ USER hanno una verifica semantica indipendente della pertinenza alla domanda:
 una chiamata breve per gruppo, nessun retry, errori/ambiguità senza scritture.
 Non è un secondo router. I guard sui controlli preesistenti restano.
 
+I comandi distinguono ora il rinvio locale dalla pausa dell'intera sessione,
+considerando oggetto e negazioni. Nel motore globale i soli intent di export
+già validati sono normalizzati rispetto al checkpoint noto al backend;
+nessuna nuova chiamata AI o autorizzazione. La priorità conservativa di
+pausa/export sui dati nello stesso turno resta in vigore; legacy invariato.
+
 Il selettore `@` include ora fonti e moduli del progetto, distinti per ruolo.
 `document_id` e `document_reference` identificano il documento da consultare;
 la sessione di compilazione mantiene una propria identità e domanda. Il backend
