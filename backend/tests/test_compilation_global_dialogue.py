@@ -275,3 +275,25 @@ async def test_cannot_forge_user_export_outside_an_active_reply(api, provider):
         "candidate_ids": [], "user_candidate_ids": ["t0.r0.c1"], "allow_unresolved": True})
     assert r.status_code == 422
     assert (await api.get(f"{BASE}/{s['id']}")).json()["last_generation"] is None
+
+
+@pytest.mark.anyio
+async def test_uncertainty_can_defer_without_becoming_a_factual_value(api, provider, monkeypatch):
+    s = await conditional(api, monkeypatch)
+    s, errors = reply(s, "UNKNOWN", "Forse, non ho abbastanza informazioni per confermarlo.")
+    assert not errors and s["chat"]["auto_continue"]
+    assert s["global_compilation"]["dialogue"]["answers"]["condition:c"]["action"] == "UNKNOWN"
+    assert not s["global_compilation"]["dialogue"]["user_values"]
+
+
+@pytest.mark.anyio
+async def test_narration_keeps_validated_person_role_context_without_ids(api, provider):
+    s = await resolve(api, await start(api))
+    with connection() as db:
+        data = json.loads(sessions._row(db, "alpha", s["id"])["state_json"])["global_compilation"]
+    # Exercise serialization of a binding already checked by V10, not new role inference.
+    data["audit"]["fields"][0]["subject_binding"] = {
+        "form_evidence": {"paragraph_id": "paragraph:99", "quote": "Responsabile qualità"}}
+    context = dialogue.model_context(data, [])
+    assert context["document_values"][0]["required_role_context"] == "Responsabile qualità"
+    assert "paragraph:99" not in json.dumps(context)

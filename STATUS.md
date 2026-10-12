@@ -29,15 +29,26 @@ lint/build e 1.878 backend completi /144,51 s. Provider software simulati:
 non misurano qualità DeepSeek. Log in
 backend/data/compilation-audit/conversation-review-20261012/checks/.
 
-Prima serie reale fe73786: analisi globale riuscita (13 proposte SOURCE,
-cinque dati societari e 8421 presenti), ma sintesi rifiutata: DeepSeek ha
-restituito questions[].text anziché question. Il trasporto DeepSeek usa JSON
-mode e non applica response_schema: lo schema deve essere nel prompt. Nessuna
-bozza/valore USER. Serie chiusa e output conservati; aggiunto SCHEMA OUTPUT
-esplicito e log errori di validazione, senza accettare alias o allentare gate.
-55 mirati e Ruff rieseguiti dopo questa correzione; suite completa precedente
-al solo cambiamento di prompt/log. Prossimo passo: nuova serie congelata,
-ripresa della sola sintesi, poi risposte conversazionali ed export esplicito.
+Prima serie reale fe73786: 13 proposte SOURCE Catanzaro, sintesi rifiutata
+per questions[].text anziché question. JSON mode DeepSeek non applica il
+response_schema del trasporto: schema aggiunto nel prompt (d6f9991), nessun
+alias/gate rilassato. Seconda serie: ripresa della sola sintesi, dialogo,
+pausa/ripresa, conferma USER del ramo ingegneria ed export in chat. 13/13 valori
+SOURCE Catanzaro +17/17 Labirinto materializzati correttamente, nessun valore
+fattuale USER. Nel Labirinto tre chiarimenti risposti in un messaggio
+(CONDITION_TRUE/SKIP/UNKNOWN), nessun loop. Cinque dati societari e 8421 presenti.
+
+Limite reale di sintesi: «professionista che firma» non giustificato, pur senza
+scritture di firmatari. Serie chiusa prima del refinement: ora la sintesi riceve
+anche il contesto del binding personale già validato e deve evitare relazioni
+non attestate. UNKNOWN/SKIP con espressioni incerte possono deferire senza
+essere bloccati dal guard sulle alternative, riservato a valori/condizioni.
+59 mirati e Ruff passati; suite backend finale in corso (la precedente completa
+ha 1.878 test). Prossimo passo: replay reale della sola sintesi sui due audit,
+archiviazione e report finale. Il file DB live ha cambiato hash fisico:
+confronto read-only di fonti/moduli/conversazioni/sessioni esistenti invariato
+rispetto alla copia; non dichiarare byte-identità dell'intero DB. Originali
+invariati, tutte le operazioni di benchmark su DB/storage temporanei.
 Nessun push. Le sezioni successive documentano la baseline precedente:
 le istruzioni con checkbox sono storiche, superate dal dialogo descritto sopra.
 

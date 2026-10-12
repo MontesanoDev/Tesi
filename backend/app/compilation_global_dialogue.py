@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import re
+import time
 from uuid import uuid4
 
 import httpx
@@ -44,6 +45,11 @@ Non elencare tutte le posizioni vuote: una posizione omessa non è necessariamen
 un campo obbligatorio. Non mostrare ID, XML, nomi di stati o termini SOURCE/FORM.
 Usa nomi umani e raggruppa dati correlati. Non chiedere di spuntare o selezionare
 caselle, premere pulsanti, leggere una checklist o usare un editor.
+message deve essere conciso, circa 100 parole. Non attribuire a una persona ruoli
+o relazioni non attestati: usa required_role_context quando presente. Un nome
+in una sezione professionale non identifica automaticamente chi sottoscrive.
+Non dire che mancano tutti i dati di una sezione se hai proposte per quella
+sezione; distingue sempre dati trovati e posizioni ancora non valutate.
 Puoi porre al massimo tre domande, scegliendole dal pool di slot del backend:
 preferisci condizioni che sbloccano più valori e poi ambiguità importanti.
 Non accettare una condizione come vera soltanto perché compare nel modulo.
@@ -111,12 +117,15 @@ def model_context(data, pool):
 
     dialogue = data.get("dialogue") or {}
     answers = dialogue.get("answers", {})
+    audited = {f["candidate_id"]: f for f in (data.get("audit") or {}).get("fields", [])}
     proposals = [f for f in review_fields(data) if f["selectable"] and not any(
         answers.get("condition:" + c, {}).get("applies") is False
         for c in f["conditions"])][:40]
     return {"document_values": [
         {"proposal_slot": i + 1, "label": f["label"][:200], "value": f["value"][:500],
          "form_context": f["form_context"][:1200], "form_quote": f["form_quote"][:500],
+         "required_role_context": audited[f["candidate_id"]].get("subject_binding", {}).get(
+             "form_evidence", {}).get("quote", "")[:600],
          "conditional": any(answers.get("condition:" + c, {}).get("applies") is not True
                             for c in f["conditions"]),
          "sources": [{"name": e["source_name"][:150], "quote": e["quote"][:300]}
@@ -174,8 +183,11 @@ async def narrate(data, folder):
     root.mkdir(parents=True)
     _save(root / "request.json", {"body": body, "schema": schema},
           settings.api_key)
+    started, http_calls = time.perf_counter(), 0
     try:
         async def capture(response):
+            nonlocal http_calls
+            http_calls += 1
             await response.aread()
             _save(root / "http-response.txt", response.text, settings.api_key)
 
@@ -208,6 +220,7 @@ async def narrate(data, folder):
             "Ho conservato l'analisi del modulo, ma non sono riuscito a riassumerla "
             "in modo affidabile. Puoi chiedermi di riprovare la sintesi. "
             "Non ho ancora generato il documento."), "error": type(exc).__name__}
+    result.update(ai_seconds=time.perf_counter() - started, http_calls=http_calls)
     _save(root / "result.json", result, settings.api_key)
     return {**(data.get("dialogue") or {}), **result}
 
@@ -275,7 +288,8 @@ def apply_replies(project_id, session_id, version, replies, message):
             try:
                 if not contains_span(message, reply.user_quote):
                     raise ValueError("Indicazione non presente nel messaggio USER")
-                if len(slots) == 1 and has_user_alternatives(message):
+                if (reply.action in {"VALUE", "CONDITION_TRUE", "CONDITION_FALSE"}
+                        and len(slots) == 1 and has_user_alternatives(message)):
                     raise ValueError("Risposta con più interpretazioni")
                 record = {"action": reply.action, "user_quote": reply.user_quote,
                           "provenance": "USER", "label": slot["label"]}
