@@ -1,0 +1,363 @@
+{
+  "scope": "Real HTTP ASGI conversations; no browser, application changes or simulated provider",
+  "software_tests": {
+    "passed": 109,
+    "seconds": 17.07,
+    "provider": "simulated, separate from real benchmark"
+  },
+  "application_unchanged_in_all_series": true,
+  "actual_export_count": 3,
+  "actual_values_checked": 45,
+  "all_report_values_written": true,
+  "no_extra_cells_written": true,
+  "native_controls_unchanged": true,
+  "originals_unchanged": true,
+  "private_runtime_cleanup": "Completed after read-only state/report/docx/revision captures",
+  "live_integrity": {
+    "changed_tables": [
+      "document_chunks",
+      "document_chunks_fts_content",
+      "document_chunks_fts_data",
+      "document_chunks_fts_docsize",
+      "document_chunks_fts_idx",
+      "global_document_chunks_fts_data",
+      "global_document_chunks_fts_idx",
+      "sqlite_sequence"
+    ],
+    "stable_user_tables": {
+      "conversations": true,
+      "conversation_turns": true,
+      "compilation_sessions": true,
+      "compilation_session_revisions": true,
+      "document_compilations": true,
+      "project_files": true,
+      "global_documents": true,
+      "global_document_chunks": true,
+      "ai_profiles": true,
+      "project_ai_settings": true
+    },
+    "document_chunk_contents_unchanged": true,
+    "affected_file_count": 4,
+    "affected_files": [
+      {
+        "id": 116,
+        "name": "call-facts.md",
+        "kind": "artifact",
+        "project_id": "catanzaro-direzione-lavori-e-sicurezza"
+      },
+      {
+        "id": 117,
+        "name": "project-facts.md",
+        "kind": "artifact",
+        "project_id": "catanzaro-direzione-lavori-e-sicurezza"
+      },
+      {
+        "id": 121,
+        "name": "project-facts.md",
+        "kind": "artifact",
+        "project_id": "minervino-di-lecce-elenco-sia"
+      },
+      {
+        "id": 150,
+        "name": "project-facts.md",
+        "kind": "artifact",
+        "project_id": "prova"
+      }
+    ],
+    "source_corpus_unchanged": true,
+    "note": "Development uvicorn --reload observed; new audit .py files triggered application startup and indexing. No benchmark HTTP request used live DB, no manual restoration."
+  },
+  "harness_scope_error_r1_retained": true,
+  "gold_comparison_r2": {
+    "scope": "Only exported values and authored evidence references; not full semantic accuracy",
+    "original_fixture_and_manifest_unchanged": true,
+    "database_ids_remapped_offline_by_name_role_scope_category_exact_content": true,
+    "literal_matches": 17,
+    "source_matches": 17,
+    "fields": [
+      {
+        "candidate_id": "t0.r0.c1",
+        "label": "Denominazione sociale",
+        "value": "Orione Tecnica S.r.l.",
+        "expected_value": "Orione Tecnica S.r.l.",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t0.r1.c1",
+        "label": "Forma giuridica",
+        "value": "società a responsabilità limitata",
+        "expected_value": "società a responsabilità limitata",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t0.r2.c1",
+        "label": "Codice fiscale operatore",
+        "value": "01234567897",
+        "expected_value": "01234567897",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t0.r3.c1",
+        "label": "Partita IVA",
+        "value": "01234567897",
+        "expected_value": "01234567897",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t0.r4.c1",
+        "label": "Sede legale",
+        "value": "Via delle Querce 18, 60121 Ancona (AN)",
+        "expected_value": "Via delle Querce 18, 60121 Ancona (AN)",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t0.r5.c1",
+        "label": "Telefono",
+        "value": "+39 071 000 1234",
+        "expected_value": "+39 071 000 1234",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t0.r6.c1",
+        "label": "PEC",
+        "value": "orione@pec.example.org",
+        "expected_value": "orione@pec.example.org",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t12.r0.c1",
+        "label": "Iscrizione CCIAA",
+        "value": "Camera di Commercio delle Marche",
+        "expected_value": "Camera di Commercio delle Marche",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t12.r1.c1",
+        "label": "Numero iscrizione REA",
+        "value": "AN-204060",
+        "expected_value": "AN-204060",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t12.r2.c1",
+        "label": "Data iscrizione CCIAA",
+        "value": "14/03/2019",
+        "expected_value": "14/03/2019",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t13.r0.c1",
+        "label": "Codice della presente procedura",
+        "value": "LAB-ORIONE-2026",
+        "expected_value": "LAB-ORIONE-2026",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": 2,
+            "fixture_chunk_id": 101,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t5.r0.c1",
+        "label": "Denominazione sociale",
+        "value": "Orione Tecnica S.r.l.",
+        "expected_value": "Orione Tecnica S.r.l.",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t5.r1.c1",
+        "label": "Forma giuridica",
+        "value": "società a responsabilità limitata",
+        "expected_value": "società a responsabilità limitata",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -1,
+            "fixture_chunk_id": -1,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t6.r0.c1",
+        "label": "Nome e cognome",
+        "value": "Giulia Serra",
+        "expected_value": "Giulia Serra",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -2,
+            "fixture_chunk_id": -2,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t6.r1.c1",
+        "label": "Qualifica professionale",
+        "value": "Ingegnere",
+        "expected_value": "Ingegnere",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -2,
+            "fixture_chunk_id": -2,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t6.r2.c1",
+        "label": "Ordine professionale",
+        "value": "Ordine degli Ingegneri di Ancona",
+        "expected_value": "Ordine degli Ingegneri di Ancona",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -2,
+            "fixture_chunk_id": -2,
+            "name_scope_content_match": true
+          }
+        ]
+      },
+      {
+        "candidate_id": "t6.r3.c1",
+        "label": "Numero iscrizione albo",
+        "value": "5739",
+        "expected_value": "5739",
+        "literal_match": true,
+        "source_matches": true,
+        "mapping": [
+          {
+            "actual_chunk_id": -2,
+            "fixture_chunk_id": -2,
+            "name_scope_content_match": true
+          }
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "No browser",
+    "No new factual USER value in these conversations",
+    "Partial drafts, no complete-document accuracy",
+    "Anaphoric group confirmation false negative retained",
+    "Order/registration conflation in R1; one success in R2 is not a fix"
+  ],
+  "archive": {
+    "files": 303,
+    "bytes": 1142223,
+    "sha256": "d57f20629d2144e6c2032f859d41c3cd276f81c314a35502beb8bdc04bb1a170",
+    "byte_for_byte_verified": true,
+    "private_database_keys_excluded": true
+  },
+  "ruff_backend_passed": true,
+  "ruff_harness_passed": true,
+  "git_diff_check_passed": true,
+  "new_documentation_links_checked": [
+    "docs/benchmarks/2026-10-12-full-conversation.json",
+    "docs/benchmarks/2026-10-12-full-conversation-audit.tar.gz",
+    "docs/benchmarks/2026-10-12-full-conversation-final-checks.json",
+    "docs/test-conversazione-completa-2026-10-12.md",
+    "docs/benchmarks/2026-10-12-full-conversation.json",
+    "docs/benchmarks/2026-10-12-full-conversation-audit.tar.gz",
+    "docs/test-conversazione-completa-2026-10-12.md"
+  ],
+  "backend_full_suite_rerun": false,
+  "frontend_browser_rerun": false
+}

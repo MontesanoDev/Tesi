@@ -1741,3 +1741,60 @@ file, senza chiavi/DB/runtime, SHA-256
 `d47c6280078942bf96475475252d3894788f28270c5e07486d7833f624339566`.
 Grezzi in commands-20261012/. Nessuna migrazione/reindicizzazione/push.
 Prossimo: concordare il comportamento dei turni composti prima di implementarli.
+
+## 12 ottobre 2026 — conversazioni complete, prima dei turni composti
+
+Protocollo in d5167b9, correzione del setup registrata in 2c5a567 prima di R2.
+Applicazione identica a fb2894e, già pubblicata; nessuna modifica durante le
+serie. DeepSeek Flash reale, nuove conversazioni/sessioni via API ASGI, non
+checkpoint manuali né browser reale. Rilettura in un nuovo processo prima di
+ogni turno, solo DB/storage privati per le richieste. Nessun valore aziendale
+o professionale presente nelle fonti inserito dall'utente.
+
+Catanzaro: 307 candidate, 12 proposte SOURCE esportate, 293 posizioni omesse,
+0 RESOLVED. Due domande iniziali, pausa/ripresa e bozza esplicita. La conferma
+di entrambe con riferimento «quello indicato nelle fonti» viene accettata solo
+per il ramo; gate sul partecipante AMBIGUOUS. Secondo «Sì, confermo» accettato.
+Sei turni, 12 chiamate /128.420 token, analisi 133,47 s. Cinque campi aziendali,
+direttore tecnico, Ordine e 8421 realmente nelle celle previste.
+
+Labirinto R1: setup errato, procedura in Company KB invece che progetto;
+conservato, escluso dai confronti congelati. Comandi gruppo/pausa/ripresa/export
+riusciti, 16 valori, numero albo confluito nell'Ordine e campo numero omesso.
+59.915 token /nove chiamate, analisi 65,29 s. Gold non cambiato. Corretto solo
+l'harness, nuovo DB e conversazione R2: scope da sources.json, Word/testi/manifest
+originali, nessuna modifica applicativa. ID API associati offline agli ID simbolici
+solo con nome, role, scope/categoria e contenuto esatto.
+
+R2: 17 proposte SOURCE esportate, 34 posizioni omesse; 17 valori/fonti coerenti
+col gold per i campi esportati, non accuratezza su tutto il documento. Una
+risposta a tre slot produce CONDITION_TRUE, SKIP, UNKNOWN. Nessun loop,
+recapito/polizza vuoti anche dopo pausa/ripresa. Ordine/5739 separati in R2;
+non attribuire causalmente il diverso esito al solo scope o dichiarare risolto
+lo slittamento. Cinque turni, nove chiamate /60.200 token, analisi 70,96 s.
+
+In totale 16 turni /30 chiamate /248.535 token, includendo R1; zero retry/schema
+error. Verificati 45 valori in tre Word/stato/report, zero scritture aggiuntive,
+originali/checkbox invariati, solo document.xml e banner previsti. Valori fattuali
+USER: zero. Sintesi ancora soggetta a imprecisioni; molti candidate non valutati.
+109 software mirati /17,07 s con provider simulati, Ruff backend/harness e diff
+check. Suite completa/frontend/browser non ripetuti, nessun contratto cambiato.
+
+Incidente d'ambiente documentato: il dev server --reload reagisce ai nuovi .py
+dei runner ed esegue lo startup, ricostruendo 82 chunk di quattro artefatti live.
+Solo ID/FTS cambiati; lettura comparativa dimostra contenuti, SOURCE, conversazioni,
+sessioni e originali invariati. Nessun ripristino manuale. R2 evita il watcher
+usando .txt; prossimi runner fuori dal watch root o senza suffisso .py.
+
+[Report](docs/test-conversazione-completa-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-full-conversation.json),
+[bundle](docs/benchmarks/2026-10-12-full-conversation-audit.tar.gz).
+Snapshot/chiavi private eliminati dopo i confronti. Proposta successiva:
+conferme anaforiche del gruppo attivo; poi decisione esplicita sui turni composti.
+Nessun cambiamento a RAG, parser, renderer, UI o stato della compilazione;
+nessuna migrazione/reindicizzazione manuale/push.
+
+Bundle sanificato verificato byte-per-byte: **303 file /1.142.223 byte**,
+SHA-256 `d57f20629d2144e6c2032f859d41c3cd276f81c314a35502beb8bdc04bb1a170`.
+Prompt/schema/raw, tempi/usage, revisioni e tre Word realmente generati inclusi;
+nessun DB/chiave/runtime privato. Le serie fallite o non comparabili restano incluse.

@@ -1,5 +1,23 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Conversazioni complete — 12 ottobre, dopo i test dei comandi
+
+Il [nuovo test reale](test-conversazione-completa-2026-10-12.md) attraversa
+conversazioni nuove, non checkpoint autoriali: una analisi per sessione, domande
+raggruppate, pause/riprese in processi nuovi, esplicita richiesta di bozza.
+Catanzaro: 12 valori SOURCE nel Word, incluso 8421; Labirinto con scope corretti:
+17, recapito/polizza differiti con SKIP/UNKNOWN e lasciati vuoti. USER conferma
+condizioni, senza fornire i valori aziendali già recuperati. Nessuna promozione
+automatica a RESOLVED, nessun nuovo workflow o cambiamento applicativo.
+
+Limite conversazionale osservato: «confermo entrambe ... il partecipante è
+quello indicato nelle fonti» produce un falso negativo del gate sul partecipante;
+serve un secondo consenso, poi la stessa sessione prosegue. La composizione
+«valore + pausa/export» resta da discutere. Le prove verificano bozza/materializzazione,
+non copertura completa dei candidate. La serie Labirinto con setup iniziale
+errato è archiviata separatamente; non viene usata come confronto congelato.
+In quella serie Ordine includeva il numero albo, ancora un limite da misurare.
+
 ## Comandi conversazionali — 12 ottobre
 
 Il routing unico distingue azione, oggetto e polarità: rinvio di una voce

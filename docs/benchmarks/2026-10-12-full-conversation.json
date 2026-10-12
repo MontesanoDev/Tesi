@@ -1,0 +1,3202 @@
+{
+  "application_baseline": "fb2894e",
+  "protocol_commits": [
+    "d5167b9",
+    "2c5a567"
+  ],
+  "application_changed": false,
+  "real_provider": "deepseek-flash",
+  "prepared_checkpoints": false,
+  "api_calls": 30,
+  "tokens": 248535,
+  "ai_seconds": 316.23163356399164,
+  "user_turns": 16,
+  "series": {
+    "catanzaro": {
+      "candidate_count": 307,
+      "proposal_count": 12,
+      "omitted_positions": 293,
+      "resolved": 0,
+      "state": "GENERATED",
+      "source_written": 12,
+      "user_written": 0,
+      "written_count": 12,
+      "checks": [
+        {
+          "candidate_id": "t0.r10.c1",
+          "label": "Partita IVA operatore economico",
+          "expected": "IT01234567890",
+          "actual": "IT01234567890",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "label": "Operatore economico",
+          "expected": "Mapi Ingegneria S.r.l.",
+          "actual": "Mapi Ingegneria S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "label": "Forma giuridica",
+          "expected": "Societa a responsabilita limitata",
+          "actual": "Societa a responsabilita limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "label": "Sede legale (via, città, prov.)",
+          "expected": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "actual": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "label": "Codice fiscale operatore economico",
+          "expected": "IT01234567890",
+          "actual": "IT01234567890",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r0.c1",
+          "label": "Denominazione sociale:",
+          "expected": "Mapi Ingegneria S.r.l.",
+          "actual": "Mapi Ingegneria S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r4.c1",
+          "label": "forma giuridica:",
+          "expected": "Societa a responsabilita limitata",
+          "actual": "Societa a responsabilita limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r4.c3",
+          "label": "sede legale:",
+          "expected": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "actual": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "label": "Nome e cognome:",
+          "expected": "Ing. Elisa Romano",
+          "actual": "Ing. Elisa Romano",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Nominativo completo: Ing. Elisa Romano.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "label": "qualifica professionale:",
+          "expected": "Ingegnere",
+          "actual": "Ingegnere",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Qualifica professionale nello scenario: Ingegnere.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "label": "Ordine professionale di appartenenza:",
+          "expected": "Ordine degli Ingegneri di Bari",
+          "actual": "Ordine degli Ingegneri di Bari",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Ordine professionale simulato: Ordine degli Ingegneri di Bari.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "label": "numero di iscrizione all’Albo professionale:",
+          "expected": "8421",
+          "actual": "8421",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Numero di iscrizione professionale simulato: 8421.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        }
+      ],
+      "changed_cells": [
+        "t0.r5.c1",
+        "t0.r6.c1",
+        "t0.r7.c1",
+        "t0.r9.c1",
+        "t0.r10.c1",
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "unselected_cells_unchanged": true,
+      "paragraphs_unchanged_except_banner": true,
+      "native_controls_unchanged": true,
+      "package_changed_parts": [
+        "word/document.xml"
+      ],
+      "deferred_fields_not_written": [],
+      "original_unchanged": true,
+      "partial_draft": true,
+      "ready_for_submission": false,
+      "costs": {
+        "analysis": {
+          "calls": 1,
+          "seconds": 133.47219143099937,
+          "prompt_tokens": 66188,
+          "completion_tokens": 27062,
+          "total_tokens": 93250
+        },
+        "narration": {
+          "calls": 3,
+          "seconds": 7.63343251299375,
+          "prompt_tokens": 8143,
+          "completion_tokens": 627,
+          "total_tokens": 8770
+        },
+        "routing": {
+          "calls": 6,
+          "seconds": 10.662829439992493,
+          "prompt_tokens": 23530,
+          "completion_tokens": 437,
+          "total_tokens": 23967
+        },
+        "user_scope": {
+          "calls": 2,
+          "seconds": 3.6367475209990516,
+          "prompt_tokens": 2254,
+          "completion_tokens": 179,
+          "total_tokens": 2433
+        }
+      },
+      "api_calls": 12,
+      "total_tokens": 128420,
+      "ai_seconds": 155.40520090498467,
+      "user_turns_including_start": 6,
+      "answer_actions": {
+        "CONDITION_TRUE": 2
+      },
+      "turns": [
+        {
+          "turn": "turn-01",
+          "request": {
+            "question": "me lo compili?",
+            "document_id": 155
+          },
+          "answer": "Certo. Analizzo il modulo e verifico le informazioni disponibili.",
+          "command": {
+            "session_id": "88e635c66fa94685adf4253f1ca40890",
+            "action": "start"
+          },
+          "seconds_answer": 1.8782364220023737,
+          "version": 3,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "clarifications",
+            "field_ids": [],
+            "slots": [
+              {
+                "key": "condition:c_socing",
+                "kind": "applicability",
+                "condition_id": "c_socing",
+                "condition": "da compilare in caso di SOCIETÀ DI INGEGNERIA",
+                "label": "La sezione 5.d si applica solo se l'operatore è una società di ingegneria.",
+                "context": "da compilare in caso di SOCIETÀ DI INGEGNERIA",
+                "field_ids": [
+                  "t25.r0.c1",
+                  "t25.r4.c1",
+                  "t25.r4.c3",
+                  "t26.r0.c1",
+                  "t26.r1.c1",
+                  "t26.r3.c1",
+                  "t26.r4.c1"
+                ],
+                "alternatives": [],
+                "impact": 7,
+                "slot": 1,
+                "question": "La sezione riservata alle società di ingegneria si applica al vostro caso?"
+              },
+              {
+                "key": "condition:c_domanda",
+                "kind": "applicability",
+                "condition_id": "c_domanda",
+                "condition": "CHIEDE di partecipare alla presente gara",
+                "label": "I dati anagrafici dell'operatore presuppongono che il richiedente sia Mapi Ingegneria S.r.l.; la scelta del partecipante non è confermata.",
+                "context": "CHIEDE di partecipare alla presente gara",
+                "field_ids": [
+                  "t0.r10.c1",
+                  "t0.r5.c1",
+                  "t0.r6.c1",
+                  "t0.r7.c1",
+                  "t0.r9.c1",
+                  "p57.cb0"
+                ],
+                "alternatives": [],
+                "impact": 6,
+                "slot": 2,
+                "question": "Il soggetto che partecipa alla gara è Mapi Ingegneria S.r.l.?"
+              }
+            ],
+            "message": "Dalla visura della società risultano denominazione, forma giuridica, sede legale e partita IVA/codice fiscale di Mapi Ingegneria S.r.l.; da un altro documento provengono i dati del direttore tecnico (Ing. Elisa Romano, ingegnere, iscritta all'Ordine di Bari). Questi valori sono proposte da controllare, non un modulo già compilato. Restano molte posizioni non valutate, quindi non posso dire che la sezione sia completa. Due punti vanno chiariti: se la sezione riservata alle società di ingegneria riguarda questo caso e se il partecipante è effettivamente Mapi Ingegneria S.r.l.\n\n1. La sezione riservata alle società di ingegneria si applica al vostro caso?\n2. Il soggetto che partecipa alla gara è Mapi Ingegneria S.r.l.?\nPuoi rispondere in un unico messaggio."
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-01/call-01-routing",
+              "seconds": 1.601585640994017,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3582,
+                "completion_tokens": 35,
+                "total_tokens": 3617,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 1022
+              }
+            },
+            {
+              "stage": "analysis",
+              "path": "turn-01/call-02-analysis",
+              "seconds": 133.47219143099937,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 66188,
+                "completion_tokens": 27062,
+                "total_tokens": 93250,
+                "prompt_tokens_details": {
+                  "cached_tokens": 66048
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 24280
+                },
+                "prompt_cache_hit_tokens": 66048,
+                "prompt_cache_miss_tokens": 140
+              }
+            },
+            {
+              "stage": "narration",
+              "path": "turn-01/call-03-narration",
+              "seconds": 2.719376827997621,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 2736,
+                "completion_tokens": 260,
+                "total_tokens": 2996,
+                "prompt_tokens_details": {
+                  "cached_tokens": 768
+                },
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 1968
+              }
+            }
+          ],
+          "pid": 103067
+        },
+        {
+          "turn": "turn-02",
+          "request": {
+            "question": "Basta, riprendiamo dopo.",
+            "document_id": 155,
+            "conversation_id": "conv-4699c6d252564ccd",
+            "compilation_session_id": "88e635c66fa94685adf4253f1ca40890",
+            "compilation_version": 3
+          },
+          "answer": "Metto in pausa la compilazione.",
+          "command": {
+            "session_id": "88e635c66fa94685adf4253f1ca40890",
+            "action": "paused"
+          },
+          "seconds_answer": 1.8063212979977834,
+          "version": 4,
+          "status": "WAITING_FOR_USER",
+          "paused": true,
+          "question": null,
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-02/call-01-routing",
+              "seconds": 1.7343458959949203,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 4070,
+                "completion_tokens": 41,
+                "total_tokens": 4111,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 1510
+              }
+            }
+          ],
+          "pid": 104889
+        },
+        {
+          "turn": "turn-03",
+          "request": {
+            "question": "Riprendi.",
+            "document_id": 155,
+            "conversation_id": "conv-4699c6d252564ccd",
+            "compilation_session_id": "88e635c66fa94685adf4253f1ca40890",
+            "compilation_version": 4
+          },
+          "answer": "Riprendo la stessa compilazione globale.",
+          "command": {
+            "session_id": "88e635c66fa94685adf4253f1ca40890",
+            "action": "resumed"
+          },
+          "seconds_answer": 1.749767563000205,
+          "version": 5,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "clarifications",
+            "field_ids": [],
+            "slots": [
+              {
+                "key": "condition:c_socing",
+                "kind": "applicability",
+                "condition_id": "c_socing",
+                "condition": "da compilare in caso di SOCIETÀ DI INGEGNERIA",
+                "label": "La sezione 5.d si applica solo se l'operatore è una società di ingegneria.",
+                "context": "da compilare in caso di SOCIETÀ DI INGEGNERIA",
+                "field_ids": [
+                  "t25.r0.c1",
+                  "t25.r4.c1",
+                  "t25.r4.c3",
+                  "t26.r0.c1",
+                  "t26.r1.c1",
+                  "t26.r3.c1",
+                  "t26.r4.c1"
+                ],
+                "alternatives": [],
+                "impact": 7,
+                "slot": 1,
+                "question": "La sezione riservata alle società di ingegneria si applica al vostro caso?"
+              },
+              {
+                "key": "condition:c_domanda",
+                "kind": "applicability",
+                "condition_id": "c_domanda",
+                "condition": "CHIEDE di partecipare alla presente gara",
+                "label": "I dati anagrafici dell'operatore presuppongono che il richiedente sia Mapi Ingegneria S.r.l.; la scelta del partecipante non è confermata.",
+                "context": "CHIEDE di partecipare alla presente gara",
+                "field_ids": [
+                  "t0.r10.c1",
+                  "t0.r5.c1",
+                  "t0.r6.c1",
+                  "t0.r7.c1",
+                  "t0.r9.c1",
+                  "p57.cb0"
+                ],
+                "alternatives": [],
+                "impact": 6,
+                "slot": 2,
+                "question": "Il soggetto che partecipa alla gara è Mapi Ingegneria S.r.l.?"
+              }
+            ],
+            "message": "Dalla visura della società risultano denominazione, forma giuridica, sede legale e partita IVA/codice fiscale di Mapi Ingegneria S.r.l.; da un altro documento provengono i dati del direttore tecnico (Ing. Elisa Romano, ingegnere, iscritta all'Ordine di Bari). Questi valori sono proposte da controllare, non un modulo già compilato. Restano molte posizioni non valutate, quindi non posso dire che la sezione sia completa. Due punti vanno chiariti: se la sezione riservata alle società di ingegneria riguarda questo caso e se il partecipante è effettivamente Mapi Ingegneria S.r.l.\n\n1. La sezione riservata alle società di ingegneria si applica al vostro caso?\n2. Il soggetto che partecipa alla gara è Mapi Ingegneria S.r.l.?\nPuoi rispondere in un unico messaggio."
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-03/call-01-routing",
+              "seconds": 1.6852816860046005,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3686,
+                "completion_tokens": 42,
+                "total_tokens": 3728,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 1126
+              }
+            }
+          ],
+          "pid": 105022
+        },
+        {
+          "turn": "turn-04",
+          "request": {
+            "question": "Confermo entrambe: la sezione delle società di ingegneria si applica e il partecipante è quello indicato nelle fonti.",
+            "document_id": 155,
+            "conversation_id": "conv-4699c6d252564ccd",
+            "compilation_session_id": "88e635c66fa94685adf4253f1ca40890",
+            "compilation_version": 5
+          },
+          "answer": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+          "command": {
+            "session_id": "88e635c66fa94685adf4253f1ca40890",
+            "action": "updated"
+          },
+          "seconds_answer": 3.9950672190025216,
+          "version": 8,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "clarifications",
+            "field_ids": [],
+            "slots": [
+              {
+                "key": "condition:c_domanda",
+                "kind": "applicability",
+                "condition_id": "c_domanda",
+                "condition": "CHIEDE di partecipare alla presente gara",
+                "label": "I dati anagrafici dell'operatore presuppongono che il richiedente sia Mapi Ingegneria S.r.l.; la scelta del partecipante non è confermata.",
+                "context": "CHIEDE di partecipare alla presente gara",
+                "field_ids": [
+                  "t0.r10.c1",
+                  "t0.r5.c1",
+                  "t0.r6.c1",
+                  "t0.r7.c1",
+                  "t0.r9.c1",
+                  "p57.cb0"
+                ],
+                "alternatives": [],
+                "impact": 6,
+                "slot": 1,
+                "question": "Il soggetto che partecipa alla gara è effettivamente Mapi Ingegneria S.r.l., oppure si tratta di un altro operatore?"
+              }
+            ],
+            "message": "Ho trovato nelle fonti i dati identificativi dell'operatore economico (denominazione, forma giuridica, sede legale, partita IVA e codice fiscale) e, per la figura professionale indicata come direttore tecnico, nome, qualifica, ordine di appartenenza e numero di iscrizione. Restano molte posizioni non ancora valutate, quindi la bozza è parziale. Un dubbio: i dati anagrafici presuppongono che il partecipante sia Mapi Ingegneria S.r.l., ma la scelta del partecipante non risulta confermata dalle fonti.\n\nIl soggetto che partecipa alla gara è effettivamente Mapi Ingegneria S.r.l., oppure si tratta di un altro operatore?"
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-04/call-01-routing",
+              "seconds": 2.0447148809980717,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 4147,
+                "completion_tokens": 175,
+                "total_tokens": 4322,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 1587
+              }
+            },
+            {
+              "stage": "user_scope",
+              "path": "turn-04/call-02-user_scope",
+              "seconds": 1.8816366489991196,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 1233,
+                "completion_tokens": 109,
+                "total_tokens": 1342,
+                "prompt_tokens_details": {
+                  "cached_tokens": 512
+                },
+                "prompt_cache_hit_tokens": 512,
+                "prompt_cache_miss_tokens": 721
+              }
+            },
+            {
+              "stage": "narration",
+              "path": "turn-04/call-03-narration",
+              "seconds": 2.498598430000129,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 2712,
+                "completion_tokens": 211,
+                "total_tokens": 2923,
+                "prompt_tokens_details": {
+                  "cached_tokens": 1408
+                },
+                "prompt_cache_hit_tokens": 1408,
+                "prompt_cache_miss_tokens": 1304
+              }
+            }
+          ],
+          "pid": 105085
+        },
+        {
+          "turn": "turn-05",
+          "request": {
+            "question": "Sì, confermo.",
+            "document_id": 155,
+            "conversation_id": "conv-4699c6d252564ccd",
+            "compilation_session_id": "88e635c66fa94685adf4253f1ca40890",
+            "compilation_version": 8
+          },
+          "answer": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+          "command": {
+            "session_id": "88e635c66fa94685adf4253f1ca40890",
+            "action": "updated"
+          },
+          "seconds_answer": 3.7521238859990262,
+          "version": 11,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "generate",
+            "field_ids": [],
+            "slots": [],
+            "message": "Dalla visura della società risultano denominazione, forma giuridica, sede legale e partita IVA/codice fiscale di Mapi Ingegneria S.r.l.; da un altro documento provengono i dati del direttore tecnico (Ing. Elisa Romano, ingegnere, iscritta all'Ordine di Bari). Questi valori sono proposte da controllare, non dati già inseriti. Restano molte posizioni non ancora valutate, quindi la bozza è parziale. Non ho domande da porre: se vuoi, procedo con una bozza parziale basata su quanto trovato.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-05/call-01-routing",
+              "seconds": 1.918895007998799,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 4041,
+                "completion_tokens": 103,
+                "total_tokens": 4144,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2688
+                },
+                "prompt_cache_hit_tokens": 2688,
+                "prompt_cache_miss_tokens": 1353
+              }
+            },
+            {
+              "stage": "user_scope",
+              "path": "turn-05/call-02-user_scope",
+              "seconds": 1.755110871999932,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 1021,
+                "completion_tokens": 70,
+                "total_tokens": 1091,
+                "prompt_tokens_details": {
+                  "cached_tokens": 512
+                },
+                "prompt_cache_hit_tokens": 512,
+                "prompt_cache_miss_tokens": 509
+              }
+            },
+            {
+              "stage": "narration",
+              "path": "turn-05/call-03-narration",
+              "seconds": 2.4154572549959994,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 2695,
+                "completion_tokens": 156,
+                "total_tokens": 2851,
+                "prompt_tokens_details": {
+                  "cached_tokens": 768
+                },
+                "prompt_cache_hit_tokens": 768,
+                "prompt_cache_miss_tokens": 1927
+              }
+            }
+          ],
+          "pid": 105346
+        },
+        {
+          "turn": "turn-06",
+          "request": {
+            "question": "Sì, prepara una bozza parziale con i dati disponibili e lascia in bianco le parti irrisolte.",
+            "document_id": 155,
+            "conversation_id": "conv-4699c6d252564ccd",
+            "compilation_session_id": "88e635c66fa94685adf4253f1ca40890",
+            "compilation_version": 11
+          },
+          "answer": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+          "command": {
+            "session_id": "88e635c66fa94685adf4253f1ca40890",
+            "action": "generated"
+          },
+          "seconds_answer": 2.66296863900061,
+          "version": 12,
+          "status": "GENERATED",
+          "paused": false,
+          "question": null,
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-06/call-01-routing",
+              "seconds": 1.678006328002084,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 4004,
+                "completion_tokens": 41,
+                "total_tokens": 4045,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2688
+                },
+                "prompt_cache_hit_tokens": 2688,
+                "prompt_cache_miss_tokens": 1316
+              }
+            }
+          ],
+          "pid": 105552
+        }
+      ],
+      "revisions": [
+        {
+          "version": 1,
+          "created_at": "2026-10-12T20:23:50.127680+00:00",
+          "event": {
+            "action": "create",
+            "template_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0"
+          }
+        },
+        {
+          "version": 2,
+          "created_at": "2026-10-12T20:23:50.481637+00:00",
+          "event": {
+            "action": "global_analysis_start",
+            "changes": [],
+            "status": "ANALYZING",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 3,
+          "created_at": "2026-10-12T20:26:07.248758+00:00",
+          "event": {
+            "action": "global_analysis_complete",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 4,
+          "created_at": "2026-10-12T20:27:09.478948+00:00",
+          "event": {
+            "action": "global_pause",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 5,
+          "created_at": "2026-10-12T20:27:20.315063+00:00",
+          "event": {
+            "action": "global_resume",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 6,
+          "created_at": "2026-10-12T20:27:28.117241+00:00",
+          "event": {
+            "action": "global_dialogue_user_reply",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 7,
+          "created_at": "2026-10-12T20:27:28.163769+00:00",
+          "event": {
+            "action": "global_dialogue_start",
+            "changes": [],
+            "status": "ANALYZING",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 8,
+          "created_at": "2026-10-12T20:27:30.689878+00:00",
+          "event": {
+            "action": "global_dialogue_complete",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 9,
+          "created_at": "2026-10-12T20:27:55.347998+00:00",
+          "event": {
+            "action": "global_dialogue_user_reply",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 10,
+          "created_at": "2026-10-12T20:27:55.398907+00:00",
+          "event": {
+            "action": "global_dialogue_start",
+            "changes": [],
+            "status": "ANALYZING",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 11,
+          "created_at": "2026-10-12T20:27:57.845018+00:00",
+          "event": {
+            "action": "global_dialogue_complete",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 12,
+          "created_at": "2026-10-12T20:28:12.308951+00:00",
+          "event": {
+            "action": "global_draft_generate",
+            "changes": [],
+            "status": "GENERATED",
+            "last_generation": {
+              "session_version": 11,
+              "id": "31542b787286415a9b770e8e171d43dd",
+              "project_id": "prova",
+              "template_name": "domanda-partecipazione.docx",
+              "created_at": "2026-10-12T20:28:11.925397+00:00",
+              "status": "needs_review",
+              "downloads": {
+                "docx": "/api/projects/prova/document-compilations/31542b787286415a9b770e8e171d43dd/download/docx",
+                "report": "/api/projects/prova/document-compilations/31542b787286415a9b770e8e171d43dd/download/report",
+                "template": "/api/projects/prova/document-compilations/31542b787286415a9b770e8e171d43dd/download/template"
+              }
+            },
+            "last_error": null,
+            "chat_workflow": null
+          }
+        }
+      ],
+      "integrity": {
+        "application_unchanged": true,
+        "live_tables_unchanged": true,
+        "live_original_unchanged": true,
+        "private_original_unchanged": true
+      }
+    },
+    "labirinto": {
+      "candidate_count": 55,
+      "proposal_count": 16,
+      "omitted_positions": 35,
+      "resolved": 0,
+      "state": "GENERATED",
+      "source_written": 16,
+      "user_written": 0,
+      "written_count": 16,
+      "checks": [
+        {
+          "candidate_id": "t0.r0.c1",
+          "label": "Denominazione sociale",
+          "expected": "Orione Tecnica S.r.l.",
+          "actual": "Orione Tecnica S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Denominazione: Orione Tecnica S.r.l.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r1.c1",
+          "label": "Forma giuridica",
+          "expected": "società a responsabilità limitata",
+          "actual": "società a responsabilità limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Forma giuridica: società a responsabilità limitata",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r2.c1",
+          "label": "Codice fiscale operatore",
+          "expected": "01234567897",
+          "actual": "01234567897",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Codice fiscale operatore: 01234567897",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "label": "Partita IVA",
+          "expected": "01234567897",
+          "actual": "01234567897",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Partita IVA: 01234567897",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "label": "Sede legale",
+          "expected": "Via delle Querce 18, 60121 Ancona (AN)",
+          "actual": "Via delle Querce 18, 60121 Ancona (AN)",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Sede legale: Via delle Querce 18, 60121 Ancona (AN)",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "label": "Telefono",
+          "expected": "+39 071 000 1234",
+          "actual": "+39 071 000 1234",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Telefono: +39 071 000 1234",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "label": "PEC",
+          "expected": "orione@pec.example.org",
+          "actual": "orione@pec.example.org",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "PEC: orione@pec.example.org",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r0.c1",
+          "label": "Iscrizione CCIAA",
+          "expected": "Camera di Commercio delle Marche",
+          "actual": "Camera di Commercio delle Marche",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Iscrizione CCIAA: Camera di Commercio delle Marche",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r1.c1",
+          "label": "Numero iscrizione REA",
+          "expected": "AN-204060",
+          "actual": "AN-204060",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Numero REA: AN-204060",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r2.c1",
+          "label": "Data iscrizione CCIAA",
+          "expected": "14/03/2019",
+          "actual": "14/03/2019",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Data iscrizione CCIAA: 14/03/2019",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t13.r0.c1",
+          "label": "Codice della presente procedura",
+          "expected": "LAB-ORIONE-2026",
+          "actual": "LAB-ORIONE-2026",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -6,
+              "file_id": -6,
+              "chunk_index": 0,
+              "source_name": "06-procedura.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -6,
+              "citation_rebound": false,
+              "quote": "La presente procedura ha codice LAB-ORIONE-2026",
+              "content_sha256": "79bd1012e86041990bca3a092496b85125c9d47aa731f2c7e1fbcdce86c5e38e"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t5.r0.c1",
+          "label": "Denominazione sociale",
+          "expected": "Orione Tecnica S.r.l.",
+          "actual": "Orione Tecnica S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Denominazione: Orione Tecnica S.r.l.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t5.r1.c1",
+          "label": "Forma giuridica",
+          "expected": "società a responsabilità limitata",
+          "actual": "società a responsabilità limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Forma giuridica: società a responsabilità limitata",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r0.c1",
+          "label": "Nome e cognome",
+          "expected": "Giulia Serra",
+          "actual": "Giulia Serra",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "Orione Tecnica S.r.l. — direttore tecnico: Giulia Serra.",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r1.c1",
+          "label": "Qualifica professionale",
+          "expected": "Ingegnere",
+          "actual": "Ingegnere",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "Qualifica professionale: Ingegnere",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r2.c1",
+          "label": "Ordine professionale",
+          "expected": "Ordine degli Ingegneri di Ancona, n. 5739",
+          "actual": "Ordine degli Ingegneri di Ancona, n. 5739",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "Ordine professionale: Ordine degli Ingegneri di Ancona, n. 5739",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        }
+      ],
+      "changed_cells": [
+        "t0.r0.c1",
+        "t0.r1.c1",
+        "t0.r2.c1",
+        "t0.r3.c1",
+        "t0.r4.c1",
+        "t0.r5.c1",
+        "t0.r6.c1",
+        "t5.r0.c1",
+        "t5.r1.c1",
+        "t6.r0.c1",
+        "t6.r1.c1",
+        "t6.r2.c1",
+        "t12.r0.c1",
+        "t12.r1.c1",
+        "t12.r2.c1",
+        "t13.r0.c1"
+      ],
+      "unselected_cells_unchanged": true,
+      "paragraphs_unchanged_except_banner": true,
+      "native_controls_unchanged": true,
+      "package_changed_parts": [
+        "word/document.xml"
+      ],
+      "deferred_fields_not_written": [
+        "t1.r1.c1",
+        "t11.r0.c1"
+      ],
+      "original_unchanged": true,
+      "partial_draft": true,
+      "ready_for_submission": false,
+      "costs": {
+        "analysis": {
+          "calls": 1,
+          "seconds": 65.29457486700267,
+          "prompt_tokens": 17047,
+          "completion_tokens": 15642,
+          "total_tokens": 32689
+        },
+        "narration": {
+          "calls": 2,
+          "seconds": 4.885561425995547,
+          "prompt_tokens": 5693,
+          "completion_tokens": 444,
+          "total_tokens": 6137
+        },
+        "routing": {
+          "calls": 5,
+          "seconds": 7.6841748140068376,
+          "prompt_tokens": 19400,
+          "completion_tokens": 381,
+          "total_tokens": 19781
+        },
+        "user_scope": {
+          "calls": 1,
+          "seconds": 1.1819375260020024,
+          "prompt_tokens": 1250,
+          "completion_tokens": 58,
+          "total_tokens": 1308
+        }
+      },
+      "api_calls": 9,
+      "total_tokens": 59915,
+      "ai_seconds": 79.04624863300705,
+      "user_turns_including_start": 5,
+      "answer_actions": {
+        "CONDITION_TRUE": 1,
+        "SKIP": 1,
+        "UNKNOWN": 1
+      },
+      "turns": [
+        {
+          "turn": "turn-01",
+          "request": {
+            "question": "me lo compili?",
+            "document_id": 5
+          },
+          "answer": "Certo. Analizzo il modulo e verifico le informazioni disponibili.",
+          "command": {
+            "session_id": "6691837fcf204fb0b8a6d887e7a5608e",
+            "action": "start"
+          },
+          "seconds_answer": 1.8298806620005053,
+          "version": 3,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "clarifications",
+            "field_ids": [],
+            "slots": [
+              {
+                "key": "condition:c_branch_c",
+                "kind": "applicability",
+                "condition_id": "c_branch_c",
+                "condition": "4.c — Da compilare solo in caso di società di ingegneria",
+                "label": "Ramo 4.c applicabile solo se l'operatore è società di ingegneria",
+                "context": "4.c — Da compilare solo in caso di società di ingegneria",
+                "field_ids": [
+                  "t5.r0.c1",
+                  "t5.r1.c1",
+                  "t6.r0.c1",
+                  "t6.r1.c1",
+                  "t6.r2.c1"
+                ],
+                "alternatives": [],
+                "impact": 5,
+                "slot": 1,
+                "question": "La sezione riservata alle società di ingegneria si applica al vostro caso?"
+              },
+              {
+                "key": "field:t1.r1.c1",
+                "kind": "value",
+                "field_ids": [
+                  "t1.r1.c1"
+                ],
+                "label": "Recapito per la corrispondenza",
+                "condition": "",
+                "context": "Recapito per la corrispondenza",
+                "impact": 1,
+                "alternatives": [
+                  "Via del Porto 2, Ancona",
+                  "Via dei Tigli 7, Jesi"
+                ],
+                "slot": 2,
+                "question": "Quale recapito per la corrispondenza va indicato: Via del Porto 2, Ancona oppure Via dei Tigli 7, Jesi?"
+              },
+              {
+                "key": "field:t11.r0.c1",
+                "kind": "value",
+                "field_ids": [
+                  "t11.r0.c1"
+                ],
+                "label": "Numero della polizza professionale vigente",
+                "condition": "",
+                "context": "Numero della polizza professionale vigente",
+                "impact": 1,
+                "alternatives": [
+                  "RC-OR-2026-A",
+                  "RC-OR-2026-B"
+                ],
+                "slot": 3,
+                "question": "Qual è il numero della polizza professionale vigente: RC-OR-2026-A o RC-OR-2026-B?"
+              }
+            ],
+            "message": "Ho trovato nelle fonti i dati anagrafici e identificativi della società (denominazione, forma giuridica, sede legale, contatti, iscrizione camerale) e il codice della procedura. Per la sezione riservata alla società di ingegneria risultano il direttore tecnico con qualifica e iscrizione all'ordine; il ruolo è indicato dalle fonti, ma la sottoscrizione va confermata. Restano molte posizioni non ancora valutate, quindi la bozza è parziale. Non posso completare allegati o caselle.\n\n1. La sezione riservata alle società di ingegneria si applica al vostro caso?\n2. Quale recapito per la corrispondenza va indicato: Via del Porto 2, Ancona oppure Via dei Tigli 7, Jesi?\n3. Qual è il numero della polizza professionale vigente: RC-OR-2026-A o RC-OR-2026-B?\nPuoi rispondere in un unico messaggio."
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-01/call-01-routing",
+              "seconds": 1.7391683380046743,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3582,
+                "completion_tokens": 42,
+                "total_tokens": 3624,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 1022
+              }
+            },
+            {
+              "stage": "analysis",
+              "path": "turn-01/call-02-analysis",
+              "seconds": 65.29457486700267,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 17047,
+                "completion_tokens": 15642,
+                "total_tokens": 32689,
+                "prompt_tokens_details": {
+                  "cached_tokens": 4224
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 12427
+                },
+                "prompt_cache_hit_tokens": 4224,
+                "prompt_cache_miss_tokens": 12823
+              }
+            },
+            {
+              "stage": "narration",
+              "path": "turn-01/call-03-narration",
+              "seconds": 2.796984333996079,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 2888,
+                "completion_tokens": 284,
+                "total_tokens": 3172,
+                "prompt_tokens_details": {
+                  "cached_tokens": 896
+                },
+                "prompt_cache_hit_tokens": 896,
+                "prompt_cache_miss_tokens": 1992
+              }
+            }
+          ],
+          "pid": 105983
+        },
+        {
+          "turn": "turn-02",
+          "request": {
+            "question": "1. Sì, quella sezione si applica. 2. Per il recapito salta, lo verificheremo dopo. 3. Il numero della polizza non lo so.",
+            "document_id": 5,
+            "conversation_id": "conv-ad5cf07499704879",
+            "compilation_session_id": "6691837fcf204fb0b8a6d887e7a5608e",
+            "compilation_version": 3
+          },
+          "answer": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+          "command": {
+            "session_id": "6691837fcf204fb0b8a6d887e7a5608e",
+            "action": "updated"
+          },
+          "seconds_answer": 3.046697079000296,
+          "version": 6,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "generate",
+            "field_ids": [],
+            "slots": [],
+            "message": "Ho trovato nelle fonti i dati identificativi della società (denominazione, forma giuridica, codice fiscale, partita IVA, sede legale, telefono, PEC, iscrizione CCIAA con numero REA e data) e il codice della procedura. Per la figura professionale risultano nome, qualifica e iscrizione all'Ordine, riferiti al direttore tecnico della società di ingegneria. Restano non valutate molte posizioni del modulo, e il recapito per la corrispondenza è stato rinviato; il numero di polizza non è disponibile. Questi valori sono proposte da controllare, non un documento già compilato.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-02/call-01-routing",
+              "seconds": 1.803123443001823,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 4152,
+                "completion_tokens": 215,
+                "total_tokens": 4367,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 1592
+              }
+            },
+            {
+              "stage": "user_scope",
+              "path": "turn-02/call-02-user_scope",
+              "seconds": 1.1819375260020024,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 1250,
+                "completion_tokens": 58,
+                "total_tokens": 1308,
+                "prompt_tokens_details": {
+                  "cached_tokens": 512
+                },
+                "prompt_cache_hit_tokens": 512,
+                "prompt_cache_miss_tokens": 738
+              }
+            },
+            {
+              "stage": "narration",
+              "path": "turn-02/call-03-narration",
+              "seconds": 2.0885770919994684,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 2805,
+                "completion_tokens": 160,
+                "total_tokens": 2965,
+                "prompt_tokens_details": {
+                  "cached_tokens": 1920
+                },
+                "prompt_cache_hit_tokens": 1920,
+                "prompt_cache_miss_tokens": 885
+              }
+            }
+          ],
+          "pid": 107076
+        },
+        {
+          "turn": "turn-03",
+          "request": {
+            "question": "Basta, metti in pausa.",
+            "document_id": 5,
+            "conversation_id": "conv-ad5cf07499704879",
+            "compilation_session_id": "6691837fcf204fb0b8a6d887e7a5608e",
+            "compilation_version": 6
+          },
+          "answer": "Metto in pausa la compilazione.",
+          "command": {
+            "session_id": "6691837fcf204fb0b8a6d887e7a5608e",
+            "action": "paused"
+          },
+          "seconds_answer": 1.2433619270013878,
+          "version": 7,
+          "status": "WAITING_FOR_USER",
+          "paused": true,
+          "question": null,
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-03/call-01-routing",
+              "seconds": 1.1912226799977361,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3918,
+                "completion_tokens": 41,
+                "total_tokens": 3959,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 1358
+              }
+            }
+          ],
+          "pid": 107170
+        },
+        {
+          "turn": "turn-04",
+          "request": {
+            "question": "Riprendi.",
+            "document_id": 5,
+            "conversation_id": "conv-ad5cf07499704879",
+            "compilation_session_id": "6691837fcf204fb0b8a6d887e7a5608e",
+            "compilation_version": 7
+          },
+          "answer": "Riprendo la stessa compilazione globale.",
+          "command": {
+            "session_id": "6691837fcf204fb0b8a6d887e7a5608e",
+            "action": "resumed"
+          },
+          "seconds_answer": 1.6365720620015054,
+          "version": 8,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "generate",
+            "field_ids": [],
+            "slots": [],
+            "message": "Ho trovato nelle fonti i dati identificativi della società (denominazione, forma giuridica, codice fiscale, partita IVA, sede legale, telefono, PEC, iscrizione CCIAA con numero REA e data) e il codice della procedura. Per la figura professionale risultano nome, qualifica e iscrizione all'Ordine, riferiti al direttore tecnico della società di ingegneria. Restano non valutate molte posizioni del modulo, e il recapito per la corrispondenza è stato rinviato; il numero di polizza non è disponibile. Questi valori sono proposte da controllare, non un documento già compilato.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-04/call-01-routing",
+              "seconds": 1.584385864000069,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3757,
+                "completion_tokens": 42,
+                "total_tokens": 3799,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2688
+                },
+                "prompt_cache_hit_tokens": 2688,
+                "prompt_cache_miss_tokens": 1069
+              }
+            }
+          ],
+          "pid": 107284
+        },
+        {
+          "turn": "turn-05",
+          "request": {
+            "question": "Ok sì, genera una bozza parziale con i dati disponibili, lasciando vuoti il recapito e la polizza.",
+            "document_id": 5,
+            "conversation_id": "conv-ad5cf07499704879",
+            "compilation_session_id": "6691837fcf204fb0b8a6d887e7a5608e",
+            "compilation_version": 8
+          },
+          "answer": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+          "command": {
+            "session_id": "6691837fcf204fb0b8a6d887e7a5608e",
+            "action": "generated"
+          },
+          "seconds_answer": 1.6776077839967911,
+          "version": 9,
+          "status": "GENERATED",
+          "paused": false,
+          "question": null,
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-05/call-01-routing",
+              "seconds": 1.3662744890025351,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3991,
+                "completion_tokens": 41,
+                "total_tokens": 4032,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2688
+                },
+                "prompt_cache_hit_tokens": 2688,
+                "prompt_cache_miss_tokens": 1303
+              }
+            }
+          ],
+          "pid": 107371
+        }
+      ],
+      "revisions": [
+        {
+          "version": 1,
+          "created_at": "2026-10-12T20:28:55.718746+00:00",
+          "event": {
+            "action": "create",
+            "template_sha256": "eaa3c2b8e45e147d35766e71f77b90bbb0bdc9a339ee79dd12e6ab007ad9c7ca"
+          }
+        },
+        {
+          "version": 2,
+          "created_at": "2026-10-12T20:28:55.798912+00:00",
+          "event": {
+            "action": "global_analysis_start",
+            "changes": [],
+            "status": "ANALYZING",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 3,
+          "created_at": "2026-10-12T20:30:04.005058+00:00",
+          "event": {
+            "action": "global_analysis_complete",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 4,
+          "created_at": "2026-10-12T20:30:53.050879+00:00",
+          "event": {
+            "action": "global_dialogue_user_reply",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 5,
+          "created_at": "2026-10-12T20:30:53.087735+00:00",
+          "event": {
+            "action": "global_dialogue_start",
+            "changes": [],
+            "status": "ANALYZING",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 6,
+          "created_at": "2026-10-12T20:30:55.197860+00:00",
+          "event": {
+            "action": "global_dialogue_complete",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 7,
+          "created_at": "2026-10-12T20:31:08.888411+00:00",
+          "event": {
+            "action": "global_pause",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 8,
+          "created_at": "2026-10-12T20:31:37.242132+00:00",
+          "event": {
+            "action": "global_resume",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 9,
+          "created_at": "2026-10-12T20:31:53.426342+00:00",
+          "event": {
+            "action": "global_draft_generate",
+            "changes": [],
+            "status": "GENERATED",
+            "last_generation": {
+              "session_version": 8,
+              "id": "383100ec16e94f6782eeb74ae94bbe0c",
+              "project_id": "prova",
+              "template_name": "modulo-benchmark.docx",
+              "created_at": "2026-10-12T20:31:53.339557+00:00",
+              "status": "needs_review",
+              "downloads": {
+                "docx": "/api/projects/prova/document-compilations/383100ec16e94f6782eeb74ae94bbe0c/download/docx",
+                "report": "/api/projects/prova/document-compilations/383100ec16e94f6782eeb74ae94bbe0c/download/report",
+                "template": "/api/projects/prova/document-compilations/383100ec16e94f6782eeb74ae94bbe0c/download/template"
+              }
+            },
+            "last_error": null,
+            "chat_workflow": null
+          }
+        }
+      ],
+      "integrity": {
+        "application_unchanged": true,
+        "live_tables_unchanged": false,
+        "live_original_unchanged": true,
+        "private_original_unchanged": true
+      }
+    },
+    "labirinto-r2": {
+      "candidate_count": 55,
+      "proposal_count": 17,
+      "omitted_positions": 34,
+      "resolved": 0,
+      "state": "GENERATED",
+      "source_written": 17,
+      "user_written": 0,
+      "written_count": 17,
+      "checks": [
+        {
+          "candidate_id": "t0.r0.c1",
+          "label": "Denominazione sociale",
+          "expected": "Orione Tecnica S.r.l.",
+          "actual": "Orione Tecnica S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Denominazione: Orione Tecnica S.r.l.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r1.c1",
+          "label": "Forma giuridica",
+          "expected": "società a responsabilità limitata",
+          "actual": "società a responsabilità limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Forma giuridica: società a responsabilità limitata.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r2.c1",
+          "label": "Codice fiscale operatore",
+          "expected": "01234567897",
+          "actual": "01234567897",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Codice fiscale operatore: 01234567897.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "label": "Partita IVA",
+          "expected": "01234567897",
+          "actual": "01234567897",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Partita IVA: 01234567897.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "label": "Sede legale",
+          "expected": "Via delle Querce 18, 60121 Ancona (AN)",
+          "actual": "Via delle Querce 18, 60121 Ancona (AN)",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Sede legale: Via delle Querce 18, 60121 Ancona (AN).",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "label": "Telefono",
+          "expected": "+39 071 000 1234",
+          "actual": "+39 071 000 1234",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Telefono: +39 071 000 1234.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "label": "PEC",
+          "expected": "orione@pec.example.org",
+          "actual": "orione@pec.example.org",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "PEC: orione@pec.example.org.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r0.c1",
+          "label": "Iscrizione CCIAA",
+          "expected": "Camera di Commercio delle Marche",
+          "actual": "Camera di Commercio delle Marche",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Iscrizione CCIAA: Camera di Commercio delle Marche.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r1.c1",
+          "label": "Numero iscrizione REA",
+          "expected": "AN-204060",
+          "actual": "AN-204060",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Numero REA: AN-204060.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r2.c1",
+          "label": "Data iscrizione CCIAA",
+          "expected": "14/03/2019",
+          "actual": "14/03/2019",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Data iscrizione CCIAA: 14/03/2019.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t13.r0.c1",
+          "label": "Codice della presente procedura",
+          "expected": "LAB-ORIONE-2026",
+          "actual": "LAB-ORIONE-2026",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": 2,
+              "file_id": 5,
+              "chunk_index": 0,
+              "source_name": "06-procedura.txt",
+              "role": "source",
+              "scope": "project:prova",
+              "project_id": "prova",
+              "category": null,
+              "cited_chunk_id": 2,
+              "citation_rebound": false,
+              "quote": "La presente procedura ha codice LAB-ORIONE-2026.",
+              "content_sha256": "79bd1012e86041990bca3a092496b85125c9d47aa731f2c7e1fbcdce86c5e38e"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t5.r0.c1",
+          "label": "Denominazione sociale",
+          "expected": "Orione Tecnica S.r.l.",
+          "actual": "Orione Tecnica S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Denominazione: Orione Tecnica S.r.l.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t5.r1.c1",
+          "label": "Forma giuridica",
+          "expected": "società a responsabilità limitata",
+          "actual": "società a responsabilità limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Forma giuridica: società a responsabilità limitata.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r0.c1",
+          "label": "Nome e cognome",
+          "expected": "Giulia Serra",
+          "actual": "Giulia Serra",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "direttore tecnico: Giulia Serra.",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r1.c1",
+          "label": "Qualifica professionale",
+          "expected": "Ingegnere",
+          "actual": "Ingegnere",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "Qualifica professionale: Ingegnere.",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r2.c1",
+          "label": "Ordine professionale",
+          "expected": "Ordine degli Ingegneri di Ancona",
+          "actual": "Ordine degli Ingegneri di Ancona",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "Ordine professionale: Ordine degli Ingegneri di Ancona, n. 5739.",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r3.c1",
+          "label": "Numero iscrizione albo",
+          "expected": "5739",
+          "actual": "5739",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "Ordine professionale: Ordine degli Ingegneri di Ancona, n. 5739.",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        }
+      ],
+      "changed_cells": [
+        "t0.r0.c1",
+        "t0.r1.c1",
+        "t0.r2.c1",
+        "t0.r3.c1",
+        "t0.r4.c1",
+        "t0.r5.c1",
+        "t0.r6.c1",
+        "t5.r0.c1",
+        "t5.r1.c1",
+        "t6.r0.c1",
+        "t6.r1.c1",
+        "t6.r2.c1",
+        "t6.r3.c1",
+        "t12.r0.c1",
+        "t12.r1.c1",
+        "t12.r2.c1",
+        "t13.r0.c1"
+      ],
+      "unselected_cells_unchanged": true,
+      "paragraphs_unchanged_except_banner": true,
+      "native_controls_unchanged": true,
+      "package_changed_parts": [
+        "word/document.xml"
+      ],
+      "deferred_fields_not_written": [
+        "t1.r1.c1",
+        "t11.r0.c1"
+      ],
+      "original_unchanged": true,
+      "partial_draft": true,
+      "ready_for_submission": false,
+      "costs": {
+        "analysis": {
+          "calls": 1,
+          "seconds": 70.95667010799662,
+          "prompt_tokens": 17049,
+          "completion_tokens": 15624,
+          "total_tokens": 32673
+        },
+        "narration": {
+          "calls": 2,
+          "seconds": 4.068177781999111,
+          "prompt_tokens": 5925,
+          "completion_tokens": 476,
+          "total_tokens": 6401
+        },
+        "routing": {
+          "calls": 5,
+          "seconds": 5.862110884998401,
+          "prompt_tokens": 19421,
+          "completion_tokens": 353,
+          "total_tokens": 19774
+        },
+        "user_scope": {
+          "calls": 1,
+          "seconds": 0.8932252510057879,
+          "prompt_tokens": 1303,
+          "completion_tokens": 49,
+          "total_tokens": 1352
+        }
+      },
+      "api_calls": 9,
+      "total_tokens": 60200,
+      "ai_seconds": 81.78018402599992,
+      "user_turns_including_start": 5,
+      "answer_actions": {
+        "CONDITION_TRUE": 1,
+        "SKIP": 1,
+        "UNKNOWN": 1
+      },
+      "turns": [
+        {
+          "turn": "turn-01",
+          "request": {
+            "question": "me lo compili?",
+            "document_id": 6
+          },
+          "answer": "Certo. Analizzo il modulo e verifico le informazioni disponibili.",
+          "command": {
+            "session_id": "368bfb615adf40b8b74578feb8d4f0aa",
+            "action": "start"
+          },
+          "seconds_answer": 1.064583470004436,
+          "version": 3,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "clarifications",
+            "field_ids": [],
+            "slots": [
+              {
+                "key": "condition:c_branch_ingegneria",
+                "kind": "applicability",
+                "condition_id": "c_branch_ingegneria",
+                "condition": "4.c — Da compilare solo in caso di società di ingegneria",
+                "label": "Ramo compilabile solo se l'operatore è società di ingegneria; verifica non automatizzabile",
+                "context": "4.c — Da compilare solo in caso di società di ingegneria",
+                "field_ids": [
+                  "t5.r0.c1",
+                  "t5.r1.c1",
+                  "t6.r0.c1",
+                  "t6.r1.c1",
+                  "t6.r2.c1",
+                  "t6.r3.c1"
+                ],
+                "alternatives": [],
+                "impact": 6,
+                "slot": 1,
+                "question": "La sezione riservata alle società di ingegneria va compilata? In altre parole, l'operatore è qualificabile come società di ingegneria?"
+              },
+              {
+                "key": "field:t1.r1.c1",
+                "kind": "value",
+                "field_ids": [
+                  "t1.r1.c1"
+                ],
+                "label": "Recapito per la corrispondenza",
+                "condition": "",
+                "context": "Recapito per la corrispondenza",
+                "impact": 1,
+                "alternatives": [
+                  "Via del Porto 2, Ancona",
+                  "Via dei Tigli 7, Jesi"
+                ],
+                "slot": 2,
+                "question": "Quale recapito per la corrispondenza va indicato: Via del Porto 2, Ancona oppure Via dei Tigli 7, Jesi?"
+              },
+              {
+                "key": "field:t11.r0.c1",
+                "kind": "value",
+                "field_ids": [
+                  "t11.r0.c1"
+                ],
+                "label": "Numero della polizza professionale vigente",
+                "condition": "",
+                "context": "Numero della polizza professionale vigente",
+                "impact": 1,
+                "alternatives": [
+                  "RC-OR-2026-A",
+                  "RC-OR-2026-B"
+                ],
+                "slot": 3,
+                "question": "Qual è il numero della polizza professionale vigente: RC-OR-2026-A o RC-OR-2026-B?"
+              }
+            ],
+            "message": "Ho trovato nelle fonti i dati anagrafici e identificativi della società (denominazione, forma giuridica, codice fiscale, partita IVA, sede legale, telefono, PEC, iscrizione CCIAA e REA) e il codice della procedura. Per il direttore tecnico risultano nome, qualifica, ordine e numero di iscrizione, ma la sezione in cui compaiono è condizionata alla qualifica di società di ingegneria: il ruolo indicato non basta a confermarla. Restano molte posizioni non valutate, quindi la bozza è parziale e non ho completato allegati o caselle. Prima di procedere, chiarisci i punti sotto.\n\n1. La sezione riservata alle società di ingegneria va compilata? In altre parole, l'operatore è qualificabile come società di ingegneria?\n2. Quale recapito per la corrispondenza va indicato: Via del Porto 2, Ancona oppure Via dei Tigli 7, Jesi?\n3. Qual è il numero della polizza professionale vigente: RC-OR-2026-A o RC-OR-2026-B?\nPuoi rispondere in un unico messaggio."
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-01/call-01-routing",
+              "seconds": 0.9747896179978852,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3582,
+                "completion_tokens": 42,
+                "total_tokens": 3624,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 1022
+              }
+            },
+            {
+              "stage": "analysis",
+              "path": "turn-01/call-02-analysis",
+              "seconds": 70.95667010799662,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 17049,
+                "completion_tokens": 15624,
+                "total_tokens": 32673,
+                "prompt_tokens_details": {
+                  "cached_tokens": 13568
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 12209
+                },
+                "prompt_cache_hit_tokens": 13568,
+                "prompt_cache_miss_tokens": 3481
+              }
+            },
+            {
+              "stage": "narration",
+              "path": "turn-01/call-03-narration",
+              "seconds": 2.5517922779981745,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3004,
+                "completion_tokens": 332,
+                "total_tokens": 3336,
+                "prompt_tokens_details": {
+                  "cached_tokens": 1920
+                },
+                "prompt_cache_hit_tokens": 1920,
+                "prompt_cache_miss_tokens": 1084
+              }
+            }
+          ],
+          "pid": 109417
+        },
+        {
+          "turn": "turn-02",
+          "request": {
+            "question": "1. Sì, quella sezione si applica. 2. Per il recapito salta, lo verificheremo dopo. 3. Il numero della polizza non lo so.",
+            "document_id": 6,
+            "conversation_id": "conv-aeb473051f9343cf",
+            "compilation_session_id": "368bfb615adf40b8b74578feb8d4f0aa",
+            "compilation_version": 3
+          },
+          "answer": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+          "command": {
+            "session_id": "368bfb615adf40b8b74578feb8d4f0aa",
+            "action": "updated"
+          },
+          "seconds_answer": 2.5815631529985694,
+          "version": 6,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "generate",
+            "field_ids": [],
+            "slots": [],
+            "message": "Ho trovato nelle fonti i dati anagrafici e identificativi della società (denominazione, forma giuridica, sede legale, contatti, iscrizione camerale) e i riferimenti della procedura. Per la figura professionale risultano nome, qualifica e iscrizione all'ordine, riferiti al direttore tecnico della società di ingegneria. Restano non verificati diversi punti, tra cui il recapito per la corrispondenza e il numero di polizza, che hai indicato di non conoscere. Le informazioni sono proposte da controllare, non un documento già completato.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-02/call-01-routing",
+              "seconds": 1.62587322100444,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 4205,
+                "completion_tokens": 187,
+                "total_tokens": 4392,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 1645
+              }
+            },
+            {
+              "stage": "user_scope",
+              "path": "turn-02/call-02-user_scope",
+              "seconds": 0.8932252510057879,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 1303,
+                "completion_tokens": 49,
+                "total_tokens": 1352,
+                "prompt_tokens_details": {
+                  "cached_tokens": 640
+                },
+                "prompt_cache_hit_tokens": 640,
+                "prompt_cache_miss_tokens": 663
+              }
+            },
+            {
+              "stage": "narration",
+              "path": "turn-02/call-03-narration",
+              "seconds": 1.5163855040009366,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 2921,
+                "completion_tokens": 144,
+                "total_tokens": 3065,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2176
+                },
+                "prompt_cache_hit_tokens": 2176,
+                "prompt_cache_miss_tokens": 745
+              }
+            }
+          ],
+          "pid": 110072
+        },
+        {
+          "turn": "turn-03",
+          "request": {
+            "question": "Basta, metti in pausa.",
+            "document_id": 6,
+            "conversation_id": "conv-aeb473051f9343cf",
+            "compilation_session_id": "368bfb615adf40b8b74578feb8d4f0aa",
+            "compilation_version": 6
+          },
+          "answer": "Metto in pausa la compilazione.",
+          "command": {
+            "session_id": "368bfb615adf40b8b74578feb8d4f0aa",
+            "action": "paused"
+          },
+          "seconds_answer": 1.302238460004446,
+          "version": 7,
+          "status": "WAITING_FOR_USER",
+          "paused": true,
+          "question": null,
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-03/call-01-routing",
+              "seconds": 1.2454912889952539,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3902,
+                "completion_tokens": 41,
+                "total_tokens": 3943,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2688
+                },
+                "prompt_cache_hit_tokens": 2688,
+                "prompt_cache_miss_tokens": 1214
+              }
+            }
+          ],
+          "pid": 110304
+        },
+        {
+          "turn": "turn-04",
+          "request": {
+            "question": "Riprendi.",
+            "document_id": 6,
+            "conversation_id": "conv-aeb473051f9343cf",
+            "compilation_session_id": "368bfb615adf40b8b74578feb8d4f0aa",
+            "compilation_version": 7
+          },
+          "answer": "Riprendo la stessa compilazione globale.",
+          "command": {
+            "session_id": "368bfb615adf40b8b74578feb8d4f0aa",
+            "action": "resumed"
+          },
+          "seconds_answer": 1.0713008639941108,
+          "version": 8,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "generate",
+            "field_ids": [],
+            "slots": [],
+            "message": "Ho trovato nelle fonti i dati anagrafici e identificativi della società (denominazione, forma giuridica, sede legale, contatti, iscrizione camerale) e i riferimenti della procedura. Per la figura professionale risultano nome, qualifica e iscrizione all'ordine, riferiti al direttore tecnico della società di ingegneria. Restano non verificati diversi punti, tra cui il recapito per la corrispondenza e il numero di polizza, che hai indicato di non conoscere. Le informazioni sono proposte da controllare, non un documento già completato.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-04/call-01-routing",
+              "seconds": 1.0172060420009075,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3757,
+                "completion_tokens": 42,
+                "total_tokens": 3799,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2688
+                },
+                "prompt_cache_hit_tokens": 2688,
+                "prompt_cache_miss_tokens": 1069
+              }
+            }
+          ],
+          "pid": 110408
+        },
+        {
+          "turn": "turn-05",
+          "request": {
+            "question": "Ok sì, genera una bozza parziale con i dati disponibili, lasciando vuoti il recapito e la polizza.",
+            "document_id": 6,
+            "conversation_id": "conv-aeb473051f9343cf",
+            "compilation_session_id": "368bfb615adf40b8b74578feb8d4f0aa",
+            "compilation_version": 8
+          },
+          "answer": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+          "command": {
+            "session_id": "368bfb615adf40b8b74578feb8d4f0aa",
+            "action": "generated"
+          },
+          "seconds_answer": 1.3133994309973787,
+          "version": 9,
+          "status": "GENERATED",
+          "paused": false,
+          "question": null,
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-05/call-01-routing",
+              "seconds": 0.9987507149999146,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3975,
+                "completion_tokens": 41,
+                "total_tokens": 4016,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2688
+                },
+                "prompt_cache_hit_tokens": 2688,
+                "prompt_cache_miss_tokens": 1287
+              }
+            }
+          ],
+          "pid": 110524
+        }
+      ],
+      "revisions": [
+        {
+          "version": 1,
+          "created_at": "2026-10-12T20:36:41.420449+00:00",
+          "event": {
+            "action": "create",
+            "template_sha256": "eaa3c2b8e45e147d35766e71f77b90bbb0bdc9a339ee79dd12e6ab007ad9c7ca"
+          }
+        },
+        {
+          "version": 2,
+          "created_at": "2026-10-12T20:36:41.499827+00:00",
+          "event": {
+            "action": "global_analysis_start",
+            "changes": [],
+            "status": "ANALYZING",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 3,
+          "created_at": "2026-10-12T20:37:55.115697+00:00",
+          "event": {
+            "action": "global_analysis_complete",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 4,
+          "created_at": "2026-10-12T20:38:12.542634+00:00",
+          "event": {
+            "action": "global_dialogue_user_reply",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 5,
+          "created_at": "2026-10-12T20:38:12.581015+00:00",
+          "event": {
+            "action": "global_dialogue_start",
+            "changes": [],
+            "status": "ANALYZING",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 6,
+          "created_at": "2026-10-12T20:38:14.119382+00:00",
+          "event": {
+            "action": "global_dialogue_complete",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 7,
+          "created_at": "2026-10-12T20:38:39.101664+00:00",
+          "event": {
+            "action": "global_pause",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 8,
+          "created_at": "2026-10-12T20:38:49.199576+00:00",
+          "event": {
+            "action": "global_resume",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 9,
+          "created_at": "2026-10-12T20:39:15.213802+00:00",
+          "event": {
+            "action": "global_draft_generate",
+            "changes": [],
+            "status": "GENERATED",
+            "last_generation": {
+              "session_version": 8,
+              "id": "4e95a5b82cd74c5b8f0acc2489985b14",
+              "project_id": "prova",
+              "template_name": "modulo-benchmark.docx",
+              "created_at": "2026-10-12T20:39:15.125216+00:00",
+              "status": "needs_review",
+              "downloads": {
+                "docx": "/api/projects/prova/document-compilations/4e95a5b82cd74c5b8f0acc2489985b14/download/docx",
+                "report": "/api/projects/prova/document-compilations/4e95a5b82cd74c5b8f0acc2489985b14/download/report",
+                "template": "/api/projects/prova/document-compilations/4e95a5b82cd74c5b8f0acc2489985b14/download/template"
+              }
+            },
+            "last_error": null,
+            "chat_workflow": null
+          }
+        }
+      ],
+      "integrity": {
+        "application_unchanged": true,
+        "live_tables_unchanged": true,
+        "live_original_unchanged": true,
+        "private_original_unchanged": true
+      }
+    }
+  },
+  "notes": {
+    "scope": "Real HTTP ASGI conversations; no browser, application changes or simulated provider",
+    "software_tests": {
+      "passed": 109,
+      "seconds": 17.07,
+      "provider": "simulated, separate from real benchmark"
+    },
+    "application_unchanged_in_all_series": true,
+    "actual_export_count": 3,
+    "actual_values_checked": 45,
+    "all_report_values_written": true,
+    "no_extra_cells_written": true,
+    "native_controls_unchanged": true,
+    "originals_unchanged": true,
+    "private_runtime_cleanup": "Completed after read-only state/report/docx/revision captures",
+    "live_integrity": {
+      "changed_tables": [
+        "document_chunks",
+        "document_chunks_fts_content",
+        "document_chunks_fts_data",
+        "document_chunks_fts_docsize",
+        "document_chunks_fts_idx",
+        "global_document_chunks_fts_data",
+        "global_document_chunks_fts_idx",
+        "sqlite_sequence"
+      ],
+      "stable_user_tables": {
+        "conversations": true,
+        "conversation_turns": true,
+        "compilation_sessions": true,
+        "compilation_session_revisions": true,
+        "document_compilations": true,
+        "project_files": true,
+        "global_documents": true,
+        "global_document_chunks": true,
+        "ai_profiles": true,
+        "project_ai_settings": true
+      },
+      "document_chunk_contents_unchanged": true,
+      "affected_file_count": 4,
+      "affected_files": [
+        {
+          "id": 116,
+          "name": "call-facts.md",
+          "kind": "artifact",
+          "project_id": "catanzaro-direzione-lavori-e-sicurezza"
+        },
+        {
+          "id": 117,
+          "name": "project-facts.md",
+          "kind": "artifact",
+          "project_id": "catanzaro-direzione-lavori-e-sicurezza"
+        },
+        {
+          "id": 121,
+          "name": "project-facts.md",
+          "kind": "artifact",
+          "project_id": "minervino-di-lecce-elenco-sia"
+        },
+        {
+          "id": 150,
+          "name": "project-facts.md",
+          "kind": "artifact",
+          "project_id": "prova"
+        }
+      ],
+      "source_corpus_unchanged": true,
+      "note": "Development uvicorn --reload observed; new audit .py files triggered application startup and indexing. No benchmark HTTP request used live DB, no manual restoration."
+    },
+    "harness_scope_error_r1_retained": true,
+    "gold_comparison_r2": {
+      "scope": "Only exported values and authored evidence references; not full semantic accuracy",
+      "original_fixture_and_manifest_unchanged": true,
+      "database_ids_remapped_offline_by_name_role_scope_category_exact_content": true,
+      "literal_matches": 17,
+      "source_matches": 17,
+      "fields": [
+        {
+          "candidate_id": "t0.r0.c1",
+          "label": "Denominazione sociale",
+          "value": "Orione Tecnica S.r.l.",
+          "expected_value": "Orione Tecnica S.r.l.",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r1.c1",
+          "label": "Forma giuridica",
+          "value": "società a responsabilità limitata",
+          "expected_value": "società a responsabilità limitata",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r2.c1",
+          "label": "Codice fiscale operatore",
+          "value": "01234567897",
+          "expected_value": "01234567897",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "label": "Partita IVA",
+          "value": "01234567897",
+          "expected_value": "01234567897",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "label": "Sede legale",
+          "value": "Via delle Querce 18, 60121 Ancona (AN)",
+          "expected_value": "Via delle Querce 18, 60121 Ancona (AN)",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "label": "Telefono",
+          "value": "+39 071 000 1234",
+          "expected_value": "+39 071 000 1234",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "label": "PEC",
+          "value": "orione@pec.example.org",
+          "expected_value": "orione@pec.example.org",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r0.c1",
+          "label": "Iscrizione CCIAA",
+          "value": "Camera di Commercio delle Marche",
+          "expected_value": "Camera di Commercio delle Marche",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r1.c1",
+          "label": "Numero iscrizione REA",
+          "value": "AN-204060",
+          "expected_value": "AN-204060",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r2.c1",
+          "label": "Data iscrizione CCIAA",
+          "value": "14/03/2019",
+          "expected_value": "14/03/2019",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t13.r0.c1",
+          "label": "Codice della presente procedura",
+          "value": "LAB-ORIONE-2026",
+          "expected_value": "LAB-ORIONE-2026",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": 2,
+              "fixture_chunk_id": 101,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t5.r0.c1",
+          "label": "Denominazione sociale",
+          "value": "Orione Tecnica S.r.l.",
+          "expected_value": "Orione Tecnica S.r.l.",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t5.r1.c1",
+          "label": "Forma giuridica",
+          "value": "società a responsabilità limitata",
+          "expected_value": "società a responsabilità limitata",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -1,
+              "fixture_chunk_id": -1,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r0.c1",
+          "label": "Nome e cognome",
+          "value": "Giulia Serra",
+          "expected_value": "Giulia Serra",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -2,
+              "fixture_chunk_id": -2,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r1.c1",
+          "label": "Qualifica professionale",
+          "value": "Ingegnere",
+          "expected_value": "Ingegnere",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -2,
+              "fixture_chunk_id": -2,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r2.c1",
+          "label": "Ordine professionale",
+          "value": "Ordine degli Ingegneri di Ancona",
+          "expected_value": "Ordine degli Ingegneri di Ancona",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -2,
+              "fixture_chunk_id": -2,
+              "name_scope_content_match": true
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r3.c1",
+          "label": "Numero iscrizione albo",
+          "value": "5739",
+          "expected_value": "5739",
+          "literal_match": true,
+          "source_matches": true,
+          "mapping": [
+            {
+              "actual_chunk_id": -2,
+              "fixture_chunk_id": -2,
+              "name_scope_content_match": true
+            }
+          ]
+        }
+      ]
+    },
+    "limits": [
+      "No browser",
+      "No new factual USER value in these conversations",
+      "Partial drafts, no complete-document accuracy",
+      "Anaphoric group confirmation false negative retained",
+      "Order/registration conflation in R1; one success in R2 is not a fix"
+    ]
+  }
+}

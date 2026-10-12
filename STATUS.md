@@ -1,5 +1,57 @@
 # Stato di Mapi RAG
 
+## Conversazioni complete reali — 12 ottobre 2026, prima dei turni composti
+
+Eseguito il passo autorizzato: nuove conversazioni con DeepSeek Flash reale,
+analisi globale, chiarimenti, pausa/ripresa da nuovi processi e richiesta
+esplicita di bozza parziale. Nessuna modifica applicativa durante le prove.
+Baseline fb2894e già su origin/prune-backend; nuovi commit solo diagnostici,
+nessun push in questo intervento. Nessuna decisione sui turni composti.
+
+**Catanzaro: 12 valori SOURCE realmente scritti**, inclusi i cinque campi
+aziendali, direttore tecnico, qualifica, Ordine e numero albo 8421. 307 candidate,
+293 posizioni omesse; 0 RESOLVED, sono proposte globali revisionate, non una
+compilazione completa. Due chiarimenti raggruppati; la frase «confermo entrambe
+... il partecipante è quello indicato nelle fonti» salva soltanto il primo:
+gate USER SUPPORTED/AMBIGUOUS. «Sì, confermo» nel turno seguente sblocca il secondo.
+Questo falso negativo conservativo resta aperto, nessuna source trasformata in USER.
+Sei turni inclusi avvio/pausa/ripresa/export, 12 chiamate /128.420 token;
+analisi 133,47 s, dialogo successivo circa 1–6 s AI/turno, nessuna nuova analisi.
+
+**Labirinto R2: 17 valori SOURCE scritti**, coerenti con valore e fonte gold
+per i soli campi esportati. Una risposta unica -> CONDITION_TRUE, SKIP recapito,
+UNKNOWN polizza; rinvii persistiti, nessuna domanda ripetuta, nessun valore
+inventato. Pausa/ripresa della stessa sessione e consenso naturale alla bozza.
+Cinque turni, nove chiamate /60.200 token, analisi 70,96 s, 34 posizioni omesse.
+Prima serie R1 conservata ma esclusa dal confronto congelato: errore harness,
+fonte della procedura caricata globale invece che di progetto. 16 valori, Ordine
+includeva anche numero albo e campo numero omesso; R2 li separa, ma una singola
+esecuzione non dimostra corretto quel limite. Corretto solo il setup del runner,
+nuovo DB/conversazione, mai gold/motore nel corso delle serie.
+
+Totale incluso R1: **16 turni /30 chiamate /248.535 token**, tre analisi,
+zero retry/errori schema. Confrontati 45 valori in stato/report/Word; altre celle,
+paragrafi salvo banner, checkbox e originali invariati. Nessun valore fattuale
+USER inserito. HTTP reali ASGI, non browser reale; non è accuratezza di moduli
+completi. **109 test software mirati /17,07 s**, Ruff completo/harness e diff
+check. Suite completa/frontend/browser non ripetuti, applicazione invariata.
+
+Nota isolamento: uvicorn --reload già acceso ha reagito ai nuovi script .py
+ricostruendo gli indici di 82 frammenti di quattro artefatti live. Rilevato e
+documentato: contenuti/SOURCE/conversazioni/sessioni/originali invariati, ID e
+FTS cambiati. Nessun ripristino manuale; R2 usa script .txt per evitare il watcher.
+Le API del benchmark hanno usato solo DB/storage isolati; snapshot/chiavi private
+eliminati dopo verifiche. Per i prossimi runner evitare file .py nel watch root.
+
+[Report completo](docs/test-conversazione-completa-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-full-conversation.json),
+[bundle](docs/benchmarks/2026-10-12-full-conversation-audit.tar.gz).
+Grezzi full-conversation-20261012/, registrazione anche in relazioni.md.
+**Ripresa proposta:** conferme anaforiche del gruppo attivo, senza indebolire
+il gate USER. Poi discutere policy «salva il valore e poi pausa/export»;
+la precedenza del comando resta invariata. Copertura sparse/checkbox e separazione
+Ordine/numero ancora limiti della compilazione, non risolti dai test dei comandi.
+
 ## Comandi conversazionali — 12 ottobre 2026, verificati
 
 Intervento circoscritto al routing dei comandi, senza modifiche a UI, parser,
