@@ -29,8 +29,15 @@ lint/build e 1.878 backend completi /144,51 s. Provider software simulati:
 non misurano qualità DeepSeek. Log in
 backend/data/compilation-audit/conversation-review-20261012/checks/.
 
-Prossimo passo: congelare codice, verificare con DeepSeek reale su DB/storage
-temporanei, archiviare prompt/output/dialogo/DOCX e risultati in relazioni.md.
+Prima serie reale fe73786: analisi globale riuscita (13 proposte SOURCE,
+cinque dati societari e 8421 presenti), ma sintesi rifiutata: DeepSeek ha
+restituito questions[].text anziché question. Il trasporto DeepSeek usa JSON
+mode e non applica response_schema: lo schema deve essere nel prompt. Nessuna
+bozza/valore USER. Serie chiusa e output conservati; aggiunto SCHEMA OUTPUT
+esplicito e log errori di validazione, senza accettare alias o allentare gate.
+55 mirati e Ruff rieseguiti dopo questa correzione; suite completa precedente
+al solo cambiamento di prompt/log. Prossimo passo: nuova serie congelata,
+ripresa della sola sintesi, poi risposte conversazionali ed export esplicito.
 Nessun push. Le sezioni successive documentano la baseline precedente:
 le istruzioni con checkbox sono storiche, superate dal dialogo descritto sopra.
 

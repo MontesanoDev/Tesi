@@ -53,6 +53,8 @@ async def test_natural_summary_persisted_bounded_and_no_technical_identifiers(ap
     body = request["body"]
     context = json.loads(body["messages"][1]["content"])
     assert body["max_tokens"] == 2048 and len(provider) == 1
+    assert "SCHEMA OUTPUT:" in body["messages"][0]["content"]
+    assert '"question"' in body["messages"][0]["content"]
     assert "t0.r0.c1" not in json.dumps(context)
     assert len(context["question_pool"]) <= 24
     assert "SOURCE" not in message

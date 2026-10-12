@@ -164,14 +164,15 @@ async def narrate(data, folder):
     from app.compilation_global_sessions import _save
 
     settings, pool = get_ai_settings(), question_pool(data)
+    schema = DialoguePlan.model_json_schema()
     body = {"model": settings.model, "messages": [
-        {"role": "system", "content": TASK},
+        {"role": "system", "content": TASK + "\n\nSCHEMA OUTPUT:\n" + json.dumps(schema)},
         {"role": "user", "content": json.dumps(model_context(data, pool), ensure_ascii=False)}],
         "response_format": {"type": "json_object"}, "temperature": 0.1,
         "thinking": {"type": "disabled"}, "max_tokens": 2048}
     root = folder / "dialogue" / uuid4().hex
     root.mkdir(parents=True)
-    _save(root / "request.json", {"body": body, "schema": DialoguePlan.model_json_schema()},
+    _save(root / "request.json", {"body": body, "schema": schema},
           settings.api_key)
     try:
         async def capture(response):
@@ -182,7 +183,7 @@ async def narrate(data, folder):
                                      event_hooks={"response": [capture]}) as client:
             raw, model, usage = await asyncio.wait_for(request_model_content(
                 client, settings, body, NARRATION_SECONDS,
-                response_schema=DialoguePlan.model_json_schema()), timeout=NARRATION_SECONDS)
+                response_schema=schema), timeout=NARRATION_SECONDS)
         _save(root / "response.txt", raw, settings.api_key)
         plan = DialoguePlan.model_validate_json(raw.strip())
         result = render_dialogue(plan, pool)
@@ -201,6 +202,7 @@ async def narrate(data, folder):
                       held_candidate_ids=sorted(held))
         result.update(model=model, usage=usage)
     except (GenerationError, ValueError, TimeoutError, httpx.HTTPError) as exc:
+        _save(root / "validation-error.txt", str(exc), settings.api_key)
         # One bounded attempt, no automatic retries or fictional accomplishments.
         result = {"phase": "READY", "question": None, "message": (
             "Ho conservato l'analisi del modulo, ma non sono riuscito a riassumerla "
