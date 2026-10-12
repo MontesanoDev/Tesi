@@ -69,3 +69,12 @@ email/data inventati, ma erroneamente anche la conferma della condizione.
 Precisata soltanto l'indipendenza delle condizioni booleane dalle richieste
 di valori assenti nello stesso gruppo. Nuova serie completa AFTER-2 con lo
 stesso gold congelato, nessuna ripetizione selettiva; AFTER precedente conservata.
+
+Replay reale previsto: nuova sessione in snapshot privato, riuso dichiarato
+del checkpoint Catanzaro precedente al consenso (non nuova analisi). Rivalidare
+il raw reale contro originale e corpus corrente, chiedendo l'uguaglianza con
+l'audit archiviato. Due turni HTTP ASGI reali: stessa conferma anaforica, poi
+richiesta esplicita di bozza. Routing/gate/sintesi reali, originali e dati live
+solo letti. Confrontare due condizioni USER, zero valori fattuali USER, stessa
+analisi, 12 proposte SOURCE/stato/report/celle; eliminare snapshot e chiave dopo
+le verifiche. Runner fuori dal watch root backend, nessuna modifica durante le API.
