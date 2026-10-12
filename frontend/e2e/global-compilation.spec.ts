@@ -38,10 +38,30 @@ test('global compilation in chat, explicit partial export and refresh', async ({
         chat: { enabled: true, auto_continue: true, paused: false, question: null, analyzed: 0,
           verified: 0, user_provided: 0, remaining_questions: 0, steps_used: 0, max_steps: 1 },
       }
+      const reply = body.question === 'Sì, partecipiamo come società'
+      const generate = body.question === 'genera la bozza parziale'
+      let answer = 'Il modulo richiede i dati della società.'
+      if (reply) {
+        expect(state).not.toBeNull()
+        state!.version++
+        answer = 'Ho registrato la conferma. Vuoi che generi una bozza parziale?'
+        state!.global_compilation!.dialogue = { phase: 'READY', message: answer }
+      }
+      if (generate) {
+        exports++
+        state!.status = 'GENERATED'
+        state!.version++
+        answer = 'Ho preparato una bozza parziale. Puoi scaricarla e controllarla.'
+        state!.global_compilation!.dialogue = { phase: 'READY', message: answer }
+        state!.last_generation = { id: 'run-1', project_id: 'global-chat', template_name: form.name,
+          created_at: '', status: 'needs_review', session_version: state!.version - 1,
+          downloads: { docx: '/download', report: '/report', template: '/template' } }
+      }
       const turn: ConversationTurnData = { id: turns.length + 1, question: body.question,
         answer: compile ? 'Certo. Analizzo il modulo e verifico le informazioni disponibili.'
-          : 'Il modulo richiede i dati della società.',
-        compilation: compile ? { session_id: 'session-1', action: 'start' } : null,
+          : answer,
+        compilation: compile || reply || generate ? { session_id: 'session-1',
+          action: compile ? 'start' : generate ? 'generated' : 'updated' } : null,
         generation_status: 'direct', citations: [], evidence: [], missing_information: [],
         notice: null, model: 'simulato', total_tokens: 1, form_reference: reference }
       turns.push(turn)
@@ -63,7 +83,8 @@ test('global compilation in chat, explicit partial export and refresh', async ({
       state!.status = 'WAITING_FOR_USER'
       state!.version = 3
       Object.assign(state!.chat!, { auto_continue: false, analyzed: 2, steps_used: 1 })
-      state!.global_compilation = { phase: 'REVIEW', candidate_count: 2, attempts: 1, paused: false,
+      state!.global_compilation = { dialogue: { phase: 'READY',
+        message: 'Ho trovato denominazione e recapiti nelle fonti. La partecipazione è come società?' }, phase: 'REVIEW', candidate_count: 2, attempts: 1, paused: false,
         fields: [{ candidate_id: 't0.r0.c1', label: 'Denominazione', value: 'Aurora S.r.l.',
           validation: 'REVIEW_REQUIRED', conditional: true, conditions: ['c1'], selectable: true,
           form_context: 'Se società: denominazione', form_quote: 'denominazione', issues: [],
@@ -75,18 +96,7 @@ test('global compilation in chat, explicit partial export and refresh', async ({
       }
       return route.fulfill({ json: state })
     }
-    if (path.endsWith('/session-1/global-draft')) {
-      expect(body).toEqual({ version: 3, candidate_ids: ['t0.r0.c1'],
-        confirmed_condition_ids: ['c1'], allow_unresolved: true })
-      exports++
-      state!.status = 'GENERATED'
-      state!.version = 4
-      state!.global_compilation!.last_review = { candidate_ids: ['t0.r0.c1'], confirmed_condition_ids: ['c1'] }
-      state!.last_generation = { id: 'run-1', project_id: 'global-chat', template_name: form.name,
-        created_at: '', status: 'needs_review', session_version: 3,
-        downloads: { docx: '/download', report: '/report', template: '/template' } }
-      return route.fulfill({ json: state })
-    }
+    if (path.endsWith('/global-draft')) throw new Error('No manual field-selection API in chat')
     if (path.endsWith('/session-1/finalize')) throw new Error('Legacy finalizer must not run')
     if (path.endsWith('/session-1')) return route.fulfill({ json: state })
     if (path.endsWith('/download/docx')) return route.fulfill({ body: 'simulated-docx-bytes',
@@ -107,18 +117,18 @@ test('global compilation in chat, explicit partial export and refresh', async ({
   await expect(page.getByText('Sto lavorando…')).toBeVisible()
   expect(exports).toBe(0)
   release()
-  await expect(page.getByText(/Ho preparato 1 proposta/)).toBeVisible()
+  await expect(page.getByText('Ho trovato denominazione e recapiti nelle fonti. La partecipazione è come società?')).toBeVisible()
   await expect(page.getByRole('button', { name: 'Continua analisi' })).toHaveCount(0)
-  await page.getByText('Rivedi proposte e condizioni').click()
-  const generate = page.getByRole('button', { name: 'Genera bozza con i valori selezionati' })
-  await expect(generate).toBeDisabled()
-  await page.getByRole('checkbox', { name: /Usa Denominazione/ }).check()
-  await page.getByText('Posizione e fonti di Denominazione').click()
-  await expect(page.getByText(/SOURCE — visura.txt/)).toBeVisible()
-  await expect(generate).toBeDisabled()
-  await page.getByRole('checkbox', { name: /Confermo che si applica/ }).check()
-  await page.getByRole('checkbox', { name: /Confermo di generare una bozza parziale/ }).check()
-  await generate.click()
+  await expect(page.getByRole('checkbox')).toHaveCount(0)
+  await expect(page.getByText(/Rivedi proposte|t0\.r0\.c1|Nessun valore utilizzabile/)).toHaveCount(0)
+  await composer.fill('Sì, partecipiamo come società')
+  await page.getByRole('button', { name: 'Invia', exact: true }).click()
+  await expect(page.getByText('Ho registrato la conferma. Vuoi che generi una bozza parziale?')).toBeVisible()
+  expect(exports).toBe(0)
+  await page.reload()
+  await expect(page.getByText('Ho registrato la conferma. Vuoi che generi una bozza parziale?')).toBeVisible()
+  await page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }).fill('genera la bozza parziale')
+  await page.getByRole('button', { name: 'Invia', exact: true }).click()
   await expect(page.getByRole('button', { name: 'Scarica DOCX' })).toBeVisible()
   expect(exports).toBe(1)
   const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Scarica DOCX' }).click()])

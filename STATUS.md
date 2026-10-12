@@ -1,5 +1,39 @@
 # Stato di Mapi RAG
 
+## Revisione globale conversazionale — 12 ottobre 2026, software verificato
+
+Richiesta: eliminare la checklist e i nomi XML dalla chat. La vecchia UI
+mostrava direttamente l'audit; inoltre il filtro `disposition=unassigned` non
+corrispondeva ai record realmente omessi (proposal=None), lasciando passare
+centinaia di pseudo-campi senza etichetta.
+
+Implementato: componente di review manuale rimosso. Una breve sintesi AI
+sull'audit validato spiega informazioni/dubbi e pone massimo tre domande.
+`global_compilation.dialogue` persiste messaggio, slot backend, risposte,
+rinvii, USER values e proposte trattenute. Il planner esistente associa solo
+slot attivi, mai ID inventati. Risposte parziali salvano solo le parti valide;
+UNKNOWN/SKIP/REFUSE differiscono, pausa/ripresa conservano stato. Il consenso
+alla bozza avviene nel composer, nessuna generazione implicita. Report tecnico
+e download restano; SOURCE/USER distinti e validatore/renderer/CAS invariati.
+
+L'analisi V10/catalogo V5 non cambia. Sintesi aggiuntiva: una chiamata per
+passaggio, 45 s, 2.048 token output, max 40 proposte /24 questioni candidate /
+3 domande. Può soltanto trattenere proposte, non convalidare rifiuti. Fonte
+mutata o condizione non confermata blocca il relativo export. Nessuna nuova
+analisi dopo chiarimenti; sessioni globali precedenti ricevono solo sintesi.
+Nessuna migrazione/reindicizzazione. Native checkbox Word ancora non scritte.
+
+Verifiche già concluse su questo intervento: 55 backend mirati (FTS5/Qdrant),
+101 frontend, 12 browser desktop/mobile incl. movimento ridotto, Ruff e
+lint/build e 1.878 backend completi /144,51 s. Provider software simulati:
+non misurano qualità DeepSeek. Log in
+backend/data/compilation-audit/conversation-review-20261012/checks/.
+
+Prossimo passo: congelare codice, verificare con DeepSeek reale su DB/storage
+temporanei, archiviare prompt/output/dialogo/DOCX e risultati in relazioni.md.
+Nessun push. Le sezioni successive documentano la baseline precedente:
+le istruzioni con checkbox sono storiche, superate dal dialogo descritto sopra.
+
 ## Motore globale predefinito nella chat — 12 ottobre 2026, disponibile con start.sh
 
 Richiesta corrente: rendere provabile con `./start.sh` la nuova compilazione e

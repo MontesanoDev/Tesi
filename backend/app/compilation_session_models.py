@@ -61,9 +61,11 @@ class FinalizeRequest(RevisionRequest):
 
 
 class GlobalDraftRequest(RevisionRequest):
-    candidate_ids: list[str] = Field(min_length=1, max_length=400)
+    candidate_ids: list[str] = Field(default_factory=list, max_length=400)
+    user_candidate_ids: list[str] = Field(default_factory=list, max_length=400)
     confirmed_condition_ids: list[str] = Field(default_factory=list, max_length=2048)
     allow_unresolved: bool = False
+    user_quote: str = Field(default="", max_length=2000)
 
 
 class SemanticBinding(StrictModel):

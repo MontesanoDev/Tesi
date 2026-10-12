@@ -132,8 +132,5 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
       ? run((signal) => api.updateCompilationFields(projectId!, current.session!.id, current.session!.version, [field], signal)) : Promise.resolve(null),
     finalize: (allowUnresolved = false) => current.session
       ? run((signal) => api.finalizeCompilationSession(projectId!, current.session!.id, current.session!.version, allowUnresolved, signal)) : Promise.resolve(null),
-    generateDraft: (candidateIds: string[], confirmedConditions: string[]) => current.session
-      ? run((signal) => api.generateGlobalDraft(projectId!, current.session!.id,
-        current.session!.version, candidateIds, confirmedConditions, signal)) : Promise.resolve(null),
   }
 }

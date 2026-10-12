@@ -325,7 +325,9 @@ Con CAPACITÀ DI COMPILAZIONE DISPONIBILE puoi inoltre scegliere:
 - resume: vuole riprendere esplicitamente la sessione esistente.
 - finish: vuole esplicitamente terminare o esportare una bozza anche incompleta.
   Continuare/proseguire non autorizza a finire o esportare.
-- generate: conferma di generazione alla domanda corrente quando READY.
+- generate: conferma alla domanda corrente di generazione (question_kind=generate),
+  anche per una bozza parziale esplicitamente proposta. Non richiede che lo stato
+  tecnico sia READY: la domanda autorizzata è determinata dal backend.
 
 Per compile/answer_fields/pause/resume/finish/generate: answer="", target=form,
 queries=[], source_queries=[]. Solo compile seleziona form_id; gli altri null.

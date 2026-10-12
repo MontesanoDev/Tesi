@@ -24,8 +24,9 @@ Da Linux o macOS (x64/arm64), dalla radice del repository:
 - API e schema OpenAPI: `http://localhost:8000/docs`
 
 Per provare la compilazione globale: nuova conversazione nel progetto,
-`@modulo.docx` e **«me lo compili?»**. Una sola analisi, poi **Rivedi proposte
-e condizioni** e generazione esplicita di una bozza parziale. Le sessioni
+`@modulo.docx` e **«me lo compili?»**. Un'analisi globale, poi una sintesi e
+pochi chiarimenti nella chat: rispondere nel composer, senza checklist.
+Per esportare chiedere **«genera la bozza parziale»**. Le sessioni
 precedenti sono conservate. [Istruzioni e limiti](docs/compilation-session-v1.md).
 
 Lo script installa automaticamente le dipendenze frontend mancanti o non valide

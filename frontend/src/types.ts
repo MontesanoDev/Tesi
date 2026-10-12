@@ -163,6 +163,7 @@ export interface CompilationSessionField {
 
 export interface CompilationSession extends CompilationSessionSummary {
   global_compilation?: {
+    dialogue?: { phase: 'PENDING' | 'READY'; message?: string; user_turns?: number }
     phase: 'PENDING' | 'ANALYZING' | 'REVIEW'
     attempts: number
     candidate_count: number

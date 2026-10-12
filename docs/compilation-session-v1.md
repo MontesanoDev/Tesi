@@ -11,18 +11,34 @@ La chat crea/riprende una sessione `engine=global`. Un'unica chiamata riceve il
 catalogo completo e il piccolo corpus SOURCE autorizzato. Il risultato
 persistito rimane una **proposta da rivedere**, non uno stato RESOLVED:
 
-1. Attendere l'analisi unica, senza pulsanti per batch o questionario V1.
-2. Aprire **Rivedi proposte e condizioni**, controllare posizione/FORM e SOURCE,
-   selezionare i valori da usare. Nessun valore è preselezionato al primo export.
-3. Confermare soltanto le condizioni sconosciute effettivamente applicabili.
-   Queste conferme restano USER; non diventano evidenze SOURCE.
-4. Confermare esplicitamente la **bozza parziale** e premere **Genera bozza con
-   i valori selezionati**. Download DOCX e report disponibili nella chat.
+1. Attendere l'analisi globale. Una breve chiamata separata sintetizza l'audit
+   validato: dati trovati, dubbi e fino a **tre chiarimenti** con nomi comprensibili.
+   Niente checkbox di revisione, ID XML, elenco di posizioni vuote o editor.
+2. Rispondere nel composer, anche a più domande insieme. Il planner `TurnPlan`
+   esistente interpreta gli slot; il backend conserva destinatari e revisione.
+   Applicabilità e valori USER restano distinti dai dati SOURCE. Una parte
+   ambigua non annulla le risposte valide agli altri slot.
+3. «Non lo so»/«salta» rinviano solo i chiarimenti coinvolti, senza inventare dati
+   né riproporli immediatamente. «Basta»/«riprendi» conservano la stessa sessione.
+4. Per esportare, rispondere alla proposta di bozza o scrivere **«genera la bozza
+   parziale»**. La chat usa le proposte SOURCE ammesse, esclude quelle dubbie
+   trattenute dalla sintesi e quelle con condizioni non confermate. I valori
+   USER sono ammessi solo se acquisiti nella risposta a uno slot attivo e
+   validati. Nessuna generazione implicita. Download DOCX e report nella chat.
+
+La sintesi può soltanto trattenere/escludere proposte, mai renderne valida una
+respinta. Riceve contesto FORM, valori e prove SOURCE (massimo 40 proposte,
+24 chiarimenti candidati); il messaggio non certifica completezza o correttezza
+semantica perfetta. Le posizioni omesse dal modello rimangono **non analizzate**,
+non diventano automaticamente dati mancanti da chiedere all'utente.
 
 Il renderer e il validatore DOCX vengono riusati: ogni export parte
 dall'originale e rivalida le SOURCE correnti. CAS e ricontrollo nella transazione
 impediscono di esportare con revisioni/fonti obsolete. I valori mantengono
-provenienza SOURCE e `reviewed_by=USER`. Rifiuti/alternative non selezionabili;
+provenienza SOURCE e consenso USER all'esportazione (`reviewed_by=USER` non
+significa verifica manuale di ogni campo). Valori forniti in chat hanno
+provenienza USER, nessuna evidence SOURCE fittizia; conferme/rinvii e relativi
+estratti USER restano nel report della bozza. Rifiuti/alternative non selezionabili;
 checkbox native visibili nel report ma non scritte. Nessuna generazione
 incompleta implicita o promessa di completezza/ammissibilità.
 
@@ -30,18 +46,30 @@ Stato salvato nello `state_json` esistente: CREATED -> ANALYZING ->
 WAITING_FOR_USER (phase REVIEW) -> GENERATED soltanto dopo review/export.
 `fields=[]` distingue la proposta globale dai campi risolti V1. La API espone
 `global_compilation.fields/conditions/proposal_count/omitted` e `engine`.
-Refresh ripristina risultato/download; pausa/errore non consumano altre chiamate.
-Ripresa esplicita dopo errore autorizza un solo nuovo tentativo.
+`global_compilation.dialogue` persiste sintesi, gruppo attivo, risposte USER,
+rinvii, proposte trattenute e valori espliciti. Refresh ripristina dialogo e
+risultato/download; pausa/errore non consumano altre chiamate.
+Ripresa esplicita dopo errore autorizza un solo nuovo tentativo: se l'audit
+esiste già, si ritenta soltanto la sintesi, senza ripetere l'analisi globale.
+Una vecchia sessione globale in REVIEW senza dialogo riceve solo la sintesi;
+nessuna migrazione o perdita delle proposte precedenti.
 
 API: POST /compilation-sessions con `engine=global`; resolve esistente fa una
 sola analisi globale; POST /{id}/global-draft riceve `version`, `candidate_ids`,
-`confirmed_condition_ids`, `allow_unresolved=true`; GET /{id}/global-report
+`confirmed_condition_ids`, `allow_unresolved=true`, opzionalmente
+`user_candidate_ids` e `user_quote`; la chat costruisce questi dati dal proprio
+stato persistito, senza selezione manuale. GET /{id}/global-report
 scarica l'audit. Download di DOCX/report generato tramite document-compilations
 esistenti. `/finalize` V1 non può esportare sessioni globali.
 
 Budget: 400 candidate / 96 chunk / 100.000 caratteri SOURCE / 350.000 input;
 nessun taglio silenzioso. Una chiamata di analisi con timeout 300 s e lease 360 s;
-il planner della chat è una chiamata separata. Corpus SOURCE autorizzato completo
+il planner della chat è una chiamata separata. Sintesi: massimo una chiamata
+per passaggio, timeout 45 s, 2.048 token di output, nessun retry automatico;
+max tre domande per messaggio. Ogni risposta valida può avviare una nuova
+sintesi, **mai una nuova analisi globale**. Errore di sintesi -> risposta
+prudente, esportazione conversazionale bloccata fino a una ripresa esplicita.
+Corpus SOURCE autorizzato completo
 entro il limite, non ranking del vecchio resolver. Provider scelto dal progetto;
 DeepSeek thinking low nell'analisi, altri provider usano il trasporto esistente
 ma non sono ancora validati semanticamente su questo adapter.

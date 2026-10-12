@@ -10,9 +10,9 @@ export function compilationReplyParagraphs(session: CompilationSession,
     if (processing) return ['Analizzo l’intero modulo e verifico le informazioni disponibili…']
     if (session.chat?.paused_by_user) return ['La compilazione è in pausa. Chiedimi di riprendere quando vuoi.']
     if (error || session.last_error || session.chat?.paused) return ['Ho conservato il lavoro. Chiedimi di riprendere per ritentare l’analisi.']
-    if (session.global_compilation?.phase === 'REVIEW') return [session.last_generation
-      ? 'Ho preparato una bozza parziale con i valori che hai selezionato. Puoi scaricarla e verificarla.'
-      : `Ho preparato ${session.global_compilation.proposal_count} ${session.global_compilation.proposal_count === 1 ? 'proposta' : 'proposte'} di valore dalle fonti. Rivedile prima di generare una bozza.`]
+    if (session.global_compilation?.phase === 'REVIEW') return [
+      session.global_compilation.dialogue?.message
+      || 'Preparo il riepilogo delle informazioni trovate e dei punti da chiarire…']
     return ['Preparo l’analisi globale del modulo…']
   }
   const ownsResponse = response?.compilation?.session_id === session.id

@@ -76,6 +76,16 @@ async def handle_group_decision(project_id, conversation_id, decision, session, 
                                 expected_version=None):
     from starlette.concurrency import run_in_threadpool
 
+    if session and session.get("engine") == "global":
+        from app.compilation_global_dialogue import apply_replies
+
+        after, errors = await run_in_threadpool(apply_replies, project_id, session["id"],
+            expected_version or session["version"], decision.replies, message)
+        return ("Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti."
+                if after["chat"]["auto_continue"] else
+                after["global_compilation"]["dialogue"]["message"]), {
+                    "session_id": session["id"], "action": "clarify" if errors else "updated"}
+
     from app import compilation_sessions as sessions
     from app.compilation_session_routes import api_errors
     from app.intents import ChatDecision, route_compilation_control

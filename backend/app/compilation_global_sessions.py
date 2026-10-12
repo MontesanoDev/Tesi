@@ -53,7 +53,7 @@ def review_fields(data):
     paragraphs = {p["id"]: p["text"] for b in catalog["blocks"] for p in b["paragraphs"]}
     result = []
     for field in (data.get("audit") or {}).get("fields", []):
-        if field.get("disposition") == "unassigned":
+        if not field.get("proposal") and not field.get("form_evidence"):
             continue
         value = field.get("proposed_value", field.get("value"))
         unknown = [c for c, check in field.get("condition_checks", {}).items()
@@ -86,12 +86,17 @@ def chat_view(state):
     stale = state["status"] == "ANALYZING" and (
         not state.get("lease_until") or state["lease_until"] <= sessions.now()
     )
-    return {"enabled": True, "auto_continue": data["phase"] == "PENDING"
-            and not data["paused"] and state["status"] == "CREATED",
+    dialogue = data.get("dialogue") or {}
+    auto = (data["phase"] == "PENDING" and state["status"] == "CREATED" or
+            data["phase"] == "REVIEW" and dialogue.get("phase") != "READY"
+            and state["status"] == "WAITING_FOR_USER")
+    return {"enabled": True, "auto_continue": auto and not data["paused"],
             "paused": data["paused"] or stale or state["status"] == "FAILED",
-            "paused_by_user": data["paused"], "question": None,
+            "paused_by_user": data["paused"], "question": (dialogue.get("question")
+                if not data["paused"] and not auto and not stale else None),
             "analyzed": data["candidate_count"] if data["phase"] == "REVIEW" else 0,
-            "verified": 0, "user_provided": 0, "remaining_questions": 0,
+            "verified": 0, "user_provided": len(dialogue.get("user_values", {})),
+            "remaining_questions": len((dialogue.get("question") or {}).get("slots", [])),
             "steps_used": data["attempts"], "max_steps": 1}
 
 
@@ -117,7 +122,8 @@ def session_payload(row, state):
             "summary": {"total": data["candidate_count"], "pending": (
                 audit.get("unassigned_count", 0) if audit else data["candidate_count"]),
                 "resolved": 0, "missing": 0, "ambiguous": 0, "conflicting": 0,
-                "not_applicable": 0, "user_provided": 0}}
+                "not_applicable": 0, "user_provided": len(
+                    (data.get("dialogue") or {}).get("user_values", {}))}}
 
 
 def _row_state(db, project_id, session_id, version, *, allow_busy=False):
@@ -186,6 +192,11 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
     settings = get_ai_settings()
     if not settings.configured:
         raise GenerationNotConfiguredError("Configura un modello AI per compilare il modulo")
+    current = await run_in_threadpool(sessions.get_session, project_id, session_id)
+    if current["global_compilation"]["phase"] == "REVIEW":
+        from app.compilation_global_dialogue import refresh_dialogue
+
+        return await refresh_dialogue(project_id, session_id, version)
     layout, sources, data, claimed = await run_in_threadpool(
         _prepare, project_id, session_id, version)
     root = get_storage_path().resolve() / claimed["global_compilation"]["artifact_path"]
@@ -217,6 +228,10 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
             raise GenerationError("Proposta globale non valida; nessun valore applicato") from exc
         metadata.update(model=model, usage=usage, ai_seconds=time.perf_counter() - started)
         _save(root / "audit.json", audit, settings.api_key)
+        from app.compilation_global_dialogue import narrate
+
+        metadata["dialogue"] = await narrate({**initial_state(layout),
+                                            "catalog": data["form"], "audit": audit}, root)
         return await run_in_threadpool(_complete, project_id, session_id, claimed["version"],
                                       raw, audit, metadata)
     except BaseException as exc:
@@ -244,8 +259,14 @@ def control_session(project_id, session_id, version, kind):
             state.update(status="WAITING_FOR_USER", lease_until=None)
         elif kind == "resume":
             data["paused"] = False
-            if data["phase"] == "ANALYZING" or state["status"] == "FAILED":
+            if (data.get("dialogue") or {}).get("error"):
+                data["dialogue"].update(phase="PENDING", question=None)
+                data["dialogue"].pop("error", None)
+            if (data["phase"] == "ANALYZING"
+                    or state["status"] == "FAILED" and not data.get("audit")):
                 data["phase"] = "PENDING"
+            elif state["status"] == "FAILED":
+                data.setdefault("dialogue", {}).update(phase="PENDING", question=None)
             state.update(status="CREATED" if data["phase"] == "PENDING" else "WAITING_FOR_USER",
                          lease_until=None, last_error=None)
         else:
@@ -265,8 +286,30 @@ async def handle_chat_action(session, decision, expected_version, message):
         return ("Metto in pausa la compilazione." if kind == "pause" else
                 "Riprendo la stessa compilazione globale."), {
                     "session_id": after["id"], "action": "paused" if kind == "pause" else "resumed"}
-    return ("Rivedi le proposte e le eventuali condizioni nel messaggio di compilazione. "
-            "Puoi selezionare i valori da usare e generare esplicitamente una bozza parziale.",
+    if decision.action == "compilation_generate" or (
+        decision.action == "compilation_control" and decision.control.kind == "finish"
+    ):
+        from app.compilation_global_dialogue import export_selection
+        from app.compilation_session_models import GlobalDraftRequest
+
+        if session["chat"]["paused"]:
+            return "La compilazione è in pausa. Chiedimi di riprenderla prima di generare.", {
+                "session_id": session["id"], "action": "clarify"}
+        ids, conditions, user_ids = export_selection(session)
+        if not ids and not user_ids:
+            return ("Non ho ancora valori utilizzabili per la bozza. "
+                    "Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
+                    {"session_id": session["id"], "action": "clarify"})
+        await run_in_threadpool(generate_draft, session["project_id"], session["id"],
+                               GlobalDraftRequest(version=expected_version or session["version"],
+                                   candidate_ids=ids, confirmed_condition_ids=conditions,
+                                   user_candidate_ids=user_ids, allow_unresolved=True,
+                                   user_quote=message))
+        return ("Ho preparato una bozza parziale con i dati disponibili. "
+                "Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+                {"session_id": session["id"], "action": "generated"})
+    return ((session["global_compilation"].get("dialogue") or {}).get("message")
+            or "Sto conservando l'analisi. Puoi chiedermi di riprendere la compilazione.",
             {"session_id": session["id"], "action": "clarify"})
 
 
@@ -277,6 +320,8 @@ def _selected(row, state, request, db):
     if data["phase"] != "REVIEW":
         raise HTTPException(409, "Completa l'analisi prima di rivedere le proposte")
     ids, conditions = request.candidate_ids, request.confirmed_condition_ids
+    if not ids and not request.user_candidate_ids:
+        raise HTTPException(422, "Nessun valore selezionato per la bozza")
     if len(set(ids)) != len(ids) or len(set(conditions)) != len(conditions):
         raise HTTPException(422, "Selezioni duplicate")
     allowed = {f["candidate_id"]: f for f in review_fields(data) if f["selectable"]}
@@ -285,8 +330,12 @@ def _selected(row, state, request, db):
     if any(c not in data["audit"].get("conditions", {}) for c in conditions):
         raise HTTPException(422, "Condizione sconosciuta")
     fields = {f["candidate_id"]: f for f in data["audit"]["fields"]}
+    answers = (data.get("dialogue") or {}).get("answers", {})
     selected = [fields[i] for i in ids]
     for field in selected:
+        if any(answers.get("condition:" + c, {}).get("applies") is False
+               for c in field.get("conditions", [])):
+            raise HTTPException(409, "Il valore appartiene a una condizione esclusa dall'utente")
         unknown = {c for c, check in field.get("condition_checks", {}).items()
                    if check["result"] == "unknown"}
         if not unknown <= set(conditions):
@@ -323,6 +372,14 @@ def generate_draft(project_id, session_id, request):
                                "reviewed_by": "USER", "source_evidence": field["source_evidence"],
                                "confirmed_conditions": [c for c in field.get("conditions", [])
                                                         if c in request.confirmed_condition_ids]})
+    from app.compilation_global_dialogue import checked_user_fields
+
+    for cid, checked, user in checked_user_fields(row, state, request):
+        if cid in values:
+            raise HTTPException(422, "Lo stesso campo non può essere SOURCE e USER")
+        values[cid] = checked["written_value"]
+        checked_fields.append({**checked, "provenance": "USER", "user_quote": user["user_quote"],
+                               "source_evidence": []})
     draft = fill_docx(layout, values)
     report = {"schema_version": 7, "created_at": sessions.now(), "project_id": project_id,
               "session_id": session_id, "session_version": request.version,
@@ -331,9 +388,12 @@ def generate_draft(project_id, session_id, request):
               "template_sha256": layout.sha256, "output_sha256": hashlib.sha256(draft).hexdigest(),
               "fields": checked_fields, "written_field_count": len(values), "resolved": 0,
               "global_audit": state["global_compilation"]["audit"],
+              "conversation_review": {k: (state["global_compilation"].get("dialogue") or {}).get(
+                  k, {}) for k in ["answers", "user_values"]},
               "user_review": {"candidate_ids": request.candidate_ids,
+                              "user_candidate_ids": request.user_candidate_ids,
                               "confirmed_condition_ids": request.confirmed_condition_ids,
-                              "provenance": "USER"},
+                              "provenance": "USER", "user_quote": request.user_quote},
               "warnings": ["Bozza parziale: valori selezionati e condizioni "
                            "confermati dall'utente.",
                            "Le proposte non attestano completezza, allegati o ammissibilità.",
@@ -342,10 +402,16 @@ def generate_draft(project_id, session_id, request):
     def on_saved(db, generated):
         current, latest = _row_state(db, project_id, session_id, request.version)
         _selected(current, latest, request, db)  # Sources and revision atomically checked again.
+        checked_user_fields(current, latest, request)
         latest.update(status="GENERATED", last_generation={"session_version": request.version,
                                                           **generated})
         latest["last_generation"].pop("report", None)
         latest["global_compilation"]["last_review"] = report["user_review"]
+        if latest["global_compilation"].get("dialogue"):
+            latest["global_compilation"]["dialogue"].update(phase="READY", question=None,
+                message="Ho preparato una bozza parziale con i dati disponibili. "
+                        "Le informazioni non verificate restano vuote. "
+                        "Puoi scaricarla e controllarla.")
         sessions.save_state(db, current, latest, "global_draft_generate")
 
     _persist(project_id, state["template_name"], layout.original, draft, report, on_saved=on_saved)

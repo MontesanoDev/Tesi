@@ -697,42 +697,51 @@ describe('CompilationSession nella chat', () => {
       steps_used: review ? 1 : 0, max_steps: 1 } }
   }
 
-  it('esegue una sola analisi globale, richiede revisione esplicita e ripristina la bozza', async () => {
+  it('rivede la proposta nel composer senza checklist e ripristina dialogo e download', async () => {
+    const summary = 'Ho trovato denominazione e recapiti nelle fonti. La partecipazione è come società?'
     stored = globalSession()
     vi.mocked(api.resolveCompilationSession).mockImplementation(async () => {
       stored = globalSession(true)
+      stored.global_compilation!.dialogue = { phase: 'READY', message: summary }
       return structuredClone(stored)
     })
-    vi.mocked(api.generateGlobalDraft).mockImplementation(async (_p, _s, version, ids, conditions) => {
-      stored = { ...stored!, status: 'GENERATED', version: version + 1,
-        global_compilation: { ...stored!.global_compilation!, last_review: {
-          candidate_ids: ids, confirmed_condition_ids: conditions, provenance: 'USER' } }, last_generation: {
-          id: 'run-1', project_id: 'alpha', template_name: form.name, created_at: '',
-          status: 'needs_review', session_version: version,
-          downloads: { docx: '/file', report: '/report', template: '/original' },
-        } }
-      return structuredClone(stored!)
+    vi.mocked(api.projectAnswer).mockImplementation(async (_p, body) => {
+      const generated = body === 'genera la bozza parziale'
+      const answer = generated ? 'Ho preparato una bozza parziale. Puoi scaricarla e controllarla.'
+        : 'Ho registrato la conferma. Vuoi che generi una bozza parziale?'
+      stored!.version++
+      stored!.global_compilation!.dialogue = { phase: 'READY', message: answer }
+      if (generated) {
+        stored!.status = 'GENERATED'
+        stored!.last_generation = { id: 'run-1', project_id: 'alpha', template_name: form.name,
+          created_at: '', status: 'needs_review', session_version: stored!.version - 1,
+          downloads: { docx: '/file', report: '/report', template: '/original' } }
+      }
+      return { conversation_id: 'chat-1', turn_id: generated ? 2 : 1,
+        question: body, answer, citations: [], evidence: [], missing_information: [],
+        generation_status: 'direct', model: 'simulato', total_tokens: 1, notice: null,
+        form_reference: reference, compilation: { session_id: 'session-1',
+          action: generated ? 'generated' : 'updated' } }
     })
     const view = await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText(/Ho preparato 1 proposta/)
+    await screen.findByText(summary)
     expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
+    expect(screen.queryByRole('checkbox')).not.toBeInTheDocument()
+    expect(screen.queryByText(/Rivedi proposte|t0\.r0\.c1|Nessun valore utilizzabile/)).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /Genera bozza|Continua analisi/ })).not.toBeInTheDocument()
+    expect(api.generateGlobalDraft).not.toHaveBeenCalled()
     expect(api.finalizeCompilationSession).not.toHaveBeenCalled()
-    fireEvent.click(screen.getByText('Rivedi proposte e condizioni'))
-    const generate = screen.getByRole('button', { name: 'Genera bozza con i valori selezionati' })
-    expect(generate).toBeDisabled()
-    fireEvent.click(screen.getByRole('checkbox', { name: /Usa Denominazione/ }))
-    expect(generate).toBeDisabled()
-    fireEvent.click(screen.getByRole('checkbox', { name: /Confermo che si applica/ }))
-    expect(generate).toBeDisabled()
-    fireEvent.click(screen.getByRole('checkbox', { name: /Confermo di generare una bozza parziale/ }))
-    fireEvent.click(generate)
+    submit('Sì, partecipiamo come società')
+    await screen.findByText('Ho registrato la conferma. Vuoi che generi una bozza parziale?')
+    expect(stored!.last_generation).toBeNull()
+    submit('genera la bozza parziale')
     await screen.findByRole('button', { name: 'Scarica DOCX' })
-    expect(api.generateGlobalDraft).toHaveBeenCalledWith('alpha', 'session-1', 3,
-      ['t0.r0.c1'], ['c1'], expect.any(AbortSignal))
+    expect(api.generateGlobalDraft).not.toHaveBeenCalled()
     view.unmount()
     await setup('/projects/alpha/conversations/chat-1')
     await screen.findByRole('button', { name: 'Scarica DOCX' })
-    expect(screen.getByRole('checkbox', { name: /Usa Denominazione/ })).toBeChecked()
+    expect(screen.getByText('Ho preparato una bozza parziale. Puoi scaricarla e controllarla.')).toBeInTheDocument()
+    expect(screen.queryByRole('checkbox')).not.toBeInTheDocument()
     expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
   })
 

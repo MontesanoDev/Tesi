@@ -1,7 +1,0 @@
-.global-compilation-review { margin: 12px 0; overflow-wrap: anywhere; }
-.global-compilation-review summary { cursor: pointer; }
-.global-compilation-review ul { padding-left: 20px; }
-.global-compilation-review li { margin: 16px 0; }
-.global-review-check { display: flex; align-items: flex-start; gap: 10px; margin: 12px 0; }
-.global-review-check input { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 3px; }
-.global-review-check small { display: block; margin-top: 6px; color: var(--text-muted); }

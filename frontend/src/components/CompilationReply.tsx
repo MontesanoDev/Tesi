@@ -2,9 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { api } from '../api'
 import { compilationReplyParagraphs } from '../compilationReply'
 import type { CompilationSession, GroundedAnswer } from '../types'
-import { GlobalCompilationReview } from './GlobalCompilationReview'
 
-export function CompilationReply({ session, response, pending, processing, locked, error, onRetry, onGenerateDraft }: {
+export function CompilationReply({ session, response, pending, processing, locked, error, onRetry }: {
   session: CompilationSession
   response?: GroundedAnswer | null
   pending: boolean
@@ -12,7 +11,6 @@ export function CompilationReply({ session, response, pending, processing, locke
   locked: boolean
   error: string | null
   onRetry: () => void
-  onGenerateDraft?: (candidateIds: string[], conditions: string[]) => Promise<unknown>
 }) {
   const [downloading, setDownloading] = useState(false)
   const [downloadError, setDownloadError] = useState<string | null>(null)
@@ -53,10 +51,6 @@ export function CompilationReply({ session, response, pending, processing, locke
       || (session.engine === 'global' ? 'Analisi interrotta: nessun valore applicato. Chiedimi di riprendere per ritentare.'
         : 'Ho conservato il lavoro fatto finora, ma non sono riuscito a completare il modulo. Possiamo riprendere o preparare una bozza parziale.')}</p>}
     {error && <button type="button" className="button" disabled={locked} onClick={onRetry}>Riprova</button>}
-    {session.engine === 'global' && !processing && !session.chat?.paused
-      && session.global_compilation?.phase === 'REVIEW' && <GlobalCompilationReview
-        key={`${session.id}:${session.global_compilation.attempts}`} session={session} locked={locked}
-        onGenerate={onGenerateDraft} />}
     {session.last_generation && <>
       {session.engine !== 'global' && (session.open_issues.length > 0
         ? <p>Ho preparato una bozza parziale: restano informazioni da chiarire per completare il modulo.</p>

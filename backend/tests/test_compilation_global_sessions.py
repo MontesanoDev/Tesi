@@ -53,6 +53,18 @@ def provider(monkeypatch):
         return json.dumps(proposal(data)), "simulated", {"total_tokens": 10}
 
     monkeypatch.setattr(global_sessions, "request_model_content", request)
+    from app import compilation_global_dialogue as dialogue
+
+    monkeypatch.setattr(dialogue, "get_ai_settings", global_sessions.get_ai_settings)
+
+    async def summarize(client, settings, body, timeout, **kwargs):
+        data = json.loads(body["messages"][1]["content"])
+        return json.dumps({"message": "Ho trovato dati nelle fonti. Restano parti da verificare.",
+                           "questions": [{"slot": q["slot"],
+                                          "question": "Questa situazione si applica al tuo caso?"}
+                                         for q in data["question_pool"][:3]]}), "simulated", {}
+
+    monkeypatch.setattr(dialogue, "request_model_content", summarize)
     return calls
 
 

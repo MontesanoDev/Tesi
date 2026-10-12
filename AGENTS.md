@@ -67,8 +67,11 @@ embedding hanno configurazioni distinte. Il modello predefinito degli embedding
   sono state rimosse. La CompilationSession V1, autorizzata successivamente,
   itera sullo stato persistente con passi limitati, sempre da un solo originale.
   Dal 12 ottobre le nuove compilazioni della chat usano il motore globale V10:
-  una chiamata per il catalogo, proposta persistita, review USER ed export
-  esplicito di una bozza parziale dall'originale. Non promuovere automaticamente
+  una chiamata per il catalogo, proposta persistita, dialogo USER ed export
+  esplicito di una bozza parziale dall'originale. La breve sintesi AI è separata
+  dall'analisi; solo domande e risposte nel composer, niente checklist/ID XML.
+  Il backend possiede gli slot attivi e conserva rinvii, condizioni e provenance.
+  La sintesi può escludere proposte dubbie, mai rilassare il grounding SOURCE. Non promuovere automaticamente
   GROUNDED_PROPOSAL a RESOLVED; checkbox native non ancora materializzate.
   V1 resta nelle API/sessioni legacy, senza avanzamento automatico della UI.
   Non reintrodurre il vecchio motore a gruppi. La chat usa una mention `@` singola,
