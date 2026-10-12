@@ -1258,3 +1258,30 @@ al record corretto, mantenere tre recapiti e cinque dati societari; non dichiara
 applicabilità né entailment semantico completo. Misurare costi/token/tempi senza
 attribuire causalità a cache/ordine. Esiti da aggiungere dopo tutte le chiamate.
 Grezzi backend/data/compilation-audit/role-context-20261012/. Nessun push.
+
+## 12 ottobre 2026 — prima serie V10 parziale, refinement della copertura
+
+Sette acquisizioni reali su 660bf0e concluse senza modifica durante le API.
+Minervino: cinque dati personali grounded nella prima, nessuno proposto nella
+seconda, quattro nella terza (nome/qualifica/ordine/8421). Recapiti corretti 3/3;
+via+civico uniti nella seconda e campi iniziali con label nel paragrafo precedente
+respinti quando la quote contiene solo marker/punteggiatura. Catanzaro recupera
+quattro dati personali ma omette tabella iniziale/CF/PIVA: criterio dei cinque
+dati NON superato. Labirinto tre raw con 18 target letterali, ma terza perde
+5739 nel validator perché una seconda citation, reale, non contiene quel valore.
+NA non calcolabili rifiutate in due prove, polizza ambiguous anziché conflicting
+nella prima. Nessun gate indebolito per cambiare questi esiti. Grezzi intatti.
+
+Causa osservabile della regressione Catanzaro: proposte limitate al ramo finale,
+nessun record per la tabella generale, non rifiuto del suo bucket SOURCE. Dopo
+la serie, refinement solo TASK: riesaminare tutti i blocchi e tutte le occorrenze
+compatibili di un fatto, riusare fact_id con ancore/condizioni specifiche. Nessun
+nome, campo, ID o documento hardcodato; schema/validator restano V10.
+
+Nuovo protocollo registrato prima delle API: tre Catanzaro, un Minervino, un
+Labirinto, seriali, corpus/gold identici, deepseek-flash/thinking low, timeout300,
+una chiamata/prova, zero retry/USER/Word/sessioni. Codice congelato separatamente;
+conservare tutti i cinque esiti insieme ai sette precedenti. Scopo: verificare
+regressione cinque dati e recupero personale, non selezionare un'unica risposta
+favorevole. Nessuna modifica durante questa seconda serie. Esiti da registrare
+anche se il criterio non è raggiunto. Nessun push.

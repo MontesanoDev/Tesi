@@ -265,6 +265,17 @@ Checkbox: choice booleano + fatto che sostiene quella scelta nelle SOURCE e
 istruzioni FORM; casella vuota non significa false. Nessuna scrittura in questa
 prova. reason solo se aggiunge un'informazione specifica; evita boilerplate.
 
+CONTROLLO FINALE DI COPERTURA. Riesamina tutti i blocks dall'inizio alla fine,
+non soltanto il blocco specialistico o quello con ruoli più dettagliati. Un fatto
+SOURCE può essere richiesto in più posizioni del documento: per ogni occorrenza
+con soggetto, ruolo e proprietà compatibili proponi una distinta assegnazione,
+riusando fact_id e conservando ancore e condizioni proprie della destinazione.
+Aver proposto un valore in un blocco non soddisfa le altre occorrenze compatibili.
+Non omettere un dato documentato solo perché compare anche altrove; non copiarlo
+invece in campi di un'altra persona, altro ruolo o ramo incompatibile. Mantieni
+conditional per le incognite di applicabilità e ometti i dati realmente privi
+di supporto: questa verifica non richiede di inventare o classificare ogni slot.
+
 ALTERNATIVE SOURCE. Prima di scegliere un valore considera TUTTE le SOURCE
 pertinenti allo stesso soggetto, ruolo e proprietà. Se più valori restano
 plausibili e nessuna fonte ne stabilisce la priorità, NON sceglierne uno,

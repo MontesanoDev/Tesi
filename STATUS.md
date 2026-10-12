@@ -1,6 +1,6 @@
 # Stato di Mapi RAG
 
-## Ruolo fra paragrafi — 12 ottobre 2026, verifica in corso
+## Ruolo fra paragrafi — 12 ottobre 2026, prima serie parziale
 
 Autorizzato il passo successivo al legame slot/citazione. Diagnosi Minervino:
 ruolo nel paragrafo 50 perso dai candidate nei paragrafi 52/53; SOURCE con heading
@@ -32,6 +32,21 @@ seriali, deepseek-flash/thinking low, timeout 300 s, stessi SOURCE/gold congelat
 Gold fuori dal prompt. Misurare recupero dati personali, valore/record corretto,
 recapiti senza slittamento e cinque dati societari, copertura/token/tempi.
 Nessuna modifica durante il benchmark. Commit piccoli autorizzati, nessun push.
+
+Prima serie congelata 660bf0e conclusa: sette risposte complete. Minervino
+recupera direttore/qualifica/ordine/8421 in 2/3 (nella seconda omessi, non respinti).
+Catanzaro recupera il direttore ma omette la tabella iniziale e CF/PIVA: controllo
+cinque dati NON superato. Labirinto conserva cinque dati in 3/3; nella terza una
+seconda citation senza il valore fa rifiutare 5739, gate SOURCE invariato.
+Serie conservata integralmente, non presentata come successo completo.
+
+Refinement dopo le sette API: soltanto TASK ricorda di riesaminare tutto il
+catalogo e proporre ogni occorrenza compatibile, con ancore/condizioni proprie.
+Schema e gate identici V10. Nuovo protocollo separato, codice da congelare:
+tre Catanzaro, un Minervino, un Labirinto, stessi input/fonti, una chiamata per
+prova, zero retry. Non sostituisce le sette acquisizioni precedenti e non serve
+per mascherarne gli esiti. Grezzi role-coverage-20261012/.
+
 
 ## Destinazioni inline — 12 ottobre 2026, primo passo misurato concluso
 
