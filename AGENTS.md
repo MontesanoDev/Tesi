@@ -72,8 +72,8 @@ embedding hanno configurazioni distinte. Il modello predefinito degli embedding
   GROUNDED_PROPOSAL a RESOLVED; checkbox native non ancora materializzate.
   V1 resta nelle API/sessioni legacy, senza avanzamento automatico della UI.
   Non reintrodurre il vecchio motore a gruppi. La chat usa una mention `@` singola,
-  routing semantico e avanzamento automatico con budget persistito. Le risposte
-  libere riguardano soltanto il campo chiesto, con estratto USER e validazione;
+  routing semantico e avanzamento automatico con budget persistito. Nel percorso
+  legacy le risposte libere riguardano soltanto il campo chiesto, con estratto USER e validazione;
   ambiguità e valori non grounded richiedono chiarimento. Non estendere questo
   percorso a modifiche arbitrarie di campi o generazioni incomplete implicite.
 - Non eliminare funzioni soltanto perché non sono raggiungibili dal menu:
@@ -128,7 +128,8 @@ npm run build
 Eseguire controlli proporzionati alla modifica. Per sole modifiche documentali
 controllare diff, riferimenti e coerenza; non occorre ripetere tutte le suite.
 Per gli E2E serve il frontend avviato e Chromium installato. Gli scenari
-`composer-model-menu.spec.ts`, `compilation-chat.spec.ts`, `document-review.spec.ts` e `project-forms.spec.ts`
+`composer-model-menu.spec.ts`, `compilation-chat.spec.ts`, `global-compilation.spec.ts`,
+`document-review.spec.ts` e `project-forms.spec.ts`
 usano API simulate. Altri scenari usano il backend e possono modificare dati:
 configurare un ambiente temporaneo prima di eseguirli. `PLAYWRIGHT_BASE_URL`
 permette di scegliere l'istanza frontend.

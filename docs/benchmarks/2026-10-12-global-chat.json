@@ -1,0 +1,814 @@
+{
+  "frozen_head": "449b109",
+  "scope": "real provider + isolated ASGI API integration; separate simulated browser/software tests",
+  "software": {
+    "backend_targeted": 58,
+    "backend_complete": 1847,
+    "frontend": 101,
+    "browser": 8,
+    "ruff": true,
+    "frontend_lint": true,
+    "frontend_build": true
+  },
+  "cases": {
+    "catanzaro": {
+      "candidate_count": 307,
+      "source_chunks": 17,
+      "proposals_selectable": 14,
+      "omitted": 291,
+      "ai_seconds": 90.11205385600078,
+      "analysis_usage": {
+        "prompt_tokens": 66188,
+        "completion_tokens": 19295,
+        "total_tokens": 85483,
+        "prompt_tokens_details": {
+          "cached_tokens": 4224
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 16294
+        },
+        "prompt_cache_hit_tokens": 4224,
+        "prompt_cache_miss_tokens": 61964
+      },
+      "planner_usage": {
+        "prompt_tokens": 3188,
+        "completion_tokens": 42,
+        "total_tokens": 3230,
+        "prompt_tokens_details": {
+          "cached_tokens": 2176
+        },
+        "prompt_cache_hit_tokens": 2176,
+        "prompt_cache_miss_tokens": 1012
+      },
+      "http_analysis_calls": 1,
+      "planner_calls": 1,
+      "automatic_retries": 0,
+      "resolved": 0,
+      "selected_written": 9,
+      "user_factual_values": 0,
+      "status": "GENERATED",
+      "draft_only": true
+    },
+    "labirinto": {
+      "candidate_count": 55,
+      "source_chunks": 7,
+      "proposals_selectable": 17,
+      "omitted": 34,
+      "ai_seconds": 70.04985556700012,
+      "analysis_usage": {
+        "prompt_tokens": 17052,
+        "completion_tokens": 15784,
+        "total_tokens": 32836,
+        "prompt_tokens_details": {
+          "cached_tokens": 14336
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 12376
+        },
+        "prompt_cache_hit_tokens": 14336,
+        "prompt_cache_miss_tokens": 2716
+      },
+      "planner_usage": {
+        "prompt_tokens": 3188,
+        "completion_tokens": 35,
+        "total_tokens": 3223,
+        "prompt_tokens_details": {
+          "cached_tokens": 2176
+        },
+        "prompt_cache_hit_tokens": 2176,
+        "prompt_cache_miss_tokens": 1012
+      },
+      "http_analysis_calls": 1,
+      "planner_calls": 1,
+      "automatic_retries": 0,
+      "resolved": 0,
+      "selected_written": 17,
+      "user_factual_values": 0,
+      "status": "GENERATED",
+      "draft_only": true
+    }
+  },
+  "materialization": {
+    "catanzaro": {
+      "selected_count": 9,
+      "written_count": 9,
+      "checks": [
+        {
+          "candidate_id": "t0.r5.c1",
+          "value": "Mapi Ingegneria S.r.l.",
+          "actual": "Mapi Ingegneria S.r.l.",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "- Ragione sociale: Mapi Ingegneria S.r.l.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "value": "Societa a responsabilita limitata",
+          "actual": "Societa a responsabilita limitata",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "- Forma giuridica: Societa a responsabilita limitata.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "actual": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "value": "IT01234567890",
+          "actual": "IT01234567890",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r10.c1",
+          "value": "IT01234567890",
+          "actual": "IT01234567890",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -43,
+              "file_id": -7,
+              "chunk_index": 0,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -43,
+              "citation_rebound": false,
+              "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+              "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "value": "Ing. Elisa Romano",
+          "actual": "Ing. Elisa Romano",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Nominativo completo: Ing. Elisa Romano.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "value": "Ingegnere",
+          "actual": "Ingegnere",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Qualifica professionale nello scenario: Ingegnere.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "value": "Ordine degli Ingegneri di Bari",
+          "actual": "Ordine degli Ingegneri di Bari",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Ordine professionale simulato: Ordine degli Ingegneri di Bari.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "value": "8421",
+          "actual": "8421",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Numero di iscrizione professionale simulato: 8421.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        }
+      ],
+      "changed_cells": [
+        "t0.r5.c1",
+        "t0.r6.c1",
+        "t0.r7.c1",
+        "t0.r9.c1",
+        "t0.r10.c1",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "exactly_selected_cells_changed": true,
+      "native_controls_unchanged": true,
+      "original_unchanged": true,
+      "resolved": 0,
+      "user_factual_values": 0,
+      "status": "GENERATED",
+      "source_values_user_reviewed": 9,
+      "unselected_fields_unmodified": true,
+      "draft_only": true
+    },
+    "labirinto": {
+      "selected_count": 17,
+      "written_count": 17,
+      "checks": [
+        {
+          "candidate_id": "t0.r0.c1",
+          "value": "Orione Tecnica S.r.l.",
+          "actual": "Orione Tecnica S.r.l.",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Denominazione: Orione Tecnica S.r.l.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r1.c1",
+          "value": "società a responsabilità limitata",
+          "actual": "società a responsabilità limitata",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Forma giuridica: società a responsabilità limitata.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r2.c1",
+          "value": "01234567897",
+          "actual": "01234567897",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Codice fiscale operatore: 01234567897.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r3.c1",
+          "value": "01234567897",
+          "actual": "01234567897",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Partita IVA: 01234567897.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r4.c1",
+          "value": "Via delle Querce 18, 60121 Ancona (AN)",
+          "actual": "Via delle Querce 18, 60121 Ancona (AN)",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Sede legale: Via delle Querce 18, 60121 Ancona (AN).",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "value": "+39 071 000 1234",
+          "actual": "+39 071 000 1234",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Telefono: +39 071 000 1234.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "value": "orione@pec.example.org",
+          "actual": "orione@pec.example.org",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "PEC: orione@pec.example.org.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r0.c1",
+          "value": "Camera di Commercio delle Marche",
+          "actual": "Camera di Commercio delle Marche",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Iscrizione CCIAA: Camera di Commercio delle Marche.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r1.c1",
+          "value": "AN-204060",
+          "actual": "AN-204060",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Numero REA: AN-204060.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t12.r2.c1",
+          "value": "14/03/2019",
+          "actual": "14/03/2019",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Data iscrizione CCIAA: 14/03/2019.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t13.r0.c1",
+          "value": "LAB-ORIONE-2026",
+          "actual": "LAB-ORIONE-2026",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -6,
+              "file_id": -6,
+              "chunk_index": 0,
+              "source_name": "06-procedura.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -6,
+              "citation_rebound": false,
+              "quote": "La presente procedura ha codice LAB-ORIONE-2026.",
+              "content_sha256": "79bd1012e86041990bca3a092496b85125c9d47aa731f2c7e1fbcdce86c5e38e"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t5.r0.c1",
+          "value": "Orione Tecnica S.r.l.",
+          "actual": "Orione Tecnica S.r.l.",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Denominazione: Orione Tecnica S.r.l.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t5.r1.c1",
+          "value": "società a responsabilità limitata",
+          "actual": "società a responsabilità limitata",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -1,
+              "file_id": -1,
+              "chunk_index": 0,
+              "source_name": "01-profilo-aziendale.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -1,
+              "citation_rebound": false,
+              "quote": "Forma giuridica: società a responsabilità limitata.",
+              "content_sha256": "f30f86cfa0fec6cec67c6a5d15314261e005adf9c011761d52b102f041e94ffd"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r0.c1",
+          "value": "Giulia Serra",
+          "actual": "Giulia Serra",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "direttore tecnico: Giulia Serra",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r1.c1",
+          "value": "Ingegnere",
+          "actual": "Ingegnere",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "Qualifica professionale: Ingegnere.",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r2.c1",
+          "value": "Ordine degli Ingegneri di Ancona",
+          "actual": "Ordine degli Ingegneri di Ancona",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "Ordine professionale: Ordine degli Ingegneri di Ancona, n. 5739.",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t6.r3.c1",
+          "value": "5739",
+          "actual": "5739",
+          "original": "",
+          "match": true,
+          "provenance": "SOURCE",
+          "reviewed_by": "USER",
+          "source_evidence": [
+            {
+              "chunk_id": -2,
+              "file_id": -2,
+              "chunk_index": 0,
+              "source_name": "02-direttore-tecnico.txt",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -2,
+              "citation_rebound": false,
+              "quote": "Ordine degli Ingegneri di Ancona, n. 5739.",
+              "content_sha256": "b149ade3621c0ebadb9d9d7a279965ecdd8ee0f64d09c17a07027a7846748e8d"
+            }
+          ]
+        }
+      ],
+      "changed_cells": [
+        "t0.r0.c1",
+        "t0.r1.c1",
+        "t0.r2.c1",
+        "t0.r3.c1",
+        "t0.r4.c1",
+        "t0.r5.c1",
+        "t0.r6.c1",
+        "t5.r0.c1",
+        "t5.r1.c1",
+        "t6.r0.c1",
+        "t6.r1.c1",
+        "t6.r2.c1",
+        "t6.r3.c1",
+        "t12.r0.c1",
+        "t12.r1.c1",
+        "t12.r2.c1",
+        "t13.r0.c1"
+      ],
+      "exactly_selected_cells_changed": true,
+      "native_controls_unchanged": true,
+      "original_unchanged": true,
+      "resolved": 0,
+      "user_factual_values": 0,
+      "status": "GENERATED",
+      "source_values_user_reviewed": 17,
+      "unselected_fields_unmodified": true,
+      "draft_only": true
+    }
+  },
+  "integrity": {
+    "live_db_before_sha256": "aff76858d941bf19a534f86548849330e4bd142ad5b051662c4dd1ae730d0bbf",
+    "live_db_after_sha256": "aff76858d941bf19a534f86548849330e4bd142ad5b051662c4dd1ae730d0bbf",
+    "live_db_unchanged": true,
+    "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+    "original_unchanged": true,
+    "runtime_retained_until_explicit_export": true,
+    "live_db_after_export_sha256": "aff76858d941bf19a534f86548849330e4bd142ad5b051662c4dd1ae730d0bbf",
+    "live_db_unchanged_after_export": true,
+    "original_unchanged_after_export": true
+  }
+}

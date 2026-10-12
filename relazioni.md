@@ -1360,3 +1360,74 @@ stabilizzare quote/etichette e completezza. Nessun passaggio ad adapter
 scrivibile, chat/V1 o renderer ora. Nessuna migrazione/reindicizzazione.
 Miglioramento concreto sui ruoli, affidabilità globale ancora incompleta.
 Commit piccoli autorizzati, nessun push.
+
+## 12 ottobre 2026 — Motore globale predefinito nella chat e export con review
+
+Richiesta: rendere provabile con start.sh il nuovo motore, mettendo da parte V1.
+Scelte comunicate prima dell'implementazione: nuove sessioni globali, una chiamata
+sull'intero catalogo, nessuna promozione delle proposte a RESOLVED, selezione e
+conferma USER esplicite prima della bozza parziale, legacy conservato. Nessun
+cambio del branch a main o push. Implementazione congelata in **449b109**.
+
+Riusati DB/state_json/routing/trasporto/validatore/renderer/download. Loader SOURCE
+spostato dal runner al modulo condiviso, senza cambio di scope o del contratto
+V10. UI nella chat con disclosure di review, niente pagina o vecchi batch da 12.
+Regenerazione da originale, CAS e rivalidazione SOURCE prima dell'export e nella
+transazione di salvataggio. Pausa/refresh/provider error non avviano retry.
+
+Software realmente eseguito: **58 mirati /17,47 s; 1.847 backend /126,81 s;
+101 frontend /5,18 s; 8 browser /24,2 s; Ruff, lint/build e diff check passati**.
+Provider simulati in questi test, separati dalla prova reale. Failure iniziali
+conservate: mock/tipi frontend, kwargs parser legacy, dipendenze fixture importate,
+Ruff, completa iniziale interrotta e completa successiva fallita prima della
+correzione dei fixture; non nascosti come se tutte le esecuzioni fossero verdi.
+
+Smoke reale con deepseek-flash in DB/storage temporanei: due conversazioni nuove
+via /answer (routing reale) e /resolve; quattro chiamate totali, zero retry.
+Codice applicativo immutato durante la serie. Catanzaro usa il modulo archiviato
+live, hash aeb1bda... diverso dall'originale dei precedenti confronti congelati;
+Labirinto V1 fonti reingestite via API, quindi non confronto causale di punteggi.
+Gold mai nel prompt; nessuna nuova estrazione casuale, modulo principale richiesto.
+
+- Catanzaro: 307 candidate, 17 SOURCE, **14 proposte selezionabili**, 291 omesse,
+  **90,11 s AI /85.483 token**. Cinque dati societari, direttore/qualifica/ordine/
+  albo 8421 proposti. Selezionati nove valori, confermate USER partecipazione e
+  ramo ingegneria; **9/9 scritti nella posizione XML corretta**. Sede operativa
+  uguale alla legale senza condizione locale «se diversa» esclusa dalla selezione;
+  firmatario di altra sezione rifiutato dal gate FORM/ruolo.
+- Labirinto: 55 candidate, corpus fonte reingestito, **17 proposte selezionabili**,
+  34 omesse, **70,05 s AI /32.836 token**. Selezionate tutte le 17 stringhe,
+  confermato USER ramo ingegneria; **17/17 scritte nelle celle corrette**.
+
+118.319 token di analisi + 6.453 routing = **124.772 token**. Tempi AI, non E2E;
+nessun risparmio causale/costo monetario completo/% di accuratezza dichiarati.
+Entrambe arrivano a REVIEW senza DOCX automatico. Export solo dopo review
+controllata USER, nessun valore fattuale USER. **Zero RESOLVED**: stato GENERATED
+qui significa bozza selezionata/esportata, non completamento di tutti i campi.
+26/26 celle selezionate corrette, nessun'altra cella cambiata, paragrafi invariati
+salvo avviso bozza previsto, checkbox native invariate. Originali e DB live
+invariati anche dopo gli export.
+
+Failure dell'harness di verifica conservate: path/PYTHONPATH, `id` invece di
+`cell_id`, griglia espansa invece di celle fisiche, `.xml` sui nodi lxml generici.
+Corretto solo l'harness, senza modificare il codice applicativo durante la serie,
+né ripetere gli export riusciti o le chiamate AI.
+
+[Report](docs/test-globale-chat-2026-10-12.md),
+[JSON completo](docs/benchmarks/2026-10-12-global-chat.json).
+Grezzi `backend/data/compilation-audit/global-main-20261012/`: protocollo,
+prompt/schema/raw/HTTP/tempi/audit/stati, Word/report e controlli software.
+Bundle versionato senza DB/chiavi, hash e inventario nelle verifiche finali.
+
+Limiti: revisione semantica ancora necessaria, applicabilità/omissioni non
+complete, checkbox non scritte, nessuna iterazione libera globale sui valori
+USER, corpus piccolo entro cap espliciti. Una chiamata può ancora durare circa
+90 s. Pronto da provare nella chat come proposta + review + bozza; prossimo
+passo osservare l'uso reale prima di automatizzare ulteriormente.
+
+[Bundle completo](docs/benchmarks/2026-10-12-global-chat-audit.tar.gz),
+[verifiche finali](docs/benchmarks/2026-10-12-global-chat-final-checks.json).
+
+Bundle pubblico: **110 file /1.037.437 byte**, SHA-256
+`3f61e9427e7e0a6e14b8f16f4c382b0a2a69a621eb935f18b75077e76f8754b0`. Verificato byte per byte e senza
+credenziali/DB/configurazioni private.

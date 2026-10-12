@@ -1,6 +1,6 @@
 # Stato di Mapi RAG
 
-## Motore globale predefinito nella chat — 12 ottobre 2026, integrazione in verifica
+## Motore globale predefinito nella chat — 12 ottobre 2026, disponibile con start.sh
 
 Richiesta corrente: rendere provabile con `./start.sh` la nuova compilazione e
 mettere da parte il percorso precedente. «Main» indica il motore predefinito
@@ -30,17 +30,44 @@ benchmark FTS5/Qdrant. Limite superato -> errore esplicito. Pausa, errore e
 refresh non ripetono l'analisi; ripresa esplicita autorizza un nuovo tentativo.
 Nessuna migrazione/reindicizzazione o modifica agli originali/dati live.
 
-Verifiche finora: 58 backend mirati, 101 frontend, 8 browser desktop/mobile
-(compreso movimento ridotto), lint/build frontend passati. Suite completa: 1.847 passati /126,81 s; Ruff e frontend lint/build passati.
-Prova API reale DeepSeek ancora da concludere; non presentarla come passata.
+Verifiche: 58 backend mirati, 101 frontend, 8 browser desktop/mobile (compreso
+movimento ridotto), 1.847 backend completi /126,81 s, Ruff e frontend lint/build
+passati.
+Smoke API reale deepseek-flash completato su codice congelato 449b109:
+Catanzaro 14 proposte selezionabili /90,11 s AI; Labirinto V1 17 /70,05 s AI.
+Quattro chiamate complessive (due routing, due analisi), zero retry, 124.772 token.
+Con review USER controllata: 9/9 valori Catanzaro e 17/17 Labirinto scritti nelle
+celle XML corrette; nessun valore fattuale USER, zero RESOLVED. Cinque dati
+societari più direttore/qualifica/ordine/8421 presenti a Catanzaro. Originali,
+DB live, celle non selezionate e checkbox invariati. API ASGI reali + provider
+reale; browser separato con API simulate. Nessuna modifica applicativa durante
+la serie. File live Catanzaro diverso dai confronti congelati precedenti e
+fonti fixture reingestite: smoke d’integrazione, non confronto causale.
 Failure intermedie di fixture legacy, tipi/mock frontend e lint conservate in
 backend/data/compilation-audit/global-main-20261012/. Documentazione di uso:
 [CompilationSession](docs/compilation-session-v1.md).
 
-Prossimo punto: concludere controlli e smoke reale in DB/storage temporanei,
-archiviare report/risultati in relazioni.md, poi valutare sulla chat la revisione
-prima di ampliare checkbox o iterazione libera. Il vecchio motore non va rimosso
-fisicamente mentre serve alla compatibilità.
+Limiti osservati: sede operativa uguale alla legale proposta senza condizione
+locale «se diversa», esclusa dalla selezione; firmatario in altra sezione
+rifiutato. Omissioni/alternative/applicabilità non complete; niente iterazione
+libera globale sui valori USER. Una chiamata può durare ancora ~90 s.
+
+[Report](docs/test-globale-chat-2026-10-12.md),
+[JSON](docs/benchmarks/2026-10-12-global-chat.json),
+[bundle 110 file](docs/benchmarks/2026-10-12-global-chat-audit.tar.gz),
+[verifiche finali](docs/benchmarks/2026-10-12-global-chat-final-checks.json),
+registro in relazioni.md. Backup pubblico verificato senza credenziali/DB;
+copie temporanee con chiavi rimosse dopo la verifica.
+Prompt/schema/raw/audit/stati/DOCX/log in
+backend/data/compilation-audit/global-main-20261012/, anche nel bundle pubblico
+senza DB/chiavi. Errori dell’harness di materializzazione conservati (cell_id,
+griglia espansa, nodi lxml), corretti senza ripetere chiamate AI/export riusciti.
+
+**Come riprendere:** ./start.sh -> modello DeepSeek -> nuova conversazione ->
+@modulo DOCX + «me lo compili?» -> Rivedi proposte e condizioni -> selezione/
+conferme applicabilità/consenso bozza parziale -> genera/download. Provare
+questa UX e misurare copertura/applicabilità prima di estendere scritture.
+Il vecchio motore non va rimosso fisicamente mentre serve alla compatibilità.
 
 
 ## Ruolo fra paragrafi — 12 ottobre 2026, passo V10 verificato

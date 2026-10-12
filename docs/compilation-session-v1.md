@@ -50,6 +50,10 @@ Prompt/input/originale/raw output/audit/tempi salvati nel relativo storage
 `<project>/_global_compilations/<session>/<attempt>/`, senza chiave API.
 Questi artefatti locali richiedono backup separato. Nessuna migrazione DB.
 
+[Smoke reale e verifiche](test-globale-chat-2026-10-12.md): 1.847 backend,
+101 frontend e 8 browser passati; due analisi DeepSeek reali, 26/26 valori
+selezionati scritti nelle celle XML corrette. Proposte sempre da rivedere.
+
 **Compatibilità:** sessioni precedenti rimangono `engine=legacy`, senza cambio
 di stato o avanzamento automatico della UI. Le API dirette senza engine
 conservano la semantica V1. Le sezioni successive descrivono il percorso

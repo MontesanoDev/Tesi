@@ -1,0 +1,30 @@
+{
+  "archive": "2026-10-12-global-chat-audit.tar.gz",
+  "files": 110,
+  "bytes": 1037437,
+  "sha256": "3f61e9427e7e0a6e14b8f16f4c382b0a2a69a621eb935f18b75077e76f8754b0",
+  "byte_for_byte_verified": true,
+  "configured_credentials_absent": true,
+  "no_database_or_private_configuration": true,
+  "temporary_private_runtime_removed": true,
+  "live_data_integrity": {
+    "live_db_before_sha256": "aff76858d941bf19a534f86548849330e4bd142ad5b051662c4dd1ae730d0bbf",
+    "live_db_after_sha256": "aff76858d941bf19a534f86548849330e4bd142ad5b051662c4dd1ae730d0bbf",
+    "live_db_unchanged": true,
+    "original_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+    "original_unchanged": true,
+    "runtime_retained_until_explicit_export": false,
+    "live_db_after_export_sha256": "aff76858d941bf19a534f86548849330e4bd142ad5b051662c4dd1ae730d0bbf",
+    "live_db_unchanged_after_export": true,
+    "original_unchanged_after_export": true,
+    "temporary_private_runtime_removed": true
+  },
+  "software": {
+    "backend": 1847,
+    "frontend": 101,
+    "browser": 8,
+    "ruff": true,
+    "frontend_lint": true,
+    "frontend_build": true
+  }
+}
