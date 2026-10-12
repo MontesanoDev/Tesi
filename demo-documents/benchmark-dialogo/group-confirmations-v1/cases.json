@@ -1,0 +1,338 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "recorded-real",
+      "context": "recorded_group",
+      "message": "Confermo entrambe: la sezione delle società di ingegneria si applica e il partecipante è quello indicato nelle fonti.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "value": null,
+          "user_quote": "la sezione delle società di ingegneria si applica"
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "value": null,
+          "user_quote": "il partecipante è quello indicato nelle fonti"
+        }
+      ],
+      "expected_allowed_slots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "explicit-both",
+      "context": "recorded_group",
+      "message": "Sì, confermo entrambe le condizioni che mi hai appena chiesto.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Sì, confermo entrambe le condizioni che mi hai appena chiesto."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Sì, confermo entrambe le condizioni che mi hai appena chiesto."
+        }
+      ],
+      "expected_allowed_slots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "anaphoric-reference",
+      "context": "recorded_group",
+      "message": "Confermo tutti e due i punti: quella sezione ci riguarda e a partecipare è proprio la società che hai nominato.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo tutti e due i punti: quella sezione ci riguarda e a partecipare è proprio la società che hai nominato."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo tutti e due i punti: quella sezione ci riguarda e a partecipare è proprio la società che hai nominato."
+        }
+      ],
+      "expected_allowed_slots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "numbered-reference",
+      "context": "recorded_group",
+      "message": "Rispondo sì sia alla prima domanda sia alla seconda.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Rispondo sì sia alla prima domanda sia alla seconda."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Rispondo sì sia alla prima domanda sia alla seconda."
+        }
+      ],
+      "expected_allowed_slots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "negative-both",
+      "context": "recorded_group",
+      "message": "Nessuna delle due condizioni si applica al nostro caso.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_FALSE",
+          "user_quote": "Nessuna delle due condizioni si applica al nostro caso."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_FALSE",
+          "user_quote": "Nessuna delle due condizioni si applica al nostro caso."
+        }
+      ],
+      "expected_allowed_slots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "local-exception",
+      "context": "recorded_group",
+      "message": "Confermo entrambe, tranne la seconda: il partecipante non è la società che hai indicato.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo entrambe, tranne la seconda: il partecipante non è la società che hai indicato."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_FALSE",
+          "user_quote": "Confermo entrambe, tranne la seconda: il partecipante non è la società che hai indicato."
+        }
+      ],
+      "expected_allowed_slots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "wrong-polarity",
+      "context": "recorded_group",
+      "message": "Confermo entrambe, tranne la seconda: il partecipante non è la società che hai indicato.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo entrambe, tranne la seconda: il partecipante non è la società che hai indicato."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo entrambe, tranne la seconda: il partecipante non è la società che hai indicato."
+        }
+      ],
+      "expected_allowed_slots": [
+        1
+      ]
+    },
+    {
+      "id": "uncertain-second",
+      "context": "recorded_group",
+      "message": "La prima si applica; sulla seconda non sono sicuro.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "La prima si applica; sulla seconda non sono sicuro."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "La prima si applica; sulla seconda non sono sicuro."
+        }
+      ],
+      "expected_allowed_slots": [
+        1
+      ]
+    },
+    {
+      "id": "bare-yes",
+      "context": "recorded_group",
+      "message": "sì",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "sì"
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "sì"
+        }
+      ],
+      "expected_allowed_slots": []
+    },
+    {
+      "id": "source-mention-not-adoption",
+      "context": "recorded_group",
+      "message": "Nelle fonti compare Mapi Ingegneria S.r.l., ma non ho deciso quale società parteciperà.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Nelle fonti compare Mapi Ingegneria S.r.l., ma non ho deciso quale società parteciperà."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Nelle fonti compare Mapi Ingegneria S.r.l., ma non ho deciso quale società parteciperà."
+        }
+      ],
+      "expected_allowed_slots": []
+    },
+    {
+      "id": "unrelated-conditions",
+      "context": "recorded_group",
+      "message": "Confermo entrambe le certificazioni: la ISO 9001 e la ISO 14001.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo entrambe le certificazioni: la ISO 9001 e la ISO 14001."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo entrambe le certificazioni: la ISO 9001 e la ISO 14001."
+        }
+      ],
+      "expected_allowed_slots": []
+    },
+    {
+      "id": "bare-confirmation-no-values",
+      "context": "precise_group",
+      "message": "Confermo tutti e tre i punti.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo tutti e tre i punti."
+        },
+        {
+          "slot": 2,
+          "action": "VALUE",
+          "value": "Confermo tutti e tre i punti.",
+          "user_quote": "Confermo tutti e tre i punti."
+        },
+        {
+          "slot": 3,
+          "action": "VALUE",
+          "value": "Confermo tutti e tre i punti.",
+          "user_quote": "Confermo tutti e tre i punti."
+        }
+      ],
+      "expected_allowed_slots": [
+        1
+      ]
+    },
+    {
+      "id": "partial-mixed",
+      "context": "precise_group",
+      "message": "Il firmatario opera per delega. Per le comunicazioni usa tecnico@studio.example; la data non la conosco.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Il firmatario opera per delega."
+        },
+        {
+          "slot": 2,
+          "action": "VALUE",
+          "user_quote": "tecnico@studio.example",
+          "value": "tecnico@studio.example"
+        },
+        {
+          "slot": 3,
+          "action": "VALUE",
+          "user_quote": "la data non la conosco",
+          "value": "la data non la conosco"
+        }
+      ],
+      "expected_allowed_slots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "other-field-correction",
+      "context": "recorded_group",
+      "message": "Correggi soltanto il direttore tecnico: si chiama Carlo Verdi.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Correggi soltanto il direttore tecnico: si chiama Carlo Verdi."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Correggi soltanto il direttore tecnico: si chiama Carlo Verdi."
+        }
+      ],
+      "expected_allowed_slots": []
+    },
+    {
+      "id": "first-only",
+      "context": "recorded_group",
+      "message": "Confermo soltanto la prima domanda; alla seconda non rispondo ancora.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo soltanto la prima domanda; alla seconda non rispondo ancora."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo soltanto la prima domanda; alla seconda non rispondo ancora."
+        }
+      ],
+      "expected_allowed_slots": [
+        1
+      ]
+    },
+    {
+      "id": "ambiguous-demonstrative",
+      "context": "recorded_group",
+      "message": "Confermo quella.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo quella."
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Confermo quella."
+        }
+      ],
+      "expected_allowed_slots": []
+    }
+  ]
+}

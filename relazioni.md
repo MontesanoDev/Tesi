@@ -1798,3 +1798,15 @@ Bundle sanificato verificato byte-per-byte: **303 file /1.142.223 byte**,
 SHA-256 `d57f20629d2144e6c2032f859d41c3cd276f81c314a35502beb8bdc04bb1a170`.
 Prompt/schema/raw, tempi/usage, revisioni e tre Word realmente generati inclusi;
 nessun DB/chiave/runtime privato. Le serie fallite o non comparabili restano incluse.
+
+## 12 ottobre — protocollo conferme del gruppo attivo, prima delle API
+
+Autorizzato il fix circoscritto del falso negativo del turno Catanzaro: router
+corretto, gate USER SUPPORTED/AMBIGUOUS. La domanda naturale esiste per slot
+ma routing_context la perde; il prompt non distingue conferma esplicita del
+gruppo da sì senza destinatario. Previsti conservazione question bounded e
+chiarimento del task del verificatore indipendente, senza automatismi o nuovi
+permessi. Congelati 16 casi separati positivi/avversariali, BEFORE/AFTER completi;
+guard-v1 (9) e Dialogo V1 (43) invariati per le regressioni. Quattro test del
+protocollo /0,54 s, Ruff runner/test e diff check passati, nessuna API ancora.
+[Diagnosi e protocollo](docs/conferme-gruppo-2026-10-12.md). Nessun push.

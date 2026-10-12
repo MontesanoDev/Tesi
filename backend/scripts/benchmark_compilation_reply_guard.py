@@ -29,15 +29,37 @@ from scripts.benchmark_compilation_dialogue import (
 GUARD_FIXTURE = FIXTURE.parent / "guard-v1"
 
 
-async def benchmark(args):
+def load_guard_fixture(root):
+    root = Path(root).resolve()
     _, contexts, _ = load_fixture(FIXTURE)
-    manifest = json.loads((GUARD_FIXTURE / "manifest.json").read_text())
+    manifest = json.loads((root / "manifest.json").read_text())
     for name, expected in manifest["base_files"].items():
-        assert digest((FIXTURE / name).read_bytes()) == expected
+        path = (FIXTURE / name).resolve()
+        if not path.is_relative_to(FIXTURE.resolve()) or digest(path.read_bytes()) != expected:
+            raise ValueError("Fixture base modificata o percorso esterno: " + name)
     for name, expected in manifest["files"].items():
-        assert digest((GUARD_FIXTURE / name).read_bytes()) == expected
-    cases = json.loads((GUARD_FIXTURE / "cases.json").read_text())["cases"]
-    assert len(cases) <= min(9, manifest["max_cases"])
+        path = (root / name).resolve()
+        if not path.is_relative_to(root) or digest(path.read_bytes()) != expected:
+            raise ValueError("Fixture guard modificata o percorso esterno: " + name)
+    if "contexts.json" in manifest["files"]:
+        contexts.update(json.loads((root / "contexts.json").read_text()))
+    cases = json.loads((root / "cases.json").read_text())["cases"]
+    if len(cases) > min(24, manifest["max_cases"]):
+        raise ValueError("Budget casi superato")
+    if len({case["id"] for case in cases}) != len(cases):
+        raise ValueError("ID caso duplicato")
+    for case in cases:
+        slots = {s["slot"] for s in contexts[case["context"]]["slots"]}
+        replies = [ClarificationReply.model_validate(r) for r in case["proposals"]]
+        proposed = {r.slot for r in replies}
+        if (not proposed <= slots or len(proposed) != len(replies)
+                or not set(case["expected_allowed_slots"]) <= proposed):
+            raise ValueError("Proposte/gold riferiti a slot non validi")
+    return manifest, contexts, cases
+
+
+async def benchmark(args):
+    manifest, contexts, cases = load_guard_fixture(args.fixture)
     settings = real_settings(args.project)
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -127,6 +149,7 @@ async def benchmark(args):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--fixture", type=Path, default=GUARD_FIXTURE)
     parser.add_argument("--project", required=True)
     parser.add_argument("--output", type=Path, required=True)
     asyncio.run(benchmark(parser.parse_args()))

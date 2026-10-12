@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "max_cases": 16,
+  "base_files": {
+    "cases.json": "c01cf42ff583fe97748b816cfc600a6de53bba68215d569a5043ba7f0340b64a",
+    "contexts.json": "6a16d70cf648f5b4f4bbc908160392a5e058e4f2c5236be3990678e1dc9b6ba2",
+    "modulo-dialogo.docx": "077f4353c4c9d989edfe7496933796eaf258d0b1461c0da07c1f95e77e24bf6b",
+    "README.md": "d0c0adb978182533e1ea17a39893c8c6d199227054b3d2b74285b1324991be99"
+  },
+  "files": {
+    "cases.json": "87c9bf365e85be1daa9bb57ede8f14c31d887fc93a6049c45da5e9d19cbba31d",
+    "contexts.json": "f0572c6bc87180529e054edaf3c7c34e2535a2a32e96c61d7982e3ba2c840564",
+    "README.md": "37436fedf2ec8810fd684d5575e6c443757c168c6b1ab654a5fb205e6b960405"
+  },
+  "gold_in_prompt": false,
+  "method": "Prepared untrusted proposals; real independent semantic guard, actual isolated USER persistence; recorded active questions plus authored counterexamples."
+}

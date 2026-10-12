@@ -1,0 +1,48 @@
+# Conferme riferite al gruppo attivo — 12 ottobre 2026
+
+## Diagnosi e protocollo congelato prima delle API
+
+Baseline applicativa fb2894e, HEAD diagnostico 8e90915; al controllo iniziale
+working tree pulito, tre commit davanti a origin/prune-backend. Nessun push.
+Il turno 04 del [test completo](test-conversazione-completa-2026-10-12.md)
+aveva due domande: applicabilità della sezione e identità del partecipante.
+Il router proponeva correttamente CONDITION_TRUE su entrambi gli slot. Il gate
+USER indipendente accettava il primo e rifiutava il secondo come AMBIGUOUS:
+«il partecipante è quello indicato nelle fonti» era considerato troppo generico,
+anche nel messaggio completo «Confermo entrambe: ...».
+
+`render_dialogue` conserva già `question` in ciascuno slot persistito;
+`intents.routing_context` lo perde nella proiezione destinata ai modelli.
+Rimangono la domanda complessiva, label e contesto FORM: la seconda condition
+è soltanto «CHIEDE di partecipare alla presente gara». Nessuna perdita della
+frase USER intera: è già inviata. Il prompt del verificatore ammette parafrasi
+ma non chiarisce l'ambito delle conferme esplicite dell'intero gruppo.
+Non è un difetto del retrieval SOURCE o dello schema della risposta.
+
+Modifica minima prevista: preservare il testo naturale per slot (massimo 600
+caratteri, stessa dimensione già validata nella sintesi) e precisare nel gate
+la risoluzione dei riferimenti alla domanda attiva, le eccezioni e la polarità.
+Nessuna accettazione automatica, keyword USER, nuovo schema/API, seconda ricerca
+o chiamata AI. Il gate semantico indipendente continua a fallire in modo
+conservativo, prima di quote/validator DOCX/CAS/provenance USER. I casi storici
+senza question per slot restano leggibili. Turni composti ancora da discutere.
+
+Congelati [16 scenari V1](../demo-documents/benchmark-dialogo/group-confirmations-v1/README.md)
+prima delle API: caso reale, parafrasi, conferme di entrambe, riferimenti
+numerati, negazioni, eccezioni locali, parti incerte, conferme senza valori,
+correzioni estranee e ambiguità. Nuova fixture, gold storico invariato.
+Il runner guard esistente accetta una fixture esplicita e verifica hash, slot
+e budget prima di leggere il profilo AI o chiamare il provider.
+
+BEFORE e AFTER: stessa fixture, 16 chiamate massime per fase, nessun retry,
+15 s/768 token output per chiamata. Nuovo checkpoint DB/storage temporanei
+per caso. Proposte preparate non affidabili, provider DeepSeek Flash reale;
+gold non inviato. Gli slot registrati vengono rimappati su due candidate della
+fixture di dialogo per misurare mutazioni USER, non correttezza del modulo intero.
+Regressioni AFTER su guard-v1 (9) e Dialogo V1 (43). Nessuna ripetizione
+selettiva, errori conservati. Replay del checkpoint reale separato da nuove
+analisi SOURCE; nessuna pretesa di avere rieseguito l'analisi globale.
+
+Prima delle API: quattro test del protocollo senza provider passati /0,54 s;
+Ruff runner/test e diff check passati. Risultati e costi saranno aggiunti dopo
+le serie, senza modificare aspettative o codice durante ciascuna serie.

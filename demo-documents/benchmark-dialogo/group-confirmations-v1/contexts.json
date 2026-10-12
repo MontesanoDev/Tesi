@@ -1,0 +1,116 @@
+{
+  "recorded_group": {
+    "kind": "clarifications",
+    "message": "Dalla visura della società risultano denominazione, forma giuridica, sede legale e partita IVA/codice fiscale di Mapi Ingegneria S.r.l.; da un altro documento provengono i dati del direttore tecnico (Ing. Elisa Romano, ingegnere, iscritta all'Ordine di Bari). Questi valori sono proposte da controllare, non un modulo già compilato. Restano molte posizioni non valutate, quindi non posso dire che la sezione sia completa. Due punti vanno chiariti: se la sezione riservata alle società di ingegneria riguarda questo caso e se il partecipante è effettivamente Mapi Ingegneria S.r.l.\n\n1. La sezione riservata alle società di ingegneria si applica al vostro caso?\n2. Il soggetto che partecipa alla gara è Mapi Ingegneria S.r.l.?\nPuoi rispondere in un unico messaggio.",
+    "slots": [
+      {
+        "slot": 1,
+        "kind": "applicability",
+        "label": "La sezione 5.d si applica solo se l'operatore è una società di ingegneria.",
+        "condition": "da compilare in caso di SOCIETÀ DI INGEGNERIA",
+        "alternatives": [],
+        "context": "da compilare in caso di SOCIETÀ DI INGEGNERIA",
+        "question": "La sezione riservata alle società di ingegneria si applica al vostro caso?",
+        "field_ids": [
+          "t0.r0.c1"
+        ],
+        "key": "condition:ramo",
+        "condition_id": "ramo"
+      },
+      {
+        "slot": 2,
+        "kind": "applicability",
+        "label": "I dati anagrafici dell'operatore presuppongono che il richiedente sia Mapi Ingegneria S.r.l.; la scelta del partecipante non è confermata.",
+        "condition": "CHIEDE di partecipare alla presente gara",
+        "alternatives": [],
+        "context": "CHIEDE di partecipare alla presente gara",
+        "question": "Il soggetto che partecipa alla gara è Mapi Ingegneria S.r.l.?",
+        "field_ids": [
+          "t0.r3.c1"
+        ],
+        "key": "condition:partecipante",
+        "condition_id": "partecipante"
+      }
+    ]
+  },
+  "precise_group": {
+    "kind": "clarifications",
+    "message": "1. Il firmatario opera come delegato?\n2. Quale recapito devo usare per le comunicazioni?\n3. Qual è la data di abilitazione?",
+    "slots": [
+      {
+        "slot": 1,
+        "kind": "applicability",
+        "label": "Firmatario delegato",
+        "condition": "se il firmatario opera come delegato",
+        "context": "Riferimento delega, se il firmatario opera come delegato.",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r0.c1"
+        ],
+        "key": "condition:delega",
+        "condition_id": "delega",
+        "question": "Il firmatario opera come delegato?"
+      },
+      {
+        "slot": 2,
+        "kind": "value",
+        "label": "Recapito comunicazioni",
+        "condition": "",
+        "context": "Recapito comunicazioni",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r1.c1"
+        ],
+        "key": "field:t0.r1.c1",
+        "question": "Quale recapito devo usare per le comunicazioni?"
+      },
+      {
+        "slot": 3,
+        "kind": "value",
+        "label": "Data abilitazione",
+        "condition": "",
+        "context": "Data abilitazione",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r2.c1"
+        ],
+        "key": "field:t0.r2.c1",
+        "question": "Qual è la data di abilitazione?"
+      }
+    ]
+  },
+  "precise_conditions": {
+    "kind": "clarifications",
+    "message": "1. Il firmatario opera come delegato?\n2. La partecipazione avviene in gruppo?",
+    "slots": [
+      {
+        "slot": 1,
+        "kind": "applicability",
+        "label": "Firmatario delegato",
+        "condition": "se il firmatario opera come delegato",
+        "context": "Riferimento delega, se il firmatario opera come delegato.",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r0.c1"
+        ],
+        "key": "condition:delega",
+        "condition_id": "delega",
+        "question": "Il firmatario opera come delegato?"
+      },
+      {
+        "slot": 2,
+        "kind": "applicability",
+        "label": "Partecipazione in gruppo",
+        "condition": "se la partecipazione avviene in gruppo",
+        "context": "Riferimenti gruppo, se la partecipazione avviene in gruppo.",
+        "alternatives": [],
+        "field_ids": [
+          "t0.r3.c1"
+        ],
+        "key": "condition:gruppo",
+        "condition_id": "gruppo",
+        "question": "La partecipazione avviene in gruppo?"
+      }
+    ]
+  }
+}
