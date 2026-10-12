@@ -1,5 +1,21 @@
 # Stato di Mapi RAG
 
+## Report tecnico rimosso dalle risposte chat — 12 ottobre 2026
+
+Rimosso il pulsante automatico «Scarica report proposte/bozza»: veniva mostrato
+ogni volta che la sessione globale aveva report_url, anche sotto risposte
+successive di normale conversazione. CompilationReply conserva il download
+del DOCX generato; report, client API e endpoint backend rimangono disponibili.
+La futura gestione UI dei comandi resta da discutere, senza nuovi menu.
+
+Verifiche effettive: **101 test frontend /6,07 s**, **2 Playwright
+desktop/mobile /4,3 s** (API simulate, compresi refresh e download DOCX),
+lint, build e diff check passati. Aggiornate le asserzioni degli scenari
+esistenti per l'assenza dei pulsanti report. Backend e motore invariati:
+nessun test backend o benchmark AI rieseguito, nessuna modifica ai dati locali.
+Prossimo punto: riprendere il ciclo di revisione della compilazione descritto
+sotto; comandi UI ancora da progettare con l'utente.
+
 ## Revisione globale conversazionale — 12 ottobre 2026, pronta da provare
 
 Richiesta: eliminare la checklist e i nomi XML dalla chat. La vecchia UI

@@ -19,21 +19,19 @@ export function CompilationReply({ session, response, pending, processing, locke
 
   const paragraphs = compilationReplyParagraphs(session, response, processing, error)
 
-  async function download(kind: 'docx' | 'report' = 'docx') {
-    if ((!session.last_generation && kind === 'docx') || downloadController.current) return
+  async function download() {
+    if (!session.last_generation || downloadController.current) return
     const controller = new AbortController()
     downloadController.current = controller
     setDownloading(true)
     setDownloadError(null)
     try {
-      const blob = session.last_generation
-        ? await api.downloadCompilation(session.project_id, session.last_generation.id, kind, controller.signal)
-        : await api.downloadGlobalCompilationReport(session.project_id, session.id, controller.signal)
+      const blob = await api.downloadCompilation(session.project_id, session.last_generation.id, 'docx', controller.signal)
       if (controller.signal.aborted) return
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
-      link.download = kind === 'docx' ? session.template_name.replace(/\.docx$/i, '.compilato.docx') : 'report-compilazione.json'
+      link.download = session.template_name.replace(/\.docx$/i, '.compilato.docx')
       link.click()
       window.setTimeout(() => URL.revokeObjectURL(url), 1000)
     } catch {
@@ -63,11 +61,6 @@ export function CompilationReply({ session, response, pending, processing, locke
         </button>
       </div>
     </>}
-    {session.engine === 'global' && session.global_compilation?.report_url && <button
-      type="button" className="button" disabled={locked || downloading}
-      onClick={() => void download('report')}>
-      {session.last_generation ? 'Scarica report bozza' : 'Scarica report proposte'}
-    </button>}
     {downloadError && <p role="alert">{downloadError}</p>}
   </>
 }

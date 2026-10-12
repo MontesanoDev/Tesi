@@ -24,7 +24,9 @@ persistito rimane una **proposta da rivedere**, non uno stato RESOLVED:
    parziale»**. La chat usa le proposte SOURCE ammesse, esclude quelle dubbie
    trattenute dalla sintesi e quelle con condizioni non confermate. I valori
    USER sono ammessi solo se acquisiti nella risposta a uno slot attivo e
-   validati. Nessuna generazione implicita. Download DOCX e report nella chat.
+   validati. Nessuna generazione implicita. Download DOCX nella chat;
+   report tecnico disponibile tramite API, senza pulsante automatico nelle
+   risposte. La gestione UI dei comandi verrà definita separatamente.
 
 La sintesi può soltanto trattenere/escludere proposte, mai renderne valida una
 respinta. Riceve contesto FORM, valori e prove SOURCE (massimo 40 proposte,

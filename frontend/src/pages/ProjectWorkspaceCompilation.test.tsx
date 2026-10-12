@@ -729,6 +729,7 @@ describe('CompilationSession nella chat', () => {
     expect(screen.queryByRole('checkbox')).not.toBeInTheDocument()
     expect(screen.queryByText(/Rivedi proposte|t0\.r0\.c1|Nessun valore utilizzabile/)).not.toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /Genera bozza|Continua analisi/ })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /Scarica report/ })).not.toBeInTheDocument()
     expect(api.generateGlobalDraft).not.toHaveBeenCalled()
     expect(api.finalizeCompilationSession).not.toHaveBeenCalled()
     submit('Sì, partecipiamo come società')
@@ -742,6 +743,7 @@ describe('CompilationSession nella chat', () => {
     await screen.findByRole('button', { name: 'Scarica DOCX' })
     expect(screen.getByText('Ho preparato una bozza parziale. Puoi scaricarla e controllarla.')).toBeInTheDocument()
     expect(screen.queryByRole('checkbox')).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /Scarica report/ })).not.toBeInTheDocument()
     expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
   })
 
