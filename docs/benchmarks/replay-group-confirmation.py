@@ -57,7 +57,7 @@ def prepare():
         data.update(phase="REVIEW", attempts=1, audit=fresh, paused=False,
                     artifact_path=str(artifact.relative_to(get_storage_path())),
                     dialogue=copy.deepcopy(archived["global_compilation"]["dialogue"]))
-        assert not data["dialogue"]["answers"] and not data["dialogue"]["user_values"]
+        assert not data["dialogue"].get("answers") and not data["dialogue"].get("user_values")
         assert len(data["dialogue"]["question"]["slots"]) == 2
         state.update(status="WAITING_FOR_USER", lease_until=None, last_error=None)
         prepared = sessions.save_state(db, row, state, "benchmark_real_checkpoint_replay")

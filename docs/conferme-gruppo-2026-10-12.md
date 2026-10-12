@@ -78,3 +78,9 @@ richiesta esplicita di bozza. Routing/gate/sintesi reali, originali e dati live
 solo letti. Confrontare due condizioni USER, zero valori fattuali USER, stessa
 analisi, 12 proposte SOURCE/stato/report/celle; eliminare snapshot e chiave dopo
 le verifiche. Runner fuori dal watch root backend, nessuna modifica durante le API.
+
+Prima preparazione replay fallita prima delle API: l'archivio senza risposte
+non contiene ancora le chiavi answers/user_values. Corretto solo l'harness
+usando i default vuoti già previsti dal dominio, conservati protocollo/log della
+preparazione fallita e rimossi snapshot/chiave privata; nuova preparazione in
+cartella distinta. Nessun raw modello o risultato escluso/ripetuto selettivamente.
