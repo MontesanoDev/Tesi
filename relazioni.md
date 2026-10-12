@@ -1431,3 +1431,73 @@ passo osservare l'uso reale prima di automatizzare ulteriormente.
 Bundle pubblico: **110 file /1.037.437 byte**, SHA-256
 `3f61e9427e7e0a6e14b8f16f4c382b0a2a69a621eb935f18b75077e76f8754b0`. Verificato byte per byte e senza
 credenziali/DB/configurazioni private.
+
+
+## 12 ottobre 2026 — La review globale torna nella conversazione
+
+Richiesta: eliminare checkbox manuali ed elenchi XML. Comunicata prima del codice
+la scelta di mantenere l'analisi globale unica e aggiungere una breve sintesi
+AI dell'audit, con slot backend e risposte nel composer. Il componente tecnico
+è rimosso, non spostato in un altro editor. Resta solo download DOCX/report.
+Corretto anche il filtro degli unassigned: proposal=None non significa missing.
+Nessun cambio a contratto V10/catalogo V5, RAG, parser, renderer o scope.
+
+Tre passi recuperabili, ciascuno congelato durante le proprie prove reali:
+fe73786 (dialogo), d6f9991 (schema nel prompt), 8f82c59 (binding personale nella
+sintesi e UNKNOWN/SKIP senza falso blocco sulle alternative). Nessun push.
+La sintesi può solo escludere proposte; SOURCE/USER non si confondono. Valori
+USER solo per slot attivi, estratti letterali/date equivalenti e validator DOCX.
+Max 40 proposte, 24 questioni in pool, tre domande, 45 s e 2.048 token output.
+Una sintesi per passaggio, nessun loop/retry automatico, analisi non ripetuta
+dopo chiarimenti. Generazione parziale solo con consenso esplicito nella chat.
+
+Serie 1: nuova conversazione Catanzaro, 13 proposte SOURCE, ma sintesi rifiutata
+(text anziché question). Schema passato al trasporto non visibile a DeepSeek
+JSON mode: corretto il prompt, non accettati alias o requisiti meno severi.
+Serie 2: ripresa della sola sintesi Catanzaro, pausa/ripresa, conferma USER
+applicabilità e bozza in chat. Labirinto V1 con fonti/modulo congelati e
+reingestiti in nuovo DB: tre domande in una risposta, CONDITION_TRUE/SKIP/UNKNOWN
+in un solo messaggio, poi consenso alla bozza. Nessun valore fattuale USER.
+13/13 +17/17 valori SOURCE materializzati nelle celle corrette, nessun'altra
+cella o checkbox modificata. Cinque dati societari e albo 8421 automatici.
+Serie 3: soltanto due replay di sintesi reale sui medesimi audit, senza cambiare
+sessioni/generare. Dopo una frase impropria sul professionista firmatario nella
+serie 2, il contesto del binding personale e l'istruzione di non inferire ruoli
+producono due sintesi corrette su questo punto. Non è garanzia generale.
+
+**18 chiamate /177.970 token**, fallimento incluso: due analisi, nove routing,
+cinque sintesi e due replay. Analisi 108,25/88,13 s; replay sintesi 1,87/2,02 s.
+Prime sintesi non cronometrate separatamente. Zero retry automatici, solo ripresa
+esplicita dopo schema. Nessun confronto causale di copertura/latency/costo:
+proposte stocastiche e fonti reingestite, gold fuori dal prompt. Catanzaro modulo
+live già richiesto, non nuova estrazione casuale. Labirinto fixture V1 invariata.
+Uno scambio raccoglie i chiarimenti in ciascun caso +un consenso alla bozza;
+Catanzaro include anche tre turni deliberati di controllo/ripresa errore.
+
+59 mirati /12,97 s; 1.882 backend /136,02 s; 101 frontend /5,86 s;
+12 browser /27 s desktop/mobile/reduced-motion; Ruff/lint/build/diff passati.
+Completa dopo cambi funzionali, mirati/Ruff dopo soli contatori/tempi della
+sintesi. Software con provider simulati; provider reale solo nelle serie sopra.
+Failure software/harness/schema preservate nel report; nessun rerun nascosto
+per migliorare gli output. Nessuna revisione del gold o nuova fixture.
+
+Limiti: ancora proposte parziali, 291/34 posizioni non analizzate, native checkbox
+non scritte. Narrazione iniziale imprecisa e dubbio sul recapito senza hold:
+prosa non è evidenza e i controlli restano backend. Correzioni fuori dal gruppo
+attivo/riapertura dei rinvii da discutere. GENERATED non significa modulo completo,
+zero RESOLVED in questo adapter. Originali invariati. Hash fisico DB live variato:
+confronto read-only di fonti/moduli e record preesistenti invariato; non affermare
+byte-identità dell'intero DB. Copie di test private, nessuna modifica/rollback live.
+
+[Report completo](docs/test-chat-conversazionale-globale-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-conversational-review.json),
+[bundle pubblico](docs/benchmarks/2026-10-12-conversational-review-audit.tar.gz),
+[verifiche finali](docs/benchmarks/2026-10-12-conversational-review-final-checks.json).
+Grezzi in backend/data/compilation-audit/conversation-review-20261012/;
+backup pubblico senza runtime/DB/chiavi, con prompt/schema/raw/audit/stati/Word,
+script/log e screenshot browser simulato. Prossimo passo: provare la nuova UX
+con l'utente prima di estendere correzioni e scrittura checkbox.
+
+Bundle verificato: **193 file /1,039,762 byte**, SHA-256
+`e09e888dd2786cd56e1c88d4be24578043fd1314d039822f0a41e29775dba709`. Copie temporanee con DB e chiavi rimosse
+dopo backup/verifica; grezzi non sensibili conservati anche in locale.

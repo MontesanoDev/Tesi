@@ -38,7 +38,8 @@ impediscono di esportare con revisioni/fonti obsolete. I valori mantengono
 provenienza SOURCE e consenso USER all'esportazione (`reviewed_by=USER` non
 significa verifica manuale di ogni campo). Valori forniti in chat hanno
 provenienza USER, nessuna evidence SOURCE fittizia; conferme/rinvii e relativi
-estratti USER restano nel report della bozza. Rifiuti/alternative non selezionabili;
+estratti USER restano nel report della bozza. Rifiuti e alternative non scelte
+non sono esportati automaticamente;
 checkbox native visibili nel report ma non scritte. Nessuna generazione
 incompleta implicita o promessa di completezza/ammissibilità.
 
@@ -78,9 +79,12 @@ Prompt/input/originale/raw output/audit/tempi salvati nel relativo storage
 `<project>/_global_compilations/<session>/<attempt>/`, senza chiave API.
 Questi artefatti locali richiedono backup separato. Nessuna migrazione DB.
 
-[Smoke reale e verifiche](test-globale-chat-2026-10-12.md): 1.847 backend,
-101 frontend e 8 browser passati; due analisi DeepSeek reali, 26/26 valori
-selezionati scritti nelle celle XML corrette. Proposte sempre da rivedere.
+[Verifica della nuova chat conversazionale](test-chat-conversazionale-globale-2026-10-12.md):
+1.882 backend, 101 frontend e 12 browser passati; DeepSeek reale su Catanzaro
+(13 valori SOURCE scritti) e Labirinto V1 (17). Sintesi finale con contesto dei
+ruoli verificata in due replay separati, ~2 s ciascuno. È una bozza parziale,
+non prova di completezza. Errore di schema e imprecisione di ruolo iniziali
+conservati nel report. Analisi globale ancora ~88–108 s nelle due nuove prove.
 
 **Compatibilità:** sessioni precedenti rimangono `engine=legacy`, senza cambio
 di stato o avanzamento automatico della UI. Le API dirette senza engine

@@ -1,6 +1,6 @@
 # Stato di Mapi RAG
 
-## Revisione globale conversazionale — 12 ottobre 2026, software verificato
+## Revisione globale conversazionale — 12 ottobre 2026, pronta da provare
 
 Richiesta: eliminare la checklist e i nomi XML dalla chat. La vecchia UI
 mostrava direttamente l'audit; inoltre il filtro `disposition=unassigned` non
@@ -23,10 +23,10 @@ mutata o condizione non confermata blocca il relativo export. Nessuna nuova
 analisi dopo chiarimenti; sessioni globali precedenti ricevono solo sintesi.
 Nessuna migrazione/reindicizzazione. Native checkbox Word ancora non scritte.
 
-Verifiche già concluse su questo intervento: 55 backend mirati (FTS5/Qdrant),
-101 frontend, 12 browser desktop/mobile incl. movimento ridotto, Ruff e
-lint/build e 1.878 backend completi /144,51 s. Provider software simulati:
-non misurano qualità DeepSeek. Log in
+Verifiche finali: **59 backend mirati**, **1.882 completi /136,02 s**,
+**101 frontend**, **12 browser desktop/mobile**, Ruff/lint/build/diff check.
+Completa dopo modifiche funzionali; dopo soli contatori/tempi sintesi: 59 mirati
+e Ruff. Software con provider simulati, non misura qualità DeepSeek. Log in
 backend/data/compilation-audit/conversation-review-20261012/checks/.
 
 Prima serie reale fe73786: 13 proposte SOURCE Catanzaro, sintesi rifiutata
@@ -43,12 +43,33 @@ scritture di firmatari. Serie chiusa prima del refinement: ora la sintesi riceve
 anche il contesto del binding personale già validato e deve evitare relazioni
 non attestate. UNKNOWN/SKIP con espressioni incerte possono deferire senza
 essere bloccati dal guard sulle alternative, riservato a valori/condizioni.
-59 mirati e Ruff passati; suite backend finale in corso (la precedente completa
-ha 1.878 test). Prossimo passo: replay reale della sola sintesi sui due audit,
-archiviazione e report finale. Il file DB live ha cambiato hash fisico:
-confronto read-only di fonti/moduli/conversazioni/sessioni esistenti invariato
-rispetto alla copia; non dichiarare byte-identità dell'intero DB. Originali
-invariati, tutte le operazioni di benchmark su DB/storage temporanei.
+Terza serie 8f82c59: due replay reali della sola sintesi sugli audit esistenti,
+nessuna rianalisi o modifica delle sessioni: 1,87/2,02 s, schema valido,
+nessuna attribuzione di firmatario. 18 chiamate totali /177.970 token,
+compresa la sintesi rifiutata; prime sintesi non cronometrate separatamente.
+L'analisi completa resta 108,25/88,13 s: nessun miglioramento causale di latenza
+misurato. Non dichiarare una compilazione completa o un miglioramento di copertura.
+
+Limiti: campi omessi non ancora interpretati, checkbox native non scritte,
+correzioni libere fuori dagli slot/riapertura rinvii non ancora supportate.
+La sintesi AI può ancora essere imprecisa; non sostituisce i gate backend.
+Byte del DB live cambiati: confronto read-only conserva fonti/moduli e record
+preesistenti di conversazioni/sessioni rispetto alla copia. Non dichiarare
+byte-identità dell'intero DB. Originali invariati; benchmark su copie temporanee.
+
+[Report](docs/test-chat-conversazionale-globale-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-conversational-review.json),
+[bundle senza DB/chiavi](docs/benchmarks/2026-10-12-conversational-review-audit.tar.gz),
+[verifiche finali](docs/benchmarks/2026-10-12-conversational-review-final-checks.json),
+registro relazioni.md. Bundle: 193 file /1,039,762 byte, verificato
+byte per byte senza credenziali; copie DB/chiavi temporanee rimosse. Grezzi in
+backend/data/compilation-audit/conversation-review-20261012/.
+
+**Ripresa:** ./start.sh, ricaricare la chat (anche quella già in REVIEW),
+rispondere nel composer; nessuna selezione di valori/checklist. Chiedere
+«genera la bozza parziale» per esportare. Prossimo passo: osservare il dialogo
+reale e discutere la riapertura/correzione dei punti rinviati, poi copertura
+semantica e checkbox Word. Non riattivare i vecchi batch né rimuovere API legacy.
 Nessun push. Le sezioni successive documentano la baseline precedente:
 le istruzioni con checkbox sono storiche, superate dal dialogo descritto sopra.
 

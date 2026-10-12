@@ -1,0 +1,367 @@
+{
+  "code": {
+    "first": "fe73786",
+    "schema_fix": "d6f9991",
+    "role_context": "8f82c59"
+  },
+  "provider": "deepseek-flash",
+  "cases": {
+    "catanzaro": {
+      "candidates": 307,
+      "source_proposals": 13,
+      "unassessed": 291,
+      "first_question_count": 0,
+      "clarification_user_turns": 1,
+      "explicit_generation_turns": 1,
+      "written_SOURCE": 13,
+      "written_USER": 0,
+      "resolved": 0,
+      "status": "GENERATED",
+      "full_document_complete": false,
+      "answers": {
+        "condition:c_soc_ing": {
+          "action": "CONDITION_TRUE",
+          "user_quote": "Sì, la sezione per le società di ingegneria si applica alla nostra partecipazione.",
+          "provenance": "USER",
+          "label": "Sezione riservata alle societa' di ingegneria; tipologia documentata ma applicabilita' non verificata dal backend",
+          "applies": true
+        }
+      },
+      "first_valid_question_count": 1
+    },
+    "labirinto": {
+      "candidates": 55,
+      "source_proposals": 17,
+      "unassessed": 34,
+      "first_question_count": 3,
+      "clarification_user_turns": 1,
+      "explicit_generation_turns": 1,
+      "written_SOURCE": 17,
+      "written_USER": 0,
+      "resolved": 0,
+      "status": "GENERATED",
+      "full_document_complete": false,
+      "answers": {
+        "condition:c_ingegneria": {
+          "action": "CONDITION_TRUE",
+          "user_quote": "Sì, quella sezione si applica.",
+          "provenance": "USER",
+          "label": "Il ramo 4.c si applica solo se l'operatore è una società di ingegneria",
+          "applies": true
+        },
+        "field:t1.r1.c1": {
+          "action": "SKIP",
+          "user_quote": "Salta il recapito per ora.",
+          "provenance": "USER",
+          "label": "Recapito per la corrispondenza"
+        },
+        "field:t11.r0.c1": {
+          "action": "UNKNOWN",
+          "user_quote": "Non lo so.",
+          "provenance": "USER",
+          "label": "Numero della polizza professionale vigente"
+        }
+      },
+      "first_valid_question_count": 3
+    }
+  },
+  "calls": [
+    {
+      "kind": "global_analysis",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 66188,
+        "completion_tokens": 22375,
+        "total_tokens": 88563,
+        "prompt_tokens_details": {
+          "cached_tokens": 66048
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 19511
+        },
+        "prompt_cache_hit_tokens": 66048,
+        "prompt_cache_miss_tokens": 140
+      },
+      "ai_seconds": 108.25356853900303
+    },
+    {
+      "kind": "routing",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 3671,
+        "completion_tokens": 41,
+        "total_tokens": 3712,
+        "prompt_tokens_details": {
+          "cached_tokens": 2304
+        },
+        "prompt_cache_hit_tokens": 2304,
+        "prompt_cache_miss_tokens": 1367
+      },
+      "raw_path": "catanzaro/turn-07-planner-1-response.json"
+    },
+    {
+      "kind": "routing",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 3801,
+        "completion_tokens": 103,
+        "total_tokens": 3904,
+        "prompt_tokens_details": {
+          "cached_tokens": 2304
+        },
+        "prompt_cache_hit_tokens": 2304,
+        "prompt_cache_miss_tokens": 1497
+      },
+      "raw_path": "catanzaro/turn-06-planner-1-response.json"
+    },
+    {
+      "kind": "routing",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 35,
+        "total_tokens": 3264,
+        "prompt_tokens_details": {
+          "cached_tokens": 1920
+        },
+        "prompt_cache_hit_tokens": 1920,
+        "prompt_cache_miss_tokens": 1309
+      },
+      "raw_path": "catanzaro/planner-1-response.json"
+    },
+    {
+      "kind": "routing",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 3303,
+        "completion_tokens": 36,
+        "total_tokens": 3339,
+        "prompt_tokens_details": {
+          "cached_tokens": 2176
+        },
+        "prompt_cache_hit_tokens": 2176,
+        "prompt_cache_miss_tokens": 1127
+      },
+      "raw_path": "catanzaro/turn-01-planner-1-response.json"
+    },
+    {
+      "kind": "routing",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 3734,
+        "completion_tokens": 35,
+        "total_tokens": 3769,
+        "prompt_tokens_details": {
+          "cached_tokens": 2176
+        },
+        "prompt_cache_hit_tokens": 2176,
+        "prompt_cache_miss_tokens": 1558
+      },
+      "raw_path": "catanzaro/turn-03-planner-1-response.json"
+    },
+    {
+      "kind": "routing",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 3350,
+        "completion_tokens": 36,
+        "total_tokens": 3386,
+        "prompt_tokens_details": {
+          "cached_tokens": 2304
+        },
+        "prompt_cache_hit_tokens": 2304,
+        "prompt_cache_miss_tokens": 1046
+      },
+      "raw_path": "catanzaro/turn-05-planner-1-response.json"
+    },
+    {
+      "kind": "narration",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 2340,
+        "completion_tokens": 206,
+        "total_tokens": 2546,
+        "prompt_tokens_details": {
+          "cached_tokens": 1408
+        },
+        "prompt_cache_hit_tokens": 1408,
+        "prompt_cache_miss_tokens": 932
+      },
+      "validation_error": null,
+      "ai_seconds": null,
+      "raw_path": "catanzaro/analysis/dialogue/bd6dd33b2b1f47eea009a76e8b21f01b/http-response.txt"
+    },
+    {
+      "kind": "narration",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 2356,
+        "completion_tokens": 347,
+        "total_tokens": 2703,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 1972
+      },
+      "validation_error": null,
+      "ai_seconds": null,
+      "raw_path": "catanzaro/analysis/dialogue/9a66c36a930b4285a5d1dc960e31a182/http-response.txt"
+    },
+    {
+      "kind": "narration",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 2113,
+        "completion_tokens": 172,
+        "total_tokens": 2285,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2113
+      },
+      "validation_error": "ValidationError",
+      "ai_seconds": null,
+      "raw_path": "catanzaro/analysis/dialogue/03220bf81e2c46b3a8cfe547c90db232/http-response.txt"
+    },
+    {
+      "kind": "global_analysis",
+      "case": "labirinto",
+      "usage": {
+        "prompt_tokens": 17052,
+        "completion_tokens": 20343,
+        "total_tokens": 37395,
+        "prompt_tokens_details": {
+          "cached_tokens": 16896
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 17000
+        },
+        "prompt_cache_hit_tokens": 16896,
+        "prompt_cache_miss_tokens": 156
+      },
+      "ai_seconds": 88.13389213299888
+    },
+    {
+      "kind": "routing",
+      "case": "labirinto",
+      "usage": {
+        "prompt_tokens": 3692,
+        "completion_tokens": 41,
+        "total_tokens": 3733,
+        "prompt_tokens_details": {
+          "cached_tokens": 2176
+        },
+        "prompt_cache_hit_tokens": 2176,
+        "prompt_cache_miss_tokens": 1516
+      },
+      "raw_path": "labirinto/turn-02-planner-1-response.json"
+    },
+    {
+      "kind": "routing",
+      "case": "labirinto",
+      "usage": {
+        "prompt_tokens": 3229,
+        "completion_tokens": 42,
+        "total_tokens": 3271,
+        "prompt_tokens_details": {
+          "cached_tokens": 2176
+        },
+        "prompt_cache_hit_tokens": 2176,
+        "prompt_cache_miss_tokens": 1053
+      },
+      "raw_path": "labirinto/planner-1-response.json"
+    },
+    {
+      "kind": "routing",
+      "case": "labirinto",
+      "usage": {
+        "prompt_tokens": 3888,
+        "completion_tokens": 159,
+        "total_tokens": 4047,
+        "prompt_tokens_details": {
+          "cached_tokens": 2304
+        },
+        "prompt_cache_hit_tokens": 2304,
+        "prompt_cache_miss_tokens": 1584
+      },
+      "raw_path": "labirinto/turn-01-planner-1-response.json"
+    },
+    {
+      "kind": "narration",
+      "case": "labirinto",
+      "usage": {
+        "prompt_tokens": 2673,
+        "completion_tokens": 292,
+        "total_tokens": 2965,
+        "prompt_tokens_details": {
+          "cached_tokens": 1792
+        },
+        "prompt_cache_hit_tokens": 1792,
+        "prompt_cache_miss_tokens": 881
+      },
+      "validation_error": null,
+      "ai_seconds": null,
+      "raw_path": "labirinto/analysis/dialogue/76d297dfdc2748fd95ece5141b7a009a/http-response.txt"
+    },
+    {
+      "kind": "narration",
+      "case": "labirinto",
+      "usage": {
+        "prompt_tokens": 2766,
+        "completion_tokens": 380,
+        "total_tokens": 3146,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 2126
+      },
+      "validation_error": null,
+      "ai_seconds": null,
+      "raw_path": "labirinto/analysis/dialogue/dce6b9277c3945ad8d57d4cd0c9c88b9/http-response.txt"
+    },
+    {
+      "kind": "narration_replay",
+      "case": "catanzaro",
+      "usage": {
+        "prompt_tokens": 2700,
+        "completion_tokens": 159,
+        "total_tokens": 2859,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2700
+      },
+      "ai_seconds": 1.8703638599981787,
+      "raw_path": "narration-replay/catanzaro/dialogue/b49e595e17e84238b265620f7cde1f87/http-response.txt"
+    },
+    {
+      "kind": "narration_replay",
+      "case": "labirinto",
+      "usage": {
+        "prompt_tokens": 2917,
+        "completion_tokens": 166,
+        "total_tokens": 3083,
+        "prompt_tokens_details": {
+          "cached_tokens": 768
+        },
+        "prompt_cache_hit_tokens": 768,
+        "prompt_cache_miss_tokens": 2149
+      },
+      "ai_seconds": 2.0200421219997224,
+      "raw_path": "narration-replay/labirinto/dialogue/7e5c0b7dc16f4018b1883aa9ff8d91b1/http-response.txt"
+    }
+  ],
+  "total_tokens": 177970,
+  "http_model_calls": 18,
+  "automatic_model_retries": 0,
+  "limits": [
+    "No causal accuracy/latency comparison: different stochastic generations; same fixture contents but reingested source IDs.",
+    "First five narration calls not separately timed; only global AI and final two narration replay times recorded.",
+    "Actual API/DeepSeek workflow; browsers separately exercised with simulated API.",
+    "Logical live comparison separate from changed physical DB checksum; originals and SOURCE records unchanged."
+  ]
+}

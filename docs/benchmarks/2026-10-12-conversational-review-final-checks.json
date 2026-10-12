@@ -1,0 +1,37 @@
+{
+  "software": {
+    "targeted": 59,
+    "backend": 1882,
+    "frontend": 101,
+    "browser": 12,
+    "ruff": true,
+    "lint": true,
+    "build": true,
+    "diff_check": true
+  },
+  "provider_calls": 18,
+  "provider_tokens": 177970,
+  "global_analyses": 2,
+  "automatic_retries": 0,
+  "materialization": {
+    "catanzaro": 13,
+    "labirinto": 17,
+    "source_total": 30,
+    "user_values": 0,
+    "correct_cells": 30,
+    "native_controls_unchanged": true,
+    "originals_unchanged": true
+  },
+  "archive": {
+    "path": "../docs/benchmarks/2026-10-12-conversational-review-audit.tar.gz",
+    "file_count": 193,
+    "bytes": 1039762,
+    "sha256": "e09e888dd2786cd56e1c88d4be24578043fd1314d039822f0a41e29775dba709",
+    "verified_byte_for_byte": true,
+    "actual_api_secret_absent": true,
+    "databases_and_key_files_absent": true
+  },
+  "live_database": "Physical hash changed; readonly comparison of sources/forms/preexisting conversations and sessions matches snapshot. Do not claim physical byte identity.",
+  "runtime_removed": true,
+  "checks_timing": "Full backend after functional changes; targeted/Ruff after only timing/call counters. Frontend unchanged since its test/lint/build/browser checks."
+}
