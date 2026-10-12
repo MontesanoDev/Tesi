@@ -1560,3 +1560,9 @@ Nessun cambiamento al motore durante la serie. Le prove reali seguono questo
 commit; risultati ancora da acquisire. Sei test dell'harness passati /1,02 s;
 prime failure di setup/import/Ruff conservate in
 `backend/data/compilation-audit/dialogue-v1-preflight/initial-failures.txt`.
+
+Preflight reale e16f87e: arresto PRIMA delle API perché la descrizione del
+progetto temporaneo «V1» viola min_length=3. Nessuna chiamata DeepSeek. Corretto
+solo il runner, senza cambiare fixture/gold/motore. Conservati protocollo vuoto
+in dialogue-v1-20261012/ e traceback in dialogue-v1-preflight/real-run.log;
+serie effettiva prevista in dialogue-v1-20261012-r1/.

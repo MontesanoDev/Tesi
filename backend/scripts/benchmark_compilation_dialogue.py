@@ -237,7 +237,8 @@ async def benchmark(args):
                               MAPI_STORAGE_PATH=str(private / "uploads"),
                               MAPI_KNOWLEDGE_PATH=str(private / "knowledge"))
             init_database()
-            project = create_project(ProjectCreate(title="Benchmark dialogo", description="V1"))
+            project = create_project(ProjectCreate(
+                title="Benchmark dialogo", description="Dialogo V1"))
             project_id = project["id"]
             form_path = Path(args.fixture) / "modulo-dialogo.docx"
             original_hash = digest(form_path.read_bytes())
