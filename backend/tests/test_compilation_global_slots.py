@@ -62,7 +62,7 @@ def test_catalog_reuses_parser_markers_and_slices_only_between_adjacent_slots(ca
     layout = case[0]
     catalog = build_compilation_catalog(layout)
     paragraph = catalog["blocks"][0]["paragraphs"][0]
-    assert catalog["version"] == 4
+    assert catalog["version"] == 5
     assert paragraph["text_with_fields"] == layout.paragraph_catalog[0]["text_with_fields"]
     assert paragraph["text"] == layout.paragraph_catalog[0]["text"]
     assert catalog["candidates"]["p0.s2"]["slot_context"] == {"before": " n. ", "after": ", tel "}
@@ -204,7 +204,7 @@ def test_real_minervino_line_exposes_six_distinct_parser_markers():
 
 def test_current_schema_requires_version_nine_but_keeps_one_request(case):
     data = build_global_input(case[0], "alpha", case[1])
-    assert data["schema_output"]["properties"]["version"]["const"] == 9
+    assert data["schema_output"]["properties"]["version"]["const"] == 10
     assert data["schema_output"]["properties"]["fields"]["maxProperties"] == 400
 
 

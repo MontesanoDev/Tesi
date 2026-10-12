@@ -17,10 +17,11 @@ from lxml import etree
 from app.docx_templates import MAX_CANDIDATES, DocumentInputError, is_signature_target, text_of
 
 W14 = "http://schemas.microsoft.com/office/word/2010/wordml"
-CATALOG_VERSION = 4
+CATALOG_VERSION = 5
 MAX_CATALOG_CHARACTERS = 200_000
 MAX_PRECEDING_PARAGRAPHS = 6
 MAX_SLOT_CONTEXT_CHARACTERS = 120
+MAX_CONTINUATION_PARAGRAPHS = 6
 
 
 def _regions(layout):
@@ -249,6 +250,35 @@ def _bind_slot_context(layout, paragraphs, candidates):
             }
 
 
+def _bind_continuations(blocks, candidates):
+    """Point to the literal introduction of a short run of body field paragraphs.
+
+    This is reading order, not an inferred role/section. Tables, controls,
+    headings, blank paragraphs and new prose break the run. No text is copied.
+    """
+    by_block = {}
+    for candidate in candidates.values():
+        by_block.setdefault(candidate["location"]["block_id"], []).append(candidate)
+    origin, length = None, 0
+    for block in blocks:
+        paragraphs = block["paragraphs"]
+        if block.get("tables") or len(paragraphs) != 1:
+            origin, length = None, 0
+            continue
+        paragraph = paragraphs[0]
+        fields = by_block.get(block["id"], [])
+        if (not paragraph["text"].strip() or paragraph.get("controls")
+                or "outline_level" in paragraph):
+            origin, length = None, 0
+        elif not fields:
+            origin, length = paragraph["id"], 0
+        else:
+            length += 1
+            if origin is not None and length <= MAX_CONTINUATION_PARAGRAPHS:
+                for field in fields:
+                    field["continuation_origin_paragraph_id"] = origin
+
+
 def build_compilation_catalog(layout):
     """Catalog every supported body position and literal context, without AI/DB."""
     positions, regions = _regions(layout)
@@ -327,6 +357,7 @@ def build_compilation_catalog(layout):
         raise DocumentInputError("Il catalogo supera 400 candidate inclusi i controlli Word")
     _bind_slot_context(layout, paragraphs, candidates)
     candidate_blocks = _bind_locations(blocks, candidates)
+    _bind_continuations(blocks, candidates)
     for block in blocks:
         if block["id"] not in candidate_blocks:
             # The full ordered text stays; nearby references help only targets.

@@ -1,5 +1,38 @@
 # Stato di Mapi RAG
 
+## Ruolo fra paragrafi — 12 ottobre 2026, verifica in corso
+
+Autorizzato il passo successivo al legame slot/citazione. Diagnosi Minervino:
+ruolo nel paragrafo 50 perso dai candidate nei paragrafi 52/53; SOURCE con heading
+persona-ruolo o riga tabellare maiuscola rifiutate dal solo formato ruolo:persona.
+Nella prova 3 ruolo citato in un chunk e valori in un altro: questo caso resta
+bloccato, nessun join personale inventato fra chunk.
+
+Catalogo V5 aggiunge continuation_origin_paragraph_id al massimo a sei paragrafi
+consecutivi del corpo con candidate, dopo un'introduzione letterale senza campi.
+Nuove istruzioni, spazi vuoti, titoli outline, tabelle e checkbox interrompono
+il riferimento. Non inferisce un ruolo né una sezione semantica e non amplia le
+ancore della citazione field.form. V10 riusa quel contesto solo per il binding
+di ruolo. Nuovo helper SOURCE accetta heading Markdown persona-ruolo e righe
+RUOLO persona con ruolo maiuscolo; persona completa, eventuali abbreviazioni
+sintattiche, ruolo uguale a FORM. Valori nello stesso record e chunk della prova
+di ruolo, prima della prossima intestazione/riga in maiuscolo. Negazioni,
+narrative, altre persone/ruoli e General KB non diventano prove personali.
+
+Una chiamata globale, nessun retry/batch/reviewer nuovo. V2–V9 mantengono replay
+storico; runner impone V10. Chat/V1/RAG/parser/renderer/UI invariati, nessuna
+promozione RESOLVED/scrittura. Etichette a cavallo di paragrafi aiutate dal compito
+di lettura, non certificate semanticamente dal backend.
+
+417 mirati /19,74 s, 1.823 backend /121,23 s e Ruff passati. Prima mirata:
+112/5,44 s, poi Ruff segnala import order e tre righe lunghe, corretti. Diagnosi,
+replay e controfattuale offline in backend/data/compilation-audit/role-context-20261012/.
+Protocollo prima delle API: tre Minervino, tre Labirinto V1 e un Catanzaro,
+seriali, deepseek-flash/thinking low, timeout 300 s, stessi SOURCE/gold congelati.
+Gold fuori dal prompt. Misurare recupero dati personali, valore/record corretto,
+recapiti senza slittamento e cinque dati societari, copertura/token/tempi.
+Nessuna modifica durante il benchmark. Commit piccoli autorizzati, nessun push.
+
 ## Destinazioni inline — 12 ottobre 2026, primo passo misurato concluso
 
 Catalogo V4 riusa i marker strutturali del parser e aggiunge contesto prima/dopo

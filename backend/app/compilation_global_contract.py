@@ -206,3 +206,9 @@ class SlotAwareProposal(ConditionalAwareProposal):
     """
 
     version: Literal[9]
+
+
+class ContextAwareProposal(SlotAwareProposal):
+    """Bounded FORM continuations and explicit SOURCE personal record formats."""
+
+    version: Literal[10]

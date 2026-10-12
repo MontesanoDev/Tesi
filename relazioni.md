@@ -1221,3 +1221,40 @@ compilazione completa affidabile. Prossimo punto **da discutere**: conservare
 ruoli/etichette lungo il blocco, applicabilità e soggetto prima di un adapter
 scrivibile. Una citazione al marker non sostituisce entailment semantico.
 Commit piccoli autorizzati, nessun push.
+
+## 12 ottobre 2026 — ruolo e contesto V10, protocollo prima delle API
+
+Diagnosi prima del codice: Minervino raw V9 prova1 propone già nome/qualifica/
+ordine/numero del direttore. p51 rifiutato dal formato ruolo:persona; p52/p53
+rifiutati prima perché l'origine FORM p50 non è più l'ultimo paragrafo. Raw3 cita
+ruolo da -32 e valori da -45: il join fra chunk resta vietato. Tutti i dettagli
+FORM/SOURCE/proposte/errori salvati in role-context-20261012/diagnosis-before.json.
+
+V10/catalogo V5: riferimento deterministico a introduzione senza campi per max
+sei paragrafi consecutivi con candidate; interrotto da prosa nuova/blank/outline/
+tabelle/checkbox. Solo contesto del ruolo, non ancore field.form. Fonte personale:
+heading Markdown persona-ruolo o riga RUOLO persona in maiuscolo, match letterale
+completo di ruolo/persona, titoli abbreviati sintattici senza inferenza qualifica.
+Prova di ruolo e quote dei valori nello stesso record/chunk; altri record/ruoli,
+negazioni/narrative/General KB respinti. Formato ruolo:persona precedente resta
+compatibile, con i suoi limiti noti; replay V2–V9 separato dalla nuova semantica.
+Una chiamata globale, nessun nuovo batch/retry/reviewer, zero RESOLVED/scritture.
+Nessun hardcoding di nomi, ruoli, ID, bandi o titoli professionali.
+
+417 mirati/19,74 s, 1.823 backend/121,23 s e Ruff passati. Prima 112/5,44 s passati,
+Ruff segnala import order/tre righe lunghe: corretti. Provider simulati solo nei
+test software, non come valutazione DeepSeek. Test record sbagliato nello stesso
+chunk, ruolo/persona errati, provenienza, continuità/limite e barriere, condizioni
+unknown, same-chunk, destinazione indipendente e replay storico. Controfattuale
+offline cambia solo version9->10: non è nuova proposta AI né riparazione live.
+
+Protocollo: tre Minervino, tre Labirinto congelato, un Catanzaro; seriali, stessi
+17 SOURCE reali autorizzati/seven fixture SOURCE, deepseek-flash/thinking low,
+timeout300 s, una chiamata ciascuno, nessun retry/USER/sessione/DOCX. Codice
+congelato prima della serie, gold fuori dal prompt. Non cambiare il codice fra
+prove. Conservare tutte le risposte e omissioni; nessuna accuratezza % sui bandi
+senza gold. Criteri: recuperare ipotesi personali da SOURCE reali, ancorare valori
+al record corretto, mantenere tre recapiti e cinque dati societari; non dichiarare
+applicabilità né entailment semantico completo. Misurare costi/token/tempi senza
+attribuire causalità a cache/ordine. Esiti da aggiungere dopo tutte le chiamate.
+Grezzi backend/data/compilation-audit/role-context-20261012/. Nessun push.

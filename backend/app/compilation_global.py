@@ -27,6 +27,7 @@ from app.compilation_global_contract import (
     ConditionalAwareProposal,
     ConditionalValue,
     ConditionTarget,
+    ContextAwareProposal,
     FormSpan,
     SharedCondition,
     SharedFact,
@@ -40,6 +41,7 @@ from app.compilation_global_contract import (
     SubjectBoundAssignment,
     SubjectBoundProposal,
 )
+from app.compilation_role_records import record_support
 from app.compilation_semantics import empty_value_reason
 from app.compilation_sessions import validate_value
 from app.compilation_sources import source_span
@@ -73,7 +75,7 @@ class GlobalProposal(StrictModel):
     fields: dict[str, GlobalField] = Field(max_length=400)
 
 
-TASK = """Produci UNA proposta globale JSON versione 9. Leggi prima l'intero Word FORM
+TASK = """Produci UNA proposta globale JSON versione 10. Leggi prima l'intero Word FORM
 nei blocks e tutte le SOURCE. L'ordine dei blocks è quello del documento; celle,
 righe e titoli precedenti determinano soggetto, ruolo, sezione e sottosezione.
 proposal_stage=source_backed_hypotheses: prepara ipotesi di riempimento con dati
@@ -161,9 +163,22 @@ SOURCE per il subject del fatto; non rinominare il ruolo della fonte per adattar
 al campo. Conserva il contesto completo in form.quote e usa la designazione
 funzionale letterale in required_role/source_role, senza sinonimi, negazioni
 rimosse o qualificatori che cambiano il ruolo. Il gate accetta solo ruoli uguali
-(NFC/case/spazi) e «ruolo: persona» affermativo a inizio clausola nel chunk reale.
+(NFC/case/spazi). SOURCE deve attribuire esplicitamente quel ruolo alla persona:
+«ruolo: persona» affermativo a inizio clausola, intestazione Markdown completa
+«### persona - ruolo», oppure riga tabellare «RUOLO persona - dettagli» con ruolo
+in maiuscolo. Copia l'intestazione/riga completa nella evidence del binding.
+Per gli ultimi due formati, le quote dei valori devono appartenere al record
+della persona, prima della successiva intestazione/riga in maiuscolo. Non
+usare dati di altre persone nello stesso chunk, né titoli come prova di qualifica.
 Origine FORM: riga/header locale, ultimo paragrafo precedente il blocco oppure
-ultima sezione outline. Ruolo e valore devono essere nello stesso chunk SOURCE.
+ultima sezione outline; per un gruppo di paragrafi consecutivi con campi è
+ammesso anche continuation_origin_paragraph_id. È un riferimento di lettura,
+non un ruolo inferito: verifica nel suo testo il ruolo realmente richiesto.
+Riusa quel contesto per nome, qualifica, ordine e numero richiesti dallo stesso
+blocco; una nuova sezione/persona interrompe l'associazione. Se una label è nel
+paragrafo precedente, leggila nel testo originale completo: slot_context da solo
+non assegna al campo l'etichetta successiva. field.form conserva il proprio marker.
+Ruolo e valore devono essere nello stesso chunk SOURCE.
 Condividi un binding tra proprietà atomiche della stessa persona/ruolo. Non
 cambiare entity per eluderlo. Questo gate non verifica condizioni/proprietà né
 limita i fatti aziendali o le checkbox. Applicabilità unknown resta unknown.
@@ -326,7 +341,7 @@ def build_global_input(layout, project_id, sources):
         "user_values": [],
         "source_coverage": {"strategy": "complete_small_corpus", "partial": False,
                             "chunks": len(source_map)},
-        "schema_output": SlotAwareProposal.model_json_schema(),
+        "schema_output": ContextAwareProposal.model_json_schema(),
     }
     if sum(bool(text.strip()) for text in paragraphs.values()) > 2048:
         raise ValueError("Inventario FORM oltre budget: nessun troncamento implicito")
@@ -880,7 +895,7 @@ def _role_text(text):
     return " ".join(unicodedata.normalize("NFC", text).casefold().split())
 
 
-def _role_contexts(catalog, local):
+def _role_contexts(catalog, local, *, continuations=False):
     blocks = {block["id"]: block for block in catalog["blocks"]}
     contexts = {}
     for key, candidate in catalog["candidates"].items():
@@ -889,6 +904,8 @@ def _role_contexts(catalog, local):
             "preceding_body_paragraph_ids", [])
         allowed.update(preceding[-1:])
         allowed.update(candidate.get("section_ids", [])[-1:])
+        if continuations and candidate.get("continuation_origin_paragraph_id"):
+            allowed.add(candidate["continuation_origin_paragraph_id"])
         contexts[key] = allowed
     return contexts
 
@@ -936,7 +953,8 @@ def _asserted_role(source, quote, role, subject):
     return bool(re.search(r"(?:^|[;\n—]|\.(?=\s|$))\s*" + pair, normalized))
 
 
-def _binding_check(binding_id, fact, candidate_id, contexts, bindings, source_map):
+def _binding_check(binding_id, fact, candidate_id, contexts, bindings, source_map,
+                   *, personal_records=False):
     check = {"binding_id": binding_id, "result": "review_required",
              "semantic_review_required": True, "validation_errors": []}
     try:
@@ -954,9 +972,22 @@ def _binding_check(binding_id, fact, candidate_id, contexts, bindings, source_ma
                              "equivalenza non provata")
         if fact["validation"] != "GROUNDED_PROPOSAL":
             raise ValueError("Binding senza fatto SOURCE grounded")
-        supported = {proof["chunk_id"] for proof in binding["source_evidence"]
-                     if _asserted_role(source_map[proof["chunk_id"]]["content"], proof["quote"],
-                                       binding["source_role"], fact["subject"])}
+        supported, attributions = set(), []
+        for proof in binding["source_evidence"]:
+            chunk = proof["chunk_id"]
+            source = source_map[chunk]["content"]
+            if _asserted_role(source, proof["quote"], binding["source_role"], fact["subject"]):
+                supported.add(chunk)
+            elif personal_records:
+                quotes = [item["quote"] for item in fact["source_evidence"]
+                          if item["chunk_id"] == chunk]
+                attribution = record_support(source, proof["quote"], binding["source_role"],
+                                             fact["subject"], quotes) if quotes else None
+                if attribution:
+                    supported.add(chunk)
+                    attributions.append({"chunk_id": chunk, **attribution})
+        if personal_records:
+            check["record_attributions"] = attributions
         if not supported or any(proof["chunk_id"] not in supported
                                 for proof in fact["source_evidence"]):
             raise ValueError("SOURCE non attribuisce esplicitamente ruolo e soggetto "
@@ -1001,9 +1032,10 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     fact and condition errors cannot discard independent grounded proposals.
     Missing proposals are unassessed, never fabricated missing/NA/value records.
     """
-    slot_enabled = payload["version"] == 9
-    conditional_enabled = payload["version"] in {8, 9}
-    subjects_enabled = payload["version"] in {7, 8, 9}
+    context_enabled = payload["version"] == 10
+    slot_enabled = payload["version"] in {9, 10}
+    conditional_enabled = payload["version"] in {8, 9, 10}
+    subjects_enabled = payload["version"] in {7, 8, 9, 10}
     budgets = [("fields", 400), ("facts", 128), ("conditions", 128)]
     if subjects_enabled:
         budgets.append(("bindings", 128))
@@ -1012,8 +1044,8 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         if (not isinstance(records, dict) or len(records) > maximum
                 or any(not 1 <= len(key) <= 80 for key in records)):
             raise ValueError(f"Dizionario {name} non valido/oltre budget")
-    alternatives_enabled = payload["version"] in {6, 7, 8, 9}
-    schema = (SlotAwareProposal if slot_enabled else
+    alternatives_enabled = payload["version"] in {6, 7, 8, 9, 10}
+    schema = (ContextAwareProposal if context_enabled else SlotAwareProposal if slot_enabled else
               ConditionalAwareProposal if conditional_enabled else
               SubjectBoundProposal if subjects_enabled else
               AlternativeAwareProposal if alternatives_enabled else SparseGlobalProposal)
@@ -1030,7 +1062,8 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     destination_checks = {}
     bindings = _subject_bindings(payload.get("bindings", {}), paragraphs, source_map) \
         if subjects_enabled else {}
-    role_contexts = _role_contexts(catalog, local) if subjects_enabled else {}
+    role_contexts = _role_contexts(catalog, local, continuations=context_enabled) \
+        if subjects_enabled else {}
     uncertain = set(proposal.uncertain_paragraph_ids)
     if not uncertain <= paragraphs.keys():
         raise ValueError("Incertezza FORM con paragrafi sconosciuti")
@@ -1152,7 +1185,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                 fact = result["facts"][item.fact_id]
                 if fact.get("entity") == "person" or item.binding_id is not None:
                     check = _binding_check(item.binding_id, fact, key, role_contexts,
-                                           bindings, source_map)
+                                           bindings, source_map, personal_records=context_enabled)
                     field["subject_binding"] = check
                     if check["result"] != "literal_match":
                         field["validation_errors"].extend(check["validation_errors"])
@@ -1211,7 +1244,7 @@ def validate_global_proposal(raw, layout, project_id, sources, *, expected_versi
     catalog = build_compilation_catalog(layout)
     source_map = _allowed_sources(project_id, sources)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
-            and payload["version"] in {5, 6, 7, 8, 9}):
+            and payload["version"] in {5, 6, 7, 8, 9, 10}):
         return _validate_sparse_proposal(payload, layout, catalog, source_map)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
             and payload["version"] == 4):

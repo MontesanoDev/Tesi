@@ -170,7 +170,7 @@ def test_general_kb_cannot_prove_company_alternatives(case):
 def test_schema_is_bounded_and_review_has_no_writable_value(case):
     data = build_global_input(case[0], "alpha", case[1])
     schema = data["schema_output"]
-    assert schema["properties"]["version"]["const"] == 9
+    assert schema["properties"]["version"]["const"] == 10
     assert schema["properties"]["facts"]["maxProperties"] == 128
     assert schema["properties"]["fields"]["maxProperties"] == 400
     assert schema["$defs"]["AlternativeAssignment"]["properties"]["alternative_fact_ids"] == {

@@ -115,7 +115,8 @@ def run(args):
     })
     for relative in ["app/compilation_global.py", "app/compilation_global_contract.py",
                      "app/compilation_catalog.py",
-                     "app/compilation_semantics.py", "app/compilation_sessions.py",
+                     "app/compilation_semantics.py", "app/compilation_role_records.py",
+                     "app/compilation_sessions.py",
                      "app/compilation_sources.py",
                      "app/docx_templates.py", "app/document_compilation.py",
                      "scripts/benchmark_compilation_global.py",
