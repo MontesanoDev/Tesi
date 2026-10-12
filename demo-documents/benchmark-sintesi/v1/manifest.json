@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "max_cases": 7,
+  "files": {
+    "README.md": "149b8320c33d39e530d14d0126294736f8e5d1f062fca96432ab357f40c524db",
+    "attuali-proposal.txt": "561bc81a53ebebb155f210f7597148571df5618f63ef4f65a5ac8cc0d6e3ff62",
+    "attuali-sources.json": "f3354ca9736fce5ea70d6f6df1cba37f3b87bbdc350fa8e5dddc08caa76088b9",
+    "cases.json": "986da59f34408f19f96f9f5fd413e4e84dbea80a38016afff70f66febf6b44a9",
+    "catanzaro-dialogue.json": "51b3041f9bebcfd4914ecf05bdc2946b20e4af8c81535a4a8d4f9646e166d6f9",
+    "catanzaro-proposal.txt": "9f7bfb6aa4eddb063e37e6115316ba3298aef832cee1185800e524d02ca9a537",
+    "catanzaro-sources.json": "4c08e542e236871f81c879ceb47ddb48d11960c95dab8efa3438161faef25287",
+    "catanzaro.docx": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0",
+    "entrambi-cessati-proposal.txt": "efdcc9f575460a3467011c648c014ee7076204622fafbd18285a2ff4b4246586",
+    "entrambi-cessati-sources.json": "48475b8e4326942256439c72f46336858f7424abe6ed2929adafeaf8a76bf614",
+    "labirinto-dialogue.json": "2c86d834c6993ac38e33828dac32e61fa234a528a364d29fdf789806e72f4766",
+    "labirinto-proposal.txt": "c61dbd3b6d08edfed4f2ae10b7be8f481be94e4d0856ebbe706f0eb621807c50",
+    "labirinto-sources.json": "6e538dcc566e116b26d7655dd9d52dd6633bc92fe411ba81e0287dae9f0c0d67",
+    "labirinto.docx": "eaa3c2b8e45e147d35766e71f77b90bbb0bdc9a339ee79dd12e6ab007ad9c7ca",
+    "primo-cessato-proposal.txt": "54fc60147873b0d39429c96fe4a0dae31140d05fa1cbdaa14644a5972254cb33",
+    "primo-cessato-sources.json": "b92b6e0a431ad9797c4264186cb2a89bd6e31b67d96f8fee407056822d9d38a8",
+    "ruoli.docx": "ee498b9075c6212ea8291db3d79105b7324a80b8bb83724e5eaeb01a7d27e9f6",
+    "ruolo-diverso-proposal.txt": "792eb0607d722d0f49a8fbdbd5b811a7dd257b8af347694a9d13f5a07dc2d06e",
+    "ruolo-diverso-sources.json": "be068f61121e1743c70a74cf440c8a28867a5cd7ed59f78364722a98743f89e5"
+  },
+  "gold_in_prompt": false,
+  "new_analysis_calls": 0,
+  "scope": "real narration on revalidated frozen real/authored proposals, not fresh SOURCE retrieval"
+}

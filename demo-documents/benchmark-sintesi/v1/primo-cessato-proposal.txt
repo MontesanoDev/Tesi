@@ -1,0 +1,143 @@
+{
+  "version": 10,
+  "fields": {
+    "t0.r0.c1": {
+      "label": "Nome e cognome",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:2",
+        "quote": "Nome e cognome"
+      },
+      "property": "nome e cognome",
+      "fact_id": "f00",
+      "binding_id": "b0",
+      "conditions": []
+    },
+    "t0.r1.c1": {
+      "label": "Numero registrazione",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:4",
+        "quote": "Numero registrazione"
+      },
+      "property": "numero registrazione",
+      "fact_id": "f01",
+      "binding_id": "b0",
+      "conditions": []
+    },
+    "t1.r0.c1": {
+      "label": "Nome e cognome",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:7",
+        "quote": "Nome e cognome"
+      },
+      "property": "nome e cognome",
+      "fact_id": "f10",
+      "binding_id": "b1",
+      "conditions": []
+    },
+    "t1.r1.c1": {
+      "label": "Numero registrazione",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:9",
+        "quote": "Numero registrazione"
+      },
+      "property": "numero registrazione",
+      "fact_id": "f11",
+      "binding_id": "b1",
+      "conditions": []
+    }
+  },
+  "facts": {
+    "f00": {
+      "subject": "Dr. Ada Neri",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "nome e cognome",
+      "value": "Dr. Ada Neri",
+      "evidence": [
+        {
+          "chunk_id": -7,
+          "quote": "Nome completo: Dr. Ada Neri."
+        }
+      ]
+    },
+    "f01": {
+      "subject": "Dr. Ada Neri",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "numero registrazione",
+      "value": "6234",
+      "evidence": [
+        {
+          "chunk_id": -7,
+          "quote": "Numero registrazione: 6234."
+        }
+      ]
+    },
+    "f10": {
+      "subject": "Dr. Bea Mori",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "nome e cognome",
+      "value": "Dr. Bea Mori",
+      "evidence": [
+        {
+          "chunk_id": -8,
+          "quote": "Nome completo: Dr. Bea Mori."
+        }
+      ]
+    },
+    "f11": {
+      "subject": "Dr. Bea Mori",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "numero registrazione",
+      "value": "9052",
+      "evidence": [
+        {
+          "chunk_id": -8,
+          "quote": "Numero registrazione: 9052."
+        }
+      ]
+    }
+  },
+  "bindings": {
+    "b0": {
+      "form": {
+        "paragraph_id": "paragraph:1",
+        "quote": "Responsabile della verifica attualmente in carica"
+      },
+      "required_role": "Responsabile della verifica",
+      "source_role": "Responsabile della verifica",
+      "evidence": [
+        {
+          "chunk_id": -7,
+          "quote": "Responsabile della verifica: Dr. Ada Neri. Incarico concluso nel 2019; non è attualmente in carica."
+        }
+      ]
+    },
+    "b1": {
+      "form": {
+        "paragraph_id": "paragraph:6",
+        "quote": "Responsabile qualità attualmente in carica"
+      },
+      "required_role": "Responsabile qualità",
+      "source_role": "Responsabile qualità",
+      "evidence": [
+        {
+          "chunk_id": -8,
+          "quote": "Responsabile qualità: Dr. Bea Mori. Incarico attivo."
+        }
+      ]
+    }
+  },
+  "conditions": {},
+  "uncertain_paragraph_ids": []
+}

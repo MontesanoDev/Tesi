@@ -1,0 +1,51 @@
+{
+  "message": "Dalla visura della società risultano denominazione, forma giuridica, sede legale e partita IVA/codice fiscale di Mapi Ingegneria S.r.l.; da un altro documento provengono i dati del direttore tecnico (Ing. Elisa Romano, ingegnere, iscritta all'Ordine di Bari). Questi valori sono proposte da controllare, non un modulo già compilato. Restano molte posizioni non valutate, quindi non posso dire che la sezione sia completa. Due punti vanno chiariti: se la sezione riservata alle società di ingegneria riguarda questo caso e se il partecipante è effettivamente Mapi Ingegneria S.r.l.\n\n1. La sezione riservata alle società di ingegneria si applica al vostro caso?\n2. Il soggetto che partecipa alla gara è Mapi Ingegneria S.r.l.?\nPuoi rispondere in un unico messaggio.",
+  "phase": "PENDING",
+  "question": null,
+  "reviewed_candidate_ids": [
+    "t0.r10.c1",
+    "t0.r5.c1",
+    "t0.r6.c1",
+    "t0.r7.c1",
+    "t0.r9.c1",
+    "t25.r0.c1",
+    "t25.r4.c1",
+    "t25.r4.c3",
+    "t26.r0.c1",
+    "t26.r1.c1",
+    "t26.r3.c1",
+    "t26.r4.c1"
+  ],
+  "held_candidate_ids": [],
+  "model": "deepseek-flash",
+  "usage": {
+    "prompt_tokens": 2736,
+    "completion_tokens": 260,
+    "total_tokens": 2996,
+    "prompt_tokens_details": {
+      "cached_tokens": 768
+    },
+    "prompt_cache_hit_tokens": 768,
+    "prompt_cache_miss_tokens": 1968
+  },
+  "ai_seconds": 2.7252840290020686,
+  "http_calls": 1,
+  "answers": {
+    "condition:c_socing": {
+      "action": "CONDITION_TRUE",
+      "user_quote": "Confermo entrambe: la sezione delle società di ingegneria si applica",
+      "provenance": "USER",
+      "label": "La sezione 5.d si applica solo se l'operatore è una società di ingegneria.",
+      "applies": true
+    },
+    "condition:c_domanda": {
+      "action": "CONDITION_TRUE",
+      "user_quote": "il partecipante è quello indicato nelle fonti",
+      "provenance": "USER",
+      "label": "I dati anagrafici dell'operatore presuppongono che il richiedente sia Mapi Ingegneria S.r.l.; la scelta del partecipante non è confermata.",
+      "applies": true
+    }
+  },
+  "user_values": {},
+  "user_turns": 1
+}

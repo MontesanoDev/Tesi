@@ -1,0 +1,24 @@
+[
+  {
+    "chunk_id": -7,
+    "file_id": -3,
+    "chunk_index": 0,
+    "source_name": "incarico-1.txt",
+    "role": "source",
+    "scope": "global",
+    "category": "company",
+    "project_id": null,
+    "content": "Revisore esterno: Dr. Ada Neri. Incarico attivo.\nNome completo: Dr. Ada Neri.\nNumero registrazione: 6234."
+  },
+  {
+    "chunk_id": -8,
+    "file_id": -4,
+    "chunk_index": 0,
+    "source_name": "incarico-2.txt",
+    "role": "source",
+    "scope": "global",
+    "category": "company",
+    "project_id": null,
+    "content": "Responsabile qualità: Dr. Bea Mori. Incarico attivo.\nNome completo: Dr. Bea Mori.\nNumero registrazione: 9052."
+  }
+]

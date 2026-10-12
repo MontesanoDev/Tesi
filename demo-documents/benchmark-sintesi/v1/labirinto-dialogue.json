@@ -1,0 +1,61 @@
+{
+  "message": "Ho trovato nelle fonti i dati anagrafici e identificativi della società (denominazione, forma giuridica, codice fiscale, partita IVA, sede legale, telefono, PEC, iscrizione CCIAA e REA) e il codice della procedura. Per il direttore tecnico risultano nome, qualifica, ordine e numero di iscrizione, ma la sezione in cui compaiono è condizionata alla qualifica di società di ingegneria: il ruolo indicato non basta a confermarla. Restano molte posizioni non valutate, quindi la bozza è parziale e non ho completato allegati o caselle. Prima di procedere, chiarisci i punti sotto.\n\n1. La sezione riservata alle società di ingegneria va compilata? In altre parole, l'operatore è qualificabile come società di ingegneria?\n2. Quale recapito per la corrispondenza va indicato: Via del Porto 2, Ancona oppure Via dei Tigli 7, Jesi?\n3. Qual è il numero della polizza professionale vigente: RC-OR-2026-A o RC-OR-2026-B?\nPuoi rispondere in un unico messaggio.",
+  "phase": "PENDING",
+  "question": null,
+  "reviewed_candidate_ids": [
+    "t0.r0.c1",
+    "t0.r1.c1",
+    "t0.r2.c1",
+    "t0.r3.c1",
+    "t0.r4.c1",
+    "t0.r5.c1",
+    "t0.r6.c1",
+    "t12.r0.c1",
+    "t12.r1.c1",
+    "t12.r2.c1",
+    "t13.r0.c1",
+    "t5.r0.c1",
+    "t5.r1.c1",
+    "t6.r0.c1",
+    "t6.r1.c1",
+    "t6.r2.c1",
+    "t6.r3.c1"
+  ],
+  "held_candidate_ids": [],
+  "model": "deepseek-flash",
+  "usage": {
+    "prompt_tokens": 3004,
+    "completion_tokens": 332,
+    "total_tokens": 3336,
+    "prompt_tokens_details": {
+      "cached_tokens": 1920
+    },
+    "prompt_cache_hit_tokens": 1920,
+    "prompt_cache_miss_tokens": 1084
+  },
+  "ai_seconds": 2.5576783119977335,
+  "http_calls": 1,
+  "answers": {
+    "condition:c_branch_ingegneria": {
+      "action": "CONDITION_TRUE",
+      "user_quote": "Sì, quella sezione si applica.",
+      "provenance": "USER",
+      "label": "Ramo compilabile solo se l'operatore è società di ingegneria; verifica non automatizzabile",
+      "applies": true
+    },
+    "field:t1.r1.c1": {
+      "action": "SKIP",
+      "user_quote": "Per il recapito salta, lo verificheremo dopo.",
+      "provenance": "USER",
+      "label": "Recapito per la corrispondenza"
+    },
+    "field:t11.r0.c1": {
+      "action": "UNKNOWN",
+      "user_quote": "Il numero della polizza non lo so.",
+      "provenance": "USER",
+      "label": "Numero della polizza professionale vigente"
+    }
+  },
+  "user_values": {},
+  "user_turns": 1
+}

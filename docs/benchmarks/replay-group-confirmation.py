@@ -14,7 +14,11 @@ import shutil
 from pathlib import Path
 
 from app import compilation_sessions as sessions
-from app.compilation_global import load_document_corpus, validate_global_proposal
+from app.compilation_global import (
+    build_global_input,
+    load_document_corpus,
+    validate_global_proposal,
+)
 from app.db import connection, get_storage_path
 
 ARCHIVED = Path("data/compilation-audit/full-conversation-20261012").resolve()
@@ -32,6 +36,7 @@ def prepare():
     observer.initialize()
     protocol = json.loads((ROOT / "protocol.json").read_text())
     protocol.update(prepared_checkpoints=True, new_analysis_calls=0, max_turns=3,
+                    setup_version=2, catalog_with_analysis_anchors=True,
                     checkpoint_origin=str(ARCHIVED / "turn-03/state.json"),
                     analysis_reused_not_simulated=True,
                     planned_messages=[
@@ -49,12 +54,13 @@ def prepare():
     with connection() as db:
         row = sessions._row(db, "prova", before["id"])
         state = json.loads(row["state_json"])
+        layout, sources = sessions.read_original(row), load_document_corpus(db, "prova")
         fresh = validate_global_proposal((artifact / "response.txt").read_text(),
-            sessions.read_original(row), "prova", load_document_corpus(db, "prova"),
-            expected_version=10)
+            layout, "prova", sources, expected_version=10)
         assert fresh == json.loads((artifact / "audit.json").read_text())
         data = state["global_compilation"]
         data.update(phase="REVIEW", attempts=1, audit=fresh, paused=False,
+                    catalog=build_global_input(layout, "prova", sources)["form"],
                     artifact_path=str(artifact.relative_to(get_storage_path())),
                     dialogue=copy.deepcopy(archived["global_compilation"]["dialogue"]))
         assert not data["dialogue"].get("answers") and not data["dialogue"].get("user_values")
@@ -100,4 +106,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("operation", choices=["prepare", "turn", "verify"])
     parser.add_argument("--turn", type=int, choices=[1, 2])
-    asyncio.run(main(parser.parse_args()))
+    parser.add_argument("--output", type=Path, default=ROOT)
+    args = parser.parse_args()
+    ROOT = args.output.resolve()
+    observer.ROOT, observer.RUNTIME = ROOT, ROOT / "private-runtime"
+    asyncio.run(main(args))

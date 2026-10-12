@@ -1853,3 +1853,15 @@ salva+pausa/export ancora da discutere, nessuna decisione automatica.
 Bundle sanificato verificato byte per byte: **629 file /1.297.367 byte**,
 SHA-256 `09355f5429c68a71fd42e238a0b3739397af3befd0e6f36ec28dc2fa0259a522`.
 Nessun database/chiave privata; manifest e verifiche finali in docs/benchmarks.
+
+### 12 ottobre 2026 — contesto dei ruoli, protocollo prima delle API
+
+Isolata perdita della prova SOURCE persona–ruolo nel JSON della sintesi.
+Scoperto inoltre un errore nel precedente replay 8/12: catalogo grezzo senza
+anchor, contesto locale vuoto; non prova di regressione applicativa. Corretto
+solo il runner. Congelati sette casi separati con manifest, raw reali Catanzaro/
+Labirinto e controesempi autoriali attuale/cessato/ruolo diverso. Gold escluso
+dal prompt, una chiamata/caso, nessuna nuova analisi né scritture live. Quattro
+test protocollo passati /1,97s; primo test incompleto sui campi omessi corretto,
+Ruff passato dopo due correzioni di stile. Risultati da misurare e archiviare.
+[Diagnosi/protocollo](docs/sintesi-ruoli-2026-10-12.md).
