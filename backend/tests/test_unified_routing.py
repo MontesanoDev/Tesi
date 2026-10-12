@@ -40,6 +40,28 @@ def contexts():
     return [None, single, group, paused, disabled]
 
 
+def test_precise_slot_questions_preserved_bounded_without_identities():
+    context = contexts()[2]
+    slots = context["question"]["slots"]
+    slots[0]["question"] = "Quale recapito devo usare per le comunicazioni?"
+    slots[1]["question"] = "x" * 900
+    projected = routing_context(context)
+    assert projected["slots"][0]["question"] == slots[0]["question"]
+    assert projected["slots"][1]["question"] == "x" * 600
+    assert "private-field" not in json.dumps(projected)
+    assert "private-other" not in json.dumps(projected)
+    assert "private-session" not in json.dumps(projected)
+    assert "field_ids" not in json.dumps(projected)
+    assert slots[1]["question"] == "x" * 900  # Snapshot is not mutated.
+
+
+def test_historical_slots_without_precise_question_keep_overall_question():
+    context = contexts()[2]
+    projected = routing_context(context)
+    assert projected["question"] == context["question"]["message"]
+    assert all(s["question"] == "" for s in projected["slots"])
+
+
 @pytest.mark.anyio
 async def test_same_prompt_and_schema_in_every_state_one_call_per_turn(chat):
     _, replies, requests, _ = chat

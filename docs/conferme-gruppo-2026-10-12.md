@@ -46,3 +46,18 @@ analisi SOURCE; nessuna pretesa di avere rieseguito l'analisi globale.
 Prima delle API: quattro test del protocollo senza provider passati /0,54 s;
 Ruff runner/test e diff check passati. Risultati e costi saranno aggiunti dopo
 le serie, senza modificare aspettative o codice durante ciascuna serie.
+
+## Baseline e modifica applicativa
+
+BEFORE sul commit 0ef3bd5: **14/16** conformi. Riprodotto il caso registrato:
+SUPPORTED primo slot, AMBIGUOUS secondo. Anche la conferma di tre punti misti
+respingeva interamente le proposte, compresa la sola condizione rispondibile.
+Tutti i controesempi negativi conformi, nessuna scrittura estranea.
+Grezzi `backend/data/compilation-audit/group-confirmations-20261012/before/`.
+
+Applicata soltanto la proiezione `question` per slot e il task del verificatore,
+senza cambiare output, binding destinatari, numero di chiamate o accettazione
+deterministica. Task generico: riferimenti univoci alla domanda attiva, ambito
+esplicito del gruppo, eccezioni locali; una conferma non inventa valori VALUE.
+**72 test software mirati /7,39 s**, provider simulati per i test di stato,
+Ruff file modificati superato. Non misurano DeepSeek; la serie AFTER segue.

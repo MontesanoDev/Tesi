@@ -12,6 +12,8 @@ from app.compilation_reply_guard import ReplyScopeChecks, accepted_slots
 from app.config import AISettings, use_ai_settings
 from app.generation import GenerationError
 from app.main import app
+from scripts.benchmark_compilation_dialogue import FIXTURE, changed_state, seed_checkpoint
+from scripts.benchmark_compilation_reply_guard import load_guard_fixture
 
 
 @pytest.fixture
@@ -183,3 +185,47 @@ def test_guard_schema_has_no_identity_or_value_writing_capability():
     schema = json.dumps(ReplyScopeChecks.model_json_schema())
     assert "field_id" not in schema and "session_id" not in schema
     assert "normalized_value" not in schema and '"value"' not in schema
+
+
+GROUP_CONTEXTS, GROUP_CASES = load_guard_fixture(
+    FIXTURE.parent / "group-confirmations-v1")[1:]
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("case", GROUP_CASES, ids=lambda case: case["id"])
+async def test_group_verdicts_gate_only_backend_owned_recipients(
+    checkpoint, monkeypatch, case,
+):
+    """Simulated verdicts test state boundaries, not model semantic quality."""
+    project, _, make = checkpoint
+    initial = make("conditions")
+    context = GROUP_CONTEXTS[case["context"]]
+    before = seed_checkpoint(project, {"id": initial["form_id"]}, context,
+                             case["id"], FIXTURE / "modulo-dialogo.docx")
+    expected = set(case["expected_allowed_slots"])
+    checks = [{"slot": r["slot"], "result": (
+        "SUPPORTED" if r["slot"] in expected else "AMBIGUOUS")}
+        for r in case["proposals"]]
+    calls = checker(monkeypatch, case["proposals"], checks)
+    planned = await plan(before, case["message"])
+    payload = json.loads(calls[1]["messages"][1]["content"])
+    assert [s["question"] for s in payload["slots"]] == [
+        s["question"] for s in context["slots"]]
+    assert payload["message"] == case["message"]
+    assert "expected" not in json.dumps(payload)
+    if expected:
+        assert {r.slot for r in planned.decision.replies} == expected
+        await compilation_chat.handle_group_decision(project, before["conversation_id"],
+            planned.decision, before, case["message"], before["version"])
+    else:
+        assert planned.intent == "explain"
+    after = compilation_sessions.get_session(project, before["id"])
+    effects = changed_state(before, after, context["slots"])
+    assert set(effects["actions"]) == {str(s) for s in expected}
+    assert effects["provenance_ok"] and not effects["unexpected_recipients"]
+    if not expected:
+        assert after == before  # No revision on a rejected semantic proposal.
+    assert not after["last_generation"]
+    assert after["global_compilation"]["attempts"] == before["global_compilation"]["attempts"]
+    assert all(f["status"] != "RESOLVED" for f in after["fields"])
+    assert len(calls) == 2  # Same one routing + one verification, no retry.

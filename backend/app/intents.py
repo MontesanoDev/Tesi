@@ -384,7 +384,8 @@ def routing_context(compilation):
         "slots": [
             {**{key: slot.get(key) for key in (
                 "slot", "kind", "label", "condition", "alternatives",
-            )}, "context": (slot.get("context") or "")[:1500]}
+            )}, "context": (slot.get("context") or "")[:1500],
+             "question": (slot.get("question") or "")[:600]}
             for slot in slots
         ],
     }

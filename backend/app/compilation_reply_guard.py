@@ -59,6 +59,26 @@ Per VALUE valuta che il valore risponda proprio all'informazione chiesta.
 Per CONDITION_TRUE/FALSE valuta che l'affermazione riguardi proprio la
 condizione chiesta e abbia la polarità proposta. Non validare una condizione
 solo perché la risposta riguarda lo stesso documento o soggetto.
+
+Ogni slot può conservare la question naturale effettivamente posta. Usala per
+capire a cosa risponde l'utente, insieme al messaggio/domanda complessivi; label
+e condition descrivono il contesto del modulo, non sono una nuova domanda.
+Se question manca, usa la domanda complessiva senza inventare destinatari.
+Risolvi riferimenti anaforici SOLO entro le domande attive: una conferma della
+persona/società/alternativa appena nominata non deve ripeterne il nome se il
+riferimento è univoco. Confermare quella scelta è una decisione USER, non una
+nuova prova SOURCE né un valore da ricavare dalle fonti. Citare ciò che compare
+nelle fonti senza adottare la scelta richiesta NON la conferma.
+
+Una risposta estesa ESPLICITAMENTE all'intero gruppo o a posizioni precise può
+confermare/negare più condizioni: valuta ciascuna con il messaggio intero, anche
+se la user_quote locale usa un riferimento breve. Eccezioni, negazioni locali e
+incertezza prevalgono sulla conferma generale per lo slot interessato, senza
+invalidare gli altri. Un semplice assenso senza ambito davanti a più condizioni
+distinte resta AMBIGUOUS: non distribuirlo arbitrariamente a tutti gli slot.
+La conferma generale risponde alle condizioni, ma NON fornisce i dati mancanti
+chiesti dagli slot VALUE: per questi serve il valore pertinente effettivamente
+espresso. Non accettare valori inventati, presi da altri slot o dal contesto.
 Non scegliere ID, cambiare valori, recuperare fatti o giudicare altri intent.
 Le proposte di un gruppo sono indipendenti: un errore non invalida le altre.
 Restituisci solo JSON secondo SCHEMA OUTPUT, un check per ciascuna proposta.
