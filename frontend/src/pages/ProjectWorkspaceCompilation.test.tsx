@@ -697,6 +697,26 @@ describe('CompilationSession nella chat', () => {
       steps_used: review ? 1 : 0, max_steps: 1 } }
   }
 
+  it('mostra il motivo reale di un export bloccato invece di ripetere la proposta', async () => {
+    stored = globalSession(true)
+    const stale = 'Posso preparare una bozza parziale. Vuoi che la generi?'
+    const explanation = 'Prima dobbiamo chiarire le condizioni rimaste aperte.'
+    stored.global_compilation!.dialogue = { phase: 'READY', message: stale }
+    vi.mocked(api.projectAnswer).mockResolvedValue({ conversation_id: 'chat-1', turn_id: 1,
+      question: 'si', answer: explanation, compilation: { session_id: 'session-1', action: 'clarify' },
+      citations: [], evidence: [], missing_information: [], generation_status: 'direct',
+      model: 'simulato', total_tokens: 1, notice: null })
+    await setup('/projects/alpha/conversations/chat-1')
+    await screen.findByText(stale)
+    submit('si')
+    await screen.findByText(explanation)
+    const messages = screen.getAllByRole('region', { name: 'Risposta Mapi' })
+    expect(messages.at(-1)).toHaveTextContent(explanation)
+    expect(messages.at(-1)).not.toHaveTextContent(stale)
+    expect(screen.queryByRole('button', { name: 'Scarica DOCX' })).not.toBeInTheDocument()
+    expect(api.resolveCompilationSession).not.toHaveBeenCalled()
+  })
+
   it('rivede la proposta nel composer senza checklist e ripristina dialogo e download', async () => {
     const summary = 'Ho trovato denominazione e recapiti nelle fonti. La partecipazione è come società?'
     stored = globalSession()

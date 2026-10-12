@@ -296,17 +296,19 @@ async def handle_chat_action(session, decision, expected_version, message):
             return "La compilazione è in pausa. Chiedimi di riprenderla prima di generare.", {
                 "session_id": session["id"], "action": "clarify"}
         ids, conditions, user_ids = export_selection(session)
-        if not ids and not user_ids:
+        empty = not ids and not user_ids
+        dialogue = session["global_compilation"].get("dialogue") or {}
+        if empty and (dialogue.get("phase") != "READY" or dialogue.get("error")
+                      or (session["chat"].get("question") or {}).get("kind") != "generate"):
             return ("Non ho ancora valori utilizzabili per la bozza. "
                     "Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
                     {"session_id": session["id"], "action": "clarify"})
-        await run_in_threadpool(generate_draft, session["project_id"], session["id"],
+        after = await run_in_threadpool(generate_draft, session["project_id"], session["id"],
                                GlobalDraftRequest(version=expected_version or session["version"],
                                    candidate_ids=ids, confirmed_condition_ids=conditions,
                                    user_candidate_ids=user_ids, allow_unresolved=True,
-                                   user_quote=message))
-        return ("Ho preparato una bozza parziale con i dati disponibili. "
-                "Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+                                   allow_empty=empty, user_quote=message))
+        return (after["global_compilation"]["dialogue"]["message"],
                 {"session_id": session["id"], "action": "generated"})
     return ((session["global_compilation"].get("dialogue") or {}).get("message")
             or "Sto conservando l'analisi. Puoi chiedermi di riprendere la compilazione.",
@@ -320,8 +322,10 @@ def _selected(row, state, request, db):
     if data["phase"] != "REVIEW":
         raise HTTPException(409, "Completa l'analisi prima di rivedere le proposte")
     ids, conditions = request.candidate_ids, request.confirmed_condition_ids
-    if not ids and not request.user_candidate_ids:
-        raise HTTPException(422, "Nessun valore selezionato per la bozza")
+    if not ids and not request.user_candidate_ids and not (
+        request.allow_empty and request.user_quote.strip()
+    ):
+        raise HTTPException(422, "Conferma esplicitamente la copia senza valori inseriti")
     if len(set(ids)) != len(ids) or len(set(conditions)) != len(conditions):
         raise HTTPException(422, "Selezioni duplicate")
     allowed = {f["candidate_id"]: f for f in review_fields(data) if f["selectable"]}
@@ -381,10 +385,16 @@ def generate_draft(project_id, session_id, request):
         checked_fields.append({**checked, "provenance": "USER", "user_quote": user["user_quote"],
                                "source_evidence": []})
     draft = fill_docx(layout, values)
+    message = ("Ho preparato una copia del modulo senza inserire alcun valore. "
+               "I campi irrisolti e quelli con condizioni non confermate restano vuoti. "
+               "Puoi scaricarla e controllarla." if not values else
+               "Ho preparato una bozza parziale con i dati disponibili. "
+               "Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.")
     report = {"schema_version": 7, "created_at": sessions.now(), "project_id": project_id,
               "session_id": session_id, "session_version": request.version,
               "status": "needs_review", "ready_for_submission": False,
-              "execution": {"strategy": "global_proposal_user_review", "allow_unresolved": True},
+              "execution": {"strategy": "global_proposal_user_review", "allow_unresolved": True,
+                            "allow_empty": request.allow_empty},
               "template_sha256": layout.sha256, "output_sha256": hashlib.sha256(draft).hexdigest(),
               "fields": checked_fields, "written_field_count": len(values), "resolved": 0,
               "global_audit": state["global_compilation"]["audit"],
@@ -393,8 +403,11 @@ def generate_draft(project_id, session_id, request):
               "user_review": {"candidate_ids": request.candidate_ids,
                               "user_candidate_ids": request.user_candidate_ids,
                               "confirmed_condition_ids": request.confirmed_condition_ids,
-                              "provenance": "USER", "user_quote": request.user_quote},
-              "warnings": ["Bozza parziale: valori selezionati e condizioni "
+                              "provenance": "USER", "user_quote": request.user_quote,
+                              "allow_empty": request.allow_empty},
+              "warnings": ["Nessun valore inserito: copia non compilata del modulo."
+                           if not values else
+                           "Bozza parziale: valori selezionati e condizioni "
                            "confermati dall'utente.",
                            "Le proposte non attestano completezza, allegati o ammissibilità.",
                            "Checkbox non materializzate; verificare il modulo originale."]}
@@ -409,9 +422,7 @@ def generate_draft(project_id, session_id, request):
         latest["global_compilation"]["last_review"] = report["user_review"]
         if latest["global_compilation"].get("dialogue"):
             latest["global_compilation"]["dialogue"].update(phase="READY", question=None,
-                message="Ho preparato una bozza parziale con i dati disponibili. "
-                        "Le informazioni non verificate restano vuote. "
-                        "Puoi scaricarla e controllarla.")
+                message=message)
         sessions.save_state(db, current, latest, "global_draft_generate")
 
     _persist(project_id, state["template_name"], layout.original, draft, report, on_saved=on_saved)

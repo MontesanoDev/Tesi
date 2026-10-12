@@ -28,6 +28,14 @@ persistito rimane una **proposta da rivedere**, non uno stato RESOLVED:
    report tecnico disponibile tramite API, senza pulsante automatico nelle
    risposte. La gestione UI dei comandi verrà definita separatamente.
 
+Se tutte le proposte sono escluse (per esempio perché le condizioni sono state
+rinviate), la chat propone esplicitamente una **copia senza valori inseriti**.
+Il consenso alla generazione autorizza soltanto quella copia, non conferma
+l'applicabilità né rende disponibili i dati saltati. Report e messaggio
+dichiarano zero valori scritti. Non viene generata automaticamente.
+Le risposte di chiarimento/blocco del backend vengono mostrate nella chat,
+senza sostituirle con il vecchio riepilogo o ripetere la proposta di export.
+
 La sintesi può soltanto trattenere/escludere proposte, mai renderne valida una
 respinta. Riceve contesto FORM, valori e prove SOURCE (massimo 40 proposte,
 24 chiarimenti candidati); il messaggio non certifica completezza o correttezza
@@ -64,6 +72,11 @@ sola analisi globale; POST /{id}/global-draft riceve `version`, `candidate_ids`,
 stato persistito, senza selezione manuale. GET /{id}/global-report
 scarica l'audit. Download di DOCX/report generato tramite document-compilations
 esistenti. `/finalize` V1 non può esportare sessioni globali.
+
+Per una selezione vuota, `/global-draft` richiede anche `allow_empty=true`
+(default false), `allow_unresolved=true` e `user_quote` non vuota. La chat
+abilita questo caso soltanto durante una domanda di generazione valida, dopo
+un consenso interpretato dal planner; mai durante l'analisi o la pausa.
 
 Budget: 400 candidate / 96 chunk / 100.000 caratteri SOURCE / 350.000 input;
 nessun taglio silenzioso. Una chiamata di analisi con timeout 300 s e lease 360 s;

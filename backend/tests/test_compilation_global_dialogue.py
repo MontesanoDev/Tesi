@@ -110,6 +110,97 @@ async def test_conversational_confirmation_then_explicit_generation_preserves_so
 
 
 @pytest.mark.anyio
+@pytest.mark.parametrize("consent", ["si", "siii"])
+async def test_skipped_conditions_then_chat_consent_exports_blank_without_confirming_facts(
+    api, provider, monkeypatch, consent,
+):
+    from app import intents
+
+    s = await conditional(api, monkeypatch)
+    s, errors = reply(s, "SKIP", "lascia in bianco")
+    assert not errors and s["last_generation"] is None
+    s = await resolve(api, s)
+    assert s["chat"]["question"]["kind"] == "generate"
+    assert "senza aggiungere valori" in s["chat"]["question"]["message"]
+    before = s["global_compilation"]["dialogue"]["answers"]
+
+    async def route(client, settings, body, timeout, **kwargs):
+        context = body["messages"][1]["content"]
+        assert '"question_kind": "generate"' in context
+        return json.dumps({"intent": "generate", "answer": "", "queries": [],
+                           "target": "form"}), "simulated", {}
+
+    monkeypatch.setattr(intents, "request_model_content", route)
+    response = await api.post("/api/projects/alpha/answer", json={
+        "question": consent, "document_id": s["form_id"],
+        "conversation_id": s["conversation_id"], "compilation_session_id": s["id"],
+        "compilation_version": s["version"],
+    })
+    assert response.status_code == 200, response.text
+    assert response.json()["compilation"]["action"] == "generated"
+    assert "senza inserire alcun valore" in response.json()["answer"]
+    s = (await api.get(f"{BASE}/{s['id']}")).json()
+    assert s["status"] == "GENERATED" and s["chat"]["question"] is None
+    assert s["global_compilation"]["dialogue"]["answers"] == before
+    assert s["summary"]["resolved"] == s["summary"]["user_provided"] == 0
+    run = s["last_generation"]
+    report = (await api.get(run["downloads"]["report"])).json()
+    assert report["written_field_count"] == 0 and report["fields"] == []
+    assert report["user_review"]["user_quote"] == consent
+    assert report["user_review"]["allow_empty"] is True
+    assert report["user_review"]["confirmed_condition_ids"] == []
+    original = Document(BytesIO((await api.get(run["downloads"]["template"])).content))
+    draft = Document(BytesIO((await api.get(run["downloads"]["docx"])).content))
+    assert [t._element.xml for t in draft.tables] == [t._element.xml for t in original.tables]
+    assert [p.text for p in draft.paragraphs if not p.text.startswith("BOZZA NON VERIFICATA")] == [
+        p.text for p in original.paragraphs]
+    assert len(provider) == 0  # The conditional transport is separate; no new analysis.
+
+
+@pytest.mark.anyio
+@pytest.mark.parametrize("allow_empty,quote", [(False, "Sì"), (True, ""), (True, "  ")])
+async def test_empty_export_requires_explicit_opt_in_and_user_consent(
+    api, provider, allow_empty, quote,
+):
+    s = await resolve(api, await start(api))
+    response = await api.post(f"{BASE}/{s['id']}/global-draft", json={
+        "version": s["version"], "allow_unresolved": True, "allow_empty": allow_empty,
+        "user_quote": quote,
+    })
+    assert response.status_code == 422
+    assert (await api.get(f"{BASE}/{s['id']}")).json()["last_generation"] is None
+
+
+@pytest.mark.anyio
+async def test_partial_export_keeps_eligible_source_and_excludes_skipped_conditional_value(
+    api, provider, monkeypatch,
+):
+    async def mixed(client, settings, body, timeout, **kwargs):
+        data = proposal(json.loads(body["messages"][1]["content"]), conditional=True)
+        data["fields"]["t0.r1.c1"].update(disposition="value", conditions=[])
+        data["conditions"]["c"]["scope"] = [{"kind": "candidate", "id": "t0.r0.c1"}]
+        return json.dumps(data), "simulated", {}
+
+    monkeypatch.setattr(adapter, "request_model_content", mixed)
+    s = await resolve(api, await start(api))
+    s, errors = reply(s, "SKIP", "lascia vuoto ciò che non sai")
+    assert not errors
+    s = await resolve(api, s)
+    assert "con i dati disponibili" in s["chat"]["question"]["message"]
+    decision = ChatDecision(action="compilation_generate", answer="", queries=[], target="form")
+    _, command = await adapter.handle_chat_action(s, decision, s["version"], "Sì")
+    assert command["action"] == "generated"
+    s = sessions.get_session("alpha", s["id"])
+    report = (await api.get(s["last_generation"]["downloads"]["report"])).json()
+    assert report["written_field_count"] == 1
+    assert report["fields"][0]["cell_id"] == "t0.r1.c1"
+    assert report["fields"][0]["provenance"] == "SOURCE"
+    doc = Document(BytesIO((await api.get(s["last_generation"]["downloads"]["docx"])).content))
+    assert doc.tables[0].cell(0, 1).text == ""
+    assert doc.tables[0].cell(1, 1).text == "Via del Sole 9"
+
+
+@pytest.mark.anyio
 async def test_pause_resume_preserves_group_without_reanalysis(api, provider, monkeypatch):
     s = await conditional(api, monkeypatch)
     question = s["chat"]["question"]

@@ -146,7 +146,7 @@ def no_technical_ids(text):
     return not re.search(r"\b(?:t\d+\.r\d+\.c\d+|p\d+\.(?:s|cb)\d+|paragraph:\d+)\b", text)
 
 
-def render_dialogue(plan, pool):
+def render_dialogue(plan, pool, *, exportable_count=None):
     by_slot = {q["slot"]: q for q in pool}
     if (len({q.slot for q in plan.questions}) != len(plan.questions)
             or any(q.slot not in by_slot for q in plan.questions)
@@ -162,7 +162,11 @@ def render_dialogue(plan, pool):
         if len(slots) > 1:
             message += "\nPuoi rispondere in un unico messaggio."
     else:
-        message += ("\n\nPosso preparare una bozza parziale con i dati disponibili, "
+        message += ("\n\nAl momento nessun valore può essere inserito in sicurezza. "
+                    "Posso preparare una copia del modulo senza aggiungere valori, "
+                    "lasciando vuote le parti irrisolte. Vuoi che la generi?"
+                    if exportable_count == 0 else
+                    "\n\nPosso preparare una bozza parziale con i dati disponibili, "
                     "lasciando vuote le parti irrisolte. Vuoi che la generi?")
     return {"message": message, "phase": "READY", "question": {
         "kind": "clarifications" if slots else "generate", "field_ids": [],
@@ -198,7 +202,6 @@ async def narrate(data, folder):
                 response_schema=schema), timeout=NARRATION_SECONDS)
         _save(root / "response.txt", raw, settings.api_key)
         plan = DialoguePlan.model_validate_json(raw.strip())
-        result = render_dialogue(plan, pool)
         from app.compilation_global_sessions import review_fields
 
         proposals = [f for f in review_fields(data) if f["selectable"] and not any(
@@ -210,8 +213,13 @@ async def narrate(data, folder):
             raise ValueError("Esclusioni di proposte non valide")
         held = ({proposals[i - 1]["candidate_id"] for i in plan.held_proposal_slots}
                 | set((data.get("dialogue") or {}).get("held_candidate_ids", [])))
-        result.update(reviewed_candidate_ids=[f["candidate_id"] for f in proposals],
-                      held_candidate_ids=sorted(held))
+        reviewed = {"reviewed_candidate_ids": [f["candidate_id"] for f in proposals],
+                    "held_candidate_ids": sorted(held)}
+        selection = export_selection({"global_compilation": {
+            **data, "fields": review_fields(data), "dialogue": {
+                **(data.get("dialogue") or {}), **reviewed, "phase": "READY", "error": None}}})
+        result = render_dialogue(plan, pool, exportable_count=len(selection[0]) + len(selection[2]))
+        result.update(**reviewed)
         result.update(model=model, usage=usage)
     except (GenerationError, ValueError, TimeoutError, httpx.HTTPError) as exc:
         _save(root / "validation-error.txt", str(exc), settings.api_key)

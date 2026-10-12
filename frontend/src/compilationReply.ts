@@ -7,6 +7,7 @@ export function compilationReplyParagraphs(session: CompilationSession,
     'Questa sessione usa il motore precedente. Per provare la compilazione globale, apri una nuova conversazione e seleziona il modulo con @.'].filter((text): text is string => Boolean(text))
   if (session.engine === 'global') {
     if (response && response.compilation?.session_id !== session.id) return [response.answer]
+    if (response?.compilation?.action === 'clarify') return [response.answer]
     if (processing) return ['Analizzo l’intero modulo e verifico le informazioni disponibili…']
     if (session.chat?.paused_by_user) return ['La compilazione è in pausa. Chiedimi di riprendere quando vuoi.']
     if (error || session.last_error || session.chat?.paused) return ['Ho conservato il lavoro. Chiedimi di riprendere per ritentare l’analisi.']

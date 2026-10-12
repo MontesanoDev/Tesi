@@ -1,5 +1,38 @@
 # Stato di Mapi RAG
 
+## Consenso alla bozza senza loop — 12 ottobre 2026
+
+Diagnosi read-only della sessione segnalata: «si» e «siii» arrivavano già a
+compilation_generate. «Lascia in bianco» aveva rinviato entrambe le condizioni,
+escludendo tutti i valori dall'export. Il backend rifiutava una bozza senza
+valori; il frontend sostituiva la risposta clarify con il riepilogo persistito,
+ripetendo la stessa domanda di generazione. Nessun bug di interpretazione del sì.
+
+Correzione: la UI conserva la risposta clarify reale. La proposta di export
+distingue una bozza con valori utilizzabili da una copia senza valori inseriti.
+Quest'ultima richiede consenso esplicito: allow_empty=false di default nella API,
+allow_unresolved e user_quote non vuota; in chat consentita solo al checkpoint
+di generazione, con sintesi valida e sessione non in pausa. Il consenso NON
+conferma condizioni rinviate, non inventa valori e non modifica la provenance.
+Report/messaggio dichiarano zero scritture quando tutti i valori sono esclusi.
+Ogni generazione continua a partire dall'originale, con renderer e gate invariati.
+
+Verifiche software effettive: **71 backend mirati /16,20 s**, **1.894 backend
+completi /141,32 s**, **102 frontend /9,03 s**, **2 Playwright desktop/mobile
+/7,8 s**, Ruff/lint/build/diff check passati. Provider simulati nei test.
+Regressioni su consenso breve, condizioni saltate, export vuoto non implicito,
+SOURCE ammessa accanto a un valore condizionale escluso e risposta backend
+visibile invece del riepilogo obsoleto. FTS5/Qdrant coperti dai test parametrizzati;
+nessuna modifica al retrieval. Prime asserzioni corrette per rispettare il banner
+del renderer, il formato cell_id del report e lo scope della fixture condizionale.
+
+Prova DeepSeek reale prevista sul codice congelato: replay del checkpoint
+persistito e del dialogo iniziale archiviato, su SQLite/storage privati, senza
+nuova analisi globale né modifiche alla sessione live. Acquisizioni in
+backend/data/compilation-audit/blank-consent-20261012/; esiti da aggiungere dopo
+l'esecuzione. Richiesti dall'utente commit e push. Prossimo punto: completare la
+verifica reale, poi tornare alla revisione semantica dei campi ancora aperti.
+
 ## Report tecnico rimosso dalle risposte chat — 12 ottobre 2026
 
 Rimosso il pulsante automatico «Scarica report proposte/bozza»: veniva mostrato

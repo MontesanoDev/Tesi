@@ -65,6 +65,7 @@ class GlobalDraftRequest(RevisionRequest):
     user_candidate_ids: list[str] = Field(default_factory=list, max_length=400)
     confirmed_condition_ids: list[str] = Field(default_factory=list, max_length=2048)
     allow_unresolved: bool = False
+    allow_empty: bool = False
     user_quote: str = Field(default="", max_length=2000)
 
 
