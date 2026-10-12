@@ -1,5 +1,80 @@
 # Stato di Mapi RAG
 
+## Tre bandi reali — 12 ottobre 2026, recupero utile ma affidabilità insufficiente
+
+Richiesta corrente: provare tutti e tre i bandi senza risparmiare sulle API;
+rimandare la rifinitura di checkbox e ordine professionale. Eseguito sul solo
+compilatore globale sperimentale congelato `6a33c85`, contratto V8/catalogo V3,
+thinking low, una chiamata per prova. **Nessuna modifica applicativa**, sessione,
+valore USER o DOCX generato. V1/chat/RAG/parser/renderer/UI invariati.
+
+**Dodici chiamate reali deepseek-flash:** nove preregistrate, tre per documento,
+massimo tre concorrenti; poi tre controlli seriali preregistrati separatamente,
+stessi body/fonti/timeout 300 s. Dieci output completi, due timeout conservati.
+Stessi 17 chunk SOURCE autorizzati del workspace `prova` (13 Company/4 General),
+corpus piccolo completo: non misura il retrieval FTS/Qdrant o la chat V1.
+Nessun gold per questi bandi, nessuna percentuale di accuratezza.
+
+Esiti concreti:
+
+- **Catanzaro:** cinque dati societari conservati nelle tre risposte complete
+  su quattro tentativi: operatore, forma giuridica, sede, CF e PIVA. Direttore,
+  qualifica, ordine e 8421 proposti ma bloccati: gate persona/ruolo troppo
+  letterale nelle prove 2/3, quote non contigua nella prova 4. Non è assenza SOURCE.
+- **Minervino:** 4/8/7/16 ipotesi conservate nelle quattro prove. Nella seconda,
+  telefono nel civico, e-mail nel telefono, PEC nell'e-mail: tre destinazioni
+  errate pur con grounding SOURCE valido. Quote FORM verificata nel paragrafo,
+  non nello slot; il catalogo ha i range corretti. Prova seriale migliore ma
+  non prova un effetto causale; eredità del ruolo ancora insufficiente.
+- **Trapani:** stessi otto dati aziendali nelle tre risposte complete su quattro
+  tentativi; PEC comunicazioni aggiuntiva solo in due. Nessuna applicabilità
+  approvata. Un timeout anche qui.
+
+109 record emessi, **91 ipotesi conditional / REVIEW_REQUIRED**, 17 proposte
+personali bloccate e una NA rifiutata. Zero RESOLVED/scritture. Omissioni non
+equivalgono automaticamente a MISSING o NOT_APPLICABLE; 689 candidate strutturali
+non sono 689 campi obbligatori. Problemi di destinazione presenti anche ignorando
+checkbox/ordine: **non ancora affidabile per compilazione completa automatica**.
+
+597.919 token osservati; usage dei due timeout non acquisito, non consumo zero.
+1.348,98 s sommati per chiamata, inclusi 600,23 s dei timeout; non durata E2E
+perché la prima serie è concorrente. Nessun risparmio/costo monetario completo
+dimostrato. Tre controlli seriali riusciti non spiegano da soli i due timeout.
+
+Verifiche realmente eseguite: **314 mirati / 14,42 s**, Ruff backend, fixture
+Labirinto --check, **otto verifiche fixture Catanzaro / 0,583 s**, dodici manifest,
+dieci replay esatti, snapshot codice/body/fonti/originali, archivio verificato
+byte per byte, scan credenziale e diff/link. Suite backend completa/frontend
+non ripetute, codice invariato. Conservata failure di Ruff sui soli helper locali
+di acquisizione ignorati (dieci errori di stile), non sul backend applicativo.
+
+**Integrità:** originali, sessioni/revisioni, conversazioni/turni, progetti/file,
+profili e corpus Company/General invariati. Non è invariato l'intero DB: chunk
+derivati, FTS e sequenze cambiano. Osservato reload del server di sviluppo dopo
+creazione helper .py nel backend; startup ricostruisce gli indici/artefatti,
+riscontro coerente ma senza traccia SQL per attribuzione esclusiva. Nessun
+ripristino o modifica manuale DB. Corpus della prova già congelato e identico.
+Per future acquisizioni evitare helper Python nel percorso sorvegliato live.
+
+[Report completo](docs/benchmark-tre-bandi-2026-10-12.md),
+[JSON completo](docs/benchmarks/2026-10-12-tre-bandi.json), [registro](relazioni.md).
+[Verifiche finali](docs/benchmarks/2026-10-12-tre-bandi-final-checks.json),
+inclusa la correzione del checker documentale che inizialmente non distingueva
+righe NOT_VALIDATED dei timeout e la NA rifiutata dalle ipotesi REVIEW_REQUIRED.
+Bundle `docs/benchmarks/2026-10-12-tre-bandi-audit.tar.gz`: **333 file / 3.395.750
+byte**, SHA-256 `70df9a7b8bd489383d62469aa7a61769e322ffc7135d5ab4939d7eb5e07f5d69`.
+Include tutti i dodici tentativi, protocolli, input/copie originali, codice,
+prompt/schema/body, raw quando acquisiti, usage/audit/replay/annotazioni e failure.
+Nessun DB/config privata/chiave API/bytecode. Grezzi locali anche in
+`backend/data/compilation-audit/tre-bandi-20261011/`. Commit risultati autorizzato,
+nessun push; nessuna migrazione o reindicizzazione applicativa richiesta.
+
+**Prossimo passo da discutere prima di implementare:** ancorare semanticamente
+la proprietà alla singola destinazione/slot, conservare il ruolo lungo il blocco
+e verificare le condizioni prima dell'adapter. Partire dall'errore Minervino
+telefono/civico, mantenendo test congelati e gate SOURCE. Non attivare ancora
+il prototipo nella chat e non considerare le 91 ipotesi valori compilabili.
+
 ## Trapani — proposte SOURCE recuperate, 11 ottobre 2026
 
 Intervento autorizzato sul compilatore globale sperimentale, Git iniziale pulito

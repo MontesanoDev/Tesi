@@ -995,3 +995,102 @@ locale già presente su `02524d8` a global-subject-conditions-20261008/report.md
 non disponibile in questa copia. Storico lasciato intatto; nuovi riferimenti
 verificati. [Esito documentale/bundle](docs/benchmarks/2026-10-11-trapani-final-checks.json)
 versionato separatamente dopo il packaging, senza riscrivere l'archivio dei raw.
+
+## 12 ottobre 2026 — tutti e tre i bandi, nessuna modifica al motore
+
+Richiesta: tentare tutti e tre i moduli reali e valutarne l’affidabilità,
+rimandando checkbox e ordine professionale. Nessun sorteggio: Catanzaro,
+Minervino e Trapani sono il pool completo richiesto. Non è il benchmark con
+gold Labirinto V1 e non dichiariamo accuratezza percentuale.
+
+Codice congelato `6a33c85`, V8/catalogo V3, deepseek-flash reale, thinking low,
+una chiamata per prova, nessun retry automatico. Stesso corpus autorizzato
+`prova`: 17 chunk SOURCE (13 Company/4 General), nessuna fonte progetto.
+Corpus piccolo completo, nessuna ricerca FTS/Qdrant. Gold/istruzioni demo
+fuori dal prompt; placeholder vuoto del runner non usato per misurare qualità.
+
+Primo protocollo: nove chiamate, tre giri con massimo tre concorrenti.
+Dopo due timeout, protocollo separato: un controllo seriale per ciascun bando,
+stessi body e timeout 300 s. Tutti i tentativi conservati, nessuna sostituzione.
+Quattro richieste identiche per documento, nessun cambio durante le prove.
+
+| Bando | Prova | Fase | Esito | Raw | Conditional grounded | Omesse | Secondi | Token osservati |
+|---|---:|---|---|---:|---:|---:|---:|---:|
+| catanzaro | 1 | concorrente | timeout | — | — | — | 300.13 | non acquisiti |
+| catanzaro | 2 | concorrente | output completo | 15 | 11 | 292 | 124.90 | 93870 |
+| catanzaro | 3 | concorrente | output completo | 14 | 10 | 293 | 81.15 | 84127 |
+| catanzaro | 4 | seriale | output completo | 14 | 9 | 293 | 106.96 | 89097 |
+| minervino | 1 | concorrente | output completo | 4 | 4 | 263 | 39.74 | 47027 |
+| minervino | 2 | concorrente | output completo | 8 | 8 | 259 | 63.43 | 54608 |
+| minervino | 3 | concorrente | output completo | 7 | 7 | 260 | 50.01 | 50579 |
+| minervino | 4 | seriale | output completo | 21 | 16 | 246 | 109.99 | 62753 |
+| trapani | 1 | concorrente | timeout | — | — | — | 300.10 | non acquisiti |
+| trapani | 2 | concorrente | output completo | 9 | 9 | 106 | 57.87 | 39308 |
+| trapani | 3 | concorrente | output completo | 9 | 9 | 106 | 62.08 | 39727 |
+| trapani | 4 | seriale | output completo | 8 | 8 | 107 | 52.62 | 36823 |
+
+Dieci output completi (stop), due timeout senza output/usage completi.
+**597.919 token osservati**, più eventuale consumo non acquisito dei timeout.
+1.348,98 s per chiamata cumulati, 748,75 s per le dieci complete; non durata
+E2E a causa della concorrenza. Tre seriali riuscite non dimostrano che questa
+fosse la causa dei due timeout: ordine/cache/provider/rete non controllati.
+
+109 record emessi e ispezionati: **91 conditional / REVIEW_REQUIRED**,
+17 proposte personali bloccate e una NA rifiutata. Zero RESOLVED, USER,
+sessioni create o Word generati; `value`/`written_value` null. 689 candidate
+strutturali unici non sono 689 dati obbligatori. Omissione non prova NA/MISSING.
+
+- Catanzaro: nelle tre risposte complete su quattro tentativi i cinque dati
+  operatore/forma/sede/CF/PIVA sono conservati. Quattro dati del direttore
+  proposti ma bloccati: literal role pair troppo restrittiva nelle prove 2/3,
+  quote non contigua nella quarta. Sede operativa con clausola locale omessa
+  nelle prove 2/3; NA invalida respinta nella quarta.
+- Minervino: 4/8/7/16 ipotesi conservate. Nella prova 2 `p42.s2` riceve telefono
+  al posto del civico, `p42.s3` e-mail al posto del telefono, `p42.s4` PEC al
+  posto dell’e-mail ordinaria. SOURCE valide non provano la destinazione:
+  quote FORM locale al paragrafo, non vincolata alla singola porzione/slot.
+  Prova seriale separa meglio i recapiti ma non risolve eredità del ruolo.
+- Trapani: gli stessi otto dati aziendali nelle tre risposte complete su quattro
+  tentativi. PEC comunicazioni aggiuntiva solo nelle prove 2/3. Nessuna
+  applicabilità approvata; firmatario/CF personale/fax/altri albi non inventati.
+
+Giudizio: recupero dati utile ma **affidabilità insufficiente per compilazione
+completa automatica**, anche ignorando checkbox/ordine. Grounding locale non
+è entailment, destinazione corretta o autorizzazione alla scrittura. Nessun
+bug corretto durante questo test, nessun gold adattato ai risultati.
+
+Verifiche realmente eseguite: **314 mirati / 14,42 s**, Ruff backend, fixture
+Labirinto --check, **otto verifiche fixture Catanzaro / 0,583 s**, dodici manifest,
+dieci replay esatti e snapshot codice, identità body/corpus, originali, scan
+credenziale, archivio byte per byte e diff/link. Completa/frontend non ripetuti:
+codice applicativo invariato. Test software separati dalla qualità DeepSeek.
+Conservate failure iniziale di ispezione audit senza API e dieci errori di stile
+nel lint esplicito degli helper locali ignorati; backend applicativo Ruff passa.
+
+Integrità: originali, sessioni/revisioni, conversazioni/turni, progetti/file,
+profili e documenti/chunk globali invariati. Il fingerprint dell’intero DB
+**non è invariato**: derivati/FTS/sequenze cambiano. Osservato reload del worker
+live durante creazione helper .py nel backend; startup ricostruisce indici e
+artefatti, coerente ma senza traccia SQL per attribuzione esclusiva. Nessun
+ripristino/manual write DB. Corpus sperimentale già congelato e immutato.
+Per successive acquisizioni helper fuori dal percorso sorvegliato live.
+
+[Report](docs/benchmark-tre-bandi-2026-10-12.md),
+[JSON completo](docs/benchmarks/2026-10-12-tre-bandi.json).
+Bundle `docs/benchmarks/2026-10-12-tre-bandi-audit.tar.gz`: **333 file, 3.395.750
+byte**, SHA-256 `70df9a7b8bd489383d62469aa7a61769e322ffc7135d5ab4939d7eb5e07f5d69`.
+Protocolli/input/originali/code/prompt/schema/raw/HTTP/usage/validazioni/manual
+review/replay/log e failure inclusi; niente DB/config privata/chiave/bytecode.
+Grezzi anche in `backend/data/compilation-audit/tre-bandi-20261011/`.
+Commit risultati autorizzato, nessun push. Nessuna migrazione/reindicizzazione.
+
+Prossimo passo **da discutere prima del codice**: partire dalla destinazione
+sbagliata Minervino, vincolare proprietà alla singola posizione, conservare
+ruolo lungo il blocco e verificare condizioni prima dell’adapter. Non attivare
+ancora il prototipo nella chat. Conservare la baseline e tutte le prove negative.
+
+[Verifiche finali documentali](docs/benchmarks/2026-10-12-tre-bandi-final-checks.json):
+JSON coerente con dodici acquisizioni, hash originali/bundle e inventario passati.
+Conservata la failure del checker che inizialmente assumeva REVIEW_REQUIRED anche
+per righe timeout NOT_VALIDATED e una NA rifiutata; corretta soltanto la verifica,
+nessun nuovo output AI o cambio al motore.

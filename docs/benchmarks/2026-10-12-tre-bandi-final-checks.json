@@ -1,0 +1,20 @@
+{
+  "benchmark_calls": 12,
+  "complete_outputs": 10,
+  "timeouts_with_unknown_usage": 2,
+  "observed_tokens": 597919,
+  "raw_records": 109,
+  "conditional_hypotheses": 91,
+  "resolved_or_written": 0,
+  "public_json_consistent": true,
+  "all_original_hashes_preserved": true,
+  "bundle_members": 333,
+  "bundle_inventory_hashes_valid": true,
+  "bundle_sha256": "70df9a7b8bd489383d62469aa7a61769e322ffc7135d5ab4939d7eb5e07f5d69",
+  "new_document_links_checked": 18,
+  "diff_check": true,
+  "application_code_changed": false,
+  "frontend_repeated": false,
+  "no_new_provider_calls_during_packaging": true,
+  "initial_check_failure": "Packaging checker incorrectly assumed every catalog row had REVIEW_REQUIRED, including timeout NOT_VALIDATED and one rejected NA. Corrected checker to distinguish observation states; acquisitions and application not changed."
+}

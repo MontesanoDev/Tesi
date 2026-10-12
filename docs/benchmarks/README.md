@@ -3,6 +3,24 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Tre bandi reali, 12 ottobre 2026
+
+Richiesta esplicita su tutti e tre, nessun sorteggio: Catanzaro, Minervino,
+Trapani. [Report completo](../benchmark-tre-bandi-2026-10-12.md),
+[JSON di tutti i candidate/esiti](2026-10-12-tre-bandi.json),
+[bundle delle acquisizioni](2026-10-12-tre-bandi-audit.tar.gz) e
+[checksum](2026-10-12-tre-bandi-audit.tar.gz.sha256).
+
+Dodici chiamate reali deepseek-flash su codice/fonti/body congelati, dieci
+risposte complete e due timeout; 597.919 token osservati, usage timeout ignoto.
+91 ipotesi conditional, zero RESOLVED/scritture. Catanzaro/Trapani ripetono i
+dati societari; Minervino presenta tre destinazioni sbagliate con SOURCE valide.
+Affidabilità insufficiente anche rimandando checkbox/ordine; nessun gold o %.
+314 test mirati, otto verifiche fixture Catanzaro, Ruff/fixture/replay/archivio
+verificati. Codice applicativo invariato, completa/frontend non ripetuti.
+Integrità DB parziale: sessioni/corpus/originali invariati, indici/derivati
+cambiati durante reload del server live; dettaglio nel report, nessun ripristino.
+
 ## Prove occasionali su altri bandi
 
 Affiancano il benchmark fisso senza cambiarne gold/fonti/aspettative. Scelta

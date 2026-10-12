@@ -1,5 +1,13 @@
 # Proposta globale sperimentale — 11 ottobre 2026
 
+**Verifica successiva del 12 ottobre, motore invariato:**
+[dodici prove su tre bandi reali](benchmark-tre-bandi-2026-10-12.md), dieci
+risposte complete/due timeout. Dati societari ripetuti a Catanzaro/Trapani,
+copertura variabile e tre destinazioni sbagliate a Minervino pur con SOURCE
+grounded. Tutte le 91 ipotesi restano conditional / REVIEW_REQUIRED.
+Affidabilità ancora insufficiente per attivazione o scrittura automatica;
+ancoraggio allo slot, ruoli e condizioni da discutere prima del prossimo codice.
+
 Esito circoscritto: Trapani recupera otto dati aziendali come ipotesi SOURCE
 condizionate (tre raw reali rivalidati + una nuova chiamata sul gate finale).
 Il solo prototipo usa ora thinking low predefinito; --no-thinking per confronto.
