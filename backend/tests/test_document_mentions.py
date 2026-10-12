@@ -91,7 +91,12 @@ async def test_pdf_mention_scopes_search_and_history_even_if_planner_selects_a_f
 
 
 @pytest.mark.anyio
-async def test_new_document_reference_consults_docx_then_starts_only_on_compile_intent(chat):
+async def test_new_document_reference_consults_docx_then_starts_only_on_compile_intent(
+    chat, monkeypatch,
+):
+    from app import compilation_chat
+
+    monkeypatch.setattr(compilation_chat, "CHAT_ENGINE", "global")
     client, replies, _, _ = chat
     form = (await client.post("/api/projects/alpha/forms", files={
         "file": ("qualsiasi-nome.docx", docx()),
@@ -116,6 +121,12 @@ async def test_new_document_reference_consults_docx_then_starts_only_on_compile_
     assert compiled["compilation"]["action"] == "start", compiled
     sessions = (await client.get("/api/projects/alpha/compilation-sessions")).json()
     assert len(sessions) == 1 and sessions[0]["original_file_id"] == form["id"]
+    assert sessions[0]["engine"] == "global"
+    detail = (await client.get(
+        f"/api/projects/alpha/compilation-sessions/{sessions[0]['id']}",
+    )).json()
+    assert detail["fields"] == []
+    assert sessions[0]["chat"]["max_steps"] == 1
 
 
 @pytest.mark.anyio

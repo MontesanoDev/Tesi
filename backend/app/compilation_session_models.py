@@ -25,6 +25,7 @@ class CreateSession(StrictModel):
     form_id: int = Field(gt=0)
     conversation_id: str | None = Field(default=None, max_length=100)
     start_in_chat: bool = False
+    engine: Literal["legacy", "global"] = "legacy"
 
 
 class RevisionRequest(StrictModel):
@@ -56,6 +57,12 @@ class UpdateFields(RevisionRequest):
 
 
 class FinalizeRequest(RevisionRequest):
+    allow_unresolved: bool = False
+
+
+class GlobalDraftRequest(RevisionRequest):
+    candidate_ids: list[str] = Field(min_length=1, max_length=400)
+    confirmed_condition_ids: list[str] = Field(default_factory=list, max_length=2048)
     allow_unresolved: bool = False
 
 

@@ -204,7 +204,7 @@ export const api = {
   startCompilationSession: (projectId: string, formId: number, conversationId: string | null, signal?: AbortSignal) =>
     request<CompilationSession>(`/projects/${projectId}/compilation-sessions`, {
       method: 'POST', signal,
-      body: JSON.stringify({ form_id: formId, conversation_id: conversationId, start_in_chat: true }),
+      body: JSON.stringify({ form_id: formId, conversation_id: conversationId, start_in_chat: true, engine: 'global' }),
     }),
   resolveCompilationSession: (projectId: string, sessionId: string, version: number, fieldIds?: string[], signal?: AbortSignal, automatic = false) =>
     request<CompilationSession>(`/projects/${projectId}/compilation-sessions/${encodeURIComponent(sessionId)}/resolve`, {
@@ -218,6 +218,16 @@ export const api = {
     request<CompilationSession>(`/projects/${projectId}/compilation-sessions/${encodeURIComponent(sessionId)}/finalize`, {
       method: 'POST', signal, body: JSON.stringify({ version, allow_unresolved: allowUnresolved }),
     }),
+  generateGlobalDraft: (projectId: string, sessionId: string, version: number,
+    candidateIds: string[], confirmedConditions: string[], signal?: AbortSignal) =>
+    request<CompilationSession>(`/projects/${projectId}/compilation-sessions/${encodeURIComponent(sessionId)}/global-draft`, {
+      method: 'POST', signal, body: JSON.stringify({ version, candidate_ids: candidateIds,
+        confirmed_condition_ids: confirmedConditions, allow_unresolved: true }),
+    }),
+  downloadGlobalCompilationReport: async (projectId: string, sessionId: string, signal?: AbortSignal) => {
+    const response = await requestResponse(`/projects/${projectId}/compilation-sessions/${encodeURIComponent(sessionId)}/global-report`, { signal })
+    return response.blob()
+  },
   downloadCompilation: async (projectId: string, runId: string, kind: CompilationDownload, signal?: AbortSignal) => {
     const response = await requestResponse(
       `/projects/${projectId}/document-compilations/${encodeURIComponent(runId)}/download/${kind}`,

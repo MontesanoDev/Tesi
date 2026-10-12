@@ -24,35 +24,13 @@ from app.ai_profiles import resolve_project_settings
 from app.compilation_global import (
     build_global_input,
     global_request,
+    load_document_corpus,
     validate_global_proposal,
 )
 from app.db import get_db_path, get_storage_path
 from app.docx_templates import inspect_docx
 from app.generation import request_model_content
-from app.repository import project_evidence_filter, reload_evidence
 from scripts.compilation_benchmark_fixture import load_fixture, score_fixture
-
-
-def load_document_corpus(db, project_id):
-    """Reuse current role/isolation SQL and reread gate, without vector/LLM search.
-
-    Whole uploaded documents from this project + Company/General KB. Artifacts
-    (including user facts) are excluded from this first SOURCE-only experiment.
-    Limits are enforced later before the request; never sample silently.
-    """
-    rows = db.execute(
-        "SELECT c.id chunk_id,c.file_id,c.chunk_index,1.0 relevance "
-        "FROM document_chunks c JOIN project_files f ON f.id=c.file_id "
-        "WHERE c.project_id=? AND f.project_id=c.project_id AND f.kind='source' AND "
-        + project_evidence_filter("source") + " ORDER BY c.file_id,c.chunk_index",
-        (project_id,),
-    ).fetchall()
-    rows += db.execute(
-        "SELECT -c.id chunk_id,-d.id file_id,c.chunk_index,1.0 relevance "
-        "FROM global_document_chunks c JOIN global_documents d ON d.id=c.document_id "
-        "WHERE d.category IN ('company','general') ORDER BY d.id,c.chunk_index",
-    ).fetchall()
-    return reload_evidence(project_id, [dict(r) for r in rows], target="source", db=db)
 
 
 def arguments(argv=None):

@@ -2,6 +2,7 @@ import logging
 from contextlib import contextmanager
 
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import FileResponse
 from starlette.concurrency import run_in_threadpool
 
 from app import compilation_sessions as sessions
@@ -9,6 +10,7 @@ from app.ai_profiles import ProfileError, project_ai_context
 from app.compilation_session_models import (
     CreateSession,
     FinalizeRequest,
+    GlobalDraftRequest,
     ResolveRequest,
     UpdateFields,
 )
@@ -51,7 +53,7 @@ def api_errors():
 def create_session(project_id: str, body: CreateSession) -> dict:
     with api_errors():
         return sessions.create_session(project_id, body.form_id, body.conversation_id,
-                                       start_in_chat=body.start_in_chat)
+                                       start_in_chat=body.start_in_chat, engine=body.engine)
 
 
 @router.get("")
@@ -72,6 +74,11 @@ def get_revisions(project_id: str, session_id: str) -> list[dict]:
 @router.post("/{session_id}/resolve")
 async def resolve(project_id: str, session_id: str, body: ResolveRequest) -> dict:
     with api_errors(), project_ai_context(project_id):
+        session = await run_in_threadpool(sessions.get_session, project_id, session_id)
+        if session.get("engine") == "global":
+            from app.compilation_global_sessions import resolve_global
+
+            return await resolve_global(project_id, session_id, body.version, body.field_ids)
         try:
             return await resolve_session(project_id, session_id, body.version, body.field_ids,
                                          automatic=body.automatic)
@@ -104,3 +111,20 @@ async def finalize(project_id: str, session_id: str, body: FinalizeRequest) -> d
         return await run_in_threadpool(
             sessions.finalize_session, project_id, session_id, body.version, body.allow_unresolved
         )
+
+
+@router.post("/{session_id}/global-draft")
+async def global_draft(project_id: str, session_id: str, body: GlobalDraftRequest) -> dict:
+    from app.compilation_global_sessions import generate_draft
+
+    with api_errors():
+        return await run_in_threadpool(generate_draft, project_id, session_id, body)
+
+
+@router.get("/{session_id}/global-report")
+def global_report(project_id: str, session_id: str) -> FileResponse:
+    from app.compilation_global_sessions import report_path
+
+    return FileResponse(report_path(project_id, session_id), media_type="application/json",
+                        filename="proposte-compilazione.json",
+                        headers={"Cache-Control": "no-store"})

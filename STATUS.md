@@ -1,5 +1,48 @@
 # Stato di Mapi RAG
 
+## Motore globale predefinito nella chat — 12 ottobre 2026, integrazione in verifica
+
+Richiesta corrente: rendere provabile con `./start.sh` la nuova compilazione e
+mettere da parte il percorso precedente. «Main» indica il motore predefinito
+nell'applicazione: nessun cambio di branch Git o push.
+
+Le nuove richieste `@modulo DOCX` + «me lo compili?» creano sessioni
+`engine=global`, riusando persistenza, routing e renderer. Un solo resolve
+analizza tutto il catalogo V5/contratto V10; nessun batch da 12, retry automatico
+o domanda V1. Le sessioni precedenti restano `legacy`, conservate e senza
+avanzamento automatico dalla UI; nuova conversazione consigliata per provare.
+API V1 mantenute per compatibilità, creazione diretta senza engine resta legacy.
+
+Il risultato è una proposta da rivedere, NON RESOLVED. Disclosure nella chat:
+selezione esplicita dei valori, contesto FORM/SOURCE, conferma USER delle sole
+condizioni unknown dei valori selezionati, consenso esplicito alla bozza
+parziale. Solo valori testuali grounded e scrivibili; alternative/rifiuti e
+checkbox esclusi. Export da originale, ricontrollo SOURCE e revisione CAS anche
+nella transazione di salvataggio, validatore DOCX esistente. Provenienza dei
+valori SOURCE distinta da reviewed_by USER e dalle conferme di applicabilità.
+Nessuna promozione automatica a RESOLVED o certificazione di completezza.
+
+Budget: una chiamata di analisi/modulo, timeout 300 s, lease 360 s, nessun retry
+implicito; il routing semantico esistente può richiedere una chiamata separata.
+Max 400 candidate, 96 chunk SOURCE, 100.000 caratteri SOURCE, 350.000 input;
+corpus autorizzato piccolo completo, non nuovo retrieval e non equivalente al
+benchmark FTS5/Qdrant. Limite superato -> errore esplicito. Pausa, errore e
+refresh non ripetono l'analisi; ripresa esplicita autorizza un nuovo tentativo.
+Nessuna migrazione/reindicizzazione o modifica agli originali/dati live.
+
+Verifiche finora: 58 backend mirati, 101 frontend, 8 browser desktop/mobile
+(compreso movimento ridotto), lint/build frontend passati. Suite completa: 1.847 passati /126,81 s; Ruff e frontend lint/build passati.
+Prova API reale DeepSeek ancora da concludere; non presentarla come passata.
+Failure intermedie di fixture legacy, tipi/mock frontend e lint conservate in
+backend/data/compilation-audit/global-main-20261012/. Documentazione di uso:
+[CompilationSession](docs/compilation-session-v1.md).
+
+Prossimo punto: concludere controlli e smoke reale in DB/storage temporanei,
+archiviare report/risultati in relazioni.md, poi valutare sulla chat la revisione
+prima di ampliare checkbox o iterazione libera. Il vecchio motore non va rimosso
+fisicamente mentre serve alla compatibilità.
+
+
 ## Ruolo fra paragrafi — 12 ottobre 2026, passo V10 verificato
 
 Catalogo V5 / contratto V10, prototipo a una chiamata. Diagnosi concreta:

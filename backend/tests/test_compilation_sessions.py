@@ -48,6 +48,11 @@ def docx(labels=("Denominazione sociale", "Sede legale"), context="Dati aziendal
 
 @pytest.fixture(params=["fts5", "qdrant"])
 async def api(tmp_path, monkeypatch, request):
+    # This shared fixture exercises the preserved V1 implementation explicitly.
+    # New global integration tests override the chat engine back to "global".
+    from app import compilation_chat
+
+    monkeypatch.setattr(compilation_chat, "CHAT_ENGINE", "legacy")
     monkeypatch.setenv("MAPI_DB_PATH", str(tmp_path / "sessions.db"))
     monkeypatch.setenv("MAPI_STORAGE_PATH", str(tmp_path / "uploads"))
     monkeypatch.setenv("MAPI_KNOWLEDGE_PATH", str(tmp_path / "knowledge"))

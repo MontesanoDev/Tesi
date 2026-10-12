@@ -1,5 +1,11 @@
 # Proposta globale sperimentale — 11 ottobre 2026
 
+**Dal 12 ottobre:** il contratto V10 è disponibile come default nelle nuove
+compilazioni della chat, con revisione USER ed export esplicito della sola bozza
+parziale. Non promuove le proposte a RESOLVED.
+[Uso e limiti attuali](compilation-session-v1.md#motore-attivo-dal-12-ottobre-proposta-globale-e-revisione).
+Le sezioni seguenti conservano gli esiti storici precedenti all’integrazione.
+
 ## Contesto e ruoli V10, passo del 12 ottobre
 
 Catalogo V5 conserva un'introduzione FORM tramite riferimento per massimo sei

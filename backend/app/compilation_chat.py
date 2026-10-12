@@ -15,6 +15,7 @@ from app.document_compilation import StrictModel
 
 MAX_AUTO_STEPS = 36
 MAX_AUTO_SECONDS = 600
+CHAT_ENGINE = "global"
 
 
 class ChatFieldReply(StrictModel):
@@ -205,6 +206,10 @@ def field_label(field):
 
 
 def chat_view(state):
+    if state.get("engine") == "global":
+        from app.compilation_global_sessions import chat_view as global_chat_view
+
+        return global_chat_view(state)
     from app.compilation_clarifications import (
         automatic_fields,
         clarification_question,
@@ -514,7 +519,8 @@ def active_session(project_id, conversation_id, form_id=None, session_id=None):
         ):
             raise HTTPException(404, "Sessione non appartenente a questa conversazione/modulo")
         return session
-    summaries = sessions.list_sessions(project_id, conversation_id)
+    summaries = sorted(sessions.list_sessions(project_id, conversation_id),
+                       key=lambda s: s.get("engine") != "global")
     match = next(
         (s for s in summaries if form_id is None or s["original_file_id"] == form_id), None
     )
@@ -556,6 +562,7 @@ async def handle_decision(
                     form_id,
                     conversation_id,
                     start_in_chat=True,
+                    engine=CHAT_ENGINE,
                 )
             except DocxTooLargeError:
                 raise
@@ -563,12 +570,23 @@ async def handle_decision(
                 return ("Non riesco a individuare campi compilabili supportati in questo DOCX. "
                         "Posso aiutarti a consultarlo; per compilarlo serve un modulo con "
                         "celle vuote o segnaposti riconoscibili.", None)
+            if session.get("engine") == "global" and (
+                session["status"] == "FAILED" or session["chat"]["paused"]
+            ):
+                from app.compilation_global_sessions import control_session
+
+                session = await run_in_threadpool(
+                    control_session, project_id, session["id"], session["version"], "resume")
             return "Certo. Analizzo il modulo e verifico le informazioni disponibili.", {
                 "session_id": session["id"],
                 "action": "start",
             }
         if session is None:
             return "Seleziona il modulo e chiedimi di iniziare la compilazione.", None
+        if session.get("engine") == "global":
+            from app.compilation_global_sessions import handle_chat_action
+
+            return await handle_chat_action(session, decision, expected_version, message)
         if action == "compilation_control":
             control = decision.control
             if not contains_span(message, control.user_quote):

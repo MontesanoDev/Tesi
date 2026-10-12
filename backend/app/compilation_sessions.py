@@ -165,6 +165,8 @@ def _row(db, project_id: str, session_id: str):
 
 
 def ensure_form_dependencies(row, state):
+    if state.get("engine") == "global":
+        return
     from app.compilation_form_conditions import DEPENDENCY_VERSION, attach_form_dependencies
 
     if state.get("form_dependency_version") != DEPENDENCY_VERSION:
@@ -174,11 +176,16 @@ def ensure_form_dependencies(row, state):
 
 def payload(row) -> dict:
     state = json.loads(row["state_json"])
+    if state.get("engine") == "global":
+        from app.compilation_global_sessions import session_payload
+
+        return session_payload(row, state)
     ensure_form_dependencies(row, state)
     synchronize(state)  # Reuse verified decisions also after a refresh (read-only).
     counts = Counter(field["status"] for field in state["fields"])
     return {
         **state,
+        "engine": "legacy",
         "chat": chat_view(state),
         "id": row["id"],
         "project_id": row["project_id"],
@@ -257,7 +264,7 @@ def revisions(project_id: str, session_id: str) -> list[dict]:
 
 def create_session(
     project_id: str, form_id: int, conversation_id: str | None = None,
-    *, start_in_chat: bool = False,
+    *, start_in_chat: bool = False, engine: str = "legacy",
 ) -> dict:
     # Original + all candidates are committed together. No output, indexing or LLM.
     with connection() as db:
@@ -283,12 +290,13 @@ def create_session(
                 db, project_id, f"Compilazione {form['name']}",
             )["id"]
         if conversation_id is not None:
-            existing = db.execute(
+            existing = next((item for item in db.execute(
                 "SELECT * FROM compilation_sessions "
                 "WHERE project_id=? AND conversation_id=? AND form_id=? "
-                "ORDER BY updated_at DESC, id DESC LIMIT 1",
+                "ORDER BY updated_at DESC, id DESC",
                 (project_id, conversation_id, form_id),
-            ).fetchone()
+            ).fetchall() if json.loads(item["state_json"]).get("engine", "legacy") == engine),
+                None)
             # BEGIN IMMEDIATE serializes starts, preserving any historical duplicates.
             if start_in_chat:
                 db.execute(
@@ -299,6 +307,8 @@ def create_session(
                 touch_project(db, project_id)
             if existing:
                 existing_state = json.loads(existing["state_json"])
+                if engine == "global":
+                    return payload(existing)
                 if start_in_chat and (not budget_available(existing_state.get("chat_workflow"))
                                       or existing_state["status"] == "FAILED"
                                       or chat_view(existing_state)["paused"]):
@@ -313,23 +323,30 @@ def create_session(
                     return save_state(db, existing, existing_state, "chat_resume")
                 return payload(existing)
         original = _form_path(project_id, form["storage_path"]).read_bytes()
-        layout = inspect_docx(original)
+        layout = (inspect_docx(original, require_candidates=False)
+                  if engine == "global" else inspect_docx(original))
         session_id, timestamp = uuid4().hex, now()
         state = {
-            "chat_workflow": new_cycle() if start_in_chat else None,
+            "engine": engine,
+            "chat_workflow": new_cycle() if start_in_chat and engine != "global" else None,
             "form_dependency_version": DEPENDENCY_VERSION,
             "status": "CREATED",
             "template_name": form["name"],
             "template_sha256": layout.sha256,
             "original_file_id": form_id,
             "original_storage_path": form["storage_path"],
-            "fields": candidate_snapshots(layout, project_id, form_id, form["name"]),
+            "fields": (candidate_snapshots(layout, project_id, form_id, form["name"])
+                       if engine != "global" else []),
             "unsupported_locations": layout.unsupported_locations,
             "last_generation": None,
             "last_error": None,
             "lease_until": None,
             "last_resolution": None,
         }
+        if engine == "global":
+            from app.compilation_global_sessions import initial_state
+
+            state["global_compilation"] = initial_state(layout)
         db.execute(
             "INSERT INTO compilation_sessions "
             "(id,project_id,form_id,conversation_id,original,state_json,created_at,updated_at) "
@@ -415,7 +432,8 @@ def read_original(row):
     original = bytes(row["original"])
     if hashlib.sha256(original).hexdigest() != json.loads(row["state_json"])["template_sha256"]:
         raise DocumentInputError("Lo snapshot originale non coincide con il suo hash")
-    return inspect_docx(original)
+    return (inspect_docx(original, require_candidates=False)
+            if json.loads(row["state_json"]).get("engine") == "global" else inspect_docx(original))
 
 
 def claim_resolution(project_id: str, session_id: str, version: int, ids: list[str] | None,
@@ -952,6 +970,8 @@ def finalize_session(project_id, session_id, version, allow_unresolved=False) ->
     with connection() as db:
         row = _row(db, project_id, session_id)
         state = check_revision(row, version)
+        if state.get("engine") == "global":
+            raise HTTPException(409, "Rivedi e seleziona le proposte prima di generare la bozza")
     try:
         layout = read_original(row)
         if not allow_unresolved and any(

@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import { api } from '../api'
 import { compilationReplyParagraphs } from '../compilationReply'
 import type { CompilationSession, GroundedAnswer } from '../types'
+import { GlobalCompilationReview } from './GlobalCompilationReview'
 
-export function CompilationReply({ session, response, pending, processing, locked, error, onRetry }: {
+export function CompilationReply({ session, response, pending, processing, locked, error, onRetry, onGenerateDraft }: {
   session: CompilationSession
   response?: GroundedAnswer | null
   pending: boolean
@@ -11,6 +12,7 @@ export function CompilationReply({ session, response, pending, processing, locke
   locked: boolean
   error: string | null
   onRetry: () => void
+  onGenerateDraft?: (candidateIds: string[], conditions: string[]) => Promise<unknown>
 }) {
   const [downloading, setDownloading] = useState(false)
   const [downloadError, setDownloadError] = useState<string | null>(null)
@@ -19,23 +21,25 @@ export function CompilationReply({ session, response, pending, processing, locke
 
   const paragraphs = compilationReplyParagraphs(session, response, processing, error)
 
-  async function download() {
-    if (!session.last_generation || downloadController.current) return
+  async function download(kind: 'docx' | 'report' = 'docx') {
+    if ((!session.last_generation && kind === 'docx') || downloadController.current) return
     const controller = new AbortController()
     downloadController.current = controller
     setDownloading(true)
     setDownloadError(null)
     try {
-      const blob = await api.downloadCompilation(session.project_id, session.last_generation.id, 'docx', controller.signal)
+      const blob = session.last_generation
+        ? await api.downloadCompilation(session.project_id, session.last_generation.id, kind, controller.signal)
+        : await api.downloadGlobalCompilationReport(session.project_id, session.id, controller.signal)
       if (controller.signal.aborted) return
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
-      link.download = session.template_name.replace(/\.docx$/i, '.compilato.docx')
+      link.download = kind === 'docx' ? session.template_name.replace(/\.docx$/i, '.compilato.docx') : 'report-compilazione.json'
       link.click()
       window.setTimeout(() => URL.revokeObjectURL(url), 1000)
     } catch {
-      if (!controller.signal.aborted) setDownloadError('Non riesco a scaricare la bozza. Puoi riprovare: il documento è conservato.')
+      if (!controller.signal.aborted) setDownloadError('Non riesco a scaricare il file. Puoi riprovare: il documento è conservato.')
     } finally {
       if (!controller.signal.aborted) setDownloading(false)
       if (downloadController.current === controller) downloadController.current = null
@@ -46,12 +50,17 @@ export function CompilationReply({ session, response, pending, processing, locke
   return <>
     {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
     {(error || session.last_error) && <p role="alert">{error
-      || 'Ho conservato il lavoro fatto finora, ma non sono riuscito a completare il modulo. Possiamo riprendere o preparare una bozza parziale.'}</p>}
+      || (session.engine === 'global' ? 'Analisi interrotta: nessun valore applicato. Chiedimi di riprendere per ritentare.'
+        : 'Ho conservato il lavoro fatto finora, ma non sono riuscito a completare il modulo. Possiamo riprendere o preparare una bozza parziale.')}</p>}
     {error && <button type="button" className="button" disabled={locked} onClick={onRetry}>Riprova</button>}
+    {session.engine === 'global' && !processing && !session.chat?.paused
+      && session.global_compilation?.phase === 'REVIEW' && <GlobalCompilationReview
+        key={`${session.id}:${session.global_compilation.attempts}`} session={session} locked={locked}
+        onGenerate={onGenerateDraft} />}
     {session.last_generation && <>
-      {session.open_issues.length > 0
+      {session.engine !== 'global' && (session.open_issues.length > 0
         ? <p>Ho preparato una bozza parziale: restano informazioni da chiarire per completare il modulo.</p>
-        : !paragraphs.length && <p>Ho preparato la bozza. Puoi scaricarla e verificarla.</p>}
+        : !paragraphs.length && <p>Ho preparato la bozza. Puoi scaricarla e verificarla.</p>)}
       {session.version > session.last_generation.session_version + 1
         && <p>La copia scaricabile precede le ultime modifiche. Chiedimi di generare una nuova copia per includerle.</p>}
       <div className="assistant-attachment">
@@ -60,6 +69,11 @@ export function CompilationReply({ session, response, pending, processing, locke
         </button>
       </div>
     </>}
+    {session.engine === 'global' && session.global_compilation?.report_url && <button
+      type="button" className="button" disabled={locked || downloading}
+      onClick={() => void download('report')}>
+      {session.last_generation ? 'Scarica report bozza' : 'Scarica report proposte'}
+    </button>}
     {downloadError && <p role="alert">{downloadError}</p>}
   </>
 }

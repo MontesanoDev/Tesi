@@ -47,7 +47,7 @@ describe('API errors', () => {
     await api.projectAnswer('alpha', 'riassumilo', 'chat', undefined, 42)
     expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ question: 'riassumilo', conversation_id: 'chat', document_id: 42 })
     await api.startCompilationSession('alpha', 42, 'chat')
-    expect(JSON.parse(fetch.mock.calls[1][1].body)).toEqual({ form_id: 42, conversation_id: 'chat', start_in_chat: true })
+    expect(JSON.parse(fetch.mock.calls[1][1].body)).toEqual({ form_id: 42, conversation_id: 'chat', start_in_chat: true, engine: 'global' })
     await api.compilationSessions('alpha', 'chat/with space')
     expect(new URL(fetch.mock.calls[2][0], 'http://test').searchParams.get('conversation_id')).toBe('chat/with space')
     await api.resolveCompilationSession('alpha', 'session', 3)
@@ -76,6 +76,17 @@ describe('API errors', () => {
       conversation_id: 'chat', document_id: 42, compilation_session_id: 'session', compilation_version: 5 })
     await api.resolveCompilationSession('alpha', 'session', 5, undefined, undefined, true)
     expect(JSON.parse(fetch.mock.calls[1][1].body)).toEqual({ version: 5, automatic: true })
+  })
+
+  it('exports only explicit reviewed selections and downloads the proposal audit', async () => {
+    const fetch = vi.fn().mockImplementation(async () => new Response('{}'))
+    vi.stubGlobal('fetch', fetch)
+    await api.generateGlobalDraft('alpha', 'session', 8, ['p1.s0'], ['c1'])
+    expect(fetch.mock.calls[0][0]).toBe('/api/projects/alpha/compilation-sessions/session/global-draft')
+    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({ version: 8,
+      candidate_ids: ['p1.s0'], confirmed_condition_ids: ['c1'], allow_unresolved: true })
+    await api.downloadGlobalCompilationReport('alpha', 'session')
+    expect(fetch.mock.calls[1][0]).toBe('/api/projects/alpha/compilation-sessions/session/global-report')
   })
 
 })

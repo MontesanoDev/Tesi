@@ -9,6 +9,7 @@ vi.mock('../api', () => ({ api: {
   project: vi.fn(), conversation: vi.fn(), projectAnswer: vi.fn(), compilationSessions: vi.fn(),
   compilationSession: vi.fn(), startCompilationSession: vi.fn(), resolveCompilationSession: vi.fn(),
   updateCompilationFields: vi.fn(), finalizeCompilationSession: vi.fn(), downloadCompilation: vi.fn(),
+  generateGlobalDraft: vi.fn(), downloadGlobalCompilationReport: vi.fn(),
 } }))
 vi.mock('../components/ProjectKnowledgePanel', () => ({ ProjectKnowledgePanel: () => null }))
 vi.mock('../components/ProjectModelSelector', () => ({ ProjectModelSelector: () => null }))
@@ -677,6 +678,70 @@ describe('CompilationSession nella chat', () => {
     expect(stored.version).toBe(3)
     expect(stored.fields[0].value).toBeNull()
     expect(api.updateCompilationFields).not.toHaveBeenCalled()
+  })
+
+  function globalSession(review = false): CompilationSession {
+    const s = session([], review ? 'WAITING_FOR_USER' : 'CREATED', review ? 3 : 1)
+    return { ...s, engine: 'global', global_compilation: {
+      phase: review ? 'REVIEW' : 'PENDING', candidate_count: 2, attempts: review ? 1 : 0,
+      proposal_count: review ? 1 : 0, omitted: 1, rejected: 0, report_url: review ? '/audit' : null,
+      conditions: [{ id: 'c1', quote: 'Se società', result: 'unknown', reason: 'La sezione è applicabile' }],
+      fields: review ? [{ candidate_id: 't0.r0.c1', label: 'Denominazione', value: 'Orione S.r.l.',
+        validation: 'REVIEW_REQUIRED', selectable: true, conditional: true, conditions: ['c1'],
+        form_context: 'Se società: Denominazione', form_quote: 'Denominazione', issues: [],
+        source_evidence: [{ chunk_id: -2, file_id: -1, scope: 'global', role: 'source',
+          source_name: 'visura.txt', category: 'company', quote: 'Denominazione: Orione S.r.l.',
+        }] }] : [],
+    }, chat: { enabled: true, auto_continue: !review, paused: false, question: null,
+      analyzed: review ? 2 : 0, verified: 0, user_provided: 0, remaining_questions: 0,
+      steps_used: review ? 1 : 0, max_steps: 1 } }
+  }
+
+  it('esegue una sola analisi globale, richiede revisione esplicita e ripristina la bozza', async () => {
+    stored = globalSession()
+    vi.mocked(api.resolveCompilationSession).mockImplementation(async () => {
+      stored = globalSession(true)
+      return structuredClone(stored)
+    })
+    vi.mocked(api.generateGlobalDraft).mockImplementation(async (_p, _s, version, ids, conditions) => {
+      stored = { ...stored!, status: 'GENERATED', version: version + 1,
+        global_compilation: { ...stored!.global_compilation!, last_review: {
+          candidate_ids: ids, confirmed_condition_ids: conditions, provenance: 'USER' } }, last_generation: {
+          id: 'run-1', project_id: 'alpha', template_name: form.name, created_at: '',
+          status: 'needs_review', session_version: version,
+          downloads: { docx: '/file', report: '/report', template: '/original' },
+        } }
+      return structuredClone(stored!)
+    })
+    const view = await setup('/projects/alpha/conversations/chat-1')
+    await screen.findByText(/Ho preparato 1 proposta/)
+    expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
+    expect(api.finalizeCompilationSession).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByText('Rivedi proposte e condizioni'))
+    const generate = screen.getByRole('button', { name: 'Genera bozza con i valori selezionati' })
+    expect(generate).toBeDisabled()
+    fireEvent.click(screen.getByRole('checkbox', { name: /Usa Denominazione/ }))
+    expect(generate).toBeDisabled()
+    fireEvent.click(screen.getByRole('checkbox', { name: /Confermo che si applica/ }))
+    expect(generate).toBeDisabled()
+    fireEvent.click(screen.getByRole('checkbox', { name: /Confermo di generare una bozza parziale/ }))
+    fireEvent.click(generate)
+    await screen.findByRole('button', { name: 'Scarica DOCX' })
+    expect(api.generateGlobalDraft).toHaveBeenCalledWith('alpha', 'session-1', 3,
+      ['t0.r0.c1'], ['c1'], expect.any(AbortSignal))
+    view.unmount()
+    await setup('/projects/alpha/conversations/chat-1')
+    await screen.findByRole('button', { name: 'Scarica DOCX' })
+    expect(screen.getByRole('checkbox', { name: /Usa Denominazione/ })).toBeChecked()
+    expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
+  })
+
+  it('conserva una sessione legacy senza avviare il vecchio motore', async () => {
+    stored = { ...conversational(session()), engine: 'legacy' }
+    await setup('/projects/alpha/conversations/chat-1')
+    await screen.findByText(/Questa sessione usa il motore precedente/)
+    expect(api.resolveCompilationSession).not.toHaveBeenCalled()
+    expect(api.generateGlobalDraft).not.toHaveBeenCalled()
   })
 
 })

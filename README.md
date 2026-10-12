@@ -23,6 +23,11 @@ Da Linux o macOS (x64/arm64), dalla radice del repository:
 - Applicazione: `http://localhost:5173`
 - API e schema OpenAPI: `http://localhost:8000/docs`
 
+Per provare la compilazione globale: nuova conversazione nel progetto,
+`@modulo.docx` e **«me lo compili?»**. Una sola analisi, poi **Rivedi proposte
+e condizioni** e generazione esplicita di una bozza parziale. Le sessioni
+precedenti sono conservate. [Istruzioni e limiti](docs/compilation-session-v1.md).
+
 Lo script installa automaticamente le dipendenze frontend mancanti o non valide
 con `npm ci` e sincronizza quelle backend con `uv sync --locked` prima di
 avviare i servizi. Se manca `uv`, usa il suo [installer ufficiale](https://docs.astral.sh/uv/reference/installer/)

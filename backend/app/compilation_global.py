@@ -1,8 +1,9 @@
-"""Experimental single-proposal contract; never mutates sessions or renders files.
+"""Pure single-proposal contract; never mutates sessions or renders files.
 
 Local grounding is not a semantic verdict. Even a grounded proposal requires
 evaluation of property/subject/branch before it can become a session value.
-The production V1 gates are deliberately not bypassed by this experiment.
+The chat adapter applies explicit USER review and the existing DOCX validator
+before export; this module alone never authorizes materialization.
 """
 
 from __future__ import annotations
@@ -57,6 +58,25 @@ SPARSE_ASSIGNMENT = TypeAdapter(SparseAssignment)
 ALTERNATIVE_ASSIGNMENT = TypeAdapter(AlternativeAwareAssignment)
 SUBJECT_ASSIGNMENT = TypeAdapter(SubjectBoundAssignment)
 CONDITIONAL_ASSIGNMENT = TypeAdapter(ConditionalAssignment)
+
+
+def load_document_corpus(db, project_id):
+    """Authorized complete small SOURCE corpus, shared by UI and benchmark."""
+    from app.repository import project_evidence_filter, reload_evidence
+
+    rows = db.execute(
+        "SELECT c.id chunk_id,c.file_id,c.chunk_index,1.0 relevance "
+        "FROM document_chunks c JOIN project_files f ON f.id=c.file_id "
+        "WHERE c.project_id=? AND f.project_id=c.project_id AND f.kind='source' AND "
+        + project_evidence_filter("source") + " ORDER BY c.file_id,c.chunk_index",
+        (project_id,),
+    ).fetchall()
+    rows += db.execute(
+        "SELECT -c.id chunk_id,-d.id file_id,c.chunk_index,1.0 relevance "
+        "FROM global_document_chunks c JOIN global_documents d ON d.id=c.document_id "
+        "WHERE d.category IN ('company','general') ORDER BY d.id,c.chunk_index",
+    ).fetchall()
+    return reload_evidence(project_id, [dict(r) for r in rows], target="source", db=db)
 
 
 class GlobalField(StrictModel):

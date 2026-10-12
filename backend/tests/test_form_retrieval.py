@@ -28,6 +28,11 @@ def anyio_backend():
 
 @pytest.fixture(params=["fts5", "qdrant"])
 async def chat(tmp_path, monkeypatch, request):
+    # Historical compilation regressions retain V1 explicitly. Global adapter
+    # tests opt into the new default; retrieval itself is engine independent.
+    from app import compilation_chat
+
+    monkeypatch.setattr(compilation_chat, "CHAT_ENGINE", "legacy")
     monkeypatch.setenv("MAPI_DB_PATH", str(tmp_path / "forms.db"))
     monkeypatch.setenv("MAPI_STORAGE_PATH", str(tmp_path / "uploads"))
     monkeypatch.setenv("MAPI_KNOWLEDGE_PATH", str(tmp_path / "knowledge"))

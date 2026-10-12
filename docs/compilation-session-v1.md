@@ -1,5 +1,61 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Motore attivo dal 12 ottobre: proposta globale e revisione
+
+Avviare `./start.sh`, scegliere il modello del progetto (DeepSeek per le prove
+reali già effettuate), aprire una **nuova conversazione**, selezionare il DOCX
+con `@` e scrivere **«me lo compili?»**. Il routing è quello esistente;
+«riassumilo» continua a usare FORM RAG senza creare una compilazione.
+
+La chat crea/riprende una sessione `engine=global`. Un'unica chiamata riceve il
+catalogo completo e il piccolo corpus SOURCE autorizzato. Il risultato
+persistito rimane una **proposta da rivedere**, non uno stato RESOLVED:
+
+1. Attendere l'analisi unica, senza pulsanti per batch o questionario V1.
+2. Aprire **Rivedi proposte e condizioni**, controllare posizione/FORM e SOURCE,
+   selezionare i valori da usare. Nessun valore è preselezionato al primo export.
+3. Confermare soltanto le condizioni sconosciute effettivamente applicabili.
+   Queste conferme restano USER; non diventano evidenze SOURCE.
+4. Confermare esplicitamente la **bozza parziale** e premere **Genera bozza con
+   i valori selezionati**. Download DOCX e report disponibili nella chat.
+
+Il renderer e il validatore DOCX vengono riusati: ogni export parte
+dall'originale e rivalida le SOURCE correnti. CAS e ricontrollo nella transazione
+impediscono di esportare con revisioni/fonti obsolete. I valori mantengono
+provenienza SOURCE e `reviewed_by=USER`. Rifiuti/alternative non selezionabili;
+checkbox native visibili nel report ma non scritte. Nessuna generazione
+incompleta implicita o promessa di completezza/ammissibilità.
+
+Stato salvato nello `state_json` esistente: CREATED -> ANALYZING ->
+WAITING_FOR_USER (phase REVIEW) -> GENERATED soltanto dopo review/export.
+`fields=[]` distingue la proposta globale dai campi risolti V1. La API espone
+`global_compilation.fields/conditions/proposal_count/omitted` e `engine`.
+Refresh ripristina risultato/download; pausa/errore non consumano altre chiamate.
+Ripresa esplicita dopo errore autorizza un solo nuovo tentativo.
+
+API: POST /compilation-sessions con `engine=global`; resolve esistente fa una
+sola analisi globale; POST /{id}/global-draft riceve `version`, `candidate_ids`,
+`confirmed_condition_ids`, `allow_unresolved=true`; GET /{id}/global-report
+scarica l'audit. Download di DOCX/report generato tramite document-compilations
+esistenti. `/finalize` V1 non può esportare sessioni globali.
+
+Budget: 400 candidate / 96 chunk / 100.000 caratteri SOURCE / 350.000 input;
+nessun taglio silenzioso. Una chiamata di analisi con timeout 300 s e lease 360 s;
+il planner della chat è una chiamata separata. Corpus SOURCE autorizzato completo
+entro il limite, non ranking del vecchio resolver. Provider scelto dal progetto;
+DeepSeek thinking low nell'analisi, altri provider usano il trasporto esistente
+ma non sono ancora validati semanticamente su questo adapter.
+
+Prompt/input/originale/raw output/audit/tempi salvati nel relativo storage
+`<project>/_global_compilations/<session>/<attempt>/`, senza chiave API.
+Questi artefatti locali richiedono backup separato. Nessuna migrazione DB.
+
+**Compatibilità:** sessioni precedenti rimangono `engine=legacy`, senza cambio
+di stato o avanzamento automatico della UI. Le API dirette senza engine
+conservano la semantica V1. Le sezioni successive descrivono il percorso
+storico V1 e gli esperimenti precedenti: non sono il nuovo default della chat.
+
+
 Una sessione riguarda un solo modulo DOCX archiviato nel progetto. L'iterazione
 modifica dati persistiti; il file Word viene generato soltanto su richiesta.
 La chat esistente offre selezione `@`, avvio/ripresa, riepilogo, chiarimenti

@@ -406,7 +406,8 @@ export function ProjectWorkspacePage() {
     <CompilationReply key={activeSession.id} session={activeSession} response={latestTurn?.result}
       pending={Boolean(latestTurn && !latestTurn.result && !latestTurn.error)}
       processing={sessionProcessing} locked={sessionProcessing || searching || changingModel}
-      error={compilation.error} onRetry={compilation.refresh} />
+      error={compilation.error} onRetry={compilation.refresh}
+      onGenerateDraft={compilation.generateDraft} />
   ) : null
 
   const composer = (

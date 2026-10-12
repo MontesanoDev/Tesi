@@ -27,7 +27,7 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
   const [poll, setPoll] = useState(0)
   const current = state.key === key ? state : { key, session: null, loading: Boolean(conversationId), busy: false, error: null }
   const processing = current.busy || hasActiveLease(current.session) || Boolean(
-    current.session?.chat?.auto_continue && !current.session.chat.paused
+    current.session?.engine !== 'legacy' && current.session?.chat?.auto_continue && !current.session.chat.paused
     && !current.error && !current.loading && !suspended)
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
     if (projectId && conversationId) {
       api.compilationSessions(projectId, conversationId, controller.signal)
         .then(async (summaries) => {
-          const match = summaries.find((item) => item.project_id === projectId
+          const match = [...summaries].sort((a, b) => Number(b.engine === 'global') - Number(a.engine === 'global')).find((item) => item.project_id === projectId
             && item.conversation_id === conversationId
             && (formId == null || item.original_file_id === formId))
           const session = match ? await api.compilationSession(projectId, match.id, controller.signal) : null
@@ -110,7 +110,7 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
 
   useEffect(() => {
     const session = current.session
-    if (!projectId || !session?.chat?.auto_continue || session.chat.paused || session.conversation_id !== conversationId
+    if (!projectId || session?.engine === 'legacy' || !session?.chat?.auto_continue || session.chat.paused || session.conversation_id !== conversationId
       || current.busy || current.loading
       || current.error || suspended || operation.current) return
     // One step per snapshot; the persisted backend budget authorizes every next step.
@@ -132,5 +132,8 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
       ? run((signal) => api.updateCompilationFields(projectId!, current.session!.id, current.session!.version, [field], signal)) : Promise.resolve(null),
     finalize: (allowUnresolved = false) => current.session
       ? run((signal) => api.finalizeCompilationSession(projectId!, current.session!.id, current.session!.version, allowUnresolved, signal)) : Promise.resolve(null),
+    generateDraft: (candidateIds: string[], confirmedConditions: string[]) => current.session
+      ? run((signal) => api.generateGlobalDraft(projectId!, current.session!.id,
+        current.session!.version, candidateIds, confirmedConditions, signal)) : Promise.resolve(null),
   }
 }

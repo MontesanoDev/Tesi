@@ -114,6 +114,7 @@ export interface CompilationChatState {
 }
 
 export interface CompilationSessionSummary {
+  engine?: 'legacy' | 'global'
   id: string
   project_id: string
   conversation_id: string | null
@@ -161,6 +162,31 @@ export interface CompilationSessionField {
 }
 
 export interface CompilationSession extends CompilationSessionSummary {
+  global_compilation?: {
+    phase: 'PENDING' | 'ANALYZING' | 'REVIEW'
+    attempts: number
+    candidate_count: number
+    proposal_count: number
+    omitted: number
+    rejected: number
+    report_url: string | null
+    fields: {
+      candidate_id: string
+      label: string
+      value: string | boolean | null
+      validation: string
+      conditional: boolean
+      conditions: string[]
+      selectable: boolean
+      issues: string[]
+      form_quote: string
+      form_context: string
+      source_evidence: { chunk_id: number; file_id: number; source_name: string;
+        role: 'source'; scope: string; category: string | null; quote: string }[]
+    }[]
+    conditions: { id: string; quote: string; result: string; reason: string }[]
+    last_review?: { candidate_ids: string[]; confirmed_condition_ids: string[]; provenance: 'USER' }
+  }
   fields: CompilationSessionField[]
   open_issues: { field_id: string; status: CompilationFieldStatus; label: string;
     reason: string; validation_errors: string[] }[]

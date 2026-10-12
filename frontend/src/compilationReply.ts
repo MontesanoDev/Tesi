@@ -3,6 +3,18 @@ import type { CompilationSession, GroundedAnswer } from './types'
 // The same paragraphs are displayed live and retained when the next turn starts.
 export function compilationReplyParagraphs(session: CompilationSession,
   response: GroundedAnswer | null | undefined, processing: boolean, error: string | null) {
+  if (session.engine === 'legacy') return [response?.answer,
+    'Questa sessione usa il motore precedente. Per provare la compilazione globale, apri una nuova conversazione e seleziona il modulo con @.'].filter((text): text is string => Boolean(text))
+  if (session.engine === 'global') {
+    if (response && response.compilation?.session_id !== session.id) return [response.answer]
+    if (processing) return ['Analizzo l’intero modulo e verifico le informazioni disponibili…']
+    if (session.chat?.paused_by_user) return ['La compilazione è in pausa. Chiedimi di riprendere quando vuoi.']
+    if (error || session.last_error || session.chat?.paused) return ['Ho conservato il lavoro. Chiedimi di riprendere per ritentare l’analisi.']
+    if (session.global_compilation?.phase === 'REVIEW') return [session.last_generation
+      ? 'Ho preparato una bozza parziale con i valori che hai selezionato. Puoi scaricarla e verificarla.'
+      : `Ho preparato ${session.global_compilation.proposal_count} ${session.global_compilation.proposal_count === 1 ? 'proposta' : 'proposte'} di valore dalle fonti. Rivedile prima di generare una bozza.`]
+    return ['Preparo l’analisi globale del modulo…']
+  }
   const ownsResponse = response?.compilation?.session_id === session.id
   const paused = ownsResponse && response?.compilation?.action === 'paused'
     || !processing && Boolean(session.chat?.paused || session.status === 'FAILED'
