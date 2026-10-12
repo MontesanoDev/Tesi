@@ -58,10 +58,20 @@ async def chat(tmp_path, monkeypatch, request):
         def handler(req):
             body = json.loads(req.content)
             requests.append(body)
-            assert replies, "Unexpected generation instead of a backend stop"
-            reply = replies.pop(0)
-            if callable(reply):
-                reply = reply(body)
+            try:
+                scope = json.loads(body["messages"][1]["content"])
+            except (ValueError, IndexError):
+                scope = {}
+            if scope.get("operation") == "check_field_reply_scope":
+                # These historical scenarios isolate routing/domain behaviour.
+                # Dedicated guard tests supply independent reject/failure outputs.
+                reply = {"checks": [{"slot": p["slot"], "result": "SUPPORTED"}
+                                    for p in scope["proposals"]]}
+            else:
+                assert replies, "Unexpected generation instead of a backend stop"
+                reply = replies.pop(0)
+                if callable(reply):
+                    reply = reply(body)
             return httpx.Response(200, json={
                 "model": "test-model", "usage": {"total_tokens": 10},
                 "choices": [{"message": {"content": json.dumps(reply)},

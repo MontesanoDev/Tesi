@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "old-real-wrong-proposal",
+      "context": "email",
+      "message": "Correggi la denominazione aziendale in Aurora Servizi S.r.l.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "VALUE",
+          "value": "Aurora Servizi S.r.l.",
+          "user_quote": "Correggi la denominazione aziendale in Aurora Servizi S.r.l.",
+          "normalized_value": null
+        }
+      ],
+      "expected_allowed_slots": []
+    },
+    {
+      "id": "unrelated-code",
+      "context": "date",
+      "message": "Correggi il codice della pratica in PR-42.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "VALUE",
+          "value": "PR-42",
+          "user_quote": "Correggi il codice della pratica in PR-42.",
+          "normalized_value": null
+        }
+      ],
+      "expected_allowed_slots": []
+    },
+    {
+      "id": "unrelated-negative",
+      "context": "condition",
+      "message": "No, l’azienda non aderisce alla rete.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_FALSE",
+          "user_quote": "No, l’azienda non aderisce alla rete."
+        }
+      ],
+      "expected_allowed_slots": []
+    },
+    {
+      "id": "bare-date",
+      "context": "date",
+      "message": "14 agosto 2018",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "VALUE",
+          "value": "14 agosto 2018",
+          "user_quote": "14 agosto 2018",
+          "normalized_value": "14/08/2018"
+        }
+      ],
+      "expected_allowed_slots": [
+        1
+      ]
+    },
+    {
+      "id": "natural-contact",
+      "context": "email",
+      "message": "Per le comunicazioni usa tecnico@studio.example.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "VALUE",
+          "value": "tecnico@studio.example",
+          "user_quote": "Per le comunicazioni usa tecnico@studio.example.",
+          "normalized_value": null
+        }
+      ],
+      "expected_allowed_slots": [
+        1
+      ]
+    },
+    {
+      "id": "semantic-negative",
+      "context": "condition",
+      "message": "Il firmatario non opera per delega.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_FALSE",
+          "user_quote": "Il firmatario non opera per delega."
+        }
+      ],
+      "expected_allowed_slots": [
+        1
+      ]
+    },
+    {
+      "id": "partial-group",
+      "context": "group",
+      "message": "Il firmatario opera come delegato. Usa tecnico@studio.example. Il referente è Claudio Bianchi.",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "Il firmatario opera come delegato."
+        },
+        {
+          "slot": 2,
+          "action": "VALUE",
+          "value": "tecnico@studio.example",
+          "user_quote": "Usa tecnico@studio.example.",
+          "normalized_value": null
+        },
+        {
+          "slot": 3,
+          "action": "VALUE",
+          "value": "Claudio Bianchi",
+          "user_quote": "Il referente è Claudio Bianchi.",
+          "normalized_value": null
+        }
+      ],
+      "expected_allowed_slots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "ambiguous-two-conditions",
+      "context": "conditions",
+      "message": "sì",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "CONDITION_TRUE",
+          "user_quote": "sì"
+        },
+        {
+          "slot": 2,
+          "action": "CONDITION_TRUE",
+          "user_quote": "sì"
+        }
+      ],
+      "expected_allowed_slots": []
+    },
+    {
+      "id": "ambiguous-value",
+      "context": "email",
+      "message": "Usa uno@studio.example oppure due@studio.example",
+      "proposals": [
+        {
+          "slot": 1,
+          "action": "VALUE",
+          "value": "uno@studio.example",
+          "user_quote": "Usa uno@studio.example oppure due@studio.example",
+          "normalized_value": null
+        }
+      ],
+      "expected_allowed_slots": []
+    }
+  ]
+}

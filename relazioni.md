@@ -1605,3 +1605,26 @@ verificato byte per byte e senza credenziali/database. Offline verifier prima
 richiamato da un cwd errato, poi corretto: nessuna ripetizione API. Conservati
 setup fallito e risultati negativi. Prossimo punto: gate di pertinenza USER,
 poi composizione/priorità e scope dei controlli; nessuna patch durante la prova.
+
+## 12 ottobre 2026 — pertinenza USER, protocollo prima delle API
+
+Corretto il collegamento messaggio -> slot attivo: verifica semantica separata
+solo delle scritture VALUE/CONDITION_TRUE/CONDITION_FALSE, massimo una chiamata
+per gruppo, quattro slot, 768 token output, timeout 15 s, nessun retry. Errori e
+ambiguità non autorizzano scritture; gli altri slot validi restano utilizzabili.
+Trade-off esplicito: latenza/token aggiuntivi nei turni che aggiornano dati,
+per evitare che quote letterale + slot reale salvino il valore nel campo errato.
+Nessuna modifica UI/parser/renderer/RAG o promozione USER -> SOURCE.
+
+277 test mirati /46,40 s; 1.924 backend completi /146,27 s; Ruff e diff check.
+Provider simulati nei test software. Primo run mirato con 14 failure delle
+asserzioni storiche sulle chiamate/prompt, poi corrette senza indebolire i gate;
+log conservati sotto reply-scope-20261012/checks/.
+
+Protocollo reale: stessi 43 casi/gold/Word di Dialogo V1, massimo tre chiamate
+per turno (due tentativi router +una verifica), seriali su checkpoint e DB
+isolati. Separatamente congelate nove proposte in benchmark-dialogo/guard-v1,
+incluso il raw errato della baseline: una verifica reale per gruppo, nessun
+nuovo output router simulato. Gold escluso dai prompt, nessuna analisi SOURCE.
+Confrontare anche risposte valide, costo e latenza; nessuna modifica applicativa
+nel corso delle serie. Risultati ancora da acquisire, nessun push.

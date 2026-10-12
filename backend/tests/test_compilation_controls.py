@@ -377,7 +377,8 @@ async def test_explicit_control_guard_prevents_rag_reply_or_user_value(
     answer = await say(chat, state, message, decision)
     assert answer.status_code == 200, answer.text
     assert answer.json()["compilation"]["action"] == expected
-    assert len(requests) == calls + 1  # Existing bounded planner, no second classifier.
+    # A misrouted VALUE is independently checked before the preserved control guard.
+    assert len(requests) == calls + 1 + (misroute == "input")
     state = await current(client, state)
     assert all(f["value"] == old["value"] and f["provenance"] == old["provenance"]
                for f, old in zip(state["fields"], before, strict=True))

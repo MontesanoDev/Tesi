@@ -1,11 +1,23 @@
 # CompilationSession V1: backend, chat e verifica
 
+Dal 12 ottobre le proposte di aggiornamento conversazionale attraversano anche
+`compilation_reply_guard.py`: controllo semantico indipendente di pertinenza
+USER -> domanda/slot, prima della scrittura. Una sola verifica per gruppo,
+massimo quattro proposte, 768 token di output, timeout 15 s, nessun retry.
+Solo SUPPORTED ammette VALUE/CONDITION_TRUE/CONDITION_FALSE; schema invalido,
+ambiguità o errore provider non autorizzano aggiornamenti. Le altre parti valide
+del gruppo restano utilizzabili. Il verificatore non restituisce valori o ID:
+il backend conserva i destinatari; quote USER, validazione DOCX e CAS restano
+necessari. Nessuna chiamata aggiuntiva per RAG, export o soli controlli di
+sessione. Il costo aggiuntivo riguarda i turni USER che modificano dati.
+Verifiche software completate; prova reale sullo stesso gold ancora da acquisire.
+
 Benchmark del dialogo del 12 ottobre: [43 casi reali, 39 conformi al gold](benchmark-dialogo-2026-10-12.md).
 Il consenso naturale funziona nei casi fissati, ma una correzione fuori dagli
-slot può ancora essere applicata al campo attivo sbagliato. Estratto USER e
+slot veniva applicata al campo attivo sbagliato. Estratto USER e
 slot valido non garantiscono la pertinenza semantica. Noti anche messaggi misti
-con export ignorato e rinvio locale interpretato come pausa. Motore invariato;
-queste correzioni sono il prossimo intervento. Il benchmark usa checkpoint
+con export ignorato e rinvio locale interpretato come pausa. Questi ultimi
+restano aperti; il nuovo gate corregge soltanto la pertinenza. Il benchmark usa checkpoint
 isolati preparati, senza una nuova analisi SOURCE o una compilazione completa.
 
 ## Motore attivo dal 12 ottobre: proposta globale e revisione

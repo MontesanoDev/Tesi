@@ -1,5 +1,33 @@
 # Stato di Mapi RAG
 
+## Pertinenza delle risposte USER — 12 ottobre 2026, fix in verifica reale
+
+Implementato un controllo semantico indipendente dopo il routing e prima delle
+scritture conversazionali VALUE / CONDITION_TRUE / CONDITION_FALSE. Lo slot
+attivo e la quote USER non bastavano: una correzione esplicita a un altro campo
+poteva essere salvata nel recapito appena chiesto. Il nuovo verificatore valuta
+messaggio, domanda, slot e proposta senza scegliere ID o inventare valori.
+Massimo una chiamata breve per gruppo di quattro slot, 768 token di output,
+timeout 15 s, nessun retry. Solo SUPPORTED ammette la proposta; ambiguità,
+schema invalido o errore provider lasciano i dati invariati. In un gruppo si
+conservano le altre risposte valide. Restano quote/validator DOCX/CAS/provenance
+USER; nessuna promozione a SOURCE. Controlli di sessione, RAG, parser, renderer,
+UI e analisi globale invariati.
+
+Verifiche effettive: **277 test mirati /46,40 s**, **1.924 backend completi
+/146,27 s**, Ruff e diff check passati. Test software con provider simulati;
+non sono prove della qualità semantica del modello. Prima esecuzione mirata:
+14 failure di asserzioni storiche su numero/ultimo prompt, corrette per la nuova
+chiamata senza allentare i gate. Log sotto
+backend/data/compilation-audit/reply-scope-20261012/checks/.
+
+Prima delle API congelato un secondo set separato di nove proposte da verificare,
+inclusa la proposta errata reale della baseline: benchmark-dialogo/guard-v1.
+Dialogo V1 e il suo gold rimangono invariati. Prossimo punto: ripetere i 43 casi
+e i nove controlli indipendenti con DeepSeek reale, su DB/storage temporanei;
+misurare rifiuti, risposte valide, costo e latenza. Risultati ancora da acquisire.
+Nessun push; commit piccoli autorizzati. Nessuna migrazione/reindicizzazione.
+
 ## Benchmark del dialogo V1 — 12 ottobre 2026, baseline reale conclusa
 
 Richiesto misurare l'interpretazione prima di altre correzioni. Fixture/gold
@@ -18,7 +46,8 @@ Problemi osservati e persistiti:
    attivo -> VALUE sul recapito, USER: destinatario semanticamente errato.
    Il gate verifica slot, estratto letterale e validità DOCX; manca un controllo
    indipendente della pertinenza messaggio->campo. Label generica non tipizzata
-   email. PRIORITÀ per il prossimo fix, ancora NON implementato.
+   email. Era la PRIORITÀ della baseline, ora corretta dal gate sopra e da
+   verificare nella nuova serie reale.
 2. Valore + «prepara una bozza con quello che hai già» -> salva il valore e
    ignora la conclusione, violando la priorità attuale finish sui field.
 3. «Lasciamo questa conferma per dopo» -> pausa globale invece di SKIP locale.
@@ -48,7 +77,7 @@ nessun push di questo intervento.
 [metriche](docs/benchmarks/2026-10-12-dialogue-v1.json),
 [bundle](docs/benchmarks/2026-10-12-dialogue-v1-audit.tar.gz),
 [fixture](demo-documents/benchmark-dialogo/v1/README.md), registro relazioni.md.
-**Ripresa:** progettare il gate semantico per risposte fuori contesto, poi
+**Ripresa della baseline:** verificare il gate semantico sopra, poi
 priorità dei messaggi misti e SKIP locale/PAUSE. Benchmark ripetibile con lo
 stesso gold; modifiche di scenario in V2. UI, parser, renderer e RAG congelati.
 

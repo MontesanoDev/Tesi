@@ -24,6 +24,7 @@ from app.compilation_chat import (
     single_active_target,
 )
 from app.compilation_clarifications import active_group
+from app.compilation_reply_guard import WRITE_ACTIONS, verify_field_replies
 from app.config import get_ai_settings
 from app.document_compilation import StrictModel
 from app.generation import (
@@ -698,6 +699,26 @@ async def plan_chat_turn(
                     {"role": "user", "content": repair},
                 ]}
                 continue
+            if proposed.intent == "answer_fields":
+                verification = await verify_field_replies(question, context, proposed.replies,
+                                                         request=request_model_content)
+                token_counts.append(verification.total_tokens)
+                rejected = [r for r in proposed.replies if r.action in WRITE_ACTIONS
+                            and r.slot not in verification.allowed_slots]
+                if rejected:
+                    kept = [r for r in proposed.replies if r not in rejected]
+                    if not kept:
+                        labels = {s["slot"]: s.get("label") or "questo dato"
+                                  for s in context["slots"]}
+                        names = ", ".join(f"«{labels[r.slot]}»" for r in rejected)
+                        # Preserve the active question and every field. An unrelated
+                        # correction is not permission to change a different field.
+                        proposed = TurnPlan(intent="explain", target="source", queries=[],
+                            answer=f"Sto chiedendo {names}. Non posso associare con sicurezza "
+                                   "la tua indicazione a questa richiesta. Puoi precisare?")
+                    else:
+                        proposed = proposed.model_copy(update={"replies": kept})
+                    decision = bind_turn_plan(proposed, compilation, question)
             total = sum(token_counts) if all(n is not None for n in token_counts) else None
             logger.info("Chat routing intent=%s slots=%d attempts=%d",
                         proposed.intent, len(allowed_slots), attempt + 1)

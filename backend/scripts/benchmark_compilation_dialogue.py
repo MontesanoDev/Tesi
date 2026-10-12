@@ -24,6 +24,7 @@ from pathlib import Path
 from app import ai_profiles, compilation_chat, compilation_sessions, intents
 from app import compilation_global_sessions as adapter
 from app.compilation_global import build_global_input
+from app.compilation_reply_guard import ReplyScopeChecks
 from app.config import AISettings, use_ai_settings
 from app.db import connection, get_db_path, get_storage_path, init_database
 from app.project_forms import _save_form
@@ -189,7 +190,8 @@ async def benchmark(args):
     head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
     save("protocol.json", {"head": head, "fixture": manifest, "cases": len(cases),
          "provider": settings.provider, "model": settings.model, "thinking": False,
-         "max_calls": 2 * len(cases), "serial": True, "new_analysis_calls": 0,
+         "max_calls": 3 * len(cases), "serial": True, "new_analysis_calls": 0,
+         "scope_checks_per_turn": 1,
          "gold_in_prompt": False, "prepared_checkpoints": True,
          "simulated_providers": False, "application_changes_during_run": False,
          "scope": "routing + actual USER/control mutations and authorized exports; "
@@ -204,7 +206,8 @@ async def benchmark(args):
         path = f"{active_case}/call-{index}"
         save(path + "-request.json", {"body": body, "schema": kwargs.get("response_schema")})
         started = time.perf_counter()
-        record = {"attempt": index}
+        scope_check = kwargs.get("response_schema", {}).get("title") == "ReplyScopeChecks"
+        record = {"attempt": index, "stage": "scope_check" if scope_check else "routing"}
         case_calls.append(record)
         try:
             raw, model, usage = await original_transport(client, config, body, timeout, **kwargs)
@@ -213,8 +216,11 @@ async def benchmark(args):
                 cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw.strip(), flags=re.I)
                 allowed = {s["slot"] for s in (intents.routing_context(compilation) or {}).get(
                     "slots", [])}
-                plan = intents.parse_turn_plan(json.loads(cleaned), allowed)
-                intents.bind_turn_plan(plan, compilation, current_message)
+                if scope_check:
+                    ReplyScopeChecks.model_validate(json.loads(cleaned))
+                else:
+                    plan = intents.parse_turn_plan(json.loads(cleaned), allowed)
+                    intents.bind_turn_plan(plan, compilation, current_message)
                 record["schema_valid"] = True
             except ValueError as exc:
                 record["schema_valid"] = False
@@ -332,7 +338,12 @@ async def benchmark(args):
                        "failed_checks": dict(Counter(k for r in measurements
                            for k, v in r["score"]["checks"].items() if not v)),
                        "calls": sum(len(r["calls"]) for r in measurements),
-                       "retries": sum(max(0, len(r["calls"])-1) for r in measurements),
+                       "routing_calls": sum(c["stage"] == "routing"
+                                            for r in measurements for c in r["calls"]),
+                       "scope_check_calls": sum(c["stage"] == "scope_check"
+                                                for r in measurements for c in r["calls"]),
+                       "retries": sum(max(0, sum(c["stage"] == "routing"
+                                                 for c in r["calls"])-1) for r in measurements),
                        "total_tokens": sum(c.get("usage", {}).get("total_tokens", 0)
                            for r in measurements for c in r["calls"]),
                        "seconds": sum(r["seconds"] for r in measurements),

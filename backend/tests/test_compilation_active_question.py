@@ -45,7 +45,7 @@ async def test_semantic_false_binds_to_backend_target_without_model_ids(chat, mo
     assert field["applicability"]["applies"] is False
     assert field["applicability"]["reason"] == f"Indicazione USER: {message}"
     assert after["status"] == "READY" and after["chat"]["question"]["kind"] == "generate"
-    prompt = requests[-1]["messages"][1]["content"]
+    prompt = requests[-2]["messages"][1]["content"]  # Routing precedes the scope check.
     assert target not in prompt and '"field_ids"' not in prompt
     schema = json.loads(prompt.split("SCHEMA OUTPUT:\n")[1].split("\n\nULTIMO MESSAGGIO:")[0])
     assert "field_id" not in json.dumps(schema) and "user_quote" in json.dumps(schema)
@@ -150,8 +150,8 @@ async def test_schema_retry_can_recover_without_returning_target(chat, monkeypat
     count = len(requests)
     response = await say(chat, state, "no", {"action": "CONDITION_FALSE"})
     assert response.json()["compilation"]["action"] == "updated"
-    assert len(requests) == count + 2
-    assert "id: Extra inputs" in requests[-1]["messages"][-1]["content"]
+    assert len(requests) == count + 3  # Two routing attempts and one scope check.
+    assert "id: Extra inputs" in requests[-2]["messages"][-1]["content"]
     assert (await current(client, state))["fields"][0]["status"] == "NOT_APPLICABLE"
 
 
