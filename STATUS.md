@@ -1,6 +1,58 @@
 # Stato di Mapi RAG
 
+## Sintesi e contesto SOURCE dei ruoli — 12 ottobre 2026, verificato
+
+La sintesi perdeva la prova SOURCE persona–ruolo conservata dall'audit, e vedeva
+solo ruolo FORM e prove dei singoli valori. Corretto solo il JSON/task in
+`compilation_global_dialogue.py`: mappa condivisa di contesti di ruolo per
+binding/soggetto/entity e riferimento per proposta. Conserva quote del ruolo,
+compresi limiti temporali; nessuna deduzione di ruolo da altri campi/USER.
+Mappa solo per fact/binding GROUNDED_PROPOSAL e relazione del field literal_match,
+senza errori, prove SOURCE non General KB. Massimo40 contesti, due quote800,
+flag di troncamento, stessa singola chiamata di sintesi. Nessun API/UI/RAG/parser/
+renderer modificato, nessuna keyword del demo, migrazione o reindex.
+
+**Rettifica del precedente 8/12:** il runner del replay usava il catalogo grezzo
+senza anchor; `form_context` era vuoto. Corretto il setup con `build_global_input`,
+come l'applicazione reale. La baseline fedele esporta già12: non rivendicare
+un miglioramento applicativo 8->12. Raw/gold storici conservati e annotati.
+
+Set separato congelato prima delle API: sette audit reali/autoriali, **DeepSeek
+Flash BEFORE5/7 ->AFTER7/7**. Sei campi impropriamente ammessi in due casi di
+incarichi cessati ora sospesi. Catanzaro12 e Labirinto17 mantenuti; condizioni
+non confermate restano bloccanti. Gold mai nel prompt o adattato agli output.
+Nessuna nuova analisi SOURCE; non è accuratezza di compilazioni complete.
+Input medio +455 token/sintesi, chiamate invariate. Due replay HTTP ASGI da
+snapshot nuovi: conferme in un turno +consenso alla bozza nel secondo;12 SOURCE
+realmente scritti, incluso8421, zero valori fattuali USER. Originali/altre celle/
+checkbox e tabelle live invariati, snapshot e chiavi eliminati. Totale prove:
+**22 chiamate /59.025 token /32,65s AI**.
+
+Software: quattro controlli protocollo /1,97s, **143 mirati /21,30s**, **1.985
+backend /144,54s**, Ruff backend/runner, diff check. Test software con provider
+simulati distinti dal benchmark reale. Primo test incompleto sui campi omessi e
+stile Ruff corretti prima delle API. Frontend/browser non ripetuti: nessun
+contratto/UI toccato. Commit piccoli autorizzati; nessun push in questo intervento.
+
+[Report](docs/sintesi-ruoli-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-narration-roles.json).
+Raw in backend/data/compilation-audit/narration-roles-20261012/; bundle sanificato
+e manifest in docs/benchmarks/2026-10-12-narration-roles-*.
+Bundle218 file /1.143.542 byte, verificato byte per byte e senza chiavi/DB;
+SHA256 be28938aa7c3bd0aa98b69d0e0c01ce60c4427c3615245da2e15910b3588675b.
+Restano revisione semantica probabilistica e cautele generiche nel testo libero,
+informazioni esterne alle quote non disponibili, sparse coverage e checkbox.
+**Le sospensioni già persistite restano cumulative**: usare una nuova sessione
+per osservare il comportamento, nessuna revoca automatica o modifica ai dati live.
+**Prossimo punto:** scegliere con l'utente fra copertura dei campi omessi e comandi
+composti «salva valore e poi pausa/export», ancora da discutere; nessuna decisione
+presa. Il RAG generale e il collegamento SOURCE restano invariati.
+
 ## Conferme del gruppo attivo — 12 ottobre 2026, fix verificato
+
+Nota successiva: il replay8/12 descritto qui sotto aveva un errore del catalogo
+nel runner (anchor mancanti). Vedi rettifica e baseline fedele nella sezione
+precedente; risultati storici conservati, attribuzione non più applicativa.
 
 Corretto il falso negativo Catanzaro del turno «Confermo entrambe ... il
 partecipante è quello indicato nelle fonti». Il router era corretto; il gate

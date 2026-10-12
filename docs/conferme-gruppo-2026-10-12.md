@@ -1,5 +1,11 @@
 # Conferme riferite al gruppo attivo — 12 ottobre 2026
 
+**Rettifica successiva sul replay 8/12:** individuato catalogo grezzo senza
+anchor nel setup, quindi contesto FORM vuoto alla sintesi. Il risultato storico
+rimane archiviato, ma non dimostra da solo una regressione applicativa. Il
+[confronto corretto](sintesi-ruoli-2026-10-12.md) conserva 12 export già prima
+del fix del contesto SOURCE dei ruoli. Nessun gold o raw storico modificato.
+
 ## Diagnosi e protocollo congelato prima delle API
 
 Baseline applicativa fb2894e, HEAD diagnostico 8e90915; al controllo iniziale

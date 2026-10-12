@@ -1,5 +1,31 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Contesto dei ruoli nella sintesi — 12 ottobre, aggiornamento
+
+Il JSON della sintesi conserva ora `role_contexts`: soggetto, ruolo FORM,
+ruolo SOURCE e prove SOURCE della relazione già groundata per quel field/fact.
+Le proposte referenziano slot condivisi per binding/soggetto/entity, senza
+mescolare persone o ruoli; il modello non decide destinatari XML. Budget massimo
+40 contesti (40 proposte), due quote SOURCE da 800 caratteri/contesto, flag di
+troncamento. Nessuna nuova chiamata o schema/API/frontend. Task esplicito per
+destinazione locale, incarichi attuali/cessati e cautele nelle prove del ruolo.
+La sintesi può solo sospendere, mai validare nuovi valori; grounding SOURCE,
+condizioni USER, rivalidazione all'export e originali immutati restano richiesti.
+Le sospensioni storiche sono cumulative: non si sbloccano automaticamente.
+
+[Confronto congelato](sintesi-ruoli-2026-10-12.md), DeepSeek Flash reale: **5/7
+->7/7**, corretti due controesempi di incarichi cessati. Catanzaro 12 e Labirinto
+17 proposte mantenute; Catanzaro senza conferme resta non esportabile. Sono
+audit rivalidati, non nuove analisi complete. +455 token input/caso in media,
+stesso numero di chiamate. Replay HTTP isolato BEFORE/AFTER: 12 SOURCE scritti,
+incluso 8421, zero valori USER, originale/altre celle/checkbox invariati.
+Il vecchio replay 8/12 aveva perso gli anchor nel runner: risultato conservato,
+attribuzione corretta, non miglioramento applicativo rivendicato 8->12.
+
+143 test mirati /21,30s, 1.985 backend /144,54s, Ruff/diff check; frontend/browser
+non ripetuti, UI/contratti invariati. Nessuna migrazione/reindex o push. Restano
+sparse coverage, checkbox, incarichi fuori dalle quote e comandi composti.
+
 ## Conferme riferite al gruppo — 12 ottobre, aggiornamento
 
 La proiezione ai modelli conserva la domanda naturale di ciascuno slot già

@@ -1,0 +1,1754 @@
+{
+  "scope": "Real narration on revalidated frozen audits plus isolated HTTP replay, no new SOURCE analyses",
+  "real_provider": "deepseek-flash",
+  "gold_in_prompt": false,
+  "phases": {
+    "before": {
+      "phase": "before",
+      "results": [
+        {
+          "id": "catanzaro-confirmed",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [
+              "t0.r10.c1",
+              "t0.r5.c1",
+              "t0.r6.c1",
+              "t0.r7.c1",
+              "t0.r9.c1",
+              "t25.r0.c1",
+              "t25.r4.c1",
+              "t25.r4.c3",
+              "t26.r0.c1",
+              "t26.r1.c1",
+              "t26.r3.c1",
+              "t26.r4.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [
+              "t0.r10.c1",
+              "t0.r5.c1",
+              "t0.r6.c1",
+              "t0.r7.c1",
+              "t0.r9.c1",
+              "t25.r0.c1",
+              "t25.r4.c1",
+              "t25.r4.c3",
+              "t26.r0.c1",
+              "t26.r1.c1",
+              "t26.r3.c1",
+              "t26.r4.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 2707,
+            "completion_tokens": 157,
+            "total_tokens": 2864,
+            "prompt_tokens_details": {
+              "cached_tokens": 2304
+            },
+            "prompt_cache_hit_tokens": 2304,
+            "prompt_cache_miss_tokens": 403
+          },
+          "ai_seconds": 1.411847953000688,
+          "http_calls": 1,
+          "message": "Dalle fonti risultano i dati identificativi dell'operatore (denominazione Mapi Ingegneria S.r.l., forma giuridica di società a responsabilità limitata, partita IVA e codice fiscale, sede legale a Bari) e, per la figura professionale indicata come direttore tecnico, nome, qualifica di ingegnere, ordine di appartenenza e numero di iscrizione. Restano molte posizioni non ancora valutate e la bozza è parziale: non ho completato allegati né caselle. I valori sono proposte da controllare, non dati già confermati nel documento.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "id": "catanzaro-unconfirmed",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [],
+            "held_ids": [],
+            "needs_question": true
+          },
+          "expected": {
+            "exportable_source_ids": [],
+            "held_ids": [],
+            "needs_question": true
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 2736,
+            "completion_tokens": 232,
+            "total_tokens": 2968,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 176
+          },
+          "ai_seconds": 1.8712350129935658,
+          "http_calls": 1,
+          "message": "Dalla visura della società risultano denominazione, forma giuridica, sede legale e partita IVA/codice fiscale, che propongo per i dati dell'operatore economico. Per la figura professionale indicata come direttore tecnico ho trovato nome, qualifica, ordine di appartenenza e numero di iscrizione, ma il collegamento con la carica richiesta nel modulo resta da confermare. Molte posizioni non sono ancora state valutate e la bozza è parziale: non ho completato allegati né caselle. Prima di procedere mi servono alcune conferme.\n\n1. Il modulo prevede una sezione riservata alle società di ingegneria: il vostro caso rientra in questa fattispecie?\n2. Confermate che il soggetto che partecipa alla gara è Mapi Ingegneria S.r.l.?\nPuoi rispondere in un unico messaggio."
+        },
+        {
+          "id": "labirinto-confirmed",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t0.r2.c1",
+              "t0.r3.c1",
+              "t0.r4.c1",
+              "t0.r5.c1",
+              "t0.r6.c1",
+              "t12.r0.c1",
+              "t12.r1.c1",
+              "t12.r2.c1",
+              "t13.r0.c1",
+              "t5.r0.c1",
+              "t5.r1.c1",
+              "t6.r0.c1",
+              "t6.r1.c1",
+              "t6.r2.c1",
+              "t6.r3.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t0.r2.c1",
+              "t0.r3.c1",
+              "t0.r4.c1",
+              "t0.r5.c1",
+              "t0.r6.c1",
+              "t12.r0.c1",
+              "t12.r1.c1",
+              "t12.r2.c1",
+              "t13.r0.c1",
+              "t5.r0.c1",
+              "t5.r1.c1",
+              "t6.r0.c1",
+              "t6.r1.c1",
+              "t6.r2.c1",
+              "t6.r3.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 2921,
+            "completion_tokens": 154,
+            "total_tokens": 3075,
+            "prompt_tokens_details": {
+              "cached_tokens": 2688
+            },
+            "prompt_cache_hit_tokens": 2688,
+            "prompt_cache_miss_tokens": 233
+          },
+          "ai_seconds": 1.4987035510057467,
+          "http_calls": 1,
+          "message": "Dalle fonti risultano i dati anagrafici della Orione Tecnica S.r.l. (denominazione, forma giuridica, sede legale, contatti, iscrizione camerale e codice procedura) e i riferimenti professionali di Giulia Serra come direttore tecnico della società di ingegneria (qualifica, ordine e numero di iscrizione). Restano non verificati il numero di polizza professionale e il recapito per la corrispondenza, che avete rinviato. Molte posizioni del modulo non sono ancora state valutate. Questi valori sono proposte da controllare, non un documento già compilato.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "id": "generic-attuali",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 1364,
+            "completion_tokens": 134,
+            "total_tokens": 1498,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 596
+          },
+          "ai_seconds": 1.1595332939978107,
+          "http_calls": 1,
+          "message": "Ho trovato nelle fonti i dati di due incarichi: per il responsabile della verifica risultano Dr. Ada Neri e il numero di registrazione 6234; per il responsabile qualità Dr. Bea Mori e il numero 9052. Questi valori sono proposte da controllare, non un modulo già compilato. Resta una posizione non ancora valutata, quindi la bozza è parziale. Non ho domande utili da porre al momento: se per te va bene, procedo con questa bozza parziale.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "id": "generic-primo-cessato",
+          "pass": false,
+          "actual": {
+            "exportable_source_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1"
+            ],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 1364,
+            "completion_tokens": 133,
+            "total_tokens": 1497,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 212
+          },
+          "ai_seconds": 1.5431848189982702,
+          "http_calls": 1,
+          "message": "Dalle fonti risultano due figure professionali con i rispettivi numeri di registrazione: Dr. Ada Neri (6234) come responsabile della verifica e Dr. Bea Mori (9052) come responsabile qualità. Questi dati sono proposte da controllare, non valori già confermati. Resta una posizione non ancora valutata, quindi la bozza è parziale. Non ho domande utili da porre al momento: se vuoi, posso preparare una bozza parziale con i dati trovati.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "id": "generic-entrambi-cessati",
+          "pass": false,
+          "actual": {
+            "exportable_source_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [],
+            "held_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 1364,
+            "completion_tokens": 134,
+            "total_tokens": 1498,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 212
+          },
+          "ai_seconds": 1.537376108004537,
+          "http_calls": 1,
+          "message": "Dalle fonti risultano due figure professionali con i relativi dati di registrazione: Dr. Ada Neri (6234) come responsabile della verifica e Dr. Bea Mori (9052) come responsabile qualità. Questi valori sono proposte da controllare, non dati già confermati nel modulo. Resta una posizione non ancora valutata, quindi la bozza è parziale. Non ho domande utili da porre al momento: se vuoi, posso procedere con una bozza parziale basata su quanto trovato.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "id": "generic-ruolo-diverso",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 1163,
+            "completion_tokens": 129,
+            "total_tokens": 1292,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 395
+          },
+          "ai_seconds": 1.4681544359991676,
+          "http_calls": 1,
+          "message": "Ho trovato nelle fonti il nome del responsabile qualità attualmente in carica e il relativo numero di registrazione, che propongo per le prime due posizioni del modulo. Resta una posizione non ancora valutata, per la quale non ho elementi sufficienti. Non ho domande da porre al momento: se vuoi, posso preparare una bozza parziale con i dati disponibili, che andrà comunque controllata. Tieni presente che eventuali allegati e caselle non vengono gestiti automaticamente.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        }
+      ],
+      "passed": 5,
+      "total": 7
+    },
+    "after": {
+      "phase": "after",
+      "results": [
+        {
+          "id": "catanzaro-confirmed",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [
+              "t0.r10.c1",
+              "t0.r5.c1",
+              "t0.r6.c1",
+              "t0.r7.c1",
+              "t0.r9.c1",
+              "t25.r0.c1",
+              "t25.r4.c1",
+              "t25.r4.c3",
+              "t26.r0.c1",
+              "t26.r1.c1",
+              "t26.r3.c1",
+              "t26.r4.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [
+              "t0.r10.c1",
+              "t0.r5.c1",
+              "t0.r6.c1",
+              "t0.r7.c1",
+              "t0.r9.c1",
+              "t25.r0.c1",
+              "t25.r4.c1",
+              "t25.r4.c3",
+              "t26.r0.c1",
+              "t26.r1.c1",
+              "t26.r3.c1",
+              "t26.r4.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 3155,
+            "completion_tokens": 165,
+            "total_tokens": 3320,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 3027
+          },
+          "ai_seconds": 1.7927728240028955,
+          "http_calls": 1,
+          "message": "Ho trovato nelle fonti i dati societari di Mapi Ingegneria S.r.l. (denominazione, forma giuridica, sede legale, partita IVA e codice fiscale) e i riferimenti professionali dell'Ing. Elisa Romano come direttore tecnico (qualifica, ordine e numero di iscrizione). Questi valori restano proposte da controllare, non un modulo già compilato. Non risultano confermati altri ruoli o incarichi, e molte posizioni non sono ancora state valutate. Le informazioni sull'attuale incarico del direttore tecnico andrebbero verificate rispetto a eventuali cessazioni o riserve.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "id": "catanzaro-unconfirmed",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [],
+            "held_ids": [],
+            "needs_question": true
+          },
+          "expected": {
+            "exportable_source_ids": [],
+            "held_ids": [],
+            "needs_question": true
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 3184,
+            "completion_tokens": 310,
+            "total_tokens": 3494,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 2032
+          },
+          "ai_seconds": 2.185865367995575,
+          "http_calls": 1,
+          "message": "Ho trovato nelle fonti i dati societari di Mapi Ingegneria S.r.l. (denominazione, forma giuridica, sede legale, partita IVA e codice fiscale) e i dati anagrafici e professionali di Ing. Elisa Romano, indicata come direttore tecnico. Questi valori sono proposte da controllare, non un documento già compilato. Restano molte posizioni non valutate e non ho confermato che il partecipante sia effettivamente Mapi Ingegneria S.r.l. né che la sezione riservata alle società di ingegneria si applichi al caso. Prima di procedere ho bisogno di due chiarimenti.\n\n1. Il soggetto che partecipa alla gara è Mapi Ingegneria S.r.l.? I dati anagrafici e societari che ho trovato si riferiscono a questa società, ma la scelta del partecipante non risulta confermata dalle fonti.\n2. La sezione riservata alle società di ingegneria si applica al vostro caso? È prevista solo per questa forma di operatore, e non ho elementi per stabilirlo.\nPuoi rispondere in un unico messaggio."
+        },
+        {
+          "id": "labirinto-confirmed",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t0.r2.c1",
+              "t0.r3.c1",
+              "t0.r4.c1",
+              "t0.r5.c1",
+              "t0.r6.c1",
+              "t12.r0.c1",
+              "t12.r1.c1",
+              "t12.r2.c1",
+              "t13.r0.c1",
+              "t5.r0.c1",
+              "t5.r1.c1",
+              "t6.r0.c1",
+              "t6.r1.c1",
+              "t6.r2.c1",
+              "t6.r3.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t0.r2.c1",
+              "t0.r3.c1",
+              "t0.r4.c1",
+              "t0.r5.c1",
+              "t0.r6.c1",
+              "t12.r0.c1",
+              "t12.r1.c1",
+              "t12.r2.c1",
+              "t13.r0.c1",
+              "t5.r0.c1",
+              "t5.r1.c1",
+              "t6.r0.c1",
+              "t6.r1.c1",
+              "t6.r2.c1",
+              "t6.r3.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 3381,
+            "completion_tokens": 155,
+            "total_tokens": 3536,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 2485
+          },
+          "ai_seconds": 1.847076078003738,
+          "http_calls": 1,
+          "message": "Ho trovato nelle fonti i dati anagrafici e identificativi della società (denominazione, forma giuridica, sede, contatti, iscrizione camerale) e il codice della procedura. Per la figura professionale risulta Giulia Serra come direttore tecnico, con qualifica, ordine e numero di iscrizione. Restano non verificati alcuni elementi, tra cui il numero di polizza, che hai indicato di non conoscere, e il recapito per la corrispondenza, che hai chiesto di rinviare. Le proposte sono da controllare: non è una compilazione definitiva.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "id": "generic-attuali",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 1852,
+            "completion_tokens": 145,
+            "total_tokens": 1997,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 956
+          },
+          "ai_seconds": 1.4473742179980036,
+          "http_calls": 1,
+          "message": "Ho trovato nelle fonti due incarichi attivi: per il Responsabile della verifica risultano il nome Dr. Ada Neri e il numero di registrazione 6234; per il Responsabile qualità il nome Dr. Bea Mori e il numero 9052. Questi valori sono proposte da controllare, non dati già confermati nel modulo. Resta una posizione non ancora valutata, quindi la bozza è parziale. Non ho domande utili da porre al momento: se vuoi, posso procedere con questa bozza parziale in attesa di un tuo riscontro.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "id": "generic-primo-cessato",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1"
+            ],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1"
+            ],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 1864,
+            "completion_tokens": 165,
+            "total_tokens": 2029,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 840
+          },
+          "ai_seconds": 1.6525723960003234,
+          "http_calls": 1,
+          "message": "Ho trovato due figure professionali con nome e numero di registrazione: per il ruolo di responsabile della verifica risulta Dr. Ada Neri (registrazione 6234), ma la fonte precisa che il suo incarico è concluso nel 2019 e non è attualmente in carica; per il ruolo di responsabile qualità risulta Dr. Bea Mori (registrazione 9052), con incarico attivo. Poiché il modulo richiede chi è attualmente in carica, le proposte relative alla verifica restano sospese in attesa di conferma. Rimane una posizione non ancora valutata. Non ho domande da porre al momento.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "id": "generic-entrambi-cessati",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [],
+            "held_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [],
+            "held_ids": [
+              "t0.r0.c1",
+              "t0.r1.c1",
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 1876,
+            "completion_tokens": 153,
+            "total_tokens": 2029,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 724
+          },
+          "ai_seconds": 1.644244515002356,
+          "http_calls": 1,
+          "message": "Ho trovato due nominativi con i rispettivi numeri di registrazione: Dr. Ada Neri (6234) e Dr. Bea Mori (9052). Tuttavia le fonti dicono che entrambi gli incarichi sono conclusi dal 2019 e non risultano attualmente in carica, mentre il modulo richiede chi ricopre il ruolo oggi. Per questo non posso proporre questi dati come validi: restano da chiarire. Segnalo inoltre una posizione ancora non valutata. Non ho domande utili da porre al momento.\n\nAl momento nessun valore può essere inserito in sicurezza. Posso preparare una copia del modulo senza aggiungere valori, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "id": "generic-ruolo-diverso",
+          "pass": true,
+          "actual": {
+            "exportable_source_ids": [
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "expected": {
+            "exportable_source_ids": [
+              "t1.r0.c1",
+              "t1.r1.c1"
+            ],
+            "held_ids": [],
+            "needs_question": false
+          },
+          "error": null,
+          "usage": {
+            "prompt_tokens": 1489,
+            "completion_tokens": 125,
+            "total_tokens": 1614,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 593
+          },
+          "ai_seconds": 1.634590184003173,
+          "http_calls": 1,
+          "message": "Ho trovato nelle fonti un possibile responsabile qualità, Dr. Bea Mori, con incarico indicato come attivo, e un numero di registrazione 9052 a essa collegato. Questi valori sono proposte da controllare, non dati già confermati nel modulo. Resta una posizione non ancora valutata, quindi la bozza è parziale. Non ho domande utili da porre al momento: se vuoi, posso procedere con la bozza parziale così com'è.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        }
+      ],
+      "passed": 7,
+      "total": 7
+    }
+  },
+  "replays": {
+    "before": {
+      "candidate_count": 307,
+      "proposal_count": 12,
+      "omitted_positions": 293,
+      "resolved": 0,
+      "state": "GENERATED",
+      "source_written": 12,
+      "user_written": 0,
+      "written_count": 12,
+      "checks": [
+        {
+          "candidate_id": "t0.r10.c1",
+          "label": "Partita IVA operatore economico",
+          "expected": "IT01234567890",
+          "actual": "IT01234567890",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "label": "Operatore economico",
+          "expected": "Mapi Ingegneria S.r.l.",
+          "actual": "Mapi Ingegneria S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "label": "Forma giuridica",
+          "expected": "Societa a responsabilita limitata",
+          "actual": "Societa a responsabilita limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "label": "Sede legale (via, città, prov.)",
+          "expected": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "actual": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "label": "Codice fiscale operatore economico",
+          "expected": "IT01234567890",
+          "actual": "IT01234567890",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r0.c1",
+          "label": "Denominazione sociale:",
+          "expected": "Mapi Ingegneria S.r.l.",
+          "actual": "Mapi Ingegneria S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r4.c1",
+          "label": "forma giuridica:",
+          "expected": "Societa a responsabilita limitata",
+          "actual": "Societa a responsabilita limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r4.c3",
+          "label": "sede legale:",
+          "expected": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "actual": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "label": "Nome e cognome:",
+          "expected": "Ing. Elisa Romano",
+          "actual": "Ing. Elisa Romano",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Nominativo completo: Ing. Elisa Romano.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "label": "qualifica professionale:",
+          "expected": "Ingegnere",
+          "actual": "Ingegnere",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Qualifica professionale nello scenario: Ingegnere.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "label": "Ordine professionale di appartenenza:",
+          "expected": "Ordine degli Ingegneri di Bari",
+          "actual": "Ordine degli Ingegneri di Bari",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Ordine professionale simulato: Ordine degli Ingegneri di Bari.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "label": "numero di iscrizione all’Albo professionale:",
+          "expected": "8421",
+          "actual": "8421",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Numero di iscrizione professionale simulato: 8421.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        }
+      ],
+      "changed_cells": [
+        "t0.r5.c1",
+        "t0.r6.c1",
+        "t0.r7.c1",
+        "t0.r9.c1",
+        "t0.r10.c1",
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "unselected_cells_unchanged": true,
+      "paragraphs_unchanged_except_banner": true,
+      "native_controls_unchanged": true,
+      "package_changed_parts": [
+        "word/document.xml"
+      ],
+      "deferred_fields_not_written": [],
+      "original_unchanged": true,
+      "partial_draft": true,
+      "ready_for_submission": false,
+      "costs": {
+        "narration": {
+          "calls": 1,
+          "seconds": 1.5093117549986346,
+          "prompt_tokens": 2707,
+          "completion_tokens": 146,
+          "total_tokens": 2853
+        },
+        "routing": {
+          "calls": 2,
+          "seconds": 2.5527216350019444,
+          "prompt_tokens": 7991,
+          "completion_tokens": 201,
+          "total_tokens": 8192
+        },
+        "user_scope": {
+          "calls": 1,
+          "seconds": 0.9996954609960085,
+          "prompt_tokens": 1740,
+          "completion_tokens": 110,
+          "total_tokens": 1850
+        }
+      },
+      "api_calls": 4,
+      "total_tokens": 12895,
+      "ai_seconds": 5.061728850996587,
+      "user_turns_including_start": 2,
+      "answer_actions": {
+        "CONDITION_TRUE": 2
+      },
+      "turns": [
+        {
+          "turn": "turn-01",
+          "request": {
+            "question": "Confermo entrambe: la sezione delle società di ingegneria si applica e il partecipante è quello indicato nelle fonti.",
+            "document_id": 155,
+            "conversation_id": "conv-1816d43d909148a9",
+            "compilation_session_id": "b37939697749422e99dc110abbc6f6d2",
+            "compilation_version": 2
+          },
+          "answer": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+          "command": {
+            "session_id": "b37939697749422e99dc110abbc6f6d2",
+            "action": "updated"
+          },
+          "seconds_answer": 2.4614937490041484,
+          "version": 5,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "generate",
+            "field_ids": [],
+            "slots": [],
+            "message": "Ho trovato nelle fonti i dati identificativi dell'operatore economico (denominazione, forma giuridica, sede legale, partita IVA e codice fiscale) e, per la figura professionale indicata come direttore tecnico, nome, qualifica, ordine di appartenenza e numero di iscrizione. Questi valori sono proposte da controllare, non un modulo già compilato. Restano molte posizioni non ancora valutate e non ho domande utili da porre adesso: procederei con una bozza parziale, che potrai poi integrare.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-01/call-01-routing",
+              "seconds": 1.3892389309985447,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 4116,
+                "completion_tokens": 160,
+                "total_tokens": 4276,
+                "prompt_tokens_details": {
+                  "cached_tokens": 3968
+                },
+                "prompt_cache_hit_tokens": 3968,
+                "prompt_cache_miss_tokens": 148
+              }
+            },
+            {
+              "stage": "user_scope",
+              "path": "turn-01/call-02-user_scope",
+              "seconds": 0.9996954609960085,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 1740,
+                "completion_tokens": 110,
+                "total_tokens": 1850,
+                "prompt_tokens_details": {
+                  "cached_tokens": 1536
+                },
+                "prompt_cache_hit_tokens": 1536,
+                "prompt_cache_miss_tokens": 204
+              }
+            },
+            {
+              "stage": "narration",
+              "path": "turn-01/call-03-narration",
+              "seconds": 1.5093117549986346,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 2707,
+                "completion_tokens": 146,
+                "total_tokens": 2853,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2560
+                },
+                "prompt_cache_hit_tokens": 2560,
+                "prompt_cache_miss_tokens": 147
+              }
+            }
+          ],
+          "pid": 138901
+        },
+        {
+          "turn": "turn-02",
+          "request": {
+            "question": "Sì, genera una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte.",
+            "document_id": 155,
+            "conversation_id": "conv-1816d43d909148a9",
+            "compilation_session_id": "b37939697749422e99dc110abbc6f6d2",
+            "compilation_version": 5
+          },
+          "answer": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+          "command": {
+            "session_id": "b37939697749422e99dc110abbc6f6d2",
+            "action": "generated"
+          },
+          "seconds_answer": 2.1405237739963923,
+          "version": 6,
+          "status": "GENERATED",
+          "paused": false,
+          "question": null,
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-02/call-01-routing",
+              "seconds": 1.1634827040033997,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3875,
+                "completion_tokens": 41,
+                "total_tokens": 3916,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2944
+                },
+                "prompt_cache_hit_tokens": 2944,
+                "prompt_cache_miss_tokens": 931
+              }
+            }
+          ],
+          "pid": 139109
+        }
+      ],
+      "revisions": [
+        {
+          "version": 1,
+          "created_at": "2026-10-12T21:38:39.809949+00:00",
+          "event": {
+            "action": "create",
+            "template_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0"
+          }
+        },
+        {
+          "version": 2,
+          "created_at": "2026-10-12T21:38:40.271863+00:00",
+          "event": {
+            "action": "benchmark_real_checkpoint_replay",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 3,
+          "created_at": "2026-10-12T21:38:47.315662+00:00",
+          "event": {
+            "action": "global_dialogue_user_reply",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 4,
+          "created_at": "2026-10-12T21:38:47.364267+00:00",
+          "event": {
+            "action": "global_dialogue_start",
+            "changes": [],
+            "status": "ANALYZING",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 5,
+          "created_at": "2026-10-12T21:38:48.904289+00:00",
+          "event": {
+            "action": "global_dialogue_complete",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 6,
+          "created_at": "2026-10-12T21:39:10.238501+00:00",
+          "event": {
+            "action": "global_draft_generate",
+            "changes": [],
+            "status": "GENERATED",
+            "last_generation": {
+              "session_version": 5,
+              "id": "cce1b1f2c28f4d58b0473816aa6c413c",
+              "project_id": "prova",
+              "template_name": "domanda-partecipazione.docx",
+              "created_at": "2026-10-12T21:39:09.857507+00:00",
+              "status": "needs_review",
+              "downloads": {
+                "docx": "/api/projects/prova/document-compilations/cce1b1f2c28f4d58b0473816aa6c413c/download/docx",
+                "report": "/api/projects/prova/document-compilations/cce1b1f2c28f4d58b0473816aa6c413c/download/report",
+                "template": "/api/projects/prova/document-compilations/cce1b1f2c28f4d58b0473816aa6c413c/download/template"
+              }
+            },
+            "last_error": null,
+            "chat_workflow": null
+          }
+        }
+      ],
+      "integrity": {
+        "application_unchanged": true,
+        "live_tables_unchanged": true,
+        "live_original_unchanged": true,
+        "private_original_unchanged": true
+      }
+    },
+    "after": {
+      "candidate_count": 307,
+      "proposal_count": 12,
+      "omitted_positions": 293,
+      "resolved": 0,
+      "state": "GENERATED",
+      "source_written": 12,
+      "user_written": 0,
+      "written_count": 12,
+      "checks": [
+        {
+          "candidate_id": "t0.r10.c1",
+          "label": "Partita IVA operatore economico",
+          "expected": "IT01234567890",
+          "actual": "IT01234567890",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r5.c1",
+          "label": "Operatore economico",
+          "expected": "Mapi Ingegneria S.r.l.",
+          "actual": "Mapi Ingegneria S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r6.c1",
+          "label": "Forma giuridica",
+          "expected": "Societa a responsabilita limitata",
+          "actual": "Societa a responsabilita limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r7.c1",
+          "label": "Sede legale (via, città, prov.)",
+          "expected": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "actual": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t0.r9.c1",
+          "label": "Codice fiscale operatore economico",
+          "expected": "IT01234567890",
+          "actual": "IT01234567890",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "CODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r0.c1",
+          "label": "Denominazione sociale:",
+          "expected": "Mapi Ingegneria S.r.l.",
+          "actual": "Mapi Ingegneria S.r.l.",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "DENOMINAZIONE Mapi Ingegneria S.r.l.",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r4.c1",
+          "label": "forma giuridica:",
+          "expected": "Societa a responsabilita limitata",
+          "actual": "Societa a responsabilita limitata",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "FORMA GIURIDICA Societa a responsabilita limitata",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t25.r4.c3",
+          "label": "sede legale:",
+          "expected": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "actual": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -30,
+              "file_id": -9,
+              "chunk_index": 0,
+              "source_name": "visura-mapi-ingegneria-simulata.pdf",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -30,
+              "citation_rebound": false,
+              "quote": "SEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+              "content_sha256": "8ee50b3b635387425d16e8a88928aef568227ea3181fe1660224fe5dcad18fe2"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r0.c1",
+          "label": "Nome e cognome:",
+          "expected": "Ing. Elisa Romano",
+          "actual": "Ing. Elisa Romano",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Nominativo completo: Ing. Elisa Romano.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r1.c1",
+          "label": "qualifica professionale:",
+          "expected": "Ingegnere",
+          "actual": "Ingegnere",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Qualifica professionale nello scenario: Ingegnere.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r3.c1",
+          "label": "Ordine professionale di appartenenza:",
+          "expected": "Ordine degli Ingegneri di Bari",
+          "actual": "Ordine degli Ingegneri di Bari",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Ordine professionale simulato: Ordine degli Ingegneri di Bari.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        },
+        {
+          "candidate_id": "t26.r4.c1",
+          "label": "numero di iscrizione all’Albo professionale:",
+          "expected": "8421",
+          "actual": "8421",
+          "match": true,
+          "provenance": "SOURCE",
+          "source_evidence": [
+            {
+              "chunk_id": -45,
+              "file_id": -7,
+              "chunk_index": 2,
+              "source_name": "generalita-mapi.md",
+              "role": "source",
+              "scope": "global",
+              "project_id": null,
+              "category": "company",
+              "cited_chunk_id": -45,
+              "citation_rebound": false,
+              "quote": "- Numero di iscrizione professionale simulato: 8421.",
+              "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+            }
+          ]
+        }
+      ],
+      "changed_cells": [
+        "t0.r5.c1",
+        "t0.r6.c1",
+        "t0.r7.c1",
+        "t0.r9.c1",
+        "t0.r10.c1",
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "unselected_cells_unchanged": true,
+      "paragraphs_unchanged_except_banner": true,
+      "native_controls_unchanged": true,
+      "package_changed_parts": [
+        "word/document.xml"
+      ],
+      "deferred_fields_not_written": [],
+      "original_unchanged": true,
+      "partial_draft": true,
+      "ready_for_submission": false,
+      "costs": {
+        "narration": {
+          "calls": 1,
+          "seconds": 1.6809015339968028,
+          "prompt_tokens": 3156,
+          "completion_tokens": 184,
+          "total_tokens": 3340
+        },
+        "routing": {
+          "calls": 2,
+          "seconds": 2.0436824160060496,
+          "prompt_tokens": 8029,
+          "completion_tokens": 202,
+          "total_tokens": 8231
+        },
+        "user_scope": {
+          "calls": 1,
+          "seconds": 1.1716383610037155,
+          "prompt_tokens": 1741,
+          "completion_tokens": 107,
+          "total_tokens": 1848
+        }
+      },
+      "api_calls": 4,
+      "total_tokens": 13419,
+      "ai_seconds": 4.896222311006568,
+      "user_turns_including_start": 2,
+      "answer_actions": {
+        "CONDITION_TRUE": 2
+      },
+      "turns": [
+        {
+          "turn": "turn-01",
+          "request": {
+            "question": "Confermo entrambe: la sezione delle società di ingegneria si applica e il partecipante è quello indicato nelle fonti.",
+            "document_id": 155,
+            "conversation_id": "conv-f0ab701e6bb44174",
+            "compilation_session_id": "f06d792c199a491087b80a8cfa44da1d",
+            "compilation_version": 2
+          },
+          "answer": "Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.",
+          "command": {
+            "session_id": "f06d792c199a491087b80a8cfa44da1d",
+            "action": "updated"
+          },
+          "seconds_answer": 2.516665353999997,
+          "version": 5,
+          "status": "WAITING_FOR_USER",
+          "paused": false,
+          "question": {
+            "kind": "generate",
+            "field_ids": [],
+            "slots": [],
+            "message": "Ho trovato nelle fonti i dati societari di Mapi Ingegneria S.r.l. (denominazione, forma giuridica, sede legale, partita IVA e codice fiscale) e i riferimenti anagrafici e professionali dell'Ing. Elisa Romano, indicata come direttore tecnico. Questi valori restano proposte da controllare, non un modulo già compilato. Per il ruolo di direttore tecnico il collegamento con la persona risulta solo da un'indicazione letterale: va verificato che l'incarico sia effettivamente attuale e corrisponda ai requisiti richiesti. Molte posizioni del modulo non sono ancora state valutate. Non ho domande da porre al momento.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+          },
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-01/call-01-routing",
+              "seconds": 1.2751859449999756,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 4116,
+                "completion_tokens": 161,
+                "total_tokens": 4277,
+                "prompt_tokens_details": {
+                  "cached_tokens": 3968
+                },
+                "prompt_cache_hit_tokens": 3968,
+                "prompt_cache_miss_tokens": 148
+              }
+            },
+            {
+              "stage": "user_scope",
+              "path": "turn-01/call-02-user_scope",
+              "seconds": 1.1716383610037155,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 1741,
+                "completion_tokens": 107,
+                "total_tokens": 1848,
+                "prompt_tokens_details": {
+                  "cached_tokens": 1536
+                },
+                "prompt_cache_hit_tokens": 1536,
+                "prompt_cache_miss_tokens": 205
+              }
+            },
+            {
+              "stage": "narration",
+              "path": "turn-01/call-03-narration",
+              "seconds": 1.6809015339968028,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3156,
+                "completion_tokens": 184,
+                "total_tokens": 3340,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2816
+                },
+                "prompt_cache_hit_tokens": 2816,
+                "prompt_cache_miss_tokens": 340
+              }
+            }
+          ],
+          "pid": 140814
+        },
+        {
+          "turn": "turn-02",
+          "request": {
+            "question": "Sì, genera una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte.",
+            "document_id": 155,
+            "conversation_id": "conv-f0ab701e6bb44174",
+            "compilation_session_id": "f06d792c199a491087b80a8cfa44da1d",
+            "compilation_version": 5
+          },
+          "answer": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+          "command": {
+            "session_id": "f06d792c199a491087b80a8cfa44da1d",
+            "action": "generated"
+          },
+          "seconds_answer": 1.7173416969963,
+          "version": 6,
+          "status": "GENERATED",
+          "paused": false,
+          "question": null,
+          "calls": [
+            {
+              "stage": "routing",
+              "path": "turn-02/call-01-routing",
+              "seconds": 0.768496471006074,
+              "model": "deepseek-flash",
+              "usage": {
+                "prompt_tokens": 3913,
+                "completion_tokens": 41,
+                "total_tokens": 3954,
+                "prompt_tokens_details": {
+                  "cached_tokens": 2944
+                },
+                "prompt_cache_hit_tokens": 2944,
+                "prompt_cache_miss_tokens": 969
+              }
+            }
+          ],
+          "pid": 141471
+        }
+      ],
+      "revisions": [
+        {
+          "version": 1,
+          "created_at": "2026-10-12T21:41:11.289099+00:00",
+          "event": {
+            "action": "create",
+            "template_sha256": "aeb1bda3016d221c36041d003731b4b3e6bca5cb7fd265094fec07dfa44e47d0"
+          }
+        },
+        {
+          "version": 2,
+          "created_at": "2026-10-12T21:41:11.823796+00:00",
+          "event": {
+            "action": "benchmark_real_checkpoint_replay",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 3,
+          "created_at": "2026-10-12T21:41:22.475885+00:00",
+          "event": {
+            "action": "global_dialogue_user_reply",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 4,
+          "created_at": "2026-10-12T21:41:22.523827+00:00",
+          "event": {
+            "action": "global_dialogue_start",
+            "changes": [],
+            "status": "ANALYZING",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 5,
+          "created_at": "2026-10-12T21:41:24.235502+00:00",
+          "event": {
+            "action": "global_dialogue_complete",
+            "changes": [],
+            "status": "WAITING_FOR_USER",
+            "last_generation": null,
+            "last_error": null,
+            "chat_workflow": null
+          }
+        },
+        {
+          "version": 6,
+          "created_at": "2026-10-12T21:41:50.340699+00:00",
+          "event": {
+            "action": "global_draft_generate",
+            "changes": [],
+            "status": "GENERATED",
+            "last_generation": {
+              "session_version": 5,
+              "id": "e3df6147c5184cb49b3450685ebe2e85",
+              "project_id": "prova",
+              "template_name": "domanda-partecipazione.docx",
+              "created_at": "2026-10-12T21:41:49.984328+00:00",
+              "status": "needs_review",
+              "downloads": {
+                "docx": "/api/projects/prova/document-compilations/e3df6147c5184cb49b3450685ebe2e85/download/docx",
+                "report": "/api/projects/prova/document-compilations/e3df6147c5184cb49b3450685ebe2e85/download/report",
+                "template": "/api/projects/prova/document-compilations/e3df6147c5184cb49b3450685ebe2e85/download/template"
+              }
+            },
+            "last_error": null,
+            "chat_workflow": null
+          }
+        }
+      ],
+      "integrity": {
+        "application_unchanged": true,
+        "live_tables_unchanged": true,
+        "live_original_unchanged": true,
+        "private_original_unchanged": true
+      }
+    }
+  },
+  "costs": {
+    "before": {
+      "calls": 7,
+      "prompt_tokens": 13619,
+      "total_tokens": 14692,
+      "ai_seconds": 10.490035173999786
+    },
+    "after": {
+      "calls": 7,
+      "prompt_tokens": 16801,
+      "total_tokens": 18019,
+      "ai_seconds": 12.204495583006064
+    }
+  },
+  "limitations": [
+    "Single series, no held-out evaluation; gold measures selections, not every free-text sentence.",
+    "Original replay 8/12 had empty form_context due to raw catalog: corrected baseline is 12/12 before production change.",
+    "No new global analysis/SOURCE retrieval or complete document compilation.",
+    "Role qualifications outside cited, bounded role quotes remain unavailable to synthesis.",
+    "Historic held proposals remain held; no automatic relaxation/migration for existing sessions.",
+    "Native checkbox export, sparse candidate coverage and composed user turns remain outside this change."
+  ]
+}

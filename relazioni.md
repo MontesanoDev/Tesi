@@ -1865,3 +1865,30 @@ dal prompt, una chiamata/caso, nessuna nuova analisi né scritture live. Quattro
 test protocollo passati /1,97s; primo test incompleto sui campi omessi corretto,
 Ruff passato dopo due correzioni di stile. Risultati da misurare e archiviare.
 [Diagnosi/protocollo](docs/sintesi-ruoli-2026-10-12.md).
+
+### 12 ottobre 2026 — prova SOURCE del ruolo conservata nella sintesi
+
+Baseline fedele **5/7**, AFTER **7/7** sullo stesso set congelato. Il precedente
+8/12 era condizionato da anchor persi nel runner: Catanzaro corretto resta12->12,
+Labirinto17->17. Miglioramento concreto: sei valori di incarichi cessati in due
+casi ora sospesi, nessuna contaminazione dell'incarico attuale. JSON condiviso
+persona/ruolo/prova SOURCE già groundata, massimo40 contesti/due quote800 e
+slot per proposta; stesso schema output e stessa chiamata, +455 token input
+medi. Nessuna keyword, nuova validazione permissiva o promozione a RESOLVED.
+
+Replay HTTP isolati BEFORE/AFTER, analisi reale precedente rivalidata, niente
+nuove analisi/retrieval:12 SOURCE corretti nel Word, incluso8421; due condizioni
+USER confermate insieme, consenso esplicito alla bozza, nessun valore USER.
+Stato/report/celle coerenti, originali/altre celle/checkbox e DB live invariati,
+snapshot e chiavi cancellati. **22 chiamate reali /59.025 token /32,65s AI**.
+Singole serie non held-out, nessun gold nel prompt; non completezza del modulo.
+
+Test software con provider simulati:143 mirati /21,30s,1.985 backend /144,54s,
+Ruff backend/runner e diff check. UI/API invariati, nessun browser/frontend
+rieseguito. Limiti: quote limitate, narrazione ancora cauta/probabilistica,
+sospensioni storiche cumulative, sparse coverage/checkbox/comandi composti fuori
+scope. Report/metriche/acquisizioni durevoli in docs/benchmarks; nessun push.
+
+Bundle sanificato218 file /1.143.542 byte, confronto byte per byte, nessuna
+chiave/DB. SHA256 be28938aa7c3bd0aa98b69d0e0c01ce60c4427c3615245da2e15910b3588675b;
+manifest in docs/benchmarks/2026-10-12-narration-roles-manifest.json.
