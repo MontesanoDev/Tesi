@@ -42,5 +42,25 @@ chiavi e runtime privati non devono entrare nell'archivio pubblico.
 
 ## Risultati
 
-Da acquisire. Test precedenti sui 43/28 checkpoint non vengono presentati
-come risultati di questa conversazione completa.
+Prima conversazione Catanzaro conclusa: 12 valori SOURCE esportati; pausa e
+ripresa persistite. Una conferma anaforica del partecipante è stata giudicata
+ambigua dal gate, richiedendo un turno aggiuntivo. Nessuna modifica applicativa.
+
+Prima serie Labirinto conclusa: controlli SKIP/UNKNOWN/pausa/ripresa riusciti,
+ma rilevato un errore del setup. `06-procedura.txt` è stato caricato come globale
+Company anziché SOURCE del progetto. La serie viene conservata integralmente,
+senza presentarla come confronto valido della fixture congelata. Prima di una
+seconda serie si corregge solo l'harness: scope/category dal `sources.json`
+originale, nuovo DB e nuova conversazione, nessun cambiamento a gold o motore.
+Gli ID fisici assegnati dalle API restano quelli reali; il confronto offline
+con gli ID simbolici della fixture deve verificare nome, scope e contenuto.
+
+Nota d'ambiente: la creazione di script `.py` sotto backend con uvicorn --reload
+attivo ha provocato il normale riavvio e la reindicizzazione di 82 frammenti
+di quattro artefatti live. Contenuti, SOURCE, conversazioni, sessioni e originali
+sono invariati; non si dichiara identità fisica dell'intero database. Nessun
+ripristino manuale. Per il secondo harness si usa un file `.txt` interpretato
+da Python, così non si sollecita il watcher.
+
+Risultati finali e acquisizioni da completare. Test precedenti sui 43/28
+checkpoint non vengono presentati come risultati di questa conversazione.
