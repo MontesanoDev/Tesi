@@ -1,0 +1,38 @@
+{
+  "backend_targeted": {
+    "passed": 277,
+    "seconds": 46.4
+  },
+  "backend_full": {
+    "passed": 1924,
+    "seconds": 146.27
+  },
+  "ruff_backend": "passed",
+  "diff_check": "passed",
+  "frontend_and_browser_rerun": false,
+  "reason": "No UI/API contract change",
+  "fixture_v1_unchanged": true,
+  "production_and_runners_unchanged_during_benchmark": true,
+  "real_provider": "deepseek-flash",
+  "dialogue_cases": 43,
+  "dialogue_strict_gold_passed": 40,
+  "independent_guard_cases": 9,
+  "independent_guard_passed": 9,
+  "retry": 0,
+  "schema_errors": 0,
+  "backend_exceptions": 0,
+  "wrong_field_state_unchanged": true,
+  "no_regression_in_prior_39_passing": true,
+  "source_quality_or_new_full_compilation_measured": false,
+  "archive_hash_and_all_file_hashes_verified": true,
+  "archive": {
+    "file": "2026-10-12-reply-scope-audit.tar.gz",
+    "file_count": 334,
+    "bytes": 792505,
+    "sha256": "f994203975c2e22e863a5d0dc24cae12b01b60f743ac0744af6eb0850b3c57b6",
+    "verified_byte_for_byte": true,
+    "credentials_scan_passed": true
+  },
+  "local_document_links": "passed",
+  "local_document_link_scope": "All new report links and newly added links; historical absent ignored artifacts unchanged"
+}

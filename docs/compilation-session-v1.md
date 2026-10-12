@@ -10,7 +10,14 @@ del gruppo restano utilizzabili. Il verificatore non restituisce valori o ID:
 il backend conserva i destinatari; quote USER, validazione DOCX e CAS restano
 necessari. Nessuna chiamata aggiuntiva per RAG, export o soli controlli di
 sessione. Il costo aggiuntivo riguarda i turni USER che modificano dati.
-Verifiche software completate; prova reale sullo stesso gold ancora da acquisire.
+Verifica reale su 132bc6a: il router ripete l'assegnazione errata denominazione
+-> recapito, il gate la rifiuta e lo stato resta identico. **40/43** sul gold
+Dialogo V1 invariato (prima 39/43) e **9/9** proposte del verificatore indipendente.
+Una sola serie per dataset, non una garanzia di accuratezza generale. Le 12
+verifiche aggiungono 11.594 token /13,81 s AI ai 43 turni; costo esplicito di
+protezione della scrittura, nessun cambiamento alle chiamate dell'analisi globale.
+Provider failure/timeout bloccano conservativamente l'aggiornamento.
+[Report e acquisizioni](fix-pertinenza-user-2026-10-12.md).
 
 Benchmark del dialogo del 12 ottobre: [43 casi reali, 39 conformi al gold](benchmark-dialogo-2026-10-12.md).
 Il consenso naturale funziona nei casi fissati, ma una correzione fuori dagli

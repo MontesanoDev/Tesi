@@ -1,6 +1,6 @@
 # Stato di Mapi RAG
 
-## Pertinenza delle risposte USER — 12 ottobre 2026, fix in verifica reale
+## Pertinenza delle risposte USER — 12 ottobre 2026, fix verificato
 
 Implementato un controllo semantico indipendente dopo il routing e prima delle
 scritture conversazionali VALUE / CONDITION_TRUE / CONDITION_FALSE. Lo slot
@@ -23,10 +23,38 @@ backend/data/compilation-audit/reply-scope-20261012/checks/.
 
 Prima delle API congelato un secondo set separato di nove proposte da verificare,
 inclusa la proposta errata reale della baseline: benchmark-dialogo/guard-v1.
-Dialogo V1 e il suo gold rimangono invariati. Prossimo punto: ripetere i 43 casi
-e i nove controlli indipendenti con DeepSeek reale, su DB/storage temporanei;
-misurare rifiuti, risposte valide, costo e latenza. Risultati ancora da acquisire.
-Nessun push; commit piccoli autorizzati. Nessuna migrazione/reindicizzazione.
+Dialogo V1 e il suo gold rimangono invariati. Serie reale su **132bc6a**:
+**40/43 conformi** contro 39/43 della baseline. Sul caso critico il router
+propone nuovamente di inserire la denominazione nel recapito; il verificatore
+restituisce UNRELATED e il backend chiede chiarimento, senza cambiare neppure
+la versione della sessione. **9/9** controlli indipendenti conformi, inclusi
+il replay del vecchio raw errato, un gruppo con due parti valide e una estranea,
+risposte brevi corrette e ambiguità. Nessuna regressione dei 39 casi già conformi.
+Le due serie restano distinte: non sono 52 compilazioni complete.
+
+43 routing +12 verifiche, zero retry/errori schema/eccezioni, **154.371 token
+/66,20 s** turni; la sola verifica aggiunge **11.594 token /13,81 s** AI,
+mediana 1,14 s per chiamata. Baseline 142.816 token /47,92 s: latenza più alta,
+non un risparmio; variazioni del router non sono attribuite causalmente al fix.
+I nove controlli separati consumano 8.366 token /9,68 s AI. Cinque export
+confrontati realmente: quattro con recapito USER preesistente e uno vuoto,
+originali/altre celle invariati salvo banner, nessuna SOURCE inventata.
+Checkpoint autoriali in DB/storage temporanei; profilo live solo in lettura.
+Codice immutato durante entrambe le serie, nessun caso selettivamente ripetuto.
+
+Limiti: la verifica semantica resta basata su LLM, non è una prova matematica;
+timeout/provider possono comportare falsi negativi conservativi. Restano SKIP
+locale scambiato per pausa e due divergenze generate/finish. Nel messaggio misto
+questa volta non è stato scritto il valore ignorando finish, ma il contratto
+non è stato corretto e quel miglioramento non è attribuito al gate. RAG e
+copertura SOURCE non misurati di nuovo. Nessun test frontend/browser richiesto:
+UI e contratti invariati. Nessuna migrazione/reindicizzazione o push.
+
+[Report](docs/fix-pertinenza-user-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-reply-scope.json),
+[bundle dei grezzi](docs/benchmarks/2026-10-12-reply-scope-audit.tar.gz).
+**Prossima ripresa:** priorità dei comandi misti ed effetto locale SKIP/globale
+PAUSE, misurati sullo stesso benchmark prima di altri cambiamenti.
 
 ## Benchmark del dialogo V1 — 12 ottobre 2026, baseline reale conclusa
 
@@ -46,8 +74,8 @@ Problemi osservati e persistiti:
    attivo -> VALUE sul recapito, USER: destinatario semanticamente errato.
    Il gate verifica slot, estratto letterale e validità DOCX; manca un controllo
    indipendente della pertinenza messaggio->campo. Label generica non tipizzata
-   email. Era la PRIORITÀ della baseline, ora corretta dal gate sopra e da
-   verificare nella nuova serie reale.
+   email. Era la PRIORITÀ della baseline, ora corretta dal gate sopra e
+   verificata nella nuova serie reale.
 2. Valore + «prepara una bozza con quello che hai già» -> salva il valore e
    ignora la conclusione, violando la priorità attuale finish sui field.
 3. «Lasciamo questa conferma per dopo» -> pausa globale invece di SKIP locale.

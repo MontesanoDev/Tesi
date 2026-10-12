@@ -31,7 +31,10 @@ lo stesso messaggio di Mapi; pannello e dettagli tecnici sono rimossi dalla UI.
 Le API mantengono revisioni, provenienza, evidenze e operazioni manuali.
 Il planner usa ora un solo contratto `TurnPlan` in tutti gli stati della chat:
 spiegazioni, dati USER e comandi di sessione hanno vincoli distinti, senza una
-seconda chiamata classificatrice. I guard sui controlli preesistenti restano.
+seconda chiamata classificatrice. Dal 12 ottobre le sole proposte di scrittura
+USER hanno una verifica semantica indipendente della pertinenza alla domanda:
+una chiamata breve per gruppo, nessun retry, errori/ambiguità senza scritture.
+Non è un secondo router. I guard sui controlli preesistenti restano.
 
 Il selettore `@` include ora fonti e moduli del progetto, distinti per ruolo.
 `document_id` e `document_reference` identificano il documento da consultare;
@@ -163,6 +166,7 @@ Tutti i percorsi della tabella sono relativi a [backend/app](../backend/app).
 | `fact_extraction.py` | Selezione delle fonti, richiesta AI e validazione dell'estrazione dei fatti del bando. |
 | `draft_generation.py` | Generazione Markdown da template, fonti aziendali, dati di progetto e fatti; controlli sui riferimenti ai fatti. |
 | `intents.py` | Decisione della chat, protezione delle richieste di disponibilità e lettura dei requisiti dopo retrieval FORM. Schemi e un tentativo di correzione per fase. |
+| `compilation_reply_guard.py` | Verifica indipendente di pertinenza USER -> domanda/slot prima delle scritture conversazionali; massimo un batch di quattro proposte, nessun retry e nessun aggiornamento se incerto. |
 | `requirement_checks.py` | Requisiti documentali del singolo turno, query SOURCE da etichette verificate, controllo di ruolo/estratti/valori/associazione e composizione della risposta informativa. Nessuna compilazione persistente. |
 | `generation.py` | Contratti, timeout, troncamento, citazioni e conteggio token. Mixed chiede solo proposte strutturate di valori source; dopo la correzione conserva i riscontri validi e rende gli altri non verificati. |
 | `retrieval.py` | Interfaccia LangChain comune a FTS5/Qdrant, fusione dei risultati e ampliamento del contesto. |

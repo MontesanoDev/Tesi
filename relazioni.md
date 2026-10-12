@@ -1628,3 +1628,44 @@ incluso il raw errato della baseline: una verifica reale per gruppo, nessun
 nuovo output router simulato. Gold escluso dai prompt, nessuna analisi SOURCE.
 Confrontare anche risposte valide, costo e latenza; nessuna modifica applicativa
 nel corso delle serie. Risultati ancora da acquisire, nessun push.
+
+## 12 ottobre 2026 — pertinenza USER, risultati reali su 132bc6a
+
+Nessuna modifica applicativa durante le due serie, nessun caso ripetuto per
+selezionare un risultato. Dialogo V1 invariato: **40/43**, prima 39/43.
+DeepSeek ripropone il valore della denominazione nello slot recapito; la verifica
+indipendente restituisce UNRELATED, il backend risponde con chiarimento e la
+sessione rimane identica. I 39 casi già conformi non regrediscono. Restano
+condition-skip (PAUSE), finish-mixed e blank-export (generate invece di finish).
+Questa volta finish-mixed non salva alcun valore; il router è variabile e non
+attribuiamo al gate un miglioramento su quel comando, rimasto fuori scope.
+
+43 routing +12 verifiche, zero retry/schema error/eccezioni; 149.606 input
++4.765 output =154.371 token, 66,20 s turni /64,79 s API. Verificatore da solo:
+11.594 token /13,81 s, mediana 1,14 s. Baseline: 142.816 token /47,92 s;
+la protezione ha un costo, nessuna pretesa di risparmio. Dataset indipendente
+Guard V1: **9/9**, nove chiamate reali /8.366 token /9,68 s, proposte preparate
+prima delle API (prima replica il raw errato precedente), non nuovi router
+simulati. Valori e condizioni pertinenti passano; estranei/ambigui bloccati;
+gruppo parziale conserva due parti valide e respinge la terza estranea.
+
+Riletti i DB temporanei e confrontati tutti i cinque export DOCX reali:
+quattro con un recapito USER autoriale preesistente, uno vuoto; ogni cella
+modificata coincide con stato/report, originali e altre celle invariati salvo
+banner. Nessuna SOURCE fittizia o promozione di USER. Non è una nuova analisi
+SOURCE o una misura di completezza della compilazione. Le invarianti software
+passano con provider simulati; il verificatore semantico resta fallibile,
+timeout/provider falliscono conservativamente. Frontend/browser non ripetuti,
+nessun contratto/UI cambiato. Grezzi in reply-scope-20261012/; report, metriche
+e bundle durevole in docs/. Nessun push. Prossimo: comandi misti e SKIP locale.
+
+Bundle finale pertinenza USER: **334 file /792.505 byte**, verificato
+byte-per-byte e per SHA di ogni file, senza chiave/DB/runtime. SHA-256
+`f994203975c2e22e863a5d0dc24cae12b01b60f743ac0744af6eb0850b3c57b6`.
+[Report](docs/fix-pertinenza-user-2026-10-12.md),
+[metriche](docs/benchmarks/2026-10-12-reply-scope.json),
+[bundle](docs/benchmarks/2026-10-12-reply-scope-audit.tar.gz),
+[verifiche finali](docs/benchmarks/2026-10-12-reply-scope-final-checks.json).
+Un vecchio link STATUS a un report locale ignorato del 8 ottobre è assente
+in questo checkout: conservato, verificati tutti i nuovi link. Note offline
+nel bundle; nessun nuovo benchmark API necessario per i controlli documentali.
