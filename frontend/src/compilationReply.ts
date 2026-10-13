@@ -8,13 +8,16 @@ export function compilationReplyParagraphs(session: CompilationSession,
   if (session.engine === 'global') {
     if (response && response.compilation?.session_id !== session.id) return [response.answer]
     if (response?.compilation?.action === 'clarify') return [response.answer]
-    if (processing) return ['Analizzo l’intero modulo e verifico le informazioni disponibili…']
+    if (processing) return []
     if (session.chat?.paused_by_user) return ['La compilazione è in pausa. Chiedimi di riprendere quando vuoi.']
     if (error || session.last_error || session.chat?.paused) return ['Ho conservato il lavoro. Chiedimi di riprendere per ritentare l’analisi.']
-    if (session.global_compilation?.phase === 'REVIEW') return [
+    if (session.global_compilation?.phase === 'REVIEW') {
+      if (session.global_compilation.dialogue?.phase === 'PENDING') return []
+      return [
       session.global_compilation.dialogue?.message
       || 'Preparo il riepilogo delle informazioni trovate e dei punti da chiarire…']
-    return ['Preparo l’analisi globale del modulo…']
+    }
+    return []
   }
   const ownsResponse = response?.compilation?.session_id === session.id
   const paused = ownsResponse && response?.compilation?.action === 'paused'

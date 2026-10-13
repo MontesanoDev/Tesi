@@ -50,8 +50,8 @@ function documentReferenceOf(value: {
   return form ? { document_id: form.form_id, name: form.name, role: 'form' } : null
 }
 
-function ConversationTurn({ turn, assistantContent, processing = false }: {
-  turn: ChatTurn; assistantContent?: ReactNode; processing?: boolean
+function ConversationTurn({ turn, assistantContent, processing = false, activity }: {
+  turn: ChatTurn; assistantContent?: ReactNode; processing?: boolean; activity?: string
 }) {
   const result = turn.result
   const evidence = result?.evidence ?? []
@@ -67,7 +67,7 @@ function ConversationTurn({ turn, assistantContent, processing = false }: {
       </div>
 
       <AssistantMessage id={answerTitleId} model={result?.model}
-        busy={(!result && !turn.error) || processing} error={turn.error}>
+        busy={(!result && !turn.error) || processing} error={turn.error} activity={activity}>
           {assistantContent ?? (result?.answer && <p>{result.answer}</p>)}
           {!result?.answer && result?.notice && <p>{result.notice}</p>}
       </AssistantMessage>
@@ -392,13 +392,19 @@ export function ProjectWorkspacePage() {
 
   const latestTurn = turns.at(-1)
   const sessionProcessing = compilation.processing || compilation.loading
+  const awaitingSession = Boolean(latestTurn?.result?.compilation && !activeSession
+    && compilation.loading && !compilation.error)
+  const compilationActivity = activeSession?.engine === 'global'
+    ? activeSession.global_compilation?.phase === 'REVIEW'
+      ? 'Aggiorno la compilazione…' : 'Analizzo il modulo…'
+    : 'Sto lavorando…'
   const sessionMessage = activeSession ? (
     <CompilationReply key={activeSession.id} session={activeSession} response={latestTurn?.result}
       pending={Boolean(latestTurn && !latestTurn.result && !latestTurn.error)}
       processing={sessionProcessing} locked={sessionProcessing || searching || changingModel}
       error={compilation.error} onRetry={compilation.refresh}
       />
-  ) : null
+  ) : awaitingSession ? <></> : null
 
   const composer = (
     <form
@@ -572,11 +578,15 @@ export function ProjectWorkspacePage() {
                     <ConversationTurn
                       turn={turn}
                       assistantContent={index === turns.length - 1 ? sessionMessage ?? undefined : undefined}
-                      processing={index === turns.length - 1 && Boolean(activeSession) && sessionProcessing}
+                      processing={index === turns.length - 1 && (
+                        Boolean(activeSession) && sessionProcessing || awaitingSession)}
+                      activity={index === turns.length - 1 && latestTurn?.result?.compilation
+                        ? compilationActivity : undefined}
                     />
                   </div>
                 ))}
-                {!turns.length && sessionMessage && <AssistantMessage id="recovered-answer" busy={sessionProcessing}>
+                {!turns.length && sessionMessage && <AssistantMessage id="recovered-answer"
+                  busy={sessionProcessing} activity={compilationActivity}>
                   {sessionMessage}
                 </AssistantMessage>}
               </div>

@@ -1,12 +1,14 @@
 import { LoaderCircle } from 'lucide-react'
 import type { ReactNode } from 'react'
 
-export function AssistantMessage({ id, model, busy = false, error, children }: {
+export function AssistantMessage({ id, model, busy = false, error, children,
+  activity = 'Sto lavorando…' }: {
   id: string
   model?: string | null
   busy?: boolean
   error?: string | null
   children?: ReactNode
+  activity?: string
 }) {
   return <section className="grounded-answer" aria-labelledby={`${id}-title`} aria-busy={busy}>
     <div className="grounded-answer-heading">
@@ -16,7 +18,7 @@ export function AssistantMessage({ id, model, busy = false, error, children }: {
     {children}
     {busy && <p className="assistant-activity" role="status" aria-label="Mapi sta elaborando">
       <LoaderCircle size={16} aria-hidden="true" />
-      <span>Sto lavorando…</span>
+      <span>{activity}</span>
     </p>}
     {error && <p role="alert">{error}</p>}
   </section>

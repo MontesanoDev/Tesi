@@ -124,7 +124,13 @@ export function useCompilationSession(projectId?: string, conversationId?: strin
     processing,
     // The ref also closes the gap before React renders a newly started operation.
     isProcessing: () => processing || Boolean(operation.current),
-    refresh: () => { if (!operation.current) setReload((value) => value + 1) },
+    refresh: () => {
+      if (!operation.current) {
+        // Hide the stale dialogue in the same render that receives the HTTP receipt.
+        setState((s) => ({ ...s, loading: Boolean(conversationId), error: null }))
+        setReload((value) => value + 1)
+      }
+    },
     start: (id: number) => run((signal) => api.startCompilationSession(projectId!, id, conversationId ?? null, signal)),
     resolve: (fieldIds?: string[]) => current.session
       ? run((signal) => api.resolveCompilationSession(projectId!, current.session!.id, current.session!.version, fieldIds, signal)) : Promise.resolve(null),

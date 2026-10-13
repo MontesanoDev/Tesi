@@ -767,6 +767,56 @@ describe('CompilationSession nella chat', () => {
     expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1)
   })
 
+  it('aggiorna il dialogo senza mostrare ricevuta, vecchio riepilogo o nuova analisi nel turno corrente', async () => {
+    const summary = 'Ho trovato i dati della società. Confermi la partecipazione?'
+    const finalMessage = 'Conferma registrata. Il sottoscrittore resta in bianco.'
+    stored = globalSession(true)
+    stored.global_compilation!.dialogue = { phase: 'READY', message: summary }
+    vi.mocked(api.conversation).mockResolvedValue({ id: 'chat-1', project_id: 'alpha', title: 'Chat',
+      metadata: '', target: 'chat', turns: [{ id: 1, question: 'Compila', answer: summary,
+        generation_status: 'direct', model: 'simulato', total_tokens: 1, notice: null,
+        citations: [], evidence: [], missing_information: [],
+        compilation: { session_id: stored.id, action: 'start' } }] })
+    let releaseRead!: (s: CompilationSession) => void
+    let releaseResolve!: (s: CompilationSession) => void
+    const read = new Promise<CompilationSession>((resolve) => { releaseRead = resolve })
+    const resolve = new Promise<CompilationSession>((done) => { releaseResolve = done })
+    vi.mocked(api.compilationSession).mockResolvedValueOnce(structuredClone(stored))
+      .mockReturnValueOnce(read)
+    vi.mocked(api.resolveCompilationSession).mockReturnValue(resolve)
+    vi.mocked(api.projectAnswer).mockImplementation(async () => {
+      stored!.version++
+      stored!.global_compilation!.dialogue = { phase: 'PENDING', message: summary, user_turns: 1 }
+      stored!.chat!.auto_continue = true
+      return { conversation_id: 'chat-1', turn_id: 2, question: '1 sì e 2 lascia vuoto',
+        answer: 'Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti.',
+        generation_status: 'direct', model: 'simulato', total_tokens: 1, notice: null,
+        citations: [], evidence: [], missing_information: [],
+        compilation: { session_id: stored!.id, action: 'updated' } }
+    })
+    await setup('/projects/alpha/conversations/chat-1')
+    await screen.findByText(summary)
+    submit('1 sì e 2 lascia vuoto')
+    await waitFor(() => expect(api.compilationSession).toHaveBeenCalledTimes(2))
+    let current = screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!
+    expect(current).toHaveTextContent('Aggiorno la compilazione…')
+    expect(current).not.toHaveTextContent('Ho registrato le indicazioni univoche')
+    expect(current).not.toHaveTextContent(summary)
+    expect(current).not.toHaveTextContent('Analizzo')
+    expect(within(current).getAllByRole('status')).toHaveLength(1)
+    await act(async () => releaseRead(structuredClone(stored!)))
+    await waitFor(() => expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1))
+    stored!.global_compilation!.dialogue = { phase: 'READY', message: finalMessage, user_turns: 1 }
+    stored!.chat!.auto_continue = false
+    await act(async () => releaseResolve(structuredClone(stored!)))
+    await screen.findByText(finalMessage)
+    current = screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!
+    expect(current).not.toHaveTextContent(summary)
+    expect(within(current).queryByRole('status')).not.toBeInTheDocument()
+    expect(screen.getByText(summary)).toBeInTheDocument()
+    expect(api.updateCompilationFields).not.toHaveBeenCalled()
+  })
+
   it('conserva una sessione legacy senza avviare il vecchio motore', async () => {
     stored = { ...conversational(session()), engine: 'legacy' }
     await setup('/projects/alpha/conversations/chat-1')
