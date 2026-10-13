@@ -1295,7 +1295,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     if choices_enabled:
         from app.compilation_choices import attach_choice_audit
 
-        attach_choice_audit(result, choice_groups, items, catalog)
+        attach_choice_audit(result, choice_groups, items, catalog, source_map)
     result.update(version=payload["version"], unassigned_count=len(unassigned),
                   rejected_assignments=unknown, unused_fact_ids=unused,
                   counts=dict(Counter(f["validation"] for f in result["fields"])),

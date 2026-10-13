@@ -73,6 +73,27 @@ def test_source_choice_grounding_and_boolean_provenance(choice_case):
     assert result["resolved"] == result["writes"] == 0
 
 
+def test_case_and_space_normalization_do_not_drop_valid_source_choices(choice_case):
+    choice_case[1][0]["content"] = "Tipologia: organizzazione   tecnica."
+    fact = choice_case[2]["facts"]["tipo"]
+    fact.update(value="organizzazione tecnica", evidence=[{
+        "chunk_id": -7, "quote": "Tipologia: organizzazione tecnica."}])
+    result = audit(choice_case)
+    assert sum(f["validation"] == "GROUNDED_PROPOSAL" for f in result["fields"]) == 2
+    assert all(f["source_evidence"][0]["support_quote"] == "Tipologia: organizzazione   tecnica."
+               for f in result["fields"] if f.get("kind") == "choice")
+
+
+@pytest.mark.parametrize("body", ["non Organizzazione tecnica", "non è Organizzazione tecnica",
+                                "non possiede Organizzazione tecnica",
+                                "Organizzazione tecnica negata"])
+def test_cropped_noun_in_negative_source_cannot_authorize_positive_choice(choice_case, body):
+    choice_case[1][0]["content"] = "Tipologia: " + body
+    choice_case[2]["facts"]["tipo"]["evidence"][0]["quote"] = "Organizzazione tecnica"
+    result = audit(choice_case)
+    assert not any(f["validation"] == "GROUNDED_PROPOSAL" for f in result["fields"])
+
+
 @pytest.mark.parametrize("change", ["wrong_subject", "wrong_property", "wrong_polarity",
                                    "no_group", "general_source", "no_source"])
 def test_unsupported_checkbox_never_becomes_a_value(choice_case, change):

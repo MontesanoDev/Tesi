@@ -1904,3 +1904,13 @@ letterale conservativa per le scelte. Nessuna parola di questo bando nel codice.
 Prima delle API congelati benchmark-checkbox/v1 e gold,14 checkbox/two soggetti;
 tre analisi senza retry, benchmark compilazione V1 invariato e bando estratto
 senza ripetere l'estrazione. [Protocollo](docs/checkbox-2026-10-13.md).
+
+Prima serie V11: benchmark-checkbox3/3 analisi con10/10 booleani corretti e
+scritti, due testi, zero scelte senza SOURCE; tempi54,78/114,49/48,66s. Dialogo
+reale preparato4/4, scelta USER/ambiguità/UNKNOWN/SKIP. Labirinto:22 valori grezzi
+corretti ma solo17 ammessi/scritti, cinque checkbox scartate per confronto case
+sensitive ereditato da _comparison_text. Fixture/gold/codice invariati durante
+le prove, nessun output eliminato. Correzione locale per opzioni (NFC/case/spazi),
+con prova positiva della clausola SOURCE intera e veto contro nomi ritagliati
+da negazioni. Nessuna modifica ai confronti del RAG/delle condizioni. Nuova serie
+sugli stessi gold dopo il congelamento del fix, risultati da acquisire.

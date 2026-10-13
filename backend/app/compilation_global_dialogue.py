@@ -213,7 +213,8 @@ def model_context(data, pool):
              "form_evidence", {}).get("quote", "")[:600],
          "conditional": any(answers.get("condition:" + c, {}).get("applies") is not True
                             for c in f["conditions"]),
-         "sources": [{"name": e["source_name"][:150], "quote": e["quote"][:300]}
+         "sources": [{"name": e["source_name"][:150],
+                      "quote": e.get("support_quote", e["quote"])[:300]}
                      for e in f["source_evidence"][:1]]}
         for i, f in enumerate(proposals)
     ], "user_values": [{k: v[k] for k in ("label", "value", "provenance")}

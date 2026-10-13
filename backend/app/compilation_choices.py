@@ -1,9 +1,37 @@
 """Bounded FORM choice groups, SOURCE support and deterministic export effects."""
 
 import re
+import unicodedata
 from collections import Counter
 
 from app.compilation_global_contract import ChoiceGroup, FormSpan
+
+
+def _option_text(value):
+    return " ".join(unicodedata.normalize("NFC", value).casefold().split())
+
+
+def _positive_option_quote(source, quote, value):
+    """A complete positive attribute value, not a noun cropped out of a negation.
+
+    Other prose stays under review; this is not a semantic synonym classifier.
+    Check the actual authorized SOURCE clause even when the model crops its quote.
+    """
+    from app.compilation_sources import source_span
+
+    for clause in re.split(r"[\n;]", source):
+        heading, separator, body = clause.partition(":")
+        if (not separator or not heading.strip() or not body.strip()
+                or len(clause) > 800 or len(heading) > 250):
+            continue
+        if _option_text(body.strip(" .*_\t")) != _option_text(value.strip(" .*_\t")):
+            continue
+        try:
+            source_span(clause, quote)
+            return clause.strip()
+        except ValueError:
+            continue
+    raise ValueError("SOURCE senza attribuzione positiva completa dell'opzione")
 
 
 def choice_form(candidate_id, form, catalog, paragraphs):
@@ -36,7 +64,7 @@ def choice_form(candidate_id, form, catalog, paragraphs):
 
 
 def validate_groups(records, catalog, paragraphs, local, conditions):
-    from app.compilation_global import _comparison_text, _form_quote
+    from app.compilation_global import _form_quote
 
     groups, membership = {}, Counter(cid for r in records.values() if isinstance(r, dict)
                                      and isinstance(r.get("options"), dict)
@@ -53,7 +81,7 @@ def validate_groups(records, catalog, paragraphs, local, conditions):
                 raise ValueError("Gruppo senza istruzione FORM verificabile")
             # A small contradiction veto for explicit cardinality instructions.
             # Other wording remains a semantic proposal, not a guessed rule.
-            instruction = _comparison_text(paragraphs[group.form.paragraph_id])
+            instruction = _option_text(paragraphs[group.form.paragraph_id])
             command = r"(?:^|[:;.])\s*(?:selezionare|scegliere|barrare|indicare)\s+"
             single = re.search(command + r"(?:una sola|un['’]unica)\s+opzione\b", instruction)
             multiple = re.search(command + r"(?:una o più|tutte le)\s+opzioni\b", instruction)
@@ -73,11 +101,11 @@ def validate_groups(records, catalog, paragraphs, local, conditions):
                 enriched = {**catalog, "candidates": {**catalog["candidates"], cid: {
                     **candidate, "anchor_paragraph_ids": local[candidate["context_id"]]}}}
                 form = choice_form(cid, option.form, enriched, paragraphs)
-                if _comparison_text(option.label) not in _comparison_text(form.quote):
+                if _option_text(option.label) not in _option_text(form.quote):
                     raise ValueError("Etichetta opzione assente nell'estratto FORM")
-                if _comparison_text(option.label) in labels:
+                if _option_text(option.label) in labels:
                     raise ValueError("Opzioni con etichette ambigue")
-                labels.add(_comparison_text(option.label))
+                labels.add(_option_text(option.label))
                 output["options"][cid] = {"label": option.label, "form_evidence": form.model_dump()}
                 locations.add(candidate["location"].get("table_id"))
                 sections.add(tuple(candidate["section_ids"]))
@@ -100,10 +128,8 @@ def validate_groups(records, catalog, paragraphs, local, conditions):
     return groups
 
 
-def check_choice(field, fact, group, candidate_id):
+def check_choice(field, fact, group, candidate_id, source_map):
     """Conservative literal association, not a general semantic equivalence engine."""
-    from app.compilation_global import _comparison_text
-
     if group.get("validation") != "GROUNDED_GROUP" or group["selection"] == "unknown":
         raise ValueError("Regola di scelta non verificabile")
     if candidate_id not in group["options"] or type(field.choice) is not bool:
@@ -112,18 +138,21 @@ def check_choice(field, fact, group, candidate_id):
         p.get("category") == "general" for p in fact["source_evidence"]
     ):
         raise ValueError("Scelta senza SOURCE fattuale autorizzata")
-    if (_comparison_text(fact["subject"]) != _comparison_text(group["subject"])
-            or _comparison_text(fact["property"]) != _comparison_text(group["property"])):
+    if (_option_text(fact["subject"]) != _option_text(group["subject"])
+            or _option_text(fact["property"]) != _option_text(group["property"])):
         raise ValueError("SOURCE riferita a soggetto/proprietà differenti dal gruppo")
     supported = {cid for cid, option in group["options"].items()
-                 if _comparison_text(option["label"]) == _comparison_text(fact["value"])}
+                 if _option_text(option["label"]) == _option_text(fact["value"])}
     if len(supported) != 1 or field.choice != (candidate_id in supported):
         raise ValueError("SOURCE non sostiene questa opzione e polarità")
     if field.choice is False and group["selection"] != "single":
         raise ValueError("Opzione multipla falsa senza prova negativa indipendente")
+    return [{**proof, "support_quote": _positive_option_quote(
+        source_map[proof["chunk_id"]]["content"], proof["quote"], fact["value"])}
+        for proof in fact["source_evidence"]]
 
 
-def attach_choice_audit(result, groups, items, catalog):
+def attach_choice_audit(result, groups, items, catalog, source_map):
     for field in result["fields"]:
         cid = field["candidate_id"]
         if catalog["candidates"][cid]["type"] != "checkbox":
@@ -144,7 +173,8 @@ def attach_choice_audit(result, groups, items, catalog):
             continue
         try:
             group = groups.get(item.choice_group_id, {})
-            check_choice(item, result["facts"][item.fact_id], group, cid)
+            proofs = check_choice(item, result["facts"][item.fact_id], group, cid, source_map)
+            field["source_evidence"] = proofs
             field["choice_group_id"] = item.choice_group_id
         except ValueError as exc:
             field.update(validation="REJECTED", value=None, fact_id=None)
