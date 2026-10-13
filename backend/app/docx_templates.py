@@ -548,11 +548,12 @@ def _replace_slot(slot: ParagraphSlot, value: str) -> None:
     _expand_row(slot.paragraph)
 
 
-def fill_docx(layout: DocxLayout, values: dict[str, str]) -> bytes:
+def fill_docx(layout: DocxLayout, values: dict[str, str], *,
+              checkbox_values: dict[str, bool] | None = None) -> bytes:
     if hashlib.sha256(layout.original).hexdigest() != layout.sha256:
         raise DocumentInputError("Il modello e cambiato durante la compilazione")
     # Reopen the original so repeated exports cannot accumulate edits or draft notices.
-    fresh = inspect_docx(layout.original)
+    fresh = inspect_docx(layout.original, require_candidates=checkbox_values is None)
     for cell_id, value in values.items():
         if cell_id not in fresh.candidate_ids or not isinstance(value, str) or not value.strip():
             raise DocumentInputError("Tentativo di scrittura su un campo non autorizzato")
@@ -592,6 +593,11 @@ def fill_docx(layout: DocxLayout, values: dict[str, str]) -> bytes:
         paragraphs[0].append(run)
         # Fixed row heights otherwise clip longer values without warning in Word.
         _expand_row(cell)
+
+    if checkbox_values is not None:
+        from app.docx_checkboxes import write_checkboxes
+
+        write_checkboxes(fresh, checkbox_values)
 
     notice = OxmlElement("w:p")
     run = OxmlElement("w:r")
