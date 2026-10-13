@@ -1,5 +1,33 @@
 # Stato di Mapi RAG
 
+## Verifica compilato(2): buona bozza testuale, tre limiti — 13 ottobre
+
+Controllato il file utente `domanda-iscrizione.compilato(2).docx`, identico alla
+generazione reale6cb97f7b/sessionea067b0ab versione7 (distinta dal replay privato
+e dalla vecchia sessione0ce44c51).20 posizioni SOURCE Company KB scritte,
+nessun valore USER: operatore/recapiti/PIVA, dati societari e nome/qualifica/
+Ordine/8421 del direttore tecnico nel ramo corretto. Quote/valori/digest
+verificati nell’input reale. Tutti i paragrafi corrispondono a originale+valori,
+15 altre parti ZIP invariate; sessione/originale/file utente preservati.
+
+Tre limiti concreti: Bari omesso nella sede iniziale per quote FORM composta
+solo da marker/punteggiatura («con sede in» termina nel paragrafo precedente);
+indirizzo completo ridondante rispetto a via/civico separati nel ramo societario;
+spazio mancante fra etichetta Ordine e valore. Sottoscrittore/soci/dati personali
+non inventati; REA non scambiato con numero Registro Imprese, data societaria
+non usata per iscrizione all’Ordine. Bozza buona, non completa;20 posizioni non
+sono20 fatti distinti.99 motivazioni respinte non dimostrano assenza di dati.
+
+Diagnosi in sola lettura, zero chiamate provider/generazioni/cambi codice.
+Verificati XML/ZIP/fonti/integrità e diff; nessuna suite software o rendering
+visuale della paginazione rieseguiti. Checkbox fuori scope come chiesto.
+[Report](docs/minervino-output-2-2026-10-13.md), raw in
+backend/data/compilation-audit/minervino-output-2-20261013/, bundle/manifest
+in docs/benchmarks/2026-10-13-minervino-output-2-*.
+Prossimo da discutere: ancoraggio attraversamento paragrafi, granularità indirizzi,
+rifinitura spazi. Nessuna implementazione iniziata, nessun push.
+
+
 ## Consenso alla bozza: diagnosi persistente e riprova — 13 ottobre
 
 Backend: decc725.

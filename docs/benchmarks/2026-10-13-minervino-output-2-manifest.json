@@ -1,0 +1,155 @@
+{
+  "bundle": "2026-10-13-minervino-output-2-audit.tar.gz",
+  "sha256": "32461e06fe6661352b34516f9f1f3d98fb08d54c342cfe6c101f5f5228abb8d3",
+  "files": 11,
+  "uncompressed_bytes": 1451792,
+  "credential_scan_passed": true,
+  "database_and_ai_key_excluded": true,
+  "byte_comparison_passed": true,
+  "diagnosis": {
+    "input_file": "/home/montesano/tesi/domanda-iscrizione.compilato(2).docx",
+    "sha256": "bd0da991ef7ff40833b41e9d14d3eeea323a415ed9815a6788a61fec34057952",
+    "matches_persisted_run": true,
+    "run_id": "6cb97f7bc2784517919f3b99e4d021cc",
+    "session_id": "a067b0abf83f4d948137728669879604",
+    "session_version": 8,
+    "state_status": "GENERATED",
+    "source_values_written": 20,
+    "user_values_written": 0,
+    "all_source_proofs_valid": true,
+    "source_corpus_chunks": 51,
+    "sources_used": [
+      -45,
+      -44,
+      -43
+    ],
+    "company_scope_only": true,
+    "checkbox_analysis_out_of_scope": true,
+    "visual_pagination_checked": false,
+    "original_matches_storage": true,
+    "verification": {
+      "all_paragraphs_match": true,
+      "unselected_positions_unchanged": true,
+      "written_texts": 20,
+      "unchanged_other_zip_parts": 15,
+      "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    "factual_errors_in_written_values_observed": 0,
+    "analysis_coverage": {
+      "total": 267,
+      "proposed": 20,
+      "clarifications": 0,
+      "rejected": 1,
+      "explained_unfilled": 147,
+      "explicitly_unassessed": 0,
+      "unexplained": 0,
+      "rejected_explanations": 99,
+      "explicit_decisions_complete": true,
+      "coverage_checks_passed": false,
+      "semantic_completeness_verified": false,
+      "outcomes": {
+        "source_not_found": 142,
+        "manual_input": 5
+      }
+    },
+    "findings": [
+      {
+        "kind": "false_negative",
+        "candidate_id": "p15.s0",
+        "expected_available_value": "Bari",
+        "proposal": {
+          "label": "Comune",
+          "kind": "data",
+          "disposition": "conditional",
+          "form": {
+            "paragraph_id": "paragraph:15",
+            "quote": "[[p15.s0]] ("
+          },
+          "conditions": [
+            "c_partecipazione"
+          ],
+          "property": "comune",
+          "fact_id": "f_comune",
+          "reason": "Comune documentato; ramo di partecipazione non confermato"
+        },
+        "errors": [
+          "Il solo marker non documenta la richiesta del campo"
+        ]
+      },
+      {
+        "kind": "redundant_address",
+        "candidate_id": "p41.s1",
+        "written": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+        "related_fields": [
+          "p42.s0",
+          "p42.s1",
+          "p42.s2"
+        ],
+        "interpretation": "The surrounding separate province/street/number fields suggest the first slot should contain municipality Bari."
+      },
+      {
+        "kind": "missing_separator",
+        "candidate_id": "p53.s0",
+        "literal_text": "iscritto all’Ordine/Collegio professionaleOrdine degli Ingegneri di Bari",
+        "note": "Correct candidate; no separating whitespace at existing placeholder boundary."
+      }
+    ]
+  },
+  "entries": [
+    {
+      "path": "minervino-output-2-20261013/diagnosis.json",
+      "bytes": 2712,
+      "sha256": "d7419cb85952026d7a59aa9985ad917545c73025c560e62e647161f2abc595ec"
+    },
+    {
+      "path": "minervino-output-2-20261013/generated.docx",
+      "bytes": 60456,
+      "sha256": "bd0da991ef7ff40833b41e9d14d3eeea323a415ed9815a6788a61fec34057952"
+    },
+    {
+      "path": "minervino-output-2-20261013/input.json",
+      "bytes": 347156,
+      "sha256": "f26a96d71eb5f111c8f1e305e60a3960e210a9379e42d97bf8716bae71902b7f"
+    },
+    {
+      "path": "minervino-output-2-20261013/integrity-before.json",
+      "bytes": 292,
+      "sha256": "ee4fb2998f07ebb0f9d1d30dd1a135dd1ac81cc5cfa0b030eba605c71d63cda1"
+    },
+    {
+      "path": "minervino-output-2-20261013/integrity.json",
+      "bytes": 752,
+      "sha256": "a374dc6481a7cfb26065b2da30dd1008ad9df6d47107ffd4c4a968db4ecb54a4"
+    },
+    {
+      "path": "minervino-output-2-20261013/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "minervino-output-2-20261013/report.json",
+      "bytes": 338419,
+      "sha256": "e55b783f8f1dec749d0e86cd25545c88c69004f30f3128dfa47741f0f6832709"
+    },
+    {
+      "path": "minervino-output-2-20261013/response.txt",
+      "bytes": 19363,
+      "sha256": "f0b1972a32adfb12970ae3d7bf9365c03a7e3457c8b350cd45578d64e79a8746"
+    },
+    {
+      "path": "minervino-output-2-20261013/state.json",
+      "bytes": 598587,
+      "sha256": "f1e07720eb657a714dad777cd8aa9f690cde100534a5a7b327ca37085c6767b0"
+    },
+    {
+      "path": "minervino-output-2-20261013/verification-code.py.txt",
+      "bytes": 3921,
+      "sha256": "9c7957251ee52949a20422959745c8d328a51e67dbf803246acc712cfbe3fbb3"
+    },
+    {
+      "path": "minervino-output-2-20261013/written-values.json",
+      "bytes": 16640,
+      "sha256": "d3fde6f4d1ae9a41c85c5bd5ccfb1c79545e93a656d4d4b4d533dd081784a706"
+    }
+  ]
+}

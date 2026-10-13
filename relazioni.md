@@ -2167,3 +2167,20 @@ qualità semantica attribuito a questi test software con provider simulati.
 [Report](docs/compilazione-consenso-bozza-2026-10-13.md), raw e bundle dedicati.
 Prossimo: se l’errore reale ricompare, diagnosticare dalla trace salvata anziché
 inventare una causa a posteriori o ripetere l’analisi dei dati già acquisiti.
+
+
+## 13 ottobre2026 — revisione del compilato(2) reale dell’utente
+
+Revisione, non nuova analisi/benchmark: originale Minervino invariato,
+file utente identico alla generazione6cb97f7b, sessionea067b0ab versione7.
+20 posizioni SOURCE Company KB scritte, incluso direttore tecnico/Ordine/8421.
+Quote, valori e hash verificati contro l’input reale; testo integrale uguale
+all’originale con soli20 valori e banner,15 altre parti ZIP immutate. Zero
+chiamate provider, valori USER, generazioni nuove o modifiche a codice/DB.
+
+Limiti osservati: Bari iniziale proposto ma rifiutato dal gate FORM per quote
+solo marker/punteggiatura; indirizzo completo ridondante; etichetta Ordine
+attaccata al valore. Spazi del firmatario/soci/date personali non inventati.
+Checkbox escluse su richiesta; nessun rendering visuale Word. Nessuna
+percentuale di accuratezza o suite software presentata come appena eseguita.
+[Report e acquisizioni](docs/minervino-output-2-2026-10-13.md).
