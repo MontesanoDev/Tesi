@@ -1,0 +1,1171 @@
+{
+  "version": 12,
+  "uncertain_paragraph_ids": [],
+  "conditions": {
+    "c_sede_div": {
+      "form": {
+        "paragraph_id": "paragraph:18",
+        "quote": "Sede operativa (compilare solo se diversa dalla sede legale)"
+      },
+      "aspect": "location",
+      "operator": "different",
+      "fact_ids": [
+        "f_sede_legale",
+        "f_sede_operativa"
+      ],
+      "reason": "La sede operativa coincide con la sede legale; la condizione di diversità è falsa.",
+      "scope": [
+        {
+          "kind": "candidate",
+          "id": "t1.r0.c1"
+        }
+      ]
+    },
+    "c_tip_prof_singolo": {
+      "form": {
+        "paragraph_id": "paragraph:42",
+        "quote": "4.a — Da compilare solo in caso di professionista singolo"
+      },
+      "aspect": "legal_type",
+      "operator": "semantic",
+      "fact_ids": [
+        "f_tipologia"
+      ],
+      "reason": "Ramo subordinato alla tipologia professionista singolo.",
+      "scope": [
+        {
+          "kind": "candidate",
+          "id": "t3.r0.c1"
+        },
+        {
+          "kind": "candidate",
+          "id": "t3.r1.c1"
+        },
+        {
+          "kind": "candidate",
+          "id": "t3.r2.c1"
+        }
+      ]
+    },
+    "c_tip_studio_associato": {
+      "form": {
+        "paragraph_id": "paragraph:49",
+        "quote": "4.b — Da compilare solo in caso di studio associato"
+      },
+      "aspect": "legal_type",
+      "operator": "semantic",
+      "fact_ids": [
+        "f_tipologia"
+      ],
+      "reason": "Ramo subordinato alla tipologia studio associato.",
+      "scope": [
+        {
+          "kind": "candidate",
+          "id": "t4.r0.c1"
+        },
+        {
+          "kind": "candidate",
+          "id": "t4.r1.c1"
+        },
+        {
+          "kind": "candidate",
+          "id": "t4.r2.c1"
+        }
+      ]
+    },
+    "c_tip_societa_ingegneria": {
+      "form": {
+        "paragraph_id": "paragraph:57",
+        "quote": "4.c — Da compilare solo in caso di società di ingegneria"
+      },
+      "aspect": "legal_type",
+      "operator": "semantic",
+      "fact_ids": [
+        "f_tipologia"
+      ],
+      "reason": "Ramo subordinato alla tipologia società di ingegneria.",
+      "scope": [
+        {
+          "kind": "table",
+          "id": "table:5"
+        },
+        {
+          "kind": "table",
+          "id": "table:6"
+        },
+        {
+          "kind": "table",
+          "id": "table:8"
+        }
+      ]
+    },
+    "c_tip_consorzio": {
+      "form": {
+        "paragraph_id": "paragraph:83",
+        "quote": "4.d — Da compilare solo in caso di consorzio stabile"
+      },
+      "aspect": "legal_type",
+      "operator": "semantic",
+      "fact_ids": [
+        "f_tipologia"
+      ],
+      "reason": "Ramo subordinato alla tipologia consorzio stabile.",
+      "scope": [
+        {
+          "kind": "candidate",
+          "id": "t9.r0.c1"
+        },
+        {
+          "kind": "candidate",
+          "id": "t9.r1.c1"
+        }
+      ]
+    },
+    "c_secondo_dt": {
+      "form": {
+        "paragraph_id": "paragraph:76",
+        "quote": "Solo se è stato nominato un secondo direttore tecnico"
+      },
+      "aspect": "professional",
+      "operator": "semantic",
+      "fact_ids": [],
+      "reason": "Nomina del secondo direttore tecnico non documentata.",
+      "scope": [
+        {
+          "kind": "candidate",
+          "id": "t8.r0.c1"
+        },
+        {
+          "kind": "candidate",
+          "id": "t8.r1.c1"
+        }
+      ]
+    },
+    "c_procuratore": {
+      "form": {
+        "paragraph_id": "paragraph:28",
+        "quote": "Estremi procura (solo se il sottoscrittore agisce come procuratore)"
+      },
+      "aspect": "representation",
+      "operator": "semantic",
+      "fact_ids": [],
+      "reason": "Ruolo di procuratore del sottoscrittore non accertato.",
+      "scope": [
+        {
+          "kind": "candidate",
+          "id": "t2.r2.c1"
+        },
+        {
+          "kind": "candidate",
+          "id": "t2.r3.c1"
+        }
+      ]
+    },
+    "c_rti": {
+      "form": {
+        "paragraph_id": "paragraph:93",
+        "quote": "Denominazione raggruppamento (solo se si partecipa in RTI)"
+      },
+      "aspect": "participation",
+      "operator": "semantic",
+      "fact_ids": [],
+      "reason": "Partecipazione in RTI non documentata.",
+      "scope": [
+        {
+          "kind": "candidate",
+          "id": "t10.r0.c1"
+        },
+        {
+          "kind": "candidate",
+          "id": "t10.r1.c1"
+        }
+      ]
+    }
+  },
+  "bindings": {
+    "b_dt": {
+      "form": {
+        "paragraph_id": "paragraph:63",
+        "quote": "Direttore tecnico della società di ingegneria"
+      },
+      "required_role": "Direttore tecnico",
+      "source_role": "direttore tecnico",
+      "evidence": [
+        {
+          "chunk_id": -2,
+          "quote": "Orione Tecnica S.r.l. — direttore tecnico: Giulia Serra."
+        }
+      ]
+    }
+  },
+  "choice_groups": {
+    "cg_tipologia": {
+      "label": "Tipologia dell'operatore richiedente",
+      "subject": "Orione Tecnica S.r.l.",
+      "property": "tipologia operatore",
+      "form": {
+        "paragraph_id": "paragraph:35",
+        "quote": "Selezionare esattamente una delle cinque tipologie seguenti. In questo modulo sono alternative per il medesimo operatore; non descrivono soci né altri partecipanti."
+      },
+      "selection": "single",
+      "min_selected": 1,
+      "conditions": [],
+      "options": {
+        "p36.cb0": {
+          "label": "Società di ingegneria",
+          "form": {
+            "paragraph_id": "paragraph:36",
+            "quote": "[[p36.cb0]] Società di ingegneria"
+          }
+        },
+        "p37.cb0": {
+          "label": "Professionista singolo",
+          "form": {
+            "paragraph_id": "paragraph:37",
+            "quote": "[[p37.cb0]]☐ Professionista singolo"
+          }
+        },
+        "p38.cb0": {
+          "label": "Studio associato",
+          "form": {
+            "paragraph_id": "paragraph:38",
+            "quote": "[[p38.cb0]] Studio associato"
+          }
+        },
+        "p39.cb0": {
+          "label": "Società di professionisti",
+          "form": {
+            "paragraph_id": "paragraph:39",
+            "quote": "[[p39.cb0]]☐ Società di professionisti"
+          }
+        },
+        "p40.cb0": {
+          "label": "Consorzio stabile",
+          "form": {
+            "paragraph_id": "paragraph:40",
+            "quote": "[[p40.cb0]] Consorzio stabile"
+          }
+        }
+      }
+    },
+    "cg_partecipazione": {
+      "label": "Modalità di partecipazione alla presente procedura",
+      "subject": "Orione Tecnica S.r.l.",
+      "property": "modalità di partecipazione",
+      "form": {
+        "paragraph_id": "paragraph:89",
+        "quote": "Selezionare una sola modalità. La forma giuridica dell'operatore non determina se questa domanda sia presentata singolarmente o in raggruppamento."
+      },
+      "selection": "single",
+      "min_selected": 1,
+      "conditions": [],
+      "options": {
+        "p90.cb0": {
+          "label": "Partecipazione singola",
+          "form": {
+            "paragraph_id": "paragraph:90",
+            "quote": "[[p90.cb0]]☐ Partecipazione singola"
+          }
+        },
+        "p91.cb0": {
+          "label": "Mandataria di RTI",
+          "form": {
+            "paragraph_id": "paragraph:91",
+            "quote": "[[p91.cb0]]☐ Mandataria di RTI"
+          }
+        },
+        "p92.cb0": {
+          "label": "Mandante di RTI",
+          "form": {
+            "paragraph_id": "paragraph:92",
+            "quote": "[[p92.cb0]]☐ Mandante di RTI"
+          }
+        }
+      }
+    },
+    "cg_firmatario_ruolo": {
+      "label": "Ruolo del firmatario",
+      "subject": "Il sottoscritto",
+      "property": "ruolo nella presente domanda",
+      "form": {
+        "paragraph_id": "paragraph:23",
+        "quote": "La carica societaria non identifica da sola il firmatario della presente pratica. Per gli estremi della procura verificare prima se il sottoscrittore agisce come procuratore."
+      },
+      "selection": "single",
+      "min_selected": 1,
+      "conditions": [],
+      "options": {
+        "p32.cb0": {
+          "label": "Il firmatario agisce come legale rappresentante",
+          "form": {
+            "paragraph_id": "paragraph:32",
+            "quote": "[[p32.cb0]]☐ Il firmatario agisce come legale rappresentante"
+          }
+        },
+        "p33.cb0": {
+          "label": "Il firmatario agisce come procuratore",
+          "form": {
+            "paragraph_id": "paragraph:33",
+            "quote": "[[p33.cb0]]☐ Il firmatario agisce come procuratore"
+          }
+        }
+      }
+    }
+  },
+  "fields": {
+    "t0.r0.c1": {
+      "label": "Denominazione sociale",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:4",
+        "quote": "Denominazione sociale"
+      },
+      "conditions": [],
+      "property": "denominazione sociale",
+      "fact_id": "f_denom"
+    },
+    "t0.r1.c1": {
+      "label": "Forma giuridica",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:6",
+        "quote": "Forma giuridica"
+      },
+      "conditions": [],
+      "property": "forma giuridica",
+      "fact_id": "f_forma"
+    },
+    "t0.r2.c1": {
+      "label": "Codice fiscale operatore",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:8",
+        "quote": "Codice fiscale operatore"
+      },
+      "conditions": [],
+      "property": "codice fiscale operatore",
+      "fact_id": "f_cf"
+    },
+    "t0.r3.c1": {
+      "label": "Partita IVA",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:10",
+        "quote": "Partita IVA"
+      },
+      "conditions": [],
+      "property": "partita IVA",
+      "fact_id": "f_piva"
+    },
+    "t0.r4.c1": {
+      "label": "Sede legale",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:12",
+        "quote": "Sede legale"
+      },
+      "conditions": [],
+      "property": "sede legale",
+      "fact_id": "f_sede_legale"
+    },
+    "t0.r5.c1": {
+      "label": "Telefono",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:14",
+        "quote": "Telefono"
+      },
+      "conditions": [],
+      "property": "telefono",
+      "fact_id": "f_telefono"
+    },
+    "t0.r6.c1": {
+      "label": "PEC",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:16",
+        "quote": "PEC"
+      },
+      "conditions": [],
+      "property": "PEC",
+      "fact_id": "f_pec"
+    },
+    "t1.r0.c1": {
+      "label": "Sede operativa",
+      "kind": "data",
+      "disposition": "not_applicable",
+      "form": {
+        "paragraph_id": "paragraph:18",
+        "quote": "Sede operativa (compilare solo se diversa dalla sede legale)"
+      },
+      "conditions": [
+        "c_sede_div"
+      ],
+      "reason": "La sede operativa coincide con la sede legale."
+    },
+    "t1.r1.c1": {
+      "label": "Recapito per la corrispondenza",
+      "kind": "data",
+      "disposition": "review",
+      "form": {
+        "paragraph_id": "paragraph:20",
+        "quote": "Recapito per la corrispondenza"
+      },
+      "conditions": [],
+      "property": "recapito per la corrispondenza",
+      "review_kind": "ambiguous",
+      "alternative_fact_ids": [
+        "f_recapito1",
+        "f_recapito2"
+      ],
+      "reason": "Due recapiti alternativi senza preferenza indicata."
+    },
+    "t5.r0.c1": {
+      "label": "Denominazione sociale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:59",
+        "quote": "Denominazione sociale"
+      },
+      "conditions": [
+        "c_tip_societa_ingegneria"
+      ],
+      "property": "denominazione sociale",
+      "fact_id": "f_denom",
+      "reason": "Dato aziendale documentato; ramo dipende dalla tipologia."
+    },
+    "t5.r1.c1": {
+      "label": "Forma giuridica",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:61",
+        "quote": "Forma giuridica"
+      },
+      "conditions": [
+        "c_tip_societa_ingegneria"
+      ],
+      "property": "forma giuridica",
+      "fact_id": "f_forma",
+      "reason": "Dato aziendale documentato; ramo dipende dalla tipologia."
+    },
+    "t6.r0.c1": {
+      "label": "Nome e cognome",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:64",
+        "quote": "Nome e cognome"
+      },
+      "conditions": [
+        "c_tip_societa_ingegneria"
+      ],
+      "property": "nome e cognome",
+      "fact_id": "f_dt_nome",
+      "binding_id": "b_dt",
+      "reason": "Dato personale documentato; ramo dipende dalla tipologia."
+    },
+    "t6.r1.c1": {
+      "label": "Qualifica professionale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:66",
+        "quote": "Qualifica professionale"
+      },
+      "conditions": [
+        "c_tip_societa_ingegneria"
+      ],
+      "property": "qualifica professionale",
+      "fact_id": "f_dt_qualifica",
+      "binding_id": "b_dt",
+      "reason": "Dato personale documentato; ramo dipende dalla tipologia."
+    },
+    "t6.r2.c1": {
+      "label": "Ordine professionale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:68",
+        "quote": "Ordine professionale"
+      },
+      "conditions": [
+        "c_tip_societa_ingegneria"
+      ],
+      "property": "ordine professionale",
+      "fact_id": "f_dt_ordine",
+      "binding_id": "b_dt",
+      "reason": "Dato personale documentato; ramo dipende dalla tipologia."
+    },
+    "t6.r3.c1": {
+      "label": "Numero iscrizione albo",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:70",
+        "quote": "Numero iscrizione albo"
+      },
+      "conditions": [
+        "c_tip_societa_ingegneria"
+      ],
+      "property": "numero iscrizione albo",
+      "fact_id": "f_dt_numero",
+      "binding_id": "b_dt",
+      "reason": "Dato personale documentato; ramo dipende dalla tipologia."
+    },
+    "t11.r0.c1": {
+      "label": "Numero della polizza professionale vigente",
+      "kind": "data",
+      "disposition": "review",
+      "form": {
+        "paragraph_id": "paragraph:99",
+        "quote": "Numero della polizza professionale vigente"
+      },
+      "conditions": [],
+      "property": "numero polizza professionale",
+      "review_kind": "ambiguous",
+      "alternative_fact_ids": [
+        "f_polizza_a",
+        "f_polizza_b"
+      ],
+      "reason": "Due attestazioni alternative della stessa data, senza priorità."
+    },
+    "t12.r0.c1": {
+      "label": "Iscrizione CCIAA",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:106",
+        "quote": "Iscrizione CCIAA"
+      },
+      "conditions": [],
+      "property": "iscrizione CCIAA",
+      "fact_id": "f_cciaa"
+    },
+    "t12.r1.c1": {
+      "label": "Numero iscrizione REA",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:108",
+        "quote": "Numero iscrizione REA"
+      },
+      "conditions": [],
+      "property": "numero iscrizione REA",
+      "fact_id": "f_rea"
+    },
+    "t12.r2.c1": {
+      "label": "Data iscrizione CCIAA",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:110",
+        "quote": "Data iscrizione CCIAA"
+      },
+      "conditions": [],
+      "property": "data iscrizione CCIAA",
+      "fact_id": "f_data_cciaa"
+    },
+    "t13.r0.c1": {
+      "label": "Codice della presente procedura",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:112",
+        "quote": "Codice della presente procedura"
+      },
+      "conditions": [],
+      "property": "codice procedura",
+      "fact_id": "f_codice_procedura"
+    },
+    "p36.cb0": {
+      "label": "Società di ingegneria",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:36",
+        "quote": "[[p36.cb0]] Società di ingegneria"
+      },
+      "conditions": [],
+      "property": "tipologia operatore",
+      "fact_id": "f_tipologia",
+      "choice": true,
+      "choice_group_id": "cg_tipologia"
+    },
+    "p37.cb0": {
+      "label": "Professionista singolo",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:37",
+        "quote": "[[p37.cb0]]☐ Professionista singolo"
+      },
+      "conditions": [],
+      "property": "tipologia operatore",
+      "fact_id": "f_tipologia",
+      "choice": false,
+      "choice_group_id": "cg_tipologia"
+    },
+    "p38.cb0": {
+      "label": "Studio associato",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:38",
+        "quote": "[[p38.cb0]] Studio associato"
+      },
+      "conditions": [],
+      "property": "tipologia operatore",
+      "fact_id": "f_tipologia",
+      "choice": false,
+      "choice_group_id": "cg_tipologia"
+    },
+    "p39.cb0": {
+      "label": "Società di professionisti",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:39",
+        "quote": "[[p39.cb0]]☐ Società di professionisti"
+      },
+      "conditions": [],
+      "property": "tipologia operatore",
+      "fact_id": "f_tipologia",
+      "choice": false,
+      "choice_group_id": "cg_tipologia"
+    },
+    "p40.cb0": {
+      "label": "Consorzio stabile",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:40",
+        "quote": "[[p40.cb0]] Consorzio stabile"
+      },
+      "conditions": [],
+      "property": "tipologia operatore",
+      "fact_id": "f_tipologia",
+      "choice": false,
+      "choice_group_id": "cg_tipologia"
+    }
+  },
+  "facts": {
+    "f_denom": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "denominazione sociale",
+      "value": "Orione Tecnica S.r.l.",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "Denominazione: Orione Tecnica S.r.l."
+        }
+      ]
+    },
+    "f_forma": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "forma giuridica",
+      "value": "società a responsabilità limitata",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "Forma giuridica: società a responsabilità limitata."
+        }
+      ]
+    },
+    "f_cf": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "codice fiscale operatore",
+      "value": "01234567897",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "Codice fiscale operatore: 01234567897."
+        }
+      ]
+    },
+    "f_piva": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "partita IVA",
+      "value": "01234567897",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "Partita IVA: 01234567897."
+        }
+      ]
+    },
+    "f_sede_legale": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "sede legale",
+      "value": "Via delle Querce 18, 60121 Ancona (AN)",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "Sede legale: Via delle Querce 18, 60121 Ancona (AN)."
+        }
+      ]
+    },
+    "f_telefono": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "other",
+      "property": "telefono",
+      "value": "+39 071 000 1234",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "Telefono: +39 071 000 1234."
+        }
+      ]
+    },
+    "f_pec": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "other",
+      "property": "PEC",
+      "value": "orione@pec.example.org",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "PEC: orione@pec.example.org."
+        }
+      ]
+    },
+    "f_cciaa": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "iscrizione CCIAA",
+      "value": "Camera di Commercio delle Marche",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "Iscrizione CCIAA: Camera di Commercio delle Marche."
+        }
+      ]
+    },
+    "f_rea": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "numero iscrizione REA",
+      "value": "AN-204060",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "Numero REA: AN-204060."
+        }
+      ]
+    },
+    "f_data_cciaa": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "data iscrizione CCIAA",
+      "value": "14/03/2019",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "Data iscrizione CCIAA: 14/03/2019."
+        }
+      ]
+    },
+    "f_tipologia": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "tipologia operatore",
+      "value": "società di ingegneria",
+      "evidence": [
+        {
+          "chunk_id": -1,
+          "quote": "Tipologia operatore: società di ingegneria."
+        }
+      ]
+    },
+    "f_sede_operativa": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "sede operativa",
+      "value": "Via delle Querce 18, 60121 Ancona (AN)",
+      "evidence": [
+        {
+          "chunk_id": -3,
+          "quote": "sede operativa: Via delle Querce 18, 60121 Ancona (AN)."
+        }
+      ]
+    },
+    "f_recapito1": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "recapito per la corrispondenza",
+      "value": "Via del Porto 2, Ancona",
+      "evidence": [
+        {
+          "chunk_id": -3,
+          "quote": "Via del Porto 2, Ancona"
+        }
+      ]
+    },
+    "f_recapito2": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "recapito per la corrispondenza",
+      "value": "Via dei Tigli 7, Jesi",
+      "evidence": [
+        {
+          "chunk_id": -3,
+          "quote": "Via dei Tigli 7, Jesi"
+        }
+      ]
+    },
+    "f_polizza_a": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "other",
+      "property": "numero polizza professionale",
+      "value": "RC-OR-2026-A",
+      "evidence": [
+        {
+          "chunk_id": -4,
+          "quote": "polizza professionale vigente RC-OR-2026-A."
+        }
+      ]
+    },
+    "f_polizza_b": {
+      "subject": "Orione Tecnica S.r.l.",
+      "entity": "company",
+      "aspect": "other",
+      "property": "numero polizza professionale",
+      "value": "RC-OR-2026-B",
+      "evidence": [
+        {
+          "chunk_id": -5,
+          "quote": "polizza professionale vigente RC-OR-2026-B."
+        }
+      ]
+    },
+    "f_codice_procedura": {
+      "subject": "Procedura LAB-ORIONE-2026",
+      "entity": "project",
+      "aspect": "other",
+      "property": "codice procedura",
+      "value": "LAB-ORIONE-2026",
+      "evidence": [
+        {
+          "chunk_id": 101,
+          "quote": "La presente procedura ha codice LAB-ORIONE-2026."
+        }
+      ]
+    },
+    "f_dt_nome": {
+      "subject": "Giulia Serra",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "nome e cognome",
+      "value": "Giulia Serra",
+      "evidence": [
+        {
+          "chunk_id": -2,
+          "quote": "direttore tecnico: Giulia Serra."
+        }
+      ]
+    },
+    "f_dt_qualifica": {
+      "subject": "Giulia Serra",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "qualifica professionale",
+      "value": "Ingegnere",
+      "evidence": [
+        {
+          "chunk_id": -2,
+          "quote": "Qualifica professionale: Ingegnere."
+        }
+      ]
+    },
+    "f_dt_ordine": {
+      "subject": "Giulia Serra",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "ordine professionale",
+      "value": "Ordine degli Ingegneri di Ancona",
+      "evidence": [
+        {
+          "chunk_id": -2,
+          "quote": "Ordine professionale: Ordine degli Ingegneri di Ancona, n. 5739."
+        }
+      ]
+    },
+    "f_dt_numero": {
+      "subject": "Giulia Serra",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "numero iscrizione albo",
+      "value": "5739",
+      "evidence": [
+        {
+          "chunk_id": -2,
+          "quote": "Ordine professionale: Ordine degli Ingegneri di Ancona, n. 5739."
+        }
+      ]
+    }
+  },
+  "clarifications": {
+    "t2.r0.c1": {
+      "label": "Il sottoscritto — Nome e cognome",
+      "form": {
+        "paragraph_id": "paragraph:24",
+        "quote": "Il sottoscritto — Nome e cognome"
+      },
+      "reason": "Il profilo non designa il sottoscrittore della domanda."
+    },
+    "t2.r1.c1": {
+      "label": "Ruolo/carica nella presente domanda",
+      "form": {
+        "paragraph_id": "paragraph:26",
+        "quote": "Ruolo/carica nella presente domanda"
+      },
+      "reason": "Ruolo del firmatario non attestato dalle SOURCE."
+    }
+  },
+  "coverage": [
+    {
+      "candidate_ids": [
+        "p120.s0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Firma richiesta, write_protected.",
+      "form": {
+        "paragraph_id": "paragraph:120",
+        "quote": "Firma del sottoscrittore: __________"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t10.r0.c1",
+        "t10.r1.c1"
+      ],
+      "outcome": "condition_unknown",
+      "reason": "Campi RTI subordinati a partecipazione in raggruppamento non documentata.",
+      "form": {
+        "paragraph_id": "paragraph:93",
+        "quote": "Denominazione raggruppamento (solo se si partecipa in RTI)"
+      },
+      "conditions": [
+        "c_rti"
+      ]
+    },
+    {
+      "candidate_ids": [
+        "t11.r1.c1"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Nessuna certificazione ISO 9001 dell'operatore nelle SOURCE.",
+      "form": {
+        "paragraph_id": "paragraph:101",
+        "quote": "Numero certificazione ISO 9001"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t11.r2.c1"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Nessuna scadenza ISO 9001 nelle SOURCE.",
+      "form": {
+        "paragraph_id": "paragraph:103",
+        "quote": "Scadenza certificazione ISO 9001"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t14.r1.c1"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Il codice procedura non è il protocollo e nessun protocollo è documentato.",
+      "form": {
+        "paragraph_id": "paragraph:116",
+        "quote": "Numero protocollo della domanda"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t14.r2.c1"
+      ],
+      "outcome": "manual_input",
+      "reason": "Data di sottoscrizione non documentata e write_protected.",
+      "form": {
+        "paragraph_id": "paragraph:118",
+        "quote": "Data di sottoscrizione della domanda"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t15.r0.c1"
+      ],
+      "outcome": "not_a_field",
+      "reason": "Area riservata all'ufficio, non un campo del dichiarante.",
+      "form": {
+        "paragraph_id": "paragraph:121",
+        "quote": "Spazio riservato all'ufficio — non compilare"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t2.r2.c1",
+        "t2.r3.c1"
+      ],
+      "outcome": "condition_unknown",
+      "reason": "Dati procura subordinati al ruolo di procuratore, non accertato.",
+      "form": {
+        "paragraph_id": "paragraph:28",
+        "quote": "Estremi procura (solo se il sottoscrittore agisce come procuratore)"
+      },
+      "conditions": [
+        "c_procuratore"
+      ]
+    },
+    {
+      "candidate_ids": [
+        "t3.r0.c1",
+        "t3.r1.c1",
+        "t3.r2.c1"
+      ],
+      "outcome": "condition_unknown",
+      "reason": "Ramo professionista singolo non attivato con certezza.",
+      "form": {
+        "paragraph_id": "paragraph:42",
+        "quote": "4.a — Da compilare solo in caso di professionista singolo"
+      },
+      "conditions": [
+        "c_tip_prof_singolo"
+      ]
+    },
+    {
+      "candidate_ids": [
+        "t4.r0.c1",
+        "t4.r1.c1",
+        "t4.r2.c1"
+      ],
+      "outcome": "condition_unknown",
+      "reason": "Ramo studio associato non attivato con certezza.",
+      "form": {
+        "paragraph_id": "paragraph:49",
+        "quote": "4.b — Da compilare solo in caso di studio associato"
+      },
+      "conditions": [
+        "c_tip_studio_associato"
+      ]
+    },
+    {
+      "candidate_ids": [
+        "t6.r4.c1"
+      ],
+      "outcome": "source_not_found",
+      "reason": "SOURCE dichiara che la data di abilitazione non è riportata.",
+      "form": {
+        "paragraph_id": "paragraph:72",
+        "quote": "Data di abilitazione"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t6.r5.c1"
+      ],
+      "outcome": "source_not_found",
+      "reason": "SOURCE dichiara assenza di organigramma.",
+      "form": {
+        "paragraph_id": "paragraph:74",
+        "quote": "Riferimento all'organigramma allegato"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t8.r0.c1",
+        "t8.r1.c1"
+      ],
+      "outcome": "condition_unknown",
+      "reason": "Secondo direttore tecnico non documentato.",
+      "form": {
+        "paragraph_id": "paragraph:76",
+        "quote": "Solo se è stato nominato un secondo direttore tecnico"
+      },
+      "conditions": [
+        "c_secondo_dt"
+      ]
+    },
+    {
+      "candidate_ids": [
+        "t9.r0.c1",
+        "t9.r1.c1"
+      ],
+      "outcome": "condition_unknown",
+      "reason": "Ramo consorzio stabile non attivato con certezza.",
+      "form": {
+        "paragraph_id": "paragraph:83",
+        "quote": "4.d — Da compilare solo in caso di consorzio stabile"
+      },
+      "conditions": [
+        "c_tip_consorzio"
+      ]
+    },
+    {
+      "candidate_ids": [
+        "p32.cb0",
+        "p33.cb0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Ruolo del firmatario da selezionare/chiarire dall'utente.",
+      "form": {
+        "paragraph_id": "paragraph:23",
+        "quote": "La carica societaria non identifica da sola il firmatario della presente pratica. Per gli estremi della procura verificare prima se il sottoscrittore agisce come procuratore."
+      }
+    },
+    {
+      "candidate_ids": [
+        "p90.cb0",
+        "p91.cb0",
+        "p92.cb0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Modalità di partecipazione non documentata; scelta dell'utente.",
+      "form": {
+        "paragraph_id": "paragraph:89",
+        "quote": "Selezionare una sola modalità. La forma giuridica dell'operatore non determina se questa domanda sia presentata singolarmente o in raggruppamento."
+      }
+    },
+    {
+      "candidate_ids": [
+        "p105.cb0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Dichiarazione di possesso ISO 9001 non attestata dalle SOURCE.",
+      "form": {
+        "paragraph_id": "paragraph:105",
+        "quote": "☐ Dichiaro il possesso della ISO 9001"
+      }
+    }
+  ]
+}

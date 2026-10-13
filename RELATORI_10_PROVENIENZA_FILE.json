@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-13",
+  "contract_version": 12,
+  "real_session": "a067b0abf83f4d948137728669879604",
+  "analysis_attempt": "e8ad0f46c3b34157bbe6c9988e1341f8",
+  "latest_generation": "aca0a0dd970343dda73b2b2caba3344f",
+  "real_provider": "deepseek-flash",
+  "company_data": "simulated demo data",
+  "new_provider_calls": 0,
+  "source_files_modified": false,
+  "json_formatting_only": true,
+  "credentials_scan_passed": true,
+  "files": [
+    {
+      "file": "RELATORI_01_MINERVINO_INPUT_LLM.json",
+      "description": "Compilazione reale: catalogo, fonti, schema e reading_plan",
+      "source_path": "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/input.json",
+      "source_sha256": "f26a96d71eb5f111c8f1e305e60a3960e210a9379e42d97bf8716bae71902b7f",
+      "presentation_sha256": "f26a96d71eb5f111c8f1e305e60a3960e210a9379e42d97bf8716bae71902b7f",
+      "parsed_json_identical": true
+    },
+    {
+      "file": "RELATORI_02_MINERVINO_RICHIESTA_LLM.json",
+      "description": "Compilazione reale: payload completo con system e user prompt",
+      "source_path": "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/request.json",
+      "source_sha256": "b8dc98f7fe127c234ab8396f25ff99820c033b725356f0455a1c535b0c4a85a0",
+      "presentation_sha256": "b8dc98f7fe127c234ab8396f25ff99820c033b725356f0455a1c535b0c4a85a0",
+      "parsed_json_identical": true
+    },
+    {
+      "file": "RELATORI_03_MINERVINO_RISPOSTA_LLM.json",
+      "description": "Compilazione reale: risposta originale del modello, prima della validazione",
+      "source_path": "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/response.txt",
+      "source_sha256": "f0b1972a32adfb12970ae3d7bf9365c03a7e3457c8b350cd45578d64e79a8746",
+      "presentation_sha256": "f338bf5816187a1436813461cb099a75dd5f3a24d98afbd6c4a86ae7d557bc06",
+      "parsed_json_identical": true
+    },
+    {
+      "file": "RELATORI_04_MINERVINO_VALIDAZIONE_BACKEND.json",
+      "description": "Compilazione reale: audit con proposte e motivazioni accettate/rifiutate",
+      "source_path": "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/audit.json",
+      "source_sha256": "fa4e43bd3f137882629f5c526281d03a192e4ecc7566e1c02e6e215ada1d45ae",
+      "presentation_sha256": "fa4e43bd3f137882629f5c526281d03a192e4ecc7566e1c02e6e215ada1d45ae",
+      "parsed_json_identical": true
+    },
+    {
+      "file": "RELATORI_05_MINERVINO_REPORT_ULTIMA_BOZZA.json",
+      "description": "Ultima esportazione: valori realmente scritti e provenance",
+      "source_path": "backend/data/uploads/minervino-di-lecce-elenco-sia/_compilations/aca0a0dd970343dda73b2b2caba3344f/report.json",
+      "source_sha256": "cf50df428c6759b08fe04779b58b6a65bd52329822bf49fef46a773dcf67c964",
+      "presentation_sha256": "11790e856a34ee9e03222c5de9e7f6ea0c2f21194030b384ada8d89e35982102",
+      "parsed_json_identical": true
+    },
+    {
+      "file": "RELATORI_06_BENCHMARK_LABIRINTO_INPUT.json",
+      "description": "Benchmark congelato Labirinto: input dell’analisi V12",
+      "source_path": "backend/data/compilation-audit/field-decisions-20261013/after-lab-02/input.json",
+      "source_sha256": "529cf47cb15afa6db7e42c6b70f8169885e3ee3b104878906f6ec9cf8e7a9d97",
+      "presentation_sha256": "529cf47cb15afa6db7e42c6b70f8169885e3ee3b104878906f6ec9cf8e7a9d97",
+      "parsed_json_identical": true
+    },
+    {
+      "file": "RELATORI_07_BENCHMARK_LABIRINTO_RISPOSTA_LLM.json",
+      "description": "Benchmark congelato Labirinto: seconda prova della serie finale",
+      "source_path": "backend/data/compilation-audit/field-decisions-20261013/after-lab-02/run-02/response.txt",
+      "source_sha256": "45a3beeaccc7a14338d74103a52e7828e4d485c1217f4c586ea3ed815f914448",
+      "presentation_sha256": "f6fc1423fc5586cd120e5e14735ee9e22e0d0f27a9cbbe5b97640179c501cd1a",
+      "parsed_json_identical": true
+    },
+    {
+      "file": "RELATORI_08_BENCHMARK_MINERVINO_INPUT.json",
+      "description": "Benchmark Minervino: input dell’analisi V12",
+      "source_path": "backend/data/compilation-audit/field-decisions-20261013/after-minervino-02/input.json",
+      "source_sha256": "f26a96d71eb5f111c8f1e305e60a3960e210a9379e42d97bf8716bae71902b7f",
+      "presentation_sha256": "f26a96d71eb5f111c8f1e305e60a3960e210a9379e42d97bf8716bae71902b7f",
+      "parsed_json_identical": true
+    },
+    {
+      "file": "RELATORI_09_BENCHMARK_MINERVINO_RISPOSTA_LLM.json",
+      "description": "Benchmark Minervino: seconda prova della serie finale",
+      "source_path": "backend/data/compilation-audit/field-decisions-20261013/after-minervino-02/run-02/response.txt",
+      "source_sha256": "d90365fda01ccce3478fa395098fa78a8289d5709c6d4c0ae745d44e04cc3dda",
+      "presentation_sha256": "d28ff2c7314ba14673d70097e75fc0c403b0256a7052349448e6aaff69045c03",
+      "parsed_json_identical": true
+    },
+    {
+      "file": "RELATORI_02A_MINERVINO_SYSTEM_PROMPT.txt",
+      "description": "System prompt estratto letteralmente da messages[0].content",
+      "source_path": "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/request.json",
+      "source_field": "messages[0].content",
+      "presentation_sha256": "b85c367c3a41443307e2b391d75bbf2903471d8768318d64f0b6c2d36c60ea52",
+      "exact_text_copy": true
+    }
+  ]
+}

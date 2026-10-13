@@ -1,0 +1,1129 @@
+{
+  "version": 12,
+  "uncertain_paragraph_ids": [],
+  "conditions": {
+    "cond_part": {
+      "form": {
+        "paragraph_id": "paragraph:14",
+        "quote": "dell’operatore economico ___________________________________ con sede in"
+      },
+      "aspect": "participation",
+      "operator": "semantic",
+      "fact_ids": [],
+      "reason": "Identità e partecipazione dell'operatore economico non confermate dal sottoscrittore",
+      "scope": [
+        {
+          "kind": "paragraph",
+          "id": "paragraph:14"
+        },
+        {
+          "kind": "paragraph",
+          "id": "paragraph:15"
+        },
+        {
+          "kind": "paragraph",
+          "id": "paragraph:16"
+        }
+      ]
+    },
+    "cond_socing": {
+      "form": {
+        "paragraph_id": "paragraph:39",
+        "quote": "Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente"
+      },
+      "aspect": "legal_type",
+      "operator": "semantic",
+      "fact_ids": [
+        "f_tipo"
+      ],
+      "reason": "Ramo 'società di professionisti/ingegneria' non selezionato nel modulo",
+      "scope": [
+        {
+          "kind": "paragraph",
+          "id": "paragraph:40"
+        },
+        {
+          "kind": "paragraph",
+          "id": "paragraph:41"
+        },
+        {
+          "kind": "paragraph",
+          "id": "paragraph:42"
+        },
+        {
+          "kind": "paragraph",
+          "id": "paragraph:50"
+        },
+        {
+          "kind": "paragraph",
+          "id": "paragraph:51"
+        },
+        {
+          "kind": "paragraph",
+          "id": "paragraph:52"
+        },
+        {
+          "kind": "paragraph",
+          "id": "paragraph:53"
+        }
+      ]
+    }
+  },
+  "bindings": {
+    "b_rom": {
+      "form": {
+        "paragraph_id": "paragraph:50",
+        "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+      },
+      "required_role": "Direttore Tecnico",
+      "source_role": "Direttore tecnico",
+      "evidence": [
+        {
+          "chunk_id": -45,
+          "quote": "### Ing. Elisa Romano - direttore tecnico"
+        }
+      ]
+    }
+  },
+  "choice_groups": {
+    "cg_tipo": {
+      "label": "Tipologia dell'operatore economico",
+      "subject": "Operatore economico",
+      "property": "tipo_operatore",
+      "form": {
+        "paragraph_id": "paragraph:19",
+        "quote": "IN QUALITÀ DI"
+      },
+      "selection": "single",
+      "min_selected": 1,
+      "options": {
+        "p20.cb0": {
+          "label": "Libero professionista singolo",
+          "form": {
+            "paragraph_id": "paragraph:20",
+            "quote": "[[p20.cb0]]☐ Libero professionista singolo"
+          }
+        },
+        "p21.cb0": {
+          "label": "Legale rappresentante dello studio professionale associato",
+          "form": {
+            "paragraph_id": "paragraph:21",
+            "quote": "[[p21.cb0]]☐ Legale rappresentante dello studio professionale associato avente la seguente denominazione"
+          }
+        },
+        "p35.cb0": {
+          "label": "Professionista appartenete allo studio professionale associato",
+          "form": {
+            "paragraph_id": "paragraph:35",
+            "quote": "[[p35.cb0]]☐ Professionista appartenete allo studio professionale associato avente la seguente denominazione"
+          }
+        },
+        "p39.cb0": {
+          "label": "Legale rappresentante di società di professionisti o di società di ingegneria",
+          "form": {
+            "paragraph_id": "paragraph:39",
+            "quote": "[[p39.cb0]]☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria"
+          }
+        },
+        "p54.cb0": {
+          "label": "Capogruppo di raggruppamento temporaneo di professionisti",
+          "form": {
+            "paragraph_id": "paragraph:54",
+            "quote": "[[p54.cb0]]☐ Capogruppo di raggruppamento temporaneo di professionisti"
+          }
+        },
+        "p61.cb0": {
+          "label": "Mandante del raggruppamento temporaneo di professionisti",
+          "form": {
+            "paragraph_id": "paragraph:61",
+            "quote": "[[p61.cb0]]☐ Mandante del raggruppamento temporaneo di professionisti"
+          }
+        },
+        "p64.cb0": {
+          "label": "Legale rappresentante di consorzio stabile di società di professionisti e di società di ingegneria",
+          "form": {
+            "paragraph_id": "paragraph:64",
+            "quote": "[[p64.cb0]]☐ Legale rappresentante di consorzio stabile di società di professionisti e di società di ingegneria"
+          }
+        }
+      }
+    }
+  },
+  "fields": {
+    "p14.s1": {
+      "label": "Operatore economico",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:14",
+        "quote": "dell’operatore economico [[p14.s1]] con sede in"
+      },
+      "conditions": [
+        "cond_part"
+      ],
+      "property": "denominazione",
+      "fact_id": "f_denom",
+      "reason": "Denominazione documentata; partecipazione del soggetto non confermata"
+    },
+    "p15.s0": {
+      "label": "Sede (comune)",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:15",
+        "quote": "[[p15.s0]] ("
+      },
+      "conditions": [
+        "cond_part"
+      ],
+      "property": "comune_sede",
+      "fact_id": "f_comune",
+      "reason": "Comune sede documentato; identità dell'operatore non confermata"
+    },
+    "p15.s1": {
+      "label": "Sede (provincia)",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:15",
+        "quote": "([[p15.s1]]), tel."
+      },
+      "conditions": [
+        "cond_part"
+      ],
+      "property": "provincia_sede",
+      "fact_id": "f_prov",
+      "reason": "Provincia sede documentata; identità dell'operatore non confermata"
+    },
+    "p15.s2": {
+      "label": "Telefono",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:15",
+        "quote": "tel. [[p15.s2]], fax"
+      },
+      "conditions": [
+        "cond_part"
+      ],
+      "property": "telefono",
+      "fact_id": "f_tel",
+      "reason": "Telefono documentato; identità dell'operatore non confermata"
+    },
+    "p16.s0": {
+      "label": "Indirizzo e-mail",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:16",
+        "quote": "[[p16.s0]] P.E.C."
+      },
+      "conditions": [
+        "cond_part"
+      ],
+      "property": "email",
+      "fact_id": "f_email",
+      "reason": "E-mail documentata; identità dell'operatore non confermata"
+    },
+    "p16.s1": {
+      "label": "P.E.C.",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:16",
+        "quote": "P.E.C. [[p16.s1]] Partita IVA"
+      },
+      "conditions": [
+        "cond_part"
+      ],
+      "property": "pec",
+      "fact_id": "f_pec",
+      "reason": "PEC documentata; identità dell'operatore non confermata"
+    },
+    "p16.s2": {
+      "label": "Partita IVA",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:16",
+        "quote": "Partita IVA [[p16.s2]], iscritto alla"
+      },
+      "conditions": [
+        "cond_part"
+      ],
+      "property": "partita_iva",
+      "fact_id": "f_piva",
+      "reason": "P.IVA documentata; identità dell'operatore non confermata"
+    },
+    "p40.s0": {
+      "label": "Denominazione/ragione sociale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:40",
+        "quote": "denominazione/ragione sociale “[[p40.s0]]”"
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "denominazione",
+      "fact_id": "f_denom",
+      "reason": "Denominazione documentata; ramo societario non selezionato"
+    },
+    "p41.s0": {
+      "label": "P. IVA",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:41",
+        "quote": "P. IVA [[p41.s0]] sede legale in"
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "partita_iva",
+      "fact_id": "f_piva",
+      "reason": "P.IVA documentata; ramo societario non selezionato"
+    },
+    "p41.s1": {
+      "label": "Sede legale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:41",
+        "quote": "sede legale in [[p41.s1]]"
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "sede_legale",
+      "fact_id": "f_sede",
+      "reason": "Sede legale documentata; ramo societario non selezionato"
+    },
+    "p42.s0": {
+      "label": "Provincia sede",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:42",
+        "quote": "prov. [[p42.s0]] via/piazza"
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "provincia_sede",
+      "fact_id": "f_prov",
+      "reason": "Provincia documentata; ramo societario non selezionato"
+    },
+    "p42.s3": {
+      "label": "Telefono",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:42",
+        "quote": ", tel [[p42.s3]] e-mail"
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "telefono",
+      "fact_id": "f_tel",
+      "reason": "Telefono documentato; ramo societario non selezionato"
+    },
+    "p42.s4": {
+      "label": "E-mail",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:42",
+        "quote": "e-mail [[p42.s4]] pec"
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "email",
+      "fact_id": "f_email",
+      "reason": "E-mail documentata; ramo societario non selezionato"
+    },
+    "p42.s5": {
+      "label": "PEC",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:42",
+        "quote": "pec [[p42.s5]] e composta da"
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "pec",
+      "fact_id": "f_pec",
+      "reason": "PEC documentata; ramo societario non selezionato"
+    },
+    "p51.s0": {
+      "label": "Direttore Tecnico - nome e cognome",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:51",
+        "quote": "nome e cognome [[p51.s0]]"
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "nome_cognome",
+      "fact_id": "f_rom_nome",
+      "binding_id": "b_rom",
+      "reason": "Ruolo direttore tecnico documentato; ramo societario non selezionato"
+    },
+    "p52.s0": {
+      "label": "Qualifica professionale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:52",
+        "quote": "qualifica professionale [[p52.s0]] C.F."
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "qualifica_professionale",
+      "fact_id": "f_rom_qual",
+      "binding_id": "b_rom",
+      "reason": "Qualifica documentata; ramo societario non selezionato"
+    },
+    "p53.s0": {
+      "label": "Ordine/Collegio professionale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:53",
+        "quote": "iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione"
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "ordine_professionale",
+      "fact_id": "f_rom_ord",
+      "binding_id": "b_rom",
+      "reason": "Ordine documentato; ramo societario non selezionato"
+    },
+    "p53.s4": {
+      "label": "Numero iscrizione albo",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:53",
+        "quote": "con il n. [[p53.s4]]"
+      },
+      "conditions": [
+        "cond_socing"
+      ],
+      "property": "numero_iscrizione",
+      "fact_id": "f_rom_num",
+      "binding_id": "b_rom",
+      "reason": "Numero iscrizione documentato; ramo societario non selezionato"
+    }
+  },
+  "facts": {
+    "f_denom": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "denominazione",
+      "value": "Mapi Ingegneria S.r.l.",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+        }
+      ]
+    },
+    "f_sede": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "sede_legale",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+        }
+      ]
+    },
+    "f_comune": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "comune_sede",
+      "value": "Bari",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+        }
+      ]
+    },
+    "f_prov": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "provincia_sede",
+      "value": "BA",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+        }
+      ]
+    },
+    "f_tel": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "telefono",
+      "value": "+39 080 000 2040",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- Telefono aziendale simulato: +39 080 000 2040."
+        }
+      ]
+    },
+    "f_email": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "email",
+      "value": "segreteria@mapi-ingegneria.demo",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo."
+        }
+      ]
+    },
+    "f_pec": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "pec",
+      "value": "mapi.ingegneria@pec.demo",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    "f_piva": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "partita_iva",
+      "value": "IT01234567890",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+        }
+      ]
+    },
+    "f_tipo": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "tipologia_attivita",
+      "value": "societa' di ingegneria civile",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+        }
+      ]
+    },
+    "f_rom_nome": {
+      "subject": "Elisa Romano",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "nome_cognome",
+      "value": "Ing. Elisa Romano",
+      "evidence": [
+        {
+          "chunk_id": -45,
+          "quote": "- Nominativo completo: Ing. Elisa Romano."
+        }
+      ]
+    },
+    "f_rom_qual": {
+      "subject": "Elisa Romano",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "qualifica_professionale",
+      "value": "Ingegnere",
+      "evidence": [
+        {
+          "chunk_id": -45,
+          "quote": "- Qualifica professionale nello scenario: Ingegnere."
+        }
+      ]
+    },
+    "f_rom_ord": {
+      "subject": "Elisa Romano",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "ordine_professionale",
+      "value": "Ordine degli Ingegneri di Bari",
+      "evidence": [
+        {
+          "chunk_id": -45,
+          "quote": "- Ordine professionale simulato: Ordine degli Ingegneri di Bari."
+        }
+      ]
+    },
+    "f_rom_num": {
+      "subject": "Elisa Romano",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "numero_iscrizione",
+      "value": "8421",
+      "evidence": [
+        {
+          "chunk_id": -45,
+          "quote": "- Numero di iscrizione professionale simulato: 8421."
+        }
+      ]
+    }
+  },
+  "clarifications": {
+    "p12.s0": {
+      "label": "Nome e cognome del sottoscritto",
+      "form": {
+        "paragraph_id": "paragraph:12",
+        "quote": "Il sottoscritto [[p12.s0]], nato a"
+      },
+      "reason": "Identità del firmatario non desumibile dalle SOURCE"
+    },
+    "p14.s0": {
+      "label": "Qualità del sottoscritto rispetto all'operatore economico",
+      "form": {
+        "paragraph_id": "paragraph:14",
+        "quote": "[[p14.s0]] dell’operatore economico"
+      },
+      "reason": "Ruolo del sottoscritto non documentato"
+    }
+  },
+  "coverage": [
+    {
+      "candidate_ids": [
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p13.s0",
+        "p13.s1",
+        "p13.s2",
+        "p13.s3"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Dati anagrafici, nascita, residenza e C.F. del sottoscritto non presenti nelle SOURCE.",
+      "form": {
+        "paragraph_id": "paragraph:12",
+        "quote": "nato a __________________ (__) il __________, residente"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p15.s3"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Nessun numero di fax documentato per l'operatore.",
+      "form": {
+        "paragraph_id": "paragraph:15",
+        "quote": "fax _______________, indirizzo e-mail"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p17.s0",
+        "p17.s1",
+        "p17.s2",
+        "p17.s3"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Estremi Camera di Commercio e albo professionale non documentati.",
+      "form": {
+        "paragraph_id": "paragraph:17",
+        "quote": "Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p211.s0",
+        "p212.s0",
+        "p212.s1",
+        "p212.s2",
+        "p212.s3",
+        "p213.s0",
+        "p213.s1",
+        "p213.s2"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Nessun professionista abilitato da meno di cinque anni documentato.",
+      "form": {
+        "paragraph_id": "paragraph:210",
+        "quote": "che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p22.s0",
+        "p22.s1",
+        "p23.s0",
+        "p23.s1",
+        "p23.s2",
+        "p23.s3",
+        "p23.s4",
+        "p23.s5",
+        "p24.s0"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Nessun dato di studio professionale associato; ramo di tipologia diversa.",
+      "form": {
+        "paragraph_id": "paragraph:21",
+        "quote": "Legale rappresentante dello studio professionale associato avente la seguente denominazione"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p26.s0",
+        "p27.s0",
+        "p27.s1",
+        "p28.s0",
+        "p28.s1",
+        "p28.s2",
+        "p28.s3",
+        "p28.s4",
+        "p29.s0",
+        "p30.s0",
+        "p30.s1",
+        "p31.s0",
+        "p31.s1",
+        "p31.s2",
+        "p31.s3",
+        "p31.s4",
+        "p32.s0",
+        "p33.s0",
+        "p33.s1",
+        "p34.s0",
+        "p34.s1",
+        "p34.s2",
+        "p34.s3",
+        "p34.s4"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Professionisti associati allo studio non documentati nelle SOURCE.",
+      "form": {
+        "paragraph_id": "paragraph:25",
+        "quote": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p36.s0",
+        "p36.s1",
+        "p37.s0",
+        "p37.s1",
+        "p37.s2",
+        "p37.s3",
+        "p37.s4",
+        "p37.s5",
+        "p37.s6",
+        "p37.s7",
+        "p38.s0"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Nessun dato di studio professionale associato; ramo di tipologia diversa.",
+      "form": {
+        "paragraph_id": "paragraph:35",
+        "quote": "Professionista appartenete allo studio professionale associato avente la seguente denominazione"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p42.s1",
+        "p42.s2"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Via e civico non separabili dalle SOURCE senza alterare il valore documentato.",
+      "form": {
+        "paragraph_id": "paragraph:42",
+        "quote": "via/piazza .................................................................................................................... n. ..............."
+      }
+    },
+    {
+      "candidate_ids": [
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Soci, qualifiche e iscrizioni non documentati nelle SOURCE.",
+      "form": {
+        "paragraph_id": "paragraph:42",
+        "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p52.s1",
+        "p53.s1",
+        "p53.s2",
+        "p53.s3"
+      ],
+      "outcome": "source_not_found",
+      "reason": "C.F., sezione, provincia e data di abilitazione non documentati.",
+      "form": {
+        "paragraph_id": "paragraph:53",
+        "quote": "iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p55.s0",
+        "p56.s0",
+        "p57.s0",
+        "p57.s1",
+        "p57.s2",
+        "p57.s3",
+        "p57.s4",
+        "p57.s5",
+        "p57.s6",
+        "p57.s7",
+        "p58.s0",
+        "p58.s1",
+        "p59.s0",
+        "p59.s1",
+        "p59.s2",
+        "p59.s3",
+        "p59.s4",
+        "p59.s5",
+        "p59.s6",
+        "p60.s0",
+        "p60.s1",
+        "p60.s2",
+        "p60.s3",
+        "p60.s4",
+        "p60.s5",
+        "p60.s6",
+        "p60.s7",
+        "p60.s8"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Soggetti mandanti del RTP non documentati.",
+      "form": {
+        "paragraph_id": "paragraph:55",
+        "quote": "composto dai seguenti soggetti “mandanti”"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p62.s0",
+        "p63.s0"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Denominazione RTP e capogruppo non documentati.",
+      "form": {
+        "paragraph_id": "paragraph:61",
+        "quote": "☐ Mandante del raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p65.s0",
+        "p65.s1",
+        "p65.s2",
+        "p65.s3",
+        "p65.s4",
+        "p65.s5",
+        "p65.s6",
+        "p65.s7",
+        "p65.s8",
+        "p67.s0",
+        "p67.s1",
+        "p67.s2",
+        "p68.s0",
+        "p68.s1",
+        "p68.s2",
+        "p68.s3",
+        "p68.s4",
+        "p68.s5",
+        "p69.s0",
+        "p70.s0",
+        "p70.s1",
+        "p71.s0",
+        "p71.s1",
+        "p71.s2",
+        "p71.s3",
+        "p71.s4",
+        "p71.s5",
+        "p72.s0",
+        "p73.s0",
+        "p73.s1",
+        "p74.s0",
+        "p74.s1",
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Consorzio stabile e società consorziate non documentati.",
+      "form": {
+        "paragraph_id": "paragraph:64",
+        "quote": "Legale rappresentante di consorzio stabile di società di professionisti e di società di ingegneria (art.66, comma 1, lett. g, D.lgs. n.36/2023) denominato"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p229.s0",
+        "p230.s0"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Professionisti esecutori della prestazione non documentati.",
+      "form": {
+        "paragraph_id": "paragraph:228",
+        "quote": "che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p232.s0",
+        "p233.s0",
+        "p234.s0"
+      ],
+      "outcome": "source_not_found",
+      "reason": "Professionista incaricato dell'integrazione specialistica non documentato.",
+      "form": {
+        "paragraph_id": "paragraph:231",
+        "quote": "e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p242.s0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Luogo e data della domanda da indicare all'atto della sottoscrizione.",
+      "form": {
+        "paragraph_id": "paragraph:242",
+        "quote": "Luogo e data, ______________________"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p245.s0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Firma digitale del sottoscrittore.",
+      "form": {
+        "paragraph_id": "paragraph:245",
+        "quote": "____________________________"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t0.r1.c1",
+        "t0.r1.c2",
+        "t0.r1.c3",
+        "t0.r2.c1",
+        "t0.r2.c2",
+        "t0.r2.c3",
+        "t0.r3.c1",
+        "t0.r3.c2",
+        "t0.r3.c3",
+        "t0.r4.c1",
+        "t0.r4.c2",
+        "t0.r4.c3",
+        "t0.r5.c1",
+        "t0.r5.c2",
+        "t0.r5.c3",
+        "t0.r6.c1",
+        "t0.r6.c2",
+        "t0.r6.c3",
+        "t0.r7.c1",
+        "t0.r7.c2",
+        "t0.r7.c3",
+        "t0.r8.c1",
+        "t0.r8.c2",
+        "t0.r8.c3",
+        "t0.r9.c1",
+        "t0.r9.c2",
+        "t0.r9.c3",
+        "t0.r10.c1",
+        "t0.r10.c2",
+        "t0.r10.c3",
+        "t0.r11.c1",
+        "t0.r11.c2",
+        "t0.r11.c3",
+        "t0.r12.c1",
+        "t0.r12.c2",
+        "t0.r12.c3",
+        "t0.r13.c1",
+        "t0.r13.c2",
+        "t0.r13.c3",
+        "t0.r14.c1",
+        "t0.r14.c2",
+        "t0.r14.c3",
+        "t0.r15.c1",
+        "t0.r15.c2",
+        "t0.r15.c3",
+        "t0.r16.c1",
+        "t0.r16.c2",
+        "t0.r16.c3",
+        "t0.r17.c1",
+        "t0.r17.c2",
+        "t0.r17.c3"
+      ],
+      "outcome": "manual_input",
+      "reason": "Selezione di categorie di opere e fasce d'importo: scelta del professionista non documentata.",
+      "form": {
+        "paragraph_id": "paragraph:78",
+        "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t1.r1.c1",
+        "t1.r1.c2",
+        "t1.r1.c3"
+      ],
+      "outcome": "manual_input",
+      "reason": "Fasce d'importo per CSP/CSE da selezionare, non documentate.",
+      "form": {
+        "paragraph_id": "paragraph:155",
+        "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t2.r1.c1",
+        "t2.r2.c1",
+        "t2.r3.c1"
+      ],
+      "outcome": "manual_input",
+      "reason": "Preferenze di collaudo da selezionare, non documentate.",
+      "form": {
+        "paragraph_id": "paragraph:168",
+        "quote": "Servizio di collaudo finale o in corso d’opera;"
+      }
+    },
+    {
+      "candidate_ids": [
+        "t3.r1.c1",
+        "t3.r2.c1",
+        "t3.r3.c1",
+        "t3.r4.c1",
+        "t3.r5.c1",
+        "t3.r6.c1",
+        "t3.r7.c1",
+        "t3.r8.c1",
+        "t3.r9.c1",
+        "t3.r10.c1"
+      ],
+      "outcome": "manual_input",
+      "reason": "Preferenze per altri servizi tecnici da selezionare, non documentate.",
+      "form": {
+        "paragraph_id": "paragraph:178",
+        "quote": "Altri incarichi per servizi tecnici;"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p203.cb0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Dichiarazione in caso di professionisti associati da selezionare.",
+      "form": {
+        "paragraph_id": "paragraph:203",
+        "quote": "[[p203.cb0]]☐ in caso di PROFESSIONISTI ASSOCIATI"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p206.cb0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Dichiarazione in caso di RTP da selezionare.",
+      "form": {
+        "paragraph_id": "paragraph:206",
+        "quote": "[[p206.cb0]]☐ in caso di RTP"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p214.cb0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Dichiarazione RTP costituiti da selezionare.",
+      "form": {
+        "paragraph_id": "paragraph:214",
+        "quote": "[[p214.cb0]]☐ in caso di RTP COSTITUTI"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p215.cb0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Dichiarazione RTP non ancora costituiti da selezionare.",
+      "form": {
+        "paragraph_id": "paragraph:215",
+        "quote": "[[p215.cb0]]☐ in caso di RTP NON ANCORA COSTITUTI"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p217.cb0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Dichiarazione di veridicità dei fatti da selezionare.",
+      "form": {
+        "paragraph_id": "paragraph:217",
+        "quote": "[[p217.cb0]]☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:"
+      }
+    },
+    {
+      "candidate_ids": [
+        "p228.cb0"
+      ],
+      "outcome": "manual_input",
+      "reason": "Dichiarazione sui professionisti esecutori da selezionare.",
+      "form": {
+        "paragraph_id": "paragraph:228",
+        "quote": "[[p228.cb0]]☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:"
+      }
+    }
+  ]
+}

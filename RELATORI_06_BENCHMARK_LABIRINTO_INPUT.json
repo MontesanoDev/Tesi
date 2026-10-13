@@ -1,0 +1,4121 @@
+{
+  "proposal_stage": "source_backed_hypotheses",
+  "project_id": "benchmark-compilazione-v1",
+  "form": {
+    "version": 5,
+    "role": "form",
+    "template_sha256": "eaa3c2b8e45e147d35766e71f77b90bbb0bdc9a339ee79dd12e6ab007ad9c7ca",
+    "candidate_scope": "document_body",
+    "checkbox_write_supported": true,
+    "blocks": [
+      {
+        "id": "paragraph:0",
+        "paragraphs": [
+          {
+            "id": "paragraph:0",
+            "text": "Modulo labirinto"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:1",
+        "paragraphs": [
+          {
+            "id": "paragraph:1",
+            "text": "Documento sintetico dedicato ai test. Non utilizzare per pratiche reali."
+          }
+        ]
+      },
+      {
+        "id": "paragraph:2",
+        "paragraphs": [
+          {
+            "id": "paragraph:2",
+            "text": "Compilare solo i rami pertinenti. I dati di persone, operatore economico e raggruppamento hanno soggetti distinti. Una casella vuota non è una risposta negativa."
+          }
+        ]
+      },
+      {
+        "id": "paragraph:3",
+        "paragraphs": [
+          {
+            "id": "paragraph:3",
+            "text": "1. Dati dell'operatore economico",
+            "outline_level": 0
+          }
+        ]
+      },
+      {
+        "id": "paragraph:4",
+        "paragraphs": [
+          {
+            "id": "paragraph:4",
+            "text": "Denominazione sociale"
+          },
+          {
+            "id": "paragraph:5",
+            "text": ""
+          },
+          {
+            "id": "paragraph:6",
+            "text": "Forma giuridica"
+          },
+          {
+            "id": "paragraph:7",
+            "text": ""
+          },
+          {
+            "id": "paragraph:8",
+            "text": "Codice fiscale operatore"
+          },
+          {
+            "id": "paragraph:9",
+            "text": ""
+          },
+          {
+            "id": "paragraph:10",
+            "text": "Partita IVA"
+          },
+          {
+            "id": "paragraph:11",
+            "text": ""
+          },
+          {
+            "id": "paragraph:12",
+            "text": "Sede legale"
+          },
+          {
+            "id": "paragraph:13",
+            "text": ""
+          },
+          {
+            "id": "paragraph:14",
+            "text": "Telefono"
+          },
+          {
+            "id": "paragraph:15",
+            "text": ""
+          },
+          {
+            "id": "paragraph:16",
+            "text": "PEC"
+          },
+          {
+            "id": "paragraph:17",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:0",
+          "paragraph:1",
+          "paragraph:2",
+          "paragraph:3"
+        ],
+        "tables": [
+          {
+            "id": "table:0",
+            "rows": [
+              [
+                {
+                  "id": "t0.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:4"
+                  ]
+                },
+                {
+                  "id": "t0.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:5"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t0.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:6"
+                  ]
+                },
+                {
+                  "id": "t0.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:7"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t0.r2.c0",
+                  "paragraph_ids": [
+                    "paragraph:8"
+                  ]
+                },
+                {
+                  "id": "t0.r2.c1",
+                  "paragraph_ids": [
+                    "paragraph:9"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t0.r3.c0",
+                  "paragraph_ids": [
+                    "paragraph:10"
+                  ]
+                },
+                {
+                  "id": "t0.r3.c1",
+                  "paragraph_ids": [
+                    "paragraph:11"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t0.r4.c0",
+                  "paragraph_ids": [
+                    "paragraph:12"
+                  ]
+                },
+                {
+                  "id": "t0.r4.c1",
+                  "paragraph_ids": [
+                    "paragraph:13"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t0.r5.c0",
+                  "paragraph_ids": [
+                    "paragraph:14"
+                  ]
+                },
+                {
+                  "id": "t0.r5.c1",
+                  "paragraph_ids": [
+                    "paragraph:15"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t0.r6.c0",
+                  "paragraph_ids": [
+                    "paragraph:16"
+                  ]
+                },
+                {
+                  "id": "t0.r6.c1",
+                  "paragraph_ids": [
+                    "paragraph:17"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:18",
+        "paragraphs": [
+          {
+            "id": "paragraph:18",
+            "text": "Sede operativa (compilare solo se diversa dalla sede legale)"
+          },
+          {
+            "id": "paragraph:19",
+            "text": ""
+          },
+          {
+            "id": "paragraph:20",
+            "text": "Recapito per la corrispondenza"
+          },
+          {
+            "id": "paragraph:21",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:0",
+          "paragraph:1",
+          "paragraph:2",
+          "paragraph:3"
+        ],
+        "tables": [
+          {
+            "id": "table:1",
+            "rows": [
+              [
+                {
+                  "id": "t1.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:18"
+                  ]
+                },
+                {
+                  "id": "t1.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:19"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t1.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:20"
+                  ]
+                },
+                {
+                  "id": "t1.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:21"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:22",
+        "paragraphs": [
+          {
+            "id": "paragraph:22",
+            "text": "2. Il sottoscritto — dati della persona che firma questa domanda",
+            "outline_level": 0
+          }
+        ]
+      },
+      {
+        "id": "paragraph:23",
+        "paragraphs": [
+          {
+            "id": "paragraph:23",
+            "text": "La carica societaria non identifica da sola il firmatario della presente pratica. Per gli estremi della procura verificare prima se il sottoscrittore agisce come procuratore."
+          }
+        ]
+      },
+      {
+        "id": "paragraph:24",
+        "paragraphs": [
+          {
+            "id": "paragraph:24",
+            "text": "Il sottoscritto — Nome e cognome"
+          },
+          {
+            "id": "paragraph:25",
+            "text": ""
+          },
+          {
+            "id": "paragraph:26",
+            "text": "Ruolo/carica nella presente domanda"
+          },
+          {
+            "id": "paragraph:27",
+            "text": ""
+          },
+          {
+            "id": "paragraph:28",
+            "text": "Estremi procura (solo se il sottoscrittore agisce come procuratore)"
+          },
+          {
+            "id": "paragraph:29",
+            "text": ""
+          },
+          {
+            "id": "paragraph:30",
+            "text": "Notaio della procura (stessa condizione della voce precedente)"
+          },
+          {
+            "id": "paragraph:31",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:0",
+          "paragraph:1",
+          "paragraph:2",
+          "paragraph:3",
+          "paragraph:22",
+          "paragraph:23"
+        ],
+        "tables": [
+          {
+            "id": "table:2",
+            "rows": [
+              [
+                {
+                  "id": "t2.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:24"
+                  ]
+                },
+                {
+                  "id": "t2.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:25"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t2.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:26"
+                  ]
+                },
+                {
+                  "id": "t2.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:27"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t2.r2.c0",
+                  "paragraph_ids": [
+                    "paragraph:28"
+                  ]
+                },
+                {
+                  "id": "t2.r2.c1",
+                  "paragraph_ids": [
+                    "paragraph:29"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t2.r3.c0",
+                  "paragraph_ids": [
+                    "paragraph:30"
+                  ]
+                },
+                {
+                  "id": "t2.r3.c1",
+                  "paragraph_ids": [
+                    "paragraph:31"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:32",
+        "paragraphs": [
+          {
+            "id": "paragraph:32",
+            "text": "☐ Il firmatario agisce come legale rappresentante",
+            "controls": [
+              {
+                "id": "p32.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p32.cb0]]☐ Il firmatario agisce come legale rappresentante"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:0",
+          "paragraph:1",
+          "paragraph:2",
+          "paragraph:3",
+          "paragraph:22",
+          "paragraph:23"
+        ]
+      },
+      {
+        "id": "paragraph:33",
+        "paragraphs": [
+          {
+            "id": "paragraph:33",
+            "text": "☐ Il firmatario agisce come procuratore",
+            "controls": [
+              {
+                "id": "p33.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p33.cb0]]☐ Il firmatario agisce come procuratore"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:1",
+          "paragraph:2",
+          "paragraph:3",
+          "paragraph:22",
+          "paragraph:23",
+          "paragraph:32"
+        ]
+      },
+      {
+        "id": "paragraph:34",
+        "paragraphs": [
+          {
+            "id": "paragraph:34",
+            "text": "3. Tipologia dell'operatore richiedente",
+            "outline_level": 0
+          }
+        ]
+      },
+      {
+        "id": "paragraph:35",
+        "paragraphs": [
+          {
+            "id": "paragraph:35",
+            "text": "Selezionare esattamente una delle cinque tipologie seguenti. In questo modulo sono alternative per il medesimo operatore; non descrivono soci né altri partecipanti."
+          }
+        ]
+      },
+      {
+        "id": "paragraph:36",
+        "paragraphs": [
+          {
+            "id": "paragraph:36",
+            "text": " Società di ingegneria",
+            "controls": [
+              {
+                "id": "p36.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p36.cb0]] Società di ingegneria"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:22",
+          "paragraph:23",
+          "paragraph:32",
+          "paragraph:33",
+          "paragraph:34",
+          "paragraph:35"
+        ]
+      },
+      {
+        "id": "paragraph:37",
+        "paragraphs": [
+          {
+            "id": "paragraph:37",
+            "text": "☐ Professionista singolo",
+            "controls": [
+              {
+                "id": "p37.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p37.cb0]]☐ Professionista singolo"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:23",
+          "paragraph:32",
+          "paragraph:33",
+          "paragraph:34",
+          "paragraph:35",
+          "paragraph:36"
+        ]
+      },
+      {
+        "id": "paragraph:38",
+        "paragraphs": [
+          {
+            "id": "paragraph:38",
+            "text": " Studio associato",
+            "controls": [
+              {
+                "id": "p38.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p38.cb0]] Studio associato"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:32",
+          "paragraph:33",
+          "paragraph:34",
+          "paragraph:35",
+          "paragraph:36",
+          "paragraph:37"
+        ]
+      },
+      {
+        "id": "paragraph:39",
+        "paragraphs": [
+          {
+            "id": "paragraph:39",
+            "text": "☐ Società di professionisti",
+            "controls": [
+              {
+                "id": "p39.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p39.cb0]]☐ Società di professionisti"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:33",
+          "paragraph:34",
+          "paragraph:35",
+          "paragraph:36",
+          "paragraph:37",
+          "paragraph:38"
+        ]
+      },
+      {
+        "id": "paragraph:40",
+        "paragraphs": [
+          {
+            "id": "paragraph:40",
+            "text": " Consorzio stabile",
+            "controls": [
+              {
+                "id": "p40.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p40.cb0]] Consorzio stabile"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:34",
+          "paragraph:35",
+          "paragraph:36",
+          "paragraph:37",
+          "paragraph:38",
+          "paragraph:39"
+        ]
+      },
+      {
+        "id": "paragraph:41",
+        "paragraphs": [
+          {
+            "id": "paragraph:41",
+            "text": "4. Identificazione — compilare esclusivamente il ramo pertinente",
+            "outline_level": 0
+          }
+        ]
+      },
+      {
+        "id": "paragraph:42",
+        "paragraphs": [
+          {
+            "id": "paragraph:42",
+            "text": "4.a — Da compilare solo in caso di professionista singolo",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:43",
+        "paragraphs": [
+          {
+            "id": "paragraph:43",
+            "text": "Nome e cognome"
+          },
+          {
+            "id": "paragraph:44",
+            "text": ""
+          },
+          {
+            "id": "paragraph:45",
+            "text": "Ordine professionale"
+          },
+          {
+            "id": "paragraph:46",
+            "text": ""
+          },
+          {
+            "id": "paragraph:47",
+            "text": "Numero iscrizione albo"
+          },
+          {
+            "id": "paragraph:48",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:37",
+          "paragraph:38",
+          "paragraph:39",
+          "paragraph:40",
+          "paragraph:41",
+          "paragraph:42"
+        ],
+        "tables": [
+          {
+            "id": "table:3",
+            "rows": [
+              [
+                {
+                  "id": "t3.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:43"
+                  ]
+                },
+                {
+                  "id": "t3.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:44"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t3.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:45"
+                  ]
+                },
+                {
+                  "id": "t3.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:46"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t3.r2.c0",
+                  "paragraph_ids": [
+                    "paragraph:47"
+                  ]
+                },
+                {
+                  "id": "t3.r2.c1",
+                  "paragraph_ids": [
+                    "paragraph:48"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:49",
+        "paragraphs": [
+          {
+            "id": "paragraph:49",
+            "text": "4.b — Da compilare solo in caso di studio associato",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:50",
+        "paragraphs": [
+          {
+            "id": "paragraph:50",
+            "text": "Il sottoscritto in questo ramo è il rappresentante dello studio associato."
+          }
+        ]
+      },
+      {
+        "id": "paragraph:51",
+        "paragraphs": [
+          {
+            "id": "paragraph:51",
+            "text": "Denominazione sociale"
+          },
+          {
+            "id": "paragraph:52",
+            "text": ""
+          },
+          {
+            "id": "paragraph:53",
+            "text": "Il sottoscritto — Nome e cognome"
+          },
+          {
+            "id": "paragraph:54",
+            "text": ""
+          },
+          {
+            "id": "paragraph:55",
+            "text": "Numero iscrizione albo"
+          },
+          {
+            "id": "paragraph:56",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:39",
+          "paragraph:40",
+          "paragraph:41",
+          "paragraph:42",
+          "paragraph:49",
+          "paragraph:50"
+        ],
+        "tables": [
+          {
+            "id": "table:4",
+            "rows": [
+              [
+                {
+                  "id": "t4.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:51"
+                  ]
+                },
+                {
+                  "id": "t4.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:52"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t4.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:53"
+                  ]
+                },
+                {
+                  "id": "t4.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:54"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t4.r2.c0",
+                  "paragraph_ids": [
+                    "paragraph:55"
+                  ]
+                },
+                {
+                  "id": "t4.r2.c1",
+                  "paragraph_ids": [
+                    "paragraph:56"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:57",
+        "paragraphs": [
+          {
+            "id": "paragraph:57",
+            "text": "4.c — Da compilare solo in caso di società di ingegneria",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:58",
+        "paragraphs": [
+          {
+            "id": "paragraph:58",
+            "text": "I dati societari seguenti riguardano l'operatore. I dati professionali successivi riguardano il direttore tecnico, che non è automaticamente il sottoscrittore."
+          }
+        ]
+      },
+      {
+        "id": "paragraph:59",
+        "paragraphs": [
+          {
+            "id": "paragraph:59",
+            "text": "Denominazione sociale"
+          },
+          {
+            "id": "paragraph:60",
+            "text": ""
+          },
+          {
+            "id": "paragraph:61",
+            "text": "Forma giuridica"
+          },
+          {
+            "id": "paragraph:62",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:41",
+          "paragraph:42",
+          "paragraph:49",
+          "paragraph:50",
+          "paragraph:57",
+          "paragraph:58"
+        ],
+        "tables": [
+          {
+            "id": "table:5",
+            "rows": [
+              [
+                {
+                  "id": "t5.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:59"
+                  ]
+                },
+                {
+                  "id": "t5.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:60"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t5.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:61"
+                  ]
+                },
+                {
+                  "id": "t5.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:62"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:63",
+        "paragraphs": [
+          {
+            "id": "paragraph:63",
+            "text": "Direttore tecnico della società di ingegneria",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:64",
+        "paragraphs": [
+          {
+            "id": "paragraph:64",
+            "text": "Nome e cognome"
+          },
+          {
+            "id": "paragraph:65",
+            "text": ""
+          },
+          {
+            "id": "paragraph:66",
+            "text": "Qualifica professionale"
+          },
+          {
+            "id": "paragraph:67",
+            "text": ""
+          },
+          {
+            "id": "paragraph:68",
+            "text": "Ordine professionale"
+          },
+          {
+            "id": "paragraph:69",
+            "text": ""
+          },
+          {
+            "id": "paragraph:70",
+            "text": "Numero iscrizione albo"
+          },
+          {
+            "id": "paragraph:71",
+            "text": ""
+          },
+          {
+            "id": "paragraph:72",
+            "text": "Data di abilitazione"
+          },
+          {
+            "id": "paragraph:73",
+            "text": ""
+          },
+          {
+            "id": "paragraph:74",
+            "text": "Riferimento all'organigramma allegato"
+          },
+          {
+            "id": "paragraph:75",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:42",
+          "paragraph:49",
+          "paragraph:50",
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:63"
+        ],
+        "tables": [
+          {
+            "id": "table:6",
+            "rows": [
+              [
+                {
+                  "id": "t6.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:64"
+                  ]
+                },
+                {
+                  "id": "t6.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:65"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t6.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:66"
+                  ]
+                },
+                {
+                  "id": "t6.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:67"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t6.r2.c0",
+                  "paragraph_ids": [
+                    "paragraph:68"
+                  ]
+                },
+                {
+                  "id": "t6.r2.c1",
+                  "paragraph_ids": [
+                    "paragraph:69"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t6.r3.c0",
+                  "paragraph_ids": [
+                    "paragraph:70"
+                  ]
+                },
+                {
+                  "id": "t6.r3.c1",
+                  "paragraph_ids": [
+                    "paragraph:71"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t6.r4.c0",
+                  "paragraph_ids": [
+                    "paragraph:72"
+                  ]
+                },
+                {
+                  "id": "t6.r4.c1",
+                  "paragraph_ids": [
+                    "paragraph:73"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t6.r5.c0",
+                  "paragraph_ids": [
+                    "paragraph:74"
+                  ]
+                },
+                {
+                  "id": "t6.r5.c1",
+                  "paragraph_ids": [
+                    "paragraph:75"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:76",
+        "paragraphs": [
+          {
+            "id": "paragraph:76",
+            "text": "Solo se è stato nominato un secondo direttore tecnico",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:77",
+        "paragraphs": [
+          {
+            "id": "paragraph:77",
+            "text": "Anagrafica del secondo direttore tecnico (tabella annidata)"
+          },
+          {
+            "id": "paragraph:78",
+            "text": "Nome e cognome"
+          },
+          {
+            "id": "paragraph:79",
+            "text": ""
+          },
+          {
+            "id": "paragraph:80",
+            "text": "Numero iscrizione albo"
+          },
+          {
+            "id": "paragraph:81",
+            "text": ""
+          },
+          {
+            "id": "paragraph:82",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:49",
+          "paragraph:50",
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:63",
+          "paragraph:76"
+        ],
+        "tables": [
+          {
+            "id": "table:7",
+            "rows": [
+              [
+                {
+                  "id": "t7.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:77",
+                    "paragraph:82"
+                  ],
+                  "table_ids": [
+                    "table:8"
+                  ]
+                }
+              ]
+            ]
+          },
+          {
+            "id": "table:8",
+            "rows": [
+              [
+                {
+                  "id": "t8.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:78"
+                  ]
+                },
+                {
+                  "id": "t8.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:79"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t8.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:80"
+                  ]
+                },
+                {
+                  "id": "t8.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:81"
+                  ]
+                }
+              ]
+            ],
+            "parent_cell_id": "t7.r0.c0"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:83",
+        "paragraphs": [
+          {
+            "id": "paragraph:83",
+            "text": "4.d — Da compilare solo in caso di consorzio stabile",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:84",
+        "paragraphs": [
+          {
+            "id": "paragraph:84",
+            "text": "Denominazione sociale"
+          },
+          {
+            "id": "paragraph:85",
+            "text": ""
+          },
+          {
+            "id": "paragraph:86",
+            "text": "Il sottoscritto — Nome e cognome"
+          },
+          {
+            "id": "paragraph:87",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:50",
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:63",
+          "paragraph:76",
+          "paragraph:83"
+        ],
+        "tables": [
+          {
+            "id": "table:9",
+            "rows": [
+              [
+                {
+                  "id": "t9.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:84"
+                  ]
+                },
+                {
+                  "id": "t9.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:85"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t9.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:86"
+                  ]
+                },
+                {
+                  "id": "t9.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:87"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:88",
+        "paragraphs": [
+          {
+            "id": "paragraph:88",
+            "text": "5. Modalità di partecipazione alla presente procedura",
+            "outline_level": 0
+          }
+        ]
+      },
+      {
+        "id": "paragraph:89",
+        "paragraphs": [
+          {
+            "id": "paragraph:89",
+            "text": "Selezionare una sola modalità. La forma giuridica dell'operatore non determina se questa domanda sia presentata singolarmente o in raggruppamento."
+          }
+        ]
+      },
+      {
+        "id": "paragraph:90",
+        "paragraphs": [
+          {
+            "id": "paragraph:90",
+            "text": "☐ Partecipazione singola",
+            "controls": [
+              {
+                "id": "p90.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p90.cb0]]☐ Partecipazione singola"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:58",
+          "paragraph:63",
+          "paragraph:76",
+          "paragraph:83",
+          "paragraph:88",
+          "paragraph:89"
+        ]
+      },
+      {
+        "id": "paragraph:91",
+        "paragraphs": [
+          {
+            "id": "paragraph:91",
+            "text": "☐ Mandataria di RTI",
+            "controls": [
+              {
+                "id": "p91.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p91.cb0]]☐ Mandataria di RTI"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:63",
+          "paragraph:76",
+          "paragraph:83",
+          "paragraph:88",
+          "paragraph:89",
+          "paragraph:90"
+        ]
+      },
+      {
+        "id": "paragraph:92",
+        "paragraphs": [
+          {
+            "id": "paragraph:92",
+            "text": "☐ Mandante di RTI",
+            "controls": [
+              {
+                "id": "p92.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p92.cb0]]☐ Mandante di RTI"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:76",
+          "paragraph:83",
+          "paragraph:88",
+          "paragraph:89",
+          "paragraph:90",
+          "paragraph:91"
+        ]
+      },
+      {
+        "id": "paragraph:93",
+        "paragraphs": [
+          {
+            "id": "paragraph:93",
+            "text": "Denominazione raggruppamento (solo se si partecipa in RTI)"
+          },
+          {
+            "id": "paragraph:94",
+            "text": ""
+          },
+          {
+            "id": "paragraph:95",
+            "text": "Denominazione sociale dell'altro componente (solo in RTI)"
+          },
+          {
+            "id": "paragraph:96",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:83",
+          "paragraph:88",
+          "paragraph:89",
+          "paragraph:90",
+          "paragraph:91",
+          "paragraph:92"
+        ],
+        "tables": [
+          {
+            "id": "table:10",
+            "rows": [
+              [
+                {
+                  "id": "t10.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:93"
+                  ]
+                },
+                {
+                  "id": "t10.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:94"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t10.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:95"
+                  ]
+                },
+                {
+                  "id": "t10.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:96"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:97",
+        "paragraphs": [
+          {
+            "id": "paragraph:97",
+            "text": "6. Requisiti, registrazioni e allegati",
+            "outline_level": 0
+          }
+        ]
+      },
+      {
+        "id": "paragraph:98",
+        "paragraphs": [
+          {
+            "id": "paragraph:98",
+            "text": "Il dichiarante attesta di possedere la certificazione ISO 9001. Questa è una dichiarazione da verificare, non un'attestazione già acquisita."
+          }
+        ]
+      },
+      {
+        "id": "paragraph:99",
+        "paragraphs": [
+          {
+            "id": "paragraph:99",
+            "text": "Numero della polizza professionale vigente"
+          },
+          {
+            "id": "paragraph:100",
+            "text": ""
+          },
+          {
+            "id": "paragraph:101",
+            "text": "Numero certificazione ISO 9001"
+          },
+          {
+            "id": "paragraph:102",
+            "text": ""
+          },
+          {
+            "id": "paragraph:103",
+            "text": "Scadenza certificazione ISO 9001"
+          },
+          {
+            "id": "paragraph:104",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:89",
+          "paragraph:90",
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98"
+        ],
+        "tables": [
+          {
+            "id": "table:11",
+            "rows": [
+              [
+                {
+                  "id": "t11.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:99"
+                  ]
+                },
+                {
+                  "id": "t11.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:100"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t11.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:101"
+                  ]
+                },
+                {
+                  "id": "t11.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:102"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t11.r2.c0",
+                  "paragraph_ids": [
+                    "paragraph:103"
+                  ]
+                },
+                {
+                  "id": "t11.r2.c1",
+                  "paragraph_ids": [
+                    "paragraph:104"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:105",
+        "paragraphs": [
+          {
+            "id": "paragraph:105",
+            "text": "☐ Dichiaro il possesso della ISO 9001",
+            "controls": [
+              {
+                "id": "p105.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p105.cb0]]☐ Dichiaro il possesso della ISO 9001"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:89",
+          "paragraph:90",
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98"
+        ]
+      },
+      {
+        "id": "paragraph:106",
+        "paragraphs": [
+          {
+            "id": "paragraph:106",
+            "text": "Iscrizione CCIAA"
+          },
+          {
+            "id": "paragraph:107",
+            "text": ""
+          },
+          {
+            "id": "paragraph:108",
+            "text": "Numero iscrizione REA"
+          },
+          {
+            "id": "paragraph:109",
+            "text": ""
+          },
+          {
+            "id": "paragraph:110",
+            "text": "Data iscrizione CCIAA"
+          },
+          {
+            "id": "paragraph:111",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:90",
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98",
+          "paragraph:105"
+        ],
+        "tables": [
+          {
+            "id": "table:12",
+            "rows": [
+              [
+                {
+                  "id": "t12.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:106"
+                  ]
+                },
+                {
+                  "id": "t12.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:107"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t12.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:108"
+                  ]
+                },
+                {
+                  "id": "t12.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:109"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t12.r2.c0",
+                  "paragraph_ids": [
+                    "paragraph:110"
+                  ]
+                },
+                {
+                  "id": "t12.r2.c1",
+                  "paragraph_ids": [
+                    "paragraph:111"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:112",
+        "paragraphs": [
+          {
+            "id": "paragraph:112",
+            "text": "Codice della presente procedura"
+          },
+          {
+            "id": "paragraph:113",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:90",
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98",
+          "paragraph:105"
+        ],
+        "tables": [
+          {
+            "id": "table:13",
+            "rows": [
+              [
+                {
+                  "id": "t13.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:112"
+                  ]
+                },
+                {
+                  "id": "t13.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:113"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:114",
+        "paragraphs": [
+          {
+            "id": "paragraph:114",
+            "text": "7. Protocollo, annotazioni e firma",
+            "outline_level": 0
+          }
+        ]
+      },
+      {
+        "id": "paragraph:115",
+        "paragraphs": [
+          {
+            "id": "paragraph:115",
+            "text": "Riferimenti della presente domanda"
+          },
+          {
+            "id": "paragraph:116",
+            "text": "Numero protocollo della domanda"
+          },
+          {
+            "id": "paragraph:117",
+            "text": ""
+          },
+          {
+            "id": "paragraph:118",
+            "text": "Data di sottoscrizione della domanda"
+          },
+          {
+            "id": "paragraph:119",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98",
+          "paragraph:105",
+          "paragraph:114"
+        ],
+        "tables": [
+          {
+            "id": "table:14",
+            "rows": [
+              [
+                {
+                  "id": "t14.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:115"
+                  ],
+                  "grid_span": "2"
+                }
+              ],
+              [
+                {
+                  "id": "t14.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:116"
+                  ]
+                },
+                {
+                  "id": "t14.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:117"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t14.r2.c0",
+                  "paragraph_ids": [
+                    "paragraph:118"
+                  ]
+                },
+                {
+                  "id": "t14.r2.c1",
+                  "paragraph_ids": [
+                    "paragraph:119"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:120",
+        "paragraphs": [
+          {
+            "id": "paragraph:120",
+            "text": "Firma del sottoscrittore: __________",
+            "text_with_fields": "Firma del sottoscrittore: [[p120.s0]]"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98",
+          "paragraph:105",
+          "paragraph:114"
+        ]
+      },
+      {
+        "id": "paragraph:121",
+        "paragraphs": [
+          {
+            "id": "paragraph:121",
+            "text": "Spazio riservato all'ufficio — non compilare"
+          },
+          {
+            "id": "paragraph:122",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98",
+          "paragraph:105",
+          "paragraph:114",
+          "paragraph:120"
+        ],
+        "tables": [
+          {
+            "id": "table:15",
+            "rows": [
+              [
+                {
+                  "id": "t15.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:121"
+                  ]
+                },
+                {
+                  "id": "t15.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:122"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "candidates": {
+      "p120.s0": {
+        "type": "text",
+        "context_id": "paragraph:120",
+        "section_ids": [
+          "paragraph:114"
+        ],
+        "range": [
+          26,
+          36
+        ],
+        "write_protected": true,
+        "slot_context": {
+          "before": "Firma del sottoscrittore: ",
+          "after": ""
+        },
+        "location": {
+          "block_id": "paragraph:120"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:120"
+        ]
+      },
+      "t0.r0.c1": {
+        "type": "text",
+        "context_id": "t0.r0.c1",
+        "section_ids": [
+          "paragraph:3"
+        ],
+        "location": {
+          "block_id": "paragraph:4",
+          "table_id": "table:0",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:4"
+        ]
+      },
+      "t0.r1.c1": {
+        "type": "text",
+        "context_id": "t0.r1.c1",
+        "section_ids": [
+          "paragraph:3"
+        ],
+        "location": {
+          "block_id": "paragraph:4",
+          "table_id": "table:0",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:6"
+        ]
+      },
+      "t0.r2.c1": {
+        "type": "text",
+        "context_id": "t0.r2.c1",
+        "section_ids": [
+          "paragraph:3"
+        ],
+        "location": {
+          "block_id": "paragraph:4",
+          "table_id": "table:0",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:8"
+        ]
+      },
+      "t0.r3.c1": {
+        "type": "text",
+        "context_id": "t0.r3.c1",
+        "section_ids": [
+          "paragraph:3"
+        ],
+        "location": {
+          "block_id": "paragraph:4",
+          "table_id": "table:0",
+          "row_index": 3
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:10"
+        ]
+      },
+      "t0.r4.c1": {
+        "type": "text",
+        "context_id": "t0.r4.c1",
+        "section_ids": [
+          "paragraph:3"
+        ],
+        "location": {
+          "block_id": "paragraph:4",
+          "table_id": "table:0",
+          "row_index": 4
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:12"
+        ]
+      },
+      "t0.r5.c1": {
+        "type": "text",
+        "context_id": "t0.r5.c1",
+        "section_ids": [
+          "paragraph:3"
+        ],
+        "location": {
+          "block_id": "paragraph:4",
+          "table_id": "table:0",
+          "row_index": 5
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:14"
+        ]
+      },
+      "t0.r6.c1": {
+        "type": "text",
+        "context_id": "t0.r6.c1",
+        "section_ids": [
+          "paragraph:3"
+        ],
+        "value_type": "email",
+        "location": {
+          "block_id": "paragraph:4",
+          "table_id": "table:0",
+          "row_index": 6
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:16"
+        ]
+      },
+      "t1.r0.c1": {
+        "type": "text",
+        "context_id": "t1.r0.c1",
+        "section_ids": [
+          "paragraph:3"
+        ],
+        "location": {
+          "block_id": "paragraph:18",
+          "table_id": "table:1",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:18"
+        ]
+      },
+      "t1.r1.c1": {
+        "type": "text",
+        "context_id": "t1.r1.c1",
+        "section_ids": [
+          "paragraph:3"
+        ],
+        "location": {
+          "block_id": "paragraph:18",
+          "table_id": "table:1",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:20"
+        ]
+      },
+      "t10.r0.c1": {
+        "type": "text",
+        "context_id": "t10.r0.c1",
+        "section_ids": [
+          "paragraph:88"
+        ],
+        "location": {
+          "block_id": "paragraph:93",
+          "table_id": "table:10",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:93"
+        ]
+      },
+      "t10.r1.c1": {
+        "type": "text",
+        "context_id": "t10.r1.c1",
+        "section_ids": [
+          "paragraph:88"
+        ],
+        "location": {
+          "block_id": "paragraph:93",
+          "table_id": "table:10",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:95"
+        ]
+      },
+      "t11.r0.c1": {
+        "type": "text",
+        "context_id": "t11.r0.c1",
+        "section_ids": [
+          "paragraph:97"
+        ],
+        "location": {
+          "block_id": "paragraph:99",
+          "table_id": "table:11",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:99"
+        ]
+      },
+      "t11.r1.c1": {
+        "type": "text",
+        "context_id": "t11.r1.c1",
+        "section_ids": [
+          "paragraph:97"
+        ],
+        "location": {
+          "block_id": "paragraph:99",
+          "table_id": "table:11",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:101"
+        ]
+      },
+      "t11.r2.c1": {
+        "type": "text",
+        "context_id": "t11.r2.c1",
+        "section_ids": [
+          "paragraph:97"
+        ],
+        "location": {
+          "block_id": "paragraph:99",
+          "table_id": "table:11",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:103"
+        ]
+      },
+      "t12.r0.c1": {
+        "type": "text",
+        "context_id": "t12.r0.c1",
+        "section_ids": [
+          "paragraph:97"
+        ],
+        "location": {
+          "block_id": "paragraph:106",
+          "table_id": "table:12",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:106"
+        ]
+      },
+      "t12.r1.c1": {
+        "type": "text",
+        "context_id": "t12.r1.c1",
+        "section_ids": [
+          "paragraph:97"
+        ],
+        "location": {
+          "block_id": "paragraph:106",
+          "table_id": "table:12",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:108"
+        ]
+      },
+      "t12.r2.c1": {
+        "type": "text",
+        "context_id": "t12.r2.c1",
+        "section_ids": [
+          "paragraph:97"
+        ],
+        "location": {
+          "block_id": "paragraph:106",
+          "table_id": "table:12",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:110"
+        ]
+      },
+      "t13.r0.c1": {
+        "type": "text",
+        "context_id": "t13.r0.c1",
+        "section_ids": [
+          "paragraph:97"
+        ],
+        "location": {
+          "block_id": "paragraph:112",
+          "table_id": "table:13",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:112"
+        ]
+      },
+      "t14.r1.c1": {
+        "type": "text",
+        "context_id": "t14.r1.c1",
+        "section_ids": [
+          "paragraph:114"
+        ],
+        "location": {
+          "block_id": "paragraph:115",
+          "table_id": "table:14",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:116"
+        ]
+      },
+      "t14.r2.c1": {
+        "type": "text",
+        "context_id": "t14.r2.c1",
+        "section_ids": [
+          "paragraph:114"
+        ],
+        "write_protected": true,
+        "location": {
+          "block_id": "paragraph:115",
+          "table_id": "table:14",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:118"
+        ]
+      },
+      "t15.r0.c1": {
+        "type": "text",
+        "context_id": "t15.r0.c1",
+        "section_ids": [
+          "paragraph:114"
+        ],
+        "location": {
+          "block_id": "paragraph:121",
+          "table_id": "table:15",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:121"
+        ]
+      },
+      "t2.r0.c1": {
+        "type": "text",
+        "context_id": "t2.r0.c1",
+        "section_ids": [
+          "paragraph:22"
+        ],
+        "location": {
+          "block_id": "paragraph:24",
+          "table_id": "table:2",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:24"
+        ]
+      },
+      "t2.r1.c1": {
+        "type": "text",
+        "context_id": "t2.r1.c1",
+        "section_ids": [
+          "paragraph:22"
+        ],
+        "location": {
+          "block_id": "paragraph:24",
+          "table_id": "table:2",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:26"
+        ]
+      },
+      "t2.r2.c1": {
+        "type": "text",
+        "context_id": "t2.r2.c1",
+        "section_ids": [
+          "paragraph:22"
+        ],
+        "location": {
+          "block_id": "paragraph:24",
+          "table_id": "table:2",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:28"
+        ]
+      },
+      "t2.r3.c1": {
+        "type": "text",
+        "context_id": "t2.r3.c1",
+        "section_ids": [
+          "paragraph:22"
+        ],
+        "location": {
+          "block_id": "paragraph:24",
+          "table_id": "table:2",
+          "row_index": 3
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:30"
+        ]
+      },
+      "t3.r0.c1": {
+        "type": "text",
+        "context_id": "t3.r0.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:43",
+          "table_id": "table:3",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:43"
+        ]
+      },
+      "t3.r1.c1": {
+        "type": "text",
+        "context_id": "t3.r1.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:43",
+          "table_id": "table:3",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:45"
+        ]
+      },
+      "t3.r2.c1": {
+        "type": "text",
+        "context_id": "t3.r2.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:43",
+          "table_id": "table:3",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:47"
+        ]
+      },
+      "t4.r0.c1": {
+        "type": "text",
+        "context_id": "t4.r0.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:51",
+          "table_id": "table:4",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:51"
+        ]
+      },
+      "t4.r1.c1": {
+        "type": "text",
+        "context_id": "t4.r1.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:51",
+          "table_id": "table:4",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:53"
+        ]
+      },
+      "t4.r2.c1": {
+        "type": "text",
+        "context_id": "t4.r2.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:51",
+          "table_id": "table:4",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:55"
+        ]
+      },
+      "t5.r0.c1": {
+        "type": "text",
+        "context_id": "t5.r0.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:59",
+          "table_id": "table:5",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:59"
+        ]
+      },
+      "t5.r1.c1": {
+        "type": "text",
+        "context_id": "t5.r1.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:59",
+          "table_id": "table:5",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:61"
+        ]
+      },
+      "t6.r0.c1": {
+        "type": "text",
+        "context_id": "t6.r0.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:64",
+          "table_id": "table:6",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:64"
+        ]
+      },
+      "t6.r1.c1": {
+        "type": "text",
+        "context_id": "t6.r1.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:64",
+          "table_id": "table:6",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:66"
+        ]
+      },
+      "t6.r2.c1": {
+        "type": "text",
+        "context_id": "t6.r2.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:64",
+          "table_id": "table:6",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:68"
+        ]
+      },
+      "t6.r3.c1": {
+        "type": "text",
+        "context_id": "t6.r3.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:64",
+          "table_id": "table:6",
+          "row_index": 3
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:70"
+        ]
+      },
+      "t6.r4.c1": {
+        "type": "text",
+        "context_id": "t6.r4.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:64",
+          "table_id": "table:6",
+          "row_index": 4
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:72"
+        ]
+      },
+      "t6.r5.c1": {
+        "type": "text",
+        "context_id": "t6.r5.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:64",
+          "table_id": "table:6",
+          "row_index": 5
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:74"
+        ]
+      },
+      "t8.r0.c1": {
+        "type": "text",
+        "context_id": "t8.r0.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:77",
+          "table_id": "table:8",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:78"
+        ]
+      },
+      "t8.r1.c1": {
+        "type": "text",
+        "context_id": "t8.r1.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:77",
+          "table_id": "table:8",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:80"
+        ]
+      },
+      "t9.r0.c1": {
+        "type": "text",
+        "context_id": "t9.r0.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:84",
+          "table_id": "table:9",
+          "row_index": 0
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:84"
+        ]
+      },
+      "t9.r1.c1": {
+        "type": "text",
+        "context_id": "t9.r1.c1",
+        "section_ids": [
+          "paragraph:41"
+        ],
+        "location": {
+          "block_id": "paragraph:84",
+          "table_id": "table:9",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:86"
+        ]
+      },
+      "p32.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:32",
+        "section_ids": [
+          "paragraph:22"
+        ],
+        "control_type": "content_control",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:32"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:32"
+        ]
+      },
+      "p33.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:33",
+        "section_ids": [
+          "paragraph:22"
+        ],
+        "control_type": "content_control",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:33"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:33"
+        ]
+      },
+      "p36.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:36",
+        "section_ids": [
+          "paragraph:34"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:36"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:36"
+        ]
+      },
+      "p37.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:37",
+        "section_ids": [
+          "paragraph:34"
+        ],
+        "control_type": "content_control",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:37"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:37"
+        ]
+      },
+      "p38.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:38",
+        "section_ids": [
+          "paragraph:34"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:38"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:38"
+        ]
+      },
+      "p39.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:39",
+        "section_ids": [
+          "paragraph:34"
+        ],
+        "control_type": "content_control",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:39"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:39"
+        ]
+      },
+      "p40.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:40",
+        "section_ids": [
+          "paragraph:34"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:40"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:40"
+        ]
+      },
+      "p90.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:90",
+        "section_ids": [
+          "paragraph:88"
+        ],
+        "control_type": "content_control",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:90"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:90"
+        ]
+      },
+      "p91.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:91",
+        "section_ids": [
+          "paragraph:88"
+        ],
+        "control_type": "content_control",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:91"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:91"
+        ]
+      },
+      "p92.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:92",
+        "section_ids": [
+          "paragraph:88"
+        ],
+        "control_type": "content_control",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:92"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:92"
+        ]
+      },
+      "p105.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:105",
+        "section_ids": [
+          "paragraph:97"
+        ],
+        "control_type": "content_control",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:105"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:105"
+        ]
+      }
+    },
+    "read_only_parts": [
+      {
+        "part": "word/footer1.xml",
+        "read_only_checkbox_count": 0,
+        "paragraphs": [
+          "Fixture V1 — bozza da revisionare"
+        ]
+      },
+      {
+        "part": "word/header1.xml",
+        "read_only_checkbox_count": 0,
+        "paragraphs": [
+          "LABORATORIO MAPI — le dichiarazioni prestampate non attestano fatti aziendali."
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "chunk_id": -1,
+      "file_id": -1,
+      "chunk_index": 0,
+      "source_name": "01-profilo-aziendale.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "Dati interamente fittizi. Denominazione: Orione Tecnica S.r.l.\nForma giuridica: società a responsabilità limitata. Tipologia operatore: società di ingegneria. Codice fiscale operatore: 01234567897. Partita IVA: 01234567897.\nSede legale: Via delle Querce 18, 60121 Ancona (AN). Telefono: +39 071 000 1234. PEC: orione@pec.example.org.\nIscrizione CCIAA: Camera di Commercio delle Marche. Numero REA: AN-204060. Data iscrizione CCIAA: 14/03/2019. Capitale sociale: EUR 50000.\nAmministratore unico: Paolo Conti. Questo profilo non designa il sottoscrittore della presente domanda né la modalità di partecipazione alla procedura."
+    },
+    {
+      "chunk_id": -2,
+      "file_id": -2,
+      "chunk_index": 0,
+      "source_name": "02-direttore-tecnico.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "Orione Tecnica S.r.l. — direttore tecnico: Giulia Serra. Qualifica professionale: Ingegnere. Ordine professionale: Ordine degli Ingegneri di Ancona, n. 5739. Telefono ufficio: +39 071 000 5678. Identificativo documento: DT-8821. Il numero 8821 identifica il documento, non l'iscrizione all'albo. Questa scheda non riporta la data di abilitazione e non contiene un organigramma."
+    },
+    {
+      "chunk_id": -3,
+      "file_id": -3,
+      "chunk_index": 0,
+      "source_name": "03-recapiti.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "Orione Tecnica S.r.l. — sede operativa: Via delle Querce 18, 60121 Ancona (AN). La sede operativa coincide con la sede legale. Per la corrispondenza sono utilizzabili due recapiti, senza preferenza indicata: Via del Porto 2, Ancona; Via dei Tigli 7, Jesi. Nessuno dei due è indicato come nuova sede legale."
+    },
+    {
+      "chunk_id": -4,
+      "file_id": -4,
+      "chunk_index": 0,
+      "source_name": "04-polizza-a.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "Attestazione del 01/09/2026: Orione Tecnica S.r.l., polizza professionale vigente RC-OR-2026-A. Nessuna priorità su altre attestazioni della stessa data."
+    },
+    {
+      "chunk_id": -5,
+      "file_id": -5,
+      "chunk_index": 0,
+      "source_name": "05-polizza-b.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "Attestazione del 01/09/2026: Orione Tecnica S.r.l., polizza professionale vigente RC-OR-2026-B. Nessuna priorità su altre attestazioni della stessa data."
+    },
+    {
+      "chunk_id": 101,
+      "file_id": 101,
+      "chunk_index": 0,
+      "source_name": "06-procedura.txt",
+      "role": "source",
+      "scope": "project:benchmark-compilazione-v1",
+      "project_id": "benchmark-compilazione-v1",
+      "category": null,
+      "content": "La presente procedura ha codice LAB-ORIONE-2026. Importo stimato: EUR 250000. Il codice della procedura non è il protocollo assegnato alla domanda del partecipante."
+    },
+    {
+      "chunk_id": -201,
+      "file_id": -201,
+      "chunk_index": 0,
+      "source_name": "07-conoscenza-generale.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "general",
+      "content": "Esempio didattico riferito a un soggetto diverso: Vega Restauri S.r.l., partita IVA 09999999999, referente Marco Riva, certificato ISO 9001 GEN-7788. Non sono dati dell'operatore che presenta questa domanda."
+    }
+  ],
+  "user_values": [],
+  "source_coverage": {
+    "strategy": "complete_small_corpus",
+    "partial": false,
+    "chunks": 7
+  },
+  "schema_output": {
+    "$defs": {
+      "AlternativeAssignment": {
+        "additionalProperties": false,
+        "description": "Grounded alternatives are proposals to review, never a chosen value.",
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "kind": {
+            "const": "data",
+            "title": "Kind",
+            "type": "string"
+          },
+          "disposition": {
+            "const": "review",
+            "title": "Disposition",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          },
+          "fact_id": {
+            "default": null,
+            "title": "Fact Id",
+            "type": "null"
+          },
+          "choice": {
+            "default": null,
+            "title": "Choice",
+            "type": "null"
+          },
+          "reason": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          },
+          "property": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Property",
+            "type": "string"
+          },
+          "review_kind": {
+            "enum": [
+              "ambiguous",
+              "conflicting"
+            ],
+            "title": "Review Kind",
+            "type": "string"
+          },
+          "alternative_fact_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 4,
+            "minItems": 2,
+            "title": "Alternative Fact Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "label",
+          "kind",
+          "disposition",
+          "form",
+          "conditions",
+          "reason",
+          "property",
+          "review_kind",
+          "alternative_fact_ids"
+        ],
+        "title": "AlternativeAssignment",
+        "type": "object"
+      },
+      "ChoiceConditionalValue": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "data",
+              "choice"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "disposition": {
+            "const": "conditional",
+            "title": "Disposition",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Conditions",
+            "type": "array"
+          },
+          "fact_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Fact Id",
+            "type": "string"
+          },
+          "choice": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Choice"
+          },
+          "reason": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          },
+          "property": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Property",
+            "type": "string"
+          },
+          "binding_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Binding Id"
+          },
+          "choice_group_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Choice Group Id"
+          }
+        },
+        "required": [
+          "label",
+          "kind",
+          "disposition",
+          "form",
+          "conditions",
+          "fact_id",
+          "reason",
+          "property"
+        ],
+        "title": "ChoiceConditionalValue",
+        "type": "object"
+      },
+      "ChoiceGroup": {
+        "additionalProperties": false,
+        "description": "Proposed semantics; the backend owns physical controls and cardinality.",
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "subject": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Subject",
+            "type": "string"
+          },
+          "property": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Property",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "selection": {
+            "enum": [
+              "single",
+              "multiple",
+              "unknown"
+            ],
+            "title": "Selection",
+            "type": "string"
+          },
+          "min_selected": {
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Min Selected",
+            "type": "integer"
+          },
+          "options": {
+            "additionalProperties": {
+              "$ref": "#/$defs/ChoiceOption"
+            },
+            "maxProperties": 32,
+            "minProperties": 1,
+            "propertyNames": {
+              "maxLength": 80,
+              "minLength": 1
+            },
+            "title": "Options",
+            "type": "object"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "label",
+          "subject",
+          "property",
+          "form",
+          "selection",
+          "min_selected",
+          "options"
+        ],
+        "title": "ChoiceGroup",
+        "type": "object"
+      },
+      "ChoiceOption": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          }
+        },
+        "required": [
+          "label",
+          "form"
+        ],
+        "title": "ChoiceOption",
+        "type": "object"
+      },
+      "ChoiceValue": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "data",
+              "choice",
+              "declaration",
+              "signature",
+              "decorative"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "disposition": {
+            "const": "value",
+            "title": "Disposition",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          },
+          "fact_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Fact Id",
+            "type": "string"
+          },
+          "choice": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Choice"
+          },
+          "reason": {
+            "default": "",
+            "maxLength": 200,
+            "title": "Reason",
+            "type": "string"
+          },
+          "property": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Property",
+            "type": "string"
+          },
+          "binding_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Binding Id"
+          },
+          "choice_group_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Choice Group Id"
+          }
+        },
+        "required": [
+          "label",
+          "kind",
+          "disposition",
+          "form",
+          "conditions",
+          "fact_id",
+          "property"
+        ],
+        "title": "ChoiceValue",
+        "type": "object"
+      },
+      "ConditionTarget": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "candidate",
+              "paragraph",
+              "table",
+              "section"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "id"
+        ],
+        "title": "ConditionTarget",
+        "type": "object"
+      },
+      "FormSpan": {
+        "additionalProperties": false,
+        "properties": {
+          "paragraph_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Paragraph Id",
+            "type": "string"
+          },
+          "quote": {
+            "maxLength": 500,
+            "title": "Quote",
+            "type": "string"
+          }
+        },
+        "required": [
+          "paragraph_id",
+          "quote"
+        ],
+        "title": "FormSpan",
+        "type": "object"
+      },
+      "NonApplicableAssignment": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "data",
+              "choice",
+              "declaration",
+              "signature",
+              "decorative"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "disposition": {
+            "const": "not_applicable",
+            "title": "Disposition",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          },
+          "fact_id": {
+            "default": null,
+            "title": "Fact Id",
+            "type": "null"
+          },
+          "choice": {
+            "default": null,
+            "title": "Choice",
+            "type": "null"
+          },
+          "reason": {
+            "default": "",
+            "maxLength": 200,
+            "title": "Reason",
+            "type": "string"
+          },
+          "property": {
+            "default": null,
+            "title": "Property",
+            "type": "null"
+          }
+        },
+        "required": [
+          "label",
+          "kind",
+          "disposition",
+          "form",
+          "conditions"
+        ],
+        "title": "NonApplicableAssignment",
+        "type": "object"
+      },
+      "SharedFact": {
+        "additionalProperties": false,
+        "properties": {
+          "subject": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Subject",
+            "type": "string"
+          },
+          "entity": {
+            "enum": [
+              "company",
+              "person",
+              "project",
+              "authority",
+              "other"
+            ],
+            "title": "Entity",
+            "type": "string"
+          },
+          "aspect": {
+            "enum": [
+              "identity",
+              "legal_type",
+              "location",
+              "participation",
+              "representation",
+              "professional",
+              "other"
+            ],
+            "title": "Aspect",
+            "type": "string"
+          },
+          "property": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Property",
+            "type": "string"
+          },
+          "value": {
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Value",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/$defs/SourceSpan"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          }
+        },
+        "required": [
+          "subject",
+          "entity",
+          "aspect",
+          "property",
+          "value",
+          "evidence"
+        ],
+        "title": "SharedFact",
+        "type": "object"
+      },
+      "SourceSpan": {
+        "additionalProperties": false,
+        "properties": {
+          "chunk_id": {
+            "title": "Chunk Id",
+            "type": "integer"
+          },
+          "quote": {
+            "maxLength": 800,
+            "minLength": 1,
+            "title": "Quote",
+            "type": "string"
+          }
+        },
+        "required": [
+          "chunk_id",
+          "quote"
+        ],
+        "title": "SourceSpan",
+        "type": "object"
+      },
+      "StructuralCondition": {
+        "additionalProperties": false,
+        "properties": {
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "aspect": {
+            "enum": [
+              "identity",
+              "legal_type",
+              "location",
+              "participation",
+              "representation",
+              "professional",
+              "other"
+            ],
+            "title": "Aspect",
+            "type": "string"
+          },
+          "operator": {
+            "enum": [
+              "same",
+              "different",
+              "semantic"
+            ],
+            "title": "Operator",
+            "type": "string"
+          },
+          "fact_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 2,
+            "title": "Fact Ids",
+            "type": "array"
+          },
+          "reason": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          },
+          "scope": {
+            "items": {
+              "$ref": "#/$defs/ConditionTarget"
+            },
+            "maxItems": 400,
+            "title": "Scope",
+            "type": "array"
+          }
+        },
+        "required": [
+          "form",
+          "aspect",
+          "operator",
+          "fact_ids",
+          "reason",
+          "scope"
+        ],
+        "title": "StructuralCondition",
+        "type": "object"
+      },
+      "SubjectBinding": {
+        "additionalProperties": false,
+        "description": "Proposed role association, with independently reloaded FORM/SOURCE spans.",
+        "properties": {
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "required_role": {
+            "maxLength": 150,
+            "minLength": 2,
+            "title": "Required Role",
+            "type": "string"
+          },
+          "source_role": {
+            "maxLength": 150,
+            "minLength": 2,
+            "title": "Source Role",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/$defs/SourceSpan"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          }
+        },
+        "required": [
+          "form",
+          "required_role",
+          "source_role",
+          "evidence"
+        ],
+        "title": "SubjectBinding",
+        "type": "object"
+      },
+      "UnfilledExplanation": {
+        "additionalProperties": false,
+        "description": "Model reasoning about unwritten positions, never a factual value or write permission.",
+        "properties": {
+          "candidate_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 400,
+            "minItems": 1,
+            "title": "Candidate Ids",
+            "type": "array"
+          },
+          "outcome": {
+            "enum": [
+              "source_not_found",
+              "condition_unknown",
+              "not_applicable",
+              "not_a_field",
+              "manual_input",
+              "unassessed"
+            ],
+            "title": "Outcome",
+            "type": "string"
+          },
+          "reason": {
+            "maxLength": 300,
+            "minLength": 4,
+            "title": "Reason",
+            "type": "string"
+          },
+          "form": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/FormSpan"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "candidate_ids",
+          "outcome",
+          "reason"
+        ],
+        "title": "UnfilledExplanation",
+        "type": "object"
+      },
+      "UserFieldRequest": {
+        "additionalProperties": false,
+        "description": "A local FORM question, never proof of a value or of source absence.",
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          },
+          "reason": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "form",
+          "reason"
+        ],
+        "title": "UserFieldRequest",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "version": {
+        "const": 12,
+        "title": "Version",
+        "type": "integer"
+      },
+      "conditions": {
+        "additionalProperties": {
+          "$ref": "#/$defs/StructuralCondition"
+        },
+        "maxProperties": 128,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Conditions",
+        "type": "object"
+      },
+      "fields": {
+        "additionalProperties": {
+          "discriminator": {
+            "mapping": {
+              "conditional": "#/$defs/ChoiceConditionalValue",
+              "not_applicable": "#/$defs/NonApplicableAssignment",
+              "review": "#/$defs/AlternativeAssignment",
+              "value": "#/$defs/ChoiceValue"
+            },
+            "propertyName": "disposition"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ChoiceValue"
+            },
+            {
+              "$ref": "#/$defs/ChoiceConditionalValue"
+            },
+            {
+              "$ref": "#/$defs/NonApplicableAssignment"
+            },
+            {
+              "$ref": "#/$defs/AlternativeAssignment"
+            }
+          ]
+        },
+        "maxProperties": 400,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Fields",
+        "type": "object"
+      },
+      "facts": {
+        "additionalProperties": {
+          "$ref": "#/$defs/SharedFact"
+        },
+        "maxProperties": 128,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Facts",
+        "type": "object"
+      },
+      "uncertain_paragraph_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "maxItems": 2048,
+        "title": "Uncertain Paragraph Ids",
+        "type": "array"
+      },
+      "bindings": {
+        "additionalProperties": {
+          "$ref": "#/$defs/SubjectBinding"
+        },
+        "maxProperties": 128,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Bindings",
+        "type": "object"
+      },
+      "choice_groups": {
+        "additionalProperties": {
+          "$ref": "#/$defs/ChoiceGroup"
+        },
+        "maxProperties": 64,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Choice Groups",
+        "type": "object"
+      },
+      "clarifications": {
+        "additionalProperties": {
+          "$ref": "#/$defs/UserFieldRequest"
+        },
+        "maxProperties": 16,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Clarifications",
+        "type": "object"
+      },
+      "coverage": {
+        "items": {
+          "$ref": "#/$defs/UnfilledExplanation"
+        },
+        "maxItems": 400,
+        "title": "Coverage",
+        "type": "array"
+      }
+    },
+    "required": [
+      "version",
+      "conditions",
+      "fields",
+      "facts",
+      "coverage"
+    ],
+    "title": "CoverageAwareProposal",
+    "type": "object"
+  },
+  "reading_plan": {
+    "units": [
+      {
+        "context_id": "paragraph:120",
+        "candidate_ids": [
+          "p120.s0"
+        ]
+      },
+      {
+        "context_id": "table:0",
+        "candidate_ids": [
+          "t0.r0.c1",
+          "t0.r1.c1",
+          "t0.r2.c1",
+          "t0.r3.c1",
+          "t0.r4.c1",
+          "t0.r5.c1",
+          "t0.r6.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:0",
+          "paragraph:1",
+          "paragraph:10",
+          "paragraph:11",
+          "paragraph:12",
+          "paragraph:13",
+          "paragraph:14",
+          "paragraph:15",
+          "paragraph:16",
+          "paragraph:17",
+          "paragraph:2",
+          "paragraph:3",
+          "paragraph:4",
+          "paragraph:5",
+          "paragraph:6",
+          "paragraph:7",
+          "paragraph:8",
+          "paragraph:9"
+        ]
+      },
+      {
+        "context_id": "table:1",
+        "candidate_ids": [
+          "t1.r0.c1",
+          "t1.r1.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:0",
+          "paragraph:1",
+          "paragraph:18",
+          "paragraph:19",
+          "paragraph:2",
+          "paragraph:20",
+          "paragraph:21",
+          "paragraph:3"
+        ]
+      },
+      {
+        "context_id": "table:10",
+        "candidate_ids": [
+          "t10.r0.c1",
+          "t10.r1.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:83",
+          "paragraph:88",
+          "paragraph:89",
+          "paragraph:90",
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:93",
+          "paragraph:94",
+          "paragraph:95",
+          "paragraph:96"
+        ]
+      },
+      {
+        "context_id": "table:11",
+        "candidate_ids": [
+          "t11.r0.c1",
+          "t11.r1.c1",
+          "t11.r2.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:100",
+          "paragraph:101",
+          "paragraph:102",
+          "paragraph:103",
+          "paragraph:104",
+          "paragraph:89",
+          "paragraph:90",
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98",
+          "paragraph:99"
+        ]
+      },
+      {
+        "context_id": "table:12",
+        "candidate_ids": [
+          "t12.r0.c1",
+          "t12.r1.c1",
+          "t12.r2.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:105",
+          "paragraph:106",
+          "paragraph:107",
+          "paragraph:108",
+          "paragraph:109",
+          "paragraph:110",
+          "paragraph:111",
+          "paragraph:90",
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98"
+        ]
+      },
+      {
+        "context_id": "table:13",
+        "candidate_ids": [
+          "t13.r0.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:105",
+          "paragraph:112",
+          "paragraph:113",
+          "paragraph:90",
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98"
+        ]
+      },
+      {
+        "context_id": "table:14",
+        "candidate_ids": [
+          "t14.r1.c1",
+          "t14.r2.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:105",
+          "paragraph:114",
+          "paragraph:115",
+          "paragraph:116",
+          "paragraph:117",
+          "paragraph:118",
+          "paragraph:119",
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98"
+        ]
+      },
+      {
+        "context_id": "table:15",
+        "candidate_ids": [
+          "t15.r0.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:105",
+          "paragraph:114",
+          "paragraph:120",
+          "paragraph:121",
+          "paragraph:122",
+          "paragraph:92",
+          "paragraph:97",
+          "paragraph:98"
+        ]
+      },
+      {
+        "context_id": "table:2",
+        "candidate_ids": [
+          "t2.r0.c1",
+          "t2.r1.c1",
+          "t2.r2.c1",
+          "t2.r3.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:0",
+          "paragraph:1",
+          "paragraph:2",
+          "paragraph:22",
+          "paragraph:23",
+          "paragraph:24",
+          "paragraph:25",
+          "paragraph:26",
+          "paragraph:27",
+          "paragraph:28",
+          "paragraph:29",
+          "paragraph:3",
+          "paragraph:30",
+          "paragraph:31"
+        ]
+      },
+      {
+        "context_id": "table:3",
+        "candidate_ids": [
+          "t3.r0.c1",
+          "t3.r1.c1",
+          "t3.r2.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:37",
+          "paragraph:38",
+          "paragraph:39",
+          "paragraph:40",
+          "paragraph:41",
+          "paragraph:42",
+          "paragraph:43",
+          "paragraph:44",
+          "paragraph:45",
+          "paragraph:46",
+          "paragraph:47",
+          "paragraph:48"
+        ]
+      },
+      {
+        "context_id": "table:4",
+        "candidate_ids": [
+          "t4.r0.c1",
+          "t4.r1.c1",
+          "t4.r2.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:39",
+          "paragraph:40",
+          "paragraph:41",
+          "paragraph:42",
+          "paragraph:49",
+          "paragraph:50",
+          "paragraph:51",
+          "paragraph:52",
+          "paragraph:53",
+          "paragraph:54",
+          "paragraph:55",
+          "paragraph:56"
+        ]
+      },
+      {
+        "context_id": "table:5",
+        "candidate_ids": [
+          "t5.r0.c1",
+          "t5.r1.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:41",
+          "paragraph:42",
+          "paragraph:49",
+          "paragraph:50",
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:59",
+          "paragraph:60",
+          "paragraph:61",
+          "paragraph:62"
+        ]
+      },
+      {
+        "context_id": "table:6",
+        "candidate_ids": [
+          "t6.r0.c1",
+          "t6.r1.c1",
+          "t6.r2.c1",
+          "t6.r3.c1",
+          "t6.r4.c1",
+          "t6.r5.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:42",
+          "paragraph:49",
+          "paragraph:50",
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:63",
+          "paragraph:64",
+          "paragraph:65",
+          "paragraph:66",
+          "paragraph:67",
+          "paragraph:68",
+          "paragraph:69",
+          "paragraph:70",
+          "paragraph:71",
+          "paragraph:72",
+          "paragraph:73",
+          "paragraph:74",
+          "paragraph:75"
+        ]
+      },
+      {
+        "context_id": "table:8",
+        "candidate_ids": [
+          "t8.r0.c1",
+          "t8.r1.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:49",
+          "paragraph:50",
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:63",
+          "paragraph:76",
+          "paragraph:78",
+          "paragraph:79",
+          "paragraph:80",
+          "paragraph:81"
+        ]
+      },
+      {
+        "context_id": "table:9",
+        "candidate_ids": [
+          "t9.r0.c1",
+          "t9.r1.c1"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:50",
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:63",
+          "paragraph:76",
+          "paragraph:83",
+          "paragraph:84",
+          "paragraph:85",
+          "paragraph:86",
+          "paragraph:87"
+        ]
+      },
+      {
+        "context_id": "paragraph:32",
+        "candidate_ids": [
+          "p32.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:33",
+        "candidate_ids": [
+          "p33.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:36",
+        "candidate_ids": [
+          "p36.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:37",
+        "candidate_ids": [
+          "p37.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:38",
+        "candidate_ids": [
+          "p38.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:39",
+        "candidate_ids": [
+          "p39.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:40",
+        "candidate_ids": [
+          "p40.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:90",
+        "candidate_ids": [
+          "p90.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:91",
+        "candidate_ids": [
+          "p91.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:92",
+        "candidate_ids": [
+          "p92.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:105",
+        "candidate_ids": [
+          "p105.cb0"
+        ]
+      }
+    ],
+    "source_role_targets": [],
+    "omitted_role_hints": 0,
+    "source_property_lines": [
+      {
+        "chunk_id": -1,
+        "section_header": "",
+        "quote": "Dati interamente fittizi. Denominazione: Orione Tecnica S.r.l."
+      },
+      {
+        "chunk_id": -1,
+        "section_header": "",
+        "quote": "Forma giuridica: società a responsabilità limitata. Tipologia operatore: società di ingegneria. Codice fiscale operatore: 01234567897. Partita IVA: 01234567897."
+      },
+      {
+        "chunk_id": -1,
+        "section_header": "",
+        "quote": "Sede legale: Via delle Querce 18, 60121 Ancona (AN). Telefono: +39 071 000 1234. PEC: orione@pec.example.org."
+      },
+      {
+        "chunk_id": -1,
+        "section_header": "",
+        "quote": "Iscrizione CCIAA: Camera di Commercio delle Marche. Numero REA: AN-204060. Data iscrizione CCIAA: 14/03/2019. Capitale sociale: EUR 50000."
+      },
+      {
+        "chunk_id": -1,
+        "section_header": "",
+        "quote": "Amministratore unico: Paolo Conti. Questo profilo non designa il sottoscrittore della presente domanda né la modalità di partecipazione alla procedura."
+      },
+      {
+        "chunk_id": -2,
+        "section_header": "",
+        "quote": "Orione Tecnica S.r.l. — direttore tecnico: Giulia Serra. Qualifica professionale: Ingegnere. Ordine professionale: Ordine degli Ingegneri di Ancona, n. 5739. Telefono ufficio: +39 071 000 5678. Identificativo documento: DT-8821. Il numero 8821 identifica il documento, non l'iscrizione all'albo. Questa scheda non riporta la data di abilitazione e non contiene un organigramma."
+      },
+      {
+        "chunk_id": -3,
+        "section_header": "",
+        "quote": "Orione Tecnica S.r.l. — sede operativa: Via delle Querce 18, 60121 Ancona (AN). La sede operativa coincide con la sede legale. Per la corrispondenza sono utilizzabili due recapiti, senza preferenza indicata: Via del Porto 2, Ancona; Via dei Tigli 7, Jesi. Nessuno dei due è indicato come nuova sede legale."
+      },
+      {
+        "chunk_id": -4,
+        "section_header": "",
+        "quote": "Attestazione del 01/09/2026: Orione Tecnica S.r.l., polizza professionale vigente RC-OR-2026-A. Nessuna priorità su altre attestazioni della stessa data."
+      },
+      {
+        "chunk_id": -5,
+        "section_header": "",
+        "quote": "Attestazione del 01/09/2026: Orione Tecnica S.r.l., polizza professionale vigente RC-OR-2026-B. Nessuna priorità su altre attestazioni della stessa data."
+      },
+      {
+        "chunk_id": 101,
+        "section_header": "",
+        "quote": "La presente procedura ha codice LAB-ORIONE-2026. Importo stimato: EUR 250000. Il codice della procedura non è il protocollo assegnato alla domanda del partecipante."
+      }
+    ],
+    "omitted_property_lines": 0,
+    "meaning": "Reading references only; each value still needs its own validated SOURCE."
+  }
+}

@@ -1,5 +1,22 @@
 # Stato di Mapi RAG
 
+## JSON per i relatori nella radice — 13 ottobre
+
+Copiate le acquisizioni già citate con nomi RELATORI_01…09: input, richiesta,
+risposta e audit della sessione reale Minervino a067b0ab (V12), report dell'ultima
+esportazione aca0a0dd, input/risposte dei benchmark finali Labirinto e Minervino.
+System prompt estratto letteralmente in RELATORI_02A_MINERVINO_SYSTEM_PROMPT.txt;
+guida RELATORI_00_GUIDA.md e manifest RELATORI_10_PROVENIENZA_FILE.json.
+
+JSON riformattati per leggibilità, contenuto verificato identico; nessuna nuova
+analisi/provider call, modifica di codice, database o acquisizioni originali.
+Controllati parsing, riferimenti, hash, assenza delle chiavi configurate e diff.
+Nessuna suite software rieseguita per questa esportazione documentale.
+Sono snapshot per presentazione: future compilazioni non li aggiornano.
+Il report05 è dell'ultima esportazione; il compilato(2) esaminato in precedenza
+era della generazione6cb97f7b della medesima analisi. La guida lo distingue.
+Prossimo punto architetturale invariato; nessun push.
+
 ## Verifica compilato(2): buona bozza testuale, tre limiti — 13 ottobre
 
 Controllato il file utente `domanda-iscrizione.compilato(2).docx`, identico alla
