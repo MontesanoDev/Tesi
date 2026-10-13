@@ -4,6 +4,10 @@ Copie leggibili delle acquisizioni del 13 ottobre 2026, contratto globale V12.
 Le chiamate originali usano DeepSeek Flash reale; i dati aziendali sono simulati
 per la demo. Non sono state eseguite nuove compilazioni per preparare questi file.
 
+Per capire il flusso prima di aprire i JSON, leggere
+[ARCHITETTURA.md](ARCHITETTURA.md): responsabilità, prompt, esempio reale 8421,
+controlli, dialogo, esportazione e limiti dell'attuale motore globale V12.
+
 ## Ordine consigliato di lettura
 
 1. [System prompt](RELATORI_02A_MINERVINO_SYSTEM_PROMPT.txt): istruzioni complete,

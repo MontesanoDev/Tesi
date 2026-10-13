@@ -9,6 +9,8 @@ dall'interfaccia; Ollama può essere locale o remoto.
 
 La [mappa del progetto e audit del codice](docs/mappa-progetto.md) descrive moduli,
 flussi, codice inutilizzato, verifiche e limiti ancora aperti.
+La [guida all'architettura della compilazione](ARCHITETTURA.md) spiega il percorso
+globale attuale, il ruolo del modello, i prompt, i JSON e la generazione del Word.
 La [baseline della demo](docs/baseline-demo.md) documenta il punto di ripristino
 locale e la separazione dal nuovo sviluppo a chiamata unica.
 

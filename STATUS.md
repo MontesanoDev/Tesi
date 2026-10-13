@@ -1,5 +1,23 @@
 # Stato di Mapi RAG
 
+## Guida di studio dell'architettura — 13 ottobre
+
+Creato [ARCHITETTURA.md](ARCHITETTURA.md) nella radice, con baseline `1fd0d72`:
+percorso globale V12, distinzione dal RAG e dalle sessioni legacy, parser/catalogo,
+ruolo dei diversi prompt LLM, grounding, condizioni, dialogo USER, persistenza,
+budget e renderer dall'originale. Esempio 8421 ripreso dai JSON reali Minervino,
+con proposte/valori scritti distinti e limiti concreti. Collegata da README e
+RELATORI_00_GUIDA; nessuna nuova scelta architetturale implementata.
+
+Intervento soltanto documentale: nessuna chiamata provider, modifica di codice,
+database, sessioni, originali o benchmark. Verificati nuovi riferimenti, esempi
+JSON, coerenza con codice/acquisizioni e diff; suite software non rieseguite.
+Riferimenti storici già mancanti in STATUS a raw locali/report non modificati.
+Il documento è una fotografia del 13 ottobre, non una certificazione della
+completezza della compilazione. Prossimo punto di ripresa invariato: discutere
+i limiti di destinazione fra paragrafi, granularità indirizzi e spazi emersi
+nel controllo Minervino. Commit locale, nessun push.
+
 ## JSON per i relatori nella radice — 13 ottobre
 
 Copiate le acquisizioni già citate con nomi RELATORI_01…09: input, richiesta,
