@@ -459,7 +459,11 @@ def export_selection(session):
            and all(c in confirmed for c in f["conditions"])]
     # Holding a positive exclusive choice also holds the false alternatives that
     # depended on it; a partial export must not silently leave a group half chosen.
-    for group in data["audit"].get("choice_groups", {}).values() if "audit" in data else []:
+    for group in (data.get("audit") or {}).get("choice_groups", {}).values():
+        # Rejected records preserve diagnostics, not the validated group schema.
+        # Only grounded groups can impose choice rules on otherwise valid values.
+        if group.get("validation") != "GROUNDED_GROUP":
+            continue
         members = set(group["options"])
         selected = [f for f in data["fields"] if f["candidate_id"] in members & set(ids)]
         if group["min_selected"] and not any(f["value"] is True for f in selected) and not any(

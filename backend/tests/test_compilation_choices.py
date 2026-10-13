@@ -265,6 +265,31 @@ def test_absent_source_keeps_options_as_form_context_not_facts(choice_case):
     assert all(not f["source_evidence"] for f in result["fields"])
 
 
+@pytest.mark.parametrize("invalid_group", [None, {}, {"min_selected": 0}, {
+    "label": "Un altro gruppo", "subject": "Richiedente", "property": "scelta",
+    "selection": "single", "min_selected": 0, "conditions": [],
+    "form": {"paragraph_id": "paragraph:1", "quote": "Tipologia dell'operatore"},
+    "options": {"p999.cb0": {"label": "x" * 251, "form": {
+        "paragraph_id": "paragraph:1", "quote": "Tipologia dell'operatore"}}},
+}])
+def test_schema_rejected_group_cannot_break_independent_choice_export(choice_case, invalid_group):
+    from app.compilation_global_dialogue import export_selection, model_context, question_pool
+    from app.compilation_global_sessions import review_fields
+
+    choice_case[2]["choice_groups"]["invalid"] = invalid_group
+    data = data_for(choice_case)
+    rejected = data["audit"]["choice_groups"]["invalid"]
+    assert rejected["validation"] == "REJECTED" and rejected["validation_errors"]
+    assert "min_selected" not in rejected
+    data.update(fields=review_fields(data), dialogue={"phase": "READY",
+        "reviewed_candidate_ids": ["p2.cb0", "p3.cb0"]})
+    ids, conditions, users = export_selection({"global_compilation": data})
+    assert ids == ["p2.cb0", "p3.cb0"] and not conditions and not users
+    assert all(q.get("choice_group_id") != "invalid" for q in question_pool(data))
+    assert len(model_context(data, question_pool(data))["document_values"]) == 2
+    assert materialize_choices(data, ids, users)[0] == {"p2.cb0": True, "p3.cb0": False}
+
+
 def test_multiple_choices_require_independent_positive_sources(choice_case):
     doc = Document(BytesIO(choice_case[0].original))
     doc.paragraphs[1].text = "Attività: selezionare una o più opzioni."

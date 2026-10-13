@@ -63,6 +63,44 @@ async def test_natural_summary_persisted_bounded_and_no_technical_identifiers(ap
 
 
 @pytest.mark.anyio
+@pytest.mark.parametrize("invalid_group", [None, {}, {
+    "label": "Scelta condizionale", "subject": "Richiedente", "property": "partecipazione",
+    "selection": "single", "min_selected": 0, "conditions": [],
+    "form": {"paragraph_id": "paragraph:0", "quote": "Dati aziendali"},
+    "options": {"p999.cb0": {"label": "x" * 251, "form": {
+        "paragraph_id": "paragraph:0", "quote": "Dati aziendali"}}},
+}])
+async def test_invalid_choice_group_is_saved_without_500_or_losing_source_proposals(
+    api, provider, monkeypatch, invalid_group,
+):
+    async def request(client, settings, body, timeout, **kwargs):
+        payload = proposal(json.loads(body["messages"][1]["content"]))
+        payload["choice_groups"] = {"invalid": invalid_group}
+        return json.dumps(payload), "simulated", {}
+
+    monkeypatch.setattr(adapter, "request_model_content", request)
+    s = await resolve(api, await start(api))
+    assert s["status"] == "WAITING_FOR_USER" and s["last_error"] is None
+    assert s["global_compilation"]["phase"] == "REVIEW"
+    assert s["global_compilation"]["proposal_count"] == 2
+    assert not s["global_compilation"]["dialogue"].get("error")
+    assert s["chat"]["question"]["kind"] == "generate"
+    assert s == (await api.get(f"{BASE}/{s['id']}")).json()
+    audit = (await api.get(f"{BASE}/{s['id']}/global-report")).json()
+    assert audit["choice_groups"]["invalid"]["validation"] == "REJECTED"
+    assert audit["choice_groups"]["invalid"]["validation_errors"]
+    assert "min_selected" not in audit["choice_groups"]["invalid"]
+    ids, conditions, users = dialogue.export_selection(s)
+    generated = await api.post(f"{BASE}/{s['id']}/global-draft", json={
+        "version": s["version"], "candidate_ids": ids, "allow_unresolved": True})
+    assert generated.status_code == 200, generated.text
+    report = (await api.get(generated.json()["last_generation"]["downloads"]["report"])).json()
+    assert report["written_field_count"] == 2 and report["checkbox_values"] == {}
+    assert all(f["provenance"] == "SOURCE" for f in report["fields"])
+    assert not conditions and not users and s["summary"]["resolved"] == 0
+
+
+@pytest.mark.anyio
 @pytest.mark.parametrize("action", ["UNKNOWN", "SKIP", "REFUSE", "CONDITION_FALSE"])
 async def test_control_defers_or_excludes_without_value_and_without_repeating(
     api, provider, monkeypatch, action,
