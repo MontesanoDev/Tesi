@@ -39,7 +39,8 @@ def choice_case():
             " " if index == 0 else "☑ ") + label}
         group["options"][cid] = {"label": label, "form": form}
         fields[cid] = {"label": label, "kind": "choice", "disposition": "value",
-                       "form": form, "conditions": [], "fact_id": "tipo", "property": "tipologia",
+                       "form": copy.deepcopy(form), "conditions": [], "fact_id": "tipo",
+                       "property": "tipologia",
                        "choice": index == 0, "choice_group_id": "g"}
     payload = {"version": 11, "uncertain_paragraph_ids": [], "conditions": {}, "bindings": {},
                "choice_groups": {"g": group}, "fields": fields, "facts": {"tipo": {
@@ -203,6 +204,56 @@ def test_export_subset_cannot_bypass_exclusive_group(choice_case):
     next(f for f in data["audit"]["fields"] if f["candidate_id"] == "p3.cb0")["value"] = True
     with pytest.raises(ValueError, match="cardinalità"):
         materialize_choices(data, ["p2.cb0", "p3.cb0"], [])
+
+
+@pytest.mark.parametrize("omitted", ["p2.cb0", "p3.cb0"])
+def test_exclusive_group_cannot_omit_edge_of_contiguous_native_list(choice_case, omitted):
+    choice_case[2]["choice_groups"]["g"]["options"].pop(omitted)
+    choice_case[2]["fields"].pop(omitted)
+    result = audit(choice_case)
+    assert result["choice_groups"]["g"]["validation"] == "REJECTED"
+    assert not any(f["validation"] == "GROUNDED_PROPOSAL" for f in result["fields"])
+
+
+@pytest.mark.parametrize("shape", ["table", "same_paragraph"])
+@pytest.mark.parametrize("omit_last", [False, True])
+def test_physical_group_completeness_in_tables_and_shared_paragraphs(
+    choice_case, shape, omit_last,
+):
+    doc = Document(BytesIO(choice_case[0].original))
+    options = [doc.paragraphs[2]._p, doc.paragraphs[3]._p]
+    if shape == "table":
+        table = doc.add_table(rows=2, cols=1)
+        for row, paragraph in zip(table.rows, options, strict=True):
+            cell = row.cells[0]._tc
+            cell.remove(cell[0])
+            cell.append(paragraph)
+    else:
+        for node in list(options[1]):
+            options[0].append(node)
+        options[1].getparent().remove(options[1])
+    layout = inspect_docx(encoded(doc))
+    catalog = build_global_input(layout, "alpha", choice_case[1])["form"]
+    paragraphs = {p["id"]: p for b in catalog["blocks"] for p in b["paragraphs"]}
+    group = copy.deepcopy(choice_case[2]["choice_groups"]["g"])
+    group["options"] = {}
+    for cid, candidate in catalog["candidates"].items():
+        if candidate["type"] != "checkbox":
+            continue
+        pid = candidate["context_id"]
+        label = ("Professionista autonomo" if candidate["initial_checked"]
+                 else "Organizzazione tecnica")
+        marked = paragraphs[pid]["text_with_choices"]
+        start = marked.index(f"[[{cid}]]")
+        end = marked.find("[[", start + 2)
+        group["options"][cid] = {"label": label, "form": {"paragraph_id": pid,
+            "quote": marked[start:] if end == -1 else marked[start:end]}}
+    if omit_last:
+        group["options"].pop(next(reversed(group["options"])))
+    payload = {**choice_case[2], "choice_groups": {"g": group}, "fields": {}, "facts": {}}
+    result = audit((layout, choice_case[1], payload))
+    assert result["choice_groups"]["g"]["validation"] == (
+        "REJECTED" if omit_last else "GROUNDED_GROUP")
 
 
 def test_absent_source_keeps_options_as_form_context_not_facts(choice_case):

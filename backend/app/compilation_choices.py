@@ -94,6 +94,54 @@ def assignment_form(candidate_id, item, groups, catalog, paragraphs):
     return item.model_copy(update={"form": origin, "label": option["label"]})
 
 
+def _exclusive_region(group, catalog, paragraphs):
+    """Close a physical choice list before clearing any original checked peers.
+
+    Body lists end at a nonempty paragraph without native controls. Tables are
+    conservative: a locally instructed row is a group, otherwise the full table
+    must be accounted for. Complex/interleaved tables stay under review.
+    """
+    controls = {cid: c for cid, c in catalog["candidates"].items()
+                if c["type"] == "checkbox"}
+    first = controls[next(iter(group.options))]
+    table = first["location"].get("table_id")
+    if table is not None:
+        table_controls = {cid: c for cid, c in controls.items()
+                          if c["location"].get("table_id") == table}
+        rows = {controls[cid]["location"]["row_index"] for cid in group.options}
+        if len(rows) == 1:
+            row = next(iter(rows))
+            structure = next(t for b in catalog["blocks"] for t in b.get("tables", [])
+                             if t["id"] == table)
+            row_paragraphs = {p for cell in structure["rows"][row]
+                              for p in cell["paragraph_ids"]}
+            if group.form.paragraph_id in row_paragraphs:
+                return {cid for cid, c in table_controls.items()
+                        if c["location"]["row_index"] == row}
+        return set(table_controls)
+    by_paragraph = {}
+    for cid, candidate in controls.items():
+        if "table_id" not in candidate["location"]:
+            by_paragraph.setdefault(candidate["context_id"], set()).add(cid)
+    order = list(paragraphs)
+    index = order.index(first["context_id"])
+    region = set(by_paragraph[order[index]])
+    table_paragraphs = {p["id"] for b in catalog["blocks"] if b.get("tables")
+                        for p in b["paragraphs"]}
+    for direction in (-1, 1):
+        pos = index + direction
+        while 0 <= pos < len(order):
+            pid = order[pos]
+            if pid in table_paragraphs or (paragraphs[pid].strip() and pid not in by_paragraph):
+                break
+            peers = by_paragraph.get(pid, set())
+            if any(controls[cid]["section_ids"] != first["section_ids"] for cid in peers):
+                break
+            region.update(peers)
+            pos += direction
+    return region
+
+
 def validate_groups(records, catalog, paragraphs, local, conditions):
     from app.compilation_global import _form_quote
 
@@ -151,6 +199,9 @@ def validate_groups(records, catalog, paragraphs, local, conditions):
                        order[c["context_id"]] <= max(indices)}
             if between != set(group.options):
                 raise ValueError("Gruppo incompleto o intrecciato con altre checkbox")
+            if (group.selection == "single" and
+                    _exclusive_region(group, catalog, paragraphs) != set(group.options)):
+                raise ValueError("Gruppo esclusivo incompleto rispetto alla lista fisica Word")
             output.update(validation="GROUNDED_GROUP", form_evidence={
                 "paragraph_id": group.form.paragraph_id, "quote": quote})
         except (ValueError, KeyError) as exc:
