@@ -2021,3 +2021,42 @@ prima di valutare una chiamata bounded di recupero. Nessun push.
 Bundle e manifest in docs/benchmarks/2026-10-13-minervino-output-*:
 24 file /1.573.365 byte grezzi, confronto byte per byte, chiavi/DB esclusi.
 SHA256 84a024ad61e665746187568c259e7b7747466a19d49ece1a55a3402f0c054b46.
+
+### 13 ottobre 2026 — copertura testuale, rinvii locali e fuzzing
+
+Baseline23357b6, passi c9a28fe/052c473. Prima di implementare comunicata la
+scelta: una sola analisi, riferimenti di lettura e domande locali distinte da
+condizioni; nessun batch12/nuovo RAG/parser/writer/UI. Checkbox rinviate.
+
+Prima serie congelata: Minervino9/16 proposte e quattro proprietà del direttore
+in entrambi; HTTP nuovo solo quattro proposte professionali, domanda erronea
+sulla denominazione già in KB, quattro testi scritti. Fallimento di copertura
+conservato. Seconda serie dopo indice letterale SOURCE: Minervino18/19, HTTP19
+proposte, tutte con nome/qualifica/Ordine/8421. Applicabilità resta variabile:
+HTTP finale copia vuota autorizzata dopo rinvio, non compilazione riuscita.
+Labirinto V1 in entrambe conserva undici testi e cinque checkbox preesistenti.
+Fixture/fonti/gold invariati e gold mai nel prompt. Nome proposto con prefisso
+Ing., scostamento letterale rispetto al gold conservato. Nessun nuovo sorteggio
+bando: Minervino è il caso specifico dell'utente, non prova casuale aggiuntiva.
+
+43 checkpoint comandi reali:42/43, stesso export-no conservativo, zero export
+non autorizzati. Due conversazioni HTTP ASGI private da quattro messaggi, source
+snapshot importato via repository (ingestion/embedding non misurati), nessun
+valore aziendale via USER. Totale87 chiamate/8 analisi/934.320 token/1.245,68s
+sommati: nessun risparmio dimostrato, latenza ancora di minuti. Codice congelato
+in ciascuna serie, modifiche solo fra serie e ultimo boundary Unicode dopo API.
+
+Finali214 mirati/25,74s e2146 backend/152,53s, Ruff/diff.960 mutazioni globali e
+480 piani chat con seed, più boundary HTTP; provider simulati per il software.
+Riprodotti3 diagnostici non serializzabili,6 errori formatter422->500 e2 crash
+UTF8 nel retry; corretti senza catch generale né normalizzazione di valori
+fattuali. Errori di schema atteso/fixture/status502 iniziali conservati e distinti
+da bug. Directory assente nel primo runner HTTP e filtro report del verifier
+corretti solo negli strumenti. Nessun frontend/browser, UI/contratti invariati.
+Otto DOCX/26 valori verificati per paragrafo, prove SOURCE/digest e parti ZIP;
+originali e DB live invariati. Report e artefatti duraturi:
+[relazione](docs/compilazione-copertura-2026-10-13.md),
+[metriche](docs/benchmarks/2026-10-13-text-coverage.json),
+[bundle](docs/benchmarks/2026-10-13-text-coverage-audit.tar.gz).
+Restano condizioni troppo ampie, indirizzi compositi e copertura sparse.
+Non dichiarare completati tutti i limiti osservati; nessun push.

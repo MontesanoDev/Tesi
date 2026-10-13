@@ -1,0 +1,36 @@
+{
+  "baseline": "23357b6",
+  "provider": "deepseek-flash",
+  "scope": "Testi e rinvii locali; nessun obiettivo di miglioramento checkbox",
+  "minervino": {
+    "fixture": "backend/data/compilation-audit/minervino-output-20261013/analysis",
+    "runs": 2,
+    "new_analysis_calls_per_run": 1,
+    "narration_calls_per_run": 1,
+    "source_corpus": "stesso input registrato, nessuna fonte o valore aggiunto",
+    "expected_textual_proposals": {
+      "p51.s0": "Elisa Romano",
+      "p52.s0": "Ingegnere",
+      "p53.s0": "Ordine degli Ingegneri di Bari",
+      "p53.s4": "8421"
+    },
+    "missing_professional_property": "data di abilitazione",
+    "company_regression": ["p14.s1", "p16.s0", "p16.s1", "p16.s2", "p40.s0", "p41.s0"],
+    "local_deferral": "Una domanda sulla carica è locale; non condiziona i dati aziendali",
+    "export": "Solo proposte ammissibili senza conferme inventate; bozza parziale esplicita di laboratorio"
+  },
+  "labirinto": {
+    "fixture": "demo-documents/benchmark-compilazione/v1",
+    "runs": 1,
+    "gold": "congelato preesistente, confrontato dopo le chiamate"
+  },
+  "dialogue": {
+    "fixture": "demo-documents/benchmark-dialogo/v1",
+    "cases": 43,
+    "scope": "checkpoint preparati; routing e mutazioni persistite reali, non nuovo E2E"
+  },
+  "gold_in_prompt": false,
+  "application_changes_during_series": false,
+  "retain_all_failures": true,
+  "live_user_data_writes": false
+}

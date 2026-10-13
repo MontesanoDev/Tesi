@@ -1,5 +1,29 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Copertura testuale e chiarimenti locali — 13 ottobre
+
+[Intervento e misure](compilazione-copertura-2026-10-13.md): reading_plan di
+riferimenti strutturali, ruoli letterali e proprietà SOURCE nella stessa analisi.
+Nessuna nuova autorità fattuale. clarifications opzionale V11 contiene fino a16
+domande su candidate testuali grounded FORM; nessun valore/fact_id. Permette
+rinvio locale invece di trasformare un dato personale assente in una condizione
+sui recapiti aziendali. Le condizioni reali restano necessarie; vecchi output
+senza clarifications compatibili, nessun upgrade automatico delle sessioni.
+
+Il perimetro di una conferma condivisa compare nella domanda e nel gate USER.
+SKIP/UNKNOWN/REFUSE su blocchi di più field sono verificati nella medesima chiamata
+bounded delle scritture; il rinvio locale non aggiunge una chiamata. Backend
+conserva destinatari ed effetti del rinvio; USER non diventa SOURCE. Indizi di
+ruolo con zero proposte non vengono descritti come KB priva di dati già cercati.
+
+DeepSeek reale: quattro proprietà professionali incluse in sei analisi Minervino,
+ma copertura e separazione delle condizioni ancora variabili. Non promettere
+compilazione completa: le conversazioni private hanno scritto quattro/zero testi
+secondo conferme e rinvii realmente acquisiti. Labirinto conserva undici testi.
+2146 test backend finali, fuzzing riproducibile e boundary HTTP corretti; nessuna
+nuova UI/browser, RAG/parser/renderer invariati. Checkbox non migliorate in questo
+intervento. Nuova conversazione per osservare l'input aggiornato.
+
 ## Minervino reale — 13 ottobre, limite di copertura osservato
 
 [Verifica del DOCX utente](minervino-output-2026-10-13.md): nove valori SOURCE

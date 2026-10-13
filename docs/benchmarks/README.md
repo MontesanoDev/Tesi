@@ -233,3 +233,17 @@ La strumentazione non sostituisce le risposte AI e non alleggerisce i validator.
 È una misura del percorso automatico backend, non del routing/browser completo.
 Non copre la gestione degli errori aggiuntiva della route HTTP. In caso di
 failure registra gli artefatti e si ferma, senza correggere il codice in corsa.
+
+## Copertura testuale e rinvii locali, 13 ottobre 2026
+
+[Report](../compilazione-copertura-2026-10-13.md),
+[protocollo](2026-10-13-text-coverage-protocol.json),
+[metriche](2026-10-13-text-coverage.json),
+[bundle](2026-10-13-text-coverage-audit.tar.gz),
+[manifest](2026-10-13-text-coverage-manifest.json).
+Due serie DeepSeek con stesso Minervino/SOURCE; quattro dati professionali
+proposti in sei analisi, copertura aziendale finale18/19/19. Due HTTP nuovi
+scrivono quattro/zero testi in base a conferme/rinvii, non prova di compilazione
+completa. Labirinto undici testi in entrambe.43 checkpoint42/43, limite noto
+export-no.87 chiamate/8 analisi,934.320 token.2146 backend finali,1440 mutazioni
+fuzz più boundary HTTP; tutti i fallimenti conservati. Nessun push/migrazione.

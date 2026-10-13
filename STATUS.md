@@ -1,41 +1,53 @@
 # Stato di Mapi RAG
 
-## In lavorazione — copertura testuale e rinvii locali, 13 ottobre
+## Copertura testuale e rinvii locali — 13 ottobre 2026
 
-Richiesta corrente: risolvere omissioni dell'analisi/direttore tecnico e rinvio
-troppo ampio; checkbox nel Word rinviate dall'utente. Autorizzati test/fuzzing,
-commit piccoli e DeepSeek reale. Nessun push richiesto. Git iniziale pulito,
-baseline23357b6. Scelte comunicate prima del codice: stessa chiamata globale,
-reading_plan di gruppi strutturali e indizi letterali di ruoli FORM/SOURCE;
-clarifications separato (massimo16) per dati USER di un solo candidate invece
-di condizioni inventate che bloccano dati aziendali. V11 additivo/vecchi raw
-senza clarifications invariati. Provenance, binding, renderer e RAG da preservare.
+Richiesta: correggere i tre problemi testuali Minervino; miglioramento checkbox
+rinviato. Due passi implementati, c9a28fe/052c473: stessa analisi globale con
+reading_plan di riferimenti strutturali/ruoli e indice letterale proprietà SOURCE;
+clarifications locali grounded FORM (max16), nessun valore senza SOURCE/USER.
+Rinvio locale non sospende altri field; rinvio di conferme condivise esplicita
+perimetro e passa dal verificatore semantico esistente. Sintesi distingue rinviati
+e indizi SOURCE non ancora valutati. V11 additivo, vecchi raw senza nuovo campo
+compatibili. Nessuna migrazione/reindex, nuova UI o modifica RAG/parser/renderer.
 
-Implementati (benchmark reale ancora in corso): reading_plan compatto di riferimenti,
-clarifications locali con grounding FORM e nessun valore fattuale, perimetro dei
-rinvii visibile nelle domande e verificato dal gate semantico esistente. Indizi
-SOURCE di ruolo senza proposte distinti da assenza di dati; niente domanda USER
-su quel blocco come se la KB fosse stata esaurita. Persistenza additiva V11.
+**Copertura migliorata, non chiusa:** sei analisi reali Minervino propongono
+nome, qualifica, Ordine e8421; serie finale18/19/19 proposte SOURCE contro9/16/4
+nella prima, con stesse fonti. Non sono RESOLVED. Una prima conversazione chiede
+ancora denominazione già in KB; dato negativo conservato. Il modello può ancora
+creare conferme troppo ampie sulla qualità/identità: non eliminare condizioni per
+esportare più valori. Chiarimenti locali corretti nei test, decomposizione semantica
+non garantita in tutti gli output. Indirizzi ripartiti ancora variabili.
 
-Fuzzing riproducibile:960 mutazioni output globale +480 piani chat, input Unicode
-non valido/NaN/infinito/profondità, controlli HTTP di errore e testo casuale.
-Riprodotti6 HTTP500 nel formatter delle risposte422 (non nei dati aziendali);
-corretto solo quel boundary, senza catch generale. Output modello non valido:
-502 controllato/statoFAILED, nessuna scrittura. Log conservati anche dei fallimenti.
-**2143 test backend passati /152,42s**, Ruff e diff check; provider simulati nei
-test, FTS5/Qdrant. Frontend/parser/renderer/RAG invariati. Prime suite hanno
-segnalato aspettative di schema/fixture da aggiornare, non ignorate.
+Due conversazioni HTTP ASGI nuove/private, provider reale, quattro turni ciascuna.
+Prima scrive quattro dati professionali senza valori USER; seconda recupera19
+proposte ma rinvia la conferma rimasta e genera, con consenso esplicito, una copia
+vuota. Non presentarla come compilazione riuscita. Labirinto V1: undici testi e
+cinque booleani già supportati per entrambe le serie.43 checkpoint comandi:42/43,
+limite export-no già noto, nessun export non autorizzato.87 chiamate/8 analisi,
+934.320 token,1.245,68s AI sommati, nessun risparmio di costo/latency dimostrato.
+Verificati otto DOCX/26 valori per posizione, tutte le altre posizioni e parti ZIP;
+DB/originali live invariati, credenziali/DB privati eliminati. Gold escluso dai prompt.
 
-Prove DeepSeek in corso, protocollo docs/benchmarks/2026-10-13-text-coverage-protocol.json:
-2 Minervino con originale/SOURCE congelati, Labirinto V1,43 checkpoint dialogo.
-Primo Minervino: proposte SOURCE per direttore/qualifica/ordine/8421, ma sole9
-proposte complessive e condizione sulla qualità ancora troppo ampia. Non dichiarare
-risolti tutti e tre i limiti. Dialogo42/43, export-no conservativamente respinto
-come prima. Un runner HTTP fallito prima di chiamate AI (directory fixture assente),
-corretto solo runner e ripetuto in nuova cartella. Codice applicativo congelato.
-Raw in backend/data/compilation-audit/text-coverage-20261013/. Prossimo: terminare
-prove, valutare tutti gli esiti, eventuale nuovo passo solo fuori dalla serie,
-report/relazioni/bundle e documentazione finale. Nessun push.
+Fuzzing:960 mutazioni globali+480 piani chat e boundary HTTP. Riprodotti e corretti
+formatter422 che causava500 su Unicode/NaN/infinito, diagnostici non serializzabili,
+retry router con Unicode invalido. Escape solo diagnostico, nessuna riparazione
+fattuale/catch generale. JSON modello invalido->502 controllato/FAILED, nessuna
+scrittura. Finali **214 mirati/25,74s**, **2146 backend/152,53s**, Ruff/diff check;
+provider simulati/FTS5/Qdrant nei test. Frontend/browser non rieseguiti, UI invariata.
+Ultimo fix Unicode dopo le API, nessun prompt valido misurato cambiato.
+
+[Report](docs/compilazione-copertura-2026-10-13.md),
+[metriche](docs/benchmarks/2026-10-13-text-coverage.json), raw in
+backend/data/compilation-audit/text-coverage-20261013/,
+[bundle](docs/benchmarks/2026-10-13-text-coverage-audit.tar.gz) e
+[manifest](docs/benchmarks/2026-10-13-text-coverage-manifest.json).
+Conservati anche fallimenti/runner/vecchie aspettative software corrette.
+Originale utente domanda-iscrizione.compilato.docx preservato. Commit piccoli,
+nessun push. Per provare l'input aggiornato usare una nuova conversazione.
+Prossimo: separazione semantica identità del partecipante/qualità del firmatario
+e copertura residua; non dichiarare risolti completamente tutti e tre i limiti.
+Checkbox restano rinviate secondo la richiesta corrente.
 
 ## Minervino: bozza reale fornita dall'utente — 13 ottobre, diagnosi
 

@@ -84,6 +84,13 @@ async def main(args):
         path, sources, project, gold = (material["path"], material["sources"],
                                        material["gold"]["project_id"], material["gold"])
         protocol["fixture"] = material["manifest"]
+    elif args.case == "minervino":
+        snapshot = REPO / "backend/data/compilation-audit/minervino-output-20261013/analysis"
+        frozen = json.loads((snapshot / "input.json").read_text())
+        path, sources, project = (snapshot / "original.docx", frozen["sources"],
+                                  frozen["project_id"])
+        protocol["fixture"] = {"kind": "recorded_input", "path": str(snapshot.relative_to(REPO)),
+                               "input_sha256": sha((snapshot / "input.json").read_bytes())}
     else:
         pool = sorted((REPO / "demo-documents/bandi").rglob("*.docx"))
         path = secrets.choice(pool)
@@ -132,7 +139,8 @@ async def main(args):
             if gold and args.case == "labirinto":
                 save(prefix + "/fixture-score.json", score_fixture(raw, audit, gold))
             state = initial_state(layout)
-            state.update(phase="REVIEW", audit=audit, catalog=data["form"])
+            state.update(phase="REVIEW", audit=audit, catalog=data["form"],
+                         reading_plan=data["reading_plan"])
             with use_ai_settings(settings):
                 state["dialogue"] = await narrate(state, folder)
             save(prefix + "/dialogue.json", state["dialogue"])
@@ -144,6 +152,17 @@ async def main(args):
             result.update(groups=len(audit.get("choice_groups", {})),
                 valid_groups=sum(g["validation"] == "GROUNDED_GROUP" for g in audit.get(
                     "choice_groups", {}).values()), exportable_source_ids=source_ids)
+            from app.compilation_global_dialogue import source_role_coverage
+
+            result.update(source_role_coverage=source_role_coverage(state),
+                local_requests=audit.get("clarifications", {}),
+                grounded_proposals=[{"candidate_id": f["candidate_id"], "label": f["label"],
+                    "value": f.get("proposed_value", f.get("value")),
+                    "validation": f["validation"], "conditions": f.get("conditions", []),
+                    "source_evidence": f["source_evidence"]} for f in audit["fields"] if (
+                        f["validation"] == "GROUNDED_PROPOSAL"
+                        or f.get("proposal_grounding") == "GROUNDED_PROPOSAL")])
+            save(prefix + "/state.json", state)
             if gold and args.case == "choices":
                 fields = {f["candidate_id"]: f for f in audit["fields"]}
                 comparisons = [{**g, "actual": fields[g["candidate_id"]].get("proposed_value",
@@ -188,9 +207,10 @@ async def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--case", choices=["choices", "labirinto", "external"], required=True)
+    parser.add_argument("--case", choices=["choices", "labirinto", "external", "minervino"],
+                        required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--project", default="prova")
-    parser.add_argument("--runs", type=int, choices=[1, 3], default=1)
+    parser.add_argument("--runs", type=int, choices=[1, 2, 3], default=1)
     parser.add_argument("--export-partial", action="store_true")
     asyncio.run(main(parser.parse_args()))

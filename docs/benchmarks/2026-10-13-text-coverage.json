@@ -1,0 +1,223 @@
+{
+  "analysis_runs": [
+    {
+      "case": "labirinto/run-01",
+      "analysis_seconds": 99.0686926340004,
+      "analysis_tokens": 40933,
+      "narration_seconds": 4.558010504000777,
+      "narration_tokens": 5447,
+      "raw_proposals": 33,
+      "source_grounded_proposals": 23,
+      "source_written_texts": 11,
+      "source_written_checkboxes": 5,
+      "local_clarifications": 2,
+      "narration_error": null,
+      "director": {},
+      "company_proposed_ids": [],
+      "omitted": 20
+    },
+    {
+      "case": "minervino/run-01",
+      "analysis_seconds": 110.90441362400088,
+      "analysis_tokens": 87687,
+      "narration_seconds": 3.8447630379996554,
+      "narration_tokens": 3979,
+      "raw_proposals": 9,
+      "source_grounded_proposals": 9,
+      "source_written_texts": 0,
+      "source_written_checkboxes": 0,
+      "local_clarifications": 1,
+      "narration_error": null,
+      "director": {
+        "p51.s0": "Ing. Elisa Romano",
+        "p52.s0": "Ingegnere",
+        "p53.s0": "Ordine degli Ingegneri di Bari",
+        "p53.s4": "8421"
+      },
+      "company_proposed_ids": [
+        "p14.s1",
+        "p16.s1",
+        "p16.s2"
+      ],
+      "omitted": 257
+    },
+    {
+      "case": "minervino/run-02",
+      "analysis_seconds": 121.61237480100135,
+      "analysis_tokens": 91010,
+      "narration_seconds": 3.791741565999473,
+      "narration_tokens": 5193,
+      "raw_proposals": 16,
+      "source_grounded_proposals": 16,
+      "source_written_texts": 0,
+      "source_written_checkboxes": 0,
+      "local_clarifications": 2,
+      "narration_error": null,
+      "director": {
+        "p51.s0": "Ing. Elisa Romano",
+        "p52.s0": "Ingegnere",
+        "p53.s0": "Ordine degli Ingegneri di Bari",
+        "p53.s4": "8421"
+      },
+      "company_proposed_ids": [
+        "p14.s1",
+        "p16.s1",
+        "p16.s2",
+        "p40.s0",
+        "p41.s0"
+      ],
+      "omitted": 249
+    },
+    {
+      "case": "series-02/labirinto/run-01",
+      "analysis_seconds": 130.54559005000192,
+      "analysis_tokens": 47670,
+      "narration_seconds": 4.9616169719993195,
+      "narration_tokens": 5180,
+      "raw_proposals": 25,
+      "source_grounded_proposals": 23,
+      "source_written_texts": 11,
+      "source_written_checkboxes": 5,
+      "local_clarifications": 1,
+      "narration_error": null,
+      "director": {},
+      "company_proposed_ids": [],
+      "omitted": 29
+    },
+    {
+      "case": "series-02/minervino/run-01",
+      "analysis_seconds": 159.0879001659996,
+      "analysis_tokens": 103526,
+      "narration_seconds": 8.022984713999904,
+      "narration_tokens": 5280,
+      "raw_proposals": 18,
+      "source_grounded_proposals": 18,
+      "source_written_texts": 0,
+      "source_written_checkboxes": 0,
+      "local_clarifications": 0,
+      "narration_error": null,
+      "director": {
+        "p51.s0": "Ing. Elisa Romano",
+        "p52.s0": "Ingegnere",
+        "p53.s0": "Ordine degli Ingegneri di Bari",
+        "p53.s4": "8421"
+      },
+      "company_proposed_ids": [
+        "p14.s1",
+        "p16.s1",
+        "p16.s2",
+        "p40.s0",
+        "p41.s0"
+      ],
+      "omitted": 249
+    },
+    {
+      "case": "series-02/minervino/run-02",
+      "analysis_seconds": 105.15934815400033,
+      "analysis_tokens": 89652,
+      "narration_seconds": 4.582980539002165,
+      "narration_tokens": 5750,
+      "raw_proposals": 20,
+      "source_grounded_proposals": 19,
+      "source_written_texts": 0,
+      "source_written_checkboxes": 0,
+      "local_clarifications": 2,
+      "narration_error": null,
+      "director": {
+        "p51.s0": "Ing. Elisa Romano",
+        "p52.s0": "Ingegnere",
+        "p53.s0": "Ordine degli Ingegneri di Bari",
+        "p53.s4": "8421"
+      },
+      "company_proposed_ids": [
+        "p14.s1",
+        "p16.s0",
+        "p16.s1",
+        "p16.s2",
+        "p40.s0",
+        "p41.s0"
+      ],
+      "omitted": 245
+    }
+  ],
+  "fresh_http_conversations": [
+    {
+      "case": "http-02",
+      "calls": 9,
+      "stages": {
+        "routing": 4,
+        "guard": 1,
+        "analysis": 1,
+        "narration": 3
+      },
+      "tokens": 117879,
+      "seconds": 147.69536247100223,
+      "source_grounded_proposals": 4,
+      "director": {
+        "p51.s0": "Ing. Elisa Romano",
+        "p52.s0": "Ingegnere",
+        "p53.s0": "Ordine degli Ingegneri di Bari",
+        "p53.s4": "8421"
+      },
+      "written_fields": 4,
+      "user_values": 0,
+      "status": "GENERATED",
+      "integrity": {
+        "live_database_unchanged": true,
+        "private_database_and_key_removed": true
+      }
+    },
+    {
+      "case": "series-02/http",
+      "calls": 10,
+      "stages": {
+        "routing": 4,
+        "guard": 2,
+        "analysis": 1,
+        "narration": 3
+      },
+      "tokens": 133719,
+      "seconds": 219.22267821600326,
+      "source_grounded_proposals": 19,
+      "director": {
+        "p51.s0": "Ing. Elisa Romano",
+        "p52.s0": "Ingegnere",
+        "p53.s0": "Ordine degli Ingegneri di Bari",
+        "p53.s4": "8421"
+      },
+      "written_fields": 0,
+      "user_values": 0,
+      "status": "GENERATED",
+      "integrity": {
+        "live_database_unchanged": true,
+        "private_database_and_key_removed": true,
+        "application_unchanged": true
+      }
+    }
+  ],
+  "prepared_dialogue": {
+    "head": "23357b613bbdc77ce0ce991685009a0f62853c66",
+    "cases": 43,
+    "passed": 42,
+    "failed_checks": {
+      "intent": 1,
+      "no_execution_error": 1
+    },
+    "calls": 56,
+    "routing_calls": 44,
+    "scope_check_calls": 12,
+    "retries": 1,
+    "total_tokens": 191415,
+    "seconds": 122.6225709010032,
+    "generated": 5,
+    "fixture_original_unchanged": true,
+    "live_db_writes": 0
+  },
+  "limitations": [
+    "Source-grounded proposals are hypotheses, not RESOLVED",
+    "Coverage remains sparse",
+    "Broad applicability may still be generated; deferral is explicit and checked",
+    "Native checkbox improvements out of scope"
+  ],
+  "gold_in_prompt": false
+}
