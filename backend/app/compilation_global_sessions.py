@@ -267,7 +267,15 @@ def control_session(project_id, session_id, version, kind):
                 data["phase"] = "PENDING"  # Explicit resume can authorize one new call.
             state.update(status="WAITING_FOR_USER", lease_until=None)
         elif kind == "resume":
+            was_paused = data["paused"]
             data["paused"] = False
+            from app.compilation_global_dialogue import PRESENTATION_VERSION
+
+            dialogue = data.get("dialogue") or {}
+            if (not was_paused and data["phase"] == "REVIEW" and dialogue.get("question") and
+                    dialogue.get("presentation_version") != PRESENTATION_VERSION):
+                # Explicit resume refreshes old wording, never the underlying SOURCE audit.
+                dialogue.update(phase="PENDING", question=None, latest_turn=None, resuming=True)
             if (data.get("dialogue") or {}).get("error"):
                 data["dialogue"].update(phase="PENDING", question=None)
                 data["dialogue"].pop("error", None)

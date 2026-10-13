@@ -69,6 +69,8 @@ class ClarificationReply(ActiveFieldDecision):
 class ClarificationDecision(StrictModel):
     action: Literal["ANSWER", "PAUSE", "FINISH"]
     replies: list[ClarificationReply] = Field(default_factory=list, max_length=4)
+    # Internal receipt of discarded proposals; never returned by the LLM.
+    unaccepted_slots: list[int] = Field(default_factory=list, max_length=4)
 
     @model_validator(mode="after")
     def distinct_slots(self):
@@ -89,11 +91,13 @@ async def handle_group_decision(project_id, conversation_id, decision, session, 
         from app.compilation_global_dialogue import apply_replies
 
         after, errors = await run_in_threadpool(apply_replies, project_id, session["id"],
-            expected_version or session["version"], decision.replies, message)
+            expected_version or session["version"], decision.replies, message,
+            decision.unaccepted_slots)
         return ("Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti."
                 if after["chat"]["auto_continue"] else
                 after["global_compilation"]["dialogue"]["message"]), {
-                    "session_id": session["id"], "action": "clarify" if errors else "updated"}
+                    "session_id": session["id"], "action": "updated"
+                    if after["chat"]["auto_continue"] else "clarify" if errors else "updated"}
 
     from app import compilation_sessions as sessions
     from app.compilation_session_routes import api_errors
@@ -379,8 +383,11 @@ def planner_context(session):
 def retain_compilation_question(db, row, state):
     """Finish the current assistant turn before a later user message can replace it."""
     view = chat_view(state)
+    global_dialogue = state.get("global_compilation", {}).get("dialogue") or {}
+    global_message = (global_dialogue.get("message") if global_dialogue.get("phase") == "READY"
+                      else None)
     if (not row["conversation_id"] or not view["enabled"] or view["auto_continue"]
-            or view["paused"] or not view["question"]):
+            or view["paused"] or not (view["question"] or global_message)):
         return
     turn = db.execute(
         "SELECT id,answer,compilation_json FROM conversation_turns "
@@ -391,6 +398,11 @@ def retain_compilation_question(db, row, state):
     command = json.loads(turn["compilation_json"] or "null")
     if not isinstance(command, dict) or command.get("session_id") != row["id"]:
         return  # A later conversational answer or another module owns this turn.
+    if state.get("engine") == "global":
+        if global_message and command.get("action") in {"start", "updated", "resumed"}:
+            db.execute("UPDATE conversation_turns SET answer=? WHERE id=?",
+                       (global_message, turn["id"]))
+        return
     question = view["question"]["message"]
     answer = turn["answer"] or ""
     if command.get("action") == "start":

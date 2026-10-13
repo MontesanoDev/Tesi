@@ -48,9 +48,12 @@ async def start_choice(api, choice_case, monkeypatch, *, automatic=True):
 
     async def summarize(client, settings, body, timeout, **kwargs):
         data = json.loads(body["messages"][1]["content"])
-        return json.dumps({"message": "Ho verificato i dati disponibili e le scelte del modulo.",
-                           "questions": [{"slot": q["slot"], "question":
-                                          "Quale tipologia vuoi indicare tra le alternative?"}
+        return json.dumps({**({"message": "Ho verificato i dati disponibili e le scelte."}
+                             if data["conversation_stage"] == "initial" else {}),
+                           "questions": [{"slot": q["slot"],
+                                          **({"confirmation": "questa situazione si applica"}
+                                             if q["kind"] == "applicability" else {"question":
+                                             "Quale tipologia vuoi indicare tra le alternative?"})}
                                          for q in data["question_pool"][:3]]}), "simulated", {}
 
     monkeypatch.setattr(adapter, "request_model_content", request)

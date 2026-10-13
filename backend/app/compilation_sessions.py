@@ -421,7 +421,8 @@ def save_state(db, row, state: dict, action: str) -> dict:
             timestamp,
         ),
     )
-    if action in {"analyze_complete", "automatic_output_rejected"}:
+    if action in {"analyze_complete", "automatic_output_rejected", "global_analysis_complete",
+                  "global_dialogue_complete"}:
         from app.compilation_chat import retain_compilation_question
 
         retain_compilation_question(db, row, state)

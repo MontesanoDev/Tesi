@@ -59,9 +59,12 @@ def provider(monkeypatch):
 
     async def summarize(client, settings, body, timeout, **kwargs):
         data = json.loads(body["messages"][1]["content"])
-        return json.dumps({"message": "Ho trovato dati nelle fonti. Restano parti da verificare.",
+        return json.dumps({**({"message": "Ho trovato dati nelle fonti. Restano dubbi."}
+                             if data["conversation_stage"] == "initial" else {}),
                            "questions": [{"slot": q["slot"],
-                                          "question": "Questa situazione si applica al tuo caso?"}
+                                          **({"confirmation": "questa situazione si applica"}
+                                             if q["kind"] == "applicability" else
+                                             {"question": "Quale dato vuoi indicare?"})}
                                          for q in data["question_pool"][:3]]}), "simulated", {}
 
     monkeypatch.setattr(dialogue, "request_model_content", summarize)

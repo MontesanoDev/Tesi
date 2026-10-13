@@ -750,6 +750,9 @@ async def plan_chat_turn(
                 ]}
                 continue
             if proposed.intent == "answer_fields":
+                raw_slots = {r["slot"] for r in data.get("replies", [])
+                             if isinstance(r, dict) and type(r.get("slot")) is int
+                             and r["slot"] in allowed_slots}
                 verification = await verify_field_replies(question, context, proposed.replies,
                                                          request=request_model_content)
                 token_counts.append(verification.total_tokens)
@@ -758,7 +761,7 @@ async def plan_chat_turn(
                 if rejected:
                     kept = [r for r in proposed.replies if r not in rejected]
                     if not kept:
-                        labels = {s["slot"]: s.get("label") or "questo dato"
+                        labels = {s["slot"]: s.get("question") or s.get("label") or "questo dato"
                                   for s in context["slots"]}
                         names = ", ".join(f"«{labels[r.slot]}»" for r in rejected)
                         # Preserve the active question and every field. An unrelated
@@ -776,6 +779,9 @@ async def plan_chat_turn(
                     else:
                         proposed = proposed.model_copy(update={"replies": kept})
                     decision = bind_turn_plan(proposed, compilation, question)
+                if isinstance(decision, ClarificationDecision):
+                    decision = decision.model_copy(update={"unaccepted_slots": sorted(
+                        raw_slots - {r.slot for r in decision.replies})})
             total = sum(token_counts) if all(n is not None for n in token_counts) else None
             logger.info("Chat routing intent=%s slots=%d attempts=%d",
                         proposed.intent, len(allowed_slots), attempt + 1)

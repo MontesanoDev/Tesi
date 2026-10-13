@@ -278,7 +278,8 @@ async def test_condition_confirmation_and_local_skip_keep_all_source_values(
     s = await local_request_session(api, monkeypatch, conditional=True)
     slots = s["chat"]["question"]["slots"]
     assert [q["kind"] for q in slots] == ["applicability", "value"]
-    assert "2 dati collegati" in slots[0]["question"]
+    assert len(slots[0]["field_ids"]) == 2
+    assert "dati collegati" not in slots[0]["question"]
     calls = []
 
     async def route(client, settings, body, timeout, **kwargs):

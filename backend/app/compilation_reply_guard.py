@@ -64,6 +64,11 @@ le opzioni proposte non bastano se l'utente non ha effettivamente scelto.
 Per CONDITION_TRUE/FALSE valuta che l'affermazione riguardi proprio la
 condizione chiesta e abbia la polarità proposta. Non validare una condizione
 solo perché la risposta riguarda lo stesso documento o soggetto.
+Uno slot booleano non trasforma in chiusa una domanda aperta: se la domanda
+chiede quale valore, ruolo o alternativa scegliere, un semplice assenso non
+fornisce quella scelta. Valuta la domanda effettivamente posta, non soltanto
+il tipo dello slot. Riferimenti numerati possono individuare il destinatario,
+ma non aggiungono al messaggio un valore o una scelta che non contiene.
 
 Ogni slot può conservare la question naturale effettivamente posta. Usala per
 capire a cosa risponde l'utente, insieme al messaggio/domanda complessivi; label
