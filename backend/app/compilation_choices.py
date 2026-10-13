@@ -19,18 +19,25 @@ def _positive_option_quote(source, quote, value):
     """
     from app.compilation_sources import source_span
 
-    for clause in re.split(r"[\n;]", source):
-        heading, separator, body = clause.partition(":")
-        if (not separator or not heading.strip() or not body.strip()
-                or len(clause) > 800 or len(heading) > 250):
-            continue
-        if _option_text(body.strip(" .*_\t")) != _option_text(value.strip(" .*_\t")):
-            continue
-        try:
-            source_span(clause, quote)
-            return clause.strip()
-        except ValueError:
-            continue
+    for line in re.split(r"[\n;]", source):
+        # Preserve punctuation in values/abbreviations. Another colon-delimited
+        # attribute after a sentence boundary starts a new clause on the same line.
+        pairs = list(re.finditer(r"(?:^|(?<=\.)\s+)([^:;\n]{1,250}):\s*", line))
+        for index, pair in enumerate(pairs):
+            end = pairs[index + 1].start() if index + 1 < len(pairs) else len(line)
+            body, clause = line[pair.end():end], line[pair.start():end].strip()
+            if (len(clause) > 800 or _option_text(body.strip(" .*_\t")) !=
+                    _option_text(value.strip(" .*_\t"))):
+                continue
+            try:
+                source_span(clause, quote)
+                return clause
+            except ValueError:
+                try:
+                    source_span(quote, clause)
+                    return clause
+                except ValueError:
+                    continue
     raise ValueError("SOURCE senza attribuzione positiva completa dell'opzione")
 
 

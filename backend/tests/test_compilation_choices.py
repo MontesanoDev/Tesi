@@ -84,6 +84,25 @@ def test_case_and_space_normalization_do_not_drop_valid_source_choices(choice_ca
                for f in result["fields"] if f.get("kind") == "choice")
 
 
+def test_positive_choice_among_several_attributes_on_one_source_line(choice_case):
+    choice_case[1][0]["content"] = ("Denominazione: Vega S.r.l. Tipologia: organizzazione tecnica. "
+                                   "Codice: 2468. Nota: esempio.")
+    fact = choice_case[2]["facts"]["tipo"]
+    fact.update(value="organizzazione tecnica", evidence=[{
+        "chunk_id": -7, "quote": "Tipologia: organizzazione tecnica."}])
+    result = audit(choice_case)
+    assert sum(f["validation"] == "GROUNDED_PROPOSAL" for f in result["fields"]) == 2
+    assert all(f["source_evidence"][0]["support_quote"] == "Tipologia: organizzazione tecnica."
+               for f in result["fields"] if f.get("kind") == "choice")
+
+
+def test_inline_negative_attribute_still_rejects_cropped_choice(choice_case):
+    choice_case[1][0]["content"] = ("Denominazione: Vega S.r.l. "
+                                   "Tipologia: non Organizzazione tecnica. Codice: 2468.")
+    choice_case[2]["facts"]["tipo"]["evidence"][0]["quote"] = "Organizzazione tecnica"
+    assert not any(f["validation"] == "GROUNDED_PROPOSAL" for f in audit(choice_case)["fields"])
+
+
 @pytest.mark.parametrize("body", ["non Organizzazione tecnica", "non è Organizzazione tecnica",
                                 "non possiede Organizzazione tecnica",
                                 "Organizzazione tecnica negata"])
