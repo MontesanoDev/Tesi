@@ -2142,3 +2142,28 @@ per coesistenza di omissioni e motivi respinti; suite finale ripetuta.
 backend/data/compilation-audit/field-decisions-20261013/, bundle/manifest in docs.
 Prossimo: motivazioni dei blocchi ripetuti e condizioni, senza indebolire provenance.
 Commit per passi, nessun push.
+
+
+## 13 ottobre2026 — consenso alla bozza, tracce e riprova del checkpoint
+
+Baseline94ccdbc, bug utente non riprodotto e causa storica non acquisita.
+Sessione Minervino checkpoint6:20 proposte SOURCE e2 conferme USER persistite.
+6 interpretazioni reali+1 replay HTTP prima del codice già generano correttamente.
+Corretto il catch opaco: trace planner bounded e messaggi pubblici controllati,
+nessun cambiamento a prompt/schema/Source/parser/renderer/routing semantico.
+
+Tre replay intermedi e tre finali DeepSeek, codice invariato durante le prove:
+`si`, `ok sì va bene`, `siii` → una chiamata/zero retry,20 valori SOURCE nel DOCX,
+Elisa/Ordine/8421 inclusi. Check indipendente di tutti i paragrafi tramite offset
+originali, spazi irrisolti invariati. Primo check del runner aveva contato anche
+il paragrafo BOZZA: falsi negativi di misura conservati e riverificati sullo stesso
+output, nessuna correzione del renderer. Totale13 chiamate/55.616 token; nessuna
+nuova analisi, costo/coverage generale non misurati. Sessione live invariata.
+
+191 mirati e2233 backend, Ruff/diff check. Suite iniziale:2227 passati+2 falliti
+per testo tecnico pubblicato dal nuovo catch; messaggi corretti per classe,
+vecchi test mantenuti. Nessun frontend modificato. Nessun miglioramento della
+qualità semantica attribuito a questi test software con provider simulati.
+[Report](docs/compilazione-consenso-bozza-2026-10-13.md), raw e bundle dedicati.
+Prossimo: se l’errore reale ricompare, diagnosticare dalla trace salvata anziché
+inventare una causa a posteriori o ripetere l’analisi dei dati già acquisiti.

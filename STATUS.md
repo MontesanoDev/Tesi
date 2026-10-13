@@ -1,5 +1,46 @@
 # Stato di Mapi RAG
 
+## Consenso alla bozza: diagnosi persistente e riprova — 13 ottobre
+
+Backend: decc725.
+
+Caso utente: due conferme USER salvate, poi `si` alla bozza parziale fallisce
+con messaggio generico. Sessione0ce44c51 alla versione6, domanda generate
+conservata,20 proposte SOURCE esportabili, nessuna generazione live.
+**Causa esatta storica non acquisita**: vecchio catch unificava GenerationError
+con timeout e scartava il dettaglio. Non dichiarare il bug intermittente risolto:
+6 replay planner e1 HTTP prima delle modifiche già riuscivano con DeepSeek.
+
+Corretto il limite osservabile: trace locale del routing per sessione globale
+con artefatto, prompt/schema/raw HTTP/output/errori/retry/usage/tempi, massimo2
+attempt come prima. Nessuna credenziale/header; errore storage trace non blocca
+export. Chat distingue interpretazione fallita da bozza generata e mantiene la
+richiesta aperta, con motivo pubblico controllato per classe di errore.
+Dettagli tecnici restano locali, non testo arbitrario di eccezioni nella UI.
+Nessuna modifica a prompt/schema/routing semantico, gate SOURCE, parser,
+renderer, UI o persistenza dei valori. Nessuna nuova analisi o migrazione/reindex.
+
+Verifiche finali: **191 mirati/28,47s**, **2233 backend/161,53s**, Ruff backend e
+runner, diff check. Suite intermedia ha trovato2 errori nel nuovo messaggio che
+esponeva testo tecnico: corretto senza allentare i test. Software con provider
+simulati. Frontend/browser/build non rieseguiti perché invariati.
+
+DeepSeek reale:3 replay intermedi+3 finali sul checkpoint isolato. `si`,
+`ok sì va bene`, `siii` → generate,1 chiamata/zero retry,20 valori SOURCE
+materializzati correttamente (Elisa Romano/Ordine/8421 inclusi), spazi irrisolti
+invariati, originale identico, proposte e conferme conservate. Totale diagnosi
+incluse:13 chiamate/55.616 token. Non è una nuova analisi da zero né una misura
+di completezza del modulo. Sessione live/versione6/stato/originale verificati
+invariati; DB privati e chiavi temporanee eliminati. Nessuna riparazione manuale.
+
+Prossimo: ritentare **nella stessa conversazione**, senza rifare compila o le
+conferme. Se il guasto ricompare, acquisire nuova trace per localizzare realmente
+schema/provider/timeout/percorso diverso. Limiti precedenti V12 invariati.
+[Report](docs/compilazione-consenso-bozza-2026-10-13.md), raw in
+backend/data/compilation-audit/generate-consent-20261013/, bundle/manifest e
+metriche in docs/benchmarks/2026-10-13-draft-consent-*. Commit locali, nessun push.
+
+
 ## Esiti motivati dei vuoti: contratto globale V12 — 13 ottobre
 
 Baseline fceedfc; feature backend5e50021. Causa verificata: V11 chiedeva

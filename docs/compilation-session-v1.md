@@ -1,5 +1,26 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Conferma della bozza e diagnosi degli errori — 13 ottobre
+
+[Diagnosi e replay reali](compilazione-consenso-bozza-2026-10-13.md).
+Il fallimento storico di `si` non è riprodotto: checkpoint conserva20 proposte
+SOURCE e2 conferme USER. Il consenso continua a essere interpretato dal router
+semantico esistente; nessun dizionario di risposte affermative.
+
+Per sessioni globali con artefatto disponibile, routing/<uuid>/trace.json conserva
+prompt/schema/output, HTTP senza header (max65.536 caratteri), errori/retry, usage e tempi,
+con chiavi oscurate. Massimo2 tentativi già previsti, nessuna nuova chiamata.
+In caso di errore in interpretazione, risposta controllata e domanda di bozza
+conservata; le eccezioni arbitrarie restano nelle trace. Riprovare riusa la stessa
+sessione/revisione/conferme senza rianalizzare il documento. Un errore nelle sole
+trace non impedisce l’export; nessuna generazione implicita in caso di errore.
+
+191 test mirati e2233 backend; tre replay finali DeepSeek `si`/`ok sì va bene`/
+`siii` generano20 valori nelle posizioni corrette partendo dall’originale, su copie
+isolate. Non certificano l’intero modulo né spiegano retroattivamente l’errore
+non acquisito. Nessuna migrazione, reindex o modifica della UI.
+
+
 ## Motivi dei vuoti nella prima analisi — V12,13 ottobre
 
 [Contratto, prove reali e limiti](compilazione-esiti-vuoti-2026-10-13.md).

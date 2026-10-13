@@ -1,0 +1,106 @@
+{
+  "runs": [
+    {
+      "case": "final-http-01",
+      "message": "si",
+      "status": "GENERATED",
+      "written_source_values": 20,
+      "all_text_positions_correct": true,
+      "unresolved_placeholders_unchanged": true,
+      "original_immutable": true,
+      "calls": 1,
+      "retry": false,
+      "tokens": 4308,
+      "model_seconds": 3.1676345849991776,
+      "integrity": {
+        "before": {
+          "version": 6,
+          "state_sha256": "d5bcf2ee9700d2cd7a45db2dc82ab00e645ffdd8a6f012dbcba567fd7fbc8aa0",
+          "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+        },
+        "after": {
+          "version": 6,
+          "state_sha256": "d5bcf2ee9700d2cd7a45db2dc82ab00e645ffdd8a6f012dbcba567fd7fbc8aa0",
+          "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+        },
+        "live_session_unchanged": true,
+        "private_directory_removed": true,
+        "application_unchanged": true
+      }
+    },
+    {
+      "case": "final-http-02",
+      "message": "ok sì va bene",
+      "status": "GENERATED",
+      "written_source_values": 20,
+      "all_text_positions_correct": true,
+      "unresolved_placeholders_unchanged": true,
+      "original_immutable": true,
+      "calls": 1,
+      "retry": false,
+      "tokens": 4312,
+      "model_seconds": 3.187825007000356,
+      "integrity": {
+        "before": {
+          "version": 6,
+          "state_sha256": "d5bcf2ee9700d2cd7a45db2dc82ab00e645ffdd8a6f012dbcba567fd7fbc8aa0",
+          "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+        },
+        "after": {
+          "version": 6,
+          "state_sha256": "d5bcf2ee9700d2cd7a45db2dc82ab00e645ffdd8a6f012dbcba567fd7fbc8aa0",
+          "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+        },
+        "live_session_unchanged": true,
+        "private_directory_removed": true,
+        "application_unchanged": true
+      }
+    },
+    {
+      "case": "final-http-03",
+      "message": "siii",
+      "status": "GENERATED",
+      "written_source_values": 20,
+      "all_text_positions_correct": true,
+      "unresolved_placeholders_unchanged": true,
+      "original_immutable": true,
+      "calls": 1,
+      "retry": false,
+      "tokens": 4309,
+      "model_seconds": 2.4002068629997666,
+      "integrity": {
+        "before": {
+          "version": 6,
+          "state_sha256": "d5bcf2ee9700d2cd7a45db2dc82ab00e645ffdd8a6f012dbcba567fd7fbc8aa0",
+          "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+        },
+        "after": {
+          "version": 6,
+          "state_sha256": "d5bcf2ee9700d2cd7a45db2dc82ab00e645ffdd8a6f012dbcba567fd7fbc8aa0",
+          "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+        },
+        "live_session_unchanged": true,
+        "private_directory_removed": true,
+        "application_unchanged": true
+      }
+    }
+  ],
+  "new_analysis_calls": 0,
+  "source_mutations": 0,
+  "live_session_mutations": 0,
+  "total_real_calls": 13,
+  "total_tokens_acquired": 55616,
+  "original_failure_reproduced": false,
+  "baseline_code": "94ccdbc",
+  "new_production_source_analysis_calls": 0,
+  "feature_commit": "decc725d8b0c01eef5aafaba0f1378a9745b90e3",
+  "software": {
+    "targeted_passed": 191,
+    "targeted_seconds": 28.47,
+    "backend_passed": 2233,
+    "backend_seconds": 161.53,
+    "ruff_passed": true,
+    "frontend_changed": false,
+    "frontend_tests_executed": false
+  }
+}
