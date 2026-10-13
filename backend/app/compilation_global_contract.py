@@ -240,6 +240,15 @@ class ChoiceConditionalValue(ConditionalValue):
     choice_group_id: Reference | None = None
 
 
+class UserFieldRequest(StrictModel):
+    """A local FORM question, never proof of a value or of source absence."""
+
+    label: str = Field(min_length=1, max_length=250)
+    form: FormSpan
+    conditions: list[Reference] = Field(default_factory=list, max_length=8)
+    reason: str = Field(min_length=1, max_length=200)
+
+
 ChoiceAssignment = Annotated[
     ChoiceValue | ChoiceConditionalValue | NonApplicableAssignment | AlternativeAssignment,
     Field(discriminator="disposition"),
@@ -250,3 +259,4 @@ class ChoiceAwareProposal(ContextAwareProposal):
     version: Literal[11]
     choice_groups: dict[Reference, ChoiceGroup] = Field(default_factory=dict, max_length=64)
     fields: dict[Reference, ChoiceAssignment] = Field(max_length=400)
+    clarifications: dict[Reference, UserFieldRequest] = Field(default_factory=dict, max_length=16)

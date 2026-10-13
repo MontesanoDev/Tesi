@@ -11,8 +11,11 @@ from typing import Annotated, Literal
 from uuid import uuid4
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, Response, UploadFile, status
+from fastapi.exception_handlers import request_validation_exception_handler
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.concurrency import run_in_threadpool
+from starlette.responses import JSONResponse
 
 from app.ai_profiles import import_legacy_configuration, project_ai_context
 from app.ai_routes import router as ai_router
@@ -188,6 +191,19 @@ async def lifespan(_: FastAPI):
 
 logger = logging.getLogger(__name__)
 app = FastAPI(title="Mapi RAG API", version="0.1.0", lifespan=lifespan)
+
+
+@app.exception_handler(RequestValidationError)
+async def safe_request_validation_error(request, exc):
+    # Invalid input may itself be unencodable (surrogates, NaN/Infinity).
+    # Preserve normal field diagnostics; never turn their JSON rendering into 500.
+    try:
+        return await request_validation_exception_handler(request, exc)
+    except (UnicodeError, ValueError):
+        return JSONResponse(status_code=422, content={
+            "detail": "Richiesta non valida: testo Unicode o numero JSON non supportato."})
+
+
 app.include_router(document_compilation_router)
 app.include_router(compilation_session_router)
 app.include_router(project_forms_router)

@@ -80,12 +80,36 @@ held_proposal_slots e spiega il dubbio. Puoi soltanto escludere proposte, mai
 validarne di nuove o cambiarne il valore. Le altre restano proposte da controllare.
 """.strip()
 
+TASK += """
+Le domande kind=value riguardano soltanto il campo indicato: puoi chiedere
+quel dato e l'utente può rinviarlo senza rinviare altri dati. kind=applicability
+richiede invece una conferma della condizione, non il valore di una carica:
+affected_fields descrive le proposte che dipendono da quella conferma. Non
+trasformare una conferma di identità/partecipazione in «a quale titolo firma?».
+Le proposte con deferred=true sono rinviate: non dire che verranno inserite
+in entrambe le parti né riproporne la conferma. Spiega brevemente l'effetto
+del rinvio se pertinente. unassessed_source_roles indica blocchi che hanno
+un indizio SOURCE ma nessuna proposta accettata: non dichiarare che la KB
+non contiene quei dati e non chiedere all'utente di fornirli come se fossero
+già stati cercati e assenti. Non inventare valori dalla mappa di copertura.
+"""
+
+
+def source_role_coverage(data):
+    from app.compilation_reading_plan import role_coverage
+
+    return role_coverage(data.get("audit") or {"fields": []},
+                         data.get("reading_plan") or {"source_role_targets": []})
+
 
 def question_pool(data):
     audit, dialogue = data.get("audit") or {}, data.get("dialogue") or {}
     answers = dialogue.get("answers", {})
     fields = [f for f in audit.get("fields", [])
               if f.get("form_evidence") and not f.get("validation_errors")]
+    unassessed_role_fields = {cid for target in source_role_coverage(data)
+                             if target["state"] == "unassessed_source_role"
+                             for cid in target["candidate_ids"]}
     pool = []
     for key, item in audit.get("conditions", {}).items():
         if item["result"] != "unknown" or item.get("validation_errors") or not item.get(
@@ -101,7 +125,9 @@ def question_pool(data):
                          "label": item.get("reason", "Applicabilità della sezione"),
                          "context": item["form_evidence"]["quote"],
                          "field_ids": [f["candidate_id"] for f in impacted],
-                         "alternatives": [], "impact": len(impacted)})
+                         "alternatives": [], "impact": len(impacted),
+                         "affected_fields": [f.get("label", "Dato del blocco")[:150]
+                                             for f in impacted[:8]]})
     pool.sort(key=lambda q: -q["impact"])
     for key, group in audit.get("choice_groups", {}).items():
         if (group["validation"] != "GROUNDED_GROUP" or group["selection"] == "unknown"
@@ -128,6 +154,7 @@ def question_pool(data):
     for field in fields:
         cid = field["candidate_id"]
         if (cid not in data["writable_ids"] or "field:" + cid in answers
+                or cid in unassessed_role_fields
                 or field.get("kind") in {"signature", "decorative"}
                 or field.get("disposition") not in {"missing", "review"}
                 or not field.get("label") or field["label"] == cid):
@@ -201,6 +228,8 @@ def model_context(data, pool):
         proposal_roles[i + 1] = role_slots[key]
     return {"role_contexts": role_contexts, "document_values": [
         {"proposal_slot": i + 1, "label": f["label"][:200],
+         "deferred": any(answers.get("condition:" + c, {}).get("action") in {
+             "SKIP", "UNKNOWN", "REFUSE"} for c in f["conditions"]),
          "value": f["value"] if type(f["value"]) is bool else f["value"][:500],
          **({"choice_group": {k: audit["choice_groups"][audited[f["candidate_id"]][
              "choice_group_id"]][k] for k in ("label", "subject", "selection", "min_selected")}
@@ -220,12 +249,18 @@ def model_context(data, pool):
     ], "user_values": [{k: v[k] for k in ("label", "value", "provenance")}
                             for v in list(dialogue.get("user_values", {}).values())[-40:]],
         "previous_answers": [{k: (v[:500] if isinstance(v, str) else v)
-                              for k, v in a.items()} for a in list(answers.values())[-24:]],
+                              for k, v in a.items() if k != "affected_fields"}
+                             for a in list(answers.values())[-24:]],
         "unassessed_positions": (data.get("audit") or {}).get("unassigned_count", 0),
+        "unassessed_source_roles": [{"role": t["source_role"],
+            "positions": len(t["candidate_ids"])} for t in source_role_coverage(data)
+            if t["state"] == "unassessed_source_role"],
         "limitations": "Bozza parziale; allegati e scelte non supportate restano da verificare.",
         "question_pool": [{k: q[k][:600] if isinstance(q[k], str) else q[k] for k in (
             "slot", "kind", "label", "condition", "context", "alternatives", "impact"
-        )} | ({"selection": q["selection"], "min_selected": q["min_selected"]}
+        )} | ({"affected_fields": q["affected_fields"]}
+              if "affected_fields" in q else {}) | ({
+              "selection": q["selection"], "min_selected": q["min_selected"]}
               if q["kind"] == "choice" else {}) for q in pool]}
 
 
@@ -241,6 +276,11 @@ def render_dialogue(plan, pool, *, exportable_count=None):
         raise ValueError("Sintesi con destinatari o identificativi non validi")
     slots = [{**by_slot[q.slot], "slot": i + 1, "question": q.question}
              for i, q in enumerate(plan.questions)]
+    for slot in slots:
+        if slot["kind"] == "applicability" and len(slot["field_ids"]) > 1:
+            slot["question"] += (
+                f" Questa conferma riguarda {len(slot['field_ids'])} dati collegati; "
+                "se la rinvii, resteranno in bianco.")
     message = plan.message
     if slots:
         message += "\n\n" + "\n".join(
@@ -389,7 +429,8 @@ def apply_replies(project_id, session_id, version, replies, message):
                 record = {"action": reply.action, "user_quote": reply.user_quote,
                           "provenance": "USER", "label": slot["label"]}
                 if reply.action in {"UNKNOWN", "SKIP", "REFUSE"}:
-                    pass  # Keep unresolved, defer without inventing a value or applicability.
+                    record["affected_fields"] = list(slot["field_ids"])
+                    # Keep unresolved; this receipt records the actual scope, not a value.
                 elif slot["kind"] == "choice" and reply.action == "VALUE":
                     from app.compilation_choices import user_choice
 

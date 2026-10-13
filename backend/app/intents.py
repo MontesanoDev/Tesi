@@ -24,7 +24,7 @@ from app.compilation_chat import (
     single_active_target,
 )
 from app.compilation_clarifications import active_group
-from app.compilation_reply_guard import WRITE_ACTIONS, verify_field_replies
+from app.compilation_reply_guard import requires_scope_check, verify_field_replies
 from app.config import get_ai_settings
 from app.document_compilation import StrictModel
 from app.generation import (
@@ -393,6 +393,8 @@ def routing_context(compilation):
                 "slot", "kind", "label", "condition", "alternatives",
             )}, "context": (slot.get("context") or "")[:1500],
              "question": (slot.get("question") or "")[:600],
+             "affected_field_count": len(slot.get("field_ids", [])),
+             "affected_fields": slot.get("affected_fields", [])[:8],
              **({"selection": slot["selection"], "min_selected": slot["min_selected"]}
                 if slot.get("kind") == "choice" else {})}
             for slot in slots
@@ -402,6 +404,9 @@ def routing_context(compilation):
 
 def parse_turn_plan(data, allowed_slots):
     """Salvage independent slot replies, never change the declared intention."""
+    from app.compilation_json import checked_tree
+
+    checked_tree(data)
     if isinstance(data, dict) and data.get("intent") == "answer_fields":
         if not allowed_slots:
             raise ValueError("Non ci sono slot attivi a cui rispondere")
@@ -745,7 +750,7 @@ async def plan_chat_turn(
                 verification = await verify_field_replies(question, context, proposed.replies,
                                                          request=request_model_content)
                 token_counts.append(verification.total_tokens)
-                rejected = [r for r in proposed.replies if r.action in WRITE_ACTIONS
+                rejected = [r for r in proposed.replies if requires_scope_check(r, context)
                             and r.slot not in verification.allowed_slots]
                 if rejected:
                     kept = [r for r in proposed.replies if r not in rejected]
@@ -755,9 +760,16 @@ async def plan_chat_turn(
                         names = ", ".join(f"«{labels[r.slot]}»" for r in rejected)
                         # Preserve the active question and every field. An unrelated
                         # correction is not permission to change a different field.
+                        wide_defer = [s for s in context["slots"] if any(
+                            r.slot == s["slot"] and r.action in {"SKIP", "UNKNOWN", "REFUSE"}
+                            for r in rejected)]
+                        answer = ("Il rinvio di questa conferma lascerebbe in bianco "
+                                  "più dati collegati. Vuoi rinviare l'intera conferma "
+                                  "oppure soltanto una specifica informazione?" if wide_defer else
+                                  f"Sto chiedendo {names}. Non posso associare con sicurezza "
+                                  "la tua indicazione a questa richiesta. Puoi precisare?")
                         proposed = TurnPlan(intent="explain", target="source", queries=[],
-                            answer=f"Sto chiedendo {names}. Non posso associare con sicurezza "
-                                   "la tua indicazione a questa richiesta. Puoi precisare?")
+                                            answer=answer)
                     else:
                         proposed = proposed.model_copy(update={"replies": kept})
                     decision = bind_turn_plan(proposed, compilation, question)

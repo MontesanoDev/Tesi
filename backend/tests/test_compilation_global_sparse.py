@@ -61,7 +61,7 @@ def test_sparse_input_has_no_inventory_receipt_or_partition(case):
     assert "form_review_paragraph_ids" not in data
     assert set(data["schema_output"]["properties"]) == {
         "version", "facts", "conditions", "fields", "bindings", "uncertain_paragraph_ids",
-        "choice_groups"}
+        "choice_groups", "clarifications"}
     assert len(data["form"]["candidates"]) == 3
     assert data["sources"][0]["role"] == "source"
     schema = data["schema_output"]

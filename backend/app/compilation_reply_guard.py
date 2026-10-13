@@ -93,11 +93,33 @@ Le proposte di un gruppo sono indipendenti: un errore non invalida le altre.
 Restituisci solo JSON secondo SCHEMA OUTPUT, un check per ciascuna proposta.
 """
 
+TASK += """
+Per SKIP/UNKNOWN/REFUSE di una condizione con più dati collegati verifica il
+perimetro del rinvio. affected_field_count/affected_fields sono del backend:
+rinviare l'intera conferma rinvia quei dati. SUPPORTED se l'utente rinvia quella
+conferma o la domanda esplicitamente formulata come tale. Se invece la question
+chiede un singolo valore (carica, nome, ecc.) ma lo slot sottostante controlla
+un intero blocco, il rinvio di quel valore non autorizza il rinvio del blocco:
+AMBIGUOUS. Una richiesta «solo quel campo» non va estesa silenziosamente ad altri.
+Non interpretare il rinvio come applicabilità falsa o assenza di dati nelle fonti.
+"""
+
+
+def requires_scope_check(reply, context):
+    if reply.action in WRITE_ACTIONS:
+        return True
+    slot = next((s for s in (context or {}).get("slots", []) if s["slot"] == reply.slot), {})
+    return (reply.action in {"SKIP", "UNKNOWN", "REFUSE"}
+            and slot.get("kind") == "applicability"
+            and slot.get("affected_field_count", 0) > 1)
+
 
 def accepted_slots(raw, expected):
     """A missing, duplicate or unknown check never authorizes a write."""
     cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw.strip(), flags=re.I)
-    result = ReplyScopeChecks.model_validate(json.loads(cleaned))
+    from app.compilation_json import checked_json
+
+    result = ReplyScopeChecks.model_validate(checked_json(cleaned))
     counts = Counter(check.slot for check in result.checks)
     return frozenset(check.slot for check in result.checks
                      if check.slot in expected and counts[check.slot] == 1
@@ -107,7 +129,7 @@ def accepted_slots(raw, expected):
 async def verify_field_replies(message, context, replies, *, request):
     """One bounded batch, no repair/retry; uncertain/provider failures fail closed."""
     proposals = [{key: getattr(reply, key) for key in ("slot", "action", "value", "user_quote")}
-                 for reply in replies if reply.action in WRITE_ACTIONS]
+                 for reply in replies if requires_scope_check(reply, context)]
     by_slot = {reply.slot: reply for reply in replies}
     for proposal in proposals:
         options = getattr(by_slot[proposal["slot"]], "selected_options", None)

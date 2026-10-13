@@ -172,7 +172,8 @@ def _prepare(project_id, session_id, version):
 
 def _save(path, value, secret):
     text = value if isinstance(value, str) else json.dumps(value, ensure_ascii=False, indent=2)
-    path.write_text((text.replace(secret, "[REDACTED]") if secret else text) + "\n")
+    path.write_text((text.replace(secret, "[REDACTED]") if secret else text) + "\n",
+                    encoding="utf-8", errors="backslashreplace")
 
 
 def _complete(project_id, session_id, version, raw, audit, metadata):
@@ -236,8 +237,10 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
         _save(root / "audit.json", audit, settings.api_key)
         from app.compilation_global_dialogue import narrate
 
+        metadata["reading_plan"] = data["reading_plan"]
         metadata["dialogue"] = await narrate({**initial_state(layout),
-                                            "catalog": data["form"], "audit": audit}, root)
+                                            "catalog": data["form"], "audit": audit,
+                                            "reading_plan": data["reading_plan"]}, root)
         return await run_in_threadpool(_complete, project_id, session_id, claimed["version"],
                                       raw, audit, metadata)
     except BaseException as exc:

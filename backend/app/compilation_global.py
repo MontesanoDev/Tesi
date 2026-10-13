@@ -349,6 +349,41 @@ Rispetta schema_output. Prima di chiudere il JSON controlla inventario,
 condizioni, proprietà atomiche e riferimenti. Non replicare l'inventario backend.
 """
 
+TASK += """
+
+COPERTURA DELLA LETTURA. reading_plan.units raggruppa riferimenti strutturali,
+senza assegnare significati o valori. Esamina tutti i gruppi pertinenti, anche
+quelli dopo i dati anagrafici iniziali. source_role_targets segnala intestazioni
+SOURCE che nominano letteralmente un ruolo richiesto nel FORM e le posizioni
+che possono leggerne il contesto. Sono indizi di lettura, NON binding approvati:
+verifica sempre soggetto, ruolo, record, property e quote con i gate precedenti.
+Per ciascun ruolo pertinente considera separatamente tutte le proprietà richieste
+nel suo gruppo: un dato personale assente non annulla quelli documentati nello
+stesso record. Proponi nome, qualifica, registro o identificativo soltanto se
+effettivamente richiesti e sostenuti; le proprietà prive di prova restano vuote.
+Non fermarti dopo la prima anagrafica e non confondere chi firma con chi ricopre
+un altro ruolo documentato. Non creare valori o assegnazioni da questi indizi.
+
+DOMANDE LOCALI. Restituisci anche clarifications, mappa opzionale di massimo16
+ID candidate testuali -> {label,form,conditions,reason}. È distinta da fields:
+non contiene fact_id, value o prove SOURCE e non dimostra assenza di dati in KB.
+Usala soltanto per pochi dati pertinenti che richiedono una decisione USER,
+come l'identità/qualità del soggetto di questa pratica, o proprietà non trovate
+dopo aver esaminato il record SOURCE pertinente. form usa lo stesso marker
+locale verificabile dei valori. Non duplicare un candidate già in fields,
+non chiedere valori presenti nel record SOURCE, non catalogare tutti i vuoti.
+Queste domande riguardano UN campo; saltarle non rinvia gli altri campi.
+L'assenza di un dato (nome, carica, data) NON è una condizione di applicabilità
+del blocco aziendale: chiedi quel dato con clarifications. Le conditions restano
+predicate reali del modulo: tipologia, partecipazione e rappresentanza sono
+distinte. Non creare condizioni generiche «carica non dichiarata» per sospendere
+denominazione, indirizzo o recapiti dell'operatore. Se l'identità del partecipante
+non è scelta, chiedi quella conferma come condizione; non chiedere un titolo
+personale per confermare indirettamente l'intero profilo aziendale.
+Ordine JSON: version,uncertain_paragraph_ids,conditions,bindings,choice_groups,
+fields,facts,clarifications. Includi clarifications={} se non servono domande locali.
+"""
+
 
 def _allowed_sources(project_id, sources):
     if len(sources) > MAX_SOURCES:
@@ -404,6 +439,10 @@ def build_global_input(layout, project_id, sources):
                             "chunks": len(source_map)},
         "schema_output": ChoiceAwareProposal.model_json_schema(),
     }
+    from app.compilation_reading_plan import reading_plan
+
+    data["reading_plan"] = reading_plan(catalog, list(source_map.values()),
+                                        _role_contexts(catalog, local, continuations=True))
     if sum(bool(text.strip()) for text in paragraphs.values()) > 2048:
         raise ValueError("Inventario FORM oltre budget: nessun troncamento implicito")
     if len(json.dumps(data, ensure_ascii=False, separators=(",", ":"))) > MAX_INPUT_CHARACTERS:
@@ -1103,8 +1142,10 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         budgets.append(("bindings", 128))
     if choices_enabled:
         budgets.append(("choice_groups", 64))
+        budgets.append(("clarifications", 16))
     for name, maximum in budgets:
-        records = payload.get(name, {} if name in {"bindings", "choice_groups"} else None)
+        records = payload.get(name, {} if name in {
+            "bindings", "choice_groups", "clarifications"} else None)
         if (not isinstance(records, dict) or len(records) > maximum
                 or any(not 1 <= len(key) <= 80 for key in records)):
             raise ValueError(f"Dizionario {name} non valido/oltre budget")
@@ -1123,6 +1164,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         envelope["bindings"] = {}
     if choices_enabled:
         envelope["choice_groups"] = {}
+        envelope["clarifications"] = {}
     proposal = schema.model_validate(envelope)
     paragraphs, local = _form_bindings(catalog)
     marked_paragraphs = {p["id"]: p["text_with_fields"] for block in catalog["blocks"]
@@ -1318,6 +1360,13 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
             assessment="empty_proposal" if not payload["fields"] else "proposal_requires_review",
             grounded_conditional_proposals=sum("proposed_value" in f for f in result["fields"]),
         )
+    if choices_enabled and "clarifications" in payload:
+        from app.compilation_user_requests import attach_user_requests
+
+        attach_user_requests(result, payload["clarifications"], payload["fields"], layout,
+                             catalog, paragraphs, local)
+        result["dispositions"] = dict(Counter(f.get("disposition", "unassigned")
+                                               for f in result["fields"]))
     return result
 
 
@@ -1329,7 +1378,9 @@ def validate_global_proposal(raw, layout, project_id, sources, *, expected_versi
     """
     if len(raw) > MAX_OUTPUT_CHARACTERS:
         raise ValueError("Output globale oltre budget")
-    payload = json.loads(raw, object_pairs_hook=_unique_object)
+    from app.compilation_json import checked_json
+
+    payload = checked_json(raw, object_pairs_hook=_unique_object)
     if expected_version is not None and (
             not isinstance(payload, dict) or type(payload.get("version")) is not int
             or payload["version"] != expected_version):
