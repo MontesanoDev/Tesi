@@ -1,0 +1,190 @@
+Controlli software chat: limiti della risposta, 13 ottobre 2026.
+Provider/API simulati; nessuna valutazione DeepSeek reale.
+
+--- chat-limitations-backend-20261013.txt ---
+........................................................................ [ 52%]
+................................................................         [100%]
+136 passed in 5.98s
+
+--- chat-limitations-browser-20261013.txt ---
+
+> mapi-rag-web@0.0.0 test:e2e
+> playwright test chat-limitations.spec.ts document-mentions.spec.ts
+
+
+Running 8 tests using 4 workers
+
+(node:35826) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+(node:35819) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+(node:35818) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+(node:35825) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/8] [desktop] › e2e/document-mentions.spec.ts:4:1 › document mentions consult sources and preserve the pending form across reload
+[2/8] [mobile] › e2e/chat-limitations.spec.ts:5:3 › chat keeps limitations conversational without an automatic checklist: form
+[3/8] [desktop] › e2e/chat-limitations.spec.ts:5:3 › chat keeps limitations conversational without an automatic checklist: form
+[4/8] [mobile] › e2e/document-mentions.spec.ts:4:1 › document mentions consult sources and preserve the pending form across reload
+[5/8] [desktop] › e2e/chat-limitations.spec.ts:5:3 › chat keeps limitations conversational without an automatic checklist: source
+[6/8] [mobile] › e2e/chat-limitations.spec.ts:5:3 › chat keeps limitations conversational without an automatic checklist: source
+[7/8] [desktop] › e2e/chat-limitations.spec.ts:5:3 › chat keeps limitations conversational without an automatic checklist: no_evidence
+[8/8] [mobile] › e2e/chat-limitations.spec.ts:5:3 › chat keeps limitations conversational without an automatic checklist: no_evidence
+  8 passed (7.6s)
+
+--- chat-limitations-frontend-full-20261013.txt ---
+
+> mapi-rag-web@0.0.0 test
+> vitest run
+
+
+ RUN  v4.1.10 /home/montesano/tesi/frontend
+
+
+ Test Files  12 passed (12)
+      Tests  105 passed (105)
+   Start at  17:51:10
+   Duration  6.29s (transform 3.13s, setup 1.63s, import 6.17s, tests 14.11s, environment 14.94s)
+
+
+--- chat-limitations-frontend-targeted-20261013.txt ---
+
+> mapi-rag-web@0.0.0 test
+> vitest run src/pages/ProjectWorkspacePage.test.tsx
+
+
+ RUN  v4.1.10 /home/montesano/tesi/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  17:50:32
+   Duration  2.69s (transform 179ms, setup 169ms, import 321ms, tests 942ms, environment 1.10s)
+
+
+--- chat-limitations-visual-02-20261013.txt ---
+
+> mapi-rag-web@0.0.0 test:e2e
+> playwright test visual.spec.ts --grep missing evidence is explained as an assistant answer
+
+
+Running 2 tests using 2 workers
+
+(node:36441) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+(node:36442) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/2] [desktop] › e2e/visual.spec.ts:499:1 › missing evidence is explained as an assistant answer
+[2/2] [mobile] › e2e/visual.spec.ts:499:1 › missing evidence is explained as an assistant answer
+  1) [desktop] › e2e/visual.spec.ts:499:1 › missing evidence is explained as an assistant answer ───
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('Come posso aiutarti in questo progetto?')
+
+
+      520 |   await page.goto('/projects/fondo-riqualificazione-2027')
+      521 |   const composer = page.getByPlaceholder('Come posso aiutarti in questo progetto?')
+    > 522 |   await composer.fill('Come posso contattarlo?')
+          |                  ^
+      523 |   await composer.press('Enter')
+      524 |
+      525 |   await expect(page.getByText('Le fonti non contengono dati verificabili')).toBeVisible()
+        at /home/montesano/tesi/frontend/e2e/visual.spec.ts:522:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts/playwright/visual-missing-evidence-is-explained-as-an-assistant-answer-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts/playwright/visual-missing-evidence-is-explained-as-an-assistant-answer-desktop/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts/playwright/visual-missing-evidence-is-explained-as-an-assistant-answer-desktop/trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts/playwright/visual-missing-evidence-is-explained-as-an-assistant-answer-desktop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  2) [mobile] › e2e/visual.spec.ts:499:1 › missing evidence is explained as an assistant answer ────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('Come posso aiutarti in questo progetto?')
+
+
+      520 |   await page.goto('/projects/fondo-riqualificazione-2027')
+      521 |   const composer = page.getByPlaceholder('Come posso aiutarti in questo progetto?')
+    > 522 |   await composer.fill('Come posso contattarlo?')
+          |                  ^
+      523 |   await composer.press('Enter')
+      524 |
+      525 |   await expect(page.getByText('Le fonti non contengono dati verificabili')).toBeVisible()
+        at /home/montesano/tesi/frontend/e2e/visual.spec.ts:522:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    artifacts/playwright/visual-missing-evidence-is-explained-as-an-assistant-answer-mobile/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: artifacts/playwright/visual-missing-evidence-is-explained-as-an-assistant-answer-mobile/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    artifacts/playwright/visual-missing-evidence-is-explained-as-an-assistant-answer-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace artifacts/playwright/visual-missing-evidence-is-explained-as-an-assistant-answer-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  2 failed
+    [desktop] › e2e/visual.spec.ts:499:1 › missing evidence is explained as an assistant answer ────
+    [mobile] › e2e/visual.spec.ts:499:1 › missing evidence is explained as an assistant answer ─────
+
+--- chat-limitations-visual-20261013.txt ---
+
+> mapi-rag-web@0.0.0 test:e2e
+> playwright test visual.spec.ts --grep ^missing evidence is explained as an assistant answer$
+
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+
+
+--- chat-limitations-visual-final-20261013.txt ---
+
+> mapi-rag-web@0.0.0 test:e2e
+> playwright test visual.spec.ts --grep missing evidence is explained as an assistant answer
+
+
+Running 2 tests using 2 workers
+
+(node:36664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+(node:36663) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/2] [mobile] › e2e/visual.spec.ts:499:1 › missing evidence is explained as an assistant answer
+[2/2] [desktop] › e2e/visual.spec.ts:499:1 › missing evidence is explained as an assistant answer
+  2 passed (1.8s)
+

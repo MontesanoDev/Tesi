@@ -1,5 +1,34 @@
 # Stato di Mapi RAG
 
+## Chat: tolto il riquadro «Informazioni mancanti» — 13 ottobre 2026
+
+Feedback utente: nel riassunto del modulo il riquadro confonde sezioni non
+recuperate, dati aziendali assenti e campi da compilare. Rimosso dalla chat,
+anche per i turni storici, con relativo CSS orfano. Rimangono testo assistant,
+limitazioni espresse nella risposta e disclosure delle evidenze con ruolo.
+missing_information resta invariato in API/DB/report e nei percorsi MIXED;
+nessuna migrazione o modifica del workflow di compilazione.
+
+Istruzione del generatore normale: limiti pertinenti direttamente in answer;
+riassunto FORM senza elenco inventato di sezioni assenti/non recuperate e
+missing_information vuoto. Prompt MIXED/retrieval/parser/renderer invariati.
+Non rende esaustivo il retrieval né garantisce ogni affermazione del modello:
+testo storico salvato invariato, sola lista UI eliminata.
+
+Verifiche effettive:9 test pagina mirati (inclusi nei **105 frontend completi**),
+**136 backend mirati** generation/form_retrieval, **10 browser Chromium** su
+desktop/mobile (8 chat-limitations+document-mentions,2 visual/no-evidence),
+Oxlint, build TypeScript/Vite, Ruff e diff check. Provider/API simulati,
+nessun benchmark AI reale né suite backend completa rieseguita per questo
+intervento circoscritto. Un filtro browser iniziale non selezionava test;
+il vecchio scenario visual falliva sul placeholder obsoleto: aggiornato solo
+quel caso, poi passato insieme alla rimozione della lista. Log conservati.
+
+[Report](docs/chat-limiti-risposta-2026-10-13.md),
+[acquisizioni software](docs/benchmarks/2026-10-13-chat-limitations-checks.txt).
+Commit locale, nessun push. Prossimo: riprovare il riassunto nella chat; la
+copertura e le condizioni della compilazione restano il punto tecnico sotto.
+
 ## Copertura testuale e rinvii locali — 13 ottobre 2026
 
 Richiesta: correggere i tre problemi testuali Minervino; miglioramento checkbox

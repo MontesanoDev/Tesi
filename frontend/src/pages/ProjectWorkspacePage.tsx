@@ -70,16 +70,6 @@ function ConversationTurn({ turn, assistantContent, processing = false }: {
         busy={(!result && !turn.error) || processing} error={turn.error}>
           {assistantContent ?? (result?.answer && <p>{result.answer}</p>)}
           {!result?.answer && result?.notice && <p>{result.notice}</p>}
-          {result && result.missing_information.length > 0 && (
-            <div className="missing-information">
-              <strong>Informazioni mancanti</strong>
-              <ul>
-                {result.missing_information.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          )}
       </AssistantMessage>
 
       {evidence.length > 0 && (

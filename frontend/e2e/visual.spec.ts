@@ -498,6 +498,8 @@ test('company knowledge is managed in the global archive', async ({ page }, test
 
 test('missing evidence is explained as an assistant answer', async ({ page }) => {
   await mockChatProject(page)
+  await page.route('**/api/projects/fondo-riqualificazione-2027/compilation-sessions',
+    (route) => route.fulfill({ json: [] }))
   await page.route('**/api/projects/fondo-riqualificazione-2027/answer', async (route) => {
     await route.fulfill({
       contentType: 'application/json',
@@ -518,13 +520,14 @@ test('missing evidence is explained as an assistant answer', async ({ page }) =>
   })
 
   await page.goto('/projects/fondo-riqualificazione-2027')
-  const composer = page.getByPlaceholder('Come posso aiutarti in questo progetto?')
+  const composer = page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
   await composer.fill('Come posso contattarlo?')
   await composer.press('Enter')
 
-  await expect(page.getByText('Le fonti non contengono dati verificabili')).toBeVisible()
+  await expect(page.getByText('Le fonti non contengono dati verificabili')).toHaveCount(0)
   await expect(page.getByText('Non trovo nelle fonti indicizzate')).toBeVisible()
-  await expect(page.getByText('Una fonte contenente il recapito richiesto')).toBeVisible()
+  await expect(page.getByText('Una fonte contenente il recapito richiesto')).toHaveCount(0)
+  await expect(page.getByText('Informazioni mancanti')).toHaveCount(0)
 })
 
 test('conversation preserves earlier turns without project evidence', async ({ page }, testInfo) => {

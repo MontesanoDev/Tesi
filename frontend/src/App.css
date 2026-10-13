@@ -666,26 +666,6 @@
   .assistant-activity svg { animation: none; }
 }
 
-.missing-information {
-  margin-top: 14px;
-  padding-left: 12px;
-  border-left: 2px solid var(--gold-bg);
-  color: var(--text-muted);
-  font-size: 11px;
-}
-
-.missing-information strong {
-  color: var(--gold);
-}
-
-.missing-information ul {
-  margin: 6px 0 0 16px;
-}
-
-.missing-information li + li {
-  margin-top: 4px;
-}
-
 .evidence-results {
   padding-top: 18px;
   border-top: 1px solid var(--border);

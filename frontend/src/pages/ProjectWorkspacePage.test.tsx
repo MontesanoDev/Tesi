@@ -109,6 +109,40 @@ describe('ProjectWorkspacePage pending requests', () => {
     expect(screen.getByText('Fonte')).toBeInTheDocument()
   })
 
+  it.each(['form', 'source'] as const)(
+    'keeps limitations in the answer without a separate missing-information checklist (%s)',
+    async (role) => {
+      const text = role === 'form'
+        ? 'Il modulo raccoglie i dati del partecipante. Il riepilogo riguarda le parti consultate [1].'
+        : 'Non ho trovato nelle fonti la data richiesta [1].'
+      vi.mocked(api.projectAnswer).mockResolvedValue({
+        ...answer('nuova'), answer: text, generation_status: 'completed', citations: [1],
+        missing_information: ['Dichiarazione non recuperata'],
+        evidence: [{ chunk_id: 1, file_id: 1, source_name: 'documento.txt', chunk_index: 0,
+          excerpt: 'Testo consultato', relevance: 1, role, project_id: 'alfa' }],
+      })
+      await setup()
+      submit('Prima domanda')
+      expect(await screen.findByText(text)).toBeInTheDocument()
+      expect(screen.queryByText('Informazioni mancanti')).not.toBeInTheDocument()
+      expect(screen.queryByText('Dichiarazione non recuperata')).not.toBeInTheDocument()
+      expect(screen.getByText('Evidenze recuperate')).toBeInTheDocument()
+    },
+  )
+
+  it('does not restore the checklist when reopening an existing conversation', async () => {
+    vi.mocked(api.conversation).mockResolvedValue({
+      id: 'altra', project_id: 'alfa', title: 'Altra', metadata: '', target: null,
+      turns: [{ ...answer('altra'), id: 2, answer: 'Riepilogo del modulo conservato [1].',
+        missing_information: ['Sezioni non recuperate nel vecchio turno'] }],
+    })
+    await setup()
+    fireEvent.click(screen.getByRole('link', { name: 'Altra conversazione' }))
+    expect(await screen.findByText('Riepilogo del modulo conservato [1].')).toBeInTheDocument()
+    expect(screen.queryByText('Informazioni mancanti')).not.toBeInTheDocument()
+    expect(screen.queryByText('Sezioni non recuperate nel vecchio turno')).not.toBeInTheDocument()
+  })
+
   it.each(['success', 'failure'] as const)(
     'ignores a late %s from another project without releasing the current request', async (outcome) => {
       const old = deferred<GroundedAnswer>()

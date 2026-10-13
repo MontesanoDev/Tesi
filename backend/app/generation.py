@@ -128,6 +128,13 @@ Il campo citation_ids deve contenere gli stessi identificatori interi citati nel
 """.strip()
 
 SYSTEM_PROMPT = GROUNDING_PROMPT + "\n" + """
+Spiega gli eventuali limiti necessari direttamente in answer, in modo naturale
+e pertinente alla domanda. Se stai riassumendo un modulo, descrivi soltanto
+le parti sostenute dalle evidenze e usa missing_information: []. Non inventare
+un elenco di sezioni non recuperate o presunte mancanti per completare il
+riassunto. Un contesto di frammenti non dimostra che una sezione sia assente
+dal documento. Se una specifica informazione chiesta non e verificabile,
+spiegalo brevemente in answer, senza presentarla come un dato da compilare.
 Produci soltanto un oggetto json con questa forma:
 {
   "answer": "risposta con citazioni [1]",
