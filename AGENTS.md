@@ -66,13 +66,16 @@ embedding hanno configurazioni distinte. Il modello predefinito degli embedding
   una sola chiamata; la vecchia modalità a gruppi e le riparazioni automatiche
   sono state rimosse. La CompilationSession V1, autorizzata successivamente,
   itera sullo stato persistente con passi limitati, sempre da un solo originale.
-  Dal 13 ottobre le nuove compilazioni della chat usano il motore globale V11:
+  Dal 13 ottobre le nuove compilazioni della chat usano il motore globale V12:
   una chiamata per il catalogo, proposta persistita, dialogo USER ed export
   esplicito di una bozza parziale dall'originale. La breve sintesi AI è separata
   dall'analisi; solo domande e risposte nel composer, niente checklist/ID XML.
   Il backend possiede gli slot attivi e conserva rinvii, condizioni e provenance.
   La sintesi può escludere proposte dubbie, mai rilassare il grounding SOURCE. Non promuovere automaticamente
-  GROUNDED_PROPOSAL a RESOLVED. Le checkbox native legacy/content control usano
+  GROUNDED_PROPOSAL a RESOLVED. V12 conserva anche motivazioni MODEL dei vuoti
+  ancorate al FORM, omissioni e spiegazioni respinte distinte: non sono prove
+  di assenza nelle SOURCE, decisioni di scrittura o stato live dopo risposte USER.
+  Le checkbox native legacy/content control usano
   gruppi FORM ancorati e cardinalità rivalidata; SOURCE o scelta USER del gruppo
   attivo sostengono i booleani. Deselezioni di alternative esclusive sono effetti
   tracciati, non nuovi fatti. Gruppi incompleti/ambigui non vengono esportati;

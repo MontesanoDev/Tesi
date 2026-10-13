@@ -1,5 +1,57 @@
 # Stato di Mapi RAG
 
+## Esiti motivati dei vuoti: contratto globale V12 — 13 ottobre
+
+Baseline fceedfc; feature backend5e50021. Causa verificata: V11 chiedeva
+esplicitamente di omettere posizioni senza SOURCE senza motivarne i vuoti.
+Nuove analisi V12 mantengono proposte sparse e aggiungono coverage: gruppi di ID
+con motivo, esito, quote FORM e condizioni pertinenti. Backend conserva per ogni
+candidate proposta/domanda, spiegazione valida, motivazione respinta, unassessed
+esplicito oppure omissione. Nessuna conversione automatica in MISSING/NA/RESOLVED
+e nessun nuovo valore o domanda da una motivazione. SOURCE/FORM/USER invariati.
+
+Contesti condivisi: stessa tabella e suoi paragrafi introduttivi già catalogati,
+clausole di condizioni valide con scope sul candidate, istruzioni di choice_group
+già validato. Nessun allargamento dei contesti per i valori SOURCE. Quote fuori
+contesto/lunghe, condizioni assenti, sovrapposizioni non approvate; errori locali
+non eliminano proposte indipendenti. reading_plan.units include tutti i tipi,
+con riferimenti dei contesti condivisi; non contiene significati inventati.
+
+Sintesi iniziale riceve motivazioni e contatori distinti; il backend aggiunge
+avviso veritiero su omissioni/esiti non determinati e motivazioni non validate.
+Non deduce «non letto» da «omesso». Nessuna ripetizione del riepilogo nei follow-up.
+coverage_summary è la copertura della **prima analisi**, non lo stato dei valori
+dopo USER: per quello restano dialogue/answers/user_values e report di generazione.
+Dettagli in global-report e global_audit del report DOCX; API additiva, UI invariata.
+V11 archiviata rivalidata identica su due sessioni reali, nessuna migrazione/reindex.
+Usare nuova conversazione per V12: non riscrive analisi vecchie in silenzio.
+
+Test finali: **277 mirati/19,91s**, **2219 backend/162,60s**,360 mutazioni nuove
+dei resoconti, Ruff backend/runner e diff check. Provider simulati/DB temporanei,
+FTS5/Qdrant dove applicabile. Frontend/browser/lint/build frontend non rieseguiti:
+nessun frontend/contratto consumato dalla UI modificato. Fallimento intermedio
+della suite: provider del runner fixture rispondeva ancora V11, aggiornato al
+contratto richiesto; le prove storiche V11 rimangono tali.
+
+DeepSeek reale: baseline e due serie di2 prove su Labirinto e Minervino, fonti e
+originali congelati, gold escluso dal prompt. Ogni prova: una sola analisi globale,
+poi una sintesi nelle serie nuove; zero sessioni live/Word scritti. Finali Labirinto:
+55/55 esiti,28 spiegazioni ancorate,zero omissioni/rifiuti in entrambe. Minervino:
+19/17 proposte SOURCE (nome/qualifica/Ordine/8421 presenti),159/135 spiegazioni
+ancorate,88/105 spiegazioni respinte,0/7 vere omissioni. **Non dichiarare completa
+o semanticamente affidabile tutta la copertura Minervino.** Serie iniziale conserva
+anche una prova con sole5 proposte SOURCE: variabilità reale, non nascosta.
+10 analisi+8 sintesi,811.409 token acquisiti; nessun risparmio dimostrato.
+
+Prossimo: correggere associazione dei motivi ai blocchi ripetuti e dei predicati
+di sezione, senza allentare quote/scope né promuovere claims MODEL. Controllare
+perché i7 controlli nativi di scelta del ruolo vengono ancora omessi in una prova.
+Le condizioni «IN QUALITÀ DI» e le domande ridondanti restano un limite distinto.
+[Report](docs/compilazione-esiti-vuoti-2026-10-13.md),
+[metriche](docs/benchmarks/2026-10-13-field-decisions.json), raw locali in
+backend/data/compilation-audit/field-decisions-20261013/; bundle/manifest in docs.
+Commit per passi, nessun push. Originali e checkpoint sessioni live preservati.
+
 ## Dialogo di compilazione: aggiornamenti brevi e feedback stabile — 13 ottobre
 
 Corretto il percorso conversazionale globale: ricevuta provvisoria/vecchia sintesi

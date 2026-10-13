@@ -1,5 +1,37 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Motivi dei vuoti nella prima analisi — V12,13 ottobre
+
+[Contratto, prove reali e limiti](compilazione-esiti-vuoti-2026-10-13.md).
+Nuove analisi in V12: stessa singola chiamata, proposte SOURCE distinte da
+coverage, gruppi con candidate_ids/outcome/reason/form/conditions. Il backend
+riporta ogni posizione come PROPOSED, CLARIFICATION, REJECTED_PROPOSAL,
+EXPLAINED_UNFILLED, REJECTED_EXPLANATION, UNASSESSED o UNEXPLAINED.
+Sono esiti di copertura dell'analisi, **non nuovi stati CompilationField**.
+
+source_not_found è un claim del modello, non prova di inesistenza nella KB.
+Motivazioni FORM non autorizzano valori, esenzioni o domande USER. La non
+applicabilità dichiarata richiede una condizione locale effettivamente falsa;
+semantic rimane unknown. Errori/sovrapposizioni restano registrati e non eliminano
+le proposte SOURCE indipendenti. Il gruppo può condividere solo contesti
+strutturali/condizioni/gruppi già validati; gate dei valori invariati.
+
+La sintesi iniziale spiega categorie di vuoti; avvisi backend distinguono
+omissioni e ragioni respinte, senza affermare che un campo non sia stato letto.
+Niente checklist/ID nella UI. Tutte le spiegazioni sono nel global-report e
+nel global_audit della generazione. coverage_summary è la fotografia della
+prima analisi; aggiornamenti USER e selezioni correnti rimangono nel dialogo
+e nel report, senza riscrivere l'audit iniziale. V11 continua a rivalidarsi identica.
+Nessuna migrazione o seconda analisi implicita: usare una nuova conversazione.
+
+Budget:400 candidate,400 gruppi,49.152 token output come prima; contesto narratore
+max24 gruppi, tutte le motivazioni nel report.2219 backend e277 mirati passati,
+Ruff/diff. Frontend invariato. Due prove finali DeepSeek sul benchmark fisso:
+55/55 esiti formalmente validati; Minervino ancora88/105 motivazioni respinte e
+0/7 omissioni. Ancoraggio formale non certifica correttezza semantica o completezza
+del modulo: non presentare i contatori come accuratezza. Source proposte17/19,
+nessuna generazione reale o stato RESOLVED automatico.
+
 ## Prosecuzione conversazionale — 13 ottobre
 
 [Diagnosi, replay reali e limiti](compilazione-dialogo-2026-10-13.md).

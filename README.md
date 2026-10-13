@@ -28,7 +28,9 @@ Per provare la compilazione globale: nuova conversazione nel progetto,
 pochi chiarimenti nella chat: rispondere nel composer, senza checklist.
 Per esportare chiedere **«genera la bozza parziale»**. Le sessioni
 precedenti sono conservate. [Istruzioni e limiti](docs/compilation-session-v1.md).
-Le nuove sessioni V11 possono scrivere checkbox native Word con gruppi di scelta
+Le nuove sessioni V12 conservano anche i motivi dei campi lasciati vuoti,
+distinguendo spiegazioni respinte e omissioni; non certificano completezza.
+Possono scrivere checkbox native Word con gruppi di scelta
 validati e provenienza SOURCE/USER; [prove e limiti](docs/checkbox-2026-10-13.md).
 
 Lo script installa automaticamente le dipendenze frontend mancanti o non valide

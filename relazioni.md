@@ -2100,3 +2100,45 @@ stato e originale confermata read-only. [Report](docs/compilazione-dialogo-2026-
 [metriche](docs/benchmarks/2026-10-13-conversation-flow.json), raw in
 backend/data/compilation-audit/conversation-flow-20261013/ e bundle sanificato
 con manifest in docs/benchmarks/. Commit piccoli locali, nessun push.
+
+### 13 ottobre 2026 — esiti motivati dei vuoti,V12
+
+Baseline fceedfc, feature5e50021. Verificato il prompt: l'omissione silenziosa
+era esplicitamente richiesta. Prima scelta comunicata: stessa singola analisi,
+coverage dei vuoti separata dai valori SOURCE. Nuovo contrattoV12, V11 invariata.
+Ogni candidate ha proposta/domanda, motivo FORM ancorato, spiegazione respinta,
+unassessed esplicito o omissione. Nessun valore/NA/statoUSER inventato dal resoconto.
+Errori locali non cancellano le proposte indipendenti. Avvisi backend iniziali
+se mancano esiti o motivi validi, senza inferire «non letto». Nessuna nuova UI.
+
+Due baseline reali DeepSeek prima della modifica, poi due serie da2 prove su
+Labirinto e Minervino. Originali/fonti/gold congelati; gold mai nei prompt.
+Serie iniziale negativa conservata: contesti condivisi respinti troppo localmente,
+quote oltre500 e una prova Minervino con sole5 proposte. Correzione bounded con
+contesti strutturali/condizioni/gruppi già validati e unità di lettura; non con
+contesti SOURCE più larghi o quote tollerate. Replay raw mantiene gli stessi valori.
+
+Finali Labirinto:55/55 esiti formalmente validi in entrambe,28 motivi,zero omissioni
+o spiegazioni respinte. Gold letterale/source matches22/16 contro16 baseline,
+zero valori/NA inattesi nel controllo limitato; non accuratezza semantica.
+Finali Minervino:19/17 proposte SOURCE,159/135 motivi ancorati,88/105 motivi respinti,
+0/7 omissioni. Conservati nome/qualifica/Ordine/8421. **Copertura semantica ancora
+incompleta**, soprattutto gruppi di persone, scope delle condizioni e7 checkbox
+di scelta del ruolo omesse in una prova. Non nascondere questi esiti negativi.
+
+10 analisi+8 sintesi,811.409 token acquisiti; tempi analisi finali118/115s Labirinto
+e102/159s Minervino, nessun risparmio dimostrato. Zero sessioni live o Word generati
+dal benchmark. Due sessioni V11 rivalidate identiche; checkpoint live/originale
+preservato. Attività utente contemporanea non confusa con mutazioni del test.
+coverage è fotografia della prima analisi, non stato live dopo USER.
+
+277 mirati/19,91s,2219 backend/162,60s,Ruff/diff,360 mutazioni nuove con seed.
+Provider simulati nei test, reali solo nei benchmark. Frontend/browser non ripetuti,
+frontend invariato. Suite intermedia fallita solo sul provider fixture ancoraV11,
+aggiornato al contratto richiesto. Dopo le serie ritoccato solo l'avviso backend
+per coesistenza di omissioni e motivi respinti; suite finale ripetuta.
+[Report](docs/compilazione-esiti-vuoti-2026-10-13.md),
+[metriche](docs/benchmarks/2026-10-13-field-decisions.json), raw in
+backend/data/compilation-audit/field-decisions-20261013/, bundle/manifest in docs.
+Prossimo: motivazioni dei blocchi ripetuti e condizioni, senza indebolire provenance.
+Commit per passi, nessun push.
