@@ -260,7 +260,11 @@ SOURCE riporta componenti uniti. Non contare puntini/offset per ricostruire gli 
 Esempio solo strutturale: «A [[ID_A]] B [[ID_B]]» consente «B [[ID_B]]» per
 ID_B, mai per ID_A. Copia marker e testi reali dell'input. Il backend ripristina
 il placeholder originale e verifica la posizione; ciò NON approva la semantica.
-Per celle vuote senza range e checkbox usa le quote FORM originali come prima.
+Per celle vuote senza range usa le quote FORM originali come prima.
+Per checkbox il marker viene ancorato UNA volta nelle options del choice_group.
+Il field referenzia quel gruppo e il suo candidate: form può ripetere la quote
+con marker oppure copiare la label originale della stessa opzione/paragrafo.
+Non cambiare destinazione o label: il backend riusa il collegamento già validato.
 conditions.form e bindings.form restano estratti del text ORIGINALE, senza marker.
 Le condizioni di sezione possono stare
 altrove ma NON la label locale. Non accorpare testi di paragrafi diversi.
@@ -1170,12 +1174,11 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         try:
             item = assignment.validate_python(payload["fields"][key])
             if choices_enabled and candidate["type"] == "checkbox":
-                from app.compilation_choices import choice_form
+                from app.compilation_choices import assignment_form
 
                 enriched = {**catalog, "candidates": {**catalog["candidates"], key: {
                     **candidate, "anchor_paragraph_ids": local[candidate["context_id"]]}}}
-                item = item.model_copy(update={"form": choice_form(
-                    key, item.form, enriched, paragraphs)})
+                item = assignment_form(key, item, choice_groups, enriched, paragraphs)
             elif choices_enabled and (item.choice is not None or
                                       getattr(item, "choice_group_id", None) is not None):
                 raise ValueError("Gruppo/scelta checkbox su campo testuale")

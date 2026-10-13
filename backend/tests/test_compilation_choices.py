@@ -73,8 +73,34 @@ def test_source_choice_grounding_and_boolean_provenance(choice_case):
     assert result["resolved"] == result["writes"] == 0
 
 
+def test_field_reuses_group_marker_without_repeating_it(choice_case):
+    for cid, field in choice_case[2]["fields"].items():
+        field["form"]["quote"] = choice_case[2]["choice_groups"]["g"]["options"][cid]["label"]
+    result = audit(choice_case)
+    assert sum(f["validation"] == "GROUNDED_PROPOSAL" for f in result["fields"]) == 2
+
+
+@pytest.mark.parametrize("bad_form", [
+    {"paragraph_id": "paragraph:3", "quote": "Professionista autonomo"},
+    {"paragraph_id": "paragraph:2", "quote": "Professionista autonomo"},
+    {"paragraph_id": "paragraph:2", "quote": "[[p3.cb0]] Organizzazione tecnica"},
+    {"paragraph_id": "paragraph:2", "quote": "tecnica"},
+])
+def test_reused_marker_never_repairs_a_contradictory_field_quote(choice_case, bad_form):
+    choice_case[2]["fields"]["p2.cb0"]["form"] = bad_form
+    f = next(f for f in audit(choice_case)["fields"] if f["candidate_id"] == "p2.cb0")
+    assert f["validation"] != "GROUNDED_PROPOSAL"
+
+
+def test_same_option_for_another_source_subject_is_not_accepted(choice_case):
+    choice_case[1][0]["content"] = "Denominazione: Altra società\nTipologia: Organizzazione tecnica"
+    result = audit(choice_case)
+    assert not any(f["validation"] == "GROUNDED_PROPOSAL" for f in result["fields"])
+
+
 def test_case_and_space_normalization_do_not_drop_valid_source_choices(choice_case):
-    choice_case[1][0]["content"] = "Tipologia: organizzazione   tecnica."
+    choice_case[1][0]["content"] = ("Denominazione: Vega S.r.l.\n"
+                                   "Tipologia: organizzazione   tecnica.")
     fact = choice_case[2]["facts"]["tipo"]
     fact.update(value="organizzazione tecnica", evidence=[{
         "chunk_id": -7, "quote": "Tipologia: organizzazione tecnica."}])
@@ -107,10 +133,11 @@ def test_inline_negative_attribute_still_rejects_cropped_choice(choice_case):
                                 "non possiede Organizzazione tecnica",
                                 "Organizzazione tecnica negata"])
 def test_cropped_noun_in_negative_source_cannot_authorize_positive_choice(choice_case, body):
-    choice_case[1][0]["content"] = "Tipologia: " + body
+    choice_case[1][0]["content"] = "Denominazione: Vega S.r.l.\nTipologia: " + body
     choice_case[2]["facts"]["tipo"]["evidence"][0]["quote"] = "Organizzazione tecnica"
     result = audit(choice_case)
     assert not any(f["validation"] == "GROUNDED_PROPOSAL" for f in result["fields"])
+    assert any("positiva" in error for f in result["fields"] for error in f["validation_errors"])
 
 
 @pytest.mark.parametrize("change", ["wrong_subject", "wrong_property", "wrong_polarity",
@@ -206,7 +233,8 @@ def test_multiple_choices_require_independent_positive_sources(choice_case):
     other = copy.deepcopy(choice_case[2]["facts"]["tipo"])
     other.update(value="Verifica", evidence=[{
         "chunk_id": -7, "quote": "Attività aggiuntiva: Verifica"}])
-    choice_case[1][0]["content"] = "Attività: Analisi\nAttività aggiuntiva: Verifica"
+    choice_case[1][0]["content"] = ("Denominazione: Vega S.r.l.\nAttività: Analisi\n"
+                                   "Attività aggiuntiva: Verifica")
     choice_case[2]["facts"]["altro"] = other
     choice_case[2]["fields"]["p3.cb0"].update(choice=True, fact_id="altro")
     result = audit(choice_case)

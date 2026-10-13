@@ -70,6 +70,30 @@ def choice_form(candidate_id, form, catalog, paragraphs):
     return FormSpan(paragraph_id=form.paragraph_id, quote=restored)
 
 
+def assignment_form(candidate_id, item, groups, catalog, paragraphs):
+    """Reuse the group's checked marker; don't ask the model to duplicate a binding.
+
+    An unmarked field quote must still identify the same literal option. A wrong
+    paragraph, another marker or a contradictory label cannot be repaired here.
+    """
+    from app.compilation_global import _form_quote
+
+    group = groups.get(getattr(item, "choice_group_id", None), {})
+    option = group.get("options", {}).get(candidate_id, {})
+    if group.get("validation") != "GROUNDED_GROUP" or not option.get("form_evidence"):
+        raise ValueError("Checkbox senza collegamento strutturale di gruppo validato")
+    origin = FormSpan.model_validate(option["form_evidence"])
+    if item.form.paragraph_id != origin.paragraph_id:
+        raise ValueError("Field checkbox citato nel paragrafo di un'altra opzione")
+    if "[[" in item.form.quote:
+        checked = choice_form(candidate_id, item.form, catalog, paragraphs)
+        _form_quote(origin.quote, checked.quote)
+    else:
+        _form_quote(origin.quote, item.form.quote)
+        _form_quote(item.form.quote, option["label"])
+    return item.model_copy(update={"form": origin, "label": option["label"]})
+
+
 def validate_groups(records, catalog, paragraphs, local, conditions):
     from app.compilation_global import _form_quote
 
@@ -154,9 +178,20 @@ def check_choice(field, fact, group, candidate_id, source_map):
         raise ValueError("SOURCE non sostiene questa opzione e polarità")
     if field.choice is False and group["selection"] != "single":
         raise ValueError("Opzione multipla falsa senza prova negativa indipendente")
-    return [{**proof, "support_quote": _positive_option_quote(
-        source_map[proof["chunk_id"]]["content"], proof["quote"], fact["value"])}
-        for proof in fact["source_evidence"]]
+    from app.compilation_sources import source_span
+
+    proofs = []
+    for proof in fact["source_evidence"]:
+        content = source_map[proof["chunk_id"]]["content"]
+        try:
+            subject = source_span(content, fact["subject"])
+        except ValueError as exc:
+            raise ValueError("Soggetto della scelta assente nel chunk SOURCE") from exc
+        if _option_text(subject) != _option_text(fact["subject"]):
+            raise ValueError("Soggetto della scelta non attestato nello stesso chunk SOURCE")
+        proofs.append({**proof, "subject_quote": subject, "support_quote":
+                       _positive_option_quote(content, proof["quote"], fact["value"])})
+    return proofs
 
 
 def attach_choice_audit(result, groups, items, catalog, source_map):
