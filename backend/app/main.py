@@ -760,7 +760,9 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
         "notice": None,
     }
 
-    async def interrupted_compilation():
+    routing_trace, compilation_stage = None, "routing"
+
+    async def interrupted_compilation(reason):
         if compilation_session is None:
             return None
         # Standalone controls already have a conservative deterministic guard.
@@ -775,10 +777,21 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
             )
             return persist({**base_response, "answer": text, "compilation": command,
                             "generation_status": "direct"})
+        if compilation_stage == "routing":
+            message = ("Non sono riuscito a interpretare la tua risposta. "
+                       "Non ho generato un nuovo DOCX né modificato i dati. "
+                       "La richiesta di bozza resta aperta: puoi riprovare."
+                       if (compilation_session["chat"].get("question") or {}).get(
+                           "kind") == "generate" else
+                       "Ho conservato i dati e le conferme. "
+                       "Non sono riuscito a interpretare il messaggio; puoi riprovare.")
+        else:
+            message = ("Ho conservato i dati già verificati. Non sono riuscito a completare "
+                       "questo passaggio. Puoi riprovare o esportare una bozza parziale.")
         return persist({
             **base_response,
-            "answer": "Ho conservato i dati già verificati. Non sono riuscito a completare "
-                      "questo passaggio. Puoi riprovare o esportare una bozza parziale.",
+            "answer": message + "\n\n" + reason,
+            "notice": reason,
             "compilation": {"session_id": compilation_session["id"], "action": "clarify"},
             "generation_status": "failed",
         })
@@ -799,6 +812,9 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
     try:
         # Pin the same provider/model for planning, answering and citation repair.
         with project_ai_context(project_id):
+            from app.compilation_routing_trace import RoutingTrace
+
+            routing_trace = RoutingTrace.for_session(compilation_session)
             timeout_seconds = chat_timeout_seconds()
             async with asyncio.timeout(timeout_seconds):
                 forms = (mentioned_forms if mentioned_forms is not None
@@ -810,7 +826,9 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
                        {"selected_form": form_reference} if form_reference else {}),
                     **({"compilation": planner_context(compilation_session)}
                        if compilation_session else {}),
+                    **({"trace": routing_trace} if routing_trace else {}),
                 )
+                compilation_stage = "workflow"
                 if isinstance(planned.decision, ClarificationDecision):
                     text, command = await handle_group_decision(
                         project_id, conversation_id, planned.decision,
@@ -1067,13 +1085,25 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
         return persist({**base_response, "generation_status": "not_configured", "notice": str(exc)})
     except GenerationError as exc:
         if compilation_session:
-            logger.warning("DOCX chat model failure error=%s", type(exc).__name__)
-            return await interrupted_compilation()
+            from app.compilation_routing_trace import failure_notice
+
+            reason = failure_notice(exc)
+            if routing_trace:
+                routing_trace.fail(exc, compilation_stage)
+            logger.warning("DOCX chat model failure session=%s stage=%s error=%s",
+                           compilation_session["id"], compilation_stage, reason)
+            return await interrupted_compilation(reason)
         return persist({**base_response, "generation_status": "failed", "notice": str(exc)})
     except TimeoutError:
         if compilation_session:
+            if routing_trace:
+                routing_trace.fail(TimeoutError("Tempo complessivo esaurito"), compilation_stage)
             logger.warning("DOCX chat timeout session=%s", compilation_session["id"])
-            return await interrupted_compilation()
+            return await interrupted_compilation(
+                "La richiesta ha superato il tempo disponibile. Nessuna nuova conferma acquisita."
+                if compilation_stage == "routing" else
+                "La richiesta ha superato il tempo disponibile; "
+                "rileggi lo stato prima di riprovare.")
         return persist({
             **base_response,
             "generation_status": "failed",

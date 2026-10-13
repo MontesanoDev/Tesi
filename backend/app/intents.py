@@ -628,6 +628,7 @@ async def plan_chat_turn(
     *, selected_form: dict | None = None,
     selected_document: dict | None = None,
     compilation: dict | None = None,
+    trace=None,
 ) -> PlannedTurn:
     settings = get_ai_settings()
     if not settings.configured:
@@ -690,8 +691,11 @@ async def plan_chat_turn(
     }
     timeout = chat_http_timeout()
     token_counts: list[int | None] = []
-    async with httpx.AsyncClient(timeout=timeout) as client:
+    async with httpx.AsyncClient(timeout=timeout, **({"event_hooks": {
+        "response": [trace.http_response]}} if trace else {})) as client:
         for attempt in range(2):
+            if trace:
+                trace.attempt(body, TurnPlan.model_json_schema())
             try:
                 content, model, usage = await request_model_content(
                     client, settings, body, timeout.read,
@@ -699,11 +703,15 @@ async def plan_chat_turn(
                 )
             except GenerationTruncatedError as exc:
                 token_counts.append(exc.total_tokens)
+                if trace:
+                    trace.validation_error(exc)
                 if attempt:
                     raise
                 body = {**body, "max_tokens": 2 * PLANNING_OUTPUT_TOKENS}
                 continue
             token_counts.append(_total_tokens(usage))
+            if trace:
+                trace.response(content, model, usage)
             cleaned = content.strip()
             if cleaned.startswith("```"):
                 cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", cleaned, flags=re.IGNORECASE)
@@ -720,6 +728,8 @@ async def plan_chat_turn(
                 proposed = canonical_turn_plan(parse_turn_plan(data, allowed_slots), compilation)
                 decision = bind_turn_plan(proposed, compilation, question)
             except (ValueError, RecursionError) as exc:
+                if trace:
+                    trace.validation_error(exc)
                 logger.warning(
                     "Invalid chat decision: provider=%s model=%s attempt=%d error=%s",
                     settings.provider, settings.model, attempt + 1, type(exc).__name__,
@@ -785,5 +795,7 @@ async def plan_chat_turn(
             total = sum(token_counts) if all(n is not None for n in token_counts) else None
             logger.info("Chat routing intent=%s slots=%d attempts=%d",
                         proposed.intent, len(allowed_slots), attempt + 1)
+            if trace:
+                trace.complete(proposed.intent)
             return PlannedTurn(decision, model, total, proposed.intent)
     raise AssertionError("Planning attempts exhausted without a result or error")
