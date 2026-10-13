@@ -1,5 +1,34 @@
 # Stato di Mapi RAG
 
+## Crash su gruppo checkbox rifiutato — 13 ottobre 2026, corretto
+
+Il test manuale Minervino ha trovato un KeyError in export_selection durante
+la sintesi: un gruppo rifiutato per label oltre 250 caratteri conservava solo
+diagnostica/proposta, ma veniva letto come GROUNDED_GROUP con min_selected.
+Corretto il consumer: regole solo per gruppi validati, quarantena invariata,
+proposte indipendenti conservate. Nessun aumento dei limiti o catch generico,
+modifica RAG/UI/parser/renderer o promozione FORM/USER a SOURCE.
+
+Riproduzione con l'esatto audit e output reale prima del fix; dieci regressioni
+software prima fallite e ora passate. **136 mirati /22,84 s**, **2.061 backend
+/153,38 s**, Ruff backend/runner e diff check. Provider simulati/FTS5/Qdrant nei
+test, nessun frontend/browser ripetuto (contratti/UI invariati).
+Replay della risposta registrata ora valido, più **una nuova sintesi DeepSeek
+Flash /3,81 s /3.845 token**, nessuna nuova analisi o retry: tredici proposte
+SOURCE conditional conservate e due domande, nessun DOCX/valore inventato.
+Sessione/versione/originale live verificati invariati; non è un nuovo E2E.
+
+La sessione dell'errore resta FAILED: «riprendi» dopo aggiornamento backend
+autorizza il normale nuovo tentativo; il vecchio audit era su disco, non ancora
+nel DB. Nessuna riparazione manuale o migrazione/reindex.
+[Diagnosi e verifica](docs/checkbox-crash-2026-10-13.md); raw locali in
+backend/data/compilation-audit/rejected-checkbox-20261013/. Commit piccoli,
+nessun push. [Bundle](docs/benchmarks/2026-10-13-checkbox-crash-audit.tar.gz) e
+[manifest](docs/benchmarks/2026-10-13-checkbox-crash-manifest.json): 81 file,
+1.818.061 byte grezzi, senza chiavi/DB, verificati byte per byte.
+Prossimo: verificare la ripresa manuale; copertura dei gruppi
+complessi/senza SOURCE ancora da discutere, non risolta da questo fix.
+
 ## Checkbox V11 — 13 ottobre 2026, implementate e misurate
 
 Nuove analisi V11: gruppi FORM e opzioni con marker fisici, assegnazioni bool,

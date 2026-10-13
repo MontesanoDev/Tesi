@@ -1,5 +1,17 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Gruppi rifiutati e sintesi — 13 ottobre, correzione
+
+L'export selection ignora i record REJECTED prima di accedere agli attributi
+del modello ChoiceGroup: l'audit di un item fuori schema conserva diagnostica,
+non necessariamente min_selected/selection. Risolto il 500 osservato su
+Minervino per label troppo lunga, senza rendere valide le scelte rifiutate.
+Le altre proposte restano salvabili e disponibili alla sintesi.
+[Riproduzione e test](checkbox-crash-2026-10-13.md): 136 mirati, 2.061 backend,
+Ruff/diff check; replay reale registrato e nuova sintesi DeepSeek senza errore.
+Sessione utente invariata: il tentativo già FAILED si riprende esplicitamente;
+nessuna migrazione, nuova UI o allentamento della provenance.
+
 ## Checkbox native V11 — 13 ottobre, stato corrente
 
 Le nuove analisi globali usano V11: `choice_groups` descrive istruzione FORM,

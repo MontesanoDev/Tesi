@@ -1,0 +1,444 @@
+{
+  "archive": "2026-10-13-checkbox-crash-audit.tar.gz",
+  "files": 81,
+  "raw_bytes": 1818061,
+  "compressed_bytes": 398270,
+  "sha256": "7e8c4c3f0a2c29e10b94b5c365c143f95aba6c7061a00de104ddf2edbeb2dca3",
+  "credentials_scan_passed": true,
+  "no_database_or_private_keys": true,
+  "verified_byte_for_byte": true,
+  "results": {
+    "fix_commit": "5846f35",
+    "software": {
+      "targeted": 136,
+      "targeted_seconds": 22.84,
+      "full_backend": 2061,
+      "full_seconds": 153.38,
+      "before_failures": 10,
+      "provider_simulated": true,
+      "ruff_backend_and_runner": "passed",
+      "diff_check": "passed",
+      "frontend_browser_repeated": false
+    },
+    "recorded_response_replayed": true,
+    "real_narration": {
+      "calls": 1,
+      "new_analysis_calls": 0,
+      "seconds": 3.805147561999547,
+      "tokens": 3845,
+      "retry": false,
+      "error": null,
+      "conditional_proposals": 13,
+      "questions": 2
+    },
+    "live_session_unchanged": true,
+    "generated_docx": false
+  },
+  "entries": [
+    {
+      "path": "after/frozen-code/__init__.py.txt",
+      "bytes": 29,
+      "sha256": "db65b7f89233a7a95ae107915cba748959e3e2b734abdfb9ecd3fa7689659d40"
+    },
+    {
+      "path": "after/frozen-code/ai_discovery.py.txt",
+      "bytes": 4050,
+      "sha256": "bee560fbce514394b12ef75c583e2189cb11dd09f0c73a53620302cdebaefdd4"
+    },
+    {
+      "path": "after/frozen-code/ai_login.py.txt",
+      "bytes": 4550,
+      "sha256": "1e0fb0a09ba500af509133c7504c613f5a50a93b25ebba0f8e7035c624f331a4"
+    },
+    {
+      "path": "after/frozen-code/ai_profiles.py.txt",
+      "bytes": 13783,
+      "sha256": "94db153478442f64e6f9b458ffa1cbf79d0cfedad409c89b740d777b0b1dd884"
+    },
+    {
+      "path": "after/frozen-code/ai_providers.py.txt",
+      "bytes": 3170,
+      "sha256": "ce606188be15f01ed807a215fc98faafc93a87bb36013525e36d3b5da864558c"
+    },
+    {
+      "path": "after/frozen-code/ai_routes.py.txt",
+      "bytes": 4624,
+      "sha256": "82fc80c8ea39ba4a574fc6581fbe54be967e3c039929b8922fe61d6be1eeef0b"
+    },
+    {
+      "path": "after/frozen-code/ai_transport.py.txt",
+      "bytes": 7649,
+      "sha256": "e2a2873f07ff93c895c459a577e0f7e45dd2caeaa6945708c16a2c7998a7114c"
+    },
+    {
+      "path": "after/frozen-code/artifacts.py.txt",
+      "bytes": 17362,
+      "sha256": "648fe4dacfe8589a53b55357ba437547e23a40f7297e597e952c71e2b13b9755"
+    },
+    {
+      "path": "after/frozen-code/call_facts.py.txt",
+      "bytes": 10312,
+      "sha256": "e015f9187798989e12146204b1a15679f4495241aa9297e0012f55bd808fc51e"
+    },
+    {
+      "path": "after/frozen-code/compilation_applicability.py.txt",
+      "bytes": 3832,
+      "sha256": "8d544575976a55cd236c5bd1af9d675be3667abd6d32232a0ce7835ca379c955"
+    },
+    {
+      "path": "after/frozen-code/compilation_catalog.py.txt",
+      "bytes": 17689,
+      "sha256": "56ca5782f1d06312818edf6f3b414ba9ac1977e872805fa1d62d2f9a58480440"
+    },
+    {
+      "path": "after/frozen-code/compilation_chat.py.txt",
+      "bytes": 37920,
+      "sha256": "0a4d49da16ebeb109944eb849bf487619080b507d7cde1d167c0f9a6da1e00ec"
+    },
+    {
+      "path": "after/frozen-code/compilation_choices.py.txt",
+      "bytes": 18645,
+      "sha256": "1d317fb913cdcdbf1844d44313048a09235cd8e431b3651be8c2dc9f95a16b19"
+    },
+    {
+      "path": "after/frozen-code/compilation_clarifications.py.txt",
+      "bytes": 12416,
+      "sha256": "b1632920fd4b9e6461071c7ede13a4f25a0a30dd2d308498eadbd2e3b165dce7"
+    },
+    {
+      "path": "after/frozen-code/compilation_conditions.py.txt",
+      "bytes": 7545,
+      "sha256": "906861fc67df32fa6cbe28c4896edfae4389446e951d5c2a7e910b908f7c287f"
+    },
+    {
+      "path": "after/frozen-code/compilation_document_plan.py.txt",
+      "bytes": 11777,
+      "sha256": "ee4ec11f71d458019d4517755c6bea2f0f8b8ea3a2e71237eb7e08153561d53e"
+    },
+    {
+      "path": "after/frozen-code/compilation_evidence.py.txt",
+      "bytes": 2008,
+      "sha256": "cc9f9a72796217982d8bc5170167106a3ba17c525ac6180e1d63dfb818760cbc"
+    },
+    {
+      "path": "after/frozen-code/compilation_form_conditions.py.txt",
+      "bytes": 10573,
+      "sha256": "d6e2335d8a8153a2135930c809013710af25ee8b3717612e45ec6e462f073e04"
+    },
+    {
+      "path": "after/frozen-code/compilation_global.py.txt",
+      "bytes": 80547,
+      "sha256": "7b640b33285e24bd6d00a543b6f2f77c53763cf0ca714e438ad93cad88680ded"
+    },
+    {
+      "path": "after/frozen-code/compilation_global_contract.py.txt",
+      "bytes": 8678,
+      "sha256": "d87d884a1efa178d69d12737fca36d45031c6e60bb53be1fd7c748dbed33751f"
+    },
+    {
+      "path": "after/frozen-code/compilation_global_dialogue.py.txt",
+      "bytes": 30047,
+      "sha256": "3ea555065f18d63af08487c59c21540438e32e0440f7f716c8c62e2f617420d7"
+    },
+    {
+      "path": "after/frozen-code/compilation_global_sessions.py.txt",
+      "bytes": 26162,
+      "sha256": "83d0a5319547684db4a73761abdc9e06f05b372ef4fdc7962a72fe2c3b479953"
+    },
+    {
+      "path": "after/frozen-code/compilation_reply_guard.py.txt",
+      "bytes": 7244,
+      "sha256": "7e29ca59d0e308ccbcd0fc2e503daebc55a3b9a248d5fd071d6dd72def7cbad7"
+    },
+    {
+      "path": "after/frozen-code/compilation_role_records.py.txt",
+      "bytes": 2977,
+      "sha256": "e817622f14a8c6b7ee678f53734640684df26b3389c3c344e3b0286e9258706b"
+    },
+    {
+      "path": "after/frozen-code/compilation_semantics.py.txt",
+      "bytes": 27865,
+      "sha256": "4454c3da7aefcebb74305a35193101d05fe0c49b8c1ceb6e10aab99de30ff25a"
+    },
+    {
+      "path": "after/frozen-code/compilation_session_models.py.txt",
+      "bytes": 4889,
+      "sha256": "c207225d884955f966f031bdf3562da7e794ccae42069de76015563289506889"
+    },
+    {
+      "path": "after/frozen-code/compilation_session_resolution.py.txt",
+      "bytes": 48703,
+      "sha256": "da236011ecc83a8077c03004ebff0eb24bab1f442704d8c61127c8af01138630"
+    },
+    {
+      "path": "after/frozen-code/compilation_session_routes.py.txt",
+      "bytes": 5205,
+      "sha256": "478681c77eaf2185d2b3bc8b0ab6382bde7320d5456dde8e1326163da5b01ae9"
+    },
+    {
+      "path": "after/frozen-code/compilation_sessions.py.txt",
+      "bytes": 49562,
+      "sha256": "b407ec918346c717b55f04543729cb8e77773943f1ab829b20ee2351f8a81b60"
+    },
+    {
+      "path": "after/frozen-code/compilation_sources.py.txt",
+      "bytes": 7852,
+      "sha256": "700a16747d8baaa0ea57c556683088cc75591efa900ad1aec1f5ababd125aa19"
+    },
+    {
+      "path": "after/frozen-code/config.py.txt",
+      "bytes": 1711,
+      "sha256": "64ab94d2df72022077042c2bd600c88175844ac543f1799aeae47ca68378b127"
+    },
+    {
+      "path": "after/frozen-code/db.py.txt",
+      "bytes": 19301,
+      "sha256": "994250dca15c4d7c3722e14b8e44010a772bd34af86aca3687f09f67b8e0d25b"
+    },
+    {
+      "path": "after/frozen-code/document_compilation.py.txt",
+      "bytes": 12165,
+      "sha256": "8b44498a5b44f56d7bac6effec3b55745101c48e3273fc164c2b2dee2e3394de"
+    },
+    {
+      "path": "after/frozen-code/document_compilation_routes.py.txt",
+      "bytes": 5173,
+      "sha256": "d18870bf74ddcb450366fef6dfe00380a8c25c502494f57cd12854a1abf8894d"
+    },
+    {
+      "path": "after/frozen-code/docx_checkboxes.py.txt",
+      "bytes": 3581,
+      "sha256": "79aff0c88a2f663fcd68f1c19d80d54cd1068d5ee5d55c87b95fa613f6289afd"
+    },
+    {
+      "path": "after/frozen-code/docx_templates.py.txt",
+      "bytes": 25488,
+      "sha256": "7913c99940bbc0830ccafa888498ea3cd4478018ddc59da7a2d9781a1a96b953"
+    },
+    {
+      "path": "after/frozen-code/draft_generation.py.txt",
+      "bytes": 12784,
+      "sha256": "0d3c86563459ad5ddf654cc0e515be7438294d673da3bcb779960c60f2ee1c1b"
+    },
+    {
+      "path": "after/frozen-code/fact_extraction.py.txt",
+      "bytes": 14969,
+      "sha256": "c9415ff1a9bfb3f97c80529eb75f42b1413cc6376dd9cbb1cb1269fe355aa088"
+    },
+    {
+      "path": "after/frozen-code/generation.py.txt",
+      "bytes": 28709,
+      "sha256": "3fc684b633118d97eaf23f8965c47b448ca1857557664f8d869fcf45017dc814"
+    },
+    {
+      "path": "after/frozen-code/ingestion.py.txt",
+      "bytes": 5067,
+      "sha256": "7aab747fc99ea067faede9bb128668421fd1723ef8f768fefdcef1c3858abaac"
+    },
+    {
+      "path": "after/frozen-code/intents.py.txt",
+      "bytes": 41485,
+      "sha256": "776315f0c2b47b4f638eb9f618bee97566bb3b0e9afc1b3c7b78115f93c24cc3"
+    },
+    {
+      "path": "after/frozen-code/main.py.txt",
+      "bytes": 50499,
+      "sha256": "7741802865a76a89c991174279515991149eb6c1007111b3d568928fefad8ffe"
+    },
+    {
+      "path": "after/frozen-code/project_forms.py.txt",
+      "bytes": 10167,
+      "sha256": "0158220982e961ec6159be04b09f00eaee0a11fcb53cdaaaff4ce0f73c2ea65a"
+    },
+    {
+      "path": "after/frozen-code/repository.py.txt",
+      "bytes": 46069,
+      "sha256": "912b0d582a766e241eb3a8ddcda3043644001fbedd580f087544709fe6f6d9d3"
+    },
+    {
+      "path": "after/frozen-code/requirement_checks.py.txt",
+      "bytes": 15501,
+      "sha256": "8736d46f757a09e93e7df9bac6de15d925dd91cd978483e29300f8152a2c39e2"
+    },
+    {
+      "path": "after/frozen-code/retrieval.py.txt",
+      "bytes": 4759,
+      "sha256": "4cd803ba7da0b552a74b38df816d43f93fe96d77ffafad87d03ab675dbf4f9d9"
+    },
+    {
+      "path": "after/frozen-code/retrieval_documents.py.txt",
+      "bytes": 498,
+      "sha256": "72beea7af3de8ee66811189702a71c9f8624df29b2b91fdd6e5edc0cb7d07149"
+    },
+    {
+      "path": "after/frozen-code/retrieval_embeddings.py.txt",
+      "bytes": 4924,
+      "sha256": "dd57324f37790ea3427550e68f047998096711955473473cc49f6a44f246bc7e"
+    },
+    {
+      "path": "after/frozen-code/retrieval_routes.py.txt",
+      "bytes": 1033,
+      "sha256": "276627dfb9d4fdcfc9426eae0f66ca26793ef40231b12b4d361c3c8719b1c657"
+    },
+    {
+      "path": "after/frozen-code/retrieval_settings.py.txt",
+      "bytes": 4584,
+      "sha256": "8e9c9bff17455f2e08388a66ca716fbe87e834b77a9c53ee1bb3bcee1666f53b"
+    },
+    {
+      "path": "after/frozen-code/schemas.py.txt",
+      "bytes": 6975,
+      "sha256": "672fcc620f262c0f408f86799a01b2730f5f3b6dd9abec867952e4e716784d9b"
+    },
+    {
+      "path": "after/frozen-code/seed.py.txt",
+      "bytes": 6786,
+      "sha256": "13289de5d7a7cafb88799b44a9597fc5aa55940bf31dcf975ce7f44387bc24ad"
+    },
+    {
+      "path": "after/frozen-code/source_planning.py.txt",
+      "bytes": 6206,
+      "sha256": "04dc09afaea13f828725a0b73d8be18387a449dd1bde0cbc3a86ecf637f71626"
+    },
+    {
+      "path": "after/frozen-code/vector_retrieval.py.txt",
+      "bytes": 11157,
+      "sha256": "34c3a076ad03e8c82479194ddcf0eb3fafb3a09ef2db25fa6c244c07098e80db"
+    },
+    {
+      "path": "after/integrity.json",
+      "bytes": 596,
+      "sha256": "7a9484e63fbc43da5489e639ef7879ee957819f3c1f8f46a8f443fedc0743f28"
+    },
+    {
+      "path": "after/protocol.json",
+      "bytes": 5540,
+      "sha256": "26533e7b0d316e4483084fe57368669e99efed5f9d661601c5030a677ad967cf"
+    },
+    {
+      "path": "after/real-narration/dialogue/47018af19de04dbcbbc1e859d5c5afaf/http-response.txt",
+      "bytes": 1512,
+      "sha256": "6d4a8e0b336b64ed5e37c6f6bedd9db58fc01b532fc333a1e94623a2a2111b22"
+    },
+    {
+      "path": "after/real-narration/dialogue/47018af19de04dbcbbc1e859d5c5afaf/request.json",
+      "bytes": 16839,
+      "sha256": "e54ef7f658dd397554939a2b87f0a2dd71f6eb7c3b62585c6b0f2b8d5ee89b90"
+    },
+    {
+      "path": "after/real-narration/dialogue/47018af19de04dbcbbc1e859d5c5afaf/response.txt",
+      "bytes": 1027,
+      "sha256": "69840d40ef32a568bc599f69adc2639ea4449e34db54de1545c701fd800b5895"
+    },
+    {
+      "path": "after/real-narration/dialogue/47018af19de04dbcbbc1e859d5c5afaf/result.json",
+      "bytes": 4439,
+      "sha256": "fb540683cfa5ec8b5e57f31289993c6fa1d1e6b8b0845e51c3c6df0df262a4e5"
+    },
+    {
+      "path": "after/recorded-dialogue-replay.json",
+      "bytes": 3735,
+      "sha256": "fd68620c13f5ed7c6cc96184367841ab78f845a65e2aedbc4e6db57160fde46c"
+    },
+    {
+      "path": "after/result.json",
+      "bytes": 4439,
+      "sha256": "fb540683cfa5ec8b5e57f31289993c6fa1d1e6b8b0845e51c3c6df0df262a4e5"
+    },
+    {
+      "path": "consumer-before.py.txt",
+      "bytes": 29821,
+      "sha256": "00ea5c6b129d5e9067e69856db44ce3d23e57fdc0d3103691d66bd9efe91fff0"
+    },
+    {
+      "path": "live-before.json",
+      "bytes": 423,
+      "sha256": "22cfe7a3b2d171d88309d4c87ab2b2fe24158a6eb58af1ad8bbebbb2eac4614a"
+    },
+    {
+      "path": "recorded-failure/audit.json",
+      "bytes": 124732,
+      "sha256": "136c729318877069c077c1021fb3db09912f99b9629cb930a085dba5bd1eca58"
+    },
+    {
+      "path": "recorded-failure/dialogue/acc87c884e034e13995d20cd6fba2340/http-response.txt",
+      "bytes": 1445,
+      "sha256": "f8530d386cdfd2f0118bd3db0da5a65490c78e6551bd0e0689260dbaba229f0a"
+    },
+    {
+      "path": "recorded-failure/dialogue/acc87c884e034e13995d20cd6fba2340/request.json",
+      "bytes": 16840,
+      "sha256": "6c94ff48598183dd893da0bd470d34e215a12f4771a707051f76c384724744a8"
+    },
+    {
+      "path": "recorded-failure/dialogue/acc87c884e034e13995d20cd6fba2340/response.txt",
+      "bytes": 959,
+      "sha256": "794f1a1c367b8f5c05eefffe2a91b4c83e8d59d62036d8a69de48fe3476de381"
+    },
+    {
+      "path": "recorded-failure/http-response.txt",
+      "bytes": 72860,
+      "sha256": "4a48aee348cbf8cfc0567336025418cfd0d22d67d38e43fb7ddbfae7cbdb569b"
+    },
+    {
+      "path": "recorded-failure/input.json",
+      "bytes": 311954,
+      "sha256": "d758bf7a1dd3439569c51822b24a2a9f055c215b15f5018d9805a9f75640c275"
+    },
+    {
+      "path": "recorded-failure/metrics.json",
+      "bytes": 462,
+      "sha256": "31fb4e4e0ae17afcbf322a32a396390431a50f3744e1a563fa8a6d8cebaafdb7"
+    },
+    {
+      "path": "recorded-failure/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "recorded-failure/request.json",
+      "bytes": 246658,
+      "sha256": "3ebce1b5b0768b937d014faa142b24dc5089bb51227038c962dc26d12ea64fd8"
+    },
+    {
+      "path": "recorded-failure/response.txt",
+      "bytes": 11239,
+      "sha256": "3c071d7bd84c83fde68b804040fc9141906ec289b0096368e4844fb9018096f6"
+    },
+    {
+      "path": "replay-runner.py.txt",
+      "bytes": 5326,
+      "sha256": "168e2de8ebb59aecc2a6fe64754d3f754a3344f5e280d43e8718d83241a2feca"
+    },
+    {
+      "path": "reproduced-before.json",
+      "bytes": 564,
+      "sha256": "6fa24501df7a6a5405e66b153a4ba30fbd988654a348e51e249a2d57c3f29c93"
+    },
+    {
+      "path": "software-logs/rejected-checkbox-before-20261013.txt",
+      "bytes": 62632,
+      "sha256": "d1f9e05f41557e4e34662a0f806bf20d37a3432486c5731f24bf7aa61f3e1bef"
+    },
+    {
+      "path": "software-logs/rejected-checkbox-full-20261013.txt",
+      "bytes": 2353,
+      "sha256": "ee41825890f6cafefb84daa4b08e66562bf1a185bd6a81cf25a78ddae74c594e"
+    },
+    {
+      "path": "software-logs/rejected-checkbox-real-after-20261013.txt",
+      "bytes": 95,
+      "sha256": "d6ba443ebaabf24d9acbfea309d7bfab46c53bedcc0d60d0ea65387ccc81879b"
+    },
+    {
+      "path": "software-logs/rejected-checkbox-targeted-20261013.txt",
+      "bytes": 181,
+      "sha256": "b77f4971c7583c3b94483fc38e7c3e13fc767af08394654b23623c934390412e"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 640,
+      "sha256": "c9729e3f5aa3b69d3f1316f2b4db3c269e6bd3866184047a947f930cab5d19a3"
+    }
+  ]
+}

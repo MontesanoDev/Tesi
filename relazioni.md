@@ -1965,3 +1965,26 @@ ancora da verificare visivamente su desktop.
 Bundle sanificato: 917 file /13.240.541 byte grezzi, confronto byte per byte,
 nessuna chiave o DB. Manifest e acquisizioni in docs/benchmarks. SHA256
 84ad2b3900dfe96901775a1ca936bfb490e118258ca86f3323a78f813498bd04.
+
+### 13 ottobre 2026 — crash reale Minervino, audit parziale
+
+Test manuale: analisi terminata ma sintesi in HTTP 500. Gruppo con label oltre
+250 caratteri correttamente REJECTED; il consumer tentava comunque min_selected
+su quel record parziale. Riprodotto con lo stesso output salvato e con dieci
+regressioni software (tutte fallite prima della correzione). Ora soltanto i
+GROUNDED_GROUP impongono regole di scelta; nessun default permissivo/catch globale.
+136 mirati /22,84 s e 2.061 backend /153,38 s, Ruff e diff check passati, provider
+simulati nei test; frontend/browser non ripetuti, nessun contratto/UI cambiato.
+
+Replay registrato senza nuove API ora passa. Una nuova sintesi DeepSeek Flash
+reale: 3,81 s /3.845 token, un tentativo, tredici proposte conditional e due
+domande, nessun DOCX generato; nessuna nuova analisi SOURCE o valore USER.
+Codice invariato durante la prova. Sessione/versione/originale live invariati;
+il vecchio tentativo resta FAILED e richiede normale ripresa, nessuna modifica
+manuale al DB. Non è un nuovo benchmark di compilazione completa.
+[Report](docs/checkbox-crash-2026-10-13.md), acquisizioni locali in
+backend/data/compilation-audit/rejected-checkbox-20261013/. Fix committato,
+nessun push. Completezza dei gruppi fisici e copertura restano limiti separati.
+Bundle sanificato e manifest in docs/benchmarks/2026-10-13-checkbox-crash-*:
+81 file /1.818.061 byte grezzi, confronto byte per byte, chiavi e DB esclusi.
+SHA256 7e8c4c3f0a2c29e10b94b5c365c143f95aba6c7061a00de104ddf2edbeb2dca3.
