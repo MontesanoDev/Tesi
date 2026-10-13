@@ -36,7 +36,8 @@ async def start_choice(api, choice_case, monkeypatch, *, automatic=True):
         data = json.loads(body["messages"][1]["content"])
         calls.append(data)
         payload = copy.deepcopy(choice_case[2])
-        assert data["schema_output"]["properties"]["version"]["const"] == 11
+        assert data["schema_output"]["properties"]["version"]["const"] == 12
+        payload.update(version=12, coverage=[])
         if automatic:
             chunk = next(s["chunk_id"] for s in data["sources"] if "Vega" in s["content"])
             for fact in payload["facts"].values():

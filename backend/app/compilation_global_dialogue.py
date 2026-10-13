@@ -63,7 +63,17 @@ del ruolo. Se il FORM richiede l'attuale incaricato e la SOURCE ne attesta solta
 un incarico cessato, sospendi le proposte coinvolte. Non trasferire ruoli o numeri
 fra soggetti diversi. Una prova troncata non giustifica la parte non disponibile.
 Non dire che mancano tutti i dati di una sezione se hai proposte per quella
-sezione; distingue sempre dati trovati e posizioni ancora non valutate.
+sezione. coverage distingue motivazioni esplicite, posizioni dichiarate
+unassessed e omissioni senza esito. Non chiamare queste ultime «non valutate»:
+non sappiamo se siano state lette. source_not_found è una dichiarazione del
+modello, NON una prova che le SOURCE non contengano il dato. Le motivazioni
+ancorate al FORM non dimostrano automaticamente non applicabilità o obbligo.
+Se coverage.recorded=false il vecchio output non spiega le omissioni: dillo
+senza inventarne il motivo. Non dire che verranno analizzate in background.
+Riassumi solo categorie di vuoti pertinenti, senza elenchi di ID o contatori.
+Spiega brevemente le motivazioni esplicite dei vuoti, non soltanto l'inventario
+dei valori trovati. Il backend aggiunge l'avviso di copertura incompleta quando
+necessario: non inventare ragioni per le omissioni o motivazioni non validate.
 Puoi porre al massimo tre domande, scegliendole dal pool di slot del backend:
 preferisci condizioni che sbloccano più valori e poi ambiguità importanti.
 Non accettare una condizione come vera soltanto perché compare nel modulo.
@@ -266,6 +276,7 @@ def _role_context(audit, field):
 
 
 def model_context(data, pool):
+    from app.compilation_coverage import narration_coverage
     from app.compilation_global_sessions import review_fields
 
     dialogue = data.get("dialogue") or {}
@@ -314,7 +325,7 @@ def model_context(data, pool):
         "previous_answers": [{k: (v[:500] if isinstance(v, str) else v)
                               for k, v in a.items() if k != "affected_fields"}
                              for a in list(answers.values())[-24:]],
-        "unassessed_positions": (data.get("audit") or {}).get("unassigned_count", 0),
+        "coverage": narration_coverage(audit),
         "unassessed_source_roles": [{"role": t["source_role"],
             "positions": len(t["candidate_ids"])} for t in source_role_coverage(data)
             if t["state"] == "unassessed_source_role"],
@@ -389,6 +400,7 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
 
 
 async def narrate(data, folder):
+    from app.compilation_coverage import coverage_notice
     from app.compilation_global_sessions import _save
 
     settings, pool = get_ai_settings(), question_pool(data)
@@ -438,6 +450,8 @@ async def narrate(data, folder):
             previous = data.get("dialogue") or {}
             plan = DialoguePlan(message=continuation_receipt(previous, newly_held=bool(
                 held - set(previous.get("held_candidate_ids", [])))), **plan.model_dump())
+        elif notice := coverage_notice(data.get("audit") or {}):
+            plan = plan.model_copy(update={"message": plan.message + "\n\n" + notice})
         selection = export_selection({"global_compilation": {
             **data, "fields": review_fields(data), "dialogue": {
                 **(data.get("dialogue") or {}), **reviewed, "phase": "READY", "error": None}}})

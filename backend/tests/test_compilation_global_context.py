@@ -61,7 +61,7 @@ def audit(case):
 
 def test_continuous_fields_share_literal_origin_and_keep_separate_destinations(case):
     data = build_global_input(case[0], "alpha", case[1])
-    assert data["schema_output"]["properties"]["version"]["const"] == 11
+    assert data["schema_output"]["properties"]["version"]["const"] == 12
     for cid, candidate in data["form"]["candidates"].items():
         assert candidate["continuation_origin_paragraph_id"] == "paragraph:0"
         assert "paragraph:0" not in candidate["anchor_paragraph_ids"]

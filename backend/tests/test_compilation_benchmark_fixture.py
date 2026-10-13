@@ -186,8 +186,8 @@ def test_cli_requires_exactly_one_input_mode(tmp_path):
 
 def test_fixture_runner_never_reads_local_corpus_or_sends_gold(material, tmp_path, monkeypatch):
     """Simulated software test: no API call and no model-quality claim."""
-    raw = json.dumps({"version": 11, "fields": {}, "facts": {}, "conditions": {}, "bindings": {},
-                      "choice_groups": {}})
+    raw = json.dumps({"version": 12, "fields": {}, "facts": {}, "conditions": {}, "bindings": {},
+                      "choice_groups": {}, "coverage": []})
     captured = []
 
     async def model(_client, _settings, body, _timeout, **_kwargs):

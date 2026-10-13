@@ -39,11 +39,12 @@ def reading_plan(catalog, sources, contexts):
     paragraphs = {p["id"]: p["text"] for b in catalog["blocks"] for p in b["paragraphs"]}
     units = {}
     for cid, candidate in catalog["candidates"].items():
-        if candidate["type"] != "text":
-            continue
         origin = (candidate.get("continuation_origin_paragraph_id")
                   or candidate["location"].get("table_id") or candidate["context_id"])
         units.setdefault(origin, []).append(cid)
+    table_anchors = {t["id"]: sorted(set(b.get("preceding_body_paragraph_ids", [])) | {
+        p for row in t["rows"] for cell in row for p in cell["paragraph_ids"]})
+        for b in catalog["blocks"] for t in b.get("tables", [])}
     targets, omitted = {}, 0
     for source in sources:
         if source.get("category") == "general":
@@ -76,7 +77,9 @@ def reading_plan(catalog, sources, contexts):
                     else:
                         omitted += 1
     properties, omitted_properties = property_lines(sources)
-    return {"units": [{"context_id": key, "candidate_ids": ids} for key, ids in units.items()],
+    return {"units": [{"context_id": key, "candidate_ids": ids,
+                       **({"shared_table_anchor_ids": table_anchors[key]}
+                          if key in table_anchors else {})} for key, ids in units.items()],
             "source_role_targets": list(targets.values()), "omitted_role_hints": omitted,
             "source_property_lines": properties, "omitted_property_lines": omitted_properties,
             "meaning": "Reading references only; each value still needs its own validated SOURCE."}

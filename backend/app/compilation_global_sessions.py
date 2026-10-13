@@ -72,7 +72,7 @@ def review_fields(data):
             "form_context": "\n".join(text for key, text in paragraphs.items()
                                        if key in context_ids and text.strip())[:3000],
             "selectable": bool(grounded(field) and (isinstance(value, str) or (
-                type(value) is bool and (data.get("audit") or {}).get("version") == 11))
+                type(value) is bool and (data.get("audit") or {}).get("version") in {11, 12}))
                                and field["candidate_id"] in writable
                                and field.get("disposition") in {"value", "conditional"}),
             "source_evidence": field.get("source_evidence", []),
@@ -116,6 +116,8 @@ def session_payload(row, state):
                             for key, item in audit.get("conditions", {}).items()],
                 report_url=(f"/api/projects/{row['project_id']}/compilation-sessions/"
                             f"{row['id']}/global-report" if audit else None))
+    if "coverage_summary" in audit:
+        view["coverage_summary"] = audit["coverage_summary"]
     return {**{k: v for k, v in state.items() if k != "global_compilation"},
             "global_compilation": view, "chat": chat_view(state),
             **{k: row[k] for k in ["id", "project_id", "form_id", "conversation_id", "version",

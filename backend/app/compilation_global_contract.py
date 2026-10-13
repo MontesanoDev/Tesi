@@ -260,3 +260,19 @@ class ChoiceAwareProposal(ContextAwareProposal):
     choice_groups: dict[Reference, ChoiceGroup] = Field(default_factory=dict, max_length=64)
     fields: dict[Reference, ChoiceAssignment] = Field(max_length=400)
     clarifications: dict[Reference, UserFieldRequest] = Field(default_factory=dict, max_length=16)
+
+
+class UnfilledExplanation(StrictModel):
+    """Model reasoning about unwritten positions, never a factual value or write permission."""
+
+    candidate_ids: list[Reference] = Field(min_length=1, max_length=400)
+    outcome: Literal["source_not_found", "condition_unknown", "not_applicable",
+                     "not_a_field", "manual_input", "unassessed"]
+    reason: str = Field(min_length=4, max_length=300)
+    form: FormSpan | None = None
+    conditions: list[Reference] = Field(default_factory=list, max_length=8)
+
+
+class CoverageAwareProposal(ChoiceAwareProposal):
+    version: Literal[12]
+    coverage: list[UnfilledExplanation] = Field(max_length=400)

@@ -31,6 +31,7 @@ from app.compilation_global_contract import (
     ConditionalValue,
     ConditionTarget,
     ContextAwareProposal,
+    CoverageAwareProposal,
     FormSpan,
     SharedCondition,
     SharedFact,
@@ -61,7 +62,7 @@ ALTERNATIVE_ASSIGNMENT = TypeAdapter(AlternativeAwareAssignment)
 SUBJECT_ASSIGNMENT = TypeAdapter(SubjectBoundAssignment)
 CONDITIONAL_ASSIGNMENT = TypeAdapter(ConditionalAssignment)
 CHOICE_ASSIGNMENT = TypeAdapter(ChoiceAssignment)
-CURRENT_VERSION = 11
+CURRENT_VERSION = 12
 
 
 def load_document_corpus(db, project_id):
@@ -99,7 +100,7 @@ class GlobalProposal(StrictModel):
     fields: dict[str, GlobalField] = Field(max_length=400)
 
 
-TASK = """Produci UNA proposta globale JSON versione 11. Leggi prima l'intero Word FORM
+TASK = """Produci UNA proposta globale JSON versione 12. Leggi prima l'intero Word FORM
 nei blocks e tutte le SOURCE. L'ordine dei blocks è quello del documento; celle,
 righe e titoli precedenti determinano soggetto, ruolo, sezione e sottosezione.
 proposal_stage=source_backed_hypotheses: prepara ipotesi di riempimento con dati
@@ -133,10 +134,9 @@ classificazione di tutte le posizioni. Prima di emettere ciascun record verifica
 Se manca il dato SOURCE pertinente, OMETTI il record. Se manca soltanto la
 verifica della condizione, usa conditional invece di perdere anche il dato.
 Non inventare condizioni per giustificare dati o ruoli non pertinenti.
-L'omissione è l'esito corretto per posizioni senza supporto:
-non serve spiegare ogni vuoto in fields. Non usare NA/review come sostituti di
-missing e non assegnare valori per completare l'inventario. Il backend conserva
-ogni posizione omessa. Preferisci poche proposte fondate a tutte le posizioni.
+L'assenza di una proposta non basta come esito: spiega in coverage perché le
+altre posizioni restano vuote. Non usare NA/review come sostituti di missing e
+non assegnare valori per completare l'inventario. Preferisci proposte fondate.
 
 Ordine di lavoro nella STESSA risposta:
 1. CONDIZIONI FORM. Il backend possiede già l'inventario completo del documento.
@@ -237,8 +237,8 @@ un dato dell'organizzazione con la relativa condizione da verificare.
 disposition=value, conditional, not_applicable o review con le prove richieste.
 Ometti semplicemente
 le altre posizioni: il backend le conserva come ancora da verificare, NON
-missing, decorative o non applicabili. NON restituire deferred o liste di ID
-da coprire. fields contiene SOLO ID esistenti in form.candidates: paragraph e
+missing, decorative o non applicabili. NON restituire deferred; le spiegazioni
+vanno in coverage. fields contiene SOLO ID esistenti in form.candidates: paragraph e
 table sono contesto/scope, MAI destinazioni scrivibili. Nessun nuovo candidate.
 Il tetto strutturale è 400, NON un numero di record da raggiungere. Non elencare
 i requisiti privi di valore: per loro non va emesso alcun record fields.
@@ -323,7 +323,7 @@ Aver proposto un valore in un blocco non soddisfa le altre occorrenze compatibil
 Non omettere un dato documentato solo perché compare anche altrove; non copiarlo
 invece in campi di un'altra persona, altro ruolo o ramo incompatibile. Mantieni
 conditional per le incognite di applicabilità e ometti i dati realmente privi
-di supporto: questa verifica non richiede di inventare o classificare ogni slot.
+di supporto. Spiega le posizioni senza proposta in coverage, senza inventare valori.
 
 ALTERNATIVE SOURCE. Prima di scegliere un valore considera TUTTE le SOURCE
 pertinenti allo stesso soggetto, ruolo e proprietà. Se più valori restano
@@ -389,7 +389,55 @@ denominazione, indirizzo o recapiti dell'operatore. Se l'identità del partecipa
 non è scelta, chiedi quella conferma come condizione; non chiedere un titolo
 personale per confermare indirettamente l'intero profilo aziendale.
 Ordine JSON: version,uncertain_paragraph_ids,conditions,bindings,choice_groups,
-fields,facts,clarifications. Includi clarifications={} se non servono domande locali.
+fields,facts,clarifications,coverage. Includi clarifications={} se non servono domande locali.
+
+ESITI DELLE POSIZIONI NON COMPILATE. coverage è obbligatorio e riguarda SOLO i
+candidate che non compaiono in fields o clarifications. Rendi conto di TUTTE
+queste posizioni, anche nelle sezioni successive. Ogni record contiene:
+candidate_ids (ID reali), outcome, reason breve, form (paragraph_id/quote) e
+conditions se pertinenti. Raggruppa posizioni dello stesso contesto SOLTANTO
+quando condividono realmente motivo ed esito. Nessuna lista globale di vuoti
+con una motivazione generica. Massimo400 gruppi e400 posizioni totali nel Word.
+Usa reading_plan.units per organizzare gli esiti. Per una tabella,
+shared_table_anchor_ids elenca i contesti condivisi ammessi per un gruppo di
+almeno due candidate della STESSA tabella. Per un singolo candidate preferisci
+le sue anchor_paragraph_ids. Non fondere sezioni lontane o checkbox in paragrafi
+diversi senza una condition/choice_group valida che le colleghi: separa i record.
+outcome:
+- source_not_found: hai esaminato le SOURCE pertinenti ma non hai trovato un
+  valore sufficiente per quelle richieste. È una tua dichiarazione di ricerca,
+  non prova che il dato non esista e non un invito automatico a chiedere USER.
+- condition_unknown: il dato dipende da una condizione FORM ancora unknown;
+  referenzia la condizione locale in conditions. Un valore SOURCE disponibile
+  deve invece restare una proposta conditional, non essere omesso qui.
+- not_applicable: una condizione locale risulta davvero falsa con le regole
+  del validator. operator=semantic rimane unknown, NON autorizza questo esito.
+- not_a_field: la posizione grezza è impaginazione/decorazione, non un dato
+  richiesto; cita il contesto che giustifica questa interpretazione.
+- manual_input: firma, decisione, dichiarazione o dato che richiede l'utente.
+  Non presumere obbligatoria ogni posizione vuota e non chiedere valori già in KB.
+- unassessed: non hai determinato il significato/esito della posizione; dichiaralo
+  esplicitamente, non mascherarlo da dato assente o non applicabile.
+reason è una motivazione concreta e condivisibile solo dai candidate elencati.
+Completa prima TUTTE le proposte SOURCE sostenibili; poi rendi conto dei restanti
+candidate in coverage. Non spostare in coverage un valore documentato solo perché
+il ramo è incerto: in fields deve restare conditional. Controlla l'indice SOURCE
+e le sue righe originali anche per occorrenze ripetute dello stesso dato.
+form.quote è un estratto letterale del FORM comune al loro contesto locale
+(o titolo immediatamente precedente), non di una sezione diversa. Per unassessed
+form può essere null; negli altri casi è obbligatorio. Usa il testo originale,
+o text_with_fields per distinguere marker inline; nessuna parafrasi nella quote.
+La quote deve essere BREVE, massimo500 caratteri: copia solo le parole pertinenti,
+non interi paragrafi con lunghe linee di puntini. Nei gruppi condivisi sono ammessi
+contesto della stessa tabella, istruzione di choice_group già validato o clausola
+di una condition con scope che comprende tutti quei candidate. conditions deve
+referenziare condizioni emesse realmente nella mappa conditions: se non riesci
+a modellare il predicato, usa unassessed, non condition_unknown senza riferimenti.
+Non inserire value/fact_id/SOURCE in coverage e non ricopiare valori: una
+spiegazione non verifica un fatto né autorizza scrittura o applicabilità.
+Ogni ID compare una volta: in fields, clarifications OPPURE coverage.
+Prima di chiudere verifica la copertura degli ID ricevuti. Se una posizione non
+è stata valutata restituisci unassessed con motivo, senza ometterla in silenzio.
 """
 
 
@@ -445,7 +493,7 @@ def build_global_input(layout, project_id, sources):
         "user_values": [],
         "source_coverage": {"strategy": "complete_small_corpus", "partial": False,
                             "chunks": len(source_map)},
-        "schema_output": ChoiceAwareProposal.model_json_schema(),
+        "schema_output": CoverageAwareProposal.model_json_schema(),
     }
     from app.compilation_reading_plan import reading_plan
 
@@ -1140,11 +1188,12 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     fact and condition errors cannot discard independent grounded proposals.
     Missing proposals are unassessed, never fabricated missing/NA/value records.
     """
-    choices_enabled = payload["version"] == 11
-    context_enabled = payload["version"] in {10, 11}
-    slot_enabled = payload["version"] in {9, 10, 11}
-    conditional_enabled = payload["version"] in {8, 9, 10, 11}
-    subjects_enabled = payload["version"] in {7, 8, 9, 10, 11}
+    coverage_enabled = payload["version"] == 12
+    choices_enabled = payload["version"] in {11, 12}
+    context_enabled = payload["version"] in {10, 11, 12}
+    slot_enabled = payload["version"] in {9, 10, 11, 12}
+    conditional_enabled = payload["version"] in {8, 9, 10, 11, 12}
+    subjects_enabled = payload["version"] in {7, 8, 9, 10, 11, 12}
     budgets = [("fields", 400), ("facts", 128), ("conditions", 128)]
     if subjects_enabled:
         budgets.append(("bindings", 128))
@@ -1157,8 +1206,9 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         if (not isinstance(records, dict) or len(records) > maximum
                 or any(not 1 <= len(key) <= 80 for key in records)):
             raise ValueError(f"Dizionario {name} non valido/oltre budget")
-    alternatives_enabled = payload["version"] in {6, 7, 8, 9, 10, 11}
-    schema = (ChoiceAwareProposal if choices_enabled else
+    alternatives_enabled = payload["version"] in {6, 7, 8, 9, 10, 11, 12}
+    schema = (CoverageAwareProposal if coverage_enabled else
+              ChoiceAwareProposal if choices_enabled else
               ContextAwareProposal if context_enabled else SlotAwareProposal if slot_enabled else
               ConditionalAwareProposal if conditional_enabled else
               SubjectBoundProposal if subjects_enabled else
@@ -1173,6 +1223,8 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     if choices_enabled:
         envelope["choice_groups"] = {}
         envelope["clarifications"] = {}
+    if coverage_enabled:
+        envelope["coverage"] = []  # Quarantine explanation errors, preserve valid SOURCE siblings.
     proposal = schema.model_validate(envelope)
     paragraphs, local = _form_bindings(catalog)
     marked_paragraphs = {p["id"]: p["text_with_fields"] for block in catalog["blocks"]
@@ -1375,6 +1427,10 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                              catalog, paragraphs, local)
         result["dispositions"] = dict(Counter(f.get("disposition", "unassigned")
                                                for f in result["fields"]))
+    if coverage_enabled:
+        from app.compilation_coverage import attach_coverage
+
+        attach_coverage(result, payload, catalog, paragraphs, role_contexts)
     return result
 
 
@@ -1396,7 +1452,7 @@ def validate_global_proposal(raw, layout, project_id, sources, *, expected_versi
     catalog = build_compilation_catalog(layout)
     source_map = _allowed_sources(project_id, sources)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
-            and payload["version"] in {5, 6, 7, 8, 9, 10, 11}):
+            and payload["version"] in {5, 6, 7, 8, 9, 10, 11, 12}):
         return _validate_sparse_proposal(payload, layout, catalog, source_map)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
             and payload["version"] == 4):

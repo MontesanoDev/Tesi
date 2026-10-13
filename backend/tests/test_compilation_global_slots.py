@@ -204,7 +204,7 @@ def test_real_minervino_line_exposes_six_distinct_parser_markers():
 
 def test_current_schema_requires_version_nine_but_keeps_one_request(case):
     data = build_global_input(case[0], "alpha", case[1])
-    assert data["schema_output"]["properties"]["version"]["const"] == 11
+    assert data["schema_output"]["properties"]["version"]["const"] == 12
     assert data["schema_output"]["properties"]["fields"]["maxProperties"] == 400
 
 
