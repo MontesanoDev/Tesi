@@ -1897,7 +1897,7 @@ manifest in docs/benchmarks/2026-10-12-narration-roles-manifest.json.
 
 Autorizzati gruppi di scelta e scrittura nel motore globale, senza nuova UI.
 Renderer legacy/content control testato102 /7,26s, scelte/API36 /5,41s,167 mirati
-/11,56s; prima suite completa finale2031 /150,75s. Group/source/user separati,
+/11,56s; prima suite completa finale 2031 /150,75s. Group/source/user separati,
 massimo64 gruppi/32 opzioni, marker per checkbox, cardinalità all'export e effetti
 di deselezione espliciti. Contratto V11, V10 preservato; sola corrispondenza SOURCE
 letterale conservativa per le scelte. Nessuna parola di questo bando nel codice.
@@ -1914,3 +1914,54 @@ le prove, nessun output eliminato. Correzione locale per opzioni (NFC/case/spazi
 con prova positiva della clausola SOURCE intera e veto contro nomi ritagliati
 da negazioni. Nessuna modifica ai confronti del RAG/delle condizioni. Nuova serie
 sugli stessi gold dopo il congelamento del fix, risultati da acquisire.
+
+### 13 ottobre 2026 — checkbox, esiti completi e limiti reali
+
+Tre serie congelate di tre analisi sullo stesso set dedicato: tutti i dieci
+booleani SOURCE proposti coincidono col gold; quattro caselle senza prove non
+ricevono valori fattuali inventati. Serie finale scrive 10/10/7 checkbox e 2 testi
+per prova: nel terzo run tre scelte partner sono conditional e restano escluse.
+Tempi 46,81/27,21/62,48 s, token analisi 20.439/16.858/23.601. Non è un test held-out
+né un confronto controllato di latenza; tutte le ripetizioni salvate.
+
+Labirinto R2:5 checkbox corrette+11 testi scritti,6 testi conditional trattenuti.
+Conservati R1 e rivalidazione intermedia negativa: il controllo SOURCE prima
+non gestiva attributi inline. Il writer nativo non modifica altri ZIP part,
+non inventa valori e non trasforma proposte in RESOLVED. Test riproducono gruppi
+esclusivi con alternative estreme omesse: il nuovo gate di lista fisica impedisce
+che l'alternativa inizialmente spuntata sopravviva alla scelta incompleta.
+
+Due HTTP reali con DB privato e analisi nuova: R1 solo 2 testi perché i field non
+ripetevano marker già verificati nel gruppo. Riusato quel binding con stesso
+paragrafo/etichetta grounded; R2 scrive 10 checkbox+2 testi SOURCE, zero USER. La
+rivalidazione dei 13 raw salvati conserva i gruppi; non è una nuova esecuzione
+provider e non riscrive i Word storici. Verifica read-only 14 copie/50 valori testuali
+per posizione, parti ZIP non body e celle non selezionate invariate. Originali/
+DB live preservati; DB/chiavi private eliminati.
+
+Limite emerso: gruppi senza SOURCE possono essere omessi dall'analisi e non
+diventare domande; una risposta fuori dal gruppo attivo fallisce il router.
+Non dichiarare completo il dialogo checkbox. Il checkpoint preparato USER passa
+4/4, persistenza/export testati software; non è un nuovo E2E completo.
+Regressione Dialogo V1 reale 42/43,56 chiamate/188.418 token, export-no fallisce
+schema al primo/retry senza scritture. Nessuna correzione durante il benchmark.
+
+Unica estrazione casuale dal pool Catanzaro/Minervino/Trapani: Trapani.115 candidate,
+zero controlli checkbox nativi,8 proposte conditional,107 omesse; senza conferme
+zero valori scritti anche nell'export di laboratorio esplicitamente autorizzato.
+87,12 s/47.766 token analisi; nessun gold/accuratezza percentuale e nessun redraw.
+
+Totale 100 chiamate reali,14 analisi,651.258 token,1.199,90 s AI sommati, non costo
+fatturato. Software finale 2.051 backend/151,19 s,109 mirati/16,41 s,41 scelte/2,53 s,
+Ruff/diff check. Test software con provider simulati; frontend/browser non
+rieseguiti, UI/contratti invariati. Logs intermedi falliti conservati, incluso
+aliasing della fixture di test; il primo log 2031 è stato sovrascritto da 2045,
+il suo esito storico viene dalla precedente acquisizione di console.
+Nessuna migrazione/reindex/push. [Report](docs/checkbox-2026-10-13.md),
+[metriche](docs/benchmarks/2026-10-13-checkboxes.json). Prossimo: copertura dei
+gruppi senza SOURCE da discutere/misurare, RAG testuale invariato; legacy Word
+ancora da verificare visivamente su desktop.
+
+Bundle sanificato: 917 file /13.240.541 byte grezzi, confronto byte per byte,
+nessuna chiave o DB. Manifest e acquisizioni in docs/benchmarks. SHA256
+84ad2b3900dfe96901775a1ca936bfb490e118258ca86f3323a78f813498bd04.

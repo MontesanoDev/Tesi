@@ -1,18 +1,60 @@
 # Stato di Mapi RAG
 
-## Checkbox V11 — 13 ottobre 2026, prove reali da eseguire
+## Checkbox V11 — 13 ottobre 2026, implementate e misurate
 
-Implementati renderer nativi legacy/content control, gruppi FORM con marker,
-coerenza SOURCE e cardinalità, scelte USER nel gruppo attivo, export dall'originale
-con deselezioni delle alternative esclusive registrate come effetti. Nuove
-analisi V11; V10 ancora leggibile/rivalidabile. Nessuna nuova UI o chiamata di
-analisi, nessuna promozione a RESOLVED. In lavorazione il benchmark reale dopo
-il congelamento di codice, fixture e gold; non presentarlo come già superato.
-Software2031 backend /150,75s,167 mirati /11,56s, renderer102 /7,26s, scelte/API36
-/5,41s. [Protocollo](docs/checkbox-2026-10-13.md), fixture benchmark-checkbox/v1.
-Originali e dati live preservati, test su storage/DB temporanei; commit piccoli,
-nessun push. Prossimo: tre prove DeepSeek sul nuovo set, regressione Labirinto V1
-e un bando estratto, quindi aggiornare risultati/limiti/documentazione finale.
+Nuove analisi V11: gruppi FORM e opzioni con marker fisici, assegnazioni bool,
+SOURCE positiva pertinente o scelta USER nel gruppo attivo. Renderer per controlli
+legacy/content control dall'originale, cardinalità finale e deselezioni esclusive
+tracciate. Una chiamata di analisi, nessuna nuova UI/checklist o promozione a
+RESOLVED. Versioni precedenti leggibili/rivalidabili, nessuna migrazione/reindex:
+provare in conversazione nuova. RAG e collegamento SOURCE testuale invariati.
+
+Correzioni misurate: confronto locale NFC/case/spazi, prova positiva SOURCE
+completa anche per attributi inline, riuso del binding strutturale del gruppo
+senza esigere il marker duplicato nel field. Quote/label/paragrafo restano coerenti.
+Riprodotte omissioni ai bordi dei gruppi esclusivi: ora richiesta la lista fisica
+completa, conservativamente la tabella o riga locale. Nessuna regola del demo.
+
+DeepSeek reale, fixture/gold congelati e tutti gli esiti conservati: nove analisi
+sul set dedicato. Serie finale: dieci booleani grezzi corretti in ciascuna prova;
+**10/10/7 checkbox e 2/2/2 testi scritti**. Tre scelte partner del terzo run restano
+conditional, non scritte; nessun valore inventato nelle quattro caselle senza
+prove. Tempi analisi 46,81/27,21/62,48 s, nessuna conclusione causale sulla latenza.
+Labirinto V1: cinque checkbox e undici testi scritti, altri sei testi conditional.
+Primo Labirinto con zero checkbox conservato con diagnosi case-sensitive.
+
+Due sessioni HTTP ASGI nuove/private con provider reale: prima solo due testi
+per marker duplicato richiesto; dopo fix **dieci checkbox e due testi SOURCE**
+nel Word, zero valori USER. Verificati 14 DOCX/50 valori testuali per posizione,
+stati checkbox, celle non selezionate e parti ZIP estranee. Originali/DB live
+preservati, DB e chiavi private eliminati. Dialoghi USER preparati: **4/4**;
+persistenza/export USER testati software, non dichiarati nuovo E2E completo.
+Rivalidazione finale di 13 raw senza nuove API conserva tutti i gruppi accettati.
+
+**Limiti reali:** gruppi senza SOURCE possono essere omessi e non diventare
+chiarimenti; nella nuova sessione non ci sono valori USER accettati. Risposte
+fuori dal gruppo attivo falliscono il router senza scritture. Dialogo V1 reale
+**42/43**: export-no respinto due volte per answer_fields senza slot, zero export
+non autorizzati. Resa desktop Word legacy non verificata, simboli non nativi
+esclusi. Non dichiarare completa la compilazione automatica.
+
+Unica estrazione da tre bandi: **Trapani**, 115 candidate/zero checkbox native;
+otto testi conditional, 107 posizioni omesse, zero valori scritti senza conferme.
+Nessun gold, percentuale o redraw. Totale prove: **100 chiamate /14 analisi
+/651.258 token /1.199,90 s AI sommati**, non tempo wall o prezzo fatturato.
+Software finale **2.051 backend /151,19 s**, 109 mirati /16,41 s e 41 scelte
+/2,53 s (sottoinsiemi sovrapposti), Ruff backend/runner e diff check. Provider
+simulati/FTS5/Qdrant nei test; frontend/browser non ripetuti, contratti/UI invariati.
+
+Commit piccoli autorizzati, nessun push. [Report](docs/checkbox-2026-10-13.md),
+[metriche](docs/benchmarks/2026-10-13-checkboxes.json),
+[bundle sanificato](docs/benchmarks/2026-10-13-checkboxes-audit.tar.gz),
+[manifest](docs/benchmarks/2026-10-13-checkboxes-audit-manifest.json).
+Raw in backend/data/compilation-audit/checkboxes-20261013/; bundle di 917 file,
+13.240.541 byte grezzi, verificato byte per byte e senza chiavi/DB.
+SHA256 84ad2b3900dfe96901775a1ca936bfb490e118258ca86f3323a78f813498bd04.
+**Prossimo punto:** discutere/misurare la copertura dei gruppi senza SOURCE,
+senza aggiornare destinatari mai domandati. Turni composti ancora da discutere.
 
 ## Sintesi e contesto SOURCE dei ruoli — 12 ottobre 2026, verificato
 

@@ -1,0 +1,911 @@
+{
+  "application_head": "1260e88b9a0189f8549f619576f992eca5da11b4",
+  "model": "deepseek-flash",
+  "gold_in_prompt": false,
+  "held_out": false,
+  "series": [
+    {
+      "name": "choices-r1",
+      "head": "1f0daef495010776b50f091b586e9c9ba18779c7",
+      "original_sha256": "9d6039cb6e5cc9acbab80c973de71ce504fb2842c76df0081678684d38aecb3b",
+      "selected": null,
+      "pool": null,
+      "new_analyses": 3,
+      "runs": [
+        {
+          "index": 1,
+          "state": "audited",
+          "analysis_seconds": 54.78302852600018,
+          "analysis_usage": {
+            "prompt_tokens": 10608,
+            "completion_tokens": 11164,
+            "total_tokens": 21772,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 8709
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 10608
+          },
+          "narration_seconds": 3.4190047699999013,
+          "narration_usage": {
+            "prompt_tokens": 3115,
+            "completion_tokens": 199,
+            "total_tokens": 3314,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 2603
+          },
+          "groups": 6,
+          "valid_groups": 6,
+          "grounded_conditional": 0,
+          "written_checkboxes": {
+            "p3.cb0": true,
+            "p4.cb0": false,
+            "p5.cb0": false,
+            "p8.cb0": false,
+            "p9.cb0": false,
+            "p10.cb0": true,
+            "p13.cb0": true,
+            "p14.cb0": true,
+            "p22.cb0": true,
+            "p22.cb1": false
+          },
+          "written_texts": {
+            "p27.s0": "Vega S.r.l.",
+            "p28.s0": "+39 080 000 1234"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 10
+        },
+        {
+          "index": 2,
+          "state": "audited",
+          "analysis_seconds": 114.48916083999984,
+          "analysis_usage": {
+            "prompt_tokens": 10608,
+            "completion_tokens": 19287,
+            "total_tokens": 29895,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 17132
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 240
+          },
+          "narration_seconds": 3.6249451300000146,
+          "narration_usage": {
+            "prompt_tokens": 2957,
+            "completion_tokens": 135,
+            "total_tokens": 3092,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 141
+          },
+          "groups": 4,
+          "valid_groups": 4,
+          "grounded_conditional": 0,
+          "written_checkboxes": {
+            "p3.cb0": true,
+            "p4.cb0": false,
+            "p5.cb0": false,
+            "p8.cb0": false,
+            "p9.cb0": false,
+            "p10.cb0": true,
+            "p13.cb0": true,
+            "p14.cb0": true,
+            "p22.cb0": true,
+            "p22.cb1": false
+          },
+          "written_texts": {
+            "p27.s0": "Vega S.r.l.",
+            "p28.s0": "+39 080 000 1234"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 10
+        },
+        {
+          "index": 3,
+          "state": "audited",
+          "analysis_seconds": 48.66496397800029,
+          "analysis_usage": {
+            "prompt_tokens": 10608,
+            "completion_tokens": 10193,
+            "total_tokens": 20801,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 6938
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 240
+          },
+          "narration_seconds": 3.869422645999748,
+          "narration_usage": {
+            "prompt_tokens": 3039,
+            "completion_tokens": 161,
+            "total_tokens": 3200,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 223
+          },
+          "groups": 5,
+          "valid_groups": 5,
+          "grounded_conditional": 0,
+          "written_checkboxes": {
+            "p3.cb0": true,
+            "p4.cb0": false,
+            "p5.cb0": false,
+            "p8.cb0": false,
+            "p9.cb0": false,
+            "p10.cb0": true,
+            "p13.cb0": true,
+            "p14.cb0": true,
+            "p22.cb0": true,
+            "p22.cb1": false
+          },
+          "written_texts": {
+            "p27.s0": "Vega S.r.l.",
+            "p28.s0": "+39 080 000 1234"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 10
+        }
+      ]
+    },
+    {
+      "name": "choices-r2",
+      "head": "da334b9c6d86f174755acbc868539d9b510ba07f",
+      "original_sha256": "9d6039cb6e5cc9acbab80c973de71ce504fb2842c76df0081678684d38aecb3b",
+      "selected": null,
+      "pool": null,
+      "new_analyses": 3,
+      "runs": [
+        {
+          "index": 1,
+          "state": "audited",
+          "analysis_seconds": 49.03157302599993,
+          "analysis_usage": {
+            "prompt_tokens": 10608,
+            "completion_tokens": 10531,
+            "total_tokens": 21139,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 8119
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 240
+          },
+          "narration_seconds": 2.954795027999353,
+          "narration_usage": {
+            "prompt_tokens": 3039,
+            "completion_tokens": 152,
+            "total_tokens": 3191,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 223
+          },
+          "groups": 6,
+          "valid_groups": 6,
+          "grounded_conditional": 0,
+          "written_checkboxes": {
+            "p3.cb0": true,
+            "p4.cb0": false,
+            "p5.cb0": false,
+            "p8.cb0": false,
+            "p9.cb0": false,
+            "p10.cb0": true,
+            "p13.cb0": true,
+            "p14.cb0": true,
+            "p22.cb0": true,
+            "p22.cb1": false
+          },
+          "written_texts": {
+            "p27.s0": "Vega S.r.l.",
+            "p28.s0": "+39 080 000 1234"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 10
+        },
+        {
+          "index": 2,
+          "state": "audited",
+          "analysis_seconds": 56.02798955699927,
+          "analysis_usage": {
+            "prompt_tokens": 10608,
+            "completion_tokens": 13073,
+            "total_tokens": 23681,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 10592
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 240
+          },
+          "narration_seconds": 5.339949489999526,
+          "narration_usage": {
+            "prompt_tokens": 3039,
+            "completion_tokens": 156,
+            "total_tokens": 3195,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 223
+          },
+          "groups": 6,
+          "valid_groups": 6,
+          "grounded_conditional": 0,
+          "written_checkboxes": {
+            "p3.cb0": true,
+            "p4.cb0": false,
+            "p5.cb0": false,
+            "p8.cb0": false,
+            "p9.cb0": false,
+            "p10.cb0": true,
+            "p13.cb0": true,
+            "p14.cb0": true,
+            "p22.cb0": true,
+            "p22.cb1": false
+          },
+          "written_texts": {
+            "p27.s0": "Vega S.r.l.",
+            "p28.s0": "+39 080 000 1234"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 10
+        },
+        {
+          "index": 3,
+          "state": "audited",
+          "analysis_seconds": 60.95496624499992,
+          "analysis_usage": {
+            "prompt_tokens": 10608,
+            "completion_tokens": 13275,
+            "total_tokens": 23883,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 9873
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 240
+          },
+          "narration_seconds": 2.100554447999457,
+          "narration_usage": {
+            "prompt_tokens": 3039,
+            "completion_tokens": 150,
+            "total_tokens": 3189,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 223
+          },
+          "groups": 5,
+          "valid_groups": 5,
+          "grounded_conditional": 0,
+          "written_checkboxes": {
+            "p3.cb0": true,
+            "p4.cb0": false,
+            "p5.cb0": false,
+            "p8.cb0": false,
+            "p9.cb0": false,
+            "p10.cb0": true,
+            "p13.cb0": true,
+            "p14.cb0": true,
+            "p22.cb0": true,
+            "p22.cb1": false
+          },
+          "written_texts": {
+            "p27.s0": "Vega S.r.l.",
+            "p28.s0": "+39 080 000 1234"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 10
+        }
+      ]
+    },
+    {
+      "name": "choices-r3",
+      "head": "b7d0b61070b60c1aedf25934d8fc9ca3c118e53f",
+      "original_sha256": "9d6039cb6e5cc9acbab80c973de71ce504fb2842c76df0081678684d38aecb3b",
+      "selected": null,
+      "pool": null,
+      "new_analyses": 3,
+      "runs": [
+        {
+          "index": 1,
+          "state": "audited",
+          "analysis_seconds": 46.8135849600003,
+          "analysis_usage": {
+            "prompt_tokens": 10681,
+            "completion_tokens": 9758,
+            "total_tokens": 20439,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 7518
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 7737
+          },
+          "narration_seconds": 4.708193501000096,
+          "narration_usage": {
+            "prompt_tokens": 3039,
+            "completion_tokens": 166,
+            "total_tokens": 3205,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 223
+          },
+          "groups": 5,
+          "valid_groups": 5,
+          "grounded_conditional": 0,
+          "written_checkboxes": {
+            "p3.cb0": true,
+            "p4.cb0": false,
+            "p5.cb0": false,
+            "p8.cb0": false,
+            "p9.cb0": false,
+            "p10.cb0": true,
+            "p13.cb0": true,
+            "p14.cb0": true,
+            "p22.cb0": true,
+            "p22.cb1": false
+          },
+          "written_texts": {
+            "p27.s0": "Vega S.r.l.",
+            "p28.s0": "+39 080 000 1234"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 10
+        },
+        {
+          "index": 2,
+          "state": "audited",
+          "analysis_seconds": 27.214722537999478,
+          "analysis_usage": {
+            "prompt_tokens": 10681,
+            "completion_tokens": 6177,
+            "total_tokens": 16858,
+            "prompt_tokens_details": {
+              "cached_tokens": 10496
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 4099
+            },
+            "prompt_cache_hit_tokens": 10496,
+            "prompt_cache_miss_tokens": 185
+          },
+          "narration_seconds": 3.0422798479994526,
+          "narration_usage": {
+            "prompt_tokens": 2955,
+            "completion_tokens": 135,
+            "total_tokens": 3090,
+            "prompt_tokens_details": {
+              "cached_tokens": 2176
+            },
+            "prompt_cache_hit_tokens": 2176,
+            "prompt_cache_miss_tokens": 779
+          },
+          "groups": 4,
+          "valid_groups": 4,
+          "grounded_conditional": 0,
+          "written_checkboxes": {
+            "p3.cb0": true,
+            "p4.cb0": false,
+            "p5.cb0": false,
+            "p8.cb0": false,
+            "p9.cb0": false,
+            "p10.cb0": true,
+            "p13.cb0": true,
+            "p14.cb0": true,
+            "p22.cb0": true,
+            "p22.cb1": false
+          },
+          "written_texts": {
+            "p27.s0": "Vega S.r.l.",
+            "p28.s0": "+39 080 000 1234"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 10
+        },
+        {
+          "index": 3,
+          "state": "audited",
+          "analysis_seconds": 62.48139336999975,
+          "analysis_usage": {
+            "prompt_tokens": 10681,
+            "completion_tokens": 12920,
+            "total_tokens": 23601,
+            "prompt_tokens_details": {
+              "cached_tokens": 10496
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 10627
+            },
+            "prompt_cache_hit_tokens": 10496,
+            "prompt_cache_miss_tokens": 185
+          },
+          "narration_seconds": 2.221410922999894,
+          "narration_usage": {
+            "prompt_tokens": 3035,
+            "completion_tokens": 160,
+            "total_tokens": 3195,
+            "prompt_tokens_details": {
+              "cached_tokens": 1792
+            },
+            "prompt_cache_hit_tokens": 1792,
+            "prompt_cache_miss_tokens": 1243
+          },
+          "groups": 4,
+          "valid_groups": 4,
+          "grounded_conditional": 3,
+          "written_checkboxes": {
+            "p3.cb0": true,
+            "p4.cb0": false,
+            "p5.cb0": false,
+            "p13.cb0": true,
+            "p14.cb0": true,
+            "p22.cb0": true,
+            "p22.cb1": false
+          },
+          "written_texts": {
+            "p27.s0": "Vega S.r.l.",
+            "p28.s0": "+39 080 000 1234"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 10
+        }
+      ]
+    },
+    {
+      "name": "labirinto-r1",
+      "head": "f646436a16564163d5a05838ba085c7102cfd28e",
+      "original_sha256": "eaa3c2b8e45e147d35766e71f77b90bbb0bdc9a339ee79dd12e6ab007ad9c7ca",
+      "selected": null,
+      "pool": null,
+      "new_analyses": 1,
+      "runs": [
+        {
+          "index": 1,
+          "state": "audited",
+          "analysis_seconds": 84.220455786,
+          "analysis_usage": {
+            "prompt_tokens": 18131,
+            "completion_tokens": 18001,
+            "total_tokens": 36132,
+            "prompt_tokens_details": {
+              "cached_tokens": 4608
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 13947
+            },
+            "prompt_cache_hit_tokens": 4608,
+            "prompt_cache_miss_tokens": 13523
+          },
+          "narration_seconds": 4.094555709999895,
+          "narration_usage": {
+            "prompt_tokens": 3706,
+            "completion_tokens": 291,
+            "total_tokens": 3997,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 2682
+          },
+          "groups": 2,
+          "valid_groups": 2,
+          "grounded_conditional": 0,
+          "written_checkboxes": {},
+          "written_texts": {
+            "t0.r0.c1": "Orione Tecnica S.r.l.",
+            "t0.r1.c1": "società a responsabilità limitata",
+            "t0.r2.c1": "01234567897",
+            "t0.r3.c1": "01234567897",
+            "t0.r4.c1": "Via delle Querce 18, 60121 Ancona (AN)",
+            "t0.r5.c1": "+39 071 000 1234",
+            "t0.r6.c1": "orione@pec.example.org",
+            "t12.r0.c1": "Camera di Commercio delle Marche",
+            "t12.r1.c1": "AN-204060",
+            "t12.r2.c1": "14/03/2019",
+            "t13.r0.c1": "LAB-ORIONE-2026",
+            "t5.r0.c1": "Orione Tecnica S.r.l.",
+            "t5.r1.c1": "società a responsabilità limitata",
+            "t6.r0.c1": "Giulia Serra",
+            "t6.r1.c1": "Ingegnere",
+            "t6.r2.c1": "Ordine degli Ingegneri di Ancona",
+            "t6.r3.c1": "5739"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 0
+        }
+      ]
+    },
+    {
+      "name": "labirinto-r2",
+      "head": "a59c73e202048920c8c9ef0833e1c85d06315d88",
+      "original_sha256": "eaa3c2b8e45e147d35766e71f77b90bbb0bdc9a339ee79dd12e6ab007ad9c7ca",
+      "selected": null,
+      "pool": null,
+      "new_analyses": 1,
+      "runs": [
+        {
+          "index": 1,
+          "state": "audited",
+          "analysis_seconds": 85.8344533239997,
+          "analysis_usage": {
+            "prompt_tokens": 18131,
+            "completion_tokens": 17406,
+            "total_tokens": 35537,
+            "prompt_tokens_details": {
+              "cached_tokens": 17920
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 13083
+            },
+            "prompt_cache_hit_tokens": 17920,
+            "prompt_cache_miss_tokens": 211
+          },
+          "narration_seconds": 3.479221964000317,
+          "narration_usage": {
+            "prompt_tokens": 4615,
+            "completion_tokens": 333,
+            "total_tokens": 4948,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 3591
+          },
+          "groups": 2,
+          "valid_groups": 2,
+          "grounded_conditional": 6,
+          "written_checkboxes": {
+            "p36.cb0": true,
+            "p37.cb0": false,
+            "p38.cb0": false,
+            "p39.cb0": false,
+            "p40.cb0": false
+          },
+          "written_texts": {
+            "t0.r0.c1": "Orione Tecnica S.r.l.",
+            "t0.r1.c1": "società a responsabilità limitata",
+            "t0.r2.c1": "01234567897",
+            "t0.r3.c1": "01234567897",
+            "t0.r4.c1": "Via delle Querce 18, 60121 Ancona (AN)",
+            "t0.r5.c1": "+39 071 000 1234",
+            "t0.r6.c1": "orione@pec.example.org",
+            "t12.r0.c1": "Camera di Commercio delle Marche",
+            "t12.r1.c1": "AN-204060",
+            "t12.r2.c1": "14/03/2019",
+            "t13.r0.c1": "LAB-ORIONE-2026"
+          },
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 0
+        }
+      ]
+    },
+    {
+      "name": "external-r1",
+      "head": "1260e88b9a0189f8549f619576f992eca5da11b4",
+      "original_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+      "selected": "demo-documents/bandi/trapani-green/originali/manifestazione-interesse.docx",
+      "pool": [
+        "demo-documents/bandi/catanzaro-dl-cse/modello/domanda-partecipazione.docx",
+        "demo-documents/bandi/minervino-elenco-sia/originali/domanda-iscrizione.docx",
+        "demo-documents/bandi/trapani-green/originali/manifestazione-interesse.docx"
+      ],
+      "new_analyses": 1,
+      "runs": [
+        {
+          "index": 1,
+          "state": "audited",
+          "analysis_seconds": 87.11517051400006,
+          "analysis_usage": {
+            "prompt_tokens": 30703,
+            "completion_tokens": 17063,
+            "total_tokens": 47766,
+            "prompt_tokens_details": {
+              "cached_tokens": 4608
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 14914
+            },
+            "prompt_cache_hit_tokens": 4608,
+            "prompt_cache_miss_tokens": 26095
+          },
+          "narration_seconds": 4.430699159000142,
+          "narration_usage": {
+            "prompt_tokens": 2662,
+            "completion_tokens": 203,
+            "total_tokens": 2865,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 1638
+          },
+          "groups": 0,
+          "valid_groups": 0,
+          "grounded_conditional": 8,
+          "written_checkboxes": {},
+          "written_texts": {},
+          "unsupported_choice_count": 0,
+          "boolean_comparison_count": 0
+        }
+      ]
+    }
+  ],
+  "conversations": [
+    {
+      "name": "conversation-r1",
+      "turns": 4,
+      "calls": 9,
+      "call_kinds": {
+        "routing": 4,
+        "analysis": 1,
+        "narration": 3,
+        "guard": 1
+      },
+      "source_written": 2,
+      "user_written": 0,
+      "checkboxes": {},
+      "integrity": {
+        "live_database_unchanged": true,
+        "private_database_and_key_removed": true
+      },
+      "fresh_http_asgi_not_browser": true
+    },
+    {
+      "name": "conversation-r2",
+      "turns": 3,
+      "calls": 6,
+      "call_kinds": {
+        "routing": 4,
+        "analysis": 1,
+        "narration": 1
+      },
+      "source_written": 12,
+      "user_written": 0,
+      "checkboxes": {
+        "p3.cb0": true,
+        "p4.cb0": false,
+        "p5.cb0": false,
+        "p8.cb0": false,
+        "p9.cb0": false,
+        "p10.cb0": true,
+        "p13.cb0": true,
+        "p14.cb0": true,
+        "p22.cb0": true,
+        "p22.cb1": false
+      },
+      "integrity": {
+        "live_database_unchanged": true,
+        "private_database_and_key_removed": true
+      },
+      "fresh_http_asgi_not_browser": true
+    }
+  ],
+  "prepared_choice_dialogue": {
+    "cases": 4,
+    "passed": 4,
+    "calls": 5,
+    "real_http_persistence": false
+  },
+  "commands": {
+    "head": "1260e88b9a0189f8549f619576f992eca5da11b4",
+    "cases": 43,
+    "passed": 42,
+    "failed_checks": {
+      "intent": 1,
+      "no_execution_error": 1
+    },
+    "calls": 56,
+    "routing_calls": 44,
+    "scope_check_calls": 12,
+    "retries": 1,
+    "total_tokens": 188418,
+    "seconds": 235.61404536999908,
+    "generated": 5,
+    "fixture_original_unchanged": true,
+    "live_db_writes": 0
+  },
+  "real_total": {
+    "calls": 100,
+    "analysis_calls": 14,
+    "tokens": 651258,
+    "measured_ai_seconds": 1199.902487351997,
+    "monetary_price_not_measured": true
+  },
+  "software": {
+    "full_backend": 2051,
+    "seconds": 151.19,
+    "targeted": 109,
+    "targeted_seconds": 16.41,
+    "choice_completeness": 41,
+    "choice_seconds": 2.53,
+    "provider": "simulated",
+    "frontend_repeated": false,
+    "browser_repeated": false
+  },
+  "limits": [
+    "coverage of groups without SOURCE",
+    "conditional partner/branch values held",
+    "export-no router conservative failure",
+    "SOURCE prose/synonyms restricted",
+    "legacy desktop visual rendering not verified"
+  ],
+  "revalidation": {
+    "head": "1260e88b9a0189f8549f619576f992eca5da11b4",
+    "new_provider_calls": 0,
+    "kind": "deterministic revalidation of saved real responses, not new benchmark",
+    "results": [
+      {
+        "series": "choices-r1",
+        "run": "run-01",
+        "groups": 6,
+        "valid_groups": 6,
+        "grounded_choices": 10,
+        "unconditional_choices": 10,
+        "rejected_groups": {}
+      },
+      {
+        "series": "choices-r1",
+        "run": "run-02",
+        "groups": 4,
+        "valid_groups": 4,
+        "grounded_choices": 10,
+        "unconditional_choices": 10,
+        "rejected_groups": {}
+      },
+      {
+        "series": "choices-r1",
+        "run": "run-03",
+        "groups": 5,
+        "valid_groups": 5,
+        "grounded_choices": 10,
+        "unconditional_choices": 10,
+        "rejected_groups": {}
+      },
+      {
+        "series": "choices-r2",
+        "run": "run-01",
+        "groups": 6,
+        "valid_groups": 6,
+        "grounded_choices": 10,
+        "unconditional_choices": 10,
+        "rejected_groups": {}
+      },
+      {
+        "series": "choices-r2",
+        "run": "run-02",
+        "groups": 6,
+        "valid_groups": 6,
+        "grounded_choices": 10,
+        "unconditional_choices": 10,
+        "rejected_groups": {}
+      },
+      {
+        "series": "choices-r2",
+        "run": "run-03",
+        "groups": 5,
+        "valid_groups": 5,
+        "grounded_choices": 10,
+        "unconditional_choices": 10,
+        "rejected_groups": {}
+      },
+      {
+        "series": "choices-r3",
+        "run": "run-01",
+        "groups": 5,
+        "valid_groups": 5,
+        "grounded_choices": 10,
+        "unconditional_choices": 10,
+        "rejected_groups": {}
+      },
+      {
+        "series": "choices-r3",
+        "run": "run-02",
+        "groups": 4,
+        "valid_groups": 4,
+        "grounded_choices": 10,
+        "unconditional_choices": 10,
+        "rejected_groups": {}
+      },
+      {
+        "series": "choices-r3",
+        "run": "run-03",
+        "groups": 4,
+        "valid_groups": 4,
+        "grounded_choices": 10,
+        "unconditional_choices": 7,
+        "rejected_groups": {}
+      },
+      {
+        "series": "labirinto-r1",
+        "run": "run-01",
+        "groups": 2,
+        "valid_groups": 2,
+        "grounded_choices": 5,
+        "unconditional_choices": 5,
+        "rejected_groups": {}
+      },
+      {
+        "series": "labirinto-r2",
+        "run": "run-01",
+        "groups": 2,
+        "valid_groups": 2,
+        "grounded_choices": 5,
+        "unconditional_choices": 5,
+        "rejected_groups": {}
+      },
+      {
+        "series": "conversation-r1",
+        "run": "analysis",
+        "groups": 6,
+        "valid_groups": 6,
+        "grounded_choices": 10,
+        "unconditional_choices": 10,
+        "rejected_groups": {}
+      },
+      {
+        "series": "conversation-r2",
+        "run": "analysis",
+        "groups": 4,
+        "valid_groups": 4,
+        "grounded_choices": 10,
+        "unconditional_choices": 10,
+        "rejected_groups": {}
+      }
+    ]
+  },
+  "word_readonly_verification": {
+    "files": 14,
+    "text_values_checked_at_original_positions": 50,
+    "other_zip_parts_unchanged": true,
+    "unselected_text_cells_unchanged": true,
+    "native_states_compared_by_runners": true,
+    "desktop_visual_check": false
+  },
+  "pool_native_inventory": [
+    {
+      "path": "demo-documents/bandi/catanzaro-dl-cse/modello/domanda-partecipazione.docx",
+      "sha256": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563",
+      "native_checkbox_count": 28
+    },
+    {
+      "path": "demo-documents/bandi/minervino-elenco-sia/originali/domanda-iscrizione.docx",
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+      "native_checkbox_count": 13
+    },
+    {
+      "path": "demo-documents/bandi/trapani-green/originali/manifestazione-interesse.docx",
+      "sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+      "native_checkbox_count": 0
+    }
+  ]
+}

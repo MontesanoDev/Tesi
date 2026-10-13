@@ -1,5 +1,43 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Checkbox native V11 — 13 ottobre, stato corrente
+
+Le nuove analisi globali usano V11: `choice_groups` descrive istruzione FORM,
+soggetto/proprietà, opzioni ancorate ai controlli nativi e cardinalità. Una
+singola chiamata di analisi comprende testo e checkbox; sintesi/router/gate
+USER riusano le chiamate esistenti. Nessuna checklist nella UI. Versioni
+precedenti ancora leggibili/rivalidabili, senza migrazione automatica: usare
+una nuova conversazione per osservare la nuova analisi.
+
+SOURCE sostiene una scelta solo con valore/opzione compatibili, prova positiva
+completa e soggetto nello stesso chunk; General KB non verifica queste scelte.
+USER sceglie soltanto tra le alternative del gruppo attivo del backend,
+attraverso indici controllati anche dal verificatore indipendente. FORM non
+verifica valori. Unknown/skip/ambiguità mantengono le caselle irrisolte.
+Le proposte non diventano automaticamente RESOLVED.
+
+L'export esplicito rivalida gruppi, fonti e condizioni, parte dall'originale
+e riusa il renderer testuale più il writer dei controlli legacy/content control.
+Controlla la selezione finale e registra separatamente le deselezioni delle
+alternative esclusive, comprese quelle inizialmente spuntate. Gruppi fisici
+incompleti/ambigui vengono rifiutati. Report: `checkbox_values`,
+`checkbox_effects`, valori e provenance SOURCE/USER distinte.
+
+[Report, protocollo e limiti](checkbox-2026-10-13.md): nove analisi reali sul
+set dedicato, cinque checkbox corrette su Labirinto, conversazione HTTP nuova
+con dieci checkbox e due testi SOURCE nel Word. Nel terzo run della serie
+finale tre scelte partner restano conditional, non scritte. Quattro prove USER
+su checkpoint preparato passano; non sono conversazioni nuove complete.
+La nuova conversazione omette gruppi senza SOURCE e quindi non pone tutte le
+domande attese: copertura ancora incompleta. Verifica visiva Word desktop dei
+campi legacy non eseguita; simboli stampati non nativi esclusi.
+
+Software: 2.051 backend, Ruff/diff check; UI/contratti frontend invariati,
+frontend/browser non ripetuti. Regressione reale comandi:42/43, rifiuto export
+con errore schema senza scritture. Nessuna modifica al RAG o ai dati live.
+Le sezioni seguenti conservano gli esiti storici V10/legacy: le note «checkbox
+non scritte» descrivono quelle versioni, non le nuove sessioni V11.
+
 ## Contesto dei ruoli nella sintesi — 12 ottobre, aggiornamento
 
 Il JSON della sintesi conserva ora `role_contexts`: soggetto, ruolo FORM,

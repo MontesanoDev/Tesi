@@ -1,8 +1,9 @@
 """One deterministic FORM catalog, shared context instead of per-field copies.
 
 This is document structure, not a semantic plan or evidence of applicant facts.
-Native checkbox positions are catalogued for the next resolver; the existing
-session/writer still supports only its original text candidates.
+Native controls and marked option text are shared with the V11 choice resolver.
+The raw catalog keeps its historical write-support flag; V11 enables it only
+with grounded choice groups and the corresponding renderer/validation contract.
 """
 
 from __future__ import annotations
