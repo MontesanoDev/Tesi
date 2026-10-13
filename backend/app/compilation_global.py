@@ -363,6 +363,14 @@ stesso record. Proponi nome, qualifica, registro o identificativo soltanto se
 effettivamente richiesti e sostenuti; le proprietà prive di prova restano vuote.
 Non fermarti dopo la prima anagrafica e non confondere chi firma con chi ricopre
 un altro ruolo documentato. Non creare valori o assegnazioni da questi indizi.
+source_property_lines è un indice letterale compatto di righe SOURCE con attributi,
+con chunk e intestazione del record quando disponibile. Non è un catalogo di fatti
+approvati: controlla nel chunk originale soggetto, valore, proprietà e pertinenza.
+Prima di passare alle domande USER, rileggi queste righe per tutte le destinazioni
+compatibili, incluse anagrafiche e recapiti ripetuti. Una conferma mancante del
+partecipante produce proposte conditional, non una domanda sul suo valore già
+documentato. Non scegliere tra identità alternative. Non abbandonare i dati
+aziendali per trattare soltanto quelli professionali o viceversa.
 
 DOMANDE LOCALI. Restituisci anche clarifications, mappa opzionale di massimo16
 ID candidate testuali -> {label,form,conditions,reason}. È distinta da fields:

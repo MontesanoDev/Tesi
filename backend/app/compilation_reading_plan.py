@@ -5,10 +5,34 @@ import unicodedata
 
 MAX_ROLE_TARGETS = 32
 MAX_RECORDS_PER_TARGET = 4
+MAX_PROPERTY_LINES = 256
+MAX_PROPERTY_CHARACTERS = 24_000
 
 
 def normalized(value):
     return " ".join(unicodedata.normalize("NFC", value).casefold().split())
+
+
+def property_lines(sources):
+    """Literal reading aids, not extracted/validated facts or field associations."""
+    records, omitted, size = [], 0, 0
+    for source in sorted(sources, key=lambda s: s.get("category") != "company"):
+        if source.get("category") == "general":
+            continue
+        heading = ""
+        for line in source["content"].splitlines():
+            if re.match(r"^\s*#{1,6}\s+", line):
+                heading = line.strip()[:400]
+            if not re.match(r"^\s*(?:[-*]\s+)?[^:\n]{2,180}:\s*\S", line):
+                continue
+            if (len(line) > 800 or len(records) == MAX_PROPERTY_LINES
+                    or size + len(line) + len(heading) > MAX_PROPERTY_CHARACTERS):
+                omitted += 1
+                continue
+            records.append({"chunk_id": source["chunk_id"], "section_header": heading,
+                            "quote": line})
+            size += len(line) + len(heading)
+    return records, omitted
 
 
 def reading_plan(catalog, sources, contexts):
@@ -51,8 +75,10 @@ def reading_plan(catalog, sources, contexts):
                         records.append(record)
                     else:
                         omitted += 1
+    properties, omitted_properties = property_lines(sources)
     return {"units": [{"context_id": key, "candidate_ids": ids} for key, ids in units.items()],
             "source_role_targets": list(targets.values()), "omitted_role_hints": omitted,
+            "source_property_lines": properties, "omitted_property_lines": omitted_properties,
             "meaning": "Reading references only; each value still needs its own validated SOURCE."}
 
 

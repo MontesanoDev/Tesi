@@ -742,7 +742,10 @@ async def plan_chat_turn(
                 )
                 body = {**body, "messages": [
                     *body["messages"],
-                    {"role": "assistant", "content": content},
+                    # Failed output is diagnostic only: invalid Unicode must not
+                    # break HTTP encoding of the one allowed repair request.
+                    {"role": "assistant", "content": content.encode(
+                        "utf-8", errors="backslashreplace").decode("utf-8")},
                     {"role": "user", "content": repair},
                 ]}
                 continue

@@ -84,9 +84,24 @@ def test_role_reading_targets_are_references_not_factual_values(professional):
     assert target["source_records"][0]["chunk_id"] == -7
     assert "value" not in target and "subject" not in target
     assert len(plan["units"]) == 1
+    assert all(r["quote"] in professional[1][0]["content"]
+               for r in plan["source_property_lines"])
+    assert {r["quote"] for r in plan["source_property_lines"]} == {
+        "Nome: Berta Neri.", "Registro: R-236.", "Data iscrizione: non disponibile."}
     professional[1][0]["category"] = "general"
     data = build_global_input(professional[0], "alpha", professional[1])
     assert data["reading_plan"]["source_role_targets"] == []
+    assert data["reading_plan"]["source_property_lines"] == []
+
+
+def test_literal_property_reading_budget_never_silently_truncates():
+    from app.compilation_reading_plan import MAX_PROPERTY_LINES, property_lines
+
+    source = {"chunk_id": -1, "category": "company",
+              "content": "\n".join(f"Dato {i}: valore {i}" for i in range(300))}
+    records, omitted = property_lines([source])
+    assert len(records) == MAX_PROPERTY_LINES and omitted == 300 - MAX_PROPERTY_LINES
+    assert all(r["quote"] in source["content"] and "value" not in r for r in records)
 
 
 def test_missing_source_role_proposals_are_flagged_not_asked_from_user(professional):
@@ -231,6 +246,27 @@ async def test_malformed_model_response_fails_without_http_500(api, provider, mo
     assert response.status_code == 502, response.text
     state = (await api.get(f"{BASE}/{s['id']}")).json()
     assert state["status"] == "FAILED" and state["last_generation"] is None
+
+
+@pytest.mark.anyio
+async def test_invalid_unicode_router_output_does_not_corrupt_retry_request(
+    api, provider, monkeypatch,
+):
+    from app import intents
+
+    calls = []
+
+    async def route(client, settings, body, timeout, **kwargs):
+        json.dumps(body, ensure_ascii=False).encode("utf-8")  # Actual HTTP JSON encoding boundary.
+        calls.append(body)
+        return json.dumps({"intent": "reply", "answer": "\ud800" if len(calls) == 1 else
+                           "Puoi precisare la richiesta?", "target": "source", "queries": []},
+                          ensure_ascii=False), "simulated", {}
+
+    monkeypatch.setattr(intents, "request_model_content", route)
+    response = await api.post("/api/projects/alpha/answer", json={"question": "🧪test"})
+    assert response.status_code == 200 and len(calls) == 2
+    assert response.json()["answer"] == "Puoi precisare la richiesta?"
 
 
 @pytest.mark.anyio
