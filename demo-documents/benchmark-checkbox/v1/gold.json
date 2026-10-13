@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "original_sha256": "9d6039cb6e5cc9acbab80c973de71ce504fb2842c76df0081678684d38aecb3b",
+  "project_id": "checkbox-lab",
+  "checkboxes": [
+    {
+      "candidate_id": "p3.cb0",
+      "label": "Organizzazione tecnica",
+      "subject": "Vega S.r.l.",
+      "expected": true
+    },
+    {
+      "candidate_id": "p4.cb0",
+      "label": "Professionista autonomo",
+      "subject": "Vega S.r.l.",
+      "expected": false
+    },
+    {
+      "candidate_id": "p5.cb0",
+      "label": "Studio collettivo",
+      "subject": "Vega S.r.l.",
+      "expected": false
+    },
+    {
+      "candidate_id": "p8.cb0",
+      "label": "Organizzazione tecnica",
+      "subject": "Delta Laboratorio",
+      "expected": false
+    },
+    {
+      "candidate_id": "p9.cb0",
+      "label": "Professionista autonomo",
+      "subject": "Delta Laboratorio",
+      "expected": false
+    },
+    {
+      "candidate_id": "p10.cb0",
+      "label": "Studio collettivo",
+      "subject": "Delta Laboratorio",
+      "expected": true
+    },
+    {
+      "candidate_id": "p13.cb0",
+      "label": "Analisi",
+      "subject": "Vega S.r.l.",
+      "expected": true
+    },
+    {
+      "candidate_id": "p14.cb0",
+      "label": "Verifica",
+      "subject": "Vega S.r.l.",
+      "expected": true
+    },
+    {
+      "candidate_id": "p15.cb0",
+      "label": "Collaudo",
+      "subject": "Vega S.r.l.",
+      "expected": null
+    },
+    {
+      "candidate_id": "p18.cb0",
+      "label": "Partecipazione individuale",
+      "subject": "Vega S.r.l.",
+      "expected": null
+    },
+    {
+      "candidate_id": "p19.cb0",
+      "label": "In raggruppamento",
+      "subject": "Vega S.r.l.",
+      "expected": null
+    },
+    {
+      "candidate_id": "p22.cb0",
+      "label": "Sì",
+      "subject": "Vega S.r.l.",
+      "expected": true
+    },
+    {
+      "candidate_id": "p22.cb1",
+      "label": "No",
+      "subject": "Vega S.r.l.",
+      "expected": false
+    },
+    {
+      "candidate_id": "p25.cb0",
+      "label": "Possesso del requisito Q",
+      "subject": "Vega S.r.l.",
+      "expected": null
+    }
+  ],
+  "text_values": {
+    "Denominazione": "Vega S.r.l.",
+    "Recapito": "+39 080 000 1234"
+  },
+  "forbidden_automatic": [
+    "Forma di partecipazione",
+    "Possesso del requisito Q"
+  ],
+  "user_messages": [
+    {
+      "message": "Per la partecipazione scegliamo la modalità individuale, senza raggruppamento.",
+      "expected_options": [
+        1
+      ]
+    },
+    {
+      "message": "Forse individuale, oppure in raggruppamento: non abbiamo ancora deciso.",
+      "expected_options": null
+    },
+    {
+      "message": "Non so ancora come parteciperemo.",
+      "expected_action": "UNKNOWN"
+    },
+    {
+      "message": "Questa scelta la rimandiamo.",
+      "expected_action": "SKIP"
+    }
+  ]
+}

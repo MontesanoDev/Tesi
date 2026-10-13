@@ -1,5 +1,19 @@
 # Stato di Mapi RAG
 
+## Checkbox V11 — 13 ottobre 2026, prove reali da eseguire
+
+Implementati renderer nativi legacy/content control, gruppi FORM con marker,
+coerenza SOURCE e cardinalità, scelte USER nel gruppo attivo, export dall'originale
+con deselezioni delle alternative esclusive registrate come effetti. Nuove
+analisi V11; V10 ancora leggibile/rivalidabile. Nessuna nuova UI o chiamata di
+analisi, nessuna promozione a RESOLVED. In lavorazione il benchmark reale dopo
+il congelamento di codice, fixture e gold; non presentarlo come già superato.
+Software2031 backend /150,75s,167 mirati /11,56s, renderer102 /7,26s, scelte/API36
+/5,41s. [Protocollo](docs/checkbox-2026-10-13.md), fixture benchmark-checkbox/v1.
+Originali e dati live preservati, test su storage/DB temporanei; commit piccoli,
+nessun push. Prossimo: tre prove DeepSeek sul nuovo set, regressione Labirinto V1
+e un bando estratto, quindi aggiornare risultati/limiti/documentazione finale.
+
 ## Sintesi e contesto SOURCE dei ruoli — 12 ottobre 2026, verificato
 
 La sintesi perdeva la prova SOURCE persona–ruolo conservata dall'audit, e vedeva

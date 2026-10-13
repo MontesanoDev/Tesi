@@ -1892,3 +1892,15 @@ scope. Report/metriche/acquisizioni durevoli in docs/benchmarks; nessun push.
 Bundle sanificato218 file /1.143.542 byte, confronto byte per byte, nessuna
 chiave/DB. SHA256 be28938aa7c3bd0aa98b69d0e0c01ce60c4427c3615245da2e15910b3588675b;
 manifest in docs/benchmarks/2026-10-12-narration-roles-manifest.json.
+
+### 13 ottobre 2026 — checkbox native, protocollo congelato
+
+Autorizzati gruppi di scelta e scrittura nel motore globale, senza nuova UI.
+Renderer legacy/content control testato102 /7,26s, scelte/API36 /5,41s,167 mirati
+/11,56s; prima suite completa finale2031 /150,75s. Group/source/user separati,
+massimo64 gruppi/32 opzioni, marker per checkbox, cardinalità all'export e effetti
+di deselezione espliciti. Contratto V11, V10 preservato; sola corrispondenza SOURCE
+letterale conservativa per le scelte. Nessuna parola di questo bando nel codice.
+Prima delle API congelati benchmark-checkbox/v1 e gold,14 checkbox/two soggetti;
+tre analisi senza retry, benchmark compilazione V1 invariato e bando estratto
+senza ripetere l'estrazione. [Protocollo](docs/checkbox-2026-10-13.md).

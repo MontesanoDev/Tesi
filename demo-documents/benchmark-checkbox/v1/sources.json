@@ -1,0 +1,35 @@
+[
+  {
+    "chunk_id": -1,
+    "file_id": -1,
+    "chunk_index": 0,
+    "source_name": "richiedente.txt",
+    "role": "source",
+    "scope": "global",
+    "project_id": null,
+    "category": "company",
+    "content": "Denominazione: Vega S.r.l.\nTipologia: Organizzazione tecnica\nServizio: Analisi\nServizio: Verifica\nSede operativa coincidente con sede legale: Sì\nRecapito: +39 080 000 1234"
+  },
+  {
+    "chunk_id": -2,
+    "file_id": -2,
+    "chunk_index": 0,
+    "source_name": "partner.txt",
+    "role": "source",
+    "scope": "global",
+    "project_id": null,
+    "category": "company",
+    "content": "Denominazione: Delta Laboratorio\nTipologia: Studio collettivo"
+  },
+  {
+    "chunk_id": -3,
+    "file_id": -3,
+    "chunk_index": 0,
+    "source_name": "norma.txt",
+    "role": "source",
+    "scope": "global",
+    "project_id": null,
+    "category": "general",
+    "content": "Una società descritta come Organizzazione tecnica può possedere il requisito Q; questo è un esempio generale, non una prova di possesso per Vega."
+  }
+]

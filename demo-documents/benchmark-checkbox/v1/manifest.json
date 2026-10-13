@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "files": {
+    "README.md": "d3592c8a55aea6dba9b6aa89f92d8ef70e8a5d51dbe562dcce1f7715c1768d77",
+    "gold.json": "8430600f203967c6fdf0b614ff698550383baaea55274f40dd64eb9ba0d8f551",
+    "modulo.docx": "9d6039cb6e5cc9acbab80c973de71ce504fb2842c76df0081678684d38aecb3b",
+    "sources.json": "d2dbdc3242b66f77ba7091dd6830aa1ab5ca44b7aeaa1d48aa66812afa840f45"
+  },
+  "runs": 3,
+  "gold_in_prompt": false,
+  "max_calls_per_analysis": 1,
+  "project_id": "checkbox-lab"
+}
