@@ -1,0 +1,514 @@
+{
+  "software": {
+    "backend_full": 2178,
+    "backend_seconds": 162.97,
+    "targeted": 203,
+    "targeted_seconds": 28.42,
+    "frontend": 106,
+    "frontend_seconds": 6.98,
+    "browser": 8,
+    "browser_seconds": 10.3,
+    "fuzz_question_mutations": 320
+  },
+  "real_trials": {
+    "after-01": {
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "integrity": {
+        "live_database_unchanged": true,
+        "application_unchanged": true,
+        "private_db_removed": true
+      }
+    },
+    "after-02": {
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "integrity": {
+        "live_database_unchanged": true,
+        "application_unchanged": true,
+        "private_db_removed": true
+      }
+    },
+    "after-03": {
+      "calls": 6,
+      "seconds_acquired": 15.301,
+      "tokens_acquired": 26960,
+      "uncaptured_calls": 0,
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "initial": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 73,
+        "error": null,
+        "questions": 3,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-1": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 78,
+        "error": null,
+        "questions": 1,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-2": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 78,
+        "error": null,
+        "questions": 1,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "integrity": {
+        "live_database_unchanged": true,
+        "application_unchanged": true,
+        "private_db_removed": true
+      }
+    },
+    "after-04": {
+      "calls": 6,
+      "seconds_acquired": 16.115,
+      "tokens_acquired": 27088,
+      "uncaptured_calls": 0,
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "initial": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 84,
+        "error": null,
+        "questions": 3,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-1": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 82,
+        "error": null,
+        "questions": 1,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-2": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 82,
+        "error": null,
+        "questions": 1,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "integrity": {
+        "live_database_unchanged": true,
+        "application_unchanged": true,
+        "private_db_removed": true
+      }
+    },
+    "after-05": {
+      "calls": 4,
+      "seconds_acquired": 7.313,
+      "tokens_acquired": 7965,
+      "uncaptured_calls": 2,
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "initial": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 26,
+        "error": "GenerationError",
+        "questions": 0,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-1": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 26,
+        "error": "GenerationError",
+        "questions": 0,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-2": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 26,
+        "error": "GenerationError",
+        "questions": 0,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "integrity": {
+        "live_database_unchanged": true,
+        "application_unchanged": true,
+        "private_db_removed": true
+      }
+    },
+    "after-06": {
+      "calls": 6,
+      "seconds_acquired": 90.309,
+      "tokens_acquired": 26439,
+      "uncaptured_calls": 0,
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "initial": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 76,
+        "error": null,
+        "questions": 3,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-1": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 25,
+        "error": null,
+        "questions": 1,
+        "accepted": 2,
+        "unaccepted": 1,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-2": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 33,
+        "error": null,
+        "questions": 1,
+        "accepted": 0,
+        "unaccepted": 1,
+        "user_values": 0,
+        "generated": false
+      },
+      "integrity": {
+        "live_database_unchanged": true,
+        "application_unchanged": true,
+        "private_db_removed": true
+      }
+    },
+    "after-07": {
+      "calls": 6,
+      "seconds_acquired": 15.611,
+      "tokens_acquired": 26444,
+      "uncaptured_calls": 0,
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "initial": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 81,
+        "error": null,
+        "questions": 3,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-1": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 13,
+        "error": null,
+        "questions": 1,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-2": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 13,
+        "error": null,
+        "questions": 1,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "integrity": {
+        "live_database_unchanged": true,
+        "application_unchanged": true,
+        "private_db_removed": true
+      },
+      "persisted_conversation_matches_final_replies": true
+    },
+    "after-08": {
+      "calls": 6,
+      "seconds_acquired": 16.534,
+      "tokens_acquired": 26517,
+      "uncaptured_calls": 0,
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "initial": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 80,
+        "error": null,
+        "questions": 3,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-1": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 13,
+        "error": null,
+        "questions": 1,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-2": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 13,
+        "error": null,
+        "questions": 1,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "integrity": {
+        "live_database_unchanged": true,
+        "application_unchanged": true,
+        "private_db_removed": true
+      },
+      "persisted_conversation_matches_final_replies": true
+    },
+    "resume-existing-01": {
+      "calls": 4,
+      "seconds_acquired": 7.649,
+      "tokens_acquired": 15991,
+      "uncaptured_calls": 0,
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "initial": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 92,
+        "error": null,
+        "questions": 1,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-1": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 5,
+        "error": null,
+        "questions": 1,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-2": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 13,
+        "error": null,
+        "questions": 1,
+        "accepted": 0,
+        "unaccepted": 1,
+        "user_values": 0,
+        "generated": false
+      },
+      "integrity": {
+        "live_database_unchanged": true,
+        "application_unchanged": true,
+        "private_db_removed": true
+      },
+      "persisted_conversation_matches_final_replies": true
+    },
+    "after-09": {
+      "calls": 7,
+      "seconds_acquired": 17.992,
+      "tokens_acquired": 32684,
+      "uncaptured_calls": 0,
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "initial": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 79,
+        "error": null,
+        "questions": 3,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-1": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 13,
+        "error": null,
+        "questions": 2,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-2": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 5,
+        "error": null,
+        "questions": 1,
+        "accepted": 1,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "integrity": {
+        "live_database_unchanged": false,
+        "application_unchanged": true,
+        "private_db_removed": true
+      },
+      "persisted_conversation_matches_final_replies": true
+    },
+    "after-10": {
+      "calls": 6,
+      "seconds_acquired": 13.071,
+      "tokens_acquired": 26730,
+      "uncaptured_calls": 0,
+      "new_analysis_calls": 0,
+      "prepared_checkpoint": true,
+      "initial": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 79,
+        "error": null,
+        "questions": 3,
+        "accepted": 0,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-1": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 13,
+        "error": null,
+        "questions": 2,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "turn-2": {
+        "status": "WAITING_FOR_USER",
+        "attempts": 1,
+        "source_proposals": 18,
+        "summary_words": 13,
+        "error": null,
+        "questions": 2,
+        "accepted": 3,
+        "unaccepted": 0,
+        "user_values": 0,
+        "generated": false
+      },
+      "integrity": {
+        "live_database_unchanged": true,
+        "application_unchanged": true,
+        "private_db_removed": true,
+        "changed_tables": []
+      },
+      "persisted_conversation_matches_final_replies": true
+    },
+    "before-routing-02": {
+      "calls": 2,
+      "seconds_acquired": 5.28,
+      "tokens_acquired": 7099,
+      "new_analysis_calls": 0,
+      "persistence_mutations": 0
+    },
+    "after-old-routing": {
+      "calls": 2,
+      "seconds_acquired": 6.82,
+      "tokens_acquired": 7254,
+      "new_analysis_calls": 0,
+      "persistence_mutations": 0
+    }
+  },
+  "historical_narrations": [
+    {
+      "snapshot": "diagnosis/analysis/dialogue/ef0ea4955a2142ffad33e5b8c9eb4441/result.json",
+      "summary_words": 82
+    },
+    {
+      "snapshot": "diagnosis/analysis/dialogue/29cdee443c8c48b7a16d078b102a7363/result.json",
+      "summary_words": 92
+    },
+    {
+      "snapshot": "diagnosis/analysis/dialogue/4ade1df7fe9244e9b625a0f3e59ce357/result.json",
+      "summary_words": 96
+    }
+  ],
+  "acquired_call_totals": {
+    "invocations": 55,
+    "tokens_acquired": 231171,
+    "seconds_acquired": 211.995,
+    "invocations_without_complete_response_metrics": 2
+  }
+}

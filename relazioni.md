@@ -2060,3 +2060,43 @@ originali e DB live invariati. Report e artefatti duraturi:
 [bundle](docs/benchmarks/2026-10-13-text-coverage-audit.tar.gz).
 Restano condizioni troppo ampie, indirizzi compositi e copertura sparse.
 Non dichiarare completati tutti i limiti osservati; nessun push.
+
+### 13 ottobre 2026 — prosecuzione conversazionale e feedback stabile
+
+Baseline628fcb9. Diagnosi read-only del dialogo Minervino: domanda aperta legata
+a booleano, riepilogo SOURCE rifatto a ogni turno, messaggi finali globali non
+salvati in cronologia, snapshot READY visibile brevemente durante refresh.
+Prima scelta comunicata: separare ricevuta dell'aggiornamento e sintesi iniziale,
+senza modificare SOURCE/RAG/parser/writer. Il solo prompt fallisce in due prove
+reali (78/82 parole ripetute): acquisizioni negative conservate.
+
+ContinuationPlan ora senza message: backend rende ricevuta delle sole mutazioni
+accettate, modello controlla proposte e seleziona domande residue. Schema lega
+confirmation agli slot booleani e question ai valori/scelte. Nessun nuovo fatto
+o allentamento dei gate. Feedback unico, cronologia persistita corretta.
+
+Serie reali finali DeepSeek after07/08, codice congelato, stesso checkpoint
+V11/originale/fonti:18 proposte preservate, due conferme+rinvio accettati,13 parole
+di ricevuta, nessuna nuova analisi/export. «Di ingegneria» non conferma un diverso
+incarico personale: richiesta di precisare senza mutazione. Non è compilazione
+integrale o benchmark della latenza dell'analisi. Prova separata di ripresa della
+vecchia sessione: narrazione breve, ma ruolo troppo specifico da una condizione
+«IN QUALITÀ DI» priva di predicato; risposta VALUE respinta nello slot booleano.
+Questo limite semantico resta aperto. Tutti i tentativi/preparazioni falliti salvati.
+
+Replica finale after10:18 proposte intatte,13 parole di ricevuta,6 invocazioni,
+13,07s AI sommati/26.730 token,nessuna nuova analisi. Può ancora chiedere una
+qualità locale già implicata da una conferma di condizione: la selezione delle
+domande non è perfetta. after09 fallisce il fingerprint globale DB, pur con
+sessione/versione/stato/originali live invariati; origine della differenza non
+acquisita. Possibile reload/FTS, non dimostrato. Runner con hash per tabella:
+after10 passa anche il controllo globale. Fallimento precedente conservato.
+
+203 mirati/28,42s,2178 backend/162,97s,106 frontend/6,98s,8 browser/10,3s,
+320 mutazioni con seed, Ruff/Oxlint/build/diff. Provider simulati nelle suite,
+API simulate nel browser, provider reale solo nei replay privati. Nessun nuovo
+sorteggio bando: è il caso specifico utente. Integrità sessione live/versione9,
+stato e originale confermata read-only. [Report](docs/compilazione-dialogo-2026-10-13.md),
+[metriche](docs/benchmarks/2026-10-13-conversation-flow.json), raw in
+backend/data/compilation-audit/conversation-flow-20261013/ e bundle sanificato
+con manifest in docs/benchmarks/. Commit piccoli locali, nessun push.

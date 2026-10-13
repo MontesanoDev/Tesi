@@ -1,5 +1,46 @@
 # Stato di Mapi RAG
 
+## Dialogo di compilazione: aggiornamenti brevi e feedback stabile — 13 ottobre
+
+Corretto il percorso conversazionale globale: ricevuta provvisoria/vecchia sintesi
+non lampeggiano durante refresh/resolve; un solo indicatore contestuale. Riepilogo
+AI iniziale separato dalla prosecuzione: ContinuationPlan contiene soltanto
+questions/held_proposal_slots; il backend conferma le mutazioni realmente accettate,
+senza rigenerare ogni volta l'inventario SOURCE. Domande booleano/valore distinte
+anche nello schema inviato al provider, slot assegnati dal backend. Guard respinge
+semplice assenso a domanda aperta; aggiornamenti parziali conservati, senza
+nascondere quelli scartati. Rimossi contatori tecnici dalla domanda primaria.
+
+Narrazione finale globale salvata nel turno corretto della cronologia. Vecchie
+domande non in pausa aggiornabili con `riprendi`, solo presentazione, nessuna nuova
+analisi; pausa/ripresa conserva il gruppo sospeso. Nessuna migrazione/reindex,
+modifica RAG/parser/renderer o upgrade fattuale delle proposte.
+
+Verifiche finali: **203 mirati/28,42s**, **2178 backend/162,97s**, **106 frontend**,
+**8 browser desktop/mobile/reduced-motion**,320 mutazioni domande strutturate,
+Ruff backend/runner, Oxlint, build e diff check. Provider simulati nelle suite.
+DeepSeek reale: replay HTTP privati sul medesimo checkpoint SOURCE,
+due conferme+rinvio accettati, ricevuta13 parole,18 proposte SOURCE preservate,
+zero nuove analisi/export. Conservati esperimenti intermedi falliti: il solo
+prompt non bastava. Sessione live/versione9/stato/originale verificati invariati.
+Ultima replica after10 conferma anche fingerprint globale DB invariato; after09
+ha invece fallito quel controllo globale (differenza non localizzata, possibile
+reload/FTS), con sessione/originale invariati. Conservato, non nascosto. Il runner
+ora acquisisce hash prima/dopo per tabella. La selezione di domande locali resta
+variabile, anche se la ricevuta non ricapitola più l'inventario aziendale.
+
+**Limite non risolto:** condizione storica c.qualita ancorata soltanto a
+«IN QUALITÀ DI». Nel replay di ripresa il modello chiede un ruolo troppo specifico;
+risposta USER di ruolo diverso respinta dal validator booleano, senza mutazione.
+Contratto chiuso non certifica correttezza semantica delle condizioni iniziali.
+Prossimo: separare queste condizioni/scelte/valori nel primo output, mantenendo
+SOURCE/USER rigorosi. Non dichiarare compilazione completa o qualità perfetta.
+
+[Report](docs/compilazione-dialogo-2026-10-13.md),
+[metriche](docs/benchmarks/2026-10-13-conversation-flow.json), raw locali in
+backend/data/compilation-audit/conversation-flow-20261013/ e bundle/manifest
+in docs/benchmarks/2026-10-13-conversation-flow-*. Commit piccoli, nessun push.
+
 ## Chat: tolto il riquadro «Informazioni mancanti» — 13 ottobre 2026
 
 Feedback utente: nel riassunto del modulo il riquadro confonde sezioni non

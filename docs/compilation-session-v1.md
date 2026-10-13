@@ -1,5 +1,34 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Prosecuzione conversazionale — 13 ottobre
+
+[Diagnosi, replay reali e limiti](compilazione-dialogo-2026-10-13.md).
+Primo riepilogo AI separato dagli aggiornamenti. ContinuationPlan può soltanto
+proporre domande residue e sospendere proposte: niente message/inventario ripetuto.
+Ricevuta backend delle azioni effettivamente accettate nell'ultimo turno, con
+parti scartate distinte. Lo stesso contesto SOURCE completo resta disponibile
+per il controllo delle destinazioni. Nessuna chiamata aggiuntiva o promozione
+fattuale. USER mantiene quote, destinatario e domanda realmente posta.
+
+Schema provider: confirmation obbligatoria per slot di applicabilità,
+question per valore/scelta, slot ammessi assegnati dal backend. Conferme
+renderizzate come domanda chiusa; un assenso a una vecchia domanda aperta
+non fornisce un ruolo o valore. Rimosso il contatore tecnico dei dati collegati
+dalla domanda; perimetro e guard dei rinvii condivisi conservati internamente.
+
+UI: un solo indicatore contestuale, nessun messaggio provvisorio o vecchia
+sintesi durante refresh/resolve. Il completamento globale sostituisce la ricevuta
+nel proprio turno persistito. Riapertura conserva la narrazione finale.
+Vecchie domande aggiornabili con ripresa esplicita senza nuova analisi;
+gruppo in pausa conservato. presentation_version=2, nessuna migrazione al GET.
+
+2178 backend,106 frontend,8 browser desktop/mobile/movimento ridotto passati.
+Replay reali DeepSeek mantengono18 proposte SOURCE e riducono la ricevuta
+a13 parole. Non sono nuove analisi end-to-end. Il replay della vecchia condizione
+«IN QUALITÀ DI» espone ancora una domanda di ruolo troppo specifica: risposta
+incompatibile respinta, nessuna mutazione. Resta da correggere la modellazione
+delle condizioni del primo output, non il solo wording della narrazione.
+
 ## Copertura testuale e chiarimenti locali — 13 ottobre
 
 [Intervento e misure](compilazione-copertura-2026-10-13.md): reading_plan di
@@ -10,7 +39,8 @@ rinvio locale invece di trasformare un dato personale assente in una condizione
 sui recapiti aziendali. Le condizioni reali restano necessarie; vecchi output
 senza clarifications compatibili, nessun upgrade automatico delle sessioni.
 
-Il perimetro di una conferma condivisa compare nella domanda e nel gate USER.
+Il perimetro di una conferma condivisa resta nel contesto e nel gate USER
+(il contatore tecnico nella domanda è stato rimosso nell'intervento sopra).
 SKIP/UNKNOWN/REFUSE su blocchi di più field sono verificati nella medesima chiamata
 bounded delle scritture; il rinvio locale non aggiunge una chiamata. Backend
 conserva destinatari ed effetti del rinvio; USER non diventa SOURCE. Indizi di

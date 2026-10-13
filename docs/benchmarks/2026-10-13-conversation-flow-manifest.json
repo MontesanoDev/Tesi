@@ -1,0 +1,1731 @@
+{
+  "bundle": "2026-10-13-conversation-flow-audit.tar.gz",
+  "sha256": "6e26f1134b2a208b097ae560eec8181cc245a930d120421a438e7f0e3decc1d6",
+  "files": 344,
+  "uncompressed_bytes": 6194085,
+  "credential_scan_passed": true,
+  "database_excluded": true,
+  "byte_comparison_passed": true,
+  "entries": [
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-01/integrity.json",
+      "bytes": 101,
+      "sha256": "a507d9e6116888bc79b5d363ab24dd5a410c0dfcf33595515fa2f6f1843d25f7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-01/protocol.json",
+      "bytes": 5931,
+      "sha256": "4bf8000753372980404b09b210772e73cb9f90f47cc765081ec72f8504408229"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-02/integrity.json",
+      "bytes": 101,
+      "sha256": "a507d9e6116888bc79b5d363ab24dd5a410c0dfcf33595515fa2f6f1843d25f7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-02/protocol.json",
+      "bytes": 5931,
+      "sha256": "4bf8000753372980404b09b210772e73cb9f90f47cc765081ec72f8504408229"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/artifact/dialogue/42b4e86dcd5c49e7bb2af84cc21fd199/http-response.txt",
+      "bytes": 1500,
+      "sha256": "522067b33d115353b8a41d4cad78b2d8e4f5feea52fbbd13450ca2e8270a7ec9"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/artifact/dialogue/42b4e86dcd5c49e7bb2af84cc21fd199/request.json",
+      "bytes": 27193,
+      "sha256": "23c0b67533b3cd811cb6d9aefe6ee5a9ac987990230d63d2d3a511d73e8313f4"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/artifact/dialogue/42b4e86dcd5c49e7bb2af84cc21fd199/response.txt",
+      "bytes": 996,
+      "sha256": "f7b35b6de3bd52c2313f202c040d5e7df4d8f192abeb201120e99af07858e431"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/artifact/dialogue/42b4e86dcd5c49e7bb2af84cc21fd199/result.json",
+      "bytes": 5418,
+      "sha256": "ddc627ad6abe31c6096381b89bfa12781c7e3e106d68015330d36f46c2b520d5"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/artifact/dialogue/de686f699e45449cafcb46b42026c70a/http-response.txt",
+      "bytes": 1260,
+      "sha256": "7d967e3fd64c2dbd34fa9f73cd48ebb81fb920b0571e0ad7593a1eae86551435"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/artifact/dialogue/de686f699e45449cafcb46b42026c70a/request.json",
+      "bytes": 27275,
+      "sha256": "ccdced1c4cdef1b9d30e39da21e02fcfbd965a96d5772e4354d99d4c6dbcc0fc"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/artifact/dialogue/de686f699e45449cafcb46b42026c70a/response.txt",
+      "bytes": 771,
+      "sha256": "e9ef2d284c21b9e3e69dd360e09797c051acd2ca7daab073638ad361ebc6cd09"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/artifact/dialogue/de686f699e45449cafcb46b42026c70a/result.json",
+      "bytes": 3276,
+      "sha256": "7f978a28808e3d7721319b1becad416e4543e065523ddb775f07112f0fb882cb"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/artifact/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/artifact/response.txt",
+      "bytes": 16995,
+      "sha256": "9666350f92dff2898aff6f62f929a5ead9ca7d03f81b8dcce8e25e502e8655af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/calls.json",
+      "bytes": 2329,
+      "sha256": "c6dacb1d0ca2d85f38317bf044a9054bc488c585886e9b202609bcb207134bc9"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/conversation.json",
+      "bytes": 3819,
+      "sha256": "da115fa21f543f6c81aa3e0d9ca2d72cfbc399e11e3ebb7dc953faadc1a256b8"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/initial/call-01-request.json",
+      "bytes": 27193,
+      "sha256": "23c0b67533b3cd811cb6d9aefe6ee5a9ac987990230d63d2d3a511d73e8313f4"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/initial/call-01-response.json",
+      "bytes": 1404,
+      "sha256": "7d00223befe4ebe99f6321a334a696f567a95e86b94802864ee63fd5f3528095"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/initial/state.json",
+      "bytes": 69745,
+      "sha256": "7a533bdcb3a68c4d16160fcf4c29841a1f187a50b909f9442ce2f5cc1514ec0b"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/integrity.json",
+      "bytes": 101,
+      "sha256": "a507d9e6116888bc79b5d363ab24dd5a410c0dfcf33595515fa2f6f1843d25f7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/protocol.json",
+      "bytes": 5931,
+      "sha256": "4bf8000753372980404b09b210772e73cb9f90f47cc765081ec72f8504408229"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-1/call-02-request.json",
+      "bytes": 22400,
+      "sha256": "f865c807b603995220d49ccf43a97fe7b2f47c1f4baee8e3f7eb5068b6693538"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-1/call-02-response.json",
+      "bytes": 1019,
+      "sha256": "6ab3dcdc45e48a15f6da48bf6b3a23acad6fc534371dd324dbb401875d42b0fe"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-1/call-03-request.json",
+      "bytes": 10275,
+      "sha256": "edf71a709ee96e1bb22c9a54ac174c5b35fd7e7ecde685daf259fcf7f0457ba5"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-1/call-03-response.json",
+      "bytes": 770,
+      "sha256": "a1e56411f23eabba3f0a9117c17527a5d160f2c04bcb67a8e3664b6cc615ea69"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-1/call-04-request.json",
+      "bytes": 27275,
+      "sha256": "ccdced1c4cdef1b9d30e39da21e02fcfbd965a96d5772e4354d99d4c6dbcc0fc"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-1/call-04-response.json",
+      "bytes": 1163,
+      "sha256": "afbc10354a3d1224398b4f946abd432202baf669cba260a11dd409f5611f1fe3"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-1/response.json",
+      "bytes": 755,
+      "sha256": "b8c061cb480a7bbb700425ef931ce198f422a159c99d8ce9a6a4759b2bac76a8"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-1/state.json",
+      "bytes": 67204,
+      "sha256": "30c420d878fa3e7055a7ae693dd87bf42aa20ee94435c896c23a62f7dc8c06d7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-2/call-05-request.json",
+      "bytes": 21817,
+      "sha256": "717726b5e6981e3b3f88a53eac99bafb2d548ac2c0aa65007a4d68ddbc422c4a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-2/call-05-response.json",
+      "bytes": 820,
+      "sha256": "c712000d96966e37f0bd27ffc40975d41ce6d1ab800dfbdba710b14f4d2a81ef"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-2/call-06-request.json",
+      "bytes": 8875,
+      "sha256": "8e85781c7507b7052fe26b8b90421e8dd6362c66c77ddd11d7a93ea1a16090f3"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-2/call-06-response.json",
+      "bytes": 622,
+      "sha256": "f5a55bc975a1bd0869deb2b15faffdf5b0b87b14e428a8ba828eb77e8daef431"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-2/response.json",
+      "bytes": 823,
+      "sha256": "184fe498d27ad3be29b896d473b752837d248cb1492d35661011ed0e038a222e"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-03/turn-2/state.json",
+      "bytes": 67204,
+      "sha256": "30c420d878fa3e7055a7ae693dd87bf42aa20ee94435c896c23a62f7dc8c06d7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/artifact/dialogue/4590153fe95e466c815476450a16889f/http-response.txt",
+      "bytes": 1542,
+      "sha256": "1278b9b76193b690507b6fed2ebae9f49c202688de4c2c73cab9832ea9657c29"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/artifact/dialogue/4590153fe95e466c815476450a16889f/request.json",
+      "bytes": 27193,
+      "sha256": "23c0b67533b3cd811cb6d9aefe6ee5a9ac987990230d63d2d3a511d73e8313f4"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/artifact/dialogue/4590153fe95e466c815476450a16889f/response.txt",
+      "bytes": 1037,
+      "sha256": "a9fda53c3314471ca02e99efd56ed9bcb1c38f94460f533924c644cf042acb37"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/artifact/dialogue/4590153fe95e466c815476450a16889f/result.json",
+      "bytes": 5479,
+      "sha256": "64ee03e9d90c71463d21e993d4c8f6da9ec8c21d24bf05bef2c59c5b82c9ac1a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/artifact/dialogue/529dd1b11865475590ab96b3f70e95e6/http-response.txt",
+      "bytes": 1278,
+      "sha256": "f0aea41e7a15087aff848935deeb6a21511e257d824262b01b4b1effd13b9513"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/artifact/dialogue/529dd1b11865475590ab96b3f70e95e6/request.json",
+      "bytes": 27275,
+      "sha256": "ccdced1c4cdef1b9d30e39da21e02fcfbd965a96d5772e4354d99d4c6dbcc0fc"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/artifact/dialogue/529dd1b11865475590ab96b3f70e95e6/response.txt",
+      "bytes": 790,
+      "sha256": "f46cac24feb7f9f461eacf67a210bcb8c1bed51f86043a4992b95f4694337540"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/artifact/dialogue/529dd1b11865475590ab96b3f70e95e6/result.json",
+      "bytes": 3311,
+      "sha256": "8cf065ee4c221793aeef8adde03af6d0df2c4cbb200b826dc28573867b814a37"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/artifact/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/artifact/response.txt",
+      "bytes": 16995,
+      "sha256": "9666350f92dff2898aff6f62f929a5ead9ca7d03f81b8dcce8e25e502e8655af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/calls.json",
+      "bytes": 2330,
+      "sha256": "9d294e172169d863cda1aa16f4bf3ea183cc784b8bf6075bd7cec416c91bc97c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/conversation.json",
+      "bytes": 3879,
+      "sha256": "5188bd457fa13c6130b52cdadbda61c34451c21c7506ae3271561c9a1195fd20"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/initial/call-01-request.json",
+      "bytes": 27193,
+      "sha256": "23c0b67533b3cd811cb6d9aefe6ee5a9ac987990230d63d2d3a511d73e8313f4"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/initial/call-01-response.json",
+      "bytes": 1447,
+      "sha256": "7ff3e3c633ec7f856369d413db156fa52134a63dd0693546cf56a0b1fa893225"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/initial/state.json",
+      "bytes": 69824,
+      "sha256": "5c8c7ef2ed1ffaa7928c3a1225cf1fe49a7474d6158c08e4023af7fa4baa9cde"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/integrity.json",
+      "bytes": 101,
+      "sha256": "a507d9e6116888bc79b5d363ab24dd5a410c0dfcf33595515fa2f6f1843d25f7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/protocol.json",
+      "bytes": 5931,
+      "sha256": "4bf8000753372980404b09b210772e73cb9f90f47cc765081ec72f8504408229"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-1/call-02-request.json",
+      "bytes": 22459,
+      "sha256": "fe4f5d382fff6381f64e245500e09b5d9cfb2a98229a77aa091812f0da0de195"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-1/call-02-response.json",
+      "bytes": 1286,
+      "sha256": "e324acc4e735c9190009b124907c9f068799989fedc353e0fc35ab75cb6035c8"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-1/call-03-request.json",
+      "bytes": 10293,
+      "sha256": "76ea875fafa3ab8678c062d444df2f023dcc05907bb88bff1c7635c6f810006b"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-1/call-03-response.json",
+      "bytes": 750,
+      "sha256": "817328fefe9fab56a7d63fabdcc24409e56e2878712a70e2e29d8b01e6f1f835"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-1/call-04-request.json",
+      "bytes": 27275,
+      "sha256": "ccdced1c4cdef1b9d30e39da21e02fcfbd965a96d5772e4354d99d4c6dbcc0fc"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-1/call-04-response.json",
+      "bytes": 1182,
+      "sha256": "9cdfca78c6714ccf9be7c291105f2866431d6c2017fe480b12431e657d692664"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-1/response.json",
+      "bytes": 755,
+      "sha256": "3d6584e7878acc1b7fb198f99e6db2dd5e467002ab7a26c77171e1ead3c1c809"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-1/state.json",
+      "bytes": 67257,
+      "sha256": "e863505011a3c45b4282e18d76ecc492342082e5cc69ca37ee75b4421c947906"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-2/call-05-request.json",
+      "bytes": 21895,
+      "sha256": "9e6d0e35aa6df14fe8f59634a1a88d5f1ca77b376b272b0e8a7b1fe3b0ee5517"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-2/call-05-response.json",
+      "bytes": 800,
+      "sha256": "d21637de4c5ddfdbc9bcf202de2ec201690f7f4f5f987a08a591cf0da337dd48"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-2/call-06-request.json",
+      "bytes": 8893,
+      "sha256": "95ffc765172d61dfab985d3099ae9eeb5d2cc4d2ffe25d338c1996eb2fe3402c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-2/call-06-response.json",
+      "bytes": 606,
+      "sha256": "35a00e9454071a3181445106a09c01e5d98b13a33e0a47d3897dad9a23b1595a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-2/response.json",
+      "bytes": 823,
+      "sha256": "2c746d88e1ee29dcc5e2fc8c45e4b96e5ff0db04bc19db7cbdc8af226bba6d90"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-04/turn-2/state.json",
+      "bytes": 67257,
+      "sha256": "e863505011a3c45b4282e18d76ecc492342082e5cc69ca37ee75b4421c947906"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/artifact/dialogue/541cb3479620487187ea3545a738c92f/request.json",
+      "bytes": 26883,
+      "sha256": "703829cb190f2e46777b9182fbb16441ab9b056a4f6678e7c62125f2e85c1d79"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/artifact/dialogue/541cb3479620487187ea3545a738c92f/result.json",
+      "bytes": 362,
+      "sha256": "0ab6591b4d95e020af5522394c16efd434cc130f530a4ae58e20cd2af6a7b477"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/artifact/dialogue/541cb3479620487187ea3545a738c92f/validation-error.txt",
+      "bytes": 61,
+      "sha256": "795dc9b3ee735fbf0c6682cf8e27791cf3e1b6d0dc52f514a5f51f900988a8b7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/artifact/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/artifact/response.txt",
+      "bytes": 16995,
+      "sha256": "9666350f92dff2898aff6f62f929a5ead9ca7d03f81b8dcce8e25e502e8655af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/calls.json",
+      "bytes": 904,
+      "sha256": "9aaf2d7493fa7d09fe9f2144d341b6bada7584b6441237e00ffe4d2c161d124c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/conversation.json",
+      "bytes": 2533,
+      "sha256": "f8d379535c7bed54625846a3f2d36e37e716abe658f33903ef41481df34c88ed"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/initial/call-01-request.json",
+      "bytes": 26883,
+      "sha256": "703829cb190f2e46777b9182fbb16441ab9b056a4f6678e7c62125f2e85c1d79"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/initial/state.json",
+      "bytes": 60218,
+      "sha256": "3c9c260f0968c99208dc289d92cb9e9099d0fdfe28d7561e5070b4328a078bdc"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/integrity.json",
+      "bytes": 101,
+      "sha256": "a507d9e6116888bc79b5d363ab24dd5a410c0dfcf33595515fa2f6f1843d25f7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/protocol.json",
+      "bytes": 5931,
+      "sha256": "c452d909a43ea6819cafba7d14bd9083f40d307bd7b776388175508308de3b18"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/turn-1/call-02-request.json",
+      "bytes": 18819,
+      "sha256": "63bf90d7725383a76d63997c904c463399fc939cf438f4a1ab4708e212bb0ee8"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/turn-1/call-02-response.json",
+      "bytes": 515,
+      "sha256": "b13b98c158af81806147a126592ccb227bf595cdf5d0601c632b4b4ace2a0391"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/turn-1/call-03-request.json",
+      "bytes": 19376,
+      "sha256": "196e9e3bcde7c6bbdfdd2538b9e67bdff8361d64207d58b6f3eb501d323f71e2"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/turn-1/call-03-response.json",
+      "bytes": 515,
+      "sha256": "a9a4c92a5f24fb82c6f740300a73e40adffbb6e109457c3319b6c313eb09a622"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/turn-1/response.json",
+      "bytes": 801,
+      "sha256": "0217ca28428684332ada02868b3987fd86eda0e31aede08d9aed0f04540fe49d"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/turn-1/state.json",
+      "bytes": 60218,
+      "sha256": "3c9c260f0968c99208dc289d92cb9e9099d0fdfe28d7561e5070b4328a078bdc"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/turn-2/call-04-request.json",
+      "bytes": 19005,
+      "sha256": "20754a0bd696ae99b84014b86e9cb3d4bec8d88d7bca6b29bd0a145c662b4854"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/turn-2/response.json",
+      "bytes": 784,
+      "sha256": "dc1bc16323ed496d29a5416b05075f0d61f2df44ac16f346c6c52815f3f00c2a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-05/turn-2/state.json",
+      "bytes": 60218,
+      "sha256": "3c9c260f0968c99208dc289d92cb9e9099d0fdfe28d7561e5070b4328a078bdc"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/artifact/dialogue/dd0b4fce75174e84b70bfa9f30d00e10/http-response.txt",
+      "bytes": 1553,
+      "sha256": "799c21b21350ef3b4fc06fc06fb8719f0ecaac8dfdf9f7bde3daecfc1f75c530"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/artifact/dialogue/dd0b4fce75174e84b70bfa9f30d00e10/request.json",
+      "bytes": 26883,
+      "sha256": "703829cb190f2e46777b9182fbb16441ab9b056a4f6678e7c62125f2e85c1d79"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/artifact/dialogue/dd0b4fce75174e84b70bfa9f30d00e10/response.txt",
+      "bytes": 1061,
+      "sha256": "d62583913ed747b0471c5c44b848da0f753c4d1c53fece5e5233abe3a7d51083"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/artifact/dialogue/dd0b4fce75174e84b70bfa9f30d00e10/result.json",
+      "bytes": 5597,
+      "sha256": "a291baf4f7c155203a6ae0f7ae3cc33e85ba8ebc8ed46d7dd2020906d72d4acd"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/artifact/dialogue/ec582317b98e4b9d83f41e5eb1b900b4/http-response.txt",
+      "bytes": 720,
+      "sha256": "e8217fb5c83361a981054418500010d20bbcf0a6463700e969d7b151bd21abb0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/artifact/dialogue/ec582317b98e4b9d83f41e5eb1b900b4/request.json",
+      "bytes": 27135,
+      "sha256": "00990c9c448a3775205c49da99ff44f4ad2665956e84718b3e489300a8e6769d"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/artifact/dialogue/ec582317b98e4b9d83f41e5eb1b900b4/response.txt",
+      "bytes": 243,
+      "sha256": "8db0e467315fbd1d45a5a35fdc193f0c6d73610b72fe18700e7a26b3756f38e2"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/artifact/dialogue/ec582317b98e4b9d83f41e5eb1b900b4/result.json",
+      "bytes": 2437,
+      "sha256": "e4aa3406ed88f83d808b261afdfca68c2585adea6eb1ce9fa7f3822969a66984"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/artifact/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/artifact/response.txt",
+      "bytes": 16995,
+      "sha256": "9666350f92dff2898aff6f62f929a5ead9ca7d03f81b8dcce8e25e502e8655af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/calls.json",
+      "bytes": 2326,
+      "sha256": "6447ddde2edbf90891b123b3b37191e7650f2b8e5da7f9bab6e49aa234b07106"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/conversation.json",
+      "bytes": 3699,
+      "sha256": "a63421cd91ae20bfd55ab451ea3ea760e48f5030f262503800152bf976b755e0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/initial/call-01-request.json",
+      "bytes": 26883,
+      "sha256": "703829cb190f2e46777b9182fbb16441ab9b056a4f6678e7c62125f2e85c1d79"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/initial/call-01-response.json",
+      "bytes": 1458,
+      "sha256": "80d169c77c38eddbd4652bf5dc4c9051d9bfc46ccae32754648c032c54c5322d"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/initial/state.json",
+      "bytes": 70020,
+      "sha256": "5defeceefd36a8eb9f97e2bb103399be2a777c7e1afa47b8f9c78bddf41576fa"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/integrity.json",
+      "bytes": 101,
+      "sha256": "a507d9e6116888bc79b5d363ab24dd5a410c0dfcf33595515fa2f6f1843d25f7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/protocol.json",
+      "bytes": 5931,
+      "sha256": "c452d909a43ea6819cafba7d14bd9083f40d307bd7b776388175508308de3b18"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-1/call-02-request.json",
+      "bytes": 22532,
+      "sha256": "885d65d51a2ca7913d1dff6c746be5b3502921bc78f4b97ef7172e25a2876dcd"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-1/call-02-response.json",
+      "bytes": 908,
+      "sha256": "4b383673df789804d289279d62cbc47f882bea7ca75e70af5bb298e3452ff102"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-1/call-03-request.json",
+      "bytes": 10363,
+      "sha256": "91ba6386422546605452aea72563def6c3295249da4111de96146520c9eb1a87"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-1/call-03-response.json",
+      "bytes": 854,
+      "sha256": "6bf1d24f71c0e30117031bd5b193920e1795cc6021ea002f979f14f265c0683b"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-1/call-04-request.json",
+      "bytes": 27135,
+      "sha256": "00990c9c448a3775205c49da99ff44f4ad2665956e84718b3e489300a8e6769d"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-1/call-04-response.json",
+      "bytes": 623,
+      "sha256": "9ef5d9a729790ba0ce23494d2be86c44ab12806fa43df7dec68d0683f97c4c79"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-1/response.json",
+      "bytes": 755,
+      "sha256": "3357801896a68c4fcbadb47c936cb764996cd1a509f45668369e91a490552ed0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-1/state.json",
+      "bytes": 65989,
+      "sha256": "1e41cd10a7ceef67ca886879c792914eebabb4c3a221a008fd78954bece59b0f"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-2/call-05-request.json",
+      "bytes": 20916,
+      "sha256": "dec6ecf12823b04ac484c8de6746694cfb7987614afd93041f7a00ff3fd0987a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-2/call-05-response.json",
+      "bytes": 753,
+      "sha256": "c8ed30921dd18be506fe762af96ee784a2beb67ba8600acf0bbf128d70b04e5d"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-2/call-06-request.json",
+      "bytes": 8308,
+      "sha256": "ebd63bf2ef676d216b3b2fbe8e4f6aa596f61da6b8ff931c9277ef144f7bdb92"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-2/call-06-response.json",
+      "bytes": 574,
+      "sha256": "ec0e6daf6a74e4a7142b76e97179944c7e30b05ddbdb2a5b21b722e717269ec0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-2/response.json",
+      "bytes": 1018,
+      "sha256": "609c97a88352d81389d44a1d6935e59d2c6346c05f69e8afd7cd531719fcd853"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-06/turn-2/state.json",
+      "bytes": 65257,
+      "sha256": "ff6e2a9332172bedaed0688a925a3d8ecfe7d841e7356d8ab9acef59c032a262"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/artifact/dialogue/43d53d5652124fc9aab83e5c78ac829a/http-response.txt",
+      "bytes": 1404,
+      "sha256": "9932b51622f10362ac3baed15c66834e6933fa4b0deb36d3881c8633ac528c79"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/artifact/dialogue/43d53d5652124fc9aab83e5c78ac829a/request.json",
+      "bytes": 26949,
+      "sha256": "2b03ec2e85f9a57dbfcd232a018d75a0016bca9e7e40b92f906ad5a818c3e120"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/artifact/dialogue/43d53d5652124fc9aab83e5c78ac829a/response.txt",
+      "bytes": 914,
+      "sha256": "35a42ad2fb32336e5fe781a023885753bc2fd43bff8985e4d516dc7ebb310c94"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/artifact/dialogue/43d53d5652124fc9aab83e5c78ac829a/result.json",
+      "bytes": 5415,
+      "sha256": "b9c315686ce214b86d0b71c5243aab1d215b241856b1677699c3791731b77e53"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/artifact/dialogue/b28e21137eae4a12960c78ecf10c68ba/http-response.txt",
+      "bytes": 657,
+      "sha256": "087224192ed9c74be7e6b9d0860c73fe08d67f630fcfdaa8241fffebd2d709b0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/artifact/dialogue/b28e21137eae4a12960c78ecf10c68ba/request.json",
+      "bytes": 27439,
+      "sha256": "c3fa34636dee686b5355ed04f96811140cd07a97575a255b4d9109ce36e02f91"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/artifact/dialogue/b28e21137eae4a12960c78ecf10c68ba/response.txt",
+      "bytes": 182,
+      "sha256": "0fed12a90699de9ce7e2afe9a22a88bf52e43e8710f39f84dec182533b48f4e3"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/artifact/dialogue/b28e21137eae4a12960c78ecf10c68ba/result.json",
+      "bytes": 2380,
+      "sha256": "c9cd95a66e45cc40d389325671d0f1cd2b8931913dcdaf86b3105a91cfc17c34"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/artifact/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/artifact/response.txt",
+      "bytes": 16995,
+      "sha256": "9666350f92dff2898aff6f62f929a5ead9ca7d03f81b8dcce8e25e502e8655af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/calls.json",
+      "bytes": 2331,
+      "sha256": "41bc539693024e4e737c0f0195c1a2b5e724538e9eb47b71b68343fb2cc6b6a1"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/conversation.json",
+      "bytes": 3331,
+      "sha256": "f886fd2d46529adb1eef77bc42d63931e2fda34835abbb7ead3b82b1abbe2e63"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/initial/call-01-request.json",
+      "bytes": 26949,
+      "sha256": "2b03ec2e85f9a57dbfcd232a018d75a0016bca9e7e40b92f906ad5a818c3e120"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/initial/call-01-response.json",
+      "bytes": 1309,
+      "sha256": "7a4dab5b9e6313101db75fa8380926df340360429dde9cf1118ade5eae245d97"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/initial/state.json",
+      "bytes": 69699,
+      "sha256": "b93c8b4a92ab764ad6230d33b0556394f07fa11ac4837d8905f360e723dae8ea"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/integrity.json",
+      "bytes": 101,
+      "sha256": "a507d9e6116888bc79b5d363ab24dd5a410c0dfcf33595515fa2f6f1843d25f7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/protocol.json",
+      "bytes": 5931,
+      "sha256": "55aac0cb48397c4d75fe7bc24b0896f212c488bd3cfa8f449a2ef269fbc26976"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-1/call-02-request.json",
+      "bytes": 22345,
+      "sha256": "464e7702727280836075b54d6f2671929dca1b6b62f4d88b3cec7349b7b8a411"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-1/call-02-response.json",
+      "bytes": 1151,
+      "sha256": "122c3b234b2527a281b1a2e2759f00f842943e9a88b366398710f74bf6db29c4"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-1/call-03-request.json",
+      "bytes": 10224,
+      "sha256": "5e5cc536d20413424dcae57d982d2ed33006042e376d2dfd9d4b1be3a452afe3"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-1/call-03-response.json",
+      "bytes": 720,
+      "sha256": "d840e3806d9a80a3b69de571c31ee27d8ce7e301b20226564bf9f7d361cbc275"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-1/call-04-request.json",
+      "bytes": 27439,
+      "sha256": "c3fa34636dee686b5355ed04f96811140cd07a97575a255b4d9109ce36e02f91"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-1/call-04-response.json",
+      "bytes": 560,
+      "sha256": "2de67f52f358325ab65163579562a5096eb629ab639b52232ffa0b84391fc141"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-1/response.json",
+      "bytes": 755,
+      "sha256": "2acd1aa09044d0e8325e42e730803cca3f543e3a087d52d8f1aabec81a1a9acd"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-1/state.json",
+      "bytes": 66576,
+      "sha256": "36280b3b4d67a966d5ddba67e6d2a5bbac0b5a75f783ec4847d5dd4a4941833f"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-2/call-05-request.json",
+      "bytes": 20868,
+      "sha256": "a4e609b81c36f6de2af23b3f780a6d7d1283e07e831dee88509b2cc8e0293ec4"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-2/call-05-response.json",
+      "bytes": 728,
+      "sha256": "ecef7e046afff365c522ca214ad46664c99c21a311fd881fa0a9fa355ac1e63f"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-2/call-06-request.json",
+      "bytes": 8397,
+      "sha256": "73bc7478d9621e1020a253f5a40773fe8dd0371f8b9b3c2b8699945f60014e18"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-2/call-06-response.json",
+      "bytes": 603,
+      "sha256": "c5a0fb472e7ec4e6ef4c7a045466e542198ac36099a4addf757986543176d01b"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-2/response.json",
+      "bytes": 806,
+      "sha256": "b5b3ced30b63abb3ac6cbd6a584afb90c365c4b1bd0439b7a4674eff47edd624"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-07/turn-2/state.json",
+      "bytes": 66576,
+      "sha256": "36280b3b4d67a966d5ddba67e6d2a5bbac0b5a75f783ec4847d5dd4a4941833f"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/artifact/dialogue/3a4d9bd7725e4a209e2256ff7daeca57/http-response.txt",
+      "bytes": 1424,
+      "sha256": "885bcd3b368bd96e3190aba2e28803bcc84d9345b8432dc8ce798b6c347c9056"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/artifact/dialogue/3a4d9bd7725e4a209e2256ff7daeca57/request.json",
+      "bytes": 26949,
+      "sha256": "2b03ec2e85f9a57dbfcd232a018d75a0016bca9e7e40b92f906ad5a818c3e120"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/artifact/dialogue/3a4d9bd7725e4a209e2256ff7daeca57/response.txt",
+      "bytes": 932,
+      "sha256": "e59757fea170f53eddb0baa33e4a3962f9974548bb793f4bd6988f2e7ebdcc2c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/artifact/dialogue/3a4d9bd7725e4a209e2256ff7daeca57/result.json",
+      "bytes": 5406,
+      "sha256": "48c70aec43596e00cdca53e9a1fdf75b1e8cdf35ba1c9435c1a84f1a8f2204a1"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/artifact/dialogue/5e937074fd7e4f29a7d707d49df49ac8/http-response.txt",
+      "bytes": 767,
+      "sha256": "0c7eb388fe4f52371048d211fd7ec4facbfd1d4ffe3548b4c259ecf514e0cf5d"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/artifact/dialogue/5e937074fd7e4f29a7d707d49df49ac8/request.json",
+      "bytes": 27457,
+      "sha256": "21c50d8f0ffdb1743b4348c776187500ec245e81afde24ede370ef96f7784138"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/artifact/dialogue/5e937074fd7e4f29a7d707d49df49ac8/response.txt",
+      "bytes": 292,
+      "sha256": "769da2e65a83f1e00f5bd003c160430492ae4fcdeb09a36e297177af4b4ed0af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/artifact/dialogue/5e937074fd7e4f29a7d707d49df49ac8/result.json",
+      "bytes": 2709,
+      "sha256": "74a1c5ffaa4c2d03118c8776f4bb2f30a93bbd063b4d67cead700c2e280fee82"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/artifact/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/artifact/response.txt",
+      "bytes": 16995,
+      "sha256": "9666350f92dff2898aff6f62f929a5ead9ca7d03f81b8dcce8e25e502e8655af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/calls.json",
+      "bytes": 2332,
+      "sha256": "bd5b38b1db9201d3d2b44fe46cfc358b966247032b7dcdb526a809b5730707c9"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/conversation.json",
+      "bytes": 3542,
+      "sha256": "0851d46e306d87d77d952a9cbfb21d87954eaef710c79b35d5464c53599885a9"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/initial/call-01-request.json",
+      "bytes": 26949,
+      "sha256": "2b03ec2e85f9a57dbfcd232a018d75a0016bca9e7e40b92f906ad5a818c3e120"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/initial/call-01-response.json",
+      "bytes": 1329,
+      "sha256": "93b76dd4ba401154ccb58a5ebc21382f7577f49ea3c344821fec7b824c5081a3"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/initial/state.json",
+      "bytes": 69690,
+      "sha256": "fc39b28038fbdd2bfa5069401773467ce8e2a559ce5a0147459c2e038bfee1eb"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/integrity.json",
+      "bytes": 101,
+      "sha256": "a507d9e6116888bc79b5d363ab24dd5a410c0dfcf33595515fa2f6f1843d25f7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/protocol.json",
+      "bytes": 5931,
+      "sha256": "55aac0cb48397c4d75fe7bc24b0896f212c488bd3cfa8f449a2ef269fbc26976"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-1/call-02-request.json",
+      "bytes": 22336,
+      "sha256": "583e41b5a3527a278ba99f30e480a274427b423c2a1ed7429f460406cb10ed04"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-1/call-02-response.json",
+      "bytes": 909,
+      "sha256": "d9d5a50c59ba5ea87e5d4c91dfc3587010fe02df4505c1859501507612811a2e"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-1/call-03-request.json",
+      "bytes": 10224,
+      "sha256": "db73e4e027b8f1fbb1d5aa56e8b9a1e1dbe2acec1caf55eefa8885369cd6a7e6"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-1/call-03-response.json",
+      "bytes": 723,
+      "sha256": "9dacb38665b415bd8a502c886d3cb85e7908d7d3cf6f86b6a59fbc285ac1f27f"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-1/call-04-request.json",
+      "bytes": 27457,
+      "sha256": "21c50d8f0ffdb1743b4348c776187500ec245e81afde24ede370ef96f7784138"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-1/call-04-response.json",
+      "bytes": 670,
+      "sha256": "76fc94e3249b05cbd5390d1dece5b614bcff0b8005408bf29d7e3e2e49f35652"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-1/response.json",
+      "bytes": 755,
+      "sha256": "76e43d2ae77e81c947b1d34b453fed36679115dfe3f013592553593989213e27"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-1/state.json",
+      "bytes": 67143,
+      "sha256": "c0fe147ba40f2c42256db0f04e898f814f29a64ab0c7976640f9317256900e58"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-2/call-05-request.json",
+      "bytes": 21189,
+      "sha256": "8835e4608dba8938858c46128116e835081d79a280c134472783764b403511d9"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-2/call-05-response.json",
+      "bytes": 832,
+      "sha256": "505446b9e8725f110406a003ab81de8e6db5b688f57c2d7010417c9766afac04"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-2/call-06-request.json",
+      "bytes": 8617,
+      "sha256": "f454b23b32f9e8442f1a80a41a2f0f9b4f4ac5aec17c7288c353bb45b514b642"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-2/call-06-response.json",
+      "bytes": 586,
+      "sha256": "bbf215601467c54f4ebd44d89324e941ae8e9dae4068fd1641344f5403468ee7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-2/response.json",
+      "bytes": 916,
+      "sha256": "e5a112238ad6f54e86c59b0eb0c6d99750273166a2deae7e68519f9755490c58"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-08/turn-2/state.json",
+      "bytes": 67143,
+      "sha256": "c0fe147ba40f2c42256db0f04e898f814f29a64ab0c7976640f9317256900e58"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/0aae7263f06345dd9d6907fb3942ce61/http-response.txt",
+      "bytes": 734,
+      "sha256": "fbb5cc7989bf491698d66061367b91e1b5ee1e3886053f7db45c5252db1a44fb"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/0aae7263f06345dd9d6907fb3942ce61/request.json",
+      "bytes": 25829,
+      "sha256": "6348477f2b02ff6f23fdc81759a40f1f69709328de24a9091f40f00e5d5a6a59"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/0aae7263f06345dd9d6907fb3942ce61/response.txt",
+      "bytes": 259,
+      "sha256": "8b4dec7adf55fee6e1aa3b18a6e38defbee309b5f8628b7c17fa2bb65be1efe0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/0aae7263f06345dd9d6907fb3942ce61/result.json",
+      "bytes": 1872,
+      "sha256": "38078e1944a34ec68fca1127bf3b339b3d1038deae822155f34ba6a7ed4a0e63"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/44af95282fe74608aec0fe31704dcb2f/http-response.txt",
+      "bytes": 1528,
+      "sha256": "620eb9df66d5bc3842b89e66adcfe43ceb1eb0eef216b79e379c0f947431458e"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/44af95282fe74608aec0fe31704dcb2f/request.json",
+      "bytes": 26938,
+      "sha256": "bded3d4275806148a12a441dc48546b9b17e38358e4dece4d26b0ad88ad10494"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/44af95282fe74608aec0fe31704dcb2f/response.txt",
+      "bytes": 1021,
+      "sha256": "54a2eb235c766cabd4fa3d6d13bdc02d3ffed388f516b247515d367a40cc25e1"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/44af95282fe74608aec0fe31704dcb2f/result.json",
+      "bytes": 5420,
+      "sha256": "37d1272ba6810875e9610d6bd5f793f5ca6476abafa60f81ff322ef854e175c0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/d2cca075671b4c678a9633a4068c9e36/http-response.txt",
+      "bytes": 863,
+      "sha256": "4a0d81a3e640c202860eac514770e1d6ba2867507960ae79fa15106db24930d8"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/d2cca075671b4c678a9633a4068c9e36/request.json",
+      "bytes": 27434,
+      "sha256": "6f7bbe879a9df79048c99cd529e5788e18ff7cafa53e8a3de8146ba5ec607f13"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/d2cca075671b4c678a9633a4068c9e36/response.txt",
+      "bytes": 381,
+      "sha256": "eedc181be8c783d66fff4fe98877c8c31504f570aa5ba8e25607220b10e66383"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/dialogue/d2cca075671b4c678a9633a4068c9e36/result.json",
+      "bytes": 3310,
+      "sha256": "42d3d2ca99c7b756729ca4108aefc2fb109f90b7320f65adf0d0214d0e2a8fd6"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/artifact/response.txt",
+      "bytes": 16995,
+      "sha256": "9666350f92dff2898aff6f62f929a5ead9ca7d03f81b8dcce8e25e502e8655af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/calls.json",
+      "bytes": 2718,
+      "sha256": "e7152732c2e17b537e0f339136e81ea82505327199c26873fd3467755133269a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/conversation.json",
+      "bytes": 3595,
+      "sha256": "47cdc185994ac7ef438e6880d4dc857603e3934375ff2642a152a62ff028a0dc"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/initial/call-01-request.json",
+      "bytes": 26938,
+      "sha256": "bded3d4275806148a12a441dc48546b9b17e38358e4dece4d26b0ad88ad10494"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/initial/call-01-response.json",
+      "bytes": 1432,
+      "sha256": "98e151c839e95df169983cf1d882a2c8869b669321695a82c7e2b55465d598d5"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/initial/state.json",
+      "bytes": 69709,
+      "sha256": "32816aa852c8f42ba6accccbd2cb2dc1a5895bfa303f16e5255263290aebc179"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/integrity.json",
+      "bytes": 102,
+      "sha256": "613ea7fecd6647ad3176f736f152cbee56a18963a4930ad727dc80e8ed07979c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/protocol.json",
+      "bytes": 5970,
+      "sha256": "ff1e772c4f78d10ce2caead8cd3e3d4c019ca67405dbb090a81204d9213f56f5"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-1/call-02-request.json",
+      "bytes": 22352,
+      "sha256": "8c147e214eee51e2cf7eb76a166e4dc925771e3f223200dad381dde083b3ea9e"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-1/call-02-response.json",
+      "bytes": 1114,
+      "sha256": "01dd80d10e1a69e307e1428e58f03682f9a40a571c39c3860c3fe0adeb157af5"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-1/call-03-request.json",
+      "bytes": 10229,
+      "sha256": "0182edc87f9eef51a43f92df0a8316d1fddd49735125ea2bab05b30274b0f117"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-1/call-03-response.json",
+      "bytes": 792,
+      "sha256": "5e1b2e7d2d1c2f331736a9cfbe1295dd30ae59f33c0b1a9f4359601d2c2699be"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-1/call-04-request.json",
+      "bytes": 27434,
+      "sha256": "6f7bbe879a9df79048c99cd529e5788e18ff7cafa53e8a3de8146ba5ec607f13"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-1/call-04-response.json",
+      "bytes": 766,
+      "sha256": "d236c45f77d241a0d31f275821db803358efb25a2647c85e802f005f598f0441"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-1/response.json",
+      "bytes": 755,
+      "sha256": "3f479cc0fbdf76ecde5bd1df7f7d3e6ffbf93363dadb882a49baeb73b69cc30d"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-1/state.json",
+      "bytes": 68348,
+      "sha256": "ff8268608267f76e3d667676bab2921c80ca43d164dacf3d15fb23cee125a723"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-2/call-05-request.json",
+      "bytes": 21705,
+      "sha256": "65e25dca2a130967fbc33913c7686be506c027c03a9675b7f5d8ac50f82b03b1"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-2/call-05-response.json",
+      "bytes": 722,
+      "sha256": "8d2d3c141e886c89df0111453a33c79318352fb2c8258491a7b91829a061d2e3"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-2/call-06-request.json",
+      "bytes": 9053,
+      "sha256": "f1d263432f5d356418c85a52bbc7ff4f72c6545adeb6a529078124ca8dda7224"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-2/call-06-response.json",
+      "bytes": 597,
+      "sha256": "aefae9e978890b3f55c1f247b7b92d46718348e498e8711c06b083d365b6feec"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-2/call-07-request.json",
+      "bytes": 25829,
+      "sha256": "6348477f2b02ff6f23fdc81759a40f1f69709328de24a9091f40f00e5d5a6a59"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-2/call-07-response.json",
+      "bytes": 637,
+      "sha256": "caa7c3de89a7e377f12413930380e4e109f0bd8ce94cbc9e557b34a2ebff610d"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-2/response.json",
+      "bytes": 738,
+      "sha256": "3d8e30f7f7e526faa5f843194fe54cab3232f0f8bb357f7b4ec04843ea7e9912"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-09/turn-2/state.json",
+      "bytes": 65307,
+      "sha256": "42d132105e9935dcdcbaef7c8a3aabe094ec33bc86a54d4a5af9e1867f3ac8b0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/artifact/dialogue/949bc54eff1f4ca2ac1f28be6137cbe4/http-response.txt",
+      "bytes": 1518,
+      "sha256": "d8cbff89cb35e4c4f2aa4588ae31b52856238b97f3b1f9149ef48e39227a3841"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/artifact/dialogue/949bc54eff1f4ca2ac1f28be6137cbe4/request.json",
+      "bytes": 26938,
+      "sha256": "bded3d4275806148a12a441dc48546b9b17e38358e4dece4d26b0ad88ad10494"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/artifact/dialogue/949bc54eff1f4ca2ac1f28be6137cbe4/response.txt",
+      "bytes": 1010,
+      "sha256": "8074357287103724bc679035fc7a8ed5a0e37533a35153757679b5863cfe7846"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/artifact/dialogue/949bc54eff1f4ca2ac1f28be6137cbe4/result.json",
+      "bytes": 5396,
+      "sha256": "c1ccc52a2c049dcc8ed9fe5ba4dd0f0f1162a2092c830d7784b57eb78406975a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/artifact/dialogue/c12cec75528f4b298d1260892b654581/http-response.txt",
+      "bytes": 827,
+      "sha256": "92e84cf78a67aa405d91e48ddda8b4c2e58324ab83e738f8f3de6c1e737d6e7b"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/artifact/dialogue/c12cec75528f4b298d1260892b654581/request.json",
+      "bytes": 27428,
+      "sha256": "d116cdbd11dea24544c1e3afec1d1ae33b429d3b8d1fc4fbb1277eda42e86815"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/artifact/dialogue/c12cec75528f4b298d1260892b654581/response.txt",
+      "bytes": 346,
+      "sha256": "28aace048e8e65cf6a9c6e59b5e940fab96dd3a0edf01c98312b8c48891386c4"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/artifact/dialogue/c12cec75528f4b298d1260892b654581/result.json",
+      "bytes": 3204,
+      "sha256": "357b4760c8778f1a3f0642d9d8b059b24376ca0f6a7084ea5c96ee25c75e0586"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/artifact/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/artifact/response.txt",
+      "bytes": 16995,
+      "sha256": "9666350f92dff2898aff6f62f929a5ead9ca7d03f81b8dcce8e25e502e8655af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/calls.json",
+      "bytes": 2330,
+      "sha256": "2a07307298d62562e4bd4c102b1178aa8a09732a8e3098f520970f0b5cb64be6"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/conversation.json",
+      "bytes": 3473,
+      "sha256": "59c6d0d850569405433a0e82a9acddf2c81bd23b8aa051bc5ea750afedfa47a7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/initial/call-01-request.json",
+      "bytes": 26938,
+      "sha256": "bded3d4275806148a12a441dc48546b9b17e38358e4dece4d26b0ad88ad10494"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/initial/call-01-response.json",
+      "bytes": 1422,
+      "sha256": "2df6451928c8755637601a784f97dbc035c54ad87c5bdad61a5ef7eb144b1f3c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/initial/state.json",
+      "bytes": 69671,
+      "sha256": "967430ed6fcdce4dc9d8afdc963ba1a9a78f4bf84b183d3fda49257235c90ed6"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/integrity.json",
+      "bytes": 125,
+      "sha256": "927630a11ede291204a1b039a577b8b6333e362750b686d6be9cfac87d8afb86"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/live-database-after.json",
+      "bytes": 3141,
+      "sha256": "66df6d7b87c8f463a0bac8158dfc66711cc37bee326fd1ad8671f6feca110e9c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/live-database-before.json",
+      "bytes": 3141,
+      "sha256": "66df6d7b87c8f463a0bac8158dfc66711cc37bee326fd1ad8671f6feca110e9c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/protocol.json",
+      "bytes": 5970,
+      "sha256": "ff1e772c4f78d10ce2caead8cd3e3d4c019ca67405dbb090a81204d9213f56f5"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-1/call-02-request.json",
+      "bytes": 22327,
+      "sha256": "62451102997854f945b387b65916342538b4bd2320280b8ce8c41e875953732c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-1/call-02-response.json",
+      "bytes": 909,
+      "sha256": "3e7d0fba025fad732f82d9f595790716b38d10489d198c397396ad4afa82354e"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-1/call-03-request.json",
+      "bytes": 10215,
+      "sha256": "3e6689056798c039239cb1bc0d186e6eeaef505e0128562e5741294feca5c660"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-1/call-03-response.json",
+      "bytes": 748,
+      "sha256": "f763ec8be899bd0b9ebe4bb76801f51b73f73996d5d15ed3855b73190fe335e8"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-1/call-04-request.json",
+      "bytes": 27428,
+      "sha256": "d116cdbd11dea24544c1e3afec1d1ae33b429d3b8d1fc4fbb1277eda42e86815"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-1/call-04-response.json",
+      "bytes": 730,
+      "sha256": "19777c63cde6e1c13abcb696c94b00800d68cc4f2413becd74801f294b727355"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-1/response.json",
+      "bytes": 755,
+      "sha256": "389ea9a128df725d9182355da9a57cbad685a0e7c941715ffb43a3233dfab4ea"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-1/state.json",
+      "bytes": 68166,
+      "sha256": "d664db530531af3dfac28fdef10d83f26e1fce82433f4cd62a372cff2b4887b4"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-2/call-05-request.json",
+      "bytes": 21589,
+      "sha256": "1d77e001458411185439f50bc04473ccae54a91761359c625b559b3b7ac08915"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-2/call-05-response.json",
+      "bytes": 797,
+      "sha256": "f97c0cd87c86835ce1962a41ab6345f165736bbe5e7887cf7e56c696e13bd859"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-2/call-06-request.json",
+      "bytes": 8996,
+      "sha256": "71cf57173c004d2de71e83252838d04ab9dd2dddcbb84373f022de252a3a083f"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-2/call-06-response.json",
+      "bytes": 603,
+      "sha256": "2f20c16d3197fd949deceafe8bd6a4c13ec7c53ee86364a1f8b81c0d4166ddb1"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-2/response.json",
+      "bytes": 814,
+      "sha256": "11e614a3ddc8911dbf01ddc66c7b9a31c86dbce0ef4de0a585ccb3585ada7040"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-10/turn-2/state.json",
+      "bytes": 68166,
+      "sha256": "d664db530531af3dfac28fdef10d83f26e1fce82433f4cd62a372cff2b4887b4"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-old-routing/call-1.json",
+      "bytes": 21909,
+      "sha256": "a574b3bb3c267b9940e35acc4bf192b53c16768f3c35492db818fd35c157f613"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-old-routing/call-2.json",
+      "bytes": 11460,
+      "sha256": "e2d8ab7236d676c71e90a11c96909229fc0193f69eeeb837b3cdd0f23cfe6e69"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-old-routing/context.json",
+      "bytes": 71039,
+      "sha256": "33ad85063206a79ab5455ce02b9b833237f4d181b654253c786d8626ffb7da40"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/after-old-routing/result.json",
+      "bytes": 732,
+      "sha256": "2461964b05d8ab4ed3aeb9260fa21681bbe0d60b456f0860e0506d84d1ae074f"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/before-routing-02/call-1.json",
+      "bytes": 21714,
+      "sha256": "837590cd02ba9391e43ffb206b2f0c40639aa6a7b05266ca8b07ba9bd431fc10"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/before-routing-02/call-2.json",
+      "bytes": 11071,
+      "sha256": "3a837e0d34ccc1369d6695087c0c4c610d32c7ec9de9d325a58bbac58281e7db"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/before-routing-02/context.json",
+      "bytes": 71039,
+      "sha256": "33ad85063206a79ab5455ce02b9b833237f4d181b654253c786d8626ffb7da40"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/before-routing-02/result.json",
+      "bytes": 811,
+      "sha256": "e98c1b910a9dfeab2adfae30ccb27458f3eb599082846dc47e7665275e3292aa"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/audit.json",
+      "bytes": 164317,
+      "sha256": "169d1cc040caaa65f33b89b98d447db25e9b1cb83f8bdae2d8a413a23e0eaa13"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/29cdee443c8c48b7a16d078b102a7363/http-response.txt",
+      "bytes": 1337,
+      "sha256": "fa5db6af9e64c318c737343454530172268b3b9f2ccf7d529456f85e57755819"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/29cdee443c8c48b7a16d078b102a7363/request.json",
+      "bytes": 23606,
+      "sha256": "9dfd9116ca75430257d0ee8fee4aafb9847bbdc15797864bb6925fb7bb481a04"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/29cdee443c8c48b7a16d078b102a7363/response.txt",
+      "bytes": 859,
+      "sha256": "387f87abfe3c221f3b4230d2ca0053c9883cfa5ecef03a54489c120b58e600b7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/29cdee443c8c48b7a16d078b102a7363/result.json",
+      "bytes": 3697,
+      "sha256": "ad9aa4460befbc823d900c67c64efd820480a6d85379c0293621449aa288d310"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/4ade1df7fe9244e9b625a0f3e59ce357/http-response.txt",
+      "bytes": 1604,
+      "sha256": "c0fb95b7d8c181b62b8bfde5b848d0aeedf88ebf89d0827f1dd2f4b6a243e1c7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/4ade1df7fe9244e9b625a0f3e59ce357/request.json",
+      "bytes": 24678,
+      "sha256": "27056ca8e77e683fcc9a8eac6699f2781b0825e8dd37b7aa041d6aaf40c67a82"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/4ade1df7fe9244e9b625a0f3e59ce357/response.txt",
+      "bytes": 1114,
+      "sha256": "4dba7dda879c8ec880e9a7b492d28d452047ad581d534c53c8709e608e84d51a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/4ade1df7fe9244e9b625a0f3e59ce357/result.json",
+      "bytes": 6022,
+      "sha256": "08e0065a611b3ad2d166c7c89279cfd6359743dbc1e6005f3fd3a4cfab0dff7e"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/ef0ea4955a2142ffad33e5b8c9eb4441/http-response.txt",
+      "bytes": 1455,
+      "sha256": "d90329720a362537076437ce0fa52d26c6d6be934ec79a3f820a676085ed8383"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/ef0ea4955a2142ffad33e5b8c9eb4441/request.json",
+      "bytes": 24146,
+      "sha256": "ea3900bb0bfbc0bfae241988db56f1242c8ddae7dd2a75ee2df35543ae1a637c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/ef0ea4955a2142ffad33e5b8c9eb4441/response.txt",
+      "bytes": 957,
+      "sha256": "a508fdef4b0e4db860c2728cf2d7c6af5af6f4f64f9ba213beefbe2137144af0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/dialogue/ef0ea4955a2142ffad33e5b8c9eb4441/result.json",
+      "bytes": 5378,
+      "sha256": "7f100a75f8ea5df39e5ebbc256db087b8abac47e2dd2f6a65e54c702a0439829"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/http-response.txt",
+      "bytes": 79937,
+      "sha256": "7db30b363aac798cb3b5c554a1b8390e2eeece6a66bd8be619e233c5330a91a2"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/input.json",
+      "bytes": 339899,
+      "sha256": "8558daac5a2c2ea1a1fa6812dd36e85e9e74d55ba60ba16d4ee09998d97e6dd3"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/metrics.json",
+      "bytes": 33340,
+      "sha256": "b336029a405ee48c8fadfc19ab02cee3001ed3a06839b4b34b471d1bfbe3c61b"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/request.json",
+      "bytes": 269964,
+      "sha256": "3c28107f9b56288b7dcedd7acbc787796a51fe82de12a136bc2461f9a61b939e"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/analysis/response.txt",
+      "bytes": 16995,
+      "sha256": "9666350f92dff2898aff6f62f929a5ead9ca7d03f81b8dcce8e25e502e8655af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/integrity-after.json",
+      "bytes": 655,
+      "sha256": "fbd6565111cdd347ce6ddd49c49f1a7c3624db9a1949c6ce675002521f84876b"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/integrity-before.json",
+      "bytes": 246,
+      "sha256": "9666391240210cb1e4cc5cb27db95c13cdfc154e8f9b63d001dc3d81965f01ea"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/revisions.json",
+      "bytes": 2346,
+      "sha256": "53aa4da453fe093215ed3f89c241bb37f291bd99a848cbb9dd1f0d2af5f91d53"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/session-payload.json",
+      "bytes": 67488,
+      "sha256": "392a46d1ca041e5393e05ab61ed54766a794f70ef2dd42bc60af119a1b30bf49"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/session-state.json",
+      "bytes": 460881,
+      "sha256": "9a2f211079713d849d55dedb3b8d151011fb916f3e662654701b33b858be787c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/diagnosis/turns.json",
+      "bytes": 6775,
+      "sha256": "0b2d1ac35be9c4539ef141d7a6971d4e8046b354734887715c38d114d5950a91"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/artifact/dialogue/3c0a79635d624fcaa79c96c11deac43c/http-response.txt",
+      "bytes": 637,
+      "sha256": "c77bbac4574b52fe51bc145a582a3e62d89abe3e53167f921cda2c21bcc069d7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/artifact/dialogue/3c0a79635d624fcaa79c96c11deac43c/request.json",
+      "bytes": 24839,
+      "sha256": "12b8854eba78e8add52d55931de4438ed385008a8e130e3beb74178fd6ae61fe"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/artifact/dialogue/3c0a79635d624fcaa79c96c11deac43c/response.txt",
+      "bytes": 162,
+      "sha256": "27a8cafa8584ecf4a174f7a8452f492f2338e442036dc1b1016f1933d5d58e4e"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/artifact/dialogue/3c0a79635d624fcaa79c96c11deac43c/result.json",
+      "bytes": 2072,
+      "sha256": "9eaf5615fafa947bd4cf9dc3e5294ee69f9d5fe8cd9ea6c36d386f9420048375"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/artifact/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/artifact/response.txt",
+      "bytes": 16995,
+      "sha256": "9666350f92dff2898aff6f62f929a5ead9ca7d03f81b8dcce8e25e502e8655af"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/calls.json",
+      "bytes": 1554,
+      "sha256": "4c9ed1bf57b62337b538b8ffbbda240fdd3077d04c1aeb2d6238882ca6a1af09"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/conversation.json",
+      "bytes": 2537,
+      "sha256": "b6004645d312488a6d0d62aaae9d16cdf9380e4bfc953ac02d912cddf08ef63a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/initial/state.json",
+      "bytes": 66942,
+      "sha256": "2f3a2fa4d40b092fc019c3a0ba4260e4e659435bc25164929f611f8b3ec9e2a5"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/integrity.json",
+      "bytes": 101,
+      "sha256": "a507d9e6116888bc79b5d363ab24dd5a410c0dfcf33595515fa2f6f1843d25f7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/protocol.json",
+      "bytes": 6024,
+      "sha256": "f9444839c759d3085164f5b9d5a4695c2c65fd00f77378bc018a0fb9a939ce45"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-1/call-01-request.json",
+      "bytes": 20359,
+      "sha256": "0af5b3fe3bd35e175cd68c91410977b53ede23df149923934d925a683e464f4c"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-1/call-01-response.json",
+      "bytes": 508,
+      "sha256": "3a901b9f50f9b481bf4247ab97168b678b58b77a721a53670668dcd67b084ef1"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-1/call-02-request.json",
+      "bytes": 24839,
+      "sha256": "12b8854eba78e8add52d55931de4438ed385008a8e130e3beb74178fd6ae61fe"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-1/call-02-response.json",
+      "bytes": 541,
+      "sha256": "7ea152935a0f7bd56813f9f4e1c6127be91a3f428819762cc2f4051a7cd2968f"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-1/response.json",
+      "bytes": 698,
+      "sha256": "e0cac108a4b079a0bd6fc68952a24879506e6ffc8ec94d6fb2ee8a5259599b01"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-1/state.json",
+      "bytes": 64420,
+      "sha256": "40de8f0537e29c474cc976e50ac6cb81db0232900f9244086fba4e4fb897b4de"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-2/call-03-request.json",
+      "bytes": 19700,
+      "sha256": "bda8d59c2281881d86cf9d9dbd2f48e5a3d5daeac967804206691d5e9e763154"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-2/call-03-response.json",
+      "bytes": 881,
+      "sha256": "a5d5683fb9c7e3e282c35b820d9744a35d233b6bcd02e7212c0c37f9463b7825"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-2/call-04-request.json",
+      "bytes": 8279,
+      "sha256": "d071968c6ed1678472daff872f0776b7ac14f1d145233bdb6d0b8ece05c874ce"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-2/call-04-response.json",
+      "bytes": 604,
+      "sha256": "c929f042b0cf53af34c28870b3fe5283a2a6c1a61090896280d1addfcfeeb6c8"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-2/response.json",
+      "bytes": 937,
+      "sha256": "a5f7ce6dea2e5f930f202aaf81d4474e25b646996fde3cfce4cbd68ef087c06d"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-20261013/resume-existing-01/turn-2/state.json",
+      "bytes": 64759,
+      "sha256": "7ad1b6371d9fb773e8dd8d6c7e682fa34a224e8deaae9ee951ef6b4bc83c6ed6"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-after-01-20261013.txt",
+      "bytes": 1402,
+      "sha256": "ad8917afa3f98144b3e65e8ca86c24180e8de3c0121a8fb6382c440486c3e0ef"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-after-02-20261013.txt",
+      "bytes": 1402,
+      "sha256": "ad8917afa3f98144b3e65e8ca86c24180e8de3c0121a8fb6382c440486c3e0ef"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-after-03-20261013.txt",
+      "bytes": 1382,
+      "sha256": "30860239f059340289e34f307aecac6bb26d1b3c80fabcdac808ae99f68a58a8"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-after-04-20261013.txt",
+      "bytes": 1420,
+      "sha256": "61a5a67e26ca7ef388c1185b6b83f20136c1cbcdc68c3a9a556a984ce3362be1"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-after-05-20261013.txt",
+      "bytes": 658,
+      "sha256": "f6612eb68518887b4f72d39cc88b34225336a91be064723ad3357bd0c0c3debd"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-after-06-20261013.txt",
+      "bytes": 708,
+      "sha256": "e814c772215588c4c64ab6d85d88987617654bf4cda36e2342e18cfa94c9eaa0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-after-07-20261013.txt",
+      "bytes": 448,
+      "sha256": "104c61fac3c037f2886b95a186fc1f073207ba1bcc52c32c5579b0e54a43afd5"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-after-08-20261013.txt",
+      "bytes": 668,
+      "sha256": "ce3df9e7f5167f838e43c37fc895d702fb1b67e6cb76512bd07146d1b0288902"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-after-09-20261013.txt",
+      "bytes": 1519,
+      "sha256": "1026caef7186d2ae1397ba91e8e425db6e0b62ae2de2a8bf0fad729f59e8d574"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-after-10-20261013.txt",
+      "bytes": 734,
+      "sha256": "a3585645c5ca71cfd99fec8a9578bf6967bc0ad5d07165959a4c179a2dae49f6"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-backend-full-02-20261013.txt",
+      "bytes": 4730,
+      "sha256": "e8981320303d23eeb5444d311eb2ec2d4970ed568b282ba831ef73e6e84a54ce"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-backend-full-03-20261013.txt",
+      "bytes": 2513,
+      "sha256": "d8e855e0ab36d516bd9e2ce0c72157e4b73920c9f4fd9ecc91b5b0f0e2f1ef5b"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-backend-full-20261013.txt",
+      "bytes": 2513,
+      "sha256": "11beeadcc4a0f61bf9e28b76800bad270b36c15fc4b3d6266481c18a9104c8e7"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-backend-full-final-20261013.txt",
+      "bytes": 2513,
+      "sha256": "0b527f7cf8acf96b8d79056de5d1e896885300a17b6c0f165254afa0a414fa9d"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-before-02-20261013.txt",
+      "bytes": 1084,
+      "sha256": "058086d488520d96543ee6d0402ef46de2ed7c0797b78362c120c27afa1bdf93"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-before-03-20261013.txt",
+      "bytes": 505,
+      "sha256": "e070f8a072df29a88b621b8cbba538e03d5c756e13145795239944ef4a04a3f5"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-before-20261013.txt",
+      "bytes": 1520,
+      "sha256": "ce9642375c50230c61b6b7a4c285eb248cbd6ec13c25cda54392e6c9060a259a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-browser-20261013.txt",
+      "bytes": 2284,
+      "sha256": "2b30bc4f54ca549a64a791c919887455ff6eb25527548eac39b353ebcd4678ba"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-browser-final-20261013.txt",
+      "bytes": 2285,
+      "sha256": "ed184bed1d8ca38f771e448f4bfa96642c4c2ca019413aeb9d3657f380f393db"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-build-final-20261013.txt",
+      "bytes": 406,
+      "sha256": "85c2a545316ce888bfb35ff62a76b70f0191812ca9d7ca2b211c4bcf4388c153"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-frontend-final-20261013.txt",
+      "bytes": 267,
+      "sha256": "1de9b10f7f5abfb6d45883deb1b0c2489acbb8750d854afc5f7d3232017197a1"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-frontend-full-20261013.txt",
+      "bytes": 267,
+      "sha256": "a0078b49af4301dfd04c1014b9d8c2d7a1afc5e66fcea426158b6628f13fd820"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-frontend-initial-20261013.txt",
+      "bytes": 84804,
+      "sha256": "3b17fcd08a011f78f78f838d4eecfadfd344a6bd6d1b70f4b7b23fc6e52246df"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-frontend-lint-final-20261013.txt",
+      "bytes": 37,
+      "sha256": "df6918b42623f7df2184a503e399b3a8a3b066de41c2946bd688fbe9a611f71f"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-frontend-targeted-02-20261013.txt",
+      "bytes": 307,
+      "sha256": "dbfb9e726ec9755a8a11e29dfb5cdd3d312a9039a1372f6f4bb4f73cfceeaa70"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-old-routing-after-20261013.txt",
+      "bytes": 480,
+      "sha256": "96365c2f5f9e353cbba0082566b2bd15b061515b4ed803a392498081b34bc91f"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-resume-existing-01-20261013.txt",
+      "bytes": 392,
+      "sha256": "266840e6a4a06232c498f130299c055ebf680ebf44789a0d99c9de0d328dcf28"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-ruff-02-20261013.txt",
+      "bytes": 1230,
+      "sha256": "96ef2c009550d45e9919b5b7055eb2d20148d2cf87bd4c38ffee8aa64ad3932a"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-ruff-03-20261013.txt",
+      "bytes": 1908,
+      "sha256": "1b273153974f16c80a1d72f1b75c6bf6f1aa8b8cc795747202f3b8f6c0de7343"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-ruff-final-20261013.txt",
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-runners-ruff-final-20261013.txt",
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-targeted-02-20261013.txt",
+      "bytes": 82,
+      "sha256": "0ee4eb310163befd20f3b02645765cce45405d4ecc156051baf96e6fe076cefc"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-targeted-03-20261013.txt",
+      "bytes": 2309,
+      "sha256": "133178388b7c60d0e441fb56334653b98a2096e33de6c801fb593f998b63eade"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-targeted-04-20261013.txt",
+      "bytes": 261,
+      "sha256": "7f58e74f57a093bb50750202a3a81ba21d7be02d9ae22b71fd6cab29e33440e6"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-targeted-05-20261013.txt",
+      "bytes": 181,
+      "sha256": "c63059c3e3dce0d3d500a156a258277ff46a097def89257c704233e9333f92ec"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-targeted-06-20261013.txt",
+      "bytes": 261,
+      "sha256": "7d1d46a5c3b9dcdbf5d3a90b93f4d1133bbb5b43dd9a942272dc7d534b6827c0"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-targeted-07-20261013.txt",
+      "bytes": 261,
+      "sha256": "b5d87281ca73ade12b09651abaf28e90be4a6493839294ba8e015fa607969842"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-targeted-final-20261013.txt",
+      "bytes": 261,
+      "sha256": "eebc3a066525a911364f5b72c068018e36dcec3b71ae8e991131bc454fc499b6"
+    },
+    {
+      "path": "data/compilation-audit/conversation-flow-targeted-initial-20261013.txt",
+      "bytes": 88,
+      "sha256": "c8816bd9136ec264088545256f7276f3fda44bb71897d48f472e18af68136336"
+    }
+  ]
+}
