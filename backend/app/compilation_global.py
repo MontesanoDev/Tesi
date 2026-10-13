@@ -23,6 +23,8 @@ from app.compilation_global_contract import (
     AlternativeAwareAssignment,
     AlternativeAwareProposal,
     AtomicField,
+    ChoiceAssignment,
+    ChoiceAwareProposal,
     CompactGlobalProposal,
     ConditionalAssignment,
     ConditionalAwareProposal,
@@ -58,6 +60,8 @@ SPARSE_ASSIGNMENT = TypeAdapter(SparseAssignment)
 ALTERNATIVE_ASSIGNMENT = TypeAdapter(AlternativeAwareAssignment)
 SUBJECT_ASSIGNMENT = TypeAdapter(SubjectBoundAssignment)
 CONDITIONAL_ASSIGNMENT = TypeAdapter(ConditionalAssignment)
+CHOICE_ASSIGNMENT = TypeAdapter(ChoiceAssignment)
+CURRENT_VERSION = 11
 
 
 def load_document_corpus(db, project_id):
@@ -95,7 +99,7 @@ class GlobalProposal(StrictModel):
     fields: dict[str, GlobalField] = Field(max_length=400)
 
 
-TASK = """Produci UNA proposta globale JSON versione 10. Leggi prima l'intero Word FORM
+TASK = """Produci UNA proposta globale JSON versione 11. Leggi prima l'intero Word FORM
 nei blocks e tutte le SOURCE. L'ordine dei blocks è quello del documento; celle,
 righe e titoli precedenti determinano soggetto, ruolo, sezione e sottosezione.
 proposal_stage=source_backed_hypotheses: prepara ipotesi di riempimento con dati
@@ -281,9 +285,30 @@ fact_id e property sono OBBLIGATORI e NON NULL per value: la sola label FORM
 non è un'assegnazione. Se manca il fatto SOURCE, ometti INTERAMENTE il field.
 Firme, dichiarazioni non provate, ruoli non attestati e scelte di partecipazione
 restano senza assegnazione. Non assumere candidate=campo obbligatorio.
-Checkbox: choice booleano + fatto che sostiene quella scelta nelle SOURCE e
-istruzioni FORM; casella vuota non significa false. Nessuna scrittura in questa
-prova. reason solo se aggiunge un'informazione specifica; evita boilerplate.
+CHECKBOX NATIVE. Definisci choice_groups (max64), senza duplicare gruppi per opzione.
+Ogni gruppo ha label, subject, property, form (istruzione originale verificabile),
+selection=single/multiple/unknown, min_selected=0/1 secondo l'istruzione, conditions,
+options: mappa ID_CHECKBOX -> {label,form}. Le opzioni appartengono allo STESSO
+soggetto/ambito: non rendere esclusive opzioni di persone o sezioni diverse.
+Non inferire single per qualsiasi elenco: usa unknown quando la regola non è chiara.
+Non omettere alternative intermedie né intrecciare sottogruppi nello stesso gruppo.
+Per opzioni nello stesso paragrafo usa text_with_choices: form.quote contiene
+esattamente il marker [[ID_CHECKBOX]] e la sua etichetta locale, nessun altro marker.
+Per un'etichetta nella cella accanto usa un anchor del candidate: ammesso solo se
+la riga contiene una sola checkbox. Label deve essere un estratto dell'opzione.
+Le options descrivono FORM, NON scelte avvenute; includile anche senza SOURCE.
+Per il field checkbox usa kind=choice, choice_group_id, choice booleano, fact_id
+e property. Un fatto SOURCE attesta letteralmente una label dell'opzione per lo
+stesso subject/property: choice=true per quella label, false per le altre SOLO
+nel gruppo single. Non rinominare property fra gruppo/fatto né soggetti.
+Multiple ammette più true sostenuti separatamente; non dedurre false dall'assenza.
+La corrispondenza SOURCE->label deve essere letterale (case/spazi/Unicode):
+sinonimi, sì/no senza fatto equivalente e dichiarazioni non provate restano
+senza field e richiedono una scelta USER. General KB non attesta queste scelte.
+Non trattare la tipologia aziendale come scelta di partecipazione/rappresentanza.
+Conditional conserva le condizioni ignote. Senza SOURCE ometti i fields, non
+inventare valori booleani dalle caselle vuote. Non spuntare dichiarazioni di
+possesso solo perché stampate nel FORM. reason breve, niente boilerplate.
 
 CONTROLLO FINALE DI COPERTURA. Riesamina tutti i blocks dall'inizio alla fine,
 non soltanto il blocco specialistico o quello con ruoli più dettagliati. Un fatto
@@ -313,7 +338,7 @@ Il backend verifica riferimenti e grounding, NON certifica il giudizio semantico
 ambiguous/conflicting. Applicabilità sconosciuta resta sconosciuta anche in review.
 
 Rispondi con JSON COMPATTO, senza indentazione. Ordine: version,
-uncertain_paragraph_ids, conditions, bindings, fields,
+uncertain_paragraph_ids, conditions, bindings, choice_groups, fields,
 facts. Scrivi i facts dopo le assegnazioni per
 includere SOLO quelli effettivamente referenziati. NON esaurire tutte le SOURCE.
 Rispetta schema_output. Prima di chiudere il JSON controlla inventario,
@@ -356,6 +381,7 @@ def build_global_input(layout, project_id, sources):
     """Sources must first be reloaded from authorized storage, not from the LLM."""
     source_map = _allowed_sources(project_id, sources)
     catalog = build_compilation_catalog(layout)
+    catalog["checkbox_write_supported"] = True
     paragraphs, local = _form_bindings(catalog)
     for candidate in catalog["candidates"].values():
         candidate["anchor_paragraph_ids"] = sorted(
@@ -372,7 +398,7 @@ def build_global_input(layout, project_id, sources):
         "user_values": [],
         "source_coverage": {"strategy": "complete_small_corpus", "partial": False,
                             "chunks": len(source_map)},
-        "schema_output": ContextAwareProposal.model_json_schema(),
+        "schema_output": ChoiceAwareProposal.model_json_schema(),
     }
     if sum(bool(text.strip()) for text in paragraphs.values()) > 2048:
         raise ValueError("Inventario FORM oltre budget: nessun troncamento implicito")
@@ -1063,29 +1089,36 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     fact and condition errors cannot discard independent grounded proposals.
     Missing proposals are unassessed, never fabricated missing/NA/value records.
     """
-    context_enabled = payload["version"] == 10
-    slot_enabled = payload["version"] in {9, 10}
-    conditional_enabled = payload["version"] in {8, 9, 10}
-    subjects_enabled = payload["version"] in {7, 8, 9, 10}
+    choices_enabled = payload["version"] == 11
+    context_enabled = payload["version"] in {10, 11}
+    slot_enabled = payload["version"] in {9, 10, 11}
+    conditional_enabled = payload["version"] in {8, 9, 10, 11}
+    subjects_enabled = payload["version"] in {7, 8, 9, 10, 11}
     budgets = [("fields", 400), ("facts", 128), ("conditions", 128)]
     if subjects_enabled:
         budgets.append(("bindings", 128))
+    if choices_enabled:
+        budgets.append(("choice_groups", 64))
     for name, maximum in budgets:
-        records = payload.get(name, {} if name == "bindings" else None)
+        records = payload.get(name, {} if name in {"bindings", "choice_groups"} else None)
         if (not isinstance(records, dict) or len(records) > maximum
                 or any(not 1 <= len(key) <= 80 for key in records)):
             raise ValueError(f"Dizionario {name} non valido/oltre budget")
-    alternatives_enabled = payload["version"] in {6, 7, 8, 9, 10}
-    schema = (ContextAwareProposal if context_enabled else SlotAwareProposal if slot_enabled else
+    alternatives_enabled = payload["version"] in {6, 7, 8, 9, 10, 11}
+    schema = (ChoiceAwareProposal if choices_enabled else
+              ContextAwareProposal if context_enabled else SlotAwareProposal if slot_enabled else
               ConditionalAwareProposal if conditional_enabled else
               SubjectBoundProposal if subjects_enabled else
               AlternativeAwareProposal if alternatives_enabled else SparseGlobalProposal)
-    assignment = (CONDITIONAL_ASSIGNMENT if conditional_enabled else
+    assignment = (CHOICE_ASSIGNMENT if choices_enabled else
+                  CONDITIONAL_ASSIGNMENT if conditional_enabled else
                   SUBJECT_ASSIGNMENT if subjects_enabled else
                   ALTERNATIVE_ASSIGNMENT if alternatives_enabled else SPARSE_ASSIGNMENT)
     envelope = {**payload, "fields": {}, "facts": {}, "conditions": {}}
     if subjects_enabled:
         envelope["bindings"] = {}
+    if choices_enabled:
+        envelope["choice_groups"] = {}
     proposal = schema.model_validate(envelope)
     paragraphs, local = _form_bindings(catalog)
     marked_paragraphs = {p["id"]: p["text_with_fields"] for block in catalog["blocks"]
@@ -1101,6 +1134,16 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
     conditions, metadata, condition_errors, links = _sparse_conditions(
         payload["conditions"], catalog, paragraphs, local,
     )
+    choice_groups = {}
+    if choices_enabled:
+        from app.compilation_choices import validate_groups
+
+        choice_groups = validate_groups(payload.get("choice_groups", {}), catalog,
+                                        paragraphs, local, conditions)
+        for group in choice_groups.values():
+            if group["validation"] == "GROUNDED_GROUP":
+                for cid in group["options"]:
+                    links[cid].update(group["conditions"])
     referenced = {ref for record in payload["conditions"].values() if isinstance(record, dict)
                   and isinstance(record.get("fact_ids"), list)
                   for ref in record["fact_ids"] if isinstance(ref, str)}
@@ -1126,6 +1169,16 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
             destination_checks[key] = {"result": "not_validated"}
         try:
             item = assignment.validate_python(payload["fields"][key])
+            if choices_enabled and candidate["type"] == "checkbox":
+                from app.compilation_choices import choice_form
+
+                enriched = {**catalog, "candidates": {**catalog["candidates"], key: {
+                    **candidate, "anchor_paragraph_ids": local[candidate["context_id"]]}}}
+                item = item.model_copy(update={"form": choice_form(
+                    key, item.form, enriched, paragraphs)})
+            elif choices_enabled and (item.choice is not None or
+                                      getattr(item, "choice_group_id", None) is not None):
+                raise ValueError("Gruppo/scelta checkbox su campo testuale")
             if slot_enabled:
                 try:
                     form, destination_checks[key] = _slot_destination(
@@ -1147,7 +1200,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                 raise ValueError("Riferimento a condizione duplicato")
             items[key] = item
             expanded[key] = {**item.model_dump(exclude={
-                "property", "alternative_fact_ids", "review_kind", "binding_id",
+                "property", "alternative_fact_ids", "review_kind", "binding_id", "choice_group_id",
             }),
                              "conditions": sorted(set(item.conditions) | links[key])}
             if isinstance(item, ConditionalValue):
@@ -1183,7 +1236,9 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
                 fact_ids = None
                 if isinstance(item, AlternativeAssignment):
                     fact_ids = item.alternative_fact_ids
-                elif item.disposition in {"value", "conditional"}:
+                elif item.disposition in {"value", "conditional"} and not (
+                    choices_enabled and catalog["candidates"][key]["type"] == "checkbox"
+                ):
                     chosen = result["facts"][item.fact_id]
                     siblings = {}
                     for ref, fact in result["facts"].items():
@@ -1237,6 +1292,10 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map):
         condition.update(metadata[key])
         if key in condition_errors:
             condition["validation_errors"] = [condition_errors[key]]
+    if choices_enabled:
+        from app.compilation_choices import attach_choice_audit
+
+        attach_choice_audit(result, choice_groups, items, catalog)
     result.update(version=payload["version"], unassigned_count=len(unassigned),
                   rejected_assignments=unknown, unused_fact_ids=unused,
                   counts=dict(Counter(f["validation"] for f in result["fields"])),
@@ -1275,7 +1334,7 @@ def validate_global_proposal(raw, layout, project_id, sources, *, expected_versi
     catalog = build_compilation_catalog(layout)
     source_map = _allowed_sources(project_id, sources)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
-            and payload["version"] in {5, 6, 7, 8, 9, 10}):
+            and payload["version"] in {5, 6, 7, 8, 9, 10, 11}):
         return _validate_sparse_proposal(payload, layout, catalog, source_map)
     if (isinstance(payload, dict) and type(payload.get("version")) is int
             and payload["version"] == 4):

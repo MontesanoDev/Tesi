@@ -20,6 +20,7 @@ from starlette.concurrency import run_in_threadpool
 from app import compilation_sessions as sessions
 from app.compilation_catalog import build_compilation_catalog
 from app.compilation_global import (
+    CURRENT_VERSION,
     build_global_input,
     global_request,
     load_document_corpus,
@@ -38,7 +39,7 @@ def initial_state(layout):
     catalog = build_compilation_catalog(layout)
     return {"phase": "PENDING", "candidate_count": len(catalog["candidates"]),
             "catalog": catalog,
-            "writable_ids": sorted({*layout.cells, *layout.slots}), "paused": False,
+            "writable_ids": sorted(catalog["candidates"]), "paused": False,
             "attempts": 0, "audit": None, "artifact_path": None}
 
 
@@ -70,7 +71,8 @@ def review_fields(data):
             "form_quote": field.get("form_evidence", {}).get("quote", ""),
             "form_context": "\n".join(text for key, text in paragraphs.items()
                                        if key in context_ids and text.strip())[:3000],
-            "selectable": bool(grounded(field) and isinstance(value, str)
+            "selectable": bool(grounded(field) and (isinstance(value, str) or (
+                type(value) is bool and (data.get("audit") or {}).get("version") == 11))
                                and field["candidate_id"] in writable
                                and field.get("disposition") in {"value", "conditional"}),
             "source_evidence": field.get("source_evidence", []),
@@ -157,6 +159,7 @@ def _prepare(project_id, session_id, version):
             raise DocumentInputError(str(exc)) from exc
         attempt = uuid4().hex
         data.update(phase="ANALYZING", attempts=data["attempts"] + 1,
+                    contract_version=model_input["schema_output"]["properties"]["version"]["const"],
                     catalog=model_input["form"],
                     artifact_path=str(_folder(project_id, session_id, attempt).relative_to(
                         get_storage_path().resolve())))
@@ -176,8 +179,10 @@ def _complete(project_id, session_id, version, raw, audit, metadata):
     with connection() as db:
         db.execute("BEGIN IMMEDIATE")
         row, state = _row_state(db, project_id, session_id, version, allow_busy=True)
+        version = state["global_compilation"].get("contract_version", 10)
         fresh = validate_global_proposal(raw, sessions.read_original(row), project_id,
-                                        load_document_corpus(db, project_id), expected_version=10)
+                                        load_document_corpus(db, project_id),
+                                        expected_version=version)
         if fresh != audit:
             raise HTTPException(409, "Le fonti sono cambiate durante l'analisi: "
                                 "riprova esplicitamente")
@@ -223,7 +228,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                 timeout=TIMEOUT_SECONDS)
         _save(root / "response.txt", raw, settings.api_key)
         try:
-            audit = validate_global_proposal(raw, layout, project_id, sources, expected_version=10)
+            audit = validate_global_proposal(raw, layout, project_id, sources,
+                                             expected_version=CURRENT_VERSION)
         except ValueError as exc:
             raise GenerationError("Proposta globale non valida; nessun valore applicato") from exc
         metadata.update(model=model, usage=usage, ai_seconds=time.perf_counter() - started)
@@ -334,6 +340,9 @@ def _selected(row, state, request, db):
     if any(c not in data["audit"].get("conditions", {}) for c in conditions):
         raise HTTPException(422, "Condizione sconosciuta")
     fields = {f["candidate_id"]: f for f in data["audit"]["fields"]}
+    if any(cid not in (data.get("dialogue") or {}).get("user_values", {})
+           for cid in request.user_candidate_ids):
+        raise HTTPException(422, "Valore USER non acquisito per un campo valido")
     answers = (data.get("dialogue") or {}).get("answers", {})
     selected = [fields[i] for i in ids]
     for field in selected:
@@ -349,10 +358,17 @@ def _selected(row, state, request, db):
     raw = (folder / "response.txt").read_text()
     fresh = validate_global_proposal(
         raw, sessions.read_original(row), row["project_id"],
-        load_document_corpus(db, row["project_id"]), expected_version=10)
+        load_document_corpus(db, row["project_id"]),
+        expected_version=data["audit"].get("version", 10))
     refreshed = {f["candidate_id"]: f for f in fresh["fields"]}
     if any(refreshed[i] != fields[i] for i in ids):
         raise HTTPException(409, "Una SOURCE o una condizione è cambiata: ripeti l'analisi")
+    from app.compilation_choices import materialize_choices
+
+    try:
+        materialize_choices(data, ids, request.user_candidate_ids)
+    except ValueError as exc:
+        raise HTTPException(409, str(exc)) from exc
     return selected
 
 
@@ -367,11 +383,17 @@ def generate_draft(project_id, session_id, request):
         value = field.get("proposed_value", field.get("value"))
         proof = field["source_evidence"][0]
         source = source_map[proof["chunk_id"]]
-        checked = sessions.validate_value(layout, {"id": field["candidate_id"], **field}, value,
-                                          source, proof["quote"])
+        checkbox = state["global_compilation"]["catalog"]["candidates"][
+            field["candidate_id"]]["type"] == "checkbox"
+        checked = ({"cell_id": field["candidate_id"], "label": field["label"],
+                    "kind": "choice", "written_value": value, "validation_codes": [],
+                    "validation_notes": [], "status": "proposed"} if checkbox else
+                   sessions.validate_value(layout, {"id": field["candidate_id"], **field}, value,
+                                           source, proof["quote"]))
         if checked["validation_codes"] or checked["written_value"] != value:
             raise DocumentInputError("Il validatore DOCX rifiuta una proposta selezionata")
-        values[field["candidate_id"]] = value
+        if not checkbox:
+            values[field["candidate_id"]] = value
         checked_fields.append({**checked, "provenance": "SOURCE",
                                "reviewed_by": "USER", "source_evidence": field["source_evidence"],
                                "confirmed_conditions": [c for c in field.get("conditions", [])
@@ -381,13 +403,19 @@ def generate_draft(project_id, session_id, request):
     for cid, checked, user in checked_user_fields(row, state, request):
         if cid in values:
             raise HTTPException(422, "Lo stesso campo non può essere SOURCE e USER")
-        values[cid] = checked["written_value"]
+        if type(checked["written_value"]) is not bool:
+            values[cid] = checked["written_value"]
         checked_fields.append({**checked, "provenance": "USER", "user_quote": user["user_quote"],
                                "source_evidence": []})
-    draft = fill_docx(layout, values)
+    from app.compilation_choices import materialize_choices
+
+    checkbox_values, checkbox_effects = materialize_choices(
+        state["global_compilation"], request.candidate_ids, request.user_candidate_ids)
+    draft = fill_docx(layout, values, checkbox_values=checkbox_values)
+    written_count = len(values) + len(checkbox_values)
     message = ("Ho preparato una copia del modulo senza inserire alcun valore. "
                "I campi irrisolti e quelli con condizioni non confermate restano vuoti. "
-               "Puoi scaricarla e controllarla." if not values else
+               "Puoi scaricarla e controllarla." if not written_count else
                "Ho preparato una bozza parziale con i dati disponibili. "
                "Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.")
     report = {"schema_version": 7, "created_at": sessions.now(), "project_id": project_id,
@@ -396,7 +424,8 @@ def generate_draft(project_id, session_id, request):
               "execution": {"strategy": "global_proposal_user_review", "allow_unresolved": True,
                             "allow_empty": request.allow_empty},
               "template_sha256": layout.sha256, "output_sha256": hashlib.sha256(draft).hexdigest(),
-              "fields": checked_fields, "written_field_count": len(values), "resolved": 0,
+              "fields": checked_fields, "written_field_count": written_count, "resolved": 0,
+              "checkbox_values": checkbox_values, "checkbox_effects": checkbox_effects,
               "global_audit": state["global_compilation"]["audit"],
               "conversation_review": {k: (state["global_compilation"].get("dialogue") or {}).get(
                   k, {}) for k in ["answers", "user_values"]},
@@ -406,11 +435,11 @@ def generate_draft(project_id, session_id, request):
                               "provenance": "USER", "user_quote": request.user_quote,
                               "allow_empty": request.allow_empty},
               "warnings": ["Nessun valore inserito: copia non compilata del modulo."
-                           if not values else
+                           if not written_count else
                            "Bozza parziale: valori selezionati e condizioni "
                            "confermati dall'utente.",
                            "Le proposte non attestano completezza, allegati o ammissibilità.",
-                           "Checkbox non materializzate; verificare il modulo originale."]}
+                           "Solo checkbox native con gruppo validato; verificare le altre scelte."]}
 
     def on_saved(db, generated):
         current, latest = _row_state(db, project_id, session_id, request.version)

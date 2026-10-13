@@ -56,6 +56,11 @@ Per ciascuna proposta restituisci il suo slot e:
   destinatari sono plausibili o se l'utente esprime alternative/incertezza.
 
 Per VALUE valuta che il valore risponda proprio all'informazione chiesta.
+Per uno slot choice, controlla anche selected_options: gli indici sono le
+alternative nell'ordine ricevuto. SUPPORTED solo se ciascuna scelta corrisponde
+alla volontà USER, con polarità e ambito corretti. Una negazione di un'opzione
+non seleziona automaticamente un'altra. Il testo letterale del messaggio e
+le opzioni proposte non bastano se l'utente non ha effettivamente scelto.
 Per CONDITION_TRUE/FALSE valuta che l'affermazione riguardi proprio la
 condizione chiesta e abbia la polarità proposta. Non validare una condizione
 solo perché la risposta riguarda lo stesso documento o soggetto.
@@ -103,6 +108,11 @@ async def verify_field_replies(message, context, replies, *, request):
     """One bounded batch, no repair/retry; uncertain/provider failures fail closed."""
     proposals = [{key: getattr(reply, key) for key in ("slot", "action", "value", "user_quote")}
                  for reply in replies if reply.action in WRITE_ACTIONS]
+    by_slot = {reply.slot: reply for reply in replies}
+    for proposal in proposals:
+        options = getattr(by_slot[proposal["slot"]], "selected_options", None)
+        if options is not None:
+            proposal["selected_options"] = options
     if not proposals:
         return ReplyScopeResult(frozenset(), 0)
     settings = get_ai_settings()

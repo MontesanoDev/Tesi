@@ -60,11 +60,12 @@ def test_sparse_input_has_no_inventory_receipt_or_partition(case):
     data = build_global_input(case[0], "alpha", case[1])
     assert "form_review_paragraph_ids" not in data
     assert set(data["schema_output"]["properties"]) == {
-        "version", "facts", "conditions", "fields", "bindings", "uncertain_paragraph_ids"}
+        "version", "facts", "conditions", "fields", "bindings", "uncertain_paragraph_ids",
+        "choice_groups"}
     assert len(data["form"]["candidates"]) == 3
     assert data["sources"][0]["role"] == "source"
     schema = data["schema_output"]
-    assert {"fact_id", "property"} <= set(schema["$defs"]["SubjectBoundValue"]["required"])
+    assert {"fact_id", "property"} <= set(schema["$defs"]["ChoiceValue"]["required"])
     assert schema["properties"]["fields"]["maxProperties"] == 400
 
 

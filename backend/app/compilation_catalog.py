@@ -308,6 +308,11 @@ def build_compilation_catalog(layout):
         if paragraph_controls:
             record["controls"] = [{"id": c["id"], "offset": c["offset"]}
                                   for c in paragraph_controls]
+            marked = text
+            for control in reversed(paragraph_controls):
+                offset = control["offset"]
+                marked = marked[:offset] + "[[" + control["id"] + "]]" + marked[offset:]
+            record["text_with_choices"] = marked
         if references:
             record["references"] = references
         paragraphs[paragraph] = record

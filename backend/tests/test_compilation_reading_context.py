@@ -165,7 +165,7 @@ def test_checkbox_and_text_positions_share_physical_row_but_not_writable_identit
         form["candidates"]["t0.r0.c2"]["location"])
     assert "reading_contexts" not in form
     assert form["candidates"]["p0.cb0"]["type"] == "checkbox"
-    assert form["checkbox_write_supported"] is False
+    assert form["checkbox_write_supported"] is True
 
 
 def test_merged_cells_keep_physical_rows_and_do_not_create_duplicate_targets():

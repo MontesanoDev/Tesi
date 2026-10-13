@@ -119,7 +119,7 @@ def proposal(data, *, conditional=False, invalid_source=False):
         else {}
     )
     return {
-        "version": 10,
+        "version": data["schema_output"]["properties"]["version"]["const"],
         "uncertain_paragraph_ids": [],
         "facts": facts,
         "fields": fields,

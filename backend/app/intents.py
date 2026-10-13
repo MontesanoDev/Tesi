@@ -322,6 +322,13 @@ Con CAPACITÀ DI COMPILAZIONE DISPONIBILE puoi inoltre scegliere:
   non una richiesta di spiegazione. Ometti gli slot non risposti; un sì/no senza
   destinatario fra più condizioni richiede CLARIFY, non un'associazione arbitraria.
   SOURCE, FORM, cronologia e alternative non sostituiscono una scelta USER.
+  Per uno slot kind=choice, VALUE copia in value la frase letterale USER e
+  selected_options contiene gli indici (1-based) delle alternative scelte,
+  nell'ordine ricevuto. Interpreta negazioni e riferimenti nel contesto della
+  domanda: non scegliere opzioni non adottate dall'utente. [] significa nessuna
+  solo se esplicitamente richiesto e ammesso; single ammette una sola scelta,
+  multiple più scelte. Ambiguità -> CLARIFY, senza selected_options. Nessun ID.
+  Per altri slot selected_options è null. normalized_value non serve per choice.
 - pause: vuole sospendere il LAVORO COMPLESSIVO della compilazione.
   Rinviare una voce o una conferma non significa sospendere la sessione.
 - resume: vuole riprendere esplicitamente la sessione esistente.
@@ -385,7 +392,9 @@ def routing_context(compilation):
             {**{key: slot.get(key) for key in (
                 "slot", "kind", "label", "condition", "alternatives",
             )}, "context": (slot.get("context") or "")[:1500],
-             "question": (slot.get("question") or "")[:600]}
+             "question": (slot.get("question") or "")[:600],
+             **({"selection": slot["selection"], "min_selected": slot["min_selected"]}
+                if slot.get("kind") == "choice" else {})}
             for slot in slots
         ],
     }
@@ -424,8 +433,10 @@ def bind_turn_plan(plan, compilation, message):
         if single_active_target(compilation) and not active_group(compilation):
             if not plan.replies:
                 return ActiveFieldDecision(action="CLARIFY")
+            if plan.replies[0].selected_options is not None:
+                raise ValueError("Scelte non ammesse per un campo legacy")
             return ActiveFieldDecision.model_validate(
-                plan.replies[0].model_dump(exclude={"slot", "user_quote"}),
+                plan.replies[0].model_dump(exclude={"slot", "user_quote", "selected_options"}),
             )
         return ClarificationDecision(action="ANSWER", replies=plan.replies)
     if plan.intent in {"pause", "resume", "finish", "generate"}:

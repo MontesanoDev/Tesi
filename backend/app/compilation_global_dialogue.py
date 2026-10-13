@@ -67,8 +67,12 @@ trovati nelle fonti. Ometti le domande rinviate o già risposte. Una risposta
 precedente USER vale solo per il suo destinatario, non conferma altre condizioni.
 message è una sintesi breve SENZA ripetere le domande; questions contiene lo
 slot ricevuto e il testo naturale della domanda. Nessun field_id o altro ID.
-Non promettere allegati o selezione di checkbox Word: la scrittura delle checkbox
-non è supportata. Se non ci sono domande utili, questions=[]: il backend chiederà
+Le choice_groups descrivono scelte Word native: rispetta regola, opzioni,
+condizioni, soggetto e prove. Non confondere SOURCE documentata con scelta USER.
+Se una regola proposta non è giustificata dal FORM sospendi tutte le relative
+proposte. Per kind=choice chiedi naturalmente quale alternativa adottare, anche
+più di una solo se multiple; niente istruzioni per cliccare caselle.
+Non promettere allegati. Se non ci sono domande utili, questions=[]: il backend chiederà
 il consenso alla bozza parziale. Restituisci solo JSON conforme allo schema.
 Ogni document_value ha un proposal_slot e un contesto FORM: se la destinazione
 o una condizione locale non risulta giustificata, includi quel proposal_slot in
@@ -99,6 +103,28 @@ def question_pool(data):
                          "field_ids": [f["candidate_id"] for f in impacted],
                          "alternatives": [], "impact": len(impacted)})
     pool.sort(key=lambda q: -q["impact"])
+    for key, group in audit.get("choice_groups", {}).items():
+        if (group["validation"] != "GROUNDED_GROUP" or group["selection"] == "unknown"
+                or "choice:" + key in answers or not group["min_selected"]):
+            continue
+        conditions = set(group["conditions"]) | {
+            c for f in audit.get("fields", []) if f.get("choice_group_id") == key
+            for c in f.get("conditions", [])}
+        if any(audit.get("conditions", {}).get(c, {}).get("result", "unknown") != "true"
+               and answers.get("condition:" + c, {}).get("applies") is not True
+               for c in conditions):
+            continue
+        if any(f.get("choice_group_id") == key and
+               f.get("proposed_value", f.get("value")) is True and (
+                   f["validation"] == "GROUNDED_PROPOSAL" or
+                   f.get("proposal_grounding") == "GROUNDED_PROPOSAL") for f in fields):
+            continue
+        pool.append({"key": "choice:" + key, "kind": "choice", "label": group["label"],
+                     "condition": "", "context": group["form_evidence"]["quote"],
+                     "choice_group_id": key, "field_ids": list(group["options"]),
+                     "alternatives": [o["label"] for o in group["options"].values()],
+                     "selection": group["selection"], "min_selected": group["min_selected"],
+                     "impact": len(group["options"])})
     for field in fields:
         cid = field["candidate_id"]
         if (cid not in data["writable_ids"] or "field:" + cid in answers
@@ -174,7 +200,13 @@ def model_context(data, pool):
             role_contexts.append({"slot": slot, **context})
         proposal_roles[i + 1] = role_slots[key]
     return {"role_contexts": role_contexts, "document_values": [
-        {"proposal_slot": i + 1, "label": f["label"][:200], "value": f["value"][:500],
+        {"proposal_slot": i + 1, "label": f["label"][:200],
+         "value": f["value"] if type(f["value"]) is bool else f["value"][:500],
+         **({"choice_group": {k: audit["choice_groups"][audited[f["candidate_id"]][
+             "choice_group_id"]][k] for k in ("label", "subject", "selection", "min_selected")}
+             | {"form_quote": audit["choice_groups"][audited[f["candidate_id"]][
+                 "choice_group_id"]]["form_evidence"]["quote"][:500]}}
+            if audited[f["candidate_id"]].get("choice_group_id") else {}),
          "role_context_slot": proposal_roles.get(i + 1),
          "form_context": f["form_context"][:1200], "form_quote": f["form_quote"][:500],
          "required_role_context": audited[f["candidate_id"]].get("subject_binding", {}).get(
@@ -189,10 +221,11 @@ def model_context(data, pool):
         "previous_answers": [{k: (v[:500] if isinstance(v, str) else v)
                               for k, v in a.items()} for a in list(answers.values())[-24:]],
         "unassessed_positions": (data.get("audit") or {}).get("unassigned_count", 0),
-        "limitations": "Bozza parziale; allegati e checkbox non completati automaticamente.",
+        "limitations": "Bozza parziale; allegati e scelte non supportate restano da verificare.",
         "question_pool": [{k: q[k][:600] if isinstance(q[k], str) else q[k] for k in (
             "slot", "kind", "label", "condition", "context", "alternatives", "impact"
-        )} for q in pool]}
+        )} | ({"selection": q["selection"], "min_selected": q["min_selected"]}
+              if q["kind"] == "choice" else {}) for q in pool]}
 
 
 def no_technical_ids(text):
@@ -356,6 +389,16 @@ def apply_replies(project_id, session_id, version, replies, message):
                           "provenance": "USER", "label": slot["label"]}
                 if reply.action in {"UNKNOWN", "SKIP", "REFUSE"}:
                     pass  # Keep unresolved, defer without inventing a value or applicability.
+                elif slot["kind"] == "choice" and reply.action == "VALUE":
+                    from app.compilation_choices import user_choice
+
+                    if not reply.value or not contains_span(reply.user_quote, reply.value):
+                        raise ValueError("Scelta non grounded nel messaggio USER")
+                    updated = user_choice(data, slot, reply)
+                    for cid, chosen in updated.items():
+                        user_values[cid] = {**chosen, "previous": user_values.get(cid)}
+                    record["selected_options"] = reply.selected_options
+                    record["value"] = reply.value
                 elif slot["kind"] == "applicability" and reply.action in {
                     "CONDITION_TRUE", "CONDITION_FALSE"
                 }:
@@ -363,6 +406,8 @@ def apply_replies(project_id, session_id, version, replies, message):
                         raise ValueError("Risposta incerta sulla condizione")
                     record["applies"] = reply.action == "CONDITION_TRUE"
                 elif slot["kind"] == "value" and reply.action == "VALUE":
+                    if reply.selected_options is not None:
+                        raise ValueError("Opzioni non ammesse per un campo testuale")
                     cid = slot["field_ids"][0]
                     field = fields[cid]
                     value = reply.normalized_value or reply.value
@@ -411,6 +456,15 @@ def export_selection(session):
            and f["candidate_id"] in reviewed - held
            and f["candidate_id"] not in user_values
            and all(c in confirmed for c in f["conditions"])]
+    # Holding a positive exclusive choice also holds the false alternatives that
+    # depended on it; a partial export must not silently leave a group half chosen.
+    for group in data["audit"].get("choice_groups", {}).values() if "audit" in data else []:
+        members = set(group["options"])
+        selected = [f for f in data["fields"] if f["candidate_id"] in members & set(ids)]
+        if group["min_selected"] and not any(f["value"] is True for f in selected) and not any(
+            v["value"] is True for cid, v in user_values.items() if cid in members
+        ):
+            ids = [cid for cid in ids if cid not in members]
     return ids, confirmed, list(user_values)
 
 
@@ -426,9 +480,10 @@ def checked_user_fields(row, state, request):
     layout, result = sessions.read_original(row), []
     for cid in ids:
         user, field = values.get(cid), fields.get(cid)
+        checkbox = user is not None and type(user.get("value")) is bool
         if (not user or user.get("provenance") != "USER" or not field
                 or cid not in data["writable_ids"] or not field.get("form_evidence")
-                or field.get("validation_errors")
+                or field.get("validation_errors") and not checkbox
                 or field.get("kind") in {"signature", "decorative"}):
             raise HTTPException(422, "Valore USER non acquisito per un campo valido")
         for c in field.get("conditions", []):
@@ -438,7 +493,23 @@ def checked_user_fields(row, state, request):
                     original == "unknown" and (applies is not True
                                               or c not in request.confirmed_condition_ids)):
                 raise HTTPException(409, "Applicabilità del valore USER non confermata")
-        checked = sessions.validate_value(layout, {**field, "id": cid}, user["value"], user=True)
+        if checkbox:
+            key = user.get("choice_group_id")
+            group = data["audit"].get("choice_groups", {}).get(key, {})
+            answer = dialogue.get("answers", {}).get("choice:" + str(key), {})
+            options = list(group.get("options", {}))
+            if (group.get("validation") != "GROUNDED_GROUP" or cid not in options
+                    or field.get("choice_group_id") != key or answer.get("action") != "VALUE"
+                    or answer.get("provenance") != "USER" or answer.get("selected_options") is None
+                    or user["user_quote"] != answer.get("user_quote") or
+                    user["value"] != (options.index(cid) + 1 in answer["selected_options"])):
+                raise HTTPException(422, "Scelta USER non acquisita per il gruppo corretto")
+            checked = {"cell_id": cid, "label": field["label"], "kind": "choice",
+                       "written_value": user["value"], "validation_codes": [],
+                       "validation_notes": [], "status": "proposed"}
+        else:
+            checked = sessions.validate_value(layout, {**field, "id": cid}, user["value"],
+                                               user=True)
         if checked["validation_codes"] or checked["written_value"] != user["value"]:
             raise HTTPException(422, "Il validatore DOCX rifiuta il valore USER")
         result.append((cid, checked, user))

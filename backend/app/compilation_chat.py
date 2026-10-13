@@ -55,6 +55,15 @@ class ActiveFieldDecision(StrictModel):
 class ClarificationReply(ActiveFieldDecision):
     slot: int = Field(ge=1, le=4)
     user_quote: str = Field(min_length=1, max_length=2000)
+    selected_options: list[int] | None = Field(default=None, max_length=32)
+
+    @model_validator(mode="after")
+    def options_only_for_value(self):
+        if self.selected_options is not None and (self.action != "VALUE" or any(
+            type(i) is not int or not 1 <= i <= 32 for i in self.selected_options
+        )):
+            raise ValueError("Solo VALUE può indicare opzioni del gruppo attivo")
+        return self
 
 
 class ClarificationDecision(StrictModel):

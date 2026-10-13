@@ -221,9 +221,9 @@ def test_unknown_value_is_still_rejected_when_optional_condition_support_is_bad(
 
 def test_schema_bounded_and_historical_v7_does_not_accept_new_disposition(case):
     schema = build_global_input(case[0], "alpha", case[1])["schema_output"]
-    assert schema["properties"]["version"]["const"] == 10
+    assert schema["properties"]["version"]["const"] == 11
     assert schema["properties"]["fields"]["maxProperties"] == 400
-    assert schema["$defs"]["ConditionalValue"]["properties"]["conditions"]["minItems"] == 1
+    assert schema["$defs"]["ChoiceConditionalValue"]["properties"]["conditions"]["minItems"] == 1
     case[2]["version"] = 7
     result = audit(case)
     assert result["fields"][0]["validation"] == "REJECTED"

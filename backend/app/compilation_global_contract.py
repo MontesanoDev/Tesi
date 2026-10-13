@@ -212,3 +212,41 @@ class ContextAwareProposal(SlotAwareProposal):
     """Bounded FORM continuations and explicit SOURCE personal record formats."""
 
     version: Literal[10]
+
+
+class ChoiceOption(StrictModel):
+    label: str = Field(min_length=1, max_length=250)
+    form: FormSpan
+
+
+class ChoiceGroup(StrictModel):
+    """Proposed semantics; the backend owns physical controls and cardinality."""
+
+    label: str = Field(min_length=1, max_length=250)
+    subject: str = Field(min_length=1, max_length=150)
+    property: str = Field(min_length=1, max_length=150)
+    form: FormSpan
+    selection: Literal["single", "multiple", "unknown"]
+    min_selected: int = Field(ge=0, le=1)
+    options: dict[Reference, ChoiceOption] = Field(min_length=1, max_length=32)
+    conditions: list[Reference] = Field(default_factory=list, max_length=8)
+
+
+class ChoiceValue(SubjectBoundValue):
+    choice_group_id: Reference | None = None
+
+
+class ChoiceConditionalValue(ConditionalValue):
+    choice_group_id: Reference | None = None
+
+
+ChoiceAssignment = Annotated[
+    ChoiceValue | ChoiceConditionalValue | NonApplicableAssignment | AlternativeAssignment,
+    Field(discriminator="disposition"),
+]
+
+
+class ChoiceAwareProposal(ContextAwareProposal):
+    version: Literal[11]
+    choice_groups: dict[Reference, ChoiceGroup] = Field(default_factory=dict, max_length=64)
+    fields: dict[Reference, ChoiceAssignment] = Field(max_length=400)
