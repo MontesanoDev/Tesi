@@ -1,5 +1,42 @@
 # Stato di Mapi RAG
 
+## Minervino: bozza reale fornita dall'utente — 13 ottobre, diagnosi
+
+Verificato domanda-iscrizione.compilato.docx, identico al file della sessione
+e484f26a4d02493185d76606215f0bf2/versione 7. **Nove valori SOURCE scritti** nel
+ramo societario, ai candidate indicati nel JSON; **tutte le tredici checkbox vuote**.
+Il campo «sede legale in» riceve l'intero indirizzo e ripete via/civico presenti
+nei campi successivi: associazione semantica da rivedere, non slittamento del writer.
+Stato GENERATED indica export parziale autorizzato. Originale/file/sessione
+invariati, quindici parti ZIP non body invariate. Nessuna nuova API o modifica
+al codice applicativo/database, soltanto diagnosi e documentazione.
+
+Output DeepSeek: choice_groups={} e zero assegnazioni checkbox. 267 candidate,
+16 proposte, 15 grounded conditional, una rifiutata (Bari: quote con due marker),
+251 omesse. Non chiamarle 251 campi obbligatori/mancanti. Direttore tecnico
+Elisa Romano/qualifica/Ordine/8421 presenti nell'input SOURCE effettivo, ma
+nessuna proposta per i relativi field: omissione nella generazione JSON.
+
+«società di ingegneria» -> CONDITION_TRUE c2 sui dati societari, non selezione
+USER di una checkbox: nessun gruppo attivo. «la seconda lascia vuoto» -> SKIP
+c1, rinvia sei proposte aziendali dell'intestazione oltre alla domanda sul
+titolo del sottoscrittore. Sintesi «li propongo in entrambe» poco chiara rispetto
+al rinvio; export scrive correttamente solo nove valori. Tipo societario e
+rappresentanza sono uniti nella stessa condizione: modellazione da affinare.
+
+[Report](docs/minervino-output-2026-10-13.md), raw in
+backend/data/compilation-audit/minervino-output-20261013/. Confronto read-only
+stato/report/XML/quote SOURCE passato; suite/provider/browser non rieseguiti,
+non necessari alla sola diagnosi documentale. Diff/riferimenti controllati.
+**Prossimo intervento da discutere, non implementato:** copertura verificabile
+di sezioni/scelte, collegamento a gruppi checkbox validati, separazione di
+tipologia/ruolo e perimetro dei rinvii. Preferenza per migliorare il primo
+passaggio globale; recupero bounded con chiamata aggiuntiva è un'alternativa,
+con costi/tempi maggiori. Nessun ritorno ai batch da 12, nessun push.
+Acquisizioni: [bundle](docs/benchmarks/2026-10-13-minervino-output-audit.tar.gz),
+[manifest](docs/benchmarks/2026-10-13-minervino-output-manifest.json), 24 file
+/1.573.365 byte grezzi, verificati byte per byte e senza chiavi/DB.
+
 ## Crash su gruppo checkbox rifiutato — 13 ottobre 2026, corretto
 
 Il test manuale Minervino ha trovato un KeyError in export_selection durante

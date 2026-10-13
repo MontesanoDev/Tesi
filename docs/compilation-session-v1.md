@@ -1,5 +1,17 @@
 # CompilationSession V1: backend, chat e verifica
 
+## Minervino reale — 13 ottobre, limite di copertura osservato
+
+[Verifica del DOCX utente](minervino-output-2026-10-13.md): nove valori SOURCE
+scritti nel ramo societario e zero checkbox su tredici native. L'output reale
+contiene choice_groups={} e nessuna assegnazione checkbox; i dati del direttore
+tecnico sono già nell'input ma restano omessi. L'indirizzo completo nel campo
+«sede legale in» duplica via/civico dei campi successivi. I test del writer non certificano
+la copertura del modello sui bandi reali. Confermare una condizione di ramo
+non crea una selezione nativa; SKIP su una condizione può rinviare l'intero
+gruppo di proposte associate. Copertura/collegamento/perimetro dei chiarimenti
+restano da discutere. Diagnosi in sola lettura, nessuna modifica del motore.
+
 ## Gruppi rifiutati e sintesi — 13 ottobre, correzione
 
 L'export selection ignora i record REJECTED prima di accedere agli attributi

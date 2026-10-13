@@ -1988,3 +1988,36 @@ nessun push. Completezza dei gruppi fisici e copertura restano limiti separati.
 Bundle sanificato e manifest in docs/benchmarks/2026-10-13-checkbox-crash-*:
 81 file /1.818.061 byte grezzi, confronto byte per byte, chiavi e DB esclusi.
 SHA256 7e8c4c3f0a2c29e10b94b5c365c143f95aba6c7061a00de104ddf2edbeb2dca3.
+
+### 13 ottobre 2026 — verifica della bozza Minervino dell'utente
+
+Diagnosi read-only del DOCX fornito, stesso hash della generazione persistita:
+nove valori SOURCE nel ramo societario, ai candidate proposti, zero checkbox su
+tredici native. Quindici parti ZIP non body invariate; originale, copia e
+sessione/versione invariati. Nessuna nuova chiamata AI o compilazione.
+«Sede legale in» riceve l'intero indirizzo, poi via/civico vengono ripetuti:
+il contesto del modulo suggerisce il solo comune. Materializzazione coerente
+col JSON e SOURCE non certificano la precisione semantica della destinazione.
+
+267 candidate, 16 assegnazioni, 15 proposte grounded conditional e una respinta
+per quote con due marker, 251 posizioni omesse. choice_groups={} e nessuna
+proposta checkbox. Dati Elisa Romano/qualifica/Ordine/8421 già nel contesto
+SOURCE del modello, ma nessuna proposta per quella parte. Non è un'assenza
+di dati in KB e non prova un errore del writer. Non usare candidate come
+denominatore di accuratezza o numero di dati obbligatori mancanti.
+
+Risposta USER: tipo societario accettato come condizione positiva del ramo,
+non scelta nativa. Rinvio della seconda domanda esclude sei proposte aziendali
+dell'intestazione; sintesi poco esplicita sull'effetto. Campo di rappresentanza
+e natura dell'operatore risultano uniti in una condizione. Solo il consenso
+successivo autorizza la bozza parziale con nove valori SOURCE, nessun USER.
+
+[Diagnosi](docs/minervino-output-2026-10-13.md), snapshot/input/raw/report/
+revisioni/Word in backend/data/compilation-audit/minervino-output-20261013/.
+Solo documentazione: diff e riferimenti, nessuna suite software/provider
+simulato/browser. Codice applicativo invariato. Prossima scelta da discutere:
+copertura del primo passaggio globale e collegamento condizioni/scelte,
+prima di valutare una chiamata bounded di recupero. Nessun push.
+Bundle e manifest in docs/benchmarks/2026-10-13-minervino-output-*:
+24 file /1.573.365 byte grezzi, confronto byte per byte, chiavi/DB esclusi.
+SHA256 84a024ad61e665746187568c259e7b7747466a19d49ece1a55a3402f0c054b46.

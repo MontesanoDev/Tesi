@@ -1,0 +1,156 @@
+{
+  "archive": "2026-10-13-minervino-output-audit.tar.gz",
+  "files": 24,
+  "raw_bytes": 1573365,
+  "compressed_bytes": 326771,
+  "sha256": "84a024ad61e665746187568c259e7b7747466a19d49ece1a55a3402f0c054b46",
+  "credentials_scan_passed": true,
+  "no_database_or_keys": true,
+  "verified_byte_for_byte": true,
+  "read_only_diagnosis": true,
+  "new_ai_calls": 0,
+  "candidate_count": 267,
+  "raw_proposals": 16,
+  "grounded_conditional_proposals": 15,
+  "written_count": 9,
+  "native_checkboxes": 13,
+  "native_checked": 0,
+  "proposed_choice_groups": 0,
+  "unassigned_count": 251,
+  "provided_sha256": "24acc8624f0c9b36a6909748463d0467bff9a65e967eb6676883bed43ce811b0",
+  "semantic_destination_review": {
+    "candidate_id": "p41.s1",
+    "field_prefix": "sede legale in",
+    "following_fields": [
+      "provincia",
+      "via/piazza",
+      "numero civico"
+    ],
+    "actual_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "assessment": "overly broad address repeats street/civic in following fields; layout suggests municipality Bari",
+    "physical_materialization_matches_proposal": true,
+    "automatic_change_applied": false
+  },
+  "entries": [
+    {
+      "path": "analysis/audit.json",
+      "bytes": 125039,
+      "sha256": "cd60c8676e3f6db56d174051f38222cf08c524ccafd26da5141d196cb1058eaa"
+    },
+    {
+      "path": "analysis/dialogue/702965452dad4738867346547dc49a41/http-response.txt",
+      "bytes": 1108,
+      "sha256": "bb243b74fc96c110189f3e8428fe1f263e4764a3033ad1945cbe6222b82cf16c"
+    },
+    {
+      "path": "analysis/dialogue/702965452dad4738867346547dc49a41/request.json",
+      "bytes": 17908,
+      "sha256": "b2d2d9d4ec3c5274a0396943a88670dca407174eb444954f07c62033f89d0de1"
+    },
+    {
+      "path": "analysis/dialogue/702965452dad4738867346547dc49a41/response.txt",
+      "bytes": 634,
+      "sha256": "abc66551f76c217eb56c33248792bee10bc7371919513851a2a3cd69622dc295"
+    },
+    {
+      "path": "analysis/dialogue/702965452dad4738867346547dc49a41/result.json",
+      "bytes": 2120,
+      "sha256": "94f4632cfa95d6511b703730b9efc632833c62846a7c90a5e0cc748469145ca9"
+    },
+    {
+      "path": "analysis/dialogue/b06a488c91b54f91826ca2947ba738a5/http-response.txt",
+      "bytes": 1361,
+      "sha256": "fa53b32d3fe8f56197c637b49420837174a87e842fcf6e42cec78685c142abee"
+    },
+    {
+      "path": "analysis/dialogue/b06a488c91b54f91826ca2947ba738a5/request.json",
+      "bytes": 18345,
+      "sha256": "1bb585e12dae48f03ca1ec96c489a3c7cf01524ca6bd4245a094bc4c8546651c"
+    },
+    {
+      "path": "analysis/dialogue/b06a488c91b54f91826ca2947ba738a5/response.txt",
+      "bytes": 875,
+      "sha256": "4140987deab652ca0470730c572570866a7878666deec4343cd1d31de441da31"
+    },
+    {
+      "path": "analysis/dialogue/b06a488c91b54f91826ca2947ba738a5/result.json",
+      "bytes": 4192,
+      "sha256": "67ffecb65754461b8ddc279a2dbde0790b4edf0617847ed2f090c7c4b3a1e087"
+    },
+    {
+      "path": "analysis/http-response.txt",
+      "bytes": 84384,
+      "sha256": "e3be1165671bd7b2ac116f90024a6caec1d53ebaf46f6d7e95541cf8e1423b54"
+    },
+    {
+      "path": "analysis/input.json",
+      "bytes": 311954,
+      "sha256": "d758bf7a1dd3439569c51822b24a2a9f055c215b15f5018d9805a9f75640c275"
+    },
+    {
+      "path": "analysis/metrics.json",
+      "bytes": 4807,
+      "sha256": "56d46e345676de512452d3c3b86be1c1dba31958b39174d4ee0b06727ddc4221"
+    },
+    {
+      "path": "analysis/original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "analysis/request.json",
+      "bytes": 246658,
+      "sha256": "3ebce1b5b0768b937d014faa142b24dc5089bb51227038c962dc26d12ea64fd8"
+    },
+    {
+      "path": "analysis/response.txt",
+      "bytes": 9346,
+      "sha256": "f87a61722195334e1f3ed736d8550d90e4b4e6977b4ad3671720a601b345c6b5"
+    },
+    {
+      "path": "conversation.json",
+      "bytes": 2168,
+      "sha256": "07bc9419fb25c649721c8231bc3f76dfb9542f2dc65b88f21d6d4dcc48d2e4e5"
+    },
+    {
+      "path": "diagnosis.json",
+      "bytes": 15052,
+      "sha256": "496d65a04e63df7aa3bcfe2bb72d155aca6996659a7eca8f253cba907aca97d5"
+    },
+    {
+      "path": "integrity.json",
+      "bytes": 294,
+      "sha256": "5a05a6f90d40e053027d12be4cfc08b96200bec18653c794c9eca212b8f611aa"
+    },
+    {
+      "path": "original.docx",
+      "bytes": 63494,
+      "sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+    },
+    {
+      "path": "protocol.json",
+      "bytes": 241,
+      "sha256": "bfbb7977e585a47781f5ba494370cc0eb13389314c6dad383cdb5f13f04796e4"
+    },
+    {
+      "path": "provided.docx",
+      "bytes": 60395,
+      "sha256": "24acc8624f0c9b36a6909748463d0467bff9a65e967eb6676883bed43ce811b0"
+    },
+    {
+      "path": "report.json",
+      "bytes": 151687,
+      "sha256": "06eac369262922a888b1fdbed92e8bdc0938b61a5b6b8b3acfe9de15a9a98c44"
+    },
+    {
+      "path": "revisions.json",
+      "bytes": 2275,
+      "sha256": "315c206b6bc43c86b1552425036700f1dd01352121d1c2287a994e75df63d705"
+    },
+    {
+      "path": "session-state.json",
+      "bytes": 385534,
+      "sha256": "fbbddfdc14a69a2646d10f92b4c5e9ae9d4628c5715f74b2fb886f51d2de07a5"
+    }
+  ]
+}
