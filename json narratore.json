@@ -1,0 +1,559 @@
+{
+  "conversation_stage": "initial",
+  "latest_turn": null,
+  "role_contexts": [
+    {
+      "slot": 1,
+      "subject": "Elisa Romano",
+      "entity": "person",
+      "required_role": "Direttore Tecnico",
+      "source_role": "direttore tecnico",
+      "form_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+      "grounding": "literal_match",
+      "semantic_review_required": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "### Ing. Elisa Romano - direttore tecnico",
+          "truncated": false,
+          "role": "source",
+          "scope": "global",
+          "category": "company"
+        }
+      ]
+    }
+  ],
+  "document_values": [
+    {
+      "proposal_slot": 1,
+      "label": "Operatore economico",
+      "deferred": false,
+      "value": "Mapi Ingegneria S.r.l.",
+      "role_context_slot": null,
+      "form_context": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI\n_______________________ dell’operatore economico ___________________________________ con sede in",
+      "form_quote": "dell’operatore economico ___________________________________ con sede in",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 2,
+      "label": "Provincia",
+      "deferred": false,
+      "value": "BA",
+      "role_context_slot": null,
+      "form_context": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI\n_________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail",
+      "form_quote": "(__), tel.",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 3,
+      "label": "Telefono",
+      "deferred": false,
+      "value": "+39 080 000 2040",
+      "role_context_slot": null,
+      "form_context": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI\n_________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail",
+      "form_quote": "tel. _______________________, fax",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Telefono aziendale simulato: +39 080 000 2040."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 4,
+      "label": "Indirizzo e-mail",
+      "deferred": false,
+      "value": "segreteria@mapi-ingegneria.demo",
+      "role_context_slot": null,
+      "form_context": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI\n________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla",
+      "form_quote": "________________________ P.E.C.",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 5,
+      "label": "P.E.C.",
+      "deferred": false,
+      "value": "mapi.ingegneria@pec.demo",
+      "role_context_slot": null,
+      "form_context": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI\n________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla",
+      "form_quote": "P.E.C. ________________________ Partita IVA",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 6,
+      "label": "Partita IVA",
+      "deferred": false,
+      "value": "IT01234567890",
+      "role_context_slot": null,
+      "form_context": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI\n________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla",
+      "form_quote": "Partita IVA _______________, iscritto alla",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 7,
+      "label": "Denominazione/ragione sociale",
+      "deferred": false,
+      "value": "Mapi Ingegneria S.r.l.",
+      "role_context_slot": null,
+      "form_context": "denominazione/ragione sociale “………………................................................................................................”",
+      "form_quote": "denominazione/ragione sociale “………………................................................................................................”",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 8,
+      "label": "P. IVA",
+      "deferred": false,
+      "value": "IT01234567890",
+      "role_context_slot": null,
+      "form_context": "P. IVA ................................................. sede legale in .............................................................................................................",
+      "form_quote": "P. IVA ................................................. sede legale in",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 9,
+      "label": "Sede legale",
+      "deferred": false,
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "role_context_slot": null,
+      "form_context": "P. IVA ................................................. sede legale in .............................................................................................................",
+      "form_quote": "sede legale in .............................................................................................................",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 10,
+      "label": "Provincia",
+      "deferred": false,
+      "value": "BA",
+      "role_context_slot": null,
+      "form_context": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+      "form_quote": "prov. ....................................... via/piazza",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 11,
+      "label": "Via/piazza",
+      "deferred": false,
+      "value": "Via Giovanni Amendola",
+      "role_context_slot": null,
+      "form_context": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+      "form_quote": "via/piazza .................................................................................................................... n.",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 12,
+      "label": "Numero civico",
+      "deferred": false,
+      "value": "172/C",
+      "role_context_slot": null,
+      "form_context": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+      "form_quote": "n. ..............., tel",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 13,
+      "label": "Telefono",
+      "deferred": false,
+      "value": "+39 080 000 2040",
+      "role_context_slot": null,
+      "form_context": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+      "form_quote": "tel ..................... …… e-mail",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Telefono aziendale simulato: +39 080 000 2040."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 14,
+      "label": "E-mail",
+      "deferred": false,
+      "value": "segreteria@mapi-ingegneria.demo",
+      "role_context_slot": null,
+      "form_context": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+      "form_quote": "e-mail …………………………………………...………….…… pec",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 15,
+      "label": "PEC",
+      "deferred": false,
+      "value": "mapi.ingegneria@pec.demo",
+      "role_context_slot": null,
+      "form_context": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+      "form_quote": "pec …………………………………………………………………………………….………………..…………...…………",
+      "required_role_context": "",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 16,
+      "label": "Nome e cognome",
+      "deferred": false,
+      "value": "Ing. Elisa Romano",
+      "role_context_slot": 1,
+      "form_context": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):\n3) nome e cognome ..................................................................................................................................................",
+      "form_quote": "nome e cognome ..................................................................................................................................................",
+      "required_role_context": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Nominativo completo: Ing. Elisa Romano."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 17,
+      "label": "Qualifica professionale",
+      "deferred": false,
+      "value": "Ingegnere",
+      "role_context_slot": 1,
+      "form_context": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):\nqualifica professionale ..................................................................................... C.F. ........................................................",
+      "form_quote": "qualifica professionale ..................................................................................... C.F.",
+      "required_role_context": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Qualifica professionale nello scenario: Ingegnere."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 18,
+      "label": "Ordine/Collegio professionale",
+      "deferred": false,
+      "value": "Ordine degli Ingegneri di Bari",
+      "role_context_slot": 1,
+      "form_context": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):\niscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…",
+      "form_quote": "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione",
+      "required_role_context": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Ordine professionale simulato: Ordine degli Ingegneri di Bari."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 19,
+      "label": "Provincia dell'ordine",
+      "deferred": false,
+      "value": "Bari",
+      "role_context_slot": 1,
+      "form_context": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):\niscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…",
+      "form_quote": "della provincia di ............................................ dal",
+      "required_role_context": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Ordine professionale simulato: Ordine degli Ingegneri di Bari."
+        }
+      ]
+    },
+    {
+      "proposal_slot": 20,
+      "label": "Numero di iscrizione",
+      "deferred": false,
+      "value": "8421",
+      "role_context_slot": 1,
+      "form_context": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):\niscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…",
+      "form_quote": "con il n. ………………..…",
+      "required_role_context": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+      "conditional": true,
+      "sources": [
+        {
+          "name": "generalita-mapi.md",
+          "quote": "- Numero di iscrizione professionale simulato: 8421."
+        }
+      ]
+    }
+  ],
+  "user_values": [],
+  "previous_answers": [],
+  "coverage": {
+    "recorded": true,
+    "total": 267,
+    "proposed": 20,
+    "clarifications": 0,
+    "rejected": 1,
+    "explained_unfilled": 147,
+    "explicitly_unassessed": 0,
+    "unexplained": 0,
+    "rejected_explanations": 99,
+    "explicit_decisions_complete": true,
+    "coverage_checks_passed": false,
+    "semantic_completeness_verified": false,
+    "outcomes": {
+      "source_not_found": 142,
+      "manual_input": 5
+    },
+    "groups": [
+      {
+        "outcome": "source_not_found",
+        "reason": "Dati anagrafici personali del sottoscrittore (nome, nascita, residenza, C.F.) non presenti nelle SOURCE",
+        "positions": 8,
+        "form_context": "Il sottoscritto [[p12.s0]], nato a [[p12.s1]] ([[p12.s2]]) il [[p12.s3]], residente"
+      },
+      {
+        "outcome": "manual_input",
+        "reason": "Qualifica del dichiarante dell'operatore economico non desumibile; richiede scelta dell'utente",
+        "positions": 1,
+        "form_context": "[[p14.s0]] dell’operatore economico"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Fax dell'operatore economico non presente nelle SOURCE",
+        "positions": 1,
+        "form_context": "fax [[p15.s3]], indirizzo e-mail"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Estremi Camera di Commercio e albo professionale dell'operatore economico non reperiti",
+        "positions": 4,
+        "form_context": "Camera di Commercio di [[p17.s0]] al n. [[p17.s1]] / all'albo professionale della Provincia di [[p17.s2]] al n. [[p17.s3]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Dati del professionista abilitato da meno di cinque anni non presenti nelle SOURCE",
+        "positions": 5,
+        "form_context": "nome e cognome [[p211.s0]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Dati dello studio professionale associato non presenti nelle SOURCE",
+        "positions": 8,
+        "form_context": "“[[p22.s0]]” P. IVA [[p22.s1]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Nominativi dei professionisti esecutori e del professionista di integrazione non reperiti",
+        "positions": 1,
+        "form_context": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:"
+      },
+      {
+        "outcome": "manual_input",
+        "reason": "Luogo e data di sottoscrizione da indicare dall'utente",
+        "positions": 1,
+        "form_context": "Luogo e data, [[p242.s0]]"
+      },
+      {
+        "outcome": "manual_input",
+        "reason": "Firma digitale del dichiarante",
+        "positions": 1,
+        "form_context": "[[p245.s0]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Nominativi e iscrizioni dei professionisti associati non presenti nelle SOURCE",
+        "positions": 3,
+        "form_context": "1) nome e cognome [[p26.s0]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Dati del terzo professionista associato non presenti nelle SOURCE",
+        "positions": 3,
+        "form_context": "3) nome e cognome [[p32.s0]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Dati dello studio professionale associato e del suo rappresentante legale non presenti nelle SOURCE",
+        "positions": 10,
+        "form_context": "“[[p36.s0]]” P. IVA [[p36.s1]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Nominativi, qualifiche e C.F. dei soci della società non presenti nelle SOURCE",
+        "positions": 8,
+        "form_context": "1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "C.F., sezione e data di iscrizione del direttore tecnico non disponibili nelle SOURCE",
+        "positions": 2,
+        "form_context": "sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Denominazione RTP e dati dei mandanti non presenti nelle SOURCE",
+        "positions": 2,
+        "form_context": "“[[p55.s0]]”, composto dai seguenti soggetti “mandanti”"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Denominazione del RTP e nominativo del capogruppo non presenti nelle SOURCE",
+        "positions": 2,
+        "form_context": "“[[p62.s0]]”"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Dati del consorzio stabile non presenti nelle SOURCE",
+        "positions": 9,
+        "form_context": "“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Dati dei legali rappresentanti delle società consorziate non presenti nelle SOURCE",
+        "positions": 9,
+        "form_context": "1) nome e cognome [[p67.s0]]qualifica professionale [[p67.s1]]C.F. [[p67.s2]]"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Selezione delle categorie di opere e fasce non documentata nelle SOURCE",
+        "positions": 51,
+        "form_context": "Categoria di opere"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Preferenze di fascia per CSP/CSE non documentate nelle SOURCE",
+        "positions": 3,
+        "form_context": "CSP/CSE"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Preferenze per tipologie di collaudo non documentate nelle SOURCE",
+        "positions": 3,
+        "form_context": "Tipologia incarico"
+      },
+      {
+        "outcome": "source_not_found",
+        "reason": "Preferenze per altri incarichi di servizi tecnici non documentate nelle SOURCE",
+        "positions": 10,
+        "form_context": "Tipologia incarico"
+      },
+      {
+        "outcome": "manual_input",
+        "reason": "Scelta della qualifica del dichiarante (IN QUALITÀ DI) non desumibile dalle SOURCE",
+        "positions": 1,
+        "form_context": "IN QUALITÀ DI"
+      },
+      {
+        "outcome": "manual_input",
+        "reason": "Dichiarazioni da selezionare/sottoscrivere dall'utente, non provate dalle SOURCE",
+        "positions": 1,
+        "form_context": "D I C H I A R A"
+      }
+    ],
+    "omitted_groups": 0,
+    "meaning": "Motivazioni MODEL ancorate al FORM; non prova di assenza nelle SOURCE e non autorizzazione a scrivere o a dichiarare la non applicabilità"
+  },
+  "unassessed_source_roles": [],
+  "limitations": "Bozza parziale; allegati e scelte non supportate restano da verificare.",
+  "question_pool": [
+    {
+      "slot": 1,
+      "kind": "applicability",
+      "label": "La qualifica del dichiarante (libero professionista, legale rappresentante di società/studio, RTP, consorzio) non è confermata; l'applicabilità dei blocchi anagrafici resta da verificare",
+      "condition": "IN QUALITÀ DI",
+      "context": "IN QUALITÀ DI",
+      "alternatives": [],
+      "impact": 20,
+      "affected_fields": [
+        "Operatore economico",
+        "Provincia",
+        "Telefono",
+        "Indirizzo e-mail",
+        "P.E.C.",
+        "Partita IVA",
+        "Denominazione/ragione sociale",
+        "P. IVA"
+      ]
+    }
+  ]
+}

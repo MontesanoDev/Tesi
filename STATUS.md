@@ -1,5 +1,18 @@
 # Stato di Mapi RAG
 
+## Input del narratore nella radice — 14 ottobre
+
+Creato [json narratore.json](<json narratore.json>), estrazione leggibile del
+JSON in `body.messages[1].content` della richiesta iniziale del narratore
+Minervino, sessione `a067b0ab`, analisi `e8ad0f46`, dialogo `495c42b3`.
+Contiene 20 proposte e uno slot nel question_pool, con ruoli, risposte e copertura.
+È il contesto USER del narratore, non il system prompt o l'analisi globale.
+
+Verificati parsing, equivalenza con l'acquisizione e originale invariato;
+nessuna chiamata provider o suite software. Preservate le cancellazioni e
+rinomine locali dell'utente dei materiali RELATORI. Snapshot documentale,
+nessun cambiamento al motore; prossimo punto di ripresa invariato.
+
 ## Guida di studio dell'architettura — 13 ottobre
 
 Creato [ARCHITETTURA.md](ARCHITETTURA.md) nella radice, con baseline `1fd0d72`:
