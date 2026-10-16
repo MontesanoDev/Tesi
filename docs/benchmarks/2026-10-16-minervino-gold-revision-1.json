@@ -1,0 +1,153 @@
+{
+  "kind": "revised_gold_candidate_pending_user_review_not_frozen",
+  "date": "2026-10-16",
+  "source": "nuovi dati/domanda-iscrizione.GOLD-SINTETICO.docx",
+  "target": "nuovi dati/domanda-iscrizione.GOLD-SINTETICO-REVISIONE-1.docx",
+  "source_sha256": "c4dbd36e5d1a02f987bdabde3f3cd67ab4e47291aff9d737666bfd4d875991bf",
+  "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+  "target_sha256": "5bd34a43b22dff44d5a280b690f4187d345e6664619d42272bbe2c590b5c8d67",
+  "original_and_source_unchanged": true,
+  "modified_existing_paragraphs": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ],
+  "restored_paragraphs": [
+    51,
+    52,
+    53
+  ],
+  "patched_paragraphs": [
+    {
+      "original_paragraph": 42,
+      "text": "prov. BA via/piazza Via Giovanni Amendola n. 172/C, tel +39 080 000 2040 e-mail segreteria@mapi-ingegneria.demo pec mapi.ingegneria@pec.demo e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+      "values": {
+        "p42.s0": "BA",
+        "p42.s1": "Via Giovanni Amendola",
+        "p42.s2": "172/C",
+        "p42.s3": "+39 080 000 2040",
+        "p42.s4": "segreteria@mapi-ingegneria.demo",
+        "p42.s5": "mapi.ingegneria@pec.demo"
+      }
+    },
+    {
+      "original_paragraph": 43,
+      "text": "1) nome e cognome Ing. Luca Ferri qualifica professionale Ingegnere C.F. FRRLCU80A01A662K iscritto all’Ordine/Collegio professionale Ordine degli Ingegneri di Bari sezione A",
+      "values": {
+        "p43.s0": "Ing. Luca Ferri",
+        "p43.s1": "Ingegnere",
+        "p43.s2": "FRRLCU80A01A662K",
+        "p43.s3": "Ordine degli Ingegneri di Bari",
+        "p43.s4": "A"
+      }
+    },
+    {
+      "original_paragraph": 44,
+      "text": "della provincia di Bari dal 21/03/2012 con il n. 7294",
+      "values": {
+        "p44.s0": "Bari",
+        "p44.s1": "21/03/2012",
+        "p44.s2": "7294"
+      }
+    },
+    {
+      "original_paragraph": 45,
+      "text": "2) nome e cognome Ing. Elisa Romano qualifica professionale Ingegnere C.F. RMNLSI85C47A662Y iscritto all’Ordine/Collegio professionale Ordine degli Ingegneri di Bari sezione A",
+      "values": {
+        "p45.s0": "Ing. Elisa Romano",
+        "p45.s1": "Ingegnere",
+        "p45.s2": "RMNLSI85C47A662Y",
+        "p45.s3": "Ordine degli Ingegneri di Bari",
+        "p45.s4": "A"
+      }
+    },
+    {
+      "original_paragraph": 46,
+      "text": "della provincia di Bari dal 18/05/2015 con il n. 8421",
+      "values": {
+        "p46.s0": "Bari",
+        "p46.s1": "18/05/2015",
+        "p46.s2": "8421"
+      }
+    },
+    {
+      "original_paragraph": 47,
+      "text": "3) nome e cognome Arch. Andrea Greco",
+      "values": {
+        "p47.s0": "Arch. Andrea Greco"
+      }
+    },
+    {
+      "original_paragraph": 48,
+      "text": "qualifica professionale Architetto C.F. GRCNDR84D20A662P",
+      "values": {
+        "p48.s0": "Architetto",
+        "p48.s1": "GRCNDR84D20A662P"
+      }
+    },
+    {
+      "original_paragraph": 49,
+      "text": "iscritto all’Ordine/Collegio professionale Ordine degli Architetti di Bari sezione A della provincia di Bari dal 12/06/2014 con il n. 5267",
+      "values": {
+        "p49.s0": "Ordine degli Architetti di Bari",
+        "p49.s1": "A",
+        "p49.s2": "Bari",
+        "p49.s3": "12/06/2014",
+        "p49.s4": "5267"
+      }
+    },
+    {
+      "original_paragraph": 51,
+      "text": "3) nome e cognome Ing. Elisa Romano",
+      "values": {
+        "p51.s0": "Ing. Elisa Romano"
+      }
+    },
+    {
+      "original_paragraph": 52,
+      "text": "qualifica professionale Ingegnere C.F. RMNLSI85C47A662Y",
+      "values": {
+        "p52.s0": "Ingegnere",
+        "p52.s1": "RMNLSI85C47A662Y"
+      }
+    },
+    {
+      "original_paragraph": 53,
+      "text": "iscritto all’Ordine/Collegio professionale Ordine degli Ingegneri di Bari sezione A della provincia di Bari dal 18/05/2015 con il n. 8421",
+      "values": {
+        "p53.s0": "Ordine degli Ingegneri di Bari",
+        "p53.s1": "A",
+        "p53.s2": "Bari",
+        "p53.s3": "18/05/2015",
+        "p53.s4": "8421"
+      }
+    }
+  ],
+  "body_paragraphs": 130,
+  "all_paragraphs": 246,
+  "tables": 4,
+  "native_controls": 13,
+  "native_controls_preserved": true,
+  "selected_native_controls": 3,
+  "selected_table_cells": 6,
+  "changed_package_parts": [
+    "word/document.xml"
+  ],
+  "generation_method": "Standalone XML edit of user gold, restoring original paragraphs and explicit reviewed values; application writer and LLM not used. Physical ranges checked against the original placeholder text.",
+  "new_provider_calls": 0,
+  "visual_rendering_performed": false,
+  "freeze_status": "awaiting_explicit_user_ok",
+  "verified_source_occurrences_preserved": 52,
+  "verified_director_fields_present": 8,
+  "all_package_xml_parses": true,
+  "python_docx_loads": true,
+  "tables_identical_to_user_gold": true,
+  "all_native_controls_identical_to_user_gold": true,
+  "app_code_changed": false,
+  "kb_changed": false
+}

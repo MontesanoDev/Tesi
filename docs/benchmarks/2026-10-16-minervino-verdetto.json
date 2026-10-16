@@ -1,0 +1,159 @@
+{
+  "kind": "offline_fact_check_of_review_claims_not_new_llm_benchmark",
+  "date": "2026-10-16",
+  "files_sha256": {
+    "demo-documents/bandi/minervino-elenco-sia/originali/domanda-iscrizione.docx": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "nuovi dati/domanda-iscrizione.GOLD-SINTETICO-REVISIONE-1.docx": "5bd34a43b22dff44d5a280b690f4187d345e6664619d42272bbe2c590b5c8d67",
+    "nuovi dati/SCENARIO_GOLD_MINERVINO.md": "7a0fe0e3612ff0d5e0cd078cf1f13426f5cd02d7cfaca46b43e3bd2ee3971cf6"
+  },
+  "mutool_version": "mutool version 1.27.0",
+  "rendering": "MuPDF alternative DOCX reflow at default settings; not Microsoft Word pagination",
+  "numbering": {
+    "original": [
+      {
+        "paragraph_id": 78,
+        "text": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+        "numId": "5",
+        "level": "0",
+        "abstractNumId": "0",
+        "format": "lowerLetter",
+        "pattern": "%1)",
+        "start": "1",
+        "override_count": 0
+      },
+      {
+        "paragraph_id": 155,
+        "text": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+        "numId": "5",
+        "level": "0",
+        "abstractNumId": "0",
+        "format": "lowerLetter",
+        "pattern": "%1)",
+        "start": "1",
+        "override_count": 0
+      },
+      {
+        "paragraph_id": 168,
+        "text": "Servizio di collaudo finale o in corso d’opera;",
+        "numId": "5",
+        "level": "0",
+        "abstractNumId": "0",
+        "format": "lowerLetter",
+        "pattern": "%1)",
+        "start": "1",
+        "override_count": 0
+      },
+      {
+        "paragraph_id": 178,
+        "text": "Altri incarichi per servizi tecnici;",
+        "numId": "5",
+        "level": "0",
+        "abstractNumId": "0",
+        "format": "lowerLetter",
+        "pattern": "%1)",
+        "start": "1",
+        "override_count": 0
+      }
+    ],
+    "revision_1": [
+      {
+        "paragraph_id": 78,
+        "text": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+        "numId": "5",
+        "level": "0",
+        "abstractNumId": "0",
+        "format": "lowerLetter",
+        "pattern": "%1)",
+        "start": "1",
+        "override_count": 0
+      },
+      {
+        "paragraph_id": 155,
+        "text": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+        "numId": "5",
+        "level": "0",
+        "abstractNumId": "0",
+        "format": "lowerLetter",
+        "pattern": "%1)",
+        "start": "1",
+        "override_count": 0
+      },
+      {
+        "paragraph_id": 168,
+        "text": "Servizio di collaudo finale o in corso d’opera;",
+        "numId": "5",
+        "level": "0",
+        "abstractNumId": "0",
+        "format": "lowerLetter",
+        "pattern": "%1)",
+        "start": "1",
+        "override_count": 0
+      },
+      {
+        "paragraph_id": 178,
+        "text": "Altri incarichi per servizi tecnici;",
+        "numId": "5",
+        "level": "0",
+        "abstractNumId": "0",
+        "format": "lowerLetter",
+        "pattern": "%1)",
+        "start": "1",
+        "override_count": 0
+      }
+    ]
+  },
+  "rendering_observations": {
+    "original": {
+      "returncode": 0,
+      "page_count": 16,
+      "signature_label_pages": [
+        16
+      ],
+      "signature_line_on_last_page": true
+    },
+    "revision_1": {
+      "returncode": 0,
+      "page_count": 15,
+      "signature_label_pages": [
+        15
+      ],
+      "signature_line_on_last_page": true
+    }
+  },
+  "new_provider_calls": 0,
+  "documents_modified": false,
+  "frozen": false,
+  "signature": {
+    "label_paragraph": 128,
+    "line_paragraph": 129,
+    "texts": [
+      "Firma digitale ",
+      "____________________________"
+    ],
+    "explicit_keepNext": false,
+    "explicit_page_break": false,
+    "last_rendered_page_breaks": 0
+  },
+  "explanatory_notes_in_fillable_area": [
+    {
+      "paragraph": 117,
+      "text": "Nessun altro professionista previsto nella presente simulazione."
+    },
+    {
+      "paragraph": 118,
+      "text": "(Dati e qualifiche dichiarati esclusivamente per il benchmark didattico.)"
+    }
+  ],
+  "numbering_semantics_equal": true,
+  "scenario_designations_present": true,
+  "verdict": {
+    "1_numbering": "not_supported_as_an_xml_defect; original alphabetical numbering preserved",
+    "2_signature_page_10": "not_confirmed; alternative renderer gives 15 pages with label and line on last page, Word render unavailable",
+    "3_designations": "already documented in the scenario table; input timing and checkpoints remain to define",
+    "4_explanatory_phrases": "confirmed; two authorial explanations remain in fillable paragraphs 117 and 118"
+  },
+  "last_page_image_created": true,
+  "source_files_unchanged": true,
+  "last_page_visual_inspected": true,
+  "last_page_visual_observation": "Nel rendering MuPDF la dicitura Firma digitale e la linea vuota sono entrambe sull’ultima pagina; non riproduce una pagina con la sola linea. La paginazione Microsoft Word non è verificata."
+}

@@ -1,0 +1,28 @@
+{
+  "renderer": "LibreOffice 26.2.6.3 620(Build:3), headless, local extracted Ubuntu packages",
+  "original_pages": 10,
+  "gold_pages": 9,
+  "signature_label_page": 9,
+  "signature_line_page": 9,
+  "signature_block_together": true,
+  "numbering_visual_review": "a), b), c), d) visibili alle pagine 5–7 del PDF LibreOffice",
+  "microsoft_word_rendered": false,
+  "notes": [
+    "Font substitution may differ from Microsoft Word.",
+    "MuPDF 1.27.0 directly reflowing the same DOCX yields 16 pages and an orphan signature line despite keepNext; not the reference renderer for layout.",
+    "LibreOffice first conversion produced liblangtag warnings due to local extraction; PDF produced successfully, logs retained."
+  ],
+  "reference_pdf": "evaluation/gold-libreoffice.pdf",
+  "visual_pages_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "visual_review": "Tutte le nove pagine del gold ispezionate: dati iniziali, soci/direttore, rami esclusi, sei X, dichiarazioni, note rimosse e firma vuota insieme alla dicitura."
+}

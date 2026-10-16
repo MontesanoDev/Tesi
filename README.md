@@ -14,6 +14,11 @@ globale attuale, il ruolo del modello, i prompt, i JSON e la generazione del Wor
 La [baseline della demo](docs/baseline-demo.md) documenta il punto di ripristino
 locale e la separazione dal nuovo sviluppo a chiamata unica.
 
+La [base Minervino V1](demo-documents/benchmark-minervino/v1/README.md) congela
+modulo, fonti, scenario, risposte USER e gold Word/JSON per valutare la nuova
+architettura. [Preparazione e stato del benchmark](BENCHMARK_COMPILAZIONE.md).
+Gold e annotazioni di valutazione rimangono esclusi dalla KB e dai prompt.
+
 **Avvio**
 
 Da Linux o macOS (x64/arm64), dalla radice del repository:

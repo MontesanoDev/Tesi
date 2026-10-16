@@ -1,0 +1,55 @@
+[
+  {
+    "id": "M01",
+    "path": "input/sources/generalita-mapi.md",
+    "role": "SOURCE",
+    "scope": "global",
+    "category": "company",
+    "live_document_id": 7,
+    "name": "generalita-mapi.md",
+    "sha256": "0404c209cc312e7bef3371797c836b48d983f5ff83ea38a44fd78eea0b451e3b",
+    "use": "company_facts"
+  },
+  {
+    "id": "G01",
+    "path": "input/sources/progettazione-opere-pubbliche.txt",
+    "role": "SOURCE",
+    "scope": "global",
+    "category": "general",
+    "live_document_id": 8,
+    "name": "progettazione-opere-pubbliche.txt",
+    "sha256": "21340bc17677bde1118df2eeeeb36652c87303b14c2c9e606a83a3d36be4cf33",
+    "use": "general_distractor"
+  },
+  {
+    "id": "M02",
+    "path": "input/sources/visura-mapi-ingegneria-simulata.pdf",
+    "role": "SOURCE",
+    "scope": "global",
+    "category": "company",
+    "live_document_id": 9,
+    "name": "visura-mapi-ingegneria-simulata.pdf",
+    "sha256": "74edda8cd65ef67e50c2195cdd6059114115aa47b5bc595b37fa6de962ce52aa",
+    "use": "company_facts"
+  },
+  {
+    "id": "M03",
+    "path": "input/sources/integrazione-company.md",
+    "role": "SOURCE",
+    "scope": "global",
+    "category": "company",
+    "live_document_id": 10,
+    "name": "integrazione-company.md",
+    "sha256": "4817c4f567e04e183a90cfc59f15d2e5a5105925ff674536e83531218ed04507",
+    "use": "company_facts"
+  },
+  {
+    "id": "P01",
+    "path": "input/avviso.pdf",
+    "role": "SOURCE",
+    "scope": "project:benchmark-minervino-v1",
+    "category": "procedure",
+    "use": "procedure_requirements_not_company_facts",
+    "sha256": "c7c16c448270cb03951f2b1aab85ed2814915e0ce184a5179cbab55472714b41"
+  }
+]

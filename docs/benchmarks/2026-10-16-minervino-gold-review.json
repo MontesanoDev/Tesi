@@ -1,0 +1,1304 @@
+{
+  "kind": "review_of_user_authored_gold_not_a_frozen_gold_or_llm_experiment",
+  "date": "2026-10-16",
+  "git_baseline": "4b7d828",
+  "project": "minervino-di-lecce-elenco-sia",
+  "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+  "gold_sha256": "c4dbd36e5d1a02f987bdabde3f3cd67ab4e47291aff9d737666bfd4d875991bf",
+  "backend_original_matches_fixture": true,
+  "body_paragraphs": {
+    "original": 130,
+    "gold": 127
+  },
+  "all_paragraphs": {
+    "original": 246,
+    "gold": 243
+  },
+  "tables": {
+    "original": 4,
+    "gold": 4
+  },
+  "table_row_counts_original": [
+    18,
+    2,
+    4,
+    11
+  ],
+  "table_row_counts_gold": [
+    18,
+    2,
+    4,
+    11
+  ],
+  "checkbox_count": {
+    "original": 13,
+    "gold": 13
+  },
+  "checkbox_ids_preserved": true,
+  "checked_native_controls": 3,
+  "checkbox_glyphs_consistent": true,
+  "selected_table_cells": [
+    {
+      "table": 0,
+      "row": 3,
+      "column": 2,
+      "label": "Edilizia scolastica e sanitaria",
+      "header": "Fascia B (incarichi da € 40.000,00 a € 139.999,00)",
+      "value": "X"
+    },
+    {
+      "table": 0,
+      "row": 8,
+      "column": 2,
+      "label": "Strutture",
+      "header": "Fascia B (incarichi da € 40.000,00 a € 139.999,00)",
+      "value": "X"
+    },
+    {
+      "table": 0,
+      "row": 13,
+      "column": 1,
+      "label": "Opere stradali",
+      "header": "Fascia A (incarichi da € 0,00 a € 39.999,00)",
+      "value": "X"
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "column": 1,
+      "label": "CSP/CSE",
+      "header": "Fascia A(incarichi da € 0,00 a € 39.999,00)",
+      "value": "X"
+    },
+    {
+      "table": 2,
+      "row": 1,
+      "column": 1,
+      "label": "Collaudo statico",
+      "header": "Preferenza",
+      "value": "X"
+    },
+    {
+      "table": 3,
+      "row": 10,
+      "column": 1,
+      "label": "redazione di certificato di prestazione energetica",
+      "header": "Preferenza",
+      "value": "X"
+    }
+  ],
+  "table_changes": [
+    {
+      "table": 0,
+      "row": 3,
+      "column": 2,
+      "before": "",
+      "after": "X"
+    },
+    {
+      "table": 0,
+      "row": 8,
+      "column": 2,
+      "before": "",
+      "after": "X"
+    },
+    {
+      "table": 0,
+      "row": 13,
+      "column": 1,
+      "before": "",
+      "after": "X"
+    },
+    {
+      "table": 1,
+      "row": 1,
+      "column": 1,
+      "before": "",
+      "after": "X"
+    },
+    {
+      "table": 2,
+      "row": 1,
+      "column": 1,
+      "before": "",
+      "after": "X"
+    },
+    {
+      "table": 3,
+      "row": 10,
+      "column": 1,
+      "before": "",
+      "after": "X"
+    }
+  ],
+  "zip_diff": {
+    "added": [
+      "word/_rels/comments.xml.rels",
+      "word/_rels/endnotes.xml.rels",
+      "word/_rels/footnotes.xml.rels",
+      "word/endnotes.xml",
+      "word/footnotes.xml"
+    ],
+    "removed": [],
+    "changed": [
+      "[Content_Types].xml",
+      "_rels/.rels",
+      "customXml/_rels/item1.xml.rels",
+      "customXml/item1.xml",
+      "customXml/itemProps1.xml",
+      "docProps/app.xml",
+      "docProps/core.xml",
+      "word/_rels/document.xml.rels",
+      "word/document.xml",
+      "word/fontTable.xml",
+      "word/numbering.xml",
+      "word/settings.xml",
+      "word/styles.xml",
+      "word/theme/theme1.xml",
+      "word/webSettings.xml"
+    ]
+  },
+  "body_changes": [
+    {
+      "kind": "replace",
+      "original_range": [
+        8,
+        9
+      ],
+      "gold_range": [
+        8,
+        9
+      ],
+      "original_text": [
+        ""
+      ],
+      "gold_text": [
+        "BENCHMARK GOLD SINTETICO — NON FIRMARE O PRESENTARE"
+      ]
+    },
+    {
+      "kind": "replace",
+      "original_range": [
+        12,
+        18
+      ],
+      "gold_range": [
+        12,
+        18
+      ],
+      "original_text": [
+        "Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente",
+        "in __________________ (__), via ________________________, C.F. ______________________, in qualità di",
+        "_______________________ dell’operatore economico ___________________________________ con sede in",
+        "_________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail",
+        "________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla",
+        "Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________"
+      ],
+      "gold_text": [
+        "Il sottoscritto Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente",
+        "in Bari (BA), via Amedeo 24, C.F. MNTLRD82S14E506X, in qualità di",
+        "rappresentante legale dell’operatore economico Mapi Ingegneria S.r.l. con sede in",
+        "Bari (BA), tel. +39 080 000 2040, fax +39 080 000 2041, indirizzo e-mail",
+        "segreteria@mapi-ingegneria.demo P.E.C. mapi.ingegneria@pec.demo Partita IVA IT01234567890, iscritto alla",
+        "Camera di Commercio di Bari al n. 01234560981 / all'albo professionale della Provincia di _________________  al n. _________"
+      ]
+    },
+    {
+      "kind": "replace",
+      "original_range": [
+        39,
+        50
+      ],
+      "gold_range": [
+        39,
+        50
+      ],
+      "original_text": [
+        "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+        "denominazione/ragione sociale “………………................................................................................................”",
+        "P. IVA ................................................. sede legale in .............................................................................................................",
+        "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................",
+        "della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................",
+        "della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "3) nome e cognome ......................................................................................................................................",
+        "qualifica professionale ..................................................................................... C.F. ..................................................",
+        "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…"
+      ],
+      "gold_text": [
+        "☒ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+        "denominazione/ragione sociale “Mapi Ingegneria S.r.l.”",
+        "P. IVA IT01234567890 sede legale in Bari",
+        "prov. BA via/piazza Via Giovanni Amendola n. 172/C, tel. +39 080 000 2040, e-mail segreteria@mapi-ingegneria.demo, PEC mapi.ingegneria@pec.demo; composta da (nominativo, qualifica professionale, C.F. di ogni socio):",
+        "1) nome e cognome Ing. Luca Ferri; qualifica professionale Ingegnere; C.F. FRRLCU80A01A662K; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+        "della provincia di Bari dal 21/03/2012 con il n. 7294",
+        "2) nome e cognome Ing. Elisa Romano; qualifica professionale Ingegnere; C.F. RMNLSI85C47A662Y; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+        "della provincia di Bari dal 18/05/2015 con il n. 8421",
+        "3) nome e cognome Arch. Andrea Greco",
+        "qualifica professionale Architetto; C.F. GRCNDR84D20A662P",
+        "iscritto all’Ordine degli Architetti di Bari, sezione A, della provincia di Bari dal 12/06/2014 con il n. 5267"
+      ]
+    },
+    {
+      "kind": "delete",
+      "original_range": [
+        51,
+        54
+      ],
+      "gold_range": [
+        51,
+        51
+      ],
+      "original_text": [
+        "3) nome e cognome ..................................................................................................................................................",
+        "qualifica professionale ..................................................................................... C.F. ........................................................",
+        "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…"
+      ],
+      "gold_text": []
+    },
+    {
+      "kind": "replace",
+      "original_range": [
+        101,
+        102
+      ],
+      "gold_range": [
+        98,
+        99
+      ],
+      "original_text": [
+        "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:"
+      ],
+      "gold_text": [
+        "☒ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:"
+      ]
+    },
+    {
+      "kind": "replace",
+      "original_range": [
+        112,
+        115
+      ],
+      "gold_range": [
+        109,
+        112
+      ],
+      "original_text": [
+        "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+        "…...........................................................................................................................................................................................................................................................................................................................................................................................................",
+        "…..................................................................................................................................................................................................."
+      ],
+      "gold_text": [
+        "☒ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+        "Ing. Elisa Romano — progettazione strutturale e direzione lavori; Ing. Luca Ferri — opere stradali e collaudo statico.",
+        "Arch. Andrea Greco — progettazione edilizia, certificazione energetica e CSP/CSE."
+      ]
+    },
+    {
+      "kind": "replace",
+      "original_range": [
+        116,
+        119
+      ],
+      "gold_range": [
+        113,
+        116
+      ],
+      "original_text": [
+        "…...................................................................................................................................................................................................",
+        "…...................................................................................................................................................................................................",
+        "…..................................................................................................................................................................................................."
+      ],
+      "gold_text": [
+        "Arch. Andrea Greco — integrazione delle prestazioni specialistiche.",
+        "Nessun altro professionista previsto nella presente simulazione.",
+        "(Dati e qualifiche dichiarati esclusivamente per il benchmark didattico.)"
+      ]
+    },
+    {
+      "kind": "replace",
+      "original_range": [
+        126,
+        127
+      ],
+      "gold_range": [
+        123,
+        124
+      ],
+      "original_text": [
+        "Luogo e data, ______________________"
+      ],
+      "gold_text": [
+        "Luogo e data, Bari, 15/10/2026"
+      ]
+    }
+  ],
+  "documented_text_occurrences_reviewed": 52,
+  "source_value_checks": [
+    {
+      "original_candidate_id": "p12.s0",
+      "label": "Firmatario: nome",
+      "value_in_gold": "Leonardo Montemurro",
+      "gold_paragraph": 12,
+      "gold_paragraph_text": "Il sottoscritto Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -53,
+      "source_value": "Leonardo Montemurro",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**. La sua carica deriva da questa integrazione sintetica successiva e non è documentata dalla visura di agosto.",
+      "indexed_source_quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**. La sua carica deriva da questa integrazione sintetica successiva e non è documentata dalla visura di agosto."
+    },
+    {
+      "original_candidate_id": "p12.s1",
+      "label": "Nascita: comune",
+      "value_in_gold": "Lecce",
+      "gold_paragraph": 12,
+      "gold_paragraph_text": "Il sottoscritto Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -53,
+      "source_value": "Lecce (LE)",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Luogo di nascita: Lecce (LE).",
+      "indexed_source_quote": "- Luogo di nascita: Lecce (LE)."
+    },
+    {
+      "original_candidate_id": "p12.s2",
+      "label": "Nascita: provincia",
+      "value_in_gold": "LE",
+      "gold_paragraph": 12,
+      "gold_paragraph_text": "Il sottoscritto Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -53,
+      "source_value": "Lecce (LE)",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Luogo di nascita: Lecce (LE).",
+      "indexed_source_quote": "- Luogo di nascita: Lecce (LE)."
+    },
+    {
+      "original_candidate_id": "p12.s3",
+      "label": "Nascita: data",
+      "value_in_gold": "14/11/1982",
+      "gold_paragraph": 12,
+      "gold_paragraph_text": "Il sottoscritto Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "14 novembre 1982",
+      "gold_literal_check": true,
+      "normalization_or_context": "data equivalente",
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Data di nascita: 14 novembre 1982.",
+      "indexed_source_quote": "- Data di nascita: 14 novembre 1982."
+    },
+    {
+      "original_candidate_id": "p13.s0",
+      "label": "Residenza: comune",
+      "value_in_gold": "Bari",
+      "gold_paragraph": 13,
+      "gold_paragraph_text": "in Bari (BA), via Amedeo 24, C.F. MNTLRD82S14E506X, in qualità di",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Comune di residenza: Bari (BA)",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Comune di residenza: Bari (BA).",
+      "indexed_source_quote": "- Comune di residenza: Bari (BA)."
+    },
+    {
+      "original_candidate_id": "p13.s1",
+      "label": "Residenza: provincia",
+      "value_in_gold": "BA",
+      "gold_paragraph": 13,
+      "gold_paragraph_text": "in Bari (BA), via Amedeo 24, C.F. MNTLRD82S14E506X, in qualità di",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Comune di residenza: Bari (BA)",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Comune di residenza: Bari (BA).",
+      "indexed_source_quote": "- Comune di residenza: Bari (BA)."
+    },
+    {
+      "original_candidate_id": "p13.s2",
+      "label": "Residenza: indirizzo",
+      "value_in_gold": "Amedeo 24",
+      "gold_paragraph": 13,
+      "gold_paragraph_text": "in Bari (BA), via Amedeo 24, C.F. MNTLRD82S14E506X, in qualità di",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Via Amedeo 24",
+      "gold_literal_check": true,
+      "normalization_or_context": "via già presente nella label del modulo",
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Indirizzo di residenza: Via Amedeo 24.",
+      "indexed_source_quote": "- Indirizzo di residenza: Via Amedeo 24."
+    },
+    {
+      "original_candidate_id": "p13.s3",
+      "label": "CF firmatario",
+      "value_in_gold": "MNTLRD82S14E506X",
+      "gold_paragraph": 13,
+      "gold_paragraph_text": "in Bari (BA), via Amedeo 24, C.F. MNTLRD82S14E506X, in qualità di",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "MNTLRD82S14E506X",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+      "indexed_source_quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+    },
+    {
+      "original_candidate_id": "p14.s0",
+      "label": "Carica firmatario",
+      "value_in_gold": "rappresentante legale",
+      "gold_paragraph": 14,
+      "gold_paragraph_text": "rappresentante legale dell’operatore economico Mapi Ingegneria S.r.l. con sede in",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -53,
+      "source_value": "rappresentante legale",
+      "gold_literal_check": true,
+      "normalization_or_context": "uso riferito al firmatario scelto nello scenario",
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**. La sua carica deriva da questa integrazione sintetica successiva e non è documentata dalla visura di agosto.",
+      "indexed_source_quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**. La sua carica deriva da questa integrazione sintetica successiva e non è documentata dalla visura di agosto."
+    },
+    {
+      "original_candidate_id": "p14.s1",
+      "label": "Operatore economico",
+      "value_in_gold": "Mapi Ingegneria S.r.l.",
+      "gold_paragraph": 14,
+      "gold_paragraph_text": "rappresentante legale dell’operatore economico Mapi Ingegneria S.r.l. con sede in",
+      "source_file_id": -7,
+      "source_name": "generalita-mapi.md",
+      "source_chunk_id": -43,
+      "source_value": "Mapi Ingegneria S.r.l.",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Ragione sociale: Mapi Ingegneria S.r.l.",
+      "indexed_source_quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+    },
+    {
+      "original_candidate_id": "p15.s0",
+      "label": "Comune sede",
+      "value_in_gold": "Bari",
+      "gold_paragraph": 15,
+      "gold_paragraph_text": "Bari (BA), tel. +39 080 000 2040, fax +39 080 000 2041, indirizzo e-mail",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -52,
+      "source_value": "Sede legale — comune:** Bari",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Sede legale — comune:** Bari.",
+      "indexed_source_quote": "- **Sede legale — comune:** Bari."
+    },
+    {
+      "original_candidate_id": "p15.s1",
+      "label": "Provincia sede",
+      "value_in_gold": "BA",
+      "gold_paragraph": 15,
+      "gold_paragraph_text": "Bari (BA), tel. +39 080 000 2040, fax +39 080 000 2041, indirizzo e-mail",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -53,
+      "source_value": "Sede legale — provincia:** BA",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Sede legale — provincia:** BA.",
+      "indexed_source_quote": "- **Sede legale — provincia:** BA."
+    },
+    {
+      "original_candidate_id": "p15.s2",
+      "label": "Telefono",
+      "value_in_gold": "+39 080 000 2040",
+      "gold_paragraph": 15,
+      "gold_paragraph_text": "Bari (BA), tel. +39 080 000 2040, fax +39 080 000 2041, indirizzo e-mail",
+      "source_file_id": -7,
+      "source_name": "generalita-mapi.md",
+      "source_chunk_id": -44,
+      "source_value": "+39 080 000 2040",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Telefono aziendale simulato: +39 080 000 2040.",
+      "indexed_source_quote": "- Telefono aziendale simulato: +39 080 000 2040."
+    },
+    {
+      "original_candidate_id": "p15.s3",
+      "label": "Fax",
+      "value_in_gold": "+39 080 000 2041",
+      "gold_paragraph": 15,
+      "gold_paragraph_text": "Bari (BA), tel. +39 080 000 2040, fax +39 080 000 2041, indirizzo e-mail",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -53,
+      "source_value": "+39 080 000 2041",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Fax aziendale sintetico:** +39 080 000 2041.",
+      "indexed_source_quote": "- **Fax aziendale sintetico:** +39 080 000 2041."
+    },
+    {
+      "original_candidate_id": "p16.s0",
+      "label": "Email",
+      "value_in_gold": "segreteria@mapi-ingegneria.demo",
+      "gold_paragraph": 16,
+      "gold_paragraph_text": "segreteria@mapi-ingegneria.demo P.E.C. mapi.ingegneria@pec.demo Partita IVA IT01234567890, iscritto alla",
+      "source_file_id": -7,
+      "source_name": "generalita-mapi.md",
+      "source_chunk_id": -44,
+      "source_value": "segreteria@mapi-ingegneria.demo",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo.",
+      "indexed_source_quote": "- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo."
+    },
+    {
+      "original_candidate_id": "p16.s1",
+      "label": "PEC",
+      "value_in_gold": "mapi.ingegneria@pec.demo",
+      "gold_paragraph": 16,
+      "gold_paragraph_text": "segreteria@mapi-ingegneria.demo P.E.C. mapi.ingegneria@pec.demo Partita IVA IT01234567890, iscritto alla",
+      "source_file_id": -7,
+      "source_name": "generalita-mapi.md",
+      "source_chunk_id": -44,
+      "source_value": "mapi.ingegneria@pec.demo",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo.",
+      "indexed_source_quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+    },
+    {
+      "original_candidate_id": "p16.s2",
+      "label": "PIVA",
+      "value_in_gold": "IT01234567890",
+      "gold_paragraph": 16,
+      "gold_paragraph_text": "segreteria@mapi-ingegneria.demo P.E.C. mapi.ingegneria@pec.demo Partita IVA IT01234567890, iscritto alla",
+      "source_file_id": -7,
+      "source_name": "generalita-mapi.md",
+      "source_chunk_id": -43,
+      "source_value": "IT01234567890",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+      "indexed_source_quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+    },
+    {
+      "original_candidate_id": "p17.s0",
+      "label": "CCIAA",
+      "value_in_gold": "Bari",
+      "gold_paragraph": 17,
+      "gold_paragraph_text": "Camera di Commercio di Bari al n. 01234560981 / all'albo professionale della Provincia di _________________  al n. _________",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -52,
+      "source_value": "Camera di Commercio competente nello scenario:** Bari",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Camera di Commercio competente nello scenario:** Bari.",
+      "indexed_source_quote": "- **Camera di Commercio competente nello scenario:** Bari."
+    },
+    {
+      "original_candidate_id": "p17.s1",
+      "label": "Registro Imprese",
+      "value_in_gold": "01234560981",
+      "gold_paragraph": 17,
+      "gold_paragraph_text": "Camera di Commercio di Bari al n. 01234560981 / all'albo professionale della Provincia di _________________  al n. _________",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -52,
+      "source_value": "01234560981",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981.",
+      "indexed_source_quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+    },
+    {
+      "original_candidate_id": "p40.s0",
+      "label": "Denominazione",
+      "value_in_gold": "Mapi Ingegneria S.r.l.",
+      "gold_paragraph": 40,
+      "gold_paragraph_text": "denominazione/ragione sociale “Mapi Ingegneria S.r.l.”",
+      "source_file_id": -7,
+      "source_name": "generalita-mapi.md",
+      "source_chunk_id": -43,
+      "source_value": "Mapi Ingegneria S.r.l.",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Ragione sociale: Mapi Ingegneria S.r.l.",
+      "indexed_source_quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+    },
+    {
+      "original_candidate_id": "p41.s0",
+      "label": "PIVA società",
+      "value_in_gold": "IT01234567890",
+      "gold_paragraph": 41,
+      "gold_paragraph_text": "P. IVA IT01234567890 sede legale in Bari",
+      "source_file_id": -7,
+      "source_name": "generalita-mapi.md",
+      "source_chunk_id": -43,
+      "source_value": "IT01234567890",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+      "indexed_source_quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+    },
+    {
+      "original_candidate_id": "p41.s1",
+      "label": "Comune sede società",
+      "value_in_gold": "Bari",
+      "gold_paragraph": 41,
+      "gold_paragraph_text": "P. IVA IT01234567890 sede legale in Bari",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -52,
+      "source_value": "Sede legale — comune:** Bari",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Sede legale — comune:** Bari.",
+      "indexed_source_quote": "- **Sede legale — comune:** Bari."
+    },
+    {
+      "original_candidate_id": "p42.s0",
+      "label": "Provincia sede società",
+      "value_in_gold": "BA",
+      "gold_paragraph": 42,
+      "gold_paragraph_text": "prov. BA via/piazza Via Giovanni Amendola n. 172/C, tel. +39 080 000 2040, e-mail segreteria@mapi-ingegneria.demo, PEC mapi.ingegneria@pec.demo; composta da (nominativo, qualifica professionale, C.F. di ogni socio):",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -53,
+      "source_value": "Sede legale — provincia:** BA",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Sede legale — provincia:** BA.",
+      "indexed_source_quote": "- **Sede legale — provincia:** BA."
+    },
+    {
+      "original_candidate_id": "p42.s1",
+      "label": "Via società",
+      "value_in_gold": "Via Giovanni Amendola",
+      "gold_paragraph": 42,
+      "gold_paragraph_text": "prov. BA via/piazza Via Giovanni Amendola n. 172/C, tel. +39 080 000 2040, e-mail segreteria@mapi-ingegneria.demo, PEC mapi.ingegneria@pec.demo; composta da (nominativo, qualifica professionale, C.F. di ogni socio):",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -52,
+      "source_value": "Via Giovanni Amendola",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Sede legale — via:** Via Giovanni Amendola.",
+      "indexed_source_quote": "- **Sede legale — via:** Via Giovanni Amendola."
+    },
+    {
+      "original_candidate_id": "p42.s2",
+      "label": "Civico società",
+      "value_in_gold": "172/C",
+      "gold_paragraph": 42,
+      "gold_paragraph_text": "prov. BA via/piazza Via Giovanni Amendola n. 172/C, tel. +39 080 000 2040, e-mail segreteria@mapi-ingegneria.demo, PEC mapi.ingegneria@pec.demo; composta da (nominativo, qualifica professionale, C.F. di ogni socio):",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -52,
+      "source_value": "172/C",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- **Sede legale — numero civico:** 172/C.",
+      "indexed_source_quote": "- **Sede legale — numero civico:** 172/C."
+    },
+    {
+      "original_candidate_id": "p42.s3",
+      "label": "Telefono società",
+      "value_in_gold": "+39 080 000 2040",
+      "gold_paragraph": 42,
+      "gold_paragraph_text": "prov. BA via/piazza Via Giovanni Amendola n. 172/C, tel. +39 080 000 2040, e-mail segreteria@mapi-ingegneria.demo, PEC mapi.ingegneria@pec.demo; composta da (nominativo, qualifica professionale, C.F. di ogni socio):",
+      "source_file_id": -7,
+      "source_name": "generalita-mapi.md",
+      "source_chunk_id": -44,
+      "source_value": "+39 080 000 2040",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- Telefono aziendale simulato: +39 080 000 2040.",
+      "indexed_source_quote": "- Telefono aziendale simulato: +39 080 000 2040."
+    },
+    {
+      "original_candidate_id": "p42.s4",
+      "label": "Email società",
+      "value_in_gold": "segreteria@mapi-ingegneria.demo",
+      "gold_paragraph": 42,
+      "gold_paragraph_text": "prov. BA via/piazza Via Giovanni Amendola n. 172/C, tel. +39 080 000 2040, e-mail segreteria@mapi-ingegneria.demo, PEC mapi.ingegneria@pec.demo; composta da (nominativo, qualifica professionale, C.F. di ogni socio):",
+      "source_file_id": -7,
+      "source_name": "generalita-mapi.md",
+      "source_chunk_id": -44,
+      "source_value": "segreteria@mapi-ingegneria.demo",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo.",
+      "indexed_source_quote": "- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo."
+    },
+    {
+      "original_candidate_id": "p42.s5",
+      "label": "PEC società",
+      "value_in_gold": "mapi.ingegneria@pec.demo",
+      "gold_paragraph": 42,
+      "gold_paragraph_text": "prov. BA via/piazza Via Giovanni Amendola n. 172/C, tel. +39 080 000 2040, e-mail segreteria@mapi-ingegneria.demo, PEC mapi.ingegneria@pec.demo; composta da (nominativo, qualifica professionale, C.F. di ogni socio):",
+      "source_file_id": -7,
+      "source_name": "generalita-mapi.md",
+      "source_chunk_id": -44,
+      "source_value": "mapi.ingegneria@pec.demo",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo.",
+      "indexed_source_quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+    },
+    {
+      "original_candidate_id": "p43.s0",
+      "label": "Socio Luca Ferri: Nome",
+      "value_in_gold": "Luca Ferri",
+      "gold_paragraph": 43,
+      "gold_paragraph_text": "1) nome e cognome Ing. Luca Ferri; qualifica professionale Ingegnere; C.F. FRRLCU80A01A662K; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Luca Ferri",
+      "gold_literal_check": true,
+      "normalization_or_context": "titolo professionale aggiunto al nome / provincia senza sigla: presentazione compatibile",
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+      "indexed_source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+    },
+    {
+      "original_candidate_id": "p43.s1",
+      "label": "Socio Luca Ferri: Qualifica",
+      "value_in_gold": "Ingegnere",
+      "gold_paragraph": 43,
+      "gold_paragraph_text": "1) nome e cognome Ing. Luca Ferri; qualifica professionale Ingegnere; C.F. FRRLCU80A01A662K; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Ingegnere",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+      "indexed_source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+    },
+    {
+      "original_candidate_id": "p43.s2",
+      "label": "Socio Luca Ferri: CF",
+      "value_in_gold": "FRRLCU80A01A662K",
+      "gold_paragraph": 43,
+      "gold_paragraph_text": "1) nome e cognome Ing. Luca Ferri; qualifica professionale Ingegnere; C.F. FRRLCU80A01A662K; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "FRRLCU80A01A662K",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+      "indexed_source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+    },
+    {
+      "original_candidate_id": "p43.s3",
+      "label": "Socio Luca Ferri: Ordine",
+      "value_in_gold": "Ordine degli Ingegneri di Bari",
+      "gold_paragraph": 43,
+      "gold_paragraph_text": "1) nome e cognome Ing. Luca Ferri; qualifica professionale Ingegnere; C.F. FRRLCU80A01A662K; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Ordine degli Ingegneri di Bari",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+      "indexed_source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+    },
+    {
+      "original_candidate_id": "p43.s4",
+      "label": "Socio Luca Ferri: Sezione",
+      "value_in_gold": "A",
+      "gold_paragraph": 43,
+      "gold_paragraph_text": "1) nome e cognome Ing. Luca Ferri; qualifica professionale Ingegnere; C.F. FRRLCU80A01A662K; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "A",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+      "indexed_source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+    },
+    {
+      "original_candidate_id": "p44.s0",
+      "label": "Socio Luca Ferri: Provincia",
+      "value_in_gold": "Bari",
+      "gold_paragraph": 44,
+      "gold_paragraph_text": "della provincia di Bari dal 21/03/2012 con il n. 7294",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Bari",
+      "gold_literal_check": true,
+      "normalization_or_context": "titolo professionale aggiunto al nome / provincia senza sigla: presentazione compatibile",
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+      "indexed_source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+    },
+    {
+      "original_candidate_id": "p44.s1",
+      "label": "Socio Luca Ferri: Data iscrizione",
+      "value_in_gold": "21/03/2012",
+      "gold_paragraph": 44,
+      "gold_paragraph_text": "della provincia di Bari dal 21/03/2012 con il n. 7294",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "21/03/2012",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+      "indexed_source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+    },
+    {
+      "original_candidate_id": "p44.s2",
+      "label": "Socio Luca Ferri: Numero iscrizione",
+      "value_in_gold": "7294",
+      "gold_paragraph": 44,
+      "gold_paragraph_text": "della provincia di Bari dal 21/03/2012 con il n. 7294",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "7294",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+      "indexed_source_quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+    },
+    {
+      "original_candidate_id": "p45.s0",
+      "label": "Socio Elisa Romano: Nome",
+      "value_in_gold": "Elisa Romano",
+      "gold_paragraph": 45,
+      "gold_paragraph_text": "2) nome e cognome Ing. Elisa Romano; qualifica professionale Ingegnere; C.F. RMNLSI85C47A662Y; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Elisa Romano",
+      "gold_literal_check": true,
+      "normalization_or_context": "titolo professionale aggiunto al nome / provincia senza sigla: presentazione compatibile",
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+      "indexed_source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+    },
+    {
+      "original_candidate_id": "p45.s1",
+      "label": "Socio Elisa Romano: Qualifica",
+      "value_in_gold": "Ingegnere",
+      "gold_paragraph": 45,
+      "gold_paragraph_text": "2) nome e cognome Ing. Elisa Romano; qualifica professionale Ingegnere; C.F. RMNLSI85C47A662Y; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Ingegnere",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+      "indexed_source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+    },
+    {
+      "original_candidate_id": "p45.s2",
+      "label": "Socio Elisa Romano: CF",
+      "value_in_gold": "RMNLSI85C47A662Y",
+      "gold_paragraph": 45,
+      "gold_paragraph_text": "2) nome e cognome Ing. Elisa Romano; qualifica professionale Ingegnere; C.F. RMNLSI85C47A662Y; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "RMNLSI85C47A662Y",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+      "indexed_source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+    },
+    {
+      "original_candidate_id": "p45.s3",
+      "label": "Socio Elisa Romano: Ordine",
+      "value_in_gold": "Ordine degli Ingegneri di Bari",
+      "gold_paragraph": 45,
+      "gold_paragraph_text": "2) nome e cognome Ing. Elisa Romano; qualifica professionale Ingegnere; C.F. RMNLSI85C47A662Y; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Ordine degli Ingegneri di Bari",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+      "indexed_source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+    },
+    {
+      "original_candidate_id": "p45.s4",
+      "label": "Socio Elisa Romano: Sezione",
+      "value_in_gold": "A",
+      "gold_paragraph": 45,
+      "gold_paragraph_text": "2) nome e cognome Ing. Elisa Romano; qualifica professionale Ingegnere; C.F. RMNLSI85C47A662Y; iscritto all’Ordine degli Ingegneri di Bari, sezione A",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "A",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+      "indexed_source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+    },
+    {
+      "original_candidate_id": "p46.s0",
+      "label": "Socio Elisa Romano: Provincia",
+      "value_in_gold": "Bari",
+      "gold_paragraph": 46,
+      "gold_paragraph_text": "della provincia di Bari dal 18/05/2015 con il n. 8421",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Bari",
+      "gold_literal_check": true,
+      "normalization_or_context": "titolo professionale aggiunto al nome / provincia senza sigla: presentazione compatibile",
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+      "indexed_source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+    },
+    {
+      "original_candidate_id": "p46.s1",
+      "label": "Socio Elisa Romano: Data iscrizione",
+      "value_in_gold": "18/05/2015",
+      "gold_paragraph": 46,
+      "gold_paragraph_text": "della provincia di Bari dal 18/05/2015 con il n. 8421",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "18/05/2015",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+      "indexed_source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+    },
+    {
+      "original_candidate_id": "p46.s2",
+      "label": "Socio Elisa Romano: Numero iscrizione",
+      "value_in_gold": "8421",
+      "gold_paragraph": 46,
+      "gold_paragraph_text": "della provincia di Bari dal 18/05/2015 con il n. 8421",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "8421",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A   | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+      "indexed_source_quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+    },
+    {
+      "original_candidate_id": "p47.s0",
+      "label": "Socio Andrea Greco: Nome",
+      "value_in_gold": "Andrea Greco",
+      "gold_paragraph": 47,
+      "gold_paragraph_text": "3) nome e cognome Arch. Andrea Greco",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Andrea Greco",
+      "gold_literal_check": true,
+      "normalization_or_context": "titolo professionale aggiunto al nome / provincia senza sigla: presentazione compatibile",
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A   | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+      "indexed_source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+    },
+    {
+      "original_candidate_id": "p48.s0",
+      "label": "Socio Andrea Greco: Qualifica",
+      "value_in_gold": "Architetto",
+      "gold_paragraph": 48,
+      "gold_paragraph_text": "qualifica professionale Architetto; C.F. GRCNDR84D20A662P",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Architetto",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A   | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+      "indexed_source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+    },
+    {
+      "original_candidate_id": "p48.s1",
+      "label": "Socio Andrea Greco: CF",
+      "value_in_gold": "GRCNDR84D20A662P",
+      "gold_paragraph": 48,
+      "gold_paragraph_text": "qualifica professionale Architetto; C.F. GRCNDR84D20A662P",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "GRCNDR84D20A662P",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A   | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+      "indexed_source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+    },
+    {
+      "original_candidate_id": "p49.s0",
+      "label": "Socio Andrea Greco: Ordine",
+      "value_in_gold": "Ordine degli Architetti di Bari",
+      "gold_paragraph": 49,
+      "gold_paragraph_text": "iscritto all’Ordine degli Architetti di Bari, sezione A, della provincia di Bari dal 12/06/2014 con il n. 5267",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Ordine degli Architetti di Bari",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A   | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+      "indexed_source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+    },
+    {
+      "original_candidate_id": "p49.s1",
+      "label": "Socio Andrea Greco: Sezione",
+      "value_in_gold": "A",
+      "gold_paragraph": 49,
+      "gold_paragraph_text": "iscritto all’Ordine degli Architetti di Bari, sezione A, della provincia di Bari dal 12/06/2014 con il n. 5267",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "A",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A   | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+      "indexed_source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+    },
+    {
+      "original_candidate_id": "p49.s2",
+      "label": "Socio Andrea Greco: Provincia",
+      "value_in_gold": "Bari",
+      "gold_paragraph": 49,
+      "gold_paragraph_text": "iscritto all’Ordine degli Architetti di Bari, sezione A, della provincia di Bari dal 12/06/2014 con il n. 5267",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "Bari",
+      "gold_literal_check": true,
+      "normalization_or_context": "titolo professionale aggiunto al nome / provincia senza sigla: presentazione compatibile",
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A   | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+      "indexed_source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+    },
+    {
+      "original_candidate_id": "p49.s3",
+      "label": "Socio Andrea Greco: Data iscrizione",
+      "value_in_gold": "12/06/2014",
+      "gold_paragraph": 49,
+      "gold_paragraph_text": "iscritto all’Ordine degli Architetti di Bari, sezione A, della provincia di Bari dal 12/06/2014 con il n. 5267",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "12/06/2014",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A   | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+      "indexed_source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+    },
+    {
+      "original_candidate_id": "p49.s4",
+      "label": "Socio Andrea Greco: Numero iscrizione",
+      "value_in_gold": "5267",
+      "gold_paragraph": 49,
+      "gold_paragraph_text": "iscritto all’Ordine degli Architetti di Bari, sezione A, della provincia di Bari dal 12/06/2014 con il n. 5267",
+      "source_file_id": -10,
+      "source_name": "integrazione-company.md",
+      "source_chunk_id": -54,
+      "source_value": "5267",
+      "gold_literal_check": true,
+      "normalization_or_context": null,
+      "review": "matches_source_content_subject_and_field_reviewed",
+      "source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A   | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+      "indexed_source_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+    }
+  ],
+  "missing_director_occurrences": [
+    {
+      "candidate_id": "p51.s0",
+      "label": "Direttore: nome",
+      "expected_value_from_kb": "Elisa Romano",
+      "source_name": "integrazione-company.md",
+      "status": "original_destination_removed_in_gold"
+    },
+    {
+      "candidate_id": "p52.s0",
+      "label": "Direttore: qualifica",
+      "expected_value_from_kb": "Ingegnere",
+      "source_name": "integrazione-company.md",
+      "status": "original_destination_removed_in_gold"
+    },
+    {
+      "candidate_id": "p52.s1",
+      "label": "Direttore: CF",
+      "expected_value_from_kb": "RMNLSI85C47A662Y",
+      "source_name": "integrazione-company.md",
+      "status": "original_destination_removed_in_gold"
+    },
+    {
+      "candidate_id": "p53.s0",
+      "label": "Direttore: Ordine",
+      "expected_value_from_kb": "Ordine degli Ingegneri di Bari",
+      "source_name": "integrazione-company.md",
+      "status": "original_destination_removed_in_gold"
+    },
+    {
+      "candidate_id": "p53.s1",
+      "label": "Direttore: sezione",
+      "expected_value_from_kb": "A",
+      "source_name": "integrazione-company.md",
+      "status": "original_destination_removed_in_gold"
+    },
+    {
+      "candidate_id": "p53.s2",
+      "label": "Direttore: provincia",
+      "expected_value_from_kb": "Bari",
+      "source_name": "integrazione-company.md",
+      "status": "original_destination_removed_in_gold"
+    },
+    {
+      "candidate_id": "p53.s3",
+      "label": "Direttore: data iscrizione",
+      "expected_value_from_kb": "18/05/2015",
+      "source_name": "integrazione-company.md",
+      "status": "original_destination_removed_in_gold"
+    },
+    {
+      "candidate_id": "p53.s4",
+      "label": "Direttore: numero iscrizione",
+      "expected_value_from_kb": "8421",
+      "source_name": "integrazione-company.md",
+      "status": "original_destination_removed_in_gold"
+    }
+  ],
+  "current_corpus_chunks": 56,
+  "current_corpus_documents": {
+    "avviso.pdf": 34,
+    "generalita-mapi.md": 9,
+    "progettazione-opere-pubbliche.txt": 4,
+    "visura-mapi-ingegneria-simulata.pdf": 4,
+    "integrazione-company.md": 5
+  },
+  "gold_not_in_current_corpus": true,
+  "current_kb_rechunk_checks": [
+    {
+      "document_id": 7,
+      "rechunk_matches_database": false,
+      "chunks": 9
+    },
+    {
+      "document_id": 10,
+      "rechunk_matches_database": true,
+      "chunks": 5
+    }
+  ],
+  "tracked_revisions_in_gold": {
+    "ins": 0,
+    "del": 0,
+    "moveFrom": 0,
+    "moveTo": 0
+  },
+  "visual_rendering_performed": false,
+  "formal_identifier_validation_performed": false,
+  "freeze_recommended": false,
+  "pending_issues": [
+    "Restore the original three director paragraphs and their eight fields",
+    "Record participation, six preferences, named assignments, attestations and date as explicit USER scenario",
+    "Preserve preprinted labels or define semantic comparison tolerance",
+    "Define policy for inherited synthetic invalid identifiers",
+    "Write a structured gold with checkpoint and blank reasons; review layout"
+  ],
+  "project_instructions": {
+    "title": "Minervino di Lecce - Elenco SIA",
+    "instructions": "Usa solo informazioni presenti nelle fonti."
+  },
+  "new_provider_calls": 0,
+  "watched_files_unchanged": true,
+  "watched_sha256": {
+    "demo-documents/bandi/minervino-elenco-sia/originali/domanda-iscrizione.docx": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "nuovi dati/domanda-iscrizione.GOLD-SINTETICO.docx": "c4dbd36e5d1a02f987bdabde3f3cd67ab4e47291aff9d737666bfd4d875991bf",
+    "nuovi dati/integrazione.md": "573406eb6aeeb5c6ed04f9929fcf4b8c6f0d4ea8444dc4f17ea5e4cf4acb7126"
+  },
+  "indexed_text_reconstruction_checks": [
+    {
+      "document_id": 7,
+      "reconstructed_indexed_text_matches_normalized_original": true,
+      "normalized_characters": 8440
+    },
+    {
+      "document_id": 10,
+      "reconstructed_indexed_text_matches_normalized_original": true,
+      "normalized_characters": 4322
+    }
+  ],
+  "kb_partition_note": "Generalita: il partizionamento storico differisce da chunk_text corrente, ma i frammenti ricompongono esattamente il testo normalizzato. Non è prova di contenuti mancanti o KB obsoleta.",
+  "review_method": "Lettura del modulo e dei record sorgente; 52 occorrenze confrontate con righe di prova localizzate, distinguendo equivalenze di formato e scelta USER del soggetto. Non è uno score automatico di accuratezza.",
+  "acquisition_notes": [
+    "Il primo raccordo delle prove cercava la riga Markdown originale negli indici normalizzati e si è interrotto sugli spazi multipli della tabella. Raccordo completato con normalizzazione dichiarata degli spazi; nessun file di input o dato KB modificato."
+  ],
+  "source_files_sha256": {
+    "documents/7-generalita-mapi.md": "0404c209cc312e7bef3371797c836b48d983f5ff83ea38a44fd78eea0b451e3b",
+    "documents/gold-user.docx": "c4dbd36e5d1a02f987bdabde3f3cd67ab4e47291aff9d737666bfd4d875991bf",
+    "documents/integrazione-user.md": "573406eb6aeeb5c6ed04f9929fcf4b8c6f0d4ea8444dc4f17ea5e4cf4acb7126",
+    "documents/8-progettazione-opere-pubbliche.txt": "21340bc17677bde1118df2eeeeb36652c87303b14c2c9e606a83a3d36be4cf33",
+    "documents/10-integrazione-company.md": "4817c4f567e04e183a90cfc59f15d2e5a5105925ff674536e83531218ed04507",
+    "documents/original.docx": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "documents/9-visura-mapi-ingegneria-simulata.pdf": "74edda8cd65ef67e50c2195cdd6059114115aa47b5bc595b37fa6de962ce52aa"
+  }
+}

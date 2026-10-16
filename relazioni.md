@@ -2184,3 +2184,207 @@ attaccata al valore. Spazi del firmatario/soci/date personali non inventati.
 Checkbox escluse su richiesta; nessun rendering visuale Word. Nessuna
 percentuale di accuratezza o suite software presentata come appena eseguita.
 [Report e acquisizioni](docs/minervino-output-2-2026-10-13.md).
+
+## 15 ottobre 2026 — studio Astra e diagnosi offline della V12
+
+Richiesta di studio architetturale, senza implementazione del nuovo motore:
+[astra.md](astra.md), baseline `4b7d828`. Analizzati codice, prompt e acquisizioni
+Minervino a067b0ab/e8ad0f46; documentazione ufficiale sulle API file consultata.
+Nessuna nuova chiamata provider, estrazione casuale, generazione DOCX o modifica
+alla fixture V1/fonti/gold. Le proposte di esperimento sono distinte dagli esiti.
+
+Ricostruzione dell'input e rivalidazione dell'audit identiche agli originali.
+I51 chunk SOURCE del database in sola lettura coincidono con il contesto inviato.
+21 assegnazioni grezze,20 proposte condizionate grounded,1 rifiutata;147 motivi
+ancorati e99 respinti. Replay deterministico del pool in memoria:1 domanda
+iniziale,0 dopo conferma dell'unica condizione. Sessione live versione8 e file
+esaminati invariati. Nessuna percentuale di accuratezza: gold Minervino completo
+non disponibile, confronto visuale degli originali non effettuato in questa prova.
+
+Analisi statica: limite40 della revisione narrativa con conseguente filtro
+all'export SOURCE della chat;67 celle di preferenze rappresentate come testo,
+mentre il contratto scelte riguarda checkbox native e non ha max_selected.
+Sono limiti separati dai dati mancanti e dalle false negative del grounding.
+Le misure di token e tempi LLM riportate nello studio sono quelle storiche.
+
+Prima esecuzione del runner fallita per attributo DocxLayout inesistente nello
+script di misura: corretto unsupported in unsupported_locations; errore conservato
+nel raw01. Diagnosi riuscita nel raw02. Ruff iniziale del solo runner ha segnalato
+ordine import e noqa inutili, corretti; non modificata la logica applicativa.
+Controllati riferimenti, esempi JSON, diff e integrità degli artefatti.
+Nessuna suite completa o nuova valutazione generativa eseguita.
+
+[Metriche](docs/benchmarks/2026-10-15-astra-metrics.json),
+[runner](docs/benchmarks/astra_inspect.py),
+[backup delle nuove acquisizioni](docs/benchmarks/2026-10-15-astra-offline-audit.tar.gz).
+Raw locali astra-20261015-01/02 sotto backend/data/compilation-audit/.
+Il bundle conserva diagnostica/hash e script eseguito; gli archivi LLM storici
+rimangono nei percorsi già documentati. Nessun upgrade sessioni/reindex/commit/push.
+
+## 16 ottobre 2026 — Minervino con integrazione: diagnosi offline
+
+L'utente ha fornito nuovi dati/integrazione.md e il Word compilato(5)(1),
+segnalando che l'arricchimento della KB non risolve la compilazione. Identificati
+sessione 607eda67, analisi 211598d4 e generazione a4231f73 del 15 ottobre.
+È una lettura/rivalidazione di acquisizioni esistenti, non una nuova valutazione
+LLM. Baseline codice 4b7d828; nessuna modifica applicativa o alla fixture V1.
+
+Integrazione Company ID10: cinque frammenti nei 56 effettivamente inviati;
+testo del file fornito identico all'upload, differenze byte CRLF/LF. Input
+ricostruito e audit rivalidato identici. Corpus DB uguale nei campi inviati;
+il confronto iniziale dei record completi risultava falso solo per metadati
+aggiuntivi relevance/excerpt/document_metadata, distinto nel riepilogo finale.
+
+27 proposte grezze, 21 grounded, due respinte per quote FORM solo marker
+(comune/provincia iniziali), quattro dati del direttore sospesi per binding
+su chunk diverso dal valore. Soci: 24 posizioni senza proposte; scope c_soc
+incompleto e motivo coverage respinto. Un gruppo checkbox respinto per etichette
+accorciate non letterali, zero booleani. Pool in memoria 3→1→0: il primo valore
+nome/qualifica ricomposto dal router fallisce contains_span, il secondo turno
+registra solo il nome. Nessuna risoluzione SOURCE degli attributi dopo la scelta
+del firmatario; vuoti coverage non trasformati in una coda completa di domande.
+
+Il Word fornito coincide con quello persistito e con la ricostruzione del testo
+dall'originale più 22 valori del report: 21 SOURCE e un nome USER. Altre 15 parti
+ZIP identiche. Questo verifica la materializzazione, non la completezza del caso.
+Zero nuovi RESOLVED, generazioni o risposte USER; quelle analizzate sono storiche.
+Nessun gold completo o percentuale di accuratezza, nessun rendering visuale.
+
+Conservati input/request/schema, output/audit/metriche, sintesi/routing, dialogo,
+stato/revisioni, report, documenti e snapshot del codice; nessun DB o profilo con
+credenziali. Raw locali minervino-integrazione-20261016T133808Z/, bundle 92 file,
+616.261 byte, SHA-256 f93a50f933609903a01f2d7e7f1a124d0b5e5a4a77a50136e879ca6a0bc21b1f.
+File osservati e sessione invariati; nessuna suite applicativa o nuova API AI.
+
+[Report](docs/minervino-integrazione-2026-10-16.md),
+[misure](docs/benchmarks/2026-10-16-minervino-integrazione.json),
+[bundle](docs/benchmarks/2026-10-16-minervino-integrazione-audit.tar.gz).
+Prossimo: gold umano o bozza indipendente revisionata dall'utente, fondati sulle
+fonti già integrate e sulle scelte della pratica. Non aggiungere automaticamente
+altre fonti per trattare omissioni e rifiuti come dati assenti.
+
+## 16 ottobre 2026 — revisione del gold sintetico Minervino dell'utente
+
+Ricevuto domanda-iscrizione.GOLD-SINTETICO.docx in nuovi dati/, SHA-256
+c4dbd36e5d1a02f987bdabde3f3cd67ab4e47291aff9d737666bfd4d875991bf.
+Confrontati originale, avviso locale e KB effettivamente indicizzata, in sola
+lettura: 56 frammenti, 18 Company. Non è una nuova prova LLM né un gold congelato.
+
+Revisione di 52 occorrenze: 19 anagrafica iniziale, nove società e 24 soci;
+valori coerenti con fonti, con equivalenze di date, titoli e provincia.
+Le scelte di partecipazione, sei preferenze, designazioni professionali,
+attestazioni e luogo/data vanno formalizzate come scenario USER/checkpoint;
+la KB non le determina. Identificativi dimostrativi conservati, checksum non
+verificati; chiarire la policy prima dello scoring.
+
+Rilevata omissione strutturale: cancellati tre paragrafi del direttore tecnico,
+otto destinazioni originali. Elisa compilata come socia non sostituisce il
+blocco del direttore: ripristino necessario prima del congelamento. Le 13
+checkbox native mantengono gli ID, tre true coerenti col simbolo; nelle tabelle
+solo sei celle differiscono e contengono X. Firma e rami alternativi vuoti.
+Etichette prestampate in parte riscritte: preservarle o dichiarare tolleranze.
+
+I chunk delle generalità ricompongono il testo completo normalizzato nonostante
+un partizionamento storico diverso da quello corrente; integrazione ricomposta
+e partizionamento corrente uguale al DB. Primo raccordo delle prove interrotto
+per spazi multipli nelle righe Markdown; completato dichiarando la normalizzazione,
+senza alterare dati o input. Rendering visuale non eseguito; nessuna percentuale
+di accuratezza, nuova compilazione o suite applicativa.
+
+[Report](docs/minervino-gold-review-2026-10-16.md),
+[confronto documentale](docs/benchmarks/2026-10-16-minervino-gold-review.json),
+[bundle](docs/benchmarks/2026-10-16-minervino-gold-review-audit.tar.gz).
+Raw minervino-gold-review-20261016T135700Z/; bundle 17 file, 232.310 byte,
+SHA-256 a10cf1cba283021923c98f04e60fe0dd1bd6f2c733836da1bdbd672030650762.
+Conservati file e corpus senza database/profili con credenziali; gold non presente
+nel corpus autorizzato. File dell'utente e originale invariati, nessuna modifica
+al motore/KB/fixture o chiamata provider. Nessun commit/push.
+
+## 16 ottobre 2026 — Word gold revisione 1 da approvare
+
+Su richiesta dell'utente creata nella stessa cartella
+[revisione 1](<nuovi dati/domanda-iscrizione.GOLD-SINTETICO-REVISIONE-1.docx>),
+con [scheda scenario](<nuovi dati/SCENARIO_GOLD_MINERVINO.md>). Ripristinati i
+tre paragrafi/otto campi del direttore e le etichette originali della società
+e dei soci, conservando valori, note e scelte del gold ricevuto. File dell'utente
+e originale invariati. Modifica XML autonoma dell'artefatto, senza writer
+applicativo o LLM; riferimenti fisici verificati sui placeholder originali.
+
+Verificate 52 occorrenze già presenti più otto ripristinate, quattro tabelle
+identiche, sei X e 13 controlli nativi/tre true identici al candidato. DOCX aperto
+con python-docx, ZIP e XML validi; solo document.xml modificato nel pacchetto.
+Nessun rendering visuale o suite applicativa. Nessuna modifica a codice/DB/KB
+o fixture, nuova API, commit o push. L'utente controllerà il Word: **non congelato,
+attendere il suo OK esplicito prima di procedere**.
+
+[Controlli](docs/benchmarks/2026-10-16-minervino-gold-revision-1.json),
+[backup](docs/benchmarks/2026-10-16-minervino-gold-revision-1-audit.tar.gz).
+Word SHA-256 5bd34a43b22dff44d5a280b690f4187d345e6664619d42272bbe2c590b5c8d67;
+bundle 204.042 byte, SHA-256
+01398d746fbf4612f959e5ae25d1d964ec1c0673cb3b62a05df2df3fc9807a2d.
+
+## 16 ottobre 2026 — verifica dei quattro rilievi sulla revisione 1
+
+Controllo offline del verdetto fornito dall'utente, senza modificare il Word.
+I quattro titoli conservano la numerazione originale lowerLetter/%1), partenza
+1 e nessun override. La scheda scenario contiene già le quattro designazioni;
+resta il momento di disponibilità degli input USER. Confermate due spiegazioni
+autoriali nei paragrafi compilabili 117–118, opportuno spostarle nello scenario.
+
+La firma isolata a pagina 10 non è confermata. MuPDF/mutool 1.27.0 legge i DOCX
+ma reimpagina originale/gold in 16/15 pagine: dicitura e linea insieme nell'ultima
+pagina del gold, verificata anche nell'immagine. Non disponibile rendering Word;
+assenza di keepNext esplicito non prova il distacco. Nessun controllo visuale
+completo o certificazione della fedeltà in Word.
+
+[Report](docs/minervino-verifica-verdetto-2026-10-16.md),
+[controlli](docs/benchmarks/2026-10-16-minervino-verdetto.json),
+[bundle](docs/benchmarks/2026-10-16-minervino-verdetto-audit.tar.gz).
+Raw minervino-verdetto-20261016T143707Z/; bundle 11 file, 265.691 byte,
+SHA-256 7909c9c5df4d3a82f8b117d9981a8c3bc28931ff6114b47a22208b6b69a9e890.
+Verificati hash input, manifest, riferimenti e diff; Word/scenario invariati.
+Nessuna modifica applicativa/DB/KB/fixture, API AI, suite applicativa o nuova
+misura di accuratezza. Nessun congelamento, commit o push. Attendere revisione/OK
+dell'utente; per il pacchetto completo restano checkpoint e annotazioni del caso.
+
+## 16 ottobre 2026 — congelamento autorizzato Minervino V1
+
+L'utente autorizza a risolvere i rilievi, adottare la base per la nuova
+architettura, creare tag e pubblicare. Creata fixture separata
+[Minervino V1](demo-documents/benchmark-minervino/v1/README.md) con modulo,
+cinque fonti, richiesta iniziale, scenario/checkpoint, copione, gold Word/JSON,
+inventario e manifest. Nessuna implementazione del nuovo motore o nuova prova
+LLM. Labirinto V1 conservato senza modifiche.
+
+Gold ricostruito dall'originale con valori e scelte del gold dell'utente:
+note fuori dai campi, continuazioni ripristinate, proprietà per unire il
+blocco firma. Altre 15 parti ZIP identiche all'originale. Le fonti Company
+e General coincidono con i file backend letti senza modifiche; quinta fonte
+avviso. Policy esplicita sui codici dimostrativi, firma/allegati e abilitazioni
+specialistiche esclusi dalla verifica di ammissibilità.
+
+267 destinazioni censite: 187 testuali (60 SOURCE, quattro USER, 123 vuote),
+67 celle di preferenza (sei X), 13 checkbox native (tre true). Quote, valori,
+vuoti, gruppi e checkpoint localizzati; il conteggio non è una misura di
+accuratezza. Verifica indipendente completa passata, tutti i 18 hash del
+manifest conformi, struttura OOXML invariata annullando solo gli edit ammessi.
+
+MuPDF reimpagina il definitivo in 16 pagine, separando la linea firma anche
+con keepNext: fallimento visuale conservato. LibreOffice 26.2.6.3 preparato
+localmente da pacchetti Ubuntu, senza installazione di sistema. Primi avvii
+falliti per bootstrap/unorc/registry non ricollocati, poi conversione riuscita:
+originale dieci pagine, gold nove, tutte ispezionate. Numerazione a)–d) visibile
+e firma unita a pagina 9. Warning liblangtag del tool locale conservati;
+nessuna certificazione Word. Primo controllo con Python sistema senza docx
+fallito, finale riuscito con ambiente backend; nessuna suite applicativa completa.
+
+[Report](docs/minervino-base-v1-2026-10-16.md),
+[misure](docs/benchmarks/2026-10-16-minervino-freeze.json),
+[backup](docs/benchmarks/2026-10-16-minervino-freeze-audit.tar.gz).
+Raw minervino-freeze-20261016T144815Z/; bundle 75 file, 3.468.040 byte,
+SHA-256 8af726b5b36fac4bcf0bb3bc24d6c0dfa51624a2e0f5eba96324c2bbe5999a27.
+Gold SHA-256 94e77ce5d04585c4d62d858bec1ec2d6c0af2e4aa5c062e7af6cb32a474c4db3.
+Tag della base: baseline-minervino-v1-20261016, ramo prune-backend.
+Nessuna modifica a codice applicativo, DB/KB, sessioni o fixture precedenti.
+La baseline integrata e la scelta di provider/configurazione rimangono il
+passo successivo; runner Labirinto non compatibile automaticamente col nuovo schema.

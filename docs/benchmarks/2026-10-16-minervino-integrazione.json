@@ -1,0 +1,423 @@
+{
+  "kind": "offline_diagnosis_of_user_supplied_compilation_not_new_llm_experiment",
+  "date": "2026-10-16",
+  "git_baseline": "4b7d828",
+  "project": "minervino-di-lecce-elenco-sia",
+  "session": "607eda672f0b4c46a175adaecc90dd71",
+  "session_version": 10,
+  "attempt": "211598d4334c46a9a9c6d03f8b601a75",
+  "generation": "a4231f7387ca407b90afd5d5a82b401b",
+  "input_chunks": 56,
+  "documents": {
+    "avviso.pdf": 34,
+    "generalita-mapi.md": 9,
+    "progettazione-opere-pubbliche.txt": 4,
+    "visura-mapi-ingegneria-simulata.pdf": 4,
+    "integrazione-company.md": 5
+  },
+  "source_coverage": {
+    "strategy": "complete_small_corpus",
+    "partial": false,
+    "chunks": 56
+  },
+  "uploaded_integration_text_matches": true,
+  "uploaded_integration_bytes_match": false,
+  "request_input_matches": true,
+  "reconstructed_input_matches": true,
+  "revalidated_audit_matches": true,
+  "provided_docx_matches_report_hash": true,
+  "provided_docx_matches_persisted": true,
+  "original_matches_session": true,
+  "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+  "provided_docx_sha256": "206c8584d4f78305f4fc4f5d3183ebb93f4fee37f6b7a292ec9c0937e83c0180",
+  "input_compact_characters": 240276,
+  "raw_fields": 27,
+  "raw_facts": 21,
+  "raw_clarifications": 1,
+  "raw_conditions": 5,
+  "raw_checkbox_assignments": 0,
+  "raw_choice_groups": 1,
+  "choice_group_validation": {
+    "cg_ruolo": {
+      "validation": "REJECTED",
+      "errors": [
+        "Etichetta opzione assente nell'estratto FORM"
+      ],
+      "selection": "single",
+      "min_selected": 0
+    }
+  },
+  "grounded_proposals": 21,
+  "written_fields": 22,
+  "written_provenance": {
+    "SOURCE": 21,
+    "USER": 1
+  },
+  "checkbox_values": {},
+  "coverage": {
+    "total": 267,
+    "proposed": 21,
+    "clarifications": 1,
+    "rejected": 6,
+    "explained_unfilled": 140,
+    "explicitly_unassessed": 0,
+    "unexplained": 7,
+    "rejected_explanations": 92,
+    "explicit_decisions_complete": false,
+    "coverage_checks_passed": false,
+    "semantic_completeness_verified": false,
+    "outcomes": {
+      "manual_input": 81,
+      "source_not_found": 2,
+      "condition_unknown": 57
+    }
+  },
+  "pool_sizes_initial_after_conditions_after_identity": [
+    3,
+    1,
+    0
+  ],
+  "field_checks": [
+    {
+      "candidate_id": "p14.s1",
+      "label": "Operatore economico",
+      "fact_id": "f_denom",
+      "value": "Mapi Ingegneria S.r.l.",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p15.s0",
+      "label": "Sede (comune)",
+      "fact_id": "f_comune",
+      "value": "Bari",
+      "validation": "REJECTED",
+      "proposal_grounding": null,
+      "errors": [
+        "Il solo marker non documenta la richiesta del campo"
+      ],
+      "written": false
+    },
+    {
+      "candidate_id": "p15.s1",
+      "label": "Provincia sede",
+      "fact_id": "f_prov",
+      "value": "BA",
+      "validation": "REJECTED",
+      "proposal_grounding": null,
+      "errors": [
+        "Il solo marker non documenta la richiesta del campo"
+      ],
+      "written": false
+    },
+    {
+      "candidate_id": "p15.s2",
+      "label": "Telefono",
+      "fact_id": "f_tel",
+      "value": "+39 080 000 2040",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p15.s3",
+      "label": "Fax",
+      "fact_id": "f_fax",
+      "value": "+39 080 000 2041",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p16.s0",
+      "label": "Indirizzo e-mail",
+      "fact_id": "f_email",
+      "value": "segreteria@mapi-ingegneria.demo",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p16.s1",
+      "label": "P.E.C.",
+      "fact_id": "f_pec",
+      "value": "mapi.ingegneria@pec.demo",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p16.s2",
+      "label": "Partita IVA",
+      "fact_id": "f_piva",
+      "value": "IT01234567890",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p17.s0",
+      "label": "Camera di Commercio di",
+      "fact_id": "f_cciaa",
+      "value": "Bari",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p17.s1",
+      "label": "Numero iscrizione",
+      "fact_id": "f_rei",
+      "value": "01234560981",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p40.s0",
+      "label": "Denominazione/ragione sociale",
+      "fact_id": "f_denom",
+      "value": "Mapi Ingegneria S.r.l.",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p41.s0",
+      "label": "P. IVA",
+      "fact_id": "f_piva",
+      "value": "IT01234567890",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p41.s1",
+      "label": "Sede legale in",
+      "fact_id": "f_comune",
+      "value": "Bari",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p42.s0",
+      "label": "Prov.",
+      "fact_id": "f_prov",
+      "value": "BA",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p42.s1",
+      "label": "Via/piazza",
+      "fact_id": "f_via",
+      "value": "Via Giovanni Amendola",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p42.s2",
+      "label": "N. civico",
+      "fact_id": "f_civico",
+      "value": "172/C",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p42.s3",
+      "label": "Tel",
+      "fact_id": "f_tel",
+      "value": "+39 080 000 2040",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p42.s4",
+      "label": "E-mail",
+      "fact_id": "f_email",
+      "value": "segreteria@mapi-ingegneria.demo",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p42.s5",
+      "label": "PEC",
+      "fact_id": "f_pec",
+      "value": "mapi.ingegneria@pec.demo",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p51.s0",
+      "label": "Nome e cognome",
+      "fact_id": "f_er_nome",
+      "value": "Ing. Elisa Romano",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p52.s0",
+      "label": "Qualifica professionale",
+      "fact_id": "f_er_qual",
+      "value": "Ingegnere",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p52.s1",
+      "label": "C.F.",
+      "fact_id": "f_er_cf",
+      "value": "RMNLSI85C47A662Y",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": null,
+      "errors": [
+        "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+      ],
+      "written": false
+    },
+    {
+      "candidate_id": "p53.s0",
+      "label": "Iscritto all’Ordine/Collegio professionale",
+      "fact_id": "f_er_ordine",
+      "value": "Ordine degli Ingegneri di Bari",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    },
+    {
+      "candidate_id": "p53.s1",
+      "label": "Sezione",
+      "fact_id": "f_er_sezione",
+      "value": "A",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": null,
+      "errors": [
+        "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+      ],
+      "written": false
+    },
+    {
+      "candidate_id": "p53.s2",
+      "label": "Della provincia di",
+      "fact_id": "f_er_prov",
+      "value": "Bari (BA)",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": null,
+      "errors": [
+        "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+      ],
+      "written": false
+    },
+    {
+      "candidate_id": "p53.s3",
+      "label": "Dal",
+      "fact_id": "f_er_dal",
+      "value": "18 maggio 2015",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": null,
+      "errors": [
+        "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+      ],
+      "written": false
+    },
+    {
+      "candidate_id": "p53.s4",
+      "label": "Con il n.",
+      "fact_id": "f_er_num",
+      "value": "8421",
+      "validation": "REVIEW_REQUIRED",
+      "proposal_grounding": "GROUNDED_PROPOSAL",
+      "errors": [],
+      "written": true
+    }
+  ],
+  "user_value_grounding_checks": [
+    {
+      "trace": "a0aa71871b6d4e08af148ea4bb3980ec",
+      "slot": 1,
+      "value": "Leonardo Montemurro",
+      "quote": "Il firmatario della domanda è Leonardo Montemurro, in qualità di rappresentante legale di Mapi Ingegneria S.r.l.",
+      "contains_span": true
+    },
+    {
+      "trace": "f9859302408347d1b1aa7efc80d222b5",
+      "slot": 3,
+      "value": "Leonardo Montemurro, rappresentante legale di Mapi Ingegneria S.r.l.",
+      "quote": "Il sottoscrittore è Leonardo Montemurro, in qualità di rappresentante legale di Mapi Ingegneria S.r.l.",
+      "contains_span": false
+    }
+  ],
+  "word_text_reconstruction_matches_report": true,
+  "word_text_mismatch_paragraph_ids": [],
+  "changed_docx_parts": [
+    "word/document.xml"
+  ],
+  "unchanged_other_docx_parts": 15,
+  "layout_visual_review_performed": false,
+  "historical_analysis_seconds": 166.1014648800001,
+  "historical_analysis_usage": {
+    "prompt_tokens": 75864,
+    "completion_tokens": 38692,
+    "total_tokens": 114556,
+    "prompt_tokens_details": {
+      "cached_tokens": 62336
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 30059
+    },
+    "prompt_cache_hit_tokens": 62336,
+    "prompt_cache_miss_tokens": 13528
+  },
+  "historical_finish_reason": "stop",
+  "historical_analysis_api_calls": 1,
+  "new_provider_calls": 0,
+  "watched_sha256_before": {
+    "nuovi dati/integrazione.md": "573406eb6aeeb5c6ed04f9929fcf4b8c6f0d4ea8444dc4f17ea5e4cf4acb7126",
+    "nuovi dati/domanda-iscrizione.compilato(5)(1).docx": "206c8584d4f78305f4fc4f5d3183ebb93f4fee37f6b7a292ec9c0937e83c0180",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/607eda672f0b4c46a175adaecc90dd71/211598d4334c46a9a9c6d03f8b601a75/input.json": "0dad5d607d19bdff7a97048b71ded1eefbad5d3c133f947d94275f1388094300",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/607eda672f0b4c46a175adaecc90dd71/211598d4334c46a9a9c6d03f8b601a75/response.txt": "09c7b7c72bf921758e21846dd62c447b278d61efa326cdfa1a11dca399f41701",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/607eda672f0b4c46a175adaecc90dd71/211598d4334c46a9a9c6d03f8b601a75/audit.json": "17d0fb01d1017667a77714cc2e945b93552f797020bc13f858ef69721719ee56",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/607eda672f0b4c46a175adaecc90dd71/211598d4334c46a9a9c6d03f8b601a75/original.docx": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+  },
+  "watched_files_unchanged": true,
+  "session_unchanged": true,
+  "db_corpus_exact_records_match_input": false,
+  "db_corpus_input_fields_match": true,
+  "db_corpus_extra_metadata_keys": [
+    "document_metadata",
+    "excerpt",
+    "relevance"
+  ],
+  "source_comparison_note": "Confronto esatto dei record falso soltanto per metadata aggiuntivi di reload; tutti i campi del corpus inviato corrispondono.",
+  "first_user_reply_rejection_note": "Il valore del nome include una qualifica ricomposta e non è uno span letterale della quote USER; contains_span restituisce false."
+}

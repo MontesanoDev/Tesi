@@ -1,0 +1,337 @@
+{
+  "kind": "offline_architecture_diagnosis_not_new_llm_benchmark",
+  "date": "2026-10-15",
+  "project": "minervino-di-lecce-elenco-sia",
+  "session": "a067b0abf83f4d948137728669879604",
+  "attempt": "e8ad0f46c3b34157bbe6c9988e1341f8",
+  "input_matches_archived": true,
+  "request_matches_archived": true,
+  "response_matches_archived": true,
+  "request_user_matches_input": true,
+  "system_prompt_matches_request": true,
+  "rebuilt_input_matches_archived": true,
+  "revalidated_audit_matches_archived": true,
+  "current_db_corpus_matches_input": true,
+  "db_original_matches_archive": true,
+  "input_compact_characters": 229253,
+  "input_components_characters": {
+    "proposal_stage": 26,
+    "project_id": 31,
+    "form": 126928,
+    "sources": 69638,
+    "user_values": 2,
+    "source_coverage": 64,
+    "schema_output": 11701,
+    "reading_plan": 20744
+  },
+  "form_components_characters": {
+    "version": 1,
+    "role": 6,
+    "template_sha256": 66,
+    "candidate_scope": 15,
+    "checkbox_write_supported": 4,
+    "blocks": 63758,
+    "candidates": 62947,
+    "read_only_parts": 2
+  },
+  "system_prompt_characters": 24675,
+  "response_compact_characters": 19307,
+  "response_components_characters": {
+    "version": 2,
+    "uncertain_paragraph_ids": 2,
+    "conditions": 1089,
+    "bindings": 348,
+    "choice_groups": 2,
+    "fields": 6216,
+    "facts": 3683,
+    "clarifications": 2,
+    "coverage": 7832
+  },
+  "source_content_characters": 58512,
+  "source_documents": [
+    {
+      "file_id": 124,
+      "name": "avviso.pdf",
+      "category": null,
+      "chunks": 34,
+      "content_characters": 39665
+    },
+    {
+      "file_id": -7,
+      "name": "generalita-mapi.md",
+      "category": "company",
+      "chunks": 9,
+      "content_characters": 10039
+    },
+    {
+      "file_id": -8,
+      "name": "progettazione-opere-pubbliche.txt",
+      "category": "general",
+      "chunks": 4,
+      "content_characters": 4711
+    },
+    {
+      "file_id": -9,
+      "name": "visura-mapi-ingegneria-simulata.pdf",
+      "category": "company",
+      "chunks": 4,
+      "content_characters": 4097
+    }
+  ],
+  "catalog": {
+    "candidates": 267,
+    "types": {
+      "text": 254,
+      "checkbox": 13
+    },
+    "table_text_cells": 67,
+    "paragraph_text_slots": 187,
+    "blocks": 134,
+    "paragraphs": 246,
+    "tables": 4,
+    "unsupported": [
+      {
+        "paragraph": 1,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 8,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 21,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 22,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 36,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 40,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 55,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 62,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 65,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 204,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 207,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 215,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 216,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 218,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      },
+      {
+        "paragraph": 229,
+        "reason": "Contenuto complesso o controllo Word non modificato"
+      }
+    ],
+    "read_only_parts": []
+  },
+  "raw_proposals": 21,
+  "raw_facts": 15,
+  "raw_choice_groups": 0,
+  "raw_clarifications": 0,
+  "coverage": {
+    "recorded": true,
+    "total": 267,
+    "proposed": 20,
+    "clarifications": 0,
+    "rejected": 1,
+    "explained_unfilled": 147,
+    "explicitly_unassessed": 0,
+    "unexplained": 0,
+    "rejected_explanations": 99,
+    "explicit_decisions_complete": true,
+    "coverage_checks_passed": false,
+    "semantic_completeness_verified": false,
+    "outcomes": {
+      "source_not_found": 142,
+      "manual_input": 5
+    },
+    "omitted_groups": 0,
+    "meaning": "Motivazioni MODEL ancorate al FORM; non prova di assenza nelle SOURCE e non autorizzazione a scrivere o a dichiarare la non applicabilità"
+  },
+  "coverage_error_occurrences_per_group": {
+    "p213.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p213.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p213.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p24.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p230.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p232.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p233.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p234.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p28.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p28.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p28.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p28.s3: Estratto non appartenente al contesto della posizione": 1,
+    "p28.s4: Estratto non appartenente al contesto della posizione": 1,
+    "p29.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p30.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p30.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p31.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p31.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p31.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p31.s3: Estratto non appartenente al contesto della posizione": 1,
+    "p31.s4: Estratto non appartenente al contesto della posizione": 1,
+    "p34.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p34.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p34.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p34.s3: Estratto non appartenente al contesto della posizione": 1,
+    "p34.s4: Estratto non appartenente al contesto della posizione": 1,
+    "p38.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p45.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p45.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p45.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p45.s3: Estratto non appartenente al contesto della posizione": 1,
+    "p45.s4: Estratto non appartenente al contesto della posizione": 1,
+    "p46.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p46.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p46.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p47.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p48.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p48.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p49.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p49.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p49.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p49.s3: Estratto non appartenente al contesto della posizione": 1,
+    "p49.s4: Estratto non appartenente al contesto della posizione": 1,
+    "p52.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p57.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p57.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p57.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p57.s3: Estratto non appartenente al contesto della posizione": 1,
+    "p57.s4: Estratto non appartenente al contesto della posizione": 1,
+    "p57.s5: Estratto non appartenente al contesto della posizione": 1,
+    "p57.s6: Estratto non appartenente al contesto della posizione": 1,
+    "p57.s7: Estratto non appartenente al contesto della posizione": 1,
+    "p58.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p58.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p59.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p59.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p59.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p59.s3: Estratto non appartenente al contesto della posizione": 1,
+    "p59.s4: Estratto non appartenente al contesto della posizione": 1,
+    "p59.s5: Estratto non appartenente al contesto della posizione": 1,
+    "p59.s6: Estratto non appartenente al contesto della posizione": 1,
+    "p60.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p60.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p60.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p60.s3: Estratto non appartenente al contesto della posizione": 1,
+    "p60.s4: Estratto non appartenente al contesto della posizione": 1,
+    "p60.s5: Estratto non appartenente al contesto della posizione": 1,
+    "p60.s6: Estratto non appartenente al contesto della posizione": 1,
+    "p60.s7: Estratto non appartenente al contesto della posizione": 1,
+    "p60.s8: Estratto non appartenente al contesto della posizione": 1,
+    "p69.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p70.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p70.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p71.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p71.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p71.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p71.s3: Estratto non appartenente al contesto della posizione": 1,
+    "p71.s4: Estratto non appartenente al contesto della posizione": 1,
+    "p71.s5: Estratto non appartenente al contesto della posizione": 1,
+    "p72.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p73.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p73.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p74.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p74.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p75.s0: Estratto non appartenente al contesto della posizione": 1,
+    "p75.s1: Estratto non appartenente al contesto della posizione": 1,
+    "p75.s2: Estratto non appartenente al contesto della posizione": 1,
+    "p75.s3: Estratto non appartenente al contesto della posizione": 1,
+    "p21.cb0: Estratto non appartenente al contesto della posizione": 1,
+    "p35.cb0: Estratto non appartenente al contesto della posizione": 1,
+    "p39.cb0: Estratto non appartenente al contesto della posizione": 1,
+    "p54.cb0: Estratto non appartenente al contesto della posizione": 1,
+    "p61.cb0: Estratto non appartenente al contesto della posizione": 1,
+    "p64.cb0: Estratto non appartenente al contesto della posizione": 1,
+    "p206.cb0: Estratto non appartenente al contesto della posizione": 1,
+    "p214.cb0: Estratto non appartenente al contesto della posizione": 1,
+    "p215.cb0: Estratto non appartenente al contesto della posizione": 1,
+    "p217.cb0: Estratto non appartenente al contesto della posizione": 1,
+    "p228.cb0: Estratto non appartenente al contesto della posizione": 1
+  },
+  "initial_pool_size": 1,
+  "after_confirmation_pool_size": 0,
+  "initial_pool_matches_narrator_slots": true,
+  "analysis_usage_historical": {
+    "prompt_tokens": 72405,
+    "completion_tokens": 30291,
+    "total_tokens": 102696,
+    "prompt_tokens_details": {
+      "cached_tokens": 72192
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 23877
+    },
+    "prompt_cache_hit_tokens": 72192,
+    "prompt_cache_miss_tokens": 213
+  },
+  "analysis_seconds_historical": 120.98242856599973,
+  "analysis_finish_reasons": [
+    "stop"
+  ],
+  "narrator_historical": {
+    "usage": {
+      "prompt_tokens": 7564,
+      "completion_tokens": 217,
+      "total_tokens": 7781,
+      "prompt_tokens_details": {
+        "cached_tokens": 1664
+      },
+      "prompt_cache_hit_tokens": 1664,
+      "prompt_cache_miss_tokens": 5900
+    },
+    "ai_seconds": 3.668644238001434,
+    "http_calls": 1
+  },
+  "current_session_version": 8,
+  "generation_id": "aca0a0dd970343dda73b2b2caba3344f",
+  "written_positions": 20,
+  "written_provenance": {
+    "SOURCE": 20
+  },
+  "watched_sha256_before": {
+    "user prompt.json": "f26a96d71eb5f111c8f1e305e60a3960e210a9379e42d97bf8716bae71902b7f",
+    "richiesta LLM.json": "b8dc98f7fe127c234ab8396f25ff99820c033b725356f0455a1c535b0c4a85a0",
+    "risposta LLm.json": "f338bf5816187a1436813461cb099a75dd5f3a24d98afbd6c4a86ae7d557bc06",
+    "system prompt.txt": "b85c367c3a41443307e2b391d75bbf2903471d8768318d64f0b6c2d36c60ea52",
+    "json narratore.json": "1d9b970cfd8cce73f016f5423f2c05384ce0665f919b03020140bfc630e9fa59",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/input.json": "f26a96d71eb5f111c8f1e305e60a3960e210a9379e42d97bf8716bae71902b7f",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/request.json": "b8dc98f7fe127c234ab8396f25ff99820c033b725356f0455a1c535b0c4a85a0",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/response.txt": "f0b1972a32adfb12970ae3d7bf9365c03a7e3457c8b350cd45578d64e79a8746",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/audit.json": "fa4e43bd3f137882629f5c526281d03a192e4ecc7566e1c02e6e215ada1d45ae",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/metrics.json": "3cd03968e122f33ce5eeeb0e6d09ecdb80ebd17f790f0504f70f7fb7848fd9e0",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/original.docx": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "backend/data/uploads/minervino-di-lecce-elenco-sia/_global_compilations/a067b0abf83f4d948137728669879604/e8ad0f46c3b34157bbe6c9988e1341f8/http-response.txt": "0ff38de2f068c2160ba014e44e5e446a2e0d0249f9fd2402fafa6293feafbe83"
+  },
+  "watched_files_unchanged": true,
+  "session_unchanged": true
+}

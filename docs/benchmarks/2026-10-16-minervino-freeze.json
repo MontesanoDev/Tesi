@@ -1,0 +1,99 @@
+{
+  "kind": "authorial_fixture_freeze_not_llm_quality_evaluation",
+  "date": "2026-10-16",
+  "code_baseline": "4b7d828bbdea1e95908c2e3237108f1c0cf36acb",
+  "fixture": "demo-documents/benchmark-minervino/v1",
+  "gold_copy": "nuovi dati/domanda-iscrizione.GOLD-V1.docx",
+  "gold_sha256": "94e77ce5d04585c4d62d858bec1ec2d6c0af2e4aa5c062e7af6cb32a474c4db3",
+  "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+  "counts": {
+    "text": 187,
+    "table_selection": 67,
+    "native_checkbox": 13
+  },
+  "source_text_values": 60,
+  "user_text_values": 4,
+  "selected_table_cells": 6,
+  "selected_native_controls": 3,
+  "text_blank_count": 123,
+  "notes_removed_by_restoring_original_placeholders": [
+    117,
+    118
+  ],
+  "signature_keep_next": [
+    126,
+    127,
+    128
+  ],
+  "signature_keep_lines": [
+    126,
+    128,
+    129
+  ],
+  "source_documents_match_readonly_live_kb": true,
+  "historical_inputs_unchanged": true,
+  "watched_input_sha256": {
+    "demo-documents/bandi/minervino-elenco-sia/originali/domanda-iscrizione.docx": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "nuovi dati/domanda-iscrizione.GOLD-SINTETICO-REVISIONE-1.docx": "5bd34a43b22dff44d5a280b690f4187d345e6664619d42272bbe2c590b5c8d67",
+    "nuovi dati/domanda-iscrizione.GOLD-SINTETICO.docx": "c4dbd36e5d1a02f987bdabde3f3cd67ab4e47291aff9d737666bfd4d875991bf"
+  },
+  "new_provider_calls": 0,
+  "app_code_changed": false,
+  "native_word_rendering_available": false,
+  "frozen_with_known_rendering_limit": true,
+  "validation": {
+    "status": "passed",
+    "fields": 267,
+    "checked_text_destinations": 187,
+    "checked_table_selections": 67,
+    "checked_native_controls": 13,
+    "written_texts": 64,
+    "blank_texts": 123,
+    "package_parts_changed": [
+      "word/document.xml"
+    ],
+    "original_structure_preserved_after_reverting_only_allowed_edits": true,
+    "source_quotes_located": true,
+    "gold_json_matches_docx": true,
+    "input_answer_separation_checked": true,
+    "python_docx_loads": true,
+    "manifest_file_hashes_verified": 18,
+    "native_word_rendering_performed": false,
+    "new_provider_calls": 0
+  },
+  "rendering": {
+    "renderer": "LibreOffice 26.2.6.3 620(Build:3), headless, local extracted Ubuntu packages",
+    "original_pages": 10,
+    "gold_pages": 9,
+    "signature_label_page": 9,
+    "signature_line_page": 9,
+    "signature_block_together": true,
+    "numbering_visual_review": "a), b), c), d) visibili alle pagine 5–7 del PDF LibreOffice",
+    "microsoft_word_rendered": false,
+    "notes": [
+      "Font substitution may differ from Microsoft Word.",
+      "MuPDF 1.27.0 directly reflowing the same DOCX yields 16 pages and an orphan signature line despite keepNext; not the reference renderer for layout.",
+      "LibreOffice first conversion produced liblangtag warnings due to local extraction; PDF produced successfully, logs retained."
+    ],
+    "reference_pdf": "evaluation/gold-libreoffice.pdf",
+    "visual_pages_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "visual_review": "Tutte le nove pagine del gold ispezionate: dati iniziali, soci/direttore, rami esclusi, sei X, dichiarazioni, note rimosse e firma vuota insieme alla dicitura."
+  },
+  "fixture_manifest_sha256": "89534c5171a90328b994d4425e9e11b082c6e5968c3a5b275b710438cf3e0139",
+  "fixture_files": 18,
+  "freeze_status": "authorized_and_frozen",
+  "planned_git_tag": "baseline-minervino-v1-20261016",
+  "runtime_baseline": "not_run",
+  "acquisition_notes": "acquisition-notes.json",
+  "local_tools_excluded_from_git": true
+}

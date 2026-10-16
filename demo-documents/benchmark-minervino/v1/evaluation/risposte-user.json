@@ -1,0 +1,45 @@
+{
+  "schema": "minervino-user-script-v1",
+  "never_send_entire_file_to_model": true,
+  "initial_input": "../input/richiesta-iniziale.txt",
+  "rule": "Fornire solo la risposta all'argomento effettivamente chiesto. Accettare domande equivalenti, senza suggerire campi omessi o correggere il modello. L'ordine degli argomenti è libero. Se una domanda chiede più argomenti, concatenare le rispettive risposte e registrarlo. Una risposta incompleta o un argomento mai chiesto rimane una perdita osservabile.",
+  "answers": [
+    {
+      "id": "preferenze",
+      "when": "Domanda sulle tipologie, categorie o fasce per cui presentare la domanda.",
+      "answer": "Per questa pratica scegli soltanto queste sei preferenze: edilizia scolastica e sanitaria in fascia B; strutture in fascia B; opere stradali in fascia A; CSP/CSE in fascia A; collaudo statico; redazione del certificato di prestazione energetica. Tutte le altre preferenze restano non selezionate."
+    },
+    {
+      "id": "designazioni",
+      "when": "Domanda sui professionisti che eseguiranno le prestazioni o sull'integrazione specialistica.",
+      "answer": "Per questa pratica designo Elisa Romano per progettazione strutturale e direzione lavori, Luca Ferri per opere stradali e collaudo statico, Andrea Greco per progettazione edilizia, certificazione energetica e CSP/CSE. Incarico Andrea Greco anche dell'integrazione delle prestazioni specialistiche. Non sono previsti altri professionisti. Confermo la selezione della dichiarazione sui professionisti esecutori. Queste sono designazioni della pratica, non attestazioni di ulteriori abilitazioni."
+    },
+    {
+      "id": "attestazioni",
+      "when": "Domanda sulla conferma delle dichiarazioni generali, veridicità o consensi del modulo.",
+      "answer": "Nel solo scenario sintetico del benchmark confermo tutte le dichiarazioni generali prestampate sotto la casella di veridicità, compresi impegni e consensi, e chiedo di selezionarla. La dichiarazione sui curricula è un'assunzione autoriale della simulazione: i curricula e le dichiarazioni personali restano allegati gestiti fuori da questa prova e qui non ne attesto la disponibilità documentale. Non considerare la bozza pronta per una presentazione reale."
+    },
+    {
+      "id": "luogo_data",
+      "when": "Domanda sul luogo e sulla data da apporre alla bozza.",
+      "answer": "Indica Bari, 15/10/2026. Lascia vuota la firma digitale: sarà un'azione manuale fuori dal benchmark."
+    }
+  ],
+  "clarifications": [
+    {
+      "id": "identificativi_sintetici",
+      "when": "Il sistema segnala la natura dimostrativa o l'eventuale invalidità fiscale dei valori nelle fonti.",
+      "answer": "Confermo che questa è una simulazione e che devi conservare i valori dimostrativi esattamente come documentati. Segnala separatamente l'anomalia, senza correggerli e senza considerarli identificativi reali validi."
+    },
+    {
+      "id": "allegati_o_abilitazioni",
+      "when": "Il sistema chiede documenti personali, curricula, prova di allegati o abilitazioni specialistiche non presenti.",
+      "answer": "Non fornisco altri documenti in questo caso. Firma, produzione e verifica degli allegati, dichiarazioni personali e verifica delle abilitazioni specialistiche sono fuori dal perimetro della prova del Word. Segnala questi limiti e prepara soltanto la bozza simulata; non inventare prove."
+    }
+  ],
+  "export": {
+    "id": "T2",
+    "when": "Dopo che il sistema ha terminato o si è fermato e dopo le sole risposte effettivamente richieste; non aggiungere spontaneamente argomenti saltati.",
+    "answer": "Genera ora la bozza Word con i dati documentati e le scelte che ti ho effettivamente comunicato. Autorizzo l'export anche se parziale: conserva vuoti i dati ancora irrisolti e la firma, e segnala separatamente i limiti. Non aggiungere spiegazioni nelle righe compilabili."
+  }
+}

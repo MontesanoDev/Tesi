@@ -1,0 +1,46 @@
+{
+  "schema": "minervino-fixture-manifest-v1",
+  "fixture_version": 1,
+  "project_id": "benchmark-minervino-v1",
+  "frozen_at": "2026-10-16",
+  "reference_date": "2026-10-15",
+  "form": "input/modulo.docx",
+  "sources": "sources.json",
+  "gold": "evaluation/gold.json",
+  "gold_docx": "evaluation/gold.docx",
+  "initial_user": "input/richiesta-iniziale.txt",
+  "authorized_model_input_files": [
+    "input/modulo.docx",
+    "input/avviso.pdf",
+    "input/richiesta-iniziale.txt",
+    "input/sources/generalita-mapi.md",
+    "input/sources/integrazione-company.md",
+    "input/sources/progettazione-opere-pubbliche.txt",
+    "input/sources/visura-mapi-ingegneria-simulata.pdf"
+  ],
+  "evaluator_only_prefixes": [
+    "evaluation/"
+  ],
+  "checkpoint_rule": "Inviare solo la risposta pertinente effettivamente richiesta; mai il copione intero.",
+  "runtime_baseline_status": "not_run",
+  "files": {
+    "PROTOCOLLO.md": "7de2f1824ee2a14d4509f88b180f066308c1c5b91cdb4ede1b0d2eda7cd4ff6f",
+    "README.md": "26257afd32443e5e1ce400c2f9db73ec32475ec2867ab44b7883630c1d76db57",
+    "evaluation/gold-libreoffice.pdf": "28995577c15694bf931cb02f2829c26ef479f69ab8387d6fe70669f37c11d6aa",
+    "evaluation/gold.docx": "94e77ce5d04585c4d62d858bec1ec2d6c0af2e4aa5c062e7af6cb32a474c4db3",
+    "evaluation/gold.json": "63473fb8737bb4ed17187dac610c9dd87e96146039fdff24d3dfbae7f44881ae",
+    "evaluation/inventario.md": "dbce1471a00d2afd46a901f7c978d48e01e64f6fc921a63584aa6acdd2676727",
+    "evaluation/provenienza-procedura.json": "0cd58ed4ced2c0154d30a39060cb37c57928e6ae1aadcd82ccbd26dfcfc17a0d",
+    "evaluation/rendering.json": "2a4bc902822e6fb741c1b98876c3bdafa578486f6981a27b71364107bb9d182b",
+    "evaluation/risposte-user.json": "bcea7b353c77450bf914c95bafbdd4d3b14c7d3be42615ecd576fbf7d08378ae",
+    "evaluation/scenario.md": "c96909192d6c495b7f5de2758e41dc6771861f22397392222f904857f917f67c",
+    "input/avviso.pdf": "c7c16c448270cb03951f2b1aab85ed2814915e0ce184a5179cbab55472714b41",
+    "input/modulo.docx": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "input/richiesta-iniziale.txt": "a06a75e8a2df4c20f3dd818445eb9b1ef9a499dcf14b31074329772f5b981fb0",
+    "input/sources/generalita-mapi.md": "0404c209cc312e7bef3371797c836b48d983f5ff83ea38a44fd78eea0b451e3b",
+    "input/sources/integrazione-company.md": "4817c4f567e04e183a90cfc59f15d2e5a5105925ff674536e83531218ed04507",
+    "input/sources/progettazione-opere-pubbliche.txt": "21340bc17677bde1118df2eeeeb36652c87303b14c2c9e606a83a3d36be4cf33",
+    "input/sources/visura-mapi-ingegneria-simulata.pdf": "74edda8cd65ef67e50c2195cdd6059114115aa47b5bc595b37fa6de962ce52aa",
+    "sources.json": "a6693dff34aa26b8cc88d0f508f8b08c579025666d70ff324eb50823a45d9088"
+  }
+}

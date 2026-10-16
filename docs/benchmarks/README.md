@@ -247,3 +247,75 @@ scrivono quattro/zero testi in base a conferme/rinvii, non prova di compilazione
 completa. Labirinto undici testi in entrambe.43 checkpoint42/43, limite noto
 export-no.87 chiamate/8 analisi,934.320 token.2146 backend finali,1440 mutazioni
 fuzz più boundary HTTP; tutti i fallimenti conservati. Nessun push/migrazione.
+
+## Integrazione Minervino: diagnosi offline, 16 ottobre 2026
+
+[Report](../minervino-integrazione-2026-10-16.md),
+[misure](2026-10-16-minervino-integrazione.json),
+[bundle](2026-10-16-minervino-integrazione-audit.tar.gz) e
+[checksum](2026-10-16-minervino-integrazione-audit.tar.gz.sha256).
+
+Prova dell'utente del 15 ottobre, analisi 211598d4: cinque chunk dell'integrazione
+nei 56 inviati, 27 proposte e 21 grounded; 22 valori scritti inclusa una risposta
+USER. Omissioni dei soci, mancato uso dell'anagrafica dopo la scelta del firmatario,
+quattro rifiuti di attribuzione personale, due di ancoraggio FORM e gruppo checkbox
+respinto. Pool 3→1→0. Input/audit ricostruiti identici; testo Word uguale ai valori
+del report e altre 15 parti ZIP preservate. Nessuna nuova API, modifica al motore
+o sessione live; nessun gold completo, percentuale di accuratezza o rendering visuale.
+
+## Revisione del gold Minervino, 16 ottobre 2026
+
+[Report](../minervino-gold-review-2026-10-16.md),
+[confronto di 52 occorrenze](2026-10-16-minervino-gold-review.json),
+[bundle](2026-10-16-minervino-gold-review-audit.tar.gz) e
+[checksum](2026-10-16-minervino-gold-review-audit.tar.gz.sha256).
+
+Candidato dell'utente, non congelato. Valori anagrafici/societari e dei soci
+coerenti con KB; tre paragrafi del direttore cancellati, con otto destinazioni
+da ripristinare. Sei X e tre checkbox native true coerenti; scelte della pratica
+da formalizzare come USER. Nessuna nuova analisi LLM, modifica al gold o KB,
+validazione formale degli identificativi o revisione visuale dell'impaginazione.
+
+## Word gold Minervino revisione 1, 16 ottobre 2026
+
+[Word](<../../nuovi dati/domanda-iscrizione.GOLD-SINTETICO-REVISIONE-1.docx>),
+[scenario](<../../nuovi dati/SCENARIO_GOLD_MINERVINO.md>),
+[controlli](2026-10-16-minervino-gold-revision-1.json),
+[backup](2026-10-16-minervino-gold-revision-1-audit.tar.gz) e
+[checksum](2026-10-16-minervino-gold-revision-1-audit.tar.gz.sha256).
+
+Ripristinati direttore ed etichette originali, conservati dati e scelte
+dell'utente. 60 occorrenze testuali verificate, tabelle e controlli invariati;
+solo document.xml modificato. Nessun writer applicativo, LLM o aggiornamento
+KB. Non congelato: controllo visuale e OK dell'utente ancora attesi.
+
+## Verifica del verdetto Minervino, 16 ottobre 2026
+
+[Report](../minervino-verifica-verdetto-2026-10-16.md),
+[controlli](2026-10-16-minervino-verdetto.json),
+[ultima pagina MuPDF](2026-10-16-minervino-verdetto-last-page-mupdf.png),
+[bundle](2026-10-16-minervino-verdetto-audit.tar.gz) e
+[checksum](2026-10-16-minervino-verdetto-audit.tar.gz.sha256).
+
+Numerazione alfabetica originale preservata nell'XML, assegnazioni già nello
+scenario, due spiegazioni nelle aree compilabili confermate. Firma isolata
+a pagina 10 non verificata: MuPDF produce 15 pagine e mantiene dicitura e linea
+insieme nell'ultima; non certifica la paginazione Word. Word e scenario invariati,
+nessun congelamento o nuova prova LLM. Checkpoint e annotazioni ancora da completare.
+
+## Base Minervino V1 congelata, 16 ottobre 2026
+
+[Fixture](../../demo-documents/benchmark-minervino/v1/README.md),
+[rapporto](../minervino-base-v1-2026-10-16.md),
+[misure](2026-10-16-minervino-freeze.json),
+[bundle](2026-10-16-minervino-freeze-audit.tar.gz) e
+[checksum](2026-10-16-minervino-freeze-audit.tar.gz.sha256).
+
+Congelamento autorizzato dall'utente con tag/push. Word finale ricostruito
+dall'originale, note fuori dai campi e firma unita; scenario e copione separati
+dalla KB. 267 destinazioni annotate, 60 testi SOURCE e quattro USER, 123 vuoti,
+sei X e tre checkbox true. Controlli indipendenti passati e nove pagine PDF
+LibreOffice ispezionate; numerazione alfabetica confermata. MuPDF reimpagina
+e separa la firma: limite conservato nei raw, non riferimento di layout.
+Nessuna nuova prova LLM, istanza integrata, modifica al motore o KB live.
+Tag: baseline-minervino-v1-20261016; Labirinto V1 invariato.

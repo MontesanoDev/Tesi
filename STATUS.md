@@ -1,5 +1,302 @@
 # Stato di Mapi RAG
 
+## Minervino V1 congelato come base della nuova architettura — 16 ottobre
+
+L'utente ha autorizzato correzioni finali, adozione del caso, tag e push su
+GitHub. Questa richiesta supera l'attesa dell'OK sul candidato. Creati
+[Word finale](<nuovi dati/domanda-iscrizione.GOLD-V1.docx>) e
+[PDF LibreOffice](<nuovi dati/domanda-iscrizione.GOLD-V1.pdf>) nella stessa
+cartella, con [fixture canonica Minervino V1](demo-documents/benchmark-minervino/v1/README.md).
+Riferimento Git: tag annotato **baseline-minervino-v1-20261016**, ramo
+**prune-backend**, pubblicazione autorizzata su origin/GitHub.
+
+Gold ricostruito dal pacchetto originale con valori/scelte autoriali revisionati:
+note rimosse dalle righe compilabili, placeholder delle continuazioni ripristinati,
+blocco firma con keepNext/keepLines. Numerazione originale conservata e confermata
+visivamente. Originale, candidato utente e revisione 1 invariati. Cambia solo
+word/document.xml, altre 15 parti ZIP identiche all'originale. SHA-256 gold:
+94e77ce5d04585c4d62d858bec1ec2d6c0af2e4aa5c062e7af6cb32a474c4db3.
+
+Congelati cinque documenti di fonte (tre Company attuali, General distrattore,
+avviso), richiesta iniziale, scenario, quattro argomenti USER e checkpoint
+T0/T1/T2, policy identificativi demo e perimetro di firma/allegati/abilitazioni.
+Gold JSON e inventario coprono 267 destinazioni: 187 testi, 67 preferenze e
+13 controlli nativi. Attesi 60 testi SOURCE, quattro USER, 123 vuoti, sei X e
+tre controlli true. Gold/copione esclusi dagli input LLM con allowlist esplicita.
+Questi sono denominatori autoriali, non risultati di qualità del modello.
+
+Verifica indipendente passata per tutte le destinazioni, quote, stati/simboli,
+ZIP/XML, caricamento python-docx e 18 hash del manifest. MuPDF separa ancora
+la linea della firma; acquisizione conservata. Preparato LibreOffice 26.2.6.3
+locale sotto .tools, senza installare pacchetti di sistema: gold di nove pagine,
+tutte ispezionate, firma e linea insieme a pagina 9. Errori iniziali del tool
+ricollocato e Python di sistema senza docx conservati; controllo finale con
+ambiente backend riuscito. Warning liblangtag nei log, nessuna certificazione
+di paginazione Microsoft Word. Labirinto V1 preservato e hash verificati.
+
+[Rapporto](docs/minervino-base-v1-2026-10-16.md),
+[misure](docs/benchmarks/2026-10-16-minervino-freeze.json),
+[backup](docs/benchmarks/2026-10-16-minervino-freeze-audit.tar.gz).
+Raw minervino-freeze-20261016T144815Z/. Aggiornati benchmark, proposta e registro.
+Nessuna modifica a motore/frontend o DB/KB live, migrazione/reindicizzazione,
+nuova chiamata provider o suite applicativa completa. Le cancellazioni locali
+preesistenti dell'utente restano fuori da questo commit; sidecar Zone.Identifier
+e tool locali non vengono pubblicati.
+
+**Ripresa: configurare istanza isolata e provider della baseline integrata,
+tre run a materiali fissi; poi confrontare le proposte architetturali. Il
+pacchetto è congelato, l'architettura concettuale resta da validare. Nessuna
+implementazione del nuovo motore avviata. Il runner Labirinto non è compatibile
+automaticamente con lo schema Minervino: non adattare il gold al suo parser.**
+
+## Verificato il verdetto sulla revisione 1 — 16 ottobre
+
+Su richiesta dell'utente verificati i quattro rilievi nel
+[report](docs/minervino-verifica-verdetto-2026-10-16.md). Numerazione alfabetica
+dei quattro titoli conservata nell'XML come nell'originale; non risulta da
+ripristinare. Firma isolata a pagina 10 non confermata: MuPDF/mutool 1.27.0
+reimpagina il gold in 15 pagine e mantiene dicitura e linea insieme nell'ultima,
+anche visivamente. Non è una verifica della paginazione Microsoft Word.
+Assegnazioni già nella scheda scenario; rimane da definire quando fornirle come
+input USER. Confermate due spiegazioni autoriali nelle aree compilabili,
+opportuno spostarle nello scenario.
+
+[Controlli](docs/benchmarks/2026-10-16-minervino-verdetto.json),
+[immagine MuPDF](docs/benchmarks/2026-10-16-minervino-verdetto-last-page-mupdf.png),
+[backup](docs/benchmarks/2026-10-16-minervino-verdetto-audit.tar.gz).
+Raw minervino-verdetto-20261016T143707Z/. Hash input, manifest, link e diff
+verificati; nessuna suite applicativa o nuova chiamata provider. Word e scenario
+invariati, nessuna modifica a codice/DB/KB/fixture, commit o push.
+
+**Prossimo: eventuale revisione delle note e verifica della firma in Word;
+attendere l'OK sul candidato prima di congelarlo. Per il benchmark completo
+restano anche checkpoint, aspettative strutturate e policy dello scenario.**
+
+## Word gold revisione 1 pronto per l'utente — 16 ottobre
+
+L'utente ha chiesto di correggere il gold e lasciare il Word nella stessa
+cartella; congelamento solo dopo il suo OK. Creato
+[domanda-iscrizione.GOLD-SINTETICO-REVISIONE-1.docx](<nuovi dati/domanda-iscrizione.GOLD-SINTETICO-REVISIONE-1.docx>),
+SHA-256 5bd34a43b22dff44d5a280b690f4187d345e6664619d42272bbe2c590b5c8d67.
+File originale dell'utente e modulo vuoto conservati invariati.
+
+Ripristinati dall'originale i tre paragrafi del direttore con gli otto dati di
+Elisa, e le etichette originali nei paragrafi 42–49 della società/soci, inserendo
+spazi alle giunzioni senza cambiare i valori. Scelte e note dell'utente conservate.
+Creata [scheda scenario](<nuovi dati/SCENARIO_GOLD_MINERVINO.md>) dalle decisioni
+del suo gold, separata dalla KB; checkpoint e policy restano da completare.
+
+Generazione con modifica XML autonoma del documento, senza usare il writer
+applicativo o LLM. Gli intervalli fisici acquisiti in precedenza sono stati
+controllati contro i placeholder originali. Verificate tutte le 52 occorrenze
+precedenti e gli otto campi ripristinati, 130 paragrafi corpo/246 totali, quattro
+tabelle, sei X, 13 controlli nativi/tre true identici al candidato dell'utente.
+Solo word/document.xml differisce rispetto al suo DOCX; pacchetto/XML validi
+e apertura con python-docx riuscita. Rendering visuale non eseguito: lo controlla
+l'utente in Word. Nessuna suite applicativa necessaria per l'artefatto.
+
+[Controlli](docs/benchmarks/2026-10-16-minervino-gold-revision-1.json),
+[backup](docs/benchmarks/2026-10-16-minervino-gold-revision-1-audit.tar.gz).
+Raw minervino-gold-revision-1-20261016T141521Z/. Verificati link, tabelle, hash,
+manifest e diff. Nessuna modifica al motore, DB/KB o fixture V1, nuova chiamata
+provider, commit o push. Aggiornati benchmark, relazioni e indice.
+
+**Prossimo: attendere l'OK o le correzioni dell'utente sul Word. Non congelare
+il gold né avviare benchmark prima di tale conferma.**
+
+## Gold sintetico Minervino ricevuto e revisionato — 16 ottobre
+
+L'utente ha fornito nuovi dati/domanda-iscrizione.GOLD-SINTETICO.docx e chiede
+confronto con originale e KB prima di usarlo come benchmark. Creati
+[report](docs/minervino-gold-review-2026-10-16.md),
+[confronto documentale](docs/benchmarks/2026-10-16-minervino-gold-review.json) e
+[bundle](docs/benchmarks/2026-10-16-minervino-gold-review-audit.tar.gz).
+Gold SHA-256 c4dbd36e5d1a02f987bdabde3f3cd67ab4e47291aff9d737666bfd4d875991bf.
+
+52 occorrenze testuali confrontate con le fonti attuali: 19 iniziali, nove
+società, 24 soci; valori coerenti con KB, incluse equivalenze dichiarate di
+date, titoli, indirizzo e provincia. Originale uguale al modulo backend.
+13 controlli nativi conservati con gli stessi ID, tre selezionati e simboli
+coerenti. Sei X nelle tabelle, nessun'altra differenza testuale nelle celle.
+
+Correzione necessaria: dopo l'intestazione del direttore eliminati i tre
+paragrafi originali 51–53 con otto destinazioni. Ripristinare e compilare Elisa
+anche in quel ruolo; la compilazione come socia non sostituisce l'occorrenza.
+Gold da non congelare ancora. Preferenze, incarichi nominativi, attestazioni e
+luogo/data non sono fatti della KB: formalizzare scheda USER/checkpoint.
+Annotare policy sugli identificativi sintetici già presenti nelle fonti;
+validità formale/checksum non controllati. Firma e rami alternativi vuoti coerenti.
+
+Rilevate anche riscritture delle etichette prestampate; consigliato preservarle
+o dichiarare le tolleranze del confronto. Rendering visuale non eseguito;
+nessuna percentuale di accuratezza. Testi dei documenti Company MD ricomposti
+integralmente dai chunk: per generalita il partizionamento storico differisce
+dal corrente, senza perdita di testo; nessuna reindicizzazione effettuata.
+
+Raw in minervino-gold-review-20261016T135700Z/, bundle 17 file. Primo raccordo
+delle prove interrotto per spazi Markdown normalizzati, completato e dichiarato
+nelle acquisizioni. Controllati link, tabelle, manifest, hash e diff. File gold,
+originale e integrazione invariati; nessuna modifica al motore/KB/fixture,
+nuova API LLM, compilazione o suite applicativa. Nessun commit/push.
+Aggiornati BENCHMARK_COMPILAZIONE.md, relazioni e indice benchmark.
+
+Prossimo: ripristinare il blocco direttore in una revisione del candidato.
+Poi scheda delle scelte USER, aspettative strutturate,
+controllo visuale e congelamento del pacchetto prima della baseline.
+
+## Integrazione già nella KB: perdite dopo la lettura — 16 ottobre
+
+L'utente segnala nuovi dati già caricati e compilazione ancora insufficiente;
+chiede l'analisi di nuovi dati/ e propone gold manuale o bozza da revisionare.
+Analizzati integrazione.md e domanda-iscrizione.compilato(5)(1).docx.
+[Diagnosi](docs/minervino-integrazione-2026-10-16.md),
+[misure](docs/benchmarks/2026-10-16-minervino-integrazione.json) e
+[bundle](docs/benchmarks/2026-10-16-minervino-integrazione-audit.tar.gz).
+
+Il file coincide con la generazione a4231f73 della sessione 607eda67, analisi
+211598d4 del 15 ottobre. Integrazione ID10 presente nei cinque chunk -52…-56
+su 56 inviati; testo identico al file dell'utente salvo newline CRLF/LF.
+Input ricostruito e audit rivalidato identici; corpus DB uguale nei campi inviati
+(il reload aggiunge metadata). 27 proposte, 21 grounded, due rifiuti FORM per
+comune/provincia iniziali e quattro sospensioni del direttore per binding su
+chunk diverso. Nessuna proposta per 24 posizioni soci; scope c_soc omette quel
+blocco. Un gruppo checkbox respinto per etichette non letterali, zero booleani.
+
+Dialogo ricostruito: pool 3→1→0. Il router ricompone nome+qualifica fuori dalla
+quote letterale e fa ripetere il nome; poi aggiorna solo p12.s0, senza risolvere
+gli attributi del firmatario dalla KB. Le ragioni coverage non formano una coda
+completa di domande. 22 scritture, 21 SOURCE + un nome USER; tutte corrispondono
+alla ricostruzione del testo dal report, altre 15 parti ZIP identiche. Rendering
+visuale non eseguito; nessun gold completo o percentuale di accuratezza.
+
+Archiviati raw, dialogo, stato/revisioni, report e snapshot del codice, senza
+DB/credenziali; raw locali minervino-integrazione-20261016T133808Z/, bundle di
+92 file. File osservati e sessione invariati. Verificati manifest, riferimenti,
+tabelle e diff; nessuna nuova chiamata LLM, suite applicativa, codice modificato,
+scrittura nel DB o fixture alterata. Preservati gli spostamenti/cancellazioni
+dell'utente, nessun commit/push. Aggiornati benchmark e relazioni.
+
+Prossimo: usare modulo, fonti già integrate e scelte esplicite per annotare il
+gold di Minervino; l'utente può compilarlo o revisionarne una bozza indipendente.
+Non serve presumere che manchino ancora tutti i dati personali/professionali.
+Le nuove fonti sono condivisibili col backend isolato; gold/aspettative esclusi
+dal prompt. Nessuna implementazione autorizzata da questa diagnosi.
+
+## Minervino scelto come caso iniziale — 16 ottobre
+
+L'utente ha scelto Minervino e chiede come ottenere il Word gold compilato.
+Aggiornato [BENCHMARK_COMPILAZIONE.md](BENCHMARK_COMPILAZIONE.md): scelta del
+bando registrata, scenario/azienda/data ancora da fissare, passaggi per il
+gold in sezione 6.4. Le istruzioni storiche della demo non decidono il perimetro
+del nuovo scenario. Per una compilazione estesa occorrono fonti più complete
+e scelte USER definite prima delle aspettative, senza modificare le fixture.
+
+Verificati hash di originale Minervino e avviso rispetto a fonti.json, entrambi
+conformi. La bozza domanda-iscrizione.compilato(2).docx ha lo stesso hash della
+diagnosi del 13 ottobre: output parziale di 20 posizioni con limiti già noti,
+non un Word gold indipendente. Nessun nuovo gold, dato o esperimento creato.
+
+Controlli documentali di link, tabelle e diff; nessuna suite applicativa,
+nuova chiamata provider, modifica al codice, DB, fonti o fixture; nessun commit
+o push. Prossimo: leggere il modulo per l'inventario umano dei requisiti,
+definire lo scenario e completare un fascicolo simulato separato, quindi
+compilare e revisionare il gold dall'originale prima della baseline.
+
+## Preparare il benchmark prima dell'architettura — 15 ottobre
+
+Richiesta corrente: nessun codice; prima di discutere l'implementazione,
+inventariare ciò che serve per un ambiente di test con KB sensata, Word gold
+e Markdown aggiornabile. Creato
+[BENCHMARK_COMPILAZIONE.md](BENCHMARK_COMPILAZIONE.md): inventario P01–P13,
+materiali disponibili/mancanti, contenuti del fascicolo aziendale, scelte USER,
+gold Word/strutturato, checkpoint, isolamento e protocollo proposto.
+
+Verificati sui file 55 posizioni del gold Labirinto V1 (44 testuali, 11 checkbox),
+sette fonti e 11 hash del manifest, tutti corrispondenti. Il runner principale
+legge direttamente la fixture, senza ingestion/sessioni/Word: non misura da
+solo l'intero percorso. Esistono fixture complementari per dialogo, sintesi e
+checkbox; non individuato un DOCX gold dedicato nei demo-documents inventariati.
+Le bozze generate non sono un gold. V1 conservata; nuovi dati/scenari richiedono
+versioni separate. Minervino come primo caso completo è una proposta, non una
+scelta già concordata. Architettura e configurazione del benchmark restano aperte.
+
+Controllati riferimenti locali, tabelle Markdown, hash e diff; nessuna suite
+applicativa, nuova chiamata LLM o compilazione Word. Nessuna modifica al codice,
+DB live, fonti o fixture; nessun ambiente avviato, dato inventato o gold creato.
+Nessun nuovo esperimento da aggiungere a relazioni.md, che resta il registro
+completo delle prove. Preservate le modifiche precedenti e dell'utente;
+nessun commit o push.
+
+Prossimo: concordare bando, scenario e data di riferimento, censire le richieste
+manualmente, preparare fonti coerenti e gold indipendenti; quindi congelare
+il pacchetto e predisporre l'istanza isolata per la baseline del sistema attuale.
+Il nuovo documento raccoglierà gli aggiornamenti di preparazione e l'indice
+delle esecuzioni; i report completi degli esperimenti rimangono in relazioni.md.
+
+## Proposta da validare prima del codice — 15 ottobre
+
+Richiesta corrente: descrivere l'architettura a livello concettuale, indipendente
+dall'applicazione, e validarla prima di modificare qualsiasi linea di codice.
+Creato [ARCHITETUTTURA_PROPOSTA.md](ARCHITETUTTURA_PROPOSTA.md), versione 0.1
+da discutere. Il nome del file riprende quello richiesto dall'utente.
+
+Proposti rappresentazione strutturale interna, proiezione JSON deterministica
+per l'LLM e piano globale dei requisiti; distinti fatti, decisioni, assegnazioni,
+stato, narratore e scrittura sull'originale. Inclusi alternative e compromessi,
+esempio inventato completo, matrice di casi per revisione concettuale e decisioni
+aperte. Gli esempi non sono contratti API definitivi; i casi non sono test
+eseguiti. La proposta non è ancora validata e non autorizza implementazioni.
+
+Intervento documentale: nessuna modifica al codice, database, sessioni,
+originali o fixture; nessuna nuova chiamata provider o prova sperimentale.
+Controllati riferimenti locali, parsing dell'esempio JSON, delimitatori dei
+blocchi e diff. Suite software non rieseguite. Preservate le modifiche pendenti
+dell'utente e i materiali dello studio precedente; nessun commit o push.
+
+Prossimo: discutere il contratto del layer intermedio e percorrere i casi
+della sezione 13, registrando le decisioni concordate nel documento prima
+di intervenire sul codice. Le fasi di astra.md restano proposte successive,
+subordinate a questa revisione concettuale.
+
+## Studio architetturale approfondito — 15 ottobre
+
+Richiesta corrente: mappare il progetto, spiegare i pochi campi compilati,
+studiare prompt/input/output e narratore, confrontare le API file dei provider
+e proporre un'architettura affidabile. Creato [astra.md](astra.md), baseline
+`4b7d828`: diagnosi, alternative, proposta per fasi e protocollo di valutazione.
+È uno studio, non autorizzazione o implementazione di una nuova architettura.
+
+Minervino a067b0ab/e8ad0f46: copie dell'utente equivalenti alle acquisizioni;
+input ricostruito e audit rivalidato identici. Corpus SQLite in sola lettura
+identico ai 51 chunk inviati; 267 candidate, 21 proposte grezze, 20 condizionate
+grounded e scritte nell'ultima bozza aca0a0dd, una rifiutata (Bari). Dati personali
+e varie informazioni della pratica realmente assenti. Il replay in memoria del
+pool passa da una domanda a zero dopo la conferma; nessuna mutazione live.
+
+Limiti aggiuntivi dedotti dal codice: revisione del narratore sulle prime40
+proposte selezionabili e export SOURCE vincolato agli ID così rivisti, senza
+paginazione; non è la causa dei20 valori attuali.67 celle delle preferenze sono
+testuali; ChoiceGroup gestisce checkbox native, senza massimo generale di
+selezioni. Distinti da limiti dei dati, grounding tra paragrafi e granularità.
+JSON compatto229.253 caratteri, system24.675; metriche AI storiche chiaramente
+separate da nuove misure. Documentazione ufficiale provider consultata; nessun
+upload esterno o nuova chiamata generativa.
+
+[Metriche](docs/benchmarks/2026-10-15-astra-metrics.json),
+[runner offline](docs/benchmarks/astra_inspect.py),
+[backup diagnosi](docs/benchmarks/2026-10-15-astra-offline-audit.tar.gz).
+Raw in backend/data/compilation-audit/astra-20261015-02/; primo errore nello
+script di misura conservato in astra-20261015-01/. Registrato anche in relazioni.
+Verificati parsing/equivalenza, replay, hash/sessione invariati, link locali,
+esempi JSON, Ruff del solo runner e diff. Suite applicative/browser non
+rieseguite; nessun nuovo gold, benchmark LLM o rendering visuale.
+
+Preservate cancellazioni/rinomine RELATORI e altri materiali dell'utente.
+Nessuna modifica al motore, DB, originali, fixture, migrazione o reindex;
+nessun commit/push. Prossimo: discutere priorità e criteri dello studio, partendo
+dal denominatore dei campi realmente compilabili e dalle perdite per fase.
+Le nuove responsabilità proposte non sono decisioni già prese.
+
 ## Input del narratore nella radice — 14 ottobre
 
 Creato [json narratore.json](<json narratore.json>), estrazione leggibile del
