@@ -64,15 +64,21 @@ diverso. Spostato in fondo, i 34 tornano verdi senza toccare i test.
   - rilascio legittimo con la risposta al dubbio collegato: 200;
   - sessione senza dialogo: invariata.
 - **Sensibilità:** senza la correzione falliscono gli 8 casi positivi.
-- **Suite completa e Ruff:** vedi `out/suite-completa.log` e `out/ruff.log`, esiti riportati sotto.
+- **Suite completa:** 3.687 PASS (3.677 esistenti + 10 nuovi), 0 fallimenti; Ruff PASS
+  (`out/suite-completa.log`, `out/ruff.log`).
 - **Storico** (`storico_bozza.py`): 204 stati salvati (29 sessioni live e tutte le campagne). Nessuna
   delle 151 esportazioni registrate (`last_review.candidate_ids`) sarebbe stata rifiutata.
 
 ## Hash
 
-Elencati in `out/hash-correzione.json`:
-- file modificati;
-- commit;
-- digest di `backend/app` e `frontend/src`.
+Dettaglio in `out/hash-correzione.json`.
 
-La candidata dello sprint mantiene digest del codice `ed349787…` e digest dei prompt `9ae0e014…`.
+| | Valore |
+|---|---|
+| Commit della correzione | `c7c34923700cdb74b61069f2dc228128dfccb2b9` |
+| Base | `dd41e2e` |
+| Digest di `backend/app` e `frontend/src` (128 file) | `0a8d7f416939e1523de85cbef26e0368573920444e2428845162cde5e92fe2e6` |
+| Candidata dello sprint, invariata | codice `ed349787…`, prompt `9ae0e014…` |
+
+**Uso nella campagna E2E:** nessuno. La campagna ha usato solo la candidata congelata, che chiude
+la stessa lacuna per la rev 3 con il proprio codice.
