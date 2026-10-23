@@ -999,6 +999,17 @@ def narration_source_ids(data):
         (data.get("dialogue") or {}).get("held_candidate_ids", []))
 
 
+def reviewed_unheld_ids(data):
+    """Reviewed and not held, read exactly as export_selection reads them."""
+    dialogue = data.get("dialogue") or {}
+    reviewed = set(dialogue.get("reviewed_candidate_ids", []))
+    if (data.get("audit") or {}).get("version") == 12 and (
+        "reviewed_candidate_fingerprints" in dialogue
+    ):
+        reviewed = set(reviewed_candidates(data))
+    return reviewed - set(dialogue.get("held_candidate_ids", []))
+
+
 def _narration_fallback(data):
     from app.compilation_global_sessions import review_fields
 
