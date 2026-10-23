@@ -5388,3 +5388,12 @@ simulato. Rapporto: `docs/sprint-sezioni-2026-10-23.md`. Grezzi e strumenti:
   - n = 6;
   - confronto descrittivo e non appaiato.
 
+
+## 23 ottobre 2026 — Integrazione incrementale offline dell’hotfix API
+
+Worktree dedicato `tesi-docx-offline`, base `ff0d4f9`. Riutilizzato il commit
+`4890daa`, senza riscrivere il fix. Riproduzione prima: 8 FAIL / 2 PASS; dopo:
+62 test mirati PASS. Preservate 157 esportazioni storiche e 245 scritture corrette
+nel replay con condizioni soddisfatte. Suite completa 3747 PASS + 3 casi storici PASS separati; Ruff PASS.
+Rollback da registrare dopo il commit.
+Nessuna inferenza o adozione. Dettagli in `docs/docx-incrementale-2026-10-23.md`.

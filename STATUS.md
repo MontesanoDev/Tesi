@@ -1,5 +1,14 @@
 # Stato di Mapi RAG
 
+## Interventi incrementali offline — 23 ottobre 2026
+
+Nuovo lavoro autorizzato su `miglioramenti/2026-10-23-docx-offline`, worktree
+`/home/montesano/tesi-docx-offline`, base sprint `ff0d4f9`. Priorità 1: integrato
+il codice dell’hotfix API già esistente (`4890daa`); 62 test mirati PASS, suite 3747 PASS + 3 casi storici PASS separati, Ruff PASS.
+Rollback da registrare dopo il commit.
+Nessuna chiamata LLM, E2E o adozione live. Rapporto: `docs/docx-incrementale-2026-10-23.md`.
+
+
 ## Campagna E2E dopo lo sprint — conclusa, esito favorevole, 23 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Nessun altro sprint. Le decisioni spettano all'utente:
