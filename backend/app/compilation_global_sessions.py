@@ -53,6 +53,10 @@ def initial_state(layout):
     # Resilient segments (candidate, not adopted): a separate opt-in revision.
     if os.environ.get("MAPI_GENERATION_REVISION") in {"2", "3"}:
         experiment["generation_revision"] = int(os.environ["MAPI_GENERATION_REVISION"])
+    # Option continuations (rev 3 candidate only, not adopted): a separate opt-in revision.
+    if (experiment.get("generation_revision") == 3
+            and os.environ.get("MAPI_BRANCH_SCOPE_REVISION") == "1"):
+        experiment["branch_scope_revision"] = 1
     return {"phase": "PENDING", "backend_revision": 13, "option_authorization_revision": 1,
             "attribution_safety_revision": 1, **experiment,
             "candidate_count": len(catalog["candidates"]),
@@ -267,7 +271,11 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
         audit = validate_global_proposal(raw, layout, project_id, sources,
                                          expected_version=expected_version,
                                          budget_scale=max(1, summary["merged_segments"]))
-        return attach_resilient_status(audit, summary)
+        audit = attach_resilient_status(audit, summary)
+        from app.compilation_branch_scope import enabled, propagate
+
+        # The claimed public state omits the catalog: rebuild it from the same original.
+        return propagate(audit, build_compilation_catalog(layout)) if enabled(data) else audit
     audit = validate_global_proposal(raw, layout, project_id, sources,
                                      expected_version=expected_version)
     if data.get("generation_revision") == 1 and report.is_file():
@@ -645,7 +653,7 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
         for revision in ("backend_revision", "option_authorization_revision",
                          "attribution_safety_revision", "dialogue_revision",
                          "generation_revision", "derivation_revision",
-                         "narration_recovery_revision"):
+                         "narration_recovery_revision", "branch_scope_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:
