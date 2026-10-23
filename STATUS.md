@@ -1,5 +1,40 @@
 # Stato di Mapi RAG
 
+## Campagna E2E dopo lo sprint — conclusa, esito favorevole, 23 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Nessun altro sprint. Le decisioni spettano all'utente:
+- adozione della candidata, mai automatica;
+- integrazione della correzione ordinaria;
+- push, solo con autorizzazione.
+
+Rapporto: `docs/campagna-e2e-sprint-2026-10-23.md`.
+
+- **Svolgimento:** 6/6 tentativi, 6 DOCX, 139 scritture riviste (revisione autoriale, non
+  indipendente), 0 non dimostrate.
+- **Sicurezza:** 0 aggiramenti; 0 scritture e 0 proposte nelle 25 destinazioni storiche; 0
+  risposte 409.
+- **Costi:** 2.559.649 token su un tetto di 2,9 M, circa 0,38 USD.
+- **R1:** esercitato su Minervino senza falsi rifiuti.
+- **Revisione mirata delle sospensioni:** non esercitata, 0 casi M. I 21 campi dei soci sono
+  scritti in minervino-2 perché il narratore non li ha sospesi.
+- **Nuovi falsi rifiuti rispetto ai gemelli:** 33, nessuno dovuto allo sprint:
+  - 19 proposte non fatte o respinte;
+  - 14 sospensioni del narratore fuori dal criterio M (citazione ancorata solo alla finestra, o
+    blocco `source`).
+- **Copertura mediana:** Minervino 81%, Catanzaro 39%, So.Re.Sa. 30%.
+
+**Correzione di sicurezza del profilo ordinario, separata:**
+- branch `fix/2026-10-23-bozza-esplicita` (`c7c3492`), worktree `/home/montesano/tesi-fix-bozza`;
+- `global-draft` rifiuta per id le proposte sospese o non revisionate;
+- suite 3.687 PASS;
+- non attiva nell'app live e non inclusa nella candidata.
+
+**Grezzi:**
+- `backend/data/compilation-audit/sprint-e2e-20261023-01/`;
+- `backend/data/compilation-audit/bozza-esplicita-20261023-01/`.
+
+**Risultati:** `benchmark ufficiale/sprint-e2e-20261023-01/`.
+
 ## Sprint sulla compilazione per sezioni (rev 3) — 23 ottobre 2026, offline
 
 **Punto di ripresa: decisione dell'utente sulla proposta E2E**

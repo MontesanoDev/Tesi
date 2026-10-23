@@ -5368,3 +5368,23 @@ simulato. Rapporto: `docs/sprint-sezioni-2026-10-23.md`. Grezzi e strumenti:
   - rigiochi che non riproducono il modello;
   - la sicurezza dei rami resta empirica per 18 casi.
 
+## 23 ottobre 2026 — Campagna E2E dopo lo sprint (6 tentativi, approvata dall'utente)
+
+- **Preregistrazione:** `PREREG-SPRINT-E2E.md` con addendum, congelata alle 17:27:05 UTC:
+  - il criterio d'arresto è una scrittura non dimostrata o con applicabilità errata, non la sola
+    presenza di una delle 25 destinazioni;
+  - spiegazione di 19/25 e 12/18.
+- **Esito:** favorevole.
+  - 6/6 DOCX, 139 scritture, 0 non dimostrate, 0 aggiramenti, 0 rami sbagliati;
+  - 2,56 M token, circa 0,38 USD.
+- **Revisione mirata delle sospensioni:** non esercitata (0 casi M).
+- **Falsi rifiuti del narratore fuori dal criterio:** 14 campi.
+- **Risultati:** `benchmark ufficiale/sprint-e2e-20261023-01/`; rapporto
+  `docs/campagna-e2e-sprint-2026-10-23.md`.
+- **Correzione ordinaria della bozza esplicita:** separata, `fix/2026-10-23-bozza-esplicita`;
+  suite 3.687 PASS; 151 esportazioni storiche verificate, 0 rifiuti.
+- **Limiti:**
+  - revisione non indipendente;
+  - n = 6;
+  - confronto descrittivo e non appaiato.
+
