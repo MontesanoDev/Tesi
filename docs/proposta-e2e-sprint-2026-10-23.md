@@ -6,8 +6,17 @@ Gli hash si riferiscono al commit finale dello sprint (`out/manifest-e2e.json` n
 
 ## 1. Candidata
 
-**Codice:** worktree `/home/montesano/tesi-sprint`, branch locale `sprint/2026-10-23-sezioni`,
-commit e hash nel manifest. Il server osservato parte da questo worktree, non dal main tree.
+**Codice:** worktree `/home/montesano/tesi-sprint`, branch locale `sprint/2026-10-23-sezioni`.
+Il server osservato parte da questo worktree, non dal main tree.
+
+| | Valore |
+|---|---|
+| Commit del codice | `a9bd9286539b1f3495d3eb2b9e279de658df2916` (albero applicativo pulito) |
+| Digest del codice | `ed3497876454d10bd139b15bf28d989def028df82aadf02859f356a3df3360e2` (130 file di `backend/app` e `frontend/src`) |
+| Digest dei prompt | `9ae0e01422de23806073b764d1b18b879e9914f97b244fe9146c65e43f23c93a` (22 costanti di istruzione) |
+
+L'elenco per file e per prompt è nel manifest. I commit successivi a `a9bd928` modificano solo la
+documentazione.
 
 **Ambiente del server osservato:** runtime temporanei come nella campagna precedente, mai l'app
 live.
