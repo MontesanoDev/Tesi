@@ -137,3 +137,115 @@ semantica delle sezioni:
 Come da istruzioni non è stata tentata. Nei 9 tentativi rev 3 osservati quelle destinazioni non
 sono mai state proposte, ma è un comportamento osservato del modello con il FORM completo, non una
 garanzia. La sicurezza generale dei rami **non** è dimostrata da questi 25 casi.
+
+## PASSO 2 — sospensioni del narratore
+
+**Riferimenti:**
+- **Classificazione e risultati attesi:** `PASSO2-ATTESI.md`, scritto alle 15:34:56 UTC prima del
+  codice del passo, con hash registrato.
+- **Strumenti:** `sospensioni_passo2.py`, `rigioco_passo2.py`.
+- **Prove per campo:** `out/passo2-campi-recuperabili.json`.
+
+### Diagnosi
+
+**Minervino-2:** 21 proposte dei soci di Mapi Ingegneria sospese:
+- `p43.*`, `p44.*`, `p45.*`: Luca Ferri ed Elisa Romano;
+- `p47.s0`, `p48.*`, `p49.*`: Andrea Greco.
+
+**Motivo dichiarato:** «ruolo del responsabile della progettazione o direttore tecnico non
+confermato». Per Greco, «proposti nel blocco del Direttore Tecnico», cosa falsa: `p47`-`p49` sono il
+terzo socio e precedono paragraph:50.
+
+**Citazione:** è la clausola di paragraph:50, cioè la condizione `s2_c_dt_role`, che governa solo
+`p51`-`p53`.
+
+**Validazione del backend:** `UNANCHORED_QUOTE`, senza chiave di blocco. Per costruzione nessuna
+via di rilascio: le sospensioni sono state ereditate fino all'export.
+
+**Classificazione** (categorie richieste):
+- **«già risolta da verifiche backend valide»: 21/21.** Per ciascuna:
+  - valore SOURCE dalla tabella «Soci della società al 15 ottobre 2026»;
+  - binding di ruolo `socio` con esito `literal_match`;
+  - unica condizione propria (ramo società, `s2_c_soc_branch`) vera per ricevuta USER con prova
+    d'ambito, che comprende la destinazione;
+  - stesso valore scritto e giudicato DIMOSTRATA nel gemello minervino-1.
+- **Giustificate da un dubbio documentale reale:** 0.
+- **Ambigue:** 0.
+
+È il caso descritto al punto 3: il narratore rimette in discussione una relazione verificata
+citando la condizione di altre destinazioni, senza indicare una contraddizione.
+
+**Criterio deterministico M:** tutte queste condizioni insieme:
+- blocco `applicability`;
+- citazione non ancorata;
+- citazione uguale alla clausola di una sola condizione del modello;
+- quella condizione non governa la proposta.
+
+**Esito su 145 sospensioni registrate** (quattro campagne): individua esattamente queste 21, nessun
+falso positivo.
+
+**Fuori dal criterio:**
+- le sospensioni non ancorate con blocco `source`: 41 (14 nella campagna arrestata, 23 nella
+  monolitica, 4 in rev 2);
+- le sospensioni `RECORDED`.
+
+Non sono state giudicate né toccate.
+
+### Correzione: `hold_rereview_revision 1`
+
+Il backend **non** rilascia nulla. Una sospensione che soddisfa M resta sospesa e viene marcata «da
+rivedere» (`misattributed_condition`, `rereview: pending`):
+1. **Revisione unica.** Alla narrazione successiva la proposta rientra nella finestra di revisione,
+   una sola volta. `previous_hold.backend_check` spiega che la clausola citata governa altre
+   destinazioni.
+2. **Se il narratore la sospende di nuovo,** la sospensione è definitiva, senza altre revisioni.
+   Un motivo ancorato segue il meccanismo esistente.
+3. **Se non la sospende di nuovo,** torna ai gate invariati del backend (`release_reason:
+   MODEL_REREVIEW`).
+
+La decisione resta del narratore. Nessuna conferma USER sostituisce SOURCE e nessun gate d'export
+cambia.
+
+**Attivazione:** solo nuove sessioni con `MAPI_GENERATION_REVISION=3` e
+`MAPI_HOLD_REREVIEW_REVISION=1`.
+
+**File:**
+- `backend/app/compilation_hold_rereview.py` (nuovo);
+- `backend/app/compilation_global_dialogue.py`:
+  - finestra di revisione;
+  - `_hold_updates`;
+  - `previous_hold` nel contesto;
+- `backend/app/compilation_global_sessions.py`: flag;
+- `backend/tests/test_compilation_hold_rereview.py` (nuovo, 14 test).
+
+### Verifiche
+
+**Rigioco** (`rigioco_passo2.py`), controfattuale in memoria sullo stato finale di minervino-2 con
+R1 attiva:
+
+| | Prima | Dopo, il narratore non le risospende | Dopo, il narratore le risospende |
+|---|---|---|---|
+| Sospensioni marcate M / rientrate in revisione | 0 / 0 | 21 / 21 | 21 / 21 |
+| Sospese dopo la revisione | 21 | 0 | 21 (definitive) |
+| Export SOURCE + USER | 30 + 2 | 51 + 2 | 30 + 2 |
+| Aggiunte all'export | — | esattamente le 21, tutte DIMOSTRATA con lo stesso valore nel gemello | 0 |
+| Rimosse dall'export | — | 0 | 0 |
+| Scritture nei rami sbagliati | 0 | 0 | 0 |
+
+`p51`-`p53` (direttore tecnico) restano fuori in tutti i casi: `s2_c_dt_role` è UNKNOWN per la
+guardia dei cicli. Il comportamento reale del narratore alla revisione non è misurabile offline.
+
+**Test** (14):
+- criterio M: condizione propria, governata, citazione ambigua o assente, normalizzazione;
+- sospensioni non toccate: `source`, ancorate, senza condizione;
+- flag spento come prima;
+- riferimento non risolvibile alla revisione: resta sospesa e la revisione è consumata;
+- sospensione fuori dalla finestra: né rilasciata né consumata;
+- profilo;
+- tre sessioni con provider simulato:
+  - rilascio dopo la revisione con export e bozza 200, la destinazione dell'altra condizione
+    sempre esclusa (409);
+  - risospensione definitiva senza nuovo ciclo;
+  - flag spento.
+
+**Sensibilità:** con la correzione neutralizzata falliscono i 7 test positivi.

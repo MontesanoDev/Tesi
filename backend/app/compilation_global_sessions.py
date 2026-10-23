@@ -57,6 +57,9 @@ def initial_state(layout):
     if (experiment.get("generation_revision") == 3
             and os.environ.get("MAPI_BRANCH_SCOPE_REVISION") == "1"):
         experiment["branch_scope_revision"] = 1
+    if (experiment.get("generation_revision") == 3
+            and os.environ.get("MAPI_HOLD_REREVIEW_REVISION") == "1"):
+        experiment["hold_rereview_revision"] = 1
     return {"phase": "PENDING", "backend_revision": 13, "option_authorization_revision": 1,
             "attribution_safety_revision": 1, **experiment,
             "candidate_count": len(catalog["candidates"]),
@@ -653,7 +656,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
         for revision in ("backend_revision", "option_authorization_revision",
                          "attribution_safety_revision", "dialogue_revision",
                          "generation_revision", "derivation_revision",
-                         "narration_recovery_revision", "branch_scope_revision"):
+                         "narration_recovery_revision", "branch_scope_revision",
+                         "hold_rereview_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:

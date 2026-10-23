@@ -462,8 +462,11 @@ def _review_window(data):
     candidates = _review_candidates(data)
     if (data.get("audit") or {}).get("version") != 12:
         return candidates[:40]  # Keep existing sessions/contracts readable.
-    reviewed = reviewed_candidates(data)
-    return [f for f in candidates if f["candidate_id"] not in reviewed][:40]
+    from app.compilation_hold_rereview import due
+
+    reviewed, rereview = reviewed_candidates(data), due(data)
+    return [f for f in candidates if f["candidate_id"] not in reviewed
+            or f["candidate_id"] in rereview][:40]
 
 
 def _applicability_contexts(data, proposals, audited):
@@ -578,11 +581,15 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
     proposal's own context, a repeated or an unresolvable reference (irregular) keeps
     the proposals held, without any automatic release.
     """
+    from app.compilation_hold_rereview import due, enabled, foreign_condition
     from app.requirement_checks import contains_form_span
 
     irregular = irregular or {"invalid_references": [], "repeated_references": {}}
     previous = data.get("dialogue") or {}
     old = set(previous.get("held_candidate_ids", []))
+    # Rev 3 candidate: misattributed holds in this window receive their single re-review now.
+    rereview = pool is not None and enabled(data)
+    reviewing = due(data) & {p["candidate_id"] for p in proposals} if rereview else set()
     incoming = {proposals[i - 1]["candidate_id"] for i in plan.held_proposal_slots}
     slots = [r.proposal_slot for r in plan.hold_reviews]
     if len(slots) != len(set(slots)) or any(i > len(proposals) for i in slots):
@@ -620,6 +627,12 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
         notes[cid]["reason_status"] = "recorded" if validation == "RECORDED" else "unverified"
         if not anchored:
             notes[cid]["quote_location"] = _quote_location(context, review.evidence_quote)
+            foreign = foreign_condition(data["audit"], cid, review.evidence_quote) if (
+                rereview and review.blocker == "applicability") else None
+            if foreign:
+                notes[cid].update(misattributed_condition=foreign, rereview="pending")
+        if cid in reviewing:
+            notes[cid]["rereview"] = "done"  # A second hold is final: no further re-review.
         if repeated:
             notes[cid]["other_reviews"] = repeated
         # Only doubts a USER answer can settle are bound to a slot: a SOURCE, FORM or
@@ -648,6 +661,8 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
             record["reason_status"] = "not_recorded"
         if cid not in old:
             record["introduced_review"] = review_id
+        if cid in reviewing:
+            record["rereview"] = "done"
         records[cid] = record
     answered = set(previous.get("answers", {})) if pool is not None else set()
     stale = {cid for cid in incoming if notes.get(cid, {}).get("blocker_key") in answered}
@@ -656,7 +671,12 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
     for cid in stale | resolved:
         records[cid] = {**records.get(cid, {}), **notes.get(cid, {}), "status": "released",
                         "release_reason": "BLOCKER_ANSWERED", "last_review": review_id}
-    held = (old | incoming) - redundant - stale - resolved
+    # Not held again at its re-review: back to the backend gates (a MODEL decision).
+    rereviewed = reviewing - incoming
+    for cid in rereviewed:
+        records[cid] = {**records.get(cid, {}), "status": "released", "rereview": "done",
+                        "release_reason": "MODEL_REREVIEW", "last_review": review_id}
+    held = (old | incoming) - redundant - stale - resolved - rereviewed
     accepted = incoming - redundant - stale
     transition = {"review_id": review_id, "new": sorted(accepted - old),
         "confirmed": sorted(accepted & old), "inherited": sorted(old - incoming),
@@ -671,6 +691,10 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
             unverified=sorted(c for c, n in notes.items() if n["reason_status"] == "unverified"),
             invalid_references=irregular["invalid_references"],
             repeated_references=irregular["repeated_references"])
+    if rereview:
+        transition.update(
+            released_model_rereview=sorted(rereviewed),
+            rereview_pending=sorted(c for c in held if records[c].get("rereview") == "pending"))
     return {"held_candidate_ids": sorted(held), "hold_records": records,
             "hold_transition": transition}
 
@@ -684,6 +708,10 @@ def model_context(data, pool):
     audited = {f["candidate_id"]: f for f in audit.get("fields", [])}
     proposals = _review_window(data)
     applicability, condition_slots = _applicability_contexts(data, proposals, audited)
+    from app.compilation_hold_rereview import NOTE as REREVIEW_NOTE
+    from app.compilation_hold_rereview import due
+
+    rereview = due(data)
     role_contexts, role_slots, proposal_roles = [], {}, {}
     for i, proposal in enumerate(proposals):
         role = _role_context(audit, audited[proposal["candidate_id"]])
@@ -707,7 +735,8 @@ def model_context(data, pool):
          **({"previous_hold": {k: v for k, v in dialogue.get("hold_records", {}).get(
                  f["candidate_id"], {"status": "held", "reason_status": "not_recorded"}).items()
                  if k in {"status", "reason_status", "blocker", "reason", "missing_information",
-                          "evidence_quote"}}}
+                          "evidence_quote"}} | (
+                {"backend_check": REREVIEW_NOTE} if f["candidate_id"] in rereview else {})}
             if f["candidate_id"] in dialogue.get("held_candidate_ids", []) else {}),
          "deferred": any(answers.get("condition:" + c, {}).get("action") in {
              "SKIP", "UNKNOWN", "REFUSE"} for c in f["conditions"]),
