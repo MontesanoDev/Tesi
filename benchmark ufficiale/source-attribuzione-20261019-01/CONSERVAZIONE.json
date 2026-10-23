@@ -1,0 +1,18 @@
+{
+  "application_unchanged_during_benchmark": true,
+  "protected_previous_files_changed_only": [
+    "backend/app/compilation_global.py"
+  ],
+  "other_protected_files_unchanged": 967,
+  "previous_audit_files_unchanged": 279,
+  "live_sessions_unchanged": 29,
+  "live_storage_files_unchanged": 285,
+  "clone_old_sessions_unchanged": 33,
+  "new_sessions": 1,
+  "global_calls": 1,
+  "all_provider_calls": 10,
+  "no_manual_state_edits": true,
+  "no_quality_retry_no_redraw": true,
+  "parser_writer_API_model_prompt_unchanged": true,
+  "no_commit_push": true
+}

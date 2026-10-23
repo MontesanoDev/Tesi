@@ -16,6 +16,17 @@ La diagnosi del sistema esistente è in [astra.md](astra.md). La descrizione
 dell'implementazione attuale rimane in [ARCHITETTURA.md](ARCHITETTURA.md).
 Questo documento serve a decidere come dovrebbe funzionare il sistema.
 
+### Riscontro empirico al 17 ottobre
+
+La sperimentazione E1 è stata autorizzata successivamente alla stesura della
+proposta. [compact-v1](docs/esperimento-e1-form-compatto-2026-10-16.md) riduce
+input del 16,09%, ma produce 14/11/23 valori conformi contro 23/17/22 B0.
+[compact-index-v2](docs/esperimento-e1-index-2026-10-17.md) riduce input del
+13,31%, ma ha un rifiuto JSON, un troncamento e un solo Word con 21/60.
+Entrambe restano nel banco di prova, nessuna nel motore operativo. Il risparmio
+di rappresentazione è misurato; l'affidabilità della compilazione non è risolta.
+Nessuna validazione complessiva dell'architettura da queste prove; E2 non avviato.
+
 ### Base di verifica fissata il 16 ottobre
 
 Su autorizzazione dell'utente, la [fixture Minervino V1](demo-documents/benchmark-minervino/v1/README.md)
@@ -550,6 +561,33 @@ promessa in questa fase.
 
 ## 15. Decisioni aperte per la discussione
 
+Aggiornamento del 16 ottobre: il [piano E1/E2](docs/piano-esperimenti-e1-e2.md)
+sviluppa la verifica empirica della sezione 14. E1 confronta JSON attuale e
+compatto sullo stesso documento completo; E2 confronta estratti nella stessa
+vista compatta con il completo E1, sulle medesime destinazioni e contro il gold.
+La prima misura riguarda la rappresentazione, la seconda l'utilità degli
+estratti per lo sviluppo. Sono esperimenti proposti e non eseguiti; il piano
+non modifica le fixture congelate o approva l'intera architettura. Gli estratti
+non sono una reintroduzione del motore produttivo a gruppi.
+
+Successivamente acquisita la [baseline B0](docs/baseline-minervino-b0-2026-10-16.md):
+tre analisi reali e tre Word parziali, con 23/17/22 valori conformi sui 60 target
+documentati. Nessuno dei quattro argomenti USER previsti dal copione è stato
+chiesto. E1/E2 restano da eseguire: la misura rende distinguibili omissioni LLM,
+blocchi di attribuzione, mancato passaggio delle scelte iniziali, copertura del
+dialogo e difetti di layout. La sola riduzione del JSON non risolve per definizione
+tutte queste perdite. Prima prova proposta ancora E1 completo, senza cambiare
+contemporaneamente gli altri componenti; nessuna decisione aperta della tabella
+seguente viene promossa a implementazione.
+
+E1 successivamente approvato ed eseguito nel banco di prova:
+[compact-v1, risultati](docs/esperimento-e1-form-compatto-2026-10-16.md).
+Input token -16,09%, Word 14/11/23 contro 23/17/22 B0, tutti i run conservati.
+Integrità strutturale verificata, qualità non stabilizzata: nessuna adozione
+nella chat. Nuova rappresentazione compatta da valutare prima della base E2;
+validazione, dialogo e writer non modificati. Le decisioni generali seguenti
+restano aperte; il serializzatore sperimentale non realizza l'intera proposta.
+
 | Decisione | Orientamento proposto | Cosa resta da validare |
 |---|---|---|
 | Perimetro iniziale | Documenti con contenuti e destinazioni riconoscibili; limiti espliciti | Quali controlli e regioni Word sono indispensabili |
@@ -564,8 +602,7 @@ promessa in questa fase.
 | Chiamate LLM | Responsabilità separate, numero non fissato | Quali compiti accorpare senza perdere osservabilità |
 | Risultato | Bozza con provenienza e requisiti aperti espliciti | Eventuali condizioni aggiuntive per una pratica considerata completa |
 
-**Stato finale di questo documento: proposta pronta per la discussione,
-non ancora validata.** Il prossimo passaggio è esaminare il contratto del
-layer intermedio e percorrere i casi della sezione 13. Le decisioni concordate
-andranno registrate in una revisione del documento prima di avviare modifiche
-al codice.
+**Stato del disegno complessivo: proposta da discutere, non ancora validata.**
+L'autorizzazione successiva ha riguardato i soli esperimenti E1 documentati
+sopra; non estende l'approvazione agli altri componenti proposti. Contratto del
+layer e casi della sezione 13 restano criteri per valutare ulteriori decisioni.

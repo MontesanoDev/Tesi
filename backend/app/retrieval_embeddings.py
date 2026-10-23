@@ -1,4 +1,4 @@
-"""LangChain's Ollama adapter with Mapi's no-truncation and integrity rules.
+"""LangChain's Ollama adapter with no-truncation and integrity rules.
 
 The upstream adapter does not expose Ollama's truncate option. Only that call
 is specialized; transport, model serialization and clients belong to the SDK.
@@ -15,6 +15,7 @@ from langchain_ollama import OllamaEmbeddings
 from ollama import ResponseError
 from pydantic import Field
 
+from app.retrieval_embedding_api import APIEmbeddings
 from app.retrieval_settings import RetrievalError, RetrievalSettings
 
 
@@ -112,6 +113,13 @@ class SourceEmbeddings(OllamaEmbeddings):
 
 @contextmanager
 def source_embeddings(settings: RetrievalSettings):
+    if settings.embedding_provider != "ollama":
+        embeddings_api = APIEmbeddings(settings)
+        try:
+            yield embeddings_api
+        finally:
+            embeddings_api.close()
+        return
     embeddings = SourceEmbeddings(
         model=settings.embedding_model,
         base_url=settings.embedding_url,

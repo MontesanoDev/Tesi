@@ -1,0 +1,812 @@
+[
+  {
+    "candidate_id": "t0.r0.c1",
+    "injected_record": {
+      "label": "Il/La sottoscritto/a",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:18",
+        "quote": "Il/La sottoscritto/a"
+      },
+      "conditions": [
+        "c_partecipante"
+      ],
+      "property": "denominazione",
+      "fact_id": "f_company_name",
+      "reason": "Applicabilità distinta dalla prova del soggetto"
+    },
+    "actual_SOURCE_fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "denominazione",
+      "value": "Mapi Ingegneria S.r.l.",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+        }
+      ]
+    },
+    "validation": "REJECTED",
+    "grounded_value": false,
+    "SOURCE_binding_checked": false,
+    "source_target_check": {
+      "result": "rejected",
+      "semantic_review_required": true,
+      "validation_codes": [
+        "source_subject_type_mismatch"
+      ],
+      "validation_errors": [
+        "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      ],
+      "source_subject": "Mapi Ingegneria S.r.l.",
+      "source_entity": "company",
+      "expected_entity": "person",
+      "form_evidence": {
+        "format": "table_label_value",
+        "table_id": "table:0",
+        "target_cell_id": "t0.r0.c1",
+        "subject_anchor": {
+          "row_index": 0,
+          "label_cell_id": "t0.r0.c0",
+          "paragraph_ids": [
+            "paragraph:18"
+          ],
+          "quote": "Il/La sottoscritto/a"
+        },
+        "label_path": [
+          {
+            "row_index": 0,
+            "label_cell_id": "t0.r0.c0",
+            "paragraph_ids": [
+              "paragraph:18"
+            ],
+            "quote": "Il/La sottoscritto/a"
+          }
+        ]
+      }
+    },
+    "audit_field": {
+      "candidate_id": "t0.r0.c1",
+      "validation": "REJECTED",
+      "semantic_review_required": true,
+      "written_value": null,
+      "label": "Il/La sottoscritto/a",
+      "entity": "company",
+      "kind": "data",
+      "disposition": "conditional",
+      "value": null,
+      "form": {
+        "paragraph_id": "paragraph:18",
+        "quote": "Il/La sottoscritto/a"
+      },
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+        }
+      ],
+      "reason": "Applicabilità distinta dalla prova del soggetto",
+      "form_evidence": {
+        "paragraph_id": "paragraph:18",
+        "quote": "Il/La sottoscritto/a"
+      },
+      "validation_errors": [
+        "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      ],
+      "source_evidence": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -43,
+          "citation_rebound": false,
+          "quote": "- Ragione sociale: Mapi Ingegneria S.r.l.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ],
+      "fact_id": null,
+      "conditions": [
+        "c_partecipante"
+      ],
+      "condition_checks": {
+        "c_partecipante": {
+          "result": "unknown",
+          "scope": "semantic_review_required"
+        }
+      },
+      "proposal": {
+        "label": "Il/La sottoscritto/a",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:18",
+          "quote": "Il/La sottoscritto/a"
+        },
+        "conditions": [
+          "c_partecipante"
+        ],
+        "property": "denominazione",
+        "fact_id": "f_company_name",
+        "reason": "Applicabilità distinta dalla prova del soggetto"
+      },
+      "destination_check": {
+        "result": "not_required"
+      },
+      "property": "denominazione",
+      "source_target_check": {
+        "result": "rejected",
+        "semantic_review_required": true,
+        "validation_codes": [
+          "source_subject_type_mismatch"
+        ],
+        "validation_errors": [
+          "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+        ],
+        "source_subject": "Mapi Ingegneria S.r.l.",
+        "source_entity": "company",
+        "expected_entity": "person",
+        "form_evidence": {
+          "format": "table_label_value",
+          "table_id": "table:0",
+          "target_cell_id": "t0.r0.c1",
+          "subject_anchor": {
+            "row_index": 0,
+            "label_cell_id": "t0.r0.c0",
+            "paragraph_ids": [
+              "paragraph:18"
+            ],
+            "quote": "Il/La sottoscritto/a"
+          },
+          "label_path": [
+            {
+              "row_index": 0,
+              "label_cell_id": "t0.r0.c0",
+              "paragraph_ids": [
+                "paragraph:18"
+              ],
+              "quote": "Il/La sottoscritto/a"
+            }
+          ]
+        }
+      },
+      "coverage": {
+        "state": "REJECTED_PROPOSAL",
+        "origin": "BACKEND",
+        "reason": "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      }
+    },
+    "not_a_real_LLM_response": true,
+    "original_artifacts_unchanged": true
+  },
+  {
+    "candidate_id": "t0.r2.c1",
+    "injected_record": {
+      "label": "Codice fiscale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:22",
+        "quote": "Codice fiscale"
+      },
+      "conditions": [
+        "c_partecipante"
+      ],
+      "property": "codice_fiscale",
+      "fact_id": "f_cf",
+      "reason": "Applicabilità distinta dalla prova del soggetto"
+    },
+    "actual_SOURCE_fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "codice_fiscale",
+      "value": "IT01234567890",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+        }
+      ]
+    },
+    "validation": "REJECTED",
+    "grounded_value": false,
+    "SOURCE_binding_checked": false,
+    "source_target_check": {
+      "result": "rejected",
+      "semantic_review_required": true,
+      "validation_codes": [
+        "source_subject_type_mismatch"
+      ],
+      "validation_errors": [
+        "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      ],
+      "source_subject": "Mapi Ingegneria S.r.l.",
+      "source_entity": "company",
+      "expected_entity": "person",
+      "form_evidence": {
+        "format": "table_label_value",
+        "table_id": "table:0",
+        "target_cell_id": "t0.r2.c1",
+        "subject_anchor": {
+          "row_index": 0,
+          "label_cell_id": "t0.r0.c0",
+          "paragraph_ids": [
+            "paragraph:18"
+          ],
+          "quote": "Il/La sottoscritto/a"
+        },
+        "label_path": [
+          {
+            "row_index": 0,
+            "label_cell_id": "t0.r0.c0",
+            "paragraph_ids": [
+              "paragraph:18"
+            ],
+            "quote": "Il/La sottoscritto/a"
+          },
+          {
+            "row_index": 1,
+            "label_cell_id": "t0.r1.c0",
+            "paragraph_ids": [
+              "paragraph:20"
+            ],
+            "quote": "Data e luogo di nascita"
+          },
+          {
+            "row_index": 2,
+            "label_cell_id": "t0.r2.c0",
+            "paragraph_ids": [
+              "paragraph:22"
+            ],
+            "quote": "Codice fiscale"
+          }
+        ]
+      }
+    },
+    "audit_field": {
+      "candidate_id": "t0.r2.c1",
+      "validation": "REJECTED",
+      "semantic_review_required": true,
+      "written_value": null,
+      "label": "Codice fiscale",
+      "entity": "company",
+      "kind": "data",
+      "disposition": "conditional",
+      "value": null,
+      "form": {
+        "paragraph_id": "paragraph:22",
+        "quote": "Codice fiscale"
+      },
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+        }
+      ],
+      "reason": "Applicabilità distinta dalla prova del soggetto",
+      "form_evidence": {
+        "paragraph_id": "paragraph:22",
+        "quote": "Codice fiscale"
+      },
+      "validation_errors": [
+        "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      ],
+      "source_evidence": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -43,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ],
+      "fact_id": null,
+      "conditions": [
+        "c_partecipante"
+      ],
+      "condition_checks": {
+        "c_partecipante": {
+          "result": "unknown",
+          "scope": "semantic_review_required"
+        }
+      },
+      "proposal": {
+        "label": "Codice fiscale",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:22",
+          "quote": "Codice fiscale"
+        },
+        "conditions": [
+          "c_partecipante"
+        ],
+        "property": "codice_fiscale",
+        "fact_id": "f_cf",
+        "reason": "Applicabilità distinta dalla prova del soggetto"
+      },
+      "destination_check": {
+        "result": "not_required"
+      },
+      "property": "codice_fiscale",
+      "source_target_check": {
+        "result": "rejected",
+        "semantic_review_required": true,
+        "validation_codes": [
+          "source_subject_type_mismatch"
+        ],
+        "validation_errors": [
+          "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+        ],
+        "source_subject": "Mapi Ingegneria S.r.l.",
+        "source_entity": "company",
+        "expected_entity": "person",
+        "form_evidence": {
+          "format": "table_label_value",
+          "table_id": "table:0",
+          "target_cell_id": "t0.r2.c1",
+          "subject_anchor": {
+            "row_index": 0,
+            "label_cell_id": "t0.r0.c0",
+            "paragraph_ids": [
+              "paragraph:18"
+            ],
+            "quote": "Il/La sottoscritto/a"
+          },
+          "label_path": [
+            {
+              "row_index": 0,
+              "label_cell_id": "t0.r0.c0",
+              "paragraph_ids": [
+                "paragraph:18"
+              ],
+              "quote": "Il/La sottoscritto/a"
+            },
+            {
+              "row_index": 1,
+              "label_cell_id": "t0.r1.c0",
+              "paragraph_ids": [
+                "paragraph:20"
+              ],
+              "quote": "Data e luogo di nascita"
+            },
+            {
+              "row_index": 2,
+              "label_cell_id": "t0.r2.c0",
+              "paragraph_ids": [
+                "paragraph:22"
+              ],
+              "quote": "Codice fiscale"
+            }
+          ]
+        }
+      },
+      "coverage": {
+        "state": "REJECTED_PROPOSAL",
+        "origin": "BACKEND",
+        "reason": "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      }
+    },
+    "not_a_real_LLM_response": true,
+    "original_artifacts_unchanged": true
+  },
+  {
+    "candidate_id": "t26.r0.c1",
+    "injected_record": {
+      "label": "Nome e cognome:",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:452",
+        "quote": "Nome e cognome:"
+      },
+      "conditions": [
+        "c_partecipante",
+        "c_soc_ing"
+      ],
+      "property": "denominazione",
+      "fact_id": "f_company_name",
+      "reason": "Applicabilità distinta dalla prova del soggetto"
+    },
+    "actual_SOURCE_fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "denominazione",
+      "value": "Mapi Ingegneria S.r.l.",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+        }
+      ]
+    },
+    "validation": "REJECTED",
+    "grounded_value": false,
+    "SOURCE_binding_checked": false,
+    "source_target_check": {
+      "result": "rejected",
+      "semantic_review_required": true,
+      "validation_codes": [
+        "source_subject_type_mismatch"
+      ],
+      "validation_errors": [
+        "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      ],
+      "source_subject": "Mapi Ingegneria S.r.l.",
+      "source_entity": "company",
+      "expected_entity": "person",
+      "form_evidence": {
+        "format": "table_label_value",
+        "table_id": "table:26",
+        "target_cell_id": "t26.r0.c1",
+        "subject_anchor": {
+          "row_index": 0,
+          "label_cell_id": "t26.r0.c0",
+          "paragraph_ids": [
+            "paragraph:452"
+          ],
+          "quote": "Nome e cognome:"
+        },
+        "label_path": [
+          {
+            "row_index": 0,
+            "label_cell_id": "t26.r0.c0",
+            "paragraph_ids": [
+              "paragraph:452"
+            ],
+            "quote": "Nome e cognome:"
+          }
+        ]
+      }
+    },
+    "audit_field": {
+      "candidate_id": "t26.r0.c1",
+      "validation": "REJECTED",
+      "semantic_review_required": true,
+      "written_value": null,
+      "label": "Nome e cognome:",
+      "entity": "company",
+      "kind": "data",
+      "disposition": "conditional",
+      "value": null,
+      "form": {
+        "paragraph_id": "paragraph:452",
+        "quote": "Nome e cognome:"
+      },
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+        }
+      ],
+      "reason": "Applicabilità distinta dalla prova del soggetto",
+      "form_evidence": {
+        "paragraph_id": "paragraph:452",
+        "quote": "Nome e cognome:"
+      },
+      "validation_errors": [
+        "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      ],
+      "source_evidence": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -43,
+          "citation_rebound": false,
+          "quote": "- Ragione sociale: Mapi Ingegneria S.r.l.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ],
+      "fact_id": null,
+      "conditions": [
+        "c_partecipante",
+        "c_soc_ing"
+      ],
+      "condition_checks": {
+        "c_partecipante": {
+          "result": "unknown",
+          "scope": "semantic_review_required"
+        },
+        "c_soc_ing": {
+          "result": "unknown",
+          "scope": "semantic_review_required"
+        }
+      },
+      "proposal": {
+        "label": "Nome e cognome:",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:452",
+          "quote": "Nome e cognome:"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "denominazione",
+        "fact_id": "f_company_name",
+        "reason": "Applicabilità distinta dalla prova del soggetto"
+      },
+      "destination_check": {
+        "result": "not_required"
+      },
+      "property": "denominazione",
+      "source_target_check": {
+        "result": "rejected",
+        "semantic_review_required": true,
+        "validation_codes": [
+          "source_subject_type_mismatch"
+        ],
+        "validation_errors": [
+          "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+        ],
+        "source_subject": "Mapi Ingegneria S.r.l.",
+        "source_entity": "company",
+        "expected_entity": "person",
+        "form_evidence": {
+          "format": "table_label_value",
+          "table_id": "table:26",
+          "target_cell_id": "t26.r0.c1",
+          "subject_anchor": {
+            "row_index": 0,
+            "label_cell_id": "t26.r0.c0",
+            "paragraph_ids": [
+              "paragraph:452"
+            ],
+            "quote": "Nome e cognome:"
+          },
+          "label_path": [
+            {
+              "row_index": 0,
+              "label_cell_id": "t26.r0.c0",
+              "paragraph_ids": [
+                "paragraph:452"
+              ],
+              "quote": "Nome e cognome:"
+            }
+          ]
+        }
+      },
+      "coverage": {
+        "state": "REJECTED_PROPOSAL",
+        "origin": "BACKEND",
+        "reason": "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      }
+    },
+    "not_a_real_LLM_response": true,
+    "original_artifacts_unchanged": true
+  },
+  {
+    "candidate_id": "t26.r1.c1",
+    "injected_record": {
+      "label": "qualifica professionale:",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:454",
+        "quote": "qualifica professionale:"
+      },
+      "conditions": [
+        "c_partecipante",
+        "c_soc_ing"
+      ],
+      "property": "forma_giuridica",
+      "fact_id": "f_forma",
+      "reason": "Applicabilità distinta dalla prova del soggetto"
+    },
+    "actual_SOURCE_fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "forma_giuridica",
+      "value": "Societa a responsabilita limitata",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Forma giuridica: Societa a responsabilita limitata."
+        }
+      ]
+    },
+    "validation": "REJECTED",
+    "grounded_value": false,
+    "SOURCE_binding_checked": false,
+    "source_target_check": {
+      "result": "rejected",
+      "semantic_review_required": true,
+      "validation_codes": [
+        "source_subject_type_mismatch"
+      ],
+      "validation_errors": [
+        "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      ],
+      "source_subject": "Mapi Ingegneria S.r.l.",
+      "source_entity": "company",
+      "expected_entity": "person",
+      "form_evidence": {
+        "format": "table_label_value",
+        "table_id": "table:26",
+        "target_cell_id": "t26.r1.c1",
+        "subject_anchor": {
+          "row_index": 0,
+          "label_cell_id": "t26.r0.c0",
+          "paragraph_ids": [
+            "paragraph:452"
+          ],
+          "quote": "Nome e cognome:"
+        },
+        "label_path": [
+          {
+            "row_index": 0,
+            "label_cell_id": "t26.r0.c0",
+            "paragraph_ids": [
+              "paragraph:452"
+            ],
+            "quote": "Nome e cognome:"
+          },
+          {
+            "row_index": 1,
+            "label_cell_id": "t26.r1.c0",
+            "paragraph_ids": [
+              "paragraph:454"
+            ],
+            "quote": "qualifica professionale:"
+          }
+        ]
+      }
+    },
+    "audit_field": {
+      "candidate_id": "t26.r1.c1",
+      "validation": "REJECTED",
+      "semantic_review_required": true,
+      "written_value": null,
+      "label": "qualifica professionale:",
+      "entity": "company",
+      "kind": "data",
+      "disposition": "conditional",
+      "value": null,
+      "form": {
+        "paragraph_id": "paragraph:454",
+        "quote": "qualifica professionale:"
+      },
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Forma giuridica: Societa a responsabilita limitata."
+        }
+      ],
+      "reason": "Applicabilità distinta dalla prova del soggetto",
+      "form_evidence": {
+        "paragraph_id": "paragraph:454",
+        "quote": "qualifica professionale:"
+      },
+      "validation_errors": [
+        "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      ],
+      "source_evidence": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -43,
+          "citation_rebound": false,
+          "quote": "- Forma giuridica: Societa a responsabilita limitata.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ],
+      "fact_id": null,
+      "conditions": [
+        "c_partecipante",
+        "c_soc_ing"
+      ],
+      "condition_checks": {
+        "c_partecipante": {
+          "result": "unknown",
+          "scope": "semantic_review_required"
+        },
+        "c_soc_ing": {
+          "result": "unknown",
+          "scope": "semantic_review_required"
+        }
+      },
+      "proposal": {
+        "label": "qualifica professionale:",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:454",
+          "quote": "qualifica professionale:"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "forma_giuridica",
+        "fact_id": "f_forma",
+        "reason": "Applicabilità distinta dalla prova del soggetto"
+      },
+      "destination_check": {
+        "result": "not_required"
+      },
+      "property": "forma_giuridica",
+      "source_target_check": {
+        "result": "rejected",
+        "semantic_review_required": true,
+        "validation_codes": [
+          "source_subject_type_mismatch"
+        ],
+        "validation_errors": [
+          "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+        ],
+        "source_subject": "Mapi Ingegneria S.r.l.",
+        "source_entity": "company",
+        "expected_entity": "person",
+        "form_evidence": {
+          "format": "table_label_value",
+          "table_id": "table:26",
+          "target_cell_id": "t26.r1.c1",
+          "subject_anchor": {
+            "row_index": 0,
+            "label_cell_id": "t26.r0.c0",
+            "paragraph_ids": [
+              "paragraph:452"
+            ],
+            "quote": "Nome e cognome:"
+          },
+          "label_path": [
+            {
+              "row_index": 0,
+              "label_cell_id": "t26.r0.c0",
+              "paragraph_ids": [
+                "paragraph:452"
+              ],
+              "quote": "Nome e cognome:"
+            },
+            {
+              "row_index": 1,
+              "label_cell_id": "t26.r1.c0",
+              "paragraph_ids": [
+                "paragraph:454"
+              ],
+              "quote": "qualifica professionale:"
+            }
+          ]
+        }
+      },
+      "coverage": {
+        "state": "REJECTED_PROPOSAL",
+        "origin": "BACKEND",
+        "reason": "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+      }
+    },
+    "not_a_real_LLM_response": true,
+    "original_artifacts_unchanged": true
+  }
+]

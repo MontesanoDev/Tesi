@@ -1,0 +1,34 @@
+{
+  "slug": "minervino",
+  "pages": 9,
+  "rendered_images": [
+    1,
+    3,
+    9
+  ],
+  "text_locations": {
+    "Leonardo Montemurro": [
+      1
+    ],
+    "Elisa Romano": [
+      3
+    ],
+    "Mapi Ingegneria": [
+      3
+    ],
+    "Luca Ferri": [
+      3
+    ]
+  },
+  "DOCX_unchanged": true,
+  "render_seconds_not_measured": true,
+  "registry_warning": true,
+  "all_pages_bbox_checked": 9,
+  "out_of_page_words": [],
+  "visual_pages_inspected": [
+    1,
+    3,
+    9
+  ],
+  "visual_result": "Readable selected filled/first/last pages, no clipping or lost signature line observed; justified spacing and label joins remain"
+}

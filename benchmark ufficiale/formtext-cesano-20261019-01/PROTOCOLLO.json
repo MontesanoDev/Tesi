@@ -1,0 +1,19 @@
+{
+  "experiment": "formtext-chiusura-20261019-01",
+  "order": [
+    "permanent tests",
+    "six deterministic regressions",
+    "PDF render and visibility",
+    "one new real Cesano UI session"
+  ],
+  "no_application_changes": true,
+  "new_tests_only_where_missing": true,
+  "same_model_prompt_thinking_sources_USER_scenario_as_cesano_reference": true,
+  "one_new_global_call": true,
+  "max_USER_reply_rounds": 2,
+  "no_manual_state_edits": true,
+  "no_quality_retries": true,
+  "independent_errors_document_only": true,
+  "no_commit_push": true,
+  "closure_requires_explicit_PASS_FAIL_and_no_unexecuted_claims": true
+}

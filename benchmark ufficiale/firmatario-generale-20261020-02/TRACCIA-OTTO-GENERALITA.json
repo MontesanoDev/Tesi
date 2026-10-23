@@ -1,0 +1,1018 @@
+[
+  {
+    "candidate_id": "p12.s0",
+    "written_value": "Leonardo Montemurro",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "### Leonardo Montemurro — anagrafica sintetica",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "conditions": {
+      "c_sottoscrittore": "true"
+    },
+    "individual_verdict": "CORRECT_SOURCE",
+    "MODEL_proposed": false,
+    "reuse_proof": {
+      "method": "selected_person_labelled_properties",
+      "subject": "Leonardo Montemurro",
+      "selection_candidate_id": "p12.s0",
+      "selection_receipt": {
+        "action": "VALUE",
+        "provenance": "USER",
+        "value": "Leonardo Montemurro",
+        "user_quote": "Per questa domanda il firmatario scelto è Leonardo Montemurro",
+        "selection_receipt_key": "request:263",
+        "selection_origin": "explicit_session_start_selection"
+      },
+      "property": "name",
+      "fact": {
+        "subject": "Leonardo Montemurro",
+        "entity": "person",
+        "aspect": "identity",
+        "property": "name",
+        "value": "Leonardo Montemurro",
+        "evidence": [
+          {
+            "chunk_id": -54,
+            "quote": "### Leonardo Montemurro — anagrafica sintetica"
+          }
+        ]
+      },
+      "original_validation_errors": [],
+      "form_quote": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+      "target_proofs": [
+        {
+          "id": "paragraph:12",
+          "text": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+          "text_with_fields": "Il/la sottoscritto/a [[p12.s0]] nato/a a[[p12.s1]], il [[p12.s2]], C.F. [[p12.s3]], residente a [[p12.s4]] ([[p12.s5]]) via/piazza [[p12.s6]] n. [[p12.s7]] "
+        }
+      ],
+      "identity_quotes": [
+        "### Leonardo Montemurro — anagrafica sintetica",
+        "- Nome: Leonardo.",
+        "- Cognome: Montemurro.",
+        "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      ],
+      "identity_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Nome: Leonardo.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Cognome: Montemurro.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    "reviewed": true,
+    "physically_written": true
+  },
+  {
+    "candidate_id": "p12.s1",
+    "written_value": "Lecce (LE)",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "- Luogo di nascita: Lecce (LE).",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "conditions": {
+      "c_sottoscrittore": "true"
+    },
+    "individual_verdict": "CORRECT_SOURCE",
+    "MODEL_proposed": false,
+    "reuse_proof": {
+      "method": "selected_person_labelled_properties",
+      "subject": "Leonardo Montemurro",
+      "selection_candidate_id": "p12.s0",
+      "selection_receipt": {
+        "action": "VALUE",
+        "provenance": "USER",
+        "value": "Leonardo Montemurro",
+        "user_quote": "Per questa domanda il firmatario scelto è Leonardo Montemurro",
+        "selection_receipt_key": "request:263",
+        "selection_origin": "explicit_session_start_selection"
+      },
+      "property": "birth",
+      "fact": {
+        "subject": "Leonardo Montemurro",
+        "entity": "person",
+        "aspect": "identity",
+        "property": "birth",
+        "value": "Lecce (LE)",
+        "evidence": [
+          {
+            "chunk_id": -54,
+            "quote": "- Luogo di nascita: Lecce (LE)."
+          }
+        ]
+      },
+      "original_validation_errors": [],
+      "form_quote": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+      "target_proofs": [
+        {
+          "id": "paragraph:12",
+          "text": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+          "text_with_fields": "Il/la sottoscritto/a [[p12.s0]] nato/a a[[p12.s1]], il [[p12.s2]], C.F. [[p12.s3]], residente a [[p12.s4]] ([[p12.s5]]) via/piazza [[p12.s6]] n. [[p12.s7]] "
+        }
+      ],
+      "identity_quotes": [
+        "### Leonardo Montemurro — anagrafica sintetica",
+        "- Nome: Leonardo.",
+        "- Cognome: Montemurro.",
+        "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      ],
+      "identity_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Nome: Leonardo.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Cognome: Montemurro.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    "reviewed": true,
+    "physically_written": true
+  },
+  {
+    "candidate_id": "p12.s2",
+    "written_value": "14 novembre 1982",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "- Data di nascita: 14 novembre 1982.",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "conditions": {
+      "c_sottoscrittore": "true"
+    },
+    "individual_verdict": "CORRECT_SOURCE",
+    "MODEL_proposed": false,
+    "reuse_proof": {
+      "method": "selected_person_labelled_properties",
+      "subject": "Leonardo Montemurro",
+      "selection_candidate_id": "p12.s0",
+      "selection_receipt": {
+        "action": "VALUE",
+        "provenance": "USER",
+        "value": "Leonardo Montemurro",
+        "user_quote": "Per questa domanda il firmatario scelto è Leonardo Montemurro",
+        "selection_receipt_key": "request:263",
+        "selection_origin": "explicit_session_start_selection"
+      },
+      "property": "date",
+      "fact": {
+        "subject": "Leonardo Montemurro",
+        "entity": "person",
+        "aspect": "identity",
+        "property": "date",
+        "value": "14 novembre 1982",
+        "evidence": [
+          {
+            "chunk_id": -54,
+            "quote": "- Data di nascita: 14 novembre 1982."
+          }
+        ]
+      },
+      "original_validation_errors": [],
+      "form_quote": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+      "target_proofs": [
+        {
+          "id": "paragraph:12",
+          "text": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+          "text_with_fields": "Il/la sottoscritto/a [[p12.s0]] nato/a a[[p12.s1]], il [[p12.s2]], C.F. [[p12.s3]], residente a [[p12.s4]] ([[p12.s5]]) via/piazza [[p12.s6]] n. [[p12.s7]] "
+        }
+      ],
+      "identity_quotes": [
+        "### Leonardo Montemurro — anagrafica sintetica",
+        "- Nome: Leonardo.",
+        "- Cognome: Montemurro.",
+        "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      ],
+      "identity_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Nome: Leonardo.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Cognome: Montemurro.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    "reviewed": true,
+    "physically_written": true
+  },
+  {
+    "candidate_id": "p12.s3",
+    "written_value": "MNTLRD82S14E506X",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "conditions": {
+      "c_sottoscrittore": "true"
+    },
+    "individual_verdict": "CORRECT_SOURCE",
+    "MODEL_proposed": false,
+    "reuse_proof": {
+      "method": "selected_person_labelled_properties",
+      "subject": "Leonardo Montemurro",
+      "selection_candidate_id": "p12.s0",
+      "selection_receipt": {
+        "action": "VALUE",
+        "provenance": "USER",
+        "value": "Leonardo Montemurro",
+        "user_quote": "Per questa domanda il firmatario scelto è Leonardo Montemurro",
+        "selection_receipt_key": "request:263",
+        "selection_origin": "explicit_session_start_selection"
+      },
+      "property": "cf",
+      "fact": {
+        "subject": "Leonardo Montemurro",
+        "entity": "person",
+        "aspect": "identity",
+        "property": "cf",
+        "value": "MNTLRD82S14E506X",
+        "evidence": [
+          {
+            "chunk_id": -54,
+            "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+          }
+        ]
+      },
+      "original_validation_errors": [],
+      "form_quote": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+      "target_proofs": [
+        {
+          "id": "paragraph:12",
+          "text": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+          "text_with_fields": "Il/la sottoscritto/a [[p12.s0]] nato/a a[[p12.s1]], il [[p12.s2]], C.F. [[p12.s3]], residente a [[p12.s4]] ([[p12.s5]]) via/piazza [[p12.s6]] n. [[p12.s7]] "
+        }
+      ],
+      "identity_quotes": [
+        "### Leonardo Montemurro — anagrafica sintetica",
+        "- Nome: Leonardo.",
+        "- Cognome: Montemurro.",
+        "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      ],
+      "identity_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Nome: Leonardo.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Cognome: Montemurro.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    "reviewed": true,
+    "physically_written": true
+  },
+  {
+    "candidate_id": "p12.s4",
+    "written_value": "Bari",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "- Comune di residenza: Bari (BA).",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "conditions": {
+      "c_sottoscrittore": "true"
+    },
+    "individual_verdict": "CORRECT_SOURCE",
+    "MODEL_proposed": false,
+    "reuse_proof": {
+      "method": "selected_person_labelled_properties",
+      "subject": "Leonardo Montemurro",
+      "selection_candidate_id": "p12.s0",
+      "selection_receipt": {
+        "action": "VALUE",
+        "provenance": "USER",
+        "value": "Leonardo Montemurro",
+        "user_quote": "Per questa domanda il firmatario scelto è Leonardo Montemurro",
+        "selection_receipt_key": "request:263",
+        "selection_origin": "explicit_session_start_selection"
+      },
+      "property": "residence",
+      "fact": {
+        "subject": "Leonardo Montemurro",
+        "entity": "person",
+        "aspect": "identity",
+        "property": "residence",
+        "value": "Bari",
+        "evidence": [
+          {
+            "chunk_id": -54,
+            "quote": "- Comune di residenza: Bari (BA)."
+          }
+        ]
+      },
+      "original_validation_errors": [],
+      "form_quote": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+      "target_proofs": [
+        {
+          "id": "paragraph:12",
+          "text": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+          "text_with_fields": "Il/la sottoscritto/a [[p12.s0]] nato/a a[[p12.s1]], il [[p12.s2]], C.F. [[p12.s3]], residente a [[p12.s4]] ([[p12.s5]]) via/piazza [[p12.s6]] n. [[p12.s7]] "
+        }
+      ],
+      "identity_quotes": [
+        "### Leonardo Montemurro — anagrafica sintetica",
+        "- Nome: Leonardo.",
+        "- Cognome: Montemurro.",
+        "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      ],
+      "identity_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Nome: Leonardo.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Cognome: Montemurro.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    "reviewed": true,
+    "physically_written": true
+  },
+  {
+    "candidate_id": "p12.s5",
+    "written_value": "BA",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "- Comune di residenza: Bari (BA).",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "conditions": {
+      "c_sottoscrittore": "true"
+    },
+    "individual_verdict": "CORRECT_SOURCE",
+    "MODEL_proposed": false,
+    "reuse_proof": {
+      "method": "selected_person_labelled_properties",
+      "subject": "Leonardo Montemurro",
+      "selection_candidate_id": "p12.s0",
+      "selection_receipt": {
+        "action": "VALUE",
+        "provenance": "USER",
+        "value": "Leonardo Montemurro",
+        "user_quote": "Per questa domanda il firmatario scelto è Leonardo Montemurro",
+        "selection_receipt_key": "request:263",
+        "selection_origin": "explicit_session_start_selection"
+      },
+      "property": "residence_province",
+      "fact": {
+        "subject": "Leonardo Montemurro",
+        "entity": "person",
+        "aspect": "identity",
+        "property": "residence_province",
+        "value": "BA",
+        "evidence": [
+          {
+            "chunk_id": -54,
+            "quote": "- Comune di residenza: Bari (BA)."
+          }
+        ]
+      },
+      "original_validation_errors": [],
+      "form_quote": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+      "target_proofs": [
+        {
+          "id": "paragraph:12",
+          "text": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+          "text_with_fields": "Il/la sottoscritto/a [[p12.s0]] nato/a a[[p12.s1]], il [[p12.s2]], C.F. [[p12.s3]], residente a [[p12.s4]] ([[p12.s5]]) via/piazza [[p12.s6]] n. [[p12.s7]] "
+        }
+      ],
+      "identity_quotes": [
+        "### Leonardo Montemurro — anagrafica sintetica",
+        "- Nome: Leonardo.",
+        "- Cognome: Montemurro.",
+        "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      ],
+      "identity_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Nome: Leonardo.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Cognome: Montemurro.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    "reviewed": true,
+    "physically_written": true
+  },
+  {
+    "candidate_id": "p12.s6",
+    "written_value": "Amedeo",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "- Indirizzo di residenza: Via Amedeo 24.",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "conditions": {
+      "c_sottoscrittore": "true"
+    },
+    "individual_verdict": "CORRECT_SOURCE",
+    "MODEL_proposed": false,
+    "reuse_proof": {
+      "method": "selected_person_labelled_properties",
+      "subject": "Leonardo Montemurro",
+      "selection_candidate_id": "p12.s0",
+      "selection_receipt": {
+        "action": "VALUE",
+        "provenance": "USER",
+        "value": "Leonardo Montemurro",
+        "user_quote": "Per questa domanda il firmatario scelto è Leonardo Montemurro",
+        "selection_receipt_key": "request:263",
+        "selection_origin": "explicit_session_start_selection"
+      },
+      "property": "address",
+      "fact": {
+        "subject": "Leonardo Montemurro",
+        "entity": "person",
+        "aspect": "identity",
+        "property": "address",
+        "value": "Amedeo",
+        "evidence": [
+          {
+            "chunk_id": -54,
+            "quote": "- Indirizzo di residenza: Via Amedeo 24."
+          }
+        ]
+      },
+      "original_validation_errors": [],
+      "form_quote": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+      "target_proofs": [
+        {
+          "id": "paragraph:12",
+          "text": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+          "text_with_fields": "Il/la sottoscritto/a [[p12.s0]] nato/a a[[p12.s1]], il [[p12.s2]], C.F. [[p12.s3]], residente a [[p12.s4]] ([[p12.s5]]) via/piazza [[p12.s6]] n. [[p12.s7]] "
+        }
+      ],
+      "identity_quotes": [
+        "### Leonardo Montemurro — anagrafica sintetica",
+        "- Nome: Leonardo.",
+        "- Cognome: Montemurro.",
+        "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      ],
+      "identity_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Nome: Leonardo.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Cognome: Montemurro.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    "reviewed": true,
+    "physically_written": true
+  },
+  {
+    "candidate_id": "p12.s7",
+    "written_value": "24",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "- Indirizzo di residenza: Via Amedeo 24.",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "conditions": {
+      "c_sottoscrittore": "true"
+    },
+    "individual_verdict": "CORRECT_SOURCE",
+    "MODEL_proposed": false,
+    "reuse_proof": {
+      "method": "selected_person_labelled_properties",
+      "subject": "Leonardo Montemurro",
+      "selection_candidate_id": "p12.s0",
+      "selection_receipt": {
+        "action": "VALUE",
+        "provenance": "USER",
+        "value": "Leonardo Montemurro",
+        "user_quote": "Per questa domanda il firmatario scelto è Leonardo Montemurro",
+        "selection_receipt_key": "request:263",
+        "selection_origin": "explicit_session_start_selection"
+      },
+      "property": "house",
+      "fact": {
+        "subject": "Leonardo Montemurro",
+        "entity": "person",
+        "aspect": "identity",
+        "property": "house",
+        "value": "24",
+        "evidence": [
+          {
+            "chunk_id": -54,
+            "quote": "- Indirizzo di residenza: Via Amedeo 24."
+          }
+        ]
+      },
+      "original_validation_errors": [],
+      "form_quote": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+      "target_proofs": [
+        {
+          "id": "paragraph:12",
+          "text": "Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ ",
+          "text_with_fields": "Il/la sottoscritto/a [[p12.s0]] nato/a a[[p12.s1]], il [[p12.s2]], C.F. [[p12.s3]], residente a [[p12.s4]] ([[p12.s5]]) via/piazza [[p12.s6]] n. [[p12.s7]] "
+        }
+      ],
+      "identity_quotes": [
+        "### Leonardo Montemurro — anagrafica sintetica",
+        "- Nome: Leonardo.",
+        "- Cognome: Montemurro.",
+        "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      ],
+      "identity_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Nome: Leonardo.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Cognome: Montemurro.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    "reviewed": true,
+    "physically_written": true
+  }
+]

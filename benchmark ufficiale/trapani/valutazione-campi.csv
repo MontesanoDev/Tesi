@@ -1,0 +1,116 @@
+candidate_id,type,field_label,reference_SOURCE_available,reference_chunks_in_real_input,LLM_field_proposed,LLM_disposition,audit_validation,grounded_value,proposed_value,validation_errors,effective_conditions,reviewed,held,export_selected,physically_written_value,outcome,verdict
+p104.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p105.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p107.s0,text,P.E.C. per comunicazioni,False,False,True,value,GROUNDED_PROPOSAL,True,mapi.ingegneria@pec.demo,[],{},True,False,True,mapi.ingegneria@pec.demo,WRITTEN,UNSUPPORTED_PROCEDURAL_ACCEPTANCE
+p112.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p113.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p12.s0,text,Firmatario,True,True,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p12.s1,text,Nascita luogo,True,True,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p12.s2,text,Nascita data,True,True,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p12.s3,text,CF,True,True,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p12.s4,text,Residenza comune,True,True,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p12.s5,text,Residenza provincia,True,True,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p12.s6,text,Residenza via,True,True,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p12.s7,text,Residenza numero,True,True,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p17.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p17.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p17.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p17.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p17.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p17.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p17.s6,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p17.s7,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p171.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p175.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p19.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p19.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p19.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p19.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p19.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p19.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p19.s6,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p19.s7,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p19.s8,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s6,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s7,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s8,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p75.s0,text,Società,True,True,True,conditional,REVIEW_REQUIRED,True,Mapi Ingegneria S.r.l.,[],"{""c_qualifica"": ""true""}",True,False,True,Mapi Ingegneria S.r.l.,WRITTEN,CORRECT_SOURCE
+p75.s1,text,Sede via,True,True,True,conditional,REVIEW_REQUIRED,True,Via Giovanni Amendola 172/C,[],"{""c_qualifica"": ""true""}",True,False,True,Via Giovanni Amendola 172/C,WRITTEN,CORRECT_SOURCE
+p75.s2,text,Comune,True,True,True,conditional,REVIEW_REQUIRED,True,Bari,[],"{""c_qualifica"": ""true""}",True,False,True,Bari,WRITTEN,CORRECT_SOURCE
+p75.s3,text,CAP,True,True,True,conditional,REVIEW_REQUIRED,True,70126,[],"{""c_qualifica"": ""true""}",True,False,True,70126,WRITTEN,CORRECT_SOURCE
+p75.s4,text,Provincia,True,True,True,conditional,REVIEW_REQUIRED,True,BA,[],"{""c_qualifica"": ""true""}",True,False,True,BA,WRITTEN,CORRECT_SOURCE
+p75.s5,text,PIVA,True,True,True,conditional,REVIEW_REQUIRED,True,IT01234567890,[],"{""c_qualifica"": ""true""}",True,False,True,IT01234567890,WRITTEN,CORRECT_SOURCE
+p75.s6,text,Telefono,True,True,True,conditional,REVIEW_REQUIRED,True,+39 080 000 2040,[],"{""c_qualifica"": ""true""}",True,False,True,+39 080 000 2040,WRITTEN,CORRECT_SOURCE
+p75.s7,text,Fax,True,True,True,conditional,REVIEW_REQUIRED,True,+39 080 000 2041,[],"{""c_qualifica"": ""true""}",True,False,True,+39 080 000 2041,WRITTEN,CORRECT_SOURCE
+p75.s8,text,PEC,True,True,True,conditional,REVIEW_REQUIRED,True,mapi.ingegneria@pec.demo,[],"{""c_qualifica"": ""true""}",True,False,True,mapi.ingegneria@pec.demo,WRITTEN,CORRECT_SOURCE
+p78.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p78.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p78.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p78.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p78.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p78.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p78.s6,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p78.s7,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p78.s8,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+p9.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p97.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r1.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r1.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r1.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r1.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r2.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r2.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r2.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r2.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r3.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r3.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r3.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r3.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r4.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r4.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r4.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r4.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r5.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r5.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r5.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r5.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r6.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r6.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r6.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r6.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_qualifica"": ""true""}",False,False,False,,UNPROPOSED,NO_WRITE
+t5.r1.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r1.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r1.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r1.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r1.c4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r2.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r2.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r2.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r2.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r2.c4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r3.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r3.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r3.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r3.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r3.c4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r4.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r4.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r4.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r4.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r4.c4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r5.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r5.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r5.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r5.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r5.c4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r6.c0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r6.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r6.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r6.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t5.r6.c4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE

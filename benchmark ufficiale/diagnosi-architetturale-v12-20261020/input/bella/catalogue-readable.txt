@@ -1,0 +1,267 @@
+p103.s0 text | e che la quota di partecipazione al raggruppamento, corrispondente alla percentuale di servizi che verranno eseguiti da ciascun concorrente è la seguente [[p103.s0]]
+ANCHOR e che la quota di partecipazione al raggruppamento, corrispondente alla percentuale di servizi che verranno eseguiti da ciascun concorrente è la seguente ……………………………………………….…. …………………………………………………………………………………………………………...…………………………………………………
+ORIGIN 
+
+p104.s0 text | e la natura del servizio d’ingegneria che verrà eseguita da ciascun concorrente è la seguente [[p104.s0]]
+ANCHOR e la natura del servizio d’ingegneria che verrà eseguita da ciascun concorrente è la seguente ………………………………………………………………………………………………………………………………………………………………
+ORIGIN 
+
+p129.s0 text | Data [[p129.s0]] 			FIRMA [[p129.s1]]
+ANCHOR Data ........................................... 			FIRMA ..................................................................
+ORIGIN 
+
+p129.s1 text | Data [[p129.s0]] 			FIRMA [[p129.s1]]
+ANCHOR Data ........................................... 			FIRMA ..................................................................
+ORIGIN 
+
+p21.s0 text | Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]
+ANCHOR Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di ................................................................................................................................................... dello studio/società/consorzio .......................................................................................................................... con sede in .......................................................................................................................................................... con codice fiscale n. ........................................................................................................................................... con partita IVA n. ................................................................................................................................................
+ORIGIN 
+
+p21.s1 text | Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]
+ANCHOR Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di ................................................................................................................................................... dello studio/società/consorzio .......................................................................................................................... con sede in .......................................................................................................................................................... con codice fiscale n. ........................................................................................................................................... con partita IVA n. ................................................................................................................................................
+ORIGIN 
+
+p21.s2 text | Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]
+ANCHOR Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di ................................................................................................................................................... dello studio/società/consorzio .......................................................................................................................... con sede in .......................................................................................................................................................... con codice fiscale n. ........................................................................................................................................... con partita IVA n. ................................................................................................................................................
+ORIGIN 
+
+p21.s3 text | Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]
+ANCHOR Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di ................................................................................................................................................... dello studio/società/consorzio .......................................................................................................................... con sede in .......................................................................................................................................................... con codice fiscale n. ........................................................................................................................................... con partita IVA n. ................................................................................................................................................
+ORIGIN 
+
+p21.s4 text | Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]
+ANCHOR Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di ................................................................................................................................................... dello studio/società/consorzio .......................................................................................................................... con sede in .......................................................................................................................................................... con codice fiscale n. ........................................................................................................................................... con partita IVA n. ................................................................................................................................................
+ORIGIN 
+
+p21.s5 text | Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]
+ANCHOR Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di ................................................................................................................................................... dello studio/società/consorzio .......................................................................................................................... con sede in .......................................................................................................................................................... con codice fiscale n. ........................................................................................................................................... con partita IVA n. ................................................................................................................................................
+ORIGIN 
+
+p21.s6 text | Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]
+ANCHOR Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di ................................................................................................................................................... dello studio/società/consorzio .......................................................................................................................... con sede in .......................................................................................................................................................... con codice fiscale n. ........................................................................................................................................... con partita IVA n. ................................................................................................................................................
+ORIGIN 
+
+p21.s7 text | Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]
+ANCHOR Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di ................................................................................................................................................... dello studio/società/consorzio .......................................................................................................................... con sede in .......................................................................................................................................................... con codice fiscale n. ........................................................................................................................................... con partita IVA n. ................................................................................................................................................
+ORIGIN 
+
+p53.s0 text | (nel caso di raggruppamento temporaneo di professionisti) che, in caso di aggiudicazione, sarà conferito mandato speciale con rappresentanza o funzioni di capogruppo/capoprogetto a [[p53.s0]];
+ANCHOR (nel caso di raggruppamento temporaneo di professionisti) che, in caso di aggiudicazione, sarà conferito mandato speciale con rappresentanza o funzioni di capogruppo/capoprogetto a ………………………………………………………………….……………………………..…………..................………………………………………………………………….………;
+ORIGIN 
+
+p58.s0 text | ￼nome: [[p58.s0]]
+ANCHOR nome: …………………………………………………………………………………………………..
+ORIGIN (nel caso di raggruppamento temporaneo di professionisti) che, ai sensi dell’art. 24, comma 5, del D. Lgs. n. 50/2016 ed art. 4 comma 1 D.M. 02/12/2016 n. 263 il giovane professionista laureato progettista risulta essere:
+
+p59.s0 text | cognome: [[p59.s0]]
+ANCHOR cognome: ………………………………………………………………………………………………
+ORIGIN (nel caso di raggruppamento temporaneo di professionisti) che, ai sensi dell’art. 24, comma 5, del D. Lgs. n. 50/2016 ed art. 4 comma 1 D.M. 02/12/2016 n. 263 il giovane professionista laureato progettista risulta essere:
+
+p60.s0 text | titolo professionale: [[p60.s0]]
+ANCHOR titolo professionale: …………………………………………………………………………………...
+ORIGIN (nel caso di raggruppamento temporaneo di professionisti) che, ai sensi dell’art. 24, comma 5, del D. Lgs. n. 50/2016 ed art. 4 comma 1 D.M. 02/12/2016 n. 263 il giovane professionista laureato progettista risulta essere:
+
+p61.s0 text | data di nascita: [[p61.s0]]
+ANCHOR data di nascita: …………………………………………………………………………………………
+ORIGIN (nel caso di raggruppamento temporaneo di professionisti) che, ai sensi dell’art. 24, comma 5, del D. Lgs. n. 50/2016 ed art. 4 comma 1 D.M. 02/12/2016 n. 263 il giovane professionista laureato progettista risulta essere:
+
+p62.s0 text | data di abilitazione professionale [[p62.s0]]
+ANCHOR data di abilitazione professionale ……………………………………………………………………
+ORIGIN (nel caso di raggruppamento temporaneo di professionisti) che, ai sensi dell’art. 24, comma 5, del D. Lgs. n. 50/2016 ed art. 4 comma 1 D.M. 02/12/2016 n. 263 il giovane professionista laureato progettista risulta essere:
+
+p63.s0 text | qualifica: [[p63.s0]] 
+ANCHOR qualifica: ……………………………………………………………..……………………………….. 
+ORIGIN (nel caso di raggruppamento temporaneo di professionisti) che, ai sensi dell’art. 24, comma 5, del D. Lgs. n. 50/2016 ed art. 4 comma 1 D.M. 02/12/2016 n. 263 il giovane professionista laureato progettista risulta essere:
+
+t2.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r1.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r1.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r1.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r1.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r2.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r2.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r2.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r3.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r3.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r3.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r3.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r3.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r4.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r4.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r4.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r4.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r4.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r5.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r5.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r5.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r5.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r5.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r6.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r6.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r6.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r6.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t2.r6.c4 text | 
+ANCHOR 
+ORIGIN 
+
+p27.cb0 checkbox | 	libero professionista singolo;
+ANCHOR 	libero professionista singolo;
+ORIGIN 
+
+p28.cb0 checkbox | 	libero professionista associato (nelle forme di cui alla legge 23 novembre 1939, n. 1815); 
+ANCHOR 	libero professionista associato (nelle forme di cui alla legge 23 novembre 1939, n. 1815); 
+ORIGIN 
+
+p29.cb0 checkbox | 	legale rappresentante di una società di professionisti; 
+ANCHOR 	legale rappresentante di una società di professionisti; 
+ORIGIN 
+
+p30.cb0 checkbox | 	legale rappresentante di una società di ingegneria; 
+ANCHOR 	legale rappresentante di una società di ingegneria; 
+ORIGIN 
+
+p31.cb0 checkbox | 	capogruppo o legale rappresentante del soggetto capogruppo di un raggruppamento temporaneo tra i soggetti di cui alle lettere a) b) c) e d), dell’art. 46, comma 1, del D. Lgs. 18 aprile 2016, n. 50 s.m.i.;
+ANCHOR 	capogruppo o legale rappresentante del soggetto capogruppo di un raggruppamento temporaneo tra i soggetti di cui alle lettere a) b) c) e d), dell’art. 46, comma 1, del D. Lgs. 18 aprile 2016, n. 50 s.m.i.;
+ORIGIN 
+
+p32.cb0 checkbox | 	consorzio stabile di società di professionisti e di società di ingegneria di cui all’art. 46, comma 1, lettera f) del D. Lgs. 18 aprile 2016, n. 50 s.m.i.; 
+ANCHOR 	consorzio stabile di società di professionisti e di società di ingegneria di cui all’art. 46, comma 1, lettera f) del D. Lgs. 18 aprile 2016, n. 50 s.m.i.; 
+ORIGIN 
+
+p33.cb0 checkbox | 	operatore economico che svolge servizi di ingegneria ed architettura di cui all’art. 46, comma 1, del D. Lgs. n. 50/2016 s.m.i. stabilito in altri Stati membri dell’Unione Europea; 
+ANCHOR 	operatore economico che svolge servizi di ingegneria ed architettura di cui all’art. 46, comma 1, del D. Lgs. n. 50/2016 s.m.i. stabilito in altri Stati membri dell’Unione Europea; 
+ORIGIN 
+
+p34.cb0 checkbox | 	partecipante con l’operatore ausiliario……………………………………….;
+ANCHOR 	partecipante con l’operatore ausiliario……………………………………….;
+ORIGIN 
+
+p36.cb0 checkbox | 	………………………………………………………………………………………………..;
+ANCHOR 	………………………………………………………………………………………………..;
+ORIGIN 
+
+p65.cb0 checkbox | che i tecnici persone fisiche  del consorzio stabile,   della società di ingegneria o   della società di professionisti, che seguiranno personalmente l’incarico saranno:
+ANCHOR che i tecnici persone fisiche  del consorzio stabile,   della società di ingegneria o   della società di professionisti, che seguiranno personalmente l’incarico saranno:
+ORIGIN 
+
+p65.cb1 checkbox | che i tecnici persone fisiche  del consorzio stabile,   della società di ingegneria o   della società di professionisti, che seguiranno personalmente l’incarico saranno:
+ANCHOR che i tecnici persone fisiche  del consorzio stabile,   della società di ingegneria o   della società di professionisti, che seguiranno personalmente l’incarico saranno:
+ORIGIN 
+
+p65.cb2 checkbox | che i tecnici persone fisiche  del consorzio stabile,   della società di ingegneria o   della società di professionisti, che seguiranno personalmente l’incarico saranno:
+ANCHOR che i tecnici persone fisiche  del consorzio stabile,   della società di ingegneria o   della società di professionisti, che seguiranno personalmente l’incarico saranno:
+ORIGIN 
+
+p108.cb0 checkbox | ⁭ dichiara di non essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e successive modificazioni;
+ANCHOR ⁭ dichiara di non essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e successive modificazioni;
+ORIGIN 
+
+p112.cb0 checkbox |  ⁭ dichiara di essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e succ. mod., ma che il periodo di emersione si è concluso;
+ANCHOR  ⁭ dichiara di essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e succ. mod., ma che il periodo di emersione si è concluso;
+ORIGIN 
+
+p114.cb0 checkbox | ⁭ di essere edotto degli obblighi derivanti dal Codice di comportamento adottato dalla stazione appaltante con la deliberazione di Giunta Comunale n. 9 del 29 gennaio 2014 reperibile al seguente link: Amministrazione Trasparente - Codice Comportamentale dei dipendenti pubblici (openacta.it) e si impegna, in caso di aggiudicazione, ad osservare e a far osservare ai propri dipendenti e collaboratori, per quanto applicabile, il suddetto codice, pena la risoluzione del contratto;
+ANCHOR ⁭ di essere edotto degli obblighi derivanti dal Codice di comportamento adottato dalla stazione appaltante con la deliberazione di Giunta Comunale n. 9 del 29 gennaio 2014 reperibile al seguente link: Amministrazione Trasparente - Codice Comportamentale dei dipendenti pubblici (openacta.it) e si impegna, in caso di aggiudicazione, ad osservare e a far osservare ai propri dipendenti e collaboratori, per quanto applicabile, il suddetto codice, pena la risoluzione del contratto;
+ORIGIN 
+
+p116.cb0 checkbox |  ⁭ si impegna ad uniformarsi, in caso di aggiudicazione, alla disciplina di cui agli articoli 17, comma 2, e 53, comma 3 del D.P.R. n. 633/1972 e a comunicare, alla stazione appaltante, la nomina del proprio rappresentante fiscale, nelle forme di legge;
+ANCHOR  ⁭ si impegna ad uniformarsi, in caso di aggiudicazione, alla disciplina di cui agli articoli 17, comma 2, e 53, comma 3 del D.P.R. n. 633/1972 e a comunicare, alla stazione appaltante, la nomina del proprio rappresentante fiscale, nelle forme di legge;
+ORIGIN 
+
+p118.cb0 checkbox | ⁭ dichiara di autorizzare la stazione appaltante a rilasciare copia di tutta la documentazione presentata per la partecipazione alla gara, qualora un partecipante alla gara eserciti, ai sensi della L. 07.08.1990, n° 241, la facoltà di “accesso agli atti”;
+ANCHOR ⁭ dichiara di autorizzare la stazione appaltante a rilasciare copia di tutta la documentazione presentata per la partecipazione alla gara, qualora un partecipante alla gara eserciti, ai sensi della L. 07.08.1990, n° 241, la facoltà di “accesso agli atti”;
+ORIGIN 
+
+p120.cb0 checkbox | ⁭ dichiara l’assunzione di tutti gli obblighi di tracciabilità dei flussi finanziari di cui all’articolo 3 della L. 13.08.2010 n° 136 e s.m.i.;
+ANCHOR ⁭ dichiara l’assunzione di tutti gli obblighi di tracciabilità dei flussi finanziari di cui all’articolo 3 della L. 13.08.2010 n° 136 e s.m.i.;
+ORIGIN 

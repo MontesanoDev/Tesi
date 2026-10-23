@@ -1,0 +1,4601 @@
+{
+  "completed": 45,
+  "totals": {
+    "source_texts": 525,
+    "user_texts": 1,
+    "booleans": 3,
+    "undemonstrated_writes": 4,
+    "raw_core_unwritten": 130,
+    "factual_omissions": 56,
+    "open_after_factual_validation": 13
+  },
+  "documents": {
+    "minervino": {
+      "attempts_completed": 10,
+      "failed_attempts": 6,
+      "all_attempts_operational_unwritten": {
+        "n": 10,
+        "all_values": [
+          7,
+          60,
+          1,
+          11,
+          60,
+          60,
+          60,
+          2,
+          60,
+          60
+        ],
+        "mean": 38.1,
+        "median": 60.0,
+        "min": 1,
+        "max": 60
+      },
+      "quality_distributions_below_apply_to_exported_DOCX_only": true,
+      "factual_omissions": {
+        "n": 4,
+        "all_values": [
+          6,
+          1,
+          6,
+          2
+        ],
+        "mean": 3.75,
+        "median": 4.0,
+        "min": 1,
+        "max": 6
+      },
+      "raw_core_unwritten": {
+        "n": 4,
+        "all_values": [
+          7,
+          1,
+          11,
+          2
+        ],
+        "mean": 5.25,
+        "median": 4.5,
+        "min": 1,
+        "max": 11
+      },
+      "source_texts": {
+        "n": 4,
+        "all_values": [
+          53,
+          59,
+          48,
+          58
+        ],
+        "mean": 54.5,
+        "median": 55.5,
+        "min": 48,
+        "max": 59
+      },
+      "open_after_factual_validation": {
+        "n": 4,
+        "all_values": [
+          1,
+          0,
+          5,
+          0
+        ],
+        "mean": 1.5,
+        "median": 0.5,
+        "min": 0,
+        "max": 5
+      },
+      "SOURCE_validable_core": {
+        "n": 4,
+        "all_values": [
+          54,
+          59,
+          53,
+          58
+        ],
+        "mean": 56,
+        "median": 56.0,
+        "min": 53,
+        "max": 59
+      },
+      "undemonstrated_writes": {
+        "n": 4,
+        "all_values": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "cesano": {
+      "attempts_completed": 10,
+      "failed_attempts": 1,
+      "all_attempts_operational_unwritten": {
+        "n": 10,
+        "all_values": [
+          0,
+          0,
+          0,
+          3,
+          1,
+          0,
+          0,
+          4,
+          0,
+          0
+        ],
+        "mean": 0.8,
+        "median": 0.0,
+        "min": 0,
+        "max": 4
+      },
+      "quality_distributions_below_apply_to_exported_DOCX_only": true,
+      "factual_omissions": {
+        "n": 9,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "raw_core_unwritten": {
+        "n": 9,
+        "all_values": [
+          0,
+          0,
+          0,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0.4444444444444444,
+        "median": 0,
+        "min": 0,
+        "max": 3
+      },
+      "source_texts": {
+        "n": 9,
+        "all_values": [
+          4,
+          4,
+          4,
+          1,
+          3,
+          4,
+          4,
+          4,
+          4
+        ],
+        "mean": 3.5555555555555554,
+        "median": 4,
+        "min": 1,
+        "max": 4
+      },
+      "open_after_factual_validation": {
+        "n": 9,
+        "all_values": [
+          0,
+          0,
+          0,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0.4444444444444444,
+        "median": 0,
+        "min": 0,
+        "max": 3
+      },
+      "SOURCE_validable_core": {
+        "n": 9,
+        "all_values": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "mean": 4,
+        "median": 4,
+        "min": 4,
+        "max": 4
+      },
+      "undemonstrated_writes": {
+        "n": 9,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "craa": {
+      "attempts_completed": 10,
+      "failed_attempts": 0,
+      "all_attempts_operational_unwritten": {
+        "n": 10,
+        "all_values": [
+          2,
+          2,
+          0,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "mean": 1.7,
+        "median": 2.0,
+        "min": 0,
+        "max": 2
+      },
+      "quality_distributions_below_apply_to_exported_DOCX_only": true,
+      "factual_omissions": {
+        "n": 10,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "raw_core_unwritten": {
+        "n": 10,
+        "all_values": [
+          2,
+          2,
+          0,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "mean": 1.7,
+        "median": 2.0,
+        "min": 0,
+        "max": 2
+      },
+      "source_texts": {
+        "n": 10,
+        "all_values": [
+          8,
+          8,
+          10,
+          9,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "mean": 8.3,
+        "median": 8.0,
+        "min": 8,
+        "max": 10
+      },
+      "open_after_factual_validation": {
+        "n": 10,
+        "all_values": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0.1,
+        "median": 0.0,
+        "min": 0,
+        "max": 1
+      },
+      "SOURCE_validable_core": {
+        "n": 10,
+        "all_values": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "mean": 10,
+        "median": 10.0,
+        "min": 10,
+        "max": 10
+      },
+      "undemonstrated_writes": {
+        "n": 10,
+        "all_values": [
+          0,
+          0,
+          2,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0.4,
+        "median": 0.0,
+        "min": 0,
+        "max": 2
+      }
+    },
+    "trapani": {
+      "attempts_completed": 5,
+      "failed_attempts": 0,
+      "all_attempts_operational_unwritten": {
+        "n": 5,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "quality_distributions_below_apply_to_exported_DOCX_only": true,
+      "factual_omissions": {
+        "n": 5,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "raw_core_unwritten": {
+        "n": 5,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "source_texts": {
+        "n": 5,
+        "all_values": [
+          17,
+          17,
+          17,
+          17,
+          17
+        ],
+        "mean": 17,
+        "median": 17,
+        "min": 17,
+        "max": 17
+      },
+      "open_after_factual_validation": {
+        "n": 5,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "SOURCE_validable_core": {
+        "n": 5,
+        "all_values": [
+          17,
+          17,
+          17,
+          17,
+          17
+        ],
+        "mean": 17,
+        "median": 17,
+        "min": 17,
+        "max": 17
+      },
+      "undemonstrated_writes": {
+        "n": 5,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "catanzaro": {
+      "attempts_completed": 5,
+      "failed_attempts": 0,
+      "all_attempts_operational_unwritten": {
+        "n": 5,
+        "all_values": [
+          15,
+          17,
+          16,
+          16,
+          16
+        ],
+        "mean": 16,
+        "median": 16,
+        "min": 15,
+        "max": 17
+      },
+      "quality_distributions_below_apply_to_exported_DOCX_only": true,
+      "factual_omissions": {
+        "n": 5,
+        "all_values": [
+          6,
+          9,
+          7,
+          7,
+          6
+        ],
+        "mean": 7,
+        "median": 7,
+        "min": 6,
+        "max": 9
+      },
+      "raw_core_unwritten": {
+        "n": 5,
+        "all_values": [
+          15,
+          17,
+          16,
+          16,
+          16
+        ],
+        "mean": 16,
+        "median": 16,
+        "min": 15,
+        "max": 17
+      },
+      "source_texts": {
+        "n": 5,
+        "all_values": [
+          16,
+          14,
+          15,
+          15,
+          15
+        ],
+        "mean": 15,
+        "median": 15,
+        "min": 14,
+        "max": 16
+      },
+      "open_after_factual_validation": {
+        "n": 5,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0
+      },
+      "SOURCE_validable_core": {
+        "n": 5,
+        "all_values": [
+          17,
+          14,
+          16,
+          16,
+          17
+        ],
+        "mean": 16,
+        "median": 16,
+        "min": 14,
+        "max": 17
+      },
+      "undemonstrated_writes": {
+        "n": 5,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "bella": {
+      "attempts_completed": 5,
+      "failed_attempts": 0,
+      "all_attempts_operational_unwritten": {
+        "n": 5,
+        "all_values": [
+          1,
+          0,
+          5,
+          1,
+          1
+        ],
+        "mean": 1.6,
+        "median": 1,
+        "min": 0,
+        "max": 5
+      },
+      "quality_distributions_below_apply_to_exported_DOCX_only": true,
+      "factual_omissions": {
+        "n": 5,
+        "all_values": [
+          0,
+          0,
+          5,
+          1,
+          0
+        ],
+        "mean": 1.2,
+        "median": 0,
+        "min": 0,
+        "max": 5
+      },
+      "raw_core_unwritten": {
+        "n": 5,
+        "all_values": [
+          1,
+          0,
+          5,
+          1,
+          1
+        ],
+        "mean": 1.6,
+        "median": 1,
+        "min": 0,
+        "max": 5
+      },
+      "source_texts": {
+        "n": 5,
+        "all_values": [
+          7,
+          8,
+          3,
+          7,
+          7
+        ],
+        "mean": 6.4,
+        "median": 7,
+        "min": 3,
+        "max": 8
+      },
+      "open_after_factual_validation": {
+        "n": 5,
+        "all_values": [
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "mean": 0.4,
+        "median": 0,
+        "min": 0,
+        "max": 1
+      },
+      "SOURCE_validable_core": {
+        "n": 5,
+        "all_values": [
+          8,
+          8,
+          3,
+          7,
+          8
+        ],
+        "mean": 6.8,
+        "median": 8,
+        "min": 3,
+        "max": 8
+      },
+      "undemonstrated_writes": {
+        "n": 5,
+        "all_values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "mean": 0,
+        "median": 0,
+        "min": 0,
+        "max": 0
+      }
+    }
+  },
+  "trials": [
+    {
+      "trial": "minervino-01",
+      "document": "minervino",
+      "failed_attempt": false,
+      "source_texts": 53,
+      "user_texts": 0,
+      "booleans": 1,
+      "all_actual_writes_reviewed": 54,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 60,
+      "core_counts": {
+        "CORRECT_WRITE": 53,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 6,
+        "OPEN_AFTER_FACTUAL_VALIDATION": 1
+      },
+      "raw_core_unwritten": 7,
+      "factual_omissions": 6,
+      "open_after_factual_validation": 1,
+      "SOURCE_validable_core": 54,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {
+        "p39.cb0": true
+      },
+      "deferred_USER_decisions": {
+        "decision:ff6a9c86b0584e3ed5ac5799": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Categorie e fasce d'incarico",
+          "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+          "write_authorized": false,
+          "affected_fields": [
+            "t0.r1.c1",
+            "t0.r1.c2",
+            "t0.r1.c3",
+            "t0.r2.c1",
+            "t0.r2.c2",
+            "t0.r2.c3",
+            "t0.r3.c1",
+            "t0.r3.c2",
+            "t0.r3.c3",
+            "t0.r4.c1",
+            "t0.r4.c2",
+            "t0.r4.c3",
+            "t0.r5.c1",
+            "t0.r5.c2",
+            "t0.r5.c3",
+            "t0.r6.c1",
+            "t0.r6.c2",
+            "t0.r6.c3",
+            "t0.r7.c1",
+            "t0.r7.c2",
+            "t0.r7.c3",
+            "t0.r8.c1",
+            "t0.r8.c2",
+            "t0.r8.c3",
+            "t0.r9.c1",
+            "t0.r9.c2",
+            "t0.r9.c3",
+            "t0.r10.c1",
+            "t0.r10.c2",
+            "t0.r10.c3",
+            "t0.r11.c1",
+            "t0.r11.c2",
+            "t0.r11.c3",
+            "t0.r12.c1",
+            "t0.r12.c2",
+            "t0.r12.c3",
+            "t0.r13.c1",
+            "t0.r13.c2",
+            "t0.r13.c3",
+            "t0.r14.c1",
+            "t0.r14.c2",
+            "t0.r14.c3",
+            "t0.r15.c1",
+            "t0.r15.c2",
+            "t0.r15.c3",
+            "t0.r16.c1",
+            "t0.r16.c2",
+            "t0.r16.c3",
+            "t0.r17.c1",
+            "t0.r17.c2",
+            "t0.r17.c3",
+            "t1.r1.c1",
+            "t1.r1.c2",
+            "t1.r1.c3",
+            "t2.r1.c1",
+            "t2.r2.c1",
+            "t2.r3.c1",
+            "t3.r1.c1",
+            "t3.r2.c1",
+            "t3.r3.c1",
+            "t3.r4.c1",
+            "t3.r5.c1",
+            "t3.r6.c1",
+            "t3.r7.c1",
+            "t3.r8.c1",
+            "t3.r9.c1",
+            "t3.r10.c1"
+          ],
+          "decision_type": "preferences",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:77",
+              "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:78",
+              "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:86",
+              "quote": "Edilizia commerciale",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:80",
+              "quote": "Fascia A ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:81",
+              "quote": "(incarichi da € 0,00 a € 39.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:82",
+              "quote": "Fascia B ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:83",
+              "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:84",
+              "quote": "Fascia C ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:85",
+              "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:90",
+              "quote": "Edilizia residenziale",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:94",
+              "quote": "Edilizia scolastica e sanitaria",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:98",
+              "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:102",
+              "quote": "Aree esterne e opere a verde",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:106",
+              "quote": "Interventi su beni immobili di interesse storico- artistico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:110",
+              "quote": "Edilizia – sedi amministrative",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:114",
+              "quote": "Strutture",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:118",
+              "quote": "Impianti meccanici",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:122",
+              "quote": "Impianti elettrici",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:126",
+              "quote": "Impianti di depurazione o discariche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:130",
+              "quote": "Opere elettriche per reti",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:134",
+              "quote": "Opere stradali",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:138",
+              "quote": "Opere idrauliche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:142",
+              "quote": "Sistemi e reti di telecomunicazioni",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:146",
+              "quote": "Sistemi e reti di telecomunicazioni",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:150",
+              "quote": "Pianificazione",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:155",
+              "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:163",
+              "quote": "CSP/CSE",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:157",
+              "quote": "Fascia A",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:158",
+              "quote": "(incarichi da € 0,00 a € 39.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:159",
+              "quote": "Fascia B",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:160",
+              "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:161",
+              "quote": "Fascia C",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:162",
+              "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:168",
+              "quote": "Servizio di collaudo finale o in corso d’opera;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:171",
+              "quote": "Collaudo statico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:170",
+              "quote": "Preferenza",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:173",
+              "quote": "Collaudo tecnico amministrativo",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:175",
+              "quote": "Collaudo funzionale - impiantistico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:178",
+              "quote": "Altri incarichi per servizi tecnici;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:181",
+              "quote": "redazione pratiche prevenzione incendi",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:180",
+              "quote": "Preferenza",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:183",
+              "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:185",
+              "quote": "perizie di stima",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:187",
+              "quote": "relazioni geologiche e sismiche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:189",
+              "quote": "indagini geologiche / sismiche e relazioni geologiche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:191",
+              "quote": "supporto agli atti di pianificazione comunque denominati",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:193",
+              "quote": "servizi tecnici di competenza di restauratori",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:195",
+              "quote": "servizi di assistenza archeologica",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:197",
+              "quote": "servizi di competenza di agronomi e dottori forestali",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:199",
+              "quote": "redazione di certificato di prestazione energetica",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:4d948502d4305ca0995d3928": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Luogo e data della domanda",
+          "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data, ______________________",
+          "write_authorized": false,
+          "affected_fields": [
+            "p242.s0"
+          ],
+          "decision_type": "location_date",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:242",
+              "quote": "Luogo e data, ______________________",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:24278d2efa5d91eb97fdcae9": {
+          "action": "SKIP",
+          "user_quote": "1. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Professionisti esecutori",
+          "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\n☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+          "write_authorized": false,
+          "affected_fields": [
+            "p228.cb0",
+            "p229.s0",
+            "p230.s0"
+          ],
+          "decision_type": "designation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:228",
+              "quote": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:9128538342d18a184258aa29": {
+          "action": "SKIP",
+          "user_quote": "2. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Professionista incaricato dell'integrazione",
+          "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\ne che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:",
+          "write_authorized": false,
+          "affected_fields": [
+            "p232.s0",
+            "p233.s0",
+            "p234.s0"
+          ],
+          "decision_type": "designation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:231",
+              "quote": "e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:0a242b4c138d38515e716924": {
+          "action": "SKIP",
+          "user_quote": "3. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Dichiarazioni e attestazioni",
+          "question": "Quali delle seguenti dichiarazioni puoi confermare espressamente? Le informazioni aziendali non costituiscono una conferma delle attestazioni.\n☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:\ndi non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;\nche non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;\ndi non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;\ndi non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;\ndi impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.\ndi non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;\nche il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;\ndi essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;\ndi acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;\ndi autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+          "write_authorized": false,
+          "affected_fields": [
+            "p217.cb0"
+          ],
+          "decision_type": "attestation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:217",
+              "quote": "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:218",
+              "quote": "di non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:219",
+              "quote": "che non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:220",
+              "quote": "di non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:221",
+              "quote": "di non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:222",
+              "quote": "di impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:223",
+              "quote": "di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:224",
+              "quote": "che il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:225",
+              "quote": "di essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:226",
+              "quote": "di acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:227",
+              "quote": "di autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+              "role": "form"
+            }
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "cesano-01",
+      "document": "cesano",
+      "failed_attempt": false,
+      "source_texts": 4,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 4,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 4,
+      "core_counts": {
+        "CORRECT_WRITE": 4
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 4,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "field:p105.ft0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "data",
+          "question": "Quale data va indicata nel campo data?",
+          "affected_fields": [
+            "p105.ft0"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": [
+        {
+          "candidate_id": "p12.ft3",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft4",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft5",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft6",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft10",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft11",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft12",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "trial": "craa-01",
+      "document": "craa",
+      "failed_attempt": false,
+      "source_texts": 8,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 8,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 10,
+      "core_counts": {
+        "CORRECT_WRITE": 8,
+        "LEGITIMATELY_OPEN": 2
+      },
+      "raw_core_unwritten": 2,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 10,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "condition:c_societa": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Ramo riservato alle società; la forma giuridica è documentata ma l'applicabilità del ramo non è verificata dal validator",
+          "question": "Confermi che la richiesta di iscrizione riguarda una società e si applica il ramo con i dati di iscrizione alla CCIAA?",
+          "affected_fields": [
+            "t6.r0.c1",
+            "t6.r0.c3"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "trapani-01",
+      "document": "trapani",
+      "failed_attempt": false,
+      "source_texts": 17,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 17,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 17,
+      "core_counts": {
+        "CORRECT_WRITE": 17
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 17,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "authorization:20ef94e1a052ba07726aa844": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Autorizzazione della dichiarazione procedurale",
+          "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+          "authorization": {
+            "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+            "session_artifact_path": "v13-s1b-trapani-01/_global_compilations/889bf9d12c7d4ef6acca2f7c2dbb9502/a2b8a84a464945209e32ac8521778232",
+            "field_ids": [
+              "p107.s0"
+            ],
+            "values": {
+              "p107.s0": "mapi.ingegneria@pec.demo"
+            },
+            "form_evidence": {
+              "paragraph_id": "paragraph:107",
+              "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+              "role": "form"
+            },
+            "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+          },
+          "affected_fields": [
+            "p107.s0"
+          ]
+        },
+        "decision:04ed2c9cb5b7d60806b1fecf": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Luogo e data della domanda",
+          "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data ____________________",
+          "write_authorized": false,
+          "affected_fields": [
+            "p171.s0"
+          ],
+          "decision_type": "location_date",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:171",
+              "quote": "Luogo e data ____________________",
+              "role": "form"
+            }
+          ]
+        },
+        "condition:c_pec": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Accettazione delle comunicazioni via PEC non confermata",
+          "question": "Confermi che accetti che ogni comunicazione relativa all’Avviso venga validamente inviata all’indirizzo di posta elettronica certificata indicato, assumendone il rischio di operatività?",
+          "affected_fields": [
+            "p107.s0"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "catanzaro-01",
+      "document": "catanzaro",
+      "failed_attempt": false,
+      "source_texts": 16,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 16,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 31,
+      "core_counts": {
+        "CORRECT_WRITE": 16,
+        "KNOWN_LITERAL_COMPOSITION_LIMIT": 6,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 6,
+        "KNOWN_COMPOUND_LIMIT": 3
+      },
+      "raw_core_unwritten": 15,
+      "factual_omissions": 6,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 17,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {},
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "bella-01",
+      "document": "bella",
+      "failed_attempt": false,
+      "source_texts": 7,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 7,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 8,
+      "core_counts": {
+        "CORRECT_WRITE": 7,
+        "OPEN_AFTER_FACTUAL_VALIDATION": 1
+      },
+      "raw_core_unwritten": 1,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 1,
+      "SOURCE_validable_core": 8,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {},
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "minervino-02",
+      "document": "minervino",
+      "failed_attempt": true,
+      "factual_omissions": null,
+      "raw_core_unwritten": null,
+      "no_artifact_core_unwritten": 60,
+      "browser": {
+        "trial": "minervino-02",
+        "document": "minervino",
+        "session_id": "c05f43c4704449dda23cf561efa31723",
+        "downloaded": false,
+        "exportRequested": false,
+        "final_status": "WAITING_FOR_USER",
+        "elapsed_ms": 858041,
+        "user_messages": 5,
+        "errors": 6,
+        "no_mocks_or_routes": true,
+        "no_selective_retry": true
+      }
+    },
+    {
+      "trial": "cesano-02",
+      "document": "cesano",
+      "failed_attempt": false,
+      "source_texts": 4,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 4,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 4,
+      "core_counts": {
+        "CORRECT_WRITE": 4
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 4,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "field:p105.ft0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Data della domanda",
+          "question": "Quale data va indicata come data della domanda?",
+          "affected_fields": [
+            "p105.ft0"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": [
+        {
+          "candidate_id": "p12.ft3",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM",
+            "La proprietà SOURCE citata riguarda un ambito diverso da quello richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft4",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft5",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft6",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft10",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft11",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft12",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        }
+      ]
+    },
+    {
+      "trial": "craa-02",
+      "document": "craa",
+      "failed_attempt": false,
+      "source_texts": 8,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 8,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 10,
+      "core_counts": {
+        "CORRECT_WRITE": 8,
+        "LEGITIMATELY_OPEN": 2
+      },
+      "raw_core_unwritten": 2,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 10,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "condition:c_societa": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Il ramo è riservato alle società; la forma giuridica documentata è societaria, ma l'applicabilità va verificata.",
+          "question": "Confermi che la richiesta di iscrizione è presentata per una società, con iscrizione alla CCIAA per un'attività coerente con la classe merceologica richiesta?",
+          "affected_fields": [
+            "t6.r0.c1",
+            "t6.r0.c3"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "trapani-02",
+      "document": "trapani",
+      "failed_attempt": false,
+      "source_texts": 17,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 17,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 17,
+      "core_counts": {
+        "CORRECT_WRITE": 17
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 17,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "authorization:7e2c67d827af7271b27d2302": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Autorizzazione della dichiarazione procedurale",
+          "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+          "authorization": {
+            "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+            "session_artifact_path": "v13-s1b-trapani-02/_global_compilations/fe16326c28694a6eaf41fe1827c5b98d/ecaf49d756714b65a122ad6a7a2140fd",
+            "field_ids": [
+              "p107.s0"
+            ],
+            "values": {
+              "p107.s0": "mapi.ingegneria@pec.demo"
+            },
+            "form_evidence": {
+              "paragraph_id": "paragraph:107",
+              "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+              "role": "form"
+            },
+            "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+          },
+          "affected_fields": [
+            "p107.s0"
+          ]
+        },
+        "decision:04ed2c9cb5b7d60806b1fecf": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Luogo e data della domanda",
+          "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data ____________________",
+          "write_authorized": false,
+          "affected_fields": [
+            "p171.s0"
+          ],
+          "decision_type": "location_date",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:171",
+              "quote": "Luogo e data ____________________",
+              "role": "form"
+            }
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "catanzaro-02",
+      "document": "catanzaro",
+      "failed_attempt": false,
+      "source_texts": 14,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 14,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 31,
+      "core_counts": {
+        "CORRECT_WRITE": 14,
+        "KNOWN_LITERAL_COMPOSITION_LIMIT": 6,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 9,
+        "KNOWN_COMPOUND_LIMIT": 2
+      },
+      "raw_core_unwritten": 17,
+      "factual_omissions": 9,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 14,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "field:p822.s0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "eventuale altra documentazione",
+          "question": "Quale eventuale altra documentazione va indicata per RTI, consorzi o imprese retiste? Se non serve, puoi rinviare.",
+          "affected_fields": [
+            "p822.s0"
+          ]
+        },
+        "field:t0.r11.c1": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Cellulare + Telefono",
+          "question": "Quali recapiti telefonici (cellulare e telefono) vanno riportati?",
+          "affected_fields": [
+            "t0.r11.c1"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "bella-02",
+      "document": "bella",
+      "failed_attempt": false,
+      "source_texts": 8,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 8,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 8,
+      "core_counts": {
+        "CORRECT_WRITE": 8
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 8,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {},
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "minervino-03",
+      "document": "minervino",
+      "failed_attempt": false,
+      "source_texts": 59,
+      "user_texts": 0,
+      "booleans": 1,
+      "all_actual_writes_reviewed": 60,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 60,
+      "core_counts": {
+        "CORRECT_WRITE": 59,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 1
+      },
+      "raw_core_unwritten": 1,
+      "factual_omissions": 1,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 59,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {
+        "p39.cb0": true
+      },
+      "deferred_USER_decisions": {
+        "field:p242.s0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Luogo e data",
+          "question": "Quale luogo e data vanno indicati in calce alla domanda?",
+          "affected_fields": [
+            "p242.s0"
+          ]
+        },
+        "decision:ff6a9c86b0584e3ed5ac5799": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Categorie e fasce d'incarico",
+          "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+          "write_authorized": false,
+          "affected_fields": [
+            "t0.r1.c1",
+            "t0.r1.c2",
+            "t0.r1.c3",
+            "t0.r2.c1",
+            "t0.r2.c2",
+            "t0.r2.c3",
+            "t0.r3.c1",
+            "t0.r3.c2",
+            "t0.r3.c3",
+            "t0.r4.c1",
+            "t0.r4.c2",
+            "t0.r4.c3",
+            "t0.r5.c1",
+            "t0.r5.c2",
+            "t0.r5.c3",
+            "t0.r6.c1",
+            "t0.r6.c2",
+            "t0.r6.c3",
+            "t0.r7.c1",
+            "t0.r7.c2",
+            "t0.r7.c3",
+            "t0.r8.c1",
+            "t0.r8.c2",
+            "t0.r8.c3",
+            "t0.r9.c1",
+            "t0.r9.c2",
+            "t0.r9.c3",
+            "t0.r10.c1",
+            "t0.r10.c2",
+            "t0.r10.c3",
+            "t0.r11.c1",
+            "t0.r11.c2",
+            "t0.r11.c3",
+            "t0.r12.c1",
+            "t0.r12.c2",
+            "t0.r12.c3",
+            "t0.r13.c1",
+            "t0.r13.c2",
+            "t0.r13.c3",
+            "t0.r14.c1",
+            "t0.r14.c2",
+            "t0.r14.c3",
+            "t0.r15.c1",
+            "t0.r15.c2",
+            "t0.r15.c3",
+            "t0.r16.c1",
+            "t0.r16.c2",
+            "t0.r16.c3",
+            "t0.r17.c1",
+            "t0.r17.c2",
+            "t0.r17.c3",
+            "t1.r1.c1",
+            "t1.r1.c2",
+            "t1.r1.c3",
+            "t2.r1.c1",
+            "t2.r2.c1",
+            "t2.r3.c1",
+            "t3.r1.c1",
+            "t3.r2.c1",
+            "t3.r3.c1",
+            "t3.r4.c1",
+            "t3.r5.c1",
+            "t3.r6.c1",
+            "t3.r7.c1",
+            "t3.r8.c1",
+            "t3.r9.c1",
+            "t3.r10.c1"
+          ],
+          "decision_type": "preferences",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:77",
+              "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:78",
+              "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:86",
+              "quote": "Edilizia commerciale",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:80",
+              "quote": "Fascia A ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:81",
+              "quote": "(incarichi da € 0,00 a € 39.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:82",
+              "quote": "Fascia B ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:83",
+              "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:84",
+              "quote": "Fascia C ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:85",
+              "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:90",
+              "quote": "Edilizia residenziale",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:94",
+              "quote": "Edilizia scolastica e sanitaria",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:98",
+              "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:102",
+              "quote": "Aree esterne e opere a verde",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:106",
+              "quote": "Interventi su beni immobili di interesse storico- artistico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:110",
+              "quote": "Edilizia – sedi amministrative",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:114",
+              "quote": "Strutture",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:118",
+              "quote": "Impianti meccanici",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:122",
+              "quote": "Impianti elettrici",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:126",
+              "quote": "Impianti di depurazione o discariche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:130",
+              "quote": "Opere elettriche per reti",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:134",
+              "quote": "Opere stradali",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:138",
+              "quote": "Opere idrauliche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:142",
+              "quote": "Sistemi e reti di telecomunicazioni",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:146",
+              "quote": "Sistemi e reti di telecomunicazioni",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:150",
+              "quote": "Pianificazione",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:155",
+              "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:163",
+              "quote": "CSP/CSE",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:157",
+              "quote": "Fascia A",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:158",
+              "quote": "(incarichi da € 0,00 a € 39.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:159",
+              "quote": "Fascia B",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:160",
+              "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:161",
+              "quote": "Fascia C",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:162",
+              "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:168",
+              "quote": "Servizio di collaudo finale o in corso d’opera;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:171",
+              "quote": "Collaudo statico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:170",
+              "quote": "Preferenza",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:173",
+              "quote": "Collaudo tecnico amministrativo",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:175",
+              "quote": "Collaudo funzionale - impiantistico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:178",
+              "quote": "Altri incarichi per servizi tecnici;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:181",
+              "quote": "redazione pratiche prevenzione incendi",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:180",
+              "quote": "Preferenza",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:183",
+              "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:185",
+              "quote": "perizie di stima",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:187",
+              "quote": "relazioni geologiche e sismiche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:189",
+              "quote": "indagini geologiche / sismiche e relazioni geologiche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:191",
+              "quote": "supporto agli atti di pianificazione comunque denominati",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:193",
+              "quote": "servizi tecnici di competenza di restauratori",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:195",
+              "quote": "servizi di assistenza archeologica",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:197",
+              "quote": "servizi di competenza di agronomi e dottori forestali",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:199",
+              "quote": "redazione di certificato di prestazione energetica",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:0a242b4c138d38515e716924": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Dichiarazioni e attestazioni",
+          "question": "Quali delle seguenti dichiarazioni puoi confermare espressamente? Le informazioni aziendali non costituiscono una conferma delle attestazioni.\n☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:\ndi non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;\nche non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;\ndi non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;\ndi non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;\ndi impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.\ndi non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;\nche il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;\ndi essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;\ndi acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;\ndi autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+          "write_authorized": false,
+          "affected_fields": [
+            "p217.cb0"
+          ],
+          "decision_type": "attestation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:217",
+              "quote": "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:218",
+              "quote": "di non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:219",
+              "quote": "che non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:220",
+              "quote": "di non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:221",
+              "quote": "di non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:222",
+              "quote": "di impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:223",
+              "quote": "di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:224",
+              "quote": "che il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:225",
+              "quote": "di essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:226",
+              "quote": "di acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:227",
+              "quote": "di autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:24278d2efa5d91eb97fdcae9": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Professionisti esecutori",
+          "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\n☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+          "write_authorized": false,
+          "affected_fields": [
+            "p228.cb0",
+            "p229.s0",
+            "p230.s0"
+          ],
+          "decision_type": "designation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:228",
+              "quote": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:9128538342d18a184258aa29": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Professionista incaricato dell'integrazione",
+          "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\ne che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:",
+          "write_authorized": false,
+          "affected_fields": [
+            "p232.s0",
+            "p233.s0",
+            "p234.s0"
+          ],
+          "decision_type": "designation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:231",
+              "quote": "e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:",
+              "role": "form"
+            }
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "cesano-03",
+      "document": "cesano",
+      "failed_attempt": false,
+      "source_texts": 4,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 4,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 4,
+      "core_counts": {
+        "CORRECT_WRITE": 4
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 4,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {},
+      "original_Cesano_company_person_rejections": [
+        {
+          "candidate_id": "p12.ft3",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft4",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft5",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft6",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft10",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft11",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft12",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "trial": "craa-03",
+      "document": "craa",
+      "failed_attempt": false,
+      "source_texts": 10,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 10,
+      "undemonstrated_writes": 2,
+      "core_reference_count": 10,
+      "core_counts": {
+        "CORRECT_WRITE": 8,
+        "UNDEMONSTRATED_WRITE_GRAVE_REGRESSION": 2
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 10,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "condition:c_fatturato_triennio": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Resta da verificare che i ricavi documentati costituiscano il fatturato globale del miglior triennio richiesto",
+          "question": "Confermi che i ricavi documentati costituiscono il fatturato globale del miglior triennio dell'ultimo quinquennio disponibile?",
+          "affected_fields": [
+            "p90.s1",
+            "p91.s1"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "trapani-03",
+      "document": "trapani",
+      "failed_attempt": false,
+      "source_texts": 17,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 17,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 17,
+      "core_counts": {
+        "CORRECT_WRITE": 17
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 17,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "decision:04ed2c9cb5b7d60806b1fecf": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Luogo e data della domanda",
+          "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data ____________________",
+          "write_authorized": false,
+          "affected_fields": [
+            "p171.s0"
+          ],
+          "decision_type": "location_date",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:171",
+              "quote": "Luogo e data ____________________",
+              "role": "form"
+            }
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "catanzaro-03",
+      "document": "catanzaro",
+      "failed_attempt": false,
+      "source_texts": 15,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 15,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 31,
+      "core_counts": {
+        "CORRECT_WRITE": 15,
+        "KNOWN_LITERAL_COMPOSITION_LIMIT": 6,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 7,
+        "KNOWN_COMPOUND_LIMIT": 3
+      },
+      "raw_core_unwritten": 16,
+      "factual_omissions": 7,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 16,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "field:t0.r3.c1": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)",
+          "question": "Con quale carica sociale va indicato il sottoscrittore Leonardo Montemurro (ad esempio legale rappresentante della società)?",
+          "affected_fields": [
+            "t0.r3.c1"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "bella-03",
+      "document": "bella",
+      "failed_attempt": false,
+      "source_texts": 3,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 3,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 8,
+      "core_counts": {
+        "CORRECT_WRITE": 3,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 5
+      },
+      "raw_core_unwritten": 5,
+      "factual_omissions": 5,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 3,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {},
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "minervino-04",
+      "document": "minervino",
+      "failed_attempt": false,
+      "source_texts": 48,
+      "user_texts": 1,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 49,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 60,
+      "core_counts": {
+        "CORRECT_WRITE": 49,
+        "OPEN_AFTER_FACTUAL_VALIDATION": 5,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 6
+      },
+      "raw_core_unwritten": 11,
+      "factual_omissions": 6,
+      "open_after_factual_validation": 5,
+      "SOURCE_validable_core": 53,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "decision:4d948502d4305ca0995d3928": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Luogo e data della domanda",
+          "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data, ______________________",
+          "write_authorized": false,
+          "affected_fields": [
+            "p242.s0"
+          ],
+          "decision_type": "location_date",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:242",
+              "quote": "Luogo e data, ______________________",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:ff6a9c86b0584e3ed5ac5799": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Categorie e fasce d'incarico",
+          "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+          "write_authorized": false,
+          "affected_fields": [
+            "t0.r1.c1",
+            "t0.r1.c2",
+            "t0.r1.c3",
+            "t0.r2.c1",
+            "t0.r2.c2",
+            "t0.r2.c3",
+            "t0.r3.c1",
+            "t0.r3.c2",
+            "t0.r3.c3",
+            "t0.r4.c1",
+            "t0.r4.c2",
+            "t0.r4.c3",
+            "t0.r5.c1",
+            "t0.r5.c2",
+            "t0.r5.c3",
+            "t0.r6.c1",
+            "t0.r6.c2",
+            "t0.r6.c3",
+            "t0.r7.c1",
+            "t0.r7.c2",
+            "t0.r7.c3",
+            "t0.r8.c1",
+            "t0.r8.c2",
+            "t0.r8.c3",
+            "t0.r9.c1",
+            "t0.r9.c2",
+            "t0.r9.c3",
+            "t0.r10.c1",
+            "t0.r10.c2",
+            "t0.r10.c3",
+            "t0.r11.c1",
+            "t0.r11.c2",
+            "t0.r11.c3",
+            "t0.r12.c1",
+            "t0.r12.c2",
+            "t0.r12.c3",
+            "t0.r13.c1",
+            "t0.r13.c2",
+            "t0.r13.c3",
+            "t0.r14.c1",
+            "t0.r14.c2",
+            "t0.r14.c3",
+            "t0.r15.c1",
+            "t0.r15.c2",
+            "t0.r15.c3",
+            "t0.r16.c1",
+            "t0.r16.c2",
+            "t0.r16.c3",
+            "t0.r17.c1",
+            "t0.r17.c2",
+            "t0.r17.c3",
+            "t1.r1.c1",
+            "t1.r1.c2",
+            "t1.r1.c3",
+            "t2.r1.c1",
+            "t2.r2.c1",
+            "t2.r3.c1",
+            "t3.r1.c1",
+            "t3.r2.c1",
+            "t3.r3.c1",
+            "t3.r4.c1",
+            "t3.r5.c1",
+            "t3.r6.c1",
+            "t3.r7.c1",
+            "t3.r8.c1",
+            "t3.r9.c1",
+            "t3.r10.c1"
+          ],
+          "decision_type": "preferences",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:77",
+              "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:78",
+              "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:86",
+              "quote": "Edilizia commerciale",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:80",
+              "quote": "Fascia A ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:81",
+              "quote": "(incarichi da € 0,00 a € 39.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:82",
+              "quote": "Fascia B ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:83",
+              "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:84",
+              "quote": "Fascia C ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:85",
+              "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:90",
+              "quote": "Edilizia residenziale",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:94",
+              "quote": "Edilizia scolastica e sanitaria",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:98",
+              "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:102",
+              "quote": "Aree esterne e opere a verde",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:106",
+              "quote": "Interventi su beni immobili di interesse storico- artistico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:110",
+              "quote": "Edilizia – sedi amministrative",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:114",
+              "quote": "Strutture",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:118",
+              "quote": "Impianti meccanici",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:122",
+              "quote": "Impianti elettrici",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:126",
+              "quote": "Impianti di depurazione o discariche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:130",
+              "quote": "Opere elettriche per reti",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:134",
+              "quote": "Opere stradali",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:138",
+              "quote": "Opere idrauliche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:142",
+              "quote": "Sistemi e reti di telecomunicazioni",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:146",
+              "quote": "Sistemi e reti di telecomunicazioni",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:150",
+              "quote": "Pianificazione",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:155",
+              "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:163",
+              "quote": "CSP/CSE",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:157",
+              "quote": "Fascia A",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:158",
+              "quote": "(incarichi da € 0,00 a € 39.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:159",
+              "quote": "Fascia B",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:160",
+              "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:161",
+              "quote": "Fascia C",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:162",
+              "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:168",
+              "quote": "Servizio di collaudo finale o in corso d’opera;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:171",
+              "quote": "Collaudo statico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:170",
+              "quote": "Preferenza",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:173",
+              "quote": "Collaudo tecnico amministrativo",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:175",
+              "quote": "Collaudo funzionale - impiantistico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:178",
+              "quote": "Altri incarichi per servizi tecnici;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:181",
+              "quote": "redazione pratiche prevenzione incendi",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:180",
+              "quote": "Preferenza",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:183",
+              "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:185",
+              "quote": "perizie di stima",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:187",
+              "quote": "relazioni geologiche e sismiche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:189",
+              "quote": "indagini geologiche / sismiche e relazioni geologiche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:191",
+              "quote": "supporto agli atti di pianificazione comunque denominati",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:193",
+              "quote": "servizi tecnici di competenza di restauratori",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:195",
+              "quote": "servizi di assistenza archeologica",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:197",
+              "quote": "servizi di competenza di agronomi e dottori forestali",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:199",
+              "quote": "redazione di certificato di prestazione energetica",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:0a242b4c138d38515e716924": {
+          "action": "SKIP",
+          "user_quote": "1. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Dichiarazioni e attestazioni",
+          "question": "Quali delle seguenti dichiarazioni puoi confermare espressamente? Le informazioni aziendali non costituiscono una conferma delle attestazioni.\n☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:\ndi non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;\nche non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;\ndi non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;\ndi non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;\ndi impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.\ndi non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;\nche il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;\ndi essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;\ndi acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;\ndi autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+          "write_authorized": false,
+          "affected_fields": [
+            "p217.cb0"
+          ],
+          "decision_type": "attestation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:217",
+              "quote": "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:218",
+              "quote": "di non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:219",
+              "quote": "che non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:220",
+              "quote": "di non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:221",
+              "quote": "di non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:222",
+              "quote": "di impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:223",
+              "quote": "di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:224",
+              "quote": "che il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:225",
+              "quote": "di essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:226",
+              "quote": "di acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:227",
+              "quote": "di autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:24278d2efa5d91eb97fdcae9": {
+          "action": "SKIP",
+          "user_quote": "2. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Professionisti esecutori",
+          "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\n☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+          "write_authorized": false,
+          "affected_fields": [
+            "p228.cb0",
+            "p229.s0",
+            "p230.s0"
+          ],
+          "decision_type": "designation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:228",
+              "quote": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:9128538342d18a184258aa29": {
+          "action": "SKIP",
+          "user_quote": "3. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Professionista incaricato dell'integrazione",
+          "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\ne che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:",
+          "write_authorized": false,
+          "affected_fields": [
+            "p232.s0",
+            "p233.s0",
+            "p234.s0"
+          ],
+          "decision_type": "designation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:231",
+              "quote": "e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:",
+              "role": "form"
+            }
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "cesano-04",
+      "document": "cesano",
+      "failed_attempt": false,
+      "source_texts": 1,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 1,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 4,
+      "core_counts": {
+        "OPEN_AFTER_FACTUAL_VALIDATION": 3,
+        "CORRECT_WRITE": 1
+      },
+      "raw_core_unwritten": 3,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 3,
+      "SOURCE_validable_core": 4,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "field:p105.ft0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Data",
+          "question": "Quale data va indicata nel campo data?",
+          "affected_fields": [
+            "p105.ft0"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": [
+        {
+          "candidate_id": "p12.ft3",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM",
+            "La proprietà SOURCE citata riguarda un ambito diverso da quello richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft4",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft5",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft6",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft10",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft11",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft12",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        }
+      ]
+    },
+    {
+      "trial": "craa-04",
+      "document": "craa",
+      "failed_attempt": false,
+      "source_texts": 9,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 9,
+      "undemonstrated_writes": 2,
+      "core_reference_count": 10,
+      "core_counts": {
+        "OPEN_AFTER_FACTUAL_VALIDATION": 1,
+        "CORRECT_WRITE": 7,
+        "UNDEMONSTRATED_WRITE_GRAVE_REGRESSION": 2
+      },
+      "raw_core_unwritten": 1,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 1,
+      "SOURCE_validable_core": 10,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "field:p90.s1": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Fatturato globale",
+          "question": "Quale importo va indicato come fatturato globale complessivo del miglior triennio: EUR 1.080.000,00 oppure EUR 1.280.000,00?",
+          "affected_fields": [
+            "p90.s1"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "trapani-04",
+      "document": "trapani",
+      "failed_attempt": false,
+      "source_texts": 17,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 17,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 17,
+      "core_counts": {
+        "CORRECT_WRITE": 17
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 17,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "authorization:10bc7a4902fdf371473574c5": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Autorizzazione della dichiarazione procedurale",
+          "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+          "authorization": {
+            "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+            "session_artifact_path": "v13-s1b-trapani-04/_global_compilations/c7e2d113bcd44fdbb46b10a23a9c48b2/82ed18586d524ed89d09577b04f5450f",
+            "field_ids": [
+              "p107.s0"
+            ],
+            "values": {
+              "p107.s0": "mapi.ingegneria@pec.demo"
+            },
+            "form_evidence": {
+              "paragraph_id": "paragraph:107",
+              "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+              "role": "form"
+            },
+            "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+          },
+          "affected_fields": [
+            "p107.s0"
+          ]
+        },
+        "field:p171.s0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Luogo e data",
+          "question": "Quale luogo e data devono comparire nella sottoscrizione?",
+          "affected_fields": [
+            "p171.s0"
+          ]
+        },
+        "field:p104.s0": {
+          "action": "SKIP",
+          "user_quote": "1. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Categoria MEPA",
+          "question": "Quale categoria MEPA deve essere indicata per l'iscrizione al Mercato Elettronico della Pubblica Amministrazione?",
+          "affected_fields": [
+            "p104.s0"
+          ]
+        },
+        "field:p97.s0": {
+          "action": "SKIP",
+          "user_quote": "2. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Numero iscrizione ordine professionale",
+          "question": "Quale numero di iscrizione all'ordine professionale deve comparire nella dichiarazione?",
+          "affected_fields": [
+            "p97.s0"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "catanzaro-04",
+      "document": "catanzaro",
+      "failed_attempt": false,
+      "source_texts": 15,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 15,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 31,
+      "core_counts": {
+        "CORRECT_WRITE": 15,
+        "KNOWN_LITERAL_COMPOSITION_LIMIT": 6,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 7,
+        "KNOWN_COMPOUND_LIMIT": 3
+      },
+      "raw_core_unwritten": 16,
+      "factual_omissions": 7,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 16,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "field:t0.r3.c1": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "In qualità di (carica sociale)",
+          "question": "Con quale carica sociale firma Leonardo Montemurro (ad esempio professionista singolo, professionista associato, legale rappresentante della società, procuratore)?",
+          "affected_fields": [
+            "t0.r3.c1"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "bella-04",
+      "document": "bella",
+      "failed_attempt": false,
+      "source_texts": 7,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 7,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 8,
+      "core_counts": {
+        "CORRECT_WRITE": 7,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 1
+      },
+      "raw_core_unwritten": 1,
+      "factual_omissions": 1,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 7,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {},
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "minervino-05",
+      "document": "minervino",
+      "failed_attempt": true,
+      "factual_omissions": null,
+      "raw_core_unwritten": null,
+      "no_artifact_core_unwritten": 60,
+      "browser": {
+        "trial": "minervino-05",
+        "document": "minervino",
+        "session_id": "0bc296b194914e1991f83961bec76fa5",
+        "downloaded": false,
+        "exportRequested": true,
+        "final_status": "FAILED",
+        "elapsed_ms": 843281,
+        "user_messages": 2,
+        "errors": 6,
+        "no_mocks_or_routes": true,
+        "no_selective_retry": true
+      }
+    },
+    {
+      "trial": "cesano-05",
+      "document": "cesano",
+      "failed_attempt": false,
+      "source_texts": 3,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 3,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 4,
+      "core_counts": {
+        "CORRECT_WRITE": 3,
+        "OPEN_AFTER_FACTUAL_VALIDATION": 1
+      },
+      "raw_core_unwritten": 1,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 1,
+      "SOURCE_validable_core": 4,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {},
+      "original_Cesano_company_person_rejections": [
+        {
+          "candidate_id": "p12.ft3",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM",
+            "La proprietà SOURCE citata riguarda un ambito diverso da quello richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft4",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft5",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft6",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft10",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft11",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft12",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        }
+      ]
+    },
+    {
+      "trial": "craa-05",
+      "document": "craa",
+      "failed_attempt": false,
+      "source_texts": 8,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 8,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 10,
+      "core_counts": {
+        "CORRECT_WRITE": 8,
+        "LEGITIMATELY_OPEN": 2
+      },
+      "raw_core_unwritten": 2,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 10,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "condition:c_societa": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Dati CCIAA previsti per le società; la qualificazione societaria è documentata ma il predicato semantico resta da verificare.",
+          "question": "Confermi che la richiesta di iscrizione è presentata per le società, con iscrizione alla CCIAA per un'attività coerente con la classe merceologica richiesta?",
+          "affected_fields": [
+            "t6.r0.c1",
+            "t6.r0.c3"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "trapani-05",
+      "document": "trapani",
+      "failed_attempt": false,
+      "source_texts": 17,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 17,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 17,
+      "core_counts": {
+        "CORRECT_WRITE": 17
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 17,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "authorization:bb08f977330cfe9453e20366": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Autorizzazione della dichiarazione procedurale",
+          "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+          "authorization": {
+            "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+            "session_artifact_path": "v13-s1b-trapani-05/_global_compilations/d91a1ee1442a422fb4c923734ce44f21/2e7e96eb8a8c4bf795457e046cf13569",
+            "field_ids": [
+              "p107.s0"
+            ],
+            "values": {
+              "p107.s0": "mapi.ingegneria@pec.demo"
+            },
+            "form_evidence": {
+              "paragraph_id": "paragraph:107",
+              "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+              "role": "form"
+            },
+            "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+          },
+          "affected_fields": [
+            "p107.s0"
+          ]
+        },
+        "field:p171.s0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Luogo e data",
+          "question": "Quale luogo e data vanno indicati nella sottoscrizione della domanda?",
+          "affected_fields": [
+            "p171.s0"
+          ]
+        },
+        "condition:c_pec_accept": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Accettazione delle comunicazioni via PEC non confermata",
+          "question": "Confermi che accetti che ogni comunicazione relativa all’Avviso venga validamente inviata all’indirizzo di posta elettronica certificata indicato, assumendone il rischio di operatività?",
+          "affected_fields": [
+            "p107.s0"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "catanzaro-05",
+      "document": "catanzaro",
+      "failed_attempt": false,
+      "source_texts": 15,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 15,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 31,
+      "core_counts": {
+        "CORRECT_WRITE": 15,
+        "KNOWN_LITERAL_COMPOSITION_LIMIT": 6,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 6,
+        "KNOWN_COMPOUND_LIMIT": 4
+      },
+      "raw_core_unwritten": 16,
+      "factual_omissions": 6,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 17,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "field:t0.r3.c1": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)",
+          "question": "Quale carica sociale ricopre il sottoscritto Leonardo Montemurro (ad esempio legale rappresentante, procuratore, professionista singolo o associato)?",
+          "affected_fields": [
+            "t0.r3.c1"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "bella-05",
+      "document": "bella",
+      "failed_attempt": false,
+      "source_texts": 7,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 7,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 8,
+      "core_counts": {
+        "CORRECT_WRITE": 7,
+        "OPEN_AFTER_FACTUAL_VALIDATION": 1
+      },
+      "raw_core_unwritten": 1,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 1,
+      "SOURCE_validable_core": 8,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {},
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "minervino-06",
+      "document": "minervino",
+      "failed_attempt": true,
+      "factual_omissions": null,
+      "raw_core_unwritten": null,
+      "no_artifact_core_unwritten": 60,
+      "browser": {
+        "trial": "minervino-06",
+        "document": "minervino",
+        "session_id": "5acf026dd3e44ec598453d815cb44b41",
+        "downloaded": false,
+        "exportRequested": true,
+        "final_status": "FAILED",
+        "elapsed_ms": 831172,
+        "user_messages": 2,
+        "errors": 6,
+        "no_mocks_or_routes": true,
+        "no_selective_retry": true
+      }
+    },
+    {
+      "trial": "cesano-06",
+      "document": "cesano",
+      "failed_attempt": false,
+      "source_texts": 4,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 4,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 4,
+      "core_counts": {
+        "CORRECT_WRITE": 4
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 4,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {},
+      "original_Cesano_company_person_rejections": [
+        {
+          "candidate_id": "p12.ft3",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft4",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft5",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft6",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft10",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft11",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft12",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "trial": "craa-06",
+      "document": "craa",
+      "failed_attempt": false,
+      "source_texts": 8,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 8,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 10,
+      "core_counts": {
+        "CORRECT_WRITE": 8,
+        "LEGITIMATELY_OPEN": 2
+      },
+      "raw_core_unwritten": 2,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 10,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "condition:c_societa": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Il ramo CCIAA è riservato alle società; applicabilità da confermare.",
+          "question": "Confermi che la richiesta di iscrizione riguarda una società, con i relativi dati camerali da indicare?",
+          "affected_fields": [
+            "t6.r0.c1",
+            "t6.r0.c3"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "minervino-07",
+      "document": "minervino",
+      "failed_attempt": true,
+      "factual_omissions": null,
+      "raw_core_unwritten": null,
+      "no_artifact_core_unwritten": 60,
+      "browser": {
+        "trial": "minervino-07",
+        "document": "minervino",
+        "session_id": "23dc6a3d40e24c53a4f8c3aaf943add3",
+        "downloaded": false,
+        "exportRequested": true,
+        "final_status": "WAITING_FOR_USER",
+        "elapsed_ms": 813044,
+        "user_messages": 2,
+        "errors": 6,
+        "no_mocks_or_routes": true,
+        "no_selective_retry": true
+      }
+    },
+    {
+      "trial": "cesano-07",
+      "document": "cesano",
+      "failed_attempt": false,
+      "source_texts": 4,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 4,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 4,
+      "core_counts": {
+        "CORRECT_WRITE": 4
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 4,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {},
+      "original_Cesano_company_person_rejections": [
+        {
+          "candidate_id": "p12.ft3",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft4",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft5",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft6",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft10",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft11",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft12",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "trial": "craa-07",
+      "document": "craa",
+      "failed_attempt": false,
+      "source_texts": 8,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 8,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 10,
+      "core_counts": {
+        "CORRECT_WRITE": 8,
+        "LEGITIMATELY_OPEN": 2
+      },
+      "raw_core_unwritten": 2,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 10,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "condition:c_societa": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Ramo CCIAA riservato alle società; applicabilità alla specifica istanza da confermare",
+          "question": "Confermi che la richiesta di iscrizione è presentata per una società e va compilata la dichiarazione di iscrizione alla CCIAA?",
+          "affected_fields": [
+            "t6.r0.c1",
+            "t6.r0.c3"
+          ]
+        },
+        "condition:c_fatturato": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Dichiarazione sul fatturato da confermare; il triennio richiesto non è interamente documentato",
+          "question": "Confermi che si intende rendere la dichiarazione sul fatturato globale complessivo riferito al miglior triennio?",
+          "affected_fields": [
+            "p90.s1",
+            "p91.s1"
+          ]
+        },
+        "field:p124.s0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Contratto Nazionale (CCNL)",
+          "question": "Quale Contratto Nazionale (CCNL) viene applicato ai dipendenti?",
+          "affected_fields": [
+            "p124.s0"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "minervino-08",
+      "document": "minervino",
+      "failed_attempt": false,
+      "source_texts": 58,
+      "user_texts": 0,
+      "booleans": 1,
+      "all_actual_writes_reviewed": 59,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 60,
+      "core_counts": {
+        "CORRECT_WRITE": 58,
+        "UNJUSTIFIED_FACTUAL_OMISSION": 2
+      },
+      "raw_core_unwritten": 2,
+      "factual_omissions": 2,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 58,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {
+        "p39.cb0": true
+      },
+      "deferred_USER_decisions": {
+        "decision:ff6a9c86b0584e3ed5ac5799": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Categorie e fasce d'incarico",
+          "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+          "write_authorized": false,
+          "affected_fields": [
+            "t0.r1.c1",
+            "t0.r1.c2",
+            "t0.r1.c3",
+            "t0.r2.c1",
+            "t0.r2.c2",
+            "t0.r2.c3",
+            "t0.r3.c1",
+            "t0.r3.c2",
+            "t0.r3.c3",
+            "t0.r4.c1",
+            "t0.r4.c2",
+            "t0.r4.c3",
+            "t0.r5.c1",
+            "t0.r5.c2",
+            "t0.r5.c3",
+            "t0.r6.c1",
+            "t0.r6.c2",
+            "t0.r6.c3",
+            "t0.r7.c1",
+            "t0.r7.c2",
+            "t0.r7.c3",
+            "t0.r8.c1",
+            "t0.r8.c2",
+            "t0.r8.c3",
+            "t0.r9.c1",
+            "t0.r9.c2",
+            "t0.r9.c3",
+            "t0.r10.c1",
+            "t0.r10.c2",
+            "t0.r10.c3",
+            "t0.r11.c1",
+            "t0.r11.c2",
+            "t0.r11.c3",
+            "t0.r12.c1",
+            "t0.r12.c2",
+            "t0.r12.c3",
+            "t0.r13.c1",
+            "t0.r13.c2",
+            "t0.r13.c3",
+            "t0.r14.c1",
+            "t0.r14.c2",
+            "t0.r14.c3",
+            "t0.r15.c1",
+            "t0.r15.c2",
+            "t0.r15.c3",
+            "t0.r16.c1",
+            "t0.r16.c2",
+            "t0.r16.c3",
+            "t0.r17.c1",
+            "t0.r17.c2",
+            "t0.r17.c3",
+            "t1.r1.c1",
+            "t1.r1.c2",
+            "t1.r1.c3",
+            "t2.r1.c1",
+            "t2.r2.c1",
+            "t2.r3.c1",
+            "t3.r1.c1",
+            "t3.r2.c1",
+            "t3.r3.c1",
+            "t3.r4.c1",
+            "t3.r5.c1",
+            "t3.r6.c1",
+            "t3.r7.c1",
+            "t3.r8.c1",
+            "t3.r9.c1",
+            "t3.r10.c1"
+          ],
+          "decision_type": "preferences",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:77",
+              "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:78",
+              "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:86",
+              "quote": "Edilizia commerciale",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:80",
+              "quote": "Fascia A ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:81",
+              "quote": "(incarichi da € 0,00 a € 39.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:82",
+              "quote": "Fascia B ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:83",
+              "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:84",
+              "quote": "Fascia C ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:85",
+              "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:90",
+              "quote": "Edilizia residenziale",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:94",
+              "quote": "Edilizia scolastica e sanitaria",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:98",
+              "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:102",
+              "quote": "Aree esterne e opere a verde",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:106",
+              "quote": "Interventi su beni immobili di interesse storico- artistico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:110",
+              "quote": "Edilizia – sedi amministrative",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:114",
+              "quote": "Strutture",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:118",
+              "quote": "Impianti meccanici",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:122",
+              "quote": "Impianti elettrici",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:126",
+              "quote": "Impianti di depurazione o discariche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:130",
+              "quote": "Opere elettriche per reti",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:134",
+              "quote": "Opere stradali",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:138",
+              "quote": "Opere idrauliche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:142",
+              "quote": "Sistemi e reti di telecomunicazioni",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:146",
+              "quote": "Sistemi e reti di telecomunicazioni",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:150",
+              "quote": "Pianificazione",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:155",
+              "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:163",
+              "quote": "CSP/CSE",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:157",
+              "quote": "Fascia A",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:158",
+              "quote": "(incarichi da € 0,00 a € 39.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:159",
+              "quote": "Fascia B",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:160",
+              "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:161",
+              "quote": "Fascia C",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:162",
+              "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:168",
+              "quote": "Servizio di collaudo finale o in corso d’opera;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:171",
+              "quote": "Collaudo statico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:170",
+              "quote": "Preferenza",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:173",
+              "quote": "Collaudo tecnico amministrativo",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:175",
+              "quote": "Collaudo funzionale - impiantistico",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:178",
+              "quote": "Altri incarichi per servizi tecnici;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:181",
+              "quote": "redazione pratiche prevenzione incendi",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:180",
+              "quote": "Preferenza",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:183",
+              "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:185",
+              "quote": "perizie di stima",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:187",
+              "quote": "relazioni geologiche e sismiche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:189",
+              "quote": "indagini geologiche / sismiche e relazioni geologiche",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:191",
+              "quote": "supporto agli atti di pianificazione comunque denominati",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:193",
+              "quote": "servizi tecnici di competenza di restauratori",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:195",
+              "quote": "servizi di assistenza archeologica",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:197",
+              "quote": "servizi di competenza di agronomi e dottori forestali",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:199",
+              "quote": "redazione di certificato di prestazione energetica",
+              "role": "form"
+            }
+          ]
+        },
+        "condition:c_studio": {
+          "action": "SKIP",
+          "user_quote": "3. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Ramo studio professionale associato non confermato",
+          "question": "Confermi che la domanda è presentata come legale rappresentante di uno studio professionale associato?",
+          "affected_fields": [
+            "p21.cb0",
+            "p35.cb0"
+          ]
+        },
+        "condition:c_consorzio": {
+          "action": "SKIP",
+          "user_quote": "3. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Ramo consorzio stabile non confermato",
+          "question": "Confermi che la domanda è presentata come legale rappresentante di un consorzio stabile di società di professionisti e di società di ingegneria?",
+          "affected_fields": [
+            "p64.cb0"
+          ]
+        },
+        "decision:4d948502d4305ca0995d3928": {
+          "action": "SKIP",
+          "user_quote": "3. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Luogo e data della domanda",
+          "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data, ______________________",
+          "write_authorized": false,
+          "affected_fields": [
+            "p242.s0"
+          ],
+          "decision_type": "location_date",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:242",
+              "quote": "Luogo e data, ______________________",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:0a242b4c138d38515e716924": {
+          "action": "SKIP",
+          "user_quote": "1. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Dichiarazioni e attestazioni",
+          "question": "Quali delle seguenti dichiarazioni puoi confermare espressamente? Le informazioni aziendali non costituiscono una conferma delle attestazioni.\n☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:\ndi non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;\nche non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;\ndi non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;\ndi non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;\ndi impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.\ndi non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;\nche il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;\ndi essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;\ndi acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;\ndi autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+          "write_authorized": false,
+          "affected_fields": [
+            "p217.cb0"
+          ],
+          "decision_type": "attestation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:217",
+              "quote": "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:218",
+              "quote": "di non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:219",
+              "quote": "che non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:220",
+              "quote": "di non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:221",
+              "quote": "di non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:222",
+              "quote": "di impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:223",
+              "quote": "di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:224",
+              "quote": "che il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:225",
+              "quote": "di essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:226",
+              "quote": "di acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:227",
+              "quote": "di autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:24278d2efa5d91eb97fdcae9": {
+          "action": "SKIP",
+          "user_quote": "2. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Professionisti esecutori",
+          "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\n☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+          "write_authorized": false,
+          "affected_fields": [
+            "p228.cb0",
+            "p229.s0",
+            "p230.s0"
+          ],
+          "decision_type": "designation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:228",
+              "quote": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+              "role": "form"
+            }
+          ]
+        },
+        "decision:9128538342d18a184258aa29": {
+          "action": "SKIP",
+          "user_quote": "3. Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Professionista incaricato dell'integrazione",
+          "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\ne che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:",
+          "write_authorized": false,
+          "affected_fields": [
+            "p232.s0",
+            "p233.s0",
+            "p234.s0"
+          ],
+          "decision_type": "designation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:231",
+              "quote": "e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:",
+              "role": "form"
+            }
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "cesano-08",
+      "document": "cesano",
+      "failed_attempt": true,
+      "factual_omissions": null,
+      "raw_core_unwritten": null,
+      "no_artifact_core_unwritten": 4,
+      "browser": {
+        "trial": "cesano-08",
+        "document": "cesano",
+        "session_id": "32faff088fce4591ac321722287ed044",
+        "downloaded": false,
+        "exportRequested": true,
+        "final_status": "FAILED",
+        "elapsed_ms": 750780,
+        "user_messages": 2,
+        "errors": 6,
+        "no_mocks_or_routes": true,
+        "no_selective_retry": true
+      }
+    },
+    {
+      "trial": "craa-08",
+      "document": "craa",
+      "failed_attempt": false,
+      "source_texts": 8,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 8,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 10,
+      "core_counts": {
+        "CORRECT_WRITE": 8,
+        "LEGITIMATELY_OPEN": 2
+      },
+      "raw_core_unwritten": 2,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 10,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "condition:c_societa": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Ramo CCIAA per società da confermare",
+          "question": "Confermi che la domanda di iscrizione è presentata per le società, con iscrizione alla CCIAA per un'attività coerente con la classe merceologica richiesta?",
+          "affected_fields": [
+            "t6.r0.c1",
+            "t6.r0.c3"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "minervino-09",
+      "document": "minervino",
+      "failed_attempt": true,
+      "factual_omissions": null,
+      "raw_core_unwritten": null,
+      "no_artifact_core_unwritten": 60,
+      "browser": {
+        "trial": "minervino-09",
+        "document": "minervino",
+        "session_id": "a513739afa0749a18c93d8e621b4c424",
+        "downloaded": false,
+        "exportRequested": true,
+        "final_status": "WAITING_FOR_USER",
+        "elapsed_ms": 815575,
+        "user_messages": 2,
+        "errors": 6,
+        "no_mocks_or_routes": true,
+        "no_selective_retry": true
+      }
+    },
+    {
+      "trial": "cesano-09",
+      "document": "cesano",
+      "failed_attempt": false,
+      "source_texts": 4,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 4,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 4,
+      "core_counts": {
+        "CORRECT_WRITE": 4
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 4,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "field:p12.ft13": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Ordine professionale",
+          "question": "A quale ordine professionale è iscritto il firmatario e con quale numero di iscrizione?",
+          "affected_fields": [
+            "p12.ft13"
+          ]
+        },
+        "field:p105.ft0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Data della domanda",
+          "question": "Quale data va indicata come data della domanda?",
+          "affected_fields": [
+            "p105.ft0"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": [
+        {
+          "candidate_id": "p12.ft3",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM",
+            "La proprietà SOURCE citata riguarda un ambito diverso da quello richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft4",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft5",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft6",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft10",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft11",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        },
+        {
+          "candidate_id": "p12.ft12",
+          "validation": "REJECTED",
+          "written": false,
+          "errors": [
+            "Il soggetto SOURCE non coincide con il tipo di soggetto richiesto dal FORM"
+          ]
+        }
+      ]
+    },
+    {
+      "trial": "craa-09",
+      "document": "craa",
+      "failed_attempt": false,
+      "source_texts": 8,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 8,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 10,
+      "core_counts": {
+        "CORRECT_WRITE": 8,
+        "LEGITIMATELY_OPEN": 2
+      },
+      "raw_core_unwritten": 2,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 10,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "condition:c_company_cciaa": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Ramo CCIAA riservato alle società; qualificazione e coerenza da verificare",
+          "question": "Confermi che la richiesta di iscrizione riguarda una società tenuta a dichiarare l'iscrizione alla CCIAA per un'attività coerente con la classe merceologica richiesta?",
+          "affected_fields": [
+            "t6.r0.c1",
+            "t6.r0.c3"
+          ]
+        },
+        "field:p124.s0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Contratto Nazionale (CCNL) applicato",
+          "question": "Quale Contratto Nazionale (CCNL) applicate ai vostri dipendenti?",
+          "affected_fields": [
+            "p124.s0"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    },
+    {
+      "trial": "minervino-10",
+      "document": "minervino",
+      "failed_attempt": true,
+      "factual_omissions": null,
+      "raw_core_unwritten": null,
+      "no_artifact_core_unwritten": 60,
+      "browser": {
+        "trial": "minervino-10",
+        "document": "minervino",
+        "session_id": "c627dda9afb04673afc4ee7eaa9031b2",
+        "downloaded": false,
+        "exportRequested": true,
+        "final_status": "WAITING_FOR_USER",
+        "elapsed_ms": 831083,
+        "user_messages": 2,
+        "errors": 6,
+        "no_mocks_or_routes": true,
+        "no_selective_retry": true
+      }
+    },
+    {
+      "trial": "cesano-10",
+      "document": "cesano",
+      "failed_attempt": false,
+      "source_texts": 4,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 4,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 4,
+      "core_counts": {
+        "CORRECT_WRITE": 4
+      },
+      "raw_core_unwritten": 0,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 4,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "field:p105.ft0": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "data",
+          "question": "Quale data va indicata nel modulo (luogo e data di sottoscrizione)?",
+          "affected_fields": [
+            "p105.ft0"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": [
+        {
+          "candidate_id": "p12.ft3",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft4",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft5",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft6",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft10",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft11",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        },
+        {
+          "candidate_id": "p12.ft12",
+          "validation": "REVIEW_REQUIRED",
+          "written": false,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "trial": "craa-10",
+      "document": "craa",
+      "failed_attempt": false,
+      "source_texts": 8,
+      "user_texts": 0,
+      "booleans": 0,
+      "all_actual_writes_reviewed": 8,
+      "undemonstrated_writes": 0,
+      "core_reference_count": 10,
+      "core_counts": {
+        "CORRECT_WRITE": 8,
+        "LEGITIMATELY_OPEN": 2
+      },
+      "raw_core_unwritten": 2,
+      "factual_omissions": 0,
+      "open_after_factual_validation": 0,
+      "SOURCE_validable_core": 10,
+      "SOURCE_validable_not_automatically_written": true,
+      "reference_is_not_universal_gold": true,
+      "noncore_review": "All actual writes reviewed; unlisted empty catalogue destinations are not automatically counted as factual omissions or declared legitimately open.",
+      "checkbox_values": {},
+      "deferred_USER_decisions": {
+        "condition:c_societa": {
+          "action": "SKIP",
+          "user_quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto.",
+          "provenance": "USER",
+          "label": "Il ramo CCIAA è previsto per le società; la selezione della casella non è confermata.",
+          "question": "Confermi che la richiesta di iscrizione riguarda una società e va compilato il ramo con l'iscrizione alla CCIAA e i relativi dati?",
+          "affected_fields": [
+            "t6.r0.c1",
+            "t6.r0.c3"
+          ]
+        }
+      },
+      "original_Cesano_company_person_rejections": []
+    }
+  ],
+  "independent_V12_trial_not_a_paired_control": true,
+  "USER_budget_and_fixed_policy_must_be_considered": true,
+  "no_automatic_V13_adoption": true
+}

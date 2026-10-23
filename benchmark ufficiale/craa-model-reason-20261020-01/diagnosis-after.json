@@ -1,0 +1,462 @@
+{
+  "original": {
+    "reason_chars": 225,
+    "clarification": {
+      "validation": "GROUNDED_REQUEST",
+      "proposal": {
+        "label": "Il sottoscritto",
+        "form": {
+          "paragraph_id": "paragraph:5",
+          "quote": "Il sottoscritto[[p5.s0]]"
+        },
+        "conditions": [],
+        "reason": "Confermare il nominativo del sottoscritto: la fonte riporta Leonardo Montemurro come amministratore unico e rappresentante legale, mentre il FORM usa 'legale rappresentante'; il ruolo non è identico e la scelta va confermata."
+      },
+      "validation_errors": [],
+      "metadata_warnings": [
+        {
+          "field": "reason",
+          "code": "descriptive_text_over_limit",
+          "original_characters": 225,
+          "schema_max_characters": 200,
+          "preserved_in": "proposal.reason",
+          "effect": "operational_reason_replaced"
+        }
+      ],
+      "label": "Il sottoscritto",
+      "form_evidence": {
+        "paragraph_id": "paragraph:5",
+        "quote": "Il sottoscritto………………………………………………………….."
+      },
+      "conditions": []
+    },
+    "field": {
+      "candidate_id": "p5.s0",
+      "validation": "REVIEW_REQUIRED",
+      "semantic_review_required": true,
+      "written_value": null,
+      "conditions": [],
+      "source_evidence": [],
+      "validation_errors": [],
+      "proposal": null,
+      "label": "Il sottoscritto",
+      "kind": "data",
+      "disposition": "missing",
+      "form_evidence": {
+        "paragraph_id": "paragraph:5",
+        "quote": "Il sottoscritto………………………………………………………….."
+      },
+      "reason": "Chiarimento richiesto dal modello; motivazione integrale conservata nella proposta.",
+      "destination_check": {
+        "result": "literal_slot_match",
+        "paragraph_id": "paragraph:5",
+        "range": [
+          15,
+          39
+        ],
+        "marked_quote": "Il sottoscritto[[p5.s0]]",
+        "original_quote": "Il sottoscritto…………………………………………………………..",
+        "semantic_review_required": true
+      },
+      "value": null,
+      "fact_id": null,
+      "coverage": {
+        "state": "CLARIFICATION",
+        "origin": "BACKEND",
+        "reason": "Chiarimento richiesto dal modello; motivazione integrale conservata nella proposta."
+      }
+    },
+    "stages": {
+      "v003": {
+        "pool": [
+          {
+            "key": "condition:c_societa",
+            "kind": "applicability",
+            "condition_id": "c_societa",
+            "condition": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto della classe merceologica per la quale si richiede l’iscrizione, con i seguenti dati:",
+            "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+            "context": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto della classe merceologica per la quale si richiede l’iscrizione, con i seguenti dati:",
+            "field_ids": [
+              "t6.r0.c1",
+              "t6.r0.c3"
+            ],
+            "alternatives": [],
+            "impact": 2,
+            "affected_fields": [
+              "Provincia di iscrizione",
+              "numero di iscrizione"
+            ],
+            "slot": 1
+          },
+          {
+            "key": "field:p5.s0",
+            "kind": "value",
+            "field_ids": [
+              "p5.s0"
+            ],
+            "label": "Il sottoscritto",
+            "condition": "",
+            "context": "Il sottoscritto…………………………………………………………..",
+            "impact": 1,
+            "alternatives": [],
+            "slot": 2
+          }
+        ],
+        "firmatario_available": true,
+        "answers": {},
+        "source_role_coverage": []
+      },
+      "v004": {
+        "pool": [
+          {
+            "key": "condition:c_societa",
+            "kind": "applicability",
+            "condition_id": "c_societa",
+            "condition": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto della classe merceologica per la quale si richiede l’iscrizione, con i seguenti dati:",
+            "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+            "context": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto della classe merceologica per la quale si richiede l’iscrizione, con i seguenti dati:",
+            "field_ids": [
+              "t6.r0.c1",
+              "t6.r0.c3"
+            ],
+            "alternatives": [],
+            "impact": 2,
+            "affected_fields": [
+              "Provincia di iscrizione",
+              "numero di iscrizione"
+            ],
+            "slot": 1
+          },
+          {
+            "key": "field:p5.s0",
+            "kind": "value",
+            "field_ids": [
+              "p5.s0"
+            ],
+            "label": "Il sottoscritto",
+            "condition": "",
+            "context": "Il sottoscritto…………………………………………………………..",
+            "impact": 1,
+            "alternatives": [],
+            "slot": 2
+          }
+        ],
+        "firmatario_available": true,
+        "answers": {},
+        "source_role_coverage": []
+      },
+      "v005": {
+        "pool": [
+          {
+            "key": "field:p5.s0",
+            "kind": "value",
+            "field_ids": [
+              "p5.s0"
+            ],
+            "label": "Il sottoscritto",
+            "condition": "",
+            "context": "Il sottoscritto…………………………………………………………..",
+            "impact": 1,
+            "alternatives": [],
+            "slot": 1
+          }
+        ],
+        "firmatario_available": true,
+        "answers": {
+          "condition:c_societa": {
+            "action": "CONDITION_TRUE",
+            "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria",
+            "provenance": "USER",
+            "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+            "question": "Confermi che la richiesta di iscrizione riguarda il ramo riservato alle società?",
+            "applies": true
+          }
+        },
+        "source_role_coverage": []
+      },
+      "v007": {
+        "pool": [
+          {
+            "key": "field:p5.s0",
+            "kind": "value",
+            "field_ids": [
+              "p5.s0"
+            ],
+            "label": "Il sottoscritto",
+            "condition": "",
+            "context": "Il sottoscritto…………………………………………………………..",
+            "impact": 1,
+            "alternatives": [],
+            "slot": 1
+          }
+        ],
+        "firmatario_available": true,
+        "answers": {
+          "condition:c_societa": {
+            "action": "CONDITION_TRUE",
+            "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria",
+            "provenance": "USER",
+            "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+            "question": "Confermi che la richiesta di iscrizione riguarda il ramo riservato alle società?",
+            "applies": true
+          }
+        },
+        "source_role_coverage": []
+      },
+      "v008": {
+        "pool": [
+          {
+            "key": "field:p5.s0",
+            "kind": "value",
+            "field_ids": [
+              "p5.s0"
+            ],
+            "label": "Il sottoscritto",
+            "condition": "",
+            "context": "Il sottoscritto…………………………………………………………..",
+            "impact": 1,
+            "alternatives": [],
+            "slot": 1
+          }
+        ],
+        "firmatario_available": true,
+        "answers": {
+          "condition:c_societa": {
+            "action": "CONDITION_TRUE",
+            "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria",
+            "provenance": "USER",
+            "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+            "question": "Confermi che la richiesta di iscrizione riguarda il ramo riservato alle società?",
+            "applies": true
+          }
+        },
+        "source_role_coverage": []
+      }
+    }
+  },
+  "short-reason-only": {
+    "reason_chars": 42,
+    "clarification": {
+      "validation": "GROUNDED_REQUEST",
+      "proposal": {
+        "label": "Il sottoscritto",
+        "form": {
+          "paragraph_id": "paragraph:5",
+          "quote": "Il sottoscritto[[p5.s0]]"
+        },
+        "conditions": [],
+        "reason": "Confermare il nominativo del sottoscritto."
+      },
+      "validation_errors": [],
+      "label": "Il sottoscritto",
+      "form_evidence": {
+        "paragraph_id": "paragraph:5",
+        "quote": "Il sottoscritto………………………………………………………….."
+      },
+      "conditions": []
+    },
+    "field": {
+      "candidate_id": "p5.s0",
+      "validation": "REVIEW_REQUIRED",
+      "semantic_review_required": true,
+      "written_value": null,
+      "conditions": [],
+      "source_evidence": [],
+      "validation_errors": [],
+      "proposal": null,
+      "label": "Il sottoscritto",
+      "kind": "data",
+      "disposition": "missing",
+      "form_evidence": {
+        "paragraph_id": "paragraph:5",
+        "quote": "Il sottoscritto………………………………………………………….."
+      },
+      "reason": "Confermare il nominativo del sottoscritto.",
+      "destination_check": {
+        "result": "literal_slot_match",
+        "paragraph_id": "paragraph:5",
+        "range": [
+          15,
+          39
+        ],
+        "marked_quote": "Il sottoscritto[[p5.s0]]",
+        "original_quote": "Il sottoscritto…………………………………………………………..",
+        "semantic_review_required": true
+      },
+      "value": null,
+      "fact_id": null,
+      "coverage": {
+        "state": "CLARIFICATION",
+        "origin": "BACKEND",
+        "reason": "Confermare il nominativo del sottoscritto."
+      }
+    },
+    "stages": {
+      "v003": {
+        "pool": [
+          {
+            "key": "condition:c_societa",
+            "kind": "applicability",
+            "condition_id": "c_societa",
+            "condition": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto della classe merceologica per la quale si richiede l’iscrizione, con i seguenti dati:",
+            "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+            "context": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto della classe merceologica per la quale si richiede l’iscrizione, con i seguenti dati:",
+            "field_ids": [
+              "t6.r0.c1",
+              "t6.r0.c3"
+            ],
+            "alternatives": [],
+            "impact": 2,
+            "affected_fields": [
+              "Provincia di iscrizione",
+              "numero di iscrizione"
+            ],
+            "slot": 1
+          },
+          {
+            "key": "field:p5.s0",
+            "kind": "value",
+            "field_ids": [
+              "p5.s0"
+            ],
+            "label": "Il sottoscritto",
+            "condition": "",
+            "context": "Il sottoscritto…………………………………………………………..",
+            "impact": 1,
+            "alternatives": [],
+            "slot": 2
+          }
+        ],
+        "firmatario_available": true,
+        "answers": {},
+        "source_role_coverage": []
+      },
+      "v004": {
+        "pool": [
+          {
+            "key": "condition:c_societa",
+            "kind": "applicability",
+            "condition_id": "c_societa",
+            "condition": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto della classe merceologica per la quale si richiede l’iscrizione, con i seguenti dati:",
+            "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+            "context": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto della classe merceologica per la quale si richiede l’iscrizione, con i seguenti dati:",
+            "field_ids": [
+              "t6.r0.c1",
+              "t6.r0.c3"
+            ],
+            "alternatives": [],
+            "impact": 2,
+            "affected_fields": [
+              "Provincia di iscrizione",
+              "numero di iscrizione"
+            ],
+            "slot": 1
+          },
+          {
+            "key": "field:p5.s0",
+            "kind": "value",
+            "field_ids": [
+              "p5.s0"
+            ],
+            "label": "Il sottoscritto",
+            "condition": "",
+            "context": "Il sottoscritto…………………………………………………………..",
+            "impact": 1,
+            "alternatives": [],
+            "slot": 2
+          }
+        ],
+        "firmatario_available": true,
+        "answers": {},
+        "source_role_coverage": []
+      },
+      "v005": {
+        "pool": [
+          {
+            "key": "field:p5.s0",
+            "kind": "value",
+            "field_ids": [
+              "p5.s0"
+            ],
+            "label": "Il sottoscritto",
+            "condition": "",
+            "context": "Il sottoscritto…………………………………………………………..",
+            "impact": 1,
+            "alternatives": [],
+            "slot": 1
+          }
+        ],
+        "firmatario_available": true,
+        "answers": {
+          "condition:c_societa": {
+            "action": "CONDITION_TRUE",
+            "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria",
+            "provenance": "USER",
+            "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+            "question": "Confermi che la richiesta di iscrizione riguarda il ramo riservato alle società?",
+            "applies": true
+          }
+        },
+        "source_role_coverage": []
+      },
+      "v007": {
+        "pool": [
+          {
+            "key": "field:p5.s0",
+            "kind": "value",
+            "field_ids": [
+              "p5.s0"
+            ],
+            "label": "Il sottoscritto",
+            "condition": "",
+            "context": "Il sottoscritto…………………………………………………………..",
+            "impact": 1,
+            "alternatives": [],
+            "slot": 1
+          }
+        ],
+        "firmatario_available": true,
+        "answers": {
+          "condition:c_societa": {
+            "action": "CONDITION_TRUE",
+            "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria",
+            "provenance": "USER",
+            "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+            "question": "Confermi che la richiesta di iscrizione riguarda il ramo riservato alle società?",
+            "applies": true
+          }
+        },
+        "source_role_coverage": []
+      },
+      "v008": {
+        "pool": [
+          {
+            "key": "field:p5.s0",
+            "kind": "value",
+            "field_ids": [
+              "p5.s0"
+            ],
+            "label": "Il sottoscritto",
+            "condition": "",
+            "context": "Il sottoscritto…………………………………………………………..",
+            "impact": 1,
+            "alternatives": [],
+            "slot": 1
+          }
+        ],
+        "firmatario_available": true,
+        "answers": {
+          "condition:c_societa": {
+            "action": "CONDITION_TRUE",
+            "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria",
+            "provenance": "USER",
+            "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+            "question": "Confermi che la richiesta di iscrizione riguarda il ramo riservato alle società?",
+            "applies": true
+          }
+        },
+        "source_role_coverage": []
+      }
+    }
+  }
+}

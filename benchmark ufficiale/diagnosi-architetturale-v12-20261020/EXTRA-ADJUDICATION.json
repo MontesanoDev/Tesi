@@ -1,0 +1,995 @@
+[
+  {
+    "trial": "trapani/E1/rep-1",
+    "candidate_id": "p107.s0",
+    "category": "DOCUMENTED_PEC_USE_REQUIRES_USER_CONSENT",
+    "disposition": "value",
+    "value": "mapi.ingegneria@pec.demo",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -44,
+        "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:107",
+      "quote": "al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]];"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "candidate_id": "p107.s0",
+    "category": "DOCUMENTED_PEC_USE_REQUIRES_USER_CONSENT",
+    "disposition": "conditional",
+    "value": "mapi.ingegneria@pec.demo",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -44,
+        "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:107",
+      "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]];"
+    },
+    "conditions": [
+      "c_proponente"
+    ]
+  },
+  {
+    "trial": "trapani/B0/rep-1",
+    "candidate_id": "p107.s0",
+    "category": "DOCUMENTED_PEC_USE_REQUIRES_USER_CONSENT",
+    "disposition": "conditional",
+    "value": "mapi.ingegneria@pec.demo",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -44,
+        "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:107",
+      "quote": "il dichiarante assume ogni rischio): [[p107.s0]];"
+    },
+    "conditions": [
+      "c_pec"
+    ]
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "candidate_id": "t0.r8.c1",
+    "category": "CORRECT_INACTIVE_OPERATING_OFFICE",
+    "disposition": "not_applicable",
+    "value": null,
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": null,
+    "FORM": {
+      "paragraph_id": "paragraph:34",
+      "quote": "Sede operativa"
+    },
+    "conditions": [
+      "c_sede_diversa"
+    ]
+  },
+  {
+    "trial": "catanzaro/B0/rep-1",
+    "candidate_id": "t0.r8.c1",
+    "category": "CORRECT_INACTIVE_OPERATING_OFFICE",
+    "disposition": "not_applicable",
+    "value": null,
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": null,
+    "FORM": {
+      "paragraph_id": "paragraph:34",
+      "quote": "Sede operativa "
+    },
+    "conditions": [
+      "c_sede_diversa"
+    ]
+  },
+  {
+    "trial": "catanzaro/E1/rep-1",
+    "candidate_id": "t0.r8.c1",
+    "category": "CORRECT_INACTIVE_OPERATING_OFFICE",
+    "disposition": "not_applicable",
+    "value": null,
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": null,
+    "FORM": {
+      "paragraph_id": "paragraph:34",
+      "quote": "Sede operativa "
+    },
+    "conditions": [
+      "c_sedi_diverse"
+    ]
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "candidate_id": "t0.r8.c1",
+    "category": "CORRECT_INACTIVE_OPERATING_OFFICE",
+    "disposition": "not_applicable",
+    "value": null,
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": null,
+    "FORM": {
+      "paragraph_id": "paragraph:34",
+      "quote": "Sede operativa "
+    },
+    "conditions": [
+      "c_sede_diff"
+    ]
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "candidate_id": "p799.s0",
+    "category": "PUBLIC_REGISTER_MENTION_DOES_NOT_PROVE_UPDATED_PERSON_RECORD_AVAILABILITY",
+    "disposition": "conditional",
+    "value": "Registro delle Imprese",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -52,
+        "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:799",
+      "quote": "il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: [[p799.s0]]"
+    },
+    "conditions": [
+      "c_parte_terza",
+      "c_pubblico_registro"
+    ]
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t0.r8.c1",
+    "category": "CORRECT_INACTIVE_OPERATING_OFFICE",
+    "disposition": "not_applicable",
+    "value": null,
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": null,
+    "FORM": {
+      "paragraph_id": "paragraph:35",
+      "quote": "(se diversa dalla sede legale)"
+    },
+    "conditions": [
+      "c_sede_operativa_diversa"
+    ]
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t42.r1.c0",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "conditional",
+    "value": "Leonardo Montemurro",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -53,
+        "quote": "- Nome: Leonardo."
+      },
+      {
+        "chunk_id": -53,
+        "quote": "- Cognome: Montemurro."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:672",
+      "quote": "Nome e cognome"
+    },
+    "conditions": [
+      "c_tipo_operatore"
+    ]
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t42.r1.c1",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "conditional",
+    "value": "14 novembre 1982, Lecce (LE)",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "- Data di nascita: 14 novembre 1982."
+      },
+      {
+        "chunk_id": -53,
+        "quote": "- Luogo di nascita: Lecce (LE)."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:673",
+      "quote": "Data e luogo di nascita "
+    },
+    "conditions": [
+      "c_tipo_operatore"
+    ]
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t42.r1.c2",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "conditional",
+    "value": "Via Amedeo 24, Bari (BA)",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "- Indirizzo di residenza: Via Amedeo 24."
+      },
+      {
+        "chunk_id": -54,
+        "quote": "- Comune di residenza: Bari (BA)."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:674",
+      "quote": "Residenza"
+    },
+    "conditions": [
+      "c_tipo_operatore"
+    ]
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t42.r1.c3",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "conditional",
+    "value": "MNTLRD82S14E506X",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:675",
+      "quote": "Codice fiscale "
+    },
+    "conditions": [
+      "c_tipo_operatore"
+    ]
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t42.r1.c4",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "conditional",
+    "value": "amministratore unico e rappresentante legale",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -53,
+        "quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:676",
+      "quote": "Poteri conferiti / qualifica"
+    },
+    "conditions": [
+      "c_tipo_operatore"
+    ]
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "p799.s0",
+    "category": "PUBLIC_REGISTER_MENTION_DOES_NOT_PROVE_UPDATED_PERSON_RECORD_AVAILABILITY",
+    "disposition": "conditional",
+    "value": "Registro delle Imprese",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -52,
+        "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:799",
+      "quote": "il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: [[p799.s0]]"
+    },
+    "conditions": [
+      "c_tipo_operatore"
+    ]
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "candidate_id": "p52.s2",
+    "category": "MODEL_NONEXISTENT_DESTINATION",
+    "disposition": "conditional",
+    "value": "Ordine degli Ingegneri di Bari",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:52",
+      "quote": "iscritto all’Ordine/Collegio professionale [[p52.s2]] sezione"
+    },
+    "conditions": [
+      "c_soc_ing"
+    ]
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "candidate_id": "p52.s3",
+    "category": "MODEL_NONEXISTENT_DESTINATION",
+    "disposition": "conditional",
+    "value": "A",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:52",
+      "quote": "sezione [[p52.s3]]"
+    },
+    "conditions": [
+      "c_soc_ing"
+    ]
+  },
+  {
+    "trial": "trapani/E1/rep-2",
+    "candidate_id": "p107.s0",
+    "category": "DOCUMENTED_PEC_USE_REQUIRES_USER_CONSENT",
+    "disposition": "conditional",
+    "value": "mapi.ingegneria@pec.demo",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -44,
+        "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:107",
+      "quote": "elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]];"
+    },
+    "conditions": [
+      "c_mapi_proponent"
+    ]
+  },
+  {
+    "trial": "trapani/E2-A/rep-2",
+    "candidate_id": "p107.s0",
+    "category": "DOCUMENTED_PEC_USE_REQUIRES_USER_CONSENT",
+    "disposition": "conditional",
+    "value": "mapi.ingegneria@pec.demo",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -44,
+        "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:107",
+      "quote": "all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]];"
+    },
+    "conditions": [
+      "c_soc_ing"
+    ]
+  },
+  {
+    "trial": "trapani/B0/rep-2",
+    "candidate_id": "p107.s0",
+    "category": "DOCUMENTED_PEC_USE_REQUIRES_USER_CONSENT",
+    "disposition": "value",
+    "value": "mapi.ingegneria@pec.demo",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -44,
+        "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:107",
+      "quote": "seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "trapani/E2-A/rep-3",
+    "candidate_id": "p107.s0",
+    "category": "DOCUMENTED_PEC_USE_REQUIRES_USER_CONSENT",
+    "disposition": "conditional",
+    "value": "mapi.ingegneria@pec.demo",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -44,
+        "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:107",
+      "quote": "indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+    },
+    "conditions": [
+      "c_part"
+    ]
+  },
+  {
+    "trial": "trapani/B0/rep-3",
+    "candidate_id": "p107.s0",
+    "category": "DOCUMENTED_PEC_USE_REQUIRES_USER_CONSENT",
+    "disposition": "value",
+    "value": "mapi.ingegneria@pec.demo",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -44,
+        "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:107",
+      "quote": "posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]];"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/B0/rep-3",
+    "candidate_id": "t0.r8.c1",
+    "category": "INACTIVE_OPERATING_OFFICE_PROPOSAL",
+    "disposition": "value",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "raw_grounded": true,
+    "written": true,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:34",
+      "quote": "Sede operativa"
+    },
+    "conditions": [],
+    "cause": "LLM omits explicit FORM condition, literal SOURCE grounding does not discover it independently, narrator fails to hold; writer executes accepted destination correctly",
+    "FORM_condition": {
+      "paragraph_id": "paragraph:35",
+      "quote": "(se diversa dalla sede legale)"
+    },
+    "SOURCE_counterevidence": {
+      "chunk_id": -44,
+      "quote": "- Rapporto tra le sedi: sede operativa coincidente con la sede legale."
+    }
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t0.r8.c1",
+    "category": "INACTIVE_OPERATING_OFFICE_PROPOSAL",
+    "disposition": "value",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "raw_grounded": true,
+    "written": true,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:34",
+      "quote": "Sede operativa"
+    },
+    "conditions": [],
+    "cause": "LLM omits explicit FORM condition, literal SOURCE grounding does not discover it independently, narrator fails to hold; writer executes accepted destination correctly",
+    "FORM_condition": {
+      "paragraph_id": "paragraph:35",
+      "quote": "(se diversa dalla sede legale)"
+    },
+    "SOURCE_counterevidence": {
+      "chunk_id": -44,
+      "quote": "- Rapporto tra le sedi: sede operativa coincidente con la sede legale."
+    }
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t42.r1.c0",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "conditional",
+    "value": "Leonardo Montemurro",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "### Leonardo Montemurro — anagrafica sintetica"
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:672",
+      "quote": "Nome e cognome"
+    },
+    "conditions": [
+      "c_parte_terza"
+    ]
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t42.r1.c1",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "conditional",
+    "value": "14 novembre 1982, Lecce (LE)",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "- Data di nascita: 14 novembre 1982."
+      },
+      {
+        "chunk_id": -54,
+        "quote": "- Luogo di nascita: Lecce (LE)."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:673",
+      "quote": "Data e luogo di nascita"
+    },
+    "conditions": [
+      "c_parte_terza"
+    ]
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t42.r1.c2",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "conditional",
+    "value": "Via Amedeo 24, Bari (BA)",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "- Indirizzo di residenza: Via Amedeo 24."
+      },
+      {
+        "chunk_id": -54,
+        "quote": "- Comune di residenza: Bari (BA)."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:674",
+      "quote": "Residenza"
+    },
+    "conditions": [
+      "c_parte_terza"
+    ]
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t42.r1.c3",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "conditional",
+    "value": "MNTLRD82S14E506X",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:675",
+      "quote": "Codice fiscale"
+    },
+    "conditions": [
+      "c_parte_terza"
+    ]
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t42.r1.c4",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "conditional",
+    "value": "amministratore unico e rappresentante legale",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -53,
+        "quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:676",
+      "quote": "Poteri conferiti / qualifica"
+    },
+    "conditions": [
+      "c_parte_terza"
+    ]
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t0.r8.c1",
+    "category": "CORRECT_INACTIVE_OPERATING_OFFICE",
+    "disposition": "not_applicable",
+    "value": null,
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": null,
+    "FORM": {
+      "paragraph_id": "paragraph:35",
+      "quote": "(se diversa dalla sede legale)"
+    },
+    "conditions": [
+      "c_sede_diversa"
+    ]
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p49.cb0",
+    "category": "MODEL_CHECKBOX_MARKER_QUOTE_WITHOUT_OPTION_LABEL",
+    "disposition": "value",
+    "value": "Società di ingegneria",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:49",
+      "quote": "[[p49.cb0]]"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p51.cb0",
+    "category": "MODEL_CHECKBOX_MARKER_QUOTE_WITHOUT_OPTION_LABEL",
+    "disposition": "value",
+    "value": "Società di ingegneria",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:51",
+      "quote": "[[p51.cb0]]"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p53.cb0",
+    "category": "MODEL_CHECKBOX_MARKER_QUOTE_WITHOUT_OPTION_LABEL",
+    "disposition": "value",
+    "value": "Società di ingegneria",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:53",
+      "quote": "[[p53.cb0]]"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p55.cb0",
+    "category": "MODEL_CHECKBOX_MARKER_QUOTE_WITHOUT_OPTION_LABEL",
+    "disposition": "value",
+    "value": "Società di ingegneria",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:55",
+      "quote": "[[p55.cb0]]"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p57.cb0",
+    "category": "MODEL_CHECKBOX_MARKER_QUOTE_WITHOUT_OPTION_LABEL",
+    "disposition": "value",
+    "value": "Società di ingegneria",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:57",
+      "quote": "[[p57.cb0]]"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p60.cb0",
+    "category": "MODEL_CHECKBOX_MARKER_QUOTE_WITHOUT_OPTION_LABEL",
+    "disposition": "value",
+    "value": "Società di ingegneria",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:60",
+      "quote": "[[p60.cb0]]"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p62.cb0",
+    "category": "MODEL_CHECKBOX_MARKER_QUOTE_WITHOUT_OPTION_LABEL",
+    "disposition": "value",
+    "value": "Società di ingegneria",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:62",
+      "quote": "[[p62.cb0]]"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p64.cb0",
+    "category": "MODEL_CHECKBOX_MARKER_QUOTE_WITHOUT_OPTION_LABEL",
+    "disposition": "value",
+    "value": "Società di ingegneria",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:64",
+      "quote": "[[p64.cb0]]"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p799.s0",
+    "category": "PUBLIC_REGISTER_MENTION_DOES_NOT_PROVE_UPDATED_PERSON_RECORD_AVAILABILITY",
+    "disposition": "conditional",
+    "value": "Registro delle Imprese",
+    "raw_grounded": true,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -52,
+        "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:799",
+      "quote": "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: [[p799.s0]]."
+    },
+    "conditions": [
+      "c799"
+    ]
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t42.r1.c0",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "value",
+    "value": "Leonardo Montemurro",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -53,
+        "quote": "### Leonardo Montemurro — anagrafica sintetica"
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:672",
+      "quote": "Nome e cognome"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t42.r1.c1",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "value",
+    "value": "14 novembre 1982, Lecce (LE)",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "- Data di nascita: 14 novembre 1982."
+      },
+      {
+        "chunk_id": -53,
+        "quote": "- Luogo di nascita: Lecce (LE)."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:673",
+      "quote": "Data e luogo di nascita "
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t42.r1.c2",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "value",
+    "value": "Via Amedeo 24, Bari (BA)",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "- Indirizzo di residenza: Via Amedeo 24."
+      },
+      {
+        "chunk_id": -54,
+        "quote": "- Comune di residenza: Bari (BA)."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:674",
+      "quote": "Residenza"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t42.r1.c3",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "value",
+    "value": "MNTLRD82S14E506X",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:675",
+      "quote": "Codice fiscale "
+    },
+    "conditions": []
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t42.r1.c4",
+    "category": "SPECIFIC_DIRECTION_OR_SUPERVISION_ROLE_NOT_DOCUMENTED",
+    "disposition": "value",
+    "value": "amministratore unico e rappresentante legale",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -53,
+        "quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:676",
+      "quote": "Poteri conferiti / qualifica"
+    },
+    "conditions": []
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "candidate_id": "p52.s2",
+    "category": "MODEL_NONEXISTENT_DESTINATION",
+    "disposition": "conditional",
+    "value": "Ordine degli Ingegneri di Bari",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:52",
+      "quote": "iscritto all’Ordine/Collegio professionale [[p52.s2]] sezione"
+    },
+    "conditions": [
+      "c_soc_ing"
+    ]
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "candidate_id": "p52.s3",
+    "category": "MODEL_NONEXISTENT_DESTINATION",
+    "disposition": "conditional",
+    "value": "A",
+    "raw_grounded": false,
+    "written": false,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:52",
+      "quote": "sezione [[p52.s3]]"
+    },
+    "conditions": [
+      "c_soc_ing"
+    ]
+  }
+]

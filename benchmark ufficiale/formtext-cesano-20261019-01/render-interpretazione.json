@@ -1,0 +1,61 @@
+{
+  "native_twenty_rendering": "PASS",
+  "all_twenty_unique_sentinels_visible": true,
+  "all_six_new_PDF_text_and_word_positions_match_previous": true,
+  "new_DOCX_rendering_regression": false,
+  "known_unrelated_failures": [
+    {
+      "case": "craa",
+      "check": "CCIAA effective readability",
+      "result": "FAIL",
+      "candidate_ids": [
+        "t6.r0.c1",
+        "t6.r0.c3"
+      ],
+      "cause": "Existing fixed-width table cells 66/81 twip; XML has values, page4 does not display them; identical old/new PDF positions"
+    }
+  ],
+  "literal_text_false_alarms": [
+    {
+      "case": "catanzaro",
+      "candidate_ids": [
+        "t0.r7.c1",
+        "t25.r4.c3"
+      ],
+      "pages_visually_checked": [
+        1,
+        11
+      ],
+      "actual_readability": "PASS",
+      "reason": "Column labels interleaved with wrapped address in pdftotext -layout; all parts readable inside corresponding cells"
+    }
+  ],
+  "visual_checks": {
+    "minervino": [
+      1
+    ],
+    "trapani": [
+      1
+    ],
+    "catanzaro": [
+      1,
+      11
+    ],
+    "bella": [
+      1
+    ],
+    "craa": [
+      4
+    ],
+    "cesano": [
+      1
+    ],
+    "venti-FORMTEXT": [
+      1,
+      3
+    ]
+  },
+  "not_all_pages_visually_inspected": true,
+  "all_page_bboxes_checked": 48,
+  "Word_desktop_not_checked": true
+}

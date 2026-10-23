@@ -1,0 +1,280 @@
+{
+ "version": 3,
+ "document": "craa",
+ "derived_from": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/craa/reference.json",
+  "sha256": "5ab2c99324ba3180bb17b9103c14a5f4b62ea5d438b581267c1b99833fafd9b9",
+  "values_unchanged": true
+ },
+ "FORM_sha256": "4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab",
+ "scenario": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/craa/scenario-USER.json",
+ "scenario_sha256": "f1116f8159e511aa6f686bac9e835a8c33f4dde37da1ab2a3410973865f0f89a",
+ "variant": "craa-ramo",
+ "runtime_source": "storico",
+ "destinations": [
+  {
+   "candidate_id": "p5.s0",
+   "recognized": true,
+   "label": "Nome firmatario",
+   "value": "Leonardo Montemurro",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "name",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s0",
+   "recognized": true,
+   "label": "Impresa",
+   "value": "Mapi Ingegneria S.r.l.",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "name",
+   "SOURCE_chunks": [
+    -30,
+    -43
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p13.s0",
+   "recognized": true,
+   "label": "Sede",
+   "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "address",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p14.s0",
+   "recognized": true,
+   "label": "PEC",
+   "value": "mapi.ingegneria@pec.demo",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "pec",
+   "SOURCE_chunks": [
+    -44
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p15.s0",
+   "recognized": true,
+   "label": "CF impresa",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "cf",
+   "SOURCE_chunks": [
+    -30,
+    -43
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p16.s0",
+   "recognized": true,
+   "label": "PIVA impresa",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "piva",
+   "SOURCE_chunks": [
+    -30,
+    -43
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p17.s0",
+   "recognized": true,
+   "label": "Mail impresa",
+   "value": "segreteria@mapi-ingegneria.demo",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "email",
+   "SOURCE_chunks": [
+    -44
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p18.s0",
+   "recognized": true,
+   "label": "Telefono impresa",
+   "value": "+39 080 000 2040",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "phone",
+   "SOURCE_chunks": [
+    -44
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t6.r0.c1",
+   "recognized": true,
+   "label": "Provincia CCIAA",
+   "value": "Bari (BA)",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "province",
+   "SOURCE_chunks": [
+    -30,
+    -52
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": true,
+    "kind": "option_clause",
+    "region_kind": "cciaa",
+    "scenario_state": "deferred"
+   },
+   "expected_if_authorized": true,
+   "in_denominator": false
+  },
+  {
+   "candidate_id": "t6.r0.c3",
+   "recognized": true,
+   "label": "Numero CCIAA",
+   "value": "01234560981",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "registration_number",
+   "SOURCE_chunks": [
+    -52
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": true,
+    "kind": "option_clause",
+    "region_kind": "cciaa",
+    "scenario_state": "deferred"
+   },
+   "expected_if_authorized": true,
+   "in_denominator": false
+  }
+ ],
+ "unrecognized_core_destinations": [],
+ "USER_decisions_expected": {},
+ "pertinent_unresolved_active_fields": [
+  "p51.s0",
+  "p52.s0",
+  "p55.s0",
+  "p75.s0",
+  "p89.s0",
+  "p90.s0",
+  "p90.s1",
+  "p91.s0",
+  "p91.s1",
+  "p92.s0",
+  "p92.s1",
+  "p115.s0",
+  "p124.s0",
+  "p126.s0"
+ ],
+ "permitted_equivalence": "Date formats, case/spaces, title prefix, fuller literal SOURCE if subject/property/granularity correct",
+ "protected": "Do not invent personal properties, powers, designations or attestations; no signatures; USER choice only identifies signer and participation",
+ "legacy_notes": {
+  "applicability_notes": "The single-professional and associated-studio branches are not active; blank companion cells beside name/role are not extra mandatory facts. Service/turnover qualification declarations require their own proof and applicability; individual annual values do not prove best three years of the last five.",
+  "denominator_scope": "Documented core SOURCE field occurrences, not distinct atomic facts or total procedure requirements; unknown attestations/designations and variable-cardinality tables excluded from completeness denominator"
+ },
+ "registered_UTC": "2026-10-22T10:47:07+00:00",
+ "condition_4": {
+  "core": 10,
+  "recognized": 10,
+  "share": 1.0,
+  "passes": true
+ }
+}

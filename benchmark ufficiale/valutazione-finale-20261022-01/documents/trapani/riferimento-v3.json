@@ -1,0 +1,442 @@
+{
+ "version": 3,
+ "document": "trapani",
+ "derived_from": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/trapani/reference.json",
+  "sha256": "6cb0c53f158f4c5782c8d6fdbe4f6b0fcd6ea71c631c256263e00d1bf8831bf6",
+  "values_unchanged": true
+ },
+ "FORM_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+ "scenario": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/trapani/scenario-USER.json",
+ "scenario_sha256": "11e5b1b3d17688f186f29beb04a86ae968f4e0fffd9201bf15a9e2a4dda9935f",
+ "variant": "generico",
+ "runtime_source": "storico",
+ "destinations": [
+  {
+   "candidate_id": "p12.s0",
+   "recognized": true,
+   "label": "Firmatario",
+   "value": "Leonardo Montemurro",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "nome",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s1",
+   "recognized": true,
+   "label": "Nascita luogo",
+   "value": "Lecce (LE)",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "nascita_luogo",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s2",
+   "recognized": true,
+   "label": "Nascita data",
+   "value": "14/11/1982",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "nascita_data",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s3",
+   "recognized": true,
+   "label": "CF",
+   "value": "MNTLRD82S14E506X",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "cf",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s4",
+   "recognized": true,
+   "label": "Residenza comune",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "residenza_comune",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s5",
+   "recognized": true,
+   "label": "Residenza provincia",
+   "value": "BA",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "residenza_provincia",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s6",
+   "recognized": true,
+   "label": "Residenza via",
+   "value": "Via Amedeo",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "residenza_via",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s7",
+   "recognized": true,
+   "label": "Residenza numero",
+   "value": "24",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "residenza_numero",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p75.s0",
+   "recognized": true,
+   "label": "Società",
+   "value": "Mapi Ingegneria S.r.l.",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "nome",
+   "SOURCE_chunks": [
+    -30,
+    -44,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p75.s1",
+   "recognized": true,
+   "label": "Sede via",
+   "value": "Via Giovanni Amendola 172/C",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "sede_via_numero",
+   "SOURCE_chunks": [
+    -30,
+    -44,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p75.s2",
+   "recognized": true,
+   "label": "Comune",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "sede_comune",
+   "SOURCE_chunks": [
+    -30,
+    -44,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p75.s3",
+   "recognized": true,
+   "label": "CAP",
+   "value": "70126",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "sede_cap",
+   "SOURCE_chunks": [
+    -30,
+    -44,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p75.s4",
+   "recognized": true,
+   "label": "Provincia",
+   "value": "BA",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "sede_provincia",
+   "SOURCE_chunks": [
+    -30,
+    -44,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p75.s5",
+   "recognized": true,
+   "label": "PIVA",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "piva",
+   "SOURCE_chunks": [
+    -30,
+    -44,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p75.s6",
+   "recognized": true,
+   "label": "Telefono",
+   "value": "+39 080 000 2040",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "telefono",
+   "SOURCE_chunks": [
+    -30,
+    -44,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p75.s7",
+   "recognized": true,
+   "label": "Fax",
+   "value": "+39 080 000 2041",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "fax",
+   "SOURCE_chunks": [
+    -30,
+    -44,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p75.s8",
+   "recognized": true,
+   "label": "PEC",
+   "value": "mapi.ingegneria@pec.demo",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "pec",
+   "SOURCE_chunks": [
+    -30,
+    -44,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  }
+ ],
+ "unrecognized_core_destinations": [],
+ "USER_decisions_expected": {},
+ "pertinent_unresolved_active_fields": [
+  "p9.s0",
+  "p97.s0",
+  "p104.s0",
+  "p105.s0",
+  "p107.s0",
+  "p112.s0",
+  "p113.s0",
+  "p171.s0"
+ ],
+ "permitted_equivalence": "Case, spaces, professional title prefix and equivalent dates; fuller literal SOURCE values accepted only if property/subject/granularity correct",
+ "protected": "No signatures, no attestations/preferences/designations without scenario decision; inactive branches remain blank",
+ "legacy_notes": {
+  "variable_cardinality_records": "Service-history/other-subject rows are not counted as mandatory facts merely because blank rows exist",
+  "unlisted_candidates": "Review against FORM and SOURCE individually; not automatically wrong or required"
+ },
+ "registered_UTC": "2026-10-22T10:47:07+00:00",
+ "condition_4": {
+  "core": 17,
+  "recognized": 17,
+  "share": 1.0,
+  "passes": true
+ }
+}

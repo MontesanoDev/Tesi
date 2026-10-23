@@ -1,0 +1,449 @@
+{
+ "summary": {
+  "wrong_total": 25,
+  "wrong_governing_in_rev3_context": 25,
+  "wrong_governing_in_rev2_request": 0,
+  "wrong_eligible_recorded": 19,
+  "wrong_eligible_simulated": 25,
+  "wrong_without_conditions": 19,
+  "correct_total": 103,
+  "correct_eligible_recorded": 69,
+  "correct_eligible_simulated": 103,
+  "same_partition_all": true
+ },
+ "trials": {
+  "minervino-1": {
+   "document": "minervino",
+   "same_partition_as_rev2": true,
+   "segments_replayed": 5,
+   "wrong_rev2": {
+    "p37.s1": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:35"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p37.s2": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:35"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p37.s3": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:35"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p37.s4": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:35"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p37.s5": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:35"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p37.s6": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:35"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p37.s7": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:35"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    }
+   },
+   "correct_rev2": {
+    "count": 54,
+    "by_path": {
+     "SOURCE": 54,
+     "USER": 0
+    },
+    "grounded_rev3": 54,
+    "eligible_recorded_receipts": 54,
+    "eligible_simulated_scope_SUPPORTED": 54,
+    "lost_with_simulated_scope": []
+   }
+  },
+  "catanzaro-1": {
+   "document": "catanzaro",
+   "same_partition_as_rev2": true,
+   "segments_replayed": 6,
+   "wrong_rev2": {},
+   "correct_rev2": {
+    "count": 9,
+    "by_path": {
+     "SOURCE": 9,
+     "USER": 0
+    },
+    "grounded_rev3": 9,
+    "eligible_recorded_receipts": 5,
+    "eligible_simulated_scope_SUPPORTED": 9,
+    "lost_with_simulated_scope": []
+   }
+  },
+  "cesano-1": {
+   "document": "cesano",
+   "same_partition_as_rev2": true,
+   "segments_replayed": 2,
+   "wrong_rev2": {},
+   "correct_rev2": {
+    "count": 3,
+    "by_path": {
+     "SOURCE": 3,
+     "USER": 0
+    },
+    "grounded_rev3": 3,
+    "eligible_recorded_receipts": 0,
+    "eligible_simulated_scope_SUPPORTED": 3,
+    "lost_with_simulated_scope": []
+   }
+  },
+  "soresa2023-1": {
+   "document": "soresa2023",
+   "same_partition_as_rev2": true,
+   "segments_replayed": 2,
+   "wrong_rev2": {
+    "p127.s1": {
+     "grounded_rev3": true,
+     "conditions": [
+      "s2_c_sing"
+     ],
+     "eligible_recorded_receipts": false,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:125"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p127.s2": {
+     "grounded_rev3": true,
+     "conditions": [
+      "s2_c_sing"
+     ],
+     "eligible_recorded_receipts": false,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:125"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p127.s3": {
+     "grounded_rev3": true,
+     "conditions": [
+      "s2_c_sing"
+     ],
+     "eligible_recorded_receipts": false,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:125"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p127.s4": {
+     "grounded_rev3": true,
+     "conditions": [
+      "s2_c_sing"
+     ],
+     "eligible_recorded_receipts": false,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:125"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p44.s0": {
+     "grounded_rev3": true,
+     "conditions": [
+      "s2_c_sing"
+     ],
+     "eligible_recorded_receipts": false,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:40",
+      "paragraph:8"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p44.s1": {
+     "grounded_rev3": true,
+     "conditions": [
+      "s2_c_sing"
+     ],
+     "eligible_recorded_receipts": false,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:40",
+      "paragraph:8"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    }
+   },
+   "correct_rev2": {
+    "count": 5,
+    "by_path": {
+     "SOURCE": 4,
+     "USER": 1
+    },
+    "grounded_rev3": 4,
+    "eligible_recorded_receipts": 0,
+    "eligible_simulated_scope_SUPPORTED": 5,
+    "lost_with_simulated_scope": []
+   }
+  },
+  "minervino-2": {
+   "document": "minervino",
+   "same_partition_as_rev2": true,
+   "segments_replayed": 5,
+   "wrong_rev2": {},
+   "correct_rev2": {
+    "count": 0,
+    "by_path": {
+     "SOURCE": 0,
+     "USER": 0
+    },
+    "grounded_rev3": 0,
+    "eligible_recorded_receipts": 0,
+    "eligible_simulated_scope_SUPPORTED": 0,
+    "lost_with_simulated_scope": []
+   }
+  },
+  "catanzaro-2": {
+   "document": "catanzaro",
+   "same_partition_as_rev2": true,
+   "segments_replayed": 6,
+   "wrong_rev2": {
+    "t19.r0.c1": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:362"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "t19.r2.c0": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:362"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "t19.r3.c1": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:362"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "t19.r4.c1": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:362"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "t19.r4.c3": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:362"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    }
+   },
+   "correct_rev2": {
+    "count": 19,
+    "by_path": {
+     "SOURCE": 11,
+     "USER": 8
+    },
+    "grounded_rev3": 11,
+    "eligible_recorded_receipts": 7,
+    "eligible_simulated_scope_SUPPORTED": 19,
+    "lost_with_simulated_scope": []
+   }
+  },
+  "cesano-2": {
+   "document": "cesano",
+   "same_partition_as_rev2": true,
+   "segments_replayed": 2,
+   "wrong_rev2": {},
+   "correct_rev2": {
+    "count": 4,
+    "by_path": {
+     "SOURCE": 4,
+     "USER": 0
+    },
+    "grounded_rev3": 4,
+    "eligible_recorded_receipts": 0,
+    "eligible_simulated_scope_SUPPORTED": 4,
+    "lost_with_simulated_scope": []
+   }
+  },
+  "soresa2023-2": {
+   "document": "soresa2023",
+   "same_partition_as_rev2": true,
+   "segments_replayed": 2,
+   "wrong_rev2": {
+    "p127.s2": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:125"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p127.s3": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:125"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p127.s4": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:125"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p43.s8": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:40",
+      "paragraph:8"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p43.s9": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:40",
+      "paragraph:8"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p44.s0": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:40",
+      "paragraph:8"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    },
+    "p44.s1": {
+     "grounded_rev3": true,
+     "conditions": [],
+     "eligible_recorded_receipts": true,
+     "eligible_simulated_scope_SUPPORTED": true,
+     "governing": [
+      "paragraph:40",
+      "paragraph:8"
+     ],
+     "in_rev3_segment_input": true,
+     "in_rev2_segment_request": false
+    }
+   },
+   "correct_rev2": {
+    "count": 9,
+    "by_path": {
+     "SOURCE": 8,
+     "USER": 1
+    },
+    "grounded_rev3": 8,
+    "eligible_recorded_receipts": 3,
+    "eligible_simulated_scope_SUPPORTED": 9,
+    "lost_with_simulated_scope": []
+   }
+  }
+ }
+}

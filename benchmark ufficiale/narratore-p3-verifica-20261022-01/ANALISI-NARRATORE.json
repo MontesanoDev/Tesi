@@ -1,0 +1,1217 @@
+[
+  {
+    "trial": "minervino-N1",
+    "document": "minervino",
+    "arm": "N",
+    "variant": "minervino-controllo",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 4,
+    "elapsed_s": 204.8,
+    "driver_errors": 10,
+    "provider_calls": 11,
+    "calls_by_kind": {
+      "planner": 4,
+      "global": 1,
+      "registry": 1,
+      "guard": 1,
+      "narrator": 4
+    },
+    "tokens": {
+      "total": 186219,
+      "prompt": 144970,
+      "completion": 41249,
+      "cached": 35200
+    },
+    "finish_reasons": {
+      "planner:stop": 4,
+      "global:stop": 1,
+      "registry:stop": 1,
+      "guard:stop": 1,
+      "narrator:stop": 4
+    },
+    "provider_failures": [],
+    "global_calls": [
+      {
+        "call": "02",
+        "seconds": 172.0,
+        "completion": 39964,
+        "reasoning": 26661,
+        "prompt": 61884,
+        "cached": 7168,
+        "share_of_limit": 0.813,
+        "finish": "stop",
+        "segment": false
+      }
+    ],
+    "rounds": 2,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "field:p242.s0",
+          "kind": "value",
+          "rule": "no_factual_values_from_USER"
+        },
+        {
+          "slot": 2,
+          "key": "decision:ff6a9c86b0584e3ed5ac5799",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        },
+        {
+          "slot": 3,
+          "key": "decision:0a242b4c138d38515e716924",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        }
+      ],
+      [
+        {
+          "slot": 1,
+          "key": "decision:24278d2efa5d91eb97fdcae9",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        },
+        {
+          "slot": 2,
+          "key": "decision:9128538342d18a184258aa29",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        }
+      ]
+    ],
+    "redundant_decision_confirmations": 0,
+    "same_question_three_rounds": [],
+    "revisions": {
+      "dialogue_revision": 1,
+      "generation_revision": null,
+      "attribution_safety_revision": 1
+    },
+    "initial_request_decisions": {
+      "condition:c_soc_ing": "Per questa specifica procedura scelgo la partecipazione singola soltanto come società di ingegneria, senza raggruppament"
+    },
+    "loop_guard": [],
+    "receipts": {
+      "condition:c_soc_ing": [
+        "CONDITION_TRUE",
+        true,
+        "initial_request"
+      ],
+      "field:p242.s0": [
+        "SKIP",
+        null,
+        null
+      ],
+      "decision:ff6a9c86b0584e3ed5ac5799": [
+        "SKIP",
+        null,
+        null
+      ],
+      "decision:0a242b4c138d38515e716924": [
+        "SKIP",
+        null,
+        null
+      ],
+      "decision:24278d2efa5d91eb97fdcae9": [
+        "SKIP",
+        null,
+        null
+      ],
+      "decision:9128538342d18a184258aa29": [
+        "SKIP",
+        null,
+        null
+      ]
+    },
+    "unaccepted_replies": [],
+    "final_holds": 8,
+    "holds_with_answered_blocker_not_released": [],
+    "open_conditions_never_answered": {},
+    "segments": null,
+    "attribution_safety_blocked": null,
+    "option_requirements": [],
+    "writes": 52,
+    "checkbox_values": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "CCIAA_written": {},
+    "p19_ft0_written": null,
+    "writes_matching_reference": [
+      "p12.s0",
+      "p12.s1",
+      "p12.s2",
+      "p13.s0",
+      "p13.s1",
+      "p13.s2",
+      "p13.s3",
+      "p14.s0",
+      "p14.s1",
+      "p15.s0",
+      "p15.s1",
+      "p15.s2",
+      "p15.s3",
+      "p16.s0",
+      "p16.s1",
+      "p16.s2",
+      "p17.s0",
+      "p17.s1",
+      "p40.s0",
+      "p41.s0",
+      "p41.s1",
+      "p42.s0",
+      "p42.s1",
+      "p42.s2",
+      "p42.s3",
+      "p42.s4",
+      "p42.s5",
+      "p43.s0",
+      "p43.s1",
+      "p43.s2",
+      "p43.s3",
+      "p43.s4",
+      "p44.s0",
+      "p44.s1",
+      "p44.s2",
+      "p45.s0",
+      "p45.s1",
+      "p45.s2",
+      "p45.s3",
+      "p45.s4",
+      "p46.s0",
+      "p46.s1",
+      "p46.s2",
+      "p47.s0",
+      "p48.s0",
+      "p48.s1",
+      "p49.s0",
+      "p49.s1",
+      "p49.s2",
+      "p49.s3",
+      "p49.s4"
+    ],
+    "writes_differing_from_reference": {
+      "p12.s3": [
+        "14 novembre 1982",
+        "14/11/1982"
+      ]
+    },
+    "writes_outside_reference_for_review": {},
+    "core_written": 51,
+    "core_total": 60,
+    "core_empty_reasons": {
+      "scritto con valore diverso": 1,
+      "proposta sospesa dal narratore": 8
+    },
+    "final_hold_validation": {
+      "RECORDED": 8
+    },
+    "narrations": 4,
+    "narrator_rejections": [],
+    "hold_reviews": {
+      "reason_validation": {
+        "RECORDED": 8
+      },
+      "quote_location": {},
+      "blocker_key_basis": {},
+      "invalid_references": 0,
+      "released_blocker_answered": 0,
+      "suppressed_blocker_answered": 0
+    },
+    "paired_P3": {
+      "trial": "minervino-A1",
+      "DOCX": false,
+      "core_written": 0,
+      "core_total": 60
+    }
+  },
+  {
+    "trial": "cesano-N1",
+    "document": "cesano",
+    "arm": "N",
+    "variant": "cesano-esteso",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 3,
+    "elapsed_s": 137.9,
+    "driver_errors": 10,
+    "provider_calls": 9,
+    "calls_by_kind": {
+      "planner": 3,
+      "global": 1,
+      "registry": 1,
+      "guard": 2,
+      "narrator": 2
+    },
+    "tokens": {
+      "total": 104956,
+      "prompt": 79845,
+      "completion": 25111,
+      "cached": 26240
+    },
+    "finish_reasons": {
+      "planner:stop": 3,
+      "global:stop": 1,
+      "registry:stop": 1,
+      "guard:stop": 2,
+      "narrator:stop": 2
+    },
+    "provider_failures": [],
+    "global_calls": [
+      {
+        "call": "02",
+        "seconds": 116.2,
+        "completion": 24244,
+        "reasoning": 21371,
+        "prompt": 40172,
+        "cached": 7168,
+        "share_of_limit": 0.493,
+        "finish": "stop",
+        "segment": false
+      }
+    ],
+    "rounds": 1,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "authorization:dd185f64dfec288a0e7be833",
+          "kind": "applicability",
+          "rule": "v14_authorize_participation_option"
+        },
+        {
+          "slot": 2,
+          "key": "choice:grp_partecipazione",
+          "kind": "choice",
+          "rule": "scenario_engineering_option"
+        },
+        {
+          "slot": 3,
+          "key": "field:p105.ft0",
+          "kind": "value",
+          "rule": "no_factual_values_from_USER"
+        }
+      ]
+    ],
+    "redundant_decision_confirmations": 1,
+    "same_question_three_rounds": [],
+    "revisions": {
+      "dialogue_revision": 1,
+      "generation_revision": null,
+      "attribution_safety_revision": 1
+    },
+    "initial_request_decisions": {
+      "condition:c_partecipazione": "Per questa specifica procedura scelgo la partecipazione singola soltanto come società di ingegneria, senza raggruppament"
+    },
+    "loop_guard": [],
+    "receipts": {
+      "condition:c_partecipazione": [
+        "CONDITION_TRUE",
+        true,
+        "initial_request"
+      ],
+      "authorization:dd185f64dfec288a0e7be833": [
+        "CONDITION_TRUE",
+        true,
+        null
+      ],
+      "choice:grp_partecipazione": [
+        "VALUE",
+        null,
+        null
+      ],
+      "field:p105.ft0": [
+        "SKIP",
+        null,
+        null
+      ]
+    },
+    "unaccepted_replies": [],
+    "final_holds": 0,
+    "holds_with_answered_blocker_not_released": [],
+    "open_conditions_never_answered": {},
+    "segments": null,
+    "attribution_safety_blocked": null,
+    "option_requirements": [
+      {
+        "key": "authorization:dd185f64dfec288a0e7be833",
+        "fields": [
+          "p19.ft0"
+        ],
+        "accepted": true
+      }
+    ],
+    "writes": 10,
+    "checkbox_values": {
+      "p16.cb0": false,
+      "p17.cb0": false,
+      "p18.cb0": false,
+      "p19.cb0": true,
+      "p20.cb0": false,
+      "p21.cb0": false
+    },
+    "option_region_writes_without_accepted_authorization": [],
+    "CCIAA_written": {},
+    "p19_ft0_written": "Mapi Ingegneria S.r.l.",
+    "writes_matching_reference": [
+      "p12.ft0",
+      "p12.ft1",
+      "p19.ft0"
+    ],
+    "writes_differing_from_reference": {
+      "p12.ft2": [
+        "14 novembre 1982",
+        "14/11/1982"
+      ]
+    },
+    "writes_outside_reference_for_review": {
+      "p16.cb0": false,
+      "p17.cb0": false,
+      "p18.cb0": false,
+      "p19.cb0": true,
+      "p20.cb0": false,
+      "p21.cb0": false
+    },
+    "core_written": 3,
+    "core_total": 4,
+    "core_empty_reasons": {
+      "scritto con valore diverso": 1
+    },
+    "final_hold_validation": {},
+    "narrations": 2,
+    "narrator_rejections": [],
+    "hold_reviews": {
+      "reason_validation": {},
+      "quote_location": {},
+      "blocker_key_basis": {},
+      "invalid_references": 0,
+      "released_blocker_answered": 0,
+      "suppressed_blocker_answered": 0
+    },
+    "paired_P3": {
+      "trial": "cesano-A1",
+      "DOCX": true,
+      "core_written": 3,
+      "core_total": 4
+    }
+  },
+  {
+    "trial": "craa-N1",
+    "document": "craa",
+    "arm": "N",
+    "variant": "craa-autorizza",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 3,
+    "elapsed_s": 127.8,
+    "driver_errors": 10,
+    "provider_calls": 8,
+    "calls_by_kind": {
+      "planner": 3,
+      "global": 1,
+      "registry": 1,
+      "narrator": 2,
+      "guard": 1
+    },
+    "tokens": {
+      "total": 97092,
+      "prompt": 73667,
+      "completion": 23425,
+      "cached": 24960
+    },
+    "finish_reasons": {
+      "planner:stop": 3,
+      "global:stop": 1,
+      "registry:stop": 1,
+      "narrator:stop": 2,
+      "guard:stop": 1
+    },
+    "provider_failures": [],
+    "global_calls": [
+      {
+        "call": "02",
+        "seconds": 109.0,
+        "completion": 22839,
+        "reasoning": 18816,
+        "prompt": 37793,
+        "cached": 7168,
+        "share_of_limit": 0.465,
+        "finish": "stop",
+        "segment": false
+      }
+    ],
+    "rounds": 1,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "authorization:596b4ac19a6fb45ff3cb910a",
+          "kind": "applicability",
+          "rule": "v14_full_authorization_cciaa"
+        },
+        {
+          "slot": 2,
+          "key": "condition:c_triennio",
+          "kind": "applicability",
+          "rule": "defer_unconfirmed_attestation_or_designation"
+        }
+      ]
+    ],
+    "redundant_decision_confirmations": 0,
+    "same_question_three_rounds": [],
+    "revisions": {
+      "dialogue_revision": 1,
+      "generation_revision": null,
+      "attribution_safety_revision": 1
+    },
+    "initial_request_decisions": {},
+    "loop_guard": [],
+    "receipts": {
+      "authorization:596b4ac19a6fb45ff3cb910a": [
+        "CONDITION_TRUE",
+        true,
+        null
+      ],
+      "condition:c_triennio": [
+        "SKIP",
+        null,
+        null
+      ]
+    },
+    "unaccepted_replies": [],
+    "final_holds": 0,
+    "holds_with_answered_blocker_not_released": [],
+    "open_conditions_never_answered": {},
+    "segments": null,
+    "attribution_safety_blocked": null,
+    "option_requirements": [
+      {
+        "key": "authorization:596b4ac19a6fb45ff3cb910a",
+        "fields": [
+          "t6.r0.c1",
+          "t6.r0.c3"
+        ],
+        "accepted": true
+      }
+    ],
+    "writes": 10,
+    "checkbox_values": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "CCIAA_written": {
+      "t6.r0.c3": "01234560981",
+      "t6.r0.c1": "Bari"
+    },
+    "p19_ft0_written": null,
+    "writes_matching_reference": [
+      "p12.s0",
+      "p13.s0",
+      "p14.s0",
+      "p15.s0",
+      "p16.s0",
+      "p17.s0",
+      "p18.s0",
+      "p5.s0",
+      "t6.r0.c1",
+      "t6.r0.c3"
+    ],
+    "writes_differing_from_reference": {},
+    "writes_outside_reference_for_review": {},
+    "core_written": 10,
+    "core_total": 10,
+    "core_empty_reasons": {},
+    "final_hold_validation": {},
+    "narrations": 2,
+    "narrator_rejections": [],
+    "hold_reviews": {
+      "reason_validation": {},
+      "quote_location": {},
+      "blocker_key_basis": {},
+      "invalid_references": 0,
+      "released_blocker_answered": 0,
+      "suppressed_blocker_answered": 0
+    },
+    "paired_P3": {
+      "trial": "craa-A1",
+      "DOCX": true,
+      "core_written": 10,
+      "core_total": 10
+    }
+  },
+  {
+    "trial": "catanzaro-N1",
+    "document": "catanzaro",
+    "arm": "N",
+    "variant": "catanzaro-controllo",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 3,
+    "elapsed_s": 189.7,
+    "driver_errors": 10,
+    "provider_calls": 8,
+    "calls_by_kind": {
+      "planner": 3,
+      "global": 1,
+      "registry": 1,
+      "guard": 1,
+      "narrator": 2
+    },
+    "tokens": {
+      "total": 160733,
+      "prompt": 121152,
+      "completion": 39581,
+      "cached": 23808
+    },
+    "finish_reasons": {
+      "planner:stop": 3,
+      "global:stop": 1,
+      "registry:stop": 1,
+      "guard:stop": 1,
+      "narrator:stop": 2
+    },
+    "provider_failures": [],
+    "global_calls": [
+      {
+        "call": "02",
+        "seconds": 166.2,
+        "completion": 38741,
+        "reasoning": 28960,
+        "prompt": 84144,
+        "cached": 7168,
+        "share_of_limit": 0.788,
+        "finish": "stop",
+        "segment": false
+      }
+    ],
+    "rounds": 1,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "field:t0.r3.c1",
+          "kind": "value",
+          "rule": "no_factual_values_from_USER"
+        },
+        {
+          "slot": 2,
+          "key": "field:t25.r3.c1",
+          "kind": "value",
+          "rule": "no_factual_values_from_USER"
+        }
+      ]
+    ],
+    "redundant_decision_confirmations": 0,
+    "same_question_three_rounds": [],
+    "revisions": {
+      "dialogue_revision": 1,
+      "generation_revision": null,
+      "attribution_safety_revision": 1
+    },
+    "initial_request_decisions": {
+      "condition:c_soc_ing": "Per questa specifica procedura scelgo la partecipazione singola soltanto come società di ingegneria, senza raggruppament",
+      "condition:c_procuratore": "Il firmatario scelto per questa domanda è Leonardo Montemurro, rappresentante legale"
+    },
+    "loop_guard": [],
+    "receipts": {
+      "condition:c_soc_ing": [
+        "CONDITION_TRUE",
+        true,
+        "initial_request"
+      ],
+      "condition:c_procuratore": [
+        "CONDITION_FALSE",
+        false,
+        "initial_request"
+      ],
+      "field:t0.r3.c1": [
+        "SKIP",
+        null,
+        null
+      ],
+      "field:t25.r3.c1": [
+        "SKIP",
+        null,
+        null
+      ]
+    },
+    "unaccepted_replies": [],
+    "final_holds": 2,
+    "holds_with_answered_blocker_not_released": [],
+    "open_conditions_never_answered": {},
+    "segments": null,
+    "attribution_safety_blocked": null,
+    "option_requirements": [],
+    "writes": 13,
+    "checkbox_values": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "CCIAA_written": {},
+    "p19_ft0_written": null,
+    "writes_matching_reference": [
+      "t0.r10.c1",
+      "t0.r5.c1",
+      "t0.r6.c1",
+      "t0.r7.c1",
+      "t0.r9.c1",
+      "t25.r0.c1",
+      "t25.r4.c1",
+      "t25.r4.c3",
+      "t26.r0.c1",
+      "t26.r1.c1",
+      "t26.r3.c1",
+      "t26.r4.c1",
+      "t44.r1.c0"
+    ],
+    "writes_differing_from_reference": {},
+    "writes_outside_reference_for_review": {},
+    "core_written": 13,
+    "core_total": 31,
+    "core_empty_reasons": {
+      "proposta sospesa dal narratore": 2,
+      "nessuna proposta: EXPLAINED_UNFILLED": 12,
+      "nessuna proposta: CLARIFICATION": 2,
+      "proposta grounded non esportata (altro gate)": 1,
+      "nessuna proposta: REJECTED_EXPLANATION": 1
+    },
+    "final_hold_validation": {
+      "RECORDED": 2
+    },
+    "narrations": 2,
+    "narrator_rejections": [],
+    "hold_reviews": {
+      "reason_validation": {
+        "RECORDED": 2
+      },
+      "quote_location": {},
+      "blocker_key_basis": {},
+      "invalid_references": 0,
+      "released_blocker_answered": 0,
+      "suppressed_blocker_answered": 0
+    },
+    "paired_P3": {
+      "trial": "catanzaro-A1",
+      "DOCX": true,
+      "core_written": 14,
+      "core_total": 31
+    }
+  },
+  {
+    "trial": "minervino-N2",
+    "document": "minervino",
+    "arm": "N",
+    "variant": "minervino-controllo",
+    "DOCX": false,
+    "final_status": "FAILED",
+    "user_messages": 2,
+    "elapsed_s": 1217.0,
+    "driver_errors": 6,
+    "provider_calls": 3,
+    "calls_by_kind": {
+      "planner": 2,
+      "global": 1
+    },
+    "tokens": {
+      "total": 119290,
+      "prompt": 70068,
+      "completion": 49222,
+      "cached": 13056
+    },
+    "finish_reasons": {
+      "planner:stop": 2,
+      "global:length": 1
+    },
+    "provider_failures": [],
+    "global_calls": [
+      {
+        "call": "02",
+        "seconds": 211.1,
+        "completion": 49152,
+        "reasoning": 35706,
+        "prompt": 61884,
+        "cached": 7168,
+        "share_of_limit": 1.0,
+        "finish": "length",
+        "segment": false
+      }
+    ],
+    "rounds": 0,
+    "slots_asked": [],
+    "redundant_decision_confirmations": 0,
+    "same_question_three_rounds": [],
+    "revisions": {
+      "dialogue_revision": 1,
+      "generation_revision": null,
+      "attribution_safety_revision": 1
+    },
+    "initial_request_decisions": {},
+    "loop_guard": [],
+    "receipts": {},
+    "unaccepted_replies": [],
+    "final_holds": 0,
+    "holds_with_answered_blocker_not_released": [],
+    "open_conditions_never_answered": {},
+    "segments": null,
+    "attribution_safety_blocked": null,
+    "option_requirements": [],
+    "writes": 0,
+    "checkbox_values": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "CCIAA_written": {},
+    "p19_ft0_written": null,
+    "writes_matching_reference": [],
+    "writes_differing_from_reference": {},
+    "writes_outside_reference_for_review": {},
+    "core_written": 0,
+    "core_total": 60,
+    "core_empty_reasons": {
+      "nessuna proposta: ?": 60
+    },
+    "final_hold_validation": {},
+    "narrations": 0,
+    "narrator_rejections": [],
+    "hold_reviews": {
+      "reason_validation": {},
+      "quote_location": {},
+      "blocker_key_basis": {},
+      "invalid_references": 0,
+      "released_blocker_answered": 0,
+      "suppressed_blocker_answered": 0
+    },
+    "paired_P3": {
+      "trial": "minervino-A2",
+      "DOCX": true,
+      "core_written": 16,
+      "core_total": 60
+    }
+  },
+  {
+    "trial": "cesano-N2",
+    "document": "cesano",
+    "arm": "N",
+    "variant": "cesano-breve",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 3,
+    "elapsed_s": 110.0,
+    "driver_errors": 10,
+    "provider_calls": 9,
+    "calls_by_kind": {
+      "planner": 3,
+      "global": 1,
+      "registry": 1,
+      "guard": 2,
+      "narrator": 2
+    },
+    "tokens": {
+      "total": 95967,
+      "prompt": 77279,
+      "completion": 18688,
+      "cached": 25344
+    },
+    "finish_reasons": {
+      "planner:stop": 3,
+      "global:stop": 1,
+      "registry:stop": 1,
+      "guard:stop": 2,
+      "narrator:stop": 2
+    },
+    "provider_failures": [],
+    "global_calls": [
+      {
+        "call": "02",
+        "seconds": 88.2,
+        "completion": 18083,
+        "reasoning": 16061,
+        "prompt": 40172,
+        "cached": 7168,
+        "share_of_limit": 0.368,
+        "finish": "stop",
+        "segment": false
+      }
+    ],
+    "rounds": 1,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "authorization:26bfda6dae1d1995e2484b14",
+          "kind": "applicability",
+          "rule": "v14_authorize_participation_option"
+        },
+        {
+          "slot": 2,
+          "key": "field:p105.ft0",
+          "kind": "value",
+          "rule": "no_factual_values_from_USER"
+        }
+      ]
+    ],
+    "redundant_decision_confirmations": 0,
+    "same_question_three_rounds": [],
+    "revisions": {
+      "dialogue_revision": 1,
+      "generation_revision": null,
+      "attribution_safety_revision": 1
+    },
+    "initial_request_decisions": {
+      "condition:c_p19": "scelgo la partecipazione singola soltanto come società di ingegneria"
+    },
+    "loop_guard": [],
+    "receipts": {
+      "condition:c_p19": [
+        "CONDITION_TRUE",
+        true,
+        "initial_request"
+      ],
+      "authorization:26bfda6dae1d1995e2484b14": [
+        "CONDITION_TRUE",
+        true,
+        null
+      ],
+      "field:p105.ft0": [
+        "SKIP",
+        null,
+        null
+      ]
+    },
+    "unaccepted_replies": [],
+    "final_holds": 0,
+    "holds_with_answered_blocker_not_released": [],
+    "open_conditions_never_answered": {},
+    "segments": null,
+    "attribution_safety_blocked": null,
+    "option_requirements": [
+      {
+        "key": "authorization:26bfda6dae1d1995e2484b14",
+        "fields": [
+          "p19.ft0"
+        ],
+        "accepted": true
+      }
+    ],
+    "writes": 4,
+    "checkbox_values": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "CCIAA_written": {},
+    "p19_ft0_written": "Mapi Ingegneria S.r.l.",
+    "writes_matching_reference": [
+      "p12.ft0",
+      "p12.ft1",
+      "p19.ft0"
+    ],
+    "writes_differing_from_reference": {
+      "p12.ft2": [
+        "14 novembre 1982",
+        "14/11/1982"
+      ]
+    },
+    "writes_outside_reference_for_review": {},
+    "core_written": 3,
+    "core_total": 4,
+    "core_empty_reasons": {
+      "scritto con valore diverso": 1
+    },
+    "final_hold_validation": {},
+    "narrations": 2,
+    "narrator_rejections": [],
+    "hold_reviews": {
+      "reason_validation": {},
+      "quote_location": {},
+      "blocker_key_basis": {},
+      "invalid_references": 0,
+      "released_blocker_answered": 0,
+      "suppressed_blocker_answered": 0
+    },
+    "paired_P3": {
+      "trial": "cesano-A2",
+      "DOCX": true,
+      "core_written": 3,
+      "core_total": 4
+    }
+  },
+  {
+    "trial": "craa-N2",
+    "document": "craa",
+    "arm": "N",
+    "variant": "craa-ramo",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 3,
+    "elapsed_s": 146.5,
+    "driver_errors": 10,
+    "provider_calls": 9,
+    "calls_by_kind": {
+      "planner": 3,
+      "global": 1,
+      "registry": 1,
+      "guard": 2,
+      "narrator": 2
+    },
+    "tokens": {
+      "total": 105481,
+      "prompt": 78857,
+      "completion": 26624,
+      "cached": 26240
+    },
+    "finish_reasons": {
+      "planner:stop": 3,
+      "global:stop": 1,
+      "registry:stop": 1,
+      "guard:stop": 2,
+      "narrator:stop": 2
+    },
+    "provider_failures": [],
+    "global_calls": [
+      {
+        "call": "02",
+        "seconds": 126.4,
+        "completion": 25681,
+        "reasoning": 20753,
+        "prompt": 37793,
+        "cached": 7168,
+        "share_of_limit": 0.522,
+        "finish": "stop",
+        "segment": false
+      }
+    ],
+    "rounds": 1,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "authorization:19895aa1b84a47672eb13868",
+          "kind": "applicability",
+          "rule": "v14_defer_cciaa_attestation"
+        },
+        {
+          "slot": 2,
+          "key": "field:p124.s0",
+          "kind": "value",
+          "rule": "no_factual_values_from_USER"
+        },
+        {
+          "slot": 3,
+          "key": "field:p126.s0",
+          "kind": "value",
+          "rule": "no_factual_values_from_USER"
+        }
+      ]
+    ],
+    "redundant_decision_confirmations": 0,
+    "same_question_three_rounds": [],
+    "revisions": {
+      "dialogue_revision": 1,
+      "generation_revision": null,
+      "attribution_safety_revision": 1
+    },
+    "initial_request_decisions": {
+      "condition:c_impresa_anagrafica": "Per questa specifica procedura scelgo la partecipazione singola soltanto come società di ingegneria, senza raggruppament",
+      "condition:c_societa_cciaa": "Per questa specifica procedura scelgo la partecipazione singola soltanto come società di ingegneria, senza raggruppament",
+      "condition:c_firmatario": "Il firmatario scelto per questa domanda è Leonardo Montemurro, rappresentante legale"
+    },
+    "loop_guard": [],
+    "receipts": {
+      "condition:c_impresa_anagrafica": [
+        "CONDITION_TRUE",
+        true,
+        "initial_request"
+      ],
+      "condition:c_societa_cciaa": [
+        "CONDITION_TRUE",
+        true,
+        "initial_request"
+      ],
+      "condition:c_firmatario": [
+        "CONDITION_TRUE",
+        true,
+        "initial_request"
+      ],
+      "authorization:19895aa1b84a47672eb13868": [
+        "SKIP",
+        null,
+        null
+      ],
+      "field:p124.s0": [
+        "SKIP",
+        null,
+        null
+      ],
+      "field:p126.s0": [
+        "SKIP",
+        null,
+        null
+      ]
+    },
+    "unaccepted_replies": [],
+    "final_holds": 0,
+    "holds_with_answered_blocker_not_released": [],
+    "open_conditions_never_answered": {},
+    "segments": null,
+    "attribution_safety_blocked": null,
+    "option_requirements": [
+      {
+        "key": "authorization:19895aa1b84a47672eb13868",
+        "fields": [
+          "t6.r0.c1",
+          "t6.r0.c3"
+        ],
+        "accepted": false
+      }
+    ],
+    "writes": 8,
+    "checkbox_values": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "CCIAA_written": {},
+    "p19_ft0_written": null,
+    "writes_matching_reference": [
+      "p12.s0",
+      "p13.s0",
+      "p14.s0",
+      "p15.s0",
+      "p16.s0",
+      "p17.s0",
+      "p18.s0",
+      "p5.s0"
+    ],
+    "writes_differing_from_reference": {},
+    "writes_outside_reference_for_review": {},
+    "core_written": 8,
+    "core_total": 10,
+    "core_empty_reasons": {
+      "autorizzazione non prestata": 2
+    },
+    "final_hold_validation": {},
+    "narrations": 2,
+    "narrator_rejections": [],
+    "hold_reviews": {
+      "reason_validation": {},
+      "quote_location": {},
+      "blocker_key_basis": {},
+      "invalid_references": 0,
+      "released_blocker_answered": 0,
+      "suppressed_blocker_answered": 0
+    },
+    "paired_P3": {
+      "trial": "craa-A2",
+      "DOCX": true,
+      "core_written": 8,
+      "core_total": 10
+    }
+  },
+  {
+    "trial": "catanzaro-N2",
+    "document": "catanzaro",
+    "arm": "N",
+    "variant": "catanzaro-controllo",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 2,
+    "elapsed_s": 152.4,
+    "driver_errors": 10,
+    "provider_calls": 6,
+    "calls_by_kind": {
+      "planner": 2,
+      "global": 1,
+      "registry": 1,
+      "guard": 1,
+      "narrator": 1
+    },
+    "tokens": {
+      "total": 138986,
+      "prompt": 106568,
+      "completion": 32418,
+      "cached": 18688
+    },
+    "finish_reasons": {
+      "planner:stop": 2,
+      "global:stop": 1,
+      "registry:stop": 1,
+      "guard:stop": 1,
+      "narrator:stop": 1
+    },
+    "provider_failures": [],
+    "global_calls": [
+      {
+        "call": "02",
+        "seconds": 135.9,
+        "completion": 31751,
+        "reasoning": 22835,
+        "prompt": 84144,
+        "cached": 7168,
+        "share_of_limit": 0.646,
+        "finish": "stop",
+        "segment": false
+      }
+    ],
+    "rounds": 0,
+    "slots_asked": [],
+    "redundant_decision_confirmations": 0,
+    "same_question_three_rounds": [],
+    "revisions": {
+      "dialogue_revision": 1,
+      "generation_revision": null,
+      "attribution_safety_revision": 1
+    },
+    "initial_request_decisions": {
+      "condition:c_tipo_ing": "Per questa specifica procedura scelgo la partecipazione singola soltanto come società di ingegneria, senza raggruppament"
+    },
+    "loop_guard": [],
+    "receipts": {
+      "condition:c_tipo_ing": [
+        "CONDITION_TRUE",
+        true,
+        "initial_request"
+      ]
+    },
+    "unaccepted_replies": [],
+    "final_holds": 6,
+    "holds_with_answered_blocker_not_released": [],
+    "open_conditions_never_answered": {},
+    "segments": null,
+    "attribution_safety_blocked": null,
+    "option_requirements": [],
+    "writes": 8,
+    "checkbox_values": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "CCIAA_written": {},
+    "p19_ft0_written": null,
+    "writes_matching_reference": [
+      "t0.r10.c1",
+      "t0.r5.c1",
+      "t0.r6.c1",
+      "t0.r7.c1",
+      "t0.r9.c1",
+      "t25.r0.c1",
+      "t25.r4.c1",
+      "t25.r4.c3"
+    ],
+    "writes_differing_from_reference": {},
+    "writes_outside_reference_for_review": {},
+    "core_written": 8,
+    "core_total": 31,
+    "core_empty_reasons": {
+      "proposta sospesa dal narratore": 6,
+      "nessuna proposta: EXPLAINED_UNFILLED": 14,
+      "proposta grounded non esportata (altro gate)": 2,
+      "nessuna proposta: UNASSESSED": 1
+    },
+    "final_hold_validation": {
+      "RECORDED": 6
+    },
+    "narrations": 1,
+    "narrator_rejections": [],
+    "hold_reviews": {
+      "reason_validation": {
+        "RECORDED": 6
+      },
+      "quote_location": {},
+      "blocker_key_basis": {},
+      "invalid_references": 0,
+      "released_blocker_answered": 0,
+      "suppressed_blocker_answered": 0
+    },
+    "paired_P3": {
+      "trial": "catanzaro-A2",
+      "DOCX": false,
+      "core_written": 0,
+      "core_total": 31
+    }
+  }
+]

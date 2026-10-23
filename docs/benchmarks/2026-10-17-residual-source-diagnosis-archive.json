@@ -1,0 +1,11 @@
+{
+  "archive": "docs/benchmarks/2026-10-17-residual-source-diagnosis-audit.tar.gz",
+  "sha256": "def45875b6d6aa31d524f229cf1657e2ff3bc079e4541c8e0dd2a2c8bee12c37",
+  "archive_bytes": 428591,
+  "file_count": 17,
+  "uncompressed_file_bytes": 2458181,
+  "all_member_hashes_verified": true,
+  "raw_directory": "backend/data/compilation-audit/residual-source-20261017-01",
+  "contains_previous_replay_bundle": false,
+  "reproduction_dependency": "docs/benchmarks/2026-10-17-field-context-audit.tar.gz"
+}

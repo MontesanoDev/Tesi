@@ -1,0 +1,9 @@
+{
+  "path": "docs/benchmarks/2026-10-17-binding-kiss-audit.tar.gz",
+  "sha256": "79ea9798c5fa744732e81203226a3f2ae290325cba633028745d20f6ddacd3cb",
+  "files": 40,
+  "uncompressed_bytes": 5292563,
+  "compressed_bytes": 643276,
+  "archive_contents_verified": true,
+  "scope": "saved local replay, no provider, DB, credentials or DOCX export"
+}

@@ -1,0 +1,398 @@
+{
+ "version": 3,
+ "document": "soresa2023",
+ "authored_before_inference": true,
+ "FORM_sha256": "81b980a62303820e2f4abd36b02795cae605813485421e7190e3184bbbd2331d",
+ "scenario": "input/scenario-soresa2023.json",
+ "scenario_sha256": "79ee17521a9b453553dfb0d9c20fd036f1e0c4a45db2e73a5f7e40fcf08ea015",
+ "variant": "generico",
+ "runtime_source": "nuova-source",
+ "destinations": [
+  {
+   "candidate_id": "p8.s0",
+   "recognized": true,
+   "label": "Il sottoscritto",
+   "value": "Leonardo Montemurro",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "name",
+   "SOURCE_chunks": [
+    -59,
+    -60
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p8.s1",
+   "recognized": true,
+   "label": "nato a",
+   "value": "Lecce (LE)",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "birthplace",
+   "SOURCE_chunks": [
+    -60
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p8.s2",
+   "recognized": true,
+   "label": "il",
+   "value": "14 novembre 1982",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "birthdate",
+   "SOURCE_chunks": [
+    -60
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p8.s3",
+   "recognized": true,
+   "label": "residente",
+   "value": "Bari (BA)",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "residence_municipality",
+   "SOURCE_chunks": [
+    -58,
+    -60,
+    -62,
+    -63
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p8.s4",
+   "recognized": true,
+   "label": "alla via (residenza)",
+   "value": "Via Amedeo 24",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "residence_street",
+   "SOURCE_chunks": [
+    -60
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p8.s5",
+   "recognized": true,
+   "label": "in qualità di",
+   "value": "Amministratore unico e rappresentante legale della societa",
+   "match": "equivalent",
+   "accepted_values": [
+    "legale rappresentante",
+    "rappresentante legale",
+    "amministratore unico"
+   ],
+   "subject": "Leonardo Montemurro",
+   "property": "role",
+   "SOURCE_chunks": [
+    -59
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p8.s6",
+   "recognized": true,
+   "label": "con sede legale/studio professionale",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "registered_office_municipality",
+   "SOURCE_chunks": [
+    -57,
+    -58,
+    -60,
+    -61,
+    -62,
+    -63
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p8.s7",
+   "recognized": true,
+   "label": "alla via (sede)",
+   "value": "Via Giovanni Amendola 172/C",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "registered_office_street",
+   "SOURCE_chunks": [
+    -58
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p8.s8",
+   "recognized": true,
+   "label": "n. telefono",
+   "value": "+39 080 000 2040",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "phone",
+   "SOURCE_chunks": [
+    -58,
+    -59
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p8.s9",
+   "recognized": true,
+   "label": "PEC",
+   "value": "mapi.ingegneria@pec.demo",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "pec",
+   "SOURCE_chunks": [
+    -58
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p9.s0",
+   "recognized": true,
+   "label": "Codice fiscale",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "accepted_values": [
+    "MNTLRD82S14E506X"
+   ],
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "tax_code",
+   "SOURCE_chunks": [
+    -57,
+    -58
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p9.s1",
+   "recognized": true,
+   "label": "Partita Iva",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "vat_number",
+   "SOURCE_chunks": [
+    -57,
+    -58
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:7 (operatore economico singolo) + scenario USER: partecipazione singola come società di ingegneria"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p115.s1",
+   "recognized": true,
+   "label": "codice fiscale (domicilio fiscale)",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "tax_code",
+   "SOURCE_chunks": [
+    -57,
+    -58
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "dichiarazione generale (paragraph:115) senza ramo alternativo"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p115.s2",
+   "recognized": true,
+   "label": "partita IVA",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "vat_number",
+   "SOURCE_chunks": [
+    -57,
+    -58
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "dichiarazione generale (paragraph:115) senza ramo alternativo"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t0.r1.c0",
+   "recognized": true,
+   "label": "Denominazione operatore economico / Sede legale",
+   "value": "Mapi Ingegneria S.r.l. - Via Giovanni Amendola 172/C, 70126 Bari (BA)",
+   "match": "all_of",
+   "all_of": [
+    "Mapi Ingegneria S.r.l.",
+    "Via Giovanni Amendola 172/C",
+    "Bari"
+   ],
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "name_and_registered_office",
+   "SOURCE_chunks": [
+    -63,
+    -62,
+    -61,
+    -60,
+    -58,
+    -57
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "FORM paragraph:66 'come singolo operatore economico' + scenario USER"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  }
+ ],
+ "unrecognized_core_destinations": [],
+ "USER_decisions_expected": {},
+ "pertinent_unresolved_active_fields": [
+  "p115.s0"
+ ],
+ "not_core_judged_if_written": {
+  "p115.s0": "domicilio fiscale: non attestato come tale nella SOURCE",
+  "p20-p54": "blocchi dei componenti di RT/consorzi non costituiti: ramo inattivo",
+  "t1, t2": "composizione RT e consorziate: ramo inattivo",
+  "p119, p127, p147": "concordato, avvalimento, motivazioni di accesso agli atti: non documentati o decisioni USER non prese"
+ },
+ "parser_limits": [
+  "caselle disegnate come caratteri '[ ]' (natura dell'operatore, forma di partecipazione, avvalimento, subappalto, accesso agli atti): non scrivibili, la scelta USER resta solo nel dialogo",
+  "numero CCIAA (paragraph:101-102): nessuna posizione; attestazione non decisa nello scenario, fuori denominatore"
+ ],
+ "permitted_equivalence": "Case, spaces, title prefix and equivalent dates; fuller literal SOURCE values accepted only if property/subject/granularity correct; t0.r1.c0 requires all listed parts",
+ "protected": "No signatures, no attestations/preferences/designations without scenario decision; inactive branches remain blank",
+ "registered_UTC": "2026-10-22T10:47:07+00:00",
+ "condition_4": {
+  "core": 15,
+  "recognized": 15,
+  "share": 1.0,
+  "passes": true
+ }
+}

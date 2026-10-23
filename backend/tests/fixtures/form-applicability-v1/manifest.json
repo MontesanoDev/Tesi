@@ -1,0 +1,25 @@
+{
+  "origin": "benchmark ufficiale/diagnosi-architetturale-v12-20261020",
+  "cases": [
+    {
+      "trial": "catanzaro/B0/rep-3",
+      "response_SHA256": "4b5a8ccdd618496c2c6ee0cbff2e49b471e2d947866e0f9538c897143cd3c699",
+      "state_origin_SHA256": "99b987a0287a0f649291d915753235078d28dea2f35787b586026c49fac4f86d"
+    },
+    {
+      "trial": "catanzaro/E1/rep-3",
+      "response_SHA256": "e8bef0da2e2fdf48670f0c71b91666106337b4207ca5f8b70be5fa820afc01ee",
+      "state_origin_SHA256": "789995369911a415d6b4c8d1c40b5572d19b13a2a896752847978f28ac26eb7f"
+    }
+  ],
+  "files": {
+    "E1-3-writes.json": "692cf024c47df50aa47c5a4ea3ca08f39e873fcf77e3245371a9aee1ac632588",
+    "input.json": "9477f8879b7ed62f01c5ce0b05ff15bf3d12137f3dc74519ff096b514b959d4d",
+    "B0-3-state.json": "28752f812cb499e04b586e1b6f09587a03c5e0e1353cbf6e8816dd3f00d7e0ae",
+    "B0-3-writes.json": "506f94ec37d91551b0d36317c325417441fb74259e5b46c2e2ace910119b64fa",
+    "E1-3-state.json": "9a18ad6649338452289f7fdfd8c114c020c2e96fa529d4b7f08869510c965f75",
+    "E1-3-response.txt": "e8bef0da2e2fdf48670f0c71b91666106337b4207ca5f8b70be5fa820afc01ee",
+    "B0-3-response.txt": "4b5a8ccdd618496c2c6ee0cbff2e49b471e2d947866e0f9538c897143cd3c699",
+    "original.docx": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563"
+  }
+}

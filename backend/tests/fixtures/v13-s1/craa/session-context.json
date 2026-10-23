@@ -1,0 +1,184 @@
+{
+  "writable_ids": [
+    "p10.s0",
+    "p115.s0",
+    "p12.s0",
+    "p124.s0",
+    "p126.s0",
+    "p13.s0",
+    "p14.s0",
+    "p15.s0",
+    "p16.s0",
+    "p17.s0",
+    "p18.s0",
+    "p5.s0",
+    "p51.s0",
+    "p52.s0",
+    "p55.s0",
+    "p70.s0",
+    "p70.s1",
+    "p70.s2",
+    "p70.s3",
+    "p75.s0",
+    "p8.s0",
+    "p8.s1",
+    "p8.s2",
+    "p8.s3",
+    "p8.s4",
+    "p89.s0",
+    "p9.s0",
+    "p9.s1",
+    "p9.s2",
+    "p9.s3",
+    "p9.s4",
+    "p90.s0",
+    "p90.s1",
+    "p91.s0",
+    "p91.s1",
+    "p92.s0",
+    "p92.s1",
+    "t1.r0.c1",
+    "t1.r1.c1",
+    "t6.r0.c1",
+    "t6.r0.c3",
+    "t7.r1.c0",
+    "t7.r1.c1",
+    "t7.r1.c2",
+    "t7.r1.c3",
+    "t7.r1.c4",
+    "t7.r2.c0",
+    "t7.r2.c1",
+    "t7.r2.c2",
+    "t7.r2.c3",
+    "t7.r2.c4"
+  ],
+  "dialogue": {
+    "message": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+    "phase": "READY",
+    "empty_export_offered": false,
+    "question": null,
+    "reviewed_candidate_ids": [
+      "p12.s0",
+      "p13.s0",
+      "p14.s0",
+      "p15.s0",
+      "p16.s0",
+      "p17.s0",
+      "p18.s0",
+      "t6.r0.c1",
+      "t6.r0.c3"
+    ],
+    "held_candidate_ids": [],
+    "hold_records": {},
+    "hold_transition": {
+      "review_id": "8f4e32676b6b436587aa407974ea425b",
+      "new": [],
+      "confirmed": [],
+      "inherited": [],
+      "released": [],
+      "suppressed_new": [],
+      "rejected_redundant": [],
+      "model_new": [],
+      "model_confirmed": [],
+      "model_decisions": {}
+    },
+    "reviewed_candidate_fingerprints": {
+      "p12.s0": "a433b5c9a96844fb939d16af69f6fb6359e179a05057f6ca3090eb98448e70db",
+      "p13.s0": "7b47e52bddb26b8a96ad9fe1b416f8bdf72364954e7d455128ba5cd920192dce",
+      "p14.s0": "a4b68da84633aedd851088c43dfd7cf4ecb2460fe96fc93c742c8bed99b01b5d",
+      "p15.s0": "98df0ae9886edf5a98272143ab9b8381b527ca6f65b75089e4c4c35506f56777",
+      "p16.s0": "0aa74cc435f36d84a66f059768e57f2cf76fd7b815396a7945a26e78e07338ce",
+      "p17.s0": "cd874f7cc6b4bfa805be2a198bcb8e9da3cc3f345671fc9f25dd7e66ed98b6fd",
+      "p18.s0": "9629f878ff8ace0499d4e3e255512198314b768d7a516bce59652c390a35882c",
+      "t6.r0.c1": "d941ba699eb130380cedaf68f9fe13d790eba4042f15f036b97b60076312debe",
+      "t6.r0.c3": "d841cb68ae4325813514bb6806577fb868e5c2dd0011ccbc1e90de037cb1e6a9"
+    },
+    "review_pending": false,
+    "review_overview": null,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 8095,
+      "completion_tokens": 19,
+      "total_tokens": 8114,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 5279
+    },
+    "ai_seconds": 0.9225715160000618,
+    "http_calls": 1,
+    "presentation_version": 4,
+    "resuming": false,
+    "answers": {
+      "condition:c_impresa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Sì. Per questa specifica domanda scelgo Leonardo Montemurro come firmatario, rappresentante legale di Mapi Ingegneria S.r.l.; la società partecipa in forma singola.",
+        "provenance": "USER",
+        "label": "Ramo del dichiarante per l'impresa non confermato",
+        "question": "Confermi che il dichiarante agisce come titolare, legale rappresentante o procuratore dell'impresa?",
+        "applies": true
+      },
+      "condition:c_societa": {
+        "action": "SKIP",
+        "user_quote": "Rinvio la conferma sull’iscrizione per un’attività coerente con la classe merceologica: categorie e classi non sono ancora decise, non sto attestando questo requisito.",
+        "provenance": "USER",
+        "label": "Ramo società non confermato",
+        "question": "Confermi che la richiesta di iscrizione è presentata per una società, con iscrizione alla CCIAA per un'attività coerente con la classe merceologica?",
+        "affected_fields": [
+          "t6.r0.c1",
+          "t6.r0.c3"
+        ]
+      },
+      "condition:c_fatturato": {
+        "action": "SKIP",
+        "user_quote": "Rinvio la dichiarazione sul fatturato del miglior triennio dell’ultimo quinquennio: non la confermo e non indico un importo.",
+        "provenance": "USER",
+        "label": "Requisito economico e periodo di riferimento non confermati",
+        "question": "Confermi che l'impresa possiede un fatturato globale complessivo, riferito al miglior triennio dell'ultimo quinquennio disponibile, pari all'importo richiesto?",
+        "affected_fields": [
+          "p90.s1",
+          "p91.s1"
+        ]
+      }
+    },
+    "user_values": {},
+    "latest_turn": {
+      "accepted": [
+        {
+          "action": "CONDITION_TRUE",
+          "user_quote": "Sì. Per questa specifica domanda scelgo Leonardo Montemurro come firmatario, rappresentante legale di Mapi Ingegneria S.r.l.; la società partecipa in forma singola.",
+          "provenance": "USER",
+          "label": "Ramo del dichiarante per l'impresa non confermato",
+          "question": "Confermi che il dichiarante agisce come titolare, legale rappresentante o procuratore dell'impresa?",
+          "applies": true
+        },
+        {
+          "action": "SKIP",
+          "user_quote": "Rinvio la conferma sull’iscrizione per un’attività coerente con la classe merceologica: categorie e classi non sono ancora decise, non sto attestando questo requisito.",
+          "provenance": "USER",
+          "label": "Ramo società non confermato",
+          "question": "Confermi che la richiesta di iscrizione è presentata per una società, con iscrizione alla CCIAA per un'attività coerente con la classe merceologica?"
+        },
+        {
+          "action": "SKIP",
+          "user_quote": "Rinvio la dichiarazione sul fatturato del miglior triennio dell’ultimo quinquennio: non la confermo e non indico un importo.",
+          "provenance": "USER",
+          "label": "Requisito economico e periodo di riferimento non confermati",
+          "question": "Confermi che l'impresa possiede un fatturato globale complessivo, riferito al miglior triennio dell'ultimo quinquennio disponibile, pari all'importo richiesto?"
+        }
+      ],
+      "unaccepted": []
+    },
+    "user_turns": 1
+  },
+  "user_context": [
+    {
+      "kind": "recorded_request",
+      "provenance": "USER",
+      "turn_id": 277,
+      "user_quote": "Compila una bozza parziale della domanda Craa per Mapi Ingegneria S.r.l. Per questa specifica procedura scelgo la partecipazione singola soltanto come società di ingegneria, senza raggruppamenti o consorzi e senza partecipazioni in altre forme. Il firmatario scelto per questa domanda è Leonardo Montemurro, rappresentante legale: dati, ruolo e poteri devono comunque essere verificati nelle SOURCE. Usa i dati aziendali documentati riferiti al 15 ottobre 2026. Preferenze, professionisti esecutori designati, integrazione delle prestazioni, attestazioni, consensi procedurali, allegati, luogo e data restano da decidere. Non compilare firme o dichiarazioni non confermate. Chiedimi le decisioni mancanti; prima dell'export chiedimi conferma della bozza parziale."
+    }
+  ],
+  "project_id": "baseline-v12-craa"
+}

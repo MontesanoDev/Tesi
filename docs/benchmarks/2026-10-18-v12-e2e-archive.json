@@ -1,0 +1,28 @@
+{
+  "archive": "2026-10-18-v12-e2e-audit.tar.gz",
+  "sha256": "34c52bafb88e302f7e6ce4422af49c21fd28d1d8e8e6c94c374f0e7e034e9209",
+  "bytes": 22891729,
+  "file_count": 115,
+  "uncompressed_file_bytes": 40694164,
+  "verified_all_members_against_files": true,
+  "raw_directory": "backend/data/compilation-audit/ui-v12-e2e-20261018-01",
+  "exclusions": {
+    "full_original_trace": {
+      "original_trace_local_only": "browser-trace.zip",
+      "original_bytes": 980931894,
+      "original_sha256": "6270d00af8ebcf1b591552e7fb314f0de32429144478d9cec64c57e94eeb3236",
+      "original_frames": 9384,
+      "sampled_trace": "browser-trace-sampled.zip",
+      "sampled_bytes": 3722174,
+      "sampled_frames": 34,
+      "sampling_ms": 5000,
+      "all_api_dom_and_action_events_preserved": true,
+      "full_video_preserved_and_backed_up": true,
+      "original_trace_excluded_from_public_backup_due_size": true
+    },
+    "private_runtime": ".tools/ui-v12-e2e-20261018-01 (DB, ai-key, private storage clone)"
+  },
+  "includes_video_complete": true,
+  "includes_trace_sampled": true,
+  "active_credential_scan_passed": true
+}

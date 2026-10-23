@@ -1,0 +1,8 @@
+{
+  "model": "deepseek-flash",
+  "base_url": "https://api.deepseek.com",
+  "provider": "deepseek",
+  "profile_id": "2457f8fd35564874b6374cf29a4653f9",
+  "context_window": 32768,
+  "thinking": false
+}

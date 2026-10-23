@@ -1,0 +1,1538 @@
+[
+  {
+    "candidate_id": "p43.s0",
+    "subject": "Luca Ferri",
+    "label": "Socio Luca Ferri: Nome",
+    "model_value": "Luca Ferri",
+    "expected": "Ing. Luca Ferri",
+    "model_conforms": true,
+    "fact_id": "f_luca_socio_name",
+    "binding_id": "b_luca_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Luca Ferri",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "Luca Ferri"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p43.s1",
+    "subject": "Luca Ferri",
+    "label": "Socio Luca Ferri: Qualifica",
+    "model_value": "Ingegnere",
+    "expected": "Ingegnere",
+    "model_conforms": true,
+    "fact_id": "f_luca_socio_qualifica",
+    "binding_id": "b_luca_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Ingegnere",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "Ingegnere"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p43.s2",
+    "subject": "Luca Ferri",
+    "label": "Socio Luca Ferri: CF",
+    "model_value": "FRRLCU80A01A662K",
+    "expected": "FRRLCU80A01A662K",
+    "model_conforms": true,
+    "fact_id": "f_luca_socio_cf",
+    "binding_id": "b_luca_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "FRRLCU80A01A662K",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "FRRLCU80A01A662K"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p43.s3",
+    "subject": "Luca Ferri",
+    "label": "Socio Luca Ferri: Ordine",
+    "model_value": "Ordine degli Ingegneri di Bari",
+    "expected": "Ordine degli Ingegneri di Bari",
+    "model_conforms": true,
+    "fact_id": "f_luca_socio_ordine",
+    "binding_id": "b_luca_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Ordine degli Ingegneri di Bari",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "Ordine degli Ingegneri di Bari"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p43.s4",
+    "subject": "Luca Ferri",
+    "label": "Socio Luca Ferri: Sezione",
+    "model_value": "A",
+    "expected": "A",
+    "model_conforms": true,
+    "fact_id": "f_luca_socio_sezione",
+    "binding_id": "b_luca_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "A",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "A"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p44.s0",
+    "subject": "Luca Ferri",
+    "label": "Socio Luca Ferri: Provincia",
+    "model_value": "Bari (BA)",
+    "expected": "Bari",
+    "model_conforms": true,
+    "fact_id": "f_luca_socio_provincia",
+    "binding_id": "b_luca_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Bari (BA)",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "Bari (BA)"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p44.s1",
+    "subject": "Luca Ferri",
+    "label": "Socio Luca Ferri: Data iscrizione",
+    "model_value": "21/03/2012",
+    "expected": "21/03/2012",
+    "model_conforms": true,
+    "fact_id": "f_luca_socio_dal",
+    "binding_id": "b_luca_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "21/03/2012",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "21/03/2012"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p44.s2",
+    "subject": "Luca Ferri",
+    "label": "Socio Luca Ferri: Numero iscrizione",
+    "model_value": "7294",
+    "expected": "7294",
+    "model_conforms": true,
+    "fact_id": "f_luca_socio_numero",
+    "binding_id": "b_luca_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "7294",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "7294"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p45.s0",
+    "subject": "Elisa Romano",
+    "label": "Socio Elisa Romano: Nome",
+    "model_value": "Elisa Romano",
+    "expected": "Ing. Elisa Romano",
+    "model_conforms": true,
+    "fact_id": "f_elisa_socio_name",
+    "binding_id": "b_elisa_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Elisa Romano",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "Elisa Romano"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p45.s1",
+    "subject": "Elisa Romano",
+    "label": "Socio Elisa Romano: Qualifica",
+    "model_value": "Ingegnere",
+    "expected": "Ingegnere",
+    "model_conforms": true,
+    "fact_id": "f_elisa_socio_qualifica",
+    "binding_id": "b_elisa_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "grounded": false,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": false,
+    "reviewed_final": false,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Ingegnere",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "Ingegnere"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [
+      {
+        "fact_id": "f_elisa_socio_qualifica",
+        "value": "Ingegnere",
+        "source_evidence": [
+          {
+            "chunk_id": -54,
+            "file_id": -10,
+            "chunk_index": 2,
+            "source_name": "integrazione-company.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -54,
+            "citation_rebound": false,
+            "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+            "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+          }
+        ]
+      },
+      {
+        "fact_id": "f_elisa_dt_qualifica",
+        "value": "ingegnere",
+        "source_evidence": [
+          {
+            "chunk_id": -55,
+            "file_id": -10,
+            "chunk_index": 3,
+            "source_name": "integrazione-company.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -55,
+            "citation_rebound": false,
+            "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+            "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+          }
+        ]
+      }
+    ],
+    "user_selection": {
+      "action": "VALUE",
+      "user_quote": "Indica Ingegnere per Elisa Romano, come riportato nella tabella dei soci",
+      "provenance": "USER",
+      "label": "qualifica professionale",
+      "question": "Quale qualifica professionale va indicata per il professionista nel campo relativo (ad esempio Ingegnere)?",
+      "value": "Ingegnere"
+    },
+    "written_provenance": "USER"
+  },
+  {
+    "candidate_id": "p45.s2",
+    "subject": "Elisa Romano",
+    "label": "Socio Elisa Romano: CF",
+    "model_value": "RMNLSI85C47A662Y",
+    "expected": "RMNLSI85C47A662Y",
+    "model_conforms": true,
+    "fact_id": "f_elisa_socio_cf",
+    "binding_id": "b_elisa_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "RMNLSI85C47A662Y",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "RMNLSI85C47A662Y"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p45.s3",
+    "subject": "Elisa Romano",
+    "label": "Socio Elisa Romano: Ordine",
+    "model_value": "Ordine degli Ingegneri di Bari",
+    "expected": "Ordine degli Ingegneri di Bari",
+    "model_conforms": true,
+    "fact_id": "f_elisa_socio_ordine",
+    "binding_id": "b_elisa_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Ordine degli Ingegneri di Bari",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "Ordine degli Ingegneri di Bari"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p45.s4",
+    "subject": "Elisa Romano",
+    "label": "Socio Elisa Romano: Sezione",
+    "model_value": "A",
+    "expected": "A",
+    "model_conforms": true,
+    "fact_id": "f_elisa_socio_sezione",
+    "binding_id": "b_elisa_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "A",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "A"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p46.s0",
+    "subject": "Elisa Romano",
+    "label": "Socio Elisa Romano: Provincia",
+    "model_value": "Bari (BA)",
+    "expected": "Bari",
+    "model_conforms": true,
+    "fact_id": "f_elisa_socio_provincia",
+    "binding_id": "b_elisa_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Bari (BA)",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "Bari (BA)"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p46.s1",
+    "subject": "Elisa Romano",
+    "label": "Socio Elisa Romano: Data iscrizione",
+    "model_value": "18/05/2015",
+    "expected": "18/05/2015",
+    "model_conforms": true,
+    "fact_id": "f_elisa_socio_dal",
+    "binding_id": "b_elisa_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "18/05/2015",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "18/05/2015"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p46.s2",
+    "subject": "Elisa Romano",
+    "label": "Socio Elisa Romano: Numero iscrizione",
+    "model_value": "8421",
+    "expected": "8421",
+    "model_conforms": true,
+    "fact_id": "f_elisa_socio_numero",
+    "binding_id": "b_elisa_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "8421",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": true,
+      "reviewed_final": true,
+      "held": false,
+      "persisted_proposal": true,
+      "written": true,
+      "xml_value": "8421"
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p47.s0",
+    "subject": "Andrea Greco",
+    "label": "Socio Andrea Greco: Nome",
+    "model_value": "Andrea Greco",
+    "expected": "Arch. Andrea Greco",
+    "model_conforms": true,
+    "fact_id": "f_andrea_socio_name",
+    "binding_id": "b_andrea_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Andrea Greco",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": false,
+      "reviewed_final": false,
+      "held": false,
+      "persisted_proposal": true,
+      "written": false,
+      "xml_value": null
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p48.s0",
+    "subject": "Andrea Greco",
+    "label": "Socio Andrea Greco: Qualifica",
+    "model_value": "Architetto",
+    "expected": "Architetto",
+    "model_conforms": true,
+    "fact_id": "f_andrea_socio_qualifica",
+    "binding_id": "b_andrea_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Architetto",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": false,
+      "reviewed_final": false,
+      "held": false,
+      "persisted_proposal": true,
+      "written": false,
+      "xml_value": null
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p48.s1",
+    "subject": "Andrea Greco",
+    "label": "Socio Andrea Greco: CF",
+    "model_value": "GRCNDR84D20A662P",
+    "expected": "GRCNDR84D20A662P",
+    "model_conforms": true,
+    "fact_id": "f_andrea_socio_cf",
+    "binding_id": "b_andrea_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "GRCNDR84D20A662P",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": false,
+      "reviewed_final": false,
+      "held": false,
+      "persisted_proposal": true,
+      "written": false,
+      "xml_value": null
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p49.s0",
+    "subject": "Andrea Greco",
+    "label": "Socio Andrea Greco: Ordine",
+    "model_value": "Ordine degli Architetti di Bari",
+    "expected": "Ordine degli Architetti di Bari",
+    "model_conforms": true,
+    "fact_id": "f_andrea_socio_ordine",
+    "binding_id": "b_andrea_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Ordine degli Architetti di Bari",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": false,
+      "reviewed_final": false,
+      "held": false,
+      "persisted_proposal": true,
+      "written": false,
+      "xml_value": null
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p49.s1",
+    "subject": "Andrea Greco",
+    "label": "Socio Andrea Greco: Sezione",
+    "model_value": "A",
+    "expected": "A",
+    "model_conforms": true,
+    "fact_id": "f_andrea_socio_sezione",
+    "binding_id": "b_andrea_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "A",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": false,
+      "reviewed_final": false,
+      "held": false,
+      "persisted_proposal": true,
+      "written": false,
+      "xml_value": null
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p49.s2",
+    "subject": "Andrea Greco",
+    "label": "Socio Andrea Greco: Provincia",
+    "model_value": "Bari (BA)",
+    "expected": "Bari",
+    "model_conforms": true,
+    "fact_id": "f_andrea_socio_provincia",
+    "binding_id": "b_andrea_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "Bari (BA)",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": false,
+      "reviewed_final": false,
+      "held": false,
+      "persisted_proposal": true,
+      "written": false,
+      "xml_value": null
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p49.s3",
+    "subject": "Andrea Greco",
+    "label": "Socio Andrea Greco: Data iscrizione",
+    "model_value": "12/06/2014",
+    "expected": "12/06/2014",
+    "model_conforms": true,
+    "fact_id": "f_andrea_socio_dal",
+    "binding_id": "b_andrea_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "12/06/2014",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": false,
+      "reviewed_final": false,
+      "held": false,
+      "persisted_proposal": true,
+      "written": false,
+      "xml_value": null
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  },
+  {
+    "candidate_id": "p49.s4",
+    "subject": "Andrea Greco",
+    "label": "Socio Andrea Greco: Numero iscrizione",
+    "model_value": "5267",
+    "expected": "5267",
+    "model_conforms": true,
+    "fact_id": "f_andrea_socio_numero",
+    "binding_id": "b_andrea_socio",
+    "fact_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "binding_evidence": [
+      {
+        "chunk_id": -54,
+        "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico"
+      },
+      {
+        "chunk_id": -54,
+        "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+      }
+    ],
+    "grounded": true,
+    "binding_method": "fact_source_record",
+    "validation_errors": [],
+    "reviewed_T0": true,
+    "reviewed_final": true,
+    "held_final": false,
+    "persisted_proposal": true,
+    "condition_ids": [
+      "c_societa"
+    ],
+    "condition_receipts": {
+      "c_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Confermo quanto già indicato nella richiesta iniziale: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria; per questa pratica il firmatario scelto è Leonardo Montemurro, rappresentante legale.",
+        "provenance": "USER",
+        "label": "Sezione società di ingegneria e rappresentanza legale da confermare nel FORM",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.lgs. n. 36/2023?",
+        "applies": true
+      }
+    },
+    "export_report_written": true,
+    "xml_value": "5267",
+    "previous_16_replay": {
+      "grounded": true,
+      "reviewed_before_name": true,
+      "reviewed_after_name": false,
+      "reviewed_final": false,
+      "held": false,
+      "persisted_proposal": true,
+      "written": false,
+      "xml_value": null
+    },
+    "binding_result": "literal_match",
+    "source_alternatives": [],
+    "user_selection": null,
+    "written_provenance": "SOURCE"
+  }
+]

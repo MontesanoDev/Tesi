@@ -1,0 +1,2571 @@
+{
+  "version": 5,
+  "role": "form",
+  "template_sha256": "4d894b3faee91909275589ac5ed8e1dd2eddc09890f95ac0456780bbb6828ae0",
+  "candidate_scope": "document_body",
+  "checkbox_write_supported": false,
+  "blocks": [
+    {
+      "id": "paragraph:0",
+      "paragraphs": [
+        {
+          "id": "paragraph:0",
+          "text": "\tALLEGATO A",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:1",
+      "paragraphs": [
+        {
+          "id": "paragraph:1",
+          "text": "da inserire nella “Documentazione Amministrativa”  ",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:2",
+      "paragraphs": [
+        {
+          "id": "paragraph:2",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:3",
+      "paragraphs": [
+        {
+          "id": "paragraph:3",
+          "text": "COMUNE DI BELLA"
+        },
+        {
+          "id": "paragraph:4",
+          "text": "PROVINCIA DI POTENZA"
+        },
+        {
+          "id": "paragraph:5",
+          "text": "Medaglia d’Oro al Valore Civile",
+          "all_text_direct_bold": true
+        },
+        {
+          "id": "paragraph:6",
+          "text": "Corso Italia 28 – 85051 BELLA (PZ) – C.F.:  00224880765"
+        },
+        {
+          "id": "paragraph:7",
+          "text": "www.comune.bella.pz.it – pec: protocollo@pec.comune.bella.pz.it"
+        },
+        {
+          "id": "paragraph:8",
+          "text": "AREA III - LAVORI PUBBLICI E APPALTI",
+          "all_text_direct_bold": true
+        },
+        {
+          "id": "paragraph:9",
+          "text": ""
+        }
+      ],
+      "tables": [
+        {
+          "id": "table:0",
+          "rows": [
+            [
+              {
+                "id": "t0.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:3",
+                  "paragraph:4",
+                  "paragraph:5",
+                  "paragraph:6",
+                  "paragraph:7",
+                  "paragraph:8"
+                ]
+              },
+              {
+                "id": "t0.r0.c1",
+                "paragraph_ids": [
+                  "paragraph:9"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:10",
+      "paragraphs": [
+        {
+          "id": "paragraph:10",
+          "text": "  "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:11",
+      "paragraphs": [
+        {
+          "id": "paragraph:11",
+          "text": " "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:12",
+      "paragraphs": [
+        {
+          "id": "paragraph:12",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:13",
+      "paragraphs": [
+        {
+          "id": "paragraph:13",
+          "text": "OGGETTO: SERVIZI DI ARCHITETTURA E INGEGNERIA PER LO STUDIO DI FATTIBILITÀ TECNICA ED ECONOMICA PER LA REALIZZAZIONE DEGLI INTERVENTI “PROGETTO DI RECUPERO, RIQUALIFICAZIONE URBANA ED AMBIENTALE DEL COMUNE DI BELLA (PZ) - MITIGAZIONE DEL RISCHIO IDROGEOLOGICO VERSANTE EX MUNICIPIO.",
+          "all_text_direct_bold": true
+        },
+        {
+          "id": "paragraph:14",
+          "text": " "
+        },
+        {
+          "id": "paragraph:15",
+          "text": "CUP: D64D22004040006",
+          "all_text_direct_bold": true
+        },
+        {
+          "id": "paragraph:16",
+          "text": "CIG: Z7B39E59CB",
+          "all_text_direct_bold": true
+        }
+      ],
+      "tables": [
+        {
+          "id": "table:1",
+          "rows": [
+            [
+              {
+                "id": "t1.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:13",
+                  "paragraph:14"
+                ],
+                "grid_span": "2"
+              }
+            ],
+            [
+              {
+                "id": "t1.r1.c0",
+                "paragraph_ids": [
+                  "paragraph:15"
+                ]
+              },
+              {
+                "id": "t1.r1.c1",
+                "paragraph_ids": [
+                  "paragraph:16"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:17",
+      "paragraphs": [
+        {
+          "id": "paragraph:17",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:18",
+      "paragraphs": [
+        {
+          "id": "paragraph:18",
+          "text": "DOMANDA DI AMMISSIONE ALLA GARA",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:19",
+      "paragraphs": [
+        {
+          "id": "paragraph:19",
+          "text": "E DICHIARAZIONE A CORREDO DELL’OFFERTA",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:20",
+      "paragraphs": [
+        {
+          "id": "paragraph:20",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:21",
+      "paragraphs": [
+        {
+          "id": "paragraph:21",
+          "text": "Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di ................................................................................................................................................... dello studio/società/consorzio .......................................................................................................................... con sede in .......................................................................................................................................................... con codice fiscale n. ........................................................................................................................................... con partita IVA n. ................................................................................................................................................",
+          "text_with_fields": "Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:0",
+        "paragraph:1",
+        "paragraph:18",
+        "paragraph:19"
+      ]
+    },
+    {
+      "id": "paragraph:22",
+      "paragraphs": [
+        {
+          "id": "paragraph:22",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:23",
+      "paragraphs": [
+        {
+          "id": "paragraph:23",
+          "text": "C H I E D E",
+          "outline_level": 4
+        }
+      ]
+    },
+    {
+      "id": "paragraph:24",
+      "paragraphs": [
+        {
+          "id": "paragraph:24",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:25",
+      "paragraphs": [
+        {
+          "id": "paragraph:25",
+          "text": "di partecipare alla procedura negoziata indicata in oggetto come:"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:26",
+      "paragraphs": [
+        {
+          "id": "paragraph:26",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:27",
+      "paragraphs": [
+        {
+          "id": "paragraph:27",
+          "text": "\tlibero professionista singolo;",
+          "controls": [
+            {
+              "id": "p27.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p27.cb0]]\tlibero professionista singolo;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:1",
+        "paragraph:18",
+        "paragraph:19",
+        "paragraph:21",
+        "paragraph:23",
+        "paragraph:25"
+      ]
+    },
+    {
+      "id": "paragraph:28",
+      "paragraphs": [
+        {
+          "id": "paragraph:28",
+          "text": "\tlibero professionista associato (nelle forme di cui alla legge 23 novembre 1939, n. 1815); ",
+          "controls": [
+            {
+              "id": "p28.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p28.cb0]]\tlibero professionista associato (nelle forme di cui alla legge 23 novembre 1939, n. 1815); "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:18",
+        "paragraph:19",
+        "paragraph:21",
+        "paragraph:23",
+        "paragraph:25",
+        "paragraph:27"
+      ]
+    },
+    {
+      "id": "paragraph:29",
+      "paragraphs": [
+        {
+          "id": "paragraph:29",
+          "text": "\tlegale rappresentante di una società di professionisti; ",
+          "controls": [
+            {
+              "id": "p29.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p29.cb0]]\tlegale rappresentante di una società di professionisti; "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:19",
+        "paragraph:21",
+        "paragraph:23",
+        "paragraph:25",
+        "paragraph:27",
+        "paragraph:28"
+      ]
+    },
+    {
+      "id": "paragraph:30",
+      "paragraphs": [
+        {
+          "id": "paragraph:30",
+          "text": "\tlegale rappresentante di una società di ingegneria; ",
+          "controls": [
+            {
+              "id": "p30.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p30.cb0]]\tlegale rappresentante di una società di ingegneria; "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:21",
+        "paragraph:23",
+        "paragraph:25",
+        "paragraph:27",
+        "paragraph:28",
+        "paragraph:29"
+      ]
+    },
+    {
+      "id": "paragraph:31",
+      "paragraphs": [
+        {
+          "id": "paragraph:31",
+          "text": "\tcapogruppo o legale rappresentante del soggetto capogruppo di un raggruppamento temporaneo tra i soggetti di cui alle lettere a) b) c) e d), dell’art. 46, comma 1, del D. Lgs. 18 aprile 2016, n. 50 s.m.i.;",
+          "controls": [
+            {
+              "id": "p31.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p31.cb0]]\tcapogruppo o legale rappresentante del soggetto capogruppo di un raggruppamento temporaneo tra i soggetti di cui alle lettere a) b) c) e d), dell’art. 46, comma 1, del D. Lgs. 18 aprile 2016, n. 50 s.m.i.;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:23",
+        "paragraph:25",
+        "paragraph:27",
+        "paragraph:28",
+        "paragraph:29",
+        "paragraph:30"
+      ]
+    },
+    {
+      "id": "paragraph:32",
+      "paragraphs": [
+        {
+          "id": "paragraph:32",
+          "text": "\tconsorzio stabile di società di professionisti e di società di ingegneria di cui all’art. 46, comma 1, lettera f) del D. Lgs. 18 aprile 2016, n. 50 s.m.i.; ",
+          "controls": [
+            {
+              "id": "p32.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p32.cb0]]\tconsorzio stabile di società di professionisti e di società di ingegneria di cui all’art. 46, comma 1, lettera f) del D. Lgs. 18 aprile 2016, n. 50 s.m.i.; "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:25",
+        "paragraph:27",
+        "paragraph:28",
+        "paragraph:29",
+        "paragraph:30",
+        "paragraph:31"
+      ]
+    },
+    {
+      "id": "paragraph:33",
+      "paragraphs": [
+        {
+          "id": "paragraph:33",
+          "text": "\toperatore economico che svolge servizi di ingegneria ed architettura di cui all’art. 46, comma 1, del D. Lgs. n. 50/2016 s.m.i. stabilito in altri Stati membri dell’Unione Europea; ",
+          "controls": [
+            {
+              "id": "p33.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p33.cb0]]\toperatore economico che svolge servizi di ingegneria ed architettura di cui all’art. 46, comma 1, del D. Lgs. n. 50/2016 s.m.i. stabilito in altri Stati membri dell’Unione Europea; "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:27",
+        "paragraph:28",
+        "paragraph:29",
+        "paragraph:30",
+        "paragraph:31",
+        "paragraph:32"
+      ]
+    },
+    {
+      "id": "paragraph:34",
+      "paragraphs": [
+        {
+          "id": "paragraph:34",
+          "text": "\tpartecipante con l’operatore ausiliario……………………………………….;",
+          "controls": [
+            {
+              "id": "p34.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p34.cb0]]\tpartecipante con l’operatore ausiliario……………………………………….;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:28",
+        "paragraph:29",
+        "paragraph:30",
+        "paragraph:31",
+        "paragraph:32",
+        "paragraph:33"
+      ]
+    },
+    {
+      "id": "paragraph:35",
+      "paragraphs": [
+        {
+          "id": "paragraph:35",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:36",
+      "paragraphs": [
+        {
+          "id": "paragraph:36",
+          "text": "\t………………………………………………………………………………………………..;",
+          "controls": [
+            {
+              "id": "p36.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p36.cb0]]\t………………………………………………………………………………………………..;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:29",
+        "paragraph:30",
+        "paragraph:31",
+        "paragraph:32",
+        "paragraph:33",
+        "paragraph:34"
+      ]
+    },
+    {
+      "id": "paragraph:37",
+      "paragraphs": [
+        {
+          "id": "paragraph:37",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:38",
+      "paragraphs": [
+        {
+          "id": "paragraph:38",
+          "text": "Al fine di dimostrare il possesso dei requisiti di capacità economico-finanziaria e tecnico-organizzativa, ai sensi degli articoli 46, 47 e 77-bis del d.P.R. 28 dicembre 2000, n. 445, e successive modifiche, consapevole delle sanzioni penali previste dall'articolo 76 del medesimo d.P.R. n. 445/2000, per le ipotesi di falsità in atti e dichiarazioni mendaci ivi indicate"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:39",
+      "paragraphs": [
+        {
+          "id": "paragraph:39",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:40",
+      "paragraphs": [
+        {
+          "id": "paragraph:40",
+          "text": "DICHIARA"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:41",
+      "paragraphs": [
+        {
+          "id": "paragraph:41",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:42",
+      "paragraphs": [
+        {
+          "id": "paragraph:42",
+          "text": "Che l’offerta economica presentata è remunerativa giacché, per la sua formulazione, si è preso atto e tenuto conto:"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:43",
+      "paragraphs": [
+        {
+          "id": "paragraph:43",
+          "text": "delle condizioni contrattuali e degli oneri compresi quelli eventuali relativi in materia, di assicurazione, di condizioni di lavoro e di previdenza e assistenza in vigore nel luogo dove devono essere svolti i servizi;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:44",
+      "paragraphs": [
+        {
+          "id": "paragraph:44",
+          "text": "di tutte le circostanze generali, particolari e locali, nessuna esclusa ed eccettuata, che possono avere influito o influire sia sulla prestazione dei servizi, sia sulla determinazione della propria offerta;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:45",
+      "paragraphs": [
+        {
+          "id": "paragraph:45",
+          "text": "di considerare, pertanto, valida e fondata l’offerta economica presentata;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:46",
+      "paragraphs": [
+        {
+          "id": "paragraph:46",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:47",
+      "paragraphs": [
+        {
+          "id": "paragraph:47",
+          "text": "di accettare, senza condizione o riserva alcuna, tutte le norme e disposizioni contenute nel Capitolato speciale prestazionale e d'oneri, nel disciplinare di gara e nello schema di contratto di incarico professionale;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:48",
+      "paragraphs": [
+        {
+          "id": "paragraph:48",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:49",
+      "paragraphs": [
+        {
+          "id": "paragraph:49",
+          "text": "di impegnarsi a stipulare apposita polizza di responsabilità civile professionale per i rischi derivanti dallo svolgimento dell’attività di propria competenza ai sensi dell’art ai sensi dell’articolo 24, comma 4, del D. Lgs. n. 50/2016 s.m.i.;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:50",
+      "paragraphs": [
+        {
+          "id": "paragraph:50",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:51",
+      "paragraphs": [
+        {
+          "id": "paragraph:51",
+          "text": "l’indirizzo PEC e/o mail indicati nel DGUE sono idonei per l’invio per l’eventuale richiesta di integrazioni di cui all’art. 83, comma 9 del D.lgs. n. 50/2016 (soccorso istruttorio) e qualsiasi altra comunicazione prevista dal medesimo decreto; "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:52",
+      "paragraphs": [
+        {
+          "id": "paragraph:52",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:53",
+      "paragraphs": [
+        {
+          "id": "paragraph:53",
+          "text": "(nel caso di raggruppamento temporaneo di professionisti) che, in caso di aggiudicazione, sarà conferito mandato speciale con rappresentanza o funzioni di capogruppo/capoprogetto a ………………………………………………………………….……………………………..…………..................………………………………………………………………….………;",
+          "text_with_fields": "(nel caso di raggruppamento temporaneo di professionisti) che, in caso di aggiudicazione, sarà conferito mandato speciale con rappresentanza o funzioni di capogruppo/capoprogetto a [[p53.s0]];"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:43",
+        "paragraph:44",
+        "paragraph:45",
+        "paragraph:47",
+        "paragraph:49",
+        "paragraph:51"
+      ]
+    },
+    {
+      "id": "paragraph:54",
+      "paragraphs": [
+        {
+          "id": "paragraph:54",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:55",
+      "paragraphs": [
+        {
+          "id": "paragraph:55",
+          "text": "(nel caso di raggruppamento temporaneo di professionisti) di assumersi l’impegno, in caso di aggiudicazione, ad uniformarsi alla disciplina vigente in materia di associazioni temporanee;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:56",
+      "paragraphs": [
+        {
+          "id": "paragraph:56",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:57",
+      "paragraphs": [
+        {
+          "id": "paragraph:57",
+          "text": "(nel caso di raggruppamento temporaneo di professionisti) che, ai sensi dell’art. 24, comma 5, del D. Lgs. n. 50/2016 ed art. 4 comma 1 D.M. 02/12/2016 n. 263 il giovane professionista laureato progettista risulta essere:"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:58",
+      "paragraphs": [
+        {
+          "id": "paragraph:58",
+          "text": "nome: …………………………………………………………………………………………………..",
+          "text_with_fields": "￼nome: [[p58.s0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:47",
+        "paragraph:49",
+        "paragraph:51",
+        "paragraph:53",
+        "paragraph:55",
+        "paragraph:57"
+      ]
+    },
+    {
+      "id": "paragraph:59",
+      "paragraphs": [
+        {
+          "id": "paragraph:59",
+          "text": "cognome: ………………………………………………………………………………………………",
+          "text_with_fields": "cognome: [[p59.s0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:49",
+        "paragraph:51",
+        "paragraph:53",
+        "paragraph:55",
+        "paragraph:57",
+        "paragraph:58"
+      ]
+    },
+    {
+      "id": "paragraph:60",
+      "paragraphs": [
+        {
+          "id": "paragraph:60",
+          "text": "titolo professionale: …………………………………………………………………………………...",
+          "text_with_fields": "titolo professionale: [[p60.s0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:51",
+        "paragraph:53",
+        "paragraph:55",
+        "paragraph:57",
+        "paragraph:58",
+        "paragraph:59"
+      ]
+    },
+    {
+      "id": "paragraph:61",
+      "paragraphs": [
+        {
+          "id": "paragraph:61",
+          "text": "data di nascita: …………………………………………………………………………………………",
+          "text_with_fields": "data di nascita: [[p61.s0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:53",
+        "paragraph:55",
+        "paragraph:57",
+        "paragraph:58",
+        "paragraph:59",
+        "paragraph:60"
+      ]
+    },
+    {
+      "id": "paragraph:62",
+      "paragraphs": [
+        {
+          "id": "paragraph:62",
+          "text": "data di abilitazione professionale ……………………………………………………………………",
+          "text_with_fields": "data di abilitazione professionale [[p62.s0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:55",
+        "paragraph:57",
+        "paragraph:58",
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:61"
+      ]
+    },
+    {
+      "id": "paragraph:63",
+      "paragraphs": [
+        {
+          "id": "paragraph:63",
+          "text": "qualifica: ……………………………………………………………..……………………………….. ",
+          "text_with_fields": "qualifica: [[p63.s0]] "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:57",
+        "paragraph:58",
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:61",
+        "paragraph:62"
+      ]
+    },
+    {
+      "id": "paragraph:64",
+      "paragraphs": [
+        {
+          "id": "paragraph:64",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:65",
+      "paragraphs": [
+        {
+          "id": "paragraph:65",
+          "text": "che i tecnici persone fisiche  del consorzio stabile,   della società di ingegneria o   della società di professionisti, che seguiranno personalmente l’incarico saranno:",
+          "controls": [
+            {
+              "id": "p65.cb0",
+              "offset": 30
+            },
+            {
+              "id": "p65.cb1",
+              "offset": 55
+            },
+            {
+              "id": "p65.cb2",
+              "offset": 87
+            }
+          ],
+          "text_with_choices": "che i tecnici persone fisiche [[p65.cb0]] del consorzio stabile,  [[p65.cb1]] della società di ingegneria o  [[p65.cb2]] della società di professionisti, che seguiranno personalmente l’incarico saranno:"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:58",
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:61",
+        "paragraph:62",
+        "paragraph:63"
+      ]
+    },
+    {
+      "id": "paragraph:66",
+      "paragraphs": [
+        {
+          "id": "paragraph:66",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:67",
+      "paragraphs": [
+        {
+          "id": "paragraph:67",
+          "text": "Num."
+        },
+        {
+          "id": "paragraph:68",
+          "text": "Qualifica e generalità del Tecnico"
+        },
+        {
+          "id": "paragraph:69",
+          "text": "Data di conseguimento abilitazione"
+        },
+        {
+          "id": "paragraph:70",
+          "text": "Natura del rapporto professionale"
+        },
+        {
+          "id": "paragraph:71",
+          "text": "N. ordine prof. e Città sede dell’Ordine"
+        },
+        {
+          "id": "paragraph:72",
+          "text": ""
+        },
+        {
+          "id": "paragraph:73",
+          "text": ""
+        },
+        {
+          "id": "paragraph:74",
+          "text": ""
+        },
+        {
+          "id": "paragraph:75",
+          "text": ""
+        },
+        {
+          "id": "paragraph:76",
+          "text": ""
+        },
+        {
+          "id": "paragraph:77",
+          "text": ""
+        },
+        {
+          "id": "paragraph:78",
+          "text": ""
+        },
+        {
+          "id": "paragraph:79",
+          "text": ""
+        },
+        {
+          "id": "paragraph:80",
+          "text": ""
+        },
+        {
+          "id": "paragraph:81",
+          "text": ""
+        },
+        {
+          "id": "paragraph:82",
+          "text": ""
+        },
+        {
+          "id": "paragraph:83",
+          "text": ""
+        },
+        {
+          "id": "paragraph:84",
+          "text": ""
+        },
+        {
+          "id": "paragraph:85",
+          "text": ""
+        },
+        {
+          "id": "paragraph:86",
+          "text": ""
+        },
+        {
+          "id": "paragraph:87",
+          "text": ""
+        },
+        {
+          "id": "paragraph:88",
+          "text": ""
+        },
+        {
+          "id": "paragraph:89",
+          "text": ""
+        },
+        {
+          "id": "paragraph:90",
+          "text": ""
+        },
+        {
+          "id": "paragraph:91",
+          "text": ""
+        },
+        {
+          "id": "paragraph:92",
+          "text": ""
+        },
+        {
+          "id": "paragraph:93",
+          "text": ""
+        },
+        {
+          "id": "paragraph:94",
+          "text": ""
+        },
+        {
+          "id": "paragraph:95",
+          "text": ""
+        },
+        {
+          "id": "paragraph:96",
+          "text": ""
+        },
+        {
+          "id": "paragraph:97",
+          "text": ""
+        },
+        {
+          "id": "paragraph:98",
+          "text": ""
+        },
+        {
+          "id": "paragraph:99",
+          "text": ""
+        },
+        {
+          "id": "paragraph:100",
+          "text": ""
+        },
+        {
+          "id": "paragraph:101",
+          "text": ""
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:61",
+        "paragraph:62",
+        "paragraph:63",
+        "paragraph:65"
+      ],
+      "tables": [
+        {
+          "id": "table:2",
+          "rows": [
+            [
+              {
+                "id": "t2.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:67"
+                ]
+              },
+              {
+                "id": "t2.r0.c1",
+                "paragraph_ids": [
+                  "paragraph:68"
+                ]
+              },
+              {
+                "id": "t2.r0.c2",
+                "paragraph_ids": [
+                  "paragraph:69"
+                ]
+              },
+              {
+                "id": "t2.r0.c3",
+                "paragraph_ids": [
+                  "paragraph:70"
+                ]
+              },
+              {
+                "id": "t2.r0.c4",
+                "paragraph_ids": [
+                  "paragraph:71"
+                ]
+              }
+            ],
+            [
+              {
+                "id": "t2.r1.c0",
+                "paragraph_ids": [
+                  "paragraph:72"
+                ]
+              },
+              {
+                "id": "t2.r1.c1",
+                "paragraph_ids": [
+                  "paragraph:73"
+                ]
+              },
+              {
+                "id": "t2.r1.c2",
+                "paragraph_ids": [
+                  "paragraph:74"
+                ]
+              },
+              {
+                "id": "t2.r1.c3",
+                "paragraph_ids": [
+                  "paragraph:75"
+                ]
+              },
+              {
+                "id": "t2.r1.c4",
+                "paragraph_ids": [
+                  "paragraph:76"
+                ]
+              }
+            ],
+            [
+              {
+                "id": "t2.r2.c0",
+                "paragraph_ids": [
+                  "paragraph:77"
+                ]
+              },
+              {
+                "id": "t2.r2.c1",
+                "paragraph_ids": [
+                  "paragraph:78"
+                ]
+              },
+              {
+                "id": "t2.r2.c2",
+                "paragraph_ids": [
+                  "paragraph:79"
+                ]
+              },
+              {
+                "id": "t2.r2.c3",
+                "paragraph_ids": [
+                  "paragraph:80"
+                ]
+              },
+              {
+                "id": "t2.r2.c4",
+                "paragraph_ids": [
+                  "paragraph:81"
+                ]
+              }
+            ],
+            [
+              {
+                "id": "t2.r3.c0",
+                "paragraph_ids": [
+                  "paragraph:82"
+                ]
+              },
+              {
+                "id": "t2.r3.c1",
+                "paragraph_ids": [
+                  "paragraph:83"
+                ]
+              },
+              {
+                "id": "t2.r3.c2",
+                "paragraph_ids": [
+                  "paragraph:84"
+                ]
+              },
+              {
+                "id": "t2.r3.c3",
+                "paragraph_ids": [
+                  "paragraph:85"
+                ]
+              },
+              {
+                "id": "t2.r3.c4",
+                "paragraph_ids": [
+                  "paragraph:86"
+                ]
+              }
+            ],
+            [
+              {
+                "id": "t2.r4.c0",
+                "paragraph_ids": [
+                  "paragraph:87"
+                ]
+              },
+              {
+                "id": "t2.r4.c1",
+                "paragraph_ids": [
+                  "paragraph:88"
+                ]
+              },
+              {
+                "id": "t2.r4.c2",
+                "paragraph_ids": [
+                  "paragraph:89"
+                ]
+              },
+              {
+                "id": "t2.r4.c3",
+                "paragraph_ids": [
+                  "paragraph:90"
+                ]
+              },
+              {
+                "id": "t2.r4.c4",
+                "paragraph_ids": [
+                  "paragraph:91"
+                ]
+              }
+            ],
+            [
+              {
+                "id": "t2.r5.c0",
+                "paragraph_ids": [
+                  "paragraph:92"
+                ]
+              },
+              {
+                "id": "t2.r5.c1",
+                "paragraph_ids": [
+                  "paragraph:93"
+                ]
+              },
+              {
+                "id": "t2.r5.c2",
+                "paragraph_ids": [
+                  "paragraph:94"
+                ]
+              },
+              {
+                "id": "t2.r5.c3",
+                "paragraph_ids": [
+                  "paragraph:95"
+                ]
+              },
+              {
+                "id": "t2.r5.c4",
+                "paragraph_ids": [
+                  "paragraph:96"
+                ]
+              }
+            ],
+            [
+              {
+                "id": "t2.r6.c0",
+                "paragraph_ids": [
+                  "paragraph:97"
+                ]
+              },
+              {
+                "id": "t2.r6.c1",
+                "paragraph_ids": [
+                  "paragraph:98"
+                ]
+              },
+              {
+                "id": "t2.r6.c2",
+                "paragraph_ids": [
+                  "paragraph:99"
+                ]
+              },
+              {
+                "id": "t2.r6.c3",
+                "paragraph_ids": [
+                  "paragraph:100"
+                ]
+              },
+              {
+                "id": "t2.r6.c4",
+                "paragraph_ids": [
+                  "paragraph:101"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:102",
+      "paragraphs": [
+        {
+          "id": "paragraph:102",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:103",
+      "paragraphs": [
+        {
+          "id": "paragraph:103",
+          "text": "e che la quota di partecipazione al raggruppamento, corrispondente alla percentuale di servizi che verranno eseguiti da ciascun concorrente è la seguente ……………………………………………….…. …………………………………………………………………………………………………………...…………………………………………………",
+          "text_with_fields": "e che la quota di partecipazione al raggruppamento, corrispondente alla percentuale di servizi che verranno eseguiti da ciascun concorrente è la seguente [[p103.s0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:61",
+        "paragraph:62",
+        "paragraph:63",
+        "paragraph:65"
+      ]
+    },
+    {
+      "id": "paragraph:104",
+      "paragraphs": [
+        {
+          "id": "paragraph:104",
+          "text": "e la natura del servizio d’ingegneria che verrà eseguita da ciascun concorrente è la seguente ………………………………………………………………………………………………………………………………………………………………",
+          "text_with_fields": "e la natura del servizio d’ingegneria che verrà eseguita da ciascun concorrente è la seguente [[p104.s0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:60",
+        "paragraph:61",
+        "paragraph:62",
+        "paragraph:63",
+        "paragraph:65",
+        "paragraph:103"
+      ]
+    },
+    {
+      "id": "paragraph:105",
+      "paragraphs": [
+        {
+          "id": "paragraph:105",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:106",
+      "paragraphs": [
+        {
+          "id": "paragraph:106",
+          "text": "di essere informato, ai sensi e per gli effetti di cui all’articolo 10 del D. Lgs. 30 giugno 2003, n. 196, che i dati personali raccolti saranno trattati, anche con strumenti informatici, esclusivamente nell’ambito del procedimento per il quale la presente dichiarazione viene resa;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:107",
+      "paragraphs": [
+        {
+          "id": "paragraph:107",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:108",
+      "paragraphs": [
+        {
+          "id": "paragraph:108",
+          "text": "⁭ dichiara di non essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e successive modificazioni;",
+          "controls": [
+            {
+              "id": "p108.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p108.cb0]]⁭ dichiara di non essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e successive modificazioni;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:62",
+        "paragraph:63",
+        "paragraph:65",
+        "paragraph:103",
+        "paragraph:104",
+        "paragraph:106"
+      ]
+    },
+    {
+      "id": "paragraph:109",
+      "paragraphs": [
+        {
+          "id": "paragraph:109",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:110",
+      "paragraphs": [
+        {
+          "id": "paragraph:110",
+          "text": "oppure",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:111",
+      "paragraphs": [
+        {
+          "id": "paragraph:111",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:112",
+      "paragraphs": [
+        {
+          "id": "paragraph:112",
+          "text": " ⁭ dichiara di essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e succ. mod., ma che il periodo di emersione si è concluso;",
+          "controls": [
+            {
+              "id": "p112.cb0",
+              "offset": 1
+            }
+          ],
+          "text_with_choices": " [[p112.cb0]]⁭ dichiara di essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e succ. mod., ma che il periodo di emersione si è concluso;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:65",
+        "paragraph:103",
+        "paragraph:104",
+        "paragraph:106",
+        "paragraph:108",
+        "paragraph:110"
+      ]
+    },
+    {
+      "id": "paragraph:113",
+      "paragraphs": [
+        {
+          "id": "paragraph:113",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:114",
+      "paragraphs": [
+        {
+          "id": "paragraph:114",
+          "text": "⁭ di essere edotto degli obblighi derivanti dal Codice di comportamento adottato dalla stazione appaltante con la deliberazione di Giunta Comunale n. 9 del 29 gennaio 2014 reperibile al seguente link: Amministrazione Trasparente - Codice Comportamentale dei dipendenti pubblici (openacta.it) e si impegna, in caso di aggiudicazione, ad osservare e a far osservare ai propri dipendenti e collaboratori, per quanto applicabile, il suddetto codice, pena la risoluzione del contratto;",
+          "controls": [
+            {
+              "id": "p114.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p114.cb0]]⁭ di essere edotto degli obblighi derivanti dal Codice di comportamento adottato dalla stazione appaltante con la deliberazione di Giunta Comunale n. 9 del 29 gennaio 2014 reperibile al seguente link: Amministrazione Trasparente - Codice Comportamentale dei dipendenti pubblici (openacta.it) e si impegna, in caso di aggiudicazione, ad osservare e a far osservare ai propri dipendenti e collaboratori, per quanto applicabile, il suddetto codice, pena la risoluzione del contratto;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:103",
+        "paragraph:104",
+        "paragraph:106",
+        "paragraph:108",
+        "paragraph:110",
+        "paragraph:112"
+      ]
+    },
+    {
+      "id": "paragraph:115",
+      "paragraphs": [
+        {
+          "id": "paragraph:115",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:116",
+      "paragraphs": [
+        {
+          "id": "paragraph:116",
+          "text": " ⁭ si impegna ad uniformarsi, in caso di aggiudicazione, alla disciplina di cui agli articoli 17, comma 2, e 53, comma 3 del D.P.R. n. 633/1972 e a comunicare, alla stazione appaltante, la nomina del proprio rappresentante fiscale, nelle forme di legge;",
+          "controls": [
+            {
+              "id": "p116.cb0",
+              "offset": 1
+            }
+          ],
+          "text_with_choices": " [[p116.cb0]]⁭ si impegna ad uniformarsi, in caso di aggiudicazione, alla disciplina di cui agli articoli 17, comma 2, e 53, comma 3 del D.P.R. n. 633/1972 e a comunicare, alla stazione appaltante, la nomina del proprio rappresentante fiscale, nelle forme di legge;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:104",
+        "paragraph:106",
+        "paragraph:108",
+        "paragraph:110",
+        "paragraph:112",
+        "paragraph:114"
+      ]
+    },
+    {
+      "id": "paragraph:117",
+      "paragraphs": [
+        {
+          "id": "paragraph:117",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:118",
+      "paragraphs": [
+        {
+          "id": "paragraph:118",
+          "text": "⁭ dichiara di autorizzare la stazione appaltante a rilasciare copia di tutta la documentazione presentata per la partecipazione alla gara, qualora un partecipante alla gara eserciti, ai sensi della L. 07.08.1990, n° 241, la facoltà di “accesso agli atti”;",
+          "controls": [
+            {
+              "id": "p118.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p118.cb0]]⁭ dichiara di autorizzare la stazione appaltante a rilasciare copia di tutta la documentazione presentata per la partecipazione alla gara, qualora un partecipante alla gara eserciti, ai sensi della L. 07.08.1990, n° 241, la facoltà di “accesso agli atti”;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:106",
+        "paragraph:108",
+        "paragraph:110",
+        "paragraph:112",
+        "paragraph:114",
+        "paragraph:116"
+      ]
+    },
+    {
+      "id": "paragraph:119",
+      "paragraphs": [
+        {
+          "id": "paragraph:119",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:120",
+      "paragraphs": [
+        {
+          "id": "paragraph:120",
+          "text": "⁭ dichiara l’assunzione di tutti gli obblighi di tracciabilità dei flussi finanziari di cui all’articolo 3 della L. 13.08.2010 n° 136 e s.m.i.;",
+          "controls": [
+            {
+              "id": "p120.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p120.cb0]]⁭ dichiara l’assunzione di tutti gli obblighi di tracciabilità dei flussi finanziari di cui all’articolo 3 della L. 13.08.2010 n° 136 e s.m.i.;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:108",
+        "paragraph:110",
+        "paragraph:112",
+        "paragraph:114",
+        "paragraph:116",
+        "paragraph:118"
+      ]
+    },
+    {
+      "id": "paragraph:121",
+      "paragraphs": [
+        {
+          "id": "paragraph:121",
+          "text": ""
+        },
+        {
+          "id": "paragraph:122",
+          "text": ""
+        },
+        {
+          "id": "paragraph:123",
+          "text": "Timbro",
+          "outline_level": 0
+        },
+        {
+          "id": "paragraph:124",
+          "text": "Professionale"
+        },
+        {
+          "id": "paragraph:125",
+          "text": ""
+        },
+        {
+          "id": "paragraph:126",
+          "text": "Timbro",
+          "outline_level": 0
+        },
+        {
+          "id": "paragraph:127",
+          "text": "Professionale"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:128",
+      "paragraphs": [
+        {
+          "id": "paragraph:128",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:129",
+      "paragraphs": [
+        {
+          "id": "paragraph:129",
+          "text": "Data ........................................... \t\t\tFIRMA ..................................................................",
+          "text_with_fields": "Data [[p129.s0]] \t\t\tFIRMA [[p129.s1]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:110",
+        "paragraph:112",
+        "paragraph:114",
+        "paragraph:116",
+        "paragraph:118",
+        "paragraph:120"
+      ]
+    },
+    {
+      "id": "paragraph:130",
+      "paragraphs": [
+        {
+          "id": "paragraph:130",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:131",
+      "paragraphs": [
+        {
+          "id": "paragraph:131",
+          "text": "\t"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:132",
+      "paragraphs": [
+        {
+          "id": "paragraph:132",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:133",
+      "paragraphs": [
+        {
+          "id": "paragraph:133",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:134",
+      "paragraphs": [
+        {
+          "id": "paragraph:134",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:135",
+      "paragraphs": [
+        {
+          "id": "paragraph:135",
+          "text": "N.B. 1 La domanda e dichiarazione deve essere corredata da fotocopia, non autenticata, di documento di identità del sottoscrittore, in corso di validità."
+        }
+      ]
+    },
+    {
+      "id": "paragraph:136",
+      "paragraphs": [
+        {
+          "id": "paragraph:136",
+          "text": "N.B.2: Alla presente domanda va allegato il DGUE previsto per la verifica dei requisiti di partecipazione."
+        }
+      ]
+    }
+  ],
+  "candidates": {
+    "p103.s0": {
+      "type": "text",
+      "context_id": "paragraph:103",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "range": [
+        154,
+        238
+      ],
+      "slot_context": {
+        "before": "l raggruppamento, corrispondente alla percentuale di servizi che verranno eseguiti da ciascun concorrente è la seguente ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:103"
+      }
+    },
+    "p104.s0": {
+      "type": "text",
+      "context_id": "paragraph:104",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "range": [
+        94,
+        154
+      ],
+      "slot_context": {
+        "before": "e la natura del servizio d’ingegneria che verrà eseguita da ciascun concorrente è la seguente ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:104"
+      }
+    },
+    "p129.s0": {
+      "type": "text",
+      "context_id": "paragraph:129",
+      "section_ids": [
+        "paragraph:126"
+      ],
+      "range": [
+        5,
+        48
+      ],
+      "slot_context": {
+        "before": "Data ",
+        "after": " \t\t\tFIRMA "
+      },
+      "location": {
+        "block_id": "paragraph:129"
+      }
+    },
+    "p129.s1": {
+      "type": "text",
+      "context_id": "paragraph:129",
+      "section_ids": [
+        "paragraph:126"
+      ],
+      "range": [
+        58,
+        124
+      ],
+      "write_protected": true,
+      "slot_context": {
+        "before": " \t\t\tFIRMA ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:129"
+      }
+    },
+    "p21.s0": {
+      "type": "text",
+      "context_id": "paragraph:21",
+      "section_ids": [],
+      "range": [
+        21,
+        163
+      ],
+      "slot_context": {
+        "before": "Il/la sottoscritto/a ",
+        "after": " nato/a a "
+      },
+      "location": {
+        "block_id": "paragraph:21"
+      }
+    },
+    "p21.s1": {
+      "type": "text",
+      "context_id": "paragraph:21",
+      "section_ids": [],
+      "range": [
+        173,
+        276
+      ],
+      "slot_context": {
+        "before": " nato/a a ",
+        "after": " il "
+      },
+      "location": {
+        "block_id": "paragraph:21"
+      }
+    },
+    "p21.s2": {
+      "type": "text",
+      "context_id": "paragraph:21",
+      "section_ids": [],
+      "range": [
+        280,
+        332
+      ],
+      "slot_context": {
+        "before": " il ",
+        "after": " in qualità di "
+      },
+      "location": {
+        "block_id": "paragraph:21"
+      }
+    },
+    "p21.s3": {
+      "type": "text",
+      "context_id": "paragraph:21",
+      "section_ids": [],
+      "range": [
+        347,
+        494
+      ],
+      "slot_context": {
+        "before": " in qualità di ",
+        "after": " dello studio/società/consorzio "
+      },
+      "location": {
+        "block_id": "paragraph:21"
+      }
+    },
+    "p21.s4": {
+      "type": "text",
+      "context_id": "paragraph:21",
+      "section_ids": [],
+      "range": [
+        526,
+        648
+      ],
+      "slot_context": {
+        "before": " dello studio/società/consorzio ",
+        "after": " con sede in "
+      },
+      "location": {
+        "block_id": "paragraph:21"
+      }
+    },
+    "p21.s5": {
+      "type": "text",
+      "context_id": "paragraph:21",
+      "section_ids": [],
+      "range": [
+        661,
+        815
+      ],
+      "slot_context": {
+        "before": " con sede in ",
+        "after": " con codice fiscale n. "
+      },
+      "location": {
+        "block_id": "paragraph:21"
+      }
+    },
+    "p21.s6": {
+      "type": "text",
+      "context_id": "paragraph:21",
+      "section_ids": [],
+      "range": [
+        838,
+        977
+      ],
+      "slot_context": {
+        "before": " con codice fiscale n. ",
+        "after": " con partita IVA n. "
+      },
+      "location": {
+        "block_id": "paragraph:21"
+      }
+    },
+    "p21.s7": {
+      "type": "text",
+      "context_id": "paragraph:21",
+      "section_ids": [],
+      "range": [
+        997,
+        1141
+      ],
+      "slot_context": {
+        "before": " con partita IVA n. ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:21"
+      }
+    },
+    "p53.s0": {
+      "type": "text",
+      "context_id": "paragraph:53",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "range": [
+        181,
+        271
+      ],
+      "slot_context": {
+        "before": ", in caso di aggiudicazione, sarà conferito mandato speciale con rappresentanza o funzioni di capogruppo/capoprogetto a ",
+        "after": ";"
+      },
+      "location": {
+        "block_id": "paragraph:53"
+      }
+    },
+    "p58.s0": {
+      "type": "text",
+      "context_id": "paragraph:58",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "range": [
+        7,
+        46
+      ],
+      "slot_context": {
+        "before": "￼nome: ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:58"
+      },
+      "continuation_origin_paragraph_id": "paragraph:57"
+    },
+    "p59.s0": {
+      "type": "text",
+      "context_id": "paragraph:59",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "range": [
+        9,
+        45
+      ],
+      "slot_context": {
+        "before": "cognome: ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:59"
+      },
+      "continuation_origin_paragraph_id": "paragraph:57"
+    },
+    "p60.s0": {
+      "type": "text",
+      "context_id": "paragraph:60",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "range": [
+        22,
+        56
+      ],
+      "slot_context": {
+        "before": "titolo professionale: ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:60"
+      },
+      "continuation_origin_paragraph_id": "paragraph:57"
+    },
+    "p61.s0": {
+      "type": "text",
+      "context_id": "paragraph:61",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "range": [
+        17,
+        51
+      ],
+      "slot_context": {
+        "before": "data di nascita: ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:61"
+      },
+      "continuation_origin_paragraph_id": "paragraph:57"
+    },
+    "p62.s0": {
+      "type": "text",
+      "context_id": "paragraph:62",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "range": [
+        35,
+        61
+      ],
+      "slot_context": {
+        "before": "data di abilitazione professionale ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:62"
+      },
+      "continuation_origin_paragraph_id": "paragraph:57"
+    },
+    "p63.s0": {
+      "type": "text",
+      "context_id": "paragraph:63",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "range": [
+        11,
+        50
+      ],
+      "slot_context": {
+        "before": "qualifica: ",
+        "after": " "
+      },
+      "location": {
+        "block_id": "paragraph:63"
+      },
+      "continuation_origin_paragraph_id": "paragraph:57"
+    },
+    "t2.r1.c0": {
+      "type": "text",
+      "context_id": "t2.r1.c0",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 1
+      }
+    },
+    "t2.r1.c1": {
+      "type": "text",
+      "context_id": "t2.r1.c1",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 1
+      }
+    },
+    "t2.r1.c2": {
+      "type": "text",
+      "context_id": "t2.r1.c2",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 1
+      }
+    },
+    "t2.r1.c3": {
+      "type": "text",
+      "context_id": "t2.r1.c3",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 1
+      }
+    },
+    "t2.r1.c4": {
+      "type": "text",
+      "context_id": "t2.r1.c4",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 1
+      }
+    },
+    "t2.r2.c0": {
+      "type": "text",
+      "context_id": "t2.r2.c0",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 2
+      }
+    },
+    "t2.r2.c1": {
+      "type": "text",
+      "context_id": "t2.r2.c1",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 2
+      }
+    },
+    "t2.r2.c2": {
+      "type": "text",
+      "context_id": "t2.r2.c2",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 2
+      }
+    },
+    "t2.r2.c3": {
+      "type": "text",
+      "context_id": "t2.r2.c3",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 2
+      }
+    },
+    "t2.r2.c4": {
+      "type": "text",
+      "context_id": "t2.r2.c4",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 2
+      }
+    },
+    "t2.r3.c0": {
+      "type": "text",
+      "context_id": "t2.r3.c0",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 3
+      }
+    },
+    "t2.r3.c1": {
+      "type": "text",
+      "context_id": "t2.r3.c1",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 3
+      }
+    },
+    "t2.r3.c2": {
+      "type": "text",
+      "context_id": "t2.r3.c2",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 3
+      }
+    },
+    "t2.r3.c3": {
+      "type": "text",
+      "context_id": "t2.r3.c3",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 3
+      }
+    },
+    "t2.r3.c4": {
+      "type": "text",
+      "context_id": "t2.r3.c4",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 3
+      }
+    },
+    "t2.r4.c0": {
+      "type": "text",
+      "context_id": "t2.r4.c0",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 4
+      }
+    },
+    "t2.r4.c1": {
+      "type": "text",
+      "context_id": "t2.r4.c1",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 4
+      }
+    },
+    "t2.r4.c2": {
+      "type": "text",
+      "context_id": "t2.r4.c2",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 4
+      }
+    },
+    "t2.r4.c3": {
+      "type": "text",
+      "context_id": "t2.r4.c3",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 4
+      }
+    },
+    "t2.r4.c4": {
+      "type": "text",
+      "context_id": "t2.r4.c4",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 4
+      }
+    },
+    "t2.r5.c0": {
+      "type": "text",
+      "context_id": "t2.r5.c0",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 5
+      }
+    },
+    "t2.r5.c1": {
+      "type": "text",
+      "context_id": "t2.r5.c1",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 5
+      }
+    },
+    "t2.r5.c2": {
+      "type": "text",
+      "context_id": "t2.r5.c2",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 5
+      }
+    },
+    "t2.r5.c3": {
+      "type": "text",
+      "context_id": "t2.r5.c3",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 5
+      }
+    },
+    "t2.r5.c4": {
+      "type": "text",
+      "context_id": "t2.r5.c4",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 5
+      }
+    },
+    "t2.r6.c0": {
+      "type": "text",
+      "context_id": "t2.r6.c0",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 6
+      }
+    },
+    "t2.r6.c1": {
+      "type": "text",
+      "context_id": "t2.r6.c1",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 6
+      }
+    },
+    "t2.r6.c2": {
+      "type": "text",
+      "context_id": "t2.r6.c2",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 6
+      }
+    },
+    "t2.r6.c3": {
+      "type": "text",
+      "context_id": "t2.r6.c3",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 6
+      }
+    },
+    "t2.r6.c4": {
+      "type": "text",
+      "context_id": "t2.r6.c4",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "location": {
+        "block_id": "paragraph:67",
+        "table_id": "table:2",
+        "row_index": 6
+      }
+    },
+    "p27.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:27",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:27"
+      }
+    },
+    "p28.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:28",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:28"
+      }
+    },
+    "p29.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:29",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:29"
+      }
+    },
+    "p30.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:30",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:30"
+      }
+    },
+    "p31.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:31",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:31"
+      }
+    },
+    "p32.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:32",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:32"
+      }
+    },
+    "p33.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:33",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:33"
+      }
+    },
+    "p34.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:34",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:34"
+      }
+    },
+    "p36.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:36",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:36"
+      }
+    },
+    "p65.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:65",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:65"
+      }
+    },
+    "p65.cb1": {
+      "type": "checkbox",
+      "context_id": "paragraph:65",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:65"
+      }
+    },
+    "p65.cb2": {
+      "type": "checkbox",
+      "context_id": "paragraph:65",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:65"
+      }
+    },
+    "p108.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:108",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:108"
+      }
+    },
+    "p112.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:112",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:112"
+      }
+    },
+    "p114.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:114",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:114"
+      }
+    },
+    "p116.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:116",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:116"
+      }
+    },
+    "p118.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:118",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:118"
+      }
+    },
+    "p120.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:120",
+      "section_ids": [
+        "paragraph:23"
+      ],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:120"
+      }
+    }
+  },
+  "read_only_parts": [
+    {
+      "part": "word/footer2.xml",
+      "read_only_checkbox_count": 0,
+      "paragraphs": [
+        "2"
+      ]
+    }
+  ]
+}

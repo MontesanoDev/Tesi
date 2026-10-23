@@ -1,0 +1,67 @@
+{
+  "frozen_reference_unchanged": true,
+  "automatic_scores_preserved": true,
+  "raw_complete_value_overrides": [
+    {
+      "trial": "catanzaro/E1/rep-3",
+      "candidate_id": "t25.r3.c1",
+      "automatic_raw_correct": false,
+      "semantic_complete_value": true,
+      "reason": "Numero e data completi richiesti dal FORM; il connettivo del non cambia le due informazioni. Resta correttamente respinta dal contratto letterale: nessuna SOURCE contiene la stringa composta.",
+      "SOURCE_proofs": [
+        {
+          "chunk_id": -52,
+          "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+        },
+        {
+          "chunk_id": -43,
+          "quote": "- Data di iscrizione riportata nella visura demo: 14 marzo 2019."
+        }
+      ],
+      "no_validator_or_writer_acceptance_added": true
+    },
+    {
+      "trial": "catanzaro/E2-A/rep-3",
+      "candidate_id": "t25.r3.c1",
+      "automatic_raw_correct": false,
+      "semantic_complete_value": true,
+      "reason": "Numero e data completi richiesti dal FORM; il connettivo del non cambia le due informazioni. Resta correttamente respinta dal contratto letterale: nessuna SOURCE contiene la stringa composta.",
+      "SOURCE_proofs": [
+        {
+          "chunk_id": -52,
+          "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+        },
+        {
+          "chunk_id": -43,
+          "quote": "- Data di iscrizione riportata nella visura demo: 14 marzo 2019."
+        }
+      ],
+      "no_validator_or_writer_acceptance_added": true
+    }
+  ],
+  "historical_role_equivalence": {
+    "case": "history-latest/catanzaro",
+    "candidate_id": "t0.r3.c1",
+    "written_value": "rappresentante legale di Mapi Ingegneria S.r.l.",
+    "verdict": "Documented role with documented organization, complete and compatible; provenance stays USER as captured, not relabelled SOURCE",
+    "SOURCE_chunks": [
+      -53
+    ]
+  },
+  "partial_values_not_unsupported_facts": [
+    {
+      "candidate": "trapani/p75.s1",
+      "issue": "Via documentata, civico omesso rispetto al riferimento"
+    },
+    {
+      "candidate": "catanzaro/t25.r3.c1",
+      "issue": "Quando compare soltanto il numero, manca la data documentata"
+    },
+    {
+      "candidate": "minervino/p12.s1",
+      "issue": "Provincia inserita nel campo del Comune, ridondante rispetto al campo separato: granularità eccedente"
+    }
+  ],
+  "scoring_not_blind": true,
+  "single_authorial_review_not_independent_double_review": true
+}

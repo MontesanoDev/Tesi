@@ -1,0 +1,10 @@
+{
+  "archive": "docs/benchmarks/2026-10-17-ui-binding-audit.tar.gz",
+  "sha256": "cc25fbe50c3dad5253a525f5184a36b0fe97be297f0251a885a6d16fa8cf18a9",
+  "files": 22,
+  "uncompressed_bytes": 783192,
+  "archive_bytes": 663503,
+  "all_member_hashes_verified": true,
+  "private_database_included": false,
+  "live_mutable_start_log_excluded": true
+}

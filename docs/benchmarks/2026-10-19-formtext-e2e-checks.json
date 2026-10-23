@@ -1,0 +1,168 @@
+{
+  "controls": [
+    {
+      "check": "ID stabili, nomi duplicati e 20 campi reali",
+      "result": "PASS",
+      "evidence": "tests-focused.log + backend/tests/test_docx_formtext_regression.py"
+    },
+    {
+      "check": "Malformed/nested/prefilled and excluded XML preserved",
+      "result": "PASS",
+      "evidence": "test_docx_formtext.py: fifteen negative cases also fill unrelated field and compare all excluded XML"
+    },
+    {
+      "check": "Twenty exact destinations and deterministic writing",
+      "result": "PASS",
+      "evidence": "21 real-template write cases (all fields + each field separately), shuffled input order"
+    },
+    {
+      "check": "Six frozen catalog/previous DOCX comparisons",
+      "result": "PASS",
+      "evidence": "bundle-verification.json and six permanent fixture cases"
+    },
+    {
+      "check": "PDF rendering executed on six regression outputs",
+      "result": "PASS",
+      "evidence": "render-preflight.json, all words and bounding boxes identical to previous PDFs"
+    },
+    {
+      "check": "Twenty unique FORMTEXT test values readable",
+      "result": "PASS",
+      "evidence": "render/venti-FORMTEXT, pages1/3 visually checked; all20 in PDF"
+    },
+    {
+      "check": "Historical CRAA CCIAA values readable",
+      "result": "FAIL",
+      "independent_preexisting": true,
+      "evidence": "render/craa/page-4.png, existing 66/81 twip cells"
+    },
+    {
+      "check": "Historical Catanzaro addresses readable",
+      "result": "PASS",
+      "evidence": "render/catanzaro/page-01.png and extra-11.png; plain text order interleaves labels"
+    },
+    {
+      "check": "Final software suite and Ruff",
+      "result": "PASS",
+      "evidence": "2682 passed in205.02s; focused258 in22.25s; Ruff All checks passed"
+    },
+    {
+      "check": "E2E execution, new isolated real session and ordinary export",
+      "result": "PASS"
+    },
+    {
+      "check": "Real request same model/prompt/parameters/SOURCE",
+      "result": "PASS"
+    },
+    {
+      "check": "Real writer: eight exact native results, no other XML changes",
+      "result": "PASS"
+    },
+    {
+      "check": "PDF E2E: eight visible values, three pages, no out-of-page words",
+      "result": "PASS"
+    },
+    {
+      "check": "USER date unknown respected; no signatures or checkbox invented",
+      "result": "PASS"
+    },
+    {
+      "check": "SOURCE personal data coverage",
+      "result": "FAIL",
+      "reason": "Three available personal values omitted"
+    },
+    {
+      "check": "Subject/field compatibility of all written values",
+      "result": "FAIL",
+      "reason": "Seven company data writes lack proof/confirmation for signatory study and personal contacts/PIVA"
+    },
+    {
+      "check": "Company checkbox materialized from recorded decision",
+      "result": "FAIL",
+      "reason": "No choice group proposed; p19.cb0 unchanged"
+    },
+    {
+      "check": "No unrelated component changed for benchmark result",
+      "result": "PASS"
+    }
+  ],
+  "preexisting_protected_files_changed": [
+    "backend/tests/test_docx_formtext.py"
+  ],
+  "other_protected_files_unchanged": 328,
+  "historical_artifacts_unchanged": 632,
+  "live_storage_unchanged": 285,
+  "live_sessions_unchanged": 29,
+  "old_clone_sessions_unchanged": 32,
+  "new_isolated_sessions": 1,
+  "actual_global_calls": 1,
+  "all_provider_calls": 10,
+  "app_prompt_grounding_dialogue_writer_unchanged_this_phase": true,
+  "same_SOURCE_in_real_request": true,
+  "same_parameters_and_system_prompt": true,
+  "frozen_sources_and_original_forms_preserved": true,
+  "global_output_reuse": 0,
+  "quality_retries": 0,
+  "browser_trace_video_finalized": true,
+  "browser_request_aborts": 10,
+  "infrastructure_attempt_before_any_session_or_LLM_preserved": true,
+  "no_commit_push": true,
+  "FORMTEXT_technical_result": "PASS",
+  "overall_functional_quality": "FAIL",
+  "feature_declared_closed": false,
+  "mandatory_checks_not_executed": [],
+  "not_requested_and_not_executed": [
+    "Microsoft Word desktop rendering"
+  ],
+  "metrics": {
+    "candidate_count": 88,
+    "text_destinations": 20,
+    "native_checkboxes": 68,
+    "proposed": 8,
+    "grounded_initial": 8,
+    "grounded_final": 8,
+    "applicable": 8,
+    "reviewed": 8,
+    "written": 8,
+    "correct_demonstrated": 1,
+    "context_not_demonstrated": 7,
+    "SOURCE_omitted": 3,
+    "unfilled": 12,
+    "checkbox_written": 0,
+    "USER_text_written": 0,
+    "date_unknown_preserved": true,
+    "holds": 0,
+    "session_id": "226639266b2c4b4a8aaacc2e1f25b65d",
+    "conversation_id": "conv-436e1eb7ce2d4b6d",
+    "status": "GENERATED",
+    "version": 10,
+    "new_global_calls": 1,
+    "calls": {
+      "router": 4,
+      "global": 1,
+      "narrator": 3,
+      "guard": 2
+    },
+    "usage": {
+      "prompt_tokens": 89237,
+      "completion_tokens": 22454,
+      "total_tokens": 111691,
+      "prompt_cache_hit_tokens": 30464,
+      "prompt_cache_miss_tokens": 58773,
+      "reasoning_tokens": 17829
+    },
+    "summed_provider_seconds": 99.89597864599978,
+    "estimated_USD": 0.022379741999999998,
+    "USD_is_estimate_not_invoice": true,
+    "all_HTTP_status_200": true,
+    "finish_stop_all": true,
+    "quality_retries": 0,
+    "model": "deepseek-flash",
+    "thinking_global": "enabled/low",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "PDF_pages": 3,
+    "no_FORMTEXT_regression": true,
+    "overall_functional_quality": "FAIL",
+    "feature_declared_closed": false
+  }
+}

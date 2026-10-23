@@ -1,0 +1,19 @@
+{
+  "attempted": 1,
+  "tokens_spent": 1021245,
+  "results": [
+    {
+      "trial": "catanzaro-1",
+      "document": "catanzaro",
+      "session_id": "57a426a00be046898948467b1bba9fa3",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 231256,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    }
+  ]
+}

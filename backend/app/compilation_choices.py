@@ -291,8 +291,10 @@ def attach_choice_audit(result, groups, items, catalog, source_map):
 
 def materialize_choices(data, source_ids, user_ids):
     """Validate the final subset, including USER overrides and initial checked peers."""
+    from app.compilation_branch_evidence import effective_user_values, receipt_choice_value
+
     fields = {f["candidate_id"]: f for f in data["audit"]["fields"]}
-    users = (data.get("dialogue") or {}).get("user_values", {})
+    users = effective_user_values(data)
     chosen = {cid: (users[cid]["value"] if cid in user_ids else
                    fields[cid].get("proposed_value", fields[cid].get("value")))
               for cid in [*source_ids, *user_ids]
@@ -302,8 +304,16 @@ def materialize_choices(data, source_ids, user_ids):
         selected = {cid: value for cid, value in chosen.items() if cid in group["options"]}
         if not selected:
             continue
-        if group["validation"] != "GROUNDED_GROUP" or group["selection"] == "unknown":
+        if group["validation"] != "GROUNDED_GROUP":
             raise ValueError("Gruppo di scelta non validato")
+        if group["selection"] == "unknown":
+            # Cardinality is still unknown. Only an exact positive condition
+            # receipt can mark its own control; never clear or infer peers.
+            if any(cid not in user_ids or receipt_choice_value(data, cid) != users[cid]
+                   or value is not True for cid, value in selected.items()):
+                raise ValueError("Cardinalità ignota senza ricevuta positiva verificata")
+            values.update(selected)
+            continue
         count = sum(v is True for v in selected.values())
         if any(type(v) is not bool for v in selected.values()) or (
             group["selection"] == "single" and count > 1

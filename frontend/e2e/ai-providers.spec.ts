@@ -47,7 +47,7 @@ test('choose a provider, save Claude and connect OpenRouter from the browser', a
   await page.getByRole('combobox', { name: 'Servizio', exact: true }).selectOption('ollama')
   const endpoint = page.getByRole('textbox', { name: /^Indirizzo del servizio/ })
   await expect(endpoint).toBeVisible()
-  await expect(page.getByText('Ollama può essere sul computer che esegue Mapi', { exact: false })).toBeVisible()
+  await expect(page.getByText('Ollama può essere sul computer che esegue l’applicazione', { exact: false })).toBeVisible()
   await endpoint.fill('https://ollama.example.test')
   await page.screenshot({ path: `artifacts/${testInfo.project.name}-ollama-endpoint.png`, fullPage: true })
   await page.getByRole('combobox', { name: 'Servizio', exact: true }).selectOption('anthropic')

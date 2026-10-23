@@ -1,0 +1,166 @@
+BODY 0: Comune di Minervino di Lecce
+BODY 1: Provincia di Lecce
+BODY 2: Settore IV^ - Edilizia - Urbanistica - Manutenzioni
+BODY 3: Settore V^ - LL.PP.
+BODY 4: Via Duca degli Abruzzi s.n.  – 73027 Minervino di Lecce (Le)
+BODY 5: Centralino 0836 891063
+BODY 6: Codice fiscale: 83000490751 - Partita IVA: 01777120757
+BODY 7:   pec:  protocollo.comuneminervino.le@pec.rupar.puglia.it   
+BODY 9: AVVISO DI SELEZIONE PUBBLICA PER COSTITUZIONE ELENCO PROFESSIONISTI QUALIFICATI CUI AFFIDARE INCARICHI DI PROGETTAZIONE, DI DIREZIONE DEI LAVORI, DI COLLAUDO, COORDINAMENTO DELLA SICUREZZA IN FASE DI PROGETTAZIONE E DI ESECUZIONE, ATTIVITÀ DI SUPPORTO TECNICO SPECIALISTICA PER ATTUAZIONE PROGETTI FINANZIANTI CON FONDI COMUNITARI, ATTIVITA’ TECNICO - AMMINISTRATIVE CONNESSE E DI SUPPORTO AL RUP, DI IMPORTO STIMATO INFERIORE A 221.000,00 EURO, ART. 41 E ART. 77 D. LGS.36/2023.
+BODY 10: (da rendersi ai sensi del DPR 445/2000)
+BODY 11: DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+BODY 12: Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente
+BODY 13: in __________________ (__), via ________________________, C.F. ______________________, in qualità di
+BODY 14: _______________________ dell’operatore economico ___________________________________ con sede in
+BODY 15: _________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail
+BODY 16: ________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla
+BODY 17: Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________
+BODY 18: consapevole della responsabilità penale a cui possono andare incontro in caso di dichiarazioni mendaci, ai sensi e per gli effetti dell’art. 76 del D.P.R. 28 dicembre 2000, n. 445, tenuto conto degli articoli 46 e 47 del citato D.P.R. n. 445/2000
+BODY 19: IN QUALITÀ DI
+BODY 20:  Libero professionista singolo
+BODY 21:  Legale rappresentante dello studio professionale associato avente la seguente denominazione
+BODY 22: “.........................................................................................................................................” P. IVA ...........................................
+BODY 23: sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………
+BODY 24: pec ……………………….………..……………………………………………………………
+BODY 25: il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+BODY 26: 1) nome e cognome .......................................................................................................................................
+BODY 27: qualifica professionale .......................................................................C.F. .....................................................................
+BODY 28: iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+BODY 29: 2) nome e cognome .....................................................................................................
+BODY 30: qualifica professionale .....................................................................................................C.F. .......................................
+BODY 31: iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+BODY 32: 3) nome e cognome ...................................................................................................................................................................
+BODY 33: qualifica professionale .................................................................................C.F. ...............................................................
+BODY 34: iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+BODY 35:  Professionista appartenete allo studio professionale associato avente la seguente denominazione
+BODY 36: “................................................................................................” P. IVA .......................................................
+BODY 37: sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………
+BODY 38: il cui Rappresentante Legale è: nome e cognome .......................................................................................................................................................
+BODY 39:  Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente
+BODY 40: denominazione/ragione sociale “………………................................................................................................”
+BODY 41: P. IVA ................................................. sede legale in .............................................................................................................
+BODY 42: prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+BODY 43: 1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+BODY 44: della provincia di ............................................ dal ........................ con il n. ………………..…
+BODY 45: 2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+BODY 46: della provincia di ............................................ dal ........................ con il n. ………………..…
+BODY 47: 3) nome e cognome ......................................................................................................................................
+BODY 48: qualifica professionale ..................................................................................... C.F. ..................................................
+BODY 49: iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…
+BODY 50: la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):
+BODY 51: 3) nome e cognome ..................................................................................................................................................
+BODY 52: qualifica professionale ..................................................................................... C.F. ........................................................
+BODY 53: iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…
+BODY 54:  Capogruppo di raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione:
+BODY 55: “......................................................................................................................................................................................................................”, composto dai seguenti soggetti “mandanti” (riportare nominativo, qualifica professionale, C.F. di ogni soggetto nonché la specifica se trattasi di professionista singolo, rappresentante di associazione di professionisti, legale rappresentante di società o di consorzio):
+BODY 56: 1) nome e cognome ...............................................................................................................................................................
+BODY 57: qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… …………………………………………………………….
+BODY 58: 2) nome e cognome ........................................................................................................................................................................................qualifica professionale................................................................................................................................................................................
+BODY 59: C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………
+BODY 60: 3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………
+BODY 61:  Mandante del raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione
+BODY 62: “…………………………………………………………………………………………………………………………………………………………………………………..……………”
+BODY 63: il cui Capogruppo è: nome e cognome .....................................................................................................................................
+BODY 64:  Legale rappresentante di consorzio stabile di società di professionisti e di società di ingegneria (art.66, comma 1, lett. g, D.lgs. n.36/2023) denominato
+BODY 65: “...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica
+BODY 66: professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+BODY 67: 1) nome e cognome .......................................................................................................................................................qualifica professionale ....................................................................................................C.F. ...........................................................................................
+BODY 68: iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+BODY 69: 2) nome e cognome ...........................................................................................................................................................
+BODY 70: qualifica professionale ..........................................................................................C.F. ........................................................
+BODY 71: iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+BODY 72: 3) nome e cognome .................................................................................................................................................................
+BODY 73: qualifica professionale ....................................................................................................C.F. .................................................
+BODY 74: iscritto all’Ordine/Collegio professionale ................................................................................................. sezione .............................
+BODY 75: della provincia di ............................................................................................................................ dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+BODY 76: C H I E D E
+BODY 77: di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):
+BODY 78: Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):
+BODY 80: Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;
+BODY 82: Servizio di collaudo finale o in corso d’opera;
+BODY 84: Altri incarichi per servizi tecnici;
+BODY 86: D I C H I A R A
+BODY 87:  in caso di PROFESSIONISTI ASSOCIATI
+BODY 88: - di essere ammesso alla presente procedura in regime di professionisti associati, conferendo al “rappresentante” indicato nella presente domanda la rappresentanza nei confronti dell’Amministrazione;
+BODY 89: - di sottoscrivere integralmente e senza riserva alcuna, per quanto ad essi compete, le dichiarazioni rese dal “rappresentante” nella presente domanda;
+BODY 90:  in caso di RTP
+BODY 91: - di essere ammessi alla presente procedura in regime di raggruppamento temporaneo, conferendo al “capogruppo” indicato nella presente domanda la rappresentanza nei confronti dell’Amministrazione;
+BODY 92: - di sottoscrivere integralmente e senza riserva alcuna, per quanto ad essi compete, le dichiarazioni rese dal “capogruppo” nella presente domanda;
+BODY 93: - che i soggetti del raggruppamento si obbligano, in caso di incarico, a conformarsi alla disciplina di cui all’art.68 del D.lgs. n.36/2023, in quanto compatibile;
+BODY 94: - che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:
+BODY 95: nome e cognome .................................................................................................................................................................
+BODY 96: qualifica professionale ...........................................................................C.F. ................................................................................................... iscritto all’Ordine/Collegio professionale ……………………………………................................................................ sezione ........................................
+BODY 97: della provincia di .............................................................. dal ........................ con il n. …..……
+BODY 98:  in caso di RTP COSTITUTI: ALLEGANO il mandato collettivo o l’atto costitutivo (risultante da scrittura privata autenticata) e la relativa procura speciale conferita dai soggetti raggruppati al legale rappresentante del soggetto capogruppo-mandatario;
+BODY 99:  in caso di RTP NON ANCORA COSTITUTI: i soggetti che intendono raggrupparsi SI IMPEGNANO a conferire, in caso di affidamento di incarico, mandato collettivo speciale con rappresentanza ad uno dei componenti il raggruppamento;
+BODY 100: DICHIARA inoltre
+BODY 101:  che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:
+BODY 102: di non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;
+BODY 103: che non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;
+BODY 104: di non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;
+BODY 105: di non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;
+BODY 106: di impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.
+BODY 107: di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;
+BODY 108: che il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;
+BODY 109: di essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;
+BODY 110: di acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;
+BODY 111: di autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.
+BODY 112:  che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:
+BODY 113: …...........................................................................................................................................................................................................................................................................................................................................................................................................
+BODY 114: …...................................................................................................................................................................................................
+BODY 115: e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:
+BODY 116: …...................................................................................................................................................................................................
+BODY 117: …...................................................................................................................................................................................................
+BODY 118: …...................................................................................................................................................................................................
+BODY 119: N.B: Per le società di professionisti e le società di ingegneria
+BODY 120: • Se trattasi di società di professionisti o di società di ingegneria, i soggetti sotto indicati devono dichiarare personalmente di non incorrere in una delle cause di esclusione di cui agli artt. 94, 95, 97 e 98 del D.lgs. n.36/2023:
+BODY 121: tutti i soci ed il direttore tecnico, se si tratta di s.n.c.;
+BODY 122: tutti i soci accomandatari ed il direttore tecnico, se si tratta di s.a.s.;
+BODY 123: tutti gli amministratori muniti di potere di rappresentanza, il direttore tecnico, il socio unico persona fisica ovvero il socio di maggioranza in caso di società con meno di 4 soci, se si tratta di altro tipo di società;
+BODY 124: tutti i soggetti che hanno ricoperto le cariche di cui sopra e cessati dalla carica nell'anno antecedente
+BODY 126: Luogo e data, ______________________
+BODY 128: Firma digitale 
+BODY 129: ____________________________
+
+TABLE 0
+r0: c0: Categoria di opere || c1: Fascia A  | (incarichi da € 0,00 a € 39.999,00) || c2: Fascia B  | (incarichi da € 40.000,00 a € 139.999,00) || c3: Fascia C  | (incarichi da € 140.000,00 a € 221.000,00)
+r1: c0: Edilizia commerciale || c1:  || c2:  || c3: 
+r2: c0: Edilizia residenziale || c1:  || c2:  || c3: 
+r3: c0: Edilizia scolastica e sanitaria || c1:  || c2:  || c3: 
+r4: c0: Impianti sportivi, piscine, cimiteri ed edifici di culto || c1:  || c2:  || c3: 
+r5: c0: Aree esterne e opere a verde || c1:  || c2:  || c3: 
+r6: c0: Interventi su beni immobili di interesse storico- artistico || c1:  || c2:  || c3: 
+r7: c0: Edilizia – sedi amministrative || c1:  || c2:  || c3: 
+r8: c0: Strutture || c1:  || c2:  || c3: 
+r9: c0: Impianti meccanici || c1:  || c2:  || c3: 
+r10: c0: Impianti elettrici || c1:  || c2:  || c3: 
+r11: c0: Impianti di depurazione o discariche || c1:  || c2:  || c3: 
+r12: c0: Opere elettriche per reti || c1:  || c2:  || c3: 
+r13: c0: Opere stradali || c1:  || c2:  || c3: 
+r14: c0: Opere idrauliche || c1:  || c2:  || c3: 
+r15: c0: Sistemi e reti di telecomunicazioni || c1:  || c2:  || c3: 
+r16: c0: Sistemi e reti di telecomunicazioni || c1:  || c2:  || c3: 
+r17: c0: Pianificazione || c1:  || c2:  || c3: 
+
+TABLE 1
+r0: c0: Tipologia incarico || c1: Fascia A | (incarichi da € 0,00 a € 39.999,00) || c2: Fascia B | (incarichi da € 40.000,00 a € 139.999,00) || c3: Fascia C | (incarichi da € 140.000,00 a € 221.000,00)
+r1: c0: CSP/CSE || c1:  || c2:  || c3: 
+
+TABLE 2
+r0: c0: Tipologia incarico || c1: Preferenza
+r1: c0: Collaudo statico || c1: 
+r2: c0: Collaudo tecnico amministrativo || c1: 
+r3: c0: Collaudo funzionale - impiantistico || c1: 
+
+TABLE 3
+r0: c0: Tipologia incarico || c1: Preferenza
+r1: c0: redazione pratiche prevenzione incendi || c1: 
+r2: c0: visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti || c1: 
+r3: c0: perizie di stima || c1: 
+r4: c0: relazioni geologiche e sismiche || c1: 
+r5: c0: indagini geologiche / sismiche e relazioni geologiche || c1: 
+r6: c0: supporto agli atti di pianificazione comunque denominati || c1: 
+r7: c0: servizi tecnici di competenza di restauratori || c1: 
+r8: c0: servizi di assistenza archeologica || c1: 
+r9: c0: servizi di competenza di agronomi e dottori forestali || c1: 
+r10: c0: redazione di certificato di prestazione energetica || c1: 

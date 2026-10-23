@@ -1,0 +1,144 @@
+{
+  "targeted_USER_intervention": "PASS",
+  "checks": {
+    "original_USER_preserved": "PASS:3113characters,SHA256 identical in UI,reload recovery,HTTP,router,guard,history and SQLite",
+    "long_valid_vs_unsupported": "PASS:excerpt limit aligned to4000;over-limit input explicitly blocked and retained;value1501 still rejected",
+    "decisions_verified_and_persisted": "PASS:one CONDITION_TRUE,two SKIP;independent scope verification;no fabricated USER facts or writes",
+    "recover_after_error": "PASS:software tests for network/schema/configuration/HTTP errors,pending abort,storage denial;manual recovery only;real UI reload recovery",
+    "permanent_tests": "PASS:33backend+20frontend new cases;2877backend/126frontend PASS;Ruff/lint/build PASS",
+    "historical_regression": "PASS:22 exact audit/DOCX comparisons,including Minervino61/61 and CRAA9XML;no network/SQLite",
+    "new_real_UI_CRAA": "PASS:one new global,one isolated session,3113char reply,three verified decisions,seven correct SOURCE writes",
+    "CCIAA_PDF": "OUT_OF_SCOPE:geometry intact;new cells blank by USER_SKIP,not a visibility fix",
+    "historical_MODEL_reason225": "OPEN_UNCHANGED:MODEL metadata limit200,not lost USER text",
+    "CRAA_signatory_name": "UNRESOLVED:MODEL omission p5.s0;no extra inference or recovery fix during trial",
+    "capture_limit": "DISCLOSED:first driver without PTY,initial trace incomplete;resumed same session;second trace/video complete;no repeated global",
+    "API_DB_FORM_writer_model": "UNCHANGED;only quote schema of current dialogue/control and frontend recovery changed",
+    "no_commit_push": "PASS",
+    "baseline": "NOT_ADOPTED"
+  },
+  "software_checks": {
+    "backend_passed": 2877,
+    "backend_seconds": 217.26,
+    "frontend_passed": 126,
+    "frontend_seconds": 6.7,
+    "new_backend_cases": 33,
+    "new_frontend_cases": 20,
+    "Ruff": "PASS",
+    "frontend_lint": "PASS",
+    "frontend_build": "PASS"
+  },
+  "regressions": [
+    {
+      "case": "replay-conserved",
+      "returncode": 0,
+      "output": "bella 4 writes; 0 personal SOURCE proposals; 0 pending\ncatanzaro 13 writes; 0 personal SOURCE proposals; 0 pending\ncesano 0 writes; 0 personal SOURCE proposals; 0 pending\ncesano-reale-8 1 writes; 0 personal SOURCE proposals; 0 pending\ncraa 9 writes; 0 personal SOURCE proposals; 0 pending\ne2e-catanzaro 15 writes; 1 personal SOURCE proposals; 1 pending\nminervino 55 writes; 9 personal SOURCE proposals; 0 pending\nminervino-v12-61 61 writes; 9 personal SOURCE proposals; 0 pending\npec-trapani-reale 9 writes; 0 personal SOURCE proposals; 0 pending\ntrapani 9 writes; 0 personal SOURCE proposals; 0 pending\n{\"mode\": \"conserved\", \"ten_audits_DOCX_rebuilt_exactly\": 10, \"network_DB_forbidden\": true}"
+    },
+    {
+      "case": "replay-new-context",
+      "returncode": 0,
+      "output": "bella 4 writes; 4 personal SOURCE proposals; 4 pending\ncatanzaro 13 writes; 2 personal SOURCE proposals; 2 pending\ncesano 0 writes; 0 personal SOURCE proposals; 0 pending\ncesano-reale-8 1 writes; 3 personal SOURCE proposals; 3 pending\ncraa 9 writes; 0 personal SOURCE proposals; 0 pending\ne2e-catanzaro 15 writes; 1 personal SOURCE proposals; 1 pending\nminervino 55 writes; 9 personal SOURCE proposals; 0 pending\nminervino-v12-61 61 writes; 9 personal SOURCE proposals; 0 pending\npec-trapani-reale 9 writes; 8 personal SOURCE proposals; 8 pending\ntrapani 9 writes; 8 personal SOURCE proposals; 8 pending\n{\"mode\": \"new-context\", \"ten_audits_DOCX_rebuilt_exactly\": 10, \"network_DB_forbidden\": true}"
+    },
+    {
+      "case": "first-real",
+      "returncode": 0,
+      "output": "{\"real_Trapani_audit_DOCX_exactly_reproduced\": true, \"texts\": 17, \"network_forbidden\": true, \"database_not_used\": true}"
+    },
+    {
+      "case": "final-real",
+      "returncode": 0,
+      "output": "{\"real_Trapani_audit_DOCX_exactly_reproduced\": true, \"texts\": 17, \"network_forbidden\": true, \"database_not_used\": true}"
+    }
+  ],
+  "real_trial": {
+    "session_id": "bc286f4fd88d46d89d55edf0595d68e7",
+    "session_version": 7,
+    "raw_facts": 13,
+    "MODEL_value_proposals": 13,
+    "grounded_values": 9,
+    "applicable_grounded": 7,
+    "reviewed_current": 9,
+    "written_count": 7,
+    "SOURCE_written": 7,
+    "USER_written": 0,
+    "checkbox_values": {},
+    "UNKNOWN_conditions": [
+      "c_societa_cciaa",
+      "c_fatturato"
+    ],
+    "SOURCE_reference_unwritten": [
+      "p5.s0",
+      "t6.r0.c1",
+      "t6.r0.c3"
+    ],
+    "long_USER_characters": 3113,
+    "long_USER_SHA256": "52342bd3aaafe13be4213326d3a45610f70fedc34c5932ddc8a915dc02ce542e",
+    "accepted_decisions": 3,
+    "calls": 7,
+    "call_kinds": {
+      "router": 3,
+      "global": 1,
+      "narrator": 2,
+      "guard": 1
+    },
+    "usage": {
+      "prompt_tokens": 73536,
+      "completion_tokens": 22138,
+      "total_tokens": 95674,
+      "prompt_cache_hit_tokens": 22528,
+      "prompt_cache_miss_tokens": 51008
+    },
+    "summed_HTTP_seconds": 96.42035125799885,
+    "global_seconds": 87.21352968500014,
+    "estimated_USD": 0.021001584,
+    "cost_not_invoice": true,
+    "models": [
+      "deepseek-flash"
+    ],
+    "fingerprints": [
+      "e72d3c7f663d3e1383b00b3884cb4501"
+    ],
+    "all_stop": true,
+    "provider_errors": 0,
+    "no_quality_retry": true,
+    "new_global_calls": 1,
+    "no_code_correction_during_trial": true,
+    "final_quality_verdict": "PASS circoscritto: risposta USER conservata integralmente;3decisioni verificate;7SOURCE corrette nel DOCX parziale",
+    "grounded_facts": 13,
+    "rejected_FIELD_assignments": 2,
+    "unselected_alternative_FIELDS": 2,
+    "grounded_values_not_written_due_USER_SKIP": 2,
+    "correct_SOURCE_writes": 7,
+    "unsupported_writes_detected": 0,
+    "wrong_subject_or_section_detected": 0,
+    "PDF_pages": 7,
+    "PDF_readable_values": 7,
+    "visual_pages_checked": [
+      1,
+      4,
+      7
+    ],
+    "source_name_still_omitted": "p5.s0",
+    "historical_MODEL_reason225_problem_not_fixed": true,
+    "CCIAA_visibility_not_fixed": true,
+    "residuals": [
+      "Nome firmatario omesso dal MODEL; nessun riuso retroattivo o nuova inferenza",
+      "Due CCIAA disponibili ma sospesi dalla condizione sulla coerenza merceologica rinviata",
+      "Due anni rifiutati per citazione FORM;due fatturati lasciati come alternative senza selezione",
+      "Preferenze/attestazioni/esecutori/integrazione/luogo-data senza conferme",
+      "Etichette contigue ai valori come impresaMapi,PECmapi;writer invariato",
+      "Prima acquisizione browser senza PTY: riaperta la stessa conversazione,nessuna nuova globale; primo trace non finalizzato"
+    ]
+  },
+  "preservation": {
+    "other_protected_files_unchanged": 1358,
+    "live_sessions_unchanged": 29,
+    "live_storage_files_unchanged": 285,
+    "previous_clone_sessions_unchanged": 37,
+    "new_isolated_sessions": 1,
+    "application_frontend_files_frozen": 116,
+    "HEAD_unchanged": true,
+    "no_commit_push": true,
+    "no_implicit_upgrade": true,
+    "no_migration_reindex": true
+  }
+}

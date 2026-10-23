@@ -72,7 +72,7 @@ test('document mentions consult sources and preserve the pending form across rel
   await expect(page.getByRole('group', { name: 'Moduli da compilare' })).toBeVisible()
   await expect(page.getByRole('group', { name: 'Bandi e fonti' })).toBeVisible()
   await page.getByRole('option', { name: source.name }).click()
-  const input = page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+  const input = page.getByRole('textbox', { name: 'Messaggio per l’assistente' })
   await input.fill('Spiegami questo bando')
   await page.getByRole('button', { name: 'Invia', exact: true }).click()
   await expect(page.getByText('L’avviso descrive i requisiti per partecipare alla selezione.')).toBeVisible()

@@ -1,0 +1,14 @@
+{
+  "archive_SHA256_valid": true,
+  "manifest_files_verified": 429,
+  "extracted_code_separate_processes": true,
+  "network_and_sqlite_forbidden": true,
+  "LLM_calls": 0,
+  "DOCX_rebuilt_exactly": 23,
+  "audits_identical": 21,
+  "expected_CRAA_metadata_delta_verified": 2,
+  "counterfactual_audits_before_after_exact": 4,
+  "persisted_stages_per_counterfactual": 5,
+  "saved_narrator_plan_replay_exact": true,
+  "all_results_match_saved": true
+}

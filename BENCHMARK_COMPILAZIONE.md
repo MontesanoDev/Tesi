@@ -13,6 +13,19 @@ Questo file mantiene lo stato della preparazione e l'indice delle nuove prove.
 inclusi fallimenti e limiti. La
 [proposta architetturale](ARCHITETUTTURA_PROPOSTA.md) resta da discutere.
 
+**Decisione del 17 ottobre:** stop esperimenti di compattazione FORM; B0 resta
+il riferimento, E1 e indice diretto non da integrare. Nessuna nuova API LLM o
+modifica applicativa nella
+[diagnosi del contratto di risposta](docs/diagnosi-contratto-risposta-b0-e1-2026-10-17.md).
+E2 non avviato; le proposte di prosecuzione riportate sotto sono storiche.
+
+Il [replay INDEX-01 e controllo USER/thinking](docs/replay-index01-user-reasoning-2026-10-17.md)
+del 17 ottobre aggiunge diagnosi offline e test software, non chiamate LLM:
+metadati isolati, schema passa ma solo 19 grounded/18 conformi. Trasporto delle
+richieste USER registrate implementato separatamente; senza USER B0 identico.
+Coverage invariato, futuro pilot thinking non eseguito. Non sommare i replay
+ai run reali e non confrontare test con USER col benchmark senza USER.
+
 ## 1. Inventario minimo
 
 Servono **un originale, le istruzioni della procedura, fonti aziendali coerenti,
@@ -426,10 +439,10 @@ Senza gold revisionato non si dichiarano percentuali di accuratezza.
 | 4 | Definire risposte e checkpoint | Schede P05/P09 | Richiesta iniziale e quattro argomenti con T0/T1/T2 fissati |
 | 5 | Compilare e revisionare i gold | Word P07 e annotazioni P08 coerenti | GOLD V1 e JSON pronti; rendering e limiti dichiarati |
 | 6 | Congelare il pacchetto | Versione, hash e revisione registrati | Minervino V1 congelato; Labirinto V1 preservato |
-| 7 | Predisporre istanza e caricamento | DB/KB/storage isolati e corpus documentato | Da fare |
-| 8 | Fissare protocollo e configurazione | Misure, ripetizioni, turni e budget | Da concordare |
-| 9 | Eseguire la baseline attuale | Tutti i run con i loro artefatti | Non avviata |
-| 10 | Attribuire le perdite alle fasi | Evidenze per discutere i cambiamenti architetturali | Successiva alla baseline |
+| 7 | Predisporre istanza e caricamento | DB/KB/storage isolati e corpus documentato | Copie isolate dal backend; cinque SOURCE conformi; ingestion nuova non misurata |
+| 8 | Fissare protocollo e configurazione | Misure, ripetizioni, turni e budget | B0 fissato: tre analisi DeepSeek thinking, continuazioni con copione e budget registrati |
+| 9 | Eseguire la baseline attuale | Tutti i run con i loro artefatti | Tre analisi reali e tre export parziali acquisiti; perimetro servizi dichiarato |
+| 10 | Attribuire le perdite alle fasi | Evidenze per discutere i cambiamenti architetturali | Omissioni, binding, scelte iniziali, domande, checkbox e layout distinti nel report B0 |
 
 Il caso è pronto quando un revisore può spiegare, senza consultare gli output
 LLM, perché ogni richiesta vada compilata, chiarita o lasciata vuota a ciascun
@@ -448,6 +461,11 @@ dichiarata, conservando le misure precedenti.
 | 16 ottobre 2026 | Preparazione del Word revisione 1 | Ripristinati direttore e label originali; 52 occorrenze precedenti + otto nuove verificate, sei X e 13 controlli preservati; aggiunta scheda scenario | L'utente controlla il file; attendere il suo OK prima di congelare |
 | 16 ottobre 2026 | Verifica del verdetto sulla revisione 1 | Numerazione alfabetica conservata; firma isolata a pagina 10 non confermata dal renderer alternativo; assegnazioni già nello scenario; due note nelle aree compilabili confermate | [Riscontro dettagliato](docs/minervino-verifica-verdetto-2026-10-16.md); controllo in Word, eventuali correzioni e OK prima del congelamento |
 | 16 ottobre 2026 | Congelamento autorizzato Minervino V1 | Word dall'originale, note fuori dai campi, firma unita nel PDF LibreOffice, 267 destinazioni annotate, fonti/scenario/copione e manifest congelati | [Base e verifiche](docs/minervino-base-v1-2026-10-16.md); tag baseline-minervino-v1-20261016, poi istanza isolata e baseline integrata |
+| 16 ottobre 2026 | Discussione separata E1/E2 | Piano documentale: E1 confronta rappresentazioni complete; E2 confronta estratti compatti con E1 sulle stesse destinazioni e contro il gold | [Piano e limiti](docs/piano-esperimenti-e1-e2.md); definire contratto compatto e B0, poi manifest dei gruppi E2 |
+| 16 ottobre 2026 | Preflight offline B0 | 240.276 caratteri JSON più 24.675 system; corpus coerente con fixture, 267 destinazioni, thinking globale forzato attivo per DeepSeek | [Misure preliminari](docs/b0-preflight-2026-10-16.md); tre run reali ancora da acquisire, nessuna qualità/token provider misurati |
+| 16 ottobre 2026 | B0 con provider autorizzato | Tre analisi e tre Word: 23/17/22 valori conformi sui 60 SOURCE; zero dei quattro argomenti USER chiesti; 30 chiamate, 481.199 token | [Rapporto B0](docs/baseline-minervino-b0-2026-10-16.md); fissare il contratto E1, poi confronto completo; nessun motore modificato |
+| 16 ottobre 2026 | E1 compact-v1 approvato ed eseguito | 116 test mirati e 2.258 backend passati, Ruff; input -16,09%; Word 14/11/23 contro 23/17/22 B0; tutti gli esiti conservati | [Rapporto E1](docs/esperimento-e1-form-compatto-2026-10-16.md); variante solo nel banco di prova, qualità non stabilizzata; altra rappresentazione E1 da valutare prima di E2 |
+| 17 ottobre 2026 | E1 compact-index-v2 approvato ed eseguito | 137 mirati e 2.279 backend passati, Ruff; input -13,31%; 1/3 analisi accettate, rifiuto JSON e troncamento; unico Word 21/60 | [Rapporto indice diretto](docs/esperimento-e1-index-2026-10-17.md); nessun retry o adozione; prossimo esperimento separato proposto, E2 non avviato |
 
 ### Scheda da copiare per i prossimi aggiornamenti
 
@@ -460,11 +478,35 @@ dichiarata, conservando le misure precedenti.
 
 ## 13. Indice delle nuove esecuzioni
 
-Nessuna nuova esecuzione LLM o compilazione Word avviata per questa preparazione.
-Le prove storiche restano in [relazioni.md](relazioni.md) e
+Acquisita B0 il 16 ottobre con provider reale: analisi completa e continuazione
+dei servizi applicativi su copie isolate, non browser/endpoint o ingestion.
+Le prove e i limiti restano in [relazioni.md](relazioni.md) e
 nell'[archivio](docs/benchmarks/README.md).
 
 | Run / serie | Versione del caso | Modalità/configurazione | Stato | Esiti e limiti | Report completo |
 |---|---|---|---|---|---|
-| — | — | — | Nuova baseline non avviata | Gold completo e ambiente da predisporre | — |
+| B0-01/02/03 | Minervino V1 | DeepSeek flash; thinking analisi attivo; copione USER su copie isolate | Tre analisi e tre Word parziali acquisiti | 23/17/22 valori conformi sui 60 target SOURCE, provenienza distinta; nessuno dei quattro argomenti USER chiesti; perimetro servizi | [Baseline B0](docs/baseline-minervino-b0-2026-10-16.md) |
+| E1-01/02/03 | Minervino V1 | Stessa configurazione B0; FORM compact-v1 e sole istruzioni di lettura adattate | Tre analisi e tre Word acquisiti; nessuna adozione nella chat | Input -16,09%, 14/11/23 target conformi; cache e percorsi dialogici distinti; nessun argomento USER chiesto | [Esperimento E1](docs/esperimento-e1-form-compatto-2026-10-16.md) |
 | Analisi storica 211598d4, eseguita dall'utente il 15 ottobre | Minervino + integrazione Company già caricata; non nuova fixture congelata | Diagnosi offline del 16 ottobre; V12 / deepseek-flash registrati | Acquisita e rivalidata | 21 SOURCE + 1 USER scritti; manca gold completo, nessuna accuratezza percentuale | [Diagnosi](docs/minervino-integrazione-2026-10-16.md) |
+| E1INDEX-01/02/03 | Minervino V1 | Stessi input canonici B0; vista compact-index-v2 e istruzioni corrispondenti | Un rifiuto contratto, un troncamento, una analisi accettata e un Word | Input -13,31%; Word N/D / N/D / 21 su 60; tutti gli esiti e consumi conservati | [Indice diretto](docs/esperimento-e1-index-2026-10-17.md) |
+
+## 14. Esperimenti E1/E2 proposti
+
+Il [piano E1/E2](docs/piano-esperimenti-e1-e2.md) separa la rappresentazione
+del FORM dal perimetro documentale usato per accelerare le prove.
+
+| Esperimento | Confronto | Misura e limite |
+|---|---|---|
+| E1 — FORM compatto | B0 completo attuale contro completo compatto | Risorse e qualità globale; fonti, modello e criteri invariati |
+| E2 — Estratti mirati | E1 compatto completo contro gruppi nella stessa vista, valutati sulle stesse destinazioni | Risparmio per ciclo e scostamenti locali; nessuna conclusione sulla completezza del modulo |
+
+E1 compact-v1 e compact-index-v2 sono stati eseguiti dopo approvazione:
+entrambi riducono input, nessuno sostiene ancora l'adozione. La seconda
+variante ha due fallimenti su tre e un solo Word. Dettagli nei rapporti. E2 resta un
+piano: prima fissare una vista compatta adeguata e il manifest dei gruppi.
+Entrambe le varianti E2 si confrontano con il gold;
+non basta che producano la stessa risposta. Fonte e disponibilità USER
+rimangono costanti; gruppi, dipendenze e soglie si fissano prima dei risultati.
+Registrare costo per gruppo e totale, con verifiche complete periodiche.
+Fixture Minervino V1 e protocollo congelato restano invariati; gli estratti
+sono materiali derivati separati e non introducono un motore a gruppi.

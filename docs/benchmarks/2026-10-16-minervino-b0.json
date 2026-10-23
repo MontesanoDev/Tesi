@@ -1,0 +1,619 @@
+{
+  "kind": "B0 real provider baseline; analysis and isolated application-service continuation",
+  "code_commit": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "fixture_checks": {
+    "demo-documents/benchmark-minervino/v1": {
+      "manifest_sha256": "89534c5171a90328b994d4425e9e11b082c6e5968c3a5b275b710438cf3e0139",
+      "files_verified": 18
+    },
+    "demo-documents/benchmark-compilazione/v1": {
+      "manifest_sha256": "5a3ac76f6d3d26faf739fce4272f4af5d1550a16871ecfbe5cfb6da8c8424136",
+      "files_verified": 11
+    }
+  },
+  "live_domain_integrity": {
+    "projects": {
+      "live_count": 3,
+      "initial_snapshot_domain_count": 3,
+      "live_sha256": "266cac59d27b6c4680058a38b57f2453c2b6a9bc5e79bf216000293314fe5ebe",
+      "snapshot_sha256": "856bb5ede1af3745dda4118d84fda0eb34f85e7dd29da1845d34df5b0e5e8dbf",
+      "equal": false,
+      "comparison_note": "Isolated benchmark conversation creation updates only project updated_at, recorded in integrity-differences.json."
+    },
+    "project_files": {
+      "live_count": 17,
+      "initial_snapshot_domain_count": 17,
+      "live_sha256": "ac1ff792cbcaedf166cae7e2fc22529f8d8c7c569b3c876657640aef4607997b",
+      "snapshot_sha256": "ac1ff792cbcaedf166cae7e2fc22529f8d8c7c569b3c876657640aef4607997b",
+      "equal": true
+    },
+    "knowledge_sources": {
+      "live_count": 3,
+      "initial_snapshot_domain_count": 3,
+      "live_sha256": "06040da27a5101934e461dccc5807fb343aaa79bebb58098de57598b629d9f98",
+      "snapshot_sha256": "06040da27a5101934e461dccc5807fb343aaa79bebb58098de57598b629d9f98",
+      "equal": true
+    },
+    "conversations": {
+      "live_count": 49,
+      "initial_snapshot_domain_count": 49,
+      "live_sha256": "04995a9b3c33c0741738eb62d8001cdfb4fd7cc4fcb9a049a89afe04e887a74b",
+      "snapshot_sha256": "04995a9b3c33c0741738eb62d8001cdfb4fd7cc4fcb9a049a89afe04e887a74b",
+      "equal": true
+    },
+    "document_fields": {
+      "live_count": 0,
+      "initial_snapshot_domain_count": 0,
+      "live_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "snapshot_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "equal": true
+    },
+    "document_chunks": {
+      "live_count": 340,
+      "initial_snapshot_domain_count": 340,
+      "live_sha256": "d28d8bb83db1bd8e757248ae98e88d75c12321121d33f300e131ec5890be31bb",
+      "snapshot_sha256": "c44d1fcbf958a991b46c54193df368dd1a9deaf6e5041f90c30b9bf9aba1d2fa",
+      "equal": false,
+      "comparison_note": "Live/isolated chunks compared as stored; no input SOURCE differences allowed. Regenerated derived chunks outside benchmark SOURCE set: IDs/timestamps differ, all canonical contents equal; integrity-differences.json."
+    },
+    "conversation_turns": {
+      "live_count": 195,
+      "initial_snapshot_domain_count": 195,
+      "live_sha256": "cba1ae0ab0dcaf4a10369ae3b703b959cc5ba5998545e1d1877e6775734e897d",
+      "snapshot_sha256": "cba1ae0ab0dcaf4a10369ae3b703b959cc5ba5998545e1d1877e6775734e897d",
+      "equal": true
+    },
+    "knowledge_artifacts": {
+      "live_count": 12,
+      "initial_snapshot_domain_count": 12,
+      "live_sha256": "eb62b9904bea75ed4c9ea93fcf69371f76c14ce6c183951595da8db6181fb8c5",
+      "snapshot_sha256": "eb62b9904bea75ed4c9ea93fcf69371f76c14ce6c183951595da8db6181fb8c5",
+      "equal": true
+    },
+    "project_artifact_links": {
+      "live_count": 12,
+      "initial_snapshot_domain_count": 12,
+      "live_sha256": "177287aaa1845cf7b9856fcbd5f9ccbce2d8bc598d7d9d3e0456a1bc8f892f48",
+      "snapshot_sha256": "177287aaa1845cf7b9856fcbd5f9ccbce2d8bc598d7d9d3e0456a1bc8f892f48",
+      "equal": true
+    },
+    "global_documents": {
+      "live_count": 4,
+      "initial_snapshot_domain_count": 4,
+      "live_sha256": "9655a65127861546ecf206706688e4b64c97a0447c6c77cfc20b95765f8578c5",
+      "snapshot_sha256": "9655a65127861546ecf206706688e4b64c97a0447c6c77cfc20b95765f8578c5",
+      "equal": true
+    },
+    "global_document_chunks": {
+      "live_count": 22,
+      "initial_snapshot_domain_count": 22,
+      "live_sha256": "9d6cda2b8e57732a74e332bd5548d23642adfad4e4f89326a72001c41cb33670",
+      "snapshot_sha256": "9d6cda2b8e57732a74e332bd5548d23642adfad4e4f89326a72001c41cb33670",
+      "equal": true
+    },
+    "project_global_document_links": {
+      "live_count": 0,
+      "initial_snapshot_domain_count": 0,
+      "live_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "snapshot_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "equal": true
+    },
+    "document_compilations": {
+      "live_count": 16,
+      "initial_snapshot_domain_count": 16,
+      "live_sha256": "8d2900da24b02c105b08d04190d1acd1565a8ba90dd19512e6e5fec6b534b706",
+      "snapshot_sha256": "8d2900da24b02c105b08d04190d1acd1565a8ba90dd19512e6e5fec6b534b706",
+      "equal": true
+    },
+    "compilation_sessions": {
+      "live_count": 28,
+      "initial_snapshot_domain_count": 28,
+      "live_sha256": "27f5b37195e65fa4f494fa509261de78e03a45256cf8102becf3ba6cbc37fb0e",
+      "snapshot_sha256": "27f5b37195e65fa4f494fa509261de78e03a45256cf8102becf3ba6cbc37fb0e",
+      "equal": true
+    },
+    "compilation_session_revisions": {
+      "live_count": 464,
+      "initial_snapshot_domain_count": 464,
+      "live_sha256": "545befc22c5232bb88a2cd6a642cab084f5819a0f76dee87f2d3a1623dd06700",
+      "snapshot_sha256": "545befc22c5232bb88a2cd6a642cab084f5819a0f76dee87f2d3a1623dd06700",
+      "equal": true
+    }
+  },
+  "runs": [
+    {
+      "run": 1,
+      "analysis": {
+        "run": "analysis-01",
+        "scope": "raw proposal and local validation, not session/export or semantic acceptance",
+        "counts": {
+          "source_targets": 60,
+          "raw_proposed": 23,
+          "raw_value_matches": 22,
+          "grounded_proposed": 22,
+          "grounded_value_matches": 21
+        },
+        "source_by_group": {
+          "firmatario_e_anagrafica_iniziale": {
+            "source_targets": 19,
+            "raw_proposed": 10,
+            "raw_value_matches": 10,
+            "grounded_proposed": 9,
+            "grounded_value_matches": 9
+          },
+          "societa": {
+            "source_targets": 9,
+            "raw_proposed": 9,
+            "raw_value_matches": 8,
+            "grounded_proposed": 9,
+            "grounded_value_matches": 8
+          },
+          "soci_24_occurrences": {
+            "source_targets": 24
+          },
+          "direttore_8_occurrences": {
+            "source_targets": 8,
+            "raw_proposed": 4,
+            "raw_value_matches": 4,
+            "grounded_proposed": 4,
+            "grounded_value_matches": 4
+          }
+        },
+        "raw_fields": 23,
+        "raw_facts": 17,
+        "raw_choice_groups": 1,
+        "usage": {
+          "prompt_tokens": 75864,
+          "completion_tokens": 33962,
+          "total_tokens": 109826,
+          "prompt_tokens_details": {
+            "cached_tokens": 75648
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 26284
+          },
+          "prompt_cache_hit_tokens": 75648,
+          "prompt_cache_miss_tokens": 216
+        },
+        "ai_seconds": 146.7337017509999,
+        "quality_limit": "Matches use frozen authored values with declared title/date/province/space equivalences. SOURCE entailment/subject/role needs separate review; local grounding alone is not semantic acceptance."
+      },
+      "word": {
+        "run": "integrated-01",
+        "counts": {
+          "source_text_targets": 60,
+          "source_text_matches": 23,
+          "blank_text_targets": 123,
+          "blank_text_matches": 123,
+          "user_text_targets": 4,
+          "user_text_matches": 0,
+          "table_unselected_targets": 61,
+          "table_unselected_matches": 61,
+          "table_selected_targets": 6,
+          "table_selected_matches": 0,
+          "native_false_targets": 10,
+          "native_false_matches": 10,
+          "native_true_targets": 3,
+          "native_true_matches": 0
+        },
+        "written_field_count": 24,
+        "written_source_fields": 22,
+        "written_user_fields": 2,
+        "physical_word_values_match_report": true,
+        "changed_zip_parts": [
+          "word/document.xml"
+        ],
+        "all_other_parts_preserved": true,
+        "matched_text_fields_in_word": 24,
+        "scoring_limit": "Frozen-value conformance and physical materialization; does not certify factual entailment, qualifications or complete dialogue."
+      },
+      "dialogue": {
+        "provider_calls": 9,
+        "http_calls": 9,
+        "provider_seconds_sum": 17.061402497000017,
+        "usage": {
+          "prompt_tokens": 43548,
+          "completion_tokens": 1021,
+          "total_tokens": 44569,
+          "prompt_cache_hit_tokens": 20224,
+          "prompt_cache_miss_tokens": 23324,
+          "reasoning_tokens": 0
+        },
+        "steps": [
+          {
+            "topics": [
+              "initial_both"
+            ],
+            "export": false,
+            "seconds": 6.466272007999578
+          },
+          {
+            "topics": [
+              "initial_signer"
+            ],
+            "export": false,
+            "seconds": 5.084293469999466
+          },
+          {
+            "topics": [],
+            "export": true,
+            "seconds": 3.0408416039990698
+          }
+        ],
+        "core_user_topics_supplied": [],
+        "core_user_topics_asked": [],
+        "missed_topics": [
+          "preferenze",
+          "designazioni",
+          "attestazioni",
+          "luogo_data"
+        ],
+        "stop_reason": "System offers partial export; no core script topic asked",
+        "final_status": "GENERATED"
+      },
+      "total_observed_usage": {
+        "prompt_tokens": 119412,
+        "completion_tokens": 34983,
+        "total_tokens": 154395,
+        "prompt_cache_hit_tokens": 95872,
+        "prompt_cache_miss_tokens": 23540,
+        "reasoning_tokens": 26284
+      },
+      "total_provider_calls": 10,
+      "analysis_plus_dialogue_provider_seconds_sum": 163.79510424799992,
+      "analysis_input_sha256": "0dad5d607d19bdff7a97048b71ded1eefbad5d3c133f947d94275f1388094300",
+      "analysis_request_sha256": "6aa1a3e7124325a09cbb3992674e7d75d9063e080f50640428d345c13a429953",
+      "word_sha256": "7603e4da762814afb624a40a5d35859d7b622807415775183f4d60de2e5f941d",
+      "ready_for_submission": false,
+      "source_target_matches_by_actual_provenance": {
+        "USER": 2,
+        "SOURCE": 21
+      },
+      "audit_source_targets_before_dialogue": {
+        "source_targets": 60,
+        "raw_proposed": 23,
+        "raw_value_matches": 22,
+        "grounded_proposed": 22,
+        "grounded_value_matches": 21
+      }
+    },
+    {
+      "run": 2,
+      "analysis": {
+        "run": "analysis-02",
+        "scope": "raw proposal and local validation, not session/export or semantic acceptance",
+        "counts": {
+          "source_targets": 60,
+          "raw_proposed": 23,
+          "raw_value_matches": 22,
+          "grounded_proposed": 18,
+          "grounded_value_matches": 17
+        },
+        "source_by_group": {
+          "firmatario_e_anagrafica_iniziale": {
+            "source_targets": 19,
+            "raw_proposed": 7,
+            "raw_value_matches": 7,
+            "grounded_proposed": 7,
+            "grounded_value_matches": 7
+          },
+          "societa": {
+            "source_targets": 9,
+            "raw_proposed": 9,
+            "raw_value_matches": 8,
+            "grounded_proposed": 9,
+            "grounded_value_matches": 8
+          },
+          "soci_24_occurrences": {
+            "source_targets": 24
+          },
+          "direttore_8_occurrences": {
+            "source_targets": 8,
+            "raw_proposed": 7,
+            "raw_value_matches": 7,
+            "grounded_proposed": 2,
+            "grounded_value_matches": 2
+          }
+        },
+        "raw_fields": 23,
+        "raw_facts": 19,
+        "raw_choice_groups": 0,
+        "usage": {
+          "prompt_tokens": 75864,
+          "completion_tokens": 40104,
+          "total_tokens": 115968,
+          "prompt_tokens_details": {
+            "cached_tokens": 75648
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 30944
+          },
+          "prompt_cache_hit_tokens": 75648,
+          "prompt_cache_miss_tokens": 216
+        },
+        "ai_seconds": 179.83673677600018,
+        "quality_limit": "Matches use frozen authored values with declared title/date/province/space equivalences. SOURCE entailment/subject/role needs separate review; local grounding alone is not semantic acceptance."
+      },
+      "word": {
+        "run": "integrated-02",
+        "counts": {
+          "source_text_targets": 60,
+          "source_text_matches": 17,
+          "blank_text_targets": 123,
+          "blank_text_matches": 123,
+          "user_text_targets": 4,
+          "user_text_matches": 0,
+          "table_unselected_targets": 61,
+          "table_unselected_matches": 61,
+          "table_selected_targets": 6,
+          "table_selected_matches": 0,
+          "native_false_targets": 10,
+          "native_false_matches": 10,
+          "native_true_targets": 3,
+          "native_true_matches": 0
+        },
+        "written_field_count": 18,
+        "written_source_fields": 16,
+        "written_user_fields": 2,
+        "physical_word_values_match_report": true,
+        "changed_zip_parts": [
+          "word/document.xml"
+        ],
+        "all_other_parts_preserved": true,
+        "matched_text_fields_in_word": 18,
+        "scoring_limit": "Frozen-value conformance and physical materialization; does not certify factual entailment, qualifications or complete dialogue."
+      },
+      "dialogue": {
+        "provider_calls": 12,
+        "http_calls": 12,
+        "provider_seconds_sum": 22.655972293996456,
+        "usage": {
+          "prompt_tokens": 57363,
+          "completion_tokens": 1442,
+          "total_tokens": 58805,
+          "prompt_cache_hit_tokens": 26368,
+          "prompt_cache_miss_tokens": 30995,
+          "reasoning_tokens": 0
+        },
+        "steps": [
+          {
+            "topics": [
+              "initial_both"
+            ],
+            "export": false,
+            "seconds": 6.608185258000958
+          },
+          {
+            "topics": [
+              "initial_signer"
+            ],
+            "export": false,
+            "seconds": 5.756310446000498
+          },
+          {
+            "topics": [
+              "initial_signer"
+            ],
+            "export": false,
+            "seconds": 5.611643185999128
+          },
+          {
+            "topics": [],
+            "export": true,
+            "seconds": 2.8027811010015284
+          }
+        ],
+        "core_user_topics_supplied": [],
+        "core_user_topics_asked": [],
+        "missed_topics": [
+          "preferenze",
+          "designazioni",
+          "attestazioni",
+          "luogo_data"
+        ],
+        "stop_reason": "Only remaining question asks USER to reconfirm the SOURCE fact Elisa Romano as director; no corresponding frozen script answer. Do not invent an answer or launder SOURCE into USER. Export partial as the frozen script permits when stopped.",
+        "final_status": "GENERATED"
+      },
+      "total_observed_usage": {
+        "prompt_tokens": 133227,
+        "completion_tokens": 41546,
+        "total_tokens": 174773,
+        "prompt_cache_hit_tokens": 102016,
+        "prompt_cache_miss_tokens": 31211,
+        "reasoning_tokens": 30944
+      },
+      "total_provider_calls": 13,
+      "analysis_plus_dialogue_provider_seconds_sum": 202.49270906999664,
+      "analysis_input_sha256": "0dad5d607d19bdff7a97048b71ded1eefbad5d3c133f947d94275f1388094300",
+      "analysis_request_sha256": "6aa1a3e7124325a09cbb3992674e7d75d9063e080f50640428d345c13a429953",
+      "word_sha256": "2781e88ce3c03ba6293e55ac33a134f0d557dec165a51cbd24d1aa2fc8d84a7f",
+      "ready_for_submission": false,
+      "source_target_matches_by_actual_provenance": {
+        "USER": 2,
+        "SOURCE": 15
+      },
+      "audit_source_targets_before_dialogue": {
+        "source_targets": 60,
+        "raw_proposed": 23,
+        "raw_value_matches": 22,
+        "grounded_proposed": 18,
+        "grounded_value_matches": 17
+      }
+    },
+    {
+      "run": 3,
+      "analysis": {
+        "run": "analysis-03",
+        "scope": "raw proposal and local validation, not session/export or semantic acceptance",
+        "counts": {
+          "source_targets": 60,
+          "raw_proposed": 50,
+          "raw_value_matches": 49,
+          "grounded_proposed": 22,
+          "grounded_value_matches": 21
+        },
+        "source_by_group": {
+          "firmatario_e_anagrafica_iniziale": {
+            "source_targets": 19,
+            "raw_proposed": 9,
+            "raw_value_matches": 9,
+            "grounded_proposed": 9,
+            "grounded_value_matches": 9
+          },
+          "societa": {
+            "source_targets": 9,
+            "raw_proposed": 9,
+            "raw_value_matches": 8,
+            "grounded_proposed": 9,
+            "grounded_value_matches": 8
+          },
+          "soci_24_occurrences": {
+            "source_targets": 24,
+            "raw_proposed": 24,
+            "raw_value_matches": 24
+          },
+          "direttore_8_occurrences": {
+            "source_targets": 8,
+            "raw_proposed": 8,
+            "raw_value_matches": 8,
+            "grounded_proposed": 4,
+            "grounded_value_matches": 4
+          }
+        },
+        "raw_fields": 50,
+        "raw_facts": 36,
+        "raw_choice_groups": 0,
+        "usage": {
+          "prompt_tokens": 75864,
+          "completion_tokens": 46156,
+          "total_tokens": 122020,
+          "prompt_tokens_details": {
+            "cached_tokens": 75648
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 32497
+          },
+          "prompt_cache_hit_tokens": 75648,
+          "prompt_cache_miss_tokens": 216
+        },
+        "ai_seconds": 183.847245388999,
+        "quality_limit": "Matches use frozen authored values with declared title/date/province/space equivalences. SOURCE entailment/subject/role needs separate review; local grounding alone is not semantic acceptance."
+      },
+      "word": {
+        "run": "integrated-03",
+        "counts": {
+          "source_text_targets": 60,
+          "source_text_matches": 22,
+          "blank_text_targets": 123,
+          "blank_text_matches": 123,
+          "user_text_targets": 4,
+          "user_text_matches": 0,
+          "table_unselected_targets": 61,
+          "table_unselected_matches": 61,
+          "table_selected_targets": 6,
+          "table_selected_matches": 0,
+          "native_false_targets": 10,
+          "native_false_matches": 10,
+          "native_true_targets": 3,
+          "native_true_matches": 0
+        },
+        "written_field_count": 23,
+        "written_source_fields": 22,
+        "written_user_fields": 1,
+        "physical_word_values_match_report": true,
+        "changed_zip_parts": [
+          "word/document.xml"
+        ],
+        "all_other_parts_preserved": true,
+        "matched_text_fields_in_word": 23,
+        "scoring_limit": "Frozen-value conformance and physical materialization; does not certify factual entailment, qualifications or complete dialogue."
+      },
+      "dialogue": {
+        "provider_calls": 6,
+        "http_calls": 6,
+        "provider_seconds_sum": 11.141563505001614,
+        "usage": {
+          "prompt_tokens": 29368,
+          "completion_tokens": 643,
+          "total_tokens": 30011,
+          "prompt_cache_hit_tokens": 14592,
+          "prompt_cache_miss_tokens": 14776,
+          "reasoning_tokens": 0
+        },
+        "steps": [
+          {
+            "topics": [
+              "initial_both"
+            ],
+            "export": false,
+            "seconds": 6.129042844000651
+          },
+          {
+            "topics": [],
+            "export": true,
+            "seconds": 2.7611424699989584
+          }
+        ],
+        "core_user_topics_supplied": [],
+        "core_user_topics_asked": [],
+        "missed_topics": [
+          "preferenze",
+          "designazioni",
+          "attestazioni",
+          "luogo_data"
+        ],
+        "stop_reason": "System offers partial export; no core script topic asked",
+        "final_status": "GENERATED"
+      },
+      "total_observed_usage": {
+        "prompt_tokens": 105232,
+        "completion_tokens": 46799,
+        "total_tokens": 152031,
+        "prompt_cache_hit_tokens": 90240,
+        "prompt_cache_miss_tokens": 14992,
+        "reasoning_tokens": 32497
+      },
+      "total_provider_calls": 7,
+      "analysis_plus_dialogue_provider_seconds_sum": 194.9888088940006,
+      "analysis_input_sha256": "0dad5d607d19bdff7a97048b71ded1eefbad5d3c133f947d94275f1388094300",
+      "analysis_request_sha256": "6aa1a3e7124325a09cbb3992674e7d75d9063e080f50640428d345c13a429953",
+      "word_sha256": "34fe837b1799b229c1d210b6d261363ebb6f84f9723d7c2f2cf1232683970871",
+      "ready_for_submission": false,
+      "source_target_matches_by_actual_provenance": {
+        "USER": 1,
+        "SOURCE": 21
+      },
+      "audit_source_targets_before_dialogue": {
+        "source_targets": 60,
+        "raw_proposed": 50,
+        "raw_value_matches": 49,
+        "grounded_proposed": 22,
+        "grounded_value_matches": 21
+      }
+    }
+  ],
+  "total_provider_calls": 30,
+  "total_usage": {
+    "prompt_tokens": 357871,
+    "completion_tokens": 123328,
+    "total_tokens": 481199,
+    "prompt_cache_hit_tokens": 288128,
+    "prompt_cache_miss_tokens": 69743,
+    "reasoning_tokens": 89725
+  },
+  "provider_seconds_sum": 561.2766222119972,
+  "analysis_seconds_mean": 170.1392279719997,
+  "live_domain_integrity_scope": "15 domain tables against the isolated backup after execution, with only new isolated entities excluded; project timestamp updates are local. Derived live chunks outside benchmark SOURCE set were regenerated, preventing a full DB immutability claim; canonical contents and benchmark avviso rows are unchanged. Excludes FTS representation and private profile/config tables",
+  "gold_source_target_denominator": 60,
+  "core_user_text_denominator": 4,
+  "table_selected_denominator": 6,
+  "native_true_denominator": 3,
+  "scope_limits": [
+    "Not browser/HTTP endpoints or ingestion. Actual analysis outputs continued in isolated service calls after exact input equality and audit revalidation.",
+    "Provider seconds are summed disjoint operations; no human time, not an end-to-end UI latency.",
+    "Three runs describe variability; no significance/generalization claim. All analyses cache warm; monetary cost not acquired.",
+    "Frozen-value comparison and sampled visual review; does not certify legal submission, identifiers, professional qualifications or Microsoft Word pagination.",
+    "Source target value conformance may be achieved through repeated USER identity input; actual provenance is retained separately.",
+    "No generic USER answers created for SOURCE facts outside the frozen script; run 2 stopped at director reconfirmation and explicitly exported partially."
+  ]
+}

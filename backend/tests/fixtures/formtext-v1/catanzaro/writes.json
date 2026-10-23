@@ -1,0 +1,19 @@
+{
+  "text_values": {
+    "t0.r10.c1": "IT01234567890",
+    "t0.r11.c1": "+39 080 000 2040",
+    "t0.r5.c1": "Mapi Ingegneria S.r.l.",
+    "t0.r6.c1": "Societa a responsabilita limitata",
+    "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "t0.r9.c1": "IT01234567890",
+    "t25.r0.c1": "Mapi Ingegneria S.r.l.",
+    "t25.r4.c1": "Societa a responsabilita limitata",
+    "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "t26.r0.c1": "Ing. Elisa Romano",
+    "t26.r1.c1": "Ingegnere",
+    "t26.r3.c1": "Ordine degli Ingegneri di Bari",
+    "t26.r4.c1": "8421"
+  },
+  "checkbox_values": {},
+  "not_new_authorizations": true
+}

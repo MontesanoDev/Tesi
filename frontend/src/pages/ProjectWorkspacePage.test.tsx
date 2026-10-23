@@ -48,7 +48,7 @@ async function setup() {
 }
 
 function submit(question: string) {
-  fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }), {
+  fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per l’assistente' }), {
     target: { value: question },
   })
   fireEvent.click(screen.getByRole('button', { name: 'Invia' }))
@@ -76,12 +76,12 @@ describe('ProjectWorkspacePage pending requests', () => {
     vi.mocked(api.projectAnswer).mockReturnValue(request.promise)
     await setup()
     submit('Prima domanda')
-    const reply = screen.getByRole('region', { name: 'Risposta Mapi' })
+    const reply = screen.getByRole('region', { name: 'Risposta' })
     expect(reply.querySelector('.assistant-activity')).toBeInTheDocument()
     expect(reply.querySelector('details, dl')).not.toBeInTheDocument()
     await act(async () => request.resolve(answer('nuova')))
     expect(await screen.findByText('Risposta precedente')).toBeInTheDocument()
-    expect(screen.queryByRole('status', { name: 'Mapi sta elaborando' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('status', { name: 'Elaborazione in corso' })).not.toBeInTheDocument()
   })
 
   it('keeps a successful answer and opens its conversation when the user stays', async () => {

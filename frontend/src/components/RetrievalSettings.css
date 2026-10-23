@@ -1,0 +1,50 @@
+.retrieval-settings {
+  color: var(--text);
+  --retrieval-success: light-dark(#245d36, #cde2c5);
+  --retrieval-success-bg: light-dark(#edf6ec, #29362a);
+  --retrieval-error: light-dark(#9d3024, #ffd1c9);
+  --retrieval-error-bg: light-dark(#fff0ed, #442e2b);
+  --retrieval-warning: light-dark(#795110, #e9cd89);
+  --retrieval-warning-bg: light-dark(#fff8e6, #332e22);
+}
+
+.retrieval-settings .retrieval-form { border: 0; margin: 0; padding: 0; }
+.retrieval-settings .retrieval-card { display: grid; gap: 18px; margin: 0; }
+.retrieval-settings .retrieval-card + .retrieval-card { margin-top: 0; }
+.retrieval-settings .retrieval-card > p { margin: 0; }
+.retrieval-embedding-service { display: grid; gap: 18px; margin-top: 18px; }
+.retrieval-settings .retrieval-description { color: var(--text-muted); font-size: 13px; line-height: 1.6; }
+.retrieval-settings .retrieval-model-summary { font-size: 13px; color: var(--text-muted); }
+.retrieval-model-summary strong { color: var(--text); overflow-wrap: anywhere; }
+.retrieval-save { align-items: center; }
+.retrieval-unsaved { font-size: 12px; color: var(--text-muted); }
+
+.retrieval-technical { padding-top: 18px; border-top: 1px solid var(--border); min-width: 0; }
+.retrieval-technical > summary { cursor: pointer; font-size: 14px; font-weight: 500; }
+.retrieval-technical > summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 3px; }
+.retrieval-technical > .retrieval-description { margin-top: 12px; }
+.retrieval-settings .retrieval-tech-group { align-content: start; padding-top: 18px; gap: 16px; }
+.retrieval-tech-group legend { padding-inline: 5px; font-size: 14px; font-weight: 600; }
+.retrieval-service { font-size: 13px; }
+.retrieval-settings .retrieval-address-help { margin-top: 18px; }
+.retrieval-connection { display: grid; gap: 10px; margin-top: 18px; }
+.retrieval-maintenance { display: grid; justify-items: start; gap: 12px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+.retrieval-maintenance h3 { font-size: 14px; font-weight: 600; }
+
+/* Scoped overrides: the other settings panels keep their existing appearance. */
+.retrieval-settings .ai-profile-form input,
+.retrieval-settings .ai-profile-form select { background: var(--panel-muted); color: var(--text); border-color: var(--border-strong); }
+.retrieval-settings .ai-profile-form small { color: var(--text-muted); }
+.retrieval-settings .ai-button { background: var(--control); color: var(--text); border-color: var(--border-strong); }
+.retrieval-settings .ai-button:hover:not(:disabled) { background: var(--control-hover); }
+.retrieval-settings .ai-button-primary { background: var(--paper); color: var(--paper-text); border-color: var(--paper); }
+.retrieval-settings .ai-button-primary:hover:not(:disabled) { background: var(--paper); border-color: var(--text-muted); }
+.retrieval-settings .ai-profile-form input:focus-visible,
+.retrieval-settings .ai-profile-form select:focus-visible,
+.retrieval-settings .ai-button:focus-visible { outline-color: var(--blue); }
+.retrieval-settings .ai-notice { color: var(--retrieval-success); background: var(--retrieval-success-bg); }
+.retrieval-settings .ai-error { color: var(--retrieval-error); background: var(--retrieval-error-bg); }
+.retrieval-settings .retrieval-warning { color: var(--retrieval-warning); background: var(--retrieval-warning-bg); padding: 12px; border-radius: 8px; font-size: 13px; line-height: 1.6; }
+.retrieval-settings .retrieval-description,
+.retrieval-settings small { overflow-wrap: anywhere; }
+

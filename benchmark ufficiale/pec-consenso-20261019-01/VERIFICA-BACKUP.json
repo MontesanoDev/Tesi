@@ -1,0 +1,11 @@
+{
+  "archive_SHA256_valid": true,
+  "manifest_files_verified": 586,
+  "separate_processes_and_extracted_code": true,
+  "network_and_sqlite_connect_forbidden": true,
+  "provider_calls": 0,
+  "historical_audits_DOCX_rebuilt_with_previous_code": 9,
+  "historical_audits_DOCX_rebuilt_with_current_code": 9,
+  "new_real_Trapani_audit_DOCX_rebuilt_with_current_code": 1,
+  "all_audits_and_DOCX_exactly_match_saved_results": true
+}

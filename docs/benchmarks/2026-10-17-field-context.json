@@ -1,0 +1,3330 @@
+{
+  "scope": "fixed saved outputs; field compatibility and bounded FORM role links; no USER",
+  "runs": [
+    {
+      "run": "b0-03",
+      "provider_calls": 0,
+      "user_values": 0,
+      "new_exports": 0,
+      "before_grounded": 28,
+      "after_grounded": 38,
+      "after_grounded_gold_matches": 38,
+      "recovered_count": 11,
+      "recovered_ids": [
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s2",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4"
+      ],
+      "recovered_gold_matches": 11,
+      "recovery_formats": {
+        "markdown_role_table": 11
+      },
+      "lost_grounded_count": 1,
+      "lost_correct_count": 0,
+      "rejected_preexisting_wrong_ids": [
+        "p41.s1"
+      ],
+      "before_correct_count": 27,
+      "still_blocked_proposed_count": 12,
+      "still_blocked_ids": [
+        "p41.s1",
+        "p43.s0",
+        "p45.s0",
+        "p45.s1",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p52.s1",
+        "p53.s2"
+      ],
+      "new_nonconformant_acceptances": 0,
+      "remaining_nonconformant_acceptances": [],
+      "grounded_facts_identical": true,
+      "conditions_identical": true,
+      "resolved": 0,
+      "writes": 0,
+      "recovered_proposals_still_conditional": true,
+      "recovered_fields": [
+        {
+          "candidate_id": "p44.s0",
+          "label": "Socio Luca Ferri: Provincia",
+          "subject": "Luca Ferri / socio",
+          "value": "Bari (BA)",
+          "gold_value": "Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "subject": "Luca Ferri",
+                "line_range": [
+                  14,
+                  19
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 1
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p44.s1",
+          "label": "Socio Luca Ferri: Data iscrizione",
+          "subject": "Luca Ferri / socio",
+          "value": "21/03/2012",
+          "gold_value": "21/03/2012",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "subject": "Luca Ferri",
+                "line_range": [
+                  14,
+                  19
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 1
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p44.s2",
+          "label": "Socio Luca Ferri: Numero iscrizione",
+          "subject": "Luca Ferri / socio",
+          "value": "7294",
+          "gold_value": "7294",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "subject": "Luca Ferri",
+                "line_range": [
+                  14,
+                  19
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 1
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p45.s2",
+          "label": "Socio Elisa Romano: CF",
+          "subject": "Elisa Romano / socia",
+          "value": "RMNLSI85C47A662Y",
+          "gold_value": "RMNLSI85C47A662Y",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "subject": "Elisa Romano",
+                "line_range": [
+                  14,
+                  20
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 2
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p48.s0",
+          "label": "Socio Andrea Greco: Qualifica",
+          "subject": "Andrea Greco / socio",
+          "value": "Architetto",
+          "gold_value": "Architetto",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "subject": "Andrea Greco",
+                "line_range": [
+                  14,
+                  21
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 3
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p48.s1",
+          "label": "Socio Andrea Greco: CF",
+          "subject": "Andrea Greco / socio",
+          "value": "GRCNDR84D20A662P",
+          "gold_value": "GRCNDR84D20A662P",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "subject": "Andrea Greco",
+                "line_range": [
+                  14,
+                  21
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 3
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p49.s0",
+          "label": "Socio Andrea Greco: Ordine",
+          "subject": "Andrea Greco / socio",
+          "value": "Ordine degli Architetti di Bari",
+          "gold_value": "Ordine degli Architetti di Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "subject": "Andrea Greco",
+                "line_range": [
+                  14,
+                  21
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 3
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p49.s1",
+          "label": "Socio Andrea Greco: Sezione",
+          "subject": "Andrea Greco / socio",
+          "value": "A",
+          "gold_value": "A",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "subject": "Andrea Greco",
+                "line_range": [
+                  14,
+                  21
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 3
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p49.s2",
+          "label": "Socio Andrea Greco: Provincia",
+          "subject": "Andrea Greco / socio",
+          "value": "Bari (BA)",
+          "gold_value": "Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "subject": "Andrea Greco",
+                "line_range": [
+                  14,
+                  21
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 3
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p49.s3",
+          "label": "Socio Andrea Greco: Data iscrizione",
+          "subject": "Andrea Greco / socio",
+          "value": "12/06/2014",
+          "gold_value": "12/06/2014",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "subject": "Andrea Greco",
+                "line_range": [
+                  14,
+                  21
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 3
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p49.s4",
+          "label": "Socio Andrea Greco: Numero iscrizione",
+          "subject": "Andrea Greco / socio",
+          "value": "5267",
+          "gold_value": "5267",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "subject": "Andrea Greco",
+                "line_range": [
+                  14,
+                  21
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            },
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 3
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        }
+      ],
+      "still_blocked_fields": [
+        {
+          "candidate_id": "p41.s1",
+          "label": "Comune sede società",
+          "subject": "Mapi Ingegneria S.r.l.",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "gold_value": "Bari",
+          "matches_frozen_gold": false,
+          "raw_proposed": true,
+          "before_grounded": true,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": true,
+          "before_errors": [],
+          "after_errors": [
+            "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+          ],
+          "after_validation": "REJECTED",
+          "after_binding": {},
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "incompatible_locality_value"
+        },
+        {
+          "candidate_id": "p43.s0",
+          "label": "Socio Luca Ferri: Nome",
+          "subject": "Luca Ferri / socio",
+          "value": "Ing. Luca Ferri",
+          "gold_value": "Ing. Luca Ferri",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": []
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p45.s0",
+          "label": "Socio Elisa Romano: Nome",
+          "subject": "Elisa Romano / socia",
+          "value": "Ing. Elisa Romano",
+          "gold_value": "Ing. Elisa Romano",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [],
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 2
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p45.s1",
+          "label": "Socio Elisa Romano: Qualifica",
+          "subject": "Elisa Romano / socia",
+          "value": "Ingegnere",
+          "gold_value": "Ingegnere",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [],
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 2
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p45.s3",
+          "label": "Socio Elisa Romano: Ordine",
+          "subject": "Elisa Romano / socia",
+          "value": "Ordine degli Ingegneri di Bari",
+          "gold_value": "Ordine degli Ingegneri di Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [],
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 2
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p45.s4",
+          "label": "Socio Elisa Romano: Sezione",
+          "subject": "Elisa Romano / socia",
+          "value": "A",
+          "gold_value": "A",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [],
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 2
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p46.s0",
+          "label": "Socio Elisa Romano: Provincia",
+          "subject": "Elisa Romano / socia",
+          "value": "Bari (BA)",
+          "gold_value": "Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Fatto SOURCE assente o rifiutato",
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [
+            "Fatto SOURCE assente o rifiutato",
+            "Binding senza fatto SOURCE grounded"
+          ],
+          "after_validation": "REJECTED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Binding senza fatto SOURCE grounded"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 2
+            }
+          },
+          "condition_checks": {},
+          "fact_validation": "REJECTED",
+          "residual_category": "insufficient_value_quote"
+        },
+        {
+          "candidate_id": "p46.s1",
+          "label": "Socio Elisa Romano: Data iscrizione",
+          "subject": "Elisa Romano / socia",
+          "value": "18 maggio 2015",
+          "gold_value": "18/05/2015",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [],
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 2
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p46.s2",
+          "label": "Socio Elisa Romano: Numero iscrizione",
+          "subject": "Elisa Romano / socia",
+          "value": "8421",
+          "gold_value": "8421",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [],
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 2
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p47.s0",
+          "label": "Socio Andrea Greco: Nome",
+          "subject": "Andrea Greco / socio",
+          "value": "Arch. Andrea Greco",
+          "gold_value": "Arch. Andrea Greco",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [],
+            "form_context_attribution": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+              "format": "numbered_form_list",
+              "item_number": 3
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p52.s1",
+          "label": "Direttore tecnico Elisa Romano: CF",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "RMNLSI85C47A662Y",
+          "gold_value": "RMNLSI85C47A662Y",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_dt",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "### Ing. Elisa Romano - direttore tecnico",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              },
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              }
+            ],
+            "record_attributions": []
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p53.s2",
+          "label": "Direttore tecnico Elisa Romano: Provincia",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "Bari (BA)",
+          "gold_value": "Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Fatto SOURCE assente o rifiutato",
+            "Binding senza fatto SOURCE grounded"
+          ],
+          "after_errors": [
+            "Fatto SOURCE assente o rifiutato",
+            "Binding senza fatto SOURCE grounded"
+          ],
+          "after_validation": "REJECTED",
+          "after_binding": {
+            "binding_id": "b_elisa_dt",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Binding senza fatto SOURCE grounded"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "### Ing. Elisa Romano - direttore tecnico",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              },
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              }
+            ]
+          },
+          "condition_checks": {},
+          "fact_validation": "REJECTED",
+          "residual_category": "insufficient_value_quote"
+        }
+      ],
+      "nonconformant_grounded_fields": [],
+      "residual_disjoint_categories": {
+        "incompatible_locality_value": 1,
+        "source_role_record": 9,
+        "insufficient_value_quote": 2
+      },
+      "all_previous_kiss_recoveries_preserved": true
+    },
+    {
+      "run": "index-01",
+      "provider_calls": 0,
+      "user_values": 0,
+      "new_exports": 0,
+      "before_grounded": 24,
+      "after_grounded": 23,
+      "after_grounded_gold_matches": 23,
+      "recovered_count": 0,
+      "recovered_ids": [],
+      "recovered_gold_matches": 0,
+      "recovery_formats": {},
+      "lost_grounded_count": 1,
+      "lost_correct_count": 0,
+      "rejected_preexisting_wrong_ids": [
+        "p41.s1"
+      ],
+      "before_correct_count": 23,
+      "still_blocked_proposed_count": 4,
+      "still_blocked_ids": [
+        "p15.s0",
+        "p41.s1",
+        "p52.s1",
+        "p53.s2"
+      ],
+      "new_nonconformant_acceptances": 0,
+      "remaining_nonconformant_acceptances": [],
+      "grounded_facts_identical": true,
+      "conditions_identical": true,
+      "resolved": 0,
+      "writes": 0,
+      "recovered_proposals_still_conditional": true,
+      "recovered_fields": [],
+      "still_blocked_fields": [
+        {
+          "candidate_id": "p15.s0",
+          "label": "Comune sede",
+          "subject": "Mapi Ingegneria S.r.l.",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "gold_value": "Bari",
+          "matches_frozen_gold": false,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ],
+          "after_errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ],
+          "after_validation": "REJECTED",
+          "after_binding": {},
+          "condition_checks": {},
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "insufficient_destination_form"
+        },
+        {
+          "candidate_id": "p41.s1",
+          "label": "Comune sede società",
+          "subject": "Mapi Ingegneria S.r.l.",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "gold_value": "Bari",
+          "matches_frozen_gold": false,
+          "raw_proposed": true,
+          "before_grounded": true,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": true,
+          "before_errors": [],
+          "after_errors": [
+            "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+          ],
+          "after_validation": "REJECTED",
+          "after_binding": {},
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "incompatible_locality_value"
+        },
+        {
+          "candidate_id": "p52.s1",
+          "label": "Direttore tecnico Elisa Romano: CF",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "RMNLSI85C47A662Y",
+          "gold_value": "RMNLSI85C47A662Y",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "### Ing. Elisa Romano - direttore tecnico",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              }
+            ],
+            "record_attributions": []
+          },
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p53.s2",
+          "label": "Direttore tecnico Elisa Romano: Provincia",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "Bari (BA)",
+          "gold_value": "Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "### Ing. Elisa Romano - direttore tecnico",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              }
+            ],
+            "record_attributions": []
+          },
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        }
+      ],
+      "nonconformant_grounded_fields": [],
+      "residual_disjoint_categories": {
+        "insufficient_destination_form": 1,
+        "incompatible_locality_value": 1,
+        "source_role_record": 2
+      },
+      "all_previous_kiss_recoveries_preserved": true
+    }
+  ],
+  "network_disabled": true,
+  "form_diagnosis": {
+    "classification_counts": {
+      "sufficient_form_unrecognized": 18,
+      "insufficient_form_quote": 0,
+      "proven_nonapplicable_section": 0,
+      "wrong_model_field_context": 0
+    },
+    "unknown_applicability": 18,
+    "subgroups": {
+      "member_continuation": 12,
+      "numbered_member_start": 6
+    },
+    "all_18_form_links_recognized": true,
+    "recovered_proposals": 11,
+    "remaining_source_record_blocks_in_scope_18": 7,
+    "additional_invalid_value_quote_kept_rejected": 1,
+    "b0_complete_input_unchanged": true,
+    "rows": [
+      {
+        "candidate_id": "p44.s0",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:44",
+          "quote": "della provincia di ............................................ dal"
+        },
+        "field_paragraph_complete": "della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:44",
+          "section_ids": [],
+          "range": [
+            19,
+            63
+          ],
+          "slot_context": {
+            "before": "della provincia di ",
+            "after": " dal "
+          },
+          "location": {
+            "block_id": "paragraph:44"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:44"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 1
+        },
+        "after_errors": [],
+        "after_grounded": true
+      },
+      {
+        "candidate_id": "p44.s1",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:44",
+          "quote": "dal ........................ con il n."
+        },
+        "field_paragraph_complete": "della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:44",
+          "section_ids": [],
+          "range": [
+            68,
+            92
+          ],
+          "slot_context": {
+            "before": " dal ",
+            "after": " con il n. "
+          },
+          "location": {
+            "block_id": "paragraph:44"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:44"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 1
+        },
+        "after_errors": [],
+        "after_grounded": true
+      },
+      {
+        "candidate_id": "p44.s2",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:44",
+          "quote": "con il n. ………………..…"
+        },
+        "field_paragraph_complete": "della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:44",
+          "section_ids": [],
+          "range": [
+            103,
+            112
+          ],
+          "slot_context": {
+            "before": " con il n. ",
+            "after": ""
+          },
+          "location": {
+            "block_id": "paragraph:44"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:44"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 1
+        },
+        "after_errors": [],
+        "after_grounded": true
+      },
+      {
+        "candidate_id": "p45.s0",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:45",
+          "quote": "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale"
+        },
+        "field_paragraph_complete": "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:45",
+          "section_ids": [],
+          "range": [
+            18,
+            225
+          ],
+          "slot_context": {
+            "before": "2) nome e cognome ",
+            "after": " qualifica professionale "
+          },
+          "location": {
+            "block_id": "paragraph:45"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:45"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 2
+        },
+        "after_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "after_grounded": false
+      },
+      {
+        "candidate_id": "p45.s1",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:45",
+          "quote": "qualifica professionale .............................................................................................................. C.F."
+        },
+        "field_paragraph_complete": "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:45",
+          "section_ids": [],
+          "range": [
+            250,
+            360
+          ],
+          "slot_context": {
+            "before": " qualifica professionale ",
+            "after": " C.F. "
+          },
+          "location": {
+            "block_id": "paragraph:45"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:45"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 2
+        },
+        "after_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "after_grounded": false
+      },
+      {
+        "candidate_id": "p45.s2",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:45",
+          "quote": "C.F. .................................................................................. iscritto all’Ordine/Collegio professionale"
+        },
+        "field_paragraph_complete": "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:45",
+          "section_ids": [],
+          "range": [
+            366,
+            448
+          ],
+          "slot_context": {
+            "before": " C.F. ",
+            "after": " iscritto all’Ordine/Collegio professionale"
+          },
+          "location": {
+            "block_id": "paragraph:45"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:45"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 2
+        },
+        "after_errors": [],
+        "after_grounded": true
+      },
+      {
+        "candidate_id": "p45.s3",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:45",
+          "quote": "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione"
+        },
+        "field_paragraph_complete": "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:45",
+          "section_ids": [],
+          "range": [
+            491,
+            595
+          ],
+          "slot_context": {
+            "before": " iscritto all’Ordine/Collegio professionale",
+            "after": " sezione "
+          },
+          "location": {
+            "block_id": "paragraph:45"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:45"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 2
+        },
+        "after_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "after_grounded": false
+      },
+      {
+        "candidate_id": "p45.s4",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:45",
+          "quote": "sezione ........................................"
+        },
+        "field_paragraph_complete": "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:45",
+          "section_ids": [],
+          "range": [
+            604,
+            644
+          ],
+          "slot_context": {
+            "before": " sezione ",
+            "after": ""
+          },
+          "location": {
+            "block_id": "paragraph:45"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:45"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 2
+        },
+        "after_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "after_grounded": false
+      },
+      {
+        "candidate_id": "p46.s0",
+        "scope_18": false,
+        "fact_validation": "REJECTED",
+        "field_form": {
+          "paragraph_id": "paragraph:46",
+          "quote": "della provincia di [[p46.s0]] dal"
+        },
+        "field_paragraph_complete": "della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:46",
+          "section_ids": [],
+          "range": [
+            19,
+            63
+          ],
+          "slot_context": {
+            "before": "della provincia di ",
+            "after": " dal "
+          },
+          "location": {
+            "block_id": "paragraph:46"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:46"
+          ]
+        },
+        "conditions": {},
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 2
+        },
+        "after_errors": [
+          "Fatto SOURCE assente o rifiutato",
+          "Binding senza fatto SOURCE grounded"
+        ],
+        "after_grounded": false
+      },
+      {
+        "candidate_id": "p46.s1",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:46",
+          "quote": "dal ........................ con il n."
+        },
+        "field_paragraph_complete": "della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:46",
+          "section_ids": [],
+          "range": [
+            68,
+            92
+          ],
+          "slot_context": {
+            "before": " dal ",
+            "after": " con il n. "
+          },
+          "location": {
+            "block_id": "paragraph:46"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:46"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 2
+        },
+        "after_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "after_grounded": false
+      },
+      {
+        "candidate_id": "p46.s2",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:46",
+          "quote": "con il n. ………………..…"
+        },
+        "field_paragraph_complete": "della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:46",
+          "section_ids": [],
+          "range": [
+            103,
+            112
+          ],
+          "slot_context": {
+            "before": " con il n. ",
+            "after": ""
+          },
+          "location": {
+            "block_id": "paragraph:46"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:46"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 2
+        },
+        "after_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "after_grounded": false
+      },
+      {
+        "candidate_id": "p47.s0",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:47",
+          "quote": "3) nome e cognome ......................................................................................................................................"
+        },
+        "field_paragraph_complete": "3) nome e cognome ......................................................................................................................................",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:47",
+          "section_ids": [],
+          "range": [
+            18,
+            152
+          ],
+          "slot_context": {
+            "before": "3) nome e cognome ",
+            "after": ""
+          },
+          "location": {
+            "block_id": "paragraph:47"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:47"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 3
+        },
+        "after_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "after_grounded": false
+      },
+      {
+        "candidate_id": "p48.s0",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:48",
+          "quote": "qualifica professionale ..................................................................................... C.F."
+        },
+        "field_paragraph_complete": "qualifica professionale ..................................................................................... C.F. ..................................................",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:48",
+          "section_ids": [],
+          "range": [
+            24,
+            109
+          ],
+          "slot_context": {
+            "before": "qualifica professionale ",
+            "after": " C.F. "
+          },
+          "location": {
+            "block_id": "paragraph:48"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:48"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 3
+        },
+        "after_errors": [],
+        "after_grounded": true
+      },
+      {
+        "candidate_id": "p48.s1",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:48",
+          "quote": "C.F. .................................................."
+        },
+        "field_paragraph_complete": "qualifica professionale ..................................................................................... C.F. ..................................................",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:48",
+          "section_ids": [],
+          "range": [
+            115,
+            165
+          ],
+          "slot_context": {
+            "before": " C.F. ",
+            "after": ""
+          },
+          "location": {
+            "block_id": "paragraph:48"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:48"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 3
+        },
+        "after_errors": [],
+        "after_grounded": true
+      },
+      {
+        "candidate_id": "p49.s0",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:49",
+          "quote": "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione"
+        },
+        "field_paragraph_complete": "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:49",
+          "section_ids": [],
+          "range": [
+            42,
+            146
+          ],
+          "slot_context": {
+            "before": "iscritto all’Ordine/Collegio professionale",
+            "after": " sezione "
+          },
+          "location": {
+            "block_id": "paragraph:49"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:49"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 3
+        },
+        "after_errors": [],
+        "after_grounded": true
+      },
+      {
+        "candidate_id": "p49.s1",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:49",
+          "quote": "sezione ........................................ della provincia di"
+        },
+        "field_paragraph_complete": "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:49",
+          "section_ids": [],
+          "range": [
+            155,
+            195
+          ],
+          "slot_context": {
+            "before": " sezione ",
+            "after": " della provincia di "
+          },
+          "location": {
+            "block_id": "paragraph:49"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:49"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 3
+        },
+        "after_errors": [],
+        "after_grounded": true
+      },
+      {
+        "candidate_id": "p49.s2",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:49",
+          "quote": "della provincia di ............................................ dal"
+        },
+        "field_paragraph_complete": "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:49",
+          "section_ids": [],
+          "range": [
+            215,
+            259
+          ],
+          "slot_context": {
+            "before": " della provincia di ",
+            "after": " dal "
+          },
+          "location": {
+            "block_id": "paragraph:49"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:49"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 3
+        },
+        "after_errors": [],
+        "after_grounded": true
+      },
+      {
+        "candidate_id": "p49.s3",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:49",
+          "quote": "dal ........................ con il n."
+        },
+        "field_paragraph_complete": "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:49",
+          "section_ids": [],
+          "range": [
+            264,
+            288
+          ],
+          "slot_context": {
+            "before": " dal ",
+            "after": " con il n. "
+          },
+          "location": {
+            "block_id": "paragraph:49"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:49"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 3
+        },
+        "after_errors": [],
+        "after_grounded": true
+      },
+      {
+        "candidate_id": "p49.s4",
+        "scope_18": true,
+        "fact_validation": "GROUNDED_PROPOSAL",
+        "field_form": {
+          "paragraph_id": "paragraph:49",
+          "quote": "con il n. ………………..…"
+        },
+        "field_paragraph_complete": "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…",
+        "role_form": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+        },
+        "role_paragraph_complete": "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:49",
+          "section_ids": [],
+          "range": [
+            299,
+            308
+          ],
+          "slot_context": {
+            "before": " con il n. ",
+            "after": ""
+          },
+          "location": {
+            "block_id": "paragraph:49"
+          },
+          "anchor_paragraph_ids": [
+            "paragraph:49"
+          ]
+        },
+        "conditions": {
+          "c_p39": {
+            "result": "unknown",
+            "scope": "semantic_review_required"
+          }
+        },
+        "classification": "sufficient_form_unrecognized",
+        "common_cause": "role introduction in field-bearing paragraph; following numbered list has no continuation origin",
+        "nonapplicable_proven": false,
+        "after_form_attribution": {
+          "paragraph_id": "paragraph:42",
+          "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "format": "numbered_form_list",
+          "item_number": 3
+        },
+        "after_errors": [],
+        "after_grounded": true
+      }
+    ]
+  },
+  "new_test_cases": 30,
+  "targeted_passed": 211,
+  "targeted_seconds": 9.78,
+  "ruff": "passed",
+  "new_provider_calls": 0,
+  "new_exports": 0,
+  "original_index_root_still_rejected": true,
+  "new_correct_recoveries": 11,
+  "wrong_acceptances_removed": 2,
+  "new_false_positives_observed": 0,
+  "lost_correct_values": 0,
+  "full_backend_passed": 2374,
+  "full_backend_pytest_seconds": 206.57
+}

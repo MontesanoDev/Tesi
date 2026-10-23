@@ -1,0 +1,77 @@
+{
+  "UTC": "2026-10-19T15:12:24.777087+00:00",
+  "seed": "Mapi-V12-bandi-casuali-2026-10-19-01",
+  "algorithm": "Sort eligible pool by canonical URL; random.Random(seed).sample(pool,3), ordered sample determines execution order",
+  "canonicalization": "Remove transient ;jsessionid from URL, preserve remaining URL",
+  "pool_sha256": "7ef38518c430e719814dd9dd6c78e8e76086b9277ea64fc88d2c05771c560344",
+  "sorted_pool_slugs": [
+    "cesano",
+    "craa",
+    "cannara",
+    "bella",
+    "soresa2023",
+    "mit",
+    "mitrup",
+    "calabria"
+  ],
+  "selected": [
+    "craa",
+    "bella",
+    "cesano"
+  ],
+  "selected_records": [
+    {
+      "slug": "craa",
+      "title": "CRAA – elenco servizi ingegneria e architettura 2025",
+      "official_page": "https://craa-appalti.maggiolicloud.it/PortaleAppalti/it/ppgare_oper_ec_bandi_avvisi.wp?actionPath=/ExtStr2/do/FrontEnd/Bandi/viewIscrizione.action&codice=E00008&currentFrame=7",
+      "url": "https://craa-appalti.maggiolicloud.it/PortaleAppalti/do/FrontEnd/DocDig/downloadDocumentoPubblico.action;jsessionid=5CE369727CF86EA34B53125AFE95B224?codice=E00008&id=59&idprg=",
+      "retrieved_UTC": "2026-10-19T15:11:47.229617+00:00",
+      "status": 200,
+      "final_url": "https://craa-appalti.maggiolicloud.it/PortaleAppalti/do/FrontEnd/DocDig/downloadDocumentoPubblico.action;jsessionid=5CE369727CF86EA34B53125AFE95B224?codice=E00008&id=59&idprg=",
+      "content_type": "application/octet-stream",
+      "bytes": 25501,
+      "admission": "ELIGIBLE_IN_POOL",
+      "sha256": "4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab",
+      "path": "pool/craa.docx",
+      "type_review_prefix": "CARTA INTESTATA DITTA DICHIARAZIONE CUMULATIVA (ISTANZA E REQUISITI) OGGETTO: RICHIESTA DI ISCRIZIONE ALL’ELENCO  SERVIZI  INGEGNERIA  E ARCHITETTURA Il sottoscritto …………………………………………………… ……. . in qualità di :  ☐ libero professionista,   ……………………. abilitato alla professione ……………… ……  iscritto all'albo degli …………………...della provincia di …………………… …… con il numero   .. ……………………...,   ☐ professionista",
+      "discovery_eligible_order": 3,
+      "canonical_url": "https://craa-appalti.maggiolicloud.it/PortaleAppalti/do/FrontEnd/DocDig/downloadDocumentoPubblico.action?codice=E00008&id=59&idprg="
+    },
+    {
+      "slug": "bella",
+      "title": "Bella – progettazione recupero e mitigazione rischio ex municipio",
+      "official_page": "https://piattaforma.asmecomm.it/gare/dettaglio.php?codice=11368",
+      "url": "https://piattaforma.asmecomm.it/allegati/open.php?codice=90421&filename=YWxsZWdhdG8tYS1kb21hbmRhLWUtZGljaGlhcmF6aW9uaS4xNjc1OTYxMzIyMDE5NzIuZG9jeA==&sourceID=11368&sourceType=Z2FyZS1wdWJsaWM=&general_connection=1",
+      "retrieved_UTC": "2026-10-19T15:11:48.229460+00:00",
+      "status": 200,
+      "final_url": "https://piattaforma.asmecomm.it/allegati/open.php?codice=90421&filename=YWxsZWdhdG8tYS1kb21hbmRhLWUtZGljaGlhcmF6aW9uaS4xNjc1OTYxMzIyMDE5NzIuZG9jeA==&sourceID=11368&sourceType=Z2FyZS1wdWJsaWM=&general_connection=1",
+      "content_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "bytes": 444671,
+      "admission": "ELIGIBLE_IN_POOL",
+      "sha256": "4d894b3faee91909275589ac5ed8e1dd2eddc09890f95ac0456780bbb6828ae0",
+      "path": "pool/bella.docx",
+      "type_review_prefix": "ALLEGATO A da inserire nella “Documentazione Amministrativa”    COMUNE DI BELLA PROVINCIA DI POTENZA Medaglia d’Oro al Valore Civile Corso Italia 28 – 85051 BELLA (PZ) – C.F.:  00224880765 www.comune.bella.pz.it  – pec: protocollo@pec.comune.bella.pz.it AREA III - LAVORI PUBBLICI E APPALTI      OGGETTO: SERVIZI DI ARCHITETTURA E INGEGNERIA  P ER LO STUDIO DI FATTIBILITÀ TECNICA ED ECONOMICA PER LA",
+      "discovery_eligible_order": 7,
+      "canonical_url": "https://piattaforma.asmecomm.it/allegati/open.php?codice=90421&filename=YWxsZWdhdG8tYS1kb21hbmRhLWUtZGljaGlhcmF6aW9uaS4xNjc1OTYxMzIyMDE5NzIuZG9jeA==&sourceID=11368&sourceType=Z2FyZS1wdWJsaWM=&general_connection=1"
+    },
+    {
+      "slug": "cesano",
+      "title": "Cesano Maderno – elenco SIA 2024",
+      "official_page": "https://www.comune.cesano-maderno.mb.it/amministrazione/documenti-e-dati/bandi/altri-bandi/22d8f1a8-2987-4d87-37a1-08dc49b2da88/",
+      "url": "https://api.wp.ai4smartcity.ai/rest/v1/storage/bandi/allegatobando-documento/637c9c44-8fa5-45d2-c129-08dc4cac55d3?tenant=comune-cesano-maderno-mb-it",
+      "retrieved_UTC": "2026-10-19T15:09:51.033864+00:00",
+      "status": 200,
+      "final_url": "https://api.wp.ai4smartcity.ai/rest/v1/storage/bandi/allegatobando-documento/637c9c44-8fa5-45d2-c129-08dc4cac55d3?tenant=comune-cesano-maderno-mb-it",
+      "content_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "bytes": 29191,
+      "admission": "ELIGIBLE_IN_POOL",
+      "sha256": "9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795",
+      "path": "pool/cesano.docx",
+      "discovery_eligible_order": 2,
+      "canonical_url": "https://api.wp.ai4smartcity.ai/rest/v1/storage/bandi/allegatobando-documento/637c9c44-8fa5-45d2-c129-08dc4cac55d3?tenant=comune-cesano-maderno-mb-it"
+    }
+  ],
+  "draw_count": 1,
+  "no_quality_inspection_before_draw": true,
+  "no_replacements_allowed": true
+}

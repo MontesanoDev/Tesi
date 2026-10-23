@@ -1,0 +1,110 @@
+{
+  "attempted": 8,
+  "tokens_spent": 1846153,
+  "results": [
+    {
+      "trial": "minervino-1",
+      "document": "minervino",
+      "session_id": "c24b1a5b63df4db38c0e2e2196d8d078",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 207659,
+      "user_messages": 6,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "catanzaro-1",
+      "document": "catanzaro",
+      "session_id": "12d35be02db5497ab3b1ea7d799c68cd",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 239763,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "cesano-1",
+      "document": "cesano",
+      "session_id": "6fedd04e099d40bbbfccd333c04fab68",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 109611,
+      "user_messages": 4,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "soresa2023-1",
+      "document": "soresa2023",
+      "session_id": "1b3a3994880a41beb45b5201f4a00e4c",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 164500,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "minervino-2",
+      "document": "minervino",
+      "session_id": "22767fe1e61d4ce68ac9fe4f8d5463a6",
+      "downloaded": false,
+      "exportRequested": true,
+      "final_status": "WAITING_FOR_USER",
+      "elapsed_ms": 1239666,
+      "user_messages": 3,
+      "errors": 6,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "catanzaro-2",
+      "document": "catanzaro",
+      "session_id": "2ed4874f1e714d6abd4f826d556619a9",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 238845,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "cesano-2",
+      "document": "cesano",
+      "session_id": "fe7171961a214eef96819016ad396eb6",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 108388,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "soresa2023-2",
+      "document": "soresa2023",
+      "session_id": "6492751b96f04bf782857afce59d8b5e",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 162160,
+      "user_messages": 4,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    }
+  ]
+}

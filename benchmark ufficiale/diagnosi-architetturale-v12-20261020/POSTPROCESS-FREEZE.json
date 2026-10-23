@@ -1,0 +1,12 @@
+{
+  "script_SHA256": "be495aa08216c7f09fe24c8c80de5a1271c26f68e6e04eb051d8be0e60ef67c0",
+  "merge_SHA256": "2b47bbb49d3ca2202e97562fc50d94049fa9f9f5b26400bfa8b32ccbe113b46f",
+  "created_UTC": "2026-10-20T15:18:50.193986+00:00",
+  "production_narrator": true,
+  "narrator_thinking": "disabled",
+  "maximum_review_windows": 10,
+  "no_retries_on_error": true,
+  "checkpoint": "After initial SOURCE analysis and bounded narrator review; before further USER answers",
+  "not_a_UI_E2E": true,
+  "no_manual_state_repairs_or_approval_injections": true
+}

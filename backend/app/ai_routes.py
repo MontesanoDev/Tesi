@@ -124,7 +124,8 @@ async def check_connection(payload: ProbeInput) -> dict:
         raise HTTPException(
             502,
             detail="Servizio non raggiungibile o risposta non valida. "
-            "Controlla l'indirizzo e che il servizio sia raggiungibile dal server Mapi, "
+            "Controlla l'indirizzo e che il servizio sia raggiungibile "
+            "dal server dell’applicazione, "
             "anche se si trova su un altro computer.",
         ) from None
     return {

@@ -1,0 +1,32 @@
+{
+  "slug": "catanzaro",
+  "pages": 17,
+  "rendered_images": [
+    1,
+    11,
+    17
+  ],
+  "text_locations": {
+    "Leonardo Montemurro": [],
+    "Elisa Romano": [
+      11
+    ],
+    "Mapi Ingegneria": [
+      1,
+      11
+    ],
+    "Luca Ferri": []
+  },
+  "DOCX_unchanged": true,
+  "render_seconds_not_measured": true,
+  "registry_warning": true,
+  "all_pages_bbox_checked": 17,
+  "out_of_page_words": [],
+  "visual_pages_inspected": [
+    1,
+    2,
+    11,
+    17
+  ],
+  "visual_result": "Readable selected filled/first/last pages, no clipping or lost signature line observed; justified spacing and label joins remain"
+}

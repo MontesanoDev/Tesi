@@ -1,0 +1,3593 @@
+[
+ {
+  "trial": "minervino-1",
+  "document": "minervino",
+  "group": "storico",
+  "runtime": "storico",
+  "not_started": false,
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 207.7,
+  "user_messages": 6,
+  "driver_errors": 10,
+  "calls": 20,
+  "calls_by_kind": {
+   "planner": 6,
+   "segment": 5,
+   "registry": 1,
+   "narrator": 6,
+   "guard": 2
+  },
+  "tokens": {
+   "total_tokens": 362614,
+   "prompt_tokens": 285534,
+   "completion_tokens": 77080,
+   "prompt_cache_hit_tokens": 148992,
+   "prompt_cache_miss_tokens": 136542,
+   "reasoning_tokens": 56955
+  },
+  "tokens_by_kind": {
+   "planner": {
+    "total_tokens": 39839,
+    "prompt_tokens": 38817,
+    "completion_tokens": 1022,
+    "prompt_cache_hit_tokens": 25344,
+    "prompt_cache_miss_tokens": 13473,
+    "reasoning_tokens": 0
+   },
+   "segment": {
+    "total_tokens": 234256,
+    "prompt_tokens": 159219,
+    "completion_tokens": 75037,
+    "prompt_cache_hit_tokens": 103424,
+    "prompt_cache_miss_tokens": 55795,
+    "reasoning_tokens": 56955
+   },
+   "registry": {
+    "total_tokens": 821,
+    "prompt_tokens": 816,
+    "completion_tokens": 5,
+    "prompt_cache_hit_tokens": 512,
+    "prompt_cache_miss_tokens": 304,
+    "reasoning_tokens": 0
+   },
+   "narrator": {
+    "total_tokens": 81464,
+    "prompt_tokens": 80574,
+    "completion_tokens": 890,
+    "prompt_cache_hit_tokens": 16768,
+    "prompt_cache_miss_tokens": 63806,
+    "reasoning_tokens": 0
+   },
+   "guard": {
+    "total_tokens": 6234,
+    "prompt_tokens": 6108,
+    "completion_tokens": 126,
+    "prompt_cache_hit_tokens": 2944,
+    "prompt_cache_miss_tokens": 3164,
+    "reasoning_tokens": 0
+   }
+  },
+  "cost_usd": 0.067176,
+  "cost_by_kind": {
+   "guard": 0.000559,
+   "narrator": 0.010155,
+   "planner": 0.00271,
+   "registry": 5e-05,
+   "segment": 0.053702
+  },
+  "segment_calls": {
+   "count": 5,
+   "wall_seconds": 168.7,
+   "seconds": [
+    72.1,
+    96.5,
+    56.5,
+    24.4,
+    54.6
+   ],
+   "finish": [
+    "stop",
+    "stop",
+    "stop",
+    "stop",
+    "stop"
+   ],
+   "content_valid": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "failures": [],
+   "completion_share_of_limit_max": 0.543
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "http_409": [],
+  "http_409_derived_state": 0,
+  "rounds": 4,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "condition:s4_cond_consorziata",
+    "rule": "scenario_signer_representation"
+   },
+   {
+    "round": 2,
+    "key": "condition:s4_cond_consorziata",
+    "rule": "scenario_signer_representation"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "field:p242.s0": [
+    "SKIP",
+    null
+   ],
+   "decision:ff6a9c86b0584e3ed5ac5799": [
+    "SKIP",
+    null
+   ],
+   "condition:s4_cond_consorziata": [
+    "CONDITION_TRUE",
+    null
+   ],
+   "field:p74.s0": [
+    "SKIP",
+    null
+   ],
+   "field:p74.s1": [
+    "SKIP",
+    null
+   ],
+   "field:p75.s0": [
+    "SKIP",
+    null
+   ],
+   "field:p75.s1": [
+    "SKIP",
+    null
+   ],
+   "field:p75.s2": [
+    "SKIP",
+    null
+   ],
+   "decision:0a242b4c138d38515e716924": [
+    "SKIP",
+    null
+   ],
+   "decision:24278d2efa5d91eb97fdcae9": [
+    "SKIP",
+    null
+   ],
+   "decision:9128538342d18a184258aa29": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 60,
+   "correct": 54,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 6
+  },
+  "coverage_primary": 0.9,
+  "coverage_with_partial": 0.9,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s1",
+    "value": "Lecce",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s2",
+    "value": "LE",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s3",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s1",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s2",
+    "value": "Amedeo 24",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s3",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s2",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s3",
+    "value": "+39 080 000 2041",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s0",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s1",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s1",
+    "value": "01234560981",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p37.s1",
+    "value": "BA",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s2",
+    "value": "Via Giovanni Amendola",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s3",
+    "value": "172/C",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s4",
+    "value": "+39 080 000 2040",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s5",
+    "value": "+39 080 000 2041",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s6",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s7",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p40.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p41.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s0",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s1",
+    "value": "Via Giovanni Amendola",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s2",
+    "value": "172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s3",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s4",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s5",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s0",
+    "value": "Luca Ferri",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s1",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s2",
+    "value": "FRRLCU80A01A662K",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s3",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s4",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s0",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s1",
+    "value": "21/03/2012",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s2",
+    "value": "7294",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s0",
+    "value": "Elisa Romano",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s1",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s2",
+    "value": "RMNLSI85C47A662Y",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s3",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s4",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s0",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s1",
+    "value": "18/05/2015",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s2",
+    "value": "8421",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p47.s0",
+    "value": "Andrea Greco",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p48.s0",
+    "value": "Architetto",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p48.s1",
+    "value": "GRCNDR84D20A662P",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s0",
+    "value": "Ordine degli Architetti di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s1",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s2",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s3",
+    "value": "12/06/2014",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s4",
+    "value": "5267",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p51.s0",
+    "value": "Elisa Romano",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p52.s0",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p52.s1",
+    "value": "RMNLSI85C47A662Y",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p53.s0",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p53.s4",
+    "value": "8421",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 61,
+  "segments": {
+   "count": 5,
+   "status": {
+    "analyzed": 5
+   },
+   "sources": {
+    "called": 5
+   },
+   "attempts": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "errors": [],
+   "retries": 0,
+   "unanalyzed_destinations": 0,
+   "preserved_after_failure": false,
+   "conflicts": 0,
+   "unified_conditions": 0,
+   "shared_conditions_not_unified": 0,
+   "dropped_out_of_segment": 0
+  },
+  "applicability_states": {
+   "VERIFICATA": 62
+  },
+  "written_applicability": {
+   "VERIFICATA": 61
+  },
+  "source_writes_unverified": [],
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [
+   {
+    "cell": "p37.s1",
+    "value": "BA",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s2",
+    "value": "Via Giovanni Amendola",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s3",
+    "value": "172/C",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s4",
+    "value": "+39 080 000 2040",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s5",
+    "value": "+39 080 000 2041",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s6",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   },
+   {
+    "cell": "p37.s7",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    }
+   }
+  ],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p39.cb0": true
+   },
+   "written": {
+    "p39.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p14.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p15.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p41.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p229.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL"
+    ]
+   },
+   "p230.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL"
+    ]
+   },
+   "p232.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL"
+    ]
+   },
+   "p242.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "gate:procedurale_applicabilita_completezza",
+     "dialogo:rinviato"
+    ]
+   }
+  },
+  "gaps_with_reason": 10,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "catanzaro-1",
+  "document": "catanzaro",
+  "group": "storico",
+  "runtime": "storico",
+  "not_started": false,
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 239.8,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 13,
+  "calls_by_kind": {
+   "planner": 3,
+   "segment": 6,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 330293,
+   "prompt_tokens": 241640,
+   "completion_tokens": 88653,
+   "prompt_cache_hit_tokens": 144768,
+   "prompt_cache_miss_tokens": 96872,
+   "reasoning_tokens": 73565
+  },
+  "tokens_by_kind": {
+   "planner": {
+    "total_tokens": 13712,
+    "prompt_tokens": 13538,
+    "completion_tokens": 174,
+    "prompt_cache_hit_tokens": 9088,
+    "prompt_cache_miss_tokens": 4450,
+    "reasoning_tokens": 0
+   },
+   "segment": {
+    "total_tokens": 291671,
+    "prompt_tokens": 203966,
+    "completion_tokens": 87705,
+    "prompt_cache_hit_tokens": 127488,
+    "prompt_cache_miss_tokens": 76478,
+    "reasoning_tokens": 73565
+   },
+   "registry": {
+    "total_tokens": 1195,
+    "prompt_tokens": 1095,
+    "completion_tokens": 100,
+    "prompt_cache_hit_tokens": 512,
+    "prompt_cache_miss_tokens": 583,
+    "reasoning_tokens": 0
+   },
+   "guard": {
+    "total_tokens": 2181,
+    "prompt_tokens": 2084,
+    "completion_tokens": 97,
+    "prompt_cache_hit_tokens": 1536,
+    "prompt_cache_miss_tokens": 548,
+    "reasoning_tokens": 0
+   },
+   "narrator": {
+    "total_tokens": 21534,
+    "prompt_tokens": 20957,
+    "completion_tokens": 577,
+    "prompt_cache_hit_tokens": 6144,
+    "prompt_cache_miss_tokens": 14813,
+    "reasoning_tokens": 0
+   }
+  },
+  "cost_usd": 0.068157,
+  "cost_by_kind": {
+   "guard": 0.000145,
+   "narrator": 0.002587,
+   "planner": 0.000799,
+   "registry": 0.000149,
+   "segment": 0.064477
+  },
+  "segment_calls": {
+   "count": 6,
+   "wall_seconds": 218.4,
+   "seconds": [
+    108.4,
+    80.6,
+    62.9,
+    67.3,
+    46.6,
+    16.9
+   ],
+   "finish": [
+    "stop",
+    "stop",
+    "stop",
+    "stop",
+    "stop",
+    "stop"
+   ],
+   "content_valid": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "failures": [],
+   "completion_share_of_limit_max": 0.536
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "http_409": [],
+  "http_409_derived_state": 0,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:s4_c_soc_ing": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:s1_c_consorzio_stabile": [
+    "CONDITION_FALSE",
+    "initial_request"
+   ],
+   "condition:s1_c_estero": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 31,
+   "correct": 9,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 22
+  },
+  "coverage_primary": 0.2903,
+  "coverage_with_partial": 0.2903,
+  "writes": [
+   {
+    "cell": "t0.r10.c1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r5.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r6.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r7.c1",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r9.c1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r0.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r2.c0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c3",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 9,
+  "segments": {
+   "count": 6,
+   "status": {
+    "analyzed": 6
+   },
+   "sources": {
+    "called": 6
+   },
+   "attempts": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "errors": [],
+   "retries": 0,
+   "unanalyzed_destinations": 0,
+   "preserved_after_failure": false,
+   "conflicts": 0,
+   "unified_conditions": 0,
+   "shared_conditions_not_unified": 0,
+   "dropped_out_of_segment": 0
+  },
+  "applicability_states": {
+   "VERIFICATA": 16,
+   "CONDIZIONATA": 1
+  },
+  "written_applicability": {
+   "VERIFICATA": 9
+  },
+  "source_writes_unverified": [],
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p57.cb0": true,
+    "p76.cb1": true,
+    "p147.cb0": true
+   },
+   "written": {
+    "p57.cb0": null,
+    "p76.cb1": null,
+    "p147.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "t0.r0.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t0.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t0.r2.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t0.r3.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t0.r11.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t25.r3.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t26.r0.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r1.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r3.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r4.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t41.r1.c0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t41.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t41.r1.c2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t41.r1.c3": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t41.r1.c4": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t43.r1.c0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t43.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t43.r1.c2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t43.r1.c3": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t43.r1.c4": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t44.r1.c0": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t44.r1.c3": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t26.r2.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t44.r1.c1": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t44.r1.c2": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   }
+  },
+  "gaps_with_reason": 25,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "cesano-1",
+  "document": "cesano",
+  "group": "storico",
+  "runtime": "storico",
+  "not_started": false,
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 109.6,
+  "user_messages": 4,
+  "driver_errors": 10,
+  "calls": 12,
+  "calls_by_kind": {
+   "planner": 4,
+   "segment": 2,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 3
+  },
+  "tokens": {
+   "total_tokens": 137025,
+   "prompt_tokens": 114901,
+   "completion_tokens": 22124,
+   "prompt_cache_hit_tokens": 56576,
+   "prompt_cache_miss_tokens": 58325,
+   "reasoning_tokens": 15730
+  },
+  "tokens_by_kind": {
+   "planner": {
+    "total_tokens": 18428,
+    "prompt_tokens": 18065,
+    "completion_tokens": 363,
+    "prompt_cache_hit_tokens": 12416,
+    "prompt_cache_miss_tokens": 5649,
+    "reasoning_tokens": 0
+   },
+   "segment": {
+    "total_tokens": 85396,
+    "prompt_tokens": 64110,
+    "completion_tokens": 21286,
+    "prompt_cache_hit_tokens": 31232,
+    "prompt_cache_miss_tokens": 32878,
+    "reasoning_tokens": 15730
+   },
+   "registry": {
+    "total_tokens": 857,
+    "prompt_tokens": 813,
+    "completion_tokens": 44,
+    "prompt_cache_hit_tokens": 512,
+    "prompt_cache_miss_tokens": 301,
+    "reasoning_tokens": 0
+   },
+   "guard": {
+    "total_tokens": 4127,
+    "prompt_tokens": 3980,
+    "completion_tokens": 147,
+    "prompt_cache_hit_tokens": 2944,
+    "prompt_cache_miss_tokens": 1036,
+    "reasoning_tokens": 0
+   },
+   "narrator": {
+    "total_tokens": 28217,
+    "prompt_tokens": 27933,
+    "completion_tokens": 284,
+    "prompt_cache_hit_tokens": 9472,
+    "prompt_cache_miss_tokens": 18461,
+    "reasoning_tokens": 0
+   }
+  },
+  "cost_usd": 0.022193,
+  "cost_by_kind": {
+   "guard": 0.000252,
+   "narrator": 0.002968,
+   "planner": 0.001102,
+   "registry": 7.3e-05,
+   "segment": 0.017797
+  },
+  "segment_calls": {
+   "count": 2,
+   "wall_seconds": 87.2,
+   "seconds": [
+    56.6,
+    30.6
+   ],
+   "finish": [
+    "stop",
+    "stop"
+   ],
+   "content_valid": [
+    true,
+    true
+   ],
+   "failures": [],
+   "completion_share_of_limit_max": 0.274
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "http_409": [],
+  "http_409_derived_state": 0,
+  "rounds": 2,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "condition:s1_c_firm",
+    "rule": "scenario_signer_representation"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:s1_c_firm": [
+    "CONDITION_TRUE",
+    null
+   ],
+   "field:p105.ft0": [
+    "SKIP",
+    null
+   ],
+   "field:p12.ft3": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 4,
+   "correct": 3,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 1
+  },
+  "coverage_primary": 0.75,
+  "coverage_with_partial": 0.75,
+  "writes": [
+   {
+    "cell": "p12.ft0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 3,
+  "segments": {
+   "count": 2,
+   "status": {
+    "analyzed": 2
+   },
+   "sources": {
+    "called": 2
+   },
+   "attempts": [
+    1,
+    1
+   ],
+   "errors": [],
+   "retries": 0,
+   "unanalyzed_destinations": 0,
+   "preserved_after_failure": false,
+   "conflicts": 0,
+   "unified_conditions": 0,
+   "shared_conditions_not_unified": 0,
+   "dropped_out_of_segment": 0
+  },
+  "applicability_states": {
+   "VERIFICATA": 3
+  },
+  "written_applicability": {
+   "VERIFICATA": 3
+  },
+  "source_writes_unverified": [],
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p19.cb0": true
+   },
+   "written": {
+    "p19.cb0": null
+   }
+  },
+  "non_positional_unresolved": [
+   "data",
+   "preferenze categorie/fasce",
+   "recapiti studio personale non dimostrati",
+   "INAIL/INPS/INARCASSA personali",
+   "iscrizione professionale Leonardo"
+  ],
+  "gaps": {
+   "p19.ft0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION",
+     "dialogo:condizione_aperta"
+    ]
+   }
+  },
+  "gaps_with_reason": 1,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "soresa2023-1",
+  "document": "soresa2023",
+  "group": "nuovo",
+  "runtime": "nuova-source",
+  "not_started": false,
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 164.5,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 10,
+  "calls_by_kind": {
+   "planner": 3,
+   "segment": 2,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 117532,
+   "prompt_tokens": 80266,
+   "completion_tokens": 37266,
+   "prompt_cache_hit_tokens": 42368,
+   "prompt_cache_miss_tokens": 37898,
+   "reasoning_tokens": 29112
+  },
+  "tokens_by_kind": {
+   "planner": {
+    "total_tokens": 13994,
+    "prompt_tokens": 13759,
+    "completion_tokens": 235,
+    "prompt_cache_hit_tokens": 9216,
+    "prompt_cache_miss_tokens": 4543,
+    "reasoning_tokens": 0
+   },
+   "segment": {
+    "total_tokens": 82084,
+    "prompt_tokens": 45938,
+    "completion_tokens": 36146,
+    "prompt_cache_hit_tokens": 24320,
+    "prompt_cache_miss_tokens": 21618,
+    "reasoning_tokens": 29112
+   },
+   "registry": {
+    "total_tokens": 1386,
+    "prompt_tokens": 1188,
+    "completion_tokens": 198,
+    "prompt_cache_hit_tokens": 512,
+    "prompt_cache_miss_tokens": 676,
+    "reasoning_tokens": 0
+   },
+   "guard": {
+    "total_tokens": 5105,
+    "prompt_tokens": 4845,
+    "completion_tokens": 260,
+    "prompt_cache_hit_tokens": 2944,
+    "prompt_cache_miss_tokens": 1901,
+    "reasoning_tokens": 0
+   },
+   "narrator": {
+    "total_tokens": 14963,
+    "prompt_tokens": 14536,
+    "completion_tokens": 427,
+    "prompt_cache_hit_tokens": 5376,
+    "prompt_cache_miss_tokens": 9160,
+    "reasoning_tokens": 0
+   }
+  },
+  "cost_usd": 0.028171,
+  "cost_by_kind": {
+   "guard": 0.00045,
+   "narrator": 0.001646,
+   "planner": 0.00085,
+   "registry": 0.000222,
+   "segment": 0.025003
+  },
+  "segment_calls": {
+   "count": 2,
+   "wall_seconds": 144.6,
+   "seconds": [
+    46.7,
+    97.8
+   ],
+   "finish": [
+    "stop",
+    "stop"
+   ],
+   "content_valid": [
+    true,
+    true
+   ],
+   "failures": [],
+   "completion_share_of_limit_max": 0.495
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "http_409": [],
+  "http_409_derived_state": 0,
+  "rounds": 1,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "field:p31.s0",
+    "rule": "name_choice_in_verified_name_slot"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:s2_c_sing": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:s1_c_forma_singolo": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:s2_c_firm": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:s1_c_rt_non_costituito": [
+    "CONDITION_FALSE",
+    "initial_request"
+   ],
+   "field:p31.s0": [
+    "VALUE",
+    null
+   ],
+   "field:p43.s5": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 15,
+   "correct": 4,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 11
+  },
+  "coverage_primary": 0.2667,
+  "coverage_with_partial": 0.2667,
+  "writes": [
+   {
+    "cell": "p115.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p115.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p127.s1",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p127.s2",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p127.s3",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p127.s4",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p44.s0",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   },
+   {
+    "cell": "p44.s1",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   },
+   {
+    "cell": "p9.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p31.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Valore USER dato per lo stesso slot (regola name_choice_in_verified_name_slot della politica simulata), quindi catena FORM/USER esplicita. Riserva: lo slot appartiene a un blocco per i componenti di un RT, presentato dal narratore come «Nome del firmatario della domanda»; un utente reale avrebbe potuto rinviarlo."
+    }
+   }
+  ],
+  "writes_count": 11,
+  "segments": {
+   "count": 2,
+   "status": {
+    "analyzed": 2
+   },
+   "sources": {
+    "called": 2
+   },
+   "attempts": [
+    1,
+    1
+   ],
+   "errors": [],
+   "retries": 0,
+   "unanalyzed_destinations": 0,
+   "preserved_after_failure": false,
+   "conflicts": 2,
+   "unified_conditions": 0,
+   "shared_conditions_not_unified": 0,
+   "dropped_out_of_segment": 0
+  },
+  "applicability_states": {
+   "VERIFICATA": 17
+  },
+  "written_applicability": {
+   "VERIFICATA": 11
+  },
+  "source_writes_unverified": [],
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [
+   {
+    "cell": "p127.s1",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p127.s2",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p127.s3",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p127.s4",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p44.s0",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   },
+   {
+    "cell": "p44.s1",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   }
+  ],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p8.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s5": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p8.s6": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s7": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p8.s8": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p8.s9": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t0.r1.c0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL"
+    ]
+   }
+  },
+  "gaps_with_reason": 11,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "minervino-2",
+  "document": "minervino",
+  "group": "storico",
+  "runtime": "storico",
+  "not_started": false,
+  "DOCX": false,
+  "downloaded": false,
+  "export_requested": true,
+  "final_status": "WAITING_FOR_USER",
+  "elapsed_s": 1239.7,
+  "user_messages": 3,
+  "driver_errors": 6,
+  "calls": 14,
+  "calls_by_kind": {
+   "planner": 3,
+   "segment": 5,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 3
+  },
+  "tokens": {
+   "total_tokens": 314760,
+   "prompt_tokens": 227563,
+   "completion_tokens": 87197,
+   "prompt_cache_hit_tokens": 125952,
+   "prompt_cache_miss_tokens": 101611,
+   "reasoning_tokens": 64791
+  },
+  "tokens_by_kind": {
+   "planner": {
+    "total_tokens": 14468,
+    "prompt_tokens": 14144,
+    "completion_tokens": 324,
+    "prompt_cache_hit_tokens": 9344,
+    "prompt_cache_miss_tokens": 4800,
+    "reasoning_tokens": 0
+   },
+   "segment": {
+    "total_tokens": 244608,
+    "prompt_tokens": 159219,
+    "completion_tokens": 85389,
+    "prompt_cache_hit_tokens": 103424,
+    "prompt_cache_miss_tokens": 55795,
+    "reasoning_tokens": 64791
+   },
+   "registry": {
+    "total_tokens": 1220,
+    "prompt_tokens": 1117,
+    "completion_tokens": 103,
+    "prompt_cache_hit_tokens": 512,
+    "prompt_cache_miss_tokens": 605,
+    "reasoning_tokens": 0
+   },
+   "guard": {
+    "total_tokens": 5152,
+    "prompt_tokens": 4927,
+    "completion_tokens": 225,
+    "prompt_cache_hit_tokens": 2944,
+    "prompt_cache_miss_tokens": 1983,
+    "reasoning_tokens": 0
+   },
+   "narrator": {
+    "total_tokens": 49312,
+    "prompt_tokens": 48156,
+    "completion_tokens": 1156,
+    "prompt_cache_hit_tokens": 9728,
+    "prompt_cache_miss_tokens": 38428,
+    "reasoning_tokens": 0
+   }
+  },
+  "cost_usd": 0.067938,
+  "cost_by_kind": {
+   "guard": 0.000441,
+   "narrator": 0.006487,
+   "planner": 0.000942,
+   "registry": 0.000154,
+   "segment": 0.059913
+  },
+  "segment_calls": {
+   "count": 5,
+   "wall_seconds": 216.9,
+   "seconds": [
+    113.1,
+    103.7,
+    66.8,
+    32.9,
+    25.7
+   ],
+   "finish": [
+    "stop",
+    "stop",
+    "stop",
+    "stop",
+    "stop"
+   ],
+   "content_valid": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "failures": [],
+   "completion_share_of_limit_max": 0.59
+  },
+  "narrator_rejections": [
+   "2 validation errors for GroupedContinuationPlan\nhold_groups.0.proposal_slots\n  List should have at least 1 item after validation, not 0 [type=too_short, input_value=[], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.13/v/too_short\nhold_groups.1.proposal_slots\n  List should have at least 1 item after validation, not 0 [type=too_short, input_value=[], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.13/v/too_short"
+  ],
+  "provider_failures": [],
+  "failure_class": "NARRATOR",
+  "http_409": [],
+  "http_409_derived_state": 0,
+  "rounds": 1,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "condition:s2_c_dt_branch",
+    "rule": "scenario_company_and_single_participation"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:s2_c_branch_soc_ing": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:s1_c_cap": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:s1_c_assoc": [
+    "SKIP",
+    null
+   ],
+   "condition:s2_c_rtp": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 60,
+   "correct": 0,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 60
+  },
+  "coverage_primary": 0.0,
+  "coverage_with_partial": 0.0,
+  "writes": [],
+  "writes_count": 0,
+  "segments": {
+   "count": 5,
+   "status": {
+    "analyzed": 5
+   },
+   "sources": {
+    "called": 5
+   },
+   "attempts": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "errors": [],
+   "retries": 0,
+   "unanalyzed_destinations": 0,
+   "preserved_after_failure": false,
+   "conflicts": 0,
+   "unified_conditions": 0,
+   "shared_conditions_not_unified": 0,
+   "dropped_out_of_segment": 0
+  },
+  "applicability_states": {
+   "VERIFICATA": 57,
+   "CONDIZIONATA": 7
+  },
+  "written_applicability": {},
+  "source_writes_unverified": [],
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p39.cb0": true
+   },
+   "written": {
+    "p39.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p12.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p12.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p12.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p12.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p13.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p13.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p13.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p13.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p14.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p14.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p15.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p15.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p15.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p15.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p16.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p16.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p16.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p17.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p17.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p40.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p41.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p41.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s4": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s5": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p43.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p43.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p43.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p43.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p43.s4": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p44.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p44.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p44.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p45.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p45.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p45.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p45.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p45.s4": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p46.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p46.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p46.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p47.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p48.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p48.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p49.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p49.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p49.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p49.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p49.s4": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p51.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p52.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p52.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p53.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p53.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p53.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p53.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p53.s4": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p229.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p230.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p232.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p242.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   }
+  },
+  "gaps_with_reason": 24,
+  "visibility_warnings": null
+ },
+ {
+  "trial": "catanzaro-2",
+  "document": "catanzaro",
+  "group": "storico",
+  "runtime": "storico",
+  "not_started": false,
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 238.8,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 14,
+  "calls_by_kind": {
+   "planner": 3,
+   "segment": 6,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 334088,
+   "prompt_tokens": 245415,
+   "completion_tokens": 88673,
+   "prompt_cache_hit_tokens": 145792,
+   "prompt_cache_miss_tokens": 99623,
+   "reasoning_tokens": 72836
+  },
+  "tokens_by_kind": {
+   "planner": {
+    "total_tokens": 14417,
+    "prompt_tokens": 14161,
+    "completion_tokens": 256,
+    "prompt_cache_hit_tokens": 9344,
+    "prompt_cache_miss_tokens": 4817,
+    "reasoning_tokens": 0
+   },
+   "segment": {
+    "total_tokens": 291572,
+    "prompt_tokens": 203966,
+    "completion_tokens": 87606,
+    "prompt_cache_hit_tokens": 127488,
+    "prompt_cache_miss_tokens": 76478,
+    "reasoning_tokens": 72836
+   },
+   "registry": {
+    "total_tokens": 988,
+    "prompt_tokens": 924,
+    "completion_tokens": 64,
+    "prompt_cache_hit_tokens": 512,
+    "prompt_cache_miss_tokens": 412,
+    "reasoning_tokens": 0
+   },
+   "guard": {
+    "total_tokens": 4729,
+    "prompt_tokens": 4610,
+    "completion_tokens": 119,
+    "prompt_cache_hit_tokens": 2944,
+    "prompt_cache_miss_tokens": 1666,
+    "reasoning_tokens": 0
+   },
+   "narrator": {
+    "total_tokens": 22382,
+    "prompt_tokens": 21754,
+    "completion_tokens": 628,
+    "prompt_cache_hit_tokens": 5504,
+    "prompt_cache_miss_tokens": 16250,
+    "reasoning_tokens": 0
+   }
+  },
+  "cost_usd": 0.068585,
+  "cost_by_kind": {
+   "guard": 0.00033,
+   "narrator": 0.002831,
+   "planner": 0.000904,
+   "registry": 0.000102,
+   "segment": 0.064418
+  },
+  "segment_calls": {
+   "count": 6,
+   "wall_seconds": 216.2,
+   "seconds": [
+    101.1,
+    42.6,
+    43.5,
+    79.2,
+    42.4,
+    71.1
+   ],
+   "finish": [
+    "stop",
+    "stop",
+    "stop",
+    "stop",
+    "stop",
+    "stop"
+   ],
+   "content_valid": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "failures": [],
+   "completion_share_of_limit_max": 0.481
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "http_409": [],
+  "http_409_derived_state": 0,
+  "rounds": 1,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "choice:s1_cg_tipologia",
+    "rule": "scenario_engineering_option"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:s4_c1": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "choice:s1_cg_tipologia": [
+    "VALUE",
+    null
+   ],
+   "condition:s6_c_p799": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 31,
+   "correct": 11,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 20
+  },
+  "coverage_primary": 0.3548,
+  "coverage_with_partial": 0.3548,
+  "writes": [
+   {
+    "cell": "t0.r0.c1",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r10.c1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r2.c1",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r5.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r6.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r7.c1",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r9.c1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t19.r0.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    }
+   },
+   {
+    "cell": "t19.r2.c0",
+    "value": "Bari",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    }
+   },
+   {
+    "cell": "t19.r3.c1",
+    "value": "01234560981",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    }
+   },
+   {
+    "cell": "t19.r4.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    }
+   },
+   {
+    "cell": "t19.r4.c3",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    }
+   },
+   {
+    "cell": "t25.r0.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r2.c0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c3",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.cb0",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    }
+   },
+   {
+    "cell": "p51.cb0",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    }
+   },
+   {
+    "cell": "p53.cb0",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    }
+   },
+   {
+    "cell": "p55.cb0",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    }
+   },
+   {
+    "cell": "p57.cb0",
+    "value": true,
+    "automatic": "SCELTA_USER_ATTESA",
+    "author_judgment": null
+   },
+   {
+    "cell": "p60.cb0",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    }
+   },
+   {
+    "cell": "p62.cb0",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    }
+   },
+   {
+    "cell": "p64.cb0",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    }
+   }
+  ],
+  "writes_count": 24,
+  "segments": {
+   "count": 6,
+   "status": {
+    "analyzed": 6
+   },
+   "sources": {
+    "called": 6
+   },
+   "attempts": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "errors": [],
+   "retries": 0,
+   "unanalyzed_destinations": 0,
+   "preserved_after_failure": false,
+   "conflicts": 0,
+   "unified_conditions": 0,
+   "shared_conditions_not_unified": 0,
+   "dropped_out_of_segment": 0
+  },
+  "applicability_states": {
+   "CONDIZIONATA": 2,
+   "VERIFICATA": 32
+  },
+  "written_applicability": {
+   "VERIFICATA": 24
+  },
+  "source_writes_unverified": [],
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [
+   {
+    "cell": "t19.r0.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    }
+   },
+   {
+    "cell": "t19.r2.c0",
+    "value": "Bari",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    }
+   },
+   {
+    "cell": "t19.r3.c1",
+    "value": "01234560981",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    }
+   },
+   {
+    "cell": "t19.r4.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    }
+   },
+   {
+    "cell": "t19.r4.c3",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    }
+   }
+  ],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p57.cb0": true,
+    "p76.cb1": true,
+    "p147.cb0": true
+   },
+   "written": {
+    "p57.cb0": true,
+    "p76.cb1": null,
+    "p147.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "t0.r1.c1": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t0.r3.c1": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t0.r11.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t25.r3.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t26.r0.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r1.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r3.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r4.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t41.r1.c0": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t41.r1.c1": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t41.r1.c2": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t41.r1.c3": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t41.r1.c4": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t43.r1.c0": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t43.r1.c1": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t43.r1.c2": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t43.r1.c3": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t43.r1.c4": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t44.r1.c0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t44.r1.c3": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r2.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t44.r1.c1": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t44.r1.c2": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   }
+  },
+  "gaps_with_reason": 23,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "cesano-2",
+  "document": "cesano",
+  "group": "storico",
+  "runtime": "storico",
+  "not_started": false,
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 108.4,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 10,
+  "calls_by_kind": {
+   "planner": 3,
+   "segment": 2,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 126261,
+   "prompt_tokens": 103777,
+   "completion_tokens": 22484,
+   "prompt_cache_hit_tokens": 50816,
+   "prompt_cache_miss_tokens": 52961,
+   "reasoning_tokens": 17443
+  },
+  "tokens_by_kind": {
+   "planner": {
+    "total_tokens": 13864,
+    "prompt_tokens": 13641,
+    "completion_tokens": 223,
+    "prompt_cache_hit_tokens": 9344,
+    "prompt_cache_miss_tokens": 4297,
+    "reasoning_tokens": 0
+   },
+   "segment": {
+    "total_tokens": 85806,
+    "prompt_tokens": 64110,
+    "completion_tokens": 21696,
+    "prompt_cache_hit_tokens": 31232,
+    "prompt_cache_miss_tokens": 32878,
+    "reasoning_tokens": 17443
+   },
+   "registry": {
+    "total_tokens": 978,
+    "prompt_tokens": 875,
+    "completion_tokens": 103,
+    "prompt_cache_hit_tokens": 512,
+    "prompt_cache_miss_tokens": 363,
+    "reasoning_tokens": 0
+   },
+   "guard": {
+    "total_tokens": 4426,
+    "prompt_tokens": 4244,
+    "completion_tokens": 182,
+    "prompt_cache_hit_tokens": 2944,
+    "prompt_cache_miss_tokens": 1300,
+    "reasoning_tokens": 0
+   },
+   "narrator": {
+    "total_tokens": 21187,
+    "prompt_tokens": 20907,
+    "completion_tokens": 280,
+    "prompt_cache_hit_tokens": 6784,
+    "prompt_cache_miss_tokens": 14123,
+    "reasoning_tokens": 0
+   }
+  },
+  "cost_usd": 0.021587,
+  "cost_by_kind": {
+   "guard": 0.000313,
+   "narrator": 0.002307,
+   "planner": 0.000806,
+   "registry": 0.000118,
+   "segment": 0.018043
+  },
+  "segment_calls": {
+   "count": 2,
+   "wall_seconds": 90.9,
+   "seconds": [
+    77.0,
+    13.9
+   ],
+   "finish": [
+    "stop",
+    "stop"
+   ],
+   "content_valid": [
+    true,
+    true
+   ],
+   "failures": [],
+   "completion_share_of_limit_max": 0.379
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "http_409": [],
+  "http_409_derived_state": 0,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:s1_c_forma": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:s1_c_sottoscrittore": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:4c1c2ef4da29ca50e35088ad": [
+    "CONDITION_TRUE",
+    null
+   ],
+   "field:p105.ft0": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 4,
+   "correct": 4,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 1.0,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.ft0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p19.ft0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 4,
+  "segments": {
+   "count": 2,
+   "status": {
+    "analyzed": 2
+   },
+   "sources": {
+    "called": 2
+   },
+   "attempts": [
+    1,
+    1
+   ],
+   "errors": [],
+   "retries": 0,
+   "unanalyzed_destinations": 0,
+   "preserved_after_failure": false,
+   "conflicts": 0,
+   "unified_conditions": 0,
+   "shared_conditions_not_unified": 0,
+   "dropped_out_of_segment": 0
+  },
+  "applicability_states": {
+   "VERIFICATA": 4
+  },
+  "written_applicability": {
+   "VERIFICATA": 4
+  },
+  "source_writes_unverified": [],
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p19.cb0": true
+   },
+   "written": {
+    "p19.cb0": null
+   }
+  },
+  "non_positional_unresolved": [
+   "data",
+   "preferenze categorie/fasce",
+   "recapiti studio personale non dimostrati",
+   "INAIL/INPS/INARCASSA personali",
+   "iscrizione professionale Leonardo"
+  ],
+  "gaps": {},
+  "gaps_with_reason": 0,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "soresa2023-2",
+  "document": "soresa2023",
+  "group": "nuovo",
+  "runtime": "nuova-source",
+  "not_started": false,
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 162.2,
+  "user_messages": 4,
+  "driver_errors": 10,
+  "calls": 11,
+  "calls_by_kind": {
+   "planner": 4,
+   "segment": 2,
+   "registry": 1,
+   "narrator": 3,
+   "guard": 1
+  },
+  "tokens": {
+   "total_tokens": 123580,
+   "prompt_tokens": 87409,
+   "completion_tokens": 36171,
+   "prompt_cache_hit_tokens": 47872,
+   "prompt_cache_miss_tokens": 39537,
+   "reasoning_tokens": 28667
+  },
+  "tokens_by_kind": {
+   "planner": {
+    "total_tokens": 19682,
+    "prompt_tokens": 19195,
+    "completion_tokens": 487,
+    "prompt_cache_hit_tokens": 12544,
+    "prompt_cache_miss_tokens": 6651,
+    "reasoning_tokens": 0
+   },
+   "segment": {
+    "total_tokens": 80978,
+    "prompt_tokens": 45938,
+    "completion_tokens": 35040,
+    "prompt_cache_hit_tokens": 24320,
+    "prompt_cache_miss_tokens": 21618,
+    "reasoning_tokens": 28667
+   },
+   "registry": {
+    "total_tokens": 1116,
+    "prompt_tokens": 992,
+    "completion_tokens": 124,
+    "prompt_cache_hit_tokens": 512,
+    "prompt_cache_miss_tokens": 480,
+    "reasoning_tokens": 0
+   },
+   "narrator": {
+    "total_tokens": 19072,
+    "prompt_tokens": 18653,
+    "completion_tokens": 419,
+    "prompt_cache_hit_tokens": 9088,
+    "prompt_cache_miss_tokens": 9565,
+    "reasoning_tokens": 0
+   },
+   "guard": {
+    "total_tokens": 2732,
+    "prompt_tokens": 2631,
+    "completion_tokens": 101,
+    "prompt_cache_hit_tokens": 1408,
+    "prompt_cache_miss_tokens": 1223,
+    "reasoning_tokens": 0
+   }
+  },
+  "cost_usd": 0.027777,
+  "cost_by_kind": {
+   "guard": 0.000248,
+   "narrator": 0.001713,
+   "planner": 0.001327,
+   "registry": 0.000148,
+   "segment": 0.02434
+  },
+  "segment_calls": {
+   "count": 2,
+   "wall_seconds": 140.0,
+   "seconds": [
+    61.9,
+    78.0
+   ],
+   "finish": [
+    "stop",
+    "stop"
+   ],
+   "content_valid": [
+    true,
+    true
+   ],
+   "failures": [],
+   "completion_share_of_limit_max": 0.398
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "http_409": [],
+  "http_409_derived_state": 0,
+  "rounds": 2,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "condition:s1_c_single",
+    "rule": "scenario_company_and_single_participation"
+   },
+   {
+    "round": 1,
+    "key": "field:p31.s0",
+    "rule": "name_choice_in_verified_name_slot"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:s1_c_single": [
+    "CONDITION_TRUE",
+    null
+   ],
+   "condition:s1_c_rt_non_costituito": [
+    "SKIP",
+    null
+   ],
+   "field:p31.s0": [
+    "VALUE",
+    null
+   ],
+   "field:p43.s5": [
+    "SKIP",
+    null
+   ],
+   "field:p127.s0": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 15,
+   "correct": 7,
+   "partial": 1,
+   "wrong": 0,
+   "empty": 7
+  },
+  "coverage_primary": 0.4667,
+  "coverage_with_partial": 0.5333,
+  "writes": [
+   {
+    "cell": "p115.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p115.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p127.s2",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p127.s3",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p127.s4",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p43.s8",
+    "value": "+39 080 000 2040",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   },
+   {
+    "cell": "p43.s9",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   },
+   {
+    "cell": "p44.s0",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   },
+   {
+    "cell": "p44.s1",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   },
+   {
+    "cell": "p8.s7",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s8",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s9",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r1.c0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DA_REVISIONARE_VALORE_DIVERSO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del nucleo («Denominazione operatore economico / Sede legale»): la ragione sociale è corretta (SOURCE «Ragione sociale Mapi Ingegneria S.r.l.») ma manca la sede, quindi il valore è parziale."
+    }
+   },
+   {
+    "cell": "p31.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Valore USER dato per lo stesso slot (regola name_choice_in_verified_name_slot della politica simulata), quindi catena FORM/USER esplicita. Riserva: lo slot appartiene a un blocco per i componenti di un RT, presentato dal narratore come «Nome del firmatario della domanda»; un utente reale avrebbe potuto rinviarlo."
+    }
+   }
+  ],
+  "writes_count": 16,
+  "segments": {
+   "count": 2,
+   "status": {
+    "analyzed": 2
+   },
+   "sources": {
+    "called": 2
+   },
+   "attempts": [
+    1,
+    1
+   ],
+   "errors": [],
+   "retries": 0,
+   "unanalyzed_destinations": 0,
+   "preserved_after_failure": false,
+   "conflicts": 2,
+   "unified_conditions": 0,
+   "shared_conditions_not_unified": 0,
+   "dropped_out_of_segment": 0
+  },
+  "applicability_states": {
+   "VERIFICATA": 16
+  },
+  "written_applicability": {
+   "VERIFICATA": 16
+  },
+  "source_writes_unverified": [],
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [
+   {
+    "cell": "p127.s2",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p127.s3",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p127.s4",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    }
+   },
+   {
+    "cell": "p43.s8",
+    "value": "+39 080 000 2040",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   },
+   {
+    "cell": "p43.s9",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   },
+   {
+    "cell": "p44.s0",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   },
+   {
+    "cell": "p44.s1",
+    "value": "IT01234567890",
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "NON_DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    }
+   }
+  ],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p8.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s5": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p8.s6": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p115.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 6,
+  "visibility_warnings": []
+ }
+]

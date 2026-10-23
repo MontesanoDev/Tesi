@@ -1,0 +1,16 @@
+{
+  "archive": "audit-completo.tar.gz",
+  "sha256": "6a135473df81e85c1b3b42b37ed9cdca9fa94cbe31e6cef8c72151e2c62f49da",
+  "bytes": 62927725,
+  "files": 794,
+  "raw_source": "backend/data/compilation-audit/casuali-v12-20261019-01",
+  "code_HEAD": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "dirty_code_preserved": true,
+  "application_files_unchanged": true,
+  "includes_public_results": true,
+  "private_database_excluded": true,
+  "keys_env_credentials_excluded": true,
+  "manifest_inside": "MANIFEST-SHA256.json",
+  "offline_verifier": "audit/verify_bundle.py",
+  "baseline_adopted": false
+}

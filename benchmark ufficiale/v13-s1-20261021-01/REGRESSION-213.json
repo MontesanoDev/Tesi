@@ -1,0 +1,1497 @@
+{
+  "cases": 213,
+  "status": "PASS",
+  "results": [
+    {
+      "id": "000",
+      "version": 6,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/alternatives-v6-20261011-run2"
+    },
+    {
+      "id": "001",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/labirinto-v1-20261011-run2"
+    },
+    {
+      "id": "002",
+      "version": 4,
+      "status": "REJECTED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-compact-20261010-run6"
+    },
+    {
+      "id": "003",
+      "version": 2,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-conditions-20261010-run1"
+    },
+    {
+      "id": "004",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/context-v3-20261011-run1"
+    },
+    {
+      "id": "005",
+      "version": 6,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/alternatives-v6-20261011-run1"
+    },
+    {
+      "id": "006",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/subject-binding-v7c-20261011-run3"
+    },
+    {
+      "id": "007",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/context-v2-20261011-run3"
+    },
+    {
+      "id": "008",
+      "version": 3,
+      "status": "REJECTED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-compact-20261010-run4"
+    },
+    {
+      "id": "009",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-sparse-20261011-run3"
+    },
+    {
+      "id": "010",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-sparse-20261011-run1"
+    },
+    {
+      "id": "011",
+      "version": 6,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/alternatives-v6b-20261011-run3"
+    },
+    {
+      "id": "012",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/context-v3-20261011-run2"
+    },
+    {
+      "id": "013",
+      "version": 2,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-conditions-20261010-run2"
+    },
+    {
+      "id": "014",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/subject-binding-v7b-20261011-run3"
+    },
+    {
+      "id": "015",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/labirinto-v1-20261011-run3"
+    },
+    {
+      "id": "016",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-sparse-20261011-run4"
+    },
+    {
+      "id": "017",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-sparse-20261011-run2"
+    },
+    {
+      "id": "018",
+      "version": 3,
+      "status": "REJECTED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-compact-20261010-run3"
+    },
+    {
+      "id": "019",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/b0-docx-verified-20261017-01"
+    },
+    {
+      "id": "020",
+      "version": 6,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/alternatives-v6b-20261011-run1"
+    },
+    {
+      "id": "021",
+      "version": 3,
+      "status": "REJECTED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-compact-20261010-run2"
+    },
+    {
+      "id": "022",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/subject-binding-v7-20261011-run3"
+    },
+    {
+      "id": "023",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/subject-binding-v7-20261011-run1"
+    },
+    {
+      "id": "024",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/context-v2-20261011-run1"
+    },
+    {
+      "id": "025",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/minervino-output-2-20261013"
+    },
+    {
+      "id": "026",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/subject-binding-v7b-20261011-run1"
+    },
+    {
+      "id": "027",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/labirinto-v1-20261011-run1"
+    },
+    {
+      "id": "028",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/subject-binding-v7c-20261011-run2"
+    },
+    {
+      "id": "029",
+      "version": 6,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/alternatives-v6b-20261011-run2"
+    },
+    {
+      "id": "030",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/subject-binding-v7c-20261011-run1"
+    },
+    {
+      "id": "031",
+      "version": 6,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/alternatives-v6-20261011-run3"
+    },
+    {
+      "id": "032",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/context-v2-20261011-run2"
+    },
+    {
+      "id": "033",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/subject-binding-v7b-20261011-run2"
+    },
+    {
+      "id": "034",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/subject-binding-v7-20261011-run2"
+    },
+    {
+      "id": "035",
+      "version": 5,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/context-v3-20261011-run3"
+    },
+    {
+      "id": "036",
+      "version": 4,
+      "status": "REJECTED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-compact-20261010-run5"
+    },
+    {
+      "id": "037",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/casuali-v12-20261019-01/cesano/artifacts"
+    },
+    {
+      "id": "038",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/casuali-v12-20261019-01/craa/artifacts"
+    },
+    {
+      "id": "039",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/casuali-v12-20261019-01/bella/artifacts"
+    },
+    {
+      "id": "040",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/conversation-review-20261012/labirinto/analysis"
+    },
+    {
+      "id": "041",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/conversation-review-20261012/catanzaro/analysis"
+    },
+    {
+      "id": "042",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/input"
+    },
+    {
+      "id": "043",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/e2e-catanzaro"
+    },
+    {
+      "id": "044",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/minervino"
+    },
+    {
+      "id": "045",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/bella"
+    },
+    {
+      "id": "046",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/catanzaro"
+    },
+    {
+      "id": "047",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/pec-trapani-reale"
+    },
+    {
+      "id": "048",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/minervino-v12-61"
+    },
+    {
+      "id": "049",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/trapani"
+    },
+    {
+      "id": "050",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/craa"
+    },
+    {
+      "id": "051",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/cesano-reale-8"
+    },
+    {
+      "id": "052",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/cesano"
+    },
+    {
+      "id": "053",
+      "version": 11,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/field-decisions-20261013/baseline-minervino"
+    },
+    {
+      "id": "054",
+      "version": 11,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/field-decisions-20261013/baseline-lab"
+    },
+    {
+      "id": "055",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/v12-holds-chat-20261019-01/chat/artifacts"
+    },
+    {
+      "id": "056",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/group-confirmations-20261012/replay/analysis"
+    },
+    {
+      "id": "057",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-02/trapani/artifacts"
+    },
+    {
+      "id": "058",
+      "version": 11,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/minervino-output-20261013/analysis"
+    },
+    {
+      "id": "059",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/e2e-catanzaro"
+    },
+    {
+      "id": "060",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/minervino"
+    },
+    {
+      "id": "061",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/bella"
+    },
+    {
+      "id": "062",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/catanzaro"
+    },
+    {
+      "id": "063",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/minervino-v12-61"
+    },
+    {
+      "id": "064",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/trapani"
+    },
+    {
+      "id": "065",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/craa"
+    },
+    {
+      "id": "066",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/cesano-reale-8"
+    },
+    {
+      "id": "067",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/cesano"
+    },
+    {
+      "id": "068",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/trapani-run2"
+    },
+    {
+      "id": "069",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/labirinto-run2"
+    },
+    {
+      "id": "070",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/trapani-run1"
+    },
+    {
+      "id": "071",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/trapani-run3"
+    },
+    {
+      "id": "072",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/labirinto-run1"
+    },
+    {
+      "id": "073",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/labirinto-run3"
+    },
+    {
+      "id": "074",
+      "version": 11,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/conversation-flow-20261013/diagnosis/analysis"
+    },
+    {
+      "id": "075",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/v12-review-soci-20261018-01/artifacts"
+    },
+    {
+      "id": "076",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-granularity-v8-20261011/trapani-run2"
+    },
+    {
+      "id": "077",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-granularity-v8-20261011/trapani-run1"
+    },
+    {
+      "id": "078",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-granularity-v8-20261011/trapani-run3"
+    },
+    {
+      "id": "079",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-granularity-v8-20261011/trapani-no-thinking-run1"
+    },
+    {
+      "id": "080",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-granularity-v8-20261011/labirinto-run1"
+    },
+    {
+      "id": "081",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/v12-branches-20261019-01/chat/artifacts"
+    },
+    {
+      "id": "082",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/reported-data"
+    },
+    {
+      "id": "083",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/ablation"
+    },
+    {
+      "id": "084",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/compact"
+    },
+    {
+      "id": "085",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/baseline"
+    },
+    {
+      "id": "086",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/compact-v8"
+    },
+    {
+      "id": "087",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/thinking-v8"
+    },
+    {
+      "id": "088",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/slot-context"
+    },
+    {
+      "id": "089",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/compact-v8-clear"
+    },
+    {
+      "id": "090",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/trapani/artifacts"
+    },
+    {
+      "id": "091",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/e2e-catanzaro"
+    },
+    {
+      "id": "092",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/minervino"
+    },
+    {
+      "id": "093",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/bella"
+    },
+    {
+      "id": "094",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/catanzaro"
+    },
+    {
+      "id": "095",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/minervino-v12-61"
+    },
+    {
+      "id": "096",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/trapani"
+    },
+    {
+      "id": "097",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/craa"
+    },
+    {
+      "id": "098",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/cesano-reale-8"
+    },
+    {
+      "id": "099",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/cesano"
+    },
+    {
+      "id": "100",
+      "version": 11,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/rejected-checkbox-20261013/recorded-failure"
+    },
+    {
+      "id": "101",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-semantic-contract-20261011/trapani-run2"
+    },
+    {
+      "id": "102",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-semantic-contract-20261011/trapani-run1"
+    },
+    {
+      "id": "103",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-semantic-contract-20261011/trapani-run3"
+    },
+    {
+      "id": "104",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-semantic-contract-20261011/trapani-no-thinking-run1"
+    },
+    {
+      "id": "105",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-semantic-contract-20261011/labirinto-run1"
+    },
+    {
+      "id": "106",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/minervino-run1"
+    },
+    {
+      "id": "107",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/trapani-run2"
+    },
+    {
+      "id": "108",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/catanzaro-run2"
+    },
+    {
+      "id": "109",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/trapani-run3"
+    },
+    {
+      "id": "110",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/minervino-run4"
+    },
+    {
+      "id": "111",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/minervino-run2"
+    },
+    {
+      "id": "112",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/catanzaro-run3"
+    },
+    {
+      "id": "113",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/catanzaro-run4"
+    },
+    {
+      "id": "114",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/minervino-run3"
+    },
+    {
+      "id": "115",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/trapani-run4"
+    },
+    {
+      "id": "116",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/ui-compilato6-20261017-01/artifacts"
+    },
+    {
+      "id": "117",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/e1-index-20261017-01/analysis-03"
+    },
+    {
+      "id": "118",
+      "version": 12,
+      "status": "REJECTED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/e1-index-20261017-01/analysis-01"
+    },
+    {
+      "id": "119",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/b0-minervino-20261016T154354Z/analysis-03"
+    },
+    {
+      "id": "120",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/b0-minervino-20261016T154354Z/analysis-02"
+    },
+    {
+      "id": "121",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/b0-minervino-20261016T154354Z/analysis-01"
+    },
+    {
+      "id": "122",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/minervino-integrazione-20261016T133808Z/analysis"
+    },
+    {
+      "id": "123",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/formtext-chiusura-20261019-01/cesano/artifacts"
+    },
+    {
+      "id": "124",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/catanzaro/artifacts"
+    },
+    {
+      "id": "125",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/e2e-catanzaro"
+    },
+    {
+      "id": "126",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/minervino"
+    },
+    {
+      "id": "127",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/bella"
+    },
+    {
+      "id": "128",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/catanzaro"
+    },
+    {
+      "id": "129",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/minervino-v12-61"
+    },
+    {
+      "id": "130",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/trapani"
+    },
+    {
+      "id": "131",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/craa"
+    },
+    {
+      "id": "132",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/cesano-reale-8"
+    },
+    {
+      "id": "133",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/cesano"
+    },
+    {
+      "id": "134",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-independent-grounding-20261011/trapani-run1"
+    },
+    {
+      "id": "135",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-independent-grounding-20261011/labirinto-run1"
+    },
+    {
+      "id": "136",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/ufficiale-v12-20261019-01/trapani/artifacts"
+    },
+    {
+      "id": "137",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/ufficiale-v12-20261019-01/catanzaro/artifacts"
+    },
+    {
+      "id": "138",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/ufficiale-v12-20261019-01/minervino/artifacts"
+    },
+    {
+      "id": "139",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-coverage-20261012/minervino-run1"
+    },
+    {
+      "id": "140",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-coverage-20261012/catanzaro-run2"
+    },
+    {
+      "id": "141",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-coverage-20261012/catanzaro-run3"
+    },
+    {
+      "id": "142",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-coverage-20261012/catanzaro-run1"
+    },
+    {
+      "id": "143",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-coverage-20261012/labirinto-run1"
+    },
+    {
+      "id": "144",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-hypothesis-stage-20261011/trapani-run2"
+    },
+    {
+      "id": "145",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-hypothesis-stage-20261011/trapani-run1"
+    },
+    {
+      "id": "146",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-hypothesis-stage-20261011/trapani-run3"
+    },
+    {
+      "id": "147",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-hypothesis-stage-20261011/trapani-no-thinking-run1"
+    },
+    {
+      "id": "148",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-hypothesis-stage-20261011/labirinto-run1"
+    },
+    {
+      "id": "149",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/craa/artifacts"
+    },
+    {
+      "id": "150",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/e2e-catanzaro"
+    },
+    {
+      "id": "151",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/minervino"
+    },
+    {
+      "id": "152",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/bella"
+    },
+    {
+      "id": "153",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/catanzaro"
+    },
+    {
+      "id": "154",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/pec-trapani-reale"
+    },
+    {
+      "id": "155",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/minervino-v12-61"
+    },
+    {
+      "id": "156",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/trapani"
+    },
+    {
+      "id": "157",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/craa"
+    },
+    {
+      "id": "158",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/cesano-reale-8"
+    },
+    {
+      "id": "159",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/cesano"
+    },
+    {
+      "id": "160",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/ui-compilato6-fix-20261017-01/baseline-compiled6"
+    },
+    {
+      "id": "161",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/full-conversation-20261012/analysis"
+    },
+    {
+      "id": "162",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/full-conversation-20261012/labirinto/analysis"
+    },
+    {
+      "id": "163",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/full-conversation-20261012/labirinto-r2/analysis"
+    },
+    {
+      "id": "164",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-context-20261012/minervino-run1"
+    },
+    {
+      "id": "165",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-context-20261012/labirinto-run2"
+    },
+    {
+      "id": "166",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-context-20261012/minervino-run2"
+    },
+    {
+      "id": "167",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-context-20261012/catanzaro-run1"
+    },
+    {
+      "id": "168",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-context-20261012/minervino-run3"
+    },
+    {
+      "id": "169",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-context-20261012/labirinto-run1"
+    },
+    {
+      "id": "170",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/role-context-20261012/labirinto-run3"
+    },
+    {
+      "id": "171",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/blank-consent-20261012/skip-si/analysis"
+    },
+    {
+      "id": "172",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/blank-consent-20261012/confirm-si/analysis"
+    },
+    {
+      "id": "173",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/blank-consent-20261012/current-si/analysis"
+    },
+    {
+      "id": "174",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/blank-consent-20261012/current-siii/analysis"
+    },
+    {
+      "id": "175",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-main-20261012/labirinto/analysis"
+    },
+    {
+      "id": "176",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/global-main-20261012/catanzaro/analysis"
+    },
+    {
+      "id": "177",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/e1-form-20261016-01/analysis-03"
+    },
+    {
+      "id": "178",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/e1-form-20261016-01/analysis-02"
+    },
+    {
+      "id": "179",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/e1-form-20261016-01/analysis-01"
+    },
+    {
+      "id": "180",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/trapani-run2"
+    },
+    {
+      "id": "181",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/labirinto-run2"
+    },
+    {
+      "id": "182",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/trapani-run1"
+    },
+    {
+      "id": "183",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/trapani-run3"
+    },
+    {
+      "id": "184",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/labirinto-run1"
+    },
+    {
+      "id": "185",
+      "version": 8,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/labirinto-run3"
+    },
+    {
+      "id": "186",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/v12-narrator-holds-20261019-01/saved-chat/artifacts"
+    },
+    {
+      "id": "187",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/narration-roles-20261012/replay-after/analysis"
+    },
+    {
+      "id": "188",
+      "version": 10,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/narration-roles-20261012/replay-before/analysis"
+    },
+    {
+      "id": "189",
+      "version": 7,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/bando-casuale-20261011/run1"
+    },
+    {
+      "id": "190",
+      "version": 9,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/minervino-run1"
+    },
+    {
+      "id": "191",
+      "version": 9,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/labirinto-run2"
+    },
+    {
+      "id": "192",
+      "version": 9,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/minervino-run2"
+    },
+    {
+      "id": "193",
+      "version": 9,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/catanzaro-run1"
+    },
+    {
+      "id": "194",
+      "version": 9,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/minervino-run3"
+    },
+    {
+      "id": "195",
+      "version": 9,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/labirinto-run1"
+    },
+    {
+      "id": "196",
+      "version": 9,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/labirinto-run3"
+    },
+    {
+      "id": "197",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/ui-v12-e2e-20261018-01/artifacts"
+    },
+    {
+      "id": "198",
+      "version": 11,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/text-coverage-20261013/http-02/analysis"
+    },
+    {
+      "id": "199",
+      "version": 11,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/text-coverage-20261013/series-02/http/analysis"
+    },
+    {
+      "id": "200",
+      "version": 11,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/checkboxes-20261013/conversation-r2/analysis"
+    },
+    {
+      "id": "201",
+      "version": 11,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/checkboxes-20261013/conversation-r1/analysis"
+    },
+    {
+      "id": "202",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/trapani/artifacts"
+    },
+    {
+      "id": "203",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/e2e-catanzaro"
+    },
+    {
+      "id": "204",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/minervino"
+    },
+    {
+      "id": "205",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/bella"
+    },
+    {
+      "id": "206",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/catanzaro"
+    },
+    {
+      "id": "207",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/pec-trapani-reale"
+    },
+    {
+      "id": "208",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/minervino-v12-61"
+    },
+    {
+      "id": "209",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/trapani"
+    },
+    {
+      "id": "210",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/craa"
+    },
+    {
+      "id": "211",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/cesano-reale-8"
+    },
+    {
+      "id": "212",
+      "version": 12,
+      "status": "VALIDATED",
+      "exact": true,
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/cesano"
+    }
+  ]
+}

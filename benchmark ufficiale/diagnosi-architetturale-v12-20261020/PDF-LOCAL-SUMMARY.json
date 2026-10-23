@@ -1,0 +1,776 @@
+[
+  {
+    "path": "history-latest/minervino",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "history-latest/bella",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "history-latest/catanzaro",
+    "interleaved_values": {
+      "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+    },
+    "bounded_locations": {
+      "t0.r7.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        },
+        {
+          "page": 11,
+          "bbox": [
+            372.7,
+            210.320764,
+            514.23,
+            245.250764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ],
+      "t25.r4.c3": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        },
+        {
+          "page": 11,
+          "bbox": [
+            372.7,
+            210.320764,
+            514.23,
+            245.250764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ]
+    },
+    "distinct_locations_cover_all_equal_missing_values": {
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+    },
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "history-latest/trapani",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/minervino/E1/rep-2/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/minervino/E1/rep-1/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/minervino/E1/rep-3/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/minervino/E2-A/rep-2/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/minervino/E2-A/rep-1/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/minervino/E2-A/rep-3/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/minervino/B0/rep-2/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/minervino/B0/rep-1/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/minervino/B0/rep-3/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/bella/E1/rep-2/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/bella/E1/rep-1/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/bella/E1/rep-3/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/bella/E2-A/rep-2/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/bella/E2-A/rep-1/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/bella/E2-A/rep-3/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/bella/B0/rep-2/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/bella/B0/rep-1/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/bella/B0/rep-3/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/catanzaro/E1/rep-2/final",
+    "interleaved_values": {
+      "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+    },
+    "bounded_locations": {
+      "t0.r7.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ]
+    },
+    "distinct_locations_cover_all_equal_missing_values": {
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+    },
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/catanzaro/E1/rep-1/final",
+    "interleaved_values": {
+      "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+    },
+    "bounded_locations": {
+      "t0.r7.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ]
+    },
+    "distinct_locations_cover_all_equal_missing_values": {
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+    },
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/catanzaro/E1/rep-3/final",
+    "interleaved_values": {
+      "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "t0.r8.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+    },
+    "bounded_locations": {
+      "t0.r7.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        },
+        {
+          "page": 2,
+          "bbox": [
+            213.25,
+            43.214764,
+            514.054,
+            71.170764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ],
+      "t0.r8.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        },
+        {
+          "page": 2,
+          "bbox": [
+            213.25,
+            43.214764,
+            514.054,
+            71.170764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ]
+    },
+    "distinct_locations_cover_all_equal_missing_values": {
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+    },
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/catanzaro/E2-A/rep-2/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/catanzaro/E2-A/rep-1/final",
+    "interleaved_values": {
+      "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+    },
+    "bounded_locations": {
+      "t0.r7.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ]
+    },
+    "distinct_locations_cover_all_equal_missing_values": {
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+    },
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/catanzaro/E2-A/rep-3/final",
+    "interleaved_values": {
+      "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+    },
+    "bounded_locations": {
+      "t0.r7.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ]
+    },
+    "distinct_locations_cover_all_equal_missing_values": {
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+    },
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/catanzaro/B0/rep-2/final",
+    "interleaved_values": {
+      "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+    },
+    "bounded_locations": {
+      "t0.r7.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ]
+    },
+    "distinct_locations_cover_all_equal_missing_values": {
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+    },
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/catanzaro/B0/rep-1/final",
+    "interleaved_values": {
+      "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+    },
+    "bounded_locations": {
+      "t0.r7.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ]
+    },
+    "distinct_locations_cover_all_equal_missing_values": {
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+    },
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/catanzaro/B0/rep-3/final",
+    "interleaved_values": {
+      "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "t0.r8.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+    },
+    "bounded_locations": {
+      "t0.r7.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        },
+        {
+          "page": 2,
+          "bbox": [
+            213.25,
+            43.214764,
+            514.054,
+            71.170764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ],
+      "t0.r8.c1": [
+        {
+          "page": 1,
+          "bbox": [
+            213.25,
+            754.064764,
+            514.054,
+            782.020764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        },
+        {
+          "page": 2,
+          "bbox": [
+            213.25,
+            43.214764,
+            514.054,
+            71.170764
+          ],
+          "matched_tokens": [
+            "via",
+            "giovanni",
+            "amendola",
+            "172c",
+            "70126",
+            "bari",
+            "ba",
+            "italia"
+          ]
+        }
+      ]
+    },
+    "distinct_locations_cover_all_equal_missing_values": {
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+    },
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/trapani/E1/rep-2/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/trapani/E1/rep-1/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/trapani/E1/rep-3/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/trapani/E2-A/rep-2/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/trapani/E2-A/rep-1/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/trapani/E2-A/rep-3/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/trapani/B0/rep-2/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/trapani/B0/rep-1/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  },
+  {
+    "path": "runs/trapani/B0/rep-3/final",
+    "interleaved_values": {},
+    "bounded_locations": {},
+    "distinct_locations_cover_all_equal_missing_values": {},
+    "all_values_observed": true,
+    "no_missing_value_classified_unreadable_from_plain_text_alone": true,
+    "short_or_duplicate_values_require_XML_position_check_and_visual_sampling": true
+  }
+]

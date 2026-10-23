@@ -1,0 +1,3972 @@
+[
+  {
+    "trial": "minervino/B0/rep-1",
+    "slot": {
+      "key": "condition:c39",
+      "kind": "applicability",
+      "condition_id": "c39",
+      "condition": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+      "label": "Ramo società di professionisti/ingegneria: la scelta di partecipazione non è una decisione registrata.",
+      "context": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+      "field_ids": [
+        "p40.s0",
+        "p41.s0",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4",
+        "p51.s0",
+        "p52.s0",
+        "p52.s1",
+        "p53.s0",
+        "p53.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "alternatives": [],
+      "impact": 40,
+      "affected_fields": [
+        "Denominazione/ragione sociale",
+        "P. IVA",
+        "Provincia sede",
+        "Via/piazza",
+        "Numero civico",
+        "Telefono",
+        "E-mail",
+        "PEC"
+      ],
+      "slot": 1,
+      "question": "Confermi che la domanda è presentata come legale rappresentante di una società di professionisti o di una società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E1/rep-1",
+    "slot": {
+      "key": "condition:c_soc_ingegneria",
+      "kind": "applicability",
+      "condition_id": "c_soc_ingegneria",
+      "condition": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+      "label": "Ramo società di ingegneria non confermato dalla casella p39.",
+      "context": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+      "field_ids": [
+        "p40.s0",
+        "p41.s0",
+        "p41.s1",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4",
+        "p52.s1",
+        "p53.s4"
+      ],
+      "alternatives": [],
+      "impact": 35,
+      "affected_fields": [
+        "Denominazione o ragione sociale della società",
+        "Partita IVA della società",
+        "Comune sede legale della società",
+        "Provincia sede legale",
+        "Via/piazza sede legale",
+        "Numero civico sede legale",
+        "Telefono sede legale",
+        "E-mail sede legale"
+      ],
+      "slot": 1,
+      "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E1/rep-1",
+    "slot": {
+      "key": "condition:c_firmatario",
+      "kind": "applicability",
+      "condition_id": "c_firmatario",
+      "condition": "Il sottoscritto _____________________________",
+      "label": "Firmatario indicato dall'utente ma non registrato come decisione; poteri non provati.",
+      "context": "Il sottoscritto _____________________________",
+      "field_ids": [
+        "p12.s0",
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p13.s0",
+        "p13.s1",
+        "p13.s2",
+        "p13.s3",
+        "p14.s0",
+        "p15.s2",
+        "p15.s3",
+        "p16.s0",
+        "p16.s1",
+        "p16.s2",
+        "p17.s0",
+        "p17.s1"
+      ],
+      "alternatives": [],
+      "impact": 16,
+      "affected_fields": [
+        "Nome del firmatario scelto",
+        "Comune di nascita",
+        "Provincia di nascita",
+        "Data di nascita",
+        "Comune di residenza",
+        "Provincia di residenza",
+        "Indirizzo di residenza",
+        "Codice fiscale personale"
+      ],
+      "slot": 2,
+      "question": "Confermi che il firmatario della domanda è Luca Ferri in qualità di amministratore unico?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E1/rep-1",
+    "slot": {
+      "key": "decision:ff6a9c86b0584e3ed5ac5799",
+      "kind": "decision",
+      "decision_type": "preferences",
+      "label": "Categorie e fasce d'incarico",
+      "field_ids": [
+        "t0.r1.c1",
+        "t0.r1.c2",
+        "t0.r1.c3",
+        "t0.r2.c1",
+        "t0.r2.c2",
+        "t0.r2.c3",
+        "t0.r3.c1",
+        "t0.r3.c2",
+        "t0.r3.c3",
+        "t0.r4.c1",
+        "t0.r4.c2",
+        "t0.r4.c3",
+        "t0.r5.c1",
+        "t0.r5.c2",
+        "t0.r5.c3",
+        "t0.r6.c1",
+        "t0.r6.c2",
+        "t0.r6.c3",
+        "t0.r7.c1",
+        "t0.r7.c2",
+        "t0.r7.c3",
+        "t0.r8.c1",
+        "t0.r8.c2",
+        "t0.r8.c3",
+        "t0.r9.c1",
+        "t0.r9.c2",
+        "t0.r9.c3",
+        "t0.r10.c1",
+        "t0.r10.c2",
+        "t0.r10.c3",
+        "t0.r11.c1",
+        "t0.r11.c2",
+        "t0.r11.c3",
+        "t0.r12.c1",
+        "t0.r12.c2",
+        "t0.r12.c3",
+        "t0.r13.c1",
+        "t0.r13.c2",
+        "t0.r13.c3",
+        "t0.r14.c1",
+        "t0.r14.c2",
+        "t0.r14.c3",
+        "t0.r15.c1",
+        "t0.r15.c2",
+        "t0.r15.c3",
+        "t0.r16.c1",
+        "t0.r16.c2",
+        "t0.r16.c3",
+        "t0.r17.c1",
+        "t0.r17.c2",
+        "t0.r17.c3",
+        "t1.r1.c1",
+        "t1.r1.c2",
+        "t1.r1.c3",
+        "t2.r1.c1",
+        "t2.r2.c1",
+        "t2.r3.c1",
+        "t3.r1.c1",
+        "t3.r2.c1",
+        "t3.r3.c1",
+        "t3.r4.c1",
+        "t3.r5.c1",
+        "t3.r6.c1",
+        "t3.r7.c1",
+        "t3.r8.c1",
+        "t3.r9.c1",
+        "t3.r10.c1"
+      ],
+      "condition": "",
+      "context": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:77",
+          "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:78",
+          "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:86",
+          "quote": "Edilizia commerciale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:80",
+          "quote": "Fascia A ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:81",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:82",
+          "quote": "Fascia B ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:83",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:84",
+          "quote": "Fascia C ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:85",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:90",
+          "quote": "Edilizia residenziale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:94",
+          "quote": "Edilizia scolastica e sanitaria",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:98",
+          "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:102",
+          "quote": "Aree esterne e opere a verde",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:106",
+          "quote": "Interventi su beni immobili di interesse storico- artistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:110",
+          "quote": "Edilizia – sedi amministrative",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:114",
+          "quote": "Strutture",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:118",
+          "quote": "Impianti meccanici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:122",
+          "quote": "Impianti elettrici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:126",
+          "quote": "Impianti di depurazione o discariche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:130",
+          "quote": "Opere elettriche per reti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:134",
+          "quote": "Opere stradali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:138",
+          "quote": "Opere idrauliche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:142",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:146",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:150",
+          "quote": "Pianificazione",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:155",
+          "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:163",
+          "quote": "CSP/CSE",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:157",
+          "quote": "Fascia A",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:158",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:159",
+          "quote": "Fascia B",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:160",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:161",
+          "quote": "Fascia C",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:162",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:168",
+          "quote": "Servizio di collaudo finale o in corso d’opera;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:171",
+          "quote": "Collaudo statico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:170",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:173",
+          "quote": "Collaudo tecnico amministrativo",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:175",
+          "quote": "Collaudo funzionale - impiantistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:178",
+          "quote": "Altri incarichi per servizi tecnici;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:181",
+          "quote": "redazione pratiche prevenzione incendi",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:180",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:183",
+          "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:185",
+          "quote": "perizie di stima",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:187",
+          "quote": "relazioni geologiche e sismiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:189",
+          "quote": "indagini geologiche / sismiche e relazioni geologiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:191",
+          "quote": "supporto agli atti di pianificazione comunque denominati",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:193",
+          "quote": "servizi tecnici di competenza di restauratori",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:195",
+          "quote": "servizi di assistenza archeologica",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:197",
+          "quote": "servizi di competenza di agronomi e dottori forestali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:199",
+          "quote": "redazione di certificato di prestazione energetica",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 67,
+      "write_authorized": false,
+      "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "slot": 3
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E2-A/rep-1",
+    "slot": {
+      "key": "condition:s0_c_societa_ingegneria",
+      "kind": "applicability",
+      "condition_id": "s0_c_societa_ingegneria",
+      "condition": "Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria",
+      "label": "Partecipazione come società di ingegneria confermata in user_context ma il validator semantico resta unknown",
+      "context": "Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria",
+      "field_ids": [
+        "p14.s0",
+        "p40.s0",
+        "p41.s0",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4",
+        "p51.s0",
+        "p52.s0",
+        "p52.s1",
+        "p53.s0",
+        "p53.s2",
+        "p53.s4"
+      ],
+      "alternatives": [],
+      "impact": 39,
+      "affected_fields": [
+        "Carica documentata",
+        "Denominazione/ragione sociale",
+        "P. IVA società",
+        "Provincia sede",
+        "Via/piazza sede",
+        "Numero civico sede",
+        "Telefono sede",
+        "E-mail sede"
+      ],
+      "slot": 1,
+      "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E1/rep-1",
+    "slot": {
+      "key": "authorization:035c5b596a2bd8b7cd9aeba8",
+      "authorization": {
+        "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+        "session_artifact_path": null,
+        "field_ids": [
+          "p107.s0"
+        ],
+        "values": {
+          "p107.s0": "mapi.ingegneria@pec.demo"
+        },
+        "form_evidence": {
+          "paragraph_id": "paragraph:107",
+          "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+          "role": "form"
+        },
+        "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+      },
+      "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "kind": "applicability",
+      "field_ids": [
+        "p107.s0"
+      ],
+      "label": "Autorizzazione della dichiarazione procedurale",
+      "alternatives": [],
+      "condition": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+      "context": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "impact": 1,
+      "slot": 1
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E1/rep-1",
+    "slot": {
+      "key": "condition:c_soc_ing",
+      "kind": "applicability",
+      "condition_id": "c_soc_ing",
+      "condition": "Legale rappresentante di Società di Ingegneria",
+      "label": "Ramo società di ingegneria da confermare",
+      "context": "Legale rappresentante di Società di Ingegneria",
+      "field_ids": [
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "Denominazione società",
+        "Sede legale - via/piazza",
+        "Comune",
+        "CAP",
+        "Provincia",
+        "Partita IVA",
+        "Telefono",
+        "Fax"
+      ],
+      "slot": 2,
+      "question": "Confermi che il modulo va compilato nella veste di legale rappresentante di una Società di Ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E1/rep-1",
+    "slot": {
+      "key": "decision:04ed2c9cb5b7d60806b1fecf",
+      "kind": "decision",
+      "decision_type": "location_date",
+      "label": "Luogo e data della domanda",
+      "field_ids": [
+        "p171.s0"
+      ],
+      "condition": "",
+      "context": "Luogo e data ____________________",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:171",
+          "quote": "Luogo e data ____________________",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 1,
+      "write_authorized": false,
+      "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data ____________________",
+      "slot": 3
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "slot": {
+      "key": "authorization:035c5b596a2bd8b7cd9aeba8",
+      "authorization": {
+        "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+        "session_artifact_path": null,
+        "field_ids": [
+          "p107.s0"
+        ],
+        "values": {
+          "p107.s0": "mapi.ingegneria@pec.demo"
+        },
+        "form_evidence": {
+          "paragraph_id": "paragraph:107",
+          "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+          "role": "form"
+        },
+        "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+      },
+      "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "kind": "applicability",
+      "field_ids": [
+        "p107.s0"
+      ],
+      "label": "Autorizzazione della dichiarazione procedurale",
+      "alternatives": [],
+      "condition": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+      "context": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "impact": 1,
+      "slot": 1
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "slot": {
+      "key": "condition:s0_c_societa_ingegneria",
+      "kind": "applicability",
+      "condition_id": "s0_c_societa_ingegneria",
+      "condition": "(eliminare le opzioni non pertinenti)",
+      "label": "Selezione della qualità di legale rappresentante di società di ingegneria da confermare",
+      "context": "(eliminare le opzioni non pertinenti)",
+      "field_ids": [
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "Società di Ingegneria",
+        "Via/P.zza",
+        "Comune",
+        "CAP",
+        "Prov",
+        "P.IVA",
+        "Tel.",
+        "Fax"
+      ],
+      "slot": 2,
+      "question": "Confermi che la domanda è presentata quale legale rappresentante di una società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "slot": {
+      "key": "condition:s0_c_firmatario",
+      "kind": "applicability",
+      "condition_id": "s0_c_firmatario",
+      "condition": "Il/la sottoscritto/a",
+      "label": "Ruolo di sottoscritto/firmatario non attestato dalla SOURCE nonostante la carica societaria",
+      "context": "Il/la sottoscritto/a",
+      "field_ids": [
+        "p12.s0",
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p12.s4",
+        "p12.s5",
+        "p12.s6",
+        "p12.s7"
+      ],
+      "alternatives": [],
+      "impact": 8,
+      "affected_fields": [
+        "Nome del firmatario scelto",
+        "Luogo di nascita",
+        "Data di nascita",
+        "Codice fiscale personale",
+        "Comune di residenza",
+        "Provincia di residenza",
+        "Via di residenza",
+        "Numero civico di residenza"
+      ],
+      "slot": 3,
+      "question": "Confermi che Leonardo Montemurro sottoscrive la domanda in qualità di dichiarante?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/B0/rep-1",
+    "slot": {
+      "key": "authorization:035c5b596a2bd8b7cd9aeba8",
+      "authorization": {
+        "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+        "session_artifact_path": null,
+        "field_ids": [
+          "p107.s0"
+        ],
+        "values": {
+          "p107.s0": "mapi.ingegneria@pec.demo"
+        },
+        "form_evidence": {
+          "paragraph_id": "paragraph:107",
+          "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+          "role": "form"
+        },
+        "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+      },
+      "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "kind": "applicability",
+      "field_ids": [
+        "p107.s0"
+      ],
+      "label": "Autorizzazione della dichiarazione procedurale",
+      "alternatives": [],
+      "condition": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+      "context": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "impact": 1,
+      "slot": 1
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/B0/rep-1",
+    "slot": {
+      "key": "condition:c_qualita",
+      "kind": "applicability",
+      "condition_id": "c_qualita",
+      "condition": "(eliminare le opzioni non pertinenti)",
+      "label": "La qualità/forma di partecipazione va selezionata tra le opzioni del modulo",
+      "context": "(eliminare le opzioni non pertinenti)",
+      "field_ids": [
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "Denominazione della società di ingegneria",
+        "Indirizzo sede",
+        "Comune sede",
+        "CAP sede",
+        "Provincia sede",
+        "Partita IVA",
+        "Telefono",
+        "Fax"
+      ],
+      "slot": 2,
+      "question": "Confermi che la forma di partecipazione da indicare nel modulo è quella di società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/B0/rep-1",
+    "slot": {
+      "key": "condition:c_firmatario",
+      "kind": "applicability",
+      "condition_id": "c_firmatario",
+      "condition": "Il/la sottoscritto/a",
+      "label": "Il ruolo di sottoscrittore della domanda non è attestato dalle SOURCE",
+      "context": "Il/la sottoscritto/a",
+      "field_ids": [
+        "p12.s0",
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p12.s4",
+        "p12.s5",
+        "p12.s6",
+        "p12.s7"
+      ],
+      "alternatives": [],
+      "impact": 8,
+      "affected_fields": [
+        "Nome del firmatario scelto",
+        "Luogo di nascita",
+        "Data di nascita",
+        "Codice fiscale personale",
+        "Comune di residenza",
+        "Provincia di residenza",
+        "Via di residenza",
+        "Numero civico di residenza"
+      ],
+      "slot": 3,
+      "question": "Confermi che il sottoscrittore della domanda è Leonardo Montemurro?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "slot": {
+      "key": "condition:s1_c_5d",
+      "kind": "applicability",
+      "condition_id": "s1_c_5d",
+      "condition": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "label": "Ramo società di ingegneria; applicabilità da confermare",
+      "context": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "field_ids": [
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "alternatives": [],
+      "impact": 7,
+      "affected_fields": [
+        "Denominazione sociale",
+        "Forma giuridica",
+        "Sede legale",
+        "Nome e cognome",
+        "qualifica professionale",
+        "Ordine professionale di appartenenza",
+        "numero di iscrizione all’Albo professionale"
+      ],
+      "slot": 1,
+      "question": "Confermi che il modulo va compilato nel ramo previsto per la società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "slot": {
+      "key": "condition:s0_c_firmatario",
+      "kind": "applicability",
+      "condition_id": "s0_c_firmatario",
+      "condition": "Il/La sottoscritto/a",
+      "label": "Scelta del firmatario non approvata; ruolo documentato per Leonardo Montemurro",
+      "context": "Il/La sottoscritto/a",
+      "field_ids": [
+        "t0.r0.c1",
+        "t0.r2.c1"
+      ],
+      "alternatives": [],
+      "impact": 2,
+      "affected_fields": [
+        "Nome del firmatario scelto",
+        "Codice fiscale personale"
+      ],
+      "slot": 2,
+      "question": "Confermi che il firmatario del modulo è Leonardo Montemurro?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/B0/rep-1",
+    "slot": {
+      "key": "condition:c_soc_ing",
+      "kind": "applicability",
+      "condition_id": "c_soc_ing",
+      "condition": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "label": "Compilazione della sezione 5.d subordinata alla qualifica di società di ingegneria",
+      "context": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "field_ids": [
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1"
+      ],
+      "alternatives": [],
+      "impact": 4,
+      "affected_fields": [
+        "Denominazione sociale",
+        "Forma giuridica",
+        "Sede legale",
+        "Nome e cognome"
+      ],
+      "slot": 1,
+      "question": "Confermi che la sezione 5.d va compilata perché il caso riguarda una società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E1/rep-1",
+    "slot": {
+      "key": "condition:c_5d",
+      "kind": "applicability",
+      "condition_id": "c_5d",
+      "condition": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "label": "Sezione 5.d applicabile solo se l'operatore è società di ingegneria; da confermare.",
+      "context": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "field_ids": [
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "alternatives": [],
+      "impact": 7,
+      "affected_fields": [
+        "Denominazione sociale:",
+        "forma giuridica:",
+        "sede legale:",
+        "Nome e cognome:",
+        "qualifica professionale:",
+        "Ordine professionale di appartenenza:",
+        "numero di iscrizione all’Albo professionale:"
+      ],
+      "slot": 1,
+      "question": "Confermi che l'operatore economico è una società di ingegneria ai fini della sezione 5.d?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "bella/B0/rep-1",
+    "slot": {
+      "key": "condition:c_firmatario",
+      "kind": "applicability",
+      "condition_id": "c_firmatario",
+      "condition": "Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di",
+      "label": "Sottoscrittore e poteri di rappresentanza non documentati; dati personali proposti solo in via condizionale",
+      "context": "Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di",
+      "field_ids": [
+        "p21.s0",
+        "p21.s1",
+        "p21.s2"
+      ],
+      "alternatives": [],
+      "impact": 3,
+      "affected_fields": [
+        "Nome del firmatario scelto",
+        "Luogo di nascita",
+        "Data di nascita"
+      ],
+      "slot": 1,
+      "question": "Confermi che Leonardo Montemurro è il soggetto che sottoscrive il modulo in qualità di rappresentante dello studio o della società?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "bella/E1/rep-1",
+    "slot": {
+      "key": "condition:c_part",
+      "kind": "applicability",
+      "condition_id": "c_part",
+      "condition": "di partecipare alla procedura negoziata indicata in oggetto come:",
+      "label": "Identità del partecipante e forma di partecipazione non sono confermate; i dati aziendali restano condizionati.",
+      "context": "di partecipare alla procedura negoziata indicata in oggetto come:",
+      "field_ids": [
+        "p21.s3",
+        "p21.s4",
+        "p21.s5",
+        "p21.s6",
+        "p21.s7"
+      ],
+      "alternatives": [],
+      "impact": 5,
+      "affected_fields": [
+        "Carica documentata",
+        "studio/società/consorzio",
+        "sede",
+        "codice fiscale",
+        "partita IVA"
+      ],
+      "slot": 1,
+      "question": "Confermi che la partecipazione avviene in nome e per conto di Mapi Ingegneria S.r.l., con Leonardo Montemurro come firmatario?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E1/rep-2",
+    "slot": {
+      "key": "condition:c_5d",
+      "kind": "applicability",
+      "condition_id": "c_5d",
+      "condition": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "label": "Ramo società di ingegneria da confermare",
+      "context": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "field_ids": [
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "alternatives": [],
+      "impact": 7,
+      "affected_fields": [
+        "Denominazione sociale",
+        "forma giuridica",
+        "sede legale",
+        "Nome e cognome",
+        "qualifica professionale",
+        "Ordine professionale di appartenenza",
+        "numero di iscrizione all’Albo professionale"
+      ],
+      "slot": 1,
+      "question": "Confermi che il modulo va compilato nel ramo relativo alle società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "slot": {
+      "key": "condition:s1_c_ingegneria",
+      "kind": "applicability",
+      "condition_id": "s1_c_ingegneria",
+      "condition": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "label": "Ramo applicabile solo se l'operatore è una società di ingegneria; tipologia e partecipazione da confermare.",
+      "context": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "field_ids": [
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "alternatives": [],
+      "impact": 7,
+      "affected_fields": [
+        "Denominazione sociale",
+        "forma giuridica",
+        "sede legale",
+        "Nome e cognome",
+        "qualifica professionale",
+        "Ordine professionale di appartenenza",
+        "numero di iscrizione all’Albo professionale"
+      ],
+      "slot": 1,
+      "question": "Confermi che l'operatore economico è una società di ingegneria e va compilata la sezione a essa riservata?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "slot": {
+      "key": "condition:s0_c_operatore",
+      "kind": "applicability",
+      "condition_id": "s0_c_operatore",
+      "condition": "Operatore economico",
+      "label": "Identità dell'operatore da confermare",
+      "context": "Operatore economico",
+      "field_ids": [
+        "t0.r10.c1",
+        "t0.r11.c1",
+        "t0.r5.c1",
+        "t0.r6.c1",
+        "t0.r7.c1",
+        "t0.r9.c1"
+      ],
+      "alternatives": [],
+      "impact": 6,
+      "affected_fields": [
+        "Partita IVA operatore economico",
+        "Cellulare + Telefono",
+        "Operatore economico",
+        "Forma giuridica",
+        "Sede legale (via, città, prov.)",
+        "Codice fiscale operatore economico"
+      ],
+      "slot": 2,
+      "question": "Confermi che l'operatore economico che partecipa alla procedura è Mapi Ingegneria S.r.l?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "slot": {
+      "key": "condition:s0_c_partecipazione",
+      "kind": "applicability",
+      "condition_id": "s0_c_partecipazione",
+      "condition": "L’operatore economico partecipa alla procedura insieme ad altri?",
+      "label": "Forma di partecipazione da confermare",
+      "context": "L’operatore economico partecipa alla procedura insieme ad altri?",
+      "field_ids": [
+        "p76.cb0",
+        "p76.cb1"
+      ],
+      "alternatives": [],
+      "impact": 2,
+      "affected_fields": [
+        "SI",
+        "NO"
+      ],
+      "slot": 3,
+      "question": "Confermi che l'operatore economico partecipa alla procedura insieme ad altri soggetti?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "slot": {
+      "key": "condition:c_tipo_operatore",
+      "kind": "applicability",
+      "condition_id": "c_tipo_operatore",
+      "condition": "IN QUALITÀ DI",
+      "label": "La tipologia dell'operatore e i rami 5.a-5.h non sono confermati da una scelta FORM validata.",
+      "context": "IN QUALITÀ DI",
+      "field_ids": [
+        "p799.s0",
+        "t25.r0.c1",
+        "t25.r3.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "banca dati ufficiale o pubblico registro",
+        "Denominazione sociale",
+        "numero e data d’iscrizione",
+        "forma giuridica",
+        "sede legale",
+        "Nome e cognome",
+        "qualifica professionale",
+        "Ordine professionale di appartenenza"
+      ],
+      "slot": 1,
+      "question": "Confermi che l'operatore economico che presenta la domanda è Mapi Ingegneria S.r.l. in qualità di società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E2-A/rep-2",
+    "slot": {
+      "key": "condition:s0_c_partecipazione",
+      "kind": "applicability",
+      "condition_id": "s0_c_partecipazione",
+      "condition": "dell’operatore economico",
+      "label": "Partecipazione e operatore economico non confermati da decisione registrata.",
+      "context": "dell’operatore economico",
+      "field_ids": [
+        "p14.s0",
+        "p14.s1",
+        "p15.s2",
+        "p15.s3",
+        "p16.s0",
+        "p16.s1",
+        "p16.s2",
+        "p17.s0",
+        "p17.s1",
+        "p40.s0",
+        "p41.s0",
+        "p41.s1",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4",
+        "p52.s1",
+        "p53.s4"
+      ],
+      "alternatives": [],
+      "impact": 44,
+      "affected_fields": [
+        "Carica documentata",
+        "Operatore economico",
+        "Telefono",
+        "Fax",
+        "Indirizzo e-mail",
+        "P.E.C.",
+        "Partita IVA",
+        "Camera di Commercio"
+      ],
+      "slot": 1,
+      "question": "Confermi che la domanda è presentata per l'operatore economico Mapi Ingegneria S.r.l. e non per un'altra impresa o un raggruppamento?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E2-A/rep-2",
+    "slot": {
+      "key": "condition:s0_c_p39",
+      "kind": "applicability",
+      "condition_id": "s0_c_p39",
+      "condition": "Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+      "label": "Ramo società di professionisti/ingegneria non confermato.",
+      "context": "Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+      "field_ids": [
+        "p40.s0",
+        "p41.s0",
+        "p41.s1",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4",
+        "p52.s1",
+        "p53.s4"
+      ],
+      "alternatives": [],
+      "impact": 35,
+      "affected_fields": [
+        "Denominazione/ragione sociale",
+        "P. IVA società",
+        "Sede legale comune",
+        "Provincia sede",
+        "Via/piazza sede",
+        "Numero civico sede",
+        "Telefono sede",
+        "E-mail sede"
+      ],
+      "slot": 2,
+      "question": "Confermi che la domanda è presentata in qualità di società di professionisti o di società di ingegneria ai sensi dell'art. 66, comma 1, lett. b o c del D.Lgs. n. 36/2023?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E2-A/rep-2",
+    "slot": {
+      "key": "condition:s0_c_firmatario",
+      "kind": "applicability",
+      "condition_id": "s0_c_firmatario",
+      "condition": "Il sottoscritto",
+      "label": "Scelta del firmatario non registrata; poteri di rappresentanza non documentati.",
+      "context": "Il sottoscritto",
+      "field_ids": [
+        "p12.s0",
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p13.s0",
+        "p13.s1",
+        "p13.s2",
+        "p13.s3",
+        "p14.s0"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "Nome del firmatario scelto",
+        "Comune di nascita",
+        "Provincia di nascita",
+        "Data di nascita",
+        "Comune di residenza",
+        "Provincia di residenza",
+        "Indirizzo di residenza",
+        "Codice fiscale personale"
+      ],
+      "slot": 3,
+      "question": "Confermi che il firmatario della domanda è Luca Ferri in qualità di amministratore unico?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "slot": {
+      "key": "decision:ff6a9c86b0584e3ed5ac5799",
+      "kind": "decision",
+      "decision_type": "preferences",
+      "label": "Categorie e fasce d'incarico",
+      "field_ids": [
+        "t0.r1.c1",
+        "t0.r1.c2",
+        "t0.r1.c3",
+        "t0.r2.c1",
+        "t0.r2.c2",
+        "t0.r2.c3",
+        "t0.r3.c1",
+        "t0.r3.c2",
+        "t0.r3.c3",
+        "t0.r4.c1",
+        "t0.r4.c2",
+        "t0.r4.c3",
+        "t0.r5.c1",
+        "t0.r5.c2",
+        "t0.r5.c3",
+        "t0.r6.c1",
+        "t0.r6.c2",
+        "t0.r6.c3",
+        "t0.r7.c1",
+        "t0.r7.c2",
+        "t0.r7.c3",
+        "t0.r8.c1",
+        "t0.r8.c2",
+        "t0.r8.c3",
+        "t0.r9.c1",
+        "t0.r9.c2",
+        "t0.r9.c3",
+        "t0.r10.c1",
+        "t0.r10.c2",
+        "t0.r10.c3",
+        "t0.r11.c1",
+        "t0.r11.c2",
+        "t0.r11.c3",
+        "t0.r12.c1",
+        "t0.r12.c2",
+        "t0.r12.c3",
+        "t0.r13.c1",
+        "t0.r13.c2",
+        "t0.r13.c3",
+        "t0.r14.c1",
+        "t0.r14.c2",
+        "t0.r14.c3",
+        "t0.r15.c1",
+        "t0.r15.c2",
+        "t0.r15.c3",
+        "t0.r16.c1",
+        "t0.r16.c2",
+        "t0.r16.c3",
+        "t0.r17.c1",
+        "t0.r17.c2",
+        "t0.r17.c3",
+        "t1.r1.c1",
+        "t1.r1.c2",
+        "t1.r1.c3",
+        "t2.r1.c1",
+        "t2.r2.c1",
+        "t2.r3.c1",
+        "t3.r1.c1",
+        "t3.r2.c1",
+        "t3.r3.c1",
+        "t3.r4.c1",
+        "t3.r5.c1",
+        "t3.r6.c1",
+        "t3.r7.c1",
+        "t3.r8.c1",
+        "t3.r9.c1",
+        "t3.r10.c1"
+      ],
+      "condition": "",
+      "context": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:77",
+          "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:78",
+          "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:86",
+          "quote": "Edilizia commerciale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:80",
+          "quote": "Fascia A ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:81",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:82",
+          "quote": "Fascia B ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:83",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:84",
+          "quote": "Fascia C ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:85",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:90",
+          "quote": "Edilizia residenziale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:94",
+          "quote": "Edilizia scolastica e sanitaria",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:98",
+          "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:102",
+          "quote": "Aree esterne e opere a verde",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:106",
+          "quote": "Interventi su beni immobili di interesse storico- artistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:110",
+          "quote": "Edilizia – sedi amministrative",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:114",
+          "quote": "Strutture",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:118",
+          "quote": "Impianti meccanici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:122",
+          "quote": "Impianti elettrici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:126",
+          "quote": "Impianti di depurazione o discariche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:130",
+          "quote": "Opere elettriche per reti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:134",
+          "quote": "Opere stradali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:138",
+          "quote": "Opere idrauliche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:142",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:146",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:150",
+          "quote": "Pianificazione",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:155",
+          "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:163",
+          "quote": "CSP/CSE",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:157",
+          "quote": "Fascia A",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:158",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:159",
+          "quote": "Fascia B",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:160",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:161",
+          "quote": "Fascia C",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:162",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:168",
+          "quote": "Servizio di collaudo finale o in corso d’opera;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:171",
+          "quote": "Collaudo statico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:170",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:173",
+          "quote": "Collaudo tecnico amministrativo",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:175",
+          "quote": "Collaudo funzionale - impiantistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:178",
+          "quote": "Altri incarichi per servizi tecnici;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:181",
+          "quote": "redazione pratiche prevenzione incendi",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:180",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:183",
+          "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:185",
+          "quote": "perizie di stima",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:187",
+          "quote": "relazioni geologiche e sismiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:189",
+          "quote": "indagini geologiche / sismiche e relazioni geologiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:191",
+          "quote": "supporto agli atti di pianificazione comunque denominati",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:193",
+          "quote": "servizi tecnici di competenza di restauratori",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:195",
+          "quote": "servizi di assistenza archeologica",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:197",
+          "quote": "servizi di competenza di agronomi e dottori forestali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:199",
+          "quote": "redazione di certificato di prestazione energetica",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 67,
+      "write_authorized": false,
+      "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "slot": 1
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "slot": {
+      "key": "decision:0a242b4c138d38515e716924",
+      "kind": "decision",
+      "decision_type": "attestation",
+      "label": "Dichiarazioni e attestazioni",
+      "field_ids": [
+        "p217.cb0"
+      ],
+      "condition": "",
+      "context": "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:\ndi non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;\nche non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;\ndi non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;\ndi non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;\ndi impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.\ndi non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;\nche il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;\ndi essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;\ndi acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;\ndi autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:217",
+          "quote": "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:218",
+          "quote": "di non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:219",
+          "quote": "che non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:220",
+          "quote": "di non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:221",
+          "quote": "di non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:222",
+          "quote": "di impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:223",
+          "quote": "di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:224",
+          "quote": "che il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:225",
+          "quote": "di essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:226",
+          "quote": "di acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:227",
+          "quote": "di autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 1,
+      "write_authorized": false,
+      "question": "Quali delle seguenti dichiarazioni puoi confermare espressamente? Le informazioni aziendali non costituiscono una conferma delle attestazioni.\n☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:\ndi non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;\nche non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;\ndi non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;\ndi non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;\ndi impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.\ndi non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;\nche il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;\ndi essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;\ndi acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;\ndi autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+      "slot": 2
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "slot": {
+      "key": "decision:24278d2efa5d91eb97fdcae9",
+      "kind": "decision",
+      "decision_type": "designation",
+      "label": "Professionisti esecutori",
+      "field_ids": [
+        "p228.cb0",
+        "p229.s0",
+        "p230.s0"
+      ],
+      "condition": "",
+      "context": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:228",
+          "quote": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 3,
+      "write_authorized": false,
+      "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\n☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+      "slot": 3
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "bella/B0/rep-2",
+    "slot": {
+      "key": "condition:c_firmatario",
+      "kind": "applicability",
+      "condition_id": "c_firmatario",
+      "condition": "Il/la sottoscritto/a",
+      "label": "Identità del sottoscrittore della domanda da confermare",
+      "context": "Il/la sottoscritto/a",
+      "field_ids": [
+        "p21.s1",
+        "p21.s2",
+        "p21.s3",
+        "p21.s4",
+        "p21.s5",
+        "p21.s6",
+        "p21.s7"
+      ],
+      "alternatives": [],
+      "impact": 7,
+      "affected_fields": [
+        "Luogo di nascita",
+        "Data di nascita",
+        "Carica documentata",
+        "Studio/società/consorzio",
+        "Sede",
+        "Codice fiscale",
+        "Partita IVA"
+      ],
+      "slot": 1,
+      "question": "Confermi che il sottoscrittore della domanda è Leonardo Montemurro?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "bella/B0/rep-2",
+    "slot": {
+      "key": "condition:c_partecipazione",
+      "kind": "applicability",
+      "condition_id": "c_partecipazione",
+      "condition": "di partecipare alla procedura negoziata indicata in oggetto come:",
+      "label": "Forma e soggetto della partecipazione da confermare",
+      "context": "di partecipare alla procedura negoziata indicata in oggetto come:",
+      "field_ids": [
+        "p21.s3",
+        "p21.s4",
+        "p21.s5",
+        "p21.s6",
+        "p21.s7"
+      ],
+      "alternatives": [],
+      "impact": 5,
+      "affected_fields": [
+        "Carica documentata",
+        "Studio/società/consorzio",
+        "Sede",
+        "Codice fiscale",
+        "Partita IVA"
+      ],
+      "slot": 2,
+      "question": "Confermi che la partecipazione avviene come società di ingegneria singola, senza raggruppamento temporaneo?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "bella/E1/rep-2",
+    "slot": {
+      "key": "condition:c_partecipazione",
+      "kind": "applicability",
+      "condition_id": "c_partecipazione",
+      "condition": "di partecipare alla procedura negoziata indicata in oggetto come:",
+      "label": "Forma e soggetto della partecipazione da confermare",
+      "context": "di partecipare alla procedura negoziata indicata in oggetto come:",
+      "field_ids": [
+        "p21.s3",
+        "p21.s4",
+        "p21.s5",
+        "p21.s6",
+        "p21.s7"
+      ],
+      "alternatives": [],
+      "impact": 5,
+      "affected_fields": [
+        "Carica documentata",
+        "dello studio/società/consorzio",
+        "sede",
+        "codice fiscale",
+        "partita IVA"
+      ],
+      "slot": 1,
+      "question": "Confermi che la partecipazione avviene in nome e per conto di Mapi Ingegneria S.r.l., con Leonardo Montemurro come firmatario?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "bella/E2-A/rep-2",
+    "slot": {
+      "key": "field:p129.s0",
+      "kind": "value",
+      "field_ids": [
+        "p129.s0"
+      ],
+      "label": "Data",
+      "condition": "",
+      "context": "Data ...........................................",
+      "impact": 1,
+      "alternatives": [],
+      "slot": 1,
+      "question": "Quale data va riportata nel campo «Data» del modulo?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E1/rep-2",
+    "slot": {
+      "key": "authorization:035c5b596a2bd8b7cd9aeba8",
+      "authorization": {
+        "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+        "session_artifact_path": null,
+        "field_ids": [
+          "p107.s0"
+        ],
+        "values": {
+          "p107.s0": "mapi.ingegneria@pec.demo"
+        },
+        "form_evidence": {
+          "paragraph_id": "paragraph:107",
+          "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+          "role": "form"
+        },
+        "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+      },
+      "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "kind": "applicability",
+      "field_ids": [
+        "p107.s0"
+      ],
+      "label": "Autorizzazione della dichiarazione procedurale",
+      "alternatives": [],
+      "condition": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+      "context": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "impact": 1,
+      "slot": 1
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E1/rep-2",
+    "slot": {
+      "key": "condition:c_mapi_proponent",
+      "kind": "applicability",
+      "condition_id": "c_mapi_proponent",
+      "condition": "quale soggetto proponente la presente manifestazione di interesse",
+      "label": "Mapi è documentata nelle SOURCE ma la sua qualificazione come soggetto proponente di questa domanda non è una decisione registrata; condizione da confermare.",
+      "context": "quale soggetto proponente la presente manifestazione di interesse",
+      "field_ids": [
+        "p107.s0",
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 10,
+      "affected_fields": [
+        "Indirizzo PEC per le comunicazioni",
+        "Denominazione società di ingegneria",
+        "Sede - Via/Piazza",
+        "Comune",
+        "CAP",
+        "Provincia",
+        "Partita IVA",
+        "Telefono"
+      ],
+      "slot": 2,
+      "question": "Confermi che Mapi Ingegneria S.r.l. è il soggetto proponente della presente manifestazione di interesse?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E1/rep-2",
+    "slot": {
+      "key": "condition:c_branch_soc_ing",
+      "kind": "applicability",
+      "condition_id": "c_branch_soc_ing",
+      "condition": "Legale rappresentante di Società di Ingegneria",
+      "label": "Ramo alternativo 'Legale rappresentante di Società di Ingegneria' non confermato; il modulo chiede di eliminare le opzioni non pertinenti.",
+      "context": "Legale rappresentante di Società di Ingegneria",
+      "field_ids": [
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "Denominazione società di ingegneria",
+        "Sede - Via/Piazza",
+        "Comune",
+        "CAP",
+        "Provincia",
+        "Partita IVA",
+        "Telefono",
+        "Fax"
+      ],
+      "slot": 3,
+      "question": "Confermi che il modulo va compilato nella qualità di legale rappresentante di Società di Ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-2",
+    "slot": {
+      "key": "authorization:035c5b596a2bd8b7cd9aeba8",
+      "authorization": {
+        "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+        "session_artifact_path": null,
+        "field_ids": [
+          "p107.s0"
+        ],
+        "values": {
+          "p107.s0": "mapi.ingegneria@pec.demo"
+        },
+        "form_evidence": {
+          "paragraph_id": "paragraph:107",
+          "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+          "role": "form"
+        },
+        "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+      },
+      "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "kind": "applicability",
+      "field_ids": [
+        "p107.s0"
+      ],
+      "label": "Autorizzazione della dichiarazione procedurale",
+      "alternatives": [],
+      "condition": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+      "context": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "impact": 1,
+      "slot": 1
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-2",
+    "slot": {
+      "key": "condition:s1_c_soc_ing",
+      "kind": "applicability",
+      "condition_id": "s1_c_soc_ing",
+      "condition": "Legale rappresentante di Società di Ingegneria",
+      "label": "Qualità di partecipante come società di ingegneria non confermata",
+      "context": "Legale rappresentante di Società di Ingegneria",
+      "field_ids": [
+        "p107.s0",
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 10,
+      "affected_fields": [
+        "PEC per comunicazioni",
+        "Società di Ingegneria",
+        "Via/P.zza",
+        "Comune",
+        "CAP",
+        "Prov",
+        "P.IVA",
+        "Tel."
+      ],
+      "slot": 2,
+      "question": "Confermi che la società partecipa in qualità di Società di Ingegneria e il firmatario agisce come suo legale rappresentante?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-2",
+    "slot": {
+      "key": "condition:s0_c_forma",
+      "kind": "applicability",
+      "condition_id": "s0_c_forma",
+      "condition": "(eliminare le opzioni non pertinenti)",
+      "label": "Selezione della qualità/forma di partecipazione non confermata.",
+      "context": "(eliminare le opzioni non pertinenti)",
+      "field_ids": [
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "Società di Ingegneria",
+        "Via/P.zza",
+        "Comune",
+        "CAP",
+        "Prov",
+        "P.IVA",
+        "Tel.",
+        "Fax"
+      ],
+      "slot": 3,
+      "question": "Confermi che la forma di partecipazione da adottare è quella di Società di Ingegneria, eliminando le altre opzioni?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/B0/rep-2",
+    "slot": {
+      "key": "authorization:035c5b596a2bd8b7cd9aeba8",
+      "authorization": {
+        "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+        "session_artifact_path": null,
+        "field_ids": [
+          "p107.s0"
+        ],
+        "values": {
+          "p107.s0": "mapi.ingegneria@pec.demo"
+        },
+        "form_evidence": {
+          "paragraph_id": "paragraph:107",
+          "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+          "role": "form"
+        },
+        "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+      },
+      "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "kind": "applicability",
+      "field_ids": [
+        "p107.s0"
+      ],
+      "label": "Autorizzazione della dichiarazione procedurale",
+      "alternatives": [],
+      "condition": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+      "context": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "impact": 1,
+      "slot": 1
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/B0/rep-2",
+    "slot": {
+      "key": "condition:c_role_branch",
+      "kind": "applicability",
+      "condition_id": "c_role_branch",
+      "condition": "(eliminare le opzioni non pertinenti)",
+      "label": "La selezione tra le opzioni di qualità dichiarata non è verificata dalle SOURCE.",
+      "context": "(eliminare le opzioni non pertinenti)",
+      "field_ids": [
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "Società di Ingegneria",
+        "Sede in Via/P.zza",
+        "Comune",
+        "CAP",
+        "Prov",
+        "P.IVA",
+        "Tel.",
+        "Fax"
+      ],
+      "slot": 2,
+      "question": "Confermi che la dichiarazione va resa nella qualità di legale rappresentante di una Società di Ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/B0/rep-2",
+    "slot": {
+      "key": "condition:c_sottoscrittore",
+      "kind": "applicability",
+      "condition_id": "c_sottoscrittore",
+      "condition": "Il/la sottoscritto/a",
+      "label": "La SOURCE documenta l'anagrafica di Leonardo Montemurro ma non il ruolo di sottoscrittore della specifica domanda.",
+      "context": "Il/la sottoscritto/a",
+      "field_ids": [
+        "p12.s0",
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p12.s4",
+        "p12.s5",
+        "p12.s6",
+        "p12.s7"
+      ],
+      "alternatives": [],
+      "impact": 8,
+      "affected_fields": [
+        "Nome del firmatario scelto",
+        "Luogo di nascita",
+        "Data di nascita",
+        "Codice fiscale personale",
+        "Comune di residenza",
+        "Provincia di residenza",
+        "Via di residenza",
+        "Numero civico di residenza"
+      ],
+      "slot": 3,
+      "question": "Confermi che il sottoscrittore della domanda è Leonardo Montemurro?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-3",
+    "slot": {
+      "key": "authorization:035c5b596a2bd8b7cd9aeba8",
+      "authorization": {
+        "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+        "session_artifact_path": null,
+        "field_ids": [
+          "p107.s0"
+        ],
+        "values": {
+          "p107.s0": "mapi.ingegneria@pec.demo"
+        },
+        "form_evidence": {
+          "paragraph_id": "paragraph:107",
+          "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+          "role": "form"
+        },
+        "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+      },
+      "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "kind": "applicability",
+      "field_ids": [
+        "p107.s0"
+      ],
+      "label": "Autorizzazione della dichiarazione procedurale",
+      "alternatives": [],
+      "condition": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+      "context": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "impact": 1,
+      "slot": 1
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-3",
+    "slot": {
+      "key": "condition:s0_c_soc_ing",
+      "kind": "applicability",
+      "condition_id": "s0_c_soc_ing",
+      "condition": "(eliminare le opzioni non pertinenti)",
+      "label": "Ramo 'Legale rappresentante di Società di Ingegneria' applicabile solo se viene selezionata l'opzione; la scelta non è una decisione registrata.",
+      "context": "(eliminare le opzioni non pertinenti)",
+      "field_ids": [
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "Società di Ingegneria",
+        "Via/Piazza",
+        "Comune",
+        "CAP",
+        "Provincia",
+        "P.IVA",
+        "Tel.",
+        "Fax"
+      ],
+      "slot": 2,
+      "question": "Confermi che il modulo va compilato nel ramo \"Legale rappresentante di Società di Ingegneria\" per Mapi Ingegneria S.r.l?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-3",
+    "slot": {
+      "key": "field:p171.s0",
+      "kind": "value",
+      "field_ids": [
+        "p171.s0"
+      ],
+      "label": "Luogo e data",
+      "condition": "",
+      "context": "Luogo e data ____________________",
+      "impact": 1,
+      "alternatives": [],
+      "slot": 3,
+      "question": "Quale luogo e data vanno indicati per la sottoscrizione?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/B0/rep-3",
+    "slot": {
+      "key": "authorization:035c5b596a2bd8b7cd9aeba8",
+      "authorization": {
+        "template_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+        "session_artifact_path": null,
+        "field_ids": [
+          "p107.s0"
+        ],
+        "values": {
+          "p107.s0": "mapi.ingegneria@pec.demo"
+        },
+        "form_evidence": {
+          "paragraph_id": "paragraph:107",
+          "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+          "role": "form"
+        },
+        "marked_clause": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+      },
+      "question": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "kind": "applicability",
+      "field_ids": [
+        "p107.s0"
+      ],
+      "label": "Autorizzazione della dichiarazione procedurale",
+      "alternatives": [],
+      "condition": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+      "context": "Autorizzi espressamente, per questa procedura, la dichiarazione seguente con i dati indicati?\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): mapi.ingegneria@pec.demo",
+      "impact": 1,
+      "slot": 1
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/B0/rep-3",
+    "slot": {
+      "key": "condition:c_qualifica",
+      "kind": "applicability",
+      "condition_id": "c_qualifica",
+      "condition": "(eliminare le opzioni non pertinenti)",
+      "label": "La qualifica del partecipante va confermata tra le opzioni del modulo",
+      "context": "(eliminare le opzioni non pertinenti)",
+      "field_ids": [
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "Denominazione società di ingegneria",
+        "Sede legale - via/piazza",
+        "Comune sede legale",
+        "CAP sede legale",
+        "Provincia sede legale",
+        "Partita IVA",
+        "Telefono",
+        "Fax"
+      ],
+      "slot": 2,
+      "question": "Confermi che il partecipante presenta la domanda come legale rappresentante di una società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/B0/rep-3",
+    "slot": {
+      "key": "condition:c_firmatario",
+      "kind": "applicability",
+      "condition_id": "c_firmatario",
+      "condition": "Il/la sottoscritto/a",
+      "label": "Ruolo del sottoscrittore della domanda da confermare",
+      "context": "Il/la sottoscritto/a",
+      "field_ids": [
+        "p12.s0",
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p12.s4",
+        "p12.s5",
+        "p12.s6",
+        "p12.s7"
+      ],
+      "alternatives": [],
+      "impact": 8,
+      "affected_fields": [
+        "Nome del firmatario scelto",
+        "Luogo di nascita",
+        "Data di nascita",
+        "Codice fiscale personale",
+        "Comune di residenza",
+        "Provincia di residenza",
+        "Via di residenza",
+        "Numero civico di residenza"
+      ],
+      "slot": 3,
+      "question": "Confermi che il sottoscrittore della domanda è Leonardo Montemurro?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E1/rep-3",
+    "slot": {
+      "key": "condition:c_branch",
+      "kind": "applicability",
+      "condition_id": "c_branch",
+      "condition": "Legale rappresentante di Società di Ingegneria",
+      "label": "Il ramo 'Società di Ingegneria' è indicato dall'utente ma non è una condizione verificabile automaticamente.",
+      "context": "Legale rappresentante di Società di Ingegneria",
+      "field_ids": [
+        "p75.s0",
+        "p75.s1",
+        "p75.s2",
+        "p75.s3",
+        "p75.s4",
+        "p75.s5",
+        "p75.s6",
+        "p75.s7",
+        "p75.s8"
+      ],
+      "alternatives": [],
+      "impact": 9,
+      "affected_fields": [
+        "Denominazione società di ingegneria",
+        "Sede legale - indirizzo",
+        "Sede legale - comune",
+        "Sede legale - CAP",
+        "Sede legale - provincia",
+        "Partita IVA",
+        "Telefono",
+        "Fax"
+      ],
+      "slot": 1,
+      "question": "Confermi che il modulo è compilato in qualità di legale rappresentante di una Società di Ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "trapani/E1/rep-3",
+    "slot": {
+      "key": "decision:04ed2c9cb5b7d60806b1fecf",
+      "kind": "decision",
+      "decision_type": "location_date",
+      "label": "Luogo e data della domanda",
+      "field_ids": [
+        "p171.s0"
+      ],
+      "condition": "",
+      "context": "Luogo e data ____________________",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:171",
+          "quote": "Luogo e data ____________________",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 1,
+      "write_authorized": false,
+      "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data ____________________",
+      "slot": 2
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/B0/rep-3",
+    "slot": {
+      "key": "condition:c_soc_ing",
+      "kind": "applicability",
+      "condition_id": "c_soc_ing",
+      "condition": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "label": "La compilazione della sezione 5.d dipende dalla qualificazione come società di ingegneria; il validator resta unknown.",
+      "context": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "field_ids": [
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3"
+      ],
+      "alternatives": [],
+      "impact": 3,
+      "affected_fields": [
+        "Denominazione sociale",
+        "forma giuridica",
+        "sede legale"
+      ],
+      "slot": 1,
+      "question": "Confermi che la compilazione della sezione 5.d va effettuata perché il caso rientra tra le società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "slot": {
+      "key": "condition:c_soc_ingegneria",
+      "kind": "applicability",
+      "condition_id": "c_soc_ingegneria",
+      "condition": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "label": "Sezione applicabile solo se l’operatore è società di ingegneria; tipologia da confermare",
+      "context": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA",
+      "field_ids": [
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "alternatives": [],
+      "impact": 7,
+      "affected_fields": [
+        "Denominazione sociale",
+        "Forma giuridica",
+        "Sede legale",
+        "Nome e cognome",
+        "Qualifica professionale",
+        "Ordine professionale di appartenenza",
+        "Numero di iscrizione all’Albo professionale"
+      ],
+      "slot": 1,
+      "question": "Confermi che l'operatore economico è una società di ingegneria ai fini della sezione 5.d del modulo?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "slot": {
+      "key": "condition:s1_c_branch",
+      "kind": "applicability",
+      "condition_id": "s1_c_branch",
+      "condition": "Società di ingegneria in forma di società di capitali o di società cooperativa di cui all’art. 36 dell’allegato II.12 al D.lgs. n. 36/2023",
+      "label": "Ramo 5.d applicabile solo se l’operatore è società di ingegneria; scelta utente non ancora registrata",
+      "context": "Società di ingegneria in forma di società di capitali o di società cooperativa di cui all’art. 36 dell’allegato II.12 al D.lgs. n. 36/2023",
+      "field_ids": [
+        "t25.r0.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r3.c1",
+        "t26.r4.c1"
+      ],
+      "alternatives": [],
+      "impact": 7,
+      "affected_fields": [
+        "Denominazione sociale",
+        "forma giuridica",
+        "sede legale",
+        "Nome e cognome",
+        "qualifica professionale",
+        "Ordine professionale di appartenenza",
+        "numero di iscrizione all’Albo professionale"
+      ],
+      "slot": 1,
+      "question": "Confermi che l'operatore economico è una società di ingegneria in forma di società di capitali o di società cooperativa ai sensi dell'art. 36 dell'allegato II.12 al D.lgs. n. 36/2023?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "slot": {
+      "key": "condition:s0_c_partecipa_altri",
+      "kind": "applicability",
+      "condition_id": "s0_c_partecipa_altri",
+      "condition": "L’operatore economico partecipa alla procedura insieme ad altri?",
+      "label": "Le forme associative e i ruoli dipendono dalla partecipazione con altri.",
+      "context": "L’operatore economico partecipa alla procedura insieme ad altri?",
+      "field_ids": [
+        "p76.cb0",
+        "p76.cb1"
+      ],
+      "alternatives": [],
+      "impact": 2,
+      "affected_fields": [
+        "SI",
+        "NO"
+      ],
+      "slot": 2,
+      "question": "Confermi che l'operatore economico partecipa alla procedura insieme ad altri soggetti?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "slot": {
+      "key": "condition:s2_c799",
+      "kind": "applicability",
+      "condition_id": "s2_c799",
+      "condition": "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente:",
+      "label": "Ramo alternativo all’elencazione nominativa dei soggetti; scelta non documentata",
+      "context": "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente:",
+      "field_ids": [
+        "p799.s0"
+      ],
+      "alternatives": [],
+      "impact": 1,
+      "affected_fields": [
+        "Banca dati ufficiale o pubblico registro"
+      ],
+      "slot": 3,
+      "question": "Confermi che i requisiti del direttore tecnico sono ricavabili dal Registro delle Imprese indicato nel modulo?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "slot": {
+      "key": "decision:ff6a9c86b0584e3ed5ac5799",
+      "kind": "decision",
+      "decision_type": "preferences",
+      "label": "Categorie e fasce d'incarico",
+      "field_ids": [
+        "t0.r1.c1",
+        "t0.r1.c2",
+        "t0.r1.c3",
+        "t0.r2.c1",
+        "t0.r2.c2",
+        "t0.r2.c3",
+        "t0.r3.c1",
+        "t0.r3.c2",
+        "t0.r3.c3",
+        "t0.r4.c1",
+        "t0.r4.c2",
+        "t0.r4.c3",
+        "t0.r5.c1",
+        "t0.r5.c2",
+        "t0.r5.c3",
+        "t0.r6.c1",
+        "t0.r6.c2",
+        "t0.r6.c3",
+        "t0.r7.c1",
+        "t0.r7.c2",
+        "t0.r7.c3",
+        "t0.r8.c1",
+        "t0.r8.c2",
+        "t0.r8.c3",
+        "t0.r9.c1",
+        "t0.r9.c2",
+        "t0.r9.c3",
+        "t0.r10.c1",
+        "t0.r10.c2",
+        "t0.r10.c3",
+        "t0.r11.c1",
+        "t0.r11.c2",
+        "t0.r11.c3",
+        "t0.r12.c1",
+        "t0.r12.c2",
+        "t0.r12.c3",
+        "t0.r13.c1",
+        "t0.r13.c2",
+        "t0.r13.c3",
+        "t0.r14.c1",
+        "t0.r14.c2",
+        "t0.r14.c3",
+        "t0.r15.c1",
+        "t0.r15.c2",
+        "t0.r15.c3",
+        "t0.r16.c1",
+        "t0.r16.c2",
+        "t0.r16.c3",
+        "t0.r17.c1",
+        "t0.r17.c2",
+        "t0.r17.c3",
+        "t1.r1.c1",
+        "t1.r1.c2",
+        "t1.r1.c3",
+        "t2.r1.c1",
+        "t2.r2.c1",
+        "t2.r3.c1",
+        "t3.r1.c1",
+        "t3.r2.c1",
+        "t3.r3.c1",
+        "t3.r4.c1",
+        "t3.r5.c1",
+        "t3.r6.c1",
+        "t3.r7.c1",
+        "t3.r8.c1",
+        "t3.r9.c1",
+        "t3.r10.c1"
+      ],
+      "condition": "",
+      "context": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:77",
+          "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:78",
+          "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:86",
+          "quote": "Edilizia commerciale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:80",
+          "quote": "Fascia A ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:81",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:82",
+          "quote": "Fascia B ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:83",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:84",
+          "quote": "Fascia C ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:85",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:90",
+          "quote": "Edilizia residenziale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:94",
+          "quote": "Edilizia scolastica e sanitaria",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:98",
+          "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:102",
+          "quote": "Aree esterne e opere a verde",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:106",
+          "quote": "Interventi su beni immobili di interesse storico- artistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:110",
+          "quote": "Edilizia – sedi amministrative",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:114",
+          "quote": "Strutture",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:118",
+          "quote": "Impianti meccanici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:122",
+          "quote": "Impianti elettrici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:126",
+          "quote": "Impianti di depurazione o discariche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:130",
+          "quote": "Opere elettriche per reti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:134",
+          "quote": "Opere stradali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:138",
+          "quote": "Opere idrauliche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:142",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:146",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:150",
+          "quote": "Pianificazione",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:155",
+          "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:163",
+          "quote": "CSP/CSE",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:157",
+          "quote": "Fascia A",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:158",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:159",
+          "quote": "Fascia B",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:160",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:161",
+          "quote": "Fascia C",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:162",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:168",
+          "quote": "Servizio di collaudo finale o in corso d’opera;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:171",
+          "quote": "Collaudo statico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:170",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:173",
+          "quote": "Collaudo tecnico amministrativo",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:175",
+          "quote": "Collaudo funzionale - impiantistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:178",
+          "quote": "Altri incarichi per servizi tecnici;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:181",
+          "quote": "redazione pratiche prevenzione incendi",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:180",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:183",
+          "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:185",
+          "quote": "perizie di stima",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:187",
+          "quote": "relazioni geologiche e sismiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:189",
+          "quote": "indagini geologiche / sismiche e relazioni geologiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:191",
+          "quote": "supporto agli atti di pianificazione comunque denominati",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:193",
+          "quote": "servizi tecnici di competenza di restauratori",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:195",
+          "quote": "servizi di assistenza archeologica",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:197",
+          "quote": "servizi di competenza di agronomi e dottori forestali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:199",
+          "quote": "redazione di certificato di prestazione energetica",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 67,
+      "write_authorized": false,
+      "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "slot": 1
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "slot": {
+      "key": "decision:24278d2efa5d91eb97fdcae9",
+      "kind": "decision",
+      "decision_type": "designation",
+      "label": "Professionisti esecutori",
+      "field_ids": [
+        "p228.cb0",
+        "p229.s0",
+        "p230.s0"
+      ],
+      "condition": "",
+      "context": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:228",
+          "quote": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 3,
+      "write_authorized": false,
+      "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\n☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+      "slot": 2
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "slot": {
+      "key": "decision:4d948502d4305ca0995d3928",
+      "kind": "decision",
+      "decision_type": "location_date",
+      "label": "Luogo e data della domanda",
+      "field_ids": [
+        "p242.s0"
+      ],
+      "condition": "",
+      "context": "Luogo e data, ______________________",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:242",
+          "quote": "Luogo e data, ______________________",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 1,
+      "write_authorized": false,
+      "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data, ______________________",
+      "slot": 3
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "slot": {
+      "key": "condition:s0_c_societa_ingegneria",
+      "kind": "applicability",
+      "condition_id": "s0_c_societa_ingegneria",
+      "condition": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+      "label": "Ramo società di ingegneria/di professionisti non confermato",
+      "context": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+      "field_ids": [
+        "p40.s0",
+        "p41.s0",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4",
+        "p52.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "alternatives": [],
+      "impact": 36,
+      "affected_fields": [
+        "Denominazione/ragione sociale",
+        "Partita IVA società",
+        "Provincia sede",
+        "Via/piazza sede",
+        "Numero civico sede",
+        "Telefono società",
+        "E-mail società",
+        "PEC società"
+      ],
+      "slot": 1,
+      "question": "Confermi che la domanda riguarda la partecipazione come legale rappresentante di una società di professionisti o di una società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "slot": {
+      "key": "decision:ff6a9c86b0584e3ed5ac5799",
+      "kind": "decision",
+      "decision_type": "preferences",
+      "label": "Categorie e fasce d'incarico",
+      "field_ids": [
+        "t0.r1.c1",
+        "t0.r1.c2",
+        "t0.r1.c3",
+        "t0.r2.c1",
+        "t0.r2.c2",
+        "t0.r2.c3",
+        "t0.r3.c1",
+        "t0.r3.c2",
+        "t0.r3.c3",
+        "t0.r4.c1",
+        "t0.r4.c2",
+        "t0.r4.c3",
+        "t0.r5.c1",
+        "t0.r5.c2",
+        "t0.r5.c3",
+        "t0.r6.c1",
+        "t0.r6.c2",
+        "t0.r6.c3",
+        "t0.r7.c1",
+        "t0.r7.c2",
+        "t0.r7.c3",
+        "t0.r8.c1",
+        "t0.r8.c2",
+        "t0.r8.c3",
+        "t0.r9.c1",
+        "t0.r9.c2",
+        "t0.r9.c3",
+        "t0.r10.c1",
+        "t0.r10.c2",
+        "t0.r10.c3",
+        "t0.r11.c1",
+        "t0.r11.c2",
+        "t0.r11.c3",
+        "t0.r12.c1",
+        "t0.r12.c2",
+        "t0.r12.c3",
+        "t0.r13.c1",
+        "t0.r13.c2",
+        "t0.r13.c3",
+        "t0.r14.c1",
+        "t0.r14.c2",
+        "t0.r14.c3",
+        "t0.r15.c1",
+        "t0.r15.c2",
+        "t0.r15.c3",
+        "t0.r16.c1",
+        "t0.r16.c2",
+        "t0.r16.c3",
+        "t0.r17.c1",
+        "t0.r17.c2",
+        "t0.r17.c3",
+        "t1.r1.c1",
+        "t1.r1.c2",
+        "t1.r1.c3",
+        "t2.r1.c1",
+        "t2.r2.c1",
+        "t2.r3.c1",
+        "t3.r1.c1",
+        "t3.r2.c1",
+        "t3.r3.c1",
+        "t3.r4.c1",
+        "t3.r5.c1",
+        "t3.r6.c1",
+        "t3.r7.c1",
+        "t3.r8.c1",
+        "t3.r9.c1",
+        "t3.r10.c1"
+      ],
+      "condition": "",
+      "context": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:77",
+          "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:78",
+          "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:86",
+          "quote": "Edilizia commerciale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:80",
+          "quote": "Fascia A ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:81",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:82",
+          "quote": "Fascia B ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:83",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:84",
+          "quote": "Fascia C ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:85",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:90",
+          "quote": "Edilizia residenziale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:94",
+          "quote": "Edilizia scolastica e sanitaria",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:98",
+          "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:102",
+          "quote": "Aree esterne e opere a verde",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:106",
+          "quote": "Interventi su beni immobili di interesse storico- artistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:110",
+          "quote": "Edilizia – sedi amministrative",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:114",
+          "quote": "Strutture",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:118",
+          "quote": "Impianti meccanici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:122",
+          "quote": "Impianti elettrici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:126",
+          "quote": "Impianti di depurazione o discariche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:130",
+          "quote": "Opere elettriche per reti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:134",
+          "quote": "Opere stradali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:138",
+          "quote": "Opere idrauliche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:142",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:146",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:150",
+          "quote": "Pianificazione",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:155",
+          "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:163",
+          "quote": "CSP/CSE",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:157",
+          "quote": "Fascia A",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:158",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:159",
+          "quote": "Fascia B",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:160",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:161",
+          "quote": "Fascia C",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:162",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:168",
+          "quote": "Servizio di collaudo finale o in corso d’opera;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:171",
+          "quote": "Collaudo statico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:170",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:173",
+          "quote": "Collaudo tecnico amministrativo",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:175",
+          "quote": "Collaudo funzionale - impiantistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:178",
+          "quote": "Altri incarichi per servizi tecnici;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:181",
+          "quote": "redazione pratiche prevenzione incendi",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:180",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:183",
+          "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:185",
+          "quote": "perizie di stima",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:187",
+          "quote": "relazioni geologiche e sismiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:189",
+          "quote": "indagini geologiche / sismiche e relazioni geologiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:191",
+          "quote": "supporto agli atti di pianificazione comunque denominati",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:193",
+          "quote": "servizi tecnici di competenza di restauratori",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:195",
+          "quote": "servizi di assistenza archeologica",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:197",
+          "quote": "servizi di competenza di agronomi e dottori forestali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:199",
+          "quote": "redazione di certificato di prestazione energetica",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 67,
+      "write_authorized": false,
+      "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "slot": 2
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "slot": {
+      "key": "decision:4d948502d4305ca0995d3928",
+      "kind": "decision",
+      "decision_type": "location_date",
+      "label": "Luogo e data della domanda",
+      "field_ids": [
+        "p242.s0"
+      ],
+      "condition": "",
+      "context": "Luogo e data, ______________________",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:242",
+          "quote": "Luogo e data, ______________________",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 1,
+      "write_authorized": false,
+      "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data, ______________________",
+      "slot": 3
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/B0/rep-3",
+    "slot": {
+      "key": "condition:c_societa",
+      "kind": "applicability",
+      "condition_id": "c_societa",
+      "condition": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+      "label": "La sezione società di ingegneria dipende dalla selezione della relativa casella e dalla qualifica di rappresentante legale, non ancora verificata",
+      "context": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+      "field_ids": [
+        "p40.s0",
+        "p41.s0",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4",
+        "p52.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "alternatives": [],
+      "impact": 36,
+      "affected_fields": [
+        "Denominazione/ragione sociale",
+        "P. IVA società",
+        "Provincia sede legale",
+        "Via/piazza sede legale",
+        "Numero civico sede legale",
+        "Telefono sede legale",
+        "E-mail sede legale",
+        "PEC sede legale"
+      ],
+      "slot": 1,
+      "question": "Confermi che la domanda è presentata come legale rappresentante di una società di professionisti o di una società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/B0/rep-3",
+    "slot": {
+      "key": "decision:ff6a9c86b0584e3ed5ac5799",
+      "kind": "decision",
+      "decision_type": "preferences",
+      "label": "Categorie e fasce d'incarico",
+      "field_ids": [
+        "t0.r1.c1",
+        "t0.r1.c2",
+        "t0.r1.c3",
+        "t0.r2.c1",
+        "t0.r2.c2",
+        "t0.r2.c3",
+        "t0.r3.c1",
+        "t0.r3.c2",
+        "t0.r3.c3",
+        "t0.r4.c1",
+        "t0.r4.c2",
+        "t0.r4.c3",
+        "t0.r5.c1",
+        "t0.r5.c2",
+        "t0.r5.c3",
+        "t0.r6.c1",
+        "t0.r6.c2",
+        "t0.r6.c3",
+        "t0.r7.c1",
+        "t0.r7.c2",
+        "t0.r7.c3",
+        "t0.r8.c1",
+        "t0.r8.c2",
+        "t0.r8.c3",
+        "t0.r9.c1",
+        "t0.r9.c2",
+        "t0.r9.c3",
+        "t0.r10.c1",
+        "t0.r10.c2",
+        "t0.r10.c3",
+        "t0.r11.c1",
+        "t0.r11.c2",
+        "t0.r11.c3",
+        "t0.r12.c1",
+        "t0.r12.c2",
+        "t0.r12.c3",
+        "t0.r13.c1",
+        "t0.r13.c2",
+        "t0.r13.c3",
+        "t0.r14.c1",
+        "t0.r14.c2",
+        "t0.r14.c3",
+        "t0.r15.c1",
+        "t0.r15.c2",
+        "t0.r15.c3",
+        "t0.r16.c1",
+        "t0.r16.c2",
+        "t0.r16.c3",
+        "t0.r17.c1",
+        "t0.r17.c2",
+        "t0.r17.c3",
+        "t1.r1.c1",
+        "t1.r1.c2",
+        "t1.r1.c3",
+        "t2.r1.c1",
+        "t2.r2.c1",
+        "t2.r3.c1",
+        "t3.r1.c1",
+        "t3.r2.c1",
+        "t3.r3.c1",
+        "t3.r4.c1",
+        "t3.r5.c1",
+        "t3.r6.c1",
+        "t3.r7.c1",
+        "t3.r8.c1",
+        "t3.r9.c1",
+        "t3.r10.c1"
+      ],
+      "condition": "",
+      "context": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:77",
+          "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:78",
+          "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:86",
+          "quote": "Edilizia commerciale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:80",
+          "quote": "Fascia A ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:81",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:82",
+          "quote": "Fascia B ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:83",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:84",
+          "quote": "Fascia C ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:85",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:90",
+          "quote": "Edilizia residenziale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:94",
+          "quote": "Edilizia scolastica e sanitaria",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:98",
+          "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:102",
+          "quote": "Aree esterne e opere a verde",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:106",
+          "quote": "Interventi su beni immobili di interesse storico- artistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:110",
+          "quote": "Edilizia – sedi amministrative",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:114",
+          "quote": "Strutture",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:118",
+          "quote": "Impianti meccanici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:122",
+          "quote": "Impianti elettrici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:126",
+          "quote": "Impianti di depurazione o discariche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:130",
+          "quote": "Opere elettriche per reti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:134",
+          "quote": "Opere stradali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:138",
+          "quote": "Opere idrauliche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:142",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:146",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:150",
+          "quote": "Pianificazione",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:155",
+          "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:163",
+          "quote": "CSP/CSE",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:157",
+          "quote": "Fascia A",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:158",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:159",
+          "quote": "Fascia B",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:160",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:161",
+          "quote": "Fascia C",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:162",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:168",
+          "quote": "Servizio di collaudo finale o in corso d’opera;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:171",
+          "quote": "Collaudo statico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:170",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:173",
+          "quote": "Collaudo tecnico amministrativo",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:175",
+          "quote": "Collaudo funzionale - impiantistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:178",
+          "quote": "Altri incarichi per servizi tecnici;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:181",
+          "quote": "redazione pratiche prevenzione incendi",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:180",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:183",
+          "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:185",
+          "quote": "perizie di stima",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:187",
+          "quote": "relazioni geologiche e sismiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:189",
+          "quote": "indagini geologiche / sismiche e relazioni geologiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:191",
+          "quote": "supporto agli atti di pianificazione comunque denominati",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:193",
+          "quote": "servizi tecnici di competenza di restauratori",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:195",
+          "quote": "servizi di assistenza archeologica",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:197",
+          "quote": "servizi di competenza di agronomi e dottori forestali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:199",
+          "quote": "redazione di certificato di prestazione energetica",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 67,
+      "write_authorized": false,
+      "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "slot": 2
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "minervino/B0/rep-3",
+    "slot": {
+      "key": "decision:4d948502d4305ca0995d3928",
+      "kind": "decision",
+      "decision_type": "location_date",
+      "label": "Luogo e data della domanda",
+      "field_ids": [
+        "p242.s0"
+      ],
+      "condition": "",
+      "context": "Luogo e data, ______________________",
+      "form_evidence": [
+        {
+          "paragraph_id": "paragraph:242",
+          "quote": "Luogo e data, ______________________",
+          "role": "form"
+        }
+      ],
+      "alternatives": [],
+      "impact": 1,
+      "write_authorized": false,
+      "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data, ______________________",
+      "slot": 3
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  },
+  {
+    "trial": "bella/B0/rep-3",
+    "slot": {
+      "key": "condition:c_soc_ing",
+      "kind": "applicability",
+      "condition_id": "c_soc_ing",
+      "condition": "legale rappresentante di una società di ingegneria;",
+      "label": "La compilazione dei dati del sottoscrittore e della società presuppone la selezione dell’opzione di partecipazione come legale rappresentante di una società di ingegneria; opzione non confermata.",
+      "context": "legale rappresentante di una società di ingegneria;",
+      "field_ids": [
+        "p21.s0",
+        "p21.s1",
+        "p21.s2",
+        "p21.s3",
+        "p21.s4",
+        "p21.s5",
+        "p21.s6",
+        "p21.s7"
+      ],
+      "alternatives": [],
+      "impact": 8,
+      "affected_fields": [
+        "Nome del firmatario scelto",
+        "Luogo di nascita",
+        "Data di nascita",
+        "Carica documentata",
+        "studio/società/consorzio",
+        "sede",
+        "codice fiscale n.",
+        "partita IVA n."
+      ],
+      "slot": 1,
+      "question": "Confermi che il firmatario partecipa alla procedura in qualità di legale rappresentante di una società di ingegneria?"
+    },
+    "USER_values_not_supplied_by_benchmark": true
+  }
+]

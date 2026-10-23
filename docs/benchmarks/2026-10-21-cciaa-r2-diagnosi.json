@@ -1,0 +1,185 @@
+{
+ "status": "COMPLETED_OFFLINE_DIAGNOSIS",
+ "date": "2026-10-21",
+ "scope": "Contraddizione CCIAA, generalità di R2, veto strutturale minimo proposto (non implementato)",
+ "report": "docs/cciaa-r2-veto-opzioni-2026-10-21.md",
+ "raw": "backend/data/compilation-audit/cciaa-r2-diagnosi-20261021-01",
+ "archive": "docs/benchmarks/2026-10-21-cciaa-r2-diagnosi-audit.tar.gz",
+ "archive_sha256": "f608153b4765110677da788599a6ec9ff54075576da07a2b00982f54d5431749",
+ "prereg_R4_sha256": "96b7a0c9bc300d94a342fa862f7b2bbca7eab439f3d613bfe1787dd445948f38",
+ "inputs_hashed": 287,
+ "files_in_manifest": 27,
+ "llm_calls": 0,
+ "compilations": 0,
+ "application_changes": 0,
+ "cciaa": {
+  "v13_runs_open_with_condition_and_USER_SKIP": 18,
+  "v13_runs_written_without_condition": 2,
+  "baseline_classification": [
+   "LEGITIMATELY_OPEN"
+  ],
+  "reference_applicability_V12_V13": "TRUE_IN_SCENARIO",
+  "diagnosis": "schema del riferimento senza dimensione di autorizzazione; giudizi coerenti"
+ },
+ "receipt_veto_806_writes": {
+  "bella|R1": {
+   "scritture": 45
+  },
+  "bella|R1T": {
+   "scritture": 45
+  },
+  "bella|R2": {
+   "scritture": 45
+  },
+  "bella|R4": {
+   "scritture": 45
+  },
+  "catanzaro|R1": {
+   "scritture": 89
+  },
+  "catanzaro|R1T": {
+   "scritture": 89
+  },
+  "catanzaro|R2": {
+   "scritture": 89
+  },
+  "catanzaro|R4": {
+   "scritture": 89
+  },
+  "cesano|R1": {
+   "scritture": 63,
+   "corrette_sbloccate_U2_condizione_ancorata": 8,
+   "corrette_sbloccate_U1_scelta_casella": 1
+  },
+  "cesano|R1T": {
+   "scritture": 63,
+   "corrette_sbloccate_U2_condizione_ancorata": 8,
+   "corrette_sbloccate_U1_scelta_casella": 1
+  },
+  "cesano|R2": {
+   "scritture": 63,
+   "corrette_sbloccate_U2_condizione_ancorata": 8,
+   "corrette_sbloccate_U1_scelta_casella": 1
+  },
+  "cesano|R4": {
+   "scritture": 63,
+   "corrette_sbloccate_U2_condizione_ancorata": 8,
+   "corrette_sbloccate_U1_scelta_casella": 1
+  },
+  "craa|R1": {
+   "scritture": 156,
+   "non_dimostrate_NON_bloccate": 4
+  },
+  "craa|R1T": {
+   "scritture": 156,
+   "non_dimostrate_bloccate": 4
+  },
+  "craa|R2": {
+   "scritture": 156,
+   "non_dimostrate_bloccate": 4
+  },
+  "craa|R4": {
+   "scritture": 156,
+   "non_dimostrate_bloccate": 4
+  },
+  "minervino|R1": {
+   "scritture": 328
+  },
+  "minervino|R1T": {
+   "scritture": 328
+  },
+  "minervino|R2": {
+   "scritture": 328
+  },
+  "minervino|R4": {
+   "scritture": 328,
+   "corrette_sbloccate_U2_condizione_ancorata": 184
+  },
+  "trapani|R1": {
+   "scritture": 125
+  },
+  "trapani|R1T": {
+   "scritture": 125
+  },
+  "trapani|R2": {
+   "scritture": 125
+  },
+  "trapani|R4": {
+   "scritture": 125
+  }
+ },
+ "external_forms": {
+  "mit": {
+   "candidates": 50,
+   "native_checkbox": 0,
+   "option_paragraphs_extended_markers": 0,
+   "conditional_language_paragraphs": 8,
+   "fields_inside_conditional_language_paragraphs": 0,
+   "examples": []
+  },
+  "mitrup": {
+   "candidates": 35,
+   "native_checkbox": 0,
+   "option_paragraphs_extended_markers": 0,
+   "conditional_language_paragraphs": 4,
+   "fields_inside_conditional_language_paragraphs": 0,
+   "examples": []
+  },
+  "alghero": {
+   "candidates": 38,
+   "native_checkbox": 0,
+   "option_paragraphs_extended_markers": 0,
+   "conditional_language_paragraphs": 0,
+   "fields_inside_conditional_language_paragraphs": 0,
+   "examples": []
+  },
+  "calabria": {
+   "candidates": 65,
+   "native_checkbox": 0,
+   "option_paragraphs_extended_markers": 13,
+   "conditional_language_paragraphs": 14,
+   "fields_inside_conditional_language_paragraphs": 25,
+   "examples": [
+    "❑  (nel caso di società e consorzi) che l’operatore economico denominato [[p66.s0]] è iscritto nel registro delle imprese della Camera di Co",
+    "❑ (solo per le società di ingegneria, gli studi di professionisti e gli studi associati) che del soggetto del quale si richiede l’iscrizione",
+    "❑  (nel caso di raggruppamenti temporanei indicazione del giovane professionista, ai sensi dell’art. 39 dell’Allegato II.12 del d.lgs. 36/20",
+    "Il/La sottoscritto/a [[p109.s0]] nato/a a [[p109.s1]] il [[p109.s2]] CF[[p109.s3]] residente a [[p109.s4]] ([[p109.s5]]), via [[p109.s6]] n."
+   ]
+  },
+  "soresa2023": {
+   "candidates": 81,
+   "native_checkbox": 0,
+   "option_paragraphs_extended_markers": 42,
+   "conditional_language_paragraphs": 19,
+   "fields_inside_conditional_language_paragraphs": 3,
+   "examples": [
+    "il seguente domicilio fiscale [[p115.s0]]; codice fiscale [[p115.s1]], partita IVA [[p115.s2]]; indica l’indirizzo PEC oppure, solo in caso "
+   ]
+  },
+  "bisceglie": {
+   "candidates": 150,
+   "native_checkbox": 0,
+   "option_paragraphs_extended_markers": 0,
+   "conditional_language_paragraphs": 8,
+   "fields_inside_conditional_language_paragraphs": 2,
+   "examples": [
+    "i) che l’indirizzo pec al quale va inviata qualsiasi richiesta di chiarimenti o specificazioni di cui potrebbe eventualmente necessitare la ",
+    "k) (nel caso di associazione temporanea di professionisti) che, in caso di aggiudicazione, sarà conferito mandato speciale con rappresentanz"
+   ]
+  },
+  "cannara": {
+   "candidates": 49,
+   "native_checkbox": 0,
+   "option_paragraphs_extended_markers": 8,
+   "conditional_language_paragraphs": 51,
+   "fields_inside_conditional_language_paragraphs": 0,
+   "examples": []
+  }
+ },
+ "verification": {
+  "independent_extractions": 2,
+  "outputs_identical": 7,
+  "catalogs_identical": 7
+ },
+ "proposal": "Veto d'export R1T con sblocco U1/U2, nuove sessioni con revisione esplicita; non implementato"
+}

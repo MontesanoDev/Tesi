@@ -1,0 +1,225 @@
+{
+  "implementation": "verified",
+  "deterministic_regression": {
+    "status": "PASS",
+    "backend_tests": 3048,
+    "new_permanent_tests": 52,
+    "Ruff": "PASS",
+    "export_replays": 68,
+    "DOCX_byte_exact": 68,
+    "SOURCE_facts_and_bindings_exact": true,
+    "validator_cases": 213,
+    "validator_results_exact": 199,
+    "validator_changed_cases": 14,
+    "validator_validated": 207,
+    "validator_prior_root_rejections": 6,
+    "validator_promotions": [
+      [
+        "043",
+        "t25.r2.c0"
+      ],
+      [
+        "046",
+        "t25.r2.c0"
+      ],
+      [
+        "046",
+        "t44.r1.c0"
+      ],
+      [
+        "059",
+        "t25.r2.c0"
+      ],
+      [
+        "062",
+        "t25.r2.c0"
+      ],
+      [
+        "062",
+        "t44.r1.c0"
+      ],
+      [
+        "091",
+        "t25.r2.c0"
+      ],
+      [
+        "094",
+        "t25.r2.c0"
+      ],
+      [
+        "094",
+        "t44.r1.c0"
+      ],
+      [
+        "124",
+        "t25.r2.c0"
+      ],
+      [
+        "125",
+        "t25.r2.c0"
+      ],
+      [
+        "128",
+        "t25.r2.c0"
+      ],
+      [
+        "128",
+        "t44.r1.c0"
+      ],
+      [
+        "137",
+        "t25.r2.c0"
+      ],
+      [
+        "137",
+        "t44.r1.c0"
+      ],
+      [
+        "150",
+        "t25.r2.c0"
+      ],
+      [
+        "153",
+        "t25.r2.c0"
+      ],
+      [
+        "153",
+        "t44.r1.c0"
+      ],
+      [
+        "203",
+        "t25.r2.c0"
+      ],
+      [
+        "206",
+        "t25.r2.c0"
+      ],
+      [
+        "206",
+        "t44.r1.c0"
+      ]
+    ],
+    "validator_lost_grounded": [],
+    "export_protocol_raw_proposals_promotions": 29,
+    "positive_counts_are_overlapping_protocols_not_additive": true,
+    "MODEL_condition_truth_changes": 0,
+    "original_unsafe_counterexamples_still_empty": true,
+    "PDF_families": 6,
+    "PDF_samples": 8,
+    "real_E2E_report_separate": true
+  },
+  "real_E2E": {
+    "status": "PASS",
+    "new_UI_session": "343d6caf16d442ed88ef174ebaf4aae0",
+    "version": 7,
+    "final_status": "GENERATED",
+    "provider_calls": 7,
+    "global_calls": 1,
+    "global_seconds": 146.299704740999,
+    "provider_seconds": 153.80864792699867,
+    "total_tokens": 156322,
+    "system_fingerprints": [
+      "e72d3c7f663d3e1383b00b3884cb4501"
+    ],
+    "same_global_MODEL_prompt_FORM_SOURCE_parameters": true,
+    "no_quality_retry": true,
+    "raw_assignments": 26,
+    "grounded_or_conditional": 18,
+    "SOURCE_texts_written": 17,
+    "USER_written": 0,
+    "checkboxes_written": 0,
+    "reference_13_links_proven": 13,
+    "reference_13_proposed": [
+      "t25.r2.c0",
+      "t41.r1.c0",
+      "t41.r1.c1",
+      "t41.r1.c2",
+      "t41.r1.c3",
+      "t41.r1.c4",
+      "t44.r1.c0"
+    ],
+    "reference_13_omitted": [
+      "t43.r1.c0",
+      "t43.r1.c1",
+      "t43.r1.c2",
+      "t43.r1.c3",
+      "t43.r1.c4",
+      "t44.r1.c3"
+    ],
+    "reference_13_blocked_by_other_gates": {
+      "t41.r1.c0": [
+        "Binding di ruolo rifiutato"
+      ],
+      "t41.r1.c1": [
+        "Fatto SOURCE assente o rifiutato",
+        "Binding di ruolo rifiutato"
+      ],
+      "t41.r1.c2": [
+        "Fatto SOURCE assente o rifiutato",
+        "Binding di ruolo rifiutato"
+      ],
+      "t41.r1.c3": [
+        "Binding di ruolo rifiutato"
+      ],
+      "t41.r1.c4": [
+        "Binding di ruolo rifiutato"
+      ],
+      "t44.r1.c0": [
+        "Ruolo FORM esterno al contesto del candidate"
+      ]
+    },
+    "reference_13_physically_written": {
+      "t25.r2.c0": "Bari"
+    },
+    "unsafe_operating_office_written": false,
+    "ordinary_export_and_download_offline_exact": true,
+    "paired_same_actual_response": {
+      "status": "PASS",
+      "same_actual_MODEL_and_USER": true,
+      "network_SQLite_forbidden": true,
+      "SOURCE_facts_bindings_exact": true,
+      "before_texts": 16,
+      "after_texts": 17,
+      "added_only": {
+        "t25.r2.c0": "Bari"
+      },
+      "old_writes_preserved": true,
+      "actual_download_DOCX_exact": true,
+      "no_added_authorizations": true
+    },
+    "partial_registration_number_without_date_independent_issue": "01234560981",
+    "MODEL_truth_not_overwritten_by_USER": {
+      "c_soc_ing": "unknown",
+      "c_rappresentanza": "unknown",
+      "c_parte_terza": "unknown"
+    },
+    "USER_receipts": {
+      "condition:c_soc_ing": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "user_quote": "Confermo la scelta già indicata di Mapi Ingegneria S.r.l., società di ingegneria, come partecipante singolo.",
+        "provenance": "USER"
+      },
+      "condition:c_rappresentanza": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "user_quote": "Confermo la scelta già indicata di Leonardo Montemurro come firmatario e legale rappresentante della società per questa domanda.",
+        "provenance": "USER"
+      }
+    },
+    "browser_aborted_GETs_on_mount_reload": 10,
+    "failed_POSTs": 0,
+    "console_provider_driver_errors": 0,
+    "PDF_pages": 17,
+    "PDF_all_values_observed": true,
+    "PDF_outside_words": 0,
+    "visual_sample_pages": [
+      2,
+      11,
+      17
+    ],
+    "Word_desktop_tested": false
+  },
+  "backup_verification": "benchmark ufficiale/table-form-links-20261020-01/VERIFICA-BACKUP.json",
+  "report": "docs/relazioni-tabellari-form-v12-2026-10-20.md"
+}

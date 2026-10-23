@@ -1,0 +1,8563 @@
+[
+ {
+  "trial": "minervino-1",
+  "document": "minervino",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": false,
+  "downloaded": false,
+  "export_requested": true,
+  "final_status": "WAITING_FOR_USER",
+  "elapsed_s": 148.1,
+  "user_messages": 5,
+  "driver_errors": 6,
+  "calls": 13,
+  "calls_by_kind": {
+   "planner": 5,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 4
+  },
+  "tokens": {
+   "total_tokens": 180592,
+   "prompt_tokens": 148200,
+   "completion_tokens": 32392,
+   "prompt_cache_hit_tokens": 41472
+  },
+  "cost_usd": 0.035569,
+  "global_call": {
+   "seconds": 118.5,
+   "finish": "stop",
+   "completion": 30572,
+   "share_of_limit": 0.622,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": "EXPORT",
+  "rounds": 3,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "condition:c_rapp",
+    "rule": "scenario_signer_representation"
+   },
+   {
+    "round": 1,
+    "key": "condition:c_operatore",
+    "rule": "scenario_company_and_single_participation"
+   },
+   {
+    "round": 2,
+    "key": "field:p12.s0",
+    "rule": "name_choice_in_verified_name_slot"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_soc": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_rapp": [
+    "CONDITION_TRUE",
+    null
+   ],
+   "condition:c_operatore": [
+    "CONDITION_TRUE",
+    null
+   ],
+   "decision:4d948502d4305ca0995d3928": [
+    "SKIP",
+    null
+   ],
+   "field:p12.s0": [
+    "SKIP",
+    null
+   ],
+   "decision:ff6a9c86b0584e3ed5ac5799": [
+    "SKIP",
+    null
+   ],
+   "decision:0a242b4c138d38515e716924": [
+    "SKIP",
+    null
+   ],
+   "decision:24278d2efa5d91eb97fdcae9": [
+    "SKIP",
+    null
+   ],
+   "decision:9128538342d18a184258aa29": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 60,
+   "correct": 0,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 60
+  },
+  "coverage_primary": 0.0,
+  "coverage_with_partial": 0.0,
+  "writes": [],
+  "writes_count": 0,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p39.cb0": true
+   },
+   "written": {
+    "p39.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p12.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "dialogo:rinviato"
+    ]
+   },
+   "p12.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p12.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p12.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p13.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p13.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p13.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p13.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p14.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p14.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p15.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p15.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p15.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p15.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p16.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p16.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p16.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p17.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p17.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p40.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p41.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p41.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p42.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s4": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p42.s5": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p43.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "p43.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p43.s2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p43.s3": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p43.s4": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p44.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p44.s1": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p44.s2": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p45.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "p45.s1": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p45.s2": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p45.s3": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p45.s4": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p46.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p46.s1": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p46.s2": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p47.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "p48.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p48.s1": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p49.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p49.s1": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p49.s2": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p49.s3": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p49.s4": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p51.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p52.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p52.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p53.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p229.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p230.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p232.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p242.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   }
+  },
+  "gaps_with_reason": 39,
+  "visibility_warnings": null
+ },
+ {
+  "trial": "cesano-1",
+  "document": "cesano",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 92.8,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 9,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 95479,
+   "prompt_tokens": 77656,
+   "completion_tokens": 17823,
+   "prompt_cache_hit_tokens": 27264
+  },
+  "cost_usd": 0.018334,
+  "global_call": {
+   "seconds": 73.5,
+   "finish": "stop",
+   "completion": 17210,
+   "share_of_limit": 0.35,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_societa_ingegneria": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:a2d2257858939e888a88cdb5": [
+    "CONDITION_TRUE",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 4,
+   "correct": 4,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 1.0,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.ft0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p19.ft0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 4,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p19.cb0": true
+   },
+   "written": {
+    "p19.cb0": null
+   }
+  },
+  "non_positional_unresolved": [
+   "data",
+   "preferenze categorie/fasce",
+   "recapiti studio personale non dimostrati",
+   "INAIL/INPS/INARCASSA personali",
+   "iscrizione professionale Leonardo"
+  ],
+  "gaps": {},
+  "gaps_with_reason": 0,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "craa-1",
+  "document": "craa",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 96.5,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 8,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "narrator": 2,
+   "guard": 1
+  },
+  "tokens": {
+   "total_tokens": 93339,
+   "prompt_tokens": 74536,
+   "completion_tokens": 18803,
+   "prompt_cache_hit_tokens": 24832
+  },
+  "cost_usd": 0.018812,
+  "global_call": {
+   "seconds": 78.1,
+   "finish": "stop",
+   "completion": 18226,
+   "share_of_limit": 0.371,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "authorization:398f938a667429dd912a469c": [
+    "SKIP",
+    null
+   ],
+   "condition:c_societa": [
+    "CONDITION_TRUE",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 8,
+   "correct": 8,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 1.0,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s0",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s0",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s0",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p18.s0",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p5.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 8,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p51.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p52.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p55.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p75.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p89.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p90.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p90.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p91.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p91.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p92.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p92.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p124.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p126.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 14,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "catanzaro-1",
+  "document": "catanzaro",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 148.5,
+  "user_messages": 2,
+  "driver_errors": 10,
+  "calls": 6,
+  "calls_by_kind": {
+   "planner": 2,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 1
+  },
+  "tokens": {
+   "total_tokens": 139176,
+   "prompt_tokens": 104669,
+   "completion_tokens": 34507,
+   "prompt_cache_hit_tokens": 18176
+  },
+  "cost_usd": 0.033733,
+  "global_call": {
+   "seconds": 131.8,
+   "finish": "stop",
+   "completion": 34034,
+   "share_of_limit": 0.692,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 0,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_5d": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_firmatario": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 31,
+   "correct": 6,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 25
+  },
+  "coverage_primary": 0.1935,
+  "coverage_with_partial": 0.1935,
+  "writes": [
+   {
+    "cell": "t0.r0.c1",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r2.c1",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r0.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r2.c0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c3",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 6,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p57.cb0": true,
+    "p76.cb1": true,
+    "p147.cb0": true
+   },
+   "written": {
+    "p57.cb0": null,
+    "p76.cb1": null,
+    "p147.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "t0.r1.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t0.r3.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t0.r5.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t0.r6.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t0.r7.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t0.r9.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t0.r10.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t0.r11.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t25.r3.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t26.r0.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t26.r1.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t26.r3.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t26.r4.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t41.r1.c0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t41.r1.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t41.r1.c2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t41.r1.c3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t41.r1.c4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t43.r1.c0": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t43.r1.c1": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t43.r1.c2": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t43.r1.c3": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t43.r1.c4": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "t44.r1.c0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t44.r1.c3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t26.r2.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t44.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "t44.r1.c2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   }
+  },
+  "gaps_with_reason": 28,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "bella-1",
+  "document": "bella",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 84.2,
+  "user_messages": 2,
+  "driver_errors": 10,
+  "calls": 6,
+  "calls_by_kind": {
+   "planner": 2,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 1
+  },
+  "tokens": {
+   "total_tokens": 76458,
+   "prompt_tokens": 58935,
+   "completion_tokens": 17523,
+   "prompt_cache_hit_tokens": 18048
+  },
+  "cost_usd": 0.016701,
+  "global_call": {
+   "seconds": 69.8,
+   "finish": "stop",
+   "completion": 16964,
+   "share_of_limit": 0.345,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 0,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_sottoscrittore": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 8,
+   "correct": 6,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 2
+  },
+  "coverage_primary": 0.75,
+  "coverage_with_partial": 0.75,
+  "writes": [
+   {
+    "cell": "p21.s1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s4",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s5",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s6",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s7",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 6,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p30.cb0": true
+   },
+   "written": {
+    "p30.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p21.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p21.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p129.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 3,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "trapani-1",
+  "document": "trapani",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 86.5,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 8,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "narrator": 2,
+   "guard": 1
+  },
+  "tokens": {
+   "total_tokens": 98207,
+   "prompt_tokens": 80148,
+   "completion_tokens": 18059,
+   "prompt_cache_hit_tokens": 24448
+  },
+  "cost_usd": 0.019264,
+  "global_call": {
+   "seconds": 68.8,
+   "finish": "stop",
+   "completion": 17288,
+   "share_of_limit": 0.352,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "condition:c_soc_ing",
+    "rule": "scenario_company_and_single_participation"
+   }
+  ],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "authorization:bfed0e8729642eda4aed29e2": [
+    "SKIP",
+    null
+   ],
+   "condition:c_soc_ing": [
+    "CONDITION_TRUE",
+    null
+   ],
+   "decision:04ed2c9cb5b7d60806b1fecf": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 17,
+   "correct": 16,
+   "partial": 1,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 0.9412,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s3",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s4",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s5",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s6",
+    "value": "Amedeo",
+    "automatic": "DA_REVISIONARE_VALORE_DIVERSO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Via di residenza del firmatario scelto ('Indirizzo di residenza: Via Amedeo 24'); il FORM stampa già 'via/piazza' e il numero civico ha una posizione propria. Conteggiata come corrispondenza parziale nella copertura primaria (regola preregistrata)."
+    }
+   },
+   {
+    "cell": "p12.s7",
+    "value": "24",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s1",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s2",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s3",
+    "value": "70126",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s4",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s5",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s6",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s7",
+    "value": "+39 080 000 2041",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s8",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 17,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p9.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p97.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p104.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p105.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p107.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "p112.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p113.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p171.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   }
+  },
+  "gaps_with_reason": 8,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "soresa2023-1",
+  "document": "soresa2023",
+  "group": "nuovo",
+  "runtime": "nuova-source",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 157.7,
+  "user_messages": 4,
+  "driver_errors": 10,
+  "calls": 11,
+  "calls_by_kind": {
+   "planner": 4,
+   "global": 1,
+   "registry": 1,
+   "narrator": 3,
+   "guard": 2
+  },
+  "tokens": {
+   "total_tokens": 106283,
+   "prompt_tokens": 71820,
+   "completion_tokens": 34463,
+   "prompt_cache_hit_tokens": 30720
+  },
+  "cost_usd": 0.026935,
+  "global_call": {
+   "seconds": 134.4,
+   "finish": "stop",
+   "completion": 33578,
+   "share_of_limit": 0.683,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 2,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "condition:C_single",
+    "rule": "scenario_company_and_single_participation"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:C_single": [
+    "CONDITION_TRUE",
+    null
+   ],
+   "condition:C_rt_not": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 15,
+   "correct": 6,
+   "partial": 1,
+   "wrong": 0,
+   "empty": 8
+  },
+  "coverage_primary": 0.4,
+  "coverage_with_partial": 0.4667,
+  "writes": [
+   {
+    "cell": "p115.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p115.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s7",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s9",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r1.c0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DA_REVISIONARE_VALORE_DIVERSO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Denominazione dell'operatore documentata nella scheda tabellare, soggetto e ramo (operatore singolo) corretti; valore incompleto (manca la sede richiesta nella stessa cella): non conta per la copertura, non è una scrittura non dimostrata."
+    }
+   }
+  ],
+  "writes_count": 7,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p8.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p8.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p8.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p8.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p8.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p8.s5": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p8.s6": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s8": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 9,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "minervino-2",
+  "document": "minervino",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 159.2,
+  "user_messages": 4,
+  "driver_errors": 10,
+  "calls": 10,
+  "calls_by_kind": {
+   "planner": 4,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 3
+  },
+  "tokens": {
+   "total_tokens": 173555,
+   "prompt_tokens": 132713,
+   "completion_tokens": 40842,
+   "prompt_cache_hit_tokens": 34048
+  },
+  "cost_usd": 0.039407,
+  "global_call": {
+   "seconds": 133.8,
+   "finish": "stop",
+   "completion": 39732,
+   "share_of_limit": 0.808,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 2,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_operatore": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_firmatario": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_soc_ing": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "decision:ff6a9c86b0584e3ed5ac5799": [
+    "SKIP",
+    null
+   ],
+   "decision:0a242b4c138d38515e716924": [
+    "SKIP",
+    null
+   ],
+   "decision:24278d2efa5d91eb97fdcae9": [
+    "SKIP",
+    null
+   ],
+   "decision:9128538342d18a184258aa29": [
+    "SKIP",
+    null
+   ],
+   "decision:4d948502d4305ca0995d3928": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 60,
+   "correct": 26,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 34
+  },
+  "coverage_primary": 0.4333,
+  "coverage_with_partial": 0.4333,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s1",
+    "value": "Lecce",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s2",
+    "value": "LE",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s3",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s1",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s2",
+    "value": "Amedeo 24",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s3",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s1",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s2",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s3",
+    "value": "+39 080 000 2041",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s0",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s1",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s1",
+    "value": "01234560981",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p40.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p41.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s0",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s1",
+    "value": "Via Giovanni Amendola",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s2",
+    "value": "172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s3",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s4",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s5",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 26,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p39.cb0": true
+   },
+   "written": {
+    "p39.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p14.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p41.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p43.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p43.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p43.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p43.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p43.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p44.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p44.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p44.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p45.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p45.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p45.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p45.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p45.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p46.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p46.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p46.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p47.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p48.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p48.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p49.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p49.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p49.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p49.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p49.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p51.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p52.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p52.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p229.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p230.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p232.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p242.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   }
+  },
+  "gaps_with_reason": 38,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "cesano-2",
+  "document": "cesano",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 133.6,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 9,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 107629,
+   "prompt_tokens": 77928,
+   "completion_tokens": 29701,
+   "prompt_cache_hit_tokens": 26624
+  },
+  "cost_usd": 0.025596,
+  "global_call": {
+   "seconds": 114.7,
+   "finish": "stop",
+   "completion": 29003,
+   "share_of_limit": 0.59,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_p19": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:db625de55640eecfd1b83118": [
+    "CONDITION_TRUE",
+    null
+   ],
+   "field:p105.ft0": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 4,
+   "correct": 3,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 1
+  },
+  "coverage_primary": 0.75,
+  "coverage_with_partial": 0.75,
+  "writes": [
+   {
+    "cell": "p12.ft1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p19.ft0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 3,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p19.cb0": true
+   },
+   "written": {
+    "p19.cb0": null
+   }
+  },
+  "non_positional_unresolved": [
+   "data",
+   "preferenze categorie/fasce",
+   "recapiti studio personale non dimostrati",
+   "INAIL/INPS/INARCASSA personali",
+   "iscrizione professionale Leonardo"
+  ],
+  "gaps": {
+   "p12.ft0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   }
+  },
+  "gaps_with_reason": 1,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "craa-2",
+  "document": "craa",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 93.1,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 9,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 97689,
+   "prompt_tokens": 78058,
+   "completion_tokens": 19631,
+   "prompt_cache_hit_tokens": 25216
+  },
+  "cost_usd": 0.019781,
+  "global_call": {
+   "seconds": 74.7,
+   "finish": "stop",
+   "completion": 18717,
+   "share_of_limit": 0.381,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_societa": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_firmatario": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:8f2401058a09a976d755d69d": [
+    "SKIP",
+    null
+   ],
+   "field:p90.s0": [
+    "SKIP",
+    null
+   ],
+   "field:p90.s1": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 8,
+   "correct": 8,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 1.0,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s0",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s0",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s0",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p18.s0",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p5.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 8,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p51.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p52.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p55.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p75.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p89.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p90.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "dialogo:rinviato"
+    ]
+   },
+   "p90.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "dialogo:rinviato"
+    ]
+   },
+   "p91.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p91.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": []
+   },
+   "p92.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p92.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p124.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p126.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 12,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "catanzaro-2",
+  "document": "catanzaro",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 147.7,
+  "user_messages": 2,
+  "driver_errors": 10,
+  "calls": 6,
+  "calls_by_kind": {
+   "planner": 2,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 1
+  },
+  "tokens": {
+   "total_tokens": 142406,
+   "prompt_tokens": 107554,
+   "completion_tokens": 34852,
+   "prompt_cache_hit_tokens": 19200
+  },
+  "cost_usd": 0.034222,
+  "global_call": {
+   "seconds": 131.1,
+   "finish": "stop",
+   "completion": 34106,
+   "share_of_limit": 0.694,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 0,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_participation": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_tipologia": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 31,
+   "correct": 9,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 22
+  },
+  "coverage_primary": 0.2903,
+  "coverage_with_partial": 0.2903,
+  "writes": [
+   {
+    "cell": "t0.r10.c1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r5.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r6.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r7.c1",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r9.c1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r0.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r2.c0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c3",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 9,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p57.cb0": true,
+    "p76.cb1": true,
+    "p147.cb0": true
+   },
+   "written": {
+    "p57.cb0": null,
+    "p76.cb1": null,
+    "p147.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "t0.r0.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t0.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t0.r2.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t0.r3.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t0.r11.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t25.r3.c1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t26.r0.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r1.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r3.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r4.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t41.r1.c0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t41.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t41.r1.c2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t41.r1.c3": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t41.r1.c4": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t43.r1.c0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t43.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t43.r1.c2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t43.r1.c3": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t43.r1.c4": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t44.r1.c0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t44.r1.c3": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r2.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t44.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t44.r1.c2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 25,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "bella-2",
+  "document": "bella",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 126.3,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 9,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 100419,
+   "prompt_tokens": 73679,
+   "completion_tokens": 26740,
+   "prompt_cache_hit_tokens": 25088
+  },
+  "cost_usd": 0.023408,
+  "global_call": {
+   "seconds": 106.7,
+   "finish": "stop",
+   "completion": 25959,
+   "share_of_limit": 0.528,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "choice:g65",
+    "rule": "scenario_engineering_option"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_partecipazione": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "choice:g65": [
+    "VALUE",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 8,
+   "correct": 7,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 1
+  },
+  "coverage_primary": 0.875,
+  "coverage_with_partial": 0.875,
+  "writes": [
+   {
+    "cell": "p21.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s4",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s5",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s6",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s7",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p65.cb0",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Scrittura che segue una ricevuta USER esplicita sul gruppo (choice VALUE 'Scelgo la voce Società di Ingegneria.' in risposta alla domanda sul gruppo delle caselle p65). Non è la sola decisione sul tipo giuridico esclusa dal riferimento. Nota: la risposta è della politica USER simulata (regola scenario_engineering_option) a una domanda legata alla dichiarazione di designazione dei tecnici, che resta senza nominativi; un utente reale avrebbe potuto rinviarla."
+    }
+   },
+   {
+    "cell": "p65.cb1",
+    "value": true,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Scrittura che segue una ricevuta USER esplicita sul gruppo (choice VALUE 'Scelgo la voce Società di Ingegneria.' in risposta alla domanda sul gruppo delle caselle p65). Non è la sola decisione sul tipo giuridico esclusa dal riferimento. Nota: la risposta è della politica USER simulata (regola scenario_engineering_option) a una domanda legata alla dichiarazione di designazione dei tecnici, che resta senza nominativi; un utente reale avrebbe potuto rinviarla."
+    }
+   },
+   {
+    "cell": "p65.cb2",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Scrittura che segue una ricevuta USER esplicita sul gruppo (choice VALUE 'Scelgo la voce Società di Ingegneria.' in risposta alla domanda sul gruppo delle caselle p65). Non è la sola decisione sul tipo giuridico esclusa dal riferimento. Nota: la risposta è della politica USER simulata (regola scenario_engineering_option) a una domanda legata alla dichiarazione di designazione dei tecnici, che resta senza nominativi; un utente reale avrebbe potuto rinviarla."
+    }
+   }
+  ],
+  "writes_count": 10,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p30.cb0": true
+   },
+   "written": {
+    "p30.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p21.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p129.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 2,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "trapani-2",
+  "document": "trapani",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 95.2,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 8,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 98117,
+   "prompt_tokens": 78678,
+   "completion_tokens": 19439,
+   "prompt_cache_hit_tokens": 24832
+  },
+  "cost_usd": 0.019815,
+  "global_call": {
+   "seconds": 75.9,
+   "finish": "stop",
+   "completion": 18624,
+   "share_of_limit": 0.379,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c75": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:5d9e25e375abbc22d0fcb12b": [
+    "SKIP",
+    null
+   ],
+   "field:p171.s0": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 17,
+   "correct": 8,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 9
+  },
+  "coverage_primary": 0.4706,
+  "coverage_with_partial": 0.4706,
+  "writes": [
+   {
+    "cell": "p75.s1",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s2",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s3",
+    "value": "70126",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s4",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s5",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s6",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s7",
+    "value": "+39 080 000 2041",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s8",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 8,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p12.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p12.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p12.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p12.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p12.s4": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p12.s5": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p12.s6": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p12.s7": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p75.s0": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "p9.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p97.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p104.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p105.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p107.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "p112.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p113.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p171.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "gate:procedurale_applicabilita_completezza",
+     "dialogo:rinviato"
+    ]
+   }
+  },
+  "gaps_with_reason": 17,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "soresa2023-2",
+  "document": "soresa2023",
+  "group": "nuovo",
+  "runtime": "nuova-source",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 99.8,
+  "user_messages": 2,
+  "driver_errors": 10,
+  "calls": 6,
+  "calls_by_kind": {
+   "planner": 2,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 1
+  },
+  "tokens": {
+   "total_tokens": 73976,
+   "prompt_tokens": 51528,
+   "completion_tokens": 22448,
+   "prompt_cache_hit_tokens": 18048
+  },
+  "cost_usd": 0.018545,
+  "global_call": {
+   "seconds": 86.9,
+   "finish": "stop",
+   "completion": 22001,
+   "share_of_limit": 0.448,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 0,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_single": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_rt_not_const": [
+    "CONDITION_FALSE",
+    "initial_request"
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 15,
+   "correct": 7,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 8
+  },
+  "coverage_primary": 0.4667,
+  "coverage_with_partial": 0.4667,
+  "writes": [
+   {
+    "cell": "p115.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p115.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s7",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s8",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s9",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 7,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p8.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s5": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s6": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t0.r1.c0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 9,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "minervino-3",
+  "document": "minervino",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 183.3,
+  "user_messages": 6,
+  "driver_errors": 10,
+  "calls": 18,
+  "calls_by_kind": {
+   "planner": 6,
+   "global": 1,
+   "registry": 1,
+   "guard": 4,
+   "narrator": 6
+  },
+  "tokens": {
+   "total_tokens": 242802,
+   "prompt_tokens": 200602,
+   "completion_tokens": 42200,
+   "prompt_cache_hit_tokens": 56448
+  },
+  "cost_usd": 0.047112,
+  "global_call": {
+   "seconds": 137.7,
+   "finish": "stop",
+   "completion": 39613,
+   "share_of_limit": 0.806,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 4,
+  "redundant_confirmations": [
+   {
+    "round": 2,
+    "key": "condition:c_studio",
+    "rule": "scenario_signer_representation"
+   },
+   {
+    "round": 3,
+    "key": "condition:c_studio",
+    "rule": "scenario_signer_representation"
+   },
+   {
+    "round": 3,
+    "key": "condition:c_consorzio",
+    "rule": "scenario_company_and_single_participation"
+   },
+   {
+    "round": 4,
+    "key": "condition:c_consorzio",
+    "rule": "scenario_company_and_single_participation"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_soc": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "decision:ff6a9c86b0584e3ed5ac5799": [
+    "SKIP",
+    null
+   ],
+   "decision:0a242b4c138d38515e716924": [
+    "SKIP",
+    null
+   ],
+   "decision:4d948502d4305ca0995d3928": [
+    "SKIP",
+    null
+   ],
+   "condition:c_prof_studio": [
+    "SKIP",
+    null
+   ],
+   "condition:c_rtp_capogruppo": [
+    "SKIP",
+    null
+   ],
+   "condition:c_rtp_mandante": [
+    "SKIP",
+    null
+   ],
+   "condition:c_studio": [
+    "UNKNOWN",
+    "BACKEND_LOOP_GUARD"
+   ],
+   "decision:24278d2efa5d91eb97fdcae9": [
+    "SKIP",
+    null
+   ],
+   "decision:9128538342d18a184258aa29": [
+    "SKIP",
+    null
+   ],
+   "condition:c_consorzio": [
+    "UNKNOWN",
+    "BACKEND_LOOP_GUARD"
+   ]
+  },
+  "loop_guard": [
+   "condition:c_studio",
+   "condition:c_consorzio"
+  ],
+  "core": {
+   "denominator": 60,
+   "correct": 40,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 20
+  },
+  "coverage_primary": 0.6667,
+  "coverage_with_partial": 0.6667,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s2",
+    "value": "LE",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s3",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s1",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s2",
+    "value": "Amedeo 24",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s3",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s2",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s3",
+    "value": "+39 080 000 2041",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s0",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s1",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s1",
+    "value": "01234560981",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p40.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p41.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s0",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s1",
+    "value": "Via Giovanni Amendola",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s2",
+    "value": "172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s3",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s4",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s5",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s0",
+    "value": "Luca Ferri",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s1",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s2",
+    "value": "FRRLCU80A01A662K",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s3",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s4",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s0",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s1",
+    "value": "21/03/2012",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s2",
+    "value": "7294",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s0",
+    "value": "Elisa Romano",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s1",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s2",
+    "value": "RMNLSI85C47A662Y",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s3",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s4",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s0",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s1",
+    "value": "18/05/2015",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s2",
+    "value": "8421",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p39.cb0",
+    "value": true,
+    "automatic": "SCELTA_USER_ATTESA",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 41,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p39.cb0": true
+   },
+   "written": {
+    "p39.cb0": true
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p12.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p14.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p15.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p41.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p47.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p48.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p48.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p49.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p49.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p49.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p49.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p49.s4": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p51.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p52.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p52.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p53.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p53.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p53.s2": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p53.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s4": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p229.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p230.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p232.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p242.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   }
+  },
+  "gaps_with_reason": 24,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "cesano-3",
+  "document": "cesano",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 75.7,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 9,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 91526,
+   "prompt_tokens": 77594,
+   "completion_tokens": 13932,
+   "prompt_cache_hit_tokens": 27392
+  },
+  "cost_usd": 0.015972,
+  "global_call": {
+   "seconds": 57.5,
+   "finish": "stop",
+   "completion": 13315,
+   "share_of_limit": 0.271,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_soc_ing": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:87dbe9be51a550febac6ad4e": [
+    "CONDITION_TRUE",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 4,
+   "correct": 4,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 1.0,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.ft0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p19.ft0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 4,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p19.cb0": true
+   },
+   "written": {
+    "p19.cb0": null
+   }
+  },
+  "non_positional_unresolved": [
+   "data",
+   "preferenze categorie/fasce",
+   "recapiti studio personale non dimostrati",
+   "INAIL/INPS/INARCASSA personali",
+   "iscrizione professionale Leonardo"
+  ],
+  "gaps": {},
+  "gaps_with_reason": 0,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "craa-3",
+  "document": "craa",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 110.2,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 9,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 101714,
+   "prompt_tokens": 78124,
+   "completion_tokens": 23590,
+   "prompt_cache_hit_tokens": 26240
+  },
+  "cost_usd": 0.022015,
+  "global_call": {
+   "seconds": 92.0,
+   "finish": "stop",
+   "completion": 22705,
+   "share_of_limit": 0.462,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_role_impresa": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_societa": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:9abde3181eb7fa128bb5e0c9": [
+    "SKIP",
+    null
+   ],
+   "condition:c_fatturato_triennio": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 8,
+   "correct": 8,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 1.0,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s0",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s0",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s0",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p18.s0",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p5.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 8,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p51.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p52.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p55.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p75.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p89.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_non_confermata"
+    ]
+   },
+   "p90.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p90.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "dialogo:condizione_non_confermata"
+    ]
+   },
+   "p91.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p91.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "dialogo:condizione_non_confermata"
+    ]
+   },
+   "p92.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_non_confermata"
+    ]
+   },
+   "p92.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_non_confermata"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p124.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p126.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 14,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "catanzaro-3",
+  "document": "catanzaro",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 175.6,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 9,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 163321,
+   "prompt_tokens": 123119,
+   "completion_tokens": 40202,
+   "prompt_cache_hit_tokens": 25856
+  },
+  "cost_usd": 0.038788,
+  "global_call": {
+   "seconds": 152.2,
+   "finish": "stop",
+   "completion": 39198,
+   "share_of_limit": 0.797,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "condition:c_parte_terza",
+    "rule": "scenario_company_and_single_participation"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_partecipazione": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_ing": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_parte_terza": [
+    "CONDITION_TRUE",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 31,
+   "correct": 13,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 18
+  },
+  "coverage_primary": 0.4194,
+  "coverage_with_partial": 0.4194,
+  "writes": [
+   {
+    "cell": "t0.r10.c1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r5.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r6.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r7.c1",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r9.c1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r0.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c3",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t26.r0.c1",
+    "value": "Ing. Elisa Romano",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t26.r1.c1",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t26.r3.c1",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t26.r4.c1",
+    "value": "8421",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t44.r1.c0",
+    "value": "Ing. Elisa Romano",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 13,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p57.cb0": true,
+    "p76.cb1": true,
+    "p147.cb0": true
+   },
+   "written": {
+    "p57.cb0": null,
+    "p76.cb1": null,
+    "p147.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "t0.r0.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t0.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t0.r2.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t0.r3.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t0.r11.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t25.r2.c0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t25.r3.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t41.r1.c0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t41.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t41.r1.c2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t41.r1.c3": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t41.r1.c4": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t43.r1.c0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t43.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t43.r1.c2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t43.r1.c3": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t43.r1.c4": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t44.r1.c3": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "t26.r2.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t44.r1.c1": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t44.r1.c2": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   }
+  },
+  "gaps_with_reason": 21,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "bella-3",
+  "document": "bella",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 92.5,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 8,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "narrator": 2,
+   "guard": 1
+  },
+  "tokens": {
+   "total_tokens": 88550,
+   "prompt_tokens": 69860,
+   "completion_tokens": 18690,
+   "prompt_cache_hit_tokens": 24192
+  },
+  "cost_usd": 0.018137,
+  "global_call": {
+   "seconds": 75.0,
+   "finish": "stop",
+   "completion": 17996,
+   "share_of_limit": 0.366,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "condition:c_forma_soc_ing",
+    "rule": "scenario_company_and_single_participation"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_forma_soc_ing": [
+    "CONDITION_TRUE",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 8,
+   "correct": 8,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 1.0,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p21.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s3",
+    "value": "amministratore unico e rappresentante legale",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s4",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s5",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s6",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s7",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 8,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p30.cb0": true
+   },
+   "written": {
+    "p30.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p129.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 1,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "trapani-3",
+  "document": "trapani",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 96.2,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 8,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 98499,
+   "prompt_tokens": 79107,
+   "completion_tokens": 19392,
+   "prompt_cache_hit_tokens": 25216
+  },
+  "cost_usd": 0.019794,
+  "global_call": {
+   "seconds": 78.0,
+   "finish": "stop",
+   "completion": 18721,
+   "share_of_limit": 0.381,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_quality_branch": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:819df7d4f56e00e31fa1d254": [
+    "SKIP",
+    null
+   ],
+   "decision:04ed2c9cb5b7d60806b1fecf": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 17,
+   "correct": 16,
+   "partial": 1,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 0.9412,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s3",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s4",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s5",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s6",
+    "value": "Amedeo",
+    "automatic": "DA_REVISIONARE_VALORE_DIVERSO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Via di residenza del firmatario scelto ('Indirizzo di residenza: Via Amedeo 24'); il FORM stampa già 'via/piazza' e il numero civico ha una posizione propria. Conteggiata come corrispondenza parziale nella copertura primaria (regola preregistrata)."
+    }
+   },
+   {
+    "cell": "p12.s7",
+    "value": "24",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s1",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s2",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s3",
+    "value": "70126",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s4",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s5",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s6",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s7",
+    "value": "+39 080 000 2041",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s8",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 17,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p9.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p97.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p104.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p105.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p107.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "p112.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p113.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p171.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   }
+  },
+  "gaps_with_reason": 8,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "soresa2023-3",
+  "document": "soresa2023",
+  "group": "nuovo",
+  "runtime": "nuova-source",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 128.3,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 9,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 91573,
+   "prompt_tokens": 64685,
+   "completion_tokens": 26888,
+   "prompt_cache_hit_tokens": 25216
+  },
+  "cost_usd": 0.022129,
+  "global_call": {
+   "seconds": 109.7,
+   "finish": "stop",
+   "completion": 26082,
+   "share_of_limit": 0.531,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "field:p8.s0",
+    "rule": "name_choice_in_verified_name_slot"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_p7": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_rt_noncost": [
+    "CONDITION_FALSE",
+    "initial_request"
+   ],
+   "field:p115.s0": [
+    "SKIP",
+    null
+   ],
+   "field:p8.s0": [
+    "VALUE",
+    null
+   ],
+   "field:p8.s5": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 15,
+   "correct": 7,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 8
+  },
+  "coverage_primary": 0.4667,
+  "coverage_with_partial": 0.4667,
+  "writes": [
+   {
+    "cell": "p115.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p115.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s7",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s9",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 7,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p8.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p8.s2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p8.s3": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p8.s4": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p8.s5": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "dialogo:rinviato"
+    ]
+   },
+   "p8.s6": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s8": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t0.r1.c0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "dialogo:rinviato"
+    ]
+   }
+  },
+  "gaps_with_reason": 9,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "minervino-4",
+  "document": "minervino",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 211.0,
+  "user_messages": 5,
+  "driver_errors": 10,
+  "calls": 13,
+  "calls_by_kind": {
+   "planner": 5,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 5
+  },
+  "tokens": {
+   "total_tokens": 212377,
+   "prompt_tokens": 162944,
+   "completion_tokens": 49433,
+   "prompt_cache_hit_tokens": 41984
+  },
+  "cost_usd": 0.04793,
+  "global_call": {
+   "seconds": 176.5,
+   "finish": "stop",
+   "completion": 47860,
+   "share_of_limit": 0.974,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 3,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:cond_soc_ing": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:cond_firmatario": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "field:p46.s1": [
+    "SKIP",
+    null
+   ],
+   "field:p53.s3": [
+    "SKIP",
+    null
+   ],
+   "field:p242.s0": [
+    "SKIP",
+    null
+   ],
+   "decision:ff6a9c86b0584e3ed5ac5799": [
+    "SKIP",
+    null
+   ],
+   "decision:0a242b4c138d38515e716924": [
+    "SKIP",
+    null
+   ],
+   "decision:24278d2efa5d91eb97fdcae9": [
+    "SKIP",
+    null
+   ],
+   "decision:9128538342d18a184258aa29": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 60,
+   "correct": 55,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 5
+  },
+  "coverage_primary": 0.9167,
+  "coverage_with_partial": 0.9167,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s1",
+    "value": "Lecce",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s2",
+    "value": "LE",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s3",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s1",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s2",
+    "value": "Amedeo 24",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s3",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s2",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s3",
+    "value": "+39 080 000 2041",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s0",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s1",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s1",
+    "value": "01234560981",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p40.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p41.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s0",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s1",
+    "value": "Via Giovanni Amendola",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s2",
+    "value": "172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s3",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s4",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s5",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s0",
+    "value": "Luca Ferri",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s1",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s2",
+    "value": "FRRLCU80A01A662K",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s3",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s4",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s0",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s1",
+    "value": "21/03/2012",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s2",
+    "value": "7294",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s0",
+    "value": "Elisa Romano",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s1",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s2",
+    "value": "RMNLSI85C47A662Y",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s3",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s4",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s0",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s2",
+    "value": "8421",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p47.s0",
+    "value": "Andrea Greco",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p48.s0",
+    "value": "Architetto",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p48.s1",
+    "value": "GRCNDR84D20A662P",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s0",
+    "value": "Ordine degli Architetti di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s1",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s2",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s3",
+    "value": "12/06/2014",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s4",
+    "value": "5267",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p51.s0",
+    "value": "Elisa Romano",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p52.s0",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p52.s1",
+    "value": "RMNLSI85C47A662Y",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p53.s0",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p53.s1",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p53.s2",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p53.s4",
+    "value": "8421",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p39.cb0",
+    "value": true,
+    "automatic": "SCELTA_USER_ATTESA",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 56,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p39.cb0": true
+   },
+   "written": {
+    "p39.cb0": true
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p14.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p15.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p41.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p46.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "dialogo:rinviato"
+    ]
+   },
+   "p53.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "dialogo:rinviato"
+    ]
+   },
+   "p229.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p230.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p232.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p242.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "gate:procedurale_applicabilita_completezza",
+     "dialogo:rinviato"
+    ]
+   }
+  },
+  "gaps_with_reason": 9,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "cesano-4",
+  "document": "cesano",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": false,
+  "downloaded": false,
+  "export_requested": true,
+  "final_status": "FAILED",
+  "elapsed_s": 1100.6,
+  "user_messages": 2,
+  "driver_errors": 6,
+  "calls": 3,
+  "calls_by_kind": {
+   "planner": 2,
+   "global": 1
+  },
+  "tokens": {
+   "total_tokens": 73124,
+   "prompt_tokens": 48347,
+   "completion_tokens": 24777,
+   "prompt_cache_hit_tokens": 13056
+  },
+  "cost_usd": 0.020199,
+  "global_call": {
+   "seconds": 94.7,
+   "finish": "stop",
+   "completion": 24707,
+   "share_of_limit": 0.503,
+   "content_valid": false,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": "MODEL",
+  "rounds": 0,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {},
+  "loop_guard": [],
+  "core": {
+   "denominator": 4,
+   "correct": 0,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 4
+  },
+  "coverage_primary": 0.0,
+  "coverage_with_partial": 0.0,
+  "writes": [],
+  "writes_count": 0,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p19.cb0": true
+   },
+   "written": {
+    "p19.cb0": null
+   }
+  },
+  "non_positional_unresolved": [
+   "data",
+   "preferenze categorie/fasce",
+   "recapiti studio personale non dimostrati",
+   "INAIL/INPS/INARCASSA personali",
+   "iscrizione professionale Leonardo"
+  ],
+  "gaps": {
+   "p12.ft0": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "p12.ft1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "p12.ft2": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "p19.ft0": {
+    "coverage_state": null,
+    "reasons": []
+   }
+  },
+  "gaps_with_reason": 0,
+  "visibility_warnings": null
+ },
+ {
+  "trial": "craa-4",
+  "document": "craa",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 83.5,
+  "user_messages": 4,
+  "driver_errors": 10,
+  "calls": 11,
+  "calls_by_kind": {
+   "planner": 4,
+   "global": 1,
+   "registry": 1,
+   "narrator": 3,
+   "guard": 2
+  },
+  "tokens": {
+   "total_tokens": 105573,
+   "prompt_tokens": 89036,
+   "completion_tokens": 16537,
+   "prompt_cache_hit_tokens": 32384
+  },
+  "cost_usd": 0.018517,
+  "global_call": {
+   "seconds": 61.2,
+   "finish": "stop",
+   "completion": 15538,
+   "share_of_limit": 0.316,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 2,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "authorization:d2897060e0e37a2a9025f3c6": [
+    "SKIP",
+    null
+   ],
+   "condition:c_miglior_triennio": [
+    "SKIP",
+    null
+   ],
+   "condition:c_societa_cciaa": [
+    "CONDITION_TRUE",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 8,
+   "correct": 8,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 1.0,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s0",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s0",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s0",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p18.s0",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p5.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 8,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p51.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p52.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p55.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "dialogo:condizione_aperta"
+    ]
+   },
+   "p75.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p89.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p90.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p90.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "dialogo:condizione_non_confermata"
+    ]
+   },
+   "p91.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p91.s1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "dialogo:condizione_non_confermata"
+    ]
+   },
+   "p92.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p92.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p124.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p126.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   }
+  },
+  "gaps_with_reason": 14,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "catanzaro-4",
+  "document": "catanzaro",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": false,
+  "downloaded": false,
+  "export_requested": true,
+  "final_status": "FAILED",
+  "elapsed_s": 1150.3,
+  "user_messages": 2,
+  "driver_errors": 6,
+  "calls": 3,
+  "calls_by_kind": {
+   "planner": 2,
+   "global": 1
+  },
+  "tokens": {
+   "total_tokens": 133172,
+   "prompt_tokens": 92331,
+   "completion_tokens": 40841,
+   "prompt_cache_hit_tokens": 13056
+  },
+  "cost_usd": 0.036435,
+  "global_call": {
+   "seconds": 144.8,
+   "finish": "stop",
+   "completion": 40771,
+   "share_of_limit": 0.829,
+   "content_valid": false,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": "MODEL",
+  "rounds": 0,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {},
+  "loop_guard": [],
+  "core": {
+   "denominator": 31,
+   "correct": 0,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 31
+  },
+  "coverage_primary": 0.0,
+  "coverage_with_partial": 0.0,
+  "writes": [],
+  "writes_count": 0,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p57.cb0": true,
+    "p76.cb1": true,
+    "p147.cb0": true
+   },
+   "written": {
+    "p57.cb0": null,
+    "p76.cb1": null,
+    "p147.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "t0.r0.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t0.r1.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t0.r2.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t0.r3.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t0.r5.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t0.r6.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t0.r7.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t0.r9.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t0.r10.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t0.r11.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t25.r0.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t25.r2.c0": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t25.r3.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t25.r4.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t25.r4.c3": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t26.r0.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t26.r1.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t26.r3.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t26.r4.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t41.r1.c0": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t41.r1.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t41.r1.c2": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t41.r1.c3": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t41.r1.c4": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t43.r1.c0": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t43.r1.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t43.r1.c2": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t43.r1.c3": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t43.r1.c4": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t44.r1.c0": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t44.r1.c3": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t26.r2.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t44.r1.c1": {
+    "coverage_state": null,
+    "reasons": []
+   },
+   "t44.r1.c2": {
+    "coverage_state": null,
+    "reasons": []
+   }
+  },
+  "gaps_with_reason": 0,
+  "visibility_warnings": null
+ },
+ {
+  "trial": "bella-4",
+  "document": "bella",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 126.9,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 7,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "narrator": 2,
+   "guard": 1
+  },
+  "tokens": {
+   "total_tokens": 96718,
+   "prompt_tokens": 69270,
+   "completion_tokens": 27448,
+   "prompt_cache_hit_tokens": 23936
+  },
+  "cost_usd": 0.023341,
+  "global_call": {
+   "seconds": 111.2,
+   "finish": "stop",
+   "completion": 26966,
+   "share_of_limit": 0.549,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "choice:cg_tecnici_tipo",
+    "rule": "scenario_engineering_option"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "choice:cg_tecnici_tipo": [
+    "VALUE",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 8,
+   "correct": 3,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 5
+  },
+  "coverage_primary": 0.375,
+  "coverage_with_partial": 0.375,
+  "writes": [
+   {
+    "cell": "p21.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p65.cb0",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Scrittura che segue una ricevuta USER esplicita sul gruppo (choice VALUE 'Scelgo la voce Società di Ingegneria.' in risposta alla domanda sul gruppo delle caselle p65). Non è la sola decisione sul tipo giuridico esclusa dal riferimento. Nota: la risposta è della politica USER simulata (regola scenario_engineering_option) a una domanda legata alla dichiarazione di designazione dei tecnici, che resta senza nominativi; un utente reale avrebbe potuto rinviarla."
+    }
+   },
+   {
+    "cell": "p65.cb1",
+    "value": true,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Scrittura che segue una ricevuta USER esplicita sul gruppo (choice VALUE 'Scelgo la voce Società di Ingegneria.' in risposta alla domanda sul gruppo delle caselle p65). Non è la sola decisione sul tipo giuridico esclusa dal riferimento. Nota: la risposta è della politica USER simulata (regola scenario_engineering_option) a una domanda legata alla dichiarazione di designazione dei tecnici, che resta senza nominativi; un utente reale avrebbe potuto rinviarla."
+    }
+   },
+   {
+    "cell": "p65.cb2",
+    "value": false,
+    "automatic": "DA_REVISIONARE_FUORI_RIFERIMENTO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "USER",
+     "note": "Scrittura che segue una ricevuta USER esplicita sul gruppo (choice VALUE 'Scelgo la voce Società di Ingegneria.' in risposta alla domanda sul gruppo delle caselle p65). Non è la sola decisione sul tipo giuridico esclusa dal riferimento. Nota: la risposta è della politica USER simulata (regola scenario_engineering_option) a una domanda legata alla dichiarazione di designazione dei tecnici, che resta senza nominativi; un utente reale avrebbe potuto rinviarla."
+    }
+   }
+  ],
+  "writes_count": 6,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p30.cb0": true
+   },
+   "written": {
+    "p30.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p21.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p21.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p21.s5": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p21.s6": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p21.s7": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p129.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 6,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "trapani-4",
+  "document": "trapani",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 129.7,
+  "user_messages": 4,
+  "driver_errors": 10,
+  "calls": 10,
+  "calls_by_kind": {
+   "planner": 4,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 3
+  },
+  "tokens": {
+   "total_tokens": 121808,
+   "prompt_tokens": 94049,
+   "completion_tokens": 27759,
+   "prompt_cache_hit_tokens": 30464
+  },
+  "cost_usd": 0.026285,
+  "global_call": {
+   "seconds": 107.5,
+   "finish": "stop",
+   "completion": 26467,
+   "share_of_limit": 0.538,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 2,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_role_branch": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_firmatario": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:f428a3cb4482ab5c266ca46a": [
+    "SKIP",
+    null
+   ],
+   "condition:c_pec_accept": [
+    "SKIP",
+    null
+   ],
+   "field:p171.s0": [
+    "SKIP",
+    null
+   ],
+   "field:p97.s0": [
+    "SKIP",
+    null
+   ],
+   "field:p105.s0": [
+    "SKIP",
+    null
+   ],
+   "field:p104.s0": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 17,
+   "correct": 15,
+   "partial": 1,
+   "wrong": 0,
+   "empty": 1
+  },
+  "coverage_primary": 0.8824,
+  "coverage_with_partial": 0.9412,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s3",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s5",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s6",
+    "value": "Amedeo",
+    "automatic": "DA_REVISIONARE_VALORE_DIVERSO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Via di residenza del firmatario scelto ('Indirizzo di residenza: Via Amedeo 24'); il FORM stampa già 'via/piazza' e il numero civico ha una posizione propria. Conteggiata come corrispondenza parziale nella copertura primaria (regola preregistrata)."
+    }
+   },
+   {
+    "cell": "p12.s7",
+    "value": "24",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s1",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s2",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s3",
+    "value": "70126",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s4",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s5",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s6",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s7",
+    "value": "+39 080 000 2041",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s8",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 16,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p12.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p9.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p97.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "dialogo:rinviato"
+    ]
+   },
+   "p104.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "dialogo:rinviato"
+    ]
+   },
+   "p105.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "dialogo:rinviato"
+    ]
+   },
+   "p107.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza",
+     "dialogo:condizione_non_confermata"
+    ]
+   },
+   "p112.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION"
+    ]
+   },
+   "p113.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION"
+    ]
+   },
+   "p171.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "gate:procedurale_applicabilita_completezza",
+     "dialogo:rinviato"
+    ]
+   }
+  },
+  "gaps_with_reason": 9,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "soresa2023-4",
+  "document": "soresa2023",
+  "group": "nuovo",
+  "runtime": "nuova-source",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 125.4,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 8,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 90713,
+   "prompt_tokens": 62850,
+   "completion_tokens": 27863,
+   "prompt_cache_hit_tokens": 24320
+  },
+  "cost_usd": 0.02257,
+  "global_call": {
+   "seconds": 108.8,
+   "finish": "stop",
+   "completion": 27146,
+   "share_of_limit": 0.552,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_branch": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_rt_not_const": [
+    "CONDITION_FALSE",
+    "initial_request"
+   ],
+   "condition:c_single": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "field:p115.s0": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 15,
+   "correct": 7,
+   "partial": 1,
+   "wrong": 0,
+   "empty": 7
+  },
+  "coverage_primary": 0.4667,
+  "coverage_with_partial": 0.5333,
+  "writes": [
+   {
+    "cell": "p115.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p115.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s7",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s8",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s9",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r1.c0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DA_REVISIONARE_VALORE_DIVERSO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Denominazione dell'operatore documentata nella scheda tabellare, soggetto e ramo (operatore singolo) corretti; valore incompleto (manca la sede richiesta nella stessa cella): non conta per la copertura, non è una scrittura non dimostrata."
+    }
+   }
+  ],
+  "writes_count": 8,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p8.s0": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s2": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s4": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s5": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s6": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "dialogo:rinviato"
+    ]
+   }
+  },
+  "gaps_with_reason": 8,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "minervino-5",
+  "document": "minervino",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 195.4,
+  "user_messages": 6,
+  "driver_errors": 10,
+  "calls": 17,
+  "calls_by_kind": {
+   "planner": 6,
+   "global": 1,
+   "registry": 1,
+   "guard": 3,
+   "narrator": 6
+  },
+  "tokens": {
+   "total_tokens": 230420,
+   "prompt_tokens": 185679,
+   "completion_tokens": 44741,
+   "prompt_cache_hit_tokens": 53760
+  },
+  "cost_usd": 0.046794,
+  "global_call": {
+   "seconds": 154.1,
+   "finish": "stop",
+   "completion": 42496,
+   "share_of_limit": 0.865,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 4,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "condition:c_studio",
+    "rule": "scenario_signer_representation"
+   },
+   {
+    "round": 1,
+    "key": "condition:c_consorzio",
+    "rule": "scenario_company_and_single_participation"
+   },
+   {
+    "round": 2,
+    "key": "condition:c_studio",
+    "rule": "scenario_signer_representation"
+   },
+   {
+    "round": 2,
+    "key": "condition:c_consorzio",
+    "rule": "scenario_company_and_single_participation"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_soc": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_rtp": [
+    "SKIP",
+    null
+   ],
+   "condition:c_libero": [
+    "SKIP",
+    null
+   ],
+   "condition:c_studio": [
+    "UNKNOWN",
+    "BACKEND_LOOP_GUARD"
+   ],
+   "condition:c_consorzio": [
+    "UNKNOWN",
+    "BACKEND_LOOP_GUARD"
+   ],
+   "decision:ff6a9c86b0584e3ed5ac5799": [
+    "SKIP",
+    null
+   ],
+   "decision:0a242b4c138d38515e716924": [
+    "SKIP",
+    null
+   ],
+   "decision:4d948502d4305ca0995d3928": [
+    "SKIP",
+    null
+   ],
+   "decision:24278d2efa5d91eb97fdcae9": [
+    "SKIP",
+    null
+   ],
+   "decision:9128538342d18a184258aa29": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [
+   "condition:c_studio",
+   "condition:c_consorzio"
+  ],
+  "core": {
+   "denominator": 60,
+   "correct": 57,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 3
+  },
+  "coverage_primary": 0.95,
+  "coverage_with_partial": 0.95,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s1",
+    "value": "Lecce",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s2",
+    "value": "LE",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s3",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s1",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s2",
+    "value": "Amedeo 24",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s3",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s0",
+    "value": "amministratore unico e rappresentante legale",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s1",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s2",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s3",
+    "value": "+39 080 000 2041",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s1",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s1",
+    "value": "01234560981",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p40.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p41.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s0",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s1",
+    "value": "Via Giovanni Amendola",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s2",
+    "value": "172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s3",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s4",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p42.s5",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s0",
+    "value": "Luca Ferri",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s1",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s2",
+    "value": "FRRLCU80A01A662K",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s3",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p43.s4",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s0",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s1",
+    "value": "21/03/2012",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p44.s2",
+    "value": "7294",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s0",
+    "value": "Elisa Romano",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s1",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s2",
+    "value": "RMNLSI85C47A662Y",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s3",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p45.s4",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s0",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s1",
+    "value": "18/05/2015",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p46.s2",
+    "value": "8421",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p47.s0",
+    "value": "Andrea Greco",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p48.s0",
+    "value": "Architetto",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p48.s1",
+    "value": "GRCNDR84D20A662P",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s0",
+    "value": "Ordine degli Architetti di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s1",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s2",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s3",
+    "value": "12/06/2014",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p49.s4",
+    "value": "5267",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p51.s0",
+    "value": "Elisa Romano",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p52.s0",
+    "value": "Ingegnere",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p52.s1",
+    "value": "RMNLSI85C47A662Y",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p53.s0",
+    "value": "Ordine degli Ingegneri di Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p53.s1",
+    "value": "A",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p53.s2",
+    "value": "Bari (BA)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p53.s4",
+    "value": "8421",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p39.cb0",
+    "value": true,
+    "automatic": "SCELTA_USER_ATTESA",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 58,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p39.cb0": true
+   },
+   "written": {
+    "p39.cb0": true
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p16.s0": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "p41.s1": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p53.s3": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p229.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p230.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p232.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p242.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   }
+  },
+  "gaps_with_reason": 7,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "cesano-5",
+  "document": "cesano",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 124.0,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 9,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 108775,
+   "prompt_tokens": 80031,
+   "completion_tokens": 28744,
+   "prompt_cache_hit_tokens": 25984
+  },
+  "cost_usd": 0.025431,
+  "global_call": {
+   "seconds": 106.0,
+   "finish": "stop",
+   "completion": 27971,
+   "share_of_limit": 0.569,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_legale_rappresentante": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_societa": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:887a0bf9558784d262a26cd6": [
+    "CONDITION_TRUE",
+    null
+   ],
+   "field:p105.ft0": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 4,
+   "correct": 4,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 1.0,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.ft0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.ft2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p19.ft0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 4,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p19.cb0": true
+   },
+   "written": {
+    "p19.cb0": null
+   }
+  },
+  "non_positional_unresolved": [
+   "data",
+   "preferenze categorie/fasce",
+   "recapiti studio personale non dimostrati",
+   "INAIL/INPS/INARCASSA personali",
+   "iscrizione professionale Leonardo"
+  ],
+  "gaps": {},
+  "gaps_with_reason": 0,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "craa-5",
+  "document": "craa",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 93.0,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 8,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "narrator": 2,
+   "guard": 1
+  },
+  "tokens": {
+   "total_tokens": 92588,
+   "prompt_tokens": 74097,
+   "completion_tokens": 18491,
+   "prompt_cache_hit_tokens": 26624
+  },
+  "cost_usd": 0.018295,
+  "global_call": {
+   "seconds": 75.8,
+   "finish": "stop",
+   "completion": 17840,
+   "share_of_limit": 0.363,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "authorization:b6f8d430dabf4d6918e36318": [
+    "SKIP",
+    null
+   ],
+   "condition:c_societa": [
+    "CONDITION_TRUE",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 8,
+   "correct": 8,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 1.0,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p13.s0",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p14.s0",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p15.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p16.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p17.s0",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p18.s0",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p5.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 8,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p51.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p52.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p55.s0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p75.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p89.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p90.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p90.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p91.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p91.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p92.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p92.s1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p124.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p126.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 14,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "catanzaro-5",
+  "document": "catanzaro",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 163.2,
+  "user_messages": 2,
+  "driver_errors": 10,
+  "calls": 6,
+  "calls_by_kind": {
+   "planner": 2,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 1
+  },
+  "tokens": {
+   "total_tokens": 147897,
+   "prompt_tokens": 109030,
+   "completion_tokens": 38867,
+   "prompt_cache_hit_tokens": 18688
+  },
+  "cost_usd": 0.036928,
+  "global_call": {
+   "seconds": 145.8,
+   "finish": "stop",
+   "completion": 37764,
+   "share_of_limit": 0.768,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 0,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_part": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_eng": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_firmatario": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_parte3": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 31,
+   "correct": 11,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 20
+  },
+  "coverage_primary": 0.3548,
+  "coverage_with_partial": 0.3548,
+  "writes": [
+   {
+    "cell": "t0.r0.c1",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r10.c1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r2.c1",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r5.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r6.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r7.c1",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t0.r9.c1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r0.c1",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r2.c0",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c1",
+    "value": "Societa a responsabilita limitata",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "t25.r4.c3",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 11,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p57.cb0": true,
+    "p76.cb1": true,
+    "p147.cb0": true
+   },
+   "written": {
+    "p57.cb0": null,
+    "p76.cb1": null,
+    "p147.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "t0.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t0.r3.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t0.r11.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t25.r3.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t26.r0.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r1.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r3.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t26.r4.c1": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t41.r1.c0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t41.r1.c1": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t41.r1.c2": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "t41.r1.c3": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "t41.r1.c4": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "t43.r1.c0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t43.r1.c1": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t43.r1.c2": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "t43.r1.c3": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "t43.r1.c4": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "t44.r1.c0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "t44.r1.c3": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t26.r2.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "t44.r1.c1": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "t44.r1.c2": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 23,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "bella-5",
+  "document": "bella",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 106.1,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 6,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 88668,
+   "prompt_tokens": 67371,
+   "completion_tokens": 21297,
+   "prompt_cache_hit_tokens": 23168
+  },
+  "cost_usd": 0.019478,
+  "global_call": {
+   "seconds": 90.4,
+   "finish": "stop",
+   "completion": 20780,
+   "share_of_limit": 0.423,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "field:p129.s0": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 8,
+   "correct": 7,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 1
+  },
+  "coverage_primary": 0.875,
+  "coverage_with_partial": 0.875,
+  "writes": [
+   {
+    "cell": "p21.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s4",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s5",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s6",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p21.s7",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 7,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {
+    "p30.cb0": true
+   },
+   "written": {
+    "p30.cb0": null
+   }
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p21.s3": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "narratore:sospesa"
+    ]
+   },
+   "p129.s0": {
+    "coverage_state": "CLARIFICATION",
+    "reasons": [
+     "audit:CLARIFICATION",
+     "dialogo:rinviato"
+    ]
+   }
+  },
+  "gaps_with_reason": 2,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "trapani-5",
+  "document": "trapani",
+  "group": "storico",
+  "runtime": "storico",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 78.6,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 8,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 1,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 94842,
+   "prompt_tokens": 79144,
+   "completion_tokens": 15698,
+   "prompt_cache_hit_tokens": 24832
+  },
+  "cost_usd": 0.01764,
+  "global_call": {
+   "seconds": 61.2,
+   "finish": "stop",
+   "completion": 15068,
+   "share_of_limit": 0.307,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [],
+  "authorization_requests": 1,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_ing": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "authorization:d58c4c80acc46c50b44226e0": [
+    "SKIP",
+    null
+   ],
+   "decision:04ed2c9cb5b7d60806b1fecf": [
+    "SKIP",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 17,
+   "correct": 16,
+   "partial": 1,
+   "wrong": 0,
+   "empty": 0
+  },
+  "coverage_primary": 0.9412,
+  "coverage_with_partial": 1.0,
+  "writes": [
+   {
+    "cell": "p12.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s1",
+    "value": "Lecce (LE)",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s2",
+    "value": "14 novembre 1982",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s3",
+    "value": "MNTLRD82S14E506X",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s4",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s5",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p12.s6",
+    "value": "Amedeo",
+    "automatic": "DA_REVISIONARE_VALORE_DIVERSO",
+    "author_judgment": {
+     "verdict": "DIMOSTRATA",
+     "basis": "SOURCE",
+     "note": "Via di residenza del firmatario scelto ('Indirizzo di residenza: Via Amedeo 24'); il FORM stampa già 'via/piazza' e il numero civico ha una posizione propria. Conteggiata come corrispondenza parziale nella copertura primaria (regola preregistrata)."
+    }
+   },
+   {
+    "cell": "p12.s7",
+    "value": "24",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s0",
+    "value": "Mapi Ingegneria S.r.l.",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s1",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s2",
+    "value": "Bari",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s3",
+    "value": "70126",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s4",
+    "value": "BA",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s5",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s6",
+    "value": "+39 080 000 2040",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s7",
+    "value": "+39 080 000 2041",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p75.s8",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 17,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p9.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p97.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p104.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p105.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p107.s0": {
+    "coverage_state": "PROPOSED",
+    "reasons": [
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   },
+   "p112.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p113.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   },
+   "p171.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED",
+     "gate:procedurale_applicabilita_completezza"
+    ]
+   }
+  },
+  "gaps_with_reason": 8,
+  "visibility_warnings": []
+ },
+ {
+  "trial": "soresa2023-5",
+  "document": "soresa2023",
+  "group": "nuovo",
+  "runtime": "nuova-source",
+  "DOCX": true,
+  "downloaded": true,
+  "export_requested": true,
+  "final_status": "GENERATED",
+  "elapsed_s": 122.3,
+  "user_messages": 3,
+  "driver_errors": 10,
+  "calls": 9,
+  "calls_by_kind": {
+   "planner": 3,
+   "global": 1,
+   "registry": 1,
+   "guard": 2,
+   "narrator": 2
+  },
+  "tokens": {
+   "total_tokens": 90166,
+   "prompt_tokens": 64423,
+   "completion_tokens": 25743,
+   "prompt_cache_hit_tokens": 25728
+  },
+  "cost_usd": 0.021327,
+  "global_call": {
+   "seconds": 104.8,
+   "finish": "stop",
+   "completion": 25045,
+   "share_of_limit": 0.51,
+   "content_valid": true,
+   "failure": null
+  },
+  "narrator_rejections": [],
+  "provider_failures": [],
+  "failure_class": null,
+  "rounds": 1,
+  "redundant_confirmations": [
+   {
+    "round": 1,
+    "key": "field:p8.s0",
+    "rule": "name_choice_in_verified_name_slot"
+   }
+  ],
+  "authorization_requests": 0,
+  "same_question_three_rounds": [],
+  "receipts": {
+   "condition:c_p7": [
+    "CONDITION_TRUE",
+    "initial_request"
+   ],
+   "condition:c_rt_not_constituted": [
+    "CONDITION_FALSE",
+    "initial_request"
+   ],
+   "field:p8.s0": [
+    "VALUE",
+    null
+   ]
+  },
+  "loop_guard": [],
+  "core": {
+   "denominator": 15,
+   "correct": 7,
+   "partial": 0,
+   "wrong": 0,
+   "empty": 8
+  },
+  "coverage_primary": 0.4667,
+  "coverage_with_partial": 0.4667,
+  "writes": [
+   {
+    "cell": "p115.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p115.s2",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s7",
+    "value": "Via Giovanni Amendola 172/C",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s9",
+    "value": "mapi.ingegneria@pec.demo",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s0",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p9.s1",
+    "value": "IT01234567890",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   },
+   {
+    "cell": "p8.s0",
+    "value": "Leonardo Montemurro",
+    "automatic": "DIMOSTRATO_RIFERIMENTO",
+    "author_judgment": null
+   }
+  ],
+  "writes_count": 7,
+  "option_region_writes_without_authorization": [],
+  "undemonstrated_author": [],
+  "pending_author_review": [],
+  "USER_decisions": {
+   "expected": {},
+   "written": {}
+  },
+  "non_positional_unresolved": [],
+  "gaps": {
+   "p8.s1": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "p8.s2": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "p8.s3": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "p8.s4": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "p8.s5": {
+    "coverage_state": "UNASSESSED",
+    "reasons": [
+     "audit:UNASSESSED"
+    ]
+   },
+   "p8.s6": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "p8.s8": {
+    "coverage_state": "REJECTED_PROPOSAL",
+    "reasons": [
+     "audit:REJECTED_PROPOSAL",
+     "audit:REJECTED"
+    ]
+   },
+   "t0.r1.c0": {
+    "coverage_state": "REJECTED_EXPLANATION",
+    "reasons": [
+     "audit:REJECTED_EXPLANATION"
+    ]
+   },
+   "p115.s0": {
+    "coverage_state": "EXPLAINED_UNFILLED",
+    "reasons": [
+     "audit:EXPLAINED_UNFILLED"
+    ]
+   }
+  },
+  "gaps_with_reason": 9,
+  "visibility_warnings": []
+ }
+]

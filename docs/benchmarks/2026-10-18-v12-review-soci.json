@@ -1,0 +1,883 @@
+{
+  "quality": {
+    "session_id": "19be5edcf19e49acb2e25a7dab370000",
+    "conversation_id": "conv-090ab2720d6340a2",
+    "form_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "docx_sha256": "4a29f7d306a6664b88208f8ba88bff5738123310a84853ff4e770f69dae126c8",
+    "model_facts": 55,
+    "model_assignments": 60,
+    "source_target_slots": 60,
+    "model_values_conform_gold": 58,
+    "source_assignments_grounded": 44,
+    "source_assignments_not_grounded": 16,
+    "rejection_groups": {
+      "Binding di ruolo rifiutato": 9,
+      "Il solo marker non documenta la richiesta del campo": 1,
+      "": 2,
+      "Estratto non presente nel FORM": 1,
+      "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore": 3
+    },
+    "reviewed_final": 44,
+    "held_final": 0,
+    "source_reuse": 0,
+    "grounded_still_unknown": [
+      "p51.s0",
+      "p53.s0",
+      "p53.s1"
+    ],
+    "source_written": 41,
+    "user_written": 1,
+    "written_total": 42,
+    "gold_source_exact_matches": 42,
+    "gold_source_gaps": 18,
+    "gold_wrong_written": 0,
+    "soci": {
+      "proposed": 24,
+      "model_conform": 24,
+      "grounded": 23,
+      "reviewed": 23,
+      "written": 24,
+      "previous_16_lost_review": 8
+    },
+    "native_checked": 0,
+    "native_required_at_T0_missing": [
+      "Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente"
+    ],
+    "native_required_without_user": [
+      "che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+      "che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:"
+    ],
+    "missing_user_text": [
+      "p229.s0",
+      "p230.s0",
+      "p232.s0",
+      "p242.s0"
+    ],
+    "correctly_blank_text": 123,
+    "correctly_blank_text_total": 123,
+    "xml_only_document_changed": true,
+    "all_physical_writes_equal_report": true,
+    "table_count": 4,
+    "native_count": 13,
+    "user_script_topics_asked": [],
+    "new_run_is_not_paired_comparison": true,
+    "source_target_filled_by_user": 1,
+    "source_provenance_target_matches": 41,
+    "source_target_physical_matches": 42,
+    "source_target_physical_gaps": 18,
+    "soci_source_written": 23,
+    "soci_user_written": 1,
+    "soci_bindings_verified": 24,
+    "autonomous_soci_before_qualification_choice": 23,
+    "reviewer_windows": [
+      40,
+      4,
+      0,
+      0
+    ],
+    "unknown_grounded_written": 0,
+    "held_written": 0,
+    "additional_clarification_required": true
+  },
+  "costs": {
+    "calls": [
+      {
+        "call": "01",
+        "stage": "router",
+        "seconds": 1.2371406250167638,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 3907,
+          "completion_tokens": 35,
+          "total_tokens": 3942,
+          "prompt_tokens_details": {
+            "cached_tokens": 3712
+          },
+          "prompt_cache_hit_tokens": 3712,
+          "prompt_cache_miss_tokens": 195
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      },
+      {
+        "call": "02",
+        "stage": "global",
+        "seconds": 174.30752325599315,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 76700,
+          "completion_tokens": 47683,
+          "total_tokens": 124383,
+          "prompt_tokens_details": {
+            "cached_tokens": 1664
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 32433
+          },
+          "prompt_cache_hit_tokens": 1664,
+          "prompt_cache_miss_tokens": 75036
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      },
+      {
+        "call": "03",
+        "stage": "narrator",
+        "seconds": 2.434106981003424,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 14200,
+          "completion_tokens": 250,
+          "total_tokens": 14450,
+          "prompt_tokens_details": {
+            "cached_tokens": 1664
+          },
+          "prompt_cache_hit_tokens": 1664,
+          "prompt_cache_miss_tokens": 12536
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      },
+      {
+        "call": "04",
+        "stage": "narrator",
+        "seconds": 1.5143767029803712,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 7549,
+          "completion_tokens": 104,
+          "total_tokens": 7653,
+          "prompt_tokens_details": {
+            "cached_tokens": 1664
+          },
+          "prompt_cache_hit_tokens": 1664,
+          "prompt_cache_miss_tokens": 5885
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      },
+      {
+        "call": "05",
+        "stage": "router",
+        "seconds": 1.5628575339796953,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 4892,
+          "completion_tokens": 224,
+          "total_tokens": 5116,
+          "prompt_tokens_details": {
+            "cached_tokens": 2944
+          },
+          "prompt_cache_hit_tokens": 2944,
+          "prompt_cache_miss_tokens": 1948
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      },
+      {
+        "call": "06",
+        "stage": "scope_guard",
+        "seconds": 1.2474288429948501,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 2454,
+          "completion_tokens": 112,
+          "total_tokens": 2566,
+          "prompt_tokens_details": {
+            "cached_tokens": 1280
+          },
+          "prompt_cache_hit_tokens": 1280,
+          "prompt_cache_miss_tokens": 1174
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      },
+      {
+        "call": "07",
+        "stage": "narrator",
+        "seconds": 1.3188844099931885,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 6362,
+          "completion_tokens": 51,
+          "total_tokens": 6413,
+          "prompt_tokens_details": {
+            "cached_tokens": 1664
+          },
+          "prompt_cache_hit_tokens": 1664,
+          "prompt_cache_miss_tokens": 4698
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      },
+      {
+        "call": "08",
+        "stage": "router",
+        "seconds": 1.132914172980236,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 4464,
+          "completion_tokens": 112,
+          "total_tokens": 4576,
+          "prompt_tokens_details": {
+            "cached_tokens": 2944
+          },
+          "prompt_cache_hit_tokens": 2944,
+          "prompt_cache_miss_tokens": 1520
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      },
+      {
+        "call": "09",
+        "stage": "scope_guard",
+        "seconds": 1.160398248990532,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 1764,
+          "completion_tokens": 55,
+          "total_tokens": 1819,
+          "prompt_tokens_details": {
+            "cached_tokens": 1280
+          },
+          "prompt_cache_hit_tokens": 1280,
+          "prompt_cache_miss_tokens": 484
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      },
+      {
+        "call": "10",
+        "stage": "narrator",
+        "seconds": 1.1157993960077874,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 6320,
+          "completion_tokens": 13,
+          "total_tokens": 6333,
+          "prompt_tokens_details": {
+            "cached_tokens": 2048
+          },
+          "prompt_cache_hit_tokens": 2048,
+          "prompt_cache_miss_tokens": 4272
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      },
+      {
+        "call": "11",
+        "stage": "router",
+        "seconds": 1.2399197540071327,
+        "http_status": 200,
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 4490,
+          "completion_tokens": 35,
+          "total_tokens": 4525,
+          "prompt_tokens_details": {
+            "cached_tokens": 3200
+          },
+          "prompt_cache_hit_tokens": 3200,
+          "prompt_cache_miss_tokens": 1290
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "request_forwarded_unchanged": true
+      }
+    ],
+    "call_counts": {
+      "global": 1,
+      "narrator": 4,
+      "router": 4,
+      "scope_guard": 2
+    },
+    "usage": {
+      "prompt_tokens": 133102,
+      "completion_tokens": 48674,
+      "total_tokens": 181776,
+      "prompt_cache_hit_tokens": 24064,
+      "prompt_cache_miss_tokens": 109038,
+      "reasoning_tokens": 32433
+    },
+    "estimated_usd": 0.045632292,
+    "not_account_invoice": true,
+    "price": {
+      "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "consulted": "2026-10-18",
+      "hit_usd_per_million": 0.003,
+      "miss_usd_per_million": 0.15,
+      "output_usd_per_million": 0.6,
+      "off_peak": "Sunday, actual observations 12:56-13:05 UTC",
+      "same_rate_card_as_previous_run": true
+    },
+    "provider_seconds": 188.27134992394713,
+    "sequential_post_seconds": 194.95971200000002,
+    "post_requests": [
+      {
+        "url": "projects/minervino-di-lecce-elenco-sia/answer",
+        "seconds": 1.714846,
+        "status": 200
+      },
+      {
+        "url": "projects/minervino-di-lecce-elenco-sia/compilation-sessions/19be5edcf19e49acb2e25a7dab370000/resolve",
+        "seconds": 178.54495300000002,
+        "status": 200
+      },
+      {
+        "url": "projects/minervino-di-lecce-elenco-sia/compilation-sessions/19be5edcf19e49acb2e25a7dab370000/resolve",
+        "seconds": 1.925075,
+        "status": 200
+      },
+      {
+        "url": "projects/minervino-di-lecce-elenco-sia/answer",
+        "seconds": 3.052293,
+        "status": 200
+      },
+      {
+        "url": "projects/minervino-di-lecce-elenco-sia/compilation-sessions/19be5edcf19e49acb2e25a7dab370000/resolve",
+        "seconds": 1.857053,
+        "status": 200
+      },
+      {
+        "url": "projects/minervino-di-lecce-elenco-sia/answer",
+        "seconds": 2.6429810000000002,
+        "status": 200
+      },
+      {
+        "url": "projects/minervino-di-lecce-elenco-sia/compilation-sessions/19be5edcf19e49acb2e25a7dab370000/resolve",
+        "seconds": 1.600974,
+        "status": 200
+      },
+      {
+        "url": "projects/minervino-di-lecce-elenco-sia/answer",
+        "seconds": 3.621537,
+        "status": 200
+      }
+    ],
+    "complete_wire_requests_and_http_responses_for_all_calls": true,
+    "no_quality_retries": true,
+    "browser_seconds": 512.835
+  },
+  "offline": {
+    "prompt-windows-fixed": {
+      "proposed_source": 59,
+      "grounded_source": 53,
+      "source_reuse": 8,
+      "reviewed_source": 53,
+      "source_written": 53,
+      "user_written": 1,
+      "total_written": 54,
+      "soci_written": 24,
+      "non_grounded_proposals": 6,
+      "source_proposals_not_reviewed": 0,
+      "grounded_still_unknown": 0,
+      "source_target_gaps": 6,
+      "written_values_not_matching_gold": 1,
+      "errors": [
+        {
+          "candidate_id": "p14.s0",
+          "label": "Carica firmatario",
+          "value": "amministratore unico e rappresentante legale",
+          "expected": "rappresentante legale",
+          "written": true,
+          "conforms": false
+        }
+      ],
+      "not_accuracy_of_entire_kb": true,
+      "checkboxes_written": 0,
+      "all_physical_values_equal_report": true,
+      "only_document_xml_changed": true,
+      "docx_sha256": "5b894f80b1f2303492ce44985f588e60a44b9e0a0dde28e071f03ab6b8513c95",
+      "rejections": [
+        {
+          "candidate_id": "p15.s0",
+          "errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ]
+        },
+        {
+          "candidate_id": "p15.s1",
+          "errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ]
+        },
+        {
+          "candidate_id": "p41.s1",
+          "errors": [
+            "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+          ]
+        },
+        {
+          "candidate_id": "p53.s1",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s2",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s3",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        }
+      ]
+    },
+    "baseline27": {
+      "proposed_source": 60,
+      "grounded_source": 27,
+      "source_reuse": 0,
+      "reviewed_source": 27,
+      "source_written": 27,
+      "user_written": 0,
+      "total_written": 27,
+      "soci_written": 8,
+      "non_grounded_proposals": 33,
+      "source_proposals_not_reviewed": 0,
+      "grounded_still_unknown": 0,
+      "source_target_gaps": 33,
+      "written_values_not_matching_gold": 0,
+      "errors": [],
+      "not_accuracy_of_entire_kb": true,
+      "checkboxes_written": 0,
+      "all_physical_values_equal_report": true,
+      "only_document_xml_changed": true,
+      "docx_sha256": "54f307b4d8f65022924fb5f7afb8c1cc305326f253bf8db38e5ea84490497cfa",
+      "rejections": [
+        {
+          "candidate_id": "p12.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p12.s1",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p12.s2",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p12.s3",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p13.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p13.s1",
+          "errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ]
+        },
+        {
+          "candidate_id": "p13.s2",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p13.s3",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p14.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p15.s0",
+          "errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ]
+        },
+        {
+          "candidate_id": "p45.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p45.s1",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p45.s2",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p45.s3",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p45.s4",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p46.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p46.s1",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p46.s2",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p47.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p48.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p48.s1",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p49.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p49.s1",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p49.s2",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p49.s3",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p49.s4",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p51.s0",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p52.s0",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s0",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s1",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s2",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s3",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s4",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        }
+      ]
+    },
+    "title-row43": {
+      "proposed_source": 60,
+      "grounded_source": 43,
+      "source_reuse": 0,
+      "reviewed_source": 43,
+      "source_written": 43,
+      "user_written": 0,
+      "total_written": 43,
+      "soci_written": 24,
+      "non_grounded_proposals": 17,
+      "source_proposals_not_reviewed": 0,
+      "grounded_still_unknown": 0,
+      "source_target_gaps": 17,
+      "written_values_not_matching_gold": 0,
+      "errors": [],
+      "not_accuracy_of_entire_kb": true,
+      "checkboxes_written": 0,
+      "all_physical_values_equal_report": true,
+      "only_document_xml_changed": true,
+      "docx_sha256": "04ebad09116010c156883c3f5401502fe6ae93b811b4282a24cceb757a2d0142",
+      "rejections": [
+        {
+          "candidate_id": "p12.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p12.s1",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p12.s2",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p12.s3",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p13.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p13.s1",
+          "errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ]
+        },
+        {
+          "candidate_id": "p13.s2",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p13.s3",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p14.s0",
+          "errors": [
+            "Binding di ruolo rifiutato"
+          ]
+        },
+        {
+          "candidate_id": "p15.s0",
+          "errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ]
+        },
+        {
+          "candidate_id": "p51.s0",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p52.s0",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s0",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s1",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s2",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s3",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s4",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        }
+      ]
+    }
+  },
+  "before_after": {
+    "before_written": 27,
+    "after_written": 42,
+    "new_fields": [
+      "p45.s0",
+      "p45.s1",
+      "p45.s2",
+      "p45.s3",
+      "p45.s4",
+      "p46.s0",
+      "p46.s1",
+      "p46.s2",
+      "p47.s0",
+      "p48.s0",
+      "p48.s1",
+      "p49.s0",
+      "p49.s1",
+      "p49.s2",
+      "p49.s3",
+      "p49.s4"
+    ],
+    "lost_fields": [
+      "p52.s1"
+    ],
+    "changed_values": {},
+    "paired_input": true,
+    "dialogue_differs": true
+  },
+  "input_comparison": {
+    "per_key_equal": {
+      "reading_plan": true,
+      "schema_output": true,
+      "source_coverage": true,
+      "sources": true,
+      "project_id": true,
+      "form": true,
+      "user_context": true,
+      "user_values": true,
+      "proposal_stage": true
+    },
+    "entire_global_input_equal": true,
+    "only_global_system_instructions_changed": true,
+    "different_output_and_additional_user_turns": true,
+    "same_global_request_settings_except_system_message": true
+  },
+  "preservation": {
+    "protected_count": 205,
+    "changed_expected_files": [
+      "backend/app/compilation_global_dialogue.py",
+      "backend/app/compilation_global_sessions.py",
+      "backend/app/compilation_global.py",
+      "backend/tests/test_compilation_binding_evidence.py",
+      "backend/tests/test_compilation_continuation.py"
+    ],
+    "new_test_file": "backend/tests/test_compilation_review_windows.py",
+    "other_protected_files_unchanged": true,
+    "all_global_validator_functions_classes_unchanged": true,
+    "original_sessions_unchanged": 29,
+    "original_storage_files_unchanged": 273,
+    "form_source_schema_user_context_equal_previous_real_ui": true,
+    "docx_xml_crc_positions_report_passed": true,
+    "soci_written_verified_in_xml": 24,
+    "soci_source": 23,
+    "soci_user": 1,
+    "no_factual_false_positives_observed_in_new_writes": true,
+    "no_automatic_unknown_true_or_resolved_promotion": true,
+    "software_suite_final": "2479 passed in 288.71s",
+    "ruff_final": "All checks passed!",
+    "new_test_count": 20,
+    "baseline_new_tests_red": "11 failed, 2 passed",
+    "initial_whole_suite": "2477 passed, 2 failed (old repeated-context expectation; test updated to retained receipts)",
+    "no_form_model_writer_api_routes_db_schema_changes": true
+  },
+  "prototype_dialogue_missing_topics_unchanged": true,
+  "e1_not_started": true
+}

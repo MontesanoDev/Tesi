@@ -1,0 +1,2884 @@
+{
+  "scope": "offline local grounding; no USER, export or LLM quality run",
+  "runs": [
+    {
+      "run": "b0-03",
+      "provider_calls": 0,
+      "user_values": 0,
+      "new_exports": 0,
+      "before_grounded": 22,
+      "after_grounded": 28,
+      "after_grounded_gold_matches": 27,
+      "recovered_count": 6,
+      "recovered_ids": [
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p53.s1",
+        "p53.s3"
+      ],
+      "recovered_gold_matches": 6,
+      "recovery_formats": {
+        "markdown_role_table": 4,
+        "named_role_line": 2
+      },
+      "lost_grounded_count": 0,
+      "still_blocked_proposed_count": 22,
+      "still_blocked_ids": [
+        "p43.s0",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4",
+        "p52.s1",
+        "p53.s2"
+      ],
+      "new_nonconformant_acceptances": 0,
+      "preexisting_nonconformant_acceptances": [
+        "p41.s1"
+      ],
+      "grounded_facts_identical": true,
+      "conditions_identical": true,
+      "resolved": 0,
+      "writes": 0,
+      "recovered_proposals_still_conditional": true,
+      "recovered_fields": [
+        {
+          "candidate_id": "p43.s1",
+          "label": "Socio Luca Ferri: Qualifica",
+          "subject": "Luca Ferri / socio",
+          "value": "Ingegnere",
+          "gold_value": "Ingegnere",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "subject": "Luca Ferri",
+                "line_range": [
+                  14,
+                  19
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p43.s2",
+          "label": "Socio Luca Ferri: CF",
+          "subject": "Luca Ferri / socio",
+          "value": "FRRLCU80A01A662K",
+          "gold_value": "FRRLCU80A01A662K",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "subject": "Luca Ferri",
+                "line_range": [
+                  14,
+                  19
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p43.s3",
+          "label": "Socio Luca Ferri: Ordine",
+          "subject": "Luca Ferri / socio",
+          "value": "Ordine degli Ingegneri di Bari",
+          "gold_value": "Ordine degli Ingegneri di Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "subject": "Luca Ferri",
+                "line_range": [
+                  14,
+                  19
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p43.s4",
+          "label": "Socio Luca Ferri: Sezione",
+          "subject": "Luca Ferri / socio",
+          "value": "A",
+          "gold_value": "A",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -54,
+                "format": "markdown_role_table",
+                "title": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "header": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+                "delimiter": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+                "row": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "subject": "Luca Ferri",
+                "line_range": [
+                  14,
+                  19
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                },
+                {
+                  "chunk_id": -54,
+                  "file_id": -10,
+                  "chunk_index": 2,
+                  "source_name": "integrazione-company.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -54,
+                  "citation_rebound": false,
+                  "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                  "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p53.s1",
+          "label": "Direttore tecnico Elisa Romano: Sezione",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "A",
+          "gold_value": "A",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_dt",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -55,
+                "file_id": -10,
+                "chunk_index": 3,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -55,
+                "citation_rebound": false,
+                "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -55,
+                "format": "named_role_line",
+                "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "line_range": [
+                  6,
+                  7
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -45,
+                  "file_id": -7,
+                  "chunk_index": 2,
+                  "source_name": "generalita-mapi.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -45,
+                  "citation_rebound": false,
+                  "quote": "### Ing. Elisa Romano - direttore tecnico",
+                  "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+                },
+                {
+                  "chunk_id": -45,
+                  "file_id": -7,
+                  "chunk_index": 2,
+                  "source_name": "generalita-mapi.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -45,
+                  "citation_rebound": false,
+                  "quote": "- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.",
+                  "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p53.s3",
+          "label": "Direttore tecnico Elisa Romano: Data iscrizione",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "18 maggio 2015",
+          "gold_value": "18/05/2015",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_dt",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -55,
+                "file_id": -10,
+                "chunk_index": 3,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -55,
+                "citation_rebound": false,
+                "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -55,
+                "format": "named_role_line",
+                "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "line_range": [
+                  6,
+                  7
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -45,
+                  "file_id": -7,
+                  "chunk_index": 2,
+                  "source_name": "generalita-mapi.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -45,
+                  "citation_rebound": false,
+                  "quote": "### Ing. Elisa Romano - direttore tecnico",
+                  "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+                },
+                {
+                  "chunk_id": -45,
+                  "file_id": -7,
+                  "chunk_index": 2,
+                  "source_name": "generalita-mapi.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -45,
+                  "citation_rebound": false,
+                  "quote": "- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.",
+                  "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        }
+      ],
+      "still_blocked_fields": [
+        {
+          "candidate_id": "p43.s0",
+          "label": "Socio Luca Ferri: Nome",
+          "subject": "Luca Ferri / socio",
+          "value": "Ing. Luca Ferri",
+          "gold_value": "Ing. Luca Ferri",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ],
+            "record_attributions": []
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p44.s0",
+          "label": "Socio Luca Ferri: Provincia",
+          "subject": "Luca Ferri / socio",
+          "value": "Bari (BA)",
+          "gold_value": "Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p44.s1",
+          "label": "Socio Luca Ferri: Data iscrizione",
+          "subject": "Luca Ferri / socio",
+          "value": "21/03/2012",
+          "gold_value": "21/03/2012",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p44.s2",
+          "label": "Socio Luca Ferri: Numero iscrizione",
+          "subject": "Luca Ferri / socio",
+          "value": "7294",
+          "gold_value": "7294",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_luca_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p45.s0",
+          "label": "Socio Elisa Romano: Nome",
+          "subject": "Elisa Romano / socia",
+          "value": "Ing. Elisa Romano",
+          "gold_value": "Ing. Elisa Romano",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p45.s1",
+          "label": "Socio Elisa Romano: Qualifica",
+          "subject": "Elisa Romano / socia",
+          "value": "Ingegnere",
+          "gold_value": "Ingegnere",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p45.s2",
+          "label": "Socio Elisa Romano: CF",
+          "subject": "Elisa Romano / socia",
+          "value": "RMNLSI85C47A662Y",
+          "gold_value": "RMNLSI85C47A662Y",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p45.s3",
+          "label": "Socio Elisa Romano: Ordine",
+          "subject": "Elisa Romano / socia",
+          "value": "Ordine degli Ingegneri di Bari",
+          "gold_value": "Ordine degli Ingegneri di Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p45.s4",
+          "label": "Socio Elisa Romano: Sezione",
+          "subject": "Elisa Romano / socia",
+          "value": "A",
+          "gold_value": "A",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p46.s0",
+          "label": "Socio Elisa Romano: Provincia",
+          "subject": "Elisa Romano / socia",
+          "value": "Bari (BA)",
+          "gold_value": "Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Fatto SOURCE assente o rifiutato",
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Fatto SOURCE assente o rifiutato",
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REJECTED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {},
+          "fact_validation": "REJECTED",
+          "residual_category": "value_citation_rejected"
+        },
+        {
+          "candidate_id": "p46.s1",
+          "label": "Socio Elisa Romano: Data iscrizione",
+          "subject": "Elisa Romano / socia",
+          "value": "18 maggio 2015",
+          "gold_value": "18/05/2015",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p46.s2",
+          "label": "Socio Elisa Romano: Numero iscrizione",
+          "subject": "Elisa Romano / socia",
+          "value": "8421",
+          "gold_value": "8421",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p47.s0",
+          "label": "Socio Andrea Greco: Nome",
+          "subject": "Andrea Greco / socio",
+          "value": "Arch. Andrea Greco",
+          "gold_value": "Arch. Andrea Greco",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p48.s0",
+          "label": "Socio Andrea Greco: Qualifica",
+          "subject": "Andrea Greco / socio",
+          "value": "Architetto",
+          "gold_value": "Architetto",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p48.s1",
+          "label": "Socio Andrea Greco: CF",
+          "subject": "Andrea Greco / socio",
+          "value": "GRCNDR84D20A662P",
+          "gold_value": "GRCNDR84D20A662P",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p49.s0",
+          "label": "Socio Andrea Greco: Ordine",
+          "subject": "Andrea Greco / socio",
+          "value": "Ordine degli Architetti di Bari",
+          "gold_value": "Ordine degli Architetti di Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p49.s1",
+          "label": "Socio Andrea Greco: Sezione",
+          "subject": "Andrea Greco / socio",
+          "value": "A",
+          "gold_value": "A",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p49.s2",
+          "label": "Socio Andrea Greco: Provincia",
+          "subject": "Andrea Greco / socio",
+          "value": "Bari (BA)",
+          "gold_value": "Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p49.s3",
+          "label": "Socio Andrea Greco: Data iscrizione",
+          "subject": "Andrea Greco / socio",
+          "value": "12/06/2014",
+          "gold_value": "12/06/2014",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p49.s4",
+          "label": "Socio Andrea Greco: Numero iscrizione",
+          "subject": "Andrea Greco / socio",
+          "value": "5267",
+          "gold_value": "5267",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Binding di ruolo rifiutato"
+          ],
+          "after_errors": [
+            "Ruolo FORM esterno al contesto del candidate"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_andrea_socio",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Ruolo FORM esterno al contesto del candidate"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:42",
+              "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              },
+              {
+                "chunk_id": -54,
+                "file_id": -10,
+                "chunk_index": 2,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -54,
+                "citation_rebound": false,
+                "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+                "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+              }
+            ]
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_role_context"
+        },
+        {
+          "candidate_id": "p52.s1",
+          "label": "Direttore tecnico Elisa Romano: CF",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "RMNLSI85C47A662Y",
+          "gold_value": "RMNLSI85C47A662Y",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa_dt",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "### Ing. Elisa Romano - direttore tecnico",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              },
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              }
+            ],
+            "record_attributions": []
+          },
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p53.s2",
+          "label": "Direttore tecnico Elisa Romano: Provincia",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "Bari (BA)",
+          "gold_value": "Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Fatto SOURCE assente o rifiutato",
+            "Binding senza fatto SOURCE grounded"
+          ],
+          "after_errors": [
+            "Fatto SOURCE assente o rifiutato",
+            "Binding senza fatto SOURCE grounded"
+          ],
+          "after_validation": "REJECTED",
+          "after_binding": {
+            "binding_id": "b_elisa_dt",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "Binding senza fatto SOURCE grounded"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "### Ing. Elisa Romano - direttore tecnico",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              },
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              }
+            ]
+          },
+          "condition_checks": {},
+          "fact_validation": "REJECTED",
+          "residual_category": "value_citation_rejected"
+        }
+      ],
+      "nonconformant_grounded_fields": [
+        {
+          "candidate_id": "p41.s1",
+          "label": "Comune sede società",
+          "subject": "Mapi Ingegneria S.r.l.",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "gold_value": "Bari",
+          "matches_frozen_gold": false,
+          "raw_proposed": true,
+          "before_grounded": true,
+          "after_grounded": true,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {},
+          "condition_checks": {
+            "c_p39": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        }
+      ],
+      "residual_disjoint_categories": {
+        "source_role_record": 2,
+        "form_role_context": 18,
+        "value_citation_rejected": 2
+      },
+      "distinct_recovered_fact_ids": 6
+    },
+    {
+      "run": "index-01",
+      "provider_calls": 0,
+      "user_values": 0,
+      "new_exports": 0,
+      "before_grounded": 19,
+      "after_grounded": 24,
+      "after_grounded_gold_matches": 23,
+      "recovered_count": 5,
+      "recovered_ids": [
+        "p52.s0",
+        "p53.s0",
+        "p53.s1",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "recovered_gold_matches": 5,
+      "recovery_formats": {
+        "named_role_line": 5
+      },
+      "lost_grounded_count": 0,
+      "still_blocked_proposed_count": 3,
+      "still_blocked_ids": [
+        "p15.s0",
+        "p52.s1",
+        "p53.s2"
+      ],
+      "new_nonconformant_acceptances": 0,
+      "preexisting_nonconformant_acceptances": [
+        "p41.s1"
+      ],
+      "grounded_facts_identical": true,
+      "conditions_identical": true,
+      "resolved": 0,
+      "writes": 0,
+      "recovered_proposals_still_conditional": true,
+      "recovered_fields": [
+        {
+          "candidate_id": "p52.s0",
+          "label": "Direttore tecnico Elisa Romano: Qualifica",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "ingegnere",
+          "gold_value": "Ingegnere",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -55,
+                "file_id": -10,
+                "chunk_index": 3,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -55,
+                "citation_rebound": false,
+                "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -55,
+                "format": "named_role_line",
+                "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "line_range": [
+                  6,
+                  7
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -45,
+                  "file_id": -7,
+                  "chunk_index": 2,
+                  "source_name": "generalita-mapi.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -45,
+                  "citation_rebound": false,
+                  "quote": "### Ing. Elisa Romano - direttore tecnico",
+                  "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p53.s0",
+          "label": "Direttore tecnico Elisa Romano: Ordine",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "Ordine degli Ingegneri di Bari",
+          "gold_value": "Ordine degli Ingegneri di Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -55,
+                "file_id": -10,
+                "chunk_index": 3,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -55,
+                "citation_rebound": false,
+                "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -55,
+                "format": "named_role_line",
+                "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "line_range": [
+                  6,
+                  7
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -45,
+                  "file_id": -7,
+                  "chunk_index": 2,
+                  "source_name": "generalita-mapi.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -45,
+                  "citation_rebound": false,
+                  "quote": "### Ing. Elisa Romano - direttore tecnico",
+                  "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p53.s1",
+          "label": "Direttore tecnico Elisa Romano: Sezione",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "A",
+          "gold_value": "A",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -55,
+                "file_id": -10,
+                "chunk_index": 3,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -55,
+                "citation_rebound": false,
+                "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -55,
+                "format": "named_role_line",
+                "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "line_range": [
+                  6,
+                  7
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -45,
+                  "file_id": -7,
+                  "chunk_index": 2,
+                  "source_name": "generalita-mapi.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -45,
+                  "citation_rebound": false,
+                  "quote": "### Ing. Elisa Romano - direttore tecnico",
+                  "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p53.s3",
+          "label": "Direttore tecnico Elisa Romano: Data iscrizione",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "18 maggio 2015",
+          "gold_value": "18/05/2015",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -55,
+                "file_id": -10,
+                "chunk_index": 3,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -55,
+                "citation_rebound": false,
+                "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -55,
+                "format": "named_role_line",
+                "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "line_range": [
+                  6,
+                  7
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -45,
+                  "file_id": -7,
+                  "chunk_index": 2,
+                  "source_name": "generalita-mapi.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -45,
+                  "citation_rebound": false,
+                  "quote": "### Ing. Elisa Romano - direttore tecnico",
+                  "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        },
+        {
+          "candidate_id": "p53.s4",
+          "label": "Direttore tecnico Elisa Romano: Numero iscrizione",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "8421",
+          "gold_value": "8421",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": true,
+          "recovered": true,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa",
+            "result": "literal_match",
+            "semantic_review_required": true,
+            "validation_errors": [],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -55,
+                "file_id": -10,
+                "chunk_index": 3,
+                "source_name": "integrazione-company.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -55,
+                "citation_rebound": false,
+                "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+              }
+            ],
+            "record_attributions": [
+              {
+                "chunk_id": -55,
+                "format": "named_role_line",
+                "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+                "line_range": [
+                  6,
+                  7
+                ]
+              }
+            ],
+            "recovery": {
+              "method": "fact_source_record",
+              "original_validation_errors": [
+                "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+              ],
+              "original_source_evidence": [
+                {
+                  "chunk_id": -45,
+                  "file_id": -7,
+                  "chunk_index": 2,
+                  "source_name": "generalita-mapi.md",
+                  "role": "source",
+                  "scope": "global",
+                  "project_id": null,
+                  "category": "company",
+                  "cited_chunk_id": -45,
+                  "citation_rebound": false,
+                  "quote": "### Ing. Elisa Romano - direttore tecnico",
+                  "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+                }
+              ]
+            }
+          },
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        }
+      ],
+      "still_blocked_fields": [
+        {
+          "candidate_id": "p15.s0",
+          "label": "Comune sede",
+          "subject": "Mapi Ingegneria S.r.l.",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "gold_value": "Bari",
+          "matches_frozen_gold": false,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ],
+          "after_errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ],
+          "after_validation": "REJECTED",
+          "after_binding": {},
+          "condition_checks": {},
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "form_destination"
+        },
+        {
+          "candidate_id": "p52.s1",
+          "label": "Direttore tecnico Elisa Romano: CF",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "RMNLSI85C47A662Y",
+          "gold_value": "RMNLSI85C47A662Y",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "### Ing. Elisa Romano - direttore tecnico",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              }
+            ],
+            "record_attributions": []
+          },
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        },
+        {
+          "candidate_id": "p53.s2",
+          "label": "Direttore tecnico Elisa Romano: Provincia",
+          "subject": "Elisa Romano / direttore tecnico",
+          "value": "Bari (BA)",
+          "gold_value": "Bari",
+          "matches_frozen_gold": true,
+          "raw_proposed": true,
+          "before_grounded": false,
+          "after_grounded": false,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {
+            "binding_id": "b_elisa",
+            "result": "review_required",
+            "semantic_review_required": true,
+            "validation_errors": [
+              "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+            ],
+            "form_evidence": {
+              "paragraph_id": "paragraph:50",
+              "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+            },
+            "source_evidence": [
+              {
+                "chunk_id": -45,
+                "file_id": -7,
+                "chunk_index": 2,
+                "source_name": "generalita-mapi.md",
+                "role": "source",
+                "scope": "global",
+                "project_id": null,
+                "category": "company",
+                "cited_chunk_id": -45,
+                "citation_rebound": false,
+                "quote": "### Ing. Elisa Romano - direttore tecnico",
+                "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+              }
+            ],
+            "record_attributions": []
+          },
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL",
+          "residual_category": "source_role_record"
+        }
+      ],
+      "nonconformant_grounded_fields": [
+        {
+          "candidate_id": "p41.s1",
+          "label": "Comune sede società",
+          "subject": "Mapi Ingegneria S.r.l.",
+          "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "gold_value": "Bari",
+          "matches_frozen_gold": false,
+          "raw_proposed": true,
+          "before_grounded": true,
+          "after_grounded": true,
+          "recovered": false,
+          "lost": false,
+          "before_errors": [],
+          "after_errors": [],
+          "after_validation": "REVIEW_REQUIRED",
+          "after_binding": {},
+          "condition_checks": {
+            "c_branch_soc": {
+              "result": "unknown",
+              "scope": "semantic_review_required"
+            }
+          },
+          "fact_validation": "GROUNDED_PROPOSAL"
+        }
+      ],
+      "residual_disjoint_categories": {
+        "form_destination": 1,
+        "source_role_record": 2
+      },
+      "distinct_recovered_fact_ids": 5
+    }
+  ],
+  "network_disabled": true,
+  "new_test_cases": 40,
+  "targeted_tests_passed": 133,
+  "targeted_seconds": 5.65,
+  "full_backend_tests_passed": 2344,
+  "full_backend_pytest_seconds": 188.62,
+  "ruff": "passed",
+  "new_nonconformant_acceptances_observed": 0,
+  "new_provider_calls": 0,
+  "new_docx_exports": 0,
+  "user_decisions_added": 0,
+  "original_index_root_still_rejected": true,
+  "index_replay_uses_previously_root_isolated_response": true,
+  "applicability_unchanged": true,
+  "all_recovered_values_still_require_review": true
+}

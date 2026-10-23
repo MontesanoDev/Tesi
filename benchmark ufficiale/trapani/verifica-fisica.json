@@ -1,0 +1,31 @@
+{
+  "xml_parse_CRC": true,
+  "physical_positions_match_report": true,
+  "preprinted_preserved": true,
+  "table_merge_geometry_preserved": true,
+  "tables": 6,
+  "controls": [],
+  "text_values": {
+    "p75.s0": "Mapi Ingegneria S.r.l.",
+    "p75.s1": "Via Giovanni Amendola 172/C",
+    "p75.s2": "Bari",
+    "p75.s3": "70126",
+    "p75.s4": "BA",
+    "p75.s5": "IT01234567890",
+    "p75.s6": "+39 080 000 2040",
+    "p75.s7": "+39 080 000 2041",
+    "p75.s8": "mapi.ingegneria@pec.demo",
+    "p107.s0": "mapi.ingegneria@pec.demo"
+  },
+  "text_count": 10,
+  "report_written_count": 10,
+  "checkbox_newly_checked": 0,
+  "checkbox_newly_unchecked": 0,
+  "checkbox_requests_without_state_change": 0,
+  "DOCX_sha256": "2cb8c448475714f234fafcccd535f2b3e9e6d3fade23b2908aa2689e2652fbbb",
+  "download_matches_server": true,
+  "parts_changed": [
+    "word/document.xml"
+  ],
+  "document_ready_for_submission": false
+}

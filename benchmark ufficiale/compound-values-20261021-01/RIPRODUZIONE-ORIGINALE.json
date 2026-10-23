@@ -1,0 +1,176 @@
+{
+  "case": "real/table-form-links-20261020-01",
+  "status": "DEFECT_REPRODUCED",
+  "destination": "t25.r3.c1",
+  "FORM": {
+    "paragraph_id": "paragraph:441",
+    "quote": "numero e data d’iscrizione:"
+  },
+  "required_components": [
+    "registration_number",
+    "registration_date"
+  ],
+  "MODEL_proposal": {
+    "label": "numero e data d’iscrizione",
+    "kind": "data",
+    "disposition": "conditional",
+    "form": {
+      "paragraph_id": "paragraph:441",
+      "quote": "numero e data d’iscrizione:"
+    },
+    "conditions": [
+      "c_soc_ing"
+    ],
+    "property": "numero_iscrizione_registro_imprese",
+    "fact_id": "f_num_iscr",
+    "reason": "Numero documentato; data non separatamente richiesta nel record"
+  },
+  "SOURCE_fact": {
+    "validation": "GROUNDED_PROPOSAL",
+    "semantic_review_required": true,
+    "source_evidence": [
+      {
+        "chunk_id": -52,
+        "file_id": -10,
+        "chunk_index": 0,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -52,
+        "citation_rebound": false,
+        "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981.",
+        "content_sha256": "3a75b3865fbde9ccfa40b9382ed34398e43632ce507fdf4f6e0ceb66c35953a4"
+      }
+    ],
+    "validation_errors": [],
+    "subject": "Mapi Ingegneria S.r.l.",
+    "entity": "company",
+    "aspect": "identity",
+    "property": "numero_iscrizione_registro_imprese",
+    "value": "01234560981",
+    "evidence": [
+      {
+        "chunk_id": -52,
+        "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+      }
+    ]
+  },
+  "grounding": "GROUNDED_PROPOSAL",
+  "conditions": {
+    "c_soc_ing": {
+      "result": "unknown",
+      "validation": "GROUNDED_PROPOSAL",
+      "semantic_review_required": true,
+      "validation_errors": [],
+      "form": {
+        "paragraph_id": "paragraph:432",
+        "quote": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA"
+      },
+      "aspect": "legal_type",
+      "operator": "semantic",
+      "fact_ids": [
+        "f_tipologia"
+      ],
+      "reason": "La sezione 5.d si applica solo se l'operatore è una società di ingegneria",
+      "form_evidence": {
+        "paragraph_id": "paragraph:432",
+        "quote": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA"
+      },
+      "scope": [
+        {
+          "kind": "table",
+          "id": "table:25"
+        },
+        {
+          "kind": "table",
+          "id": "table:26"
+        }
+      ],
+      "applies_to": [
+        "t25.r0.c1",
+        "t25.r2.c0",
+        "t25.r3.c1",
+        "t25.r4.c1",
+        "t25.r4.c3",
+        "t25.r5.c0",
+        "t25.r5.c1",
+        "t26.r0.c1",
+        "t26.r1.c1",
+        "t26.r2.c1",
+        "t26.r3.c1",
+        "t26.r4.c1",
+        "t26.r5.c0",
+        "t26.r5.c1"
+      ],
+      "proposal": {
+        "form": {
+          "paragraph_id": "paragraph:432",
+          "quote": "5.d)\tda compilare in caso di SOCIETÀ DI INGEGNERIA"
+        },
+        "aspect": "legal_type",
+        "operator": "semantic",
+        "fact_ids": [
+          "f_tipologia"
+        ],
+        "reason": "La sezione 5.d si applica solo se l'operatore è una società di ingegneria",
+        "scope": [
+          {
+            "kind": "table",
+            "id": "table:25"
+          },
+          {
+            "kind": "table",
+            "id": "table:26"
+          }
+        ]
+      }
+    }
+  },
+  "USER_receipts": {
+    "condition:c_soc_ing": {
+      "action": "CONDITION_TRUE",
+      "user_quote": "Confermo la scelta già indicata di Mapi Ingegneria S.r.l., società di ingegneria, come partecipante singolo.",
+      "provenance": "USER",
+      "label": "La sezione 5.d si applica solo se l'operatore è una società di ingegneria",
+      "question": "Confermi che l'operatore economico è una società di ingegneria e va compilata la sezione a essa dedicata?",
+      "applies": true
+    },
+    "condition:c_rappresentanza": {
+      "action": "CONDITION_TRUE",
+      "user_quote": "Confermo la scelta già indicata di Leonardo Montemurro come firmatario e legale rappresentante della società per questa domanda.",
+      "provenance": "USER",
+      "label": "Carica del firmatario documentata; rappresentanza per questa domanda da confermare",
+      "question": "Confermi che Leonardo Montemurro firma in qualità di legale rappresentante della società?",
+      "applies": true
+    }
+  },
+  "physical_written_value": "01234560981",
+  "DOCX_exact_to_actual_frozen_UI_download": true,
+  "DOCX_SHA256": "c2aac7af7b7917e2b520b180634f57de1eac8a2bc03150d8e45ace1cd8cbc9b2",
+  "FORM_relationship": {
+    "label_cell": "t25.r3.c0",
+    "label_paragraph": "paragraph:441",
+    "value_cell": "t25.r3.c1",
+    "value_paragraph": "paragraph:442"
+  },
+  "source_date_present_but_binding_to_registration_to_assess": [
+    {
+      "chunk_id": -43,
+      "source_name": "generalita-mapi.md",
+      "content": "## 1. Identificazione della societa' - dati simulati\n\n- Ragione sociale: Mapi Ingegneria S.r.l.\n- Forma giuridica: Societa a responsabilita limitata.\n- Tipologia di attivita': societa' di ingegneria civile.\n- Stato dell'attivita' nel dataset: Attiva.\n- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.\n- Natura dell'identificativo fiscale: valore fittizio della fixture, non valido come identificativo fiscale reale; la scheda lo conserva senza correggerlo.\n- Numero REA simulato: BA - 654321.\n- Data di costituzione: 27 febbraio 2019.\n- Data di iscrizione riportata nella visura demo: 14 marzo 2019.\n- Durata della societa': fino al 31 dicembre 2050.\n- Capitale sociale: EUR 50.000,00, interamente versato.\n\nIl numero REA non identifica automaticamente il numero di iscrizione al Registro delle Imprese. Gli estremi completi della CCIAA e del Registro delle Imprese non sono disponibili in questa scheda.\n\n## 2. Sedi e contatti aziendali - dati simulati\n\n- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Rapporto tra le sedi:"
+    },
+    {
+      "chunk_id": -30,
+      "source_name": "visura-mapi-ingegneria-simulata.pdf",
+      "content": "FAC-SIMILE PER TESI - DOCUMENTO SIMULATO - NON UFFICIALE\nMAPI INGEGNERIA S.R.L.\nSOCIETA DI INGEGNERIA CIVILE\nEstratto dati impresa\nGenerato il 6 agosto 2026\nIdentiﬁcativo demo: MAPI-VIS-2026-001\nVisura aziendale simulata\nProﬁlo societario predisposto esclusivamente per la dimostrazione del sistema Mapi RAG.\n1. DATI IDENTIFICATIVI\nDENOMINAZIONE Mapi Ingegneria S.r.l.\nFORMA GIURIDICA Societa a responsabilita limitata\nSTATO ATTIVITA ATTIVA\nCODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)\nNUMERO REA BA - 654321 (dato simulato)\nDATA COSTITUZIONE 27 febbraio 2019\nDATA ISCRIZIONE 14 marzo 2019\nDURATA SOCIETA Fino al 31 dicembre 2050\nCAPITALE SOCIALE EUR 50.000,00, interamente versato\n2. SEDE E CONTATTI\nSEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia\nPEC mapi.ingegneria@pec.demo\nE-MAIL segreteria@mapi-ingegneria.demo\nTELEFONO +39 080 000 2040 (recapito simulato)\nSITO WEB www.mapi-ingegneria.demo\n3. ATTIVITA PREVALENTE\nCODICE ATECO 71.12.10 - Attivita degli studi di ingegneria\nRUOLO OPERATIVO Consulenza tecnica e supporto alla progettazione per enti pubblici e\ncommittenti privati\nAMBITO TERRITORIALE Italia, con operativita prevalente nelle regioni del"
+    },
+    {
+      "chunk_id": -52,
+      "source_name": "integrazione-company.md",
+      "content": "# Integrazione Company\n\n# Mapi Ingegneria S.r.l. — Integrazione anagrafica e societaria (fixture sintetica)\n\n**Versione della fixture:** 1.0 — **Data di riferimento:** 15 ottobre 2026.\n\n## Provenienza e rapporto con i documenti precedenti\n\nQuesta scheda è un'integrazione sintetica rispetto alla *visura-mapi-ingegneria-simulata* (6 agosto 2026) e a *generalita-mapi* (17 settembre 2026). Per le cariche sociali specificate di seguito descrive **eventi successivi**, non corregge retroattivamente le fotografie precedenti. Se due fonti sembrano discordanti, mantenere entrambe le versioni con le relative date ed esaminare la validità temporale; non sovrascrivere silenziosamente una fonte.\n\n## 1. Dati societari integrativi\n\n- **Società:** Mapi Ingegneria S.r.l.\n- **Camera di Commercio competente nello scenario:** Bari.\n- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981.\n- **Numero REA:** BA-654321 (dato già riportato nella visura demo; **non è** il numero di iscrizione al Registro delle Imprese).\n- **Sede legale — via:** Via Giovanni Amendola.\n- **Sede legale — numero civico:** 172/C.\n- **Sede legale — CAP:** 70126.\n- **Sede legale — comune:** Bari."
+    }
+  ],
+  "MODEL_claim_is_not_requirement_proof": true
+}

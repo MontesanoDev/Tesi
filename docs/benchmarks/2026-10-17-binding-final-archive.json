@@ -1,0 +1,14 @@
+{
+  "archive": "docs/benchmarks/2026-10-17-binding-final-audit.tar.gz",
+  "sha256": "efd1a6f0292443c19fae1459cdf8b04a36b69fc9bfc7132643b03a42a68b1087",
+  "archive_bytes": 772017,
+  "files": 68,
+  "uncompressed_bytes": 6634686,
+  "all_member_hashes_verified": true,
+  "raw_directory": "backend/data/compilation-audit/binding-final-20261017-01",
+  "reproduction_dependencies": [
+    "repository with frozen benchmark-minervino/v1 fixture",
+    "docs/benchmarks/2026-10-17-e1-index-audit.tar.gz",
+    "docs/benchmarks/2026-10-17-field-context-audit.tar.gz"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "protected_code_tests_frontend_fixture_files_unchanged": 318,
+  "old_artifacts_unchanged": 422,
+  "live_storage_unchanged": 285,
+  "frozen_inputs_unchanged": 41,
+  "live_sessions_unchanged": 29,
+  "original_sessions_unchanged_in_clone": 29,
+  "new_isolated_sessions": 3,
+  "database_schema_unchanged": true,
+  "exact_same_SOURCE_in_three_global_inputs": true,
+  "real_provider_calls": 22,
+  "fresh_global_calls": 3,
+  "frozen_global_response_reuse": 0,
+  "provider_HTTP_errors": 0,
+  "quality_retries": 0,
+  "all_finish_stop": true,
+  "all_requests_forwarded_unchanged": true,
+  "head": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "no_application_prompt_validator_writer_changes": true,
+  "baseline_adopted": false,
+  "no_commit_push": true,
+  "browser": [
+    {
+      "slug": "craa",
+      "folder": "browser",
+      "error_details_finalized": true,
+      "events": {
+        "requestfailed": 10
+      },
+      "all_recorded_failures_aborted": true,
+      "trace_finalized": true,
+      "video_files": 1
+    },
+    {
+      "slug": "bella",
+      "folder": "browser",
+      "error_details_finalized": true,
+      "events": {
+        "requestfailed": 10
+      },
+      "all_recorded_failures_aborted": true,
+      "trace_finalized": true,
+      "video_files": 1
+    },
+    {
+      "slug": "cesano",
+      "folder": "browser",
+      "error_details_finalized": true,
+      "events": {
+        "requestfailed": 10
+      },
+      "all_recorded_failures_aborted": true,
+      "trace_finalized": true,
+      "video_files": 1
+    }
+  ],
+  "software_test_suite_not_rerun": true,
+  "offline_reconstructions": [
+    {
+      "slug": "craa",
+      "fresh_audit_identical": true,
+      "text_values": 9,
+      "checkboxes": {},
+      "effects": [],
+      "docx_identical": true,
+      "sha256": "006f576fc9f3c0e1534a1253f008e8a1d0022ed1e6f8fe80f74e60a8b2d30159",
+      "provider_calls": 0
+    },
+    {
+      "slug": "bella",
+      "fresh_audit_identical": true,
+      "text_values": 4,
+      "checkboxes": {},
+      "effects": [],
+      "docx_identical": true,
+      "sha256": "781f7db27db8d3fda3c04f4da056552213659811347eb9788a0867d899183b14",
+      "provider_calls": 0
+    },
+    {
+      "slug": "cesano",
+      "fresh_audit_identical": true,
+      "text_values": 0,
+      "checkboxes": {},
+      "effects": [],
+      "docx_identical": true,
+      "sha256": "409170f436884a9cf5a7c5a4631a2c9505321b4142b61b56fa637c4c11b10a34",
+      "provider_calls": 0
+    }
+  ]
+}

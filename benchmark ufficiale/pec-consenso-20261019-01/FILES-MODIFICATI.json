@@ -1,0 +1,26 @@
+{
+  "modified_existing_this_phase": [
+    "backend/app/compilation_global_dialogue.py",
+    "backend/app/compilation_global_sessions.py",
+    "STATUS.md",
+    "relazioni.md"
+  ],
+  "new_repository_files": [
+    "backend/app/compilation_procedural_consent.py",
+    "backend/tests/test_compilation_procedural_consent.py",
+    "backend/tests/test_compilation_procedural_consent_session.py",
+    "backend/tests/fixtures/procedural-consent-v1/trapani-real.json",
+    "backend/tests/fixtures/procedural-consent-v1/README.md",
+    "docs/pec-consenso-procedurale-2026-10-19.md",
+    "docs/benchmarks/2026-10-20-pec-consent-checks.json"
+  ],
+  "generated_public_directory": "benchmark ufficiale/pec-consenso-20261019-01",
+  "raw_audit_directory": "backend/data/compilation-audit/pec-consenso-20261019-01",
+  "existing_changes_from_prior_work_preserved": true,
+  "application_files_affected": [
+    "backend/app/compilation_global_dialogue.py",
+    "backend/app/compilation_global_sessions.py",
+    "backend/app/compilation_procedural_consent.py"
+  ],
+  "no_commit_push": true
+}

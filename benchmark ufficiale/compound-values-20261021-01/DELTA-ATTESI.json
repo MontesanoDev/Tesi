@@ -1,0 +1,19 @@
+{
+  "registered_before_after_replay": true,
+  "expected_exclusions": {
+    "t25.r3.c1": {
+      "label": "numero e data iscrizione",
+      "value": "01234560981",
+      "state": "INCOMPLETE",
+      "reason": "data obbligatoria assente dal valore"
+    },
+    "t0.r11.c1": {
+      "label": "Cellulare + Telefono",
+      "value": "+39 080 000 2040",
+      "state": "UNKNOWN",
+      "reason": "FORM non dimostra che il secondo recapito sia facoltativo; una sola proprietà documentata"
+    }
+  },
+  "no_new_writes_or_value_changes": true,
+  "no_changes_to_underlying_facts_bindings_conditions": true
+}

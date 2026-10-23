@@ -1,0 +1,176 @@
+[
+  {
+    "case": "study/catanzaro/B0/rep-3",
+    "candidate_id": "t0.r8.c1",
+    "raw_proposal_and_field_audit_unchanged": true,
+    "SOURCE_value_retained": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "SOURCE_validation_retained": "GROUNDED_PROPOSAL",
+    "MODEL_conditions_unchanged": [],
+    "before_XML_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "after_XML_value": "",
+    "legal_office_value_preserved": true,
+    "independent_FORM_check": {
+      "result": "false",
+      "contexts": [
+        {
+          "text": "Sede operativa  (se diversa dalla sede legale)",
+          "ambiguous_structure": false,
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:35",
+              "quote": "(se diversa dalla sede legale)",
+              "role": "form"
+            }
+          ],
+          "anchor": {
+            "kind": "label_value_row",
+            "table_id": "table:0",
+            "label_cell_id": "t0.r8.c0",
+            "target_cell_id": "t0.r8.c1"
+          },
+          "predicate": {
+            "left": "sede operativa",
+            "operator": "different",
+            "right": "sede legale"
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        },
+        {
+          "chunk_id": -44,
+          "file_id": -7,
+          "chunk_index": 1,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+          "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+        },
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ],
+      "basis": "identical_source_values",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "MODEL_conditions_used": false,
+      "USER_authorization_used": false
+    },
+    "before_DOCX_SHA256": "1056751bb689d656f5a4713e71949d8e447c3c7bfd0dcd98762cda0fa3e6dc95",
+    "after_DOCX_SHA256": "11605a53b4efcc3c799ea98762676b7c6f5e63b9dd4e146192eafbdc647d3634"
+  },
+  {
+    "case": "study/catanzaro/E1/rep-3",
+    "candidate_id": "t0.r8.c1",
+    "raw_proposal_and_field_audit_unchanged": true,
+    "SOURCE_value_retained": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "SOURCE_validation_retained": "GROUNDED_PROPOSAL",
+    "MODEL_conditions_unchanged": [],
+    "before_XML_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "after_XML_value": "",
+    "legal_office_value_preserved": true,
+    "independent_FORM_check": {
+      "result": "false",
+      "contexts": [
+        {
+          "text": "Sede operativa  (se diversa dalla sede legale)",
+          "ambiguous_structure": false,
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:34",
+              "quote": "Sede operativa ",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:35",
+              "quote": "(se diversa dalla sede legale)",
+              "role": "form"
+            }
+          ],
+          "anchor": {
+            "kind": "label_value_row",
+            "table_id": "table:0",
+            "label_cell_id": "t0.r8.c0",
+            "target_cell_id": "t0.r8.c1"
+          },
+          "predicate": {
+            "left": "sede operativa",
+            "operator": "different",
+            "right": "sede legale"
+          }
+        }
+      ],
+      "source_evidence": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        },
+        {
+          "chunk_id": -44,
+          "file_id": -7,
+          "chunk_index": 1,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+          "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+        },
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ],
+      "basis": "identical_source_values",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "MODEL_conditions_used": false,
+      "USER_authorization_used": false
+    },
+    "before_DOCX_SHA256": "a365c83487c8c5e571a010f32f6ac74c18a4051219f3bfc3692d0af119adc378",
+    "after_DOCX_SHA256": "6fe2c624ccbe8ef07bdb849755e44e91c539f21d7e018ef4d9206f536eb4fae2"
+  }
+]

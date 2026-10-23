@@ -1,0 +1,15 @@
+{
+  "view_version": "compact-index-v2",
+  "candidate_count": 115,
+  "context_count": 69,
+  "direct_candidate_index": true,
+  "explicit_candidate_types": true,
+  "ordered_blocks_exact": true,
+  "candidate_semantics_exact": true,
+  "references_resolve": true,
+  "backend_only_properties": [
+    "location",
+    "range",
+    "slot_context"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "saved_plan_replay": [
+    {
+      "stage": "before",
+      "narration": "initial",
+      "backend_available_keys": [
+        "condition:c_societa"
+      ],
+      "saved_PLAN_question_slots": [
+        1
+      ],
+      "rendered_kind": "clarifications",
+      "actually_rendered_keys": [
+        "condition:c_societa"
+      ],
+      "USER_receipts_unchanged": true
+    },
+    {
+      "stage": "after",
+      "narration": "initial",
+      "backend_available_keys": [
+        "condition:c_societa",
+        "field:p5.s0"
+      ],
+      "saved_PLAN_question_slots": [
+        1
+      ],
+      "rendered_kind": "clarifications",
+      "actually_rendered_keys": [
+        "condition:c_societa"
+      ],
+      "USER_receipts_unchanged": true
+    },
+    {
+      "stage": "before",
+      "narration": "follow_up",
+      "backend_available_keys": [],
+      "saved_PLAN_question_slots": [],
+      "rendered_kind": "generate",
+      "actually_rendered_keys": [],
+      "USER_receipts_unchanged": true
+    },
+    {
+      "stage": "after",
+      "narration": "follow_up",
+      "backend_available_keys": [
+        "field:p5.s0"
+      ],
+      "saved_PLAN_question_slots": [],
+      "rendered_kind": "generate",
+      "actually_rendered_keys": [],
+      "USER_receipts_unchanged": true
+    }
+  ],
+  "nominative_choice_present_in_USER_turns": 3,
+  "no_already_accepted_USER_receipt_removed": true,
+  "new_actual_narrator_question_not_proven": true,
+  "no_new_SOURCE_value_or_write_authorized": true,
+  "LLM_calls": 0
+}

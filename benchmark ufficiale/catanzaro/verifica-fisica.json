@@ -1,0 +1,231 @@
+{
+  "xml_parse_CRC": true,
+  "physical_positions_match_report": true,
+  "preprinted_preserved": true,
+  "table_merge_geometry_preserved": true,
+  "tables": 50,
+  "controls": [
+    {
+      "candidate_id": "p49.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p51.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p53.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p55.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p57.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p60.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p62.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p64.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p69.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p76.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p76.cb1",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p80.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p82.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p84.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p86.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p89.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p91.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p91.cb1",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p96.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p101.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p103.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p103.cb1",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p107.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p110.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p111.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p114.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p147.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    },
+    {
+      "candidate_id": "p149.cb0",
+      "before": false,
+      "after": false,
+      "changed": false,
+      "requested_value": null
+    }
+  ],
+  "text_values": {
+    "t0.r10.c1": "IT01234567890",
+    "t0.r11.c1": "+39 080 000 2040",
+    "t0.r5.c1": "Mapi Ingegneria S.r.l.",
+    "t0.r6.c1": "Societa a responsabilita limitata",
+    "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "t0.r9.c1": "IT01234567890",
+    "t25.r0.c1": "Mapi Ingegneria S.r.l.",
+    "t25.r4.c1": "Societa a responsabilita limitata",
+    "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "t26.r0.c1": "Ing. Elisa Romano",
+    "t26.r1.c1": "Ingegnere",
+    "t26.r3.c1": "Ordine degli Ingegneri di Bari",
+    "t26.r4.c1": "8421"
+  },
+  "text_count": 13,
+  "report_written_count": 13,
+  "checkbox_newly_checked": 0,
+  "checkbox_newly_unchecked": 0,
+  "checkbox_requests_without_state_change": 0,
+  "DOCX_sha256": "aa940efde8dcc76796b07e247f59baceaaa8ab2af0e092681c58aba60ac9a7b0",
+  "download_matches_server": true,
+  "parts_changed": [
+    "word/document.xml"
+  ],
+  "document_ready_for_submission": false
+}

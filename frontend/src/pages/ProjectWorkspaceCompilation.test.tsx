@@ -62,11 +62,11 @@ async function setup(path = '/projects/alpha') {
   return view
 }
 function selectForm(name = form.name) {
-  fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }), { target: { value: '@' } })
+  fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per l’assistente' }), { target: { value: '@' } })
   fireEvent.click(screen.getByRole('option', { name }))
 }
 function submit(text: string) {
-  fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }), { target: { value: text } })
+  fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per l’assistente' }), { target: { value: text } })
   fireEvent.click(screen.getByRole('button', { name: 'Invia' }))
 }
 
@@ -122,7 +122,7 @@ describe('CompilationSession nella chat', () => {
 
   it('raggruppa fonti e moduli del progetto e seleziona una mention anche da tastiera', async () => {
     await setup()
-    const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    const input = screen.getByRole('textbox', { name: 'Messaggio per l’assistente' })
     fireEvent.change(input, { target: { value: '@' } })
     expect(screen.getAllByRole('option')).toHaveLength(3)
     expect(screen.getByRole('option', { name: 'fonte.txt' })).toBeInTheDocument()
@@ -142,7 +142,7 @@ describe('CompilationSession nella chat', () => {
 
   it('il picker aperto con + conserva il messaggio anche dopo la selezione o Escape', async () => {
     await setup()
-    const input = screen.getByRole<HTMLTextAreaElement>('textbox', { name: 'Messaggio per Mapi RAG' })
+    const input = screen.getByRole<HTMLTextAreaElement>('textbox', { name: 'Messaggio per l’assistente' })
     const draft = 'Puoi spiegarmi quali requisiti richiede questo modulo?'
     fireEvent.change(input, { target: { value: draft } })
     input.setSelectionRange(5, 12)
@@ -231,7 +231,7 @@ describe('CompilationSession nella chat', () => {
     stored = { ...session(), status: 'ANALYZING', lease_until: new Date(Date.now() + 240000).toISOString() }
     await setup('/projects/alpha/conversations/chat-1')
     await screen.findByText('Sto lavorando…')
-    const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    const input = screen.getByRole('textbox', { name: 'Messaggio per l’assistente' })
     fireEvent.change(input, { target: { value: 'Testo conservato' } })
     expect(screen.getByRole('button', { name: 'Invia' })).toBeDisabled()
     stored = conversational(session([field('f1', 'Denominazione', 'RESOLVED')], 'READY', 3))
@@ -351,7 +351,7 @@ describe('CompilationSession nella chat', () => {
     await setup('/projects/alpha/conversations/chat-1')
     await screen.findByText(previousQuestion)
     submit(message)
-    const previousReply = screen.getAllByRole('region', { name: 'Risposta Mapi' })[0]
+    const previousReply = screen.getAllByRole('region', { name: 'Risposta' })[0]
     expect(previousReply).toHaveTextContent(previousQuestion)
     expect(previousReply).not.toHaveTextContent('Certo. Analizzo')
     if (message === 'basta') stored.chat = { ...stored.chat!, paused: true, paused_by_user: true, question: null }
@@ -474,7 +474,7 @@ describe('CompilationSession nella chat', () => {
     vi.mocked(api.resolveCompilationSession).mockReturnValue(new Promise((resolve) => { complete = resolve }))
     await setup('/projects/alpha/conversations/chat-1')
     await waitFor(() => expect(api.resolveCompilationSession).toHaveBeenCalledTimes(1))
-    const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    const input = screen.getByRole('textbox', { name: 'Messaggio per l’assistente' })
     fireEvent.change(input, { target: { value: '12 giugno 2014' } })
     expect(input).toBeEnabled()
     expect(screen.getByRole('button', { name: 'Invia' })).toBeDisabled()
@@ -483,7 +483,7 @@ describe('CompilationSession nella chat', () => {
     fireEvent.submit(input.closest('form')!)
     expect(api.projectAnswer).not.toHaveBeenCalled()
     expect(input).toHaveValue('12 giugno 2014')
-    const card = screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!
+    const card = screen.getAllByRole('region', { name: 'Risposta' }).at(-1)!
     expect(card.querySelector('.assistant-activity')).toBeInTheDocument()
     expect(card.querySelector('details')).not.toBeInTheDocument()
     stored = conversational(session([field('f1', 'Data abilitazione', 'MISSING')], 'WAITING_FOR_USER', 3))
@@ -500,10 +500,10 @@ describe('CompilationSession nella chat', () => {
     vi.mocked(api.projectAnswer).mockReturnValue(new Promise((resolve) => { complete = resolve }))
     await setup()
     selectForm()
-    const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    const input = screen.getByRole('textbox', { name: 'Messaggio per l’assistente' })
     fireEvent.change(input, { target: { value: 'me lo compili?' } })
     fireEvent.click(screen.getByRole('button', { name: 'Invia' }))
-    const draftInput = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    const draftInput = screen.getByRole('textbox', { name: 'Messaggio per l’assistente' })
     fireEvent.change(draftInput, { target: { value: 'Testo da conservare durante l’avvio' } })
     fireEvent.submit(draftInput.closest('form')!)
     expect(api.projectAnswer).toHaveBeenCalledTimes(1)
@@ -514,7 +514,7 @@ describe('CompilationSession nella chat', () => {
       citations: [], evidence: [], missing_information: [], notice: null, model: 'simulato',
       total_tokens: 1, form_reference: reference }))
     await screen.findByText('Mi manca Qualifica. Qual è?')
-    expect(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }))
+    expect(screen.getByRole('textbox', { name: 'Messaggio per l’assistente' }))
       .toHaveValue('Testo da conservare durante l’avvio')
     await waitFor(() => expect(screen.getByRole('button', { name: 'Invia' })).toBeEnabled())
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
@@ -527,7 +527,7 @@ describe('CompilationSession nella chat', () => {
     await setup('/projects/alpha/conversations/chat-1')
     await screen.findByText('Mi manca Qualifica. Qual è?')
     submit('Ingegnere')
-    const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    const input = screen.getByRole('textbox', { name: 'Messaggio per l’assistente' })
     fireEvent.change(input, { target: { value: 'Una seconda annotazione' } })
     fireEvent.click(screen.getByRole('button', { name: 'Invia' }))
     fireEvent.keyDown(input, { key: 'Enter' })
@@ -535,7 +535,7 @@ describe('CompilationSession nella chat', () => {
     expect(api.projectAnswer).toHaveBeenCalledTimes(1)
     expect(screen.getByRole('button', { name: 'Invia' })).toBeDisabled()
     expect(input).toHaveValue('Una seconda annotazione')
-    expect(screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!.querySelector('.assistant-activity')).toBeInTheDocument()
+    expect(screen.getAllByRole('region', { name: 'Risposta' }).at(-1)!.querySelector('.assistant-activity')).toBeInTheDocument()
     await act(async () => complete({ conversation_id: 'chat-1', turn_id: 1,
       question: 'Ingegnere', answer: 'Indicazione ricevuta.', citations: [], evidence: [],
       missing_information: [], generation_status: 'direct', model: null, total_tokens: null, notice: null }))
@@ -549,11 +549,11 @@ describe('CompilationSession nella chat', () => {
     stored.chat!.auto_continue = true
     await setup('/projects/alpha/conversations/chat-1')
     await screen.findByText('Ho conservato il lavoro fatto finora. Chiedimi di riprendere quando vuoi proseguire.')
-    const reply = screen.getByRole('region', { name: 'Risposta Mapi' })
+    const reply = screen.getByRole('region', { name: 'Risposta' })
     expect(reply.querySelector('details, dl, .assistant-activity')).not.toBeInTheDocument()
     expect(within(reply).queryByRole('button')).not.toBeInTheDocument()
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
-    fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }), { target: { value: 'riprendi' } })
+    fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per l’assistente' }), { target: { value: 'riprendi' } })
     expect(screen.getByRole('button', { name: 'Invia' })).toBeEnabled()
   })
 
@@ -564,9 +564,9 @@ describe('CompilationSession nella chat', () => {
     stored.chat!.auto_continue = false
     await setup('/projects/alpha/conversations/chat-1')
     await screen.findByText('Ho conservato il lavoro fatto finora. Chiedimi di riprendere quando vuoi proseguire.')
-    expect(screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!.querySelector('.assistant-activity')).not.toBeInTheDocument()
+    expect(screen.getAllByRole('region', { name: 'Risposta' }).at(-1)!.querySelector('.assistant-activity')).not.toBeInTheDocument()
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
-    fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }), { target: { value: 'riprendi' } })
+    fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per l’assistente' }), { target: { value: 'riprendi' } })
     expect(screen.getByRole('button', { name: 'Invia' })).toBeEnabled()
   })
 
@@ -579,7 +579,7 @@ describe('CompilationSession nella chat', () => {
       downloads: { docx: '/file', report: '/report', template: '/original' } }
     await setup('/projects/alpha/conversations/chat-1')
     await screen.findByRole('button', { name: 'Scarica DOCX' })
-    const card = screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!
+    const card = screen.getAllByRole('region', { name: 'Risposta' }).at(-1)!
     expect(within(card).getByText(/Ho preparato una bozza parziale/)).toBeInTheDocument()
     expect(within(card).getAllByRole('button')).toHaveLength(1)
     expect(within(card).getByRole('button', { name: 'Scarica DOCX' })).toBeEnabled()
@@ -602,7 +602,7 @@ describe('CompilationSession nella chat', () => {
       }] })
     const view = await setup('/projects/alpha/conversations/chat-1')
     await screen.findByText(answer)
-    expect(screen.getAllByRole('heading', { name: 'Risposta Mapi' })).toHaveLength(1)
+    expect(screen.getAllByRole('heading', { name: 'Risposta' })).toHaveLength(1)
     expect(screen.queryByText(question, { exact: true })).not.toBeInTheDocument()
     view.unmount()
     await setup('/projects/alpha/conversations/chat-1')
@@ -613,7 +613,7 @@ describe('CompilationSession nella chat', () => {
     let fail!: (reason: Error) => void
     vi.mocked(api.compilationSessions).mockReturnValue(new Promise((_resolve, reject) => { fail = reject }))
     await setup('/projects/alpha/conversations/chat-1')
-    const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    const input = screen.getByRole('textbox', { name: 'Messaggio per l’assistente' })
     fireEvent.change(input, { target: { value: 'Una risposta pronta' } })
     expect(screen.getByRole('button', { name: 'Invia' })).toBeDisabled()
     fireEvent.submit(input.closest('form')!)
@@ -639,7 +639,7 @@ describe('CompilationSession nella chat', () => {
     stored = { ...session(), status: 'ANALYZING', lease_until: new Date(Date.now() + 240000).toISOString() }
     await setup('/projects/alpha/conversations/chat-1')
     await screen.findByText('Sto lavorando…')
-    const input = screen.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+    const input = screen.getByRole('textbox', { name: 'Messaggio per l’assistente' })
     fireEvent.change(input, { target: { value: 'Risposta conservata' } })
     vi.mocked(api.compilationSession).mockRejectedValueOnce(new Error('Rete non disponibile'))
     await act(async () => { await vi.advanceTimersByTimeAsync(3000) })
@@ -672,7 +672,7 @@ describe('CompilationSession nella chat', () => {
     submit('spiegati meglio')
     const reply = await screen.findByText(explanation)
     const message = reply.closest('.grounded-answer')! as HTMLElement
-    expect(within(message).getAllByRole('heading', { name: 'Risposta Mapi' })).toHaveLength(1)
+    expect(within(message).getAllByRole('heading', { name: 'Risposta' })).toHaveLength(1)
     expect(message.querySelector('details, dl, .compilation-message')).not.toBeInTheDocument()
     expect(within(message).queryByText(question)).not.toBeInTheDocument()
     expect(stored.version).toBe(3)
@@ -710,7 +710,7 @@ describe('CompilationSession nella chat', () => {
     await screen.findByText(stale)
     submit('si')
     await screen.findByText(explanation)
-    const messages = screen.getAllByRole('region', { name: 'Risposta Mapi' })
+    const messages = screen.getAllByRole('region', { name: 'Risposta' })
     expect(messages.at(-1)).toHaveTextContent(explanation)
     expect(messages.at(-1)).not.toHaveTextContent(stale)
     expect(screen.queryByRole('button', { name: 'Scarica DOCX' })).not.toBeInTheDocument()
@@ -798,7 +798,7 @@ describe('CompilationSession nella chat', () => {
     await screen.findByText(summary)
     submit('1 sì e 2 lascia vuoto')
     await waitFor(() => expect(api.compilationSession).toHaveBeenCalledTimes(2))
-    let current = screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!
+    let current = screen.getAllByRole('region', { name: 'Risposta' }).at(-1)!
     expect(current).toHaveTextContent('Aggiorno la compilazione…')
     expect(current).not.toHaveTextContent('Ho registrato le indicazioni univoche')
     expect(current).not.toHaveTextContent(summary)
@@ -810,7 +810,7 @@ describe('CompilationSession nella chat', () => {
     stored!.chat!.auto_continue = false
     await act(async () => releaseResolve(structuredClone(stored!)))
     await screen.findByText(finalMessage)
-    current = screen.getAllByRole('region', { name: 'Risposta Mapi' }).at(-1)!
+    current = screen.getAllByRole('region', { name: 'Risposta' }).at(-1)!
     expect(current).not.toHaveTextContent(summary)
     expect(within(current).queryByRole('status')).not.toBeInTheDocument()
     expect(screen.getByText(summary)).toBeInTheDocument()

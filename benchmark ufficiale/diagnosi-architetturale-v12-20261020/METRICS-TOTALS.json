@@ -1,0 +1,27 @@
+{
+  "analysis_calls": 57,
+  "narrator_calls": 42,
+  "total_calls": 99,
+  "analysis_errors": 0,
+  "narrator_errors": 1,
+  "quality_retries": 0,
+  "replacement_replicas": 0,
+  "fingerprints": {
+    "e72d3c7f663d3e1383b00b3884cb4501": 99
+  },
+  "models_returned": {
+    "deepseek-flash": 99
+  },
+  "tariffs_used": {
+    "off_peak": 99
+  },
+  "all_cost_off_peak_USD": 0.931729386,
+  "all_cost_peak_USD": 1.863458772,
+  "input_tokens": 3474119,
+  "output_tokens": 1269342,
+  "reasoning_tokens": 931851,
+  "nonreasoning_output_tokens": 337491,
+  "total_tokens": 4743461,
+  "estimated_cost_USD": 0.931729386,
+  "normalized_uncached_off_peak_USD": 1.28272305
+}

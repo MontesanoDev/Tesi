@@ -1,0 +1,699 @@
+[
+  {
+    "candidate_id": "t0.r0.c1",
+    "type": "text",
+    "context_id": "t0.r0.c1",
+    "reference_SOURCE_available": true,
+    "expected_value": "Leonardo Montemurro",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [],
+    "effective_conditions": {},
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Anagrafica del sottoscrittore non assegnata: ruolo FORM non coincide con ruolo SOURCE attestato",
+    "verdict": "NO_WRITE",
+    "field_label": "nome"
+  },
+  {
+    "candidate_id": "t0.r1.c1",
+    "type": "text",
+    "context_id": "t0.r1.c1",
+    "reference_SOURCE_available": true,
+    "expected_value": "14/11/1982, Lecce (LE)",
+    "required_SOURCE_chunks": [
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [],
+    "effective_conditions": {},
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Anagrafica del sottoscrittore non assegnata: ruolo FORM non coincide con ruolo SOURCE attestato",
+    "verdict": "NO_WRITE",
+    "field_label": "nascita_data_luogo"
+  },
+  {
+    "candidate_id": "t0.r2.c1",
+    "type": "text",
+    "context_id": "t0.r2.c1",
+    "reference_SOURCE_available": true,
+    "expected_value": "MNTLRD82S14E506X",
+    "required_SOURCE_chunks": [
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [],
+    "effective_conditions": {},
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Anagrafica del sottoscrittore non assegnata: ruolo FORM non coincide con ruolo SOURCE attestato",
+    "verdict": "NO_WRITE",
+    "field_label": "cf"
+  },
+  {
+    "candidate_id": "t0.r3.c1",
+    "type": "text",
+    "context_id": "t0.r3.c1",
+    "reference_SOURCE_available": true,
+    "expected_value": "rappresentante legale",
+    "required_SOURCE_chunks": [
+      -53
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [],
+    "effective_conditions": {},
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Anagrafica del sottoscrittore non assegnata: ruolo FORM non coincide con ruolo SOURCE attestato",
+    "verdict": "NO_WRITE",
+    "field_label": "carica"
+  },
+  {
+    "candidate_id": "t25.r2.c0",
+    "type": "text",
+    "context_id": "t25.r2.c0",
+    "reference_SOURCE_available": true,
+    "expected_value": "Bari",
+    "required_SOURCE_chunks": [
+      -30,
+      -52,
+      -53
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": true,
+    "LLM_disposition": "conditional",
+    "LLM_fact_id": "f_cciaa",
+    "audit_validation": "REJECTED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [
+      "Estratto FORM esterno al contesto strutturale locale"
+    ],
+    "conditions": [
+      "c_soc_ing"
+    ],
+    "effective_conditions": {
+      "c_soc_ing": "true"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "REJECTED",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -52,
+        "file_id": -10,
+        "chunk_index": 0,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -52,
+        "citation_rebound": false,
+        "quote": "- **Camera di Commercio competente nello scenario:** Bari.",
+        "content_sha256": "3a75b3865fbde9ccfa40b9382ed34398e43632ce507fdf4f6e0ceb66c35953a4"
+      }
+    ],
+    "MODEL_coverage_reason_not_absence_proof": "Estratto FORM esterno al contesto strutturale locale",
+    "verdict": "NO_WRITE",
+    "field_label": "CCIAA"
+  },
+  {
+    "candidate_id": "t25.r3.c1",
+    "type": "text",
+    "context_id": "t25.r3.c1",
+    "reference_SOURCE_available": true,
+    "expected_value": "01234560981; 14/03/2019",
+    "required_SOURCE_chunks": [
+      -30,
+      -52,
+      -53
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_soc_ing"
+    ],
+    "effective_conditions": {
+      "c_soc_ing": "true"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Numero e data di iscrizione non disponibili come dato unitario",
+    "verdict": "NO_WRITE",
+    "field_label": "Numero e data iscrizione"
+  },
+  {
+    "candidate_id": "t41.r1.c0",
+    "type": "text",
+    "context_id": "t41.r1.c0",
+    "reference_SOURCE_available": true,
+    "expected_value": "Leonardo Montemurro",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Parte terza condizionata; dati dei soggetti non assegnati senza binding di ruolo",
+    "verdict": "NO_WRITE",
+    "field_label": "nome"
+  },
+  {
+    "candidate_id": "t41.r1.c1",
+    "type": "text",
+    "context_id": "t41.r1.c1",
+    "reference_SOURCE_available": true,
+    "expected_value": "14/11/1982, Lecce (LE)",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Parte terza condizionata; dati dei soggetti non assegnati senza binding di ruolo",
+    "verdict": "NO_WRITE",
+    "field_label": "nascita_data_luogo"
+  },
+  {
+    "candidate_id": "t41.r1.c2",
+    "type": "text",
+    "context_id": "t41.r1.c2",
+    "reference_SOURCE_available": true,
+    "expected_value": "Via Amedeo 24, Bari (BA)",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Parte terza condizionata; dati dei soggetti non assegnati senza binding di ruolo",
+    "verdict": "NO_WRITE",
+    "field_label": "residenza"
+  },
+  {
+    "candidate_id": "t41.r1.c3",
+    "type": "text",
+    "context_id": "t41.r1.c3",
+    "reference_SOURCE_available": true,
+    "expected_value": "MNTLRD82S14E506X",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Parte terza condizionata; dati dei soggetti non assegnati senza binding di ruolo",
+    "verdict": "NO_WRITE",
+    "field_label": "cf"
+  },
+  {
+    "candidate_id": "t41.r1.c4",
+    "type": "text",
+    "context_id": "t41.r1.c4",
+    "reference_SOURCE_available": true,
+    "expected_value": "amministratore unico e rappresentante legale",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Parte terza condizionata; dati dei soggetti non assegnati senza binding di ruolo",
+    "verdict": "NO_WRITE",
+    "field_label": "carica"
+  },
+  {
+    "candidate_id": "t43.r1.c0",
+    "type": "text",
+    "context_id": "t43.r1.c0",
+    "reference_SOURCE_available": true,
+    "expected_value": "Leonardo Montemurro",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Parte terza condizionata; dati dei soggetti non assegnati senza binding di ruolo",
+    "verdict": "NO_WRITE",
+    "field_label": "nome"
+  },
+  {
+    "candidate_id": "t43.r1.c1",
+    "type": "text",
+    "context_id": "t43.r1.c1",
+    "reference_SOURCE_available": true,
+    "expected_value": "14/11/1982, Lecce (LE)",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Parte terza condizionata; dati dei soggetti non assegnati senza binding di ruolo",
+    "verdict": "NO_WRITE",
+    "field_label": "nascita_data_luogo"
+  },
+  {
+    "candidate_id": "t43.r1.c2",
+    "type": "text",
+    "context_id": "t43.r1.c2",
+    "reference_SOURCE_available": true,
+    "expected_value": "Via Amedeo 24, Bari (BA)",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Parte terza condizionata; dati dei soggetti non assegnati senza binding di ruolo",
+    "verdict": "NO_WRITE",
+    "field_label": "residenza"
+  },
+  {
+    "candidate_id": "t43.r1.c3",
+    "type": "text",
+    "context_id": "t43.r1.c3",
+    "reference_SOURCE_available": true,
+    "expected_value": "MNTLRD82S14E506X",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Parte terza condizionata; dati dei soggetti non assegnati senza binding di ruolo",
+    "verdict": "NO_WRITE",
+    "field_label": "cf"
+  },
+  {
+    "candidate_id": "t43.r1.c4",
+    "type": "text",
+    "context_id": "t43.r1.c4",
+    "reference_SOURCE_available": true,
+    "expected_value": "amministratore unico e rappresentante legale",
+    "required_SOURCE_chunks": [
+      -53,
+      -54
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Parte terza condizionata; dati dei soggetti non assegnati senza binding di ruolo",
+    "verdict": "NO_WRITE",
+    "field_label": "carica"
+  },
+  {
+    "candidate_id": "t44.r1.c0",
+    "type": "text",
+    "context_id": "t44.r1.c0",
+    "reference_SOURCE_available": true,
+    "expected_value": "Elisa Romano",
+    "required_SOURCE_chunks": [
+      -54,
+      -55
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": true,
+    "LLM_disposition": "conditional",
+    "LLM_fact_id": "f_elisa_name",
+    "audit_validation": "REJECTED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [
+      "Estratto FORM esterno al contesto strutturale locale"
+    ],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "REJECTED",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -45,
+        "file_id": -7,
+        "chunk_index": 2,
+        "source_name": "generalita-mapi.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -45,
+        "citation_rebound": false,
+        "quote": "### Ing. Elisa Romano - direttore tecnico",
+        "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+      },
+      {
+        "chunk_id": -45,
+        "file_id": -7,
+        "chunk_index": 2,
+        "source_name": "generalita-mapi.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -45,
+        "citation_rebound": false,
+        "quote": "- Nominativo completo: Ing. Elisa Romano.",
+        "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+      }
+    ],
+    "MODEL_coverage_reason_not_absence_proof": "Estratto FORM esterno al contesto strutturale locale",
+    "verdict": "NO_WRITE",
+    "field_label": "nome"
+  },
+  {
+    "candidate_id": "t44.r1.c3",
+    "type": "text",
+    "context_id": "t44.r1.c3",
+    "reference_SOURCE_available": true,
+    "expected_value": "RMNLSI85C47A662Y",
+    "required_SOURCE_chunks": [
+      -54,
+      -55
+    ],
+    "reference_chunks_in_real_input": true,
+    "LLM_field_proposed": false,
+    "LLM_disposition": null,
+    "LLM_fact_id": null,
+    "audit_validation": "REVIEW_REQUIRED",
+    "proposal_grounding": null,
+    "proposed_value": null,
+    "validation_errors": [],
+    "conditions": [
+      "c_parte3"
+    ],
+    "effective_conditions": {
+      "c_parte3": "unknown"
+    },
+    "branch_evidence": null,
+    "grounded_value": false,
+    "source_reuse": null,
+    "reviewed": false,
+    "held": false,
+    "export_selected": false,
+    "physically_written_value": null,
+    "outcome": "UNPROPOSED",
+    "SOURCE_evidence": [],
+    "MODEL_coverage_reason_not_absence_proof": "Dati di nascita, residenza e codice fiscale di Elisa Romano non disponibili",
+    "verdict": "NO_WRITE",
+    "field_label": "cf"
+  }
+]

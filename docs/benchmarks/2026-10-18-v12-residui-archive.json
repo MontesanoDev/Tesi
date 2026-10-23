@@ -1,0 +1,18 @@
+{
+  "archive": "2026-10-18-v12-residui-audit.tar.gz",
+  "sha256": "e1cfa8b3eb093b284cafaaee8ce561db2c6400bbd66cda3d21ac947d3f78e593",
+  "files": 220,
+  "uncompressed_bytes": 37085675,
+  "compressed_bytes": 3772184,
+  "all_members_verified": true,
+  "source_raw": "backend/data/compilation-audit/v12-residui-20261018-01",
+  "contains_private_DB_or_keys": false,
+  "credential_pattern_scan": "negative; no active credentials read",
+  "global_calls": 0,
+  "provider_calls": 0,
+  "independent_verification": "verify_bundle.py",
+  "private_persistence_replay_seed_excluded": ".tools/v12-review-soci-20261018-01/",
+  "extracted_independent_replay_verified": true,
+  "report_local_links_verified": 8,
+  "git_diff_check": "passed"
+}

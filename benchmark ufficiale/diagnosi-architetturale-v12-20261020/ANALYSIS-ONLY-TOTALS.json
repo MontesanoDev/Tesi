@@ -1,0 +1,38 @@
+[
+  {
+    "variant": "B0",
+    "analysis_input_tokens": 675090,
+    "analysis_output_tokens": 343771,
+    "analysis_reasoning_tokens": 249202,
+    "analysis_nonreasoning_tokens": 94569,
+    "analysis_token_total": 1018861,
+    "analysis_seconds_sum": 1334.5745629570006,
+    "analysis_cost_USD": 0.237417684,
+    "analysis_uncached_cost_USD": 0.30752609999999997,
+    "technical_empty_copies": 7
+  },
+  {
+    "variant": "E1",
+    "analysis_input_tokens": 611022,
+    "analysis_output_tokens": 377003,
+    "analysis_reasoning_tokens": 277743,
+    "analysis_nonreasoning_tokens": 99260,
+    "analysis_token_total": 988025,
+    "analysis_seconds_sum": 1437.3125250439994,
+    "analysis_cost_USD": 0.253899516,
+    "analysis_uncached_cost_USD": 0.3178551,
+    "technical_empty_copies": 2
+  },
+  {
+    "variant": "E2-A",
+    "analysis_input_tokens": 1683801,
+    "analysis_output_tokens": 532381,
+    "analysis_reasoning_tokens": 404906,
+    "analysis_nonreasoning_tokens": 127475,
+    "analysis_token_total": 2216182,
+    "analysis_seconds_sum": 2159.5645209710005,
+    "analysis_cost_USD": 0.373188894,
+    "analysis_uncached_cost_USD": 0.57199875,
+    "technical_empty_copies": 5
+  }
+]

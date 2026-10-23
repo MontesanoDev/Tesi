@@ -1,0 +1,65 @@
+{
+ "status": "CANDIDATE_V14_NOT_ADOPTED",
+ "date": "2026-10-21",
+ "report": "docs/v14-autorizzazione-clausole-opzione-2026-10-21.md",
+ "raw": "backend/data/compilation-audit/v14-option-authorization-20261021-01",
+ "archive_sha256": "b740e15135e69f191ac659d68545e4f5315d92178da3fa94c957bf674e708f54",
+ "prereg_sha256": "d3d179f5ea26e69a5774e1afb873c4155bc25594f48baa9c047d12b6c92e7aa3",
+ "llm_calls": 0,
+ "commits": 0,
+ "branch_only_receipt_CCIAA_exports": {
+  "V13": 21,
+  "V14": 0,
+  "runs": 21
+ },
+ "replay": {
+  "exported_docx": 82,
+  "writes": 806,
+  "removed_by_V14": {
+   "v13-s1-valid/cesano-01": {
+    "p19.ft0": "Mapi Ingegneria S.r.l."
+   },
+   "v13-s1-valid/cesano-02": {
+    "p19.ft0": "Mapi Ingegneria S.r.l."
+   },
+   "v13-s1-valid/cesano-03": {
+    "p19.ft0": "Mapi Ingegneria S.r.l."
+   },
+   "v13-s1-valid/cesano-04": {
+    "p19.ft0": "Mapi Ingegneria S.r.l."
+   },
+   "v13-s1-valid/cesano-06": {
+    "p19.ft0": "Mapi Ingegneria S.r.l."
+   },
+   "v13-s1-valid/cesano-07": {
+    "p19.ft0": "Mapi Ingegneria S.r.l."
+   },
+   "v13-s1-valid/cesano-09": {
+    "p19.ft0": "Mapi Ingegneria S.r.l."
+   },
+   "v13-s1-valid/cesano-10": {
+    "p19.ft0": "Mapi Ingegneria S.r.l."
+   },
+   "v13-s1-valid/craa-03": {
+    "t6.r0.c1": "Bari",
+    "t6.r0.c3": "01234560981"
+   },
+   "v13-s1-valid/craa-04": {
+    "t6.r0.c1": "Bari",
+    "t6.r0.c3": "01234560981"
+   },
+   "baseline/cesano": {
+    "p19.ft0": "Mapi Ingegneria S.r.l."
+   }
+  },
+  "docx_changes_outside_removed": 0,
+  "V13_regenerated_equals_recorded": 82,
+  "requirements_unchanged_without_flag": 93,
+  "states": 93
+ },
+ "tests": {
+  "new": 16,
+  "suite": "3380 passed",
+  "ruff": "All checks passed"
+ }
+}

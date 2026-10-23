@@ -6,7 +6,7 @@ import json
 import logging
 import re
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Literal
 
 import httpx
@@ -32,10 +32,22 @@ class ReplyScopeChecks(StrictModel):
     checks: list[ReplyScopeCheck] = Field(max_length=4)
 
 
+class FormScopeCheck(ReplyScopeCheck):
+    scope_result: Literal["SUPPORTED", "UNRELATED", "AMBIGUOUS"]
+    # Diagnostic only (no decision reads it). Justifying the scope against the full FORM takes
+    # longer than 250 characters; a length overrun must not discard a valid verdict.
+    rationale: str = Field(default="", max_length=1000)
+
+
+class FormScopeChecks(StrictModel):
+    checks: list[FormScopeCheck] = Field(max_length=4)
+
+
 @dataclass(frozen=True)
 class ReplyScopeResult:
     allowed_slots: frozenset[int]
     total_tokens: int | None
+    scope_verifications: dict[int, str] = field(default_factory=dict)
 
 
 TASK = """Verifica la PERTINENZA delle risposte USER alle domande di compilazione.
@@ -109,6 +121,29 @@ AMBIGUOUS. Una richiesta «solo quel campo» non va estesa silenziosamente ad al
 Non interpretare il rinvio come applicabilità falsa o assenza di dati nelle fonti.
 """
 
+FORM_SCOPE_TASK = """
+CONTROLLO DISTINTO DELL'AMBITO FORM (scope_result).
+Ricevi form_scope: FORM completo e destinazioni effettive di ciascuno slot.
+Le condizioni e le descrizioni MODEL sono ipotesi, anche se ben formate.
+Controlla intestazioni, opzioni, soggetto del ramo e riferimenti lontani.
+Per una condizione, SUPPORTED richiede che UNA STESSA proposizione, con la
+polarità proposta, governi TUTTE le destinazioni elencate. Se la descrizione
+mescola alternative, se i campi appartengono a rami diversi o se manca la
+relazione fra clausola e destinazioni: AMBIGUOUS. Non estendere la scelta di
+un operatore alle dichiarazioni, agli altri operatori o alle imprese ausiliarie.
+Per VALUE non basta che il valore risponda alla domanda: occorre che il ramo
+e il soggetto delle destinazioni siano applicabili secondo FORM e indicazioni
+USER esplicite. Una domanda del narratore non prova questa applicabilità.
+Il nome di una persona o impresa non è da solo la scelta di partecipare in una
+determinata forma. Un assenso a una scelta non autorizza tutta la clausola.
+Per choice valuta ciascuna opzione e il ramo che contiene il gruppo.
+Per rinvii verifica l'ambito effettivo senza esigere un'autorizzazione a scrivere.
+Se manca una scelta necessaria o non riesci a verificare un riferimento, usa
+AMBIGUOUS. Non dedurre applicabilità da SOURCE o da un elenco conditions vuoto.
+result verifica la risposta alla domanda; scope_result verifica separatamente
+la correttezza del suo ambito effettivo. Restituisci entrambi per ogni slot.
+"""
+
 
 def requires_scope_check(reply, context):
     if reply.action in WRITE_ACTIONS:
@@ -143,25 +178,45 @@ async def verify_field_replies(message, context, replies, *, request):
     if not proposals:
         return ReplyScopeResult(frozenset(), 0)
     settings = get_ai_settings()
-    schema = ReplyScopeChecks.model_json_schema()
+    scope = context.get("form_scope")
+    schema = (FormScopeChecks if scope else ReplyScopeChecks).model_json_schema()
     body = {"model": settings.model, "messages": [
-        {"role": "system", "content": TASK + "\nSCHEMA OUTPUT:\n" + json.dumps(schema)},
+        {"role": "system", "content": TASK + (FORM_SCOPE_TASK if scope else "")
+         + "\nSCHEMA OUTPUT:\n" + json.dumps(schema)},
         {"role": "user", "content": json.dumps({
             "operation": "check_field_reply_scope", "message": message,
             "question": context["question"], "slots": context["slots"],
             "proposals": proposals,
+            **({"form_scope": scope} if scope else {}),
         }, ensure_ascii=False)},
     ], "response_format": {"type": "json_object"}, "thinking": {"type": "disabled"},
         "temperature": 0, "max_tokens": CHECK_OUTPUT_TOKENS}
-    tokens = None
+    tokens, verifications = None, {}
     try:
         async with httpx.AsyncClient(timeout=httpx.Timeout(CHECK_SECONDS, connect=5)) as client:
             raw, _, usage = await request(client, settings, body, CHECK_SECONDS,
                                            response_schema=schema)
         tokens = _total_tokens(usage)
-        allowed = accepted_slots(raw, {p["slot"] for p in proposals})
+        if scope:
+            from app.compilation_json import checked_json
+            from app.compilation_scope_review import proof
+
+            cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw.strip(), flags=re.I)
+            checks = FormScopeChecks.model_validate(checked_json(cleaned)).checks
+            counts = Counter(c.slot for c in checks)
+            expected = {p["slot"] for p in proposals}
+            for check in checks:
+                target = scope["slots"].get(str(check.slot), {})
+                if (check.slot in expected and counts[check.slot] == 1
+                        and check.result == check.scope_result == "SUPPORTED"
+                        and target.get("destinations")
+                        and all(d.get("candidate") for d in target["destinations"])):
+                    verifications[check.slot] = proof(target, by_slot[check.slot])
+            allowed = frozenset(verifications)
+        else:
+            allowed = accepted_slots(raw, {p["slot"] for p in proposals})
     except (GenerationError, httpx.HTTPError, ValueError, RecursionError) as exc:
         logger.warning("DOCX reply scope check failed: %s", type(exc).__name__)
         allowed = frozenset()
     logger.info("DOCX reply scope checked=%d accepted=%d", len(proposals), len(allowed))
-    return ReplyScopeResult(allowed, tokens)
+    return ReplyScopeResult(allowed, tokens, verifications)

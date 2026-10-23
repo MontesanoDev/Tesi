@@ -1,0 +1,75 @@
+BODY 0: Allegato A
+BODY 1: Modello manifestazione d’interesse   
+BODY 2: AL COMUNE DI TRAPANI
+BODY 3: Ufficio LL.PP.
+BODY 4: llpp.gare@pec.comune.trapani.it
+BODY 9: Oggetto: 	Manifestazione di interesse in relazione ad Avviso pubblico di indagine di mercato per affidamento diretto servizio di architettura e ingegneria per la progettazione definitiva/esecutiva, coordinamento della sicurezza in fase di progettazione ed esecuzione e direzione dei lavori del programma sperimentale di interventi per l’adattamento ai cambiamenti climatici in ambito urbano (DM 15/04/2021) – “TRAPANI GREEN”  - CUP: I99J21005720001 – CIG: ______________
+BODY 12: Il/la sottoscritto/a __________________________________________ nato/a a_____________________, il _____________, C.F. ____________________________, residente a ____________________ (___) via/piazza ____________________________ n. _____ 
+BODY 15: IN QUALITA’ DI 
+BODY 16: (eliminare le opzioni non pertinenti)
+BODY 17: Professionista singolo con studio in Via/P.zza ___________________________________Comune____________________________ CAP ___________________ Prov ________P.IVA ____________________ Tel. _______________________ Fax_________________ P.E.C. ______________________________________________
+BODY 19: Professionista associato con potere di rappresentanza di Studio Associato/Associazione professionale _______________________________________ con studio in Via/P.zza _________________________________ Comune __________________ CAP _________________ Prov ______ P.IVA ______________________ Tel. ________________ Fax_________________ P.E.C. _______________________________________
+BODY 20: composto dai seguenti professionisti associati:
+BODY 24: Legale rappresentante di Società di Professionisti ___________________________ con sede in Via/P.zza __________________ Comune ______________________________ CAP _________________ Prov ______ P.IVA ______________________ Tel. _________ Fax_________________ P.E.C. _______________________________________
+BODY 26: Legale rappresentante di Società di Ingegneria ______________________________ con sede in Via/P.zza ___________________ Comune _____________________________ CAP _________________ Prov ______ P.IVA ______________________ Tel. _________ Fax_________________ P.E.C. _______________________________________
+BODY 28: Prestatore/Legale rappresentante di Prestatore di servizi ex art. 46, comma 1, lett. d), D.lgs. 50/2016 (prestatori di servizi di ingegneria e architettura identificati con i codici CPV da 74200000-1 a 74276400-8 e da 74310000-5 a 74323100-0 e 74874000-6 - e successivi aggiornamenti - stabiliti in altri Stati membri, costituiti conformemente alla legislazione vigente nei rispettivi Paesi)
+BODY 29: ____________________________________________________ con sede in Via/P.zza ________________________ Comune ________________________ CAP _________________ Prov ______ P.IVA ______________________ Tel.___________ Fax_________________ P.E.C. _______________________________________
+BODY 32: PRESO ATTO
+BODY 33: di tutte le disposizioni, le condizioni e i termini di partecipazione stabiliti nell’Avviso pubblico di indagine di mercato (di seguito, l’”Avviso”) per l'affidamento diretto ai sensi dell’art. 36 del D.lgs. 18 aprile 2016 n. 50 (di seguito, il “Codice”) e dell’art. 1 comma 2 lett. a, lett. a-bis) e lett. b) del D.L. 16 luglio 2020 n. 76 (convertito con modificazioni con L. 11 settembre 2020 n. 120) e ss.mm.ii. (di seguito, “Decreto Semplificazioni”) e dall’art.51 D.L. N.77/2021 convertito in Legge N.108/2021 (di seguito, “Decreto Semplificazioni bis”) dell’incarico in oggetto;
+BODY 35: MANIFESTA
+BODY 36: l’interesse ad essere selezionato dal Comune di Trapani per l'eventuale affidamento diretto per l’intervento oggetto dell’Avviso di manifestazione di interesse.
+BODY 38: E
+BODY 39: quale soggetto proponente la presente manifestazione di interesse, consapevole della responsabilità penale a cui può andare incontro in caso di dichiarazioni mendaci, ai sensi e per gli effetti dell’art. 76 del D.P.R. 28 dicembre 2000, n. 445, tenuto conto degli artt. 46 e 47 del citato D.P.R. n. 445/2000 
+BODY 41: DICHIARA
+BODY 42: di essere in possesso dei requisiti di ammissione ovvero:
+BODY 43: Di non rientrare in alcuno dei casi di sussistenza delle cause di esclusione di cui all’articolo 80 del Codice, nonché di qualsiasi altra situazione prevista dalla legge come causa di esclusione da gare d'appalto o come causa ostativa alla conclusione di contratti con la Pubblica Amministrazione.
+BODY 44: La non sussistenza di cause di incompatibilità di cui all'articolo 42 del Codice, ovvero che il candidato, direttamente o per il tramite di altro soggetto che risulti controllato, controllante o collegato, non ha svolto attività di supporto per l'intervento oggetto della manifestazione di interesse, né che alcun suo dipendente o suo consulente su base annua con rapporto esclusivo ha partecipato a tale attività di supporto.
+BODY 45: L’assenza di partecipazione plurima, ovvero che non presentano la manifestazione di interesse alla stessa procedura:
+BODY 46: in più di un raggruppamento temporaneo ovvero singolarmente e quale componente di un raggruppamento temporaneo o di un consorzio stabile;
+BODY 47: in più di una società di professionisti o  società di ingegneria delle quali il candidato è amministratore, socio, dipendente, consulente o collaboratore, ai sensi di quanto previsto dagli articoli 2 o 3 del DM 2 dicembre 2016, n. 263.
+BODY 48: l’iscrizione al competente proprio ordine professionale con il n°___________;
+BODY 49: possesso dei requisiti professionali previsti dalla normativa per l’espletamento degli incarichi oggetto della manifestazione di interesse;
+BODY 50: (ove prevista dalla propria natura giuridica) iscrizione alla C.C.I.A.A. della provincia della propria sede o analogo registro di altro Stato membro della U.E., ovvero di essere iscritto ad altro Albo previsto dalle norme vigenti, capace di attestare lo svolgimento delle attività nello specifico settore oggetto dell’Avviso (per le imprese non residenti in Italia, la predetta iscrizione dovrà risultare da apposito documento, corredato da traduzione in lingua italiana, che dovrà attestare l'iscrizione stessa in analogo registro professionale o commerciale secondo la legislazione dello Stato di appartenenza di cui all'Allegato XVI del Codice;
+BODY 51: insussistenza della condizione prevista dall'art. 53, comma 16-ter, del D.lgs. n. 165/2001 (pantouflage o revolving door);
+BODY 52: insussistenza di divieti a contrattare con la pubblica amministrazione;
+BODY 53: insussistenza di tutte le cause di incompatibilità previste dal Codice, nonché dalle vigenti disposizioni legislative e regolamentari, ivi comprese quelle dell’ordine professionale di appartenenza;
+BODY 54: possesso di un livello adeguato di copertura assicurativa contro i rischi professionali;
+BODY 55: iscrizione al Mercato Elettronico della Pubblico Amministrazione (“MEPA”) per la categoria: “____________________________________________________”;
+BODY 56: iscrizione al n._____ dell’Albo Unico Regionale di cui all’art. 12 comma 1  della L.R.12/2011 e ss.mm.ii.;
+BODY 57: possesso di tutti requisiti specifici richiesti dalla normativa così come indicati nella Linee Guida ANAC n. 3 di attuazione del Codice;
+BODY 58: di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; 
+BODY 59: di essere informato, ai sensi e per gli effetti di cui all’articolo 13 del Regolamento (UE) 2016/679, che i dati personali raccolti nel presente modulo e nella documentazione allegata saranno trattati, anche con strumenti informatici, esclusivamente nell’ambito del procedimento per il quale la presente dichiarazione viene resa;
+BODY 60: DICHIARA, inoltre
+BODY 61: di aver svolto prestazioni professionali per la pubblica amministrazione (allegare copia dei certificati di regolare esecuzione rilasciati dal committente pubblico, con l’indicazione dell’oggetto, del CIG, dell’importo e del periodo di esecuzione dei servizi o in alternativa dichiarazione del concorrente, contenente l’oggetto del contratto, il CIG ed il relativo importo delle prestazioni a cui si fa riferimento, il nominativo del committente e la data di stipula del contratto);
+BODY 62: l’avvenuto espletamento, negli ultimi cinque anni, di servizi attinenti all’Architettura ed all'Ingegneria, di cui all’art. 3, lett. vvvv) del Codice, relativi a lavori appartenenti ai lavori cui si riferiscono i servizi da affidare, individuate sulla base delle elencazioni contenute nel D.M. 17 giugno 2016, per un importo globale pari a 1 volta l’importo stimato dei lavori cui si riferisce la prestazione;
+BODY 63: il possesso di laurea magistrale specialistica in Architettura del Paesaggio e l’iscrizione, al momento della partecipazione alla gara, al relativo Ordine Professionale professionale con il n°________ (per 1 dei componenti delle S.T.P./R.T.P. e società d’ingegneria e professionisti)
+BODY 64: il possesso di laurea magistrale in Scienze Tecnologie Agrarie e Forestali e l’iscrizione, al momento della partecipazione alla gara, al relativo Ordine Professionale con il n°_______(per 1 dei componenti delle S.T.P./R.T.P. e società d’ingegneria e professionisti);
+BODY 65: Il possesso del requisito relativo all’abilitazione di cui all’art. 98 del d.lgs. 81/2008 (coordinamento della sicurezza in fase di progettazione - per 1 dei componenti delle S.T.P./R.T.P. e società d’ingegneria e professionisti));
+BODY 66: copertura assicurativa contro i rischi professionali (per tutti i componenti delle S.T.P./R.T.P. e società d’ingegneria e professionisti).
+BODY 68: in caso di raggruppamento temporaneo:
+BODY 69: [se già formalmente costituito]: produrre l'atto di mandato collettivo speciale, con l'indicazione del soggetto designato quale mandatario o capogruppo, della quota di partecipazione e dei servizi o della parte di servizi da affidare a ciascun operatore economico raggruppato; in alternativa, dichiarazione sostitutiva di atto di notorietà, con la quale si attesti che tale atto è già stato stipulato, indicandone gli estremi e riportandone i contenuti;
+BODY 70: [se non ancora costituito]: produrre l'atto di impegno alla costituzione mediante conferimento di mandato al soggetto designato quale mandatario o capogruppo, corredato dall'indicazione del nominativo e degli estremi di iscrizione all’Albo professionale di questo, nonché della quota di partecipazione e dei servizi o della parte di servizi da affidare a ciascun operatore economico raggruppato.
+BODY 72: (Tabella riepilogo)
+BODY 73: 󠄀
+BODY 75: Luogo e data ____________________
+BODY 77: 								IL DICHIARANTE
+BODY 79: 				                                      ___________________________________________
+BODY 80: 								(timbro e firma digitale)
+
+TABLE 0
+r0: c0:  |  || c1:  |  || c2:  |  || c3:  | 
+r1: c0:  |  |  || c1:  || c2:  || c3: 
+r2: c0:  |  |  || c1:  || c2:  || c3: 
+r3: c0:  |  |  || c1:  || c2:  || c3: 
+r4: c0:  |  |  || c1:  || c2:  || c3: 
+r5: c0:  |  |  || c1:  || c2:  || c3: 
+r6: c0:  |  |  || c1:  || c2:  || c3: 
+
+TABLE 1
+r0: c0: PUBBLICA AMMINISTRAZIONE STAZIONE APPALTANTE || c1: OGGETTO DEL CONTRATTO DI APPALTO E DATA DI STIPULA || c2: VALORE DELL’APPALTO A BASE D’ASTA || c3: INCARICO RICOPERTO || c4: CIG
+r1: c0:  |  |  || c1:  || c2:  || c3:  || c4: 
+r2: c0:  |  |  || c1:  || c2:  || c3:  || c4: 
+r3: c0:  |  |  || c1:  || c2:  || c3:  || c4: 
+r4: c0:  |  |  || c1:  || c2:  || c3:  || c4: 
+r5: c0:  |  |  || c1:  || c2:  || c3:  || c4: 
+r6: c0:  |  |  || c1:  || c2:  || c3:  || c4: 

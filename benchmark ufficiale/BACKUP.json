@@ -1,0 +1,16 @@
+{
+  "archive": "audit-completo.tar.gz",
+  "sha256": "023943dfadec01658e49c6846c9c271a3ed90771e29f7302b06850dcd078f8a4",
+  "bytes": 85692372,
+  "files": 811,
+  "raw_source": "backend/data/compilation-audit/ufficiale-v12-20261019-01",
+  "code_HEAD": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "dirty_code_preserved": true,
+  "application_files_unchanged": true,
+  "includes_public_results": true,
+  "private_database_excluded": true,
+  "keys_env_credentials_excluded": true,
+  "manifest_inside": "MANIFEST-SHA256.json",
+  "offline_verifier": "audit/verify_bundle.py",
+  "baseline_adopted": false
+}

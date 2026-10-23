@@ -1,0 +1,1356 @@
+{
+  "status": "EVALUATION_COMPLETED_NOT_BASELINE_ADOPTION",
+  "trials": [
+    {
+      "document": "minervino",
+      "session_id": "61398ca2851945b1bc93787a5f680ce6",
+      "conversation_id": "conv-c391f489e5bc4a14",
+      "final_version": 12,
+      "final_status": "GENERATED",
+      "new_real_global_calls": 1,
+      "provider_calls": 11,
+      "requested_models": [
+        "deepseek-flash"
+      ],
+      "returned_models": [
+        "deepseek-flash"
+      ],
+      "fingerprints": [
+        "e72d3c7f663d3e1383b00b3884cb4501"
+      ],
+      "global_seconds": 151.24400659499952,
+      "all_provider_seconds": 169.52105691599718,
+      "UI_wall_seconds_including_operator_waits": 529.719,
+      "input_tokens": 148410,
+      "output_tokens_including_reasoning": 42664,
+      "reasoning_tokens": 26798,
+      "cache_hit_tokens": 34944,
+      "cache_miss_tokens": 113466,
+      "total_tokens": 191074,
+      "cost_USD_tariff_estimate": "0.042723132",
+      "cost_USD_all_input_miss_normalized": "0.04785990",
+      "source_texts": 43,
+      "user_texts": 0,
+      "text_writes": 43,
+      "boolean_writes": 0,
+      "boolean_true": 0,
+      "boolean_false": 0,
+      "native_control_count": 13,
+      "native_control_changes": 0,
+      "XML_controls_before_after": [
+        {
+          "FORMTEXT": 0,
+          "literal_unchecked_boxes": 13,
+          "literal_square_boxes": 0
+        },
+        {
+          "FORMTEXT": 0,
+          "literal_unchecked_boxes": 13,
+          "literal_square_boxes": 0
+        }
+      ],
+      "model_raw_assignments": 60,
+      "model_value_or_conditional_assignments": 60,
+      "model_choice_groups": 0,
+      "SOURCE_reuse_fields": [],
+      "complete_checks": {
+        "UNKNOWN": 13,
+        "COMPLETE": 4
+      },
+      "complete_check_written": 3,
+      "classification": {
+        "UNJUSTIFIED_OMISSION": 16,
+        "OPEN_DIALOGUE_LIMIT": 1,
+        "CORRECT_WRITE": 43,
+        "NOT_APPLICABLE": 130,
+        "LEGITIMATELY_OPEN": 76,
+        "UNJUSTIFIED_OMISSION_USER": 1
+      },
+      "catalogue_destinations": 267,
+      "SOURCE_core": 60,
+      "SOURCE_core_written": 43,
+      "SOURCE_core_unwritten": 17,
+      "PDF_pages": 9,
+      "PDF_all_text_values_observed": true,
+      "PDF_outside_words": 0,
+      "DOCX_SHA256": "ce6df51bec2cd05b625666fe4323c26dbbf6787dc914d03b656d73e216d6b5cb",
+      "PDF_SHA256": "6fe451aa14fdd118f5d0b2cda9e93b622596a39654b4d29db4422bac0ee449c1",
+      "browser_aborted_GETs": 10,
+      "failed_POSTs": 0,
+      "provider_driver_console_failures": 0,
+      "no_new_global_retry": true,
+      "semantic_review_independent_of_validator_acceptance": true,
+      "Word_desktop_tested": false,
+      "calls": [
+        {
+          "start_UTC": "2026-10-21T11:38:03.057937+00:00",
+          "end_UTC": "2026-10-21T11:38:04.308329+00:00",
+          "seconds": 1.250419519999923,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 4036,
+            "completion_tokens": 35,
+            "total_tokens": 4071,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 1220
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "01",
+          "input_tokens": 4036,
+          "cache_hit_tokens": 2816,
+          "cache_miss_tokens": 1220,
+          "output_tokens_including_reasoning": 35,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000212448",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:38:04.943534+00:00",
+          "end_UTC": "2026-10-21T11:40:36.187503+00:00",
+          "seconds": 151.24400659499952,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 61808,
+            "completion_tokens": 41112,
+            "total_tokens": 102920,
+            "prompt_tokens_details": {
+              "cached_tokens": 7040
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 26798
+            },
+            "prompt_cache_hit_tokens": 7040,
+            "prompt_cache_miss_tokens": 54768
+          },
+          "is_global": true,
+          "thinking": {
+            "type": "enabled"
+          },
+          "reasoning_effort": "low",
+          "max_tokens": 49152,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "02",
+          "input_tokens": 61808,
+          "cache_hit_tokens": 7040,
+          "cache_miss_tokens": 54768,
+          "output_tokens_including_reasoning": 41112,
+          "reasoning_tokens": 26798,
+          "cost_USD_tariff_estimate": "0.03290352",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:40:36.616443+00:00",
+          "end_UTC": "2026-10-21T11:40:39.653036+00:00",
+          "seconds": 3.0366168459995606,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 17591,
+            "completion_tokens": 322,
+            "total_tokens": 17913,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 14775
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 2048,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "03",
+          "input_tokens": 17591,
+          "cache_hit_tokens": 2816,
+          "cache_miss_tokens": 14775,
+          "output_tokens_including_reasoning": 322,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.002417898",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:40:40.519076+00:00",
+          "end_UTC": "2026-10-21T11:40:42.409738+00:00",
+          "seconds": 1.8906881949997114,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 10338,
+            "completion_tokens": 172,
+            "total_tokens": 10510,
+            "prompt_tokens_details": {
+              "cached_tokens": 3072
+            },
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 7266
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 2048,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "04",
+          "input_tokens": 10338,
+          "cache_hit_tokens": 3072,
+          "cache_miss_tokens": 7266,
+          "output_tokens_including_reasoning": 172,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.001202316",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:42:24.131284+00:00",
+          "end_UTC": "2026-10-21T11:42:26.163949+00:00",
+          "seconds": 2.03268818000015,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 7838,
+            "completion_tokens": 268,
+            "total_tokens": 8106,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 5022
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "05",
+          "input_tokens": 7838,
+          "cache_hit_tokens": 2816,
+          "cache_miss_tokens": 5022,
+          "output_tokens_including_reasoning": 268,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000922548",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:42:26.174719+00:00",
+          "end_UTC": "2026-10-21T11:42:27.438361+00:00",
+          "seconds": 1.2636598670005696,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 4164,
+            "completion_tokens": 62,
+            "total_tokens": 4226,
+            "prompt_tokens_details": {
+              "cached_tokens": 1280
+            },
+            "prompt_cache_hit_tokens": 1280,
+            "prompt_cache_miss_tokens": 2884
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 768,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "06",
+          "input_tokens": 4164,
+          "cache_hit_tokens": 1280,
+          "cache_miss_tokens": 2884,
+          "output_tokens_including_reasoning": 62,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.00047364",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:42:28.424285+00:00",
+          "end_UTC": "2026-10-21T11:42:30.701178+00:00",
+          "seconds": 2.2769188629999917,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 12530,
+            "completion_tokens": 184,
+            "total_tokens": 12714,
+            "prompt_tokens_details": {
+              "cached_tokens": 2304
+            },
+            "prompt_cache_hit_tokens": 2304,
+            "prompt_cache_miss_tokens": 10226
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 2048,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "07",
+          "input_tokens": 12530,
+          "cache_hit_tokens": 2304,
+          "cache_miss_tokens": 10226,
+          "output_tokens_including_reasoning": 184,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.001651212",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:43:12.681835+00:00",
+          "end_UTC": "2026-10-21T11:43:14.578272+00:00",
+          "seconds": 1.8964603139993415,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 7984,
+            "completion_tokens": 282,
+            "total_tokens": 8266,
+            "prompt_tokens_details": {
+              "cached_tokens": 4224
+            },
+            "prompt_cache_hit_tokens": 4224,
+            "prompt_cache_miss_tokens": 3760
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "08",
+          "input_tokens": 7984,
+          "cache_hit_tokens": 4224,
+          "cache_miss_tokens": 3760,
+          "output_tokens_including_reasoning": 282,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000745872",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:43:14.587892+00:00",
+          "end_UTC": "2026-10-21T11:43:15.968157+00:00",
+          "seconds": 1.3802820339997197,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 3428,
+            "completion_tokens": 70,
+            "total_tokens": 3498,
+            "prompt_tokens_details": {
+              "cached_tokens": 1280
+            },
+            "prompt_cache_hit_tokens": 1280,
+            "prompt_cache_miss_tokens": 2148
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 768,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "09",
+          "input_tokens": 3428,
+          "cache_hit_tokens": 1280,
+          "cache_miss_tokens": 2148,
+          "output_tokens_including_reasoning": 70,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.00036804",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:43:16.893987+00:00",
+          "end_UTC": "2026-10-21T11:43:18.987391+00:00",
+          "seconds": 2.0934242609991998,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 11808,
+            "completion_tokens": 122,
+            "total_tokens": 11930,
+            "prompt_tokens_details": {
+              "cached_tokens": 2304
+            },
+            "prompt_cache_hit_tokens": 2304,
+            "prompt_cache_miss_tokens": 9504
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 2048,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "10",
+          "input_tokens": 11808,
+          "cache_hit_tokens": 2304,
+          "cache_miss_tokens": 9504,
+          "output_tokens_including_reasoning": 122,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.001505712",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:44:50.834741+00:00",
+          "end_UTC": "2026-10-21T11:44:51.990608+00:00",
+          "seconds": 1.155892240999492,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 6885,
+            "completion_tokens": 35,
+            "total_tokens": 6920,
+            "prompt_tokens_details": {
+              "cached_tokens": 4992
+            },
+            "prompt_cache_hit_tokens": 4992,
+            "prompt_cache_miss_tokens": 1893
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "11",
+          "input_tokens": 6885,
+          "cache_hit_tokens": 4992,
+          "cache_miss_tokens": 1893,
+          "output_tokens_including_reasoning": 35,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000319926",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        }
+      ]
+    },
+    {
+      "document": "cesano",
+      "session_id": "bb145f1f017043dc93cd7faea5d13a81",
+      "conversation_id": "conv-b70cfb22251640ae",
+      "final_version": 10,
+      "final_status": "GENERATED",
+      "new_real_global_calls": 1,
+      "provider_calls": 10,
+      "requested_models": [
+        "deepseek-flash"
+      ],
+      "returned_models": [
+        "deepseek-flash"
+      ],
+      "fingerprints": [
+        "e72d3c7f663d3e1383b00b3884cb4501"
+      ],
+      "global_seconds": 88.59314227200048,
+      "all_provider_seconds": 102.6059210179983,
+      "UI_wall_seconds_including_operator_waits": 516.645,
+      "input_tokens": 90397,
+      "output_tokens_including_reasoning": 22736,
+      "reasoning_tokens": 17676,
+      "cache_hit_tokens": 29312,
+      "cache_miss_tokens": 61085,
+      "total_tokens": 113133,
+      "cost_USD_tariff_estimate": "0.022892286",
+      "cost_USD_all_input_miss_normalized": "0.02720115",
+      "source_texts": 3,
+      "user_texts": 1,
+      "text_writes": 4,
+      "boolean_writes": 6,
+      "boolean_true": 1,
+      "boolean_false": 5,
+      "native_control_count": 68,
+      "native_control_changes": 1,
+      "XML_controls_before_after": [
+        {
+          "FORMTEXT": 20,
+          "literal_unchecked_boxes": 0,
+          "literal_square_boxes": 0
+        },
+        {
+          "FORMTEXT": 20,
+          "literal_unchecked_boxes": 0,
+          "literal_square_boxes": 0
+        }
+      ],
+      "model_raw_assignments": 8,
+      "model_value_or_conditional_assignments": 8,
+      "model_choice_groups": 1,
+      "SOURCE_reuse_fields": [
+        "p12.ft1",
+        "p12.ft2"
+      ],
+      "complete_checks": {},
+      "complete_check_written": 0,
+      "classification": {
+        "LEGITIMATELY_OPEN": 75,
+        "CORRECT_WRITE": 10,
+        "NOT_APPLICABLE": 3
+      },
+      "catalogue_destinations": 88,
+      "SOURCE_core": 4,
+      "SOURCE_core_written": 4,
+      "SOURCE_core_unwritten": 0,
+      "PDF_pages": 3,
+      "PDF_all_text_values_observed": true,
+      "PDF_outside_words": 0,
+      "DOCX_SHA256": "e75115320934d2c62f59be0033352451183a926ed438b64dd873b60028d676ad",
+      "PDF_SHA256": "684b4362800deb0fffa9f301ce3d2635dfaaba0c20baaa0717686f1e07564b89",
+      "browser_aborted_GETs": 10,
+      "failed_POSTs": 0,
+      "provider_driver_console_failures": 0,
+      "no_new_global_retry": true,
+      "semantic_review_independent_of_validator_acceptance": true,
+      "Word_desktop_tested": false,
+      "calls": [
+        {
+          "start_UTC": "2026-10-21T11:45:41.670567+00:00",
+          "end_UTC": "2026-10-21T11:45:42.973144+00:00",
+          "seconds": 1.3025981800001318,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 4033,
+            "completion_tokens": 35,
+            "total_tokens": 4068,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 1217
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "01",
+          "input_tokens": 4033,
+          "cache_hit_tokens": 2816,
+          "cache_miss_tokens": 1217,
+          "output_tokens_including_reasoning": 35,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000211998",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:45:43.420371+00:00",
+          "end_UTC": "2026-10-21T11:47:12.013489+00:00",
+          "seconds": 88.59314227200048,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 40096,
+            "completion_tokens": 21688,
+            "total_tokens": 61784,
+            "prompt_tokens_details": {
+              "cached_tokens": 7040
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 17676
+            },
+            "prompt_cache_hit_tokens": 7040,
+            "prompt_cache_miss_tokens": 33056
+          },
+          "is_global": true,
+          "thinking": {
+            "type": "enabled"
+          },
+          "reasoning_effort": "low",
+          "max_tokens": 49152,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "02",
+          "input_tokens": 40096,
+          "cache_hit_tokens": 7040,
+          "cache_miss_tokens": 33056,
+          "output_tokens_including_reasoning": 21688,
+          "reasoning_tokens": 17676,
+          "cost_USD_tariff_estimate": "0.01799232",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:47:12.186671+00:00",
+          "end_UTC": "2026-10-21T11:47:14.430880+00:00",
+          "seconds": 2.2442306519997146,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 8494,
+            "completion_tokens": 278,
+            "total_tokens": 8772,
+            "prompt_tokens_details": {
+              "cached_tokens": 2304
+            },
+            "prompt_cache_hit_tokens": 2304,
+            "prompt_cache_miss_tokens": 6190
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 2048,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "03",
+          "input_tokens": 8494,
+          "cache_hit_tokens": 2304,
+          "cache_miss_tokens": 6190,
+          "output_tokens_including_reasoning": 278,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.001102212",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:49:23.268979+00:00",
+          "end_UTC": "2026-10-21T11:49:25.626934+00:00",
+          "seconds": 2.357983578999665,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 5200,
+            "completion_tokens": 271,
+            "total_tokens": 5471,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 2384
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "04",
+          "input_tokens": 5200,
+          "cache_hit_tokens": 2816,
+          "cache_miss_tokens": 2384,
+          "output_tokens_including_reasoning": 271,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000528648",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:49:25.639961+00:00",
+          "end_UTC": "2026-10-21T11:49:26.739103+00:00",
+          "seconds": 1.0991648210001586,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 2554,
+            "completion_tokens": 118,
+            "total_tokens": 2672,
+            "prompt_tokens_details": {
+              "cached_tokens": 1280
+            },
+            "prompt_cache_hit_tokens": 1280,
+            "prompt_cache_miss_tokens": 1274
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 768,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "05",
+          "input_tokens": 2554,
+          "cache_hit_tokens": 1280,
+          "cache_miss_tokens": 1274,
+          "output_tokens_including_reasoning": 118,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.00026574",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:49:27.266132+00:00",
+          "end_UTC": "2026-10-21T11:49:28.813534+00:00",
+          "seconds": 1.5474271459997908,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 10012,
+            "completion_tokens": 55,
+            "total_tokens": 10067,
+            "prompt_tokens_details": {
+              "cached_tokens": 2304
+            },
+            "prompt_cache_hit_tokens": 2304,
+            "prompt_cache_miss_tokens": 7708
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 2048,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "06",
+          "input_tokens": 10012,
+          "cache_hit_tokens": 2304,
+          "cache_miss_tokens": 7708,
+          "output_tokens_including_reasoning": 55,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.001196112",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:51:20.119696+00:00",
+          "end_UTC": "2026-10-21T11:51:21.806467+00:00",
+          "seconds": 1.6867921059993023,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 4892,
+            "completion_tokens": 168,
+            "total_tokens": 5060,
+            "prompt_tokens_details": {
+              "cached_tokens": 3200
+            },
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1692
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "07",
+          "input_tokens": 4892,
+          "cache_hit_tokens": 3200,
+          "cache_miss_tokens": 1692,
+          "output_tokens_including_reasoning": 168,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.0003642",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:51:21.817492+00:00",
+          "end_UTC": "2026-10-21T11:51:23.027753+00:00",
+          "seconds": 1.2102771109994137,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 1975,
+            "completion_tokens": 69,
+            "total_tokens": 2044,
+            "prompt_tokens_details": {
+              "cached_tokens": 1280
+            },
+            "prompt_cache_hit_tokens": 1280,
+            "prompt_cache_miss_tokens": 695
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 768,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "08",
+          "input_tokens": 1975,
+          "cache_hit_tokens": 1280,
+          "cache_miss_tokens": 695,
+          "output_tokens_including_reasoning": 69,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.00014949",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:51:23.449873+00:00",
+          "end_UTC": "2026-10-21T11:51:24.867413+00:00",
+          "seconds": 1.417556194000099,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 8358,
+            "completion_tokens": 19,
+            "total_tokens": 8377,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 5542
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 2048,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "09",
+          "input_tokens": 8358,
+          "cache_hit_tokens": 2816,
+          "cache_miss_tokens": 5542,
+          "output_tokens_including_reasoning": 19,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000851148",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:52:54.038658+00:00",
+          "end_UTC": "2026-10-21T11:52:55.185379+00:00",
+          "seconds": 1.146748956999545,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 4783,
+            "completion_tokens": 35,
+            "total_tokens": 4818,
+            "prompt_tokens_details": {
+              "cached_tokens": 3456
+            },
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 1327
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "10",
+          "input_tokens": 4783,
+          "cache_hit_tokens": 3456,
+          "cache_miss_tokens": 1327,
+          "output_tokens_including_reasoning": 35,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000230418",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        }
+      ]
+    },
+    {
+      "document": "craa",
+      "session_id": "6cbcc1069ae5486995c4909559c8e84d",
+      "conversation_id": "conv-d2069bf1dd284e9f",
+      "final_version": 7,
+      "final_status": "GENERATED",
+      "new_real_global_calls": 1,
+      "provider_calls": 7,
+      "requested_models": [
+        "deepseek-flash"
+      ],
+      "returned_models": [
+        "deepseek-flash"
+      ],
+      "fingerprints": [
+        "e72d3c7f663d3e1383b00b3884cb4501"
+      ],
+      "global_seconds": 82.62805641299929,
+      "all_provider_seconds": 92.61597731899747,
+      "UI_wall_seconds_including_operator_waits": 590.103,
+      "input_tokens": 71988,
+      "output_tokens_including_reasoning": 21787,
+      "reasoning_tokens": 16330,
+      "cache_hit_tokens": 22400,
+      "cache_miss_tokens": 49588,
+      "total_tokens": 93775,
+      "cost_USD_tariff_estimate": "0.020577600",
+      "cost_USD_all_input_miss_normalized": "0.02387040",
+      "source_texts": 7,
+      "user_texts": 0,
+      "text_writes": 7,
+      "boolean_writes": 0,
+      "boolean_true": 0,
+      "boolean_false": 0,
+      "native_control_count": 0,
+      "native_control_changes": 0,
+      "XML_controls_before_after": [
+        {
+          "FORMTEXT": 0,
+          "literal_unchecked_boxes": 29,
+          "literal_square_boxes": 0
+        },
+        {
+          "FORMTEXT": 0,
+          "literal_unchecked_boxes": 29,
+          "literal_square_boxes": 0
+        }
+      ],
+      "model_raw_assignments": 13,
+      "model_value_or_conditional_assignments": 13,
+      "model_choice_groups": 0,
+      "SOURCE_reuse_fields": [],
+      "complete_checks": {},
+      "complete_check_written": 0,
+      "classification": {
+        "NOT_APPLICABLE": 15,
+        "LEGITIMATELY_OPEN": 26,
+        "CORRECT_WRITE": 7,
+        "UNJUSTIFIED_OMISSION": 1,
+        "AMBIGUOUS_OR_NONREQUIRED_DESTINATION": 2
+      },
+      "catalogue_destinations": 51,
+      "SOURCE_core": 10,
+      "SOURCE_core_written": 7,
+      "SOURCE_core_unwritten": 3,
+      "PDF_pages": 7,
+      "PDF_all_text_values_observed": true,
+      "PDF_outside_words": 0,
+      "DOCX_SHA256": "69edd5aa8dbfca8d61f51fc7062c0734656c843de78623be7eef043a1f2a963a",
+      "PDF_SHA256": "6b08beb86b379c30645c7e0f80b0f0a2ee29ef2b343f5ffc1451e6be15023fa6",
+      "browser_aborted_GETs": 10,
+      "failed_POSTs": 0,
+      "provider_driver_console_failures": 0,
+      "no_new_global_retry": true,
+      "semantic_review_independent_of_validator_acceptance": true,
+      "Word_desktop_tested": false,
+      "calls": [
+        {
+          "start_UTC": "2026-10-21T11:53:22.741010+00:00",
+          "end_UTC": "2026-10-21T11:53:24.419774+00:00",
+          "seconds": 1.6787932239994916,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 4033,
+            "completion_tokens": 35,
+            "total_tokens": 4068,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 1217
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "01",
+          "input_tokens": 4033,
+          "cache_hit_tokens": 2816,
+          "cache_miss_tokens": 1217,
+          "output_tokens_including_reasoning": 35,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000211998",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:53:24.881759+00:00",
+          "end_UTC": "2026-10-21T11:54:47.509785+00:00",
+          "seconds": 82.62805641299929,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 37717,
+            "completion_tokens": 20910,
+            "total_tokens": 58627,
+            "prompt_tokens_details": {
+              "cached_tokens": 7040
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 16330
+            },
+            "prompt_cache_hit_tokens": 7040,
+            "prompt_cache_miss_tokens": 30677
+          },
+          "is_global": true,
+          "thinking": {
+            "type": "enabled"
+          },
+          "reasoning_effort": "low",
+          "max_tokens": 49152,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "02",
+          "input_tokens": 37717,
+          "cache_hit_tokens": 7040,
+          "cache_miss_tokens": 30677,
+          "output_tokens_including_reasoning": 20910,
+          "reasoning_tokens": 16330,
+          "cost_USD_tariff_estimate": "0.01716867",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:54:47.684047+00:00",
+          "end_UTC": "2026-10-21T11:54:49.993733+00:00",
+          "seconds": 2.309711743000662,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 9406,
+            "completion_tokens": 324,
+            "total_tokens": 9730,
+            "prompt_tokens_details": {
+              "cached_tokens": 2304
+            },
+            "prompt_cache_hit_tokens": 2304,
+            "prompt_cache_miss_tokens": 7102
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 2048,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "03",
+          "input_tokens": 9406,
+          "cache_hit_tokens": 2304,
+          "cache_miss_tokens": 7102,
+          "output_tokens_including_reasoning": 324,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.001266612",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:57:38.004134+00:00",
+          "end_UTC": "2026-10-21T11:57:40.294348+00:00",
+          "seconds": 2.2902632159994027,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 5336,
+            "completion_tokens": 309,
+            "total_tokens": 5645,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 2520
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "04",
+          "input_tokens": 5336,
+          "cache_hit_tokens": 2816,
+          "cache_miss_tokens": 2520,
+          "output_tokens_including_reasoning": 309,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000571848",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:57:40.307687+00:00",
+          "end_UTC": "2026-10-21T11:57:41.858493+00:00",
+          "seconds": 1.550835461999668,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 2740,
+            "completion_tokens": 155,
+            "total_tokens": 2895,
+            "prompt_tokens_details": {
+              "cached_tokens": 1408
+            },
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1332
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 768,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "05",
+          "input_tokens": 2740,
+          "cache_hit_tokens": 1408,
+          "cache_miss_tokens": 1332,
+          "output_tokens_including_reasoning": 155,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000297024",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T11:57:42.283488+00:00",
+          "end_UTC": "2026-10-21T11:57:43.176520+00:00",
+          "seconds": 0.8930632109995713,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 8095,
+            "completion_tokens": 19,
+            "total_tokens": 8114,
+            "prompt_tokens_details": {
+              "cached_tokens": 2816
+            },
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 5279
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 2048,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "06",
+          "input_tokens": 8095,
+          "cache_hit_tokens": 2816,
+          "cache_miss_tokens": 5279,
+          "output_tokens_including_reasoning": 19,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.000811698",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        },
+        {
+          "start_UTC": "2026-10-21T12:00:23.527375+00:00",
+          "end_UTC": "2026-10-21T12:00:24.792602+00:00",
+          "seconds": 1.2652540499993847,
+          "http_status": 200,
+          "requested_model": "deepseek-flash",
+          "returned_model": "deepseek-flash",
+          "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+          "usage": {
+            "prompt_tokens": 4661,
+            "completion_tokens": 35,
+            "total_tokens": 4696,
+            "prompt_tokens_details": {
+              "cached_tokens": 3200
+            },
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1461
+          },
+          "is_global": false,
+          "thinking": {
+            "type": "disabled"
+          },
+          "reasoning_effort": null,
+          "max_tokens": 1024,
+          "request_forwarded_unchanged": true,
+          "finish_reasons": [
+            "stop"
+          ],
+          "call_id": "07",
+          "input_tokens": 4661,
+          "cache_hit_tokens": 3200,
+          "cache_miss_tokens": 1461,
+          "output_tokens_including_reasoning": 35,
+          "reasoning_tokens": 0,
+          "cost_USD_tariff_estimate": "0.00024975",
+          "price_period": "OFF_PEAK",
+          "not_invoice": true
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "new_real_global_calls": 3,
+    "provider_calls": 28,
+    "input_tokens": 310795,
+    "output_tokens_including_reasoning": 87187,
+    "reasoning_tokens": 60804,
+    "cache_hit_tokens": 86656,
+    "cache_miss_tokens": 224139,
+    "total_tokens": 397982,
+    "source_texts": 53,
+    "user_texts": 1,
+    "text_writes": 54,
+    "boolean_writes": 6,
+    "boolean_true": 1,
+    "boolean_false": 5,
+    "SOURCE_core": 74,
+    "SOURCE_core_written": 54,
+    "SOURCE_core_unwritten": 20,
+    "PDF_pages": 19
+  },
+  "total_cost_USD_tariff_estimate": "0.086193018",
+  "classification_totals": {
+    "UNJUSTIFIED_OMISSION": 17,
+    "OPEN_DIALOGUE_LIMIT": 1,
+    "CORRECT_WRITE": 60,
+    "NOT_APPLICABLE": 148,
+    "LEGITIMATELY_OPEN": 177,
+    "UNJUSTIFIED_OMISSION_USER": 1,
+    "AMBIGUOUS_OR_NONREQUIRED_DESTINATION": 2
+  },
+  "not_statistical_accuracy_measure": true,
+  "not_three_repeated_trials_on_same_form": true,
+  "no_application_change": true,
+  "no_multi_SOURCE_composition_added": true,
+  "known_limited_FORM_grammar_unmodified": true,
+  "baseline_recommendation_requires_authorial_report_and_user_decision": true
+}

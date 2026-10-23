@@ -12,6 +12,7 @@ from pydantic import Field, model_validator
 from app.compilation_applicability import explicit_condition_reply, known_applicability
 from app.compilation_session_models import UserFieldInput
 from app.document_compilation import StrictModel
+from app.schemas import MAX_QUESTION_LENGTH
 
 MAX_AUTO_STEPS = 36
 MAX_AUTO_SECONDS = 600
@@ -28,7 +29,7 @@ class ChatFieldReply(StrictModel):
 class ChatControl(StrictModel):
     kind: str = Field(pattern="^(unknown|skip|refuse|pause|resume|finish)$")
     field_id: str | None = Field(default=None, max_length=80)
-    user_quote: str = Field(min_length=1, max_length=2000)
+    user_quote: str = Field(min_length=1, max_length=MAX_QUESTION_LENGTH)
 
 
 class ActiveFieldDecision(StrictModel):
@@ -54,7 +55,7 @@ class ActiveFieldDecision(StrictModel):
 
 class ClarificationReply(ActiveFieldDecision):
     slot: int = Field(ge=1, le=4)
-    user_quote: str = Field(min_length=1, max_length=2000)
+    user_quote: str = Field(min_length=1, max_length=MAX_QUESTION_LENGTH)
     selected_options: list[int] | None = Field(default=None, max_length=32)
 
     @model_validator(mode="after")
@@ -71,6 +72,7 @@ class ClarificationDecision(StrictModel):
     replies: list[ClarificationReply] = Field(default_factory=list, max_length=4)
     # Internal receipt of discarded proposals; never returned by the LLM.
     unaccepted_slots: list[int] = Field(default_factory=list, max_length=4)
+    scope_verifications: dict[int, str] = Field(default_factory=dict)
 
     @model_validator(mode="after")
     def distinct_slots(self):
@@ -92,7 +94,7 @@ async def handle_group_decision(project_id, conversation_id, decision, session, 
 
         after, errors = await run_in_threadpool(apply_replies, project_id, session["id"],
             expected_version or session["version"], decision.replies, message,
-            decision.unaccepted_slots)
+            decision.unaccepted_slots, decision.scope_verifications)
         return ("Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti."
                 if after["chat"]["auto_continue"] else
                 after["global_compilation"]["dialogue"]["message"]), {
@@ -356,7 +358,12 @@ def planner_context(session):
     view = chat_view(session)
     question = view["question"]
     asked = set(question["field_ids"]) if question else set()
+    from app.compilation_scope_review import context as scope_context
+    from app.compilation_scope_review import session_data
+
+    scope = scope_context(session_data(session), (question or {}).get("slots", []))
     return {
+        **({"form_scope": scope} if scope else {}),
         "session_id": session["id"],
         "engine": session.get("engine", "legacy"),
         "enabled": view["enabled"],
@@ -465,6 +472,25 @@ def normalize_date(text):
 
 def has_user_alternatives(message):
     return bool(re.search(r"\b(?:oppure|forse)\b|\s+o\s+", normalized(message)))
+
+
+def hedged(text):
+    """Explicit doubt, independent of conjunctions such as «senza X o Y»."""
+    return bool(re.search(r"\bforse\b|\bnon\s+(?:lo\s+)?so\b", normalized(text)))
+
+
+def value_alternatives(quote, value):
+    """A disjunction or doubt on the value itself; «senza X o Y» elsewhere is not a choice.
+
+    Used only after the semantic reply guard (dialogue_revision 1), which judges
+    alternatives and uncertainty in the whole message.
+    """
+    text, literal = normalized(quote), normalized(value or "")
+    if not literal:
+        return False
+    item = re.escape(literal)
+    return bool(re.search(r"\b(?:o|oppure|forse)\s+" + item + r"(?!\w)|(?<!\w)" + item
+                          + r"\s+(?:o|oppure)\b", text))
 
 
 def user_updates(session, replies, message, *, question=None):

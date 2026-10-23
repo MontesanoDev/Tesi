@@ -1,0 +1,410 @@
+{
+  "completed_collected": 45,
+  "results": [
+    {
+      "trial": "minervino-01",
+      "document": "minervino",
+      "session_id": "f321f469fe03486b8b654d84f309965c",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 4,
+      "global_calls": 1
+    },
+    {
+      "trial": "cesano-01",
+      "document": "cesano",
+      "session_id": "a789f81e37df4228b9a3806f289c15fe",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "craa-01",
+      "document": "craa",
+      "session_id": "1761243fcb6d4388a3396cf6961cac36",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "trapani-01",
+      "document": "trapani",
+      "session_id": "889bf9d12c7d4ef6acca2f7c2dbb9502",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 5,
+      "global_calls": 1
+    },
+    {
+      "trial": "catanzaro-01",
+      "document": "catanzaro",
+      "session_id": "d5e6010becc54248a3b9ef01caf882cf",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "bella-01",
+      "document": "bella",
+      "session_id": "d4f02ef9dd9442b7883216ae18cccc0a",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "minervino-02",
+      "document": "minervino",
+      "session_id": "c05f43c4704449dda23cf561efa31723",
+      "exported": false,
+      "status": "WAITING_FOR_USER",
+      "turns": 5,
+      "global_calls": 1
+    },
+    {
+      "trial": "cesano-02",
+      "document": "cesano",
+      "session_id": "d75342b967d7422eabb173a1f230626e",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "craa-02",
+      "document": "craa",
+      "session_id": "de03c55314b6475eadef319ed405cc2e",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "trapani-02",
+      "document": "trapani",
+      "session_id": "fe16326c28694a6eaf41fe1827c5b98d",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "catanzaro-02",
+      "document": "catanzaro",
+      "session_id": "712dbdb1d3ba47d8989f7212dd3e074a",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "bella-02",
+      "document": "bella",
+      "session_id": "40566591a58d4344b483a1fa14880a84",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 2,
+      "global_calls": 1
+    },
+    {
+      "trial": "minervino-03",
+      "document": "minervino",
+      "session_id": "7d13fb1ab97e4637bc4635884f9438bb",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 6,
+      "global_calls": 1
+    },
+    {
+      "trial": "cesano-03",
+      "document": "cesano",
+      "session_id": "3fc0bc226cb64899a575f0475c0850ee",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "craa-03",
+      "document": "craa",
+      "session_id": "5bced96451d749308293be35d0c0822c",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "trapani-03",
+      "document": "trapani",
+      "session_id": "1520ee35dbb4491388130f245d25d56a",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "catanzaro-03",
+      "document": "catanzaro",
+      "session_id": "66ff5733bf424edfb02a0b244caadb85",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 4,
+      "global_calls": 1
+    },
+    {
+      "trial": "bella-03",
+      "document": "bella",
+      "session_id": "716176049a9749a69d2f0156ea368ed4",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 2,
+      "global_calls": 1
+    },
+    {
+      "trial": "minervino-04",
+      "document": "minervino",
+      "session_id": "1f9dc397bece432790d662cfe523c90e",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 5,
+      "global_calls": 1
+    },
+    {
+      "trial": "cesano-04",
+      "document": "cesano",
+      "session_id": "8f660aaa485346a29a832a29cb29fff8",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "craa-04",
+      "document": "craa",
+      "session_id": "5d82eff4511844018a430f145602e7d3",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "trapani-04",
+      "document": "trapani",
+      "session_id": "c7e2d113bcd44fdbb46b10a23a9c48b2",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 4,
+      "global_calls": 1
+    },
+    {
+      "trial": "catanzaro-04",
+      "document": "catanzaro",
+      "session_id": "2e291cd319f44f7b86ea6f15b7879f5e",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 4,
+      "global_calls": 1
+    },
+    {
+      "trial": "bella-04",
+      "document": "bella",
+      "session_id": "810019de02374c2ab8dd3f8e8726abaa",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "minervino-05",
+      "document": "minervino",
+      "session_id": "0bc296b194914e1991f83961bec76fa5",
+      "exported": false,
+      "status": "FAILED",
+      "turns": 2,
+      "global_calls": 1
+    },
+    {
+      "trial": "cesano-05",
+      "document": "cesano",
+      "session_id": "ea0a32777f1c45d4b530fba001468d41",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "craa-05",
+      "document": "craa",
+      "session_id": "edd39403fe864425a3de045c01e16a34",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "trapani-05",
+      "document": "trapani",
+      "session_id": "d91a1ee1442a422fb4c923734ce44f21",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 5,
+      "global_calls": 1
+    },
+    {
+      "trial": "catanzaro-05",
+      "document": "catanzaro",
+      "session_id": "fbd271576abc4d34ba4deca61e2ecca9",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "bella-05",
+      "document": "bella",
+      "session_id": "0db6b9afea5e480e8d322b39556e99ef",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "minervino-06",
+      "document": "minervino",
+      "session_id": "5acf026dd3e44ec598453d815cb44b41",
+      "exported": false,
+      "status": "FAILED",
+      "turns": 2,
+      "global_calls": 1
+    },
+    {
+      "trial": "cesano-06",
+      "document": "cesano",
+      "session_id": "37d3c3a9b7994b288fd1cac95d1252f8",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "craa-06",
+      "document": "craa",
+      "session_id": "c3ea07d824794c8fa9d7e186a2cc27cb",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "minervino-07",
+      "document": "minervino",
+      "session_id": "23dc6a3d40e24c53a4f8c3aaf943add3",
+      "exported": false,
+      "status": "WAITING_FOR_USER",
+      "turns": 2,
+      "global_calls": 1
+    },
+    {
+      "trial": "cesano-07",
+      "document": "cesano",
+      "session_id": "dda8a47e64004caa96eb0cf9a34b427b",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "craa-07",
+      "document": "craa",
+      "session_id": "82c8b76c0f9a491d8eadb9d3f20346e6",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "minervino-08",
+      "document": "minervino",
+      "session_id": "bb60d9ef9ae045b199761ac623eae6a3",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 6,
+      "global_calls": 1
+    },
+    {
+      "trial": "cesano-08",
+      "document": "cesano",
+      "session_id": "32faff088fce4591ac321722287ed044",
+      "exported": false,
+      "status": "FAILED",
+      "turns": 2,
+      "global_calls": 1
+    },
+    {
+      "trial": "craa-08",
+      "document": "craa",
+      "session_id": "341674c65f6442498a2435ce5cc1c7e0",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "minervino-09",
+      "document": "minervino",
+      "session_id": "a513739afa0749a18c93d8e621b4c424",
+      "exported": false,
+      "status": "WAITING_FOR_USER",
+      "turns": 2,
+      "global_calls": 1
+    },
+    {
+      "trial": "cesano-09",
+      "document": "cesano",
+      "session_id": "c7f48c43e4c2477395da8af40edb9d64",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "craa-09",
+      "document": "craa",
+      "session_id": "b897466b1bea4e6eae678ac1044ccf71",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    },
+    {
+      "trial": "minervino-10",
+      "document": "minervino",
+      "session_id": "c627dda9afb04673afc4ee7eaa9031b2",
+      "exported": false,
+      "status": "WAITING_FOR_USER",
+      "turns": 2,
+      "global_calls": 1
+    },
+    {
+      "trial": "cesano-10",
+      "document": "cesano",
+      "session_id": "e1148cdf45f0492db4b60aef43c0e00c",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 4,
+      "global_calls": 1
+    },
+    {
+      "trial": "craa-10",
+      "document": "craa",
+      "session_id": "b495e8b85e0d4e6a997d8c48e7feeffb",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1
+    }
+  ]
+}

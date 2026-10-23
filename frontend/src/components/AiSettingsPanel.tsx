@@ -134,14 +134,14 @@ function ProfileForm({ profile, providers, onSaved, onCancel }: {
       {(form.provider === 'openai' || form.provider === 'anthropic') && <p className="ai-help">
         Serve una chiave API del servizio. L'abbonamento a ChatGPT o Claude non include automaticamente questo utilizzo.
       </p>}
-      {form.provider === 'ollama' && <p className="ai-help">Ollama può essere sul computer che esegue Mapi
+      {form.provider === 'ollama' && <p className="ai-help">Ollama può essere sul computer che esegue l’applicazione
         oppure su un server remoto. I modelli devono essere installati sul server Ollama scelto.</p>}
       {(form.provider === 'compatible' || form.provider === 'ollama') && <label>Indirizzo del servizio
         <input type="url" required value={form.base_url}
           placeholder={form.provider === 'ollama' ? 'http://192.168.1.50:11434' : 'https://servizio.example/v1'}
           onChange={(event) => { update({ base_url: event.target.value, connection_token: undefined }); setModels([]) }} />
         <small>{form.provider === 'ollama'
-          ? '127.0.0.1 indica il computer che esegue Mapi. Per un servizio remoto usa il suo IP o dominio, raggiungibile da Mapi.'
+          ? '127.0.0.1 indica il computer che esegue l’applicazione. Per un servizio remoto usa il suo IP o dominio, raggiungibile dall’applicazione.'
           : "Usa l'indirizzo base delle API compatibili con Chat Completions, spesso terminante in /v1."}</small>
       </label>}
       <div className="ai-actions">

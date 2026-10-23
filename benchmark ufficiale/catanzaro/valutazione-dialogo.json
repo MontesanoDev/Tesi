@@ -1,0 +1,44 @@
+{
+  "actual_question_exposures": 2,
+  "unique_question_decisions": 1,
+  "duplicate_exposures": 1,
+  "superfluous_alternative_exposures": 0,
+  "relevant_distinct_decisions": 1,
+  "questions": [
+    {
+      "version": 3,
+      "slot_key": "condition:c_soc_ing",
+      "question": "Confermi che la compilazione riguarda una società di ingegneria?",
+      "kind": "applicability",
+      "duplicate": false,
+      "superfluous_given_frozen_scenario": false,
+      "assessment": "Relevant first confirmation or genuinely missing decision",
+      "form": null
+    },
+    {
+      "version": 4,
+      "slot_key": "condition:c_soc_ing",
+      "question": "Confermi che la compilazione riguarda una società di ingegneria?",
+      "kind": "applicability",
+      "duplicate": true,
+      "superfluous_given_frozen_scenario": false,
+      "assessment": "Unnecessary repetition after unambiguous negative alternatives falsely rejected",
+      "form": null
+    }
+  ],
+  "max_USER_rounds": 2,
+  "export_requested_at_pre_registered_limit": true,
+  "false_alternatives_observed": {
+    "phrase": "senza raggruppamenti o consorzi",
+    "router_interpretation": "CONDITION_TRUE",
+    "guard": "SUPPORTED",
+    "backend": "Rejected by has_user_alternatives literal regex for o",
+    "code": "backend/app/compilation_global_dialogue.py apply_replies; backend/app/compilation_chat.py has_user_alternatives"
+  },
+  "not_asked_but_needed": [
+    "Signatory identity recovery despite explicit choice in chat",
+    "Structural checkbox decisions already explicit in scenario",
+    "Part-three applicability to engineering company",
+    "Attestations, actual attachments, eligibility, service records and place/date where required"
+  ]
+}

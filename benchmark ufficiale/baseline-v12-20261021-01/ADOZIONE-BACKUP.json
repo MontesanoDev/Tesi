@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "archive": "benchmark ufficiale/baseline-v12-20261021-01/adozione-documentale.tar.gz",
+  "archive_SHA256": "6849b371e3da0d8c631a8acf1e447920beb332aab4cc34dfc9a69e7881b41189",
+  "archive_bytes": 1113653,
+  "files_extracted_hash_exact": 11,
+  "original_experimental_archive_SHA256_unchanged": "5a1d5b0c4df9039bed8f636a441f6484438442965339c4936666b160a0743a1d",
+  "experimental_DOCX_PDF_RAW_not_duplicated": true,
+  "only_documentary_adoption_addendum": true,
+  "no_inference_export_or_application_execution": true,
+  "private_DB_credentials_not_included": true,
+  "preservation_problems": []
+}

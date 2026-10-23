@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "archive_SHA256": "5a1d5b0c4df9039bed8f636a441f6484438442965339c4936666b160a0743a1d",
+  "archive_bytes": 115825645,
+  "files_extracted_hash_exact": 781,
+  "application_snapshot_hashes_exact": 119,
+  "credentials_environment_private_DB_excluded": true,
+  "actual_secret_scan_passed": true,
+  "independent_extracted_replays": [
+    {
+      "document": "minervino",
+      "status": "PASS",
+      "seconds": 1.2629984249997506,
+      "application_from_extraction_asserted": true,
+      "audit_DOCX_browser_download_exact": true,
+      "network_SQLite_forbidden_by_runner": true
+    },
+    {
+      "document": "cesano",
+      "status": "PASS",
+      "seconds": 0.8679053350006143,
+      "application_from_extraction_asserted": true,
+      "audit_DOCX_browser_download_exact": true,
+      "network_SQLite_forbidden_by_runner": true
+    },
+    {
+      "document": "craa",
+      "status": "PASS",
+      "seconds": 0.8135874689996854,
+      "application_from_extraction_asserted": true,
+      "audit_DOCX_browser_download_exact": true,
+      "network_SQLite_forbidden_by_runner": true
+    }
+  ],
+  "DOCX_exact_rebuilt": 3,
+  "actual_UI_audits_exact_rebuilt": 3,
+  "actual_browser_downloads_exact": 3,
+  "usage_cost_and_classifications_exact_recomputed": true,
+  "documentary_ledger_preserved_not_new_automated_semantic_review": true,
+  "no_new_inference_or_provider_calls": true,
+  "network_SQLite_forbidden_by_replay": true,
+  "working_tree_application_not_used_by_replay": true,
+  "Python_dependencies_and_renderer_not_bundled": true,
+  "previous_frozen_studies_preserved_separately": true
+}

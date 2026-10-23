@@ -1,7 +1,7 @@
 export const FIELDS = [
   { key: 'ente', label: 'Ente proponente', source: 'Scheda progetto', value: 'Comune di Valleverde' },
   { key: 'intervento', label: 'Intervento', source: 'Scheda progetto', value: 'Riqualificazione della scuola primaria di via Roma' },
-  { key: 'supporto', label: 'Supporto tecnico', source: 'Company KB', value: 'Mapi Ingegneria' },
+  { key: 'supporto', label: 'Supporto tecnico', source: 'Company KB', value: 'Studio di ingegneria dimostrativo' },
   { key: 'responsabile', label: 'Responsabile del procedimento', source: '', value: '' },
   { key: 'importo', label: 'Importo richiesto (EUR)', source: '', value: '' },
 ] as const
@@ -43,7 +43,7 @@ export function facsimileHtml(values: Values) {
     fields.append(label, value)
   }
   const footer = output.createElement('footer')
-  footer.textContent = 'Simulazione del flusso di Mapi RAG. Dati fittizi o inseriti durante la demo; nessuna estrazione da documenti o verifica di ammissibilita.'
+  footer.textContent = 'Simulazione del flusso di compilazione. Dati fittizi o inseriti durante la demo; nessuna estrazione da documenti o verifica di ammissibilita.'
   output.body.append(header, title, fields, footer)
   return `<!doctype html>\n${output.documentElement.outerHTML}`
 }

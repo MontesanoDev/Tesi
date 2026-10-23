@@ -1,0 +1,2071 @@
+{
+  "mode": "offline_applicability_diagnosis_no_state_changes",
+  "runs": {
+    "b0-03": {
+      "grounded": 47,
+      "conditions": [
+        "c_p39"
+      ],
+      "choice_group_count": 0,
+      "participation_checkbox": {
+        "candidate_id": "p39.cb0",
+        "validation": "REVIEW_REQUIRED",
+        "semantic_review_required": true,
+        "written_value": null,
+        "conditions": [
+          "c_p39"
+        ],
+        "source_evidence": [],
+        "validation_errors": [],
+        "proposal": null,
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            18
+          ]
+        }
+      },
+      "resolved": 0,
+      "writes": 0
+    },
+    "index-01": {
+      "grounded": 25,
+      "conditions": [
+        "c_op",
+        "c_branch_soc"
+      ],
+      "choice_group_count": 0,
+      "participation_checkbox": {
+        "candidate_id": "p39.cb0",
+        "validation": "REVIEW_REQUIRED",
+        "semantic_review_required": true,
+        "written_value": null,
+        "conditions": [
+          "c_branch_soc"
+        ],
+        "source_evidence": [],
+        "validation_errors": [],
+        "proposal": null,
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            20
+          ]
+        }
+      },
+      "resolved": 0,
+      "writes": 0
+    }
+  },
+  "condition_records": 3,
+  "semantic_empty_operand_conditions": 3,
+  "b0_registered_condition_true_in_own_session": true,
+  "b0_registered_user_name": "Leonardo Montemurro",
+  "index01_original_registered_session_decisions_available": false,
+  "index01_software_fixture_is_cross_session_explicit_mapping": true,
+  "source_target_gaps": {
+    "b0-03": 13,
+    "index-01": 35
+  },
+  "provider_calls": 0,
+  "docx_exports": 0,
+  "applicability_changes": 0,
+  "session_writes": 0,
+  "date": "2026-10-17",
+  "global_proposal_replays": 0,
+  "condition_records_detail": [
+    {
+      "run": "b0-03",
+      "condition_id": "c_p39",
+      "condition": {
+        "result": "unknown",
+        "validation": "GROUNDED_PROPOSAL",
+        "semantic_review_required": true,
+        "validation_errors": [],
+        "form": {
+          "paragraph_id": "paragraph:39",
+          "quote": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente"
+        },
+        "aspect": "participation",
+        "operator": "semantic",
+        "fact_ids": [],
+        "reason": "La compilazione dei dati societari, dei soci e del direttore tecnico dipende dalla selezione della forma di partecipazione come società di professionisti o di ingegneria.",
+        "form_evidence": {
+          "paragraph_id": "paragraph:39",
+          "quote": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente"
+        },
+        "scope": [
+          {
+            "kind": "candidate",
+            "id": "p14.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p15.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p15.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p15.s3"
+          },
+          {
+            "kind": "candidate",
+            "id": "p16.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p16.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p16.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p17.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p17.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p40.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p41.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p41.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p42.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p42.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p42.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p42.s3"
+          },
+          {
+            "kind": "candidate",
+            "id": "p42.s4"
+          },
+          {
+            "kind": "candidate",
+            "id": "p42.s5"
+          },
+          {
+            "kind": "candidate",
+            "id": "p43.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p43.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p43.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p43.s3"
+          },
+          {
+            "kind": "candidate",
+            "id": "p43.s4"
+          },
+          {
+            "kind": "candidate",
+            "id": "p44.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p44.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p44.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p45.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p45.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p45.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p45.s3"
+          },
+          {
+            "kind": "candidate",
+            "id": "p45.s4"
+          },
+          {
+            "kind": "candidate",
+            "id": "p46.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p46.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p46.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p47.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p48.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p48.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p49.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p49.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p49.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p49.s3"
+          },
+          {
+            "kind": "candidate",
+            "id": "p49.s4"
+          },
+          {
+            "kind": "candidate",
+            "id": "p51.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p52.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p52.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p53.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p53.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p53.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p53.s3"
+          },
+          {
+            "kind": "candidate",
+            "id": "p53.s4"
+          }
+        ],
+        "applies_to": [
+          "p14.s1",
+          "p15.s1",
+          "p15.s2",
+          "p15.s3",
+          "p16.s0",
+          "p16.s1",
+          "p16.s2",
+          "p17.s0",
+          "p17.s1",
+          "p39.cb0",
+          "p40.s0",
+          "p41.s0",
+          "p41.s1",
+          "p42.s0",
+          "p42.s1",
+          "p42.s2",
+          "p42.s3",
+          "p42.s4",
+          "p42.s5",
+          "p43.s0",
+          "p43.s1",
+          "p43.s2",
+          "p43.s3",
+          "p43.s4",
+          "p44.s0",
+          "p44.s1",
+          "p44.s2",
+          "p45.s0",
+          "p45.s1",
+          "p45.s2",
+          "p45.s3",
+          "p45.s4",
+          "p46.s0",
+          "p46.s1",
+          "p46.s2",
+          "p47.s0",
+          "p48.s0",
+          "p48.s1",
+          "p49.s0",
+          "p49.s1",
+          "p49.s2",
+          "p49.s3",
+          "p49.s4",
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "proposal": {
+          "form": {
+            "paragraph_id": "paragraph:39",
+            "quote": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente"
+          },
+          "aspect": "participation",
+          "operator": "semantic",
+          "fact_ids": [],
+          "reason": "La compilazione dei dati societari, dei soci e del direttore tecnico dipende dalla selezione della forma di partecipazione come società di professionisti o di ingegneria.",
+          "scope": [
+            {
+              "kind": "candidate",
+              "id": "p14.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p15.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p15.s2"
+            },
+            {
+              "kind": "candidate",
+              "id": "p15.s3"
+            },
+            {
+              "kind": "candidate",
+              "id": "p16.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p16.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p16.s2"
+            },
+            {
+              "kind": "candidate",
+              "id": "p17.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p17.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p40.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p41.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p41.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p42.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p42.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p42.s2"
+            },
+            {
+              "kind": "candidate",
+              "id": "p42.s3"
+            },
+            {
+              "kind": "candidate",
+              "id": "p42.s4"
+            },
+            {
+              "kind": "candidate",
+              "id": "p42.s5"
+            },
+            {
+              "kind": "candidate",
+              "id": "p43.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p43.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p43.s2"
+            },
+            {
+              "kind": "candidate",
+              "id": "p43.s3"
+            },
+            {
+              "kind": "candidate",
+              "id": "p43.s4"
+            },
+            {
+              "kind": "candidate",
+              "id": "p44.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p44.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p44.s2"
+            },
+            {
+              "kind": "candidate",
+              "id": "p45.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p45.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p45.s2"
+            },
+            {
+              "kind": "candidate",
+              "id": "p45.s3"
+            },
+            {
+              "kind": "candidate",
+              "id": "p45.s4"
+            },
+            {
+              "kind": "candidate",
+              "id": "p46.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p46.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p46.s2"
+            },
+            {
+              "kind": "candidate",
+              "id": "p47.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p48.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p48.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p49.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p49.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p49.s2"
+            },
+            {
+              "kind": "candidate",
+              "id": "p49.s3"
+            },
+            {
+              "kind": "candidate",
+              "id": "p49.s4"
+            },
+            {
+              "kind": "candidate",
+              "id": "p51.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p52.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p52.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p53.s0"
+            },
+            {
+              "kind": "candidate",
+              "id": "p53.s1"
+            },
+            {
+              "kind": "candidate",
+              "id": "p53.s2"
+            },
+            {
+              "kind": "candidate",
+              "id": "p53.s3"
+            },
+            {
+              "kind": "candidate",
+              "id": "p53.s4"
+            }
+          ]
+        }
+      },
+      "grounded_count": 47,
+      "grounded_ids": [
+        "p14.s1",
+        "p15.s1",
+        "p15.s2",
+        "p15.s3",
+        "p16.s0",
+        "p16.s1",
+        "p16.s2",
+        "p17.s0",
+        "p17.s1",
+        "p40.s0",
+        "p41.s0",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4",
+        "p51.s0",
+        "p52.s0",
+        "p52.s1",
+        "p53.s0",
+        "p53.s1",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "condition_check_scopes": {
+        "semantic_review_required": 47
+      }
+    },
+    {
+      "run": "index-01",
+      "condition_id": "c_op",
+      "condition": {
+        "result": "unknown",
+        "validation": "GROUNDED_PROPOSAL",
+        "semantic_review_required": true,
+        "validation_errors": [],
+        "form": {
+          "paragraph_id": "paragraph:14",
+          "quote": "dell’operatore economico ___________________________________ con sede in"
+        },
+        "aspect": "participation",
+        "operator": "semantic",
+        "fact_ids": [],
+        "reason": "La compilazione dei dati dell'operatore economico presuppone la conferma del soggetto partecipante; il modulo è bianco e non intestato.",
+        "form_evidence": {
+          "paragraph_id": "paragraph:14",
+          "quote": "dell’operatore economico ___________________________________ con sede in"
+        },
+        "scope": [
+          {
+            "kind": "paragraph",
+            "id": "paragraph:14"
+          },
+          {
+            "kind": "paragraph",
+            "id": "paragraph:15"
+          },
+          {
+            "kind": "paragraph",
+            "id": "paragraph:16"
+          },
+          {
+            "kind": "paragraph",
+            "id": "paragraph:17"
+          }
+        ],
+        "applies_to": [
+          "p14.s0",
+          "p14.s1",
+          "p15.s0",
+          "p15.s1",
+          "p15.s2",
+          "p15.s3",
+          "p16.s0",
+          "p16.s1",
+          "p16.s2",
+          "p17.s0",
+          "p17.s1",
+          "p17.s2",
+          "p17.s3"
+        ],
+        "proposal": {
+          "form": {
+            "paragraph_id": "paragraph:14",
+            "quote": "dell’operatore economico ___________________________________ con sede in"
+          },
+          "aspect": "participation",
+          "operator": "semantic",
+          "fact_ids": [],
+          "reason": "La compilazione dei dati dell'operatore economico presuppone la conferma del soggetto partecipante; il modulo è bianco e non intestato.",
+          "scope": [
+            {
+              "kind": "paragraph",
+              "id": "paragraph:14"
+            },
+            {
+              "kind": "paragraph",
+              "id": "paragraph:15"
+            },
+            {
+              "kind": "paragraph",
+              "id": "paragraph:16"
+            },
+            {
+              "kind": "paragraph",
+              "id": "paragraph:17"
+            }
+          ]
+        }
+      },
+      "grounded_count": 9,
+      "grounded_ids": [
+        "p14.s1",
+        "p15.s1",
+        "p15.s2",
+        "p15.s3",
+        "p16.s0",
+        "p16.s1",
+        "p16.s2",
+        "p17.s0",
+        "p17.s1"
+      ],
+      "condition_check_scopes": {
+        "local": 1,
+        "semantic_review_required": 8
+      }
+    },
+    {
+      "run": "index-01",
+      "condition_id": "c_branch_soc",
+      "condition": {
+        "result": "unknown",
+        "validation": "GROUNDED_PROPOSAL",
+        "semantic_review_required": true,
+        "validation_errors": [],
+        "form": {
+          "paragraph_id": "paragraph:39",
+          "quote": "Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria"
+        },
+        "aspect": "representation",
+        "operator": "semantic",
+        "fact_ids": [],
+        "reason": "Blocco 'società di professionisti/ingegneria': si applica solo se è selezionata questa qualità in 'IN QUALITÀ DI'; la scelta non è attestata.",
+        "form_evidence": {
+          "paragraph_id": "paragraph:39",
+          "quote": "Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria"
+        },
+        "scope": [
+          {
+            "kind": "paragraph",
+            "id": "paragraph:40"
+          },
+          {
+            "kind": "paragraph",
+            "id": "paragraph:41"
+          },
+          {
+            "kind": "paragraph",
+            "id": "paragraph:42"
+          },
+          {
+            "kind": "paragraph",
+            "id": "paragraph:50"
+          },
+          {
+            "kind": "paragraph",
+            "id": "paragraph:51"
+          },
+          {
+            "kind": "paragraph",
+            "id": "paragraph:52"
+          },
+          {
+            "kind": "paragraph",
+            "id": "paragraph:53"
+          }
+        ],
+        "applies_to": [
+          "p39.cb0",
+          "p40.s0",
+          "p41.s0",
+          "p41.s1",
+          "p42.s0",
+          "p42.s1",
+          "p42.s2",
+          "p42.s3",
+          "p42.s4",
+          "p42.s5",
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "proposal": {
+          "form": {
+            "paragraph_id": "paragraph:39",
+            "quote": "Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria"
+          },
+          "aspect": "representation",
+          "operator": "semantic",
+          "fact_ids": [],
+          "reason": "Blocco 'società di professionisti/ingegneria': si applica solo se è selezionata questa qualità in 'IN QUALITÀ DI'; la scelta non è attestata.",
+          "scope": [
+            {
+              "kind": "paragraph",
+              "id": "paragraph:40"
+            },
+            {
+              "kind": "paragraph",
+              "id": "paragraph:41"
+            },
+            {
+              "kind": "paragraph",
+              "id": "paragraph:42"
+            },
+            {
+              "kind": "paragraph",
+              "id": "paragraph:50"
+            },
+            {
+              "kind": "paragraph",
+              "id": "paragraph:51"
+            },
+            {
+              "kind": "paragraph",
+              "id": "paragraph:52"
+            },
+            {
+              "kind": "paragraph",
+              "id": "paragraph:53"
+            }
+          ]
+        }
+      },
+      "grounded_count": 16,
+      "grounded_ids": [
+        "p40.s0",
+        "p41.s0",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p51.s0",
+        "p52.s0",
+        "p52.s1",
+        "p53.s0",
+        "p53.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "condition_check_scopes": {
+        "semantic_review_required": 16
+      }
+    }
+  ],
+  "source_evidence": [
+    {
+      "chunk_id": -43,
+      "file_id": -7,
+      "chunk_index": 0,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "quotes": [
+        "- Forma giuridica: Societa a responsabilita limitata.",
+        "- Tipologia di attivita': societa' di ingegneria civile."
+      ]
+    },
+    {
+      "chunk_id": -45,
+      "file_id": -7,
+      "chunk_index": 2,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "quotes": [
+        "- Procure, deleghe e dettaglio dei poteri di rappresentanza: non documentati nella scheda."
+      ]
+    },
+    {
+      "chunk_id": -53,
+      "file_id": -10,
+      "chunk_index": 1,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "quotes": [
+        "- **Luca Ferri**: amministratore unico nella visura sintetica del 6 agosto 2026. **Cessazione della carica nello scenario: 1 ottobre 2026.**",
+        "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**. La sua carica deriva da questa integrazione sintetica successiva e non è documentata dalla visura di agosto."
+      ]
+    },
+    {
+      "chunk_id": -54,
+      "file_id": -10,
+      "chunk_index": 2,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "quotes": [
+        "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+        "- **Elisa Romano:**"
+      ]
+    },
+    {
+      "chunk_id": -55,
+      "file_id": -10,
+      "chunk_index": 3,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "quotes": [
+        "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+        "Un ruolo aziendale **non** costituisce una designazione per uno specifico incarico di progettazione, coordinamento della sicurezza, collaudo o direzione lavori.",
+        "- la forma di partecipazione scelta per una procedura specifica;",
+        "- il soggetto che sottoscrive una determinata domanda;"
+      ]
+    }
+  ],
+  "user_ledger": {
+    "b0_own_session": {
+      "session_id": "ee86e66383ac4e5d9df90cf2b3ea3454",
+      "history": [
+        {
+          "question": "Compila una bozza della domanda di iscrizione all'elenco di Minervino di Lecce per Mapi Ingegneria S.r.l., che partecipa soltanto come società di ingegneria. Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.\n\nUsa i dati documentati nelle fonti, riferiti al 15 ottobre 2026. Chiedimi le scelte, le designazioni e le attestazioni della pratica che non sono nelle fonti. Non dedurre queste decisioni dai ruoli aziendali. Prima di generare il Word chiedimi di confermare l'export della bozza.",
+          "answer": "Certo. Analizzo il modulo e verifico le informazioni disponibili."
+        },
+        {
+          "question": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria. Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.",
+          "answer": "Ho registrato le tue conferme. Ho aggiornato i dati che hai fornito.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "question": "Genera ora la bozza Word con i dati documentati e le scelte che ti ho effettivamente comunicato. Autorizzo l'export anche se parziale: conserva vuoti i dati ancora irrisolti e la firma, e segnala separatamente i limiti. Non aggiungere spiegazioni nelle righe compilabili.",
+          "answer": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla."
+        }
+      ],
+      "answers": {
+        "condition:c_p39": {
+          "action": "CONDITION_TRUE",
+          "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria.",
+          "provenance": "USER",
+          "label": "La compilazione dei dati societari, dei soci e del direttore tecnico dipende dalla selezione della forma di partecipazione come società di professionisti o di ingegneria.",
+          "question": "Confermi che la domanda è presentata in qualità di legale rappresentante di una società di ingegneria, con conseguente compilazione dei dati societari e del direttore tecnico?",
+          "applies": true
+        },
+        "field:p12.s0": {
+          "action": "VALUE",
+          "user_quote": "Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.",
+          "provenance": "USER",
+          "label": "nome e cognome del sottoscritto",
+          "question": "Quali sono nome e cognome del sottoscritto della domanda?",
+          "value": "Leonardo Montemurro"
+        }
+      },
+      "user_values": {
+        "p12.s0": {
+          "value": "Leonardo Montemurro",
+          "user_quote": "Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.",
+          "provenance": "USER",
+          "label": "nome e cognome del sottoscritto",
+          "previous": null
+        }
+      },
+      "reviewed_candidate_ids": [
+        "p14.s1",
+        "p15.s1",
+        "p15.s2",
+        "p15.s3",
+        "p16.s0",
+        "p16.s1",
+        "p16.s2",
+        "p17.s0",
+        "p17.s1",
+        "p40.s0",
+        "p41.s0",
+        "p41.s1",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p51.s0",
+        "p52.s0",
+        "p53.s0",
+        "p53.s4"
+      ]
+    },
+    "index03_other_session": {
+      "session_id": "ac4edc0ccd5e4acf91d56a55f0895b0a",
+      "history": [
+        {
+          "question": "Compila una bozza della domanda di iscrizione all'elenco di Minervino di Lecce per Mapi Ingegneria S.r.l., che partecipa soltanto come società di ingegneria. Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.\n\nUsa i dati documentati nelle fonti, riferiti al 15 ottobre 2026. Chiedimi le scelte, le designazioni e le attestazioni della pratica che non sono nelle fonti. Non dedurre queste decisioni dai ruoli aziendali. Prima di generare il Word chiedimi di confermare l'export della bozza.",
+          "answer": "Certo. Analizzo il modulo e verifico le informazioni disponibili."
+        },
+        {
+          "question": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria. Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.",
+          "answer": "Ho registrato le tue conferme.\n\nPosso preparare una bozza parziale con i dati disponibili, lasciando vuote le parti irrisolte. Vuoi che la generi?"
+        },
+        {
+          "question": "Genera ora la bozza Word con i dati documentati e le scelte che ti ho effettivamente comunicato. Autorizzo l'export anche se parziale: conserva vuoti i dati ancora irrisolti e la firma, e segnala separatamente i limiti. Non aggiungere spiegazioni nelle righe compilabili.",
+          "answer": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla."
+        }
+      ],
+      "answers": {
+        "condition:c_soc": {
+          "action": "CONDITION_TRUE",
+          "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria.",
+          "provenance": "USER",
+          "label": "Il ramo società di professionisti/ingegneria si applica solo se il partecipante assume tale forma; scelta di partecipazione non confermata",
+          "question": "Confermi che il partecipante assume la forma di società di professionisti o di società di ingegneria?",
+          "applies": true
+        },
+        "condition:c_oe": {
+          "action": "CONDITION_TRUE",
+          "user_quote": "Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.",
+          "provenance": "USER",
+          "label": "I dati dell’operatore economico sono utilizzabili solo se il sottoscritto agisce per l’operatore Mapi Ingegneria S.r.l.; la scelta di partecipazione non è confermata",
+          "question": "Confermi che il sottoscritto agisce per l'operatore economico Mapi Ingegneria S.r.l?",
+          "applies": true
+        }
+      },
+      "user_values": {}
+    },
+    "index01_original": {
+      "state": "failed",
+      "session_writes": 0,
+      "registered_session_decisions_available": false
+    },
+    "index01_separate_software_fixture": {
+      "source": "Historical INDEX-03 replies, separate software fixture",
+      "source_session": "ac4edc0ccd5e4acf91d56a55f0895b0a",
+      "message": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria. Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.",
+      "explicit_test_mapping": {
+        "c_branch_soc": "c_soc",
+        "c_op": "c_oe"
+      },
+      "registered_answers": {
+        "condition:c_op": {
+          "action": "CONDITION_TRUE",
+          "user_quote": "Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.",
+          "provenance": "USER",
+          "label": "La compilazione dei dati dell'operatore economico presuppone la conferma del soggetto partecipante; il modulo è bianco e non intestato.",
+          "applies": true
+        },
+        "condition:c_branch_soc": {
+          "action": "CONDITION_TRUE",
+          "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria.",
+          "provenance": "USER",
+          "label": "Blocco 'società di professionisti/ingegneria': si applica solo se è selezionata questa qualità in 'IN QUALITÀ DI'; la scelta non è attestata.",
+          "applies": true
+        }
+      },
+      "narrator_and_reply_interpreter": "not measured; backend-owned slots and replayed typed replies",
+      "selected_before": [
+        "p14.s1",
+        "p15.s1",
+        "p15.s2",
+        "p15.s3",
+        "p16.s0",
+        "p16.s1",
+        "p16.s2",
+        "p17.s0",
+        "p17.s1",
+        "p40.s0",
+        "p41.s0",
+        "p41.s1",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p51.s0"
+      ],
+      "selected_still_grounded": [
+        "p14.s1",
+        "p15.s1",
+        "p15.s2",
+        "p15.s3",
+        "p16.s0",
+        "p16.s1",
+        "p16.s2",
+        "p17.s0",
+        "p17.s1",
+        "p40.s0",
+        "p41.s0",
+        "p42.s0",
+        "p42.s1",
+        "p42.s2",
+        "p42.s3",
+        "p42.s4",
+        "p42.s5",
+        "p51.s0"
+      ],
+      "newly_grounded_not_in_old_selection": [
+        "p52.s0",
+        "p52.s1",
+        "p53.s0",
+        "p53.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "prior_selection_now_rejected": [
+        "p41.s1"
+      ]
+    }
+  },
+  "value_preflight_summary": {
+    "b0-03": {
+      "grounded_values_checked": 47,
+      "passed_unchanged": 47
+    },
+    "index-01": {
+      "grounded_values_checked": 25,
+      "passed_unchanged": 25
+    }
+  },
+  "b0_readonly_selection_projection": {
+    "scope": "read-only projection of current B0 audit with its own archived dialogue; not a live state",
+    "archived_selectable_source_count": 22,
+    "current_source_count_with_existing_review_only": 21,
+    "current_source_ids": [
+      "p14.s1",
+      "p15.s1",
+      "p15.s2",
+      "p15.s3",
+      "p16.s0",
+      "p16.s1",
+      "p16.s2",
+      "p17.s0",
+      "p17.s1",
+      "p40.s0",
+      "p41.s0",
+      "p42.s0",
+      "p42.s1",
+      "p42.s2",
+      "p42.s3",
+      "p42.s4",
+      "p42.s5",
+      "p51.s0",
+      "p52.s0",
+      "p53.s0",
+      "p53.s4"
+    ],
+    "confirmed_condition_ids_from_existing_answers": [
+      "c_p39"
+    ],
+    "existing_user_candidate_ids": [
+      "p12.s0"
+    ],
+    "existing_user_name_preflight": {
+      "cell_id": "p12.s0",
+      "label": "nome e cognome del sottoscritto",
+      "entity": "other",
+      "kind": "data",
+      "status": "proposed",
+      "value": "Leonardo Montemurro",
+      "reason": "Valore esplicito dell'utente",
+      "written_value": "Leonardo Montemurro",
+      "location": {
+        "kind": "paragraph",
+        "paragraph": 13,
+        "slot": 1,
+        "placeholder": "_____________________________"
+      },
+      "evidence": [
+        {
+          "source_id": "user:instructions",
+          "document_id": null,
+          "source_name": "Indicazioni dell'utente per questa compilazione",
+          "scope": "user",
+          "source_kind": "user_instructions",
+          "origin": "user",
+          "fragment": null,
+          "page": null,
+          "quote": "Leonardo Montemurro",
+          "content_sha256": "21228fb26fdec00706646bb587f5bdc353107b46ae853434726ebcb0b49b8639"
+        }
+      ],
+      "rejected_evidence": [],
+      "validation_notes": [],
+      "validation_codes": []
+    },
+    "new_grounded_source_values_without_prior_review": [
+      "p43.s0",
+      "p43.s1",
+      "p43.s2",
+      "p43.s3",
+      "p43.s4",
+      "p44.s0",
+      "p44.s1",
+      "p44.s2",
+      "p45.s0",
+      "p45.s1",
+      "p45.s2",
+      "p45.s3",
+      "p45.s4",
+      "p46.s1",
+      "p46.s2",
+      "p47.s0",
+      "p48.s0",
+      "p48.s1",
+      "p49.s0",
+      "p49.s1",
+      "p49.s2",
+      "p49.s3",
+      "p49.s4",
+      "p52.s1",
+      "p53.s1",
+      "p53.s3"
+    ],
+    "old_review_now_rejected": [
+      "p41.s1"
+    ],
+    "conditions_still_unknown_in_audit": true,
+    "historical_source_fields_changed": [
+      "p41.s1"
+    ],
+    "no_new_review_or_user_decision_created": true,
+    "no_state_write": true,
+    "no_writer_called": true
+  },
+  "evaluation_gaps_not_source": {
+    "b0-03": [
+      {
+        "candidate_id": "p12.s0",
+        "label": "Firmatario: nome",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "CLARIFICATION",
+          "origin": "BACKEND",
+          "reason": "Identità del sottoscritto non determinata dalle fonti; richiede scelta dell'utente."
+        }
+      },
+      {
+        "candidate_id": "p12.s1",
+        "label": "Nascita: comune",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "manual_input",
+          "reason": "Dati anagrafici del sottoscritto non determinabili dalle fonti; richiedono compilazione manuale.",
+          "group_index": 0,
+          "form_evidence": {
+            "paragraph_id": "paragraph:12",
+            "quote": "nato a __________________ (__) il __________, residente",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p12.s2",
+        "label": "Nascita: provincia",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "manual_input",
+          "reason": "Dati anagrafici del sottoscritto non determinabili dalle fonti; richiedono compilazione manuale.",
+          "group_index": 0,
+          "form_evidence": {
+            "paragraph_id": "paragraph:12",
+            "quote": "nato a __________________ (__) il __________, residente",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p12.s3",
+        "label": "Nascita: data",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "manual_input",
+          "reason": "Dati anagrafici del sottoscritto non determinabili dalle fonti; richiedono compilazione manuale.",
+          "group_index": 0,
+          "form_evidence": {
+            "paragraph_id": "paragraph:12",
+            "quote": "nato a __________________ (__) il __________, residente",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p13.s0",
+        "label": "Residenza: comune",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "manual_input",
+          "reason": "Dati anagrafici del sottoscritto non determinabili dalle fonti; richiedono compilazione manuale.",
+          "group_index": 0,
+          "form_evidence": {
+            "paragraph_id": "paragraph:12",
+            "quote": "nato a __________________ (__) il __________, residente",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p13.s1",
+        "label": "Residenza: provincia",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "manual_input",
+          "reason": "Dati anagrafici del sottoscritto non determinabili dalle fonti; richiedono compilazione manuale.",
+          "group_index": 0,
+          "form_evidence": {
+            "paragraph_id": "paragraph:12",
+            "quote": "nato a __________________ (__) il __________, residente",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p13.s2",
+        "label": "Residenza: indirizzo",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "manual_input",
+          "reason": "Dati anagrafici del sottoscritto non determinabili dalle fonti; richiedono compilazione manuale.",
+          "group_index": 0,
+          "form_evidence": {
+            "paragraph_id": "paragraph:12",
+            "quote": "nato a __________________ (__) il __________, residente",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p13.s3",
+        "label": "CF firmatario",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "manual_input",
+          "reason": "Dati anagrafici del sottoscritto non determinabili dalle fonti; richiedono compilazione manuale.",
+          "group_index": 0,
+          "form_evidence": {
+            "paragraph_id": "paragraph:12",
+            "quote": "nato a __________________ (__) il __________, residente",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p14.s0",
+        "label": "Carica firmatario",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "manual_input",
+          "reason": "Ruolo del sottoscritto da indicare in base alla forma di partecipazione scelta; non univoco dalle fonti.",
+          "group_index": 1,
+          "form_evidence": {
+            "paragraph_id": "paragraph:14",
+            "quote": "[[p14.s0]] dell’operatore economico",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p15.s0",
+        "label": "Comune sede",
+        "subject": "Mapi Ingegneria S.r.l.",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "UNASSESSED",
+          "origin": "MODEL",
+          "outcome": "unassessed",
+          "reason": "Quote non componibile senza includere marker adiacenti; dato disponibile ma non emesso per vincolo di formato.",
+          "group_index": 2,
+          "form_evidence": null,
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p41.s1",
+        "label": "Comune sede società",
+        "subject": "Mapi Ingegneria S.r.l.",
+        "raw_model_assignment_present": true,
+        "validation_errors": [
+          "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+        ],
+        "coverage": {
+          "state": "REJECTED_PROPOSAL",
+          "origin": "BACKEND",
+          "reason": "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+        }
+      },
+      {
+        "candidate_id": "p46.s0",
+        "label": "Socio Elisa Romano: Provincia",
+        "subject": "Elisa Romano / socia",
+        "raw_model_assignment_present": true,
+        "validation_errors": [
+          "Fatto SOURCE assente o rifiutato",
+          "Binding senza fatto SOURCE grounded"
+        ],
+        "coverage": {
+          "state": "REJECTED_PROPOSAL",
+          "origin": "BACKEND",
+          "reason": "Fatto SOURCE assente o rifiutato; Binding senza fatto SOURCE grounded"
+        }
+      },
+      {
+        "candidate_id": "p53.s2",
+        "label": "Direttore tecnico Elisa Romano: Provincia",
+        "subject": "Elisa Romano / direttore tecnico",
+        "raw_model_assignment_present": true,
+        "validation_errors": [
+          "Fatto SOURCE assente o rifiutato",
+          "Binding senza fatto SOURCE grounded"
+        ],
+        "coverage": {
+          "state": "REJECTED_PROPOSAL",
+          "origin": "BACKEND",
+          "reason": "Fatto SOURCE assente o rifiutato; Binding senza fatto SOURCE grounded"
+        }
+      }
+    ],
+    "index-01": [
+      {
+        "candidate_id": "p12.s0",
+        "label": "Firmatario: nome",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "CLARIFICATION",
+          "origin": "BACKEND",
+          "reason": "L'identità del firmatario non è documentata: scelta della singola pratica."
+        }
+      },
+      {
+        "candidate_id": "p12.s1",
+        "label": "Nascita: comune",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Luogo e data di nascita del sottoscrittore non documentati.",
+          "group_index": 0,
+          "form_evidence": {
+            "paragraph_id": "paragraph:12",
+            "quote": "nato a __________________ (__) il __________, residente",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p12.s2",
+        "label": "Nascita: provincia",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Luogo e data di nascita del sottoscrittore non documentati.",
+          "group_index": 0,
+          "form_evidence": {
+            "paragraph_id": "paragraph:12",
+            "quote": "nato a __________________ (__) il __________, residente",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p12.s3",
+        "label": "Nascita: data",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Luogo e data di nascita del sottoscrittore non documentati.",
+          "group_index": 0,
+          "form_evidence": {
+            "paragraph_id": "paragraph:12",
+            "quote": "nato a __________________ (__) il __________, residente",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p13.s0",
+        "label": "Residenza: comune",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Residenza e C.F. del sottoscrittore non documentati.",
+          "group_index": 1,
+          "form_evidence": {
+            "paragraph_id": "paragraph:13",
+            "quote": "in __________________ (__), via ________________________, C.F. ______________________, in qualità di",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p13.s1",
+        "label": "Residenza: provincia",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Residenza e C.F. del sottoscrittore non documentati.",
+          "group_index": 1,
+          "form_evidence": {
+            "paragraph_id": "paragraph:13",
+            "quote": "in __________________ (__), via ________________________, C.F. ______________________, in qualità di",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p13.s2",
+        "label": "Residenza: indirizzo",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Residenza e C.F. del sottoscrittore non documentati.",
+          "group_index": 1,
+          "form_evidence": {
+            "paragraph_id": "paragraph:13",
+            "quote": "in __________________ (__), via ________________________, C.F. ______________________, in qualità di",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p13.s3",
+        "label": "CF firmatario",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Residenza e C.F. del sottoscrittore non documentati.",
+          "group_index": 1,
+          "form_evidence": {
+            "paragraph_id": "paragraph:13",
+            "quote": "in __________________ (__), via ________________________, C.F. ______________________, in qualità di",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p14.s0",
+        "label": "Carica firmatario",
+        "subject": "Leonardo Montemurro / firmatario della pratica",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "CLARIFICATION",
+          "origin": "BACKEND",
+          "reason": "Il ruolo con cui si sottoscrive non è determinato dalle fonti."
+        }
+      },
+      {
+        "candidate_id": "p15.s0",
+        "label": "Comune sede",
+        "subject": "Mapi Ingegneria S.r.l.",
+        "raw_model_assignment_present": true,
+        "validation_errors": [
+          "Il solo marker non documenta la richiesta del campo"
+        ],
+        "coverage": {
+          "state": "REJECTED_PROPOSAL",
+          "origin": "BACKEND",
+          "reason": "Il solo marker non documenta la richiesta del campo"
+        }
+      },
+      {
+        "candidate_id": "p41.s1",
+        "label": "Comune sede società",
+        "subject": "Mapi Ingegneria S.r.l.",
+        "raw_model_assignment_present": true,
+        "validation_errors": [
+          "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+        ],
+        "coverage": {
+          "state": "REJECTED_PROPOSAL",
+          "origin": "BACKEND",
+          "reason": "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+        }
+      },
+      {
+        "candidate_id": "p43.s0",
+        "label": "Socio Luca Ferri: Nome",
+        "subject": "Luca Ferri / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Composizione societaria (nominativi, qualifiche, C.F. dei soci) non documentata per la pratica.",
+          "group_index": 8,
+          "form_evidence": {
+            "paragraph_id": "paragraph:42",
+            "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p43.s1",
+        "label": "Socio Luca Ferri: Qualifica",
+        "subject": "Luca Ferri / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Composizione societaria (nominativi, qualifiche, C.F. dei soci) non documentata per la pratica.",
+          "group_index": 8,
+          "form_evidence": {
+            "paragraph_id": "paragraph:42",
+            "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p43.s2",
+        "label": "Socio Luca Ferri: CF",
+        "subject": "Luca Ferri / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Composizione societaria (nominativi, qualifiche, C.F. dei soci) non documentata per la pratica.",
+          "group_index": 8,
+          "form_evidence": {
+            "paragraph_id": "paragraph:42",
+            "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p43.s3",
+        "label": "Socio Luca Ferri: Ordine",
+        "subject": "Luca Ferri / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Composizione societaria (nominativi, qualifiche, C.F. dei soci) non documentata per la pratica.",
+          "group_index": 8,
+          "form_evidence": {
+            "paragraph_id": "paragraph:42",
+            "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p43.s4",
+        "label": "Socio Luca Ferri: Sezione",
+        "subject": "Luca Ferri / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "EXPLAINED_UNFILLED",
+          "origin": "MODEL",
+          "outcome": "source_not_found",
+          "reason": "Composizione societaria (nominativi, qualifiche, C.F. dei soci) non documentata per la pratica.",
+          "group_index": 8,
+          "form_evidence": {
+            "paragraph_id": "paragraph:42",
+            "quote": "e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+            "role": "form"
+          },
+          "semantic_review_required": true
+        }
+      },
+      {
+        "candidate_id": "p44.s0",
+        "label": "Socio Luca Ferri: Provincia",
+        "subject": "Luca Ferri / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p44.s1",
+        "label": "Socio Luca Ferri: Data iscrizione",
+        "subject": "Luca Ferri / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p44.s2",
+        "label": "Socio Luca Ferri: Numero iscrizione",
+        "subject": "Luca Ferri / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p45.s0",
+        "label": "Socio Elisa Romano: Nome",
+        "subject": "Elisa Romano / socia",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p45.s1",
+        "label": "Socio Elisa Romano: Qualifica",
+        "subject": "Elisa Romano / socia",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p45.s2",
+        "label": "Socio Elisa Romano: CF",
+        "subject": "Elisa Romano / socia",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p45.s3",
+        "label": "Socio Elisa Romano: Ordine",
+        "subject": "Elisa Romano / socia",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p45.s4",
+        "label": "Socio Elisa Romano: Sezione",
+        "subject": "Elisa Romano / socia",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p46.s0",
+        "label": "Socio Elisa Romano: Provincia",
+        "subject": "Elisa Romano / socia",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p46.s1",
+        "label": "Socio Elisa Romano: Data iscrizione",
+        "subject": "Elisa Romano / socia",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p46.s2",
+        "label": "Socio Elisa Romano: Numero iscrizione",
+        "subject": "Elisa Romano / socia",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p47.s0",
+        "label": "Socio Andrea Greco: Nome",
+        "subject": "Andrea Greco / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p48.s0",
+        "label": "Socio Andrea Greco: Qualifica",
+        "subject": "Andrea Greco / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p48.s1",
+        "label": "Socio Andrea Greco: CF",
+        "subject": "Andrea Greco / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p49.s0",
+        "label": "Socio Andrea Greco: Ordine",
+        "subject": "Andrea Greco / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p49.s1",
+        "label": "Socio Andrea Greco: Sezione",
+        "subject": "Andrea Greco / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p49.s2",
+        "label": "Socio Andrea Greco: Provincia",
+        "subject": "Andrea Greco / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p49.s3",
+        "label": "Socio Andrea Greco: Data iscrizione",
+        "subject": "Andrea Greco / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      },
+      {
+        "candidate_id": "p49.s4",
+        "label": "Socio Andrea Greco: Numero iscrizione",
+        "subject": "Andrea Greco / socio",
+        "raw_model_assignment_present": false,
+        "validation_errors": [],
+        "coverage": {
+          "state": "REJECTED_EXPLANATION",
+          "origin": "BACKEND",
+          "reason": "Motivazione restituita ma non validata: consultare gli errori dei gruppi",
+          "group_indices": [
+            8
+          ]
+        }
+      }
+    ]
+  },
+  "protected_scope": "read-only code, test, fixture and previous artifact snapshot",
+  "report": "docs/applicabilita-b0-index-2026-10-17.md",
+  "raw_directory": "backend/data/compilation-audit/applicability-20261017-01",
+  "plan": {
+    "implemented": false,
+    "preferred_case": "b0-03",
+    "planned_source_values_after_review": 47,
+    "planned_registered_user_values": 1,
+    "planned_total_text_values": 48,
+    "new_source_values_requiring_review": 26,
+    "baseline_applicability_remains_unknown": true,
+    "native_participation_group_missing": true,
+    "other_session_receipts_never_automatically_transferred": true
+  },
+  "limitations": [
+    "Checkpoint archiviati, non nuova verifica dello stato live.",
+    "Nessun nuovo export: 48 valori è un obiettivo pianificato, non un conteggio Word.",
+    "Preflight puri dei valori: non risolvono applicabilità e non sostituiscono la revisione.",
+    "Gold e copione sono solo valutazione e non prove SOURCE o nuove decisioni registrate.",
+    "I 2431 test precedenti non sono stati rieseguiti in questo studio."
+  ]
+}

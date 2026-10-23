@@ -1,0 +1,8 @@
+{
+  "archive": "audit-completo.tar.gz",
+  "SHA256": "499cfdaaf8883b4be72dea2aadb016d5d0a9fcc29ac11c7d67917cdc8f75552e",
+  "bytes": 7793310,
+  "manifest_files": 429,
+  "private_DB_keys_env_excluded": true,
+  "known_secrets_scan": "PASS"
+}

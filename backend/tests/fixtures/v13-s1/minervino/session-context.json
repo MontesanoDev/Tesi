@@ -1,0 +1,963 @@
+{
+  "writable_ids": [
+    "p12.s0",
+    "p12.s1",
+    "p12.s2",
+    "p12.s3",
+    "p13.s0",
+    "p13.s1",
+    "p13.s2",
+    "p13.s3",
+    "p14.s0",
+    "p14.s1",
+    "p15.s0",
+    "p15.s1",
+    "p15.s2",
+    "p15.s3",
+    "p16.s0",
+    "p16.s1",
+    "p16.s2",
+    "p17.s0",
+    "p17.s1",
+    "p17.s2",
+    "p17.s3",
+    "p20.cb0",
+    "p203.cb0",
+    "p206.cb0",
+    "p21.cb0",
+    "p211.s0",
+    "p212.s0",
+    "p212.s1",
+    "p212.s2",
+    "p212.s3",
+    "p213.s0",
+    "p213.s1",
+    "p213.s2",
+    "p214.cb0",
+    "p215.cb0",
+    "p217.cb0",
+    "p22.s0",
+    "p22.s1",
+    "p228.cb0",
+    "p229.s0",
+    "p23.s0",
+    "p23.s1",
+    "p23.s2",
+    "p23.s3",
+    "p23.s4",
+    "p23.s5",
+    "p230.s0",
+    "p232.s0",
+    "p233.s0",
+    "p234.s0",
+    "p24.s0",
+    "p242.s0",
+    "p245.s0",
+    "p26.s0",
+    "p27.s0",
+    "p27.s1",
+    "p28.s0",
+    "p28.s1",
+    "p28.s2",
+    "p28.s3",
+    "p28.s4",
+    "p29.s0",
+    "p30.s0",
+    "p30.s1",
+    "p31.s0",
+    "p31.s1",
+    "p31.s2",
+    "p31.s3",
+    "p31.s4",
+    "p32.s0",
+    "p33.s0",
+    "p33.s1",
+    "p34.s0",
+    "p34.s1",
+    "p34.s2",
+    "p34.s3",
+    "p34.s4",
+    "p35.cb0",
+    "p36.s0",
+    "p36.s1",
+    "p37.s0",
+    "p37.s1",
+    "p37.s2",
+    "p37.s3",
+    "p37.s4",
+    "p37.s5",
+    "p37.s6",
+    "p37.s7",
+    "p38.s0",
+    "p39.cb0",
+    "p40.s0",
+    "p41.s0",
+    "p41.s1",
+    "p42.s0",
+    "p42.s1",
+    "p42.s2",
+    "p42.s3",
+    "p42.s4",
+    "p42.s5",
+    "p43.s0",
+    "p43.s1",
+    "p43.s2",
+    "p43.s3",
+    "p43.s4",
+    "p44.s0",
+    "p44.s1",
+    "p44.s2",
+    "p45.s0",
+    "p45.s1",
+    "p45.s2",
+    "p45.s3",
+    "p45.s4",
+    "p46.s0",
+    "p46.s1",
+    "p46.s2",
+    "p47.s0",
+    "p48.s0",
+    "p48.s1",
+    "p49.s0",
+    "p49.s1",
+    "p49.s2",
+    "p49.s3",
+    "p49.s4",
+    "p51.s0",
+    "p52.s0",
+    "p52.s1",
+    "p53.s0",
+    "p53.s1",
+    "p53.s2",
+    "p53.s3",
+    "p53.s4",
+    "p54.cb0",
+    "p55.s0",
+    "p56.s0",
+    "p57.s0",
+    "p57.s1",
+    "p57.s2",
+    "p57.s3",
+    "p57.s4",
+    "p57.s5",
+    "p57.s6",
+    "p57.s7",
+    "p58.s0",
+    "p58.s1",
+    "p59.s0",
+    "p59.s1",
+    "p59.s2",
+    "p59.s3",
+    "p59.s4",
+    "p59.s5",
+    "p59.s6",
+    "p60.s0",
+    "p60.s1",
+    "p60.s2",
+    "p60.s3",
+    "p60.s4",
+    "p60.s5",
+    "p60.s6",
+    "p60.s7",
+    "p60.s8",
+    "p61.cb0",
+    "p62.s0",
+    "p63.s0",
+    "p64.cb0",
+    "p65.s0",
+    "p65.s1",
+    "p65.s2",
+    "p65.s3",
+    "p65.s4",
+    "p65.s5",
+    "p65.s6",
+    "p65.s7",
+    "p65.s8",
+    "p67.s0",
+    "p67.s1",
+    "p67.s2",
+    "p68.s0",
+    "p68.s1",
+    "p68.s2",
+    "p68.s3",
+    "p68.s4",
+    "p68.s5",
+    "p69.s0",
+    "p70.s0",
+    "p70.s1",
+    "p71.s0",
+    "p71.s1",
+    "p71.s2",
+    "p71.s3",
+    "p71.s4",
+    "p71.s5",
+    "p72.s0",
+    "p73.s0",
+    "p73.s1",
+    "p74.s0",
+    "p74.s1",
+    "p75.s0",
+    "p75.s1",
+    "p75.s2",
+    "p75.s3",
+    "t0.r1.c1",
+    "t0.r1.c2",
+    "t0.r1.c3",
+    "t0.r10.c1",
+    "t0.r10.c2",
+    "t0.r10.c3",
+    "t0.r11.c1",
+    "t0.r11.c2",
+    "t0.r11.c3",
+    "t0.r12.c1",
+    "t0.r12.c2",
+    "t0.r12.c3",
+    "t0.r13.c1",
+    "t0.r13.c2",
+    "t0.r13.c3",
+    "t0.r14.c1",
+    "t0.r14.c2",
+    "t0.r14.c3",
+    "t0.r15.c1",
+    "t0.r15.c2",
+    "t0.r15.c3",
+    "t0.r16.c1",
+    "t0.r16.c2",
+    "t0.r16.c3",
+    "t0.r17.c1",
+    "t0.r17.c2",
+    "t0.r17.c3",
+    "t0.r2.c1",
+    "t0.r2.c2",
+    "t0.r2.c3",
+    "t0.r3.c1",
+    "t0.r3.c2",
+    "t0.r3.c3",
+    "t0.r4.c1",
+    "t0.r4.c2",
+    "t0.r4.c3",
+    "t0.r5.c1",
+    "t0.r5.c2",
+    "t0.r5.c3",
+    "t0.r6.c1",
+    "t0.r6.c2",
+    "t0.r6.c3",
+    "t0.r7.c1",
+    "t0.r7.c2",
+    "t0.r7.c3",
+    "t0.r8.c1",
+    "t0.r8.c2",
+    "t0.r8.c3",
+    "t0.r9.c1",
+    "t0.r9.c2",
+    "t0.r9.c3",
+    "t1.r1.c1",
+    "t1.r1.c2",
+    "t1.r1.c3",
+    "t2.r1.c1",
+    "t2.r2.c1",
+    "t2.r3.c1",
+    "t3.r1.c1",
+    "t3.r10.c1",
+    "t3.r2.c1",
+    "t3.r3.c1",
+    "t3.r4.c1",
+    "t3.r5.c1",
+    "t3.r6.c1",
+    "t3.r7.c1",
+    "t3.r8.c1",
+    "t3.r9.c1"
+  ],
+  "dialogue": {
+    "message": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+    "phase": "READY",
+    "empty_export_offered": false,
+    "question": null,
+    "reviewed_candidate_ids": [
+      "p14.s1",
+      "p15.s1",
+      "p15.s2",
+      "p15.s3",
+      "p16.s0",
+      "p16.s1",
+      "p16.s2",
+      "p17.s0",
+      "p17.s1",
+      "p40.s0",
+      "p41.s0",
+      "p41.s1",
+      "p42.s0",
+      "p42.s1",
+      "p42.s2",
+      "p42.s3",
+      "p42.s4",
+      "p42.s5",
+      "p43.s0",
+      "p43.s1",
+      "p43.s2",
+      "p43.s3",
+      "p43.s4",
+      "p44.s0",
+      "p44.s1",
+      "p44.s2",
+      "p45.s0",
+      "p45.s1",
+      "p45.s2",
+      "p45.s3",
+      "p45.s4",
+      "p46.s0",
+      "p46.s1",
+      "p46.s2",
+      "p47.s0",
+      "p48.s0",
+      "p48.s1",
+      "p49.s0",
+      "p49.s1",
+      "p49.s2",
+      "p49.s3",
+      "p49.s4",
+      "p52.s1",
+      "p53.s3"
+    ],
+    "held_candidate_ids": [],
+    "hold_records": {},
+    "hold_transition": {
+      "review_id": "1ac43c0489c44f218f4e65117b054a8f",
+      "new": [],
+      "confirmed": [],
+      "inherited": [],
+      "released": [],
+      "suppressed_new": [],
+      "rejected_redundant": [],
+      "model_new": [],
+      "model_confirmed": [],
+      "model_decisions": {}
+    },
+    "reviewed_candidate_fingerprints": {
+      "p14.s1": "dbab1a098c4f19feb50fab4673b9cc385560888171a00b20ae7b0a883ec0b6b8",
+      "p15.s1": "5c21e673a7ff5064ab2f5214dd003787d080313ca3770dd7f9dd5ef0e12be478",
+      "p15.s2": "d160593e37c74f25040f3de41c572dead05f707e902fa0d03e29ffcebfe44080",
+      "p15.s3": "8f2bdb948701ea987750b080399c6cc33b5cfd08b94ade57f837b245568cf1aa",
+      "p16.s0": "7f53a60e036fd442a88e8e4bb2f20731ab7f067d52c0eec40caa11b2de98064a",
+      "p16.s1": "f291232d407525485b9b34b6f570fa8e63d627f82dab6334a4e116c4604dc21b",
+      "p16.s2": "00bc3b5234be97b74904868139655b3bda218d97dd10156f672ffd872dd4d746",
+      "p17.s0": "d9b3aa29dea840107c50b8d5cac8bcc5a00961735d1758a0d93424402d68bd89",
+      "p17.s1": "0a6655278ac36eaa589728dc79c985cc8d26a7736a42970ae47398c951f8a61d",
+      "p40.s0": "56f42a3c5ee8d7635df6be16a58439695ea52ac4db4f5ef38881d62050668201",
+      "p41.s0": "ac7d5d59ad9d7fdaa89e5087a19279c8e0814554a6e67a02108cd7d877c08971",
+      "p41.s1": "06197497c4006bf612092017dac41c3f20d69af1c1456a0be5d358436b8815a0",
+      "p42.s0": "1a323469a80a22d5e0acc3276cad3e800b7fd7d77319125f2e0294118b579aae",
+      "p42.s1": "2f8bd6d153cb354b09a5f911bb78b5f985a95b571ed4ce02226445f69c4ba6af",
+      "p42.s2": "52389fc30b7284360e264fd967088d11818110974caa08bb51fc31b368347d24",
+      "p42.s3": "edab3ae7bc83320d941396f50e47388f856596e966b8246753cdb71dd5fe53eb",
+      "p42.s4": "a2af109586f4d86b736ce370e7ce0d36ebb41b78c4e1d53ef7ec5ff313df0b9e",
+      "p42.s5": "736f0c2fe56b054d330ed929405eb69272afcdc42ae58038ed875096f835dac7",
+      "p43.s0": "abe515d8a9138312b4ccccc897cdc25b8c60fdd8949ab2f8c50df335f8801efc",
+      "p43.s1": "411a8da908cf7df0fabfaf9ad4271e763aca5aef9415e96b3a28f160b5135532",
+      "p43.s2": "199f292f1857a48a4bc868e376a7fb89c9090d17924fcc356fa881eefcafcfc8",
+      "p43.s3": "ec237fb81724b7cb6eba3efe4ef042446b1f80a570d8c8a644de9a585c8f526b",
+      "p43.s4": "9a0c1a926d521b0e8d69419d33bfe6ce58dfef943faacd8da8e95369c50763c4",
+      "p44.s0": "dd8b7af9fd0ca4f2a0bc2df5f0c6656a2ce9641c226c11b5455f32bbfc16a1a1",
+      "p44.s1": "796ce4a30e171e269dd8f597972ddca2ace5f3944058ccd0e53c6a4992fb1917",
+      "p44.s2": "13004e549e41e117717ecf3d04247989d21d58a865620eb0e02a5e0b41818688",
+      "p45.s0": "ce7ccbb38670004413486b46399578ce72b258fd090eb6bc2ee9b71cdc27bc21",
+      "p45.s1": "0d31507b5f45139d110068e0baa766e2397d2103a81c364ab354b52091682bde",
+      "p45.s2": "1ef62d28b63e4c7e30d755917d5dcbe07cf55b0ebe5b096bb7d683a9ed463241",
+      "p45.s3": "b5e04578f3749eea70aeb732c499a6231f214e88749e15067bb6b757749a4e7f",
+      "p45.s4": "5416bdb79753c03cd01248679fd2f7050f81ca35032925a04e439c8039a4173c",
+      "p46.s0": "947505397bc1146fc5073f217171718465c349f48f48b557c8eecc79fb0285dd",
+      "p46.s1": "a913b1bad2993ff0459dee4289df901e25541d1aa1d73135f64cd63bc98db2d2",
+      "p46.s2": "4048e4378308271458dca21afbecf82955332f2126d76caf62af8729e91a46bd",
+      "p47.s0": "2143ff098a752fa40d811d6386780d1d8b6248ee5cd16d0ba25c3bc0c316afd3",
+      "p48.s0": "25a3b32594ebc09285246c20e6690747e70ccaf6e7696fd153742dc8c1e5425e",
+      "p48.s1": "cc49369d0bddb1c137670bad3339af949ae91e97e050ce8a7fe56d12d52a6dee",
+      "p49.s0": "25c57caa4e156ac8f273a4ca8fdf4d561c31b3f6edbf6af0dde78d3e4cdcc6f5",
+      "p49.s1": "edf862bbba574a4653cd4221467e5c732bb09d20b89a1c94ec34a87d33183207",
+      "p49.s2": "3f8d61aa270504bebac2950b73249817ba56ceb069240f2e16c26cd6a3448e01",
+      "p49.s3": "bf17bf48b43111e4dc36d7abbc9287d5d47f37ad8386b42d63a33896af49e76b",
+      "p49.s4": "48940e676cfd038e7ba78cd6545b77df33d1b891099fc7df399c87d90eff5c23",
+      "p52.s1": "865f6ed615de2aa5c8ed0ee1a375dbf1ccf1265ff5c03ede7f93933370edf882",
+      "p53.s3": "eac447ae27263d9bd30a904a747325b18e5b66f9aaad417e376ff02d7ea89b9f"
+    },
+    "review_pending": false,
+    "review_overview": null,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 11808,
+      "completion_tokens": 122,
+      "total_tokens": 11930,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 9504
+    },
+    "ai_seconds": 2.197837171000174,
+    "http_calls": 1,
+    "presentation_version": 4,
+    "resuming": false,
+    "answers": {
+      "condition:c_qualita_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Sì. Per questa specifica domanda scelgo Leonardo Montemurro come firmatario, rappresentante legale di Mapi Ingegneria S.r.l., che partecipa soltanto come società di ingegneria in forma singola.",
+        "provenance": "USER",
+        "label": "Qualità di legale rappresentante di società di ingegneria da confermare",
+        "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.Lgs. n. 36/2023?",
+        "applies": true
+      },
+      "decision:ff6a9c86b0584e3ed5ac5799": {
+        "action": "SKIP",
+        "user_quote": "Rinvio la scelta di categorie, servizi e fasce: non sono ancora decisi.",
+        "provenance": "USER",
+        "label": "Categorie e fasce d'incarico",
+        "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+        "write_authorized": false,
+        "affected_fields": [
+          "t0.r1.c1",
+          "t0.r1.c2",
+          "t0.r1.c3",
+          "t0.r2.c1",
+          "t0.r2.c2",
+          "t0.r2.c3",
+          "t0.r3.c1",
+          "t0.r3.c2",
+          "t0.r3.c3",
+          "t0.r4.c1",
+          "t0.r4.c2",
+          "t0.r4.c3",
+          "t0.r5.c1",
+          "t0.r5.c2",
+          "t0.r5.c3",
+          "t0.r6.c1",
+          "t0.r6.c2",
+          "t0.r6.c3",
+          "t0.r7.c1",
+          "t0.r7.c2",
+          "t0.r7.c3",
+          "t0.r8.c1",
+          "t0.r8.c2",
+          "t0.r8.c3",
+          "t0.r9.c1",
+          "t0.r9.c2",
+          "t0.r9.c3",
+          "t0.r10.c1",
+          "t0.r10.c2",
+          "t0.r10.c3",
+          "t0.r11.c1",
+          "t0.r11.c2",
+          "t0.r11.c3",
+          "t0.r12.c1",
+          "t0.r12.c2",
+          "t0.r12.c3",
+          "t0.r13.c1",
+          "t0.r13.c2",
+          "t0.r13.c3",
+          "t0.r14.c1",
+          "t0.r14.c2",
+          "t0.r14.c3",
+          "t0.r15.c1",
+          "t0.r15.c2",
+          "t0.r15.c3",
+          "t0.r16.c1",
+          "t0.r16.c2",
+          "t0.r16.c3",
+          "t0.r17.c1",
+          "t0.r17.c2",
+          "t0.r17.c3",
+          "t1.r1.c1",
+          "t1.r1.c2",
+          "t1.r1.c3",
+          "t2.r1.c1",
+          "t2.r2.c1",
+          "t2.r3.c1",
+          "t3.r1.c1",
+          "t3.r2.c1",
+          "t3.r3.c1",
+          "t3.r4.c1",
+          "t3.r5.c1",
+          "t3.r6.c1",
+          "t3.r7.c1",
+          "t3.r8.c1",
+          "t3.r9.c1",
+          "t3.r10.c1"
+        ],
+        "decision_type": "preferences",
+        "form_evidence": [
+          {
+            "paragraph_id": "paragraph:77",
+            "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:78",
+            "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:86",
+            "quote": "Edilizia commerciale",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:80",
+            "quote": "Fascia A ",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:81",
+            "quote": "(incarichi da € 0,00 a € 39.999,00)",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:82",
+            "quote": "Fascia B ",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:83",
+            "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:84",
+            "quote": "Fascia C ",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:85",
+            "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:90",
+            "quote": "Edilizia residenziale",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:94",
+            "quote": "Edilizia scolastica e sanitaria",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:98",
+            "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:102",
+            "quote": "Aree esterne e opere a verde",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:106",
+            "quote": "Interventi su beni immobili di interesse storico- artistico",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:110",
+            "quote": "Edilizia – sedi amministrative",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:114",
+            "quote": "Strutture",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:118",
+            "quote": "Impianti meccanici",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:122",
+            "quote": "Impianti elettrici",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:126",
+            "quote": "Impianti di depurazione o discariche",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:130",
+            "quote": "Opere elettriche per reti",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:134",
+            "quote": "Opere stradali",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:138",
+            "quote": "Opere idrauliche",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:142",
+            "quote": "Sistemi e reti di telecomunicazioni",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:146",
+            "quote": "Sistemi e reti di telecomunicazioni",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:150",
+            "quote": "Pianificazione",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:155",
+            "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:163",
+            "quote": "CSP/CSE",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:157",
+            "quote": "Fascia A",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:158",
+            "quote": "(incarichi da € 0,00 a € 39.999,00)",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:159",
+            "quote": "Fascia B",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:160",
+            "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:161",
+            "quote": "Fascia C",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:162",
+            "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:168",
+            "quote": "Servizio di collaudo finale o in corso d’opera;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:171",
+            "quote": "Collaudo statico",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:170",
+            "quote": "Preferenza",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:173",
+            "quote": "Collaudo tecnico amministrativo",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:175",
+            "quote": "Collaudo funzionale - impiantistico",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:178",
+            "quote": "Altri incarichi per servizi tecnici;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:181",
+            "quote": "redazione pratiche prevenzione incendi",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:180",
+            "quote": "Preferenza",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:183",
+            "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:185",
+            "quote": "perizie di stima",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:187",
+            "quote": "relazioni geologiche e sismiche",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:189",
+            "quote": "indagini geologiche / sismiche e relazioni geologiche",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:191",
+            "quote": "supporto agli atti di pianificazione comunque denominati",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:193",
+            "quote": "servizi tecnici di competenza di restauratori",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:195",
+            "quote": "servizi di assistenza archeologica",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:197",
+            "quote": "servizi di competenza di agronomi e dottori forestali",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:199",
+            "quote": "redazione di certificato di prestazione energetica",
+            "role": "form"
+          }
+        ]
+      },
+      "decision:4d948502d4305ca0995d3928": {
+        "action": "SKIP",
+        "user_quote": "Rinvio luogo e data: non sono ancora decisi.",
+        "provenance": "USER",
+        "label": "Luogo e data della domanda",
+        "question": "Quali luogo e data vuoi indicare per questa domanda?\nLuogo e data, ______________________",
+        "write_authorized": false,
+        "affected_fields": [
+          "p242.s0"
+        ],
+        "decision_type": "location_date",
+        "form_evidence": [
+          {
+            "paragraph_id": "paragraph:242",
+            "quote": "Luogo e data, ______________________",
+            "role": "form"
+          }
+        ]
+      },
+      "condition:c_operatore_economico": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "L’operatore economico scelto per questa domanda è Mapi Ingegneria S.r.l.; per i campi societari usa soltanto i dati documentati nelle SOURCE.",
+        "provenance": "USER",
+        "label": "Riferimento dell’operatore economico a Mapi da confermare",
+        "question": "Confermi che i dati anagrafici e di contatto dell'operatore economico da indicare nella domanda sono quelli di Mapi Ingegneria S.r.l?",
+        "applies": true
+      },
+      "decision:0a242b4c138d38515e716924": {
+        "action": "SKIP",
+        "user_quote": "Rinvio tutte le attestazioni indicate: non le confermo.",
+        "provenance": "USER",
+        "label": "Dichiarazioni e attestazioni",
+        "question": "Quali delle seguenti dichiarazioni puoi confermare espressamente? Le informazioni aziendali non costituiscono una conferma delle attestazioni.\n☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:\ndi non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;\nche non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;\ndi non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;\ndi non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;\ndi impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.\ndi non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;\nche il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;\ndi essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;\ndi acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;\ndi autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+        "write_authorized": false,
+        "affected_fields": [
+          "p217.cb0"
+        ],
+        "decision_type": "attestation",
+        "form_evidence": [
+          {
+            "paragraph_id": "paragraph:217",
+            "quote": "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:218",
+            "quote": "di non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:219",
+            "quote": "che non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:220",
+            "quote": "di non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:221",
+            "quote": "di non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:222",
+            "quote": "di impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:223",
+            "quote": "di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:224",
+            "quote": "che il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:225",
+            "quote": "di essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:226",
+            "quote": "di acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;",
+            "role": "form"
+          },
+          {
+            "paragraph_id": "paragraph:227",
+            "quote": "di autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+            "role": "form"
+          }
+        ]
+      },
+      "decision:24278d2efa5d91eb97fdcae9": {
+        "action": "SKIP",
+        "user_quote": "Non ho ancora designato gli esecutori per questo incarico; rinvio la designazione e lascia vuoti i relativi campi.",
+        "provenance": "USER",
+        "label": "Professionisti esecutori",
+        "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\n☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+        "write_authorized": false,
+        "affected_fields": [
+          "p228.cb0",
+          "p229.s0",
+          "p230.s0"
+        ],
+        "decision_type": "designation",
+        "form_evidence": [
+          {
+            "paragraph_id": "paragraph:228",
+            "quote": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+            "role": "form"
+          }
+        ]
+      }
+    },
+    "user_values": {},
+    "latest_turn": {
+      "accepted": [
+        {
+          "action": "CONDITION_TRUE",
+          "user_quote": "L’operatore economico scelto per questa domanda è Mapi Ingegneria S.r.l.; per i campi societari usa soltanto i dati documentati nelle SOURCE.",
+          "provenance": "USER",
+          "label": "Riferimento dell’operatore economico a Mapi da confermare",
+          "question": "Confermi che i dati anagrafici e di contatto dell'operatore economico da indicare nella domanda sono quelli di Mapi Ingegneria S.r.l?",
+          "applies": true
+        },
+        {
+          "action": "SKIP",
+          "user_quote": "Rinvio tutte le attestazioni indicate: non le confermo.",
+          "provenance": "USER",
+          "label": "Dichiarazioni e attestazioni",
+          "question": "Quali delle seguenti dichiarazioni puoi confermare espressamente? Le informazioni aziendali non costituiscono una conferma delle attestazioni.\n☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:\ndi non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;\nche non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;\ndi non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;\ndi non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;\ndi impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.\ndi non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;\nche il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;\ndi essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;\ndi acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;\ndi autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+          "write_authorized": false,
+          "decision_type": "attestation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:217",
+              "quote": "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:218",
+              "quote": "di non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:219",
+              "quote": "che non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:220",
+              "quote": "di non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:221",
+              "quote": "di non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:222",
+              "quote": "di impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:223",
+              "quote": "di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:224",
+              "quote": "che il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:225",
+              "quote": "di essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:226",
+              "quote": "di acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;",
+              "role": "form"
+            },
+            {
+              "paragraph_id": "paragraph:227",
+              "quote": "di autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+              "role": "form"
+            }
+          ]
+        },
+        {
+          "action": "SKIP",
+          "user_quote": "Non ho ancora designato gli esecutori per questo incarico; rinvio la designazione e lascia vuoti i relativi campi.",
+          "provenance": "USER",
+          "label": "Professionisti esecutori",
+          "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\n☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+          "write_authorized": false,
+          "decision_type": "designation",
+          "form_evidence": [
+            {
+              "paragraph_id": "paragraph:228",
+              "quote": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+              "role": "form"
+            }
+          ]
+        }
+      ],
+      "unaccepted": []
+    },
+    "user_turns": 2
+  },
+  "user_context": [
+    {
+      "kind": "recorded_request",
+      "provenance": "USER",
+      "turn_id": 269,
+      "user_quote": "Compila una bozza parziale della domanda Minervino per Mapi Ingegneria S.r.l. Per questa specifica procedura scelgo la partecipazione singola soltanto come società di ingegneria, senza raggruppamenti o consorzi e senza partecipazioni in altre forme. Il firmatario scelto per questa domanda è Leonardo Montemurro, rappresentante legale: dati, ruolo e poteri devono comunque essere verificati nelle SOURCE. Usa i dati aziendali documentati riferiti al 15 ottobre 2026. Preferenze, professionisti esecutori designati, integrazione delle prestazioni, attestazioni, consensi procedurali, allegati, luogo e data restano da decidere. Non compilare firme o dichiarazioni non confermate. Chiedimi le decisioni mancanti; prima dell'export chiedimi conferma della bozza parziale."
+    }
+  ],
+  "project_id": "baseline-v12-minervino"
+}

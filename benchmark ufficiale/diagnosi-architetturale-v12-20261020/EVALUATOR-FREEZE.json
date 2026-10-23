@@ -1,0 +1,11 @@
+{
+  "UTC": "2026-10-20T15:22:44.049912+00:00",
+  "new_provider_outputs_not_yet_scored": true,
+  "reference_denominator_unchanged": 116,
+  "software_tests": "29 passed",
+  "files": {
+    "code/evaluation.py": "7575220f80fae007edb9b7c360e4e1e666454354516653341a4452ece8f119c5",
+    "code/test_experiment.py": "c1e0e4ebae90938655ea75393b3c1b5d12ef2e793b194c48fe6e368ed7472be0"
+  },
+  "note": "Scoring equivalences do not modify any output, grounding or writer. New unmatched values are individually annotated with SOURCE proof; the denominator stays fixed."
+}

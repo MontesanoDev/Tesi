@@ -1,0 +1,894 @@
+922612ff9fbeaf388428a4fc38f6c01a587b6b51bd4e502e6344f66cda000ca0  backend/data/compilation-audit/v14-verifica-20261021-01/analyze_v14.py
+d4a18ef8f900939952959d73f5330ce8618af4f6ff4a6629865ce35af60a10d5  backend/data/compilation-audit/v14-verifica-20261021-01/campaign-progress.json
+05653f01bd6e8791bea5299be1fed6826a0c905960a5ea603100fe5c600ebaf3  backend/data/compilation-audit/v14-verifica-20261021-01/campaign.log
+5371a50fdb54d663cbb803873fdc32e8fe8c82ce9d58d6a822f79710555be562  backend/data/compilation-audit/v14-verifica-20261021-01/campaign_v14.cjs
+c0c0cfa681dadc86a549c50b4a9faf64352b675231850e316006d17a79be78da  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/audit.json
+3f53918f3b56508ec736ba78447a7299ef1fa075a5b2f20244846ea1c4f6f7fd  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/4312542d3bad475dbfeb4a51d88054f1/http-response.txt
+4f13a69841f82dc59f7a720f84e6b3000d5da9a7c4196bd9aba09b83bd99d648  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/4312542d3bad475dbfeb4a51d88054f1/request.json
+46d1b9af2e01a0ad901bce5acb0c27da9fbdcccbfd4c4ac37757b22604030951  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/4312542d3bad475dbfeb4a51d88054f1/response.txt
+0cdc1f5da5c8b60eed6d2ac8fc08a1f459078a85f3f86e001ac2277c51a8004a  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/4312542d3bad475dbfeb4a51d88054f1/result.json
+8f38f87d6cba9c4162ffc197f1a80758f2d87219f2bdc81a568adee1dec1a16d  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/c2dd24e3dac54c0287629fab5a3350d3/http-response.txt
+f51990264b76c511dacd8da8a79261f04d9d26dbc336c2a4ccfd5f21da5558e1  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/c2dd24e3dac54c0287629fab5a3350d3/request.json
+5070b9ac2de5ba48382dc8ac638f535d7568f01a52f970cb891242241e660a6e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/c2dd24e3dac54c0287629fab5a3350d3/response.txt
+885dc3315897865881db514946780b8ea93a9ff735ac4a11cf6491c30ef4d177  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/c2dd24e3dac54c0287629fab5a3350d3/result.json
+e2d7cca107e10025d514f51293752b18bee92dec147c5952f893b382ebffa6e0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/d0baa43d7d7544d0b23fc562569f5724/http-response.txt
+150fdce88b24cbe832a63974a634c10cc887449c3cff7ed8a23e527160b0970c  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/d0baa43d7d7544d0b23fc562569f5724/request.json
+f56fbb5e2d2694157680ac948ef01f064d063f81dfc0fdca00cd8143557d7625  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/d0baa43d7d7544d0b23fc562569f5724/response.txt
+6b769eb1de585aa6c32ce2b4de60505d672321941f234e65a590383c6e168174  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/dialogue/d0baa43d7d7544d0b23fc562569f5724/result.json
+ca0b1046bb87b2319e9527f3f2242adab6bed9b97bf299b9342c40497c9048b0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/effective-audit.json
+14d40df5884321f623947dd38653a808a7e73b87724eba1138928486d18eaeca  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/http-response.txt
+0ab4aeab2c9d28249ebe4dfb28e81ac50efdf1b633547c17e684fae22fef378e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/input.json
+73dc98695bfc9d8dff6b4b3bed0f8a8b6be9f447b184b4531a40e4e768df7699  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/metrics.json
+9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/original.docx
+76d71c95953affb42d50e71ec12bcc388d1a7de6aff45f1bb04862bc02e6542e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/request.json
+a6a3c28da5bb65539fc60151c0dc6ef2050d7e494094ae30c6ef06366dc8d1be  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/response.txt
+ca0b1046bb87b2319e9527f3f2242adab6bed9b97bf299b9342c40497c9048b0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/review-audit-862a8d7f276c49afb6e68ca7ec12bfca.json
+ca0b1046bb87b2319e9527f3f2242adab6bed9b97bf299b9342c40497c9048b0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/review-audit-977a01339de04010be3085d955df00a5.json
+c7e35ed39ede99e33c15cce7c8cd2a0272fefd3799e4f1641e7a7488a521e38d  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/routing/1ff9dcf8e04346a1851ce5e4deba7a3c/trace.json
+844536e6ccc3babb8b9eb557c2f6764270d3333f9a4ca697b601833ba3f51889  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/routing/a54eb37b621a46e080585b86aeb3c1ba/trace.json
+4205b837725ecfd409c5872e4bc5809c59dca63657b853fe753a6cab86d86435  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/artifacts/routing/a828ab2f59ea4992bd1f769d7cacfa44/trace.json
+99d36251c803042e574132ff4b32621b41d201c86b1a69db1ed615cdc57b629b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/00-before-send-dom.txt
+cc9ec76f764ed8b2870a2d777850f128d3f5f5c22e623732b5731f05ee5e4f09  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/00-before-send-state.json
+232214898b5cd5d6014825e50f1962b36c17c1e403a4cfb52f640c70af57f6c4  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/00-before-send.png
+66474cb85fc86016855ea9fc0d38299ade3d969a5b6858ccfd55e8ded81549de  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/01-T0-dom.txt
+91c1c6c51fa0a511f8b85429f239a8e435032d151516aea7a3ab55b3d1b4881b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/01-T0-state.json
+5d31b8a2b55a38ad155c4f0d04c10d9c5b5f7ffc950674a07857e11673cc65bb  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/01-T0.png
+d78639987c34574b2d48d940c575a2cfa36fcc9fd5553da9e2cfbc4054cb679e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/ATTEMPT-STARTED.json
+01f972a8a418c6c17b649f67c190325d65ff738d2c89cbee3d610d1c3b7ef61a  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/USER-preregistered-reply-1.json
+84a9c467c1a8c70627cc59e2cbffc30a461ffd9613282fcc1edc391106be595e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/USER-preregistered-reply-2.json
+04dda792db205dc17627d42770f01ea6f7cb432bf4dd8b089ad034252e770371  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/after-download-reopen-dom.txt
+370e52893455865d1e1bf3655b77966986535b49b8e05d68695dc9fa89eec702  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/after-download-reopen-state.json
+65d46afc9a6fe126f8acddc6dbc4953202870a4d61c737f4771430b2b4334a1b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/after-download-reopen.png
+0a69d0110bf48c08f39bd9b31e5f36d206f8103decdd0ea902f93e4acdaf74a2  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/browser-errors.json
+249741a72a14855635147809baffdd564c68eb677042a688b2a08abb9a70c2a4  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/browser-events.json
+0ad12f8a85ea0f72d363aeeca204e50a6f3f7afbf7dcb6bdc3e067641ed3b06d  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/browser-metrics.json
+f1a1a61e2f0a109b370c85af9645d2b1c604a21d8ea9d46225997080c4b98ab5  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/browser-network.json
+6dfc817c2fbcadb5b2adf2426007b96ba8f5ffecb698ba6ff187ccfe8cc614e6  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/browser-trace.zip
+332a4aa3e48d15c4825814d1a7472b5c9238f7d630bbdf020b7c08f14ebddb68  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/checkpoint-001.json
+300286e46dffb1482ec5c09961d29d918e278006c478080b839f7221f528a04d  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/checkpoint-002.json
+bf734e9d1c1ea6e5a470f54c0cc29170fe3c9925ad9d3a1e7561b34d317add62  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/checkpoint-003.json
+54f47bdbdca6e1bd08b96e2970032ae911bfa56e0dc70865cad5c06952f0f12a  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/checkpoint-004.json
+8ec729932d375b196d09d2385ab1f141ce021aa3e6ac43c178e8a85390db85d0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/checkpoint-005.json
+d74c41889fef4eae98b457dc8c081120215424854bb6e64885d405a4176ec20a  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/checkpoint-006.json
+ef00baf058ed85ea9bddb2989f9e9b0743d007abf47072b59225eaf8987a76e6  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/checkpoint-007.json
+ef00baf058ed85ea9bddb2989f9e9b0743d007abf47072b59225eaf8987a76e6  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/checkpoint-008.json
+409170f436884a9cf5a7c5a4631a2c9505321b4142b61b56fa637c4c11b10a34  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/download.docx
+04dda792db205dc17627d42770f01ea6f7cb432bf4dd8b089ad034252e770371  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/export-dom.txt
+d6491df557b193d64b3c43175dd6ba8ec365dac5e411807eaae814403bbd5e71  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/export-state.json
+65d46afc9a6fe126f8acddc6dbc4953202870a4d61c737f4771430b2b4334a1b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/export.png
+316e845dea0a0c5ec8e6be90d6d4c3a350c3740950f9f3b090c9220237495afd  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/protocol.json
+63792b743c364cd3f7540c98df3a88f1e88af2ad5409dc79d9573953c4767094  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/reply-1-dom.txt
+00fa097ec43dfb6e3e972ed22491c12850dc837a69f71b69ce1187e929b72673  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/reply-1-state.json
+8d7cd46abe8bf141e7683314859c3da8c52c1ce70548a7feb615efaf9d5cf732  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/reply-1.png
+456858fe6cd063f492ec6f113b4c2e965c296390f502ce0d8a87bee11f579d69  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/reply-2-dom.txt
+15dd3412c4f01a6bda7a7b87c7601f8460c37e2bbaa7ffdfebcd3c9bb492ab31  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/reply-2-state.json
+4248d7cec86d7f17be8696f3a1fe99bcaa4db2a4fe967a6af8bd6d6b81a83682  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/reply-2.png
+49c97a4012aaf27671e74414fed91e02e69798537ce082967fdaefd4628e2c75  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/browser/video/page@1635f8a6599e1644977ce642fa68d68a.webm
+a45c98f92c59b1ce9c584ebe53bb720e7bbeccf50b4e05f9624bf1bd1fa30f0e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/generation-row.json
+ade7db2ba49be3e11d0eb658ef9dd0698d00b3250fd6c8bc656ec166f82714f0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/persisted/3038036996c9485a96a3e529cbe138c5/v001.json
+6cff99c1f4fd6d773cf06f2885e620fdaf338e16120d4fd497bb6e49557418ca  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/persisted/3038036996c9485a96a3e529cbe138c5/v003.json
+ffb5bb114efac2d3a8d043b622d9edd657b1f28e0a053dbd05c84cc9df5cb053  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/persisted/3038036996c9485a96a3e529cbe138c5/v004.json
+b1641b0930036f4b57a8238f2ec822af5a6978940d953dd77866d9a2077c293f  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/persisted/3038036996c9485a96a3e529cbe138c5/v006.json
+bbf0b14fb46e4984a9292f311da8ce1e309d446c7f51311d1853a434627375ce  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/persisted/3038036996c9485a96a3e529cbe138c5/v007.json
+8e42148299ebf598a42ed59c123045b78f0bb56f8676ff63557410efd8821ac0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/persisted/3038036996c9485a96a3e529cbe138c5/v009.json
+73da11eeed1364a92b7ebe84ed28e794902c1de3a2f074c5a4574f5756a1a98e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/persisted/3038036996c9485a96a3e529cbe138c5/v010.json
+f05a080bea0c62fa908e22dc259090552fbdea1721db0c09eed705d596300239  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/01/http-response.txt
+1548e468754b5eb435f1b31dc8b10eb977de08502536bfc4b968f4f83d6ca6c9  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/01/metrics.json
+1ebbce9ae9393360bf4767f0a5897812821d646bd5916d52144f7dc9024188a4  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/01/request.json
+14d40df5884321f623947dd38653a808a7e73b87724eba1138928486d18eaeca  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/02/http-response.txt
+1190f268761009311949c8e5d2affce5356b515606ad69803b25225e5a3e3e25  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/02/metrics.json
+f38412d26745d63471c900a80c03c6ed361cbc50e99db784a2860c38761fa057  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/02/request.json
+8f38f87d6cba9c4162ffc197f1a80758f2d87219f2bdc81a568adee1dec1a16d  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/03/http-response.txt
+f6c61706b9aa37b22c79b42a5651d436b7f8720c723273c44f737aa34353c61b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/03/metrics.json
+aa62505692d8c7abe2df6b756d9c23ee3babc9fd58c13de59a12df2d684660f1  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/03/request.json
+2d8c8de6b37346b416461ddc58c1b6f1d54482e969b4d062d2e4ea14e97bce44  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/04/http-response.txt
+5a47e7c8059e0f4f8f7f1df15471341ed30257862f1d308d481f17f7eaaa4815  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/04/metrics.json
+2785e167f1395ea076a135e511cb63f8ddde8c53b684e0ef86118d51439c0682  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/04/request.json
+3a4e8693ace44a2874c470982295dae6abdbb4082b291e58f7d20ac273a5c195  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/05/http-response.txt
+6f3220d75e0fd6d55b51c6996bc4598cb2c168b8571b5892ddd9e7399c9a3afe  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/05/metrics.json
+c40b7215408ef47c95c81437bc12f0eaf7aace0b1a9ff6cfda860a02e221a1e2  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/05/request.json
+3f53918f3b56508ec736ba78447a7299ef1fa075a5b2f20244846ea1c4f6f7fd  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/06/http-response.txt
+3ba00b1658265c2a2a5c3035dd9afaa0040bb8b9d7fa2ec9d37223ffeb4b4b3e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/06/metrics.json
+e11a2c5d6ac2b6d84e831b2be28c738824a2c3a8bc9c34944ee4d89e1213f050  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/06/request.json
+efd166cb62a8c6366842da8029a105710bbce5213ec6b16beb763ac3caa8f565  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/07/http-response.txt
+acae6493580b7ac6b4b54725780cb03d07aa6f8720bccedb207060b93b7e23d8  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/07/metrics.json
+060311f927d86cfc334634e1181858fa9b45dc9a4625f262171a4257c63b4a96  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/07/request.json
+e2d7cca107e10025d514f51293752b18bee92dec147c5952f893b382ebffa6e0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/08/http-response.txt
+e482e44a478f5742bba7372838c0c208153c92dc2667252dd60c873a383fd1bd  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/08/metrics.json
+4c4c1a550025702bcd0a843d0e1d91bb30bcd2093fd7699fb8efeb648707789b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/08/request.json
+d29d76effe4374cae0e0b611ea469826124bf91ccda34f74e987fbd935854697  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/09/http-response.txt
+90d2e3a0ffe9bbc3a8a25d8b44db21a1d98392965b8874b2f7d3455182a20765  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/09/metrics.json
+8c6a9658e957c25f4104b4e504cf01af1f42f8fe7053ab8735520e877eefda72  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/provider-calls/09/request.json
+d4e1e87886d8ce59ee0442a51aa9f8311f36233b823ea09efcb5db2c266989ef  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/revisions.json
+4d25dee3657ad16ca9b044cda8f20f71508fd538fcf592acb025adb184e976f6  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-breve/session-row.json
+c4edbde679314d4f5359d2f50f1cf00810724a345119ae38c3bf1efeda600cea  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/audit.json
+ea8da7d2fa5b097812071f5fae6ec4de0eb32de2ab5f5dd8abd47f2dbacb3c9e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/dialogue/2aad87dce28748f1aa1ea4e6159b966a/http-response.txt
+9146914e9abd2828e6c078edc7f16ba292d20733447ae149fc3ca3ac1f8fff1d  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/dialogue/2aad87dce28748f1aa1ea4e6159b966a/request.json
+f56fbb5e2d2694157680ac948ef01f064d063f81dfc0fdca00cd8143557d7625  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/dialogue/2aad87dce28748f1aa1ea4e6159b966a/response.txt
+d5b001ac44850eb16fe2045bda3d9ff2e95c5c53a59ff1f20940be28e964eb0b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/dialogue/2aad87dce28748f1aa1ea4e6159b966a/result.json
+18c8bba749039ffe9a8cdb9cd965fcb8200a3d53c7c918ddc871ee307ee66763  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/dialogue/f860b65590f5471e838839d831248244/http-response.txt
+2b101145b4a5ba666e1645e85b254c019f319afcfc472357c3873394837d8b7c  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/dialogue/f860b65590f5471e838839d831248244/request.json
+036b42aeb30129b8a5465fe8296a4359932bb12e03e85d50fab3fbfbbcbdb73b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/dialogue/f860b65590f5471e838839d831248244/response.txt
+3230b802fde76cda6e2bcfd3597ef711a207056da86a0d1f6173db2a0836031c  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/dialogue/f860b65590f5471e838839d831248244/result.json
+f1cc282da90b84e60924161b20e8d29739137cfc911c88db924db0a8ba404eed  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/effective-audit.json
+e8a1136008ecdf1e425e4380243c65b729f6862b56e4c719de89c0db25ca43c6  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/http-response.txt
+12c2a48cec6db7b747e9ebe5c2f79c791dc23cf1931a5c2116fa3ffeb8a91db4  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/input.json
+5f089bbf586cb3d5464f33f76ae565ebc1e17721bd0d634126987003f4cdf414  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/metrics.json
+9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/original.docx
+8fda97b9f9da2081cf953e7e5a70fbd05704866b50d3be9cb04d7b0f8033005b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/request.json
+4b0c5e3c403c7aafbee0101eb436d6dda49f0ffe49a997ad8e12b7869c304387  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/response.txt
+f1cc282da90b84e60924161b20e8d29739137cfc911c88db924db0a8ba404eed  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/review-audit-4458949385c04c5d83f61aeb386375f6.json
+f80fa2d09c1d281b228d9f3b6807f7446e42fc8e3064876de0c3c47e601f2d27  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/routing/0dba2b23185644a3b93b42a8c9ca2147/trace.json
+4e19867cc93d91cddc6d32318f4fd7b05bd2e4250f0774441c88f0ba2eb956cc  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/artifacts/routing/ccd9bf47cfab4a8f8001463c32d25d38/trace.json
+65b454cdf5310d83ed9f9ae6fe28fe22f5bcf9f2bf49ba3d7193e3f2ee85e062  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/00-before-send-dom.txt
+491e5a63bf0aa9f5a06844d87fdc3c9a5e2c1cbf961ae23342094b2e36ad328e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/00-before-send-state.json
+dfc44a239777043b82b68907d9bbc92d5984104eddbbe914564ee330a4b7044d  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/00-before-send.png
+26de3defc62b6054d6f31bfca54f505fe54259c37c085a12198862397478f21f  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/01-T0-dom.txt
+e9308087e25b0570a82cebe82cf4831cbc2ae49d673a99a3d37c1925570b1d01  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/01-T0-state.json
+ad5e496335ed24bf1616b1839fcd0b81cb74c86b45384d5443103688bae531ed  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/01-T0.png
+5a911a5ad1b4101ce33e8b1a122c91e23df43c6ee93bdc16f553d486929e9d4b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/ATTEMPT-STARTED.json
+1d384233e5d02fcd45a35661e4edbab6fb64bff92751734c5eb1198edcb2f907  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/USER-preregistered-reply-1.json
+df93f470c4c342d08b62fafe08b1699b93a8f15a73f797ed887d1a60b8af466f  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/after-download-reopen-dom.txt
+e6cb6b6da195b6d11d99a847b5d13be8ca5e483bd0c1ffad73099e4c1b99213b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/after-download-reopen-state.json
+f676a96630bb37c45c516266be5f1ce4b6a0a6d8de98b20e58c861fd21521046  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/after-download-reopen.png
+8139b25b92239c8eea44fd7af8d4699ae6cf78ee02245737db5fd6861a30c748  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/browser-errors.json
+e3572762e2100af462cd202dd186d01d3b42b0e485b81578c8588b31c5eed3f8  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/browser-events.json
+a898a5d741f70170e32e14e72d01d7f6c725f2879ef0efdf4b6d52bf9179af55  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/browser-metrics.json
+8b4d1ae5b75508a7db40d6f0e1d1fe501737f1344bf4a6004a917e9c98901527  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/browser-network.json
+b26a25d6d1cfbef39cd00675340c9ff72a21c37a09e266cea33568094a46a78f  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/browser-trace.zip
+e84caeb12eab20ce0c6e5eb13dcb14b7d398500e87250ad8e78049d213fafe94  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/checkpoint-001.json
+e417c7f3fc6806f9c9f5a1d229a932a1278a6d69be76501150e624490f5902d2  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/checkpoint-002.json
+8d1b5de301fa6975bc884e2536a34dce2f7b631bf2a9c11dd9f00bf15b88fe28  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/checkpoint-003.json
+51a5586fe40c1a1781280290f3479cd5f744035444ef4420813a2f05a01e4057  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/checkpoint-004.json
+0ed3d314fdd19f4132a72381dde061e50a31ab77169fd9b2320c66af81619ee0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/checkpoint-005.json
+0ed3d314fdd19f4132a72381dde061e50a31ab77169fd9b2320c66af81619ee0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/checkpoint-006.json
+3889bad13a1da1bc63e44fc974afe120179dc70a614e3b46b552bcc3124f11eb  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/download.docx
+df93f470c4c342d08b62fafe08b1699b93a8f15a73f797ed887d1a60b8af466f  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/export-dom.txt
+d3a2f78eb37491d6ea16b1466abe76dd61a0bf83fa70d14ea486ded75ec457d6  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/export-state.json
+f676a96630bb37c45c516266be5f1ce4b6a0a6d8de98b20e58c861fd21521046  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/export.png
+7d301cd0ec92d379ac0986943187265030363c2e3be87473cfbf2a4285a11761  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/protocol.json
+1a5231591d390c0fb74cf262ae897f306979fb6b19eeea8a4cde8560ed8416ef  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/reply-1-dom.txt
+de989630fa5a1550e6969ff3c52b99c103c25e91f6209eb01d697d11af753bf0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/reply-1-state.json
+44af775f2f47f1802f0ffb709b276ebe965f6ecf7dfbdf7ecec5189ed3aa856f  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/reply-1.png
+7e21e4a1918ef62ddbd1a5134d4ecfc5305206a84522615d1bbd67c1023b69d6  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/browser/video/page@55980abd6f476ae3c3f10a5ae55d9bc1.webm
+ce470e2aaf661ad63465bcebf8164eae5a59aa8ca947234619adf4061ede8cd0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/generation-row.json
+457f8700bd87f3f43144dc564f0147926b7ffd97d99976c39e42d706dff3354b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/persisted/82d82fc5857442368420a2181c803f4a/v001.json
+21843296b0e35aaa3554af0e69351827d9f342091aef5087a51c4ac3288800be  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/persisted/82d82fc5857442368420a2181c803f4a/v003.json
+d2278ec21b96a9465a800f341f94a5ca33b23c4fbaff29eb2438bb06abf59bc4  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/persisted/82d82fc5857442368420a2181c803f4a/v004.json
+37145f7fc387c736b51fea069fe5b4010439a018677b32457ec4ee0dbe922ef5  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/persisted/82d82fc5857442368420a2181c803f4a/v006.json
+fe5d3d5c8af1b9d9cb65a136b28e85553509cfc4b2fe19380140cbd9f1e2229f  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/persisted/82d82fc5857442368420a2181c803f4a/v007.json
+53d443fc9fbb1b4e2de1d0d575f9be0a4b9d45d551b9e6a5f811e00f2d4ff62b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/01/http-response.txt
+7dace7f0ec37f045fbf6a147191971f78b1a514ab9df709d6129f103855a2ad7  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/01/metrics.json
+5e10599898bdfb0244bcb669b061b4035e63440df276583f72b9c69a15183a47  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/01/request.json
+e8a1136008ecdf1e425e4380243c65b729f6862b56e4c719de89c0db25ca43c6  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/02/http-response.txt
+5a62a259c01bad251b6526ffa7231ad95933bf61a822f6aaa63cae5fd1b30304  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/02/metrics.json
+bd5b3d08186769496e399f59cefa31a4b40041339c6684ddd1626513b96277a9  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/02/request.json
+18c8bba749039ffe9a8cdb9cd965fcb8200a3d53c7c918ddc871ee307ee66763  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/03/http-response.txt
+a09c1e3fa2b7361d665a0a389cc08cf948126cb89db01e5608a2b17cd0e8a83a  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/03/metrics.json
+f49d625966981f6416d3019bd93f30f468f233978b15567482cc0f1d3bde1e35  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/03/request.json
+f61c73273c79475bb2d70a4c894174a0988af1c7b2a27462a9ca1fbb8c51cbe7  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/04/http-response.txt
+508f9eb65502e240b62f6580cf091e21c7e460a5fc89d4b5df44b1763f31d26f  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/04/metrics.json
+c2eb1054f8a72874e877d4634e63dcba423027e2ce866e624edc63c911a29c82  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/04/request.json
+a8e0cbfb50fd41a339519241d2333468ca138bb561fd5a1dc01a3a5a50e73d80  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/05/http-response.txt
+190343fa02fb1d16ef6c4dfd3fc21d8837c67e501ca9341f63587e1a80354bff  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/05/metrics.json
+a7da4aecdced4cdc3998adee37905be83cbbe31d39e61fd8f301452b29471fb7  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/05/request.json
+ea8da7d2fa5b097812071f5fae6ec4de0eb32de2ab5f5dd8abd47f2dbacb3c9e  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/06/http-response.txt
+f45ec754d3c719e564f1776696328b6fb42851a860aea6c7da430c7e9007f812  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/06/metrics.json
+607ad98aa9db0b4b52b1685b455d8f3dee9e7b30a75cec5530ea4ea7f56b44c5  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/06/request.json
+6fcd6d352f596e285c01341aee7499324176a27e8082104988232e7b85106d28  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/07/http-response.txt
+31fe710273c8862851efe5c722fb405e2e8737fcea39d98438e88da9f2227111  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/07/metrics.json
+aec747a370efd5873a3e962d6468e72fc17f50e23f0b050b064ae67469b7e60b  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/provider-calls/07/request.json
+e1e514746716160fb7b8a7ca3ec5586049a975f9498d0a9f75d3f4784b802af0  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/revisions.json
+cf277dc03c8d93ac7d343e907833b8bee6a7578b109d7ebe8c51f2ddf5845f92  backend/data/compilation-audit/v14-verifica-20261021-01/cesano-esteso/session-row.json
+e1e20c03b479c94e3e026c29d18f91d26d37c98f23b44276080acc873a00c054  backend/data/compilation-audit/v14-verifica-20261021-01/cesano/reference-global-request.json
+4b7b707d0a257b4297965a4bde510664d58df9c3659591755d768ad0398dcfbb  backend/data/compilation-audit/v14-verifica-20261021-01/collect.log
+5dd2a9f9e320616037babf2b47a88deb6b20b64c0e3051c123bb523b73cd5401  backend/data/compilation-audit/v14-verifica-20261021-01/collect_v14.py
+62844fbc2d0d53f790041a5101f5b2bac135fa4f5ae0a72b1097851421525c23  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/audit.json
+80e5ed97e2c392a05714f2de2a69c872296469bf3061d282d829615e2e4f7f79  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/dialogue/09ed81bcaf274f5a8a9d8ec2bef56df7/http-response.txt
+8a58a4b17191c6cc8e9e4cdf737be83cca34690eab0e09b5fafa30402771588f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/dialogue/09ed81bcaf274f5a8a9d8ec2bef56df7/request.json
+23410bcf5193176f314b6de2085456ba54a7cd180e07ab673fa8aa1c3a534ebd  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/dialogue/09ed81bcaf274f5a8a9d8ec2bef56df7/response.txt
+4c38b1711147a0b7e41027394ec20063335ddb210d0eeb161947bf3c5b3dfb3f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/dialogue/09ed81bcaf274f5a8a9d8ec2bef56df7/result.json
+efaeac084381b0609a0bf01070be3700207912e1113c6afd91df2b91d9cb82db  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/dialogue/cbeda805ec2245ada558d5ed85e030d5/http-response.txt
+cb09bdeb4f1df6cd3e0e47e196d6a5611f3a78d6c9357f958bffda9c1a96f5c9  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/dialogue/cbeda805ec2245ada558d5ed85e030d5/request.json
+f56fbb5e2d2694157680ac948ef01f064d063f81dfc0fdca00cd8143557d7625  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/dialogue/cbeda805ec2245ada558d5ed85e030d5/response.txt
+a51e558662ef6aee1c8537ebe8dd921acb1071254ef9208a35511ec839fbe13c  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/dialogue/cbeda805ec2245ada558d5ed85e030d5/result.json
+6acbcd020430a8967f92c39c04e9bff916afef1bca7fd2e4df2d2ebe7e40bf9a  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/effective-audit.json
+bca649d0d949380df64e294b24db0e0b3fa348b5bb278b4ec5b1f3ad044be9d7  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/http-response.txt
+0bc4c60953e4dbdb04f1d6beebb92bdb139f88384cc36f2bb3233c8785572258  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/input.json
+967ec2b3aa8940af2987331c7785d432c15823baed94b8eb4d9adcf25ca3c1f0  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/metrics.json
+4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/original.docx
+e49533f3aba538acba421f7e55bb597922aac69e74767c9061b1d3ab6036ec7e  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/request.json
+dc0e03bb4044d9b192e6e337ec97bbd2d54c9497762c0a2d9f09be61bc5bbcd2  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/response.txt
+6acbcd020430a8967f92c39c04e9bff916afef1bca7fd2e4df2d2ebe7e40bf9a  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/review-audit-d295ece4f5ea41df85613b14b966a018.json
+b7d512d674a556fc90117c953f1d6b2433ca6df283371059e85820e237f81b85  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/routing/aa94c7aa3d4249269a344b50f7397f9b/trace.json
+b5d4121222c8e31a2d2a12555574948a519e9d174cfd70fd1cfee482e9054ef4  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/artifacts/routing/da21133f597e450ca58d0118e5b6bc26/trace.json
+faa10f7ca5fceefaeee74732f48d430e984e33a0f01e7b5c91821ee51750758c  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/00-before-send-dom.txt
+37c917589d1a10af04a7692363d22bbf44ce3168577699708a1db44ac987c10f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/00-before-send-state.json
+ad53d41592e4b41c71e483aa2471162aad4304c833f7344c57e13e26c3f2b14e  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/00-before-send.png
+d15a7d75a443ff914f7c92dd39ec4c9bc5d5f5e76be567d26227d51af0d50a54  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/01-T0-dom.txt
+4fef6cb21779173049db688d18f5f1213c7195e3f721450146267be8939612d7  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/01-T0-state.json
+5a8e969405e4c9762dd8c6563a8e7e9b8ad3d4afee816f151046a5c6a326b3a0  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/01-T0.png
+dc441b0a20b3ffaf77c4a1e192d0efedd8d03f72fea5ac82f89f142338f63181  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/ATTEMPT-STARTED.json
+9ff25ba9fef1234ab14ab2916f19210163b2a40f2d5d21271455698fd4372619  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/USER-preregistered-reply-1.json
+da431f998020a5e5132cc188f04c23fa7d280d466307f8ff880bebf0bb46810d  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/after-download-reopen-dom.txt
+0c1673682b0d77059f593cfdabe7fdff5e5eaa76a547eec72f597eafeb786b87  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/after-download-reopen-state.json
+38e414925e1932c621ebc0f6ad179c31edd6d01e26076b7b6ea8b73d34b1d837  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/after-download-reopen.png
+7d48f4d49649d101ec0ffb5725e7e3b53a44b85bdc673da24ec8844978075dce  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/browser-errors.json
+071538479a06982351f0cfdd2723d8678733f2c0d5ab33ffa1347d8c520a5b74  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/browser-events.json
+23bbabc37b21b6b55209f3ee953648d8810559e4f9efbfdc856b4693add1ec84  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/browser-metrics.json
+0084a5071d591ce5498bf6eb7ab1c2bd6302cbd119e4516cd1c2ddfbd474c1d3  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/browser-network.json
+ac188eac62725c22d7e9a457a56b47cff5175f67ea3a5dab32082e9dc29b0a88  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/browser-trace.zip
+bde30eaa7cdfb4e6cc2d6d4e4b5e5e1d7ff5815c0977d0f632a44655c695cda1  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/checkpoint-001.json
+ad08374a11075f19ba8adf17466babed8a1ef8c5cf57a4dd7d01a7a0416b0282  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/checkpoint-002.json
+165fad05eb40e45d25c18626d5a8aedcb9e57e8acbfa6c81b74ca50aabd2c02f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/checkpoint-003.json
+2a8e895917d4b2efe11fa67afbdbfabd3b7a9fe6dd882bd2d7843dbf3401ec07  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/checkpoint-004.json
+95bbf00a19d02882e2ee1338f72f1505bf0a1b85a0939377c8e5134dd491e215  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/checkpoint-005.json
+95bbf00a19d02882e2ee1338f72f1505bf0a1b85a0939377c8e5134dd491e215  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/checkpoint-006.json
+47fec226410e2f85c39ad23c639a0d6717cf8bd4e82d751bd5344a31713db0d7  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/download.docx
+da431f998020a5e5132cc188f04c23fa7d280d466307f8ff880bebf0bb46810d  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/export-dom.txt
+2756314b77f0680435fcf65c3433a9fd62656f60c30fe9ae6cb34807aecbcec3  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/export-state.json
+38e414925e1932c621ebc0f6ad179c31edd6d01e26076b7b6ea8b73d34b1d837  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/export.png
+84489585c13cf4765e593336d865d08f85c39b7a5e4f83758231c38062c63dd2  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/protocol.json
+37c70451f8ba97739c94dca0ccd4741657c676b4922477aa89cfd64103bc1d72  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/reply-1-dom.txt
+82b22ac2f57167d4d7828b7631c503a5a0f4a74454228b9501d36e1b30d5cff4  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/reply-1-state.json
+b51c47a9d6285d6d78649ad31143b7853b96725a13173b2adaff5a18719b9186  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/reply-1.png
+2000c8ad68f3c72ce5cbc52af954b280f1f67ee349b4b0ea3fbaa288c14a70f6  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/browser/video/page@9062e2ebf9fe1cc1c39a926418d60aa6.webm
+dae98b93e6aa784ee07fe412e80bb43c5b739cc2ca014f0c7e451ab7e053fa3b  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/generation-row.json
+0725fc55833e4363a1eb5b976b329267649c0077c7c78324a4d00277773dc432  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/persisted/0da237c0add64d44a855562ae1ff8121/v001.json
+6b8d5d29b8f20759c2f5c0d17d075e9ddf3ba3d3cd4c47f2bcaa35fa0d48daea  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/persisted/0da237c0add64d44a855562ae1ff8121/v003.json
+0640b453873b10608f702482db894a0612294038f54d6abb0191a7aad618a5ec  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/persisted/0da237c0add64d44a855562ae1ff8121/v004.json
+54a313c16132fbadac485657b778d72281a2d363adef98f64cb229035bfb7c0a  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/persisted/0da237c0add64d44a855562ae1ff8121/v006.json
+eb85aebfbf7d97fae87a6479c9481c2089991b9cf0296394f64dec0000ff4e9f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/persisted/0da237c0add64d44a855562ae1ff8121/v007.json
+fe1e6fa257e5997695662d103dadcba1b6d05762c2942c7646887b1ec88fdac4  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/01/http-response.txt
+a30d276dac5dbb561fc08bda9b3b8992003b6c72c3e6f2b82765c3ac37525494  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/01/metrics.json
+c1d5d88b06eb1f3c8f6993f89f027fc6497d985d61f19901054e28084d8887cc  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/01/request.json
+bca649d0d949380df64e294b24db0e0b3fa348b5bb278b4ec5b1f3ad044be9d7  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/02/http-response.txt
+f2082fb7f51af3b6380868f6a9d26f622599fe213b0ed8abcd1ab3821c8af3d9  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/02/metrics.json
+2cd8a2adf3eabcf63160c10ec47de21c0a99a72971551389fb68e00c2767542b  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/02/request.json
+80e5ed97e2c392a05714f2de2a69c872296469bf3061d282d829615e2e4f7f79  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/03/http-response.txt
+d516c5127168383e4fc325a8b2b97615c1b99999801ee86ce4b6db47bf83417f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/03/metrics.json
+2127d742e71e9500d403ecf8f3dbc5cd030a309dcf868846474fd0732bbff63a  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/03/request.json
+6fe2eabb9663c8c0512395c6ce0996873c4fc5ba058078052cb8127d2914da4e  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/04/http-response.txt
+a3257b9d34ed24bdb175b7fcd537bdc29c2375554fdb3d1f11601aed60590423  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/04/metrics.json
+fb22097ef7a5f3369a509421803f9ffebffe116d121e5467714a2c357623577d  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/04/request.json
+9dfae0ed827b3b18106bd017db5b63b24467770c2f597cf91d27b820a8fb838c  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/05/http-response.txt
+b4bd27f163f9e967978633cf24f9f49b14dc4c390b6905b88451845b264945c9  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/05/metrics.json
+40288176dbe75cea72994f0f4d54aa11d06c04e4b84d1ad1b928fb3f0380b32c  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/05/request.json
+efaeac084381b0609a0bf01070be3700207912e1113c6afd91df2b91d9cb82db  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/06/http-response.txt
+d36aa0f704ccb994f40ec6b918ea051d3ce2a8bd024856898b7b9d902e9be2e2  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/06/metrics.json
+7865b1df0a9c65adc3145dae251d62d6e833b451ac382d4c968cc895efd017cb  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/06/request.json
+26d38ed842fda0bdf308b63a1a843507febd69addefb96b88a0223a3795684f4  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/07/http-response.txt
+f4a85d30c592e926fdf25cb2fcd9f954e1724e37ce112ab412f7f205b4aa83ab  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/07/metrics.json
+b1f6c9600b16c39e428117fb88e59a9b57983666df5a189d53835915b5dd8947  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/provider-calls/07/request.json
+6826c40e66d8ecacc9218ec877e519f4f47b54aea2efecb8f6eb458e83823f7f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/revisions.json
+bb7f08f584da2a10e7bafe6c9a34ec8cfe57ac4f9b44d709c957803780d31ed3  backend/data/compilation-audit/v14-verifica-20261021-01/craa-autorizza/session-row.json
+68fefe7cb78fa0ef626db81c3d90d3de2f40f5291b3f06dbea131278fa9cfb7a  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/audit.json
+1e21ddf9aac3ef71e4f2cd1fdcf259ebee25b8d4ac673096ff026af4ccd5a643  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/dialogue/0fa25e8e4e774ec9b922598a39d0951f/http-response.txt
+dd908d4041379a349fe98cf47bcd6a51b866825c4f6d483b6f16d5c304eb8d0a  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/dialogue/0fa25e8e4e774ec9b922598a39d0951f/request.json
+f56fbb5e2d2694157680ac948ef01f064d063f81dfc0fdca00cd8143557d7625  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/dialogue/0fa25e8e4e774ec9b922598a39d0951f/response.txt
+995cb947bafdeed0c3795483f63c4735293377c1aea4c2a28cc4f6bcb1f32b0a  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/dialogue/0fa25e8e4e774ec9b922598a39d0951f/result.json
+d099c54b34017d9067e293cc4027b732f8f264eb14e2ddc5d81f80f0ced0e9b9  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/dialogue/9fa9344773134eb38bfc57b0f8c7dcae/http-response.txt
+2d2ea5b6b19b3c73bab620c988d27c580ae792bf21d6f98d7834a7aba15b72ca  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/dialogue/9fa9344773134eb38bfc57b0f8c7dcae/request.json
+bbddcaa19743728723b7f1a982578312d529138fa59eda63e63e0b32748df3c8  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/dialogue/9fa9344773134eb38bfc57b0f8c7dcae/response.txt
+4d361c33c5a5f8ebf5903b0a4d44b3ce45d53a9c558cb1a5c320758c82bb5ab8  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/dialogue/9fa9344773134eb38bfc57b0f8c7dcae/result.json
+549cc2ccaeecd75cbd58f2aae19e50f5939f5dc297ef12b56a410477ae2fbc7f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/effective-audit.json
+c7a5d03e55d3bfedea56d8f572ab68b265917cfbde7ea512f8b3a68a2f3983c3  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/http-response.txt
+ed0f28ea925f41d015722f65b2fac25969bc35b23a595efe7c2550c34337a7e7  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/input.json
+0691d9928bdc5e9e1c0d0b224b8ae59987fca8bed5603deff69a515780a8c405  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/metrics.json
+4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/original.docx
+5bf8eddfef40d785f9fb65aff17a151d471c595466344521f46251d922834f81  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/request.json
+c881abf9423d0a0d9c6ad1942c664828470312416855f6439df4bce3f0e4de58  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/response.txt
+549cc2ccaeecd75cbd58f2aae19e50f5939f5dc297ef12b56a410477ae2fbc7f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/review-audit-28aa8a1c1ddf4d0b9eb561fec147a910.json
+4a3aa8b324a659896bde411e76787f924ccc856a633350f18c0dcd61e419113f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/routing/50cac25cc1c74bdf80a7583555d5aa58/trace.json
+d9d81713e7400f6fb563db294197b500c7d7c5a8704c2ef56829cda9b7f87a43  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/artifacts/routing/f357bede5751497593fd3473234dbe0e/trace.json
+9cdff0f27c74cf967c8f4583f58d35cf2142c836c7fd1c743203df42aa607b5b  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/00-before-send-dom.txt
+756fde92e2be94a91fc2974c7bb1ced212b1acb5d5d33da4d62c2246b28be40f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/00-before-send-state.json
+eed0fcd14bc30fade8531b249d455b3789c2e9838d2bc8aef37d5f584f02bb0a  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/00-before-send.png
+e0300fa5b8c6448f30c43485dad579a8afd9a9ca4afe7128e76a166f769a1789  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/01-T0-dom.txt
+94af16f6a3cc2bcfa6c0fb6648b93f681975f2f1706eb18be8044ef4ff21f7ce  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/01-T0-state.json
+934cdd45adfc2969e18fd51b82ff788f060da3fc793bda6e3f57c0e1dc067731  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/01-T0.png
+a8577d4c6907b8fe5fcaf0b16088f662e086d51f28754f848150beffe3e2e5d7  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/ATTEMPT-STARTED.json
+fb768f8ca2c02a4f3f93cf91acea9d34e47e44ceda2817a3beb86e7fbf8f1fe2  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/USER-preregistered-reply-1.json
+c01b270f1f418e23b212644f20478685d74fb13f482339ec7a3055989fc60daf  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/after-download-reopen-dom.txt
+dee77a7883d5db9a350b7cf2a0c873131c6281d4ca041b9df5bb22dc2a9276db  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/after-download-reopen-state.json
+89c3506277871fc5347b4d712ca0e8113323023c2328bace5dc1e126b2bc094e  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/after-download-reopen.png
+1a8aa1fb11efb680846749ee964673a911720bde72515a7f3d818e7dc7ff5191  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/browser-errors.json
+273157a85bd58dd75efda7e7a27c30dca4036eb697d5c724ad2c67d561691e96  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/browser-events.json
+a563ce90b7a0df3394d233e7cbb81c83b08aca22f558e3294857eedc284e068c  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/browser-metrics.json
+b9535998dea4f51b86b17295c6d56ca57859c9f5e85ed47e3f8b139743a86cd7  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/browser-network.json
+a01c7efa6e87bf09b74f3e3b0061efaf8f4e47d939e972546f8a8d0e50b4d669  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/browser-trace.zip
+6c0f7a198a88fdac7c5d1e7ceeba7376db44b7498533bbefb0288b936f6d1537  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/checkpoint-001.json
+bb900236dcdf6335a8725fdb21258ab213acf40accb1e6aa1d7c17a6a6d0163e  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/checkpoint-002.json
+06bca25a120feaeff927470f782301f6f68e5fdb118b70bb68e04dcc501acc72  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/checkpoint-003.json
+796053edb25d38028fcd3dc839f3c28f7c64d3247f5a75ed5e121e61e11f9934  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/checkpoint-004.json
+50b05a0cda15f1723a3edcc2abc86dcb3242fec2005fb778a64e588403ea4c4c  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/checkpoint-005.json
+50b05a0cda15f1723a3edcc2abc86dcb3242fec2005fb778a64e588403ea4c4c  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/checkpoint-006.json
+47fec226410e2f85c39ad23c639a0d6717cf8bd4e82d751bd5344a31713db0d7  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/download.docx
+c01b270f1f418e23b212644f20478685d74fb13f482339ec7a3055989fc60daf  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/export-dom.txt
+86ebb41ff3362e641810947413fb2e38b347e0e9c40f2e19374a3ff6a02ee7ab  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/export-state.json
+89c3506277871fc5347b4d712ca0e8113323023c2328bace5dc1e126b2bc094e  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/export.png
+d4651c8dd6dd8e65af9a8779fab4738c08414b2b00baeb242a26e8f62df7564e  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/protocol.json
+d07a02904b52c808671ede467248678f28581fd140d74c32e0a4e4874909a284  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/reply-1-dom.txt
+f3956a3de7b98029153013ae9e8f919d557a72713a9c4f8f6d59f7d6383d4abf  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/reply-1-state.json
+effb6176c0ddc37318a5a44aafc774b6b64055eb94b07d9cf1fa6dff5c720ac4  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/reply-1.png
+ef34c3bfb6e6a6e6a75e70eaf0bfc20a944ad385f0716b1d6d93b0ff9c0705f4  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/browser/video/page@c6780da34e39a365a1247cc2907d6e43.webm
+aa2ba3bccd3fc29ea21f17e668b464cc8dc12881a4a5a1afe075efe290ef91cf  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/generation-row.json
+adde8710563231456efe5a59f06162387092e40a78b7bb3c32e6d78053ad12da  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/persisted/31c18d5777724e26a86ae1298c6a0213/v001.json
+d05adf8e24373469f2ff194bb60d21796dd00ed81989e888cfa0209808355fb3  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/persisted/31c18d5777724e26a86ae1298c6a0213/v003.json
+e0baf090fd63409658fb5b934ce72c4ecda2aba5539daddb8a81f8ed347f17ef  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/persisted/31c18d5777724e26a86ae1298c6a0213/v004.json
+289cf3f5763e1a382dffb7f467ef1bc743315fdbdccaaf93b7d1cc1e5d644452  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/persisted/31c18d5777724e26a86ae1298c6a0213/v006.json
+51289aeb99e407480a2cbfc3212ae9887d5204f4b6a7fe7052da0e72c13b50df  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/persisted/31c18d5777724e26a86ae1298c6a0213/v007.json
+e622ad6a67642887522eb911a16961a663b9e183b9111014be743b5c9338f65c  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/01/http-response.txt
+d1a32d2013d504722a1c00b48996368b1f324fac1fdb58f64e03e9c7b68dad70  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/01/metrics.json
+337727f6802bc34785535ef92e2d9cbfd7784fe8eec6a4eff73cfbe87fc4248e  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/01/request.json
+c7a5d03e55d3bfedea56d8f572ab68b265917cfbde7ea512f8b3a68a2f3983c3  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/02/http-response.txt
+65190c1aff6daa476c7cbd76500588033761c622b4c4973b5830930299f2c49f  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/02/metrics.json
+c686ac540c2c0cbb3d10e17f11d091fb0969f51ef8cc34c59b6ae55d32319cf3  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/02/request.json
+d099c54b34017d9067e293cc4027b732f8f264eb14e2ddc5d81f80f0ced0e9b9  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/03/http-response.txt
+95dc742f595b1e75722074a47cdb34300afe75824eea24f9e11e6e4483651f68  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/03/metrics.json
+d68a7445cd18ede5db8cc916c4927a02b895814d10ba86d95e788614ba950214  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/03/request.json
+c7157820034b6ae9ff4577584514007775b2756279930e70bbee9d9eb6360151  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/04/http-response.txt
+1f7859fd384c6850d3b9d702dc98e862a33989c31bb7b9a25dfc3a404b4e2e9d  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/04/metrics.json
+898e7b0c95753ee43938e2fe35121afa4aec4c100df2e319140393f29a26659d  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/04/request.json
+a71fc48d6a8d9e696d75822c377dc17af5d08f616cd4410bb84a02c25234f57d  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/05/http-response.txt
+b1362f3f03739b76bd0f575de5d438eec89a3ed95d9e25ea786584614df449ee  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/05/metrics.json
+fc724957d00af1c6920a3fcb0d7632bd6ef3f9937dcc5dbf58b6ad40fc30ce30  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/05/request.json
+1e21ddf9aac3ef71e4f2cd1fdcf259ebee25b8d4ac673096ff026af4ccd5a643  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/06/http-response.txt
+863d1a7b683d3a6ea547caf8482c89accf511439ddc93b8b94c7f236c1a7ba99  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/06/metrics.json
+b7d551b20e861fbea6cb2ef5e50b048c16a06bdc1ad92dcac35eb98fc294ff96  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/06/request.json
+60df06e565ad044b4502aa948a6fe718717494ce58c1c0efe36eeef4b423d9ab  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/07/http-response.txt
+d05212b7024d8ad850aa5c388c24765c708ef9f0654294237980b08568ce20e6  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/07/metrics.json
+2ad36a8cc1ca7ac11bb8fbc62b3b63eeb18d01adea283c089513861c0c2963b4  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/provider-calls/07/request.json
+effd7da29860c35dca9c9d6dd41b883171f4e460fa9b740a3c582e51e68d1481  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/revisions.json
+0c628c338d7fe11e3bd242e7c862ec21b6ba148c4d2a09a0b518336672b46130  backend/data/compilation-audit/v14-verifica-20261021-01/craa-ramo/session-row.json
+0fd0f416de604d01d8ba44025b9e01a0bd0e712ad5b65bfeb2f14646a6e6dd7a  backend/data/compilation-audit/v14-verifica-20261021-01/craa/reference-global-request.json
+6cda56e10c26f3c7640ab3e93528ec1123dd9959a4a992d986de09002f8747ef  backend/data/compilation-audit/v14-verifica-20261021-01/dry-run-assent.txt
+c47ee79848e5ab7380f103aaae2e801bd4c0d8c074e4c76861d8769806762a5a  backend/data/compilation-audit/v14-verifica-20261021-01/dry-run-policy.txt
+3febabcd489d1c62586511dbf78c40ee35caa12c942792837fa5e4eedefd0a8e  backend/data/compilation-audit/v14-verifica-20261021-01/frontend.log
+ff860d0356f5c8898adca9f494da3f8c5d6d409fd7bc0e1adf3c7f59fd53ecde  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/audit.json
+ed8b3fcea093f252b2a8ae6fc7ac32a0860af66e7da8dc20503d1702c952b6f9  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/328aa81435d34389b8c32c53aea6be96/http-response.txt
+afb046eda129ce0e1bb224c5cccef6e5ea608fd41acb69e78cfbb3de6a48b501  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/328aa81435d34389b8c32c53aea6be96/request.json
+5c25aef99b6769dd38859b6240fe5e12f900c58a65541aae58217bed5276ee59  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/328aa81435d34389b8c32c53aea6be96/response.txt
+94ba81ae1271e867380cb8d0291f5252f982552d8f200c027e5021557f633d94  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/328aa81435d34389b8c32c53aea6be96/result.json
+2ae934f78c11e5de9cf0f45c7a3fe6d0cf4b3b6c7dd83994ec75cfe19322e910  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/365e683f5aad4267a279da60e3c73176/http-response.txt
+8e95af688ede4b75a5a88ea908cc12e18c4f7a6b1624faf3beaf4d04b948296d  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/365e683f5aad4267a279da60e3c73176/request.json
+53732026d8daeeac92466b9dcb1f6ca5e9720d103697322fc011bc258c644664  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/365e683f5aad4267a279da60e3c73176/response.txt
+856f98371e07227b3ec0fc93a5c962dc790e1d7a858700e27b2000ac54d071df  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/365e683f5aad4267a279da60e3c73176/result.json
+b0793c208b77871b44fa7a4221a9bc393e423037cec419eab0cd7709a4154ae9  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/3aa959fbb69b4e648790dd4214e0aa3f/http-response.txt
+bd49de25b177fa4cf779fa7a8efa4e5e6924c551f241702fbe52d9668b5b4dc5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/3aa959fbb69b4e648790dd4214e0aa3f/request.json
+b59b039b9e0ef51c98360cc7eb1bd9ab9171192928291bb126a3c0d398dfdc0d  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/3aa959fbb69b4e648790dd4214e0aa3f/response.txt
+95b2350f5c2415b05179e51d7c6ed2c73238e4867fa5ca82a8f9cdc2d096b5ee  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/3aa959fbb69b4e648790dd4214e0aa3f/result.json
+ea177a1d8cf9d405e685655d93f4f8403d83547eb83d4d9f202b5cee0bd07855  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/94a685358a444e3da4cbb0c84a711d6f/http-response.txt
+c4d80a7ff1ed30b637514e3784c516788e91dd2b49768e7243439501c7a3712c  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/94a685358a444e3da4cbb0c84a711d6f/request.json
+49ff054285a1a09f49e73de01e91d346c5bafc2902d543f323ebdace2f6aa062  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/94a685358a444e3da4cbb0c84a711d6f/response.txt
+e2744391b9817308629ee4994381a7f0880091406bd5bd3714837532b473794f  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/94a685358a444e3da4cbb0c84a711d6f/result.json
+5a275d8550880bba424aee2017d2acbdd6f87374cb4385980569c6fcb9db5c3b  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/a4916513bf324e0e9c4c7b5c94ca868f/http-response.txt
+7049f5380c05f5a5deffbf8adf74912f1335caf7de863dda81b0514829f689e7  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/a4916513bf324e0e9c4c7b5c94ca868f/request.json
+6195a688457959e11ce6a97822978bf4266f14f7f4a76c24688f9f7f6e53da75  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/a4916513bf324e0e9c4c7b5c94ca868f/response.txt
+170e7e07e8c7d14dec872bec6e698fd27c4630e40d696ee8e92a997467e0d4e8  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/a4916513bf324e0e9c4c7b5c94ca868f/result.json
+31e45a280bc4848f8d074e9466fa9f18d9dc74fa0e74a6c489d966b0b80a3bba  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/dea561b6cf4b468ebefb6631fb2a2129/http-response.txt
+4ba1ef88b211e9b2412a557fe656be9985e916be4a6506c83797995ab8bcbf21  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/dea561b6cf4b468ebefb6631fb2a2129/request.json
+0de3ab7477bb7545e7ce6cee61f7d54f27ed314fb1db62881c568755a2fb28a8  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/dea561b6cf4b468ebefb6631fb2a2129/response.txt
+476726eed996111347ddac78ddd86f9f3870140d50fbc83a2005a968762dd6f5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/dialogue/dea561b6cf4b468ebefb6631fb2a2129/result.json
+dc617f9bcb0bdd4668c6d0521e490a63d8abc3b7b861727c1af8519002580912  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/effective-audit.json
+087c9cf2d77ed8fe789cbe866d781fceff18abac3959fc310296717947875373  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/http-response.txt
+229c194d764bfb2905c47e80644a5f2f38e86287e919665d1b7114255422ac4d  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/input.json
+e307bdd1e9d22bd2a23ccd9b455e6e339666e260fa91aa600d772b1f50d60804  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/metrics.json
+25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/original.docx
+06840e629540b4fc8a2d43e67978b2068b843c2dcef84acbf37fe39393802718  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/request.json
+7642e469808275d6d3cf88e3e4551bbc50d0a564cc186f4cdf697dc59c9eede3  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/response.txt
+a1db765bc0466312e8088c0a92c5d6895a1eedb4f3f7ba0316fd60abeb76f061  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/review-audit-1aee2d5a9a8d4c5492a820bc462c88ae.json
+dc617f9bcb0bdd4668c6d0521e490a63d8abc3b7b861727c1af8519002580912  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/review-audit-b7e0c1e8c4a8411e893e2252017bdd8c.json
+dc617f9bcb0bdd4668c6d0521e490a63d8abc3b7b861727c1af8519002580912  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/review-audit-bb31d3512b7f4658b33b0151e873bf83.json
+dc617f9bcb0bdd4668c6d0521e490a63d8abc3b7b861727c1af8519002580912  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/review-audit-cf1cf94754ed446e8eeb2674c81c64c2.json
+062232700667d2587b7d40c9c3bb667971f9d92b5d49cd6f1abdaf5a33e4f2fc  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/routing/5d0b8c6c01c144659c4fe374088852d9/trace.json
+5e6a894fca1c029d1821db271cb74387affd3d0ac1527877de5ba90a65b10dd5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/routing/a10b1724fdbf43c78f2623455c3827e1/trace.json
+d0151bdb64621bedfab70a743a3b762de2c5c3deeb3865669c445a20fe71ff88  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/routing/c10358f9ed8c41968e96a113f39e8856/trace.json
+f40db3f55fae105cd332adbe3d729f0d390b5acdee51dea6d4752b102ee031fd  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/routing/c1cd6ff2ed3a43f1abac63236826f881/trace.json
+3bd4c8f0c006282145cb7280531141c4d58243d377d310990059eb0af9f1a7d9  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/artifacts/routing/c69b10af7919461da0a98e089c759e28/trace.json
+dffb6f87a9f38b12fb267cf04378e0c06ec912ce11164d25c0530aacce74f33f  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/00-before-send-dom.txt
+27849b4b4e222ff3d5518d20e0e8f1038d43bdc232b106087541353e82986a66  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/00-before-send-state.json
+5f041fe8d361c34d7da0c03e91a5b595a243c4d626e3276ab365f4e853b9f8b6  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/00-before-send.png
+eddb6748b7149ba5de352d4ad3db1845049168efa24f186f8e8f3c3e71443e29  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/01-T0-dom.txt
+65ad843b7398e85c4cc4aa042b777135b615e9e6974379e7e1b179c972674baa  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/01-T0-state.json
+77ab703629ff50115040eb54b7e9528d9795919d9d87a9c09eac2ef1bc04da1f  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/01-T0.png
+caf09d60b17d05afbfce1bb793042cce3cd8affa9b7361a33d475649fc800bbb  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/ATTEMPT-STARTED.json
+1f2bb45402ff372e3a6391bfba6de329d4a89962f09858462201a123d71ad62f  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/USER-preregistered-reply-1.json
+616f139fa329d439d1af33b8c0274d2fd5e978dc4748a128ab1e317c68c739f2  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/USER-preregistered-reply-2.json
+89a7b9208e72a0ab0b4db63daab666c32b66df698120d8cbf249b7d198054fb0  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/USER-preregistered-reply-3.json
+6d183a92570105ba124f73791f2b45420f2f83922369f133567a1fbe3566f957  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/USER-preregistered-reply-4.json
+b54a9a749663a427b2575f962bd4482172fcaa0adb1310e17fae081036cf23e6  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/after-download-reopen-dom.txt
+e0b357619e363d27010b9dafef6726449e9cc3b82a767147082713773784935d  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/after-download-reopen-state.json
+ea42af1a15e509c36dcbe753fd84a55dcaf18af751a9aae4a842be1d82bc7fd8  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/after-download-reopen.png
+55eb8322ec5d5821fb5e75e18749a0758e001eec930eef5030398e87ab01e7b0  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/browser-errors.json
+738033c4ad8209a84f35bb91ea6f0d04d14fdf9725800dabc21201ba0efd5dc8  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/browser-events.json
+d6ed7fc06044885d8e38da19f72533901b31e9f47e3a4d7d8f0c68da2f951b3e  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/browser-metrics.json
+6b31af783f7a482bfc816f243cd939377fee00f6f4d1f17144b51e96e78ae790  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/browser-network.json
+5a458a3f52c4023509aff6264dc22c1d0abb466a2d5394c408b6ddb6530407cc  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/browser-trace.zip
+2b35f28c2a940854c227ca3610e4e904a0175aed838881d88e7f8ad5b5b7d547  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-001.json
+7f12ba72ef2581c6ebe1a46a8b96fe88ccc9622f6fd3b14cd4f8c90fa02f57a6  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-002.json
+dab93e966b062c92e78a2deaeb4bf6b53d72fa16607fedfeb9b67dc02f557015  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-003.json
+897b3e55ba264ed6add2f72d630cc701c60ea47fdc744cc370af0a59adf8e577  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-004.json
+21ed28302deda726a8d474e99600230e808f07930d461f3d20e70f48206da51a  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-005.json
+99598582860838fe7bc39caaff05a6929a9d30c9f22e0202f3a0adad4d88e6f4  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-006.json
+ed5c5f6f5276fd0506de8dc0cd793297870fcdf89f7c9bcc732a97d5a39117cf  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-007.json
+ba445a6b58d21db33cd5a7ae2bcd70e62205d75106ff75371a30d53e6848892a  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-008.json
+76285e5d739ee7549dc961998eeed233025a9f54e16a8be03de7a3d8d6b5ea5e  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-009.json
+0f7984de47c1e4c4cd1d6f9e0cfa6b9b41c9cea402a7c14b3329fae015e0e541  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-010.json
+47a5e7a58f76684c1b41ee69af473da1ec2181286fde79faf17d73f2f3f3239f  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-011.json
+36b74782c9ead1d4d5be479a48f7beaa1aa799eb3f9b67d4501e8bdeccc13619  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-012.json
+36b74782c9ead1d4d5be479a48f7beaa1aa799eb3f9b67d4501e8bdeccc13619  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/checkpoint-013.json
+a6c0568eabe01888d4975934bcd0af1fdcc96e8ede4f5e177a471ec304fdc8eb  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/download.docx
+b54a9a749663a427b2575f962bd4482172fcaa0adb1310e17fae081036cf23e6  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/export-dom.txt
+014179d5d54038ea2f1d8207349c15afa1f5039db81012409a882546dd288de2  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/export-state.json
+235a863a92d34958383a382c162654867cb99a265aadfd5037f0a34b6fd19d81  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/export.png
+7b4350658d4977b429730918dd676f21ffb37cb39fed790356692407b5f255dd  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/protocol.json
+2c77df75c8ce6ec90aa9f2745e6a5f4562aceee0de38c4e7b2c43a9733e2c5ad  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-1-dom.txt
+1a111ad681b2f46f2ff735ebcf25e6c6501262f507bbb04ec624de3ca0abafdf  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-1-state.json
+4e364722a62510d37e427cc242bb2743957137f18a4feeded5a94ce17d5a14da  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-1.png
+83322e4d71d3cea6216fe00c7b17d8ec40a18327d6c070b18bbb8edb0fc521fb  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-2-dom.txt
+78996e4183d6e865417bf375556b5d0eb32666cc269be6b8a84358d2f7514bdc  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-2-state.json
+44b62a79e73f1a9bf1d2b9dac5f075fb3ea3fd07c68261b0bd595dad6cb266a4  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-2.png
+1903d100553cb4e5cd52ca277f00d0c59a7266aa7ef0a32ee32482d2c28baf86  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-3-dom.txt
+2e297dfbfb34c8bae7fc2b4c42298158171dbe2035fbc418f8fd41eef64d889f  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-3-state.json
+c14b9101a9da9cac6e6ed9d071585093d5b8c16ef6ff5afc101bf2c97c7e6b02  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-3.png
+cb61d32c6835eb1f003220e0a28e95e3aa6c3b0402f9ffcc351215bd1fc69e07  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-4-dom.txt
+958727183f1c4c1d0de64e89a2a00a5a24183f22a26afae931a3d83b3a5beca7  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-4-state.json
+8e732212cb01e774a20266b0bb8f08fb13f47c9fc504515d3e059edd3e420ebc  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/reply-4.png
+d2b4b873dd1373d5402c20e3fe043088e987aa790183c9b28efcae616659bcca  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/browser/video/page@4d6a386fa323f8ebeed0f1bdc99c9f8c.webm
+8204fba0fe4174b5edb323c70fcabdbe0f1827352b57702d5f65a72e8616d6b5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/generation-row.json
+22f10229aea7659db95618974fdeb6930f8b4c3e06d3e62c2b289dab3cab6a6a  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v001.json
+ae22333abb289518b636dbfd6628e548500017ffeaef710d6363c27966950282  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v003.json
+4a18ce59c4b0177835161e11a54482fc828538915cacc5b95f39ae2f917dc09b  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v005.json
+df954bfeca47a70136755cb75970b2aaad5cb9e8df0031648103009222d881f3  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v006.json
+35c2dec1d3c50a83a5f7bee3171ef941f4998097392f286393991b398750dc4c  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v008.json
+8def30c396f38e9b77d9c2b4c732fd920ec6a75c1d89824cd8cea1686ad7f6ce  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v009.json
+662765dc9d921dc8c1df2ee515cb4290fc06cbf1e68fb1db9634f8666b555e1c  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v011.json
+7b120ec9d35a87b038f2dbfde927009e76ca77c0a6f60a06bc3e7c6e88b77301  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v012.json
+6c0ca63a9e101bfabb76825d0c0a498582726762e37efa458d02d22056f1886b  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v014.json
+51542fc4fc58060a740af8162284a99a4fef010bc15530118b927b4e681a72ee  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v015.json
+860133cb4385a78b018cc9955b2175f7f3e8667de3904c1abe4b6809c7dc56b2  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v017.json
+cf131731f685299a53f20409d0bb525aecceabcffc3396ee38c8d885ab162c3d  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/persisted/d1b0250068084ba5a2769ee548247082/v018.json
+ff335feef0540f5ee7207f46de1261befa4fbd946307a4e32316da2bd1801f0e  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/01/http-response.txt
+ce10fc2a8f7cf539d5da2e2c2672a4a172af6a0a6533311860ff146461e29bcf  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/01/metrics.json
+213b58dcc5020386d955eaa6689124f9ca9a1fc96ea6044f96603082fdc453fd  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/01/request.json
+087c9cf2d77ed8fe789cbe866d781fceff18abac3959fc310296717947875373  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/02/http-response.txt
+ee8c1dd5004d72754a9f396039ff2ce7f947744e35b7639e353a060efd7f31c5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/02/metrics.json
+2d4e1a63f850c0b29b46922a80ed96b369c1a97a628126fe355ad0b86dcd3c9a  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/02/request.json
+b0793c208b77871b44fa7a4221a9bc393e423037cec419eab0cd7709a4154ae9  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/03/http-response.txt
+11418c2c1196a5901baac0d6d1faf3ba697e74d9ad15c586277817e315d7bac8  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/03/metrics.json
+23bd3ef562372a644642ffa30b2513ff6dfd338c2baa384f198c8eeaa3b9e881  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/03/request.json
+2ae934f78c11e5de9cf0f45c7a3fe6d0cf4b3b6c7dd83994ec75cfe19322e910  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/04/http-response.txt
+3ff5f5d20478506b1244ffe0f66184750444d66e3a91cb00a6c4d1377a0990f4  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/04/metrics.json
+782b0603e70699e592e5f27b84d4f931d7ab1ea1def0bee4b11222e0d0219445  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/04/request.json
+2d13ba8eef74a35204efa2346b1eea6f0c31f7cbe93fb65e9d08a20cb277f104  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/05/http-response.txt
+743394dd83a2cf6dc49ebf4a63665c9cb5befc4e53c4d022bfc275bbd833912f  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/05/metrics.json
+cb38046b2958f97c2863139025aaea9f7b6e3d2a9dc80cb8e8914be16ec5346e  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/05/request.json
+a6402615c6a5922a244de05787b42defba01cbac83d3dbefa3f76bbf55da82dd  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/06/http-response.txt
+c8d8757f1f8e390cc2bb13be8d0d3e8bc522247fcf072aa906cee910c54ff5e9  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/06/metrics.json
+e0e7e615c8fcb451da9e571c42f121b7aa3136e2eee26ea503123b3490fa4131  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/06/request.json
+5a275d8550880bba424aee2017d2acbdd6f87374cb4385980569c6fcb9db5c3b  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/07/http-response.txt
+385fc9626799d383d5c5bd91f01f501f1075c4d4306c683adfd3aa8cba7ef2d6  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/07/metrics.json
+d5875999447703d45fa08b9a490718f2f8792c6c2db70fec68bb5f1146a24bbe  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/07/request.json
+c0ba8db49ebd21d3e94bb56206d927d24c8066f008f8a8c3f977a3ec55693b68  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/08/http-response.txt
+418949f85a10eb8eefe71f254472a23dc44f2aefd4737c78937635225e61712d  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/08/metrics.json
+cd2b1be066d900ce340c774d4953a23ab63f0476fd970b347ad037f746fc73e8  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/08/request.json
+1c85e2d6b13247e79a97f9ee208270259d75984b5656a93f89904952441857d5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/09/http-response.txt
+e411f75432360b68a86309b63ee1292c891fad68b96588e8173c1d17ed89c5e9  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/09/metrics.json
+8350602a22f88cd349c3490cd06f0041112772ece1c562142177f5bb27c0e718  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/09/request.json
+31e45a280bc4848f8d074e9466fa9f18d9dc74fa0e74a6c489d966b0b80a3bba  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/10/http-response.txt
+48c68f8d5ee5ded7d1ffd26bc948e393b1fcb115f078651b6da5f34a15ff2c34  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/10/metrics.json
+f8786cc6681666ed7c6e34c3c5a0eefc41fb7d43084d25c7e7f6ea3c9d251148  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/10/request.json
+86d54c5431aa4873143b46d08327d897c924419f8924a2385e7ca11610477101  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/11/http-response.txt
+fde690fb4d2a7a49b0ca59fdcc3cd9ceb124b50958c8d9f1c4c0ab4cdbe9e53a  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/11/metrics.json
+b060add7ffff0ce8a8454b318cea1c8705e9311b1c63d8a6088fe9fb16c69dc3  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/11/request.json
+ea177a1d8cf9d405e685655d93f4f8403d83547eb83d4d9f202b5cee0bd07855  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/12/http-response.txt
+50e6df007fff9c49bfac5c047885df907e19be2bd4c0f1b7fdbce0d295ff7af3  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/12/metrics.json
+759a9e2869c4fe7f864ebd929b1a7ad6d339828d5212701d623a5f89cc27c8b8  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/12/request.json
+7f9782090b69654436f31ae551de97c5d3a5d0bb6b5d91ba30cad3d1aedd544a  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/13/http-response.txt
+a4fc10e00552b770281c875194c87e9f5184030f6b62dd9f04ecbdae6089de78  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/13/metrics.json
+353e8022652050051b22d8ca17109c4a25d66a0ec1b6f374df7ea584bbf73c9c  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/13/request.json
+d9377d2ac4f78d4066e60cf111e4bac17873bb6956ac9e5d2d0b8a03ba5dc928  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/14/http-response.txt
+68c985432d97ed8d28836710c294e75f54d0b3ce2fe22026abf01b1a1db8a563  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/14/metrics.json
+ec6256a0671f8bbaa8182fd1250d38f0bb4a07f95fb797b8930f49e3e3c506d5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/14/request.json
+ed8b3fcea093f252b2a8ae6fc7ac32a0860af66e7da8dc20503d1702c952b6f9  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/15/http-response.txt
+28089dcff1d9be3979891e1513099ee0a0df4b345fedc04da383d9c281e4a1be  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/15/metrics.json
+e5589a08991e6e85f535781f12e7555b6348bb73e311328b8e219af5eeb16484  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/15/request.json
+006158b46c10e30aaa8b48ae61cc5c862dfc14b6ab5d565bf10ecf415e0a74ba  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/16/http-response.txt
+e42d4ef96c3b4f8eb68fdedc4bf623cd9447ac4d0fcf0e9f23ba89de2f1e717c  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/16/metrics.json
+c2ed30938e85fa19c76307b081e10fddd299f361f958b9a3b4fe2e899b400e99  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/provider-calls/16/request.json
+3e697a9a94d10c2c2a9dfbd42862c642b8245a32b0a1ed8ecbd745b308d3d38d  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/revisions.json
+e833a33436a37ea4744de268a27fdba54d5ab46d55b47811ed60b24099bc5b19  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-a/session-row.json
+f8575e49c5ac99c811ea543ed449f5270ee2ed4e3090fe21acdcfcba0f0e2280  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/audit.json
+9bc1bf90bebd9daeff3b65b0e4d6f5fb3a0ee6b4905d4c9a612c7f2bb60a0187  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/41c3ec2a90a24012a6e86197372da1b5/http-response.txt
+9efdded94764b85650f1aab58baa216fbd36c4966c8d6d5839109e34c5b67881  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/41c3ec2a90a24012a6e86197372da1b5/request.json
+f56fbb5e2d2694157680ac948ef01f064d063f81dfc0fdca00cd8143557d7625  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/41c3ec2a90a24012a6e86197372da1b5/response.txt
+10507dcaf3260d96ec73c4c7d50bfde0189ea7c77ca13cdf5f5ada4c40cd0187  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/41c3ec2a90a24012a6e86197372da1b5/result.json
+14401b4f47c3c5ec86b769576c843798b73f4403ec89730a7c09611bf8103864  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/71922733cb7f470ca70871684b16882d/http-response.txt
+43ebc8a4189019d205008bd0fdd3225a3cd27a0e20a750e24789db79d955a45a  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/71922733cb7f470ca70871684b16882d/request.json
+dec309b50cd52dc0ffcbec61f3b16f251eb0e9331e004a59f355cf5b777b21cc  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/71922733cb7f470ca70871684b16882d/response.txt
+043e544c46a462ac037ae6c31875e40bb5dec16f7c41088a6f29e4227ae59412  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/71922733cb7f470ca70871684b16882d/result.json
+afca8b421bb7074c3692964fda47582c7e88fad8c90aadd825c5dffdab006b86  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/e70c1878137d4b2190e7fe9342495286/http-response.txt
+ba627234bed8922635358df4efb7c4b4d48bc3b97aa5ed9b7ef8d43485b8340a  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/e70c1878137d4b2190e7fe9342495286/request.json
+6b63f2a6226fce82a2a424e6020cc03e59422333e3989418b26aaafbe2686d26  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/e70c1878137d4b2190e7fe9342495286/response.txt
+81e3c722736abb9799373743037086a6bb0d2a1da325bfd4c4d1af373832d215  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/dialogue/e70c1878137d4b2190e7fe9342495286/result.json
+3116581aa069bdf1c164102c343a98e2bc158f86a3dc72406def83bb1b3fb90b  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/effective-audit.json
+77171e6c068d114d48e6796d1504b24a9e89c3b9e9ebdc16d5631b48e230400b  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/http-response.txt
+03ac7cc9262c724d551e266e37522138f1e3c62c16b72f0564b4a1812c98ec36  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/input.json
+cf552eb94a541167ac1efd0fd22ad44d6008231c26c6df1a5bdb97b3a33d726f  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/metrics.json
+25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/original.docx
+dc68978f17f4668f187d73dae20f4dbb0bdb571d8220e94945c6ab4d0a68d28d  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/request.json
+11bae44e8fb5340dc55a834f5db16506a6284d30c6213632e58a6cbc24f88f17  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/response.txt
+5c0cdcf842830d7494dde739314e1785f4490b9a58757d6214f80a86c29604fc  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/review-audit-47c1f06b640d4717ac6e17e4a5e460d1.json
+5c0cdcf842830d7494dde739314e1785f4490b9a58757d6214f80a86c29604fc  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/review-audit-67ca27286d5543dbb12f10b62083b694.json
+e458e3ceaffb6cf797a63aaefa746eca59312f664c1ea1ccfa79ad94ce418dfb  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/routing/30bb9090132641a8b71864e68db94d53/trace.json
+b33c87106602cd8d51ef97901d7ebbb0327f2c894f425bf3ead051f811ce45da  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/routing/64bb389543394d6384650f352153d86b/trace.json
+0afad4b8d0e4de4c5669a7b0aba52db8ff3a47718a5126665d706e1bcaac3c59  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/artifacts/routing/c01a17ba3a0e42ceac7461f7e1a2d8fc/trace.json
+3fe63f7492f4368bba7b7e118600a5b2a3edc08881e7bce87ef9ba34fdd9b6bc  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/00-before-send-dom.txt
+5227fbb6ac68979448da8e92f0e69f87f52b4f86c657751a4fd6238c2a3e75c7  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/00-before-send-state.json
+acd97496c1e2235d2eb549ee15704c76d433e863f41b66038b82005eadbfed5e  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/00-before-send.png
+846ec7713437c8f70a764b0819386513666dffc8339c24b2d7b185613bb5e2df  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/01-T0-dom.txt
+e151fb3be1b3d0e000e57c450ec72c21d4f640b48ea95055deb9d1c6be5a3ea0  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/01-T0-state.json
+8d2bd768d25dbcbf0a83984aec0bdc2535bee9ab0f0901029694b93ba8c93417  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/01-T0.png
+9740a0b6d9e6811d27b7d600f8396617e23851a5fb8d74a424088728d0464295  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/ATTEMPT-STARTED.json
+8c258e8a7ae8560f1c7afbd07e629945dd38691216e21b3d0bca5d6516e0e0ad  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/USER-preregistered-reply-1.json
+d9f723aa7293e72b6eb99e9c32f7ceecb3c5654450f3f95ad354097a47acf2d3  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/USER-preregistered-reply-2.json
+5a882a3df7d254c2dd850561d9d91875a9c56067d4446eddecaec168742b5df3  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/after-download-reopen-dom.txt
+be75c09f096fd9b9fc92e00eb8f948802506d14095b809d0f3f661d7a79026eb  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/after-download-reopen-state.json
+faa92700f195bbbc805a4e249d8f4a8a505b59eed6d251603bb903a24ec4bfd6  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/after-download-reopen.png
+82edebc1fa8f25d92c24a1ac5a14ebde77cd6067bb0c77e5c221accac0b6602a  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/browser-errors.json
+5d3b69bf6eeffbc5ef8f15817280a896b16f695a6ea27b3945e0ccb8a07be8ed  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/browser-events.json
+469d2ee5edbc3aceb2d140e0b51228a79d16d069b5b7538d6922454e2436eebf  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/browser-metrics.json
+a3978ce634c65eeb5c42dce8aaa2382876184a2d3de32d2290f5ea0588351278  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/browser-network.json
+2f0d5f3856d6415d56dee5cdd60a30debedcac301fc3634b2953f7ba4a57c862  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/browser-trace.zip
+def873a0ae1462212ad267be75b6e1f398ed90e0d18bb8dff359f18ac197d0f1  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/checkpoint-001.json
+d9cb3084b906cfd618bf6eb5676c8385e68006cc185c83f8e5031e909f644eb8  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/checkpoint-002.json
+02a4871a59a7dde1cd3888eadf20668a9ab21b8fa886c2846d33b371b69ef1de  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/checkpoint-003.json
+6eae5da10aecb93422a7c05846190b278589b4cffc757cd0788d2d0472ddef40  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/checkpoint-004.json
+7d4d7e602da4b21c1d4e3b2a4f53a8e82234db35220d38cdf30c609013083453  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/checkpoint-005.json
+3e7aa75dd00bf1d6b751804ecf6b4d0cd95ac0374336f03694a82a636b152dd2  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/checkpoint-006.json
+0adcfd8af517f2f95162843e6cd225c407c2f4015a8c2f23bf92058b0b48c9dd  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/checkpoint-007.json
+0adcfd8af517f2f95162843e6cd225c407c2f4015a8c2f23bf92058b0b48c9dd  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/checkpoint-008.json
+9d7d0baa9f6a3a44dbfa31bbb001dfdaa715ffc91a3f07ad935d99e9b3754724  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/download.docx
+5a882a3df7d254c2dd850561d9d91875a9c56067d4446eddecaec168742b5df3  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/export-dom.txt
+e124a5ed814630ec2dc6927e588da784ac7aa6b58abf3c6c9dff500bea257427  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/export-state.json
+5d8c42545846d91f24acb0898a4f1f2cfcbb0317c2223eda5129d93005720181  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/export.png
+a3b9d14445a06b2ee57f2db0203117944eae68bf72be1b42c84cceff9c2cc0c3  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/protocol.json
+26478b58ef0fa4bc714eaad49355ba84dd7aa55b1e535ee2d356fef4e1144ece  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/reply-1-dom.txt
+9ce1aecd36a4c26e759dbe34c4b86052c2f900955bd529c4334f0ac3be9ce255  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/reply-1-state.json
+bb83ad4df27fde777d681b95c7f5e0feb9f71d3815d063f2453269fc0a018ee4  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/reply-1.png
+55176294352e1e0ad6d0e99c0fd02de243d3c0b46aef405c3a4ea3c241740e89  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/reply-2-dom.txt
+b6c205700eec86f0e670a98e37345fe2e31af91f34cc6ed81198e6f3cf8c5f9e  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/reply-2-state.json
+95f87fdd41928d8ba75df4b25d37a3b1abb61caff6dfdc5174b2a01ea50c43d1  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/reply-2.png
+540ff24243d87207160dc605ad3042fc71f9afded6c57202558a81c09d9ee471  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/browser/video/page@42a8ce8b0b5566e979733d41ada1cc54.webm
+aadb52f8a0da2b556c81d087b93340c343f22066cfa32177bfad11963c2c725a  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/generation-row.json
+fd6d292cc43106648a981462f389d93b501900e227323f0f4f744572715499d5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/persisted/02ed2f1b076343759996d464bbf3cb43/v001.json
+75774951c0f2d3ce10bd0382b477216c77bc3ff3bbe622f84487bfc4b4a6434f  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/persisted/02ed2f1b076343759996d464bbf3cb43/v003.json
+5d7467b137cfc32d5eac2adbc048e2e065be138779fe537302f9a2de504019c6  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/persisted/02ed2f1b076343759996d464bbf3cb43/v004.json
+b853f5f9cd8275bc960a6ffb700646b442bc9a1e2021661a36e419b67f6a15c4  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/persisted/02ed2f1b076343759996d464bbf3cb43/v006.json
+35405f227554f33a5b5c8ae41753d110825fad2a6e0b2cb2294a9b109d502ec1  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/persisted/02ed2f1b076343759996d464bbf3cb43/v007.json
+6b61944a3bcbb4bb3f17b669ded2ab31151b2c2957c728cf4d6dc0f9365fc255  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/persisted/02ed2f1b076343759996d464bbf3cb43/v009.json
+842248cffda9f611dedb3a6822efb3d8a31218e35917e9e11528468dc71a4ca1  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/persisted/02ed2f1b076343759996d464bbf3cb43/v010.json
+6fc76deac5779a32b0a44e184f6dcae96d15194311123c79102de69033082c3d  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/01/http-response.txt
+e66258a0f91ba98625eb4ca4966854107cb87a1e013260637e547c831e499a03  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/01/metrics.json
+3a572d6337a198b7ef35bd9134b52899fbed76893aecbf04d312a43daea1ae68  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/01/request.json
+77171e6c068d114d48e6796d1504b24a9e89c3b9e9ebdc16d5631b48e230400b  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/02/http-response.txt
+a8c5cdc74232ab910cd53ec07173b86cb093b4b57a417fb8eabf4e2bfcd581af  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/02/metrics.json
+d472f61cad816b7ab78c6159c0c36405b2fc415d81a6335af23b02fbbc4ebd3b  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/02/request.json
+14401b4f47c3c5ec86b769576c843798b73f4403ec89730a7c09611bf8103864  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/03/http-response.txt
+678c448904508f1185151b423c91c3edeac4c59b62eaa3e7c1e89e6c974c6c88  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/03/metrics.json
+bd5c889d8c5b0baef7fd33ad5ba0730fa5f67a9eb9616d9df9c1ee5cbc7a0bb5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/03/request.json
+6dc6e36b8f52b137bd2478d3d15b43674ecada5c4fe4682eb1f14e7469cd66b5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/04/http-response.txt
+46fa4d1a6f84ad6b7c32d1d402d5c6043485938e435d0da0bc28ec4434420039  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/04/metrics.json
+6a54c5876f1e4282d16b3f64948c4501ef08ee819afdacaf10f4550c84dc929c  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/04/request.json
+3046fba20ceaf5c257d40d778acbf1bee6605ade7ab3348e323ddce484106596  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/05/http-response.txt
+be81a0645bdc4adc53bf315a0f36eb678a65346b5105473640a04464395682bf  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/05/metrics.json
+4b7045fd040fa31a0dd02d1eeb68bd19d99d88deb2dda3db90fcdaa0ea017e6b  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/05/request.json
+afca8b421bb7074c3692964fda47582c7e88fad8c90aadd825c5dffdab006b86  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/06/http-response.txt
+2b8a7a01470cdf5634623c0ba6941c539866e37490f120f8a5268c79513505a6  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/06/metrics.json
+4c3bb2226f129ec214215bed7088f8652e6b1ae514476ff8aecd755c677a1ce5  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/06/request.json
+8e8e3540479a24a3fedda8542459b7be8e432d96837c61293e967852fe5fff4e  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/07/http-response.txt
+be0026275a832b4585f39ccc930e445b71214988b141500135dd15bec853722d  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/07/metrics.json
+be0cad28ef1075c737cd3f454bdd14c3d9851f28e8d9b53e92dc7a1d29bccbdb  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/07/request.json
+9bc1bf90bebd9daeff3b65b0e4d6f5fb3a0ee6b4905d4c9a612c7f2bb60a0187  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/08/http-response.txt
+db4959f15127cc0040dcaa8f8d985a238fe81bce924681fc83458ee1fdfee2bb  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/08/metrics.json
+48cbd69506f83d4c8f4e58874577fde4d1ac4a8ccbeec0cd9cd6852ab8977e7e  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/08/request.json
+4e664624e9e889f2a5b90c5a663c9f2ca554807b9d44c627757f922ab9a477c0  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/09/http-response.txt
+29e9f5b19b376faca002d077e104706c365c12648fdcf2ba0040c2113c75a169  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/09/metrics.json
+71f03167b99fccb9580dd6501552c93279bb3bc1aed36d745b4cff4d3910de14  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/provider-calls/09/request.json
+490c4dcdf090c535493d0f031089b65307b11ad33e4393ef55a9608a8b7e4a37  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/revisions.json
+641e45d27b45ff9b482f5869b1c153c5b64e446318aa1fd32e47d886d0883914  backend/data/compilation-audit/v14-verifica-20261021-01/minervino-b/session-row.json
+e2336340c783ef1f88f811c3052b306f6dc6ae0408dfd1505752fa44ea1dcebf  backend/data/compilation-audit/v14-verifica-20261021-01/minervino/reference-global-request.json
+0176babe8e9e7ccaa9ade84f761c63aeba244bf3a27263d51d05a6dffdaf8de3  backend/data/compilation-audit/v14-verifica-20261021-01/observed_server_v14.py
+3600e3abded94cfa2ef53377ef967250dbd2f8d4b6715ec4f842372fcf0765eb  backend/data/compilation-audit/v14-verifica-20261021-01/preflight-gate.json
+a85c3be19c4a5e0fa6124f2138b66fb0c66e9e6934991b36158b61dee2b5b135  backend/data/compilation-audit/v14-verifica-20261021-01/prepare.log
+31f4f547ab2a62df87c52d2c782a6ac3d4fb8733a02b9074d07cd3e9acc91aa1  backend/data/compilation-audit/v14-verifica-20261021-01/prepare_v14.py
+84b161f5902acabd4cf44043c3bfa531101409a7fba91cdd16d6e24b06261919  backend/data/compilation-audit/v14-verifica-20261021-01/projects.json
+4658c78672c39156b0312d707cdd6f59ce4b1070454001a739247f025dbaa87c  backend/data/compilation-audit/v14-verifica-20261021-01/render.log
+3ba186676824e99352d44ce64bb29d6cf3dfb9491d3ade4188fd576c9cac32e1  backend/data/compilation-audit/v14-verifica-20261021-01/render_v14.py
+2ee262ac6d34ed4d87d1536c51193a66fd37d54dbd20f48de23d826e1a2f39cd  backend/data/compilation-audit/v14-verifica-20261021-01/seed-sessions-before.json
+e6ffd67349ec2431e7a1af26a456b37a246bf512f829758fe190e6bc9db9fe17  backend/data/compilation-audit/v14-verifica-20261021-01/server.log
+7cc79fae92761607120afd461301930d0194ecee1b694082f49768c90b599559  backend/data/compilation-audit/v14-verifica-20261021-01/setup-projects.log
+2236f946001e47aa768fdbfb8cc7b297db98020660383e5de7660f723eb74822  backend/data/compilation-audit/v14-verifica-20261021-01/setup_projects_v14.py
+c6001c3c6824f94921e234f1ab0847040d4f89d2747dbd38b73c0c35d150e474  backend/data/compilation-audit/v14-verifica-20261021-01/user_policy_v14.cjs
+32d332ec7e90a119d7037ff4778f461e0a08e1b906298d3045b2154ad4566212  benchmark ufficiale/v14-verifica-20261021-01/ANALISI-V14.json
+114ccf96a3ef852949014de1696d11eb171a4bb9d337ed8e88b8b068da020915  benchmark ufficiale/v14-verifica-20261021-01/CAMPAIGN-UI-V14.json
+40f7086024608a4b3480de6303922c32995301ea7ed79b9f01b1df89219f6701  benchmark ufficiale/v14-verifica-20261021-01/COLLECTED.json
+41051e9a14013820975cb1af7931ef63f15f88a205c546fbfb4dffe34cf7e2f2  benchmark ufficiale/v14-verifica-20261021-01/HARNESS-FREEZE.json
+4718d02f191a54dd5768d4e5c90df224e1776d566088776fd716b258decc1a4b  benchmark ufficiale/v14-verifica-20261021-01/PROTOCOLLO-V14.json
+537d99fbd3b96b2ea8ac696767966948a22cacd7b7ccd789d14406cac2f6edd6  benchmark ufficiale/v14-verifica-20261021-01/RISULTATI-V14.json
+f797f494ec3a3ac093aeca666e4205edfcc91d56e12d92ff1f204c59b0d394b8  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/__init__.py
+0e4b2549833f0f6eb37aa7bb6d96bfd5d38e79f6c9ac0a8d737d147dd1d5c3bf  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/ai_discovery.py
+0cf4343832c0228f777fbfa4da3abc63e3c949f4628a8e785588c8722d1ebd53  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/ai_login.py
+aa13d349f7c985753befa77d52030b6628f6fa915682ccbaa21b2408053350d2  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/ai_profiles.py
+82fdce0f4ba8021d23a7104293b54ba2cfc3482f8cf3cbb9b53eba51e9df569b  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/ai_providers.py
+c487f82e04bbb209c29078320ec946ffc2f6edd705968fefeee4b50d53b7c8eb  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/ai_routes.py
+5562fe92f976d27f2937a9826d82d886c22a3ba411b19c7a7a09618d8a6285fa  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/ai_transport.py
+24add18a94f92bd1acea94acd6e39c45d2db6d69e3a17972196ac9d1f58467a5  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/artifacts.py
+a7bf3a3ea97362c09a1aee9dce483515e1a3cb4c5ac76d35c28e2434b259abe6  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/call_facts.py
+30958711cf1555f9baaa51e3a48ba7a33ade323e3e8fe9f49c69cd2f6d76671d  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_applicability.py
+61b905cd482a16cee5d3b5a3837a18c0bf1a682ccc2c2579a257708bb0affc5d  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_attribution.py
+21c1f69e0397270da98a826f27babde9bea522fb10a40df203460ed1a6999ced  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_branch_evidence.py
+0d8cf2b5ddb9c863f1d9bb19a1bf6eb7a825d3a47c8e5e709f374674e5439c25  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_catalog.py
+a46b3214b09e166165bbceb87ab6c3032c0d5a0173836ecd997e4d021fc253a6  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_chat.py
+6ea8fd84426bf5fbe19200098a14aec151c6f9a8339ec9d9b9bee4fc25b1aa75  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_choices.py
+5c003b978a455105bb1eb61177bde2ebfd0d091899130d835e8f32ab3aa6e9fc  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_clarifications.py
+a9c059612cbb49347c1e848f3dcac4d7f2961225210305128c011d1d73cc9a75  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_conditions.py
+28c17834a063a8bc1ca87d98904ca663e5ffad9b081db87e7ef81534397464ff  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_coverage.py
+cfacf36fc70bafd4834c1f9a973cb6a96b0dc165c30623e0be24b0f3a9b5f7fc  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_document_plan.py
+f18cdcb2acf9cb84f5d8ab0214b875e656d1c6a0a65d0ad84a4f967a66f2121e  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_evidence.py
+5cf1beaee9a5d3b48b9a21ee6f32ef006e845573c038ff3a11fcd50b7e8511a9  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_factual_recovery.py
+6dd50ee6c61bc738a5be4cdf20b6b474904237dd15e76cb454125b9ac2d28edf  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_form_applicability.py
+f8504f158568ca6fcd31f60d94cd8c5ac88298b67b239c3736c363f5a657bc10  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_form_conditions.py
+9399e116a4b8c3308b47e89571c382dcc772c54c0c733d107179c85c0d74a72c  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_form_view.py
+8980849b3950f4faa52eb17b66f60d20b8024444edbf00deb36252ef95bc475f  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_global.py
+6d3d615b82b04904e4a89a1ad094b1fb1a2a5b8d55b2b86d503de566dfb558a8  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_global_contract.py
+4dba63b584999a73ebe8b94aaf05a21d99186a2c931f0b311bc69e2096bb6241  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_global_dialogue.py
+50abbc5a074d1c01170b8a089fcd1e4dd6be40ab541bf70d7840b251e4018369  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_global_sessions.py
+56797d8474a9d200e438c96e83ba4347f7c665fe692c8159d8c725065d2b440b  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_json.py
+f60dd72a05325e681ad9b38c90eeed4bff5c5ce43d006b7647aec535c0d94460  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_option_regions.py
+e409972d44fcbb039fac3b910e8ffa31628689379922f64ad16b1003ae7e7465  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_procedural_consent.py
+61548fad2c8ac06018b9b1a709a2db4e8f8ac8a03e77002bd2d90d1b74287bb8  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_reading_plan.py
+81f1c09ab131e2eed0970f6222602e8db2f210ac1d5b5da4c5558e1f76ed810c  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_reply_guard.py
+5ffa0b13e1fa567eaa1cba99a020eabb93a39a2d8455da288b5f221e25a41729  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_role_records.py
+c7f67d6255c3ecf9213660abddfe1ddbbda1ff935affff5d6c177b52ec4dec7d  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_routing_trace.py
+8b65ab90dc1d50ae9da419f378c6a23fdfd8435b11850eb4797c7b71d001677c  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_semantics.py
+4089b2a373c85a94c8100b7d7c673c883f13a61a3d3aa3ee4ea285b339c36264  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_session_models.py
+4c996945711338e95cbf6a33fa6be315ff307cfe3b73aee13339ec9838f3c4ae  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_session_resolution.py
+26d370bc013f3e297a5ef6775ab10fef46c0d7645a28cc9881973b9925675b71  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_session_routes.py
+f5894e103039341063bdaec4bc7eb5cbb8411a59cf26806e263a79aa132f540c  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_sessions.py
+dbb59e568757752d03ff9cb379d5ea589aba48a33bfc743c028576274546dff5  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_signatory_form.py
+f02ab05cfcd43daba2a4d5a53c8ac5835b3d7d50d5bc03e43e128ae763c2232d  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_source_reuse.py
+903d9a837e41b95ae35139e6272ce80185d39c9c140d453d1b3e3c5ae120fde6  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_sources.py
+03bf7adae9fdccd334df3ad8ac97e426be4ffcd2522db21b469a466198bc0ccd  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_table_form.py
+50cfc0b1db5f1c9ce54b1379a20bc44bbbf27e916e4b405f702b7e21cc4e941f  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_user_context.py
+3e6c60c5cca9eac4578eeda9bb97a6559de744cb0ad6c052f9f2e410724a0c0b  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_user_decisions.py
+a96c7ac14ac027868e15701432e763646ce4fe4a946d6e899927d32002355642  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_user_requests.py
+314a4ba5083f7ed5f69125da1f28b3aeeecc5c6bfc34bd086f8307b9d425d8a6  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/compilation_value_completeness.py
+d7d1552bbe3f4e22740001763a64757e188edcdc9c44e52400c5a35648a09985  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/config.py
+01e2175dfa9ff450a731172439a7d956500ed9dba1df9191c76ea2bb1523df0b  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/db.py
+6941e6027b92eb3fa9ea0800d7bf742207a7cbe9bd49ffbb9104ae5dc423d536  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/document_compilation.py
+51924735c0909055a1077c627ca1ff3a246b28e7d6edee84778827714265dd6e  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/document_compilation_routes.py
+e96bb4fbf8f836d8655917363fd4e7ecb57a49281aff847f01f38965873ce036  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/docx_checkboxes.py
+4660d29264404ee8effed718420a1a061e320113fc65408b91f45a4075313b28  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/docx_templates.py
+caa12c1ae99e85e3ec56ea7b2868902c10b4b6e4e3039a6353dd22eb21e22209  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/draft_generation.py
+3dfe770e9b2bded8532e9e60b4b2b2fa006244f88a3100eb9d17d67d521e379f  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/fact_extraction.py
+ee37c885a10c8d3b1eddee5cffb73e686266ad2d88858847519ac528b7eb3e45  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/generation.py
+89e695fff366343fc7ee133cc149a698b9603774961440b0621a807256240a82  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/ingestion.py
+da3be3fde4c61b12e226d2ac126681739ca6749b16bf5a8b41540082a17df21f  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/intents.py
+1d90647720c5cba38ab942aa6d6ee66843fe380eada279c1cb0c4578a5f90b69  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/main.py
+28fb00cd160e6d478ab3f2975040ae1a913cad70a12f0d350ac0a54f9e5303b0  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/project_forms.py
+1705df519711d5f4d704c5044f944ba2b1771e7237dff8daa541abac40c2dbe4  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/repository.py
+4fadb20f13c24bb6142b72c3e4d4e750cd9c091cc8f4865bf5daf243275c96d1  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/requirement_checks.py
+2ffdfd14ac69f15b62f2f4dd69c6413be1ac1c43521bbae62a06a317e8c5494e  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/retrieval.py
+4950bbcd706fd159d9062c07fba8a9c1e2490d50102accc6994019093caf7c12  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/retrieval_documents.py
+99ffa1a42e2639c1d8503479f86acfe7215a3bf31a5bf5e978de2d167a089bb6  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/retrieval_embeddings.py
+a754cebe08c7c4e90ae8ee660a95c777a8a32e5a9716107041c4b944475c032b  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/retrieval_routes.py
+602dc548d397e41e96a230b4a094e67a045d1226fec9cc9643640dc53d1effd9  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/retrieval_settings.py
+b840b8eba44abcac7827b3cc0874ad8faf99606056ffb1eff5653fe36191f1d4  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/schemas.py
+c5a832a982c81252e28d8dddf56308497f45805817516c29f89f67a383a757f7  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/seed.py
+0ac1e5e6a1a8db2ad3173937997485cb5ff59602240f3d175e30c7dabfa3ffe5  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/source_planning.py
+d9d43ca941bd3591673e0ca62a5be24b4f594547bf1fe8e5bfd07c994013d39b  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/backend/app/vector_retrieval.py
+1959c750d53d0ec5f6bf60538d0074ecec27447ebbc74d18c5e55b86a0ae4e10  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/App.css
+9b05688cd9b2b445e47e0627a31232b7be07714374591cd2da3ca35d51cd7022  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/App.tsx
+88374fe354d277d6ee09ca661a7edefe2ce2f83430ad8ec2a8e2bcde783d33dc  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/api.test.ts
+cc5cb308c24513d3b2d4bfb78ec8cad0bcbd3706796fd88e9ea777065770e17f  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/api.ts
+075c7540121d99c135feef5bef56da27530565fb3e8d3c1148393bf14a27455f  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/chatMessageRecovery.test.ts
+bef3ab91f5da4346d8e73644f24511c03c244da38ba9155efcf34560b0e85772  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/chatMessageRecovery.ts
+af3999208e388bc2fe3b29ab5085fdd92e48259b4c63db486c2b64b0cbc27851  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/compilationReply.ts
+a583d1ebcefdeaa3db9eccf8ab1bc91c4260ce192a28fd12ea4f185dd5a961fc  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/AiSettings.css
+4cce5e0466a2ce1ec6c048a1c69feddb96f76b948bb862b51eb423b8ea6ff025  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/AiSettings.test.tsx
+dbbf414b3dbb67b7c9316bd580704540f5d1aee9d9c8c8d73ed92761cbb26c7a  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/AiSettingsPanel.tsx
+ac2e04a998c0a5979a063882dad53fbe809271cfbd043053e1213ef2d9208a66  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/AppShell.tsx
+9c2897e877c01adbea08a71ec877ba646e0c9a7527ddc18f60a93e0f9e8520a3  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/AssistantMessage.tsx
+44b22cb9c0a32f72c3336be26c3b73ab674ab2e72e42d51fdb631cc255a66fe7  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/ChatComposer.css
+8e04dabc47d0cc35ba136ce0db96db6560d17142830125afa12d53dc3d8c3d80  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/CompilationReply.tsx
+daea373b8187683ac02c01dbf38cce813ccc3f652d629391a0b24ba1fdcfe9ad  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/LoadingState.tsx
+e766277bd095fcdec4cee02cb6294eb206558f55bad5f20794732c2eba49d1b3  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/ProjectFormsPanel.css
+330e6f89ddd4c97f423cd5e42e6c5666898aa099b1eb21f18a28825dad12118d  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/ProjectFormsPanel.tsx
+0ae0b8316220546213bfa5e9410427e3235f9cd3bda7bf5a9d980765f7826e18  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/ProjectKnowledgePanel.test.tsx
+e8471d58b219b0e4964551e58b55549191097cebe00f040b43ec8c1e301eaf38  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/ProjectKnowledgePanel.tsx
+a643ba7db68ea0a71692991a298cbbc00d71638e433d772b3622b2f356218c6c  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/ProjectModelSelector.tsx
+67eb8cfd3ddb416a50f58ecc593ae7333de71a97645dfb6f0272531a3f4216b6  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/RetrievalSettingsPanel.test.tsx
+c09ea236b8cd28c96b739fe9564dfc22620f19296297f0d8c85ada3d3b5afdc1  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/RetrievalSettingsPanel.tsx
+f51a269de6e065c3c177fb6903d3634604486e99d12d0c576065d479f086dbd8  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/StatusPill.test.tsx
+d5c683a6a64f009825308c9adb490c88119395792b5c53bf0831cd250d4b4e6e  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/components/StatusPill.tsx
+9da4a76f6239bc54c57d0a3ad20db57b62bc8c22007a0829daac41e4d107bb4a  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/hooks/useCompilationSession.ts
+3d0870928d64f92e1f87c62241819689eff3c6d1bba18dabfcba92a5c82bfc54  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/hooks/useDismissibleMenu.ts
+c22e0fc85eaf970131221932a9f4599d0a839855f836830dd7aa9221ad9fc232  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/hooks/useProject.test.ts
+8d0066f225dd150b87210c20866ed57a50740c2226ac5d51b977aae343e9e9ef  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/hooks/useProject.ts
+72177c0d2f891a3486f9262faf64766a2399f2adbfe15a295b6b112ecd98281a  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/index.css
+5ebc610f9d9b54885755587ac0d9fc83e751b25393994431e9ce3c596e033552  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/main.tsx
+2899273a57239cf3d325821d14c724acd7b53e5881c9d8de043eba55b0129fdc  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/CandidatureDemoPage.css
+29d2ac29b06c3088c591e6c7821c64107c37de84c4304c54e8eaa17439b28f36  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/CandidatureDemoPage.test.tsx
+719e4673ea5ee2d98b962e3dd6ca62e6a622400eff41cf4ba69b019b543aa9f3  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/CandidatureDemoPage.tsx
+8bd61892713a5c7107ce564193b941dd1a2c13254480532c7b98be92835bf4db  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/CompanyKnowledgePage.tsx
+a27f57816140dc4f9eca0b70007eb6c298be6d9bb027e19c9e13a4f63784abbc  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/DocumentReviewPage.test.tsx
+7092262cb380040cf37352590ae3ddb1669d2d8a7f2c33d747d65d8659453c33  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/DocumentReviewPage.tsx
+62a83b7e5aadb798d7592006443e084c659e782cf2d5d4744f4a4af3fe419843  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/GeneralSettingsPage.tsx
+6185bd0b425b7fd0444e9f9eedad3ebbdcddf0d446a5eb47fa1415aa7acab0bd  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/KnowledgeArtifactsPage.test.tsx
+3b2bbe0c8726de840cc52472b590c05f141bfbb3df97c4db696f5abe08dca173  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/KnowledgeArtifactsPage.tsx
+4ea72f8f1b33110fd1ed73d2b59bd3d80a1bef9774284dd31c1ff76cb64dcbd5  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/ProjectWorkspaceCompilation.test.tsx
+946d1b394da6c59262e90e720dd3dc5643eff601ec65d495ce5ab760533e3998  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/ProjectWorkspaceMessageRecovery.test.tsx
+22239ef4d08ba7c10167dad4f3586aa7ba07729d9edaf69cfc02675bac581fd4  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/ProjectWorkspacePage.test.tsx
+7751133b10c9a9a4d0485b4998518ebb1f32383bd692de2530f4faf20c247ef9  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/ProjectWorkspacePage.tsx
+3db586df68f7a056bb9e2ac2bf671b740b8d941ecb16d96d3bda822bcbb8a8c4  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/ProjectsPage.test.tsx
+173465f5543f09d73e498635fe15e21aff1aa33a5755899fe39224f714aa5938  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/ProjectsPage.tsx
+5211c275e9a4c4839eb12d07ec31ad49e3ed68faea50c8f10c16b2daa7341f2f  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/pages/candidatureDemo.ts
+d76c6ca4312a2bd548318a06eeb69366846fb475f43c16846cc4c5c01854a468  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/sourceText.ts
+977afde26bba6a51325908cd7713cbfdc87d18f06b78b237c8f364c44864b7de  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/test/setup.ts
+96bc559b99be8d064f03bc4401d22e674eb03d240850249f9a3e6c75cadc2976  benchmark ufficiale/v14-verifica-20261021-01/candidate-code/frontend/src/types.ts
+9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795  benchmark ufficiale/v14-verifica-20261021-01/documents/cesano/FORM-originale.docx
+6f10bf6aff2f95d017c3525e62b33f0a739a368f9a31b581a29a942ce977453f  benchmark ufficiale/v14-verifica-20261021-01/documents/cesano/catalogo-prima.json
+9f52e091de53c6cf000d0eeec87bd265f45c6d718541117ca89112e104ea0110  benchmark ufficiale/v14-verifica-20261021-01/documents/cesano/reference.json
+a933337b026faad9c6c211496af1ee239eee8ab91ee8bff6d538e0530a0ff5bd  benchmark ufficiale/v14-verifica-20261021-01/documents/cesano/scenario-USER.json
+4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab  benchmark ufficiale/v14-verifica-20261021-01/documents/craa/FORM-originale.docx
+1177adcb5dbf3f15d0dccfe9f28fd05d3261b12ade926164ba48e4768b720a3a  benchmark ufficiale/v14-verifica-20261021-01/documents/craa/catalogo-prima.json
+5ab2c99324ba3180bb17b9103c14a5f4b62ea5d438b581267c1b99833fafd9b9  benchmark ufficiale/v14-verifica-20261021-01/documents/craa/reference.json
+f1116f8159e511aa6f686bac9e835a8c33f4dde37da1ab2a3410973865f0f89a  benchmark ufficiale/v14-verifica-20261021-01/documents/craa/scenario-USER.json
+25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c  benchmark ufficiale/v14-verifica-20261021-01/documents/minervino/FORM-originale.docx
+3145543d642a98538b579cd7f2705a9d62e9a041c4d274a2371a6ca51f262fd7  benchmark ufficiale/v14-verifica-20261021-01/documents/minervino/catalogo-prima.json
+c73e26a9ef8d70a3f8623e824955cd517cfd1ccb877d0b09b0ba7c63c9aea099  benchmark ufficiale/v14-verifica-20261021-01/documents/minervino/reference.json
+a82356721b56684d2106f813eb845d23846aae4dbf3207588302742a14781ab8  benchmark ufficiale/v14-verifica-20261021-01/documents/minervino/scenario-USER.json
+f3ec66be1ab32c2cb7c3e5b7a76ced249d1743a096d91c6fc2f1558ff1a34191  benchmark ufficiale/v14-verifica-20261021-01/input/CRITERI-CONCLUSIONE-v1.md
+0982378194a2e3e769ed3e18dc8d92bf6c1c70f6c4e8b5aa9bbf6d236093ff0c  benchmark ufficiale/v14-verifica-20261021-01/input/SOURCE.json
+82802468a37cc3c45510e16dfa0a4f5e9732bd376bdd86fccacff8adf43bf14e  benchmark ufficiale/v14-verifica-20261021-01/input/model.json
+c6001c3c6824f94921e234f1ab0847040d4f89d2747dbd38b73c0c35d150e474  benchmark ufficiale/v14-verifica-20261021-01/input/user_policy_v14.cjs
+9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/FORM-originale.docx
+c0c0cfa681dadc86a549c50b4a9faf64352b675231850e316006d17a79be78da  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/audit-MODEL-originale.json
+ca0b1046bb87b2319e9527f3f2242adab6bed9b97bf299b9342c40497c9048b0  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/audit-effettivo.json
+409170f436884a9cf5a7c5a4631a2c9505321b4142b61b56fa637c4c11b10a34  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/bozza.docx
+e1cf982c1a3b465a7c3d502e67bbafcf9698c16543a06532c189f97dc1d2cca2  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/dialogo.json
+a030951f454670b33c663dea966e9832d830260232828e21dad0d5b74d9bfb89  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/dialogo.md
+0ab4aeab2c9d28249ebe4dfb28e81ac50efdf1b633547c17e684fae22fef378e  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/input-LLM.json
+b27a8b2b7d8284b1ee51b50644e1fad70015382e909e91db825c7fbd9e8cdd4b  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/pdf-check.json
+8b1fa0c85c5be22619e96a87a64c8a3419379bb0e85af0f3e7d999908eedc821  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/pdf-local-check.json
+acb2a99b91d5ef7d3b101cb86451e4324076fff52dea6fa06926b744c953807c  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/render/bbox.html
+3a23e21954f4f5a7571823c59f74a04a41c99f1cd4d6f87c514b5ea8462f1f04  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/render/bozza.pdf
+73beac84e7e699043abfce9976ca1b8e74bbc632f1473e3ddcbd33e6c557a229  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/render/page-1.png
+318dad8d6be560234552c1b67a13aaa103239ccd74d90ec97f3e8e99681d98f5  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/render/page-2.png
+b4e5114adf23872a9d9ee846806cd412f5436dbeaed478ead6a8462147808f6d  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/render/page-3.png
+e5b64a67a8012a049922477a68cc1279b4f487d06f1b29d093c1545270b0d9be  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/render/stderr.txt
+d63d4098eea7afbb2cbbc31150f45eb4272ae3a0a396e83635083167ff05e035  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/render/stdout.txt
+8671ae306749151619670020db9d7b411a7026cc744c087c3554f84fb1de709d  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/render/text.txt
+9b7f996b222c1668175e220244532e61d492625335a100321a18c139e7a53152  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/report-validazione.json
+76d71c95953affb42d50e71ec12bcc388d1a7de6aff45f1bb04862bc02e6542e  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/richiesta-globale.json
+a6a3c28da5bb65539fc60151c0dc6ef2050d7e494094ae30c6ef06366dc8d1be  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/risposta-globale.txt
+a933337b026faad9c6c211496af1ee239eee8ab91ee8bff6d538e0530a0ff5bd  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/scenario-USER.json
+73da11eeed1364a92b7ebe84ed28e794902c1de3a2f074c5a4574f5756a1a98e  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/stato-finale.json
+9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-breve/template-esportato.docx
+9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/FORM-originale.docx
+c4edbde679314d4f5359d2f50f1cf00810724a345119ae38c3bf1efeda600cea  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/audit-MODEL-originale.json
+f1cc282da90b84e60924161b20e8d29739137cfc911c88db924db0a8ba404eed  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/audit-effettivo.json
+3889bad13a1da1bc63e44fc974afe120179dc70a614e3b46b552bcc3124f11eb  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/bozza.docx
+89423bee74a48d5f9e6ff209fdae536c2f3a1190e616e4a037df3eebbf82c4e8  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/dialogo.json
+88de5b33cbd88c75781c0560a4c462dd0a362464815b2d4ce40208efe9188c5d  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/dialogo.md
+12c2a48cec6db7b747e9ebe5c2f79c791dc23cf1931a5c2116fa3ffeb8a91db4  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/input-LLM.json
+6d34d4036172bfcae5963c5cba0b533468b38940468267ce348535192f976deb  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/pdf-check.json
+8b1fa0c85c5be22619e96a87a64c8a3419379bb0e85af0f3e7d999908eedc821  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/pdf-local-check.json
+54ab68085cd19776ba0f3a78a5eba5a9db9fff69e6c8a2f1fa01a049331f5f33  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/render/bbox.html
+cd5450958163af4222916386d1491b344738ba9109f8721f4099f45218858c38  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/render/bozza.pdf
+761afcba5463a95e94d94a283f5f4f25b7367ecc6aa41f7d1bc5e53de6fc2e92  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/render/page-1.png
+318dad8d6be560234552c1b67a13aaa103239ccd74d90ec97f3e8e99681d98f5  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/render/page-2.png
+b4e5114adf23872a9d9ee846806cd412f5436dbeaed478ead6a8462147808f6d  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/render/page-3.png
+ca435be7be922a6e17d198336a4ec66e44d00d6b3e8ee210f768b3bc52e424df  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/render/stderr.txt
+deee518800789126521d1579bc537767f0d62c5215ae974dde7c1dd2dbf054b5  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/render/stdout.txt
+99f31ba20336c5db44c4eff4386989258c01081a5c3521beeadb5aff79ddd20b  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/render/text.txt
+96f447d0e54831d2e9bd389e74e0cc200fb86f1d085d010c09dcda16130d4b37  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/report-validazione.json
+8fda97b9f9da2081cf953e7e5a70fbd05704866b50d3be9cb04d7b0f8033005b  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/richiesta-globale.json
+4b0c5e3c403c7aafbee0101eb436d6dda49f0ffe49a997ad8e12b7869c304387  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/risposta-globale.txt
+a933337b026faad9c6c211496af1ee239eee8ab91ee8bff6d538e0530a0ff5bd  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/scenario-USER.json
+fe5d3d5c8af1b9d9cb65a136b28e85553509cfc4b2fe19380140cbd9f1e2229f  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/stato-finale.json
+9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795  benchmark ufficiale/v14-verifica-20261021-01/trials/cesano-esteso/template-esportato.docx
+4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/FORM-originale.docx
+62844fbc2d0d53f790041a5101f5b2bac135fa4f5ae0a72b1097851421525c23  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/audit-MODEL-originale.json
+6acbcd020430a8967f92c39c04e9bff916afef1bca7fd2e4df2d2ebe7e40bf9a  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/audit-effettivo.json
+47fec226410e2f85c39ad23c639a0d6717cf8bd4e82d751bd5344a31713db0d7  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/bozza.docx
+a2f8005763e06a6c875bae384e778bab1c6cc4f56e601c8a9e0033d3e1a3fd1f  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/dialogo.json
+53c098a3817870e74b1861377702933b4882b3389ba660692f118df93e10c9de  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/dialogo.md
+0bc4c60953e4dbdb04f1d6beebb92bdb139f88384cc36f2bb3233c8785572258  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/input-LLM.json
+f5c3c926c6c7e14088cfb7a4f0a61b072415e90211d58218e3c0dcaac26bb9d0  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/pdf-check.json
+8b1fa0c85c5be22619e96a87a64c8a3419379bb0e85af0f3e7d999908eedc821  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/pdf-local-check.json
+48306d08b3d2b5a0fdcdb9e52bc24fc020e458be8db7ddaf1f0d8bc295ec0e0e  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/render/bbox.html
+18c5cc2cc694a2550119f376d8c6d17c1e7b941577374cc8407e8068ae758123  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/render/bozza.pdf
+7b46a15f8fb7f250e4446f15257d8c136b6a0fb2a6d8d6865b127d12ccdbfc66  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/render/page-1.png
+6c1c71ce4575ffd8308218c9abcdb42596c9a63db992318d9723e38670af346e  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/render/page-2.png
+e8a821c4df168c88db99e18ee38c7fd32cbb90f5261dcadc4ff0f6179e0509ea  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/render/page-7.png
+edb0988b52aec24b1d272d732c84d73f2f0110901c767197ca10c9a6390ba5ae  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/render/stderr.txt
+61e97becaa9af5d90355a748b65d0290247cb60a1e33b44403845959746b90ae  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/render/stdout.txt
+52366425b38d6b666502cf7c613d80f5858fc7aed7d83e68c66f3f73562ee6be  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/render/text.txt
+9988b095536336bc1807cc514a1f37e1c399e9ab144fe7219c8ffc4fc6f8bafd  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/report-validazione.json
+e49533f3aba538acba421f7e55bb597922aac69e74767c9061b1d3ab6036ec7e  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/richiesta-globale.json
+dc0e03bb4044d9b192e6e337ec97bbd2d54c9497762c0a2d9f09be61bc5bbcd2  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/risposta-globale.txt
+f1116f8159e511aa6f686bac9e835a8c33f4dde37da1ab2a3410973865f0f89a  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/scenario-USER.json
+eb85aebfbf7d97fae87a6479c9481c2089991b9cf0296394f64dec0000ff4e9f  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/stato-finale.json
+4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-autorizza/template-esportato.docx
+4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/FORM-originale.docx
+68fefe7cb78fa0ef626db81c3d90d3de2f40f5291b3f06dbea131278fa9cfb7a  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/audit-MODEL-originale.json
+549cc2ccaeecd75cbd58f2aae19e50f5939f5dc297ef12b56a410477ae2fbc7f  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/audit-effettivo.json
+47fec226410e2f85c39ad23c639a0d6717cf8bd4e82d751bd5344a31713db0d7  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/bozza.docx
+1478031814a0ac572f2f694c7b266ade814c3df4dd4dba96981ffcbcdd944b80  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/dialogo.json
+6a330be8d3cdb2055e8f69fe0117a7978e496c40072d9c807756843a06b1dc36  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/dialogo.md
+ed0f28ea925f41d015722f65b2fac25969bc35b23a595efe7c2550c34337a7e7  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/input-LLM.json
+e897bb3e770525ca7677b58da56462d0a815d6d5063394abbe2c4ccc83cd10b4  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/pdf-check.json
+8b1fa0c85c5be22619e96a87a64c8a3419379bb0e85af0f3e7d999908eedc821  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/pdf-local-check.json
+ff0cc9393a107ad296e4a3f2adea1c7b44fb2a2a57c7d12377489066957ac83d  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/render/bbox.html
+c6c5a51a182b46b4afa7e2da24949396c5da6a259a34716756a4d7f08044294a  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/render/bozza.pdf
+7b46a15f8fb7f250e4446f15257d8c136b6a0fb2a6d8d6865b127d12ccdbfc66  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/render/page-1.png
+6c1c71ce4575ffd8308218c9abcdb42596c9a63db992318d9723e38670af346e  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/render/page-2.png
+e8a821c4df168c88db99e18ee38c7fd32cbb90f5261dcadc4ff0f6179e0509ea  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/render/page-7.png
+fb1f1c33380b39db4cc0a2364f57a3c08f633ef4ec299c437772dd8d8043f6c1  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/render/stderr.txt
+fffffa7a80e57a57241ecd084cc75a49596d94d9d5948136b91b42ad27f209f7  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/render/stdout.txt
+52366425b38d6b666502cf7c613d80f5858fc7aed7d83e68c66f3f73562ee6be  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/render/text.txt
+ff8b1d5bb8e03f52ffc2cacab13bfba0ecb82fa951c758ef206a79214f94ad75  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/report-validazione.json
+5bf8eddfef40d785f9fb65aff17a151d471c595466344521f46251d922834f81  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/richiesta-globale.json
+c881abf9423d0a0d9c6ad1942c664828470312416855f6439df4bce3f0e4de58  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/risposta-globale.txt
+f1116f8159e511aa6f686bac9e835a8c33f4dde37da1ab2a3410973865f0f89a  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/scenario-USER.json
+51289aeb99e407480a2cbfc3212ae9887d5204f4b6a7fe7052da0e72c13b50df  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/stato-finale.json
+4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab  benchmark ufficiale/v14-verifica-20261021-01/trials/craa-ramo/template-esportato.docx
+25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/FORM-originale.docx
+ff860d0356f5c8898adca9f494da3f8c5d6d409fd7bc0e1adf3c7f59fd53ecde  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/audit-MODEL-originale.json
+a1db765bc0466312e8088c0a92c5d6895a1eedb4f3f7ba0316fd60abeb76f061  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/audit-effettivo.json
+a6c0568eabe01888d4975934bcd0af1fdcc96e8ede4f5e177a471ec304fdc8eb  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/bozza.docx
+2f1219b1abc313f19d5fc10b543dcfa9f8efb9b228d61cb647840bf00aaba4a1  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/dialogo.json
+d799924f8c06090f2fb2ddb4747170ce66df379d806f2f88a3be0434127d4331  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/dialogo.md
+229c194d764bfb2905c47e80644a5f2f38e86287e919665d1b7114255422ac4d  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/input-LLM.json
+84d68136add64061aab8cbefa31a56026cbfcf3ed4666af5e6e4de82e4470289  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/pdf-check.json
+8b1fa0c85c5be22619e96a87a64c8a3419379bb0e85af0f3e7d999908eedc821  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/pdf-local-check.json
+118601130da7ce444e5d35e588de53026d0c3101beb42cb339711e30564e9c16  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/render/bbox.html
+50e9a86ed8d06d081b156c6ac0ebce191430be752a3cdfc7e4e14b02f6df0825  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/render/bozza.pdf
+a48e5c323574b820ec08b5e11ac2ce5fadc62f2e3d65f04b16b33340dc9e97fd  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/render/page-1.png
+c6f48ac4709a6cc8d5afa103ec2185c5a8b6dbbba3d3e1e6bacce44568fa1e18  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/render/page-2.png
+46192def777ebd73488048aca15c804c0d19343e59a1315f9f3478d8dc2bf1c0  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/render/page-9.png
+d30545f4b4af1337ac68e6e3b03715eeaed58ef17860de111f0c6e03efb10c77  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/render/stderr.txt
+fb10d7356ba221c7b99de49fa257c3fd1bce35a0d9e6f8b8236e41a3099e2451  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/render/stdout.txt
+e663cfa9aff4daaeb9aa64ae7a4f1168acadf0b392962d358ee5fb49495cf9a3  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/render/text.txt
+07b546efb5182461129cda6454b803dede703a880ff5559104c880c60f0bd3b4  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/report-validazione.json
+06840e629540b4fc8a2d43e67978b2068b843c2dcef84acbf37fe39393802718  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/richiesta-globale.json
+7642e469808275d6d3cf88e3e4551bbc50d0a564cc186f4cdf697dc59c9eede3  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/risposta-globale.txt
+a82356721b56684d2106f813eb845d23846aae4dbf3207588302742a14781ab8  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/scenario-USER.json
+cf131731f685299a53f20409d0bb525aecceabcffc3396ee38c8d885ab162c3d  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/stato-finale.json
+25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-a/template-esportato.docx
+25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/FORM-originale.docx
+f8575e49c5ac99c811ea543ed449f5270ee2ed4e3090fe21acdcfcba0f0e2280  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/audit-MODEL-originale.json
+5c0cdcf842830d7494dde739314e1785f4490b9a58757d6214f80a86c29604fc  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/audit-effettivo.json
+9d7d0baa9f6a3a44dbfa31bbb001dfdaa715ffc91a3f07ad935d99e9b3754724  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/bozza.docx
+928070e54c45b74891a39d4250be9824096ddfcfc7b9bdd7a903102712f74f92  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/dialogo.json
+1e475920c5d0e773ca70073fe35fd634f2837776907da8a892f1da20f76888be  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/dialogo.md
+03ac7cc9262c724d551e266e37522138f1e3c62c16b72f0564b4a1812c98ec36  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/input-LLM.json
+01ce3ee2f37c5865e8fd52a035114c400d510146361f46b85600ecc02fca9109  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/pdf-check.json
+8b1fa0c85c5be22619e96a87a64c8a3419379bb0e85af0f3e7d999908eedc821  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/pdf-local-check.json
+f423c5e9ef89eb643ebcc50c9a1e4de034083c126c9cad418117f99dbb5b1425  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/render/bbox.html
+78687b59dd7b9f3056ddeefbaed2cbbf721f2abd37d8a80655167d76f8579116  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/render/bozza.pdf
+a48e5c323574b820ec08b5e11ac2ce5fadc62f2e3d65f04b16b33340dc9e97fd  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/render/page-01.png
+c6f48ac4709a6cc8d5afa103ec2185c5a8b6dbbba3d3e1e6bacce44568fa1e18  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/render/page-02.png
+30ed2c7eb2ac578313083c1ac0e00bd48f38b3e18be516400ef0233bb302351a  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/render/page-10.png
+c1722befcd74592a3898c3dd22cc87e56ae4c74f6116545d5c3aaa880e66d6f8  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/render/stderr.txt
+9ca0abe52cbd3c62d5e00929cd01cf0463acae0edff3ee8376685e26cc5f2241  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/render/stdout.txt
+aadb939034468559273ce7c63913b64f02bd049eed833d9b43a2a044a57e5079  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/render/text.txt
+d00d82f00f09a51db78eb4ffc86883800dfc219d435e7860eea719f6a14ad181  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/report-validazione.json
+dc68978f17f4668f187d73dae20f4dbb0bdb571d8220e94945c6ab4d0a68d28d  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/richiesta-globale.json
+11bae44e8fb5340dc55a834f5db16506a6284d30c6213632e58a6cbc24f88f17  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/risposta-globale.txt
+a82356721b56684d2106f813eb845d23846aae4dbf3207588302742a14781ab8  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/scenario-USER.json
+842248cffda9f611dedb3a6822efb3d8a31218e35917e9e11528468dc71a4ca1  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/stato-finale.json
+25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c  benchmark ufficiale/v14-verifica-20261021-01/trials/minervino-b/template-esportato.docx

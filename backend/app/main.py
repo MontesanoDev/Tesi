@@ -190,7 +190,7 @@ async def lifespan(_: FastAPI):
 
 
 logger = logging.getLogger(__name__)
-app = FastAPI(title="Mapi RAG API", version="0.1.0", lifespan=lifespan)
+app = FastAPI(title="Assistente documentale API", version="0.1.0", lifespan=lifespan)
 
 
 @app.exception_handler(RequestValidationError)

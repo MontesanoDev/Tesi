@@ -1,5 +1,3143 @@
 # Stato di Mapi RAG
 
+## Campagna sulla candidata corretta — conclusa, esito favorevole, 23 ottobre 2026
+
+**Punto di ripresa: fermarsi; decisione dell'utente sulla chiusura del lavoro sperimentale.**
+Candidata non adottata, app live invariata (29 sessioni, nessun flag sperimentale), nessun commit
+né push. Come deciso dall'utente, nessun nuovo ciclo di correzioni. Rapporto:
+`docs/candidata-corretta-2026-10-23.md`.
+
+- **Profilo:**
+  - V14 + K3, stato derivato, dialogo P3;
+  - `generation_revision 3` (FORM completo nei segmenti, controllo d'ambito USER);
+  - recupero del narratore;
+  - guardia rev 3 con motivazione fino a 1000 caratteri.
+- **Prima delle inferenze:**
+  - preregistrazione congelata alle 12:54:15 UTC, harness e codice congelati;
+  - verifiche offline sui 25 controesempi rev 2 e sulla preservazione delle scritture corrette,
+    Cesano compreso (`out/controesempi-rev2.json`);
+  - 28 test sulle motivazioni lunghe; suite 3.677 PASS.
+- **Esiti, 6/6 tentativi eseguiti:**
+  - 6 DOCX;
+  - 142 scritture riviste, 0 non dimostrate (revisione autoriale, non indipendente);
+  - 0 scritture o proposte nelle 25 destinazioni sbagliate della rev 2;
+  - 0 risposte 409, 0 errori del narratore, 0 verifiche respinte;
+  - 2 segmenti recuperati con il retry dopo un JSON non valido.
+- **Copertura mediana:** Minervino 72% (93% e 50%), Catanzaro 39%, So.Re.Sa. 47%.
+- **Costi:** 2.570.195 token su un tetto di 2,8 M, circa 0,40 USD; 2-4,4 volte i token della
+  monolitica e circa 1,6-1,7 volte il tempo.
+- **Limiti:**
+  - lo zero nei rami sbagliati è osservato, non garantito dai controlli deterministici;
+  - sospensioni eccessive del narratore in minervino-2 (blocco tecnici incompleto);
+  - copertura bassa su Catanzaro e So.Re.Sa.
+
+Grezzo: `backend/data/compilation-audit/candidata-corretta-20261023-01/`. Risultati:
+`benchmark ufficiale/candidata-corretta-20261023-01/` (compreso `CONFRONTO.json`). Backup:
+`backend/data/compilation-audit/candidata-corretta-backup-20261023/`, escluso da Git e senza runtime
+con chiave.
+
+## Correzione della guardia rev 3 — 23 ottobre 2026, dopo l'arresto della campagna
+
+**Punto di ripresa: decisione dell'utente su una nuova campagna preregistrata.** Applicata la
+correzione autorizzata: in `FormScopeCheck` (solo rev 3) la `rationale` passa da 250 a 1000
+caratteri. Gli altri vincoli della verifica d'ambito e la guardia ordinaria (250) sono invariati.
+Nessuna inferenza, nessun commit; app live invariata (nessuna sessione rev 3).
+
+- **Test nuovi:**
+  - le tre motivazioni registrate mantengono la decisione del modello;
+  - i rifiuti attesi restano;
+  - limite ordinario invariato;
+  - schema dichiarato.
+- **Sensibilità:** sulla versione precedente falliscono solo i due casi SUPPORTED registrati e il
+  test dello schema.
+- **Rivalidazione:** le 7 verifiche registrate sono ora tutte valide e le 4 già valide hanno la
+  stessa decisione.
+- **Suite:** 3.649 PASS, Ruff PASS.
+
+Rapporto: `docs/correzione-guardia-rev3-2026-10-23.md`. Audit:
+`backend/data/compilation-audit/guardia-rationale-rev3-20261023-01/` (piano congelato, before/after,
+patch, log). Backup: `backend/data/compilation-audit/guardia-rationale-rev3-backup-20261023/`.
+
+## Campagna sulla candidata completa — arrestata, 23 ottobre 2026
+
+**Punto di ripresa superato:** correzione della guardia applicata (sezione sopra). Campagna arrestata alle 11:06 UTC per la regola preregistrata «difetto grave del nuovo
+backend» (`e2e/STOP.json`). Gate chiuso, server fermati. Nessuna modifica al codice applicativo,
+nessun commit. Rapporto: `docs/candidata-completa-2026-10-23.md`.
+
+- **Preparazione:** di Astra, interrotta prima delle inferenze; ripresa con l'addendum 2
+  (harness ricongelato, ordine con Cesano in fondo). Revisione autoriale, non indipendente.
+- **minervino-1:**
+  - DOCX, 39 scritture tutte uguali al riferimento, 0 non dimostrate;
+  - nessuna in `p37.*` (rev 2: 7);
+  - copertura 65%, 484.353 token.
+- **catanzaro-1:**
+  - DOCX, 11 scritture, 0 non dimostrate;
+  - nessuna in `t19.*`, la sezione 5.c (rev 2: 5);
+  - copertura 35%, 536.892 token.
+- **soresa2023-1:**
+  - **senza DOCX**;
+  - la guardia rev 3 ha respinto due conferme corrette (SUPPORTED/SUPPORTED) perché la
+    `rationale` superava i 250 caratteri; la sessione non avanza e il driver va in timeout;
+  - l'analisi non ha proposto nulla nei rami sbagliati della rev 2 (avvalimento, blocchi dei
+    componenti RT).
+- **Esiti complessivi:** 13/13 segmenti analizzati, 0 retry, 0 risposte 409, 0 errori del narratore.
+- **Non avviati per arresto:** minervino-2, catanzaro-2, soresa2023-2, cesano-1, cesano-2.
+- **Budget:** speso 1.184.239 token su 3.000.000.
+
+**Proposta da valutare (non implementata):** nella sola verifica d'ambito rev 3 non respingere per
+la lunghezza della motivazione, che nessuna logica usa; aggiungere test con i tre output
+registrati; poi una nuova campagna preregistrata con nuovo congelamento.
+
+Grezzo: `backend/data/compilation-audit/candidata-completa-20261023-01/`. Risultati:
+`benchmark ufficiale/candidata-completa-20261023-01/`. Backup:
+`backend/data/compilation-audit/candidata-completa-backup-20261023/`, escluso da Git e senza
+runtime con chiave.
+
+## Passo 3 — recupero del narratore, opt-in — 23 ottobre 2026
+
+L'utente ha autorizzato il terzo passo. Implementato il flag persistito separato
+`narration_recovery_revision=1`, selezionabile per nuove sessioni con
+`MAPI_NARRATION_RECOVERY_REVISION=1`. **Non attivato nel runtime ordinario**;
+le sessioni senza flag mantengono il comportamento precedente, incluse rev 3.
+
+- Un solo retry della sintesi, stesso input, massimo 45 s / 2048 token per
+  tentativo; niente riparazioni o recupero di parti del JSON fallito.
+- Nessuna proposta nella finestra: lo schema richiede liste di sospensioni vuote.
+- Dopo due errori: messaggio backend, analisi e decisioni conservate, nessuna
+  revisione nuova. La bozza parziale usa solo revisioni ancora valide, rispetta
+  hold e tutti i controlli esistenti; può essere vuota. Nessun export automatico.
+- Ripresa esplicita della sola sintesi, lease adeguate, tentativi e consumi
+  separati. Metriche mancanti restano sconosciute, non vengono contate come zero.
+- Veto anche sull'API per forzature SOURCE non revisionate o sospese durante il
+  fallback, ripetuto sull'audit ricalcolato. Parser/writer/segmentazione invariati.
+
+Verifiche mirate: 121 PASS; 33 PASS sui casi del recupero; 2 PASS sul veto V14.
+**Suite completa finale: 3.640 PASS in 353,53 s; Ruff PASS.**
+Rete bloccata, provider simulati,
+DB/storage temporanei; nessuna inferenza reale o nuova E2E.
+
+Riprodotto l'errore minervino-2 con la risposta registrata. Controprova sullo
+stato originale, **solo in memoria**: conservate 63 revisioni, 15 sospensioni e
+quattro risposte; selezione riaccessibile di 48 SOURCE + 1 USER nel vecchio
+profilo. Non è un nuovo DOCX né una verifica della correttezza di quei valori;
+non cambia il 7/8 della campagna congelata. Il test con 45 proposte conserva
+le 40 revisionate quando la finestra successiva fallisce, escludendo le altre 5.
+
+Rapporto: `docs/compilazione-passo3-narratore-2026-10-23.md`.
+Audit: `backend/data/compilation-audit/recupero-narratore-passo3-20261023-01/`.
+Backup verificato del passo, separato da Git:
+`backend/data/compilation-audit/recupero-narratore-passo3-backup-20261023.tar.gz`.
+La candidata completa resta non adottata. Restano i limiti semantici e le
+25 scritture rev 2 non ancora dimostrate risolte. Prossimo passo: valutazione
+reale limitata e preregistrata dei tre interventi insieme, senza altri filoni.
+
+## Passo 2 — contesto e ambito USER, candidata rev 3 — 23 ottobre 2026
+
+L'utente ha autorizzato il secondo passo. Implementata **solo nella candidata
+`MAPI_GENERATION_REVISION=3`**, non adottata nell'app ordinaria:
+
+- ogni segmento legge tutti i blocchi del catalogo FORM; output e piano locale
+  restano limitati alle destinazioni proprietarie;
+- mantenuti partizione, retry limitati, cache e ripresa rev 2. Il FORM condiviso
+  precede i dati specifici nel prefisso; modifiche anche lontane invalidano cache;
+- disattivata in rev 3 l'unificazione delle condizioni che ignorava differenze
+  di significato/scope; resta la deduplica esatta. Possibili conferme ridondanti;
+- il guard USER esistente richiede anche un esito distinto sull'ambito effettivo,
+  ricevendo FORM completo e destinazioni. Le ricevute interne legano risposta,
+  campi e condizioni; export e rivalidazione rifiutano ricevute assenti/obsolete;
+- un valore USER da solo non aggira un segmento fallito. Una catena USER verificata
+  indipendentemente può sostenere quel valore, senza sbloccare il riuso SOURCE;
+- il profilo ordinario rimane V14 + K3 + derivation_revision 1; rev 1/2 e sessioni
+  storiche non migrate. Parser, writer, retrieval e contratto V12 invariati.
+
+Verifiche: prima suite completa **3.603 PASS**; due ulteriori controesempi finali
+riprodotti e corretti (prefisso e condizione diventata falsa). **Suite finale:
+3.605 PASS in 327,91 s; Ruff PASS.** Tutti i test usano provider simulati,
+rete bloccata e storage
+temporaneo. Nessuna inferenza reale, nuova campagna E2E, commit/tag/push.
+
+**Non dichiarare risolte le 25 scritture rev 2.** La presenza del FORM completo
+e il nuovo schema di controllo non provano che il modello riconosca tutte le
+condizioni. Il controesempio di condizione non riconosciuta resta nei test.
+Input JSON più grandi: 1,21–2,09× in caratteri sui quattro input storici esaminati;
+nessuna nuova misura di token, cache reale, costo o latenza. Candidata non pronta
+per l'adozione ordinaria sulla sola base delle prove offline.
+
+Rapporto e preregistrazione: `docs/compilazione-passo2-contesto-2026-10-22.md`.
+Audit: `backend/data/compilation-audit/contesto-sezioni-passo2-20261022-01/`.
+Backup del passo, separato da Git:
+`backend/data/compilation-audit/contesto-sezioni-passo2-backup-20261023.tar.gz`.
+Prossimo passo distinto: recupero limitato degli errori del narratore; poi
+eventuale piccola verifica reale preregistrata, senza nuova campagna da 35.
+
+## Passo 1 — fix dello stato derivato promosso separatamente — 22 ottobre 2026
+
+L'utente ha autorizzato di procedere per passi dopo la revisione della candidata
+di Opus. **Completato il primo passo:** nelle nuove sessioni il profilo predefinito
+è V14 + K3 + `derivation_revision=1`. La correzione del 409 è promossa da sola;
+dialogo P3 e generazione per sezioni restano opt-in e non adottati.
+
+- Cambiata soltanto `initial_state` nel codice applicativo. Il ricalcolo dopo
+  ogni mutazione USER e il veto finale di Opus restano identici.
+- `MAPI_DERIVATION_REVISION=0` permette il confronto col profilo precedente
+  sulle nuove sessioni. Le sessioni già salvate mantengono i propri flag, senza
+  migrazioni: quelle prive del flag possono ancora manifestare il vecchio 409.
+- Verifiche nuove, con rete bloccata e provider simulati: 39 test prima della
+  modifica; 72 mirati dopo; 76 del dialogo/derivazione dopo l'adeguamento di una
+  fixture; **suite finale 3.564 PASS in 309,90 s; Ruff PASS**.
+- La prima suite completa ha avuto 2 FAIL nella stessa fixture FTS5/Qdrant:
+  alterava soltanto l'audit, lasciando un diverso output MODEL immutabile.
+  Ora il provider simulato restituisce i chiarimenti da testare; le aspettative
+  sulla risposta parziale USER sono rimaste identiche.
+- I test AnyIO si bloccavano nel sandbox anche in un programma minimo; esecuzione
+  fuori sandbox autorizzata, con rete ancora bloccata dal runner e storage
+  temporaneo. Nessuna chiamata LLM reale, nuova E2E o modifica dei dati live.
+- Non rieseguito il replay HTTP storico di minervino-1; resta evidenza precedente.
+- Nessun commit/tag/push; baseline e risultati congelati preservati.
+
+Rapporto: `docs/compilazione-passo1-stato-derivato-2026-10-22.md`.
+Audit: `backend/data/compilation-audit/stato-derivato-passo1-20261022-01/`.
+Backup verificato, separato da Git:
+`backend/data/compilation-audit/stato-derivato-passo1-backup-20261022.tar.gz`.
+
+**Prossimo punto di ripresa:** passo 2, disegno minimo del FORM completo in
+lettura per ogni segmento, output limitato alle destinazioni proprietarie e
+verifica distinta dell'ambito delle condizioni/decisioni USER. Il recupero del
+narratore è il passo successivo. Questi interventi non sono ancora implementati;
+non considerare risolte le 25 scritture non dimostrate della candidata rev 2.
+
+## Sezioni resilienti e coerenza dello stato derivato — 22 ottobre 2026, sera
+
+**Punto di ripresa: fermarsi; decisione dell'utente.** Due candidate opt-in, **non adottate**.
+Nessun commit, tag o push. V12 resta la baseline congelata; l'app live è invariata (29 sessioni,
+nessun flag sperimentale, ultima modifica al 17 ottobre). Rapporto:
+docs/sezioni-resilienti-2026-10-22.md.
+
+### Implementato (opt-in, nuove sessioni)
+
+- **`derivation_revision 1`** (`MAPI_DERIVATION_REVISION=1`):
+  - `apply_replies` ricalcola l'audit derivato dopo ogni mutazione USER accettata;
+  - il veto finale dell'export resta invariato;
+  - indipendente dalla segmentazione.
+- **`generation_revision 2`** (`MAPI_GENERATION_REVISION=2`):
+  - **Funzioni nuove** in `backend/app/compilation_segments.py`:
+    - partizione per unità di dipendenza (blocco, paragrafi locali, regioni V14);
+    - contesto locale del segmento;
+    - cache per digest della richiesta;
+    - unificazione delle condizioni condivise;
+    - stati di applicabilità VERIFICATA / CONDIZIONATA / NON ACCERTATA.
+  - **Integrazione** in `_resilient_proposal`, in `compilation_global_sessions.py`:
+    - validazione V12 per segmento prima del merge;
+    - retry limitati (1 per segmento, 2 per analisi);
+    - merge con `budget_scale`;
+    - veto ed esclusione dall'export delle destinazioni NON ACCERTATE o con paragrafo incerto.
+- **Modifica condivisa:** `budget_scale=1` in `validate_global_proposal`. Compatibilità verificata:
+  193/193 risposte registrate rivalidate in modo identico al validatore congelato.
+- **Test:** `backend/tests/test_compilation_derivation.py` e
+  `test_compilation_resilient_segments.py`.
+
+### Verifiche eseguite
+
+- **409:** replay deterministico di minervino-1: 409 senza flag, export riuscito con il flag.
+- **Suite:** 3.560 PASS, Ruff PASS.
+- **Replay:** 247/247 sintesi e 16/16 catene P3 identiche.
+- **Strumenti di valutazione (T11):** verificati; rianalisi della valutazione finale identica.
+- **Campagna E2E esplorativa preregistrata** (8 tentativi):
+  - 7/8 DOCX; minervino-2 fallito per errore di schema del narratore, che con il dialogo P3 blocca
+    l'export;
+  - 30/30 segmenti analizzati, 0 retry, 0 risposte 409;
+  - 1,85 M token su un tetto di 3 M, 0,37 USD.
+
+### Esito
+
+- **Non pronta** per il criterio preregistrato (a): 25 scritture SOURCE non dimostrate (revisione
+  autoriale, non indipendente) in 4 DOCX su 7, contro 0 su 423 della monolitica.
+- **Causa:** sono in rami non pertinenti (studio associato, sezione 5.c, avvalimento, blocchi dei
+  componenti RT), perché il paragrafo che governa il ramo non era nel contesto del segmento.
+- La resilienza a fallimenti e la ripresa sono verificate **solo offline**: nell'E2E nessun
+  segmento è fallito.
+
+### Proposta da valutare (non implementata)
+
+Passo eventuale, da approvare, seguito da test offline e da una nuova piccola campagna:
+- contesto del segmento esteso a tutti i blocchi del suo span e all'intestazione o opzione che lo
+  governa;
+- tagli solo su intestazioni di sezione.
+
+La correzione del 409 è promuovibile separatamente, se l'utente lo decide.
+
+### Dati
+
+- **Grezzo:** `backend/data/compilation-audit/sezioni-resilienti-20261022-01/`, con piano,
+  addendum e preregistrazione congelati.
+- **Risultati:** `benchmark ufficiale/sezioni-resilienti-20261022-01/`.
+- **Runtime privati con chiave:** `.tools/sezioni-resilienti-20261022-01/`, esclusi dal backup.
+- **Backup:** `backend/data/compilation-audit/sezioni-resilienti-backup-20261022/`, escluso da Git.
+
+## Valutazione finale del candidato — 22 ottobre 2026, pomeriggio
+
+**Punto di ripresa: fermarsi; decisione dell'utente sul candidato.** Candidato non adottato,
+V12 resta la baseline congelata. Nessun commit, tag o push; codice applicativo invariato durante e
+dopo la campagna.
+
+Profilo valutato: V14 + K3, dialogo P3 corretto (`MAPI_DIALOGUE_REVISION=1` solo nei runtime
+sperimentali), generazione monolitica, sezioni disattivate. L'app live è invariata (V14 + K3).
+
+Criteri v1 applicati senza modifiche, preregistrazione congelata alle 10:53:06 UTC.
+- **Moduli:** 6 storici (Minervino, Cesano, CRAA, Catanzaro, Bella, Trapani) più il modulo nuovo
+  So.Re.Sa. 2023, estratto con seme. Cannara, estratto per primo, è fuori ambito: nessuna
+  destinazione del nucleo riconosciuta (spazi resi con tabulazioni).
+- **SOURCE in formato diverso** per il modulo nuovo: scheda tabellare DOCX→PDF in un runtime
+  separato.
+- **Tentativi:** 35 (5 per modulo), nessuna sostituzione; 4,15 milioni di token, circa 0,92 USD
+  stimati.
+
+Esiti rispetto alle soglie:
+- **DOCX:** 32/35 (91,4%), ogni modulo almeno 4/5 → raggiunto;
+- **copertura mediana ≥ 70%:** raggiunta su 5 moduli su 7 (Minervino 79%, Cesano 100%, CRAA 100%,
+  Bella 88%, Trapani 94%); non raggiunta su Catanzaro (32%) e So.Re.Sa. (47%: binding di ruolo
+  respinto perché il FORM chiede solo «in qualità di»; i dati dalla scheda PDF sono scritti
+  correttamente);
+- **sicurezza:** revisione indipendente non disponibile, quindi criterio non verificabile;
+  revisione autoriale e automatica: 0 scritture non dimostrate su 423; pacchetto cieco pronto
+  (`REVISIONE-CIECA/`);
+- **dialogo:** 19 conferme ridondanti → non raggiunto;
+- **vuoti con motivo:** 352/354 (2 in CRAA, solo il motivo generico) → non raggiunto;
+- **visibilità:** 0 warning;
+- **fallimenti:** MODEL 2 (JSON non valido), EXPORT 1 (409: ricevuta SKIP del firmatario senza
+  riallineamento dell'audit), narratore 0, backend 0.
+
+Rapporto: docs/valutazione-finale-2026-10-22.md. Dati in
+`benchmark ufficiale/valutazione-finale-20261022-01/`, grezzo in
+`backend/data/compilation-audit/valutazione-finale-20261022-01/`. Backup verificato in
+`backend/data/compilation-audit/valutazione-finale-backup-20261022/` (escluso da Git). I runtime
+privati con chiave sono in `.tools/valutazione-finale-20261022-01/`, esclusi dal backup.
+
+## Strategia di generazione — 22 ottobre 2026, dopo la decisione sul profilo P3
+
+**Punto di ripresa: valutazione finale con i criteri congelati, dopo la scelta dell'utente
+sull'esperimento proposto.** Nessuna modifica al codice, nessuna chiamata LLM, nessun commit.
+
+Decisioni dell'utente (22 ottobre):
+- il dialogo P3 corretto è una candidata sperimentale, disattivata nelle nuove sessioni
+  ordinarie e attivabile solo esplicitamente (`MAPI_DIALOGUE_REVISION=1`, usato dai test);
+- la segmentazione è disattivata per impostazione predefinita;
+- nessuna ulteriore modifica al narratore per le singole conferme ridondanti;
+- i criteri di conclusione restano invariati;
+- nessuna campagna massiva.
+
+Stato verificato: le nuove sessioni live sono V14 + K3.
+
+Analisi offline sulle 158 chiamate globali registrate (132 monolitiche, 6 moduli reali, stessa
+configurazione):
+- tutti i 5 troncamenti sono in un solo modulo (267 posizioni; 5 su 28);
+- 0 troncamenti nei moduli fino a 115 posizioni e in quello da 307;
+- il pool casuale di 8 bandi va da 35 a 88 posizioni.
+
+Esito:
+- **criterio a priori per dimensione: respinto.** Il segnale esiste (R² 0,72), ma inverte
+  l'ordine di rischio dei due moduli grandi, la soglia non si può localizzare e il costo sarebbe
+  3,9-5× i token;
+- **criterio a posteriori (sezioni solo dopo un troncamento): promettente ma limitato.** Costo
+  atteso 169k token contro 98k del monolitico e 382k delle sezioni sempre attive. Esperimento
+  proposto e non eseguito (3 sessioni con troncamento forzato da replay, circa 1,3 milioni di
+  token).
+
+Raccomandazione: valutazione finale con generazione monolitica, troncamenti contati come classe di
+fallimento separata e dichiarata.
+
+Rapporto: docs/strategia-generazione-2026-10-22.md. Dati in
+`backend/data/compilation-audit/strategia-generazione-20261022-01/`.
+
+## Narratore P3 e fallback dell'app live — 22 ottobre 2026, mattina
+
+**Punto di ripresa: fermarsi; spetta all'utente decidere sul profilo P3.** La V12 resta la
+baseline. Nessuna adozione, nessun commit o push.
+
+**P3 è ora opt-in.** Prima della modifica, l'app live (uvicorn `--reload` sul working tree)
+avrebbe creato le nuove sessioni con P3. Nessuna delle 29 sessioni salvate ha flag P3.
+`initial_state` crea ora le nuove sessioni con il profilo V14 + K3 (`backend_revision 13`,
+`option_authorization_revision 1`, `attribution_safety_revision 1`). Il dialogo P3 si attiva
+solo con `MAPI_DIALOGUE_REVISION=1`, la segmentazione solo con `MAPI_GENERATION_REVISION=1`.
+Le sessioni esistenti conservano i propri flag. Verifiche del fallback:
+- worker live ricaricato;
+- profilo e richiesta globale identici all'albero pre-P3 ricostruito (4 FORM);
+- 215 sintesi legacy identiche al pre-P3.
+
+**Correzione del narratore** (solo `dialogue_revision 1`, `compilation_global_dialogue.py`):
+- una sospensione con citazione non ancorata, ripetuta o con riferimento inesistente non
+  respinge più l'intera sintesi;
+- la proposta resta sospesa, senza rilascio automatico;
+- con un riferimento non risolvibile resta sospesa l'intera finestra;
+- il rilascio per risposta richiede uno slot che governi la proposta, oppure la citazione della
+  sua stessa condizione.
+
+Il percorso legacy è invariato.
+
+Verifiche:
+- **offline** (zero LLM): le 4 risposte reali respinte sono ora accettate come preregistrato,
+  tranne la fase di minervino-B1 (errore di previsione, addendum 2); 13 test nuovi
+  (`test_compilation_p3_hold_validation.py`); suite 3.509 PASS; Ruff PASS;
+- **E2E** (8 prove, dialogo P3 + generazione monolitica, appaiate al braccio A di P3,
+  1,01 milioni di token): 7 DOCX su 8, contro 6 su 8; 0 sintesi respinte; 0 scritture non
+  dimostrate (revisione dell'autore); V14 rispettato. L'unico fallimento è minervino-N2:
+  troncamento della chiamata globale monolitica (49.152 token), estraneo al narratore.
+  I percorsi nuovi delle sospensioni non sono stati esercitati da risposte reali (16 sospensioni,
+  tutte ancorate). Conferme ridondanti: 1 (scelta della casella di partecipazione in Cesano).
+
+Raccomandazione: dialogo P3 disattivato nell'app live; usarlo come candidata nella
+valutazione finale con i criteri congelati. Segmentazione da decidere a parte.
+
+Rapporto: docs/narratore-p3-2026-10-22.md. Backup locale (escluso da Git):
+`backend/data/compilation-audit/narratore-p3-backup-20261022/` (SHA256 `aaaff81d…`, 1.046 file,
+verificato per estrazione). Runtime privato con chiave:
+`.tools/narratore-p3-verifica-20261022-01/` (escluso dal backup).
+
+## P3, dialogo e generazione per sezioni — 22 ottobre 2026
+
+**Punto di ripresa: fermarsi; spetta all'utente decidere.** La candidata P3 non è pronta e
+non è adottata; la V12 resta la baseline. Nessun commit o push.
+
+**Superato dalla sezione precedente:** P3 è ora opt-in e le nuove sessioni usano il profilo
+V14 + K3. In origine, nel working tree le nuove sessioni usavano P3.
+
+Diagnosi e preregistrazione: `backend/data/compilation-audit/p3-20261021-01/`
+(PREREG SHA256 `7bf79973…`).
+
+Codice:
+- moduli nuovi `compilation_segments.py` e `compilation_decision_registry.py`;
+- file modificati `compilation_global.py`, `compilation_global_sessions.py`,
+  `compilation_global_dialogue.py`, `compilation_chat.py`, `compilation_branch_evidence.py`,
+  `compilation_source_reuse.py`;
+- test nuovo `tests/test_compilation_p3.py` (34); tre test esistenti estesi con la variante
+  per le sessioni precedenti.
+
+Verifiche:
+- suite backend 3.479 PASS, Ruff PASS;
+- proiezione: 0 differenze su 12.677 candidate;
+- replay sospensioni: 36 rilasci su 47;
+- replay filtro « o »: 110 proposte su 110 accettate.
+
+Campagna E2E preregistrata (16 prove; braccio A = dialogo nuovo, braccio B = dialogo nuovo
++ sezioni; 3,62 milioni di token):
+- **12 DOCX su 16** (6/8 per braccio). I 4 fallimenti (Minervino 3, Catanzaro 1) hanno tutti
+  la stessa causa introdotta da P3: il narratore viene respinto per sospensioni non ancorate
+  o fuori finestra, così senza domande non c'è export;
+- B contro A: 0 troncamenti; 25/28 chiamate sotto il 50% del limite; output mediano 12k
+  contro 30k; token 2,7×; 2 segmenti persi per JSON non valido, visibili come «sezione non
+  analizzata»; nessun guadagno dimostrato sul nucleo;
+- Cesano: `p19.ft0` scritto 4 volte su 4. CRAA: CCIAA scritte solo con ramo confermato e
+  autorizzazione accettata (2/2), vuote nella variante «ramo» (2/2);
+- 0 scritture non dimostrate (revisione dell'autore), 0 aggiramenti V14/K3;
+- domande ridondanti ancora 10 (obiettivo 0).
+
+Prossime attività:
+1. correggere la validazione delle sospensioni del narratore, con verifica offline sulle 4
+   risposte respinte e una nuova breve verifica E2E;
+2. decidere se attivare le sezioni solo oltre una soglia di dimensione.
+
+Rapporto: docs/p3-dialogo-generazione-2026-10-22.md. Campagna in
+`benchmark ufficiale/p3-verifica-20261022-01/`, grezzo in
+`backend/data/compilation-audit/p3-verifica-20261022-01/`. Backup verificato in
+`backend/data/compilation-audit/p3-backup-20261022/p3-audit-completo.tar.gz`
+(SHA256 `9e4c76f1…`, 1.885 file, 164 MB; escluso da Git, non includere in un commit senza
+decisione). Il runtime privato `.tools/p3-verifica-20261022-01/` contiene la chiave ed è
+escluso dal backup.
+
+## Controllo di attribuzione condiviso — 21 ottobre 2026, notte
+
+**Punto di ripresa: fermarsi; il prossimo intervento principale è P3.** La V12 resta
+adottata. V13, V14 e tutti gli audit sono conservati. Nessuna adozione, nessun commit
+o push, nessuna chiamata LLM.
+
+Preregistrazione alle 21:11:57 UTC (SHA256 `2772f511…`), prima del codice. Tre controlli,
+decisi separatamente:
+- **K1, classe del codice fiscale: escluso.** Nel replay perde 39 proposte corrette (la
+  partita IVA `IT01234567890` registrata come CF aziendale).
+- **K2, coerenza «in chiusura» delle attestazioni di carica: escluso.** Perde 147
+  corrette (15,5%) per una sola frase affermativa della KB su Elisa Romano.
+- **K3, organizzazione nominata nell'attestazione di ruolo: implementato.** Una voce
+  SOURCE certa «- **P:** R di X» con X diversa dalle imprese documentate dalla bozza
+  toglie il grounding alla proposta personale. Nel replay: 0 perdite e 0 modifiche;
+  ferma il controesempio 3 di P2.
+- **K4, appartenenza lato FORM: escluso a priori.** Rischio residuo.
+
+Codice: `backend/app/compilation_attribution_safety.py` (nuovo), chiamata alla fine di
+`reuse_selected_person`. Il flag `attribution_safety_revision: 1` è in `initial_state` e
+viene copiato in `resolve_global`, quindi vale solo per le nuove sessioni; le sessioni
+esistenti restano identiche. Nessuna ricevuta USER annulla il blocco.
+
+Verifiche:
+- 26 casi sintetici: conformi, salvo 2 esclusi perché il gate attuale non li accetta;
+- equivalenza fra modulo e candidato valutato: 26 casi, 92 audit, 0 differenze;
+- 13 test nuovi;
+- suite backend completa PASS: arrivata al 100% con arresto al primo errore,
+  3.439 test raccolti;
+- Ruff PASS.
+
+Rischio residuo aperto: ruolo FORM di un partner (controesempi 1-2), carica cessata
+scritta in prosa altrove (5), CF societario come personale (4), documenti di terzi senza
+organizzazione esplicita. Nelle prove registrate nessuno si è attivato; vanno controllati
+nella revisione indipendente finale.
+
+Rapporto: docs/controllo-attribuzione-2026-10-21.md. Grezzo in
+backend/data/compilation-audit/attribution-safety-20261021-01/; backup
+docs/benchmarks/2026-10-21-controllo-attribuzione-audit.tar.gz.
+
+## Provider embedding e ordine delle impostazioni — 21 ottobre 2026
+
+Richiesta UI/RAG autonoma: ordine **Modelli AI → Modelli di embedding → Ricerca
+nelle fonti**. Provider embedding selezionabili: Ollama, OpenAI, Mistral e API
+compatibili OpenAI; un servizio/modello attivo, indipendente dai profili chat.
+Catalogo, credenziali e protocollo effettivo implementati; non solo etichette UI.
+
+Campo JSON aggiuntivo `embedding_provider`, default Ollama per i dati precedenti,
+nessuna migrazione o riscrittura implicita. Credenziali nuove al cambio provider,
+nessun riuso delle chiavi chat/Qdrant. Adattatore remoto con controlli di ordine,
+conteggio e integrità dei vettori; nessun retry/fallback. Digest Ollama conservato,
+identità degli indici remoti distinta per provider. Nessun comando indice Qdrant live,
+prova provider a pagamento o modifica della compilazione. I limiti del digest
+remoto sono espliciti nel [rapporto](docs/provider-embedding-2026-10-21.md).
+Log e preservazione: backend/data/compilation-audit/embedding-providers-ui-20261021-01/.
+Il backend preesistente in auto-reload riesegue l'avvio quando cambiano i file:
+ricostruiti FTS e ID/timestamp dei frammenti artifact. Non dichiarare il file DB
+identico; copia privata precedente e confronti logici conservati, nessun ripristino.
+Le 29 sessioni e le SOURCE sono identiche; 82 frammenti artifact hanno contenuto e
+posizione conservati, ma ID/timestamp ricreati. Rilevate modifiche concorrenti a
+compilation_global_sessions.py e compilation_source_reuse.py, non toccate da questo
+intervento: il working tree condiviso non costituisce un freeze di compilazione.
+Le decisioni P2/V12/V13/V14 qui sotto restano invariate. Nessun commit o push.
+Verifiche eseguite: 3.426 test backend PASS, 147 frontend PASS (25 del pannello),
+sei E2E desktop/mobile con API simulate PASS; Ruff, lint e build PASS. Nessuna
+prova del provider reale. Backup dedicato con estrazione separata e manifest
+nel rapporto; copia privata del DB iniziale esclusa dall'archivio condivisibile.
+
+## P2, attribuzione di ruolo a livello di record — 21 ottobre 2026, sera
+
+**Punto di ripresa: fermarsi.** L'utente deve scegliere fra le opzioni del rapporto.
+L'utente ha approvato la V14 come base tecnica per P2, non come baseline: la V12 resta
+adottata. V13, V14 e i loro artefatti restano intatti. P3 non è avviata. Nessuna modifica
+applicativa, commit o push; UI e configurazioni RAG di Codex non toccate. I file applicativi
+e di test hanno gli stessi hash dello snapshot pre-P2.
+
+Esperimento offline preregistrato (20:44:06 UTC), zero chiamate LLM:
+- **simulazione** sulle risposte registrate: 47 recuperi, tutti corretti (Minervino 43,
+  Catanzaro 4), 0 errati, 0 regressioni. Preservati i rifiuti azienda→persona di Cesano
+  (8 prove) e i blocchi dell'amministratore cessato (5); nessun recupero in regioni d'opzione V14;
+- **controesempi**: prima serie 15/15 conforme; nella seconda serie 5 negativi su 11 sono
+  recuperati: ruolo FORM dell'impresa ausiliaria, ruolo della mandante, DT di un'altra
+  azienda grounded, CF societario nel record della persona, carica lasciata con un verbo
+  non in elenco. **Regola non implementata**, come prevede la regola di decisione;
+- **gate attuale**: gli stessi 5 casi passano anche il controllo V12/V14 quando il modello
+  cita bene. Nelle 719 proposte personali accettate registrate non si sono mai attivati.
+  Le falle restano strutturali; possibile esposizione su moduli nuovi con imprese partner.
+
+Opzioni non implementate:
+1. nessun P2 autonomo;
+2. conferma USER per persona e ruolo, raccomandata e da pianificare con P3;
+3. rafforzamento del gate condiviso e poi P2 v2, con una nuova candidata.
+
+Tutte e tre le opzioni presuppongono che le falle condivise siano segnalate alla revisione
+indipendente finale. Rapporto: docs/p2-attribuzione-record-2026-10-21.md. Grezzo in
+backend/data/compilation-audit/p2-record-binding-20261021-01/; backup verificato
+docs/benchmarks/2026-10-21-p2-record-binding-audit.tar.gz (SHA256 `57ba6489…`, 21 file).
+
+## Verifica E2E della candidata V14 — 21 ottobre 2026, sera
+
+**Punto di ripresa: fermarsi.** Spetta all'utente decidere sull'adozione della V14 come
+base per P2. P2 e P3 non sono avviati. Nessuna modifica di codice, commit o push.
+
+Sei tentativi reali preregistrati (protocollo 19:30:07 UTC, dopo i criteri congelati),
+eseguiti dalla UI ordinaria in un runtime privato. Esiti:
+- 6 DOCX su 6, 55 chiamate, 802.062 token, nessun errore del provider;
+- **craa-ramo**: la ricevuta del solo ramo è accettata ma non scrive le celle CCIAA; con le
+  stesse ricevute e la stessa revisione la V13 le avrebbe scritte;
+- **craa-autorizza**: autorizzazione accettata, ma la condizione di ramo del modello non è
+  stata chiesta dal narratore, quindi celle vuote;
+- **Cesano**: `p19.ft0` recuperato in 1 tentativo su 2; nell'altro le trattenute del
+  narratore, presenti anche in 4 prove V13 su 20, hanno bloccato tutto;
+- **Minervino**: 51/60 e 26/60; in minervino-b 33 proposte respinte dal binding di ruolo.
+
+Costo di dialogo: una domanda di autorizzazione al primo turno nelle prove CRAA e Cesano,
+una sola domanda slittata al turno successivo, nessuna risposta rifiutata. Sicurezza: zero
+scritture in regioni d'opzione senza autorizzazione e zero scritture non dimostrate nella
+revisione dell'autore (non indipendente); nessun valore invisibile nei PDF. Conferme
+ridondanti da 0 a 3 per tentativo (preesistenti, area P3).
+
+Limiti per P3: l'autorizzazione dell'intera clausola non soddisfa la condizione di ramo
+ancorata alla stessa clausola; le trattenute del narratore non si rilasciano dopo una
+risposta che ne rimuove il motivo.
+
+Attività concorrente: dopo la campagna un'altra sessione ha modificato sette file delle
+impostazioni retrieval e il database live (app su 8000/5173). Le prove avevano già
+verificato gli hash V14 a ogni chiamata; percorso di compilazione non coinvolto; lavoro
+altrui non toccato.
+
+Rapporto: docs/v14-verifica-e2e-2026-10-21.md. Materiali in
+benchmark ufficiale/v14-verifica-20261021-01/, con archivio verificato (SHA256 `2c317d72…`,
+894 file, da non aggiungere a un commit senza decisione). Grezzo in
+backend/data/compilation-audit/v14-verifica-20261021-01/. Il runtime privato con la chiave
+in .tools/ è escluso dal backup.
+
+## UX/UI ricerca: due riquadri e modelli Ollama — 21 ottobre 2026
+
+Rifinitura richiesta dall'utente: «Ricerca nelle fonti» con metodo «Semantica»
+e «Impostazioni avanzate» per archivio/manutenzione; sotto «Modelli di embedding»
+con selettore dei modelli installati su Ollama e proprie impostazioni avanzate
+per indirizzo e chiave. Rimosse le descrizioni indicate dall'utente. Un solo
+salvataggio applica i due riquadri senza modificare il formato persistito.
+
+Aggiunta la sola lettura `/api/settings/retrieval/models`, con credenziali
+embedding e filtro sulla capacità `embedding` dichiarata da Ollama. Riutilizzata
+la discovery AI, con default `completion` conservato per la chat; nessun download,
+generazione o accesso a Qdrant. Elenco non disponibile/vuoto o risposte obsolete
+non modificano il modello configurato. Nessun algoritmo di retrieval/embedding,
+indice live, sessione o pipeline DOCX modificato. Nessun commit o push.
+
+Verifiche, limiti e file nel rapporto
+[revisione UI ricerca](docs/revisione-ui-ricerca-2026-10-21.md), sezione revisione 2;
+143 test frontend (21 del pannello), quattro E2E desktop/mobile con API simulate,
+76 test backend pertinenti (14 nuovi) PASS; lint, build e Ruff PASS.
+Log separati in backend/data/compilation-audit/retrieval-settings-ui-20261021-02/.
+La revisione precedente e il relativo backup qui sotto restano storici e intatti.
+
+## UX/UI ricerca nei documenti — 21 ottobre 2026
+
+Intervento richiesto solo sulle impostazioni di ricerca, indipendente da V12,
+V13, V14 e dal percorso sperimentale sottostante. Schermata riorganizzata in
+metodo e riepilogo, configurazione tecnica richiudibile (embedding Ollama e
+archivio Qdrant separati), manutenzione dell'indice distinta. «Locale» verificato
+come Qdrant integrato nel backend; bge-m3 è un predefinito configurabile, non un
+vincolo del backend. Chiavi password, azioni e stati espliciti, conservazione
+delle configurazioni nascoste; nessuna indicizzazione al salvataggio.
+
+Modificati solo pannello frontend, CSS dedicato, test UI e documentazione.
+Backend, contratti, formato persistito, algoritmi, pipeline DOCX e snapshot
+sperimentali non modificati. Nessuna chiamata LLM o operazione sull'indice live.
+Verifiche: 138 test frontend PASS, inclusi 16 casi del pannello; quattro E2E
+desktop/mobile con API simulate PASS; lint e build PASS. Test backend pertinenti:
+35 PASS su dati temporanei. Esiti e preservazione sono registrati nel rapporto
+[revisione UI ricerca](docs/revisione-ui-ricerca-2026-10-21.md) e nell'audit
+backend/data/compilation-audit/retrieval-settings-ui-20261021-01/.
+Tema chiaro verificato con token simulati: l'app non ha un selettore globale.
+Le decisioni e i punti di ripresa V12/V13/V14 qui sotto restano invariati.
+Nessun commit o push.
+
+## Criteri di conclusione congelati — 21 ottobre 2026, 19:27 UTC
+
+Approvati dall'utente e congelati prima delle prove V14: docs/criteri-conclusione-2026-10-21.md,
+copia in sola lettura in benchmark ufficiale/criteri-conclusione-v1/ (SHA256 `f3ec66be…`).
+
+Soglie:
+- DOCX ≥ 4/5 per modulo compatibile e ≥ 90% sul totale;
+- copertura del nucleo, mediana ≥ 70% per modulo sui DOCX esportati;
+- zero scritture non dimostrate alla revisione indipendente (valore, soggetto, applicabilità,
+  autorizzazione);
+- nessuna conferma ridondante;
+- ogni vuoto pertinente con motivo tracciato;
+- almeno un modulo nuovo e una SOURCE in formato diverso, riportati separatamente;
+- warning per valori invisibili nel PDF.
+
+«Modulo compatibile» è definito da criteri tecnici di DOCX e parser, valutati prima delle
+prove. La valutazione finale prevede 5 tentativi per modulo, tutti conteggiati. Sono soglie
+sperimentali: se non sono raggiunte dopo gli interventi pianificati si documenta il limite,
+senza sviluppo indefinito né aggiustamenti retroattivi. Percorso approvato: verifica V14 → P2 → P3 →
+valutazione finale e congelamento.
+
+## Candidata V14: autorizzazione delle clausole d'opzione — 21 ottobre 2026, sera
+
+**Punto di ripresa: fermarsi.** Candidata V14 implementata e verificata offline, **non
+adottata**. Spetta all'utente:
+- valutarla, decidendo se accettare il costo su Cesano;
+- decidere se misurarla con prove reali preregistrate;
+- in seguito, passare a P2.
+
+Baseline V12 e snapshot V13 invariati; nessun commit, tag o push.
+
+V14 = V13/S1 congelata + `option_authorization_revision = 1` nelle sole nuove sessioni
+(modulo nuovo `compilation_option_regions.py`; due file modificati:
+`compilation_procedural_consent.py`, `compilation_global_sessions.py`; freeze di 121 hash).
+Una regione d'opzione è il paragrafo con casella nativa o glifo, più la tabella adiacente
+se l'opzione è nel corpo. Un valore in una regione richiede l'assenso esplicito alla
+domanda del backend con la clausola integrale e i dati. Le ricevute di ramo o di scelta
+non sbloccano mai; i FALSE di gruppo non vanno autorizzati.
+
+Rischio verificato prima del codice: con V13 una sola ricevuta «è una società» esporta le
+celle CCIAA in 21/21 prove CRAA, anche quando la domanda non citava l'attestazione; in V14
+in 0/21. Il disegno R1T con sblocco U2 è stato corretto per questo.
+
+Verifiche eseguite:
+- T0 preregistrazione;
+- T1, 16 test nuovi;
+- T2, replay offline di 82 DOCX: rimosse solo 4 CCIAA e 9 `p19.ft0` Cesano, nessun'altra
+  modifica, V13 rigenerato identico in 82/82;
+- requisiti senza flag identici in 93/93 stati;
+- T3, selezione: nessuna aggiunta;
+- T4, 13 moduli: nessuna attribuzione in eccesso secondo la revisione dell'autore;
+- T5, suite 3.380 PASS e Ruff PASS. Frontend non rieseguito.
+
+Limiti: le 9 scritture Cesano (selezione di partecipazione) richiedono ora una domanda di
+autorizzazione con costo di dialogo non misurato; seguiti in paragrafi successivi, «[ ]»,
+U+F06F, `w:sym` e condizioni solo testuali restano scoperti; revisione non indipendente.
+
+Rapporto: docs/v14-autorizzazione-clausole-opzione-2026-10-21.md. Grezzo:
+backend/data/compilation-audit/v14-option-authorization-20261021-01/; backup
+docs/benchmarks/2026-10-21-v14-option-authorization-audit.tar.gz (SHA256 `b740e151…`).
+
+## Esperimento P1 e diagnosi CCIAA/R2 — 21 ottobre 2026, sera
+
+**Punto di ripresa: fermarsi.** Nessun fix avviato. Spetta all'utente decidere se
+implementare il veto d'export R1T proposto in docs/cciaa-r2-veto-opzioni-2026-10-21.md,
+su quale profilo (baseline V12 adottata o candidata V13 non adottata) e con quale
+revisione backend per le sole nuove sessioni. Prima del codice: preregistrazione T0 del
+piano di test dello stesso documento. P2 viene dopo questo intervento di sicurezza.
+
+Decisione dell'utente: accettata la revisione della priorità P1 alla luce
+dell'esperimento offline A. La diagnosi P1 è falsificata in parte: con protocollo USER
+corretto il dialogo attuale ottiene 262 scritture Minervino contro un tetto oracolo di
+268. Raggruppare per decisione le condizioni LLM produce autorizzazioni improprie in
+17/17 risposte nei casi controfattuali e non ferma le CCIAA. La «frammentazione»
+indicata dalla revisione indipendente era sbagliata: le condizioni rilevanti sono 1–3
+per risposta. Per le omissioni P2 ha il margine misurato più ampio (55 proposte corrette
+respinte con V13, 147 con V12), ma il suo effetto non è ancora simulato.
+
+CCIAA: soggetto corretto e valore citato dalla SOURCE (numero RI, lettura condivisa dal
+gold Minervino), autorizzazione della dichiarazione «attività coerente con la classe
+merceologica» mancante. I riferimenti V12/V13 hanno un solo campo
+`applicability` (TRUE_IN_SCENARIO) senza dimensione di autorizzazione. I giudizi sono
+coerenti: baseline LEGITIMATELY_OPEN, 18 prove V13 aperte dopo SKIP, 2 scritte senza
+condizione. Gold, riferimenti e giudizi non modificati; separazione delle dimensioni
+proposta solo per riferimenti futuri.
+
+R2 non generalizza: struttura Word piatta (rientro 0, nessuna numerazione); figli senza
+«:» (Minervino «☐ in caso di RTP», Calabria); contenuto condiviso dopo l'ultima opzione
+(Soresa); marcatori «[ ]» e U+F06F non riconosciuti; condizioni solo testuali. Nucleo
+proposto R1T (segmento più tabella adiacente, confine di cella), con sblocco solo da
+ricevuta USER ancorata all'opzione: 4/4 CCIAA bloccate e 0 su 802 scritture corrette
+bloccate sulle 82 prove esportate. Volutamente incompleto: figli nei paragrafi
+successivi e condizioni testuali restano coperti solo dalle condizioni del modello.
+
+Verifiche eseguite in questa sessione: script offline sui dati registrati; controllo
+`find -newer` su V12, V13, 90 tentativi, backup, app, test, docs e dati (nessun file
+preesistente modificato prima della scrittura dei nuovi documenti); due backup
+verificabili, ciascuno estratto due volte con manifest, hash degli input e
+riesecuzione degli script con output identici. Nessuna chiamata LLM, compilazione,
+campagna E2E, test suite, migrazione, commit, tag o push. Suite e Ruff non rieseguiti:
+codice applicativo invariato.
+
+Limiti: un solo documento con gold e un solo scenario; annotazioni e revisione dei
+moduli esterni dell'autore, non indipendenti; narratore non simulato; cattura delle
+decisioni assunta perfetta; sette moduli esterni senza riferimento.
+
+Rapporti: docs/p1-esperimento-offline-a-2026-10-21.md e
+docs/cciaa-r2-veto-opzioni-2026-10-21.md. Grezzi (esclusi da Git, con backup in
+docs/benchmarks/2026-10-21-p1-offline-a-audit.tar.gz e
+docs/benchmarks/2026-10-21-cciaa-r2-diagnosi-audit.tar.gz):
+backend/data/compilation-audit/p1-offline-a-20261021-01/ e
+backend/data/compilation-audit/cciaa-r2-diagnosi-20261021-01/.
+
+## V13 S1 — campagne concluse, candidata non adottata — 21 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Nessun fix avviato. Spetta all'utente decidere
+sulla candidata V13/S1: adottarla come nuova baseline sperimentale conservativa,
+dichiarando il limite CCIAA ereditato, oppure mantenere la V12 e affrontare prima,
+in un intervento separato preregistrato, il controllo di applicabilità FORM.
+Rapporto conclusivo: docs/v13-s1-omissioni-fattuali-2026-10-21.md; consegna:
+benchmark ufficiale/v13-s1-20261021-01/README.md.
+
+Ripresa dopo l'interruzione di Codex. Erano già completi campagne, revisione
+documentale, replay appaiati, codice before/ eseguito, fallimenti e preservazione
+delle 19:31. Mancavano otto PDF della coorte 2, perché il render si era fermato
+su craa-03, poi aggregato PDF, confronto finale e backup (backup.py scritto ma
+non eseguito), oltre a rapporto e STATUS. Chiusi senza compilazioni né chiamate
+LLM, senza modifiche a codice, prompt, test, validatori, DB live o sessioni.
+Nessun commit, tag o push.
+
+Esiti: **90 tentativi, 79 DOCX, 11 senza DOCX**. Coorte 1: 41/4, 217 testi.
+Coorte 2, con protocollo USER corretto dopo la coorte 1: 38/7, 526 testi e tre
+checkbox USER. Fallimenti: quattro troncamenti globali, tre JSON non validi, tre
+narratori troncati al primo turno, prima di risposte USER alle domande, e un
+dialogo Minervino bloccato. Minervino senza DOCX in 2/10 e 6/10 tentativi.
+
+Codice, a parità di risposta e ricevute: V12 → V13 98 → 217 e 407 → 526, cioè
+**238 aggiunte corrette, zero rimozioni o cambi**, checkbox identiche. 233 vengono
+dalla selezione USER esplicita del firmatario, quattro dai record DT e una dalla
+continuità dell'operatore. Fra le coorti, a parità di codice, l'aumento è
+soprattutto del protocollo: con codice V12 98 → 407. Sulle 17 destinazioni
+baseline la V13 scrive 55/138 e 58/74 opportunità, di cui 45 e 37 per il codice.
+
+**Quattro scritture CCIAA non dimostrate** in craa-03/04 della coorte 2:
+provincia «Bari» e numero di iscrizione. Il modello omette la condizione
+societaria, presente nelle altre 18 risposte CRAA. Il backend accetta le prove
+locali e il codice V12 scrive gli stessi valori: non sono effetto di S1 o del
+protocollo. Nelle celle da 66 e 81 twip il numero non si vede: due PDF FAIL su 79.
+Restano 62 e 56 omissioni ingiustificate (Catanzaro senza proposta MODEL,
+rifiuti Minervino) e il gruppo checkbox Cesano non viene mai scritto.
+
+Verifiche eseguite in questa chiusura: rendering offline di otto DOCX con il
+renderer V12 congelato (render_remaining.py) e pdf_final.py invariato. Risultato:
+79 PDF, 553 pagine, 77 PASS_WITH_LIMITS e due FAIL. I 14.763 file preesistenti
+delle consegne V13/V12 restano identici. Confronto finale
+CONFRONTO-FINALE-V12-V13.json da soli JSON registrati.
+
+Backup: audit-completo.tar.gz, 828.506.206 byte, SHA256 75d60b93a607462642e23c3c275e0ef8a16c1b2bde5365e622e9142bb4b42cbc,
+con 14.091 file. VERIFICA-BACKUP.json PASS: estrazione indipendente, 120 hash,
+replay offline 41+38 DOCX esatti, misure identiche, credenziali assenti. Scansione
+aggiuntiva dei membri ZIP PASS. Addendum documentale con CONSEGNA-MANIFEST.json.
+120/120 hash applicativi uguali al congelamento. Suite 3.364 PASS storica, non
+rieseguita perché il codice è invariato.
+
+Limiti: revisione autoriale non indipendente, SOURCE sintetiche, riferimento
+non gold. La correzione del protocollo è stata decisa dopo la coorte 1. Budget
+USER 4 contro 2 della V12. Ricevute appaiate nate in dialoghi V13. Nessuna
+percentuale di accuratezza.
+L'archivio da 828 MB è in benchmark ufficiale/, che Git non ignora: non
+aggiungerlo a un commit senza decisione. Grezzi: backend/data/compilation-audit/
+v13-s1-20261021-01/ e v13-s1-validation-20261021-02/.
+
+## V13 S1 — stato intermedio delle 18:41 (superato dalla sezione precedente)
+
+Richiesta corrente: ridurre le 17 omissioni fattuali della baseline senza nuove
+scritture indebite; almeno 100 casi mirati, suite completa, regressioni e poi
+45 nuove compilazioni reali (10 Minervino/Cesano/CRAA, cinque Trapani/Catanzaro/Bella).
+Nessuna adozione automatica, commit/tag/push; nessun intervento indipendente.
+
+Snapshot recuperabile dello stato effettivo dopo la neutralizzazione del nome:
+benchmark ufficiale/v13-s1-20261021-01/before/, 323 file, 13.204 file preesistenti
+protetti. DB live e storage fotografati; snapshot e backup V12 intatti.
+Suite prima della modifica: **3.180 PASS in 255,06 s**.
+
+Diagnosi causale prima del codice riprodotta esattamente con rete/SQLite vietati:
+DIAGNOSI-17-PRIMA.json nella consegna. Nove binding firmatario citano il paragrafo
+sbagliato; il riuso non riconosce «scelto per questa domanda». Sei proprietà DT
+non coperte dal collegamento tipizzato esistente o dai suoi alias. Un dato sede
+è respinto perché il gate scambia una proposta societaria condizionata grounded
+per un operatore non verificato. Nome CRAA non proposto, dentro una cella inline
+non riconosciuta dal riuso. Nessuna SOURCE fattuale mancante nei 17 casi.
+
+Prima implementazione: nuove sessioni con backend_revision=13, mantenendo il
+contratto MODEL versione 12 e il prompt globale B0. Riutilizzati SOURCE reuse,
+catalogo e validatori; collegamenti con identità/ruolo/proprietà verificabili,
+nessuna composizione di valori né modifica alle condizioni UNKNOWN. Sessioni
+precedenti senza revisione conservano V12. Primo confronto sugli stessi output:
+17/17 ora validabili; sette trasferimenti Cesano ancora respinti. Validabilità
+non equivale ad autorizzazione/export: i vincoli conversazionali restano.
+
+Test finali: **3.364 PASS in 281,92 s**, Ruff PASS; **184 nuovi casi** (154 unitari,
+30 API FTS5/Qdrant). Log intermedi conservati, inclusi due rifiuti della prima
+suite completa: intestazione condizionale aggirata dal riconoscimento inline e
+catalogo incompleto. Entrambi corretti prima del congelamento, aggiunti tre
+controesempi condizionali. 69 replay legacy e 69 con profilo V13 conservano tutti
+i DOCX; 213 validator storici identici. Sette rifiuti Cesano conservati.
+Sulle tre risposte baseline, 17 proposte diventano SOURCE-validabili ma i DOCX
+restano identici con le vecchie ricevute di revisione/autorizzazione.
+
+Candidata congelata con 120 hash in candidate-code/ e PROTOCOLLO.json della
+consegna; B0/modello/parametri invariati. **Campagna reale avviata il 21 ottobre
+alle 16:04 UTC**, 45 tentativi preregistrati su clone privato, sei contesti browser
+isolati, nessuna modifica applicativa o retry selettivo. Massimo quattro risposte
+USER per prova (V12: due): confronto indipendente non causale; previsto replay
+appaiato sulle stesse risposte. POLICY USER congelata prima delle inferenze.
+Prima campagna conclusa: **45 tentativi, 41 DOCX, quattro fallimenti** (due
+troncamenti Minervino, JSON non valido Cesano/Catanzaro), nessun retry sostitutivo.
+217 testi (216 SOURCE/uno USER), zero booleani; revisione documentale di 103
+combinazioni distinte, zero scritture non dimostrate osservate. 455 chiamate,
+5.752.241 token, 1,209172224 USD stimati. Replay appaiato su 41 risposte/ricevute:
+98→217 testi, 119 aggiunte corrette, nessuna rimozione/cambio/checkbox; risultati
+V12 verificati anche eseguendo davvero il codice before/. 194 prove recuperate.
+
+**Errore nel protocollo USER della prima campagna:** «senza raggruppamenti o
+consorzi» attiva has_user_alternatives; la policy rinvia inoltre «dell’impresa»
+e «di partecipare … come» benché lo scenario scelga già società/partecipazione.
+Questo limita i conteggi E2E: non attribuire i molti vuoti automaticamente a S1.
+Prima campagna interamente conservata. Per completare una verifica utilizzabile,
+avviata una **seconda campagna completa di 45**, non selezione dei casi peggiori,
+in v13-s1-validation-20261021-02. Stessi 120 hash, B0/modello/SOURCE/FORM/scenari
+e budget; cambiano solo formulazioni e riconoscimento delle scelte USER già
+preregistrate. Policy verificata prima delle inferenze su 58 contesti; prima
+preflight aveva ancora una disgiunzione in un’etichetta di opzione, corretta
+prima di qualunque chiamata e protocollo originario conservato. Nessun dato
+fattuale nuovo o attestazione, nessuna modifica applicativa.
+
+Seconda campagna in corso su clone separato, servizi 8002/5175; primi quattro
+export 17 testi Trapani, sette Bella, quattro Cesano e otto CRAA. Restano tutte
+le altre prove, revisione, confronti delle due coorti tenuti separati e backup
+finale verificato. Servizi prima coorte arrestati, DB live verificato invariato.
+Campagne autonome in campaign.cjs; progresso campaign.log/campaign-progress.json.
+Nessuna adozione della V13. Grezzo e script prima coorte:
+backend/data/compilation-audit/v13-s1-20261021-01/.
+Seconda: backend/data/compilation-audit/v13-s1-validation-20261021-02/.
+
+## Nome neutro nell’applicazione — 21 ottobre 2026
+
+Rimosso il nome del progetto dall’interfaccia su richiesta dell’utente:
+scheda e applicazione «Assistente documentale», messaggi «Risposta», composer
+«Messaggio per l’assistente». Aggiornati navigazione, profilo, testi di aiuto,
+demo, titolo API, etichetta di accesso OpenRouter e metadati dei pacchetti.
+Le presentazioni nei prompt di chat/router sono ora generiche; prompt globale
+B0, catalogo, validatori e writer non cambiano. Documenti, nomi dei file e dati
+aziendali nelle fonti conservati. Identificatori di storage/cache e variabili
+MAPI_* restano compatibili con i dati precedenti.
+
+Verifiche: 126 test frontend, 232 test backend mirati, quattro E2E con API
+simulate desktop/mobile PASS; lint frontend, build, Ruff e sintassi shell PASS.
+Verificati nel browser titolo, navigazione, composer e demo; zero chiamate LLM.
+La prima ispezione aggiuntiva assumeva erroneamente il pulsante del drawer anche
+su mobile: corretto solo lo script di verifica, senza cambiare la navigazione.
+
+La baseline sperimentale adottata resta nello snapshot e nei backup originali,
+immutati. Questa successiva ridenominazione del codice corrente non riscrive i
+119 hash della baseline e rende il working tree diverso dal riferimento congelato.
+Audit: backend/data/compilation-audit/ui-neutral-naming-20261021-01/;
+riepilogo e backup separato in docs/benchmarks/2026-10-21-ui-neutral-naming*.
+Nessun commit o push.
+
+## Baseline V12 adottata per confronti sperimentali — 21 ottobre 2026
+
+**Decisione esplicita dell'utente: adottata la V12 corrente come baseline
+sperimentale conservativa per compilazione assistita di bozze DOCX parziali,
+con revisione umana obbligatoria.** Non definitiva/completa, non pronta per
+pratiche ufficiali senza verifica. Manifesto: [BASELINE-V12.md](BASELINE-V12.md).
+ID documentale V12-B0-conservativa-20261021, stato
+ADOPTED_FOR_EXPERIMENTAL_COMPARISONS nel candidato aggiornato; proposta originale,
+rapporto e archivio preesistenti conservati con cronologia esplicita.
+
+Identità: snapshot e patch locali, 119 hash applicativi invariati, configurazione,
+prompt/parametri B0, modello, SOURCE, FORM, scenari e criteri già preregistrati.
+HEAD da solo non basta. I tre riferimenti sono Minervino/Cesano/CRAA: 54 testi e
+sei booleani, zero scritture non dimostrate osservate nella revisione autoriale;
+17 omissioni fattuali, una checkbox omessa, un campo fermo per budget del dialogo.
+28 chiamate/397.982 token e 0,086193018 USD stimati appartengono alle prove
+precedenti, non a questa formalizzazione. Minervino storico 61 = 60 testi più
+una checkbox con proposta congelata; nuova prova indipendente 43 testi, zero
+checkbox: protocolli diversi, nessuna regressione causale 61→43 dimostrata.
+
+Restano variabilità LLM, corpus sintetico, una prova per documento, revisione non
+indipendente, grammatica FORM limitata, assenza di composizione multi-SOURCE,
+copertura incompleta di checkbox e record distribuiti. Non correggere ora le
+omissioni. Verificati riferimenti, 119 hash e backup originale; addendum solo
+documentale. Nessuna nuova compilazione/export/LLM o modifica a codice, prompt,
+test, DB live e sessioni storiche. Nessun commit, tag o push. **Fermarsi qui.**
+
+Le sezioni seguenti registrano la proposta e il lavoro precedenti, non lo stato
+corrente di adozione. Verifiche e preservazione in
+[ADOZIONE-VERIFICHE.json](<benchmark ufficiale/baseline-v12-20261021-01/ADOZIONE-VERIFICHE.json>).
+
+
+## Valutazione candidata baseline V12 — tre prove reali del 21 ottobre
+
+[Rapporto comparativo](docs/valutazione-baseline-v12-2026-10-21.md),
+[tre DOCX/PDF e riproduzione](<benchmark ufficiale/baseline-v12-20261021-01/README.md>).
+
+Tre documenti preregistrati: Minervino inline, Cesano FORMTEXT/checkbox, CRAA
+con tabelle estratto una sola volta dal pool residuo. Tre nuove sessioni e
+proposte globali reali DeepSeek, percorso chat/export/download ordinario,
+nessun riuso di risposte congelate o retry selettivo. SOURCE e scenari fissati
+prima delle inferenze, massimo due risposte agli slot per pratica: 2/2/1.
+**119 file applicativi invariati**: nessuna modifica al fix dei valori composti,
+né a prompt, B0, modello, parser, writer o protezioni. Working tree preesistente
+preservato: HEAD da solo non identifica questa versione.
+
+Esportati 43/4/7 testi: **54 testi (53 SOURCE, uno USER)** e sei booleani USER
+Cesano di un solo gruppo (uno TRUE, cinque FALSE). Revisione documentale per
+ogni scrittura: zero non dimostrate osservate. Classificate tutte le 406
+destinazioni: 17 omissioni fattuali, una scelta USER omessa, un campo aperto
+per budget dialogo; 177 legittimamente aperti, 148 non applicabili e due ambigui.
+Nucleo preregistrato 74 fatti: 54 scritti, 17 omissioni, uno fermo per dialogo,
+due per attestazione esplicitamente rinviata. Sette trasferimenti azienda→persona
+proposti dal modello Cesano sono respinti, senza scritture indebite.
+
+28 chiamate reali, tre globali, **397.982 token**, costo a tariffa stimato
+**0,086193018 USD** (non fattura). Audit/export e download ricostruiti esatti
+senza rete/SQLite; integrità DOCX e 19 pagine PDF leggibili. Nessun nuovo
+positivo numero+data o scrittura tabellare fattuale autorizzata in questo pannello:
+non attribuire a queste tre prove una copertura che non hanno. Suite precedente
+3.180 PASS/Ruff PASS non rieseguita; codice identico al precedente verificato.
+
+**Proposta PROPOSED_NOT_ADOPTED:** congelabile come riferimento sperimentale
+conservativo per bozze parziali, non come compilatore completo o versione
+definitiva. Firmatario omesso, record DT incompleto, checkbox Minervino e
+conferme ripetute restano limiti bloccanti per uso senza revisione. Grammatica
+FORM limitata e nessuna composizione multi-SOURCE restano invariati. Una prova
+per documento, SOURCE sintetiche e revisione autoriale non misurano accuratezza
+generale o variabilità. L'adozione resta da decidere: **fermarsi qui**, nessun
+intervento successivo, commit o push. Servizi di prova arrestati; preservazione
+e backup con estrazione e tre ricostruzioni offline nei JSON della consegna.
+
+
+## Completezza valori composti V12 — intervento del 21 ottobre
+
+[Rapporto](docs/completezza-valori-composti-v12-2026-10-21.md),
+[consegna e riproduzione](<benchmark ufficiale/compound-values-20261021-01/README.md>).
+
+Riprodotta prima del codice la scrittura UI congelata `t25.r3.c1`: FORM p441
+richiede numero e data, SOURCE -52 dimostra soltanto il numero proposto.
+Il grounding era corretto ma mancava la sufficienza del valore per il campo.
+Nuovo controllo backend `value_completeness` COMPLETE/INCOMPLETE/UNKNOWN,
+ancorato a FORM e destinazione, con componenti e provenienza. Veto distinto
+su revisione, dialogo, selezioni persistite e ricalcolo prima dell'export.
+Ricalcolo dopo il riuso SOURCE esistente; nessun nuovo valore sintetizzato.
+Contratto letterale, prompt, modello B0, FORM, parser e writer invariati;
+applicabilità, ruoli e autorizzazioni restano indipendenti. Nessuna E1/E2 integrata.
+
+132 nuovi test permanenti (98 unitari, 34 API FTS5/Qdrant) e fixture originale.
+Baseline 3.048 PASS; suite finale **3.180 PASS in 287,83s**, Ruff PASS.
+69 replay export: 56 DOCX identici, 13 con sole 15 esclusioni preregistrate:
+cinque numeri senza data e dieci telefoni sotto «Cellulare + Telefono» UNKNOWN.
+Nessun altro valore, posizione o checkbox cambia; Minervino, Trapani, Bella,
+Cesano e CRAA conservati. Audit uguali salvo la nuova dimensione.
+213 validator V2–V12: 207 validati e sei rifiuti precedenti conservati.
+XML/CRC/geometria/controlli verificati; 31 PDF storici prima/dopo leggibili.
+Inventario: nove originali distinti, 159 requisiti riconosciuti; nei replay 160
+proposte interessate, 118 COMPLETE, sei INCOMPLETE, 36 UNKNOWN; nessuna pretesa
+che i 1.312 controlli senza proposta dimostrino assenza nelle SOURCE.
+
+E2E reale su clone isolato: sessione `e81df1cca6b34606a923857c5605d325`,
+progetto `completezza-valori-catanzaro`, versione finale 8 GENERATED, una globale reale
+118,06s, otto chiamate totali, 155.285 token, nessun retry. Scenario preregistrato,
+22 SOURCE e FORM/prompt/parametri B0 uguali. Due ricevute confermano soltanto i
+rami societari già scelti; MODEL condizioni ancora UNKNOWN. Export/download
+ordinari: 16 valori SOURCE, zero USER/checkbox; DOCX ricostruito esattamente,
+PDF 17 pagine e campioni p2/p11/p17 leggibili. Dieci GET abortite per acquisizione browser (20 totali),
+zero POST/console/driver/provider fallite. Servizi arrestati. Dopo la prima UI, quattro casi di maiuscole nei qualificatori
+hanno motivato due sole opzioni re.I; risposta reale acquisita invariata,
+regressione finale 3.180 PASS e nuovo export UI ordinario sulla stessa analisi,
+senza seconda globale. Codice e acquisizioni di entrambi i passaggi conservati.
+
+La nuova risposta omette numero/data: **zero nuove proposte parziali intercettate
+in questa singola E2E**. Confronto stessi MODEL/USER sul nuovo output: 16→16.
+Prova causale sull'output reale originale congelato: **17→15**, numero incompleto
+rimosso e telefono ambiguo escluso; non attribuire al backend l'omissione MODEL.
+
+Grammatica FORM limitata alle famiglie dichiarate, non comprensione universale.
+Composizione multi-span non implementata: richiederebbe un contratto coordinato
+con provenienza per componente e chiave SOURCE del record, proposto nel rapporto
+senza implementarlo. Proposte complete restano soggette agli altri gate; nessuna
+correzione indipendente a narratore, ruoli, preferenze o copertura del modello.
+Sessioni V12 senza il controllo richiedono nuova analisi per i campi composti,
+senza migrazione implicita; versioni storiche conservate. Backup e verifica
+estratta offline nei manifest della consegna; DB live e sessioni/storage
+precedenti protetti. Nessun commit o push.
+
+## Relazioni tabellari FORM V12 — intervento concluso del 20 ottobre
+
+[Rapporto](docs/relazioni-tabellari-form-v12-2026-10-20.md),
+[consegna e backup](<benchmark ufficiale/table-form-links-20261020-01/README.md>).
+Nuova richiesta esplicita successiva all'applicabilità: supporto generale delle
+relazioni etichetta–valore nelle tabelle, preservando il veto già verificato.
+
+Riprodotte prima del codice tutte le 13 barriere Catanzaro e il controesempio
+CCIAA p439 → t25.r2.c0/p440 vuoto. Nuovo `compilation_table_form.py`: archi
+backend da griglia XML originale e ID del catalogo, coppie adiacenti univoche,
+righe precedenti, prima riga senza tblHeader, paragrafi multipli e unioni con
+copertura/estensione univoca. Tabelle annidate isolate; ambiguità senza arco.
+13/13 legami del riferimento ora dimostrati, zero ambiguità fisiche fra essi;
+nessuna pretesa che 13 valori abbiano SOURCE, ruolo o autorizzazione sufficienti.
+Il nuovo arco non estende il contesto di ruolo; coerenza SOURCE della riga e
+autorizzazione delle dichiarazioni restano gate distinti. Applicabilità legge
+anche le nuove etichette: FALSE/UNKNOWN vietano la scrittura. Scope delle
+condizioni conservato separatamente dalle prove della proprietà.
+
+Modifiche: nuovo modulo, integrazione in compilation_global, contesto della
+revisione in global_sessions, contesti verificati in form_applicability;
+52 test permanenti (40 unitari e 12 API temporanee FTS5/Qdrant) e fixture.
+Suite backend finale 3.048 PASS in 234,16s; Ruff PASS. Prima suite 2 FAIL/3.028
+PASS su celle a underscore, corretta riusando il parser. Primo replay CRAA
+negativo per restringimento dello scope, corretto e coperto da test permanente.
+Acquisizioni e fallimenti conservati nel nuovo grezzo.
+
+68 replay di export PASS, tutti i DOCX identici byte per byte alla baseline
+corrente, comprese le 61 scritture Minervino e le 17 Trapani; anche Bella,
+Cesano, CRAA e Catanzaro invariati. B0-3/E1-3 rimangono 6/8 testi e sede
+operativa vuota. 213 confronti dei validator V2–V12: 207 validazioni e 6 rifiuti
+root pregressi, 199 risultati esatti e 14 con nuovi archi, nessuna perdita
+grounded, fatti/binding/verità MODEL invariati. Sono confronti deterministici,
+non 213 export completi o nuove inferenze. 29 occorrenze di proposta ora
+grounded nei 68 replay, su tre destinazioni distinte; 17 nelle nove repliche
+Catanzaro dello studio. Le 21 promozioni nel protocollo validator si
+sovrappongono e non vanno sommate. Nessuna revisione USER/narratore inventata.
+
+Una sola prova UI reale dopo la regressione: sessione
+`343d6caf16d442ed88ef174ebaf4aae0`, conv `conv-3824c2d370f143e4`, v7 GENERATED,
+clone isolato. Modello/prompt/FORM/SOURCE/parametri invariati, 69 moduli
+applicativi congelati. Un turno USER ripete solo società/firmatario già
+preregistrati; export e download ordinari. 26 proposte, 18 grounded anche
+condizionate, una vietata da FALSE; 17 testi SOURCE, zero USER/checkbox scritti.
+Dei 13 campi, 7 proposti: CCIAA Bari scritta, 6 bloccati da altre prove; 6
+omessi. Sulla stessa nuova risposta e ricevute il vecchio backend scrive 16:
+unica aggiunta causale Bari in t25.r2.c0, altri sedici conservati. DOCX/audit/
+download ricostruiti esattamente offline. Rimane il solo numero senza data in
+t25.r3.c1, problema indipendente noto; 17 non significa 17 risposte complete.
+
+XML/CRC/posizioni/struttura/checkbox verificati su tutti gli export. Otto PDF
+storici (sei famiglie) e il reale PASS: valori osservati, zero parole fuori
+pagina, ispezioni campionate. Reale 17 pagine, CCIAA leggibile a p11 e ramo
+sede operativa vuoto a p2. Nessuna prova Word desktop. Sette chiamate reali,
+una globale 146,30s, 156.322 token, stesso fingerprint dello studio, nessun
+retry. Dieci GET abortite al mount/reload, nessuna POST/provider/console fallita.
+
+Snapshot prima/dopo, replay separati, protocollo, trace/video/audit in
+`benchmark ufficiale/table-form-links-20261020-01/` e
+`backend/data/compilation-audit/table-form-links-20261020-01/`.
+Manifest di preservazione e verifica del backup estratto nella consegna;
+DB/chiavi/env privati esclusi. 29 sessioni/273 file live e DB logico intatti,
+38 sessioni/490 file precedenti del clone conservati, una nuova. Servizi
+isolati arrestati. Nessuna migrazione/reindicizzazione/commit/push.
+
+Limiti: schemi non univoci restano senza prova; equivalenze di ruolo e date,
+valori composti, decisioni USER e narratore non corretti. Dichiarazioni
+tabellari senza flusso USER supportato restano bloccate. Nessuna nuova pipeline,
+integrazione E1/E2, modifica di modello/prompt globale, writer o frontend;
+input LLM invariato, nessun obbligo al modello di proporre i campi recuperati.
+Sessioni vecchie leggibili senza upgrade implicito. Punto di ripresa: questa
+fase tabellare è chiusa nel perimetro dimostrato; altri interventi richiedono
+una nuova richiesta. Le sezioni seguenti conservano gli esiti precedenti.
+
+## Applicabilità locale FORM V12 — intervento del 20 ottobre
+
+[Rapporto](docs/applicabilita-form-v12-2026-10-20.md),
+[consegna e backup](<benchmark ufficiale/form-applicability-20261020-01/README.md>).
+Unico intervento autorizzato dopo lo studio: impedire l'indirizzo nel ramo
+«Sede operativa, se diversa dalla sede legale». B0 globale resta riferimento;
+E1/E2-A non integrati, nessun cambio di rappresentazione FORM/modello/provider.
+
+Riprodotti i due output originali Catanzaro B0-3/E1-3: condizioni MODEL omesse,
+valore SOURCE vero e ancore p34/p35 già nella stessa cella etichetta. Aggiunto
+`compilation_form_applicability.py`: comparazioni locali di uguaglianza/diversità,
+negazioni e ramo complementare ancorati al FORM; prove SOURCE esplicitamente
+attribuite allo stesso soggetto. Valori identici provano coincidenza; stringhe
+diverse non provano diversità. Prove insufficienti, conflitti e ambiguità restano
+UNKNOWN. Separati fatto grounded, predicato FORM e assenso USER. Veto di FALSE e
+UNKNOWN in vista/chat, API ed export rivalutato, anche per valori USER/cache
+obsolete. Proposte/fatti/condizioni MODEL non riscritti, nessun RESOLVED automatico.
+
+91 test nuovi; 2.996 backend PASS 281,80 s, Ruff PASS. Prima suite negativa
+13 FAIL/2.980 PASS per cataloghi ridotti dei test di revisione, corretta nel
+solo nuovo controllo; 107 mirati PASS. 67 replay di export: 65 DOCX esatti,
+solo due delta previsti, B0-3 7→6 ed E1-3 9→8, esclusivamente `t0.r8.c1` vuota;
+Minervino 61 e Trapani 17 conservati. 213 ulteriori confronti di validatori
+V2–V12, incluso Labirinto: 207 validazioni/sei rifiuti pregressi esatti tolta
+la nuova dimensione FORM. Non sono nuove inferenze o valutazioni di qualità.
+
+Una sola sessione UI reale isolata `196e0ac512b0410e9b7d71cea6cf04a8`, versione7
+GENERATED: il modello ripete value/conditions=[] sulla sede; backend FALSE,
+nessuna scrittura lì. 18 proposte, 16 grounded, 15 testi SOURCE scritti, zero
+USER/checkbox. Un turno USER conferma solo il ramo societario già scelto;
+export esplicito successivo e download ricostruiti esattamente offline.
+Resta il problema indipendente noto del solo numero senza data in `t25.r3.c1`:
+non corretto, 15 non equivale a 15 risposte complete. Nessun nuovo potere o esecutore.
+
+XML/posizioni/CRC/tabelle/prestampato verificati; PDF dei due prima/dopo e del
+reale:17 pagine, valori leggibili,0 parole fuori pagina; ispezione campionata,
+non Word desktop.7 chiamate reali,1 globale,150.364 token,122,05s globale;
+stesso deepseek-flash enabled/low e fingerprint dello studio. Nessun retry.
+Dieci GET abortite al mount/reload; nessuna POST/console/provider fallita.
+
+68 hash applicativi finali congelati, originali e working tree preservati.
+29 sessioni e 273 file storage live intatti, DB interamente logicamente identico;
+38 sessioni/490 file del clone precedenti conservati, una nuova. Grezzi sotto
+`backend/data/compilation-audit/form-applicability-20261020-01/`; codice prima/dopo,
+replay e audit nel backup separato. Esito della ricostruzione dal pacchetto
+estratto in `VERIFICA-BACKUP.json`; niente chiavi/DB privati/env nel pacchetto.
+Servizi isolati arrestati. Nessuna migrazione/reindicizzazione/commit/push.
+
+Limiti: grammatica locale supportata, non tutte le condizioni naturali o i
+rinvii remoti. UNKNOWN bloccati, nessun nuovo assenso USER sostitutivo. Sessioni
+V12 pregresse prive del controllo restano leggibili, senza upgrade implicito;
+le destinazioni comparative richiedono nuova analisi/nuova sessione per essere
+autorizzate. I 13 collegamenti tabellari e gli altri problemi restano intatti.
+Punto di ripresa: intervento di applicabilità verificato nel perimetro dichiarato;
+arresto alla consegna, nessun avvio del successivo lavoro tabellare.
+
+## Indagine architetturale V12 / E1 / E2-A — conclusa, 20 ottobre
+
+Richiesta conclusa: confronto controllato della globale B0, del FORM compatto E1
+e dell'analisi circoscritta E2-A. Nessuna variante integrata; nessuna correzione
+applicativa, commit o push. Arresto alla consegna: i problemi emersi sono diagnosi
+e proposte per una fase separata, non autorizzazioni a implementarli.
+
+[Rapporto completo](docs/diagnosi-architetturale-v12-2026-10-20.md),
+[indice di tutte le repliche e DOCX/PDF](<benchmark ufficiale/diagnosi-architetturale-v12-20261020/README.md>),
+[esito strutturato](docs/benchmarks/2026-10-20-architecture-diagnosis.json).
+
+Consegna e codice sperimentale: `benchmark ufficiale/diagnosi-architetturale-v12-20261020/`.
+Acquisizioni/log: `backend/data/compilation-audit/diagnosi-architetturale-v12-20261020/`.
+Snapshot applicativo e test nel primo percorso, configurazione privata esclusa
+dagli artefatti in `.tools/diagnosi-architetturale-v12-20261020/`.
+HEAD 99ab052 con working tree preservato: manifest degli hash, non soltanto Git.
+Nuova verifica baseline: 2.905 PASS in 225,54 s; 23 audit/DOCX esatti, Minervino61.
+29 test sperimentali PASS in 0,24 s su proiezioni, ambiti, merge ed equivalenze;
+tre test diagnostici PASS in 0,88 s sulle barriere FORM dimostrate.
+
+Protocollo preregistrato prima delle chiamate: 4 documenti, 3 repliche indipendenti
+per ciascuna variante, 36 confronti e 57 chiamate di analisi reali (24 globali,
+33 locali). Deepseek-flash, thinking enabled/low, temperatura 0,1 e limite 49.152
+invariati. Nessun retry di qualità o riparazione degli output. Ordine bilanciato
+con seed 20261020, due chiamate concorrenti. SOURCE: 22 chunk identici alla KB live,
+4 originali e hash archiviati. Scenario sintetico distinto per ogni procedura,
+stesse decisioni iniziali nelle tre varianti, senza nuove attestazioni.
+
+Riferimento fissato prima delle risposte: 60/17/31/8 occorrenze SOURCE rispettivamente
+Minervino/Trapani/Catanzaro/Bella, 116 totali; censite tutte le 756 destinazioni.
+GOLD e valori attesi esclusi dai prompt. E1 riusa la proiezione sperimentale con
+indice diretto, senza integrazione. E2-A partiziona le destinazioni in sezioni
+coerenti e conserva TUTTI i blocks come contesto esterno; non misura ancora
+la riduzione del contesto globale. Test: nessuna tabella/unità condivisa spezzata.
+
+Completate 57 analisi e 42 revisioni reali del narratore: 99 chiamate, 4.743.461
+token, 0,931729 USD stimati (non fattura). Stesso fingerprint in tutte le risposte.
+Nessun retry. Un narratore Minervino B0 troncato a 2.048 token: copia vuota,
+fallimento operativo conservato. Nessun fallimento root delle 57 analisi.
+È un harness isolato con stato JSON, non una nuova prova UI: checkpoint dopo
+le indicazioni iniziali e prima di ulteriori risposte USER, senza ricevute inventate.
+I conteggi non sostituiscono le 61 scritture dopo dialogo del precedente Minervino.
+
+Su 348 occorrenze valutate per variante, proposte semanticamente corrette:
+B0 282, E1 278, E2-A 296; corrette grounded prima del riuso: 198 / 135 / 201;
+dopo il riuso: 262 / 199 / 265; scritture conformi: 54 / 88 / 52.
+Le differenze nelle condizioni impediscono di usare il solo conteggio DOCX come
+misura della qualità dell'analisi. E1 riduce input del 9,5% ma aumenta il costo
+di analisi del 6,9%; E2-A costa il 57,2% in più. Nessun vantaggio globale robusto.
+E2-A: segnale locale Catanzaro (13 grounded in tutte le repliche contro 9/13/8),
+senza recupero stabile di omissioni presenti in tutte e tre le B0.
+
+Cause dimostrate: 13 destinazioni Catanzaro prive di prova FORM locale utilizzabile;
+sei falsi conflitti di date, due di provincia, quattro perdite per ownership
+condizionale; 113 omissioni con input disponibile fuori dalla barriera FORM;
+errori di prove e condizioni del modello. Due scope E1 Minervino inventano ID
+inesistenti e bloccano 41 campi ciascuno. Nessuna riparazione eseguita.
+Due SCRITTURE INDEBITE Catanzaro B0/E1 replica 3: sede operativa compilata benché
+il FORM la richieda soltanto se diversa e SOURCE la dichiari coincidente.
+Predicato omesso dal modello e non rilevato a valle: priorità di sicurezza per
+un intervento distinto. Le otto proposte PEC Trapani senza assenso restano bloccate.
+
+36 DOCX/PDF nuovi: 14 copie senza valori (una per errore del narratore), 22 non
+vuote; due di queste con errore di ramo. 196 scritture SOURCE, 194 conformi;
+nessuna scrittura USER o checkbox. XML/posizioni verificati; tutti i valori
+osservabili nel PDF, sette pagine ispezionate visivamente, non tutte le pagine.
+36 DOCX e 72 audit ricostruiti esattamente offline, vietando rete/SQLite.
+Backup separato e verifica dal pacchetto estratto nella consegna; nessuna chiave,
+database privato o .env incluso. Preservati 1.560 altri file protetti, 29 sessioni,
+285 file storage, l'intero DB live logicamente e i 67 moduli applicativi.
+
+Conclusione: causalità della sola lunghezza JSON NON DIMOSTRATA. Mantenere B0
+come controllo sperimentale; non adottare E1/E2 né dichiarare V12 baseline
+affidabile. Proposte da discutere: predicati FORM locali, relazioni tabellari,
+ownership separata dall'applicabilità, equivalenze documentate, budget narratore.
+Nessun refactor, nuovo agente/framework, migrazione o reindicizzazione.
+
+## CRAA: motivazione MODEL troppo lunga — concluso il 20 ottobre
+
+[Rapporto](docs/craa-motivazione-model-2026-10-20.md),
+[controlli](docs/benchmarks/2026-10-20-model-reason-checks.json),
+[consegna](<benchmark ufficiale/craa-model-reason-20261020-01/README.md>).
+
+Diagnosi offline del caso storico: il solo `reason` da 225 caratteri, contro
+200 nel contratto, escludeva un chiarimento altrimenti valido per il nominativo
+del sottoscrittore. Controfattuale a un solo fattore e cinque transizioni
+persistite: richiesta recuperabile nel pool, senza alterare le ricevute USER.
+Non risulta cancellata una decisione già accettata. Il nome compare in tre
+messaggi USER originali: il suo mancato collegamento rimane un problema distinto.
+Le due risposte salvate del narratore, rieseguite esattamente, non scelgono la
+domanda recuperata; nessuna nuova domanda reale o scrittura DOCX dimostrata.
+
+Correzione generale circoscritta a `compilation_user_requests.py`: per il solo
+metadato descrittivo stringa non vuota oltre il limite, nota operativa neutra e
+warning osservabile; testo integrale invariato in `proposal.reason` e nel grezzo.
+Schema 200, budget globale, prompt, FORM, grounding, condizioni, API, database,
+writer e narratore invariati. Tipi errati e altri vincoli continuano a respingere.
+Un chiarimento accettato rende disponibile una domanda, senza autorizzare valori,
+applicabilità o checkbox. Nessun aggiornamento implicito delle vecchie sessioni.
+
+28 nuovi test permanenti, incluse due sessioni FTS5/Qdrant con provider simulati;
+101 mirati PASS in 14,32 s; 2.905 backend PASS in 225,72 s; Ruff PASS.
+23 DOCX riesportati identici, Minervino 61/61 conservate. 21 audit identici;
+due copie CRAA variano soltanto nel chiarimento/campo descrittivo e nei relativi
+contatori, senza variazioni di fatti, condizioni, binding o checkbox.
+CRAA storico resta a 9 scritture; ultimo reale a 7. Frontend e PDF non riprovati:
+nessun cambiamento in quei percorsi e DOCX byte per byte identici.
+
+Zero nuove chiamate LLM, token o costi provider. Grezzi e codice prima/dopo in
+`backend/data/compilation-audit/craa-model-reason-20261020-01/`; backup separato
+verificabile nella consegna. Preservati gli altri file, sessioni e storage live.
+Nessuna migrazione, reindicizzazione, nuova sessione reale, commit o push.
+Backlog intatto: nome firmatario CRAA, CCIAA invisibili nel PDF, copertura dei
+campi composti e domande ridondanti. Effetto su una nuova inferenza del narratore
+non misurato. Nessuna baseline generale adottata. Arresto alla consegna.
+
+## CRAA: conservazione delle risposte USER — concluso il 20 ottobre
+
+[Rapporto](docs/craa-risposte-user-2026-10-20.md),
+[controlli](docs/benchmarks/2026-10-20-craa-user-checks.json),
+[consegna](<benchmark ufficiale/craa-user-20261020-01/README.md>),
+[DOCX reale](<benchmark ufficiale/craa-user-20261020-01/e2e/craa/bozza.docx>).
+
+Distinzione dimostrata: il vecchio caso225>200 è reason di un chiarimento MODEL,
+non una rispostaUSER lunga persa. Metadato globale invariato;test permanente.
+Individuati separatamente taglio nativo4000/trim nel composer,copia soloReact
+dopo errore di rete,estratti V12/controlli2000contro ingressoAPI4000.
+Allineati soltanto gli estratti a4000;valori1500,pertinenza,slot,citazioni e
+grounding invariati. UI invia originale,blocca oltre4000senza tagli,contaUnicode,
+mantiene copia nella scheda per progetto/conversazione e consente recupero
+manuale/riuso dei turni server. Nessun reinvio automatico o nuova persistenzaDB.
+Storage non disponibile segnalato;prima della ricezione la copia è limitata
+alla scheda,poi la cronologia server conserva l'originale. Nuove bozze protette.
+
+53nuovi test(33backend+20frontend),2.877backend PASS217,26s,126frontend PASS6,70s,
+Ruff/lint/build PASS. Testlimiti,Unicode,spazi,righe,errori,scope,attribuzioni,
+valori1501,storage/reload/cambiochat/nuovachat/bozza durante richiesta.
+22audit/DOCX precedenti identici senza rete/SQLite,Minervino61/61,CRAA9XML.
+RED e difetti harness conservati e distinti dagli errori del prodotto.
+
+Nuova sessione realeUI bc286f4fd88d46d89d55edf0595d68e7,versione7 GENERATED:
+risposta3113caratteri recuperata dopo reload e identica inHTTP,router,guard,
+cronologia eSQLite. Tre ricevute:ruolo firmatarioTRUE,coerenzaCCIAA SKIP,
+fatturato SKIP. Nessuna attestazione implicita o nuovo dato personaleUSER.
+13fatti grounded/13assegnazioniMODEL;2anni rifiutatiFORM,2fatturati come
+alternative nonselezionate,9proposte singole grounded/revisionate,7applicabili/
+scritteSOURCE,0USER/checkbox/indebite rilevate. Due CCIAA rinviati e nomefirmatario
+omesso restano vuoti. Il reale non esercita il vecchio reason225:non dichiararlo
+corretto. Quote4000provate nel software;nel reale estratti decisionali brevi.
+
+DOCX/XML/posizioni/8tabelle/prestampato/stili/download verificati;tcPr/trPr/tblPr/
+tblGrid intatti. PDF7pagine,7valori leggibili,viste1/4/7,0fuoribordo. CCIAA
+invisibili non toccati:nuove celle vuote non verificano la visibilità. Unioni
+etichette/valori restano;Worddesktop nonprovato. Primo driver senzaPTY:
+stessa conversazione riaperta,nessuna nuova globale;primo trace incompleto,
+secondotrace/video finalizzati.15GETabortite finali,nessunPOSTfallito/providererror.
+
+Una globale reale nuova,7chiamatetotali,95.674token,87,21sglobale,96,42sHTTP,
+0,021002USD stimati. StessiFORM/22SOURCE/modello/thinking/promptglobale.
+Codice invariato durante la prova;nessun retryqualità o stato manipolato.
+Modificati compilation_chat.py e ProjectWorkspacePage.tsx,nuovo helper frontend;
+API/DB/FORM/writer/parser/grounding/binding/modello invariati. Nessun framework.
+
+Preservati1.358altrifile,29sessionilive,285filestorage,37sessionipregresseclone,
+una nuova isolata.116hashbackend/frontend congelati. Backup verificabile delle
+acquisizioni con codice prima/dopo,senzaDB/chiavi/env;23ricostruzioni offline e
+contratto estratti prima/dopo. Grezzi backend/data/compilation-audit/craa-user-20261020-01.
+Servizi isolati fermati. Nessuna migrazione/reindicizzazione/commit/push/baseline
+adottata. Arresto dopo consegna. Residui:metadato MODEL225,nomefirmatarioCRAA,
+visibilitàCCIAA e dialogo restano interventi distinti,non avviati automaticamente.
+
+## Generalità del firmatario fra moduli — concluso il 20 ottobre
+
+[Rapporto](docs/firmatario-generale-2026-10-20.md),
+[controlli](docs/benchmarks/2026-10-20-signatory-checks.json),
+[consegna](<benchmark ufficiale/firmatario-generale-20261020-01/README.md>),
+[DOCX finale reale](<benchmark ufficiale/firmatario-generale-20261020-02/e2e/trapani/bozza.docx>).
+
+Cause: vecchio riuso legato a una sola sequenza completa di campi e nessun
+collegamento backend dalla scelta nominativa esplicita nel turno iniziale.
+Nuovo riconoscitore FORM di blocchi personali ancorati, etichette individuali,
+paragrafi di continuazione e tabelle semplici contigue; arresto su ambiguità,
+altri soggetti o strutture non supportate. Nessuna regola per nomi di bandi/aziende.
+Scelta USER registrata nella stessa sessione identifica la persona, non ne prova
+i dati. Profilo SOURCE univoco con nome/cognome/CF, proprietà e citazioni separate,
+validatori e attribuzione esistenti. Nessuna inferenza di poteri o partecipazione.
+Veto aggiunto nel collegamento per fatti già grounded di società/altra persona
+in quelle destinazioni. Fonte rimane documentata, associazione respinta.
+
+Modificati soltanto source_reuse/global_sessions e nuovo signatory_form;
+contesto USER persistito nelle nuove sessioni, audit MODEL intatto e audit
+effettivo distinto, riuso prima della sintesi e rivalidato all'export. Nessuna
+approvazione o applicabilità automatica; vecchie sessioni non aggiornate.
+FORM B0, grounding/binding fattuali, modello, prompt, API, DB, parser e writer invariati.
+
+51 nuovi test permanenti (45 locali+6 sessioni FTS5/Qdrant),327 mirati PASS47,55s,
+2.844 backend PASS321,95s,Ruff PASS. Insuccessi intermedi conservati. Dieci replay
+storici con DOCX identici, Minervino61/61. Con contesto USER già registrato:
+8 proposte Trapani,4 Bella,2 Catanzaro;9 proprietà Minervino preservate.
+Nuove proposte non esportate con vecchie revisioni. Catanzaro celle composte
+nascita/residenza e carica non collegata restano irrisolte, senza concatenazioni.
+
+Due nuove prove reali UI distinte: prima17SOURCE,poi17SOURCE dopo veto sui
+controesempi; nessuna modifica dentro le prove e nessun retry per qualità.
+Finale sessione b7d40c2449ad421580fe267547ac7964,versione7 GENERATED:9 proposte MODEL
+grounded+8 personali riusate,17 applicabili/revisionate/scritte,0USER/checkbox,
+0 scritture indebite rilevate. Recuperate8/8 generalità di Trapani. PEC dichiarativa,
+firma,data e altri dati procedurali non verificati vuoti. Quattro rami alternativi
+UNKNOWN conservati. Resta una conferma duplicata dell'identità iniziale.
+PDF5pagine,XML/posizioni/prestampato/stili/tabelle/download verificati; viste1/2/3/5.
+Difetto cosmetico aLecce conservato, Word desktop non provato.
+
+Finale7chiamate(1globale),95.023token,globale70,76s,HTTP79,89s,0,019047USD stimati.
+Due prove16chiamate/210.373token/0,042370USD stimati,non fattura. Stessi22SOURCE,
+deepseek-flash enabled/low globale,prompt e hash congelati. Controfattuale stesso
+output della prima prova:codice precedente9→finale17 senza nuove inferenze.
+Il civico aziendale completo nella seconda prova è variazione MODEL, non effetto
+del riuso. Valori SOURCE e scelte procedurali USER sempre distinti.
+
+Preservati1.426 altri file,29sessioni live,285file storage,35/36sessioni precedenti
+nei due cloni;2nuove isolate.67hash applicativi finali invariati durante la prova.
+Backup separato delle due acquisizioni con verifica estratta senza rete/DB nella
+consegna; grezzi sotto backend/data/compilation-audit/firmatario-generale-20261020-01
+e -02. Servizi isolati fermati. Nessuna migrazione/reindicizzazione/commit/push.
+Nessuna baseline adottata. Arresto dopo rapporto; limiti di copertura e dialogo
+documentati per la prossima decisione, nessun lavoro ulteriore avviato.
+
+## PEC Trapani: dato SOURCE separato dall'impegno USER — concluso il 20 ottobre
+
+[Rapporto](docs/pec-consenso-procedurale-2026-10-19.md),
+[controlli](docs/benchmarks/2026-10-20-pec-consent-checks.json),
+[consegna](<benchmark ufficiale/pec-consenso-20261019-01/README.md>),
+[DOCX reale](<benchmark ufficiale/pec-consenso-20261019-01/e2e/trapani/bozza.docx>).
+
+Causa dimostrata: PEC corretta in SOURCE ma riusata in «di accettare…» senza
+consenso USER. Il MODEL la trattava come data, senza condizioni, con citazione
+FORM abbreviata. Il narratore disponeva della clausola intera e non chiedeva
+consenso: non bastava allargare la citazione. Nuovo gate circoscritto sul FORM
+fisico per impegni espliciti nella stessa clausola marcata; dato, applicabilità,
+revisione e consenso restano distinti. Non cambia il grounding o i binding.
+
+Domanda deterministica con dichiarazione e valore; ricevuta legata a template,
+clausola, destinazioni, valori e sessione. Solo assenso USER esplicito pertinente
+autorizza l'uso procedurale; SKIP/UNKNOWN/diniego/export non lo fanno. Vincolo
+anche nell'export diretto e nella vista pubblica chat, per valori SOURCE/USER.
+Nessun nuovo schema globale, endpoint o sistema di orchestrazione. Modificati
+solo global_dialogue/global_sessions e nuovo compilation_procedural_consent.py.
+Parser FORMTEXT, writer, modello, API, DB e prompt applicativi invariati.
+
+49 test permanenti nuovi, 248 mirati PASS in36,96s, 2.793 backend PASS in218,66s,
+Ruff PASS. Test iniziali RED e insuccessi intermedi conservati. Nove replay:
+Trapani10→9, p107 ripristinato all'XML originale; gli altri otto DOCX identici,
+compreso Minervino V12 61→61. Nove audit fattuali identici. Nessuna perdita di
+scritture corrette nel confronto congelato. PDF Trapani prima/dopo cinque pagine.
+
+Una nuova chat reale, sessione331f4362017a42dc86f223ea0c8c46c7, finale10 GENERATED:
+una globale, nove fatti grounded, dieci proposte grounded/applicabili/revisionate,
+nove testi SOURCE effettivi, zero USER/checkbox. La PEC resta nei dati aziendali;
+la dichiarazione resta vuota dopo ricevuta USER SKIP, pur senza hold del narratore.
+Zero scritture non supportate o in sezione errata rilevate; otto proprietà complete,
+una via corretta senza civico172/C disponibile ma omesso dalla nuova risposta.
+Otto generalità del firmatario ancora omesse; data/firma volutamente vuote.
+
+Due turni USER, tre decisioni/quattro domande: un duplicato societario preesistente,
+per has_user_alternatives che scambia «o» in «senza raggruppamenti o consorzi» per
+un'alternativa; guard aveva risposto SUPPORTED. Seconda conferma accettata.
+Non corretto altro durante la prova. DOCX/XML/posizioni/stili/tabelle/download
+verificati; PDF cinque pagine, nove valori leggibili a pagina2, viste1/2/3/5,
+nessuna parola oltre bordo. Dieci GET abortite a mount/refresh, nessun errore provider.
+
+Stessi22SOURCE, deepseek-flash enabled/low globale, prompt e configurazione
+congelati prima della chiamata; nessun riuso/retry qualità. 10 chiamate totali,
+109.176token, globale65,86s, somma HTTP77,22s, 0,019564USD stimati sul tariffario
+congelato, non fattura. Caso positivo di assenso provato nei test simulati;
+la singola nuova prova reale usa il rinvio dello scenario, non un consenso inventato.
+
+Preservati1.333 altri file,29 sessioni live,285file storage e34sessioni precedenti
+nel clone; una sola nuova sessione. Hash66file applicativi intatti durante la prova.
+Grezzi in backend/data/compilation-audit/pec-consenso-20261019-01/; backup separato
+nella consegna. Porte isolate8001/5174 libere. Nessun commit/push o adozione baseline.
+Copertura dichiarata limitata a verbi e clausole riconosciuti: impegni impliciti o
+fra paragrafi/celle distinti non certificati. Nessuna migrazione/reindicizzazione.
+Arresto dopo rapporto; residui di copertura/dialogo documentati per decisione futura.
+
+## Attribuzioni tabellari: verifica e veto circoscritto conclusi — 19 ottobre
+
+[Rapporto](docs/attribuzioni-tabellari-2026-10-19.md),
+[consegna](<benchmark ufficiale/tabelle-attribuzione-20261019-01/README.md>),
+[esito](<benchmark ufficiale/tabelle-attribuzione-20261019-01/ESITO.json>).
+
+Nessuna nuova attribuzione indebita rilevata nei valori tabellari degli output
+reali salvati. Riprodotti invece quattro controesempi controllati sul FORM e
+sulle SOURCE reali Catanzaro: denominazione/CF societari in celle personali e
+denominazione/forma giuridica nei dati del direttore tecnico. Non sono nuove
+risposte LLM. Prima 4/4 proposte errate grounded, dopo 0/4; applicabilità e
+revisione distinte, nessuna pretesa di quattro scritture reali osservate.
+
+Esteso solo compilation_attribution.py alle righe etichetta–valore riconoscibili,
+con due celle fisiche. Soggetto dalle etichette FORM, non da label/entity MODEL.
+Confini per righe vuote/sconosciute, etichette compilabili, checkbox, annidamenti,
+merge verticali e altre tabelle. Operatore economico da solo resta ambiguo,
+non diventa automaticamente azienda. Nessuna ricostruzione generale di record
+multicolonna o identità per somiglianza del nome. Un header non ripetuto non
+viene promosso a citazione valida per il binding. UNKNOWN e citazioni invariati.
+
+23 test tabellari permanenti nuovi, fixture reale Catanzaro e guida aggiornata.
+347 mirati PASS in 28,75 s, 23 tabellari finali PASS in 3,16 s; intera suite
+backend 2.744 PASS in 209,28 s; Ruff PASS. Nove audit e DOCX ricostruiti identici:
+sei riferimenti 55/10/13/4/9/0, Minervino V12 61, Cesano corretto 1, ultimo
+Catanzaro reale 15. Nessuna perdita o nuova accettazione nei replay.
+Non ripetuto il rendering: stessi byte dei DOCX precedenti già ispezionati.
+
+Esaminate 37 scritture in tabelle: 35 SOURCE, due USER, con ripetizioni fra i
+riferimenti. Il vincolo di tipo soggetto determina 13 SOURCE, non determina 22.
+Non è una verifica semantica universale; strutture non determinate restano
+sotto i controlli storici e la revisione. Residui, checkbox e difetti storici
+Trapani/CRAA non corretti. Nessuna nuova adozione baseline.
+
+Preservati 1.085 altri file precedenti, 29 sessioni live e 285 file storage.
+Zero chiamate/provider, costi LLM o nuove sessioni. Parser FORMTEXT, writer,
+FORM B0, modello, API, prompt e dialogo invariati. Grezzi in
+backend/data/compilation-audit/tabelle-attribuzione-20261019-01/; consegna con
+backup e verifica separati. Nessun commit/push. Arresto alla verifica richiesta;
+chiusa la lacuna per questa famiglia, non dichiarate sicure tutte le tabelle.
+
+## Attribuzione SOURCE: sette falsi trasferimenti bloccati, regressione e prova casuale concluse — 19 ottobre
+
+[Rapporto](docs/attribuzione-source-soggetto-campo-2026-10-19.md),
+[consegna](<benchmark ufficiale/source-attribuzione-20261019-01/README.md>),
+[prima/dopo e regressione](<benchmark ufficiale/source-attribuzione-20261019-01/regressione.json>),
+[risultato reale](<benchmark ufficiale/source-attribuzione-20261019-01/E2E-RISULTATO.json>).
+
+Aggiunto un veto V12 per soggetti espliciti nel FORM inline, indipendente da
+etichette MODEL: non trasferire dati aziendali nel periodo del sottoscrittore.
+Mantiene i passaggi espliciti alla società, non inferisce identità/poteri e non
+unisce persone. Rifiuta anche qualificazioni di luogo esplicitamente incompatibili
+(es. residenza/studio). Ambito limitato ai paragrafi inline riconoscibili; non è
+un risolutore semantico universale o nuovo controllo dei soggetti nelle tabelle.
+Nessun allentamento dei binding/grounding. Modificati solo il verificatore globale
+e il nuovo helper applicativo; parser FORMTEXT, writer, API, modello, prompt e
+dialogo invariati. Audit compatibili intatti per conservare le revisioni.
+
+Cesano stesso output reale: 8 fatti societari grounded conservati; proposte
+grounded e scritture 8→1, esattamente sette trasferimenti non dimostrati esclusi.
+Denominazione aziendale conservata. Nessun nuovo valore o spunta; tre generalità
+SOURCE e checkbox societaria restano omesse. DOCX/PDF prima/dopo separati.
+Sei riferimenti: 55/10/13/4/9/0 invariati; Minervino V12 chat 61→61, DOCX identico.
+Nessuna nuova accettazione o perdita di scritture corrette. Render di otto replay,
+57 pagine, bordi controllati; PDF invariati con stesse parole/coordinate.
+PEC Trapani e due CCIAA CRAA invisibili restano difetti storici, non corretti.
+
+39 test permanenti nuovi più fixture reale; 324 mirati PASS, 2.721 backend PASS
+in 211,25 s, Ruff PASS. Prima riproduzione negativa, poi correzione, poi freeze.
+Nuova estrazione tra dieci originali disponibili escluso Cesano: Catanzaro,
+seed 13243375443350163391, nessuna riestrazione. Versione e configurazione
+registrate prima della chiamata. Stessi 22 SOURCE, deepseek-flash, globale
+thinking enabled/low e system prompt invariati, fingerprint e72d3c7f663d3e1383b00b3884cb4501.
+
+Una sessione UI nuova b47a62f824894850bab0c058b322051a, versione10 GENERATED.
+Una globale reale: 15 proposte valore, 13 grounded/applicabili/revisionate/scritte
+SOURCE; due valori USER scritti (firmatario e titolo), con riscontro SOURCE.
+15 totali leggibili nel PDF17 pagine. Zero attribuzioni indebite o sezioni errate
+rilevate, zero nuove checkbox; numero registro corretto ma senza data richiesta.
+Riferimento autoriale storico: 31 posizioni SOURCE, 15 scritte,16 vuote
+(14 omesse,2 respinte per FORM/binding locale), oltre alla data parziale.
+Non è un GOLD indipendente o percentuale di accuratezza. Nessun riuso automatico
+dell'anagrafica tabellare; UNKNOWN Parte terza/forma partecipazione non collegati
+a dati/decisioni già disponibili. Zero gruppi checkbox proposti. Quattro domande
+ridondanti col messaggio iniziale, una procura condizionata rinviata; due risposte
+USER poi export ordinario. Cinque gruppi di decisioni non inventati e UNKNOWN.
+
+10 chiamate, 181.386 token,193,16 s HTTP sommati,0,043697 USD stimati, non fattura.
+Globale 181,33 s, 45.115 output inclusi 35.332 reasoning. Nessun retry o correzione
+durante la prova. XML/ZIP/posizioni/prestampato/stili/tabelle/checkbox controllati;
+viste pagine1,2,11,17, tutti i 15 valori leggibili. Dieci GET abortite su mount/refresh,
+nessun altro errore registrato; trace/video finalizzati, download identico.
+
+967 altri file precedenti, 279 file audit precedente,29 sessioni live e 285 file
+storage invariati. Clone: 33 sessioni precedenti intatte, una nuova; servizi isolati
+fermati. Grezzi in backend/data/compilation-audit/source-attribuzione-20261019-01/;
+backup distribuibile con hash nella consegna, senza DB/chiavi. Nessun commit/push.
+Correzione mirata PASS; bozza Catanzaro parziale utilizzabile nei limiti osservati.
+Non adottata la baseline né certificata affidabilità generale. Arresto dopo
+replay, prova e rapporto; nessuna nuova correzione o compattazione avviata.
+
+## Regressione FORMTEXT PASS, qualità E2E Cesano FAIL — 19 ottobre
+
+Verifiche e prova richieste concluse, funzionalità complessiva non dichiarata
+chiusa. [Rapporto](docs/regressione-formtext-e2e-2026-10-19.md),
+[controlli](docs/benchmarks/2026-10-19-formtext-e2e-checks.json),
+[metriche](docs/benchmarks/2026-10-19-formtext-e2e.json),
+[consegna e file modificati](<benchmark ufficiale/formtext-cesano-20261019-01/README.md>).
+
+Nessun file applicativo cambiato in questa fase. Estesa la conservazione XML
+nei 15 negativi esistenti; aggiunti test reali e 26 file di fixture congelate.
+55 casi permanenti nei due file FORMTEXT, 28 aggiunti. 258 mirati in 22,25 s,
+2.682 backend in 205,02 s e Ruff passati prima della nuova globale.
+20 ID e risultati reali verificati tutti insieme e singolarmente, ordine
+rimescolato, nomi duplicati, run multipli, malformati/annidati/precompilati,
+firme, stili e parti del pacchetto protetti.
+
+Sei cataloghi, audit ed export precedenti ricostruiti identici; PDF nuovi con
+testo/coordinate identici. Tutti i 20 sentinella Cesano leggibili.
+Due CCIAA CRAA invisibili ed errore PEC Trapani conservati, non regressioni.
+Indirizzi Catanzaro leggibili a pagina 1/11 nonostante intercalazione delle
+etichette nel testo estratto. Controllati i bordi delle 48 pagine preflight,
+viste pagine selezionate; nessuna verifica Word desktop, non richiesta.
+
+Una nuova sessione reale 226639266b2c4b4a8aaacc2e1f25b65d, conversazione
+conv-436e1eb7ce2d4b6d, progetto verifica-formtext-v12-cesano, FORM176,
+versione finale10 GENERATED. Stesso originale/scenario e 22 SOURCE;
+modello, parametri globali e system prompt confrontati prima dell'inoltro.
+Una globale reale, nessun riuso/retry qualità, nessuna manipolazione dello stato.
+Due risposte USER sul ramo societario e data UNKNOWN; export/download/refresh
+ordinari. Primo avvio browser a server spenti dopo riprendi, prima di ogni
+LLM/sessione, conservato; riavviato stesso progetto.
+
+Otto proposte/grounded/applicabili/revisionate/scritte; tutti gli otto valori
+nelle posizioni XML previste e leggibili nel PDF di tre pagine. Una sola
+corrispondenza soggetto/campo dimostrata: denominazione p19.ft0. Sette dati
+societari nello studio/PIVA/recapiti del sottoscrittore senza prova o conferma
+di quella pertinenza: non falsi fatti aziendali, ma scritture non certificabili.
+Tutti entity=company, nessun binding: il gate personale si attiva con person
+o binding_id, non verifica autonomamente il soggetto richiesto da questi campi.
+Tre dati personali disponibili omessi, spiegazione MODEL su c_firmatario
+inesistente fra le condizioni effettive. Il riuso inline non riconosce la
+grammatica di Cesano; scelta nominativa solo nel messaggio iniziale, nessuna
+ricevuta sul campo. Zero choice_groups, checkbox societaria non selezionata.
+Data rinviata e altri 12 testi vuoti intatti; zero spunte/firme inventate.
+Problemi distinti da FORMTEXT, documentati e non corretti.
+
+10 chiamate reali (1 globale, 4 router, 2 guard, 3 sintesi), 111.691 token,
+99,90 s HTTP sommati, 0,022380 USD stimati, non fattura. Deepseek-flash,
+globale enabled/low, fingerprint e72d3c7f663d3e1383b00b3884cb4501.
+Tutte HTTP200/stop. Trace/video finalizzati, dieci GET abortite su mount/reload.
+XML/CRC/posizioni/68 checkbox/stili/prestampato verificati, download e
+ricostruzione writer identici, nessun altro cambiamento alle parti del DOCX.
+
+328 altri file protetti, 632 artefatti precedenti, 29 sessioni live e 285 file
+storage invariati. Nel clone 32 sessioni precedenti intatte, una nuova.
+Grezzi in backend/data/compilation-audit/formtext-chiusura-20261019-01/.
+Backup con codice/fixture/audit/browser senza DB/chiavi nella consegna;
+servizi isolati fermati. Nessun commit/push o modifica agli altri componenti.
+
+Tutti i controlli obbligatori eseguiti. Supporto tecnico FORMTEXT PASS;
+qualità funzionale FAIL, quindi nessuna chiusura complessiva o adozione baseline.
+Prossima fase da decidere: associazione soggetto/campo, firmatario e gruppi di
+scelta. Nessuna correzione indipendente, nuova generazione o E1 avviati.
+
+## FORMTEXT: riconosciuti i 20 campi testuali legacy — 19 ottobre
+
+Concluso l'intervento strutturale richiesto, senza nuove chiamate LLM.
+[Rapporto](docs/legacy-formtext-2026-10-19.md),
+[misure](docs/benchmarks/2026-10-19-legacy-formtext.json),
+[controlli](docs/benchmarks/2026-10-19-legacy-formtext-checks.json).
+Word/PDF tecnici in `nuovi dati`, suffisso Cesano.FORMTEXT-PROVA-TECNICA-20261019;
+[limiti della prova](<nuovi dati/LEGGIMI-CESANO-FORMTEXT.md>).
+
+Unico file applicativo modificato in questa fase: docx_templates.py.
+Il parser prima scartava ogni paragrafo con fldChar/instrText. Ora riconosce
+FORMTEXT semplici, completi, vuoti, abilitati e non annidati nello stesso
+paragrafo, con ID p{paragrafo}.ft{indice}. I nomi interni duplicati non sono
+chiavi: tutti i 20 Cesano si chiamano Testo1. Quindici campi iniziali, quattro
+nei rami e una data: catalogo da 68 a 88 candidati, tutte le 68 checkbox
+preesistenti conservate. Contesto e prove FORM usano il contratto attuale.
+
+Writer sul solo risultato del campo; proprietà, bookmark, istruzioni e stili
+preservati. Supportati anche risultati senza nodi di testo. Test aggiuntivo
+riproduce un conflitto di offset fra risultati vuoti adiacenti; corretto con
+precedenza per start/end decrescenti. Firme, email divise/incomplete e limiti
+restano controllati; maxLength Word esplicito rispettato senza troncamento.
+Campi malformati, annidati, su più paragrafi, precompilati, disabilitati/bloccati,
+con formato/tipo speciale o in contenitori non sicuri restano esclusi.
+Non è supporto universale a qualsiasi controllo Word.
+
+Prova meccanica su tutte le 20 destinazioni con sentinella distinti, più quattro
+dati SOURCE dello scenario assegnati esplicitamente nel test. Valori controllati
+localmente, posizioni e XML verificati; entrambi i PDF hanno tre pagine e tutti
+i valori leggibili, nessuna parola fuori pagina. Viste pagine 1 e 3 di entrambi;
+nessuna prova Word desktop. Zero checkbox spuntate, nessuna firma/attestazione.
+**Non sono proposte LLM o nuova compilazione chat**: non si dichiarano verificate
+automaticamente scelta del firmatario e applicabilità. I restanti 16 campi
+sono vuoti nella prova SOURCE; quella con 20 sentinella non è una domanda valida.
+
+Replay senza rete sui sei documenti: Minervino/Trapani/Catanzaro/Bella/CRAA
+conservano cataloghi e audit identici, export byte per byte identici con
+54+1 checkbox/10/13/4/9 scritture. Riferimenti: benchmark ufficiali nuovi,
+non il precedente replay Minervino61. L'errore PEC Trapani e i due dati CCIAA
+invisibili CRAA restano intatti. Cesano conserva tutti i precedenti 68 candidati
+e la vecchia risposta scrive ancora zero; 20 nuovi campi irrisolti nell'audit,
+nessun recupero automatico o nuova accettazione dal replay.
+
+27 nuovi casi, 230 test mirati in 15,00 s, 2.654 backend in 197,46 s e Ruff
+passati sulla versione finale. RED e primi errori degli assert separati;
+la suite da 2.651 casi precedente all'ultimo caso limite non è l'esito finale.
+317 altri file protetti, 546 artefatti precedenti, 29 sessioni e 285 file storage
+invariati, nessuna sessione nuova. Prompt globale, grounding, dialogo, API,
+database, modello e FORM originali invariati. Nessun commit/push o refactor.
+Grezzi in backend/data/compilation-audit/legacy-formtext-20261019-01/; backup
+separato con codice prima/dopo, originali, replay e DOCX/PDF in docs/benchmarks.
+
+Le sessioni esistenti non sono migrate. Le nuove destinazioni sono disponibili
+alle nuove sessioni; non si rivaluta retroattivamente il benchmark casuale.
+Prossimo passo da decidere: nuova prova controllata di Cesano dalla chat con
+stessa KB/scenario per misurare proposte e scritture reali. Non avviata in
+questa fase. Nessun E1 o adozione di baseline; arresto dopo rapporto e artefatti.
+
+## V12 invariata su tre bandi nuovi estratti da un pool — 19 ottobre
+
+Conclusa la prova esplorativa autorizzata dopo il benchmark storico.
+[Rapporto completo](<benchmark ufficiale/casuali-v12-20261019-01/RAPPORTO.md>),
+[consegna e backup](<benchmark ufficiale/casuali-v12-20261019-01/README.md>),
+[riepilogo](docs/benchmark-casuale-v12-2026-10-19.md). Grezzi in
+`backend/data/compilation-audit/casuali-v12-20261019-01/`.
+
+Protocollo, criteri, pool obiettivo di otto e seed fissati prima della ricerca;
+ricerche estese prima del sorteggio. Una sola estrazione: CRAA, Bella, Cesano
+Maderno. Pool di convenienza con estrazione casuale interna, non campione
+rappresentativo nazionale. Nessun GOLD indipendente, percentuale di accuratezza
+globale o sostituzione dei casi difficili. Tre nuove CompilationSession dalla
+UI, una globale nuova per FORM, stessi 22 chunk Company/General, scenari USER
+separati preregistrati e normale export, senza manipolazioni dello stato.
+
+CRAA: nove testi SOURCE corretti nell'XML, soltanto sette leggibili nel PDF;
+due dati CCIAA in celle originali di 66/81 twip non sono visibili in LibreOffice.
+Un nome documentato omesso; il chiarimento proposto è respinto per motivazione
+di 225 caratteri, oltre il massimo 200. Bella: quattro testi aziendali scritti,
+quattro proprietà documentate del firmatario omesse, gruppo della partecipazione
+respinto per etichette FORM incomplete. Cesano: zero valori aggiunti, copia
+ordinaria tecnicamente valida ma fallimento funzionale della compilazione.
+La chat espone 68 checkbox e nessuno dei 20 campi legacy FORMTEXT; il chiarimento
+societario sulla checkbox è respinto. Il preflight generico aveva previsto
+il rifiuto prima della sessione: addendum separato documenta la smentita reale,
+senza riscrivere gli input congelati.
+
+Tredici valori corretti nell'XML, undici leggibili nel PDF. Zero nuove scritture
+fattuali/decisioni indebite rilevate, zero nuove checkbox o testi USER, nessun
+hold finale. Questo non annulla il precedente errore PEC. Nucleo SOURCE vuoto:
+1/4/4 occorrenze, tutte con dati nell'input; cinque omissioni e quattro senza
+destinazioni supportate. Nessuna proposta di valore SOURCE respinta nei tre
+casi. CRAA/Bella ripetono una domanda per il falso riconoscimento di alternative
+nella negazione “senza raggruppamenti o consorzi”. Preferenze, attestazioni,
+esecutori, integrazione e luogo/data restano distinti e UNKNOWN.
+
+22 chiamate reali, tre globali nuove, nessun retry di qualità: 271.084 token,
+291,57 secondi provider sommati, 0,060070 USD stimati, non fattura. Modello
+deepseek-flash, globale thinking enabled/low e codice invariati rispetto alla
+V12 precedente. Nessuna conclusione comparativa di latenza.
+
+Verificati XML/ZIP, posizioni, prestampato, checkbox, download e PDF di 7/4/3
+pagine; controllo bordi su tutte le 14, ispezione visiva di pagine selezionate.
+Due difetti di visibilità CRAA distinti dalle scritture XML. Replay con rete
+vietata ricostruisce audit e DOCX identici; backup con codice congelato e
+verifica indipendente, senza database privati o credenziali.
+Invariati 318 file protetti, 41 input, 422 artefatti precedenti, 29 sessioni
+originali e 285 file storage; tre sole sessioni nuove, schema DB intatto.
+Servizi isolati arrestati, nessuna suite completa rieseguita o modifica al
+codice applicativo, prompt, grounding, writer, FORM o modello; nessun commit/push.
+
+**Baseline non adottata.** Prima di un altro E1 propongo verifiche mirate sulle
+destinazioni Word, sui chiarimenti e sulla scelta della persona; nessuna
+correzione è stata avviata. Se questi casi saranno usati per lo sviluppo,
+la futura valutazione finale richiederà un lotto nuovo. Arresto alla consegna.
+
+## Benchmark ufficiale V12: tre globali nuove, baseline non adottata — 19 ottobre
+
+Conclusa la prova controllata sui tre moduli storici, senza correzioni alla
+pipeline o ripetizioni selettive. [Rapporto](<benchmark ufficiale/RAPPORTO-CONCLUSIVO.md>),
+[consegna](<benchmark ufficiale/README.md>), [riepilogo](docs/benchmark-ufficiale-v12-2026-10-19.md).
+Risultati in `benchmark ufficiale/`; grezzi in
+`backend/data/compilation-audit/ufficiale-v12-20261019-01/`, con backup completo
+nella directory di consegna, senza database o credenziali.
+
+Tre nuove CompilationSession dalla UI reale, una globale DeepSeek nuova per
+FORM, medesimi 22 chunk Company/General, scenari USER distinti preregistrati,
+massimo due turni USER e normale export. Minervino: 55 scritture, ossia 54 testi
+SOURCE corretti e una checkbox USER. Trapani: 10 testi, nove corretti e una PEC
+che completa un'accettazione senza decisione USER. Catanzaro: 13 testi SOURCE
+corretti, nessuna checkbox. Nessuna firma o altra nuova attestazione; zero hold
+finali. Copertura SOURCE documentata: 60/17/31 posizioni; vuoti: 6/8/18, dei quali
+6/0/2 rifiuti e 0/8/16 omissioni. Tutte le prove di questi vuoti erano nell'input.
+Sono occorrenze in campi, non fatti atomici distinti o accuratezza globale:
+il totale degli adempimenti ancora UNKNOWN non è definito.
+
+Minervino conserva i 24 campi soci e recupera nove generalità/carica SOURCE
+dalla scelta USER del firmatario. Quattro campi del direttore sono respinti
+per le prove del nuovo binding, prima del narratore; anche provincia con solo
+marker FORM e Comune con indirizzo proposto sono respinti. Trapani/Catanzaro
+non riusano le generalità: la grammatica inline specifica non riconosce i loro
+FORM. Catanzaro ha zero choice_groups, 18 vuoti SOURCE fra parte terza/CCIAA e
+anagrafica; tre checkbox autorizzate restano vuote. In tutti i casi la negazione
+“senza raggruppamenti o consorzi” è respinta come alternativa, nonostante router
+e guard favorevoli: una domanda ripetuta per documento. Nessun fix effettuato.
+
+30 chiamate reali, tre globali, 463.201 token, 399,32 s di tempi HTTP sommati,
+0,099946 USD stimati da usage/cache e tariffa ufficiale, non fattura. Globale
+con thinking enabled/low invariato; alias deepseek-flash, fingerprint comune
+`e72d3c7f663d3e1383b00b3884cb4501`. Trapani ripresa nella stessa sessione alla
+versione 6 dopo interruzione del runtime, senza reinvio o nuova globale;
+wall time comprensivo della pausa, primo trace browser non finalizzato.
+
+ZIP/XML/posizioni/prestampato/checkbox/download verificati; PDF di 9/5/17
+pagine, nessuna parola fuori pagina sulle 31 pagine. Ispezionate visivamente
+pagine scritte, iniziali e finali selezionate. Replay con rete vietata: audit
+finali e tre DOCX identici, incluso l'errore di Trapani. Invariati 318 file
+protetti, 26 input, 645 artefatti precedenti, 29 sessioni live e 285 file storage;
+soltanto tre sessioni nuove, schema DB intatto. Servizi isolati arrestati.
+Nessuna nuova suite completa, commit/push, E1 o adozione della baseline.
+**Non propongo il congelamento come baseline affidabile**, per la scrittura
+indebita di Trapani. Prossimo passo da decidere: confine fra SOURCE e consenso
+procedurale, prima di E1. Arresto alla consegna richiesta.
+
+## Prova reale della chat V12: confermate61 scritture — 19 ottobre
+
+Richiesta conclusa: una sola nuova sessione isolata, nessuna correzione durante
+la prova e nessun commit/push. [Rapporto](docs/prova-chat-v12-hold-2026-10-19.md),
+[misure](docs/benchmarks/2026-10-19-v12-holds-chat.json),
+[otto tracciati](docs/benchmarks/2026-10-19-v12-holds-chat-trace.json),
+[controlli](docs/benchmarks/2026-10-19-v12-holds-chat-checks.json).
+Word/PDF/report/conversazione: nuovi dati, V12-CHAT-REALE-20261019.
+
+Sessione9bd60112c34247f799d320137d81831f,conv-5037d9a1b3554423,versione9GENERATED.
+Come nel riferimento, una risposta globale congelata riusata su FORM/56SOURCE/
+schema identici; router,guard,narratore reali,UI senza mock. Non una nuova
+valutazione della qualità globale. Gli stessi3messaggiUSER letterali inviati
+dalla chat, nessuna ricevuta copiata: CONDITION_TRUE societaria e SKIP tecnico,
+nessun valore testualeUSER. Firmatario e dati personali sempre SOURCE.
+
+**60testiSOURCE+1checkboxUSER=61**, rispetto a53 della precedenteUI e61replay.
+Tutti52precedenti e24soci conservati;8DT scritti e conformiGOLD. Narratore in
+tutte3risposte non proponehold: non interviene la regola di rifiuto dei motivi
+ridondanti. Questo differisce dalreplayB, doveMODELmanteneva8hold. AuditSOURCE
+identico,60revisionate,nessun aggiornamento artificialeUNKNOWN o consensoSKIP.
+DOCXscaricato e salvato identico byteperbyte alreplay61(SHA84e33e...feddd).
+Solap39.cb0 selezionata,12altreintatte,0deselezioni/nuove indebite osservate.
+
+CinquegruppiUSER ancora aperti,nessuna preferenza/attestazione/designazione/
+luogo-data inventata.4testiUSER attesidalGOLD restanovuoti. Nello scenario0hold
+fattualilegittimi osservati: protezioni verificate separatamente dai18negativi
+esistenti,18passati1,43s,senzaLLM. Nessuna suitecompleta oRuff rieseguiti per
+questa prova; i2627test del precedente intervento restano misure storiche.
+
+7chiamate provider reali(3router,3sintesi,1guard),69815token(68766input+1049output),
+13,171s richieste sommate,0nuoveglobali/1riuso,0retry qualità;USDnonstimato.
+Durata wall include operatore/driver,nessuna conclusione sulle prestazioni.
+Incidentestdin driver: prima fase poi reload della stessa conversazione conPTY,
+nessuna seconda sessione o reinvio. Primo trace/video e dettagli5segnalazioni
+nonfinalizzati;DOM/rete/trasporti disponibili. Continuazione trace/video e10GET
+abortite su mount/reload,0pageerror/HTTPerroriacquisiti;download/refresh riusciti.
+Errori lettori di audit corretti soltanto negli script,mai nell'applicazione.
+
+XML/CRC/posizioni/prestampato/report,4tabelle/13controlli verificati;59/60testi
+conformiGOLD,carica completa attestata giànota. NuovoPDF9pagine,viste3e9,
+firma conlinea nell'ultima,giunzioniwriter note intatte;warningregistrylinguistico
+locale LO conservato,conversione riuscita/DOCXimmutato. Bundle con codice
+archiviato rigenera audit/Word senzaDB/chiavi/rete.249file app/test/frontend/
+fixture invariati,29sessionilive/285file e artefatti precedenti preservati.
+Servizi isolati arrestati,nessunanuova architettura/migrazione/esperimento.
+Arresto al termine del rapporto e consegna delDOCX.
+
+## Hold del narratore V12: recuperati 8 testi nel replay — 19 ottobre
+
+Conclusa la richiesta sulla sola divergenza replay61/chat53.
+[Rapporto](docs/hold-narratore-v12-2026-10-19.md),
+[misure](docs/benchmarks/2026-10-19-v12-narrator-holds.json),
+[otto tracciati](docs/benchmarks/2026-10-19-v12-narrator-holds-trace.json),
+[controlli](docs/benchmarks/2026-10-19-v12-narrator-holds-checks.json).
+Word/PDF/report in nuovi dati, suffisso V12-HOLD-VERIFICATO-20261019.
+Nessun commit/push. Conservati lavoro precedente, sessioni e artefatti originali.
+
+Cronologia certa: prime2sintesi senza hold; terza, dopo USER,17proposte e8hold
+nuovi del direttore. Export eredita8, non li riconferma con nuova LLM.
+Schema originale senza motivi/HTTP senza motivo separato: ragione privata
+storica non recuperabile. Fonte del blocco: MODEL, non validatori SOURCE.
+Nel vecchio contesto mancava la prova composta branch_evidence, benché ruolo,
+USER e indicatori di applicabilità fossero presenti.
+
+Esaurite le prove salvate,2sole chiamate reali ristrette agli8valori esistenti,
+0nuoveglobali/USER: confronto senza/con prova completa di applicabilità.
+Entrambe mantengono8hold. B esplicita «Conferma del ruolo attuale di Direttore
+Tecnico», rinviata dall'utente. È una conferma aggiuntiva non richiesta dalFORM,
+con stesso ruolo già SOURCE e ramo verificato. Passaggio del contesto da solo
+insufficiente, fallimento conservato. Non attribuire queste motivazioni alle
+vecchie risposte prive di spiegazione. Totale22140token(19729input+2411output),
+8,425s complessivi delle2richieste; modello e impostazioni invariati,USDnonstimato.
+
+Unico file applicativo cambiato in questa fase: compilation_global_dialogue.py.
+Contesto con condizioni effettive/ricevute/prove; hold_reviews ancorate;
+hold_records/transizioni distinguono nuovi,confermati,ereditati,liberati.
+Vecchi motivi assenti conservati come not_recorded. Verifica deterministica
+rifiuta solo la richiesta letterale «Conferma del ruolo attuale di {ruolo}»
+per lo stesso soggetto/binding,clausolaFORM integrale,scope,prova composta e
+tutte condizioniTRUE. Altra prova/decisione mancante,UNKNOWN,diniego,rinvio
+campo,attestazione o motivo precedente diverso mantengono hold. MODEL inB
+conferma8; backend respinge8motivi ridondanti, non accetta nuove prove MODEL.
+Nessun cambiamento a grounding,FORM B0,writer,API/DB,modello o regole fattuali.
+Nessun hardcoding o nuovo sistema di orchestrazione. Versione narratore4;
+fingerprint aggiorna soltanto valori con branch_evidence e non cancella hold.
+
+Quattro replay con rete vietata/DB-storageclonati/validatori-persistenza-export
+reali: storico53 stessoSHA; codiceattuale+vecchierispostesenzamotivi53; risposta
+realeB motivata61=60SOURCEtesti+1USERcheckbox; controllo negativo simulato con
+ostacoloSOURCE53 e8hold protetti. Audit e ricevute identici. Tutti52testi e24soci
+conservati,solap39.cb0,intatte12altre,0deselezioni/nuoveaccettazioni indebite
+osservate. OttoDT nelDOCX conformiGOLD;59/60testi conformi,carica più completa
+attestata già nota. QuattrotestiUSER e5gruppi decisionali restano aperti.
+**61 è replay offline con risposta motivata reale, non nuova UI.** La chat
+originale resta53. Replay B aggiunge i soli metadati preesistenti availability
+nel percorso narrate: valori/prove/condizioni/USER identici, non intero input
+byteidentico. Primo confronto troppo rigido fermato prima della valutazione.
+
+26nuovi test,18negativi parametrizzati;210mirati22,61s,2627suite186,99s,Ruff
+passati. Red e tentativi intermedi conservati. XML/CRC/posizioni/prestampato,
+4tabelle/13controlli verificati. DOCX61 stessoSHA84e33e... del precedente61;
+altri53stessoSHA4ff926... della UI. PDF precedente riusato dopo identitàDOCX:
+9pagine e medesima impaginazione,nessuna nuova certificazioneWorddesktop.
+Bundle senzaDB/chiavi ricostruisce audit e4DOCX con codice archiviato.
+29sessioni live e285file originali invariati;210altrifile protetti immutati.
+Raw v12-narrator-holds-20261019-01/,backup separato docs/benchmarks.
+Nessuna migrazione/upgrade implicito. Export conclusi non riaperti automaticamente;
+un'eventuale nuova provaUI col contratto finale resta da autorizzare a parte.
+Arresto dopo rapporto eDOCX,nessun avvio automatico E1 o altra fase.
+
+## Rami V12: direttore e checkbox, replay 61 / chat 53 — 19 ottobre
+
+Richiesta limitata ai due blocchi residui, completata con replay prima della UI.
+[Rapporto](docs/rami-v12-direttore-checkbox-2026-10-19.md),
+[misure](docs/benchmarks/2026-10-19-v12-branches.json),
+[otto tracciati](docs/benchmarks/2026-10-19-v12-branches-trace.json),
+[controlli](docs/benchmarks/2026-10-19-v12-branches-checks.json).
+Word/PDF/report in nuovi dati: V12-RAMI-REPLAY-61-20261019 e
+V12-RAMI-CHAT-53-20261019. Nessun commit/push, refactor generale o framework.
+FORM B0, fonti/gold, modello, prompt/schema globale, API/DB e writer invariati.
+
+Condizione tecnica composta verificata con grammatica FORM esplicita
+ruolo(per le società...) o altro ruolo(per le società...), scelta nominativa
+della categoria della pratica nella ricevuta USER positiva pertinente e
+asserzione SOURCE completa persona:ruolo di azienda. Stesso operatore già
+grounded nel blocco confermato, stesso soggetto/binding per tutti i valori.
+Non si riusa c_societa come se fosse c_dt: prove separate in branch_evidence.
+S.r.l./partecipazione/ruolo/poteri distinti. Diniego, ruolo non provato,
+persona/azienda diversa, conflitti o grammatica non supportata restano bloccati.
+c_dt SKIP storico conservato, nessuna attestazione inventata o cambio del MODEL.
+
+Checkbox: gruppo FORM completo di7controlli sotto IN QUALITÀ DI, attraversando
+solo i blocchi pertinenti fino all'intestazione successiva. Validatore esistente;
+cardinalità ancoraUNKNOWN, nessuna single/multiple inventata. Sola spunta positiva
+da ricevuta CONDITION_TRUE esattamente corrispondente all'intera opzione/casella;
+nessuna falsa rispostachoice, deselezione o altra spunta. Valore USER effettivo
+derivato e rivalutato, non nuovo fatto SOURCE né nuova decisione. Grammatica CF
+in maiuscolo non chiude la lista. Liste/controlli ambigui restano irrisolti.
+
+Baseline52 riprodotta stessoSHA, offline rete vietata e narratore simulato:
+60grounded invariate,8UNKNOWN→0 tramite prove, SOURCEtext51→59, USERtext1
+conservato, checkboxUSER1. **60testi+1casella=61**, tutti52precedenti identici,
+24soci conservati,0nuove scritture indebite osservate. OttoDT conformi alGOLD;
+59/60testi conformi, sola carica completa attestata già nota.9pagine.
+
+Una nuova UI isolata, sessione133483f76343416082b954f6f7bfd777, globale salvata
+riusata suFORM/SOURCE/schema identici, conversazione/provider reali. Decisioni
+storiche risomministrate soltanto sulle due domande effettive; niente preferenze/
+attestazioni/designazioni/luogo-data. **Chat:52testi+1casella=53**,52precedenti
+identici,24soci. In questa sessione tutti52testiSOURCE, nessuna domanda ridondante
+qualifica. Backendc_dtTRUE e60reviewed, ma narratore sospende8DT dopo la risposta:
+non scritti. Non sono più rifiutiSOURCE oUNKNOWN. Schemahold privo di motivi;
+interpretazione delloSKIP/mancata esposizione branch_evidence sono ipotesi,
+non causa certa. Hold non cancellati, nessun retry per migliorare il risultato.
+Resta questo limite end-to-end da trattare separatamente, senza avvio automatico.
+
+34test nuovi(31negativi),243mirati32,75s,**2601suite185,70s**,Ruff passati.
+Setup errati/test preparati male conservati e distinti da riproduzioni valide.
+Ultimo veto:2negativi «lascia il campo vuoto» prima falliscono, poi corretti;
+rinvio della conferma distinto da richiesta di non compilare. Nessuna nuovaUI/
+LLM: verifica indipendente finale conferma stessi audit e hashWord.
+XML/CRC/posizioni/prestampato/report,4tabelle e13controlli verificati; solo p39.cb0
+selezionata,12altre intatte,0deselezioni.9pagine in tutte le copie; viste3prima/
+replay/chat e9replay, firma con linea nell'ultima. Giunzioni writer preesistenti
+restano. Bundle indipendente senzaDB/chiavi rigenera audit eWord di entrambi.
+
+Offline0LLM. Chat7chiamate reali(3router,3sintesi,1guard),61977token,
+0nuoveglobali/1riuso. CostoUSDnonstimato. Primo router/guard trasportocompleto
+nonacquisito, totali telemetria inclusi. Alias osservatore corretto soloharness
+primaexport, checkpoint persistente conservato.10GET annullate su mount/reload,
+0HTTPerrori acquisiti/0eccezioni pagina; download e refresh riusciti.
+29sessioni live e285file originali immutati,207altrifile protetti invariati.
+Raw v12-branches-20261019-01/, backup separato docs/benchmarks,DB/chiavi esclusi.
+Nessuna migrazione/upgrade implicito, E1 fermo. Arresto dopo rapporto e DOCX.
+
+## Copertura SOURCE V12: 42 → 52 scritture — 18 ottobre
+
+Completata la richiesta sui 18 vuoti SOURCE, conservando le correzioni precedenti.
+[Rapporto](docs/copertura-source-v12-2026-10-18.md),
+[misure](docs/benchmarks/2026-10-18-v12-source-coverage.json),
+[18 tracciati](docs/benchmarks/2026-10-18-v12-source-coverage-trace.json),
+[controlli](docs/benchmarks/2026-10-18-v12-source-coverage-checks.json).
+Word/PDF/report in nuovi dati, suffisso V12-SOURCE-52-20261018.
+Nessuna nuova LLM/UI, decisione USER, modifica FORM B0/modello/thinking/prompt
+globale/schema/API/DB/retrieval/writer. Nessun framework, hardcoding, commit/push.
+
+Tutti i 18 dati erano nelle SOURCE e nell'input, tutti proposti: zero omissioni.
+Firmatario9: binding MODEL con citazione FORM nel paragrafo errato; riuso prima
+attivo solo da VALUE e bloccato anche da proposte respinte. Ora la clausola
+nominativa esplicita nella ricevuta CONDITION_TRUE accettata può attivare il
+riuso, senza fabbricare altre decisioni. Identità SOURCE con nome completo/CF,
+conflitti/omonimie controllati; carica SOURCE nominativa riferita allo stesso
+operatore. Proposte fallite sostituibili solo per stesso soggetto/valore provato;
+vecchio binding rifiutato e audit conservati. Nessun dato personale provato da USER.
+
+Comune iniziale: prova FORM solo marker, ricostruita dalla continuità fisica
+adiacente «con sede in», stesso operatore finale grounded e senza barriere.
+CF direttore: prefisso CF letterale del proprio campo, eliminata dalla nuova
+prova la parola citata nel paragrafo sbagliato, originale conservato. Tre proprietà
+di albo riconosciute da identificatori deterministici e stessa iscrizione
+(Ordine e numero), mai dal solo nome. Nessun ruolo/potere trasferito.
+Controlli località estesi al medesimo contesto per respingere indirizzi completi;
+operatore rivalutato dopo tutti i controlli, anche se viene dopo nel catalogo.
+Sintesi tollera il form_evidence nullo del binding rifiutato conservato.
+
+Replay isolato, rete vietata, narratore simulato; grounding/persistenza/export
+reali e verifica manuale dei nuovi valori. Baseline42 riprodotta stessoSHA;
+SOURCE grounded/revisionate46→60, applicabili42→52, fisicamente41SOURCE+1USER
+→51SOURCE+1USER=52. Dieci nuovi dati:9firmatario+Comune. Tutti42precedenti
+identici,24soci conservati,0nuove scritture indebite osservate. UNKNOWN4→8:
+ottoDT ora grounded ma rinvio c_dt invariato, nessuna scrittura automatica.
+Quattro testi USER e cinque gruppi preferenze/attestazioni/esecutori/integrazione/
+luogo-data invariati e ancora da decidere; nessun nuovo firmatario o attestazione.
+
+Società: ricevuta positiva congruente con casella p39.cb0 dimostrata. Manca un
+gruppo checkbox valido nella risposta MODEL. La lista fisica distribuita contiene
+sette alternative: validazione single la rifiuta per incompletezza locale;
+multiple strutturalmente accettabile non dimostra cardinalità semantica. Nessuna
+ipotesi diagnostica persistita o spunta aggiunta. Limite tecnico ancora aperto.
+
+GOLD:51/52 scritture conformi allo scorer, una carica completa attestata
+«amministratore unico e rappresentante legale» contro «rappresentante legale».
+Aspettative congelate, differenza dichiarata. XML/CRC/posizioni/report coerenti,
+4tabelle/13controlli intatti,9pagine prima/dopo. Viste1/3/9; pagine3/9 raster
+identiche; firma con linea nell'ultima pagina. Verifica LibreOffice, non Word.
+SHA DOCX58f1179d4cff7c6c1de4f2e886c524906c1be618e1025a67d97288f7c7323f2b.
+
+43 nuovi casi generici,304mirati32,57s e2567suite finale185,17s passati,Ruff.
+Red/fallimenti intermedi e primo replay interrotto conservati. Verifica bundle
+senza DB/chiavi ricostruisce stesso audit e DOCX.29sessioni e285file live invariati;
+raw v12-source-coverage-20261018-01/, backup separato in docs/benchmarks.
+Zero token/costi provider aggiuntivi, nessuna misura di accelerazione o qualità
+autonoma di una nuova risposta LLM. Nessuna migrazione/upgrade implicito:
+rivalidazione e nuova revisione necessarie sui campi cambiati. E1 fermo.
+Arresto dopo questo DOCX e rapporto; non avviare altre fasi automaticamente.
+
+## Residui V12: equivalenza tipografica e domande USER — 18 ottobre
+
+Completata la richiesta sui soli residui, senza rifare revisioni/citazioni.
+[Rapporto](docs/residui-v12-dialogo-2026-10-18.md),
+[misure](docs/benchmarks/2026-10-18-v12-residui.json),
+[controlli](docs/benchmarks/2026-10-18-v12-residui-checks.json).
+Word/report/domande in nuovi dati, suffisso V12-RESIDUI-20261018.
+Nessuna nuova LLM, UI o modifica FORM B0/modello/thinking/prompt globale/schema/
+API/DB/writer. E1 fermo; nessun framework, hardcoding, commit o push.
+
+Chiave dei soli valori con NFC/spazi/lower(), dopo identità esatta soggetto/
+entità/dimensione/proprietà; valori originali e citazioni conservati. Niente
+casefold espansivo, sinonimi, accenti eliminati, unione persone o ruoli trasferiti.
+Due falsi conflitti Elisa eliminati: p45.s1 socio e p52.s0 direttore. Una REVIEW
+esplicita con alternative soltanto ridondanti è rifiutata, non promossa a VALUE.
+Binding SOURCE e validatori valori identici; differenze AST globali limitate
+ai due punti di confronto delle alternative e alla nuova chiave dei valori.
+
+Nuovo helper ristretto alle istruzioni FORM esplicite, non alle affermazioni
+coverage del modello: cinque decisioni su categorie/fasce, attestazioni complete,
+esecutori, integrazione, luogo/data. 67 celle preferenze raggruppate; firma esclusa,
+campi/proposte SOURCE e risposte acquisite/rinviate non richiesti di nuovo.
+Fallback massimo3 domande se il narratore le omette. Nessun gruppo checkbox
+inventato. Le risposte raggruppate sono ricevute USER con write_authorized=false:
+nessuna scrittura/spunta/applicabilità automatica. La distribuzione verificata
+delle risposte nelle destinazioni rimane un limite esplicito, non implementato.
+
+Offerta export parziale anche a domande aperte. Con zero valori l'avviso esplicito
+della copia vuota è tracciato; READY/errore/consenso restano controllati. Prima
+suite individuava una regressione sull'export vuoto generico, corretta conservando
+il test precedente. PRESENTATION_VERSION=3 su nuove sintesi/ripresa esplicita;
+nessuna migrazione o aggiornamento implicito delle sessioni storiche.
+
+Replay isolati con rete vietata e narratore simulato, validatori/persistenza/
+export reali: baseline44→46grounded/reviewed, applicabili41→42, UNKNOWN3→4
+(nuova qualifica DT comunque rinviata). Storico immutato41SOURCE+1USER=42;
+0valori persi/cambiati,0nuovi indebiti,24soci,0spunte. DOCX con stesso SHA
+4a29f7d306a6664b88208f8ba88bff5738123310a84853ff4e770f69dae126c8.
+Replay snapshot prima della risposta sulla qualifica:42SOURCE/0valoriUSER,
+stesso Word, senza quel chiarimento; restano societàTRUE e DT SKIP, non senzaUSER.
+Verifica indipendente del bundle senza DB/chiavi ricostruisce stesso audit/Word.
+
+Restano18vuoti SOURCE:9firmatario(binding/riuso non attivato da ricevuta VALUE),
+Comune iniziale(FORM solo marker),8DT(4UNKNOWN/rinviati,1FORM,3attribuzioni).
+Non equivalgono a dati assenti dalla KB. Quattro testi USER, preferenze e due
+caselle attendono decisioni reali; casella società già decisa ma senza gruppo
+validato resta limite tecnico. Allegati/dichiarazioni personali e firma separati.
+
+45test nuovi;221mirati passati29,69s;**2524pass181,97s** suite finale,Ruff passato.
+Red corretto sul codice originale33fail/12pass; errori di setup e suite intermedie
+conservati.29sessioni live/versioni/stati e285file uploads+knowledge invariati;
+206file protetti salvo4modifiche previste,più helper/test nuovi. Raw
+v12-residui-20261018-01/, backup separato in docs/benchmarks, DB/chiavi esclusi.
+Zero token/costi provider aggiuntivi; nessuna misura di accelerazione o nuova
+valutazione di qualità del narratore. Arresto dopo replay e rapporto.
+
+## Revisioni conservate, citazioni e nuovo export soci — 18 ottobre
+
+Implementati i primi due interventi autorizzati, poi prova UI/provider reale.
+[Rapporto](docs/correzione-revisioni-soci-2026-10-18.md),
+[misure](docs/benchmarks/2026-10-18-v12-review-soci.json),
+[24 tracciati](docs/benchmarks/2026-10-18-v12-review-soci-trace.json).
+Word/PDF/report/conversazione in nuovi dati, suffisso V12-SOCI-24-20261018.
+FORM, modello/thinking, schema globale, validatori SOURCE, API e writer invariati;
+nessun commit/push, framework o E1. Modifiche locali precedenti conservate.
+
+V12 conserva impronte delle revisioni su proposta, fatto/soggetto, binding/prove,
+destinazione FORM, condizioni e dipendenze. Solo ricevute immutate riusabili;
+nuove/cambiate nelle finestre successive da40. PENDING/auto_continue esistente
+fino a revisione completa, errore ferma export/avanzamento. Hold persistenti;
+applicabilità USER separata, nessuna UNKNOWN→TRUE o RESOLVED automatica.
+Sessione pubblica filtra le revisioni rispetto all'audit completo. Nessuna
+migrazione/upgrade implicito di sessioni storiche; vecchie V12 senza impronte
+vengono riesaminate solo se si richiede una nuova sintesi. Metadati non nel prompt.
+
+Prompt tabelle corretto: massimo2span letterali separati titolo+riga della
+persona, stessa tabella; vietate quote concatenate saltando righe. Funzioni e
+classi dei validatori identiche per confronto AST. Nessuna riparazione fuzzy.
+
+Replay controllati offline, narratore simulato, persistenza/export reali:
+vecchio41→54(53SOURCE+nomeUSER), soci16→24SOURCE; finestre40/5/0/8. Dopo8riusi
+Leonardo nessuna review persa e5DT prima fuori finestra finalmente esaminati.
+Altrooutput27→43SOURCE correggendo solo quote binding; soci8→24SOURCE, 0valori
+indebiti nuovi. Baseline27 riprodotta con stesso SHA; rifiuti necessari mantenuti.
+Nel54 una differenza gold stretta su carica più completa attestata, già nota.
+
+Nuova UI isolata sessione19be5edcf19e49acb2e25a7dab370000, export09ffd84febfb48d6a8b64f00bb8d1656.
+JSONinputglobale interamente identico al precedente T0V1/56SOURCE/FORM/schema;
+diverso solo system prompt.55fatti/60assegnazioni,44grounded/reviewed,0held,
+finestre40/4/0/0. Tre DT restanoUNKNOWN/rinviati e non scritti.42scritture:
+41SOURCE+1USER,42/42 conformi al gold,18target fattuali vuoti. Soci24nelDOCX,
+ma **23SOURCE+1USER**, non24SOURCE autonome. Tutti24binding verificati; due
+forme Ingegnere/ingegnere generano alternative per Elisa. Solo dopo domanda
+effettiva scelta USER della forma documentata, qualificazione non inventata.
+Rinvio separato della confermaDT, non nuova attestazione o nomina dedotta.
+Chiarimenti aggiuntivi registrati e distinti dal copione. T1completo non raggiunto.
+
+Prima/dopo reale27→42:16nuovi campi soci,1CFDT perso per nuova quoteFORM
+inesatta,26valori comuni identici. Campione singolo, risposta/dialogo diversi:
+nessuna stabilità o causalità generale dimostrata.18vuoti:9firmatario,Comune
+iniziale,8DT. Gruppicheckbox assenti;0spunte. Preferenze/designazioni/attestazioni/
+luogo-data mai chiesti; dialogo resta fase separata descritta nel rapporto.
+Falso conflitto tipografico non corretto qui. Niente normalizzazioni indiscriminate.
+
+XML/CRC/posizioni/report esatti;4tabelle,13controlli,123vuoti prescritti intatti.
+PDF9pagine contro10prima; viste1/3/9,soci completi,firma vuota con testofinale;
+giunzioni prestampato e limiti Word persistono, writer invariato.
+11chiamate(1globale,4narratori,4router,2guard),usage/HTTP completi.181.776token:
+133.102input+48.674output,32.433reasoning. Globale174,83s,POST194,96s;
+costo stimato0,04563USD, non fattura. Nessuna accelerazione dimostrata;
+reasoning maggiore e chiarimento extra distinti dall'inputFORM invariato.
+
+20casi nuovi. Red iniziale11fail/2pass; prima suite2477pass/2fail per vecchia
+attesa di ripetere proposte già esaminate, aggiornata preservando verifica prove.
+**Suite finale2479pass in288,71s; Ruff passato.** Setup falliti conservati,
+nessun retry qualitativo. 29sessioni live/versioni/stati e273file storage originali
+immutati;205file protetti salvo modifiche previste. Raw v12-review-soci-20261018-01/.
+Runtime isolati arrestati;istanza originale8000/5173 conserva reload e resta
+disponibile per nuove conversazioni. DB/chiavi privati fuori dal backup.
+Backup verificato:246file,67.273.364byte non compressi,35.108.391compressi;
+SHA256 `3d5d90eee93a8ca4e74c7be7a165ba3351674a1eb19dfd9ffc3adce037f40876`.
+Video/trace completi inclusi, scan credenziale negativo, link e diff--check validi.
+Terminati correzioni e verifica; prossima fase separata: domande della pratica.
+
+## Prova reale UI Minervino V12 e diagnosi — 18 ottobre
+
+Eseguita la prova richiesta su copia isolata di DB/storage/Company KB, UI reale
+Chromium e provider reale, senza mock. Nessuna modifica applicativa, prompt,
+validatori, writer o FORM; nessun commit/push. V12 corretta resta il riferimento,
+E1 non avviato. [Diagnosi](docs/diagnosi-e2e-v12-minervino-2026-10-18.md),
+[misure](docs/benchmarks/2026-10-18-v12-e2e-minervino.json),
+[24 tracciati soci](docs/benchmarks/2026-10-18-v12-e2e-soci.json).
+Word/PDF/report/conversazione in nuovi dati, suffisso V12-E2E-REALE-20261018.
+
+Nuova sessione isolata d538c77c599a4860aa0114c534ce6f0c, originale live intatto.
+T0 congelato Minervino V1 con società di ingegneria e Leonardo già scelti;
+diverso dal solo compila precedente. Il sistema chiede solo conferma della
+partecipazione/rappresentanza, poi export. Nessuna delle quattro risposte del
+copione somministrata perché non richiesta: T1 completo non raggiunto. Non è
+un confronto controllato del solo prompt e non va presentato come tale.
+
+46 fatti,60 assegnazioni SOURCE, tutti60target proposti:58valori conformi stretti
+al gold,1carica più estesa attestata,1Via già stampato da evitare.27grounded,
+27reviewed,27SOURCE scritte,0USER,0held,0grounded ancoraUNKNOWN dopo ricevuta.
+27/27scritture conformi al gold;33SOURCE vuoti:24binding rifiutati(8firmatario,
+16soci),2FORM marker-only(Comuneiniziale,provinciaresidenza),7direttore con
+valori citati come socio/property non supportate. Zero valori indebiti osservati
+nelle scritture non significa copertura o accuratezza generale.
+
+Soci nuovi24proposti corretti,8grounded/reviewed/scritti(Luca). Per Elisa/Andrea
+quote binding concatenate saltano righe e non sono estratti letterali SOURCE;
+rifiuto corretto della citazione, dati effettivamente presenti. Controprova
+offline con sole citazioni titolo+riga, schema/validatori/fatti invariati:
+27→43grounded,+16corretti,0perse. Nessuna sessione/export cambiata. Tentativo
+diagnostico iniziale con4span respinto(max2),27→19; fallimento conservato.
+
+Vecchio16 spiegato più precisamente: tutti24soci giàgrounded e revisionati;
+dopo8riusiSOURCE le8destinazioni Andrea passano33–40→41–48. Narratore ricrea
+prime40 e sovrascrive reviewed_candidate_ids:8review giàvalide perse,0held.
+Proposte persistono, condizioni confermate, export coerentemente le esclude.
+Altri5DTgrounded mai revisionati. Correzione proposta: revisioni con impronta
+e finestra nuove/nonrevisionate, non union cieca o accettazione automatica.
+
+Bari iniziale sempre respinto per FORM;BA iniziale questa volta passa citando
+tel.dopo marker;Bari/BA societari scritti corretti. Choice_groups vuoti,checkbox
+0:casella società manca pur avendo USER;veridicità/esecutori e6preferenze/4testi
+USER attendono risposte mai chieste. Pool1→0:non limite3domande. Coverage
+manual_input non crea slot interrogabili. Firmatario presente T0 e ricevuta
+condizione, ma senza VALUE nominativo; proposta respinta impedisce fallback
+e riuso. Non certificare positivamente questo percorso UI dal solo replay.
+Natura giuridica/partecipazione/poteri distinti nel rapporto;nessuna procura
+o designazione dedotta. Interventi minimi solo proposti, non implementati.
+
+Sette chiamate(1globale,2narratore,3routing,1guard),153.384token totali.
+Globale142,10s,76.616input/40.083output,24.507reasoning. CinquePOST154,76s;
+browser235,50s include attese. Costo stimato0,0390–0,0427USD, non fattura;
+6.122token(routeriniziale+guard) senza split/grezziHTTP, limite dichiarato.
+No nuoveLLM per le controprove. XML/CRC/posizioni/report esatti;4tabelle,
+13controlli e123testi da lasciarevuoti preservati. PDF10pagine contro9gold;
+viste1/3/10 e blocco soci gold. Firma isolataa10 e giunzioni restano.
+
+205file protetti,29sessioni live/versioni/stati,273file storageoriginali
+invariati. Suite2459 precedente non rieseguita per questa diagnosi. Servizi
+isolati arrestati, originali8000/5173 ancora200. Backup pubblicabile conserva
+video completo/trace campionata5s;trace originale936MiB solo locale,hash nel
+descrittore;DB/chiavi privati esclusi. Raw ui-v12-e2e-20261018-01/.
+Backup verificato:115file,40.694.164byte non compressi,22.891.729compressi;
+SHA256 `34c52bafb88e302f7e6ce4422af49c21fd28d1d8e8e6c94c374f0e7e034e9209`.
+Scan della credenziale attiva negativo, link del rapporto e git diff--check passati.
+Terminato dopo diagnosi. Prossimo passo da concordare: difetto review e prove
+letterali, poi confronto E1 con T0 e protocollo identici; nessun avvio implicito.
+
+## Correzioni mirate compilato(6), consegna parziale — 18 ottobre
+
+Implementazione richiesta dopo la diagnosi; questa sezione sostituisce il
+precedente punto «fermarsi dopo diagnosi». Nessun commit/push, architettura
+globale B0 conservata, E1 non integrato. [Rapporto e prima/dopo](docs/correzioni-ui-compilato6-2026-10-18.md),
+[misure](docs/benchmarks/2026-10-18-ui-compilato6-fix.json).
+
+Prompt SOURCE allineato a titolo/intestazioni/riga e ai collegamenti realmente
+supportati dai binding, senza modificare il verificatore. Una sola nuova
+chiamata globale con input/schema/modello/thinking identici a compilato6:
+45fatti/51assegnazioni/45grounded, contro19/26/24; soci24/24proposti e grounded,
+CFdirettore proposto. Campione singolo, non dimostra stabilità. Dopo la prova
+precisato ulteriormente il limite cross-record CF/provincia e propertycanoniche;
+la precisazione finale non è stata rigenerata. Entrambi i prompt conservati.
+
+Riuso locale dopo nomeUSER: blocco FORM esplicito, profilo nominativo completo
+con CF, controlli conflitti/omonimie anche in tabelle, citazioni distinte di
+identità/valore e società per carica. Otto nuove proposte dopo Leonardo senza
+LLM; USER identifica la persona, non prova la biografia. Componenti letterali
+Lecce/LE, Bari/BA, indirizzo Amedeo24 dopo via prestampato. Carica attestata
+solo se il documento identifica lo stesso operatore SOURCE grounded. Nessun
+recapito personale inventato, ruolo trasferito o potere speciale dedotto.
+Fallback della sola domanda sul firmatario quando il modello la omette e il
+blocco è riconosciuto. Altri layout/identità incomplete restano irrisolti.
+Solo V12; versioni precedenti conservate senza nuove domande/riuso impliciti.
+
+Proposte derivate ancora REVIEW_REQUIRED/GROUNDED_PROPOSAL, zero RESOLVED.
+Rivalidazione output originale+riuso prima export e al salvataggio, nessun
+bypass SOURCE, condizioni preservate. Audit originali intatti, revisioni in
+file separati sul medesimo endpoint di report; nessuna API/colonna DB nuova.
+Narratore riceve indizi SOURCE distinti da omissioni, scarti e atteseUSER;
+assenza/recupero non dimostrati restano tali. Formulazioni di assenza riprodotte
+attivano riepilogo backend prudente: filtro lessicale, non giudice universale.
+Motivazioni storiche dei vuoti non riproposte per valori recuperati/USER.
+
+Export reali da copie isolate, narratore simulato e routing storico rigiocato:
+compilato6 25→33scritture(32SOURCE+nomeUSER), B0manuale48→56(55SOURCE+nomeUSER),
+nuova proposta41(40SOURCE+nomeUSER). Nuova proposta53grounded dopoUSER, ma review
+limita40:13grounded non revisionate, soci16/24scritti; limite non modificato.
+Grounded ancoraUNKNOWN dopo ricevuteUSER:0 nei tre replay; condizioni originali
+semanticUNKNOWN non trasformate in TRUE. B0 conserva reviewmanuale propria,
+nessuna ricevuta importata dalla sessione UI. Non sono tre nuove prove UI reali.
+
+Word/PDF/report in nuovi dati: UI-CORRETTA-PARZIALE, B0-03-RIUSO-SOURCE e
+PROMPT-SOCI-PARZIALE, suffisso20261018. Target SOURCE testuali vuoti27/4/19.
+Una discordanza gold per ogniexport: carica completa attestata anziché il solo
+rappresentante legale. Scorer/gold congelati:32/33,55/56,40/41 conformi stretti,
+zero nuove accettazioni fattuali indebite osservate, non accuratezza generale.
+Difetto intermedio viaVia riprodotto e corretto per componente letterale;
+nessun ritocco al writer.
+
+Irrisolti:2FORM marker-only Bari/BA iniziali; checkbox società senza gruppo
+grounded;3legami professionali nuovi non supportati dalle citazioni/property
+usate. Comune-indirizzo respinto correttamente. Fax+390800002041 esplicito
+SOURCE-53 integrazione-company, aziendale/sintetico. Non scambiare queste
+lacune per assenza KB. Nessuna spunta automatica. Writer/FORM B0, API routes,
+schema DB e fixture/gold invariati; giunzioni di testo e firma a pagina10
+restano limiti di presentazione.
+
+XML/CRC/posizioni/report esatti, solo word/document.xml modificato;4tabelle e
+13controlli invariati. RenderingLO10/9/9pagine, visteUI1/3/10,B0p3,promptp3;
+MSWord non verificato. Nuovo provider136,7s,76.408input/37.735output di cui
+24.441reasoning; costo/tempo totaleUI non misurati. RiutilizzoUSER zeroLLM.
+
+Test prima delle correzioni e tentativi falliti conservati nel raw
+ui-compilato6-fix-20261017-01/. Suite finale **2459pass in172,68s**, Ruff e
+git diff--check passati. Ultimo guard V12 verificato anche contro versioni
+precedenti. Frontend invariato/non ritestato. Tre export finali superano
+nuovamente i controlli di freschezza col codice definitivo, senza scritture.
+29sessioni live/versioni/stati, schemaDB e22artefatti originali invariati;
+downloadcompilato6 originale intatto. Controlli e backup collegati nel rapporto.
+
+Backup verificato:349file,32.512.735byte non compressi; SHA256
+`8cba065a6d3925e9844f80a99bb5ffb62ee2ae27e9d63658210345d51d92af54`.
+DB/credenziali esclusi. Valori precedenti conservano anche i limiti originari
+delle citazioni, tra cui provinciaDT citata nel nome dell'Ordine: nessuna
+ricertificazione implicita di tutte le vecchie proposte.
+
+Fermarsi dopo consegna. Restano da concordare separatamente limite40,
+ancoraggiFORM iniziali, gruppi checkbox e ulteriori formati SOURCE/FORM.
+
+## Diagnosi della prova UI compilato(6), nessuna modifica — 17 ottobre
+
+Utente ha provato la UI e chiesto solo analisi. Download root domanda-iscrizione.compilato(6).docx
+identico all'export850ebea2fa464ba0aa6a881d5d8313d4; sessione f06e75dd1ecf4c0fae668668c153a9df,
+conversazione conv-423c9cc6f0f3438d. [Rapporto](docs/analisi-ui-compilato6-2026-10-17.md),
+[misure](docs/benchmarks/2026-10-17-ui-compilato6.json).
+
+25 scritture fisiche:24SOURCE+nomeUSER.25 valori conformi al gold, nessuna
+discordanza di valore osservata, senza equiparare gold a prova delle citazioni.
+35 target SOURCE vuoti:8anagrafica/carica firmatario,24soci,1CFdirettore omessi;
+2Comune/provincia generali proposti correttamente ma FORM marker-only respinto.
+Leonardo ha nascita/residenza/CF/carica nella SOURCE -53/-54 già nell'input.
+Mancano recapiti personali telefono/email/PEC, distinti da quelli aziendali.
+
+T0 era solo compila, trasmesso correttamente. Firma scelta dopo la globale:
+prima nome incompleto Leonardo [COGNOME DA COMPLETARE], poi Leonardo Montemurro.
+apply_replies aggiorna solo p12.s0; nessuna ricerca della persona nella KB o
+nuove proposte per gli8campi. Nelle sintesi successive manca il recordSOURCE
+anagrafico, resta l'audit congelato e il pool infine vuoto.3domande è limite
+perturno, non causa diretta del mancato completamento.
+
+Modello riconosce tabella soci ma non emette fatti/assegnazioni/binding:
+"Soci presenti in tabella aziendale, ma il ruolo 'socio' non è attestato nel
+formato richiesto per il binding". Prompt attuale ancora descrive vecchi
+formati e richiede ruolo/valore nello stesso chunk: disallineamento con
+verificatore più capace, causa probabile ma non isolata con nuova provaLLM.
+ElisaDT7/8; CF omesso perché non nella rigaDT, pur essendo in riga soci-54
+con stessa persona/ordine/8421.7recuperi fact_source_record registrati nel
+run reale confermano che le correzioni sono operative, non codice vecchio.
+
+Narratore dichiara erroneamente assenti soci eCFdirettore. ROLEhint soloDT
+con proposte, nessuno per soci; unassessed_source_roles vuoto.24grounded tutte
+revisionate/scritte, held0: limite40 non raggiunto.2condizioni audit UNKNOWN
+entrambe confermateUSER, non causano scarti. Fonte56/FORM/schema identici a B0;
+nuova risposta reale diversa dal replay48manuale, confronto non controllato.
+
+XML/report/slot esatti, altrepartiZIP/4tabelle/13controlli invariati. PDF10pagine,
+viste1/3/4/10:2giunzioni senza spazio, firma vuota isolata a10. Non modificare
+il Word, prompt, writer o controlli automaticamente. Analisi storica125,8s,
+3sintesi6,6s; usage globale76.163input/32.252output, di cui23.325reasoning.
+Zero nuove chiamate, replayvalidatore, scritture DB, codice applicativo o test;
+raw ui-compilato6-20261017-01/. Nessun commit/push. Fermarsi dopo diagnosi.
+
+Integrità verificata: 216 file di codice/test e 29 sessioni invariati, 22
+artefatti originali identici alle copie. [Backup](docs/benchmarks/2026-10-17-ui-compilato6-audit.tar.gz)
+con 64 file, 4.672.942 byte non compressi; SHA-256
+`06cde9948a3751105511866cf26f673ed1a9864b938d48d2bd567986a192c0ef`.
+
+## Versione corretta disponibile per la prova UI — 17 ottobre
+
+Richiesta successiva: usare il sistema dalla UI. Avviato ./start.sh con il
+codice corrente, frontend5173/backend8000; servizi lasciati attivi.
+[Apri Minervino](http://localhost:5173/projects/minervino-di-lecce-elenco-sia),
+[guida e verifiche](docs/prova-ui-compilazione-2026-10-17.md),
+[misure](docs/benchmarks/2026-10-17-ui-binding.json).
+
+Le correzioni sono già nei moduli del motore globale usato dalla chat, non
+in un secondo motore da sostituire. Nessun codice applicativo nuovo: attivi
+binding, Comune, FORM e trasporto USER già implementati. Form completo B0,
+E1 compatto/indice non collegati. UI reale apre progetto e mention; health,
+frontend e proxy200. Modulo live e56SOURCE identici al benchmark, input
+canonico senzaUSER uguale a B0. Nessun dato del gold importato.
+
+298 test backend mirati passati36,28s e8 E2E desktop/mobile23,9s con provider/API
+simulati. Prima E2E7pass/1fail per vecchia scritta attesa; corretta soltanto
+l'asserzione in frontend/e2e/global-compilation.spec.ts sullo status accessibile
+Analizzo il modulo. Lint frontend passato. Smoke browser live in sola lettura,
+nessun messaggio/provider, nuova sessione o export creato durante le verifiche.
+
+28 sessioni originali/versioni/stati invariati, conteggi principali invariati.
+Backup preventivo DB privato .tools/ui-binding-20261017-01/before-start.db;
+raw ui-binding-20261017-01/. Nessun commit/push o modifica writer/modello/thinking.
+
+Per la prova partire da NUOVA conversazione e @domanda-iscrizione.docx, fornendo
+le decisioni della pratica; le vecchie sessioni mantengono l'audit storico.
+Le48scritture offline includevano revisione manuale: ricevute/review non
+trasferite alla UI. Narratore attuale limita a40proposte SOURCE per passo;
+limite registrato, non corretto in questa attivazione. UNKNOWN, scope c_p39,
+checkbox e spaziatura non aggirati. La prossima prova qualitativa è dell'utente,
+non è ancora un nuovo risultato con provider reale. Non avviare chiamate AI
+automaticamente in risposta a questo punto di ripresa.
+
+[Backup verificato](docs/benchmarks/2026-10-17-ui-binding-audit.tar.gz):22file,
+783.192byte non compressi, SHA256
+`cc25fbe50c3dad5253a525f5184a36b0fe97be297f0251a885a6d16fa8cf18a9`.
+Esclusi DB privato e log server ancora in scrittura; incluso snapshot del log.
+
+## B0-03: export parziale reale e verificato — 17 ottobre
+
+Piano operativo eseguito su copia isolata; sostituisce il precedente punto
+«piano non eseguito». [Word](<nuovi dati/domanda-iscrizione.B0-03-PARZIALE-VERIFICATO.docx>),
+[PDF](<nuovi dati/domanda-iscrizione.B0-03-PARZIALE-VERIFICATO.pdf>),
+[rapporto](docs/export-b0-03-verificato-2026-10-17.md),
+[misure](docs/benchmarks/2026-10-17-b0-docx-verified.json).
+
+Esito fisico: 48 valori, 47 SOURCE e nome USER della stessa sessione.
+47 grounded attuali; 21 vecchie review ancora valide +26 pendenti riesaminate
+manualmente con FORM/SOURCE/validatori esistenti. Nessun valore corretto per
+avvicinarsi al gold, aperto solo dopo export. Tre rifiuti conservati: Comune
+p41.s1 e province Elisa p46.s0/p53.s2. Precedente Word 23 valori, 22 conformi;
+ora 48 conformi ai target sintetici, 26 aggiunti e 1 Comune errato rimosso.
+Revisione manuale assistita, non nuova misura dell'autonomia del modello.
+
+Ricevute proprie di ee86e66383ac4e5d9df90cf2b3ea3454: c_p39, nome p12.s0,
+consenso storico all'export, identiche prima/dopo. Nessun trasferimento INDEX.
+Audit attuale riprodotto esattamente e conservato nel report; audit storico
+intatto. UNKNOWN audit 1 condizione/47 SOURCE ancora conditional; overlay
+USER conferma c_p39, selezionati con condizioni non confermate 0. Il T0
+identifica l'operatore; p39 non è clausola letterale dei nove dati generali.
+La dipendenza tecnica aggiunta dal modello resta nell'audit, non corretta:
+il guard senza conferma continua a rifiutare409 anche quei nove campi.
+In questo scenario la conferma pertinente esiste, verificata insieme a
+natura S.r.l., partecipazione, rappresentanza e sottoalternativa direttore.
+Non dedurre da questo una regola generale o la risoluzione del limite.
+
+Export generate_draft esistente su .tools/b0-docx-verified-20261017-01/export-01;
+sessioni originali/live intatte. Zero nuove chiamate, risposte USER, checkbox,
+modifiche applicative/writer/FORM/fixture, framework, commit/push. La nuova
+review è manuale di Codex su istruzione utente; il report standard scrive
+reviewed_by=USER, con autore/metodo reali chiariti in completed-review.json.
+
+Controlli: 48 valori estratti esattamente dai propri slot, altri segnaposti
+invariati; ZIP/CRC, 12 relazioni, 246 paragrafi+avviso, 4 tabelle e 13 controlli
+conservati; sola word/document.xml modificata. Guard409 senza conferma e422
+sui3 rifiuti. PDF9 pagine contro10 originale, tutte9 viste; firma vuota e
+unita all'etichetta a pagina9, a/b/c/d preservati. Cinque giunzioni senza
+spazio su4 paragrafi (professionaleOrdine, Adella) registrate e non corrette.
+Stato needs_review; 12 target SOURCE ancora vuoti, T1 e scelte native separati.
+Nessuna dichiarazione di documento completo/presentabile o paginazione MS Word.
+
+Raw b0-docx-verified-20261017-01/, con log preliminari falliti conservati;
+nessuna suite/Ruff nuova, ma verifiche dirette dell'export e del documento.
+DOCX SHA256 6605dcc91ab823cc21d77618c2991feade366cce1137d4b8138600f1c051a889.
+Fermarsi dopo consegna; prossimi interventi da concordare separatamente.
+
+Integrità finale: 11.455/11.455 file protetti invariati, nessun codice/test
+aggiunto. [Controlli](docs/benchmarks/2026-10-17-b0-docx-verified-checks.json),
+[backup](docs/benchmarks/2026-10-17-b0-docx-verified-audit.tar.gz): 75 file,
+10.911.253 byte non compressi; SHA256
+`b396c7d7ba20d80463466ae03f492279585d26e5a930d8d81bd1ab61538172e2`.
+
+## Applicabilità UNKNOWN: diagnosi e piano, nessuna modifica — 17 ottobre
+
+Fase binding conclusa, non riaperta. Nuova richiesta: spiegare applicabilità,
+SOURCE/USER e proporre percorso minimo offline al DOCX, senza cambiare controlli.
+[Rapporto](docs/applicabilita-b0-index-2026-10-17.md),
+[registro e misure](docs/benchmarks/2026-10-17-applicability.json),
+[bundle](docs/benchmarks/2026-10-17-applicability-audit.tar.gz),
+[controlli](docs/benchmarks/2026-10-17-applicability-checks.json).
+
+Tre condizioni MODEL, tutte semantic/fact_ids=[] e UNKNOWN: B0 c_p39 copre
+47 proposte (9 generali operatore, 8 società, 23 soci, 7 direttore); INDEX c_op
+9 generali e c_branch_soc 16 società/direttore. B0 mescola identità operatore,
+qualità rappresentante e ramo societario: p14–p17 non hanno come clausola
+letterale p39. Sottoalternativa p50 distingue responsabile progettazione
+per società professionisti e direttore tecnico per società ingegneria.
+Forma S.r.l., attività, partecipazione e rappresentanza non equivalenti.
+
+Ritrovato USER proprio di B0-03: sessione ee86e66383ac4e5d9df90cf2b3ea3454,
+c_p39=true e nome Leonardo in p12.s0, più consenso storico all'export parziale.
+Audit ancora UNKNOWN per disegno: apply_replies salva dialogue.answers,
+export_selection usa l'overlay USER. Gli ultimi replay puri non includevano
+questo dialogo. INDEX-01 originario fallisce prima delle scritture di sessione;
+il replay con USER prendeva c_soc/c_oe da INDEX-03 tramite mapping esplicito,
+solo test separato. Non trasferire ricevute automaticamente fra sessioni.
+
+SOURCE -43 prova forma S.r.l. e descrizione attività; -53 prova Leonardo
+amministratore/rappresentante dal 2 ottobre e cessazione Luca il 1 ottobre;
+-54 soci, -45/-55 Elisa direttore. Sono ruoli, non scelta del firmatario,
+mandati RTP o poteri speciali. La scelta di Leonardo è USER, la carica SOURCE.
+Requisiti normativi e dichiarazioni personali non certificati da questi dati.
+
+Controlli puri nuovi, senza writer/DB: 47/47 valori B0 e 25/25 INDEX passano
+il validatore usato prima della scrittura senza trasformazioni; passa anche
+il nome USER B0. Proiezione read-only del nuovo audit sul suo dialogo: vecchie
+22 SOURCE revisionate diventano 21 valide (Comune p41.s1 respinto); altre 26
+grounded non ancora revisionate. Nessuna nuova review o conferma creata.
+Due output senza choice_groups, checkbox p39.cb0 priva di proposta: una
+conferma di applicabilità non spunta un controllo Word. T1 non chiesti/registrati.
+
+Piano proposto, non eseguito: copia isolata B0 con stessi artefatti e ricevute,
+verifica manuale del significato/ambito c_p39, revisione 26 nuove proposte,
+export tramite servizi esistenti e consenso storico del test, controllo XML,
+report, PDF e hash. Obiettivo pianificato 47 SOURCE + 1 nome USER, non una
+nuova misura DOCX; nessuna firma o checkbox forzata. Restano 12 destinazioni
+SOURCE vuote dopo quel nome, scelte native e T1 da trattare separatamente.
+Per i target SOURCE del modello, lacune B0 13 (10 omissioni/3 rifiuti), INDEX
+35 (33 omissioni/2 rifiuti): gold solo valutazione, nessuna nuova proposta.
+
+Nessuna chiamata LLM, modifica ai controlli, sessione live, valore UNKNOWN,
+modello/API/writer/FORM/fixture o output precedente. Nessun DOCX, commit/push
+o nuovo framework. Suite/Ruff precedenti non rieseguiti; verifiche documentali,
+73 controlli puri di valore, proiezione, JSON/diff/hash. Raw applicability-20261017-01/.
+Non avviare automaticamente l'export o l'implementazione del piano.
+
+Integrità: 11.092/11.092 file protetti invariati, nessun file aggiunto nei
+percorsi protetti; 14 artefatti letti invariati. Backup verificato: 21 file,
+2.573.411 byte non compressi; SHA-256
+`4c7d1f1f6e20d024d7c9193f94f25a5e060fea68189c44dc97b6c9659a78b2a7`.
+
+## Ultima correzione SOURCE: replay concluso e arresto — 17 ottobre
+
+Richiesta successiva alla diagnosi: recuperare prima le quattro prove complete
+del binding e poi affrontare titoli/date/identità, con negativi e replay dei
+due output fissi. Implementazione confinata a compilation_global.py e
+compilation_role_records.py; nuovo test_compilation_binding_identity.py.
+Writer, API, modello, FORM B0 e prompt invariati. Nessun commit/push.
+[Rapporto](docs/correzione-binding-source-finale-2026-10-17.md),
+[misure e tracciati](docs/benchmarks/2026-10-17-binding-final.json),
+[bundle](docs/benchmarks/2026-10-17-binding-final-audit.tar.gz),
+[controlli](docs/benchmarks/2026-10-17-binding-final-checks.json).
+
+Baseline degli ultimi audit riprodotta esattamente. Primo passo già misurato:
+B0 38→42 grounded, quattro recuperi conformi; INDEX 23→23, zero recuperi.
+Tutti ancora condizionati, 0 RESOLVED/0 scritture. Raw durevoli:
+backend/data/compilation-audit/binding-final-20261017-01/.
+
+Implementati confronti di titoli solo per nominativi e date calendariali
+equivalenti, senza riscrivere i valori. Collegamento tra record limitato a
+CF e provincia dell'iscrizione; nome completo e CF condiviso oppure ordine
+e numero condivisi, con conflitti/omonimie controllati nei record strutturati.
+Per la provincia è richiesta la stessa iscrizione anche con CF concordante.
+Identità/ruolo/valore tracciati separatamente; applicabilità invariata.
+SOURCE aziendali e del progetto autorizzato ammesse, General esclusa; scope
+e ruolo preservati. Nessuna unione basata sulla sola somiglianza del nome.
+
+57 nuovi casi, 274 mirati passati in 18,92 s; Ruff passato. Log red e
+controesempi conservati: quote, conflitti, record di altra persona e limite
+800 caratteri delle citazioni. Prima suite completa interrotta volontariamente
+per gli ultimi due controlli sulle citazioni, non conteggiata come passata.
+Suite intermedia 2.427 passata in 217,18 s, prima degli ultimi controlli su
+SOURCE del progetto e conflitti delle righe nominative. Suite completa finale
+passata: 2.431 test in 219,46 s. Nessuna chiamata LLM o DOCX esportato.
+
+Replay finale B0 38→47 grounded, +9 conformi; INDEX 23→25, +2 conformi.
+11 recuperi/10 destinazioni, tutti conformi al gold: 4 esatti nella riga,
+3 nominativi, 1 data e 3 collegamenti con ordine+numero condivisi. Otto
+binding_source_record e tre verified_person_records; nessun valore o fatto
+riscritto, fatti/condizioni identici. Zero nuove accettazioni non conformi e
+nessuna grounded persa; anche totale grounded finale senza valori non conformi.
+Cinque rifiuti necessari mantenuti: due Comune con indirizzo completo, due
+destinazioni B0 con lo stesso Bari (BA) assente nella propria quote, un marker
+FORM INDEX insufficiente. La provincia INDEX recuperata cita invece la riga giusta.
+
+Tutti gli undici ancora conditional/REVIEW_REQUIRED e condizioni unknown:
+0 RESOLVED/0 scritture. Non è una misura di undici campi esportati. INDEX
+originale resta respinto allo schema root, nessun filtro produzione.
+11.021/11.023 file protetti invariati, soli due file verificatore diversi;
+nuovo file test. Altre trenta funzioni di compilation_global identiche AST.
+Frontend invariato/non ritestato. Nessun aggiornamento sessioni live o migrazione.
+Arresto dopo replay e rapporto, nessun ulteriore intervento sull'applicabilità.
+B0 riferimento, FORM compatto/coverage/thinking ancora sospesi; nessun commit/push.
+Bundle verificato: 68 file, 6.634.686 byte non compressi; SHA-256
+`efd1a6f0292443c19fae1459cdf8b04a36b69fc9bfc7132643b03a42a68b1087`.
+
+## Diagnosi degli undici SOURCE residui, nessuna implementazione — 17 ottobre
+
+Richiesta corrente: stabilire se i rifiuti residui hanno una causa comune,
+distinguendo dati mancanti e collegamenti non ricostruiti, prima di decidere
+altre correzioni. [Rapporto](docs/diagnosi-undici-source-2026-10-17.md),
+[tracciati e misure](docs/benchmarks/2026-10-17-residual-source-diagnosis.json),
+[bundle](docs/benchmarks/2026-10-17-residual-source-diagnosis-audit.tar.gz).
+
+Sola lettura degli ultimi audit: 9 B0-03 + 2 INDEX-01, dieci destinazioni
+distinte perché il CF del direttore compare due volte. Non sono gli undici
+recuperi KISS. Stesso errore locale di attribuzione nello stesso chunk, ma
+quattro sottocasi: 4 valori esatti già nella riga verificata del binding,
+3 nominativi con onorifico in un altro record rispetto ai soci, 1 data in
+lettere contro formato numerico, 3 associazioni socio/direttore (due CF e
+una provincia albo). Nessun valore o ruolo richiesto assente dall'intero input.
+Per quattro è già disponibile una prova congiunta esatta; per sette resta
+da definire/verificare associazione fra record o equivalenza di rappresentazione.
+Non sono undici nuove accettazioni dimostrate o autorizzate.
+
+Cause comuni: fatto condiviso fra ruoli con un'unica serie di citazioni;
+_binding_check non riusa il valore nella riga del binding, fallback solo sui
+record citati dal fatto, nessun join fra chunk. Elisa è corroborata da nome,
+ordine e numero 8421 fra tabella e direttore, anche nello stesso documento
+integrativo. Nessuna prova di unicità universale o nuova regola di identità.
+I tre nomi non falliscono perché il parser ignora Ing./Arch.: il confronto
+sintattico già li ammette nel record; manca l'associazione tra record/ruoli.
+
+Cinque rifiuti esterni invariati: due Comune, due destinazioni B0 con Bari (BA)
+non presente nella propria quote di Elisa, un marker FORM INDEX. La provincia
+INDEX negli undici ha invece citazione esatta nella riga di Elisa: difetto diverso.
+Nessuna modifica a codice, test, prompt, schema, FORM B0, provider/thinking,
+validatori, API, writer, fixture o vecchi raw. Nessuna nuova chiamata, replay
+dei validatori o esportazione. I 38/23 grounded sono esiti precedenti, nessun
+nuovo recupero o misura dei falsi positivi. Suite/Ruff precedenti non rieseguiti.
+Controllati JSON, citazioni, celle, conteggi, provenienza, riferimenti e hash.
+Raw residual-source-20261017-01/, script diagnostico senza dipendenze.
+11.006/11.006 file protetti invariati. Bundle verificato: 17 file,
+2.458.181 byte non compressi; SHA-256
+`def45875b6d6aa31d524f229cf1657e2ff3bc079e4541c8e0dd2a2c8bee12c37`.
+
+Applicabilità non affrontata: condizioni degli undici unknown, entrambi senza
+USER. Prossimo studio separato con sole condizioni FORM e SOURCE/USER dimostrati;
+nessuna implementazione autorizzata da questa diagnosi. Conservare le date:
+Luca cessa amministratore il 1 ottobre nell'integrazione; Leonardo subentra
+il 2 ottobre. La vecchia carica non determina firmatario o ramo attuale,
+né invalida il nominativo di Luca come socio. Nessun commit/push, migrazione
+o aggiornamento sessioni. B0 riferimento, compattazione/coverage/thinking sospesi.
+
+## Comune e contesto FORM: correzioni e replay — 17 ottobre
+
+Richiesta autorizzata: eliminare l'indirizzo completo accettato nel Comune e
+analizzare i 18 contesti FORM, correggendo soltanto una causa comune provata.
+[Rapporto](docs/comune-contesto-form-2026-10-17.md),
+[misure](docs/benchmarks/2026-10-17-field-context.json),
+[bundle](docs/benchmarks/2026-10-17-field-context-audit.tar.gz),
+[controlli](docs/benchmarks/2026-10-17-field-context-checks.json).
+
+Mantenuta integralmente la correzione KISS SOURCE. Nuovo controllo nel
+validatore condiviso: tipo Comune dalla label fisica o sede/residenza con
+componenti separati provincia/via/civico. Non usa la label del modello come
+autorità, non estrae la città né riscrive il valore. Indirizzi espliciti,
+richieste composite e località come Piazza Armerina restano ammessi.
+
+Diagnosi 18: tutti con prova FORM sufficiente non riconosciuta; zero quote
+FORM realmente insufficienti, zero sezioni dimostrate false, zero associazioni
+del modello a un ruolo FORM diverso. Applicabilità unknown in tutti. Backend
+perde introduzione del ruolo in paragrafo che contiene già campi; elenco di
+sette paragrafi, tre schede letteralmente identiche su 2/2/3 paragrafi. Sei
+campi all'inizio di membri successivi, dodici in continuazione. Diciannovesimo
+caso p46.s0 separato per fatto SOURCE già respinto.
+V12 riconosce ora elenco numerato consecutivo, quote di ruolo dopo ultimo
+placeholder, almeno due schede identiche, max 12 paragrafi e subject coerente
+in ogni membro. Barriere conservate, contesto aggiunto solo al campo verificato.
+FORM/catalogo/input non modificati; B0 completo riprodotto esattamente.
+
+Replay rispetto a KISS: B0 grounded 28→38 e conformi 27→38: +11 corretti,
+-1 errato. INDEX root isolato 24→23, conformi 23→23: -1 errato. Nessuna proposta
+corretta persa, tutti i precedenti recuperi KISS conservati. Zero grounded
+non conformi al gold nei due replay finali. Tutti i 18 collegamenti FORM passano,
+11 proposte recuperate e sette ancora bloccate dal record SOURCE. Anche p46.s0
+ha ora contesto corretto, ma il suo valore resta respinto. Fatti e condizioni
+identici, valori nuovi tutti conditional/REVIEW_REQUIRED, 0 RESOLVED/0 scritture.
+
+Residui B0 12: 1 Comune incompatibile, 2 quote insufficienti (un fatto/due
+destinazioni), 9 record SOURCE senza il ruolo richiesto. INDEX 4: 1 marker FORM
+insufficiente, 1 Comune incompatibile, 2 record SOURCE. Nessun join arbitrario
+per recuperare nomi/CF o ruoli in chunk diversi. INDEX originale resta respinto
+allo schema root: replay della copia isolata già esistente, nessun filtro produzione.
+
+30 nuovi casi, 211 mirati passati in 9,78 s; 2.374 backend in 206,57 s; Ruff.
+Controesempi intermedi: eredità di ruolo su campo aggiunto senza heading e
+rifiuto eccessivo di Comune+indirizzo, corretti e log conservati. Primo audit
+diagnostico con form_evidence mancante su campo respinto corretto usando FORM
+originale; E501 di un test corretto. Zero nuove richieste provider o export;
+frontend non ritestato. 10.793/10.795 file protetti invariati, soltanto i due
+file produzione autorizzati diversi e nuovo test. Schema, API, writer, modello,
+thinking, fixture e vecchi artefatti preservati. Raw field-context-20261017-01/.
+Bundle verificato: 47 file, 5.515.935 byte non compressi, SHA-256
+`f3d9bdc6f22b0b3837695090ce4ca0a9b8f2347d7011f4cf5517f38071c6fba7`.
+
+Nessun commit/push, migrazione o rianalisi sessioni live. Limiti residui SOURCE
+da discutere; nessuna nuova modifica automaticamente avviata. B0 riferimento,
+compattazione FORM/coverage/pilot thinking sospesi.
+
+## Correzione KISS dei binding e stop dopo replay — 17 ottobre
+
+Implementazione espressamente autorizzata dall'utente: prova tabellare SOURCE
+strutturale e fallback sulle sole citazioni del fatto, senza allentare fatti,
+citazioni, soggetti, ruoli o applicabilità. [Rapporto](docs/correzione-binding-kiss-2026-10-17.md),
+[misure](docs/benchmarks/2026-10-17-binding-kiss.json),
+[bundle](docs/benchmarks/2026-10-17-binding-kiss-audit.tar.gz),
+[controlli](docs/benchmarks/2026-10-17-binding-kiss-checks.json).
+
+Modificati solo compilation_global.py e compilation_role_records.py; nuovo
+test_compilation_binding_evidence.py. Nuovi percorsi solo V12, nessun framework
+o caso Mapi/ID specifico. Tabella Markdown completa con titolo/colonne/riga,
+persona esatta e non duplicata; flessione grammaticale nel solo titolo.
+Fallback con record del fatto che attesta direttamente persona/ruolo/valore;
+nessun join fra chunk e nessuna nuova quote di valore. Prove ed errore originario
+conservati nell'audit. FORM, prompt, thinking, schema, API, writer invariati.
+
+Audit prima esattamente riprodotti; replay sugli stessi output senza USER:
+- B0-03: grounded 22→28, recuperati 6 conformi (4 soci Luca, 2 direttore Elisa).
+- INDEX-01 root già isolato: 19→24, recuperati 5 conformi del direttore.
+11 occorrenze/9 destinazioni distinte; nessun recupero non conforme, nessuna
+proposta grounded persa. Tutti recuperi restano condizionati REVIEW_REQUIRED,
+valori non selezionati, 0 RESOLVED/0 scritture. Fatti e condizioni identici.
+INDEX originale continua a fallire i due metadati root, senza filtro produzione.
+
+Residui disgiunti: B0 22 (2 quote insufficienti, 18 contesti FORM, 2 record
+SOURCE); INDEX 3 (1 quote destinazione FORM, 2 record SOURCE). Bari (BA) B0
+resta respinto in p46.s0 e p53.s2: un fatto/due campi. Il gate FORM esterno
+ora emerge su 19 soci, uno già contato per quote errata; 7294 resta bloccato
+da questo contesto. Non equivale a prova che i dati o ruoli manchino nella KB.
+Quattro record SOURCE residui non attestano il ruolo nel chunk del valore.
+Resta anche p41.s1 già accettato con indirizzo completo al posto del Comune,
+in entrambe le risposte: 2 occorrenze preesistenti, nessun nuovo errore di questo tipo.
+Non dichiarare zero accettazioni indebite nell'intero sistema.
+
+40 nuovi casi, 133 mirati passati in 5,65 s; 2.344 backend passati in 188,62 s,
+Ruff passato. Red iniziale corretto per tre difetti fixture; quattro fallimenti
+positivi attesi. Primo codice aveva due fallimenti plurale -io, risolti con
+regola generica. Log conservati. Primo comando replay senza PYTHONPATH fermato
+prima delle analisi, corretto solo l'ambiente. Zero richieste provider/export.
+10.752/10.754 file protetti invariati, soli due file produzione autorizzati
+diversi; vecchi audit e fixture preservati. Frontend non ritestato.
+Raw: backend/data/compilation-audit/binding-kiss-20261017-01/.
+Bundle verificato: 40 file, 5.292.563 byte non compressi, SHA-256
+`79ea9798c5fa744732e81203226a3f2ae290325cba633028745d20f6ddacd3cb`.
+
+**Fermato dopo replay e rapporto**, nessun commit o push. Nessuna migrazione
+o aggiornamento sessioni live. Contesto FORM e attribuzioni residue sono limiti
+da discutere, non correzioni automaticamente autorizzate. B0 riferimento;
+compattazione, coverage e pilot thinking restano sospesi.
+
+## Chiarimento persona–ruolo e rifiuti — 17 ottobre
+
+Ricostruite le cinque domande dell'utente su proposte, SOURCE, costruzione
+del binding e natura del rifiuto. [Analisi con esempi e codice](docs/analisi-binding-persona-ruolo-2026-10-17.md),
+[estratti e hash](docs/benchmarks/2026-10-17-binding-persona-ruolo.json).
+Sola lettura degli artefatti già acquisiti: zero richieste provider, nessun
+nuovo replay, export o modifica a codice/prompt/schema/validatori/writer.
+
+Il modello propone fact_id/binding_id e rispettivi record; SubjectBinding non
+contiene subject, recuperato dal fatto durante la verifica backend. I tre
+binding dei soci falliscono sul ruolo letterale in ogni quote: Soci != socio,
+e la riga non contiene il ruolo. Il primo errore interrompe il ciclo già sul
+titolo. 24 valori conformi, 23 fatti grounded; campi 23 REVIEW_REQUIRED/1 REJECTED.
+Non è assenza dei soci nella SOURCE, ma limite del formato proposto e verificato.
+INDEX-01 p53.s0: ruolo -45 e valore -55, binding e fatto separatamente grounded;
+nessuna attribuzione valida registrata per il chunk del valore. Persona, ruolo
+e ordine sono espliciti nella frase -55, e l'ordine è disponibile anche in -45:
+catena di citazioni incompleta, non dato mancante. Esito osservato nel replay
+precedente, non nella chiamata originale fermata allo schema root.
+p46.s0 B0-03: Bari (BA) manca nella quote scelta per Elisa; il controllo corretto
+è source_span(quote, value). La stessa stringa nel troncone di Andrea in -55
+non è prova per Elisa. Non indebolire la citazione per recuperare questo caso.
+Applicabilità del ramo senza USER resta un vincolo indipendente.
+
+Verificati solo estratti/conteggi, SOURCE identiche e hash dei dodici file
+consultati; nessuna suite rieseguita. Nessun guadagno controfattuale attribuito
+a fix non eseguiti. B0 resta riferimento, FORM/coverage sospesi, nessun commit.
+Prossimo passo da discutere: rappresentazione verificabile delle relazioni,
+senza trasformare questi rifiuti diversi in un'accettazione generalizzata.
+
+## Replay INDEX-01, contesto USER e reasoning — 17 ottobre
+
+Richiesta dell'utente: affrontare i fallimenti prima di cambiare coverage;
+replay dei soli metadati root, trasporto USER registrati, opzioni thinking e
+soci B0-03. **Coverage invariato, B0 riferimento, compattazione FORM ferma.
+Zero nuove generazioni**, un solo GET /models non generativo. Nessun commit.
+Il trasporto USER è autorizzato da questa richiesta specifica; i precedenti
+punti di ripresa qui sotto sono storici.
+[Rapporto](docs/replay-index01-user-reasoning-2026-10-17.md),
+[misure](docs/benchmarks/2026-10-17-root-user-reasoning.json),
+[bundle](docs/benchmarks/2026-10-17-root-user-reasoning-audit.tar.gz),
+[controlli](docs/benchmarks/2026-10-17-root-user-reasoning-checks.json).
+
+INDEX-01: originale preservato, riprodotti due extra_forbidden. Isolati solo
+proposal_stage/project_id; tutti gli altri record esattamente uguali. Schema
+pieno passa, 27 proposte/20 fatti; 19 grounded ma solo 18 conformi al gold.
+Restano p15.s0 rifiutato FORM e sette dati del direttore bloccati dal binding.
+p41.s1 contiene indirizzo intero al posto del comune e passa i gate letterali.
+Nessun filtro root aggiunto in produzione, nessun successo storico riscritto.
+
+Due scenari software con analisi originaria sempre senza USER:
+- Nessuna conferma di partecipazione: export dei 19 respinto 409; copia vuota
+  soltanto con export parziale/allow_empty esplicito.
+- Test distinto con due risposte USER archiviate e apply_replies: selezione
+  manuale dei 19, DOCX con 19 SOURCE e 18 conformi, zero valori USER nei campi.
+  Mapping condizioni dichiarato nella fixture, mai trasferimento fra sessioni
+  in produzione. Narratore e interprete LLM non valutati.
+Copie Word/PDF INDEX01-ROOT-REPLAY-SENZA/CON-CONFERME in nuovi dati. Controllate
+534 destinazioni e 220 celle, altre 15 parti ZIP preservate; dieci pagine
+LibreOffice ciascuno, visione 1/3/10 con conferme. Firma su pagina quasi vuota.
+
+Trasporto USER implementato in compilation_user_context.py: legge solo turni
+start salvati con session_id esatto e conversazione/progetto della sessione.
+recorded_request è citazione letterale, non scelta estratta; registered_decision
+è risposta già accettata, con provenienza e ambito coerenti nel proprio registro.
+Nessuna risposta AI, cronologia generica o inferenza di firmatario/partecipazione.
+_prepare aggiunge user_context separato, user_values resta [], fatti solo SOURCE.
+Istruzioni aggiuntive soltanto con USER. Senza ricevute, input e request B0
+riprodotti esattamente sul Minervino. Caso T0 registrato salvato NOT-SENT;
+qualità generativa con USER non misurata. Nessuna migrazione/rianalisi implicita.
+
+Thinking: GET ufficiale HTTP200, deepseek-flash oggi DeepSeek-V4.1-Flash,
+low/high/max, default high; contesto 1.048.576, output massimo dichiarato
+393.216. B0 già enabled/low, minimal è alias low; nessun livello attivo più
+basso o budget indipendente di soli token reasoning documentato. API permette
+disabled/none. Runtime globale forza ancora thinking DeepSeek, invariato.
+Pilot minimo solo proposto: due chiamate fresche A enabled/low e B disabled
+con effort omesso; stesso B0 senza USER, messaggi/schema/coverage, max_tokens
+49.152, timeout 300 s. Body pronti NON inviati. Cache/backend/campionamento
+e due soli campioni limitano le conclusioni; USER resta un confronto distinto.
+
+Soci B0-03: 24 valori conformi, 23 fatti localmente grounded, una citazione
+insufficiente p46.s0 (Bari (BA) da -55 senza valore completo). Tre binding
+respinti: ogni quote deve contenere il ruolo letterale; titolo Soci vs socio
+e righe prive del ruolo. Tutti i 24 bloccati; nove valori con prove in chunk
+esterni al binding, 15 negli stessi chunk grezzi. Questi 15 non sono scritture
+già consentite e correggere il plurale non risolve tutto. Nessun gate allentato.
+
+Verifiche: **79 mirati passati in 9,33 s; 2.304 backend in 168,46 s; Ruff passato.**
+Iniziali otto diagnostiche import fixture risolte con alias, log conservato.
+Acquisizione offline con AISettings senza api_key corretta con oggetto minimo;
+sessione abbandonata solo nel DB privato, nessuna generazione ripetuta.
+Frontend invariato/non ritestato. Funzioni gate AST identiche; schema, coverage,
+role-record, validatori e writer invariati. Cambiano solo due file esistenti
+per input/request e _prepare, più lettore USER e test nuovi. Vecchi audit/fixture
+invariati; entità live 49 conversazioni/28 sessioni/464 revisioni/16 compilazioni
+e cinque file SOURCE uguali al riferimento. Nessuna immutabilità binaria DB
+asserita. Runtime privato escluso dal bundle, richiesto dallo script exporter.
+Raw: backend/data/compilation-audit/root-user-reasoning-20261017-01/.
+
+Archivio: 149 file, 3.516.747 byte; SHA-256
+`24799ce17ac5baa66c63367ddda807e97cf72f0a13eaab90f71b7770021c987f`.
+
+**Ripresa:** discutere eventualmente il pilot thinking, senza eseguirlo
+implicitamente. Coverage resta sospeso. Qualità USER non misurata; binding,
+soci e selezione del firmatario non risolti dal solo trasporto dei messaggi.
+
+## Stop compattazione FORM; diagnosi offline del contratto — 17 ottobre
+
+**Decisione esplicita dell'utente:** fermare gli esperimenti di compattazione
+FORM. B0 resta il riferimento; E1 compact-v1 e compact-index-v2 non vanno
+integrate. Nessuna nuova chiamata LLM, modifica di codice/prompt/validatori/
+writer o commit autorizzati per questa attività. E2 non avviato. Le precedenti
+proposte di ripresa nelle sezioni storiche qui sotto sono superate da questo stop.
+
+[Diagnosi dettagliata](docs/diagnosi-contratto-risposta-b0-e1-2026-10-17.md),
+[misure](docs/benchmarks/2026-10-17-output-diagnosis.json),
+[bundle derivati](docs/benchmarks/2026-10-17-output-diagnosis-audit.tar.gz),
+[controlli](docs/benchmarks/2026-10-17-output-diagnosis-checks.json).
+
+Analizzati gli HTTP/request/input/risposte/metriche e audit esistenti delle
+nove analisi globali, senza rieseguirle o rivalidare risposte riparate.
+INDEX-01: HTTP200 stop e JSON completo, ma envelope rifiutato per due chiavi
+extra proposal_stage/project_id; nessun audit di campo o writer raggiunto.
+25 valori grezzi conformi persi al gate globale, non 25 rifiuti locali.
+INDEX-02: HTTP200 length a 49.152 token, di cui 44.316 reasoning e 4.836 non
+reasoning; JSON tronco dentro facts, prima di coverage; errore sollevato nel
+trasporto. Nessun timeout in entrambi; nessuna prova di un problema del writer.
+
+Output nove chiamate: 349.460 token, 273.801 reasoning (78,35%), 75.659 non
+reasoning per differenza. Non comprende successivi router/narratore; reasoning
+non consumato come proposta dal backend. Otto JSON completi già minificati:
+634 record, zero duplicati esatti, 162 fatti tutti referenziati e nessuna
+coppia con identici subject/entity/aspect/property/value. Un ID coverage
+ripetuto (p64.cb0 B0-02). 210 record coverage / 1.907 occorrenze ID: spiegazioni
+ausiliarie, non duplicati inutili; 75.296/220.034 caratteri (34,22%).
+Nessuna tokenizzazione per sezione o causalità della sola lunghezza dichiarata.
+
+Verifica delle prove congelate contro i messaggi USER effettivamente inviati:
+60 target SOURCE ×9 =540 controlli positivi. Identici 56 chunk, 63.655 caratteri
+SOURCE, cinque file; nessuna evidenza esclusa prima dell'LLM per questi target.
+Righe soci assenti dal solo indice source_property_lines, presenti complete
+nel chunk -54. user_values=[] anche se T0 della chat sceglie firmatario e
+partecipante: dati SOURCE presenti non dimostrano assegnazione USER della pratica.
+Omissioni distinte da rifiuti; le motivazioni MODEL di assenza non sono prove.
+
+Sette audit reali: 49 occorrenze corrette bloccate, 32 destinazioni distinte.
+B0 1/5/28, E1 5/6/2, INDEX-03 due. Cause primarie disgiunte: 8 FORM, 23
+binding ruolo, 16 collegamenti ruolo/valore in chunk/record differenti, 2 quote
+SOURCE senza valore completo. B0-03 propone tutti i 24 campi soci ma li blocca;
+uno ha anche errore SOURCE, quindi non contarlo due volte. Corretto rispetto al
+gold non equivale a citazione/provenienza/ruolo validi, né a errore del validatore.
+
+**Minima proposta documentata, non implementata:** stessa vista B0 e una sola
+chiamata globale, rendere coverage sparsa invece di esaustiva. Conservare
+chiave coverage=[] e tutto il contratto fattuale/condizioni/binding invariato.
+Posizioni residue UNEXPLAINED/da valutare, mai SOURCE assente o risolte;
+trade-off esplicito sulla spiegazione delle omissioni. Lista vuota già ammessa
+dallo schema, richiesta di esaustività nel compito attuale. Controfattuale solo
+in caratteri B0: -35,67%/-31,01%/-24,71% JSON visibile; nessun risparmio token,
+reasoning o miglioramento qualità misurati. Non risolve da sola citazioni,
+binding, USER iniziali o troncamento prima di coverage. Nessun parametro cambiato.
+
+Raw nuovi: backend/data/compilation-audit/diagnosi-output-b0-e1-20261017-01/.
+Conservati tabelle token/sezioni, ogni omissione/prova, 49 rifiuti dettagliati,
+rifiuto globale separato, metodi e hash. Un primo controllo offline fallito
+per newline aggiunto in response.txt corretto solo nel confronto; originali
+invariati. Verificati hash di 1.227 file protetti, artefatti originali compresi;
+JSON/CSV/link/diff e archivio controllati. Nessuna suite applicativa ripetuta,
+nessun nuovo provider, codice, fixture o dato live modificato. Nessun commit.
+
+Archivio dei derivati: 18 file, 99.771 byte, SHA-256
+`080bb3190e05e1c7b68a36e40a5a37056683af42b99074dfd1b06c6f1380ec65`.
+
+**Ripresa:** discutere la sola proposta sul contratto di uscita nel rapporto.
+Non avviare altre prove o modifiche automaticamente; B0 e stop FORM persistono.
+
+## E1 compact-index-v2 concluso: due fallimenti, un Word — 17 ottobre
+
+L'utente ha approvato la seconda variante con indice diretto dei campi.
+Implementati indexed_form/indexed_input e controllo strutturale indipendente;
+--form-view compact-index-v2 soltanto nel runner. Type/context_id espliciti,
+contesti condivisi, blocchi invariati. compact-v1/default full conservati;
+nessuna integrazione nel motore operativo, migrazione, commit o push.
+[Rapporto completo](docs/esperimento-e1-index-2026-10-17.md),
+[misure](docs/benchmarks/2026-10-17-e1-index.json),
+[bundle](docs/benchmarks/2026-10-17-e1-index-audit.tar.gz),
+[verifiche finali](docs/benchmarks/2026-10-17-e1-index-checks.json).
+
+Input canonico B0 identico prima di ogni chiamata: FORM 126.928→88.522
+caratteri (-30,26%), messaggi 264.951→227.803, istruzioni di lettura +1.258.
+267 destinazioni, 142 contesti; SOURCE/USER/schema/reading plan/parametri uguali.
+Input e istruzioni v1 riprodotti esattamente dai precedenti artefatti.
+Protocollo/hash congelati prima dei risultati; tre analisi sequenziali,
+DeepSeek flash/thinking, timeout 300 s e output massimo 49.152, zero retry.
+
+- Run 01: JSON completo rifiutato per proprietà extra proposal_stage/project_id;
+  173,44 s, 39.871 output di cui 32.272 reasoning. Grezzo 25 conformi su 27,
+  indirizzo intero nei due campi del comune; nessun audit/sessione/Word.
+- Run 02: HTTP 200 finish_reason=length, JSON tronco; 214,62 s, 49.152 output
+  di cui 44.316 reasoning. Nessuna riparazione, audit/sessione/Word o score campo.
+- Run 03: 23 proposte conformi, 21 grounded; due rifiuti FORM p15.s0/p15.s1.
+  159,94 s, 36.508 output di cui 29.806 reasoning. Unica continuazione isolata
+  fino al Word: 21/60 conformi, tutti SOURCE, nessun campo USER scritto.
+
+Input 65.770 token ogni chiamata (-13,31% B0; +3,31% v1). Media output
+41.843,67 (+4,42% B0), totale analisi 107.613,67 (-7,18%), tempo 182,67 s
+contro 170,14 B0. Cache prima 6.400 hit/59.370 miss, poi 65.536/234;
+serie storiche del giorno precedente, backend provider non fissato. Nessuna
+causalità dei tempi, equivalenza statistica, costo monetario o media di qualità
+sui soli successi dichiarati. N/D espliciti per i due fallimenti, non zeri imputati.
+
+Run 03: 8/19 dati iniziali, 9/9 societari, 0/24 soci, 4/8 direttore conservati.
+Due condizioni di partecipazione chieste e risposta limitata a ripetere T0;
+nessuno dei quattro argomenti USER del copione chiesto. Zero quattro testi
+USER, sei preferenze e tre native true attese; preservati 123 vuoti, 61
+preferenze false e dieci native false. Export parziale esplicito, GENERATED,
+ready_for_submission=false; nessuna promozione automatica a RESOLVED.
+Nove chiamate totali, 353.942 token: minor totale dovuto anche ai fallimenti
+precoci, non miglior costo per pratica. Servizi isolati con risposta reale
+riusata dopo uguaglianza input/proiezione/audit, non browser/endpoint/ingestion.
+
+**Verifiche eseguite:** 137 test mirati passati in 7,61 s; **2.279 backend
+passati in 170,27 s**; Ruff completo passato. Iniziale E501 corretto prima
+del freeze e conservato; nessun fallimento pytest. Software simulato distinto
+da qualità reale. Frontend invariato, suite non ripetute. Tutte le 267
+destinazioni Word/report e 110 celle incluse intestazioni controllate;
+insiemi ZIP uguali, altre 15 parti preservate. LibreOffice dieci pagine,
+viste 1/3/10: firma su ultima pagina quasi vuota, Microsoft Word non verificato.
+18 hash Minervino e 11 Labirinto, cinque SOURCE live identiche; preesistenti
+49 conversazioni/28 sessioni/464 revisioni/16 compilazioni uguali alla copia
+isolata esclusi i nuovi oggetti del run 03. Nessuna immutabilità binaria DB
+asserita. Fixture/fonti/gold/schema/validatori/writer invariati.
+
+Raw: backend/data/compilation-audit/e1-index-20261017-01/.
+Word/PDF: nuovi dati/domanda-iscrizione.E1INDEX-RUN-03.*; nessun output 01/02.
+Bundle senza DB/credenziali: 250 file, 3.250.464 byte, SHA-256
+e0f586cf03775c9a699be31b7d75d704af5b61609411fbbdb13d74284dda33fc.
+Tutti gli output/errori/test e comparison.csv conservati. Modifiche e
+cancellazioni preesistenti preservate; niente ripristini o pubblicazioni Git.
+
+**Decisione:** indice diretto misurato, non adottato: 1/3 analisi utilizzabili
+contro 3/3 B0/v1. Risparmio input confermato, affidabilità non migliorata.
+Non conclude che l'indice causi da solo gli errori o che ogni formato compatto
+sia inefficace. E2 non avviato. **Ripresa proposta, da discutere:** esperimento
+separato su contratto di uscita e budget reasoning, una variabile per serie,
+prima di altra riduzione; nessuna implementazione già autorizzata di questa
+nuova ipotesi. Collegamento USER iniziali, binding, soci e domande restano
+interventi distinti. Il precedente punto di ripresa v1 qui sotto è storico.
+
+## E1 compact-v1 completato: meno token, qualità non stabilizzata — 16 ottobre
+
+L'utente ha approvato E1 e tutte le prove sperimentali. Implementata la proiezione
+compact-v1 in backend/app/compilation_form_view.py, selezionabile solo nel runner
+con --form-view compact-v1. Default full e motore di chat invariati. Runner con
+--prepare-only e --reference-input per impedire chiamate su corpus diverso da B0.
+[Rapporto E1](docs/esperimento-e1-form-compatto-2026-10-16.md),
+[misure](docs/benchmarks/2026-10-16-e1-form.json),
+[bundle](docs/benchmarks/2026-10-16-e1-form-audit.tar.gz).
+
+Preflight E1: FORM 126.928 → 81.209 caratteri (-36,02%); messaggi
+264.951 → 220.519 (-16,77%), incluso adattamento prompt +1.287 caratteri.
+267 destinazioni in 142 contesti, testi/tabelle e proprietà logiche equivalenti;
+SOURCE, USER, schema e reading plan identici a B0. Tre chiamate effettive:
+63.661 token input ciascuna contro 75.864 (-16,09%). Output medio 34.569 contro
+40.074; totale analisi medio 98.230 contro 115.938 (-15,27%). Tempi analisi
+150,96/102,40/166,16 s; media 139,84 contro 170,14, con cache non uniforme:
+prima E1 6.400 hit, poi 63.488; B0 tutto caldo. Nessun risparmio monetario provato.
+
+Valori conformi nelle proposte 18/25/23, con grounding 13/19/21 contro B0
+21/17/21. Word E1 14/11/23 conformi sui 60 target documentati, B0 23/17/22.
+Provenienza distinta: 13 SOURCE+1 USER, 11 SOURCE, 21 SOURCE+2 USER conformi.
+Nuova omissione dei nove campi societari nel primo; tutti i 24 soci omessi
+in tutte le analisi E1. Comune Bari corretto nel terzo, indirizzo intero nel
+secondo. Rifiuti FORM/ruolo e gruppi checkbox restano. Nessuno dei quattro
+argomenti USER chiesto: zero quattro testi USER, sei preferenze e tre native
+true; preservati i 123 vuoti, 61 preferenze false e dieci native false.
+
+Tre continuazioni isolate completate e tre export espliciti, tutti parziali.
+Run 2 fermato dopo due risposte ammesse sulla richiesta di riconfermare dati
+SOURCE fuori dal copione; nessuna attestazione inventata per sbloccarlo.
+27 chiamate totali, 413.624 token, incluso dialogo: percorsi diversi da B0,
+non costo/tempo end-to-end comparabile direttamente. Analisi vere riusate dopo
+input canonico, proiezione e audit uguali: non browser/endpoint/ingestion.
+
+Test: 116 mirati passati in 5,84 s; **2.258 backend passati in 166,87 s**,
+Ruff completo passato. Prima serie 110 passati/quattro falliti per aspettativa
+errata dei nuovi test su slot inline accanto a checkbox native: il parser già
+li omette. Corretti i soli test, parser e gold invariati; log conservati.
+Verificate tutte le 267 destinazioni contro Word/report, altre 15 parti ZIP
+preservate, 18 hash Minervino e 11 Labirinto, cinque SOURCE live identiche.
+Rendering LibreOffice dieci pagine, visione campionata 1/3/10 per ogni run,
+firma su pagina quasi vuota. Nessuna certificazione Microsoft Word.
+Controlli finali: tutti i 330 contenuti di cella dei tre Word, incluse le
+intestazioni, conformi; copie Word/PDF identiche ai raw, manifest raw/bundle
+e diff verificati. [Esiti](docs/benchmarks/2026-10-16-e1-form-checks.json).
+Entità live preesistenti uguali (49 conversazioni, 28 sessioni, 464 revisioni,
+16 compilazioni); nessuna pretesa di DB interamente immutato.
+
+Raw e protocollo: backend/data/compilation-audit/e1-form-20261016-01/.
+Bundle senza DB/credenziali: 386 file, 6.711.650 byte, SHA-256
+9cafd05bb2db9d4180aa37d9d47cfb79ad88b9b8bb7bd4a26bdf2215af6516d5.
+Word/PDF in nuovi dati/domanda-iscrizione.E1-RUN-01/02/03.*.
+Nessun retry, risultato escluso, modifica a fixture/validatori/writer, migrazione,
+commit o push. Frontend non modificato, suite non ripetute.
+
+**Decisione: compact-v1 resta nel banco di prova. Risparmio input misurato,
+qualità non sufficiente per promuoverlo; nessuna equivalenza da tre campioni.
+Ripresa proposta: nuova variante E1 con indice diretto candidate_id e contesti
+condivisi, protocollo/versione nuovi. Non implementata. E2 non avviato;
+scelte USER, binding e narratore restano interventi separati.**
+
+## E1: primo intervento proposto, ancora senza implementazione — 16 ottobre
+
+L'utente chiede da dove iniziare E1 e cosa fare. Ispezionato il catalogo e
+l'input reale B0; registrato il [contratto proposto](docs/contratto-e1-form-compatto.md).
+FORM 126.928 caratteri: blocks 63.758, candidates 62.947. Metadati per campo
+ridondanti: location, slot_context, ancore; 267 section_ids vuoti. Misura offline
+in caratteri, nessun nuovo risparmio token o esito LLM misurato.
+
+Proposta: proiezione deterministica dal catalogo completo, ID invariati,
+metadati condivisi per contesto, coordinate writer nel backend. Prima versione
+conserva testo originale e viste marcate dove servono alle citazioni. Mantenere
+tabelle/intestazioni, tipi/protezioni, controlli e relazioni; i 267 ID da soli
+non garantiscono fedeltà. Prima contratto e confronto offline, poi serializzatore
+nel solo banco di prova e tre run completi comparabili con B0. Schema output,
+fonti, thinking, validatori e copione invariati; adattamenti del prompt dichiarati.
+
+Scelte USER iniziali, binding SOURCE, pool domande, layout e riduzione dello
+schema output restano interventi distinti da discutere. E2 successivo a E1
+fissato. Nessun codice applicativo, nuova chiamata provider, fixture o DB
+modificati. Nessuna decisione aperta promossa a implementazione; controlli
+documentali soltanto, nessuna suite applicativa necessaria.
+
+**Ripresa: discutere il contratto minimo E1; primo risultato implementativo
+proposto input compatto completo con verifica strutturale, nel banco di prova.**
+
+## B0 misurata con provider reale: tre Word acquisiti — 16 ottobre
+
+L'utente ha autorizzato il provider per compilare e misurare il sistema prima
+dei lavori architetturali. Eseguite tre analisi DeepSeek reali e tre continuazioni
+dei servizi applicativi su copie isolate, fino all'export esplicito di bozze
+parziali. Codice attuale 99ab052 invariato, Minervino V1/fonti/gold congelati.
+[Rapporto](docs/baseline-minervino-b0-2026-10-16.md),
+[misure](docs/benchmarks/2026-10-16-minervino-b0.json),
+[bundle](docs/benchmarks/2026-10-16-minervino-b0-audit.tar.gz).
+Raw b0-minervino-20261016T154354Z/; archivio 348 file, 6.423.265 byte,
+SHA-256 85d2d441e0edb297a4d4955929eca8c8ca3c61545fef1be6de5f9575c69009ee.
+Tre Word e PDF in nuovi dati/domanda-iscrizione.B0-RUN-01/02/03.*.
+
+Analisi: 23/23/50 valori proposti, 22/22/49 conformi al gold e 21/17/21
+conformi con grounding passato sui 60 target SOURCE. Word: 24/18/23 scritture
+totali, 23/17/22 valori conformi sui 60 target; provenienza effettiva distinta
+(21+2 USER / 15+2 USER / 21+1 USER). Non è una misura unica su 267.
+Nessuno dei quattro argomenti USER del copione chiesto; zero dei quattro testi,
+delle sei preferenze e delle tre checkbox attese true. Conservati i 123 vuoti,
+61 preferenze non selezionate e dieci controlli false, senza dedurne comprensione.
+
+Cause osservate: soci omessi nei primi due run, tutti proposti nel terzo ma
+bloccati dal binding letterale; altri dati del direttore respinti per attribuzione
+nello stesso chunk; scelte iniziali assenti dall'input analisi (user_values=[])
+e richieste di nuovo; pool domande incompleto; indirizzo completo nel campo comune;
+gruppo checkbox respinto o assente. Run 2 fermato sulla riconferma del direttore,
+fuori dal copione USER: export parziale esplicito, nessun fatto aggiunto per sbloccare.
+
+30 chiamate, 481.199 token totali (357.871 input, 123.328 output, incluso
+89.725 reasoning). Ogni analisi 75.864 input, cache 75.648 hit/216 miss;
+146,73/179,84/183,85 s. Nessun costo monetario acquisito. Continuazioni da risposte
+reali riusate dopo input identico e audit rivalidato: non misurati browser,
+endpoint HTTP o ingestion; somma tempi provider non è latenza UI.
+
+Verifiche: tutte le destinazioni contro Word/report, altre 15 parti ZIP
+preservate, manifest/hash e segreti nel bundle, rendering LibreOffice e controllo
+visuale campionato. Dieci pagine per bozza, firma su pagina quasi vuota; Word
+Microsoft non verificato. Confronti dominio conservano sessioni/compilazioni
+preesistenti; chunk derivati live fuori dalle SOURCE rigenerati con stessi contenuti,
+quindi nessuna affermazione di DB interamente immutato. Errori offline del
+fingerprint/aggregazione corretti e registrati, senza ripetere chiamate provider.
+Nessuna suite applicativa, modifica al motore, migrazione, reindicizzazione
+richiesta, commit o push. Modifiche/cancellazioni preesistenti conservate.
+
+**Ripresa: B0 acquisita. Prima di scrivere il nuovo motore, fissare il contratto
+minimo E1 della proiezione deterministica del FORM completo e i criteri;
+poi tre run comparabili mantenendo fonti, modello/thinking, schema e validatori.
+E1/E2 non implementati né misurati. Passaggio delle scelte USER, pool domande
+e binding SOURCE sono problemi distinti da valutare separatamente.**
+
+## B0: acquisito input attuale, qualità ancora da misurare — 16 ottobre
+
+L'utente chiede se occorra misurare il sistema prima di E1/E2.
+Eseguito un preflight offline del codice attuale, senza chiamate provider:
+[report](docs/b0-preflight-2026-10-16.md),
+[misure](docs/benchmarks/2026-10-16-b0-preflight.json),
+[backup](docs/benchmarks/2026-10-16-b0-preflight-audit.tar.gz).
+Raw b0-preflight-20261016-01/. È una misura di input, non una baseline di qualità.
+
+Originale e cinque file SOURCE backend corrispondono alla fixture congelata;
+56 chunk, 267 destinazioni. JSON già senza indentazione: 240.276 caratteri,
+di cui FORM 126.928; system prompt 24.675, totale messaggi 264.951. Token
+consumati, tempi provider, accuratezza, dialogo e Word non misurati qui.
+
+Punto emerso: progetto deepseek-flash con preferenza thinking falsa, ma
+resolve_global forza thinking per DeepSeek. B0 deve conservare il comportamento
+effettivo con thinking attivo, non la sola impostazione UI. Prima ricostruzione
+erroneamente senza thinking conservata separatamente, poi corretta; nessuna
+richiesta inviata. Primo avvio senza PYTHONPATH fallito, avvio corretto riuscito.
+La disattivazione del thinking sarebbe un altro esperimento.
+
+Runner globale disponibile per proposta/audit, con scoring Minervino da raccordare
+senza cambiare il gold; non copre dialogo/export. Il runner di latenza copre
+solo creazione/risoluzione automatica, senza USER o Word. Misure delle fasi
+da distinguere; nessun nuovo motore necessario per la misura della proposta.
+
+Verificati hash, link e diff; fixture/fonti/gold invariati. Nessuna suite
+applicativa, scrittura DB/KB, sessione, commit o push in questo aggiornamento.
+Conservate modifiche e cancellazioni preesistenti dell'utente.
+
+**Ripresa: acquisire tre run B0 della proposta completa con configurazione
+effettiva congelata e confronto indipendente Minervino; poi E1. Per misurare
+il sistema fino al Word serve anche il percorso integrato con copione USER.
+Il preflight non autorizza conclusioni sulla qualità o sul risparmio di token.**
+
+## Discussione E1/E2 e continuità per la tesi — 16 ottobre
+
+L'utente chiede di continuare ad aggiornare STATUS.md per la tesi e propone
+due esperimenti distinti: E1 FORM compatto sul Minervino completo, E2 stessa
+vista compatta limitata a gruppi di requisiti per accelerare lo sviluppo.
+Registrato il [piano proposto](docs/piano-esperimenti-e1-e2.md), con riferimenti
+nel benchmark e nella proposta architetturale. È una discussione del disegno,
+non un'implementazione o una nuova prova di qualità.
+
+Confronti: B0 attuale completo contro E1 compatto completo; E2 contro E1
+completo sulle stesse destinazioni e checkpoint, entrambi contro il gold.
+Il tag 99ab052/baseline-minervino-v1-20261016 è una base recuperabile già
+pubblicata e verificata nel turno precedente, non una baseline LLM misurata.
+E2 valuta efficienza e differenze locali, senza dimostrare qualità globale.
+
+Orientamento proposto: prima E1, poi versione compatta fissata e gruppi E2
+distribuiti fra anagrafica, soci/direttore, rami, preferenze e dichiarazioni.
+Conservare dipendenze FORM, condizioni e informazioni USER; niente gold o
+indizi dalle risposte nel prompt. SOURCE e chunk inizialmente uguali fra le
+varianti. Misurare costo per gruppo e totale della suite, inclusa cache e
+contesto ripetuto. Scelta degli estratti da congelare prima dei risultati.
+Gli estratti sono prove di sviluppo; non reintroducono compilazione a gruppi
+nel prodotto. Margini di qualità locale e criteri vanno fissati prima dei run;
+nessun nuovo errore critico come orientamento, nessuna equivalenza promessa.
+
+Aggiornati soltanto documenti; controllati diff, riferimenti, tabelle e hash
+dei manifest Minervino/Labirinto. Nessuna suite applicativa, chiamata provider,
+scrittura DB/KB, modifica a fixture/gold o nuova baseline. Nessun commit/push
+in questo aggiornamento; modifiche preesistenti dell'utente conservate.
+
+**Ripresa: fissare il contratto minimo della vista compatta e il perimetro
+della prima misura E1, configurare ambiente/provider e acquisire B0. Dopo E1
+definire e congelare il manifest dei gruppi E2 fuori dalla fixture V1. La
+riduzione delle fonti e l'invio file ai provider restano confronti separati.**
+
 ## Minervino V1 congelato come base della nuova architettura — 16 ottobre
 
 L'utente ha autorizzato correzioni finali, adozione del caso, tag e push su

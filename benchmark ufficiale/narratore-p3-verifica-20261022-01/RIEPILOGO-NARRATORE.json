@@ -1,0 +1,119 @@
+{
+  "attempts": 8,
+  "DOCX": "7/8",
+  "paired_P3_A_DOCX": "6/8",
+  "narrator_rejections": [],
+  "core_by_document": {
+    "minervino": {
+      "N": [
+        "51/60",
+        "0/60"
+      ],
+      "P3_A": [
+        "0/60",
+        "16/60"
+      ]
+    },
+    "cesano": {
+      "N": [
+        "3/4",
+        "3/4"
+      ],
+      "P3_A": [
+        "3/4",
+        "3/4"
+      ]
+    },
+    "craa": {
+      "N": [
+        "10/10",
+        "8/10"
+      ],
+      "P3_A": [
+        "10/10",
+        "8/10"
+      ]
+    },
+    "catanzaro": {
+      "N": [
+        "13/31",
+        "8/31"
+      ],
+      "P3_A": [
+        "14/31",
+        "0/31"
+      ]
+    }
+  },
+  "previously_successful_documents_criterion": {
+    "cesano": {
+      "median_N": 75.0,
+      "median_P3_A": 75.0,
+      "passes": true
+    },
+    "craa": {
+      "median_N": 90.0,
+      "median_P3_A": 90.0,
+      "passes": true
+    },
+    "catanzaro": {
+      "median_N": 33.87096774193549,
+      "median_P3_A": 22.580645161290324,
+      "passes": true
+    }
+  },
+  "global_truncated": 1,
+  "tokens_total": 1008724,
+  "elapsed_median_s": 149.45,
+  "redundant_confirmations": 1,
+  "redundant_confirmations_by_trial": {
+    "minervino-N1": 0,
+    "cesano-N1": 1,
+    "craa-N1": 0,
+    "catanzaro-N1": 0,
+    "minervino-N2": 0,
+    "cesano-N2": 0,
+    "craa-N2": 0,
+    "catanzaro-N2": 0
+  },
+  "same_question_three_rounds": 0,
+  "open_conditions_never_answered": 0,
+  "holds_answered_not_released": 0,
+  "hold_reason_validation": {
+    "RECORDED": 16
+  },
+  "invalid_references": 0,
+  "option_writes_without_authorization": 0,
+  "writes_to_review": {
+    "minervino-N1": {
+      "p12.s3": [
+        "14 novembre 1982",
+        "14/11/1982"
+      ]
+    },
+    "cesano-N1": {
+      "p12.ft2": [
+        "14 novembre 1982",
+        "14/11/1982"
+      ],
+      "p16.cb0": false,
+      "p17.cb0": false,
+      "p18.cb0": false,
+      "p19.cb0": true,
+      "p20.cb0": false,
+      "p21.cb0": false
+    },
+    "craa-N1": {},
+    "catanzaro-N1": {},
+    "minervino-N2": {},
+    "cesano-N2": {
+      "p12.ft2": [
+        "14 novembre 1982",
+        "14/11/1982"
+      ]
+    },
+    "craa-N2": {},
+    "catanzaro-N2": {}
+  },
+  "provider_failures": []
+}

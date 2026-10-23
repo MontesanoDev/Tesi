@@ -1,0 +1,2889 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "historical/conserved/bella",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 4,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "p21.s4": true,
+          "p21.s5": true,
+          "p21.s6": true,
+          "p21.s7": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "3818d1582c850ab7994f823f632217432825d63713597235b4d9ad13cf3bad4f",
+        "images_pages": [
+          1,
+          2,
+          4
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/conserved/catanzaro",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "dc4d778ebc9865325f245a770c98bbba28d250d1c5b994b0777586c85c2c2ba2",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/conserved/catanzaro",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "f59fb329e1b952f730243ca8b885d69106647cc3938c5ae82e573b9180ab4a4d",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/conserved/cesano-reale-8",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 3,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "p19.ft0": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "44629800b1c8ab2ebe6877058105a04742a2a741c2c32441c370d0f5fcf97f91",
+        "images_pages": [
+          1,
+          2,
+          3
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/conserved/e2e-catanzaro",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r3.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true,
+          "t0.r0.c1": true,
+          "t0.r3.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "af204cce1395980ebeeb1a36efe44b4cedfff1777032e1d6e67d37db4bc0fc08",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/conserved/e2e-catanzaro",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true,
+          "t0.r0.c1": true,
+          "t0.r3.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "a8e865601a1e76add6fb68f8bba94ab94cc250e8712e3fe87822880bdfd4b084",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/conserved/minervino-v12-61",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 9,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "p12.s0": true,
+          "p12.s1": true,
+          "p12.s2": true,
+          "p12.s3": true,
+          "p13.s0": true,
+          "p13.s1": true,
+          "p13.s2": true,
+          "p13.s3": true,
+          "p14.s0": true,
+          "p14.s1": true,
+          "p15.s0": true,
+          "p15.s1": true,
+          "p15.s2": true,
+          "p15.s3": true,
+          "p16.s0": true,
+          "p16.s1": true,
+          "p16.s2": true,
+          "p17.s0": true,
+          "p17.s1": true,
+          "p40.s0": true,
+          "p41.s0": true,
+          "p41.s1": true,
+          "p42.s0": true,
+          "p42.s1": true,
+          "p42.s2": true,
+          "p42.s3": true,
+          "p42.s4": true,
+          "p42.s5": true,
+          "p43.s0": true,
+          "p43.s1": true,
+          "p43.s2": true,
+          "p43.s3": true,
+          "p43.s4": true,
+          "p44.s0": true,
+          "p44.s1": true,
+          "p44.s2": true,
+          "p45.s0": true,
+          "p45.s1": true,
+          "p45.s2": true,
+          "p45.s3": true,
+          "p45.s4": true,
+          "p46.s0": true,
+          "p46.s1": true,
+          "p46.s2": true,
+          "p47.s0": true,
+          "p48.s0": true,
+          "p48.s1": true,
+          "p49.s0": true,
+          "p49.s1": true,
+          "p49.s2": true,
+          "p49.s3": true,
+          "p49.s4": true,
+          "p51.s0": true,
+          "p52.s0": true,
+          "p52.s1": true,
+          "p53.s0": true,
+          "p53.s1": true,
+          "p53.s2": true,
+          "p53.s3": true,
+          "p53.s4": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "50f1a73990b3c81b85ee54ccb121879e8d5b179a924151cff662bcd86f3007c3",
+        "images_pages": [
+          1,
+          2,
+          9
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/new-context/catanzaro",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "dd53e14966e099a65a37995e536396aaaeb997ff3d092737acb97186b5c82709",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/new-context/catanzaro",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "3cc05c888e3cbd40638ed18cf49a8c8c0c1028d8268bd3ec165fc326dc413064",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/new-context/e2e-catanzaro",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r3.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true,
+          "t0.r0.c1": true,
+          "t0.r3.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "cf4bfc9b27528343ce0eb34a417dfb34631a0925675b33239a691fa4635f590e",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/new-context/e2e-catanzaro",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true,
+          "t0.r0.c1": true,
+          "t0.r3.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "1e3bcfcb006d0c8d65a112ebcdc73fdf0d1bbf3eb118f4d9fc150ef2e09b7bbb",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "history-latest/catanzaro",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r3.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true,
+          "t0.r0.c1": true,
+          "t0.r3.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "358594551a19c4f91b5d9917e0b81b0dcb09b6433b29364ee8ac1f6b4ff94afb",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "history-latest/catanzaro",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true,
+          "t0.r0.c1": true,
+          "t0.r3.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "45cb22d3bbe8c92f3af166f057e761ad663fdca963118d4d52540dc4ef6808d5",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "history/catanzaro",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "1c9cd9d4531094558ff64a4293d06a8685cca3aa19f32f498303cd8ada7cb90b",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "history/catanzaro",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "dc4497f7f9c70cb71bde00751b613369feb80ff250085de6f122d7d550a9497c",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "real/craa-user-20261020-01",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 7,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "p12.s0": true,
+          "p13.s0": true,
+          "p14.s0": true,
+          "p15.s0": true,
+          "p16.s0": true,
+          "p17.s0": true,
+          "p18.s0": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "f7a83a71e20af424559d6e9e2fa45cbca00b631e65fdac1896ec882b197d589e",
+        "images_pages": [
+          1,
+          2,
+          7
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "real/firmatario-generale-20261020-01",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 5,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "p12.s0": true,
+          "p12.s1": true,
+          "p12.s2": true,
+          "p12.s3": true,
+          "p12.s4": true,
+          "p12.s5": true,
+          "p12.s6": true,
+          "p12.s7": true,
+          "p75.s0": true,
+          "p75.s1": true,
+          "p75.s2": true,
+          "p75.s3": true,
+          "p75.s4": true,
+          "p75.s5": true,
+          "p75.s6": true,
+          "p75.s7": true,
+          "p75.s8": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "2e607394654e7a6acb23c78f4c154bd6bdaf430df14976eeb1872d8c01efc8e4",
+        "images_pages": [
+          1,
+          2,
+          5
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "real/form-applicability-20261020-01",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r3.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "80e7e8f56998b1a44672bc0ca68dc0e115948d1da7cce37c9fc9653abc3d04fa",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "real/form-applicability-20261020-01",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "ec5fd7a1503ddde88f046e5389f56ef5e7d429c7b3f686ffc205010c3d300e38",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "real/table-form-links-20261020-01",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r2.c0": true,
+          "t25.r3.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "7f38a5a63f4a5d7b74af891ae561ccc0a51524a726ff8313e687b1dc207d0742",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "real/table-form-links-20261020-01",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r0.c1": true,
+          "t25.r2.c0": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "2f2192fe55a4229e9a70537de6b3af2982448897213bfbec15a3aebc6e469f23",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/B0/rep-2",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "1c9de5d0666e89fb28de1cb3c3c7bcb11fe6edd2209b75983dd8d8fe8566fc4a",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/B0/rep-2",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "f0e445ef6dd0689dff0db5946bf35dd2ad8d5f423ef4e2bee44b16a9347f7662",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/E1/rep-2",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "58ca637ec97b4e492b22da92d2bb63c7b9e8777419bad4c85cb9d8ed7378873d",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/E1/rep-2",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "4309321943cbe4478fcd8202496f6d345035452f23dd90f0c4f724ccaa91762c",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/E1/rep-3",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "92bb1029509720499d44cd9962805abe488383d77fa42be35122519ceb83ffbd",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/E1/rep-3",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "4bffe36e7b6f3a6aad703a6feb75cb8d91829f99080c34cce58256564b407e92",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/E2-A/rep-1",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "4cb42f919285847c8c7540aa1fdf01e3a1ed047a75b2bf8b0b2c1df3036e5987",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/E2-A/rep-1",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "1b0a82f68e41472ac3fe20fe0303dc2b207c2a2427c31cc1c9125c4fb04ff41d",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/E2-A/rep-3",
+      "mode": "before-replay",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "66e3c12731088f913550bd78add5d98c521a832795251e64e9ee2a21677a9286",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/E2-A/rep-3",
+      "mode": "after",
+      "PDF": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "33fb2aa0ce870f77d6a11638a569d39e0558192b716a83e0596bff08be51d27b",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    }
+  ]
+}

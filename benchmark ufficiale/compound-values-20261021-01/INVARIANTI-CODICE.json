@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "unchanged_AST": {
+    "build_global_input": true,
+    "global_request": true,
+    "_shared_facts": true,
+    "_form_bindings": true,
+    "_condition_bindings": true,
+    "_shared_conditions": true
+  },
+  "unchanged_files": [
+    "docx_templates.py",
+    "compilation_catalog.py",
+    "compilation_global_contract.py",
+    "compilation_form_applicability.py",
+    "compilation_table_form.py",
+    "compilation_attribution.py",
+    "compilation_role_records.py",
+    "compilation_procedural_consent.py",
+    "compilation_choices.py"
+  ],
+  "no_composition_contract_change": true
+}

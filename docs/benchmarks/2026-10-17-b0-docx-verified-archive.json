@@ -1,0 +1,19 @@
+{
+  "archive": "docs/benchmarks/2026-10-17-b0-docx-verified-audit.tar.gz",
+  "sha256": "b396c7d7ba20d80463466ae03f492279585d26e5a930d8d81bd1ab61538172e2",
+  "archive_bytes": 4007498,
+  "files": 75,
+  "uncompressed_bytes": 10911253,
+  "all_member_hashes_verified": true,
+  "raw_directory": "backend/data/compilation-audit/b0-docx-verified-20261017-01",
+  "includes_actual_docx_pdf_and_rendered_images": true,
+  "private_database_included": false,
+  "reproduction_dependencies": [
+    "repository with code hashes identified in protected-before.json",
+    "frozen demo-documents/benchmark-minervino/v1",
+    "docs/benchmarks/2026-10-16-minervino-b0-audit.tar.gz",
+    "docs/benchmarks/2026-10-17-binding-final-audit.tar.gz",
+    "private historical B0-03 seed database indicated in setup.json, only for replaying application services",
+    "local LibreOffice runtime for rerendering"
+  ]
+}

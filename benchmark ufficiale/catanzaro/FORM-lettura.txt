@@ -1,0 +1,406 @@
+BODY 3: FONDAZIONE UNIVERSITA’ MAGNA GRAECIA
+BODY 4: Viale Europa Loc. Germaneto
+BODY 5: Campus Universitario S. Venuta
+BODY 6: 88100 Catanzaro
+BODY 7: C.F. 97067040796 P.I. 03267910796
+BODY 9: PROCEDURA APERTA AI SENSI DELL’ART. 71 DEL D.LGS. N. 36/2023, PER L’AFFIDAMENTO DI SERVIZI DI ARCHITETTURA E INGEGNERIA DIREZIONE LAVORI E COORDINAMENTO PER LA SICUREZZA IN FASE DI ESECUZIONE, PER LE “OPERE DI REALIZZAZIONE DELLE NUOVE RESIDENZE UNIVERSITARIE [III° LOTTO] ALL’INTERNO DEL CAMPUS UNIVERSITARIO S. VENUTA, DA AGGIUDICARE IN BASE AL CRITERIO DELL’OFFERTA ECONOMICAMENTE PIÙ VANTAGGIOSA SULLA BASE DEL MIGLIOR RAPPORTO QUALITÀ/PREZZO
+BODY 11: Domanda di partecipazione + dichiarazioni integrative connesse
+BODY 14: Alla Stazione Appaltante
+BODY 16: FONDAZIONE UNIVERSITA’ MAGNA GRAECIA
+BODY 19: Consapevole delle responsabilità e delle conseguenze civili e penali previsti in caso di dichiarazioni mendaci e/o formazione od uso di atti falsi, anche ai sensi e per gli effetti dell’art. 76 del D.P.R. 445/2000, nonché in caso di esibizione di atti contenenti dati non più corrispondenti a verità, e consapevole, altresì, che qualora emerga la non veridicità del contenuto della presente dichiarazione questa impresa decadrà dai benefici e dalle autorizzazioni per le quali la stessa è stata rilasciata;
+BODY 22: IN QUALITÀ DI 
+BODY 32: CHIEDE di partecipare alla presente gara 
+BODY 38: DICHIARA ai sensi degli artt.  46 e 47 D.P.R. 28.12.2000 n°445:
+BODY 41: >>>>> ----------------- PARTE PRIMA ----------------- <<<<
+BODY 42: (da compilare a cura di tutti gli operatori ad integrazione delle dichiarazioni del DGUE)
+BODY 45: di partecipare alla medesima gara contemporaneamente in forme diverse (individuale e associata; in più forme associate; in forma singola e quale consorziato esecutore di un consorzio); 
+BODY 46: (spuntare una delle due opzioni)
+BODY 48: che accetta, senza condizione o riserva alcuna, tutte le norme e disposizioni contenute nella documentazione di gara inclusi i criteri ambientali minimi di cui al D.M. n. 256 del 23 giugno 2022;
+BODY 50: che l’offerta economica presentata è remunerativa giacché per la sua formulazione ha preso atto e tenuto conto:
+BODY 51: delle condizioni contrattuali e degli oneri compresi quelli eventuali relativi in materia di sicurezza, di assicurazione, di condizioni di lavoro e di previdenza e assistenza in vigore nel luogo dove devono essere svolti i servizi;
+BODY 52: di tutte le circostanze generali, particolari e locali, nessuna esclusa ed eccettuata che possono avere influito o influire sia sulla prestazione dei servizi, sia sulla determinazione della propria offerta;
+BODY 54: di essere edotto degli obblighi derivanti dal Codice di comportamento adottato dal Committente reperibile sul profilo di committente sezione “Amministrazione Trasparente” e si impegna, in caso di aggiudicazione, ad osservare e a far osservare ai propri dipendenti e collaboratori, per quanto applicabile, il suddetto codice, pena la risoluzione del contratto;
+BODY 56: [Per gli operatori economici non residenti e privi di stabile organizzazione in Italia] 
+BODY 57: di impegnarsi ad uniformarsi, in caso di aggiudicazione, alla disciplina di cui agli articoli 17, comma 2, e 53, comma 3 del d.p.r. 633/1972 e a comunicare alla stazione appaltante la nomina del proprio rappresentante fiscale, nelle forme di legge;
+BODY 59: [Per gli operatori economici non residenti e privi di stabile organizzazione in Italia] 
+BODY 60: il domicilio fiscale …, il codice fiscale …, la partita IVA …, l’indirizzo di posta elettronica certificata o strumento analogo negli altri Stati Membri, ai fini delle comunicazioni di cui all’articolo 90 del Codice;
+BODY 63: di autorizzare qualora un partecipante alla gara eserciti la facoltà di “accesso agli atti”, la stazione appaltante a rilasciare copia di tutta la documentazione presentata per la partecipazione alla gara;
+BODY 66: altresì, ai sensi dell’art. 13 del Regolamento UE n. 2016/679 relativo alla protezione delle persone fisiche con riguardo al trattamento dei dati personali, nonché alla libera circolazione di tali dati, di aver letto l’informativa sul trattamento dei dati personali contenuta nel disciplinare di gara e di acconsentire al trattamento dei dati personali, anche giudiziari, mediante strumenti manuali ed informatici, esclusivamente nell’ambito della presente gara e per le finalità ivi descritte; dichiara, inoltre, di essere stato informato circa i diritti di cui agli artt. 15 e segg. del Regolamento UE n. 2016/679. Si impegna, inoltre, ad adempiere agli obblighi di informativa e di consenso, ove necessario, nei confronti delle persone fisiche (Interessati) di cui sono forniti dati personali nell’ambito della procedura di affidamento, per consentire il trattamento dei loro dati personali da parte della Stazione appaltante e del Committente per le finalità descritte nell’informativa;
+BODY 68: [per gli operatori economici ammessi al concordato preventivo con continuità aziendale di cui all’articolo 372 del decreto legislativo 12 gennaio 2019, n. 14],
+BODY 70: ad integrazione di quanto indicato nel DGUE che:
+BODY 71: gli estremi del provvedimento di ammissione rilasciato dal Tribunale di ____________ sono i seguenti: _____________________________________________________________________;
+BODY 72: gli estremi del provvedimento di autorizzazione a partecipare alle gare rilasciato dal giudice delegato sono i seguenti: ________________________________________________________;
+BODY 74: [Per gli operatori economici che hanno presentato domanda di ammissione al concordato preventivo con continuità aziendale senza che sia stato ancora emesso il decreto di ammissione]
+BODY 75: ad integrazione di quanto indicato nel DGUE che:
+BODY 76: gli estremi del deposito della domanda di ammissione sono i seguenti: prot.n. ________ del _____________ presentata al _____________________;
+BODY 78: il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di_____________________ è il seguente: prot.n. ________ del _____________;
+BODY 80: il soggetto di cui intende avvalersi, ai sensi dell'articolo 372 del D.Lgs. 14/2019, è il seguente: ____________________;
+BODY 83:  [nel caso di allegazione all’istanza e/o all’offerta di copie conformi di documenti in formato elettronico, nei casi in cui tale modalità di copia sia ammessa]
+BODY 84: che le copie di tutti i documenti allegati all’istanza e/o all’offerta in formato elettronico sono state formate a norma dell’art. 22 co 3 del d.lgs. 82/2005 (Copie informatiche di documenti analogici) e/o dell’art. 23-bis del d.lgs. 82/2005 (Duplicati e copie informatiche di documenti informatici) e nel rispetto delle regole tecniche di cui all’art. 71 del medesimo d.lgs. 82/2005;
+BODY 86: di aver conseguito nel triennio precedente a quello di indizione della presente procedura un fatturato globale pari a 1 volta l’importo a base di gara, ossia pari a Euro € 354.055,44;
+BODY 88: 13a) di avere espletato negli ultimi dieci anni antecedenti la data di pubblicazione del bando servizi di ingegneria e di architettura relativi ai lavori di ciascuna categoria e ID sottoelencate per un importo complessivo pari :
+BODY 91: >>>>> ----------------- PARTE SECONDA ----------------- <<<<
+BODY 92: (da compilare tutti solo per la parte di proprio interesse)
+BODY 94: Identificazione dell’operatore economico e idoneità professionale in relazione alla propria ragione sociale
+BODY 119: che la società è formata dai seguenti soci indicati in uno agli estremi di iscrizione ai relativi albi professionali:
+BODY 129: si allega l’organigramma aggiornato di cui all’art. 35 della parte V dell’allegato II.12 al D.lgs. n° 36/2023;
+BODY 136: che gli estremi dei requisiti del direttore tecnico di cui all’art. 36, comma 1 dell’allegato II.12 al D.lgs.  n. 36/2023 sono: 
+BODY 139: si allega l’organigramma aggiornato di cui all’art. 36 della parte V dell’allegato II.12 al D.lgs. n° 36/2023;
+BODY 145: che gli estremi dei requisiti del direttore tecnico di cui all’art. 37, comma 2, lett. b) dell’allegato II.12 al D.lgs.  n. 36/2023 sono: 
+BODY 148: si allega l’organigramma aggiornato di cui all’art. 37 della parte V dell’allegato II.12 al D.lgs. n° 36/2023;
+BODY 155: che la società è formata dai seguenti soci professionisti indicati in uno agli estremi di iscrizione ai relativi albi professionali:
+BODY 160: che la società è formata dai seguenti soci non professionisti (indicare i nominativi/ denominazione):
+BODY 170: Dichiarazioni consorzio di cui all’art. 66 comma 1 lettera g) del Codice
+BODY 172: che il consorzio è costituito dalle seguenti consorziate con indicazione di quelle per conto delle quali partecipa/esecutrici:
+BODY 182: >>>>> ----------------- PARTE TERZA ----------------- <<<<
+BODY 183: [da compilare solo a cura di società di professionisti, società di ingegneria, consorzi art. 66, co. 1 lettera g) e loro consorziate esecutrici e società tra professionisti (v. art. 10 L. 183/2011 e D.M. n. 34/2013)]
+BODY 187: DICHIARAZIONI SUI SOGGETTI DI CUI ALL’ART. 94 COMMI 3 E 4 DEL CODICE 
+BODY 190: che i dati identificativi dei soggetti di cui all’art. 94 commi 3 e 4 del Codice sono:
+BODY 192: i soggetti titolari di poteri di amministrazione e rappresentanza, ivi compresi institori e procuratori generali, nonché i poteri loro conferiti, sono: 
+BODY 196: i componenti degli organi con poteri di direzione o di vigilanza sono:
+BODY 201: i soggetti muniti di poteri di rappresentanza, di direzione o di controllo sono:
+BODY 204: rivestono la qualifica di Direttore Tecnico i seguenti soggetti:
+BODY 208: che il socio amministratore in caso di società in nome collettivo o i soci accomandatari in caso di società in accomandita semplice è / sono:
+BODY 212: che il socio unico è
+BODY 217: che l’amministratore di fatto di cui all’art. 94, comma 3, lett. h) del Codice è:
+BODY 221: in caso di socio persona giuridica, gli amministratori della stessa, ai fini dell’art. 94 comma 4 del Codice, sono:
+BODY 224: ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: _____________________________________.
+BODY 228: >>>>> ----------------- PARTE QUARTA----------------- <<<<
+BODY 229: (da compilare a cura di tutti gli operatori ad integrazione delle dichiarazioni del DGUE)
+BODY 230: Solo per raggruppamenti temporanei:
+BODY 231: Giovane professionista abilitato da meno di 5 (cinque) anni all'esercizio della professione, quale progettista
+BODY 232: ………………………………………
+BODY 235: ALLEGA la seguente documentazione:
+BODY 236: il proprio DGUE aggiornato al Codice 36/2023 firmato digitalmente (modello predisposto dalla stazione appaltante - Allegato 2);
+BODY 237: Dichiarazioni rese e firmate digitalmente dall’operatore economico ausiliario 
+BODY 238: Contratto di avvalimento firmato digitalmente dal concorrente e dall’operatore economico;
+BODY 239: In caso di concordato ex art. 372 del D.Lgs. n. 14/2019: relazione di un professionista in possesso dei requisiti di cui all'articolo 2, comma 1, lettera o) del decreto legislativo 14/2019 che attesta la conformità al piano e la ragionevole capacità di adempimento del con-tratto., che attesta la conformità al piano e la ragionevole capacità di adempimento del contratto;
+BODY 240: Copia della procura;
+BODY 241: Organigramma aggiornato di cui alla parte V dell’allegato II.12 al D.lgs. n° 36/2023;
+BODY 242: (eventuale altra documentazione prevista in caso di RTI, consorzi e imprese retiste) _____________________________.
+BODY 245: Letto, confermato e sottoscritto.                                                               Firmato digitalmente
+BODY 247: NB: caricare sul portale tutta la documentazione di gara in formato << .pdf>> firmata digitalmente secondo quanto previsto dal disciplinare di gara.
+
+TABLE 0
+r0: c0: Il/La sottoscritto/a || c1: 
+r1: c0: Data e luogo di nascita || c1: 
+r2: c0: Codice fiscale || c1: 
+r3: c0: In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.) || c1: 
+r4: c0: (se procuratore) estremi procura (notaio, repertorio, raccolta)  || c1: 
+r5: c0: Operatore economico || c1: 
+r6: c0: Forma giuridica || c1: 
+r7: c0: Sede legale (via, città, prov.) || c1: 
+r8: c0: Sede operativa  | (se diversa dalla sede legale) || c1: 
+r9: c0: Codice fiscale operatore economico || c1: 
+r10: c0: Partita IVA operatore economico || c1: 
+r11: c0: Cellulare + Telefono || c1: 
+
+TABLE 1
+r0: c0: Specificare la tipologia dell’operatore economico secondo la propria natura giuridica
+r1: c0:  || c1: Professionista singolo
+r2: c0:  || c1: Professionista associato nelle forme di cui alla legge n. 1815 del 1939, cosiddetti “studi associati” o “associazioni professionali”, con potere di legale rappresentanza dello studio associato / dell’associazione professionale.
+r3: c0:  || c1: Professionista associato nelle forme di cui alla legge n. 1815 del 1939, cosiddetti “studi associati” o “associazioni professionali”, senza potere di rappresentanza dello studio associato / dell’associazione professionale.
+r4: c0:  || c1: Società di professionisti di cui all’art. 35 dell’allegato II.12 al D.lgs. n. 36/2023
+r5: c0:  || c1: Società di ingegneria in forma di società di capitali o di società cooperativa di cui all’art. 36 dell’allegato II.12 al D.lgs. n. 36/2023 | 
+r6: c0:  || c1: Consorzio stabile di società di professionisti o di ingegneria di cui all’art. 66, comma 1, lett. g) del D.Lgs. 36/2023
+r7: c0:  || c1: Prestatore di servizi di ingegneria e architettura, stabilito nello Stato membro di ___________, costituito conformemente alla legislazione vigente nel medesimo Paese come da allegata documentazione (art. 66, comma 1, lett. d)
+r8: c0:  || c1: Società tra professionisti, anche multidisciplinari, di cui al decreto ministeriale n. 34 del 2013
+
+TABLE 2
+r0: c0: Nell’ipotesi di partecipazione di consorzio stabile, di essere:
+r1: c0:  || c1: Consorziata per la quale il consorzio stabile concorre / esecutrice nell’ipotesi di partecipazione di cui all’art. 66, comma 1, lett. g) del D.Lgs. n. 36/2023.
+
+TABLE 3
+r0: c0: Forma di partecipazione:  || c3: Risposta:
+r1: c0: L’operatore economico partecipa alla procedura insieme ad altri? || c3:  SI    NO
+r2: c0: In caso affermativo: || c1: Specificare il tipo di forma di aggregazione
+r3: c0:  || c1:  Raggruppamento temporaneo (art. 66, comma 1, lett. f), Codice)
+r4: c0:  || c1:  Consorzio ordinario (art. 65, comma 2, lettera f), Codice)
+r5: c0:  || c1:  Rete di imprese (art. 65, comma 2, lettera g), Codice)
+r6: c0:  || c1:  Gruppo europeo di interesse economico (G.E.I.E.)
+r7: c0: a)	Specificare il ruolo dell'operatore economico nel raggruppamento (mandataria, mandante ,…): || c1:  |  Mandatario di un Raggruppamento temporaneo di operatori economici – come di seguito specificato nella parte quinta del presente documento: |  |  Costituendo           Costituito |  | 
+r8: c0: a)	Specificare il ruolo dell'operatore economico nel raggruppamento (mandataria, mandante ,…): || c1:  |  Mandante di un Raggruppamento temporaneo di operatori economici – come di seguito specificato nella parte quinta del presente documento. |  | 
+r9: c0: a)	Specificare il ruolo dell'operatore economico nel raggruppamento (mandataria, mandante ,…): || c1:  |  Capogruppo di un consorzio ordinario – come di seguito specificato nella parte quinta del presente documento: |  |  Costituendo          Costituito |  | 
+r10: c0: a)	Specificare il ruolo dell'operatore economico nel raggruppamento (mandataria, mandante ,…): || c1:  Consorziata di un consorzio ordinario – come di seguito specificato nella parte quinta del presente documento. | 
+r11: c0: a)	Specificare il ruolo dell'operatore economico nel raggruppamento (mandataria, mandante ,…): || c1:  Organo comune in rete || c2:  Impresa in rete (retista)
+r12: c0: a)	Specificare il ruolo dell'operatore economico nel raggruppamento (mandataria, mandante ,…): || c1:  |  (altro) ____________________________________ | 
+
+TABLE 4
+r0: c0:  | SEZIONE A |  || c1:  | Domanda di partecipazione (soggetta ad imposta di bollo)
+
+TABLE 5
+r0: c0:  | SEZIONE B |  || c1:  | Dichiarazioni (suddivise in cinque parti)
+
+TABLE 6
+r0: c0:  |  NO
+r1: c0:  |  SI (in tal caso occorre allegare idonea documentazione con la quale dimostrare che la circostanza non abbia influito sulla gara né sia idonea a incidere sulla capacità di rispettare gli obblighi contrattuali);  | 
+
+TABLE 7
+r0: c0:  | CATEGOROIE | D’OPERA || c1:  | Categoria e ID delle opere || c2:  | Valore delle opere || c3: Importo complessivo svolto
+r1: c0: EDILIZIA || c1: E.06 || c2: €. 3.710.525,77 || c3: 
+r2: c0: STRUTTURTE || c1: S.03 || c2: €. 2.148.313,01 || c3: 
+r3: c0: IMPIANTI || c1: IA.01 || c2: €. 385.621,50 || c3: 
+r4: c0: IMPIANTI || c1: IA.02 || c2: €. 727.128,39 || c3: 
+r5: c0: IMPIANTI || c1: IA.03 || c2: €. 1.443.299,24 || c3: 
+
+TABLE 8
+r0: c0: 5.a)	dati identificativi da compilare in caso di PROFESSIONISTA SINGOLO
+
+TABLE 9
+r0: c0: Nome e cognome: || c1: 
+r1: c0: Data e luogo di nascita: || c1: 
+r2: c0: Codice fiscale: || c1: 
+r3: c0: Residenza: || c1: 
+r4: c0: qualifica professionale: || c1: 
+r5: c0: Ordine professionale di appartenenza: || c3: 
+r6: c0: numero ed anno di iscrizione all’Albo professionale: || c4: 
+r7: c0:  || c2: 
+
+TABLE 10
+r0: c0: 5.b)	dati identificativi da compilare in caso di professionisti associati (studio associato) nel caso di rappresentante munito di idonei poteri. | Questa sezione deve essere compilata dal solo rappresentante dello studio associato. | 
+
+TABLE 11
+r0: c0: Denominazione dello studio associato: || c2: 
+r1: c0: 
+r2: c0: Lo studio associato è costituito dai seguenti liberi professionisti:
+r3: c0:  || c1: 
+
+TABLE 12
+r0: c0: Nome e cognome: || c1: 
+r1: c0: Data e luogo di nascita: || c1: 
+r2: c0: Codice fiscale: || c1: 
+r3: c0: Residenza: || c1: 
+r4: c0: qualifica professionale: || c1: 
+r5: c0: Ordine professionale di appartenenza: || c3: 
+r6: c0: numero di iscrizione all’Albo professionale: || c4: 
+r7: c0:  || c2: 
+
+TABLE 13
+r0: c0: Nome e cognome: || c1: 
+r1: c0: Data e luogo di nascita: || c1: 
+r2: c0: Codice fiscale: || c1: 
+r3: c0: Residenza: || c1: 
+r4: c0: qualifica professionale: || c1: 
+r5: c0: Ordine professionale di appartenenza: || c3: 
+r6: c0: numero di iscrizione all’Albo professionale: || c4: 
+r7: c0:  || c2: 
+
+TABLE 14
+r0: c0: Nome e cognome: || c1: 
+r1: c0: Data e luogo di nascita: || c1: 
+r2: c0: Codice fiscale: || c1: 
+r3: c0: Residenza: || c1: 
+r4: c0: qualifica professionale: || c1: 
+r5: c0: Ordine professionale di appartenenza: || c3: 
+r6: c0: numero di iscrizione all’Albo professionale: || c4: 
+r7: c0:  || c2: 
+
+TABLE 15
+r0: c0: Nome e cognome: || c1: 
+r1: c0: Data e luogo di nascita: || c1: 
+r2: c0: Codice fiscale: || c1: 
+r3: c0: Residenza: || c1: 
+r4: c0: qualifica professionale: || c1: 
+r5: c0: Ordine professionale di appartenenza: || c3: 
+r6: c0: numero di iscrizione all’Albo professionale: || c4: 
+r7: c0:  || c2: 
+
+TABLE 16
+r0: c0: 5.b-bis)	dati identificativi da compilare in caso di professionisti associati (STUDIO ASSOCIATO) in assenza di rappresentante munito di idonei poteri. |  | Questa sezione deve essere compilata da ogni associato | 
+
+TABLE 17
+r0: c0: Denominazione dello studio associato: || c4: 
+r1: c0: 
+r2: c0:  || c1: 
+r3: c0: Nome e cognome dell’associato: || c3: 
+r4: c0: Data e luogo di nascita: || c1: 
+r5: c0: Codice fiscale: || c1: 
+r6: c0: Residenza: || c1: 
+r7: c0: qualifica professionale: || c5: 
+r8: c0: Ordine professionale di appartenenza: || c5: 
+r9: c0: numero ed anno di iscrizione all’Albo professionale: || c6: 
+r10: c0:  || c2: 
+
+TABLE 18
+r0: c0: 5.c)	da compilare in caso di SOCIETÀ DI PROFESSIONISTI |  | Questa sezione deve essere compilata dal legale rappresentante della società di professionisti.
+
+TABLE 19
+r0: c0: Denominazione sociale: || c1: 
+r1: c0: iscrizione alla CCIAA di: (per gli stranieri registri equipollenti)
+r2: c0: 
+r3: c0: numero d’iscrizione: || c1: 
+r4: c0: forma giuridica: || c1:  || c2: sede legale: || c3: 
+
+TABLE 20
+r0: c0: Nome e cognome: || c1: 
+r1: c0: qualifica professionale: || c1: 
+r2: c0: Ordine professionale di appartenenza: || c3: 
+r3: c0: numero di iscrizione all’Albo professionale: || c4: 
+r4: c0:  || c2: 
+
+TABLE 21
+r0: c0: Nome e cognome: || c1: 
+r1: c0: qualifica professionale: || c1: 
+r2: c0: Ordine professionale di appartenenza: || c3: 
+r3: c0: numero di iscrizione all’Albo professionale: || c4: 
+r4: c0:  || c2: 
+
+TABLE 22
+r0: c0: Nome e cognome: || c1: 
+r1: c0: qualifica professionale: || c1: 
+r2: c0: Ordine professionale di appartenenza: || c3: 
+r3: c0: numero di iscrizione all’Albo professionale: || c4: 
+r4: c0:  || c2: 
+
+TABLE 23
+r0: c0: Nome e cognome: || c1: 
+r1: c0: qualifica professionale: || c1: 
+r2: c0: Ordine professionale di appartenenza: || c3: 
+r3: c0: numero di iscrizione all’Albo professionale: || c4: 
+r4: c0:  || c2: 
+
+TABLE 24
+r0: c0: 5.d)	da compilare in caso di SOCIETÀ DI INGEGNERIA |  | Questa sezione deve essere compilata dal legale rappresentante della società di ingegneria.
+
+TABLE 25
+r0: c0: Denominazione sociale: || c2: 
+r1: c0: iscrizione alla CCIAA di: (per gli stranieri registri equipollenti)
+r2: c0: 
+r3: c0: numero e data d’iscrizione: || c2: 
+r4: c0: forma giuridica: || c2:  || c3: sede legale: || c4: 
+r5: c0:  || c1: 
+
+TABLE 26
+r0: c0: Nome e cognome: || c1: 
+r1: c0: qualifica professionale: || c1: 
+r2: c0: Data di abilitazione || c1: 
+r3: c0: Ordine professionale di appartenenza: || c3: 
+r4: c0: numero di iscrizione all’Albo professionale: || c4: 
+r5: c0:  || c2: 
+
+TABLE 27
+r0: c0: 5.e)	da compilare in caso di altro soggetto abilitato in forza del diritto nazionale a offrire sul mercato servizi di ingegneria e di architettura. | Questa sezione deve essere compilata dal legale rappresentante dell’operatore economico.
+
+TABLE 28
+r0: c0: Denominazione sociale: || c2: 
+r1: c0: Oggetto sociale: 
+r2: c0: 
+r3: c0: Natura giuridica: || c2:  || c3: sede legale: || c4: 
+r4: c0:  || c1: 
+
+TABLE 29
+r0: c0: Nome e cognome: || c1: 
+r1: c0: qualifica professionale: || c1: 
+r2: c0: Data di abilitazione || c1: 
+r3: c0: Ordine professionale di appartenenza: || c3: 
+r4: c0: numero di iscrizione all’Albo professionale: || c4: 
+r5: c0:  || c2: 
+
+TABLE 30
+r0: c0: 5.f)	da compilare in caso di SOCIETÀ TRA PROFESSIONISTI -  (v. art. 10 L. 183/2011 e D.M. n. 34/2013): |  | Questa sezione deve essere compilata dal legale rappresentante della società tra professionisti.
+
+TABLE 31
+r0: c0: Denominazione sociale: || c2: 
+r1: c0: iscrizione alla CCIAA di: (per gli stranieri registri equipollenti)
+r2: c0: 
+r3: c0: numero e data d’iscrizione: || c2: 
+r4: c0: forma giuridica: || c2:  || c3: sede legale: || c4: 
+r5: c0:  || c1: 
+
+TABLE 32
+r0: c0: Nome e cognome: || c1: 
+r1: c0: qualifica professionale: || c1: 
+r2: c0:  | Albo/Ordine/collegio professionale di appartenenza: || c3: 
+r3: c0:  | numero di iscrizione Albo/Ordine/collegio: || c4: 
+r4: c0:  || c2: 
+
+TABLE 33
+r0: c0: Nome e cognome: || c1: 
+r1: c0: qualifica professionale: || c1: 
+r2: c0:  | Albo/Ordine/collegio professionale di appartenenza: || c3: 
+r3: c0:  | numero di iscrizione Albo/Ordine/collegio: || c4: 
+r4: c0:  || c2: 
+
+TABLE 34
+r0: c0: Nome e cognome: || c1: 
+r1: c0: qualifica professionale: || c1: 
+r2: c0:  | Albo/Ordine/collegio professionale di appartenenza: || c3: 
+r3: c0:  | numero di iscrizione Albo/Ordine/collegio: || c4: 
+r4: c0:  || c2: 
+
+TABLE 35
+r0: c0: Nome e cognome / Denominazione: || c1: 
+r1: c0: Nome e cognome / Denominazione: || c1: 
+r2: c0:  || c2: 
+
+TABLE 36
+r0: c0: 5.g)	da compilare in caso di CONSORZIO STABILE di cui all’art. 66, comma 1, lett. g) del D.Lgs. n. 36/2023 |  | Questa sezione deve essere compilata dal legale rappresentante del consorzio 
+
+TABLE 37
+r0: c0: Denominazione sociale: || c2: 
+r1: c0: iscrizione alla CCIAA di: (per gli stranieri registri equipollenti)
+r2: c0: 
+r3: c0: numero e data d’iscrizione: || c2: 
+r4: c0: forma giuridica: || c2:  || c3: sede legale: || c4: 
+r5: c0:  || c1: 
+
+TABLE 38
+r0: c0: Ragione sociale || c1: C. Fiscale e P.IVA || c2: Barrare per conto delle quali partecipa / esecutrici 
+r1: c0:  || c1:  || c2: 
+r2: c0:  || c1:  || c2: 
+r3: c0:  || c1:  || c2: 
+r4: c0:  || c1:  || c2: 
+r5: c0:  || c1:  || c2: 
+
+TABLE 39
+r0: c0: 5.h)	da compilare in caso di CONSORZIATA ESECUTRICE di Consorzio Stabile di cui all’art. 66, comma 1, lett. g) del D.Lgs. n. 36/2023 |  | Questa sezione deve essere compilata dal legale rappresentante di ognuna delle consorziate esecutrici
+
+TABLE 40
+r0: c0: Denominazione sociale: || c2: 
+r1: c0: iscrizione alla CCIAA di: (per gli stranieri registri equipollenti)
+r2: c0: 
+r3: c0: numero e data d’iscrizione: || c2: 
+r4: c0: forma giuridica: || c2:  || c3: sede legale: || c4: 
+r5: c0:  || c1: 
+
+TABLE 41
+r0: c0: Nome e cognome || c1: Data e luogo di nascita  || c2: Residenza || c3: Codice fiscale  || c4: Poteri conferiti / qualifica
+r1: c0:  |  || c1:  || c2:  || c3:  || c4: 
+r2: c0:  |  || c1:  || c2:  || c3:  || c4: 
+
+TABLE 42
+r0: c0: Nome e cognome || c1: Data e luogo di nascita  || c2: Residenza || c3: Codice fiscale  || c4: Poteri conferiti / qualifica
+r1: c0:  |  || c1:  || c2:  || c3:  || c4: 
+r2: c0:  |  || c1:  || c2:  || c3:  || c4: 
+
+TABLE 43
+r0: c0: Nome e cognome || c1: Data e luogo di nascita  || c2: Residenza || c3: Codice fiscale  || c4: Poteri conferiti / qualifica
+r1: c0:  |  || c1:  || c2:  || c3:  || c4: 
+r2: c0:  |  || c1:  || c2:  || c3:  || c4: 
+
+TABLE 44
+r0: c0: Nome e cognome || c1: Data e luogo di nascita  || c2: Residenza || c3: Codice fiscale 
+r1: c0:  |  || c1:  || c2:  || c3: 
+r2: c0:  |  || c1:  || c2:  || c3: 
+
+TABLE 45
+r0: c0: Nome e cognome || c1: Data e luogo di nascita  || c2: Residenza || c3: Codice fiscale 
+r1: c0:  |  || c1:  || c2:  || c3: 
+r2: c0:  |  || c1:  || c2:  || c3: 
+
+TABLE 46
+r0: c0: Nome e cognome || c1: Data e luogo di nascita  || c2: Residenza || c3: Codice fiscale 
+r1: c0:  |  || c1:  || c2:  || c3: 
+
+TABLE 47
+r0: c0: Nome e cognome || c1: Data e luogo di nascita  || c2: Residenza || c3: Codice fiscale 
+r1: c0:  |  || c1:  || c2:  || c3: 
+r2: c0:  |  || c1:  || c2:  || c3: 
+
+TABLE 48
+r0: c0: Nome e cognome || c1: Data e luogo di nascita  || c2: Residenza || c3: Codice fiscale  || c4: Poteri conferiti / qualifica
+r1: c0:  |  || c1:  || c2:  || c3:  || c4: 
+r2: c0:  |  || c1:  || c2:  || c3:  || c4: 
+
+TABLE 49
+r0: c0:  | SEZIONE C |  || c1:  | Allegati

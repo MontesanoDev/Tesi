@@ -1,0 +1,42 @@
+{
+  "archive": "2026-10-19-v12-branches-audit.tar.gz",
+  "sha256": "196c36d653e1d99cc737e7616213b9f02170e1c46331b5518fbd22d41bc2f97b",
+  "files": 316,
+  "uncompressed_bytes": 51168570,
+  "compressed_bytes": 20493902,
+  "all_members_verified": true,
+  "source_raw": "backend/data/compilation-audit/v12-branches-20261019-01",
+  "contains_private_DB_or_keys": false,
+  "credential_pattern_scan": "negative; private keys/DB excluded and provider secrets redacted",
+  "global_calls": 0,
+  "provider_calls": 7,
+  "invented_USER_decisions": 0,
+  "chat_registered_receipts": 2,
+  "independent_extracted_bundle_verification": [
+    {
+      "mode": "corrected",
+      "audit_equal": true,
+      "text_values": 60,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "84e33e53477f0bb4935eaa9667ed02c6eea6d010beb091cab4f650a1b87feddd",
+      "provider_calls": 0
+    },
+    {
+      "mode": "chat",
+      "audit_equal": true,
+      "text_values": 52,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "provider_calls": 0
+    }
+  ],
+  "verification_uses_archived_app_code": true,
+  "private_persistence_replay_seed_excluded": ".tools/v12-review-soci-20261018-01/",
+  "chat_private_runtime_excluded": ".tools/v12-branches-chat-20261019-01/"
+}

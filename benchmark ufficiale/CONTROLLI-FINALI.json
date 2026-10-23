@@ -1,0 +1,101 @@
+{
+  "protected_code_tests_frontend_fixture_files_unchanged": 318,
+  "old_artifacts_unchanged": 645,
+  "live_storage_unchanged": 285,
+  "frozen_inputs_unchanged": 26,
+  "live_sessions_unchanged": 29,
+  "original_sessions_unchanged_in_clone": 29,
+  "new_isolated_sessions": 3,
+  "database_schema_unchanged": true,
+  "exact_same_SOURCE_in_three_global_inputs": true,
+  "real_provider_calls": 30,
+  "fresh_global_calls": 3,
+  "frozen_global_response_reuse": 0,
+  "provider_HTTP_errors": 0,
+  "quality_retries": 0,
+  "all_finish_stop": true,
+  "all_requests_forwarded_unchanged": true,
+  "head": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "no_application_prompt_validator_writer_changes": true,
+  "baseline_adopted": false,
+  "no_commit_push": true,
+  "browser": [
+    {
+      "slug": "minervino",
+      "folder": "browser",
+      "error_details_finalized": true,
+      "events": {
+        "requestfailed": 10
+      },
+      "all_recorded_failures_aborted": true,
+      "trace_finalized": true,
+      "video_files": 1
+    },
+    {
+      "slug": "trapani",
+      "folder": "browser-resume-01",
+      "error_details_finalized": true,
+      "events": {
+        "requestfailed": 10
+      },
+      "all_recorded_failures_aborted": true,
+      "trace_finalized": true,
+      "video_files": 1
+    },
+    {
+      "slug": "trapani",
+      "folder": "browser",
+      "error_details_finalized": false,
+      "events": {},
+      "all_recorded_failures_aborted": true,
+      "trace_finalized": false,
+      "video_files": 1
+    },
+    {
+      "slug": "catanzaro",
+      "folder": "browser",
+      "error_details_finalized": true,
+      "events": {
+        "requestfailed": 10
+      },
+      "all_recorded_failures_aborted": true,
+      "trace_finalized": true,
+      "video_files": 1
+    }
+  ],
+  "software_test_suite_not_rerun": true,
+  "offline_reconstructions": [
+    {
+      "slug": "minervino",
+      "fresh_audit_identical": true,
+      "text_values": 54,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "effects": [],
+      "docx_identical": true,
+      "sha256": "c2d03fb53ae7baf30b876b3b7a2e34a4beccbd9aac0c12e6319198b15564a6ac",
+      "provider_calls": 0
+    },
+    {
+      "slug": "trapani",
+      "fresh_audit_identical": true,
+      "text_values": 10,
+      "checkboxes": {},
+      "effects": [],
+      "docx_identical": true,
+      "sha256": "2cb8c448475714f234fafcccd535f2b3e9e6d3fade23b2908aa2689e2652fbbb",
+      "provider_calls": 0
+    },
+    {
+      "slug": "catanzaro",
+      "fresh_audit_identical": true,
+      "text_values": 13,
+      "checkboxes": {},
+      "effects": [],
+      "docx_identical": true,
+      "sha256": "aa940efde8dcc76796b07e247f59baceaaa8ab2af0e092681c58aba60ac9a7b0",
+      "provider_calls": 0
+    }
+  ]
+}

@@ -105,7 +105,7 @@ test('checkpoint groups questions, preserves partial replies and resumes after r
     return route.fulfill({ json: [] })
   })
   await page.goto('/projects/grouped-chat')
-  const composer = page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+  const composer = page.getByRole('textbox', { name: 'Messaggio per l’assistente' })
   async function send(message: string) {
     await composer.fill(message)
     await page.getByRole('button', { name: 'Invia', exact: true }).click()
@@ -114,7 +114,7 @@ test('checkpoint groups questions, preserves partial replies and resumes after r
   await page.getByRole('option', { name: form.name }).click()
   await send('me lo compili?')
   await expect.poll(() => steps).toBe(2)
-  await expect(page.getByRole('status', { name: 'Mapi sta elaborando' })).toBeVisible()
+  await expect(page.getByRole('status', { name: 'Elaborazione in corso' })).toBeVisible()
   await expect(page.locator('.compilation-question')).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Continua analisi' })).not.toBeVisible()
   release()

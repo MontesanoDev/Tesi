@@ -1,0 +1,448 @@
+{
+  "quality": {
+    "session_id": "d538c77c599a4860aa0114c534ce6f0c",
+    "conversation_id": "conv-e0d25a1af828430e",
+    "form_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "docx_sha256": "54f307b4d8f65022924fb5f7afb8c1cc305326f253bf8db38e5ea84490497cfa",
+    "model_facts": 46,
+    "model_assignments": 60,
+    "source_target_slots": 60,
+    "model_values_conform_gold": 58,
+    "source_assignments_grounded": 27,
+    "source_assignments_not_grounded": 33,
+    "rejection_groups": {
+      "Binding di ruolo rifiutato": 24,
+      "Il solo marker non documenta la richiesta del campo": 2,
+      "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore": 7
+    },
+    "reviewed_final": 27,
+    "held_final": 0,
+    "source_reuse": 0,
+    "grounded_still_unknown": [],
+    "source_written": 27,
+    "user_written": 0,
+    "written_total": 27,
+    "gold_source_exact_matches": 27,
+    "gold_source_gaps": 33,
+    "gold_wrong_written": 0,
+    "soci": {
+      "proposed": 24,
+      "model_conform": 24,
+      "grounded": 8,
+      "reviewed": 8,
+      "written": 8,
+      "previous_16_lost_review": 8
+    },
+    "native_checked": 0,
+    "native_required_at_T0_missing": [
+      "Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente"
+    ],
+    "native_required_without_user": [
+      "che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+      "che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:"
+    ],
+    "missing_user_text": [
+      "p229.s0",
+      "p230.s0",
+      "p232.s0",
+      "p242.s0"
+    ],
+    "correctly_blank_text": 123,
+    "correctly_blank_text_total": 123,
+    "xml_only_document_changed": true,
+    "all_physical_writes_equal_report": true,
+    "table_count": 4,
+    "native_count": 13,
+    "user_script_topics_asked": [],
+    "new_run_is_not_paired_comparison": true
+  },
+  "costs": {
+    "provider_calls_total": 7,
+    "global_calls": 1,
+    "narrator_calls": 2,
+    "router_calls": 3,
+    "user_scope_guard_calls": 1,
+    "no_quality_retries": true,
+    "usage_complete_calls": 5,
+    "all_stages_total_tokens": 153384,
+    "complete_usage_total_tokens": 147262,
+    "complete_usage_input": 106745,
+    "complete_usage_output": 40517,
+    "complete_usage_reasoning": 24507,
+    "usage_split_missing_tokens": 6122,
+    "missing_acquisitions": [
+      {
+        "stage": "initial_router",
+        "total_tokens_only": 3942,
+        "request_response_not_saved": true
+      },
+      {
+        "stage": "USER_scope_guard",
+        "total_tokens_only": 2180,
+        "request_response_not_saved": true
+      }
+    ],
+    "cost_known_usage_estimate_usd": 0.038948382,
+    "cost_total_estimate_usd_lower": 0.038966747999999995,
+    "cost_total_estimate_usd_upper": 0.042621582,
+    "price_source": "https://api-docs.deepseek.com/quick_start/pricing/",
+    "price_consulted_date": "2026-10-18",
+    "price_usd_per_million_off_peak": {
+      "input_hit": 0.003,
+      "input_miss": 0.15,
+      "output": 0.6
+    },
+    "off_peak_reason": "Sunday 18 October 2026; actual calls 10:39-10:43 UTC",
+    "cost_is_estimate_not_account_invoice": true,
+    "rows": [
+      {
+        "stage": "global",
+        "calls": 1,
+        "seconds": 142.09743843899923,
+        "usage": {
+          "prompt_tokens": 76616,
+          "completion_tokens": 40083,
+          "total_tokens": 116699,
+          "prompt_tokens_details": {
+            "cached_tokens": 1920
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 24507
+          },
+          "prompt_cache_hit_tokens": 1920,
+          "prompt_cache_miss_tokens": 74696
+        },
+        "usd_estimate_off_peak": 0.03525996
+      },
+      {
+        "stage": "narrator",
+        "artifact": "artifacts/dialogue/66eb160e5907431484e813f6b69ccfae/result.json",
+        "calls": 1,
+        "seconds": 2.4875491370039526,
+        "usage": {
+          "prompt_tokens": 10534,
+          "completion_tokens": 242,
+          "total_tokens": 10776,
+          "prompt_tokens_details": {
+            "cached_tokens": 256
+          },
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 10278
+        },
+        "usd_estimate_off_peak": 0.001687668
+      },
+      {
+        "stage": "narrator",
+        "artifact": "artifacts/dialogue/36888c7882524ff5a34a99b578724edd/result.json",
+        "calls": 1,
+        "seconds": 1.5882015519891866,
+        "usage": {
+          "prompt_tokens": 10681,
+          "completion_tokens": 13,
+          "total_tokens": 10694,
+          "prompt_tokens_details": {
+            "cached_tokens": 1536
+          },
+          "prompt_cache_hit_tokens": 1536,
+          "prompt_cache_miss_tokens": 9145
+        },
+        "usd_estimate_off_peak": 0.001384158
+      },
+      {
+        "stage": "router_generate",
+        "artifact": "artifacts/routing/fa6c52bb81c64fa796f05258dfd49fe0/trace.json",
+        "calls": 1,
+        "seconds": 1.2790555829997174,
+        "usage": {
+          "prompt_tokens": 4326,
+          "completion_tokens": 35,
+          "total_tokens": 4361,
+          "prompt_tokens_details": {
+            "cached_tokens": 2944
+          },
+          "prompt_cache_hit_tokens": 2944,
+          "prompt_cache_miss_tokens": 1382
+        },
+        "usd_estimate_off_peak": 0.00023713199999999998
+      },
+      {
+        "stage": "router_answer_fields",
+        "artifact": "artifacts/routing/07185884d9f74d07ac6ee0420be160d3/trace.json",
+        "calls": 1,
+        "seconds": 1.7124994530167896,
+        "usage": {
+          "prompt_tokens": 4588,
+          "completion_tokens": 144,
+          "total_tokens": 4732,
+          "prompt_tokens_details": {
+            "cached_tokens": 2688
+          },
+          "prompt_cache_hit_tokens": 2688,
+          "prompt_cache_miss_tokens": 1900
+        },
+        "usd_estimate_off_peak": 0.000379464
+      }
+    ],
+    "browser_seconds": 235.5,
+    "post_requests": [
+      {
+        "endpoint": "projects/minervino-di-lecce-elenco-sia/answer",
+        "status": 200,
+        "seconds": 2.525179
+      },
+      {
+        "endpoint": "projects/minervino-di-lecce-elenco-sia/compilation-sessions/d538c77c599a4860aa0114c534ce6f0c/resolve",
+        "status": 200,
+        "seconds": 145.07565100000002
+      },
+      {
+        "endpoint": "projects/minervino-di-lecce-elenco-sia/answer",
+        "status": 200,
+        "seconds": 3.102202
+      },
+      {
+        "endpoint": "projects/minervino-di-lecce-elenco-sia/compilation-sessions/d538c77c599a4860aa0114c534ce6f0c/resolve",
+        "status": 200,
+        "seconds": 1.716488
+      },
+      {
+        "endpoint": "projects/minervino-di-lecce-elenco-sia/answer",
+        "status": 200,
+        "seconds": 2.337687
+      }
+    ],
+    "sum_sequential_post_seconds": 154.75720700000002,
+    "narration_windows": [
+      {
+        "stage": "initial",
+        "question_pool_count": 1,
+        "document_values": 27,
+        "thinking": {
+          "type": "disabled"
+        },
+        "max_tokens": 2048
+      },
+      {
+        "stage": "follow_up",
+        "question_pool_count": 0,
+        "document_values": 27,
+        "thinking": {
+          "type": "disabled"
+        },
+        "max_tokens": 2048
+      }
+    ],
+    "observability_limits": "Initial router has no session to attach RoutingTrace; USER guard currently persists only combined total usage. No provider rerun to reconstruct missing telemetry."
+  },
+  "comparison": {
+    "compiled6-final": {
+      "old_written": 33,
+      "new_written": 27,
+      "newly_written": [
+        "p15.s1",
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p52.s1"
+      ],
+      "lost_writes": [
+        "p12.s0",
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p13.s0",
+        "p13.s1",
+        "p13.s2",
+        "p13.s3",
+        "p14.s0",
+        "p51.s0",
+        "p52.s0",
+        "p53.s0",
+        "p53.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "changed_values": {},
+      "paired_comparison": false
+    },
+    "b0-existing-final": {
+      "old_written": 56,
+      "new_written": 27,
+      "newly_written": [
+        "p41.s1"
+      ],
+      "lost_writes": [
+        "p12.s0",
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p13.s0",
+        "p13.s1",
+        "p13.s2",
+        "p13.s3",
+        "p14.s0",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s1",
+        "p46.s2",
+        "p47.s0",
+        "p48.s0",
+        "p48.s1",
+        "p49.s0",
+        "p49.s1",
+        "p49.s2",
+        "p49.s3",
+        "p49.s4",
+        "p51.s0",
+        "p52.s0",
+        "p53.s0",
+        "p53.s1",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "changed_values": {
+        "p43.s0": [
+          "Ing. Luca Ferri",
+          "Luca Ferri"
+        ]
+      },
+      "paired_comparison": false
+    },
+    "prompt-final": {
+      "old_written": 41,
+      "new_written": 27,
+      "newly_written": [
+        "p15.s1",
+        "p41.s1",
+        "p52.s1"
+      ],
+      "lost_writes": [
+        "p12.s0",
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p13.s0",
+        "p13.s1",
+        "p13.s2",
+        "p13.s3",
+        "p14.s0",
+        "p45.s0",
+        "p45.s1",
+        "p45.s2",
+        "p45.s3",
+        "p45.s4",
+        "p46.s0",
+        "p46.s1",
+        "p46.s2"
+      ],
+      "changed_values": {},
+      "paired_comparison": false
+    },
+    "actual_compilato6": {
+      "old_written": 25,
+      "new_written": 27,
+      "newly_written": [
+        "p15.s1",
+        "p43.s0",
+        "p43.s1",
+        "p43.s2",
+        "p43.s3",
+        "p43.s4",
+        "p44.s0",
+        "p44.s1",
+        "p44.s2",
+        "p52.s1"
+      ],
+      "lost_writes": [
+        "p12.s0",
+        "p51.s0",
+        "p52.s0",
+        "p53.s0",
+        "p53.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "changed_values": {},
+      "paired_comparison": false
+    }
+  },
+  "preservation": {
+    "protected_files": 205,
+    "changed_protected_files": [],
+    "original_sessions": 29,
+    "original_sessions_unchanged": true,
+    "original_storage_files": 273,
+    "original_storage_files_different_from_pre_run_clone": [],
+    "no_application_code_changes": true,
+    "no_commit_or_push": true,
+    "offline_counterfactual_separate": true
+  },
+  "rendering": {
+    "new_pages": 10,
+    "gold_pages": 9,
+    "new_pages_inspected": [
+      1,
+      3,
+      10
+    ],
+    "gold_pages_inspected": [
+      3
+    ],
+    "not_microsoft_word_certification": true
+  },
+  "historical_16_cause": "8 Andrea fields reviewed at ranks 33-40; after 8 SOURCE reuses moved to 41-48 and reviewed list overwritten; no held, loss of previous review, writer exact",
+  "offline_citation_only_counterfactual": {
+    "kind": "counterfactual citation-only, not actual UI score",
+    "no_new_llm": true,
+    "no_backend_changes": true,
+    "no_export_or_session_mutation": true,
+    "same_values_facts_conditions_fields": true,
+    "baseline_grounded": 27,
+    "probe_grounded": 43,
+    "newly_grounded": [
+      "p45.s0",
+      "p45.s1",
+      "p45.s2",
+      "p45.s3",
+      "p45.s4",
+      "p46.s0",
+      "p46.s1",
+      "p46.s2",
+      "p47.s0",
+      "p48.s0",
+      "p48.s1",
+      "p49.s0",
+      "p49.s1",
+      "p49.s2",
+      "p49.s3",
+      "p49.s4"
+    ],
+    "lost_grounded": [],
+    "signer_bad_anchor": {
+      "paragraph_id": "paragraph:14",
+      "quote": "in qualità di"
+    },
+    "signer_anchor_points_to_paragraph_14": "[[p14.s0]] dell’operatore economico [[p14.s1]] con sede in",
+    "actual_in_qualita_di_paragraph_13": "in [[p13.s0]] ([[p13.s1]]), via [[p13.s2]], C.F. [[p13.s3]], in qualità di",
+    "all_recovered_values_unchanged": true
+  },
+  "unsupported_four_spans_counterfactual": {
+    "baseline_grounded": 27,
+    "variant_grounded": 19,
+    "reason": "SubjectBinding max two evidence spans, not four",
+    "not_real_ui_regression": true
+  },
+  "no_application_changes": true,
+  "no_commit_push": true,
+  "e1_not_run": true
+}

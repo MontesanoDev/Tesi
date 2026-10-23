@@ -1,0 +1,389 @@
+{
+  "protected_files": 210,
+  "existing_production_files_changed": [
+    "backend/app/compilation_choices.py",
+    "backend/app/compilation_global_dialogue.py",
+    "backend/app/compilation_global_sessions.py"
+  ],
+  "new_code": "backend/app/compilation_branch_evidence.py",
+  "new_tests": "backend/tests/test_compilation_branch_evidence.py",
+  "other_protected_files_unchanged": 207,
+  "prior_tracked_changes_outside_allowed_files_preserved": true,
+  "function_changes": {
+    "backend/app/compilation_choices.py": [
+      "materialize_choices"
+    ],
+    "backend/app/compilation_global_dialogue.py": [
+      "apply_replies",
+      "checked_user_fields",
+      "export_selection"
+    ],
+    "backend/app/compilation_global_sessions.py": [
+      "_selected",
+      "chat_view",
+      "generate_draft",
+      "refreshed_audit",
+      "session_payload"
+    ]
+  },
+  "all_dialogue_prompt_constants_unchanged": true,
+  "original_sessions_unchanged": 29,
+  "uploads_knowledge_unchanged": 285,
+  "head_unchanged": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "git_diff_check": true,
+  "tests": {
+    "new": 34,
+    "negative": 31,
+    "targeted": 243,
+    "full": 2601,
+    "ruff": "passed"
+  },
+  "independent_verification": [
+    {
+      "mode": "corrected",
+      "audit_equal": true,
+      "text_values": 60,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "84e33e53477f0bb4935eaa9667ed02c6eea6d010beb091cab4f650a1b87feddd",
+      "provider_calls": 0
+    },
+    {
+      "mode": "chat",
+      "audit_equal": true,
+      "text_values": 52,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "provider_calls": 0
+    }
+  ],
+  "visual": {
+    "viewer": "Codex local LibreOffice render inspection",
+    "pages_viewed": {
+      "baseline": [
+        3
+      ],
+      "corrected": [
+        3,
+        9
+      ],
+      "chat": [
+        3
+      ]
+    },
+    "all_modes_pages": 9,
+    "signature_and_line_on_last_page": true,
+    "new_data_and_checkbox_readable_no_overlap_observed": true,
+    "known_joined_preprinted_labels_remain": true,
+    "Word_desktop_certification": false
+  },
+  "metrics": {
+    "date": "2026-10-19",
+    "baseline": "V12 52",
+    "runs": [
+      {
+        "mode": "baseline",
+        "text_written": 52,
+        "checkbox_written": 0,
+        "total_written": 52,
+        "SOURCE_text": 51,
+        "USER_text": 1,
+        "new_SOURCE_fields": [],
+        "previous_52_lost_or_changed": [],
+        "conditions": {
+          "c_societa": "unknown",
+          "c_dt": "unknown"
+        },
+        "held_by_narrator": [],
+        "checkbox_values": {},
+        "checkbox_effects": [],
+        "gold_conforming_text": 51,
+        "gold_strict_differences": [
+          {
+            "candidate_id": "p14.s0",
+            "label": "Carica firmatario",
+            "actual": "amministratore unico e rappresentante legale",
+            "expected": "rappresentante legale",
+            "gold_conforming": false
+          }
+        ],
+        "remaining_expected_text": [
+          {
+            "candidate_id": "p51.s0",
+            "label": "Direttore tecnico Elisa Romano: Nome",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p52.s0",
+            "label": "Direttore tecnico Elisa Romano: Qualifica",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p52.s1",
+            "label": "Direttore tecnico Elisa Romano: CF",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p53.s0",
+            "label": "Direttore tecnico Elisa Romano: Ordine",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p53.s1",
+            "label": "Direttore tecnico Elisa Romano: Sezione",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p53.s2",
+            "label": "Direttore tecnico Elisa Romano: Provincia",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p53.s3",
+            "label": "Direttore tecnico Elisa Romano: Data iscrizione",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p53.s4",
+            "label": "Direttore tecnico Elisa Romano: Numero iscrizione",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p229.s0",
+            "label": "Professionisti esecutori: Elisa e Luca",
+            "provenance": "USER"
+          },
+          {
+            "candidate_id": "p230.s0",
+            "label": "Professionista esecutore: Andrea",
+            "provenance": "USER"
+          },
+          {
+            "candidate_id": "p232.s0",
+            "label": "Integrazione delle prestazioni specialistiche",
+            "provenance": "USER"
+          },
+          {
+            "candidate_id": "p242.s0",
+            "label": "Luogo e data della bozza",
+            "provenance": "USER"
+          }
+        ],
+        "new_undue_writes_observed": 0,
+        "pages": 9,
+        "docx_sha256": "58f1179d4cff7c6c1de4f2e886c524906c1be618e1025a67d97288f7c7323f2b"
+      },
+      {
+        "mode": "corrected",
+        "text_written": 60,
+        "checkbox_written": 1,
+        "total_written": 61,
+        "SOURCE_text": 59,
+        "USER_text": 1,
+        "new_SOURCE_fields": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "previous_52_lost_or_changed": [],
+        "conditions": {
+          "c_societa": "unknown",
+          "c_dt": "true"
+        },
+        "held_by_narrator": [],
+        "checkbox_values": {
+          "p39.cb0": true
+        },
+        "checkbox_effects": [],
+        "gold_conforming_text": 59,
+        "gold_strict_differences": [
+          {
+            "candidate_id": "p14.s0",
+            "label": "Carica firmatario",
+            "actual": "amministratore unico e rappresentante legale",
+            "expected": "rappresentante legale",
+            "gold_conforming": false
+          }
+        ],
+        "remaining_expected_text": [
+          {
+            "candidate_id": "p229.s0",
+            "label": "Professionisti esecutori: Elisa e Luca",
+            "provenance": "USER"
+          },
+          {
+            "candidate_id": "p230.s0",
+            "label": "Professionista esecutore: Andrea",
+            "provenance": "USER"
+          },
+          {
+            "candidate_id": "p232.s0",
+            "label": "Integrazione delle prestazioni specialistiche",
+            "provenance": "USER"
+          },
+          {
+            "candidate_id": "p242.s0",
+            "label": "Luogo e data della bozza",
+            "provenance": "USER"
+          }
+        ],
+        "new_undue_writes_observed": 0,
+        "pages": 9,
+        "docx_sha256": "84e33e53477f0bb4935eaa9667ed02c6eea6d010beb091cab4f650a1b87feddd"
+      },
+      {
+        "mode": "chat",
+        "text_written": 52,
+        "checkbox_written": 1,
+        "total_written": 53,
+        "SOURCE_text": 52,
+        "USER_text": 0,
+        "new_SOURCE_fields": [],
+        "previous_52_lost_or_changed": [],
+        "conditions": {
+          "c_societa": "unknown",
+          "c_dt": "true"
+        },
+        "held_by_narrator": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "checkbox_values": {
+          "p39.cb0": true
+        },
+        "checkbox_effects": [],
+        "gold_conforming_text": 51,
+        "gold_strict_differences": [
+          {
+            "candidate_id": "p14.s0",
+            "label": "Carica firmatario",
+            "actual": "amministratore unico e rappresentante legale",
+            "expected": "rappresentante legale",
+            "gold_conforming": false
+          }
+        ],
+        "remaining_expected_text": [
+          {
+            "candidate_id": "p51.s0",
+            "label": "Direttore tecnico Elisa Romano: Nome",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p52.s0",
+            "label": "Direttore tecnico Elisa Romano: Qualifica",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p52.s1",
+            "label": "Direttore tecnico Elisa Romano: CF",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p53.s0",
+            "label": "Direttore tecnico Elisa Romano: Ordine",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p53.s1",
+            "label": "Direttore tecnico Elisa Romano: Sezione",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p53.s2",
+            "label": "Direttore tecnico Elisa Romano: Provincia",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p53.s3",
+            "label": "Direttore tecnico Elisa Romano: Data iscrizione",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p53.s4",
+            "label": "Direttore tecnico Elisa Romano: Numero iscrizione",
+            "provenance": "SOURCE"
+          },
+          {
+            "candidate_id": "p229.s0",
+            "label": "Professionisti esecutori: Elisa e Luca",
+            "provenance": "USER"
+          },
+          {
+            "candidate_id": "p230.s0",
+            "label": "Professionista esecutore: Andrea",
+            "provenance": "USER"
+          },
+          {
+            "candidate_id": "p232.s0",
+            "label": "Integrazione delle prestazioni specialistiche",
+            "provenance": "USER"
+          },
+          {
+            "candidate_id": "p242.s0",
+            "label": "Luogo e data della bozza",
+            "provenance": "USER"
+          }
+        ],
+        "new_undue_writes_observed": 0,
+        "pages": 9,
+        "docx_sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479"
+      }
+    ],
+    "calls": {
+      "global_new": 0,
+      "global_saved_response_reuses": 1,
+      "routers": 3,
+      "narrators": 3,
+      "reply_scope_guards": 1,
+      "total_live_calls": 7,
+      "total_tokens": 61977,
+      "price_USD": null,
+      "limits": [
+        "No new model-quality trial: saved global output, live conversation.",
+        "Observer initially patched definition but not generation alias: fixed before export.",
+        "Narrator HTTP and subsequent router traces saved by application; initial router/guard full transport absent.",
+        "Initial router and guard totals included from answer telemetry; complete input/output split not available.",
+        "No pricing checked or cost claim."
+      ]
+    },
+    "offline_provider_calls": 0,
+    "new_global_LLM_calls": 0,
+    "generic_tests": 34,
+    "negative_tests": 31,
+    "full_suite_passed": 2601,
+    "targeted_passed": 243,
+    "ruff": "passed",
+    "backend_grounded_SOURCE": 60,
+    "new_factual_decisions_in_replay": 0,
+    "five_USER_groups_left_open": [
+      "preferences",
+      "attestations",
+      "executors",
+      "integration",
+      "location_date"
+    ],
+    "necessary_rejections": "Negative/missing/mismatched proofs stay blocked in 31 generic negatives.",
+    "chat_narrator_hold_reason": "Not returned by schema. SKIP interpretation or missing branch-evidence context is a hypothesis; not a SOURCE rejection.",
+    "manual_source_assessment": "Eight new replay values match frozen GOLD; sole text difference remains fuller attested signatory title."
+  },
+  "scope": "Two requested residual blocks only; narrator holds remain respected.",
+  "new_global_calls": 0,
+  "real_chat_calls": 7,
+  "tokens": 61977
+}

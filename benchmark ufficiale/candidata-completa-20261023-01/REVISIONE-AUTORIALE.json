@@ -1,0 +1,282 @@
+{
+  "reviewer": "Claude (Opus), autore della ripresa della campagna (NON indipendente)",
+  "method": "ogni scrittura del DOCX rivista su valore, soggetto, applicabilità del ramo e consenso, anche se il confronto automatico la dimostra (preregistrazione); contesto FORM dal catalogo, prove SOURCE e ricevute USER dallo stato finale",
+  "judgments": {
+    "minervino-1|p12.s0|Leonardo Montemurro": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (dichiarante principale); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p12.s1|Lecce": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (dichiarante principale); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p12.s2|LE": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (dichiarante principale); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p12.s3|14 novembre 1982": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (dichiarante principale); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p13.s0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (dichiarante principale); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p13.s1|BA": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (dichiarante principale); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p13.s2|Amedeo 24": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (dichiarante principale); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p13.s3|MNTLRD82S14E506X": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (dichiarante principale); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p14.s1|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (dichiarante principale); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p15.s0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (operatore economico); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p15.s1|BA": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (operatore economico); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p15.s2|+39 080 000 2040": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (operatore economico); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p15.s3|+39 080 000 2041": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (operatore economico); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p16.s0|segreteria@mapi-ingegneria.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (operatore economico); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p16.s1|mapi.ingegneria@pec.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (operatore economico); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p16.s2|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (operatore economico); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p17.s0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (iscrizione CCIAA dell'operatore); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p17.s1|01234560981": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (iscrizione CCIAA dell'operatore); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p40.s0|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p41.s0|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p41.s1|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p42.s0|BA": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p42.s1|Via Giovanni Amendola": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p42.s2|172/C": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p42.s3|+39 080 000 2040": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p42.s4|segreteria@mapi-ingegneria.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p42.s5|mapi.ingegneria@pec.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p43.s0|Luca Ferri": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (direttore tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p43.s1|Ingegnere": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (direttore tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p43.s2|FRRLCU80A01A662K": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (direttore tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p43.s3|Ordine degli Ingegneri di Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (direttore tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p43.s4|A": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (direttore tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p44.s0|Bari (BA)": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (direttore tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p44.s1|21/03/2012": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (direttore tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p44.s2|7294": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (direttore tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p45.s0|Elisa Romano": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (secondo tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p45.s1|Ingegnere": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (secondo tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p45.s2|RMNLSI85C47A662Y": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (secondo tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "minervino-1|p45.s3|Ordine degli Ingegneri di Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; destinazione nel ramo dello scenario (secondo tecnico del ramo società di ingegneria); nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t0.r0.c1|Leonardo Montemurro": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 0, dati del sottoscrittore e dell'operatore economico; nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t0.r10.c1|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 0, dati del sottoscrittore e dell'operatore economico; nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t0.r2.c1|MNTLRD82S14E506X": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 0, dati del sottoscrittore e dell'operatore economico; nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t0.r5.c1|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 0, dati del sottoscrittore e dell'operatore economico; nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t0.r6.c1|Societa a responsabilita limitata": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 0, dati del sottoscrittore e dell'operatore economico; nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t0.r7.c1|Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 0, dati del sottoscrittore e dell'operatore economico; nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t0.r9.c1|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 0, dati del sottoscrittore e dell'operatore economico; nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t25.r0.c1|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA», il ramo dello scenario; nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t25.r2.c0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA», il ramo dello scenario; nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t25.r4.c1|Societa a responsabilita limitata": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA», il ramo dello scenario; nessuna regione d'opzione né consenso richiesto."
+    },
+    "catanzaro-1|t25.r4.c3|Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore uguale o equivalente al riferimento v3; tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA», il ramo dello scenario; nessuna regione d'opzione né consenso richiesto."
+    }
+  },
+  "trials": {
+    "minervino-1": {
+      "UTC": "2026-10-23T10:38:13+00:00",
+      "writes_reviewed": 39,
+      "non_dimostrate": 0,
+      "negative_check": "Nessuna scrittura in p37.* (ramo «Professionista appartenente allo studio professionale associato»), dove la rev 2 aveva 7 scritture non dimostrate.",
+      "stop_rule_triggered": false
+    },
+    "catanzaro-1": {
+      "UTC": "2026-10-23T10:44:34+00:00",
+      "writes_reviewed": 11,
+      "non_dimostrate": 0,
+      "negative_check": "Nessuna scrittura in t19.* (sezione 5.c, società di professionisti), dove la rev 2 (catanzaro-2) aveva 5 scritture non dimostrate.",
+      "conflict": "Due fatti sul nome di Elisa Romano da segmenti diversi: revisione 'conflicting', nessun valore scritto.",
+      "stop_rule_triggered": false
+    },
+    "soresa2023-1": {
+      "UTC": "2026-10-23T11:07:15+00:00",
+      "writes_reviewed": 0,
+      "non_dimostrate": 0,
+      "DOCX": false,
+      "failure": "Tentativo perso: la guardia rev 3 ha respinto per lunghezza della rationale (251 e 308 caratteri, esito SUPPORTED/SUPPORTED) la registrazione iniziale e la conferma della partecipazione singola; l'app ha chiesto di precisare, la politica USER non riformula, timeout del driver. Lo strumento lo classifica DRIVER; causa effettiva: nuovo backend (guardia).",
+      "negative_check_analysis_level": "Nessuna proposta (neppure respinta) in p127.*, p43.*, p44.*, p31.*, p32.*; 8 proposte grounded tutte in destinazioni del riferimento (p8/p9, p115, t0.r1.c0). Non è una prova sulle scritture: nessun DOCX.",
+      "stop_rule_triggered": true
+    }
+  }
+}

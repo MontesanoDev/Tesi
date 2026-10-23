@@ -1,0 +1,14 @@
+{
+  "archive": "2026-10-19-legacy-formtext-audit.tar.gz",
+  "sha256": "576f035e066a44a76e5d4213a419296324bc6a16c25d762902c3849b96ed2751",
+  "bytes": 7382958,
+  "files": 441,
+  "HEAD": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "raw_source": "backend/data/compilation-audit/legacy-formtext-20261019-01",
+  "only_application_file_modified": "backend/app/docx_templates.py",
+  "before_and_after_code_preserved": true,
+  "private_database_and_keys_excluded": true,
+  "no_provider_calls_during_experiment": true,
+  "manifest": "MANIFEST-SHA256.json",
+  "offline_verifier": "audit/verify_bundle.py"
+}

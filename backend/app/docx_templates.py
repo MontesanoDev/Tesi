@@ -189,6 +189,21 @@ class ParagraphSlot:
     end: int
     placeholder: str
     signature: bool
+    form_text_end: object | None = None
+    max_length: int | None = None
+
+
+def _inline_text(node) -> str:
+    if node.tag == qn("w:t"):
+        return node.text or ""
+    if node.tag in {qn("w:br"), qn("w:cr")}:
+        return "\n"
+    if node.tag == qn("w:tab"):
+        return "\t"
+    if node.tag in {qn("w:rPr"), qn("w:fldChar"), qn("w:instrText")}:
+        return ""
+    # Objects remain barriers; field instructions/boundaries are not visible text.
+    return "\ufffc"
 
 
 def _paragraph_text(paragraph) -> tuple[str, list[tuple[object, int, int]]]:
@@ -197,20 +212,77 @@ def _paragraph_text(paragraph) -> tuple[str, list[tuple[object, int, int]]]:
     for run in paragraph.findall(qn("w:r")):
         for node in run:
             if node.tag == qn("w:t"):
-                value = node.text or ""
-                nodes.append((node, offset, offset + len(value)))
-            elif node.tag in {qn("w:br"), qn("w:cr")}:
-                value = "\n"
-            elif node.tag == qn("w:tab"):
-                value = "\t"
-            elif node.tag == qn("w:rPr"):
-                continue
-            else:
-                # Non-text objects must not join two otherwise separate placeholders.
-                value = "\ufffc"
+                nodes.append((node, offset, offset + len(node.text or "")))
+            value = _inline_text(node)
             parts.append(value)
             offset += len(value)
     return "".join(parts), nodes
+
+
+def _legacy_text_fields(body) -> dict:
+    """Only complete, nonnested, blank plain FORMTEXT fields in one paragraph.
+
+    Names/bookmarks are not unique in real forms. IDs use the paragraph and
+    ordinal of textInput starts, including controls that remain read-only.
+    Generic fields, malformed boundaries and spanning/nested fields stay unsafe.
+    """
+    stack, complete, fields = [], [], {}
+    for node in body.iter(qn("w:fldChar")):
+        kind = node.get(qn("w:fldCharType"))
+        if kind == "begin":
+            if stack:
+                stack[-1]["nested"] = True
+            stack.append({"begin": node, "separators": [], "nested": False})
+        elif stack and kind == "separate":
+            stack[-1]["separators"].append(node)
+        elif stack and kind == "end":
+            record = stack.pop()
+            if not stack and not record["nested"] and len(record["separators"]) == 1:
+                complete.append((record["begin"], record["separators"][0], node))
+    for begin, separator, end in complete:
+        paragraph = next(begin.iterancestors(qn("w:p")), None)
+        if paragraph is None or any(
+            next(n.iterancestors(qn("w:p")), None) is not paragraph for n in (separator, end)
+        ):
+            continue
+        data = begin.find(qn("w:ffData"))
+        properties = data.find(qn("w:textInput")) if data is not None else None
+        if properties is None:
+            continue
+        enabled, kind = data.find(qn("w:enabled")), properties.find(qn("w:type"))
+        maximum = properties.find(qn("w:maxLength"))
+        if (
+            begin.get(qn("w:fldLock")) not in {None, "0", "false", "off"}
+            or (enabled is not None and enabled.get(qn("w:val"))
+                not in {None, "1", "true", "on"})
+            or (kind is not None and kind.get(qn("w:val")) != "regular")
+            or properties.find(qn("w:format")) is not None
+            or (maximum is not None and not maximum.get(qn("w:val"), "").isdigit())
+        ):
+            continue
+        tokens = [n for run in paragraph.findall(qn("w:r")) for n in run
+                  if n.tag != qn("w:rPr")]
+        if any(n not in tokens for n in (begin, separator, end)):
+            continue
+        left, middle, right = (tokens.index(n) for n in (begin, separator, end))
+        code, result = tokens[left + 1:middle], tokens[middle + 1:right]
+        if (
+            any(n.tag != qn("w:instrText") for n in code)
+            or "".join(n.text or "" for n in code).strip() != "FORMTEXT"
+            or any(n.tag != qn("w:t") for n in result)
+            or not PLACEHOLDER.fullmatch("".join(n.text or "" for n in result))
+        ):
+            continue
+        starts = [n for n in paragraph.iter(qn("w:fldChar"))
+                  if n.find(f"{qn('w:ffData')}/{qn('w:textInput')}") is not None]
+        start = sum(len(_inline_text(n)) for n in tokens[:middle + 1])
+        stop = start + sum(len(_inline_text(n)) for n in result)
+        fields.setdefault(paragraph, []).append({
+            "index": starts.index(begin), "start": start, "end": stop,
+            "placeholder": "".join(n.text or "" for n in result), "end_node": end,
+            "max_length": int(maximum.get(qn("w:val"))) if maximum is not None else None,
+        })
+    return fields
 
 
 def _unsafe_paragraphs(body) -> set:
@@ -239,7 +311,7 @@ def _adjacent_text(paragraph, *, following=False) -> str:
     return ""
 
 
-def _paragraph_slots(paragraphs, cells, unsafe) -> tuple[dict, list, list]:
+def _paragraph_slots(paragraphs, cells, unsafe, legacy_fields) -> tuple[dict, list, list]:
     slots, catalog, unsupported = {}, [], []
     whole_cells = set(cells.values())
     for pi, paragraph in enumerate(paragraphs):
@@ -248,14 +320,14 @@ def _paragraph_slots(paragraphs, cells, unsafe) -> tuple[dict, list, list]:
             continue
         text, _ = _paragraph_text(paragraph)
         matches = _placeholder_matches(text)
+        legacy = legacy_fields.get(paragraph, [])
         ancestors = set(paragraph.iterancestors())
         complex_ancestor = any(node.tag in COMPLEX_CONTENT for node in ancestors)
         complex_children = any(child.tag not in PARAGRAPH_CHILDREN for child in paragraph)
         merge = parent.find("./" + qn("w:tcPr") + "/" + qn("w:vMerge"))
         continuation = merge is not None and merge.get(qn("w:val")) != "restart"
         if (
-            paragraph in unsafe
-            or complex_ancestor
+            complex_ancestor
             or complex_children
             or parent.tag not in {qn("w:body"), qn("w:tc")}
             or continuation
@@ -268,64 +340,76 @@ def _paragraph_slots(paragraphs, cells, unsafe) -> tuple[dict, list, list]:
                     }
                 )
             continue
-        if not matches:
+        if paragraph in unsafe and not legacy:
+            unsupported.append({"paragraph": pi + 1,
+                                "reason": "Contenuto complesso o controllo Word non modificato"})
+            continue
+        # Never expose arbitrary placeholders in a complex paragraph. Only the
+        # individually verified native controls are allowed through this path.
+        ranges = legacy if paragraph in unsafe else [
+            {"index": si, "start": m.start(), "end": m.end(), "placeholder": m.group()}
+            for si, m in enumerate(matches)
+        ]
+        if not ranges:
             continue
         before, after = _adjacent_text(paragraph), _adjacent_text(paragraph, following=True)
         fields, annotated = [], []
         previous_end = 0
-        for si, match in enumerate(matches):
-            target_id = f"p{pi}.s{si}"
-            prefix = text[previous_end : match.start()]
+        for si, area in enumerate(ranges):
+            start, end, placeholder = area["start"], area["end"], area["placeholder"]
+            target_id = f"p{pi}.ft{area['index']}" if legacy else f"p{pi}.s{si}"
+            prefix = text[previous_end:start]
             suffix = text[
-                match.end() : matches[si + 1].start() if si + 1 < len(matches) else len(text)
+                end:ranges[si + 1]["start"] if si + 1 < len(ranges) else len(text)
             ]
             signature = bool(
-                SIGNATURE_LABEL.search(prefix + " " + match.group().replace("_", " "))
+                SIGNATURE_LABEL.search(prefix + " " + placeholder.replace("_", " "))
                 or _signature_cell(parent)
                 or (not prefix.strip() and si == 0 and SIGNATURE_LABEL.search(before))
                 or (re.match(r"\s*\(", suffix) and SIGNATURE_LABEL.search(suffix))
                 or (
-                    len(matches) == 1
-                    and not (text[:match.start()] + text[match.end():]).strip()
+                    len(ranges) == 1
+                    and not (text[:start] + text[end:]).strip()
                     and SIGNATURE_LABEL.search(after)
                 )
             )
             slots[target_id] = ParagraphSlot(
-                paragraph, pi, si, match.start(), match.end(), match.group(), signature
+                paragraph, pi, area["index"], start, end, placeholder, signature,
+                area.get("end_node"), area.get("max_length"),
             )
             fields.append(
                 {
                     "id": target_id,
-                    "placeholder": match.group(),
+                    "placeholder": placeholder,
                     "writable": True,
                     "signature": signature,
                     "value_type": (
                         "email" if is_email_label(
                             before if si == 0 and not prefix.strip() else prefix
                         )
-                        or is_email_label(match.group().strip("{}[]")) else None
+                        or is_email_label(placeholder.strip("{}[]")) else None
                     ),
                 }
             )
             annotated.extend([prefix, f"[[{target_id}]]"])
-            previous_end = match.end()
+            previous_end = end
         annotated.append(text[previous_end:])
         # Explicitly partitioned addresses (___@___.___) need a different writer.
         # Block the entire connected group rather than writing complete addresses into parts.
         group = []
-        for si in range(len(matches)):
-            prefix = text[:matches[si].start()]
-            suffix = text[matches[si].end():]
+        for si in range(len(ranges)):
+            prefix = text[:ranges[si]["start"]]
+            suffix = text[ranges[si]["end"]:]
             if re.search(r"[^\s]*@[^\s]*$", prefix) or re.match(r"[^\s]*@[^\s]*", suffix):
                 fields[si]["value_type"] = "email_parts"
             if group and not re.fullmatch(
-                r"[ \u00a0]*[@.][ \u00a0]*", text[matches[si - 1].end():matches[si].start()]
+                r"[ \u00a0]*[@.][ \u00a0]*", text[ranges[si - 1]["end"]:ranges[si]["start"]]
             ):
                 group = []
             group.append(si)
             if len(group) > 1 and (
                 any(fields[index]["value_type"] in {"email", "email_parts"} for index in group)
-                or "@" in text[matches[group[0]].end():matches[si].start()]
+                or "@" in text[ranges[group[0]]["end"]:ranges[si]["start"]]
             ):
                 for index in group:
                     fields[index]["value_type"] = "email_parts"
@@ -373,7 +457,8 @@ class DocxLayout:
 def inspect_docx(data: bytes, *, require_candidates: bool = True) -> DocxLayout:
     """Inspect immutable structure; catalog-only callers may accept no text slots.
 
-    This option does not add Word controls to the current writer's allowed set.
+    Blank plain legacy FORMTEXT controls share the text slot contract.
+    Other Word controls remain outside this writer's text allowed set.
     """
     validate_docx_package(data)
     try:
@@ -425,11 +510,14 @@ def inspect_docx(data: bytes, *, require_candidates: bool = True) -> DocxLayout:
                 )
             rows.append(row_cells)
         catalog.append({"table": ti, "preceding_context": context, "rows": rows})
-    slots, paragraph_catalog, unsupported = _paragraph_slots(paragraphs, cells, unsafe)
+    slots, paragraph_catalog, unsupported = _paragraph_slots(
+        paragraphs, cells, unsafe, _legacy_text_fields(document.element.body)
+    )
     if require_candidates and not cells and not slots:
         raise DocumentInputError(
-            "Nessun campo supportato: servono celle vuote o segnaposti nei paragrafi "
-            "(___, ...., {{campo}}). Controlli Word e spazi senza segnaposto non sono supportati"
+            "Nessun campo supportato: servono celle vuote, segnaposti nei paragrafi "
+            "(___, ...., {{campo}}) o campi FORMTEXT semplici e vuoti. "
+            "Altri controlli Word e spazi senza segnaposto non sono supportati"
         )
     if len(cells) + len(slots) > MAX_CANDIDATES:
         raise DocumentInputError("Il modello contiene troppi campi: limite 400 elementi candidati")
@@ -470,6 +558,9 @@ def inspect_docx(data: bytes, *, require_candidates: bool = True) -> DocxLayout:
 def field_value_error(
     layout: DocxLayout, target_id: str, value: str, *, label: str = ""
 ) -> tuple[str, str] | None:
+    slot = layout.slots.get(target_id)
+    if slot and slot.max_length and len(value) > slot.max_length:
+        return "field_max_length", "Il valore supera la lunghezza massima del campo Word"
     value_type = layout.field_types.get(target_id)
     if value_type == "email_parts":
         return (
@@ -525,8 +616,16 @@ def _replace_slot(slot: ParagraphSlot, value: str) -> None:
         (node, start, end) for node, start, end in nodes if start < slot.end and end > slot.start
     ]
     if not affected:
-        raise DocumentInputError("Segnaposto privo di testo scrivibile")
-    first = affected[0][0]
+        if slot.form_text_end is None or slot.start != slot.end:
+            raise DocumentInputError("Segnaposto privo di testo scrivibile")
+        # A complete field may have an empty result with no w:t. Insert only
+        # the result, immediately before its end, preserving the field wrapper.
+        first = OxmlElement("w:t")
+        slot.form_text_end.addprevious(first)
+        nodes = [(first, slot.start, slot.end)]
+        affected = nodes
+    else:
+        first = affected[0][0]
     for node, start, end in affected:
         original = node.text or ""
         prefix = original[: max(0, slot.start - start)]
@@ -563,8 +662,11 @@ def fill_docx(layout: DocxLayout, values: dict[str, str], *,
             raise DocumentInputError("Il valore contiene caratteri o dimensioni non supportati")
         if error := field_value_error(fresh, cell_id, value):
             raise DocumentInputError(error[1])
-    # Work from right to left so replacements never invalidate earlier slot offsets.
-    for cell_id in sorted(fresh.slots, key=lambda key: fresh.slots[key].start, reverse=True):
+    # At the same offset write a nonempty range before an empty native result;
+    # otherwise inserting into the empty field shifts the following placeholder.
+    for cell_id in sorted(
+        fresh.slots, key=lambda key: (fresh.slots[key].start, fresh.slots[key].end), reverse=True
+    ):
         if cell_id in values:
             _replace_slot(
                 fresh.slots[cell_id], values[cell_id].replace("\r\n", "\n").replace("\r", "\n")

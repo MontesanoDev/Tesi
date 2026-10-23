@@ -1,0 +1,32 @@
+{
+ "reviewer": "autore del sistema (NON indipendente)",
+ "UTC": "2026-10-22T12:33:40+00:00",
+ "scope": "tutte le scritture non dimostrate automaticamente dal riferimento v3 (12 occorrenze, 5 valori distinti)",
+ "judgments": {
+  "bella|p65.cb0|False": {
+   "verdict": "DIMOSTRATA",
+   "basis": "USER",
+   "note": "Scrittura che segue una ricevuta USER esplicita sul gruppo (choice VALUE 'Scelgo la voce Società di Ingegneria.' in risposta alla domanda sul gruppo delle caselle p65). Non è la sola decisione sul tipo giuridico esclusa dal riferimento. Nota: la risposta è della politica USER simulata (regola scenario_engineering_option) a una domanda legata alla dichiarazione di designazione dei tecnici, che resta senza nominativi; un utente reale avrebbe potuto rinviarla."
+  },
+  "bella|p65.cb1|True": {
+   "verdict": "DIMOSTRATA",
+   "basis": "USER",
+   "note": "Scrittura che segue una ricevuta USER esplicita sul gruppo (choice VALUE 'Scelgo la voce Società di Ingegneria.' in risposta alla domanda sul gruppo delle caselle p65). Non è la sola decisione sul tipo giuridico esclusa dal riferimento. Nota: la risposta è della politica USER simulata (regola scenario_engineering_option) a una domanda legata alla dichiarazione di designazione dei tecnici, che resta senza nominativi; un utente reale avrebbe potuto rinviarla."
+  },
+  "bella|p65.cb2|False": {
+   "verdict": "DIMOSTRATA",
+   "basis": "USER",
+   "note": "Scrittura che segue una ricevuta USER esplicita sul gruppo (choice VALUE 'Scelgo la voce Società di Ingegneria.' in risposta alla domanda sul gruppo delle caselle p65). Non è la sola decisione sul tipo giuridico esclusa dal riferimento. Nota: la risposta è della politica USER simulata (regola scenario_engineering_option) a una domanda legata alla dichiarazione di designazione dei tecnici, che resta senza nominativi; un utente reale avrebbe potuto rinviarla."
+  },
+  "soresa2023|t0.r1.c0|Mapi Ingegneria S.r.l.": {
+   "verdict": "DIMOSTRATA",
+   "basis": "SOURCE",
+   "note": "Denominazione dell'operatore documentata nella scheda tabellare, soggetto e ramo (operatore singolo) corretti; valore incompleto (manca la sede richiesta nella stessa cella): non conta per la copertura, non è una scrittura non dimostrata."
+  },
+  "trapani|p12.s6|Amedeo": {
+   "verdict": "DIMOSTRATA",
+   "basis": "SOURCE",
+   "note": "Via di residenza del firmatario scelto ('Indirizzo di residenza: Via Amedeo 24'); il FORM stampa già 'via/piazza' e il numero civico ha una posizione propria. Conteggiata come corrispondenza parziale nella copertura primaria (regola preregistrata)."
+  }
+ }
+}

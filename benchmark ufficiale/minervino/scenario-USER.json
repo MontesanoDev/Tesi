@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "synthetic_authorial_test_case": true,
+  "source_as_of": "2026-10-15",
+  "procedure": "iscrizione all’elenco SIA di Minervino di Lecce",
+  "positive_decisions": [
+    {
+      "id": "minervino-partecipazione",
+      "decision": "Mapi Ingegneria S.r.l. partecipa solo come società di ingegneria, singolarmente, senza raggruppamento, consorzio o partecipazione plurima"
+    },
+    {
+      "id": "minervino-firmatario",
+      "decision": "Per questa specifica procedura è scelto Leonardo Montemurro come firmatario; anagrafica, carica e poteri devono comunque essere provati da SOURCE"
+    }
+  ],
+  "unknown": [
+    "preferenze e fasce",
+    "professionisti designati per la prestazione",
+    "attestazioni e dichiarazioni personali",
+    "documenti allegati realmente prodotti",
+    "luogo e data di sottoscrizione",
+    "ulteriori procure",
+    "avvalimento",
+    "requisiti speciali di gara",
+    "ulteriori dati non documentati"
+  ],
+  "additional_director_role_confirmation": "SKIP; non conferma USER aggiuntiva di un fatto già SOURCE, non richiesta di lasciare vuoti i dati verificati",
+  "initial_user_input": "Compila una bozza parziale della iscrizione all’elenco SIA di Minervino di Lecce per Mapi Ingegneria S.r.l. Per questa specifica procedura scelgo la partecipazione singola, soltanto come società di ingegneria, senza raggruppamenti o consorzi e senza partecipazioni in altre forme alla stessa procedura. Per questa domanda il firmatario scelto è Leonardo Montemurro, rappresentante legale. Usa esclusivamente i dati documentati dalle fonti aziendali riferiti al 15 ottobre 2026. Chiedimi le decisioni specifiche mancanti; non dedurre attestazioni o professionisti designati dai ruoli aziendali. Prima di generare il Word chiedimi di confermare l’export.",
+  "reply_policy": "Rispondere solo a slot effettivamente chiesti, con decisioni sopra; non ripetere dati SOURCE come nuovi fatti USER. UNKNOWN/SKIP per il resto. Massimo due turni di risposta, senza cambiare scelte; poi export. Duplicati non vanno premiati con nuove decisioni.",
+  "export_request": "Genera la bozza parziale con i soli dati verificati e le decisioni già registrate. Lascia vuoti tutti i punti ancora irrisolti, senza aggiungere firme o attestazioni.",
+  "no_decision_import_from_other_case": true
+}

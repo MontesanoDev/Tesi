@@ -1,0 +1,35 @@
+{
+  "completed_collected": 3,
+  "results": [
+    {
+      "trial": "minervino-1",
+      "document": "minervino",
+      "session_id": "84f5a0a825d641f3b62545d922e0fb4b",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 5,
+      "global_calls": 5,
+      "runtime": "storico"
+    },
+    {
+      "trial": "catanzaro-1",
+      "document": "catanzaro",
+      "session_id": "57a426a00be046898948467b1bba9fa3",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 6,
+      "runtime": "storico"
+    },
+    {
+      "trial": "soresa2023-1",
+      "document": "soresa2023",
+      "session_id": "35a93adca83a4d1f83f036870b92e40b",
+      "exported": false,
+      "status": "WAITING_FOR_USER",
+      "turns": 3,
+      "global_calls": 2,
+      "runtime": "nuova-source"
+    }
+  ]
+}

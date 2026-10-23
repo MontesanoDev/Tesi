@@ -1,0 +1,2239 @@
+{
+  "version": 5,
+  "role": "form",
+  "template_sha256": "4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab",
+  "candidate_scope": "document_body",
+  "checkbox_write_supported": false,
+  "blocks": [
+    {
+      "id": "paragraph:0",
+      "paragraphs": [
+        {
+          "id": "paragraph:0",
+          "text": "CARTA INTESTATA DITTA",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:1",
+      "paragraphs": [
+        {
+          "id": "paragraph:1",
+          "text": "DICHIARAZIONE CUMULATIVA (ISTANZA E REQUISITI)",
+          "all_text_direct_bold": true
+        },
+        {
+          "id": "paragraph:2",
+          "text": ""
+        },
+        {
+          "id": "paragraph:3",
+          "text": "OGGETTO: RICHIESTA DI ISCRIZIONE ALL’ELENCO SERVIZI  INGEGNERIA E ARCHITETTURA",
+          "all_text_direct_bold": true
+        }
+      ],
+      "tables": [
+        {
+          "id": "table:0",
+          "rows": [
+            [
+              {
+                "id": "t0.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:1",
+                  "paragraph:2"
+                ]
+              }
+            ],
+            [
+              {
+                "id": "t0.r1.c0",
+                "paragraph_ids": [
+                  "paragraph:3"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:4",
+      "paragraphs": [
+        {
+          "id": "paragraph:4",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:5",
+      "paragraphs": [
+        {
+          "id": "paragraph:5",
+          "text": "Il sottoscritto…………………………………………………………..",
+          "text_with_fields": "Il sottoscritto[[p5.s0]]"
+        },
+        {
+          "id": "paragraph:6",
+          "text": ""
+        },
+        {
+          "id": "paragraph:7",
+          "text": "in qualità di: "
+        },
+        {
+          "id": "paragraph:8",
+          "text": "☐libero professionista, ……………………. abilitato alla professione …………………… iscritto all'albo degli …………………...della provincia di …………………………con il numero ..……………………...,",
+          "text_with_fields": "☐libero professionista, [[p8.s0]] abilitato alla professione [[p8.s1]] iscritto all'albo degli [[p8.s2]]della provincia di [[p8.s3]]con il numero [[p8.s4]],"
+        },
+        {
+          "id": "paragraph:9",
+          "text": " ☐professionista associato dello studio associato ......................... abilitato alla professione ………………..iscritto all'albo degli …………………...della provincia di …………………….. con il numero ……………………...,",
+          "text_with_fields": " ☐professionista associato dello studio associato [[p9.s0]] abilitato alla professione [[p9.s1]]iscritto all'albo degli [[p9.s2]]della provincia di [[p9.s3]] con il numero [[p9.s4]],"
+        },
+        {
+          "id": "paragraph:10",
+          "text": " ☐titolare, legale rappresentante, procuratore,  ☐ altro…………………………………………...",
+          "text_with_fields": " ☐titolare, legale rappresentante, procuratore,  ☐ altro[[p10.s0]]"
+        },
+        {
+          "id": "paragraph:11",
+          "text": ""
+        },
+        {
+          "id": "paragraph:12",
+          "text": "dell’impresa………………………………...",
+          "text_with_fields": "dell’impresa[[p12.s0]]"
+        },
+        {
+          "id": "paragraph:13",
+          "text": "con sede in………………………………….",
+          "text_with_fields": "con sede in[[p13.s0]]"
+        },
+        {
+          "id": "paragraph:14",
+          "text": "PEC…………………………………………",
+          "text_with_fields": "PEC[[p14.s0]]"
+        },
+        {
+          "id": "paragraph:15",
+          "text": "Codice fiscale……………………………….",
+          "text_with_fields": "Codice fiscale[[p15.s0]]"
+        },
+        {
+          "id": "paragraph:16",
+          "text": "Partita IVA………………………………….",
+          "text_with_fields": "Partita IVA[[p16.s0]]"
+        },
+        {
+          "id": "paragraph:17",
+          "text": "Mail …………………………………………",
+          "text_with_fields": "Mail [[p17.s0]]"
+        },
+        {
+          "id": "paragraph:18",
+          "text": "Tel…………………………………………..",
+          "text_with_fields": "Tel[[p18.s0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:0"
+      ],
+      "tables": [
+        {
+          "id": "table:1",
+          "rows": [
+            [
+              {
+                "id": "t1.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:5"
+                ]
+              },
+              {
+                "id": "t1.r0.c1",
+                "paragraph_ids": [
+                  "paragraph:6"
+                ],
+                "grid_span": "4"
+              }
+            ],
+            [
+              {
+                "id": "t1.r1.c0",
+                "paragraph_ids": [
+                  "paragraph:7",
+                  "paragraph:8",
+                  "paragraph:9",
+                  "paragraph:10"
+                ],
+                "grid_span": "4"
+              },
+              {
+                "id": "t1.r1.c1",
+                "paragraph_ids": [
+                  "paragraph:11"
+                ]
+              }
+            ],
+            [
+              {
+                "id": "t1.r2.c0",
+                "paragraph_ids": [
+                  "paragraph:12"
+                ],
+                "grid_span": "2"
+              }
+            ],
+            [
+              {
+                "id": "t1.r3.c0",
+                "paragraph_ids": [
+                  "paragraph:13",
+                  "paragraph:14",
+                  "paragraph:15",
+                  "paragraph:16",
+                  "paragraph:17",
+                  "paragraph:18"
+                ],
+                "grid_span": "3"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:19",
+      "paragraphs": [
+        {
+          "id": "paragraph:19",
+          "text": "CHIEDE",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:20",
+      "paragraphs": [
+        {
+          "id": "paragraph:20",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:21",
+      "paragraphs": [
+        {
+          "id": "paragraph:21",
+          "text": "di essere iscritto all’Elenco Servizi di ingegneria e architettura del CRAA - Azienda Sperimentale Regionale Improsta per le categorie e le fasce di importo selezionate sul portale Appalti: "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:22",
+      "paragraphs": [
+        {
+          "id": "paragraph:22",
+          "text": "https://craa-appalti.maggiolicloud.it/PortaleAppalti/it/homepage.wp "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:23",
+      "paragraphs": [
+        {
+          "id": "paragraph:23",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:24",
+      "paragraphs": [
+        {
+          "id": "paragraph:24",
+          "text": "A tal fine, ai sensi degli artt. 46, 47, 75 e 76 del d.P.R. 28.12.2000, N. 445 e ss.mm.ii., consapevole della responsabilità e delle conseguenze civili, amministrative e penali previste in caso di rilascio di dichiarazioni mendaci e/o formazione di atti falsi e/o uso degli stessi"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:25",
+      "paragraphs": [
+        {
+          "id": "paragraph:25",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:26",
+      "paragraphs": [
+        {
+          "id": "paragraph:26",
+          "text": "DICHIARA",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:27",
+      "paragraphs": [
+        {
+          "id": "paragraph:27",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:28",
+      "paragraphs": [
+        {
+          "id": "paragraph:28",
+          "text": "PARTE I\nRequisiti di ordine generale e cause di esclusione automatica\n(art. 94 d.lgs. 36/2023)"
+        }
+      ],
+      "tables": [
+        {
+          "id": "table:2",
+          "rows": [
+            [
+              {
+                "id": "t2.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:28"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:29",
+      "paragraphs": [
+        {
+          "id": "paragraph:29",
+          "text": "In ordine ai requisiti di cui all’art. 94 del d.lgs. 36/2023, "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:30",
+      "paragraphs": [
+        {
+          "id": "paragraph:30",
+          "text": "DICHIARA",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:31",
+      "paragraphs": [
+        {
+          "id": "paragraph:31",
+          "text": "☐ che, con riferimento al sottoscritto dichiarante, ai soggetti indicati al comma 3 dell’art. 94 del D. Lgs 36/2023, nonché ai soggetti di cui al comma 4 dello stesso art. 94, NON è stata adottata condanna con sentenza definitiva o decreto penale di condanna divenuto irrevocabile per i reati elencati al comma 1 dello stesso art. 94, tenuto conto che la causa di esclusione non è disposta e il divieto di aggiudicare non si applica quando il reato è stato depenalizzato oppure quando è intervenuta la riabilitazione oppure, nei casi di condanna ad una pena accessoria perpetua, quando questa è stata dichiarata estinta ai sensi dell’articolo 179, settimo comma, del codice penale, oppure quando il reato è stato dichiarato estinto dopo la condanna oppure in caso di revoca della condanna medesima;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:32",
+      "paragraphs": [
+        {
+          "id": "paragraph:32",
+          "text": "☐ che, con riferimento al sottoscritto dichiarante e ai soggetti indicati al comma 3 dell’art. 94 del D. Lgs 36/2023 nonché ai soggetti di cui al comma 4 dello stesso art. 94, NON sussistono le ragioni di decadenza, di sospensione o di divieto previste dall’articolo 67 del codice delle leggi antimafia e delle misure di prevenzione, di cui al decreto legislativo 6 settembre 2011, n. 159 o di un tentativo di infiltrazione mafiosa di cui all’articolo 84, comma 4, del medesimo codice, fermo restando quanto previsto dagli articoli 88, comma 4-bis, e 92, commi 2 e 3, del codice di cui al decreto legislativo n. 159 del 2011, con riferimento rispettivamente alle comunicazioni antimafia e alle informazioni antimafia e tenuto conto che la causa di esclusione di cui all’articolo 84, comma 4, del medesimo codice di cui al decreto legislativo n. 159 del 2011 non opera se, entro la data dell’aggiudicazione, l’impresa sia stata ammessa al controllo giudiziario ai sensi dell’articolo 34-bis del medesimo codice;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:33",
+      "paragraphs": [
+        {
+          "id": "paragraph:33",
+          "text": "☐ di NON versare in alcuna delle cause di esclusione di cui al comma 5 dell’articolo 94 del d.lgs. 36/2023, laddove applicabili,  cui si rinvia e che si intende qui per ripetuto e trascritto;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:34",
+      "paragraphs": [
+        {
+          "id": "paragraph:34",
+          "text": "☐ che, ai sensi dell’articolo 94, comma 6, del D. Lgs 36/2023, l’operatore economico NON ha commesso violazioni gravi, definitivamente accertate, rispetto agli obblighi relativi al pagamento delle imposte e tasse o dei contributi previdenziali, secondo la legislazione italiana o quella dello Stato in cui è stabilito (costituiscono gravi violazioni definitivamente accertate quelle indicate nell’allegato II.10. al D.lgs. 36/2023). "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:35",
+      "paragraphs": [
+        {
+          "id": "paragraph:35",
+          "text": "☐ OVVERO di aver ottemperato ai suoi obblighi pagando o impegnandosi in modo vincolante a pagare le imposte o i contributi previdenziali dovuti, compresi eventuali interessi o sanzioni e il relativo pagamento o impegno si sono perfezionati in data anteriore alla richiesta di iscrizione all’elenco;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:36",
+      "paragraphs": [
+        {
+          "id": "paragraph:36",
+          "text": "☐ OVVERO il debito tributario o previdenziale è integralmente estinto e la relativa estinzione si è perfezionata in data anteriore alla richiesta di iscrizione all’elenco."
+        }
+      ]
+    },
+    {
+      "id": "paragraph:37",
+      "paragraphs": [
+        {
+          "id": "paragraph:37",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:38",
+      "paragraphs": [
+        {
+          "id": "paragraph:38",
+          "text": "PARTE II \nCause di esclusione NON automatica\n(art. 95 d.lgs.36/2023)"
+        }
+      ],
+      "tables": [
+        {
+          "id": "table:3",
+          "rows": [
+            [
+              {
+                "id": "t3.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:38"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:39",
+      "paragraphs": [
+        {
+          "id": "paragraph:39",
+          "text": "In ordine ai requisiti di cui all’art. 95 del d.lgs. 36/2023, "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:40",
+      "paragraphs": [
+        {
+          "id": "paragraph:40",
+          "text": "DICHIARA",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:41",
+      "paragraphs": [
+        {
+          "id": "paragraph:41",
+          "text": "☐ che l’operatore economico NON versa in alcuna delle possibili cause di esclusione di cui al comma 1 dell’articolo 95 del d.lgs. 36/2023, laddove applicabili, cui si rinvia e che si intende qui per ripetuto e trascritto, anche tenuto conto di quanto disposto all’art. 98 dello stesso d.lgs. 36/2023;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:42",
+      "paragraphs": [
+        {
+          "id": "paragraph:42",
+          "text": "☐ che l’operatore economico NON ha commesso gravi violazioni non definitivamente accertate agli obblighi relativi al pagamento di imposte e tasse o contributi previdenziali; (tenuto conto che costituiscono gravi violazioni non definitivamente accertate in materia fiscale quelle indicate nell’Allegato II.10 del d.lgs. 36/2023, che la gravità va in ogni caso valutata anche tenendo conto del valore dell’appalto/affidamento)"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:43",
+      "paragraphs": [
+        {
+          "id": "paragraph:43",
+          "text": "☐ OVVERO di aver ottemperato ai suoi obblighi pagando o impegnandosi in modo vincolante a pagare le imposte o i contributi previdenziali dovuti, compresi eventuali interessi o sanzioni e il relativo pagamento o impegno si sono perfezionati in data anteriore alla richiesta di iscrizione all’elenco;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:44",
+      "paragraphs": [
+        {
+          "id": "paragraph:44",
+          "text": "☐ OVVERO il debito tributario o previdenziale è integralmente estinto e la relativa estinzione si è perfezionata in data anteriore alla richiesta di iscrizione all’elenco;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:45",
+      "paragraphs": [
+        {
+          "id": "paragraph:45",
+          "text": "☐ OVVERO il debito tributario è stato compensato con crediti certificati vantati nei confronti della pubblica amministrazione."
+        }
+      ]
+    },
+    {
+      "id": "paragraph:46",
+      "paragraphs": [
+        {
+          "id": "paragraph:46",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:47",
+      "paragraphs": [
+        {
+          "id": "paragraph:47",
+          "text": "PARTE III \nEventuali Misure di Self-Cleaning\n(art. 96, COMMA 6,  d.lgs. 36/2023)"
+        }
+      ],
+      "tables": [
+        {
+          "id": "table:4",
+          "rows": [
+            [
+              {
+                "id": "t4.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:47"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:48",
+      "paragraphs": [
+        {
+          "id": "paragraph:48",
+          "text": "In ordine alle misure di cui all’art. 96, comma 6,  del d.lgs. 36/2023, "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:49",
+      "paragraphs": [
+        {
+          "id": "paragraph:49",
+          "text": "DICHIARA",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:50",
+      "paragraphs": [
+        {
+          "id": "paragraph:50",
+          "text": "(eventuale, non compilare se l’ipotesi non sussiste) →",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:51",
+      "paragraphs": [
+        {
+          "id": "paragraph:51",
+          "text": "che l’operatore economico, versando in una delle situazioni di cui all’articolo 94 (a eccezione del comma 6) o dell’art. 95 (a eccezione del comma 2) del d.lgs. 36/2023, ossia (indicare la circostanza che genererebbe una ipotesi di esclusione) _________________:",
+          "text_with_fields": "che l’operatore economico, versando in una delle situazioni di cui all’articolo 94 (a eccezione del comma 6) o dell’art. 95 (a eccezione del comma 2) del d.lgs. 36/2023, ossia (indicare la circostanza che genererebbe una ipotesi di esclusione) [[p51.s0]]:"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:43",
+        "paragraph:44",
+        "paragraph:45",
+        "paragraph:48",
+        "paragraph:49",
+        "paragraph:50"
+      ]
+    },
+    {
+      "id": "paragraph:52",
+      "paragraphs": [
+        {
+          "id": "paragraph:52",
+          "text": "☐ ha adottato, ai sensi del comma 6 dell’art. 96 del Codice dei Contratti, le seguenti misure di self-cleaning ______________________________________________________  ",
+          "text_with_fields": "☐ ha adottato, ai sensi del comma 6 dell’art. 96 del Codice dei Contratti, le seguenti misure di self-cleaning [[p52.s0]]  "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:44",
+        "paragraph:45",
+        "paragraph:48",
+        "paragraph:49",
+        "paragraph:50",
+        "paragraph:51"
+      ]
+    },
+    {
+      "id": "paragraph:53",
+      "paragraphs": [
+        {
+          "id": "paragraph:53",
+          "text": "(N.B. → l’operatore economico dimostra di aver risarcito o di essersi impegnato a risarcire qualunque danno causato dal reato o dall’illecito, di aver chiarito i fatti e le circostanze in modo globale collaborando attivamente con le autorità investigative e di aver adottato provvedimenti concreti di carattere tecnico, organizzativo e relativi al personale idonei a prevenire ulteriori reati o illeciti);"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:54",
+      "paragraphs": [
+        {
+          "id": "paragraph:54",
+          "text": "oppure"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:55",
+      "paragraphs": [
+        {
+          "id": "paragraph:55",
+          "text": "☐ di NON aver potuto adottare misure di self-cleaning prima della richiesta di iscrizione in quanto ______________ e si impegna sin da ora ad adottare le  misure correttive di cui comma 6 dell’art. 96 del Codice dei Contratti entro il termine di conclusione della procedura comunicandole tempestivamente alla stazione appaltante.",
+          "text_with_fields": "☐ di NON aver potuto adottare misure di self-cleaning prima della richiesta di iscrizione in quanto [[p55.s0]] e si impegna sin da ora ad adottare le  misure correttive di cui comma 6 dell’art. 96 del Codice dei Contratti entro il termine di conclusione della procedura comunicandole tempestivamente alla stazione appaltante."
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:49",
+        "paragraph:50",
+        "paragraph:51",
+        "paragraph:52",
+        "paragraph:53",
+        "paragraph:54"
+      ]
+    },
+    {
+      "id": "paragraph:56",
+      "paragraphs": [
+        {
+          "id": "paragraph:56",
+          "text": "PARTE IV\nRequisiti di ordine speciale \n(art. 100 d.lgs. 36/2023)"
+        }
+      ],
+      "tables": [
+        {
+          "id": "table:5",
+          "rows": [
+            [
+              {
+                "id": "t5.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:56"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:57",
+      "paragraphs": [
+        {
+          "id": "paragraph:57",
+          "text": "In ordine ai requisiti di cui all’art. 100 del d.lgs. 36/2023, "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:58",
+      "paragraphs": [
+        {
+          "id": "paragraph:58",
+          "text": "DICHIARA",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:59",
+      "paragraphs": [
+        {
+          "id": "paragraph:59",
+          "text": "di possedere i requisiti di idoneità professionale, capacità economico-finanziaria e tecnico-professionale richiesti dalla Stazione Appaltante per l’iscrizione all’Elenco nelle categorie e per le fasce di importo selezionate sul portale."
+        }
+      ]
+    },
+    {
+      "id": "paragraph:60",
+      "paragraphs": [
+        {
+          "id": "paragraph:60",
+          "text": "A tal fine l’operatore in fase di presentazione dell’istanza (automaticamente generata dal portale) dovrà selezionare le categorie e tutte le fasce di importo per le quali intende essere invitato alle procedure.",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:61",
+      "paragraphs": [
+        {
+          "id": "paragraph:61",
+          "text": "In particolare, dichiara:"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:62",
+      "paragraphs": [
+        {
+          "id": "paragraph:62",
+          "text": "quanto al REQUISITO DI IDONEITÀ PROFESSIONALE:",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:63",
+      "paragraphs": [
+        {
+          "id": "paragraph:63",
+          "text": "☐ DI ESSERE in possesso dei requisiti del decreto del Ministero delle Infrastrutture e dei Trasporti n. 263/2016;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:64",
+      "paragraphs": [
+        {
+          "id": "paragraph:64",
+          "text": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto della classe merceologica per la quale si richiede l’iscrizione, con i seguenti dati:"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:65",
+      "paragraphs": [
+        {
+          "id": "paragraph:65",
+          "text": "Provincia di iscrizione:  "
+        },
+        {
+          "id": "paragraph:66",
+          "text": ""
+        },
+        {
+          "id": "paragraph:67",
+          "text": "numero di iscrizione:"
+        },
+        {
+          "id": "paragraph:68",
+          "text": ""
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:61",
+        "paragraph:62",
+        "paragraph:63",
+        "paragraph:64"
+      ],
+      "tables": [
+        {
+          "id": "table:6",
+          "rows": [
+            [
+              {
+                "id": "t6.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:65"
+                ]
+              },
+              {
+                "id": "t6.r0.c1",
+                "paragraph_ids": [
+                  "paragraph:66"
+                ]
+              },
+              {
+                "id": "t6.r0.c2",
+                "paragraph_ids": [
+                  "paragraph:67"
+                ]
+              },
+              {
+                "id": "t6.r0.c3",
+                "paragraph_ids": [
+                  "paragraph:68"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:69",
+      "paragraphs": [
+        {
+          "id": "paragraph:69",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:70",
+      "paragraphs": [
+        {
+          "id": "paragraph:70",
+          "text": "☐ per i professionisti singoli DI ESSERE abilitato alla professione ……………….. iscritto all'albo degli …………………...della provincia di …………………….. con il numero …………………...;",
+          "text_with_fields": "☐ per i professionisti singoli DI ESSERE abilitato alla professione [[p70.s0]] iscritto all'albo degli [[p70.s1]]della provincia di [[p70.s2]] con il numero [[p70.s3]];"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:61",
+        "paragraph:62",
+        "paragraph:63",
+        "paragraph:64"
+      ]
+    },
+    {
+      "id": "paragraph:71",
+      "paragraphs": [
+        {
+          "id": "paragraph:71",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:72",
+      "paragraphs": [
+        {
+          "id": "paragraph:72",
+          "text": "☐ (nel caso di incarichi di coordinatore per la sicurezza in fase di progettazione e di esecuzione) DI ESSERE in possesso dei requisiti, attestazioni e/o certificazioni previste dall’art. 98 del testo Unico sulla sicurezza d.lgs. n.81 del 9 aprile 2008(depennare se non di interesse);"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:73",
+      "paragraphs": [
+        {
+          "id": "paragraph:73",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:74",
+      "paragraphs": [
+        {
+          "id": "paragraph:74",
+          "text": "☐DI ESSERE in possesso, per l’esercizio degli incarichi per i quali si chiede l’iscrizione (da specificare), delle seguenti autorizzazioni, abilitazioni o altro requisito prescritti:"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:75",
+      "paragraphs": [
+        {
+          "id": "paragraph:75",
+          "text": ".......................................................................................................................................................................................",
+          "text_with_fields": "[[p75.s0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:62",
+        "paragraph:63",
+        "paragraph:64",
+        "paragraph:70",
+        "paragraph:72",
+        "paragraph:74"
+      ]
+    },
+    {
+      "id": "paragraph:76",
+      "paragraphs": [
+        {
+          "id": "paragraph:76",
+          "text": "  "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:77",
+      "paragraphs": [
+        {
+          "id": "paragraph:77",
+          "text": "Per lo svolgimento del servizio di verifica preventiva della progettazione:",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:78",
+      "paragraphs": [
+        {
+          "id": "paragraph:78",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:79",
+      "paragraphs": [
+        {
+          "id": "paragraph:79",
+          "text": "Per lavori di importo inferiore a € 20.000.000,00 ",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:80",
+      "paragraphs": [
+        {
+          "id": "paragraph:80",
+          "text": "☐ DI ESSERE un soggetto di cui all’art. 66 del Codice in possesso del certificato di qualità UNI EN ISO 9001 per le attività di verifica della progettazione delle opere e dei requisiti previsti dal DM 02/12/2016 n. 263"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:81",
+      "paragraphs": [
+        {
+          "id": "paragraph:81",
+          "text": "OVVERO",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:82",
+      "paragraphs": [
+        {
+          "id": "paragraph:82",
+          "text": "☐ DI ESSERE un organismo di ispezione di tipo A o di tipo C in possesso di accreditamento UNI CEI EN ISO/IEC 17020."
+        }
+      ]
+    },
+    {
+      "id": "paragraph:83",
+      "paragraphs": [
+        {
+          "id": "paragraph:83",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:84",
+      "paragraphs": [
+        {
+          "id": "paragraph:84",
+          "text": "Per lavori di importo pari o superiore a € 20.000.000,00",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:85",
+      "paragraphs": [
+        {
+          "id": "paragraph:85",
+          "text": "☐ DI ESSERE un organismo di ispezione di tipo A o di tipo C in possesso di accreditamento UNI CEI EN ISO/IEC 17020."
+        }
+      ]
+    },
+    {
+      "id": "paragraph:86",
+      "paragraphs": [
+        {
+          "id": "paragraph:86",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:87",
+      "paragraphs": [
+        {
+          "id": "paragraph:87",
+          "text": "quanto al REQUISITO DI CAPACITÀ ECONOMICA E FINANZIARIA:"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:88",
+      "paragraphs": [
+        {
+          "id": "paragraph:88",
+          "text": "☐ di avere un FATTURATO GLOBALE COMPLESSIVO, riferito al miglior triennio dell’ultimo quinquennio disponibile all’atto della presentazione della richiesta di iscrizione, pari a:"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:89",
+      "paragraphs": [
+        {
+          "id": "paragraph:89",
+          "text": "€ ___________, così conseguito:",
+          "text_with_fields": "€ [[p89.s0]], così conseguito:"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:81",
+        "paragraph:82",
+        "paragraph:84",
+        "paragraph:85",
+        "paragraph:87",
+        "paragraph:88"
+      ]
+    },
+    {
+      "id": "paragraph:90",
+      "paragraphs": [
+        {
+          "id": "paragraph:90",
+          "text": "anno_______fatturato globale_______",
+          "text_with_fields": "anno[[p90.s0]]fatturato globale[[p90.s1]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:82",
+        "paragraph:84",
+        "paragraph:85",
+        "paragraph:87",
+        "paragraph:88",
+        "paragraph:89"
+      ]
+    },
+    {
+      "id": "paragraph:91",
+      "paragraphs": [
+        {
+          "id": "paragraph:91",
+          "text": "anno_______fatturato globale_______",
+          "text_with_fields": "anno[[p91.s0]]fatturato globale[[p91.s1]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:84",
+        "paragraph:85",
+        "paragraph:87",
+        "paragraph:88",
+        "paragraph:89",
+        "paragraph:90"
+      ]
+    },
+    {
+      "id": "paragraph:92",
+      "paragraphs": [
+        {
+          "id": "paragraph:92",
+          "text": "anno_______fatturato globale_______",
+          "text_with_fields": "anno[[p92.s0]]fatturato globale[[p92.s1]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:85",
+        "paragraph:87",
+        "paragraph:88",
+        "paragraph:89",
+        "paragraph:90",
+        "paragraph:91"
+      ]
+    },
+    {
+      "id": "paragraph:93",
+      "paragraphs": [
+        {
+          "id": "paragraph:93",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:94",
+      "paragraphs": [
+        {
+          "id": "paragraph:94",
+          "text": "quanto al REQUISITO DI CAPACITÀ TECNICA E PROFESSIONALE: "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:95",
+      "paragraphs": [
+        {
+          "id": "paragraph:95",
+          "text": " di aver realizzato, nell’ultimo decennio antecedente la data di iscrizione, almeno due servizi di ingegneria e architettura per ciascuna ID opera per la quale si chiede l’iscrizione "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:96",
+      "paragraphs": [
+        {
+          "id": "paragraph:96",
+          "text": "Descrizione del servizio di ingegneria e architettura"
+        },
+        {
+          "id": "paragraph:97",
+          "text": "Id Opera",
+          "all_text_direct_bold": true
+        },
+        {
+          "id": "paragraph:98",
+          "text": "Committente"
+        },
+        {
+          "id": "paragraph:99",
+          "text": "Importo Lavori*"
+        },
+        {
+          "id": "paragraph:100",
+          "text": "Periodo di riferimento"
+        },
+        {
+          "id": "paragraph:101",
+          "text": ""
+        },
+        {
+          "id": "paragraph:102",
+          "text": ""
+        },
+        {
+          "id": "paragraph:103",
+          "text": ""
+        },
+        {
+          "id": "paragraph:104",
+          "text": ""
+        },
+        {
+          "id": "paragraph:105",
+          "text": ""
+        },
+        {
+          "id": "paragraph:106",
+          "text": ""
+        },
+        {
+          "id": "paragraph:107",
+          "text": ""
+        },
+        {
+          "id": "paragraph:108",
+          "text": ""
+        },
+        {
+          "id": "paragraph:109",
+          "text": ""
+        },
+        {
+          "id": "paragraph:110",
+          "text": ""
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:89",
+        "paragraph:90",
+        "paragraph:91",
+        "paragraph:92",
+        "paragraph:94",
+        "paragraph:95"
+      ],
+      "tables": [
+        {
+          "id": "table:7",
+          "rows": [
+            [
+              {
+                "id": "t7.r0.c0",
+                "paragraph_ids": [
+                  "paragraph:96"
+                ]
+              },
+              {
+                "id": "t7.r0.c1",
+                "paragraph_ids": [
+                  "paragraph:97"
+                ]
+              },
+              {
+                "id": "t7.r0.c2",
+                "paragraph_ids": [
+                  "paragraph:98"
+                ]
+              },
+              {
+                "id": "t7.r0.c3",
+                "paragraph_ids": [
+                  "paragraph:99"
+                ]
+              },
+              {
+                "id": "t7.r0.c4",
+                "paragraph_ids": [
+                  "paragraph:100"
+                ]
+              }
+            ],
+            [
+              {
+                "id": "t7.r1.c0",
+                "paragraph_ids": [
+                  "paragraph:101"
+                ]
+              },
+              {
+                "id": "t7.r1.c1",
+                "paragraph_ids": [
+                  "paragraph:102"
+                ]
+              },
+              {
+                "id": "t7.r1.c2",
+                "paragraph_ids": [
+                  "paragraph:103"
+                ]
+              },
+              {
+                "id": "t7.r1.c3",
+                "paragraph_ids": [
+                  "paragraph:104"
+                ]
+              },
+              {
+                "id": "t7.r1.c4",
+                "paragraph_ids": [
+                  "paragraph:105"
+                ]
+              }
+            ],
+            [
+              {
+                "id": "t7.r2.c0",
+                "paragraph_ids": [
+                  "paragraph:106"
+                ]
+              },
+              {
+                "id": "t7.r2.c1",
+                "paragraph_ids": [
+                  "paragraph:107"
+                ]
+              },
+              {
+                "id": "t7.r2.c2",
+                "paragraph_ids": [
+                  "paragraph:108"
+                ]
+              },
+              {
+                "id": "t7.r2.c3",
+                "paragraph_ids": [
+                  "paragraph:109"
+                ]
+              },
+              {
+                "id": "t7.r2.c4",
+                "paragraph_ids": [
+                  "paragraph:110"
+                ]
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paragraph:111",
+      "paragraphs": [
+        {
+          "id": "paragraph:111",
+          "text": "*occorre conteggiare, in caso di prestazioni eseguite in RTP, le sole quote di competenza."
+        }
+      ]
+    },
+    {
+      "id": "paragraph:112",
+      "paragraphs": [
+        {
+          "id": "paragraph:112",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:113",
+      "paragraphs": [
+        {
+          "id": "paragraph:113",
+          "text": "solo per le classi di importo a partire da € 140.000,00",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:114",
+      "paragraphs": [
+        {
+          "id": "paragraph:114",
+          "text": "☐ intende avvalersi, nelle procedure di aggiudicazione, dei seguenti requisiti di capacità economico-finanziaria e/o tecnico-professionale:"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:115",
+      "paragraphs": [
+        {
+          "id": "paragraph:115",
+          "text": ".................................................................",
+          "text_with_fields": "[[p115.s0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:92",
+        "paragraph:94",
+        "paragraph:95",
+        "paragraph:111",
+        "paragraph:113",
+        "paragraph:114"
+      ]
+    },
+    {
+      "id": "paragraph:116",
+      "paragraphs": [
+        {
+          "id": "paragraph:116",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:117",
+      "paragraphs": [
+        {
+          "id": "paragraph:117",
+          "text": "DICHIARA INFINE ",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:118",
+      "paragraphs": [
+        {
+          "id": "paragraph:118",
+          "text": "DI ESSERE consapevole che, ai sensi dell’articolo 96, comma 14, del D.lgs. n. 36/2023, l’operatore ha l’obbligo di comunicare alla stazione appaltante anche la sussistenza dei fatti e dei provvedimenti che possono costituire causa di esclusione ai sensi degli articoli 94 e 95, ove non menzionati nel proprio fascicolo virtuale;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:119",
+      "paragraphs": [
+        {
+          "id": "paragraph:119",
+          "text": "DI IMPEGNARSI ad eseguire le prestazioni oggetto di eventuali procedure di affidamento secondo le modalità ed i tempi stabiliti dalla stazione appaltante; "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:120",
+      "paragraphs": [
+        {
+          "id": "paragraph:120",
+          "text": "DI ESSERE EDOTTO degli obblighi derivanti dal Codice di comportamento integrativo dell’Ente e di impegnarsi, in caso di aggiudicazione, a osservare e a far osservare ai propri dipendenti e collaboratori, per quanto applicabile, il suddetto codice, pena la risoluzione del contratto;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:121",
+      "paragraphs": [
+        {
+          "id": "paragraph:121",
+          "text": "DI NON AVER CONCLUSO contratti di lavoro subordinato o autonomo e comunque di non avere attribuito incarichi ad ex dipendenti della stazione appaltante che hanno esercitato funzioni autoritative o negoziali nei confronti dell’impresa che rappresento, nel triennio successivo alla cessazione del rapporto di impiego;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:122",
+      "paragraphs": [
+        {
+          "id": "paragraph:122",
+          "text": "DI ESSERE CONSAPEVOLE che i pagamenti conseguenti all esecuzione delle prestazioni oggetto di eventuale affidamento avverranno comunque esclusivamente tramite lo strumento del bonifico bancario o postale ai sensi art.3 della Legge 13 agosto 2010, n. 136, impegnandosi a rispettare e far rispettare (in caso di subappalti /subcontratti) i relativi obblighi di tracciabilità dei flussi finanziari, consapevole che in caso di inadempimento agli obblighi della suddetta Legge si procederà alla risoluzione del contratto;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:123",
+      "paragraphs": [
+        {
+          "id": "paragraph:123",
+          "text": "DI IMPEGNARSI a  garantire al personale impiegato nei lavori il contratto collettivo nazionale e territoriale in vigore per il settore e per la zona nella quale si eseguono le prestazioni di lavoro, stipulato dalle associazioni dei datori e dei prestatori di lavoro comparativamente più rappresentative sul piano nazionale e quello il cui ambito di applicazione sia strettamente connesso con l’attività oggetto dell’appalto svolta dall’impresa anche in maniera prevalente, nonché garantire le stesse tutele economiche e normative per i lavoratori in subappalto rispetto ai dipendenti dell’appaltatore e contro il lavoro irregolare;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:124",
+      "paragraphs": [
+        {
+          "id": "paragraph:124",
+          "text": "☐ DI APPLICARE ai propri dipendenti il seguente Contratto Nazionale (CCNL): ________________________;",
+          "text_with_fields": "☐ DI APPLICARE ai propri dipendenti il seguente Contratto Nazionale (CCNL): [[p124.s0]];"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:118",
+        "paragraph:119",
+        "paragraph:120",
+        "paragraph:121",
+        "paragraph:122",
+        "paragraph:123"
+      ]
+    },
+    {
+      "id": "paragraph:125",
+      "paragraphs": [
+        {
+          "id": "paragraph:125",
+          "text": "Oppure",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:126",
+      "paragraphs": [
+        {
+          "id": "paragraph:126",
+          "text": "☐ CHE il Contratto Nazionale applicato ai propri dipendenti è il seguente  ________________________ e che lo stesso, in quanto equivalente, assicura le medesime tutele economiche e normative ai lavoratori di quello indicato dalla stazione appaltante, esprimendosi sin da ora la disponibilità ad ogni verifica in tal senso, secondo quanto stabilito dal D. Lgs 36/2023;",
+          "text_with_fields": "☐ CHE il Contratto Nazionale applicato ai propri dipendenti è il seguente  [[p126.s0]] e che lo stesso, in quanto equivalente, assicura le medesime tutele economiche e normative ai lavoratori di quello indicato dalla stazione appaltante, esprimendosi sin da ora la disponibilità ad ogni verifica in tal senso, secondo quanto stabilito dal D. Lgs 36/2023;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:120",
+        "paragraph:121",
+        "paragraph:122",
+        "paragraph:123",
+        "paragraph:124",
+        "paragraph:125"
+      ]
+    },
+    {
+      "id": "paragraph:127",
+      "paragraphs": [
+        {
+          "id": "paragraph:127",
+          "text": "DI AUTORIZZARE, ai sensi del decreto legislativo 30 giugno 2003, n. 196 e ss.mm.ii. e del Regolamento UE 2016/679, l’utilizzazione dei dati di cui alla presente dichiarazione, compresi quelli di cui ai numeri 2) e 3) (dati sensibili ai sensi degli articoli 20, 21 e 22, del citato decreto legislativo, ferme restando le esenzioni dagli obblighi di notifica e acquisizione del consenso), ai fini della partecipazione alla procedura e per gli eventuali procedimenti amministrativi e giurisdizionali conseguenti; ne autorizza, inoltre, la comunicazione ai funzionari e agli incaricati dell’organismo appaltante o dell’amministrazione aggiudicatrice, nonché agli eventuali controinteressati che ne facciano legittima e motivata richiesta."
+        }
+      ]
+    },
+    {
+      "id": "paragraph:128",
+      "paragraphs": [
+        {
+          "id": "paragraph:128",
+          "text": "(firma digitale del legale rappresentante dell’operatore) "
+        }
+      ]
+    }
+  ],
+  "candidates": {
+    "p10.s0": {
+      "type": "text",
+      "context_id": "paragraph:10",
+      "section_ids": [],
+      "range": [
+        56,
+        75
+      ],
+      "slot_context": {
+        "before": " ☐titolare, legale rappresentante, procuratore,  ☐ altro",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p115.s0": {
+      "type": "text",
+      "context_id": "paragraph:115",
+      "section_ids": [],
+      "range": [
+        0,
+        65
+      ],
+      "slot_context": {
+        "before": "",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:115"
+      },
+      "continuation_origin_paragraph_id": "paragraph:114"
+    },
+    "p12.s0": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        12,
+        27
+      ],
+      "slot_context": {
+        "before": "dell’impresa",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 2
+      }
+    },
+    "p124.s0": {
+      "type": "text",
+      "context_id": "paragraph:124",
+      "section_ids": [],
+      "range": [
+        76,
+        100
+      ],
+      "slot_context": {
+        "before": "☐ DI APPLICARE ai propri dipendenti il seguente Contratto Nazionale (CCNL): ",
+        "after": ";"
+      },
+      "location": {
+        "block_id": "paragraph:124"
+      },
+      "continuation_origin_paragraph_id": "paragraph:123"
+    },
+    "p126.s0": {
+      "type": "text",
+      "context_id": "paragraph:126",
+      "section_ids": [],
+      "range": [
+        75,
+        99
+      ],
+      "slot_context": {
+        "before": "☐ CHE il Contratto Nazionale applicato ai propri dipendenti è il seguente  ",
+        "after": " e che lo stesso, in quanto equivalente, assicura le medesime tutele economiche e normative ai lavoratori di quello indi"
+      },
+      "location": {
+        "block_id": "paragraph:126"
+      },
+      "continuation_origin_paragraph_id": "paragraph:125"
+    },
+    "p13.s0": {
+      "type": "text",
+      "context_id": "paragraph:13",
+      "section_ids": [],
+      "range": [
+        11,
+        25
+      ],
+      "slot_context": {
+        "before": "con sede in",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 3
+      }
+    },
+    "p14.s0": {
+      "type": "text",
+      "context_id": "paragraph:14",
+      "section_ids": [],
+      "range": [
+        3,
+        19
+      ],
+      "value_type": "email",
+      "slot_context": {
+        "before": "PEC",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 3
+      }
+    },
+    "p15.s0": {
+      "type": "text",
+      "context_id": "paragraph:15",
+      "section_ids": [],
+      "range": [
+        14,
+        27
+      ],
+      "slot_context": {
+        "before": "Codice fiscale",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 3
+      }
+    },
+    "p16.s0": {
+      "type": "text",
+      "context_id": "paragraph:16",
+      "section_ids": [],
+      "range": [
+        11,
+        25
+      ],
+      "slot_context": {
+        "before": "Partita IVA",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 3
+      }
+    },
+    "p17.s0": {
+      "type": "text",
+      "context_id": "paragraph:17",
+      "section_ids": [],
+      "range": [
+        5,
+        21
+      ],
+      "slot_context": {
+        "before": "Mail ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 3
+      }
+    },
+    "p18.s0": {
+      "type": "text",
+      "context_id": "paragraph:18",
+      "section_ids": [],
+      "range": [
+        3,
+        21
+      ],
+      "slot_context": {
+        "before": "Tel",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 3
+      }
+    },
+    "p5.s0": {
+      "type": "text",
+      "context_id": "paragraph:5",
+      "section_ids": [],
+      "range": [
+        15,
+        39
+      ],
+      "slot_context": {
+        "before": "Il sottoscritto",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 0
+      }
+    },
+    "p51.s0": {
+      "type": "text",
+      "context_id": "paragraph:51",
+      "section_ids": [],
+      "range": [
+        244,
+        261
+      ],
+      "slot_context": {
+        "before": "(a eccezione del comma 2) del d.lgs. 36/2023, ossia (indicare la circostanza che genererebbe una ipotesi di esclusione) ",
+        "after": ":"
+      },
+      "location": {
+        "block_id": "paragraph:51"
+      },
+      "continuation_origin_paragraph_id": "paragraph:50"
+    },
+    "p52.s0": {
+      "type": "text",
+      "context_id": "paragraph:52",
+      "section_ids": [],
+      "range": [
+        111,
+        165
+      ],
+      "slot_context": {
+        "before": "☐ ha adottato, ai sensi del comma 6 dell’art. 96 del Codice dei Contratti, le seguenti misure di self-cleaning ",
+        "after": "  "
+      },
+      "location": {
+        "block_id": "paragraph:52"
+      },
+      "continuation_origin_paragraph_id": "paragraph:50"
+    },
+    "p55.s0": {
+      "type": "text",
+      "context_id": "paragraph:55",
+      "section_ids": [],
+      "range": [
+        100,
+        114
+      ],
+      "slot_context": {
+        "before": "☐ di NON aver potuto adottare misure di self-cleaning prima della richiesta di iscrizione in quanto ",
+        "after": " e si impegna sin da ora ad adottare le  misure correttive di cui comma 6 dell’art. 96 del Codice dei Contratti entro il"
+      },
+      "location": {
+        "block_id": "paragraph:55"
+      },
+      "continuation_origin_paragraph_id": "paragraph:54"
+    },
+    "p70.s0": {
+      "type": "text",
+      "context_id": "paragraph:70",
+      "section_ids": [],
+      "range": [
+        68,
+        76
+      ],
+      "slot_context": {
+        "before": "☐ per i professionisti singoli DI ESSERE abilitato alla professione ",
+        "after": " iscritto all'albo degli "
+      },
+      "location": {
+        "block_id": "paragraph:70"
+      }
+    },
+    "p70.s1": {
+      "type": "text",
+      "context_id": "paragraph:70",
+      "section_ids": [],
+      "range": [
+        101,
+        111
+      ],
+      "slot_context": {
+        "before": " iscritto all'albo degli ",
+        "after": "della provincia di "
+      },
+      "location": {
+        "block_id": "paragraph:70"
+      }
+    },
+    "p70.s2": {
+      "type": "text",
+      "context_id": "paragraph:70",
+      "section_ids": [],
+      "range": [
+        130,
+        140
+      ],
+      "slot_context": {
+        "before": "della provincia di ",
+        "after": " con il numero "
+      },
+      "location": {
+        "block_id": "paragraph:70"
+      }
+    },
+    "p70.s3": {
+      "type": "text",
+      "context_id": "paragraph:70",
+      "section_ids": [],
+      "range": [
+        155,
+        165
+      ],
+      "slot_context": {
+        "before": " con il numero ",
+        "after": ";"
+      },
+      "location": {
+        "block_id": "paragraph:70"
+      }
+    },
+    "p75.s0": {
+      "type": "text",
+      "context_id": "paragraph:75",
+      "section_ids": [],
+      "range": [
+        0,
+        183
+      ],
+      "slot_context": {
+        "before": "",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:75"
+      },
+      "continuation_origin_paragraph_id": "paragraph:74"
+    },
+    "p8.s0": {
+      "type": "text",
+      "context_id": "paragraph:8",
+      "section_ids": [],
+      "range": [
+        24,
+        33
+      ],
+      "slot_context": {
+        "before": "☐libero professionista, ",
+        "after": " abilitato alla professione "
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p8.s1": {
+      "type": "text",
+      "context_id": "paragraph:8",
+      "section_ids": [],
+      "range": [
+        61,
+        69
+      ],
+      "slot_context": {
+        "before": " abilitato alla professione ",
+        "after": " iscritto all'albo degli "
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p8.s2": {
+      "type": "text",
+      "context_id": "paragraph:8",
+      "section_ids": [],
+      "range": [
+        94,
+        104
+      ],
+      "slot_context": {
+        "before": " iscritto all'albo degli ",
+        "after": "della provincia di "
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p8.s3": {
+      "type": "text",
+      "context_id": "paragraph:8",
+      "section_ids": [],
+      "range": [
+        123,
+        133
+      ],
+      "slot_context": {
+        "before": "della provincia di ",
+        "after": "con il numero "
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p8.s4": {
+      "type": "text",
+      "context_id": "paragraph:8",
+      "section_ids": [],
+      "range": [
+        147,
+        160
+      ],
+      "slot_context": {
+        "before": "con il numero ",
+        "after": ","
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p89.s0": {
+      "type": "text",
+      "context_id": "paragraph:89",
+      "section_ids": [],
+      "range": [
+        2,
+        13
+      ],
+      "slot_context": {
+        "before": "€ ",
+        "after": ", così conseguito:"
+      },
+      "location": {
+        "block_id": "paragraph:89"
+      },
+      "continuation_origin_paragraph_id": "paragraph:88"
+    },
+    "p9.s0": {
+      "type": "text",
+      "context_id": "paragraph:9",
+      "section_ids": [],
+      "range": [
+        50,
+        75
+      ],
+      "slot_context": {
+        "before": " ☐professionista associato dello studio associato ",
+        "after": " abilitato alla professione "
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p9.s1": {
+      "type": "text",
+      "context_id": "paragraph:9",
+      "section_ids": [],
+      "range": [
+        103,
+        111
+      ],
+      "slot_context": {
+        "before": " abilitato alla professione ",
+        "after": "iscritto all'albo degli "
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p9.s2": {
+      "type": "text",
+      "context_id": "paragraph:9",
+      "section_ids": [],
+      "range": [
+        135,
+        145
+      ],
+      "slot_context": {
+        "before": "iscritto all'albo degli ",
+        "after": "della provincia di "
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p9.s3": {
+      "type": "text",
+      "context_id": "paragraph:9",
+      "section_ids": [],
+      "range": [
+        164,
+        174
+      ],
+      "slot_context": {
+        "before": "della provincia di ",
+        "after": " con il numero "
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p9.s4": {
+      "type": "text",
+      "context_id": "paragraph:9",
+      "section_ids": [],
+      "range": [
+        189,
+        200
+      ],
+      "slot_context": {
+        "before": " con il numero ",
+        "after": ","
+      },
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "p90.s0": {
+      "type": "text",
+      "context_id": "paragraph:90",
+      "section_ids": [],
+      "range": [
+        4,
+        11
+      ],
+      "slot_context": {
+        "before": "anno",
+        "after": "fatturato globale"
+      },
+      "location": {
+        "block_id": "paragraph:90"
+      },
+      "continuation_origin_paragraph_id": "paragraph:88"
+    },
+    "p90.s1": {
+      "type": "text",
+      "context_id": "paragraph:90",
+      "section_ids": [],
+      "range": [
+        28,
+        35
+      ],
+      "slot_context": {
+        "before": "fatturato globale",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:90"
+      },
+      "continuation_origin_paragraph_id": "paragraph:88"
+    },
+    "p91.s0": {
+      "type": "text",
+      "context_id": "paragraph:91",
+      "section_ids": [],
+      "range": [
+        4,
+        11
+      ],
+      "slot_context": {
+        "before": "anno",
+        "after": "fatturato globale"
+      },
+      "location": {
+        "block_id": "paragraph:91"
+      },
+      "continuation_origin_paragraph_id": "paragraph:88"
+    },
+    "p91.s1": {
+      "type": "text",
+      "context_id": "paragraph:91",
+      "section_ids": [],
+      "range": [
+        28,
+        35
+      ],
+      "slot_context": {
+        "before": "fatturato globale",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:91"
+      },
+      "continuation_origin_paragraph_id": "paragraph:88"
+    },
+    "p92.s0": {
+      "type": "text",
+      "context_id": "paragraph:92",
+      "section_ids": [],
+      "range": [
+        4,
+        11
+      ],
+      "slot_context": {
+        "before": "anno",
+        "after": "fatturato globale"
+      },
+      "location": {
+        "block_id": "paragraph:92"
+      },
+      "continuation_origin_paragraph_id": "paragraph:88"
+    },
+    "p92.s1": {
+      "type": "text",
+      "context_id": "paragraph:92",
+      "section_ids": [],
+      "range": [
+        28,
+        35
+      ],
+      "slot_context": {
+        "before": "fatturato globale",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:92"
+      },
+      "continuation_origin_paragraph_id": "paragraph:88"
+    },
+    "t1.r0.c1": {
+      "type": "text",
+      "context_id": "t1.r0.c1",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 0
+      }
+    },
+    "t1.r1.c1": {
+      "type": "text",
+      "context_id": "t1.r1.c1",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:5",
+        "table_id": "table:1",
+        "row_index": 1
+      }
+    },
+    "t6.r0.c1": {
+      "type": "text",
+      "context_id": "t6.r0.c1",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:65",
+        "table_id": "table:6",
+        "row_index": 0
+      }
+    },
+    "t6.r0.c3": {
+      "type": "text",
+      "context_id": "t6.r0.c3",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:65",
+        "table_id": "table:6",
+        "row_index": 0
+      }
+    },
+    "t7.r1.c0": {
+      "type": "text",
+      "context_id": "t7.r1.c0",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:96",
+        "table_id": "table:7",
+        "row_index": 1
+      }
+    },
+    "t7.r1.c1": {
+      "type": "text",
+      "context_id": "t7.r1.c1",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:96",
+        "table_id": "table:7",
+        "row_index": 1
+      }
+    },
+    "t7.r1.c2": {
+      "type": "text",
+      "context_id": "t7.r1.c2",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:96",
+        "table_id": "table:7",
+        "row_index": 1
+      }
+    },
+    "t7.r1.c3": {
+      "type": "text",
+      "context_id": "t7.r1.c3",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:96",
+        "table_id": "table:7",
+        "row_index": 1
+      }
+    },
+    "t7.r1.c4": {
+      "type": "text",
+      "context_id": "t7.r1.c4",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:96",
+        "table_id": "table:7",
+        "row_index": 1
+      }
+    },
+    "t7.r2.c0": {
+      "type": "text",
+      "context_id": "t7.r2.c0",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:96",
+        "table_id": "table:7",
+        "row_index": 2
+      }
+    },
+    "t7.r2.c1": {
+      "type": "text",
+      "context_id": "t7.r2.c1",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:96",
+        "table_id": "table:7",
+        "row_index": 2
+      }
+    },
+    "t7.r2.c2": {
+      "type": "text",
+      "context_id": "t7.r2.c2",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:96",
+        "table_id": "table:7",
+        "row_index": 2
+      }
+    },
+    "t7.r2.c3": {
+      "type": "text",
+      "context_id": "t7.r2.c3",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:96",
+        "table_id": "table:7",
+        "row_index": 2
+      }
+    },
+    "t7.r2.c4": {
+      "type": "text",
+      "context_id": "t7.r2.c4",
+      "section_ids": [],
+      "location": {
+        "block_id": "paragraph:96",
+        "table_id": "table:7",
+        "row_index": 2
+      }
+    }
+  },
+  "read_only_parts": []
+}

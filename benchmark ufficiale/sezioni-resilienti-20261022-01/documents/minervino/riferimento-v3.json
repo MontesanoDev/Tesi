@@ -1,0 +1,1719 @@
+{
+ "version": 3,
+ "document": "minervino",
+ "derived_from": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/minervino/reference.json",
+  "sha256": "c73e26a9ef8d70a3f8623e824955cd517cfd1ccb877d0b09b0ba7c63c9aea099",
+  "values_unchanged": true
+ },
+ "FORM_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+ "scenario": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/minervino/scenario-USER.json",
+ "scenario_sha256": "a82356721b56684d2106f813eb845d23846aae4dbf3207588302742a14781ab8",
+ "variant": "minervino-controllo",
+ "runtime_source": "storico",
+ "destinations": [
+  {
+   "candidate_id": "p12.s0",
+   "recognized": true,
+   "label": "Firmatario: nome",
+   "value": "Leonardo Montemurro",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Firmatario: nome",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s1",
+   "recognized": true,
+   "label": "Nascita: comune",
+   "value": "Lecce",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Nascita: comune",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s2",
+   "recognized": true,
+   "label": "Nascita: provincia",
+   "value": "LE",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Nascita: provincia",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.s3",
+   "recognized": true,
+   "label": "Nascita: data",
+   "value": "14/11/1982",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Nascita: data",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p13.s0",
+   "recognized": true,
+   "label": "Residenza: comune",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Residenza: comune",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p13.s1",
+   "recognized": true,
+   "label": "Residenza: provincia",
+   "value": "BA",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Residenza: provincia",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p13.s2",
+   "recognized": true,
+   "label": "Residenza: indirizzo",
+   "value": "Amedeo 24",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Residenza: indirizzo",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p13.s3",
+   "recognized": true,
+   "label": "CF firmatario",
+   "value": "MNTLRD82S14E506X",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "CF firmatario",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p14.s0",
+   "recognized": true,
+   "label": "Carica firmatario",
+   "value": "rappresentante legale",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Carica firmatario",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p14.s1",
+   "recognized": true,
+   "label": "Operatore economico",
+   "value": "Mapi Ingegneria S.r.l.",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Operatore economico",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p15.s0",
+   "recognized": true,
+   "label": "Comune sede",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Comune sede",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p15.s1",
+   "recognized": true,
+   "label": "Provincia sede",
+   "value": "BA",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Provincia sede",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p15.s2",
+   "recognized": true,
+   "label": "Telefono",
+   "value": "+39 080 000 2040",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Telefono",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p15.s3",
+   "recognized": true,
+   "label": "Fax",
+   "value": "+39 080 000 2041",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Fax",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p16.s0",
+   "recognized": true,
+   "label": "Email",
+   "value": "segreteria@mapi-ingegneria.demo",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Email",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p16.s1",
+   "recognized": true,
+   "label": "PEC",
+   "value": "mapi.ingegneria@pec.demo",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "PEC",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p16.s2",
+   "recognized": true,
+   "label": "PIVA",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "PIVA",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p17.s0",
+   "recognized": true,
+   "label": "CCIAA",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "CCIAA",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p17.s1",
+   "recognized": true,
+   "label": "Registro Imprese",
+   "value": "01234560981",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Registro Imprese",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p40.s0",
+   "recognized": true,
+   "label": "Denominazione",
+   "value": "Mapi Ingegneria S.r.l.",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Denominazione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p41.s0",
+   "recognized": true,
+   "label": "PIVA società",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "PIVA società",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p41.s1",
+   "recognized": true,
+   "label": "Comune sede società",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Comune sede società",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p42.s0",
+   "recognized": true,
+   "label": "Provincia sede società",
+   "value": "BA",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Provincia sede società",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p42.s1",
+   "recognized": true,
+   "label": "Via società",
+   "value": "Via Giovanni Amendola",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Via società",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p42.s2",
+   "recognized": true,
+   "label": "Civico società",
+   "value": "172/C",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Civico società",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p42.s3",
+   "recognized": true,
+   "label": "Telefono società",
+   "value": "+39 080 000 2040",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Telefono società",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p42.s4",
+   "recognized": true,
+   "label": "Email società",
+   "value": "segreteria@mapi-ingegneria.demo",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Email società",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p42.s5",
+   "recognized": true,
+   "label": "PEC società",
+   "value": "mapi.ingegneria@pec.demo",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "PEC società",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p43.s0",
+   "recognized": true,
+   "label": "Socio Luca Ferri: Nome",
+   "value": "Ing. Luca Ferri",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Luca Ferri: Nome",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p43.s1",
+   "recognized": true,
+   "label": "Socio Luca Ferri: Qualifica",
+   "value": "Ingegnere",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Luca Ferri: Qualifica",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p43.s2",
+   "recognized": true,
+   "label": "Socio Luca Ferri: CF",
+   "value": "FRRLCU80A01A662K",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Luca Ferri: CF",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p43.s3",
+   "recognized": true,
+   "label": "Socio Luca Ferri: Ordine",
+   "value": "Ordine degli Ingegneri di Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Luca Ferri: Ordine",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p43.s4",
+   "recognized": true,
+   "label": "Socio Luca Ferri: Sezione",
+   "value": "A",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Luca Ferri: Sezione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p44.s0",
+   "recognized": true,
+   "label": "Socio Luca Ferri: Provincia",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Luca Ferri: Provincia",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p44.s1",
+   "recognized": true,
+   "label": "Socio Luca Ferri: Data iscrizione",
+   "value": "21/03/2012",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Luca Ferri: Data iscrizione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p44.s2",
+   "recognized": true,
+   "label": "Socio Luca Ferri: Numero iscrizione",
+   "value": "7294",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Luca Ferri: Numero iscrizione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p45.s0",
+   "recognized": true,
+   "label": "Socio Elisa Romano: Nome",
+   "value": "Ing. Elisa Romano",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Elisa Romano: Nome",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p45.s1",
+   "recognized": true,
+   "label": "Socio Elisa Romano: Qualifica",
+   "value": "Ingegnere",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Elisa Romano: Qualifica",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p45.s2",
+   "recognized": true,
+   "label": "Socio Elisa Romano: CF",
+   "value": "RMNLSI85C47A662Y",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Elisa Romano: CF",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p45.s3",
+   "recognized": true,
+   "label": "Socio Elisa Romano: Ordine",
+   "value": "Ordine degli Ingegneri di Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Elisa Romano: Ordine",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p45.s4",
+   "recognized": true,
+   "label": "Socio Elisa Romano: Sezione",
+   "value": "A",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Elisa Romano: Sezione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p46.s0",
+   "recognized": true,
+   "label": "Socio Elisa Romano: Provincia",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Elisa Romano: Provincia",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p46.s1",
+   "recognized": true,
+   "label": "Socio Elisa Romano: Data iscrizione",
+   "value": "18/05/2015",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Elisa Romano: Data iscrizione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p46.s2",
+   "recognized": true,
+   "label": "Socio Elisa Romano: Numero iscrizione",
+   "value": "8421",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Elisa Romano: Numero iscrizione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p47.s0",
+   "recognized": true,
+   "label": "Socio Andrea Greco: Nome",
+   "value": "Arch. Andrea Greco",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Andrea Greco: Nome",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p48.s0",
+   "recognized": true,
+   "label": "Socio Andrea Greco: Qualifica",
+   "value": "Architetto",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Andrea Greco: Qualifica",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p48.s1",
+   "recognized": true,
+   "label": "Socio Andrea Greco: CF",
+   "value": "GRCNDR84D20A662P",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Andrea Greco: CF",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p49.s0",
+   "recognized": true,
+   "label": "Socio Andrea Greco: Ordine",
+   "value": "Ordine degli Architetti di Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Andrea Greco: Ordine",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p49.s1",
+   "recognized": true,
+   "label": "Socio Andrea Greco: Sezione",
+   "value": "A",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Andrea Greco: Sezione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p49.s2",
+   "recognized": true,
+   "label": "Socio Andrea Greco: Provincia",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Andrea Greco: Provincia",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p49.s3",
+   "recognized": true,
+   "label": "Socio Andrea Greco: Data iscrizione",
+   "value": "12/06/2014",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Andrea Greco: Data iscrizione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p49.s4",
+   "recognized": true,
+   "label": "Socio Andrea Greco: Numero iscrizione",
+   "value": "5267",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Socio Andrea Greco: Numero iscrizione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p51.s0",
+   "recognized": true,
+   "label": "Direttore tecnico Elisa Romano: Nome",
+   "value": "Ing. Elisa Romano",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Direttore tecnico Elisa Romano: Nome",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p52.s0",
+   "recognized": true,
+   "label": "Direttore tecnico Elisa Romano: Qualifica",
+   "value": "Ingegnere",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Direttore tecnico Elisa Romano: Qualifica",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p52.s1",
+   "recognized": true,
+   "label": "Direttore tecnico Elisa Romano: CF",
+   "value": "RMNLSI85C47A662Y",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Direttore tecnico Elisa Romano: CF",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p53.s0",
+   "recognized": true,
+   "label": "Direttore tecnico Elisa Romano: Ordine",
+   "value": "Ordine degli Ingegneri di Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Direttore tecnico Elisa Romano: Ordine",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p53.s1",
+   "recognized": true,
+   "label": "Direttore tecnico Elisa Romano: Sezione",
+   "value": "A",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Direttore tecnico Elisa Romano: Sezione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p53.s2",
+   "recognized": true,
+   "label": "Direttore tecnico Elisa Romano: Provincia",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Direttore tecnico Elisa Romano: Provincia",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p53.s3",
+   "recognized": true,
+   "label": "Direttore tecnico Elisa Romano: Data iscrizione",
+   "value": "18/05/2015",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Direttore tecnico Elisa Romano: Data iscrizione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p53.s4",
+   "recognized": true,
+   "label": "Direttore tecnico Elisa Romano: Numero iscrizione",
+   "value": "8421",
+   "match": "equivalent",
+   "subject": "see GOLD subject",
+   "property": "Direttore tecnico Elisa Romano: Numero iscrizione",
+   "SOURCE_chunks": [
+    -30,
+    -43,
+    -44,
+    -52,
+    -53,
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  }
+ ],
+ "unrecognized_core_destinations": [],
+ "USER_decisions_expected": {
+  "p39.cb0": true
+ },
+ "pertinent_unresolved_active_fields": [
+  "p229.s0",
+  "p230.s0",
+  "p232.s0",
+  "p242.s0"
+ ],
+ "permitted_equivalence": "Case, spaces, professional title prefix and equivalent dates; fuller literal SOURCE values accepted only if property/subject/granularity correct",
+ "protected": "No signatures, no attestations/preferences/designations without scenario decision; inactive branches remain blank",
+ "legacy_notes": {
+  "variable_cardinality_records": "Service-history/other-subject rows are not counted as mandatory facts merely because blank rows exist",
+  "unlisted_candidates": "Review against FORM and SOURCE individually; not automatically wrong or required"
+ },
+ "registered_UTC": "2026-10-22T10:47:07+00:00",
+ "condition_4": {
+  "core": 60,
+  "recognized": 60,
+  "share": 1.0,
+  "passes": true
+ }
+}

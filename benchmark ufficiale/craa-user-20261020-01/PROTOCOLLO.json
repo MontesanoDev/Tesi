@@ -1,0 +1,41 @@
+{
+  "registered_UTC": "2026-10-20T11:31:18.453427+00:00",
+  "forms": [
+    {
+      "slug": "craa",
+      "sha256": "4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab"
+    }
+  ],
+  "model": {
+    "model": "deepseek-flash",
+    "base_url": "https://api.deepseek.com",
+    "provider": "deepseek",
+    "profile_id": "2457f8fd35564874b6374cf29a4653f9",
+    "context_window": 32768,
+    "thinking": false,
+    "configured": true,
+    "global_thinking": "enabled; reasoning_effort=low",
+    "narrator_thinking": "disabled"
+  },
+  "global_parameters": {
+    "model": "deepseek-flash",
+    "temperature": 0.1,
+    "max_tokens": 49152,
+    "thinking": {
+      "type": "enabled"
+    },
+    "response_format": {
+      "type": "json_object"
+    },
+    "reasoning_effort": "low"
+  },
+  "system_prompt_SHA256": "978c321f5a992e2b53f6dea55f6afcaaab18d4fa728470e9e6a7cc61e9904d8c",
+  "SOURCE_SHA256": "0982378194a2e3e769ed3e18dc8d92bf6c1c70f6c4e8b5aa9bbf6d236093ff0c",
+  "SOURCE_chunks": 22,
+  "maximum_USER_reply_rounds": 2,
+  "one_new_global_no_frozen_output_no_manual_state_edits": true,
+  "no_code_changes_during_final_trial": true,
+  "no_quality_retry": true,
+  "do_not_fix_or_hide_CCIAA_PDF_defects": true,
+  "no_commit_push": true
+}

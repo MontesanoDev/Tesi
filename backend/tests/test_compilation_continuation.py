@@ -122,7 +122,10 @@ async def test_follow_up_has_only_latest_receipt_and_keeps_source_proofs(
     assert [r["action"] for r in context["latest_turn"]["accepted"]] == ["CONDITION_TRUE", "SKIP"]
     assert context["latest_turn"]["unaccepted"] == []
     assert "t0.r" not in json.dumps(context["latest_turn"])
-    assert len(context["document_values"]) == 2
+    # Unchanged SOURCE proposals were already reviewed in the first narrative;
+    # continuation retains their receipts/proofs without sending them again.
+    assert context["document_values"] == []
+    assert len(s["global_compilation"]["dialogue"]["reviewed_candidate_ids"]) == 2
     turn(s, "updated", "Ho registrato le indicazioni univoche.")
 
     async def summarize(*args, **kwargs):
@@ -166,7 +169,8 @@ async def test_partial_updates_continue_and_report_only_unaccepted_parts(
 
 def test_continuation_schema_has_no_inventory_message_or_new_values():
     schema = dialogue.ContinuationPlan.model_json_schema()
-    assert set(schema["properties"]) == {"questions", "held_proposal_slots"}
+    assert set(schema["properties"]) == {"questions", "held_proposal_slots", "hold_reviews"}
+    assert "hold_reviews" in dialogue.narration_schema(dialogue.ContinuationPlan, [])["required"]
     with pytest.raises(ValueError):
         dialogue.ContinuationPlan.model_validate({"message": "Ecco tutti i dati..."})
 

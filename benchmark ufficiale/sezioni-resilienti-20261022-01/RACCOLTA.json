@@ -1,0 +1,85 @@
+{
+  "completed_collected": 8,
+  "results": [
+    {
+      "trial": "minervino-1",
+      "document": "minervino",
+      "session_id": "c24b1a5b63df4db38c0e2e2196d8d078",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 6,
+      "global_calls": 5,
+      "runtime": "storico"
+    },
+    {
+      "trial": "catanzaro-1",
+      "document": "catanzaro",
+      "session_id": "12d35be02db5497ab3b1ea7d799c68cd",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 6,
+      "runtime": "storico"
+    },
+    {
+      "trial": "cesano-1",
+      "document": "cesano",
+      "session_id": "6fedd04e099d40bbbfccd333c04fab68",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 4,
+      "global_calls": 2,
+      "runtime": "storico"
+    },
+    {
+      "trial": "soresa2023-1",
+      "document": "soresa2023",
+      "session_id": "1b3a3994880a41beb45b5201f4a00e4c",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 2,
+      "runtime": "nuova-source"
+    },
+    {
+      "trial": "minervino-2",
+      "document": "minervino",
+      "session_id": "22767fe1e61d4ce68ac9fe4f8d5463a6",
+      "exported": false,
+      "status": "WAITING_FOR_USER",
+      "turns": 3,
+      "global_calls": 5,
+      "runtime": "storico"
+    },
+    {
+      "trial": "catanzaro-2",
+      "document": "catanzaro",
+      "session_id": "2ed4874f1e714d6abd4f826d556619a9",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 6,
+      "runtime": "storico"
+    },
+    {
+      "trial": "cesano-2",
+      "document": "cesano",
+      "session_id": "fe7171961a214eef96819016ad396eb6",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 2,
+      "runtime": "storico"
+    },
+    {
+      "trial": "soresa2023-2",
+      "document": "soresa2023",
+      "session_id": "6492751b96f04bf782857afce59d8b5e",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 4,
+      "global_calls": 2,
+      "runtime": "nuova-source"
+    }
+  ]
+}

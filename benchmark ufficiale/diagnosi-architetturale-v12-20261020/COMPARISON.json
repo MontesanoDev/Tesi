@@ -1,0 +1,794 @@
+[
+  {
+    "document": "minervino",
+    "variant": "B0",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        50,
+        49,
+        59
+      ],
+      "mean": 52.666666666666664,
+      "min": 49,
+      "max": 59
+    },
+    "raw_omissions": {
+      "values": [
+        9,
+        10,
+        0
+      ],
+      "mean": 6.333333333333333,
+      "min": 0,
+      "max": 10
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        1,
+        1,
+        1
+      ],
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    },
+    "raw_correct_grounded": {
+      "values": [
+        47,
+        44,
+        42
+      ],
+      "mean": 44.333333333333336,
+      "min": 42,
+      "max": 47
+    },
+    "effective_correct_grounded": {
+      "values": [
+        56,
+        53,
+        50
+      ],
+      "mean": 53,
+      "min": 50,
+      "max": 56
+    },
+    "written_reference_correct": {
+      "values": [
+        18,
+        0,
+        16
+      ],
+      "mean": 11.333333333333334,
+      "min": 0,
+      "max": 18
+    }
+  },
+  {
+    "document": "minervino",
+    "variant": "E1",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        60,
+        60,
+        60
+      ],
+      "mean": 60,
+      "min": 60,
+      "max": 60
+    },
+    "raw_omissions": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "raw_correct_grounded": {
+      "values": [
+        43,
+        9,
+        10
+      ],
+      "mean": 20.666666666666668,
+      "min": 9,
+      "max": 43
+    },
+    "effective_correct_grounded": {
+      "values": [
+        52,
+        17,
+        19
+      ],
+      "mean": 29.333333333333332,
+      "min": 17,
+      "max": 52
+    },
+    "written_reference_correct": {
+      "values": [
+        0,
+        17,
+        18
+      ],
+      "mean": 11.666666666666666,
+      "min": 0,
+      "max": 18
+    }
+  },
+  {
+    "document": "minervino",
+    "variant": "E2-A",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        57,
+        60,
+        58
+      ],
+      "mean": 58.333333333333336,
+      "min": 57,
+      "max": 60
+    },
+    "raw_omissions": {
+      "values": [
+        2,
+        0,
+        0
+      ],
+      "mean": 0.6666666666666666,
+      "min": 0,
+      "max": 2
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        1,
+        0,
+        2
+      ],
+      "mean": 1,
+      "min": 0,
+      "max": 2
+    },
+    "raw_correct_grounded": {
+      "values": [
+        47,
+        43,
+        44
+      ],
+      "mean": 44.666666666666664,
+      "min": 43,
+      "max": 47
+    },
+    "effective_correct_grounded": {
+      "values": [
+        56,
+        52,
+        52
+      ],
+      "mean": 53.333333333333336,
+      "min": 52,
+      "max": 56
+    },
+    "written_reference_correct": {
+      "values": [
+        17,
+        0,
+        0
+      ],
+      "mean": 5.666666666666667,
+      "min": 0,
+      "max": 17
+    }
+  },
+  {
+    "document": "trapani",
+    "variant": "B0",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        9,
+        9,
+        17
+      ],
+      "mean": 11.666666666666666,
+      "min": 9,
+      "max": 17
+    },
+    "raw_omissions": {
+      "values": [
+        8,
+        8,
+        0
+      ],
+      "mean": 5.333333333333333,
+      "min": 0,
+      "max": 8
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "raw_correct_grounded": {
+      "values": [
+        9,
+        9,
+        9
+      ],
+      "mean": 9,
+      "min": 9,
+      "max": 9
+    },
+    "effective_correct_grounded": {
+      "values": [
+        17,
+        17,
+        17
+      ],
+      "mean": 17,
+      "min": 17,
+      "max": 17
+    },
+    "written_reference_correct": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    }
+  },
+  {
+    "document": "trapani",
+    "variant": "E1",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        9,
+        9,
+        9
+      ],
+      "mean": 9,
+      "min": 9,
+      "max": 9
+    },
+    "raw_omissions": {
+      "values": [
+        8,
+        8,
+        8
+      ],
+      "mean": 8,
+      "min": 8,
+      "max": 8
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "raw_correct_grounded": {
+      "values": [
+        9,
+        9,
+        9
+      ],
+      "mean": 9,
+      "min": 9,
+      "max": 9
+    },
+    "effective_correct_grounded": {
+      "values": [
+        17,
+        17,
+        17
+      ],
+      "mean": 17,
+      "min": 17,
+      "max": 17
+    },
+    "written_reference_correct": {
+      "values": [
+        8,
+        8,
+        8
+      ],
+      "mean": 8,
+      "min": 8,
+      "max": 8
+    }
+  },
+  {
+    "document": "trapani",
+    "variant": "E2-A",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        8,
+        16,
+        8
+      ],
+      "mean": 10.666666666666666,
+      "min": 8,
+      "max": 16
+    },
+    "raw_omissions": {
+      "values": [
+        8,
+        0,
+        8
+      ],
+      "mean": 5.333333333333333,
+      "min": 0,
+      "max": 8
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        1,
+        1,
+        1
+      ],
+      "mean": 1,
+      "min": 1,
+      "max": 1
+    },
+    "raw_correct_grounded": {
+      "values": [
+        8,
+        8,
+        8
+      ],
+      "mean": 8,
+      "min": 8,
+      "max": 8
+    },
+    "effective_correct_grounded": {
+      "values": [
+        16,
+        16,
+        16
+      ],
+      "mean": 16,
+      "min": 16,
+      "max": 16
+    },
+    "written_reference_correct": {
+      "values": [
+        0,
+        0,
+        8
+      ],
+      "mean": 2.6666666666666665,
+      "min": 0,
+      "max": 8
+    }
+  },
+  {
+    "document": "catanzaro",
+    "variant": "B0",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        14,
+        29,
+        22
+      ],
+      "mean": 21.666666666666668,
+      "min": 14,
+      "max": 29
+    },
+    "raw_omissions": {
+      "values": [
+        17,
+        1,
+        9
+      ],
+      "mean": 9,
+      "min": 1,
+      "max": 17
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        0,
+        1,
+        0
+      ],
+      "mean": 0.3333333333333333,
+      "min": 0,
+      "max": 1
+    },
+    "raw_correct_grounded": {
+      "values": [
+        9,
+        13,
+        8
+      ],
+      "mean": 10,
+      "min": 8,
+      "max": 13
+    },
+    "effective_correct_grounded": {
+      "values": [
+        11,
+        14,
+        9
+      ],
+      "mean": 11.333333333333334,
+      "min": 9,
+      "max": 14
+    },
+    "written_reference_correct": {
+      "values": [
+        7,
+        7,
+        6
+      ],
+      "mean": 6.666666666666667,
+      "min": 6,
+      "max": 7
+    }
+  },
+  {
+    "document": "catanzaro",
+    "variant": "E1",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        14,
+        15,
+        29
+      ],
+      "mean": 19.333333333333332,
+      "min": 14,
+      "max": 29
+    },
+    "raw_omissions": {
+      "values": [
+        17,
+        16,
+        1
+      ],
+      "mean": 11.333333333333334,
+      "min": 1,
+      "max": 17
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        0,
+        0,
+        1
+      ],
+      "mean": 0.3333333333333333,
+      "min": 0,
+      "max": 1
+    },
+    "raw_correct_grounded": {
+      "values": [
+        12,
+        13,
+        13
+      ],
+      "mean": 12.666666666666666,
+      "min": 12,
+      "max": 13
+    },
+    "effective_correct_grounded": {
+      "values": [
+        14,
+        15,
+        15
+      ],
+      "mean": 14.666666666666666,
+      "min": 14,
+      "max": 15
+    },
+    "written_reference_correct": {
+      "values": [
+        7,
+        8,
+        8
+      ],
+      "mean": 7.666666666666667,
+      "min": 7,
+      "max": 8
+    }
+  },
+  {
+    "document": "catanzaro",
+    "variant": "E2-A",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        19,
+        20,
+        29
+      ],
+      "mean": 22.666666666666668,
+      "min": 19,
+      "max": 29
+    },
+    "raw_omissions": {
+      "values": [
+        12,
+        11,
+        1
+      ],
+      "mean": 8,
+      "min": 1,
+      "max": 12
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        0,
+        0,
+        1
+      ],
+      "mean": 0.3333333333333333,
+      "min": 0,
+      "max": 1
+    },
+    "raw_correct_grounded": {
+      "values": [
+        13,
+        13,
+        13
+      ],
+      "mean": 13,
+      "min": 13,
+      "max": 13
+    },
+    "effective_correct_grounded": {
+      "values": [
+        15,
+        14,
+        15
+      ],
+      "mean": 14.666666666666666,
+      "min": 14,
+      "max": 15
+    },
+    "written_reference_correct": {
+      "values": [
+        6,
+        0,
+        8
+      ],
+      "mean": 4.666666666666667,
+      "min": 0,
+      "max": 8
+    }
+  },
+  {
+    "document": "bella",
+    "variant": "B0",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        8,
+        8,
+        8
+      ],
+      "mean": 8,
+      "min": 8,
+      "max": 8
+    },
+    "raw_omissions": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "raw_correct_grounded": {
+      "values": [
+        0,
+        4,
+        4
+      ],
+      "mean": 2.6666666666666665,
+      "min": 0,
+      "max": 4
+    },
+    "effective_correct_grounded": {
+      "values": [
+        3,
+        7,
+        8
+      ],
+      "mean": 6,
+      "min": 3,
+      "max": 8
+    },
+    "written_reference_correct": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    }
+  },
+  {
+    "document": "bella",
+    "variant": "E1",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        4,
+        4,
+        4
+      ],
+      "mean": 4,
+      "min": 4,
+      "max": 4
+    },
+    "raw_omissions": {
+      "values": [
+        4,
+        4,
+        4
+      ],
+      "mean": 4,
+      "min": 4,
+      "max": 4
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "raw_correct_grounded": {
+      "values": [
+        4,
+        4,
+        0
+      ],
+      "mean": 2.6666666666666665,
+      "min": 0,
+      "max": 4
+    },
+    "effective_correct_grounded": {
+      "values": [
+        8,
+        8,
+        0
+      ],
+      "mean": 5.333333333333333,
+      "min": 0,
+      "max": 8
+    },
+    "written_reference_correct": {
+      "values": [
+        3,
+        3,
+        0
+      ],
+      "mean": 2,
+      "min": 0,
+      "max": 3
+    }
+  },
+  {
+    "document": "bella",
+    "variant": "E2-A",
+    "completed_analysis_trials": 3,
+    "fully_exported_trials": 3,
+    "raw_correct": {
+      "values": [
+        8,
+        4,
+        8
+      ],
+      "mean": 6.666666666666667,
+      "min": 4,
+      "max": 8
+    },
+    "raw_omissions": {
+      "values": [
+        0,
+        4,
+        0
+      ],
+      "mean": 1.3333333333333333,
+      "min": 0,
+      "max": 4
+    },
+    "raw_wrong_or_incomplete": {
+      "values": [
+        0,
+        0,
+        0
+      ],
+      "mean": 0,
+      "min": 0,
+      "max": 0
+    },
+    "raw_correct_grounded": {
+      "values": [
+        0,
+        4,
+        0
+      ],
+      "mean": 1.3333333333333333,
+      "min": 0,
+      "max": 4
+    },
+    "effective_correct_grounded": {
+      "values": [
+        2,
+        8,
+        3
+      ],
+      "mean": 4.333333333333333,
+      "min": 2,
+      "max": 8
+    },
+    "written_reference_correct": {
+      "values": [
+        2,
+        8,
+        3
+      ],
+      "mean": 4.333333333333333,
+      "min": 2,
+      "max": 8
+    }
+  }
+]

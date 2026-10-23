@@ -1,0 +1,1 @@
+convert /home/montesano/tesi/benchmark ufficiale/diagnosi-architetturale-v12-20261020/input/trapani/original.docx as a Writer document -> /home/montesano/tesi/benchmark ufficiale/diagnosi-architetturale-v12-20261020/input/trapani/render/original.pdf using filter : writer_pdf_Export

@@ -1,0 +1,102 @@
+{
+  "session_id": "adea29341e9646afb75379928e0070c9",
+  "raw_facts": 18,
+  "raw_value_proposals": 18,
+  "grounded_facts": 17,
+  "grounded_value_proposals": 18,
+  "applicable_grounded": 18,
+  "reviewed_current": 18,
+  "written_count": 17,
+  "SOURCE_written": 17,
+  "USER_written": 0,
+  "checkbox_values": {},
+  "procedural_blocked": [
+    "p107.s0"
+  ],
+  "final_holds": [],
+  "SOURCE_reference_positions": 17,
+  "reference_omitted": [],
+  "UNKNOWN_conditions": [],
+  "calls": 9,
+  "call_kinds": {
+    "router": 4,
+    "global": 1,
+    "narrator": 3,
+    "guard": 1
+  },
+  "global_calls": 1,
+  "usage": {
+    "prompt_tokens": 92689,
+    "completion_tokens": 22661,
+    "total_tokens": 115350,
+    "prompt_cache_hit_tokens": 28416,
+    "prompt_cache_miss_tokens": 64273
+  },
+  "summed_provider_seconds": 99.0006420600007,
+  "global_seconds": 86.72046577400033,
+  "estimated_USD": 0.023322798,
+  "cost_not_invoice": true,
+  "provider_errors": 0,
+  "all_stop": true,
+  "model": [
+    "deepseek-flash"
+  ],
+  "fingerprints": [
+    "e72d3c7f663d3e1383b00b3884cb4501"
+  ],
+  "new_global_no_reuse": true,
+  "target_signatory_fields": [
+    "p12.s0",
+    "p12.s1",
+    "p12.s2",
+    "p12.s3",
+    "p12.s4",
+    "p12.s5",
+    "p12.s6",
+    "p12.s7"
+  ],
+  "target_signatory_written": [
+    "p12.s0",
+    "p12.s1",
+    "p12.s2",
+    "p12.s3",
+    "p12.s4",
+    "p12.s5",
+    "p12.s6",
+    "p12.s7"
+  ],
+  "no_correction_during_trial": true,
+  "final_quality_verdict": "PASS for eight Trapani signatory fields and preserved prior controls; partial draft with declared residuals",
+  "initial_grounded_value_proposals": 10,
+  "initial_rejected_personal_bindings": 8,
+  "reused_personal_fields": 8,
+  "initial_MODEL_omitted_personal_fields": 0,
+  "correct_SOURCE_values": 17,
+  "complete_SOURCE_properties": 16,
+  "partial_SOURCE_properties": 1,
+  "unsupported_writes_detected": 0,
+  "wrong_subject_or_section_detected": 0,
+  "previous_nine_SOURCE_writes_identical": true,
+  "new_personal_written": 8,
+  "USER_reply_rounds": 2,
+  "actual_questions": 8,
+  "unique_questions": 8,
+  "initial_selection_confirmation_asked_again": 1,
+  "source_values_asked_again": 0,
+  "PDF_pages": 5,
+  "PDF_readable_values": 17,
+  "PDF_outside_words": 0,
+  "visual_pages_checked": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "residuals": [
+    "Corporate address missing civico172/C as in previous trial",
+    "CIG, MEPA category and Albo Unico Regionale deferred",
+    "Professional registration of signatory and signature date unanswered; left blank",
+    "MODEL condition requires repeated confirmation of initial identity selection; no forced applicability",
+    "Cosmetic: original preprinted a directly touches the birth-city slot, rendered aLecce; writer unchanged"
+  ]
+}

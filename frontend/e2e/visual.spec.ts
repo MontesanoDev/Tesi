@@ -77,7 +77,7 @@ test('project flow renders without overlap', async ({ page }, testInfo) => {
   await composer.pressSequentially('la scadenza?')
   await expect(composer).toHaveValue('Qual è\nla scadenza?')
   await composer.press('Enter')
-  await expect(page.getByText('Risposta Mapi')).toBeVisible()
+  await expect(page.getByText('Risposta')).toBeVisible()
   await expect(page.getByText('Evidenze recuperate', { exact: true })).toBeVisible()
   const citedSource = page.locator('.evidence-results').getByText('Fondo_Riqualificazione_2027.pdf')
   await expect(citedSource).not.toBeVisible()
@@ -248,7 +248,7 @@ test('project context accepts and edits Markdown sources', async ({ page }, test
   await expect(page.getByRole('heading', { name: 'Moduli e bozze' })).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Compila Word' })).toHaveCount(0)
   await expect(page.getByRole('link', { name: /Draft/ })).toHaveCount(0)
-  const composer = page.getByLabel('Messaggio per Mapi RAG')
+  const composer = page.getByLabel('Messaggio per l’assistente')
   await expect(composer).toHaveAttribute('maxlength', '4000')
   const initialComposerHeight = await composer.evaluate((element) => element.clientHeight)
   await composer.fill(Array.from({ length: 8 }, (_, index) => `Riga ${index + 1}`).join('\n'))
@@ -520,7 +520,7 @@ test('missing evidence is explained as an assistant answer', async ({ page }) =>
   })
 
   await page.goto('/projects/fondo-riqualificazione-2027')
-  const composer = page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+  const composer = page.getByRole('textbox', { name: 'Messaggio per l’assistente' })
   await composer.fill('Come posso contattarlo?')
   await composer.press('Enter')
 
@@ -563,13 +563,13 @@ test('conversation preserves earlier turns without project evidence', async ({ p
       id: turnId,
       question,
       answer: firstQuestion
-        ? 'Sono Mapi RAG, un assistente tecnico per progetti di ingegneria civile.'
-        : 'Il mio nome è Mapi RAG.',
+        ? 'Sono un assistente tecnico per progetti di ingegneria civile.'
+        : 'Sono un assistente documentale.',
       citations: [],
       missing_information: [],
       evidence: [],
       generation_status: 'direct',
-      model: 'Mapi RAG',
+      model: 'Modello demo',
       total_tokens: 0,
       notice: null,
     }
@@ -589,17 +589,17 @@ test('conversation preserves earlier turns without project evidence', async ({ p
   await composer.fill('Chi sei?')
   await composer.press('Enter')
 
-  await expect(page.getByRole('heading', { name: 'Risposta Mapi' })).toBeVisible()
-  await expect(page.getByText('Sono Mapi RAG, un assistente tecnico')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Risposta' })).toBeVisible()
+  await expect(page.getByText('Sono un assistente tecnico')).toBeVisible()
 
   await composer.fill('Come ti chiami?')
   await composer.press('Enter')
 
   await expect(page.locator('.chat-turn')).toHaveCount(2)
   await expect(page.getByText('Chi sei?', { exact: true })).toBeVisible()
-  await expect(page.getByText('Sono Mapi RAG, un assistente tecnico')).toBeVisible()
+  await expect(page.getByText('Sono un assistente tecnico')).toBeVisible()
   await expect(page.getByText('Come ti chiami?', { exact: true })).toBeVisible()
-  await expect(page.getByText('Il mio nome è Mapi RAG.')).toBeVisible()
+  await expect(page.getByText('Sono un assistente documentale.')).toBeVisible()
   await expect(page.getByText('Evidenze recuperate', { exact: true })).toHaveCount(0)
   await expect(page).toHaveURL(
     `/projects/fondo-riqualificazione-2027/conversations/${conversationId}`,
@@ -608,7 +608,7 @@ test('conversation preserves earlier turns without project evidence', async ({ p
   await page.reload()
   await expect(page.locator('.chat-turn')).toHaveCount(2)
   await expect(page.getByText('Chi sei?', { exact: true })).toBeVisible()
-  await expect(page.getByText('Il mio nome è Mapi RAG.')).toBeVisible()
+  await expect(page.getByText('Sono un assistente documentale.')).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await page.screenshot({
     path: `artifacts/${testInfo.project.name}-conversation-history.png`,

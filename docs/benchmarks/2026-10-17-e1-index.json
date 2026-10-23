@@ -1,0 +1,526 @@
+{
+  "kind": "E1 compact-index-v2 complete Minervino, real provider analysis + isolated service continuation",
+  "baseline": "backend/data/compilation-audit/b0-minervino-20261016T154354Z",
+  "protocol": {
+    "experiment": "E1 FORM compact-index-v2, complete Minervino V1",
+    "code_base_commit": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+    "authorization": "User explicitly approves second E1 variant with direct field index; real provider usage and durable experimental record already authorized",
+    "analysis_runs": 3,
+    "analysis_retries": 0,
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "thinking": true,
+    "timeout_seconds": 300,
+    "reference_input": "backend/data/compilation-audit/b0-minervino-20261016T154354Z/analysis-01/input.json",
+    "form_view": "compact-index-v2",
+    "prompt_adaptation": "Only appended input-format instructions, frozen in preflight/prompt-adaptation.txt",
+    "frozen_code_sha256": {
+      "backend/app/compilation_form_view.py": "9399e116a4b8c3308b47e89571c382dcc772c54c0c733d107179c85c0d74a72c",
+      "backend/scripts/benchmark_compilation_global.py": "6a1516b3ab5e11c1d7859267ae170ef3890170edd932c0d49d4249da593d93da",
+      "backend/tests/test_compilation_form_view.py": "9574ee38129be3aa8688368e704fd5622c48e6543e2a5b68f7e51f8b026f4d41",
+      "backend/tests/test_compilation_benchmark_fixture.py": "81841b71c492c4d403e8f5918d1681dc7fc34139b855ff3a8502f42bfcb7c0cb"
+    },
+    "criteria": [
+      "All 267 destinations, text, table topology and logical metadata exact; references resolve before API calls",
+      "Measure real input/output/reasoning/cache and time; do not claim monetary cost from tokens",
+      "All outputs scored with frozen gold; raw proposals/local validation/Word distinguished",
+      "Report all category regressions and critical errors; 3 runs not statistical equivalence"
+    ],
+    "invariants": [
+      "Full document",
+      "Exact same SOURCE chunks and all non-FORM data as B0",
+      "Same response schema, request parameters and canonical validators",
+      "Same frozen USER script and original DOCX"
+    ],
+    "dialogue_scope": "Service-level continuation of actual analysis response after canonical input equality, exact compact projection and audit revalidation; not browser/HTTP or ingestion",
+    "dialogue_max_provider_calls": 40,
+    "dialogue_max_auto_steps_per_reply": 4,
+    "dialogue_answers": "Only frozen script topic actually asked; repeat T0 participation/signer only when asked. Stop outside-script factual requests and export partially; never add missed topics.",
+    "cache": "Observe all cache states, no discarded warm-up or favorable rerun",
+    "hypothesis": "Direct candidate_id lookup and explicit type/context may improve destination association relative to grouped compact-v1; not assumed proven.",
+    "comparison_scope": "Historical B0 and compact-v1 on same frozen inputs; new run date, unpinned provider backend and cache are limits. No non-inferiority or significance claim.",
+    "software_preflight": "137 targeted tests passed; initial E501 style failure corrected before freeze. v1 input and reading instructions reproduced exactly offline."
+  },
+  "offline": {
+    "canonical_form_characters": 126928,
+    "compact_form_characters": 88522,
+    "form_reduction_percent": 30.258099079793265,
+    "canonical_messages_characters": 264951,
+    "compact_messages_characters": 227803,
+    "prompt_adaptation_characters": 1258,
+    "non_form_input_exactly_equal": true,
+    "request_settings_exactly_equal": true,
+    "compact_v1_input_and_instructions_exactly_reproduced": true,
+    "structural_checks": {
+      "view_version": "compact-index-v2",
+      "candidate_count": 267,
+      "context_count": 142,
+      "direct_candidate_index": true,
+      "explicit_candidate_types": true,
+      "ordered_blocks_exact": true,
+      "candidate_semantics_exact": true,
+      "references_resolve": true,
+      "backend_only_properties": [
+        "location",
+        "range",
+        "slot_context"
+      ]
+    }
+  },
+  "fixture_integrity": {
+    "benchmark-minervino": {
+      "manifest_sha256": "89534c5171a90328b994d4425e9e11b082c6e5968c3a5b275b710438cf3e0139",
+      "files_verified": 18
+    },
+    "benchmark-compilazione": {
+      "manifest_sha256": "5a3ac76f6d3d26faf739fce4272f4af5d1550a16871ecfbe5cfb6da8c8424136",
+      "files_verified": 11
+    }
+  },
+  "runs": [
+    {
+      "run": 1,
+      "state": "failed",
+      "analysis_metrics": {
+        "started_at": "2026-10-17T00:36:02.752937+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "minervino-di-lecce-elenco-sia",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 156,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": true,
+        "form_view": "compact-index-v2",
+        "prepare_only": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "reference_input_equal": true,
+        "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+        "candidate_count": 267,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 56
+        },
+        "input_characters": 227803,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 65770,
+          "completion_tokens": 39871,
+          "total_tokens": 105641,
+          "prompt_tokens_details": {
+            "cached_tokens": 6400
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 32272
+          },
+          "prompt_cache_hit_tokens": 6400,
+          "prompt_cache_miss_tokens": 59370
+        },
+        "ai_seconds": 173.44440934700106,
+        "state": "failed",
+        "error_type": "ValidationError",
+        "error": "2 validation errors for CoverageAwareProposal\nproposal_stage\n  Extra inputs are not permitted [type=extra_forbidden, input_value='source_backed_hypotheses', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\nproject_id\n  Extra inputs are not permitted [type=extra_forbidden, input_value='minervino-di-lecce-elenco-sia', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden",
+        "original_unchanged": true
+      },
+      "analysis_score": {
+        "run": "analysis-01",
+        "scope": "raw proposal and local validation, not session/export or semantic acceptance",
+        "counts": {
+          "source_targets": 60,
+          "raw_proposed": 27,
+          "raw_value_matches": 25
+        },
+        "source_by_group": {
+          "firmatario_e_anagrafica_iniziale": {
+            "source_targets": 19,
+            "raw_proposed": 10,
+            "raw_value_matches": 9
+          },
+          "societa": {
+            "source_targets": 9,
+            "raw_proposed": 9,
+            "raw_value_matches": 8
+          },
+          "soci_24_occurrences": {
+            "source_targets": 24
+          },
+          "direttore_8_occurrences": {
+            "source_targets": 8,
+            "raw_proposed": 8,
+            "raw_value_matches": 8
+          }
+        },
+        "raw_fields": 27,
+        "raw_facts": 20,
+        "raw_choice_groups": 0,
+        "usage": {
+          "prompt_tokens": 65770,
+          "completion_tokens": 39871,
+          "total_tokens": 105641,
+          "prompt_tokens_details": {
+            "cached_tokens": 6400
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 32272
+          },
+          "prompt_cache_hit_tokens": 6400,
+          "prompt_cache_miss_tokens": 59370
+        },
+        "ai_seconds": 173.44440934700106,
+        "quality_limit": "Matches use frozen authored values with declared title/date/province/space equivalences. SOURCE entailment/subject/role needs separate review; local grounding alone is not semantic acceptance."
+      },
+      "word_score": null,
+      "input_sha256": "86cf27d4097ead170bb40b0c5b00b90ff4a0e9a26ab8be996e5e859ae9fca459",
+      "request_sha256": "02d92ba1a931dd145bd0b2fc6420810ecd93856c5eacb5b0251091a1c746caf9"
+    },
+    {
+      "run": 2,
+      "state": "failed",
+      "analysis_metrics": {
+        "started_at": "2026-10-17T00:38:57.058772+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "minervino-di-lecce-elenco-sia",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 156,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": true,
+        "form_view": "compact-index-v2",
+        "prepare_only": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "reference_input_equal": true,
+        "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+        "candidate_count": 267,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 56
+        },
+        "input_characters": 227803,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "state": "failed",
+        "error_type": "GenerationTruncatedError",
+        "error": "Il modello ha raggiunto il limite di 49152 token di risposta prima di completarla. Riprova con una richiesta piu breve.",
+        "ai_seconds": 214.624809025001,
+        "usage": {
+          "prompt_tokens": 65770,
+          "completion_tokens": 49152,
+          "total_tokens": 114922,
+          "prompt_tokens_details": {
+            "cached_tokens": 65536
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 44316
+          },
+          "prompt_cache_hit_tokens": 65536,
+          "prompt_cache_miss_tokens": 234
+        },
+        "original_unchanged": true
+      },
+      "analysis_score": null,
+      "word_score": null,
+      "input_sha256": "86cf27d4097ead170bb40b0c5b00b90ff4a0e9a26ab8be996e5e859ae9fca459",
+      "request_sha256": "02d92ba1a931dd145bd0b2fc6420810ecd93856c5eacb5b0251091a1c746caf9"
+    },
+    {
+      "run": 3,
+      "state": "proposal_audited",
+      "analysis_metrics": {
+        "started_at": "2026-10-17T00:42:32.452146+00:00",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "profile_project": "minervino-di-lecce-elenco-sia",
+        "project_id": "minervino-di-lecce-elenco-sia",
+        "form_id": 156,
+        "http_calls": 1,
+        "semantic_calls": 1,
+        "automatic_retries": 0,
+        "session_writes": 0,
+        "docx_writes": 0,
+        "user_values": 0,
+        "max_seconds": 300,
+        "thinking": true,
+        "form_view": "compact-index-v2",
+        "prepare_only": false,
+        "saved_profile_context_window": 32768,
+        "scope": "complete small document corpus, proposal + local audit only",
+        "reference_input_equal": true,
+        "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+        "candidate_count": 267,
+        "source_coverage": {
+          "strategy": "complete_small_corpus",
+          "partial": false,
+          "chunks": 56
+        },
+        "input_characters": 227803,
+        "max_output_tokens": 49152,
+        "http_status": 200,
+        "usage": {
+          "prompt_tokens": 65770,
+          "completion_tokens": 36508,
+          "total_tokens": 102278,
+          "prompt_tokens_details": {
+            "cached_tokens": 65536
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 29806
+          },
+          "prompt_cache_hit_tokens": 65536,
+          "prompt_cache_miss_tokens": 234
+        },
+        "ai_seconds": 159.94398529200043,
+        "validation_counts": {
+          "REVIEW_REQUIRED": 265,
+          "REJECTED": 2
+        },
+        "dispositions": {
+          "unassigned": 246,
+          "conditional": 21
+        },
+        "contract_version": 12,
+        "proposal_assessment": "proposal_requires_review",
+        "grounded_conditional_proposals": 21,
+        "facts": 16,
+        "conditions": 2,
+        "bindings": 1,
+        "binding_checks": {
+          "literal_match": 4
+        },
+        "condition_results": {
+          "unknown": 2
+        },
+        "condition_inventory": {
+          "paragraphs": 172,
+          "uncertain": 0,
+          "semantic_completeness_verified": false
+        },
+        "deferred": 0,
+        "unassigned": 244,
+        "rejected_unknown_assignments": 0,
+        "unused_facts": 0,
+        "state": "proposal_audited",
+        "resolved": 0,
+        "original_unchanged": true
+      },
+      "analysis_score": {
+        "run": "analysis-03",
+        "scope": "raw proposal and local validation, not session/export or semantic acceptance",
+        "counts": {
+          "source_targets": 60,
+          "raw_proposed": 23,
+          "raw_value_matches": 23,
+          "grounded_proposed": 21,
+          "grounded_value_matches": 21
+        },
+        "source_by_group": {
+          "firmatario_e_anagrafica_iniziale": {
+            "source_targets": 19,
+            "raw_proposed": 10,
+            "raw_value_matches": 10,
+            "grounded_proposed": 8,
+            "grounded_value_matches": 8
+          },
+          "societa": {
+            "source_targets": 9,
+            "raw_proposed": 9,
+            "raw_value_matches": 9,
+            "grounded_proposed": 9,
+            "grounded_value_matches": 9
+          },
+          "soci_24_occurrences": {
+            "source_targets": 24
+          },
+          "direttore_8_occurrences": {
+            "source_targets": 8,
+            "raw_proposed": 4,
+            "raw_value_matches": 4,
+            "grounded_proposed": 4,
+            "grounded_value_matches": 4
+          }
+        },
+        "raw_fields": 23,
+        "raw_facts": 16,
+        "raw_choice_groups": 0,
+        "usage": {
+          "prompt_tokens": 65770,
+          "completion_tokens": 36508,
+          "total_tokens": 102278,
+          "prompt_tokens_details": {
+            "cached_tokens": 65536
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 29806
+          },
+          "prompt_cache_hit_tokens": 65536,
+          "prompt_cache_miss_tokens": 234
+        },
+        "ai_seconds": 159.94398529200043,
+        "quality_limit": "Matches use frozen authored values with declared title/date/province/space equivalences. SOURCE entailment/subject/role needs separate review; local grounding alone is not semantic acceptance."
+      },
+      "word_score": {
+        "run": "integrated-03",
+        "counts": {
+          "source_text_targets": 60,
+          "source_text_matches": 21,
+          "blank_text_targets": 123,
+          "blank_text_matches": 123,
+          "user_text_targets": 4,
+          "user_text_matches": 0,
+          "table_unselected_targets": 61,
+          "table_unselected_matches": 61,
+          "table_selected_targets": 6,
+          "table_selected_matches": 0,
+          "native_false_targets": 10,
+          "native_false_matches": 10,
+          "native_true_targets": 3,
+          "native_true_matches": 0
+        },
+        "written_field_count": 21,
+        "written_source_fields": 21,
+        "written_user_fields": 0,
+        "physical_word_values_match_report": true,
+        "changed_zip_parts": [
+          "word/document.xml"
+        ],
+        "all_other_parts_preserved": true,
+        "matched_text_fields_in_word": 21,
+        "scoring_limit": "Frozen-value conformance and physical materialization; does not certify factual entailment, qualifications or complete dialogue."
+      },
+      "word_source_target_matches_by_actual_provenance": {
+        "SOURCE": 21
+      },
+      "word_sha256": "17f8d65a575e973ef2234e802a2dfc4c9cf9db593a44c7a97d2cf518d03259a9",
+      "ready_for_submission": false,
+      "dialogue": {
+        "provider_calls": 6,
+        "provider_seconds_sum": 9.082728215002135,
+        "usage": {
+          "prompt_tokens": 30406,
+          "completion_tokens": 695,
+          "total_tokens": 31101,
+          "prompt_cache_hit_tokens": 14720,
+          "prompt_cache_miss_tokens": 15686,
+          "reasoning_tokens": 0
+        },
+        "steps": [
+          {
+            "topics": [
+              "initial_both"
+            ],
+            "export": false,
+            "seconds": 4.358211253002082
+          },
+          {
+            "topics": [],
+            "export": true,
+            "seconds": 2.6095776910005952
+          }
+        ],
+        "stop": null
+      },
+      "total_provider_calls": 7,
+      "total_usage": {
+        "prompt_tokens": 96176,
+        "completion_tokens": 37203,
+        "total_tokens": 133379,
+        "prompt_cache_hit_tokens": 80256,
+        "prompt_cache_miss_tokens": 15920,
+        "reasoning_tokens": 29806
+      },
+      "provider_seconds_sum": 169.02671350700257,
+      "input_sha256": "86cf27d4097ead170bb40b0c5b00b90ff4a0e9a26ab8be996e5e859ae9fca459",
+      "request_sha256": "02d92ba1a931dd145bd0b2fc6420810ecd93856c5eacb5b0251091a1c746caf9"
+    }
+  ],
+  "analysis_resource_comparison": {
+    "prompt_tokens": {
+      "B0_mean": 75864.0,
+      "E1_mean": 65770.0,
+      "change_percent": -13.305388590108613
+    },
+    "completion_tokens": {
+      "B0_mean": 40074.0,
+      "E1_mean": 41843.666666666664,
+      "change_percent": 4.415997072083311
+    },
+    "total_tokens": {
+      "B0_mean": 115938.0,
+      "E1_mean": 107613.66666666667,
+      "change_percent": -7.179987004548405
+    }
+  },
+  "total_provider_calls": 9,
+  "total_usage": {
+    "prompt_tokens": 227716,
+    "completion_tokens": 126226,
+    "total_tokens": 353942,
+    "prompt_cache_hit_tokens": 152192,
+    "prompt_cache_miss_tokens": 75524,
+    "reasoning_tokens": 106394
+  },
+  "all_analyses_audited": false,
+  "all_three_words_produced": false,
+  "scorer_unchanged": true,
+  "limits": [
+    "Format and appended reading instructions are the E1 treatment, not pure JSON length alone.",
+    "Canonical sources and validators unchanged; production chat still uses full view.",
+    "Three runs only; no statistical equivalence or generalization claim.",
+    "Analysis replay into isolated services after canonical/projection equality; not browser, HTTP endpoints or ingestion.",
+    "Latency reported per analysis or provider-operation sum, excluding human response and UI time.",
+    "Cache states acquired, no warmup discarded; token count is not a monetary invoice.",
+    "Word comparison includes provenance separately; physical conformance is not professional/legal certification.",
+    "Historical B0/v1 measured on previous date; provider backend version unpinned and cache states uncontrolled. No causal isolation of direct index from explicit types and amended input-format instructions."
+  ],
+  "historical_variants": {
+    "B0": {
+      "input_tokens": [
+        75864,
+        75864,
+        75864
+      ],
+      "grounded_matches": [
+        21,
+        17,
+        21
+      ],
+      "word_matches": [
+        23,
+        17,
+        22
+      ]
+    },
+    "compact-v1": {
+      "input_tokens": [
+        63661,
+        63661,
+        63661
+      ],
+      "grounded_matches": [
+        13,
+        19,
+        21
+      ],
+      "word_matches": [
+        14,
+        11,
+        23
+      ]
+    }
+  }
+}

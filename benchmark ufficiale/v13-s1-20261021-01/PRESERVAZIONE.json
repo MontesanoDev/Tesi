@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "preexisting_files_checked": 13204,
+  "expected_modified_existing": [
+    "STATUS.md",
+    "backend/app/compilation_global.py",
+    "backend/app/compilation_global_sessions.py",
+    "backend/app/compilation_role_records.py",
+    "backend/app/compilation_signatory_form.py",
+    "backend/app/compilation_source_reuse.py",
+    "relazioni.md"
+  ],
+  "other_existing_files_exact": 13197,
+  "baseline_V12_snapshot_hashes_sessions_artifacts_backups_unchanged": true,
+  "neutral_product_naming_preserved": true,
+  "before_snapshot_files_exact": 323,
+  "live_DB_entire_logical_state_unchanged": true,
+  "live_sessions_unchanged": 29,
+  "live_storage_files_unchanged": 285,
+  "private_live_backup_restored_and_verified": true,
+  "clones": [
+    {
+      "phase": "v13-s1-20261021-01",
+      "old_sessions_preserved": 41,
+      "new_isolated_sessions": 45,
+      "source_storage_preserved": true,
+      "application_hashes_intact": 120
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "old_sessions_preserved": 41,
+      "new_isolated_sessions": 45,
+      "source_storage_preserved": true,
+      "application_hashes_intact": 120
+    }
+  ],
+  "HEAD_refs_tags_unchanged": true,
+  "no_commit_tag_push": true
+}

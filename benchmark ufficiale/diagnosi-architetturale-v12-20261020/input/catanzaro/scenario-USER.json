@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "document": "catanzaro",
+  "authored_for_this_procedure": true,
+  "not_transferred_receipts": true,
+  "synthetic_scenario_not_actual_company_decisions": true,
+  "recorded_request": "Compila una bozza parziale della domanda Catanzaro. Per questa domanda il firmatario scelto è Leonardo Montemurro. Mapi Ingegneria S.r.l. partecipa come società di ingegneria in forma singola. Verifica nelle SOURCE i dati personali e aziendali: questa scelta non ne prova i valori e non conferisce nuovi poteri. Preferenze di incarico, attestazioni e consensi procedurali, esecutori designati, integrazione delle prestazioni e luogo/data restano da decidere. Non compilare firme o dichiarazioni non confermate.",
+  "decisions": {
+    "firmatario": "Leonardo Montemurro",
+    "partecipante": "Mapi Ingegneria S.r.l.",
+    "natura_giuridica": "società di ingegneria",
+    "partecipazione": "singola",
+    "poteri_del_firmatario": "SOURCE only; no new delegation"
+  },
+  "unknown_groups": {
+    "preferenze": "UNKNOWN",
+    "attestazioni": "UNKNOWN",
+    "esecutori": "UNKNOWN",
+    "integrazione": "UNKNOWN",
+    "luogo_data": "UNKNOWN"
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "scope": "B0-03 isolated service export with manual review; no new LLM evaluation",
+  "session_id": "ee86e66383ac4e5d9df90cf2b3ea3454",
+  "historical_session_original_unchanged": true,
+  "provider_calls": 0,
+  "global_analysis_calls": 0,
+  "new_user_answers": 0,
+  "source_grounded": 47,
+  "previous_review_still_valid": 21,
+  "source_reviewed": 47,
+  "newly_reviewed_source": 26,
+  "manually_approved_source": 47,
+  "applicable_reviewed_source": 47,
+  "written_report_total": 48,
+  "written_report_source": 47,
+  "written_report_user": 1,
+  "rejected_source_assignments": 3,
+  "rejected_source_ids": [
+    "p41.s1",
+    "p46.s0",
+    "p53.s2"
+  ],
+  "audit_unknown_conditions": 1,
+  "audit_source_fields_still_conditional": 47,
+  "confirmed_same_session_conditions": [
+    "c_p39"
+  ],
+  "selected_source_with_unconfirmed_condition": 0,
+  "written_native_checkboxes": 0,
+  "export_seconds": 0.7248462779971305,
+  "ready_for_submission": false,
+  "manual_review_provenance_note": "Existing report labels reviewed_by=USER; this new review was performed manually by Codex under the user's instruction, not a new historical USER answer or independent LLM review. See completed-review.json and copy revisions.",
+  "initial_setup_check_failure": "Raw DB evidence had relevance/excerpt/document_metadata extras. Full canonical build_global_input equals frozen input; no source content or input changed. First log retained.",
+  "date": "2026-10-17",
+  "kind": "Actual isolated B0-03 DOCX partial export and verification",
+  "physical_verification": {
+    "report_physical_values_equal": true,
+    "physical_text_values_written": 48,
+    "physical_source_values": 47,
+    "physical_user_values": 1,
+    "all_other_placeholders_unchanged": true,
+    "all_preprinted_text_preserved": true,
+    "original_paragraphs": 246,
+    "draft_added_notice_paragraphs": 1,
+    "changed_zip_parts": [
+      "word/document.xml"
+    ],
+    "zip_crc_ok": true,
+    "all_internal_relationships_resolve": true,
+    "internal_relationships_checked": 12,
+    "all_other_zip_parts_byte_equal": true,
+    "tables_unchanged": 4,
+    "native_controls_unchanged": 13,
+    "native_controls": [
+      {
+        "candidate_id": "p20.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p21.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p35.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p39.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p54.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p61.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p64.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p203.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p206.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p214.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p215.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p217.cb0",
+        "unchanged": true,
+        "checked": false
+      },
+      {
+        "candidate_id": "p228.cb0",
+        "unchanged": true,
+        "checked": false
+      }
+    ],
+    "signatures_unchanged": true,
+    "paragraph_properties_and_numbering_unchanged": true,
+    "layout_join_warnings": 5,
+    "layout_join_candidate_ids": [
+      "p43.s3",
+      "p45.s3",
+      "p49.s0",
+      "p53.s0",
+      "p53.s1"
+    ],
+    "gold_evaluation_counts": {
+      "source_text_targets": 60,
+      "source_text_matches_any_provenance": 48,
+      "source_text_matches_source_provenance": 47,
+      "source_text_matches_user_provenance": 1,
+      "written_text_values": 48,
+      "written_text_matches": 48,
+      "written_text_mismatches": 0
+    },
+    "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "docx_sha256": "6605dcc91ab823cc21d77618c2991feade366cce1137d4b8138600f1c051a889",
+    "report_sha256": "17c5ec651c2c30f70fdf1fa2c75771dfc8f5c4262c6e99427a8d66b0ad636fb2",
+    "limits": "Exact physical content/position and frozen synthetic values. Visual review is separate; not Microsoft Word pagination or legal admissibility."
+  },
+  "visual_verification": {
+    "method": "Controllo visivo di Codex sui PNG reali, non giudizio di un nuovo provider LLM; controlli PDF testuali e geometrici aggiuntivi",
+    "draft_pages_rendered": 9,
+    "draft_pages_visually_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "original_pages_rendered": 10,
+    "original_pages_visually_compared": [
+      3,
+      4,
+      9,
+      10
+    ],
+    "inserted_values_pages": [
+      1,
+      3
+    ],
+    "off_page_words": [],
+    "all_written_values_present_in_pdf_text": true,
+    "signature_label_and_line_together_on_page": 9,
+    "signature_blank": true,
+    "native_choices_untouched": true,
+    "service_lettering_a_b_c_d_preserved": true,
+    "visible_missing_spaces": [
+      "p43.s3",
+      "p45.s3",
+      "p49.s0",
+      "p53.s0",
+      "p53.s1"
+    ],
+    "visible_missing_space_examples": [
+      "professionaleOrdine",
+      "Adella"
+    ],
+    "layout_limit": "Cinque giunzioni senza spazio su quattro paragrafi compilati: i segnaposti del FORM adiacenti alle etichette vengono sostituiti dal writer esistente senza inserire separatori. Contenuti leggibili, nessun taglio osservato. Difetto conservato e registrato; non è stato corretto modificando il writer o il DOCX.",
+    "preexisting_numbering_note": "Il 3) davanti al direttore tecnico è presente anche nel modulo originale e resta invariato.",
+    "pagination_note": "Originale 10 pagine, bozza 9 nello stesso LibreOffice locale: il riempimento accorcia i segnaposti; nessuna perdita di paragrafi, tabelle o testo prestampato nei controlli XML.",
+    "word_pagination_verified": false
+  },
+  "baseline_comparison": {
+    "previous_total_written": 23,
+    "previous_source_written": 22,
+    "previous_user_written": 1,
+    "previous_gold_source_target_matches_any_provenance": 22,
+    "current_gold_source_target_matches_any_provenance": 48,
+    "added_fields": [
+      "p43.s0",
+      "p43.s1",
+      "p43.s2",
+      "p43.s3",
+      "p43.s4",
+      "p44.s0",
+      "p44.s1",
+      "p44.s2",
+      "p45.s0",
+      "p45.s1",
+      "p45.s2",
+      "p45.s3",
+      "p45.s4",
+      "p46.s1",
+      "p46.s2",
+      "p47.s0",
+      "p48.s0",
+      "p48.s1",
+      "p49.s0",
+      "p49.s1",
+      "p49.s2",
+      "p49.s3",
+      "p49.s4",
+      "p52.s1",
+      "p53.s1",
+      "p53.s3"
+    ],
+    "removed_fields": [
+      "p41.s1"
+    ],
+    "retained_values_unchanged": true
+  },
+  "unfilled_catalog_candidates": 219,
+  "remaining_gold_source_text_targets": 12,
+  "production_code_changes": 0,
+  "original_session_writes": 0,
+  "commits_or_pushes": 0,
+  "downloads": {
+    "docx": "nuovi dati/domanda-iscrizione.B0-03-PARZIALE-VERIFICATO.docx",
+    "pdf": "nuovi dati/domanda-iscrizione.B0-03-PARZIALE-VERIFICATO.pdf",
+    "report": "nuovi dati/domanda-iscrizione.B0-03-PARZIALE-VERIFICATO.report.json"
+  },
+  "download_hashes": {
+    "docx": "6605dcc91ab823cc21d77618c2991feade366cce1137d4b8138600f1c051a889",
+    "pdf": "2e993b223bab6f6f0335b49526a922a16b4918d04b41725787159b70fdc7991d",
+    "report": "17c5ec651c2c30f70fdf1fa2c75771dfc8f5c4262c6e99427a8d66b0ad636fb2"
+  }
+}

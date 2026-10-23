@@ -1,0 +1,102 @@
+{
+  "case": "catanzaro",
+  "session_id": "b47a62f824894850bab0c058b322051a",
+  "raw_records": 16,
+  "raw_value_proposals": 15,
+  "raw_facts": 13,
+  "grounded_facts": 13,
+  "grounded_value_proposals": 13,
+  "applicable_grounded_value_proposals": 13,
+  "reviewed": 13,
+  "SOURCE_written": 13,
+  "USER_written": 2,
+  "all_written": 15,
+  "source_values_correct": 13,
+  "source_properties_complete": 12,
+  "source_properties_partial": 1,
+  "USER_values_correct_with_SOURCE_corroboration": 2,
+  "unsupported_writes_detected": 0,
+  "wrong_subject_or_section_detected": 0,
+  "positive_checkbox_changes": 0,
+  "negative_checkbox_changes": 0,
+  "choice_groups_proposed": 0,
+  "reference_SOURCE_occurrences": 31,
+  "reference_occurrences_written": 15,
+  "reference_occurrences_empty": 16,
+  "reference_empty_LLM_unproposed": 14,
+  "reference_empty_rejected": 2,
+  "additional_partial_missing_component": "t25.r3.c1: date of registration, available -43/-30; number in -52, omitted",
+  "UNKNOWN_pipeline_conditions": [
+    "c_concordato",
+    "c_parte_terza",
+    "c_rti",
+    "c_forma_partecipazione"
+  ],
+  "MODEL_UNKNOWN_not_equivalent_to_missing_USER_decision": true,
+  "false_condition": [
+    "c_sede_diversa"
+  ],
+  "held_final": [],
+  "actual_questions": 5,
+  "USER_reply_rounds": 2,
+  "additional_export_request": 1,
+  "one_fresh_global_no_retry": true,
+  "calls": 10,
+  "call_kinds": {
+    "router": 4,
+    "global": 1,
+    "narrator": 3,
+    "guard": 2
+  },
+  "usage": {
+    "prompt_tokens": 135085,
+    "completion_tokens": 46301,
+    "total_tokens": 181386,
+    "prompt_cache_hit_tokens": 29568,
+    "prompt_cache_miss_tokens": 105517
+  },
+  "estimated_USD": 0.043696854,
+  "global_seconds": 181.33380200199963,
+  "global_reasoning_tokens": 35332,
+  "summed_provider_seconds": 193.16365541199957,
+  "provider_errors": 0,
+  "finish_reasons": [
+    [
+      "stop"
+    ],
+    [
+      "stop"
+    ],
+    [
+      "stop"
+    ],
+    [
+      "stop"
+    ],
+    [
+      "stop"
+    ],
+    [
+      "stop"
+    ],
+    [
+      "stop"
+    ],
+    [
+      "stop"
+    ],
+    [
+      "stop"
+    ],
+    [
+      "stop"
+    ]
+  ],
+  "PDF_pages": 17,
+  "PDF_readable_values": 15,
+  "PDF_outside_page_words": 0,
+  "DOCX_SHA256": "433c3eb3aba3ba7b86fe48698fa6dc5fdba7ac6236a3607a4d3453cae9857960",
+  "no_code_corrections_during_benchmark": true,
+  "verdict": "Usable partial draft; no unsupported writes detected; coverage/dialogue/checkbox limitations preserved",
+  "does_not_demonstrate_universal_semantic_verification_or_statistical_quality_gain": true
+}

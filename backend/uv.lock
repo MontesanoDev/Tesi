@@ -675,7 +675,7 @@ wheels = [
 ]
 
 [[package]]
-name = "mapi-rag-api"
+name = "document-assistant-api"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "archive_SHA256": "c8f26e4bdd0383621efc5bd806188538faeb5bee90e380c1c367dae797dc4996",
+  "files_extracted_SHA256_verified": 2032,
+  "experimental_diagnostic_tests_passed": 32,
+  "DOCX_rebuilt_exact": 36,
+  "raw_effective_audits_rebuilt_exact": 72,
+  "network_SQLite_forbidden_during_rebuild": true,
+  "new_provider_calls": 0,
+  "original_quality_failures_preserved": true,
+  "dependency_environment": "Existing backend venv, lockfile frozen in archive",
+  "self_contained_inputs_code_and_outputs": true,
+  "commands": [
+    {
+      "command": [
+        "/home/montesano/tesi/backend/.venv/bin/python",
+        "/home/montesano/tesi/.tools/diagnosi-architetturale-v12-20261020/verified-backup-c8f26e4bdd03/benchmark ufficiale/diagnosi-architetturale-v12-20261020/code/rebuild.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/home/montesano/tesi/backend/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "/home/montesano/tesi/.tools/diagnosi-architetturale-v12-20261020/verified-backup-c8f26e4bdd03/benchmark ufficiale/diagnosi-architetturale-v12-20261020/code/test_experiment.py",
+        "/home/montesano/tesi/.tools/diagnosi-architetturale-v12-20261020/verified-backup-c8f26e4bdd03/benchmark ufficiale/diagnosi-architetturale-v12-20261020/code/test_diagnosis.py"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

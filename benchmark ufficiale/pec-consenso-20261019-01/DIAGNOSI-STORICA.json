@@ -1,0 +1,134 @@
+{
+  "global_field": {
+    "label": "P.E.C. per comunicazioni",
+    "kind": "data",
+    "disposition": "value",
+    "form": {
+      "paragraph_id": "paragraph:107",
+      "quote": "certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+    },
+    "conditions": [],
+    "property": "pec",
+    "fact_id": "f_pec",
+    "reason": "PEC aziendale documentata"
+  },
+  "narrator_reviews": [
+    {
+      "saved_review": "5af69a2bd22d4d95aec1580bf407ac5d",
+      "PEC_proposal_in_window": [
+        {
+          "proposal_slot": 1,
+          "label": "P.E.C. per comunicazioni",
+          "applicability_slots": [],
+          "deferred": false,
+          "value": "mapi.ingegneria@pec.demo",
+          "role_context_slot": null,
+          "form_context": "possesso di tutti requisiti specifici richiesti dalla normativa così come indicati nella Linee Guida ANAC n. 3 di attuazione del Codice;\ndi accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; ",
+          "form_quote": "certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________",
+          "required_role_context": "",
+          "conditional": false,
+          "sources": [
+            {
+              "name": "generalita-mapi.md",
+              "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "slot": 1,
+          "kind": "applicability",
+          "label": "Scelta del ramo 'IN QUALITA’ DI' non verificata dal validator",
+          "condition": "IN QUALITA’ DI",
+          "context": "IN QUALITA’ DI",
+          "alternatives": [],
+          "impact": 9,
+          "affected_fields": [
+            "Denominazione società di ingegneria",
+            "Via/P.zza",
+            "Comune",
+            "CAP",
+            "Prov",
+            "P.IVA",
+            "Tel.",
+            "Fax"
+          ]
+        },
+        {
+          "slot": 2,
+          "kind": "decision",
+          "label": "Luogo e data della domanda",
+          "condition": "",
+          "context": "Luogo e data ____________________",
+          "alternatives": [],
+          "impact": 1,
+          "decision_type": "location_date",
+          "write_authorized": false
+        }
+      ],
+      "actual_MODEL_response": {
+        "message": "Ho trovato i dati anagrafici della società (ragione sociale, sede legale a Bari con CAP e provincia, P.IVA, telefono, fax e PEC) e li ho proposti per la sezione del legale rappresentante di Società di Ingegneria. Resta però da chiarire in quale veste si firma: il modulo prevede diversi rami (professionista singolo, associato, società di professionisti, prestatore di servizi) e solo quello della società di ingegneria risulta coerente con le fonti. Non ho proposto luogo e data, firma, CIG, numeri di iscrizione all'albo e i dati delle tabelle riepilogative, per cui non risultano elementi sufficienti.",
+        "questions": [
+          {
+            "slot": 1,
+            "confirmation": "la domanda è presentata in qualità di legale rappresentante di una società di ingegneria"
+          },
+          {
+            "slot": 2,
+            "question": "Quali luogo e data vanno indicati per la sottoscrizione della domanda?"
+          }
+        ],
+        "held_proposal_slots": [],
+        "hold_reviews": []
+      }
+    },
+    {
+      "saved_review": "707b73d0458f498db2385c48ef9a73a3",
+      "PEC_proposal_in_window": [],
+      "questions": [],
+      "actual_MODEL_response": {
+        "questions": [],
+        "held_proposal_slots": [],
+        "hold_reviews": []
+      }
+    },
+    {
+      "saved_review": "897fa79ede3043f9886c26a845818bb5",
+      "PEC_proposal_in_window": [],
+      "questions": [
+        {
+          "slot": 1,
+          "kind": "applicability",
+          "label": "Scelta del ramo 'IN QUALITA’ DI' non verificata dal validator",
+          "condition": "IN QUALITA’ DI",
+          "context": "IN QUALITA’ DI",
+          "alternatives": [],
+          "impact": 9,
+          "affected_fields": [
+            "Denominazione società di ingegneria",
+            "Via/P.zza",
+            "Comune",
+            "CAP",
+            "Prov",
+            "P.IVA",
+            "Tel.",
+            "Fax"
+          ]
+        }
+      ],
+      "actual_MODEL_response": {
+        "questions": [
+          {
+            "slot": 1,
+            "confirmation": "il modulo va compilato nella qualità di legale rappresentante di una società di ingegneria"
+          }
+        ],
+        "held_proposal_slots": [],
+        "hold_reviews": []
+      }
+    }
+  ],
+  "original_input_SOURCE_present": true,
+  "USER_procedural_receipt": null
+}

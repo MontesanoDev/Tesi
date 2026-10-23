@@ -1,0 +1,54 @@
+{
+ "document": "cannara",
+ "core_destinations": [
+  {
+   "paragraph": "paragraph:10",
+   "fields": "Il sottoscritto / nato a / il / in qualità di",
+   "count": 4,
+   "recognized": 0
+  },
+  {
+   "paragraph": "paragraph:11",
+   "fields": "impresa / sede legale in / ( ) / CF-P.IVA / telefono",
+   "count": 5,
+   "recognized": 0
+  },
+  {
+   "paragraph": "paragraph:12",
+   "fields": "fax / P.E.C.",
+   "count": 2,
+   "recognized": 0
+  },
+  {
+   "paragraph": "paragraph:73-77",
+   "fields": "nato a / Prov. / il / residente a / Via / n. / C.F.",
+   "count": 7,
+   "recognized": 0
+  },
+  {
+   "paragraph": "paragraph:78-79",
+   "fields": "sede legale in / Via / n. / C.F.-PIVA / Pec",
+   "count": 5,
+   "recognized": 0
+  },
+  {
+   "paragraph": "paragraph:80",
+   "fields": "legale rappresentanza affidata a",
+   "count": 1,
+   "recognized": 0
+  },
+  {
+   "paragraph": "paragraph:283-285",
+   "fields": "e-mail / PEC / tel.",
+   "count": 3,
+   "recognized": 0
+  }
+ ],
+ "core_total": 27,
+ "recognized": 0,
+ "share": 0.0,
+ "condition_4": false,
+ "cause": "spazi da compilare resi con tabulazioni: il parser riconosce solo celle di tabella (raggruppamento, soggetti delle dichiarazioni di esclusione, SOA, gruppo di lavoro), tutte fuori dal nucleo dello scenario",
+ "decision": "fuori ambito secondo i criteri v1 (non conta come fallimento); si valuta il modulo successivo dell'ordine estratto",
+ "registered_UTC": "2026-10-22T10:47:07+00:00"
+}

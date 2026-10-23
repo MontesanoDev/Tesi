@@ -1,0 +1,40 @@
+{
+  "live_sessions_unchanged": true,
+  "live_session_count": 29,
+  "live_storage_files_unchanged": true,
+  "live_storage_file_count": 285,
+  "protected_files": 206,
+  "protected_existing_changed_only": [
+    "backend/app/compilation_global.py",
+    "backend/app/compilation_global_dialogue.py",
+    "backend/app/compilation_global_sessions.py",
+    "backend/app/intents.py"
+  ],
+  "global_modified_existing_functions": [
+    "_grounded_alternatives",
+    "_validate_sparse_proposal"
+  ],
+  "SOURCE_binding_functions_unchanged": true,
+  "value_validators_unchanged": true,
+  "global_prompt_unchanged": true,
+  "global_schema_unchanged": true,
+  "writer_catalog_FORM_fixture_unchanged": true,
+  "full_tests": "2524 passed in 181.97s",
+  "targeted_tests": "221 passed in 29.69s",
+  "new_tests": 45,
+  "ruff": "passed",
+  "provider_calls": 0,
+  "global_calls": 0,
+  "previous_42_preserved": true,
+  "docx_binary_equal": true,
+  "standalone_bundle_replay": {
+    "audit_equal": true,
+    "five_decisions": true,
+    "values": 42,
+    "docx_identical": true,
+    "provider_calls": 0,
+    "sha256": "4a29f7d306a6664b88208f8ba88bff5738123310a84853ff4e770f69dae126c8"
+  },
+  "head": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "no_commit_push": true
+}

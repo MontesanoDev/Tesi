@@ -1,0 +1,18 @@
+{
+  "archive": "docs/benchmarks/2026-10-17-applicability-audit.tar.gz",
+  "sha256": "4c7d1f1f6e20d024d7c9193f94f25a5e060fea68189c44dc97b6c9659a78b2a7",
+  "archive_bytes": 465053,
+  "files": 21,
+  "uncompressed_bytes": 2573411,
+  "all_member_hashes_verified": true,
+  "raw_directory": "backend/data/compilation-audit/applicability-20261017-01",
+  "reproduction_dependencies": [
+    "repository with frozen benchmark-minervino/v1 fixture and code versions identified in protected-before.json",
+    "docs/benchmarks/2026-10-16-minervino-b0-audit.tar.gz",
+    "docs/benchmarks/2026-10-17-e1-index-audit.tar.gz",
+    "docs/benchmarks/2026-10-17-root-user-reasoning-audit.tar.gz",
+    "docs/benchmarks/2026-10-17-binding-final-audit.tar.gz"
+  ],
+  "private_database_required": false,
+  "new_provider_calls_required": false
+}

@@ -1,0 +1,343 @@
+[
+  {
+    "trial": "minervino/B0/rep-1",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 9,
+      "CORRECT_PROPOSAL_GROUNDED": 47,
+      "MODEL_FORM_QUOTE_INSUFFICIENT_UNDER_FROZEN_CONTRACT": 1,
+      "MODEL_WRONG_INCOMPLETE_VALUE_SUBJECT_OR_DISPOSITION": 1,
+      "BACKEND_EQUIVALENT_DATE_REVIEW": 2
+    },
+    "reference_excluding_structural_barrier": 60
+  },
+  {
+    "trial": "minervino/E1/rep-1",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 9,
+      "CORRECT_PROPOSAL_GROUNDED": 43,
+      "BACKEND_CONDITIONAL_OWNER_GATE": 1,
+      "MODEL_FORM_QUOTE_INSUFFICIENT_UNDER_FROZEN_CONTRACT": 1,
+      "MODEL_ROLE_OR_RECORD_PROOF_INSUFFICIENT": 6
+    },
+    "reference_excluding_structural_barrier": 60
+  },
+  {
+    "trial": "minervino/E2-A/rep-1",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 9,
+      "CORRECT_PROPOSAL_GROUNDED": 47,
+      "MODEL_FORM_QUOTE_INSUFFICIENT_UNDER_FROZEN_CONTRACT": 1,
+      "MODEL_WRONG_INCOMPLETE_VALUE_SUBJECT_OR_DISPOSITION": 1,
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 2
+    },
+    "reference_excluding_structural_barrier": 60
+  },
+  {
+    "trial": "trapani/E1/rep-1",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 8,
+      "CORRECT_PROPOSAL_GROUNDED": 9
+    },
+    "reference_excluding_structural_barrier": 17
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 8,
+      "CORRECT_PROPOSAL_GROUNDED": 8,
+      "MODEL_WRONG_INCOMPLETE_VALUE_SUBJECT_OR_DISPOSITION": 1
+    },
+    "reference_excluding_structural_barrier": 17
+  },
+  {
+    "trial": "trapani/B0/rep-1",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 8,
+      "CORRECT_PROPOSAL_GROUNDED": 9
+    },
+    "reference_excluding_structural_barrier": 17
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 3,
+      "COMPOUND_VALUE_LITERAL_CONTRACT_LIMIT": 1,
+      "CORRECT_PROPOSAL_GROUNDED": 13,
+      "BACKEND_NO_NONEMPTY_LOCAL_FORM_PROOF": 13,
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 1
+    },
+    "reference_excluding_structural_barrier": 18
+  },
+  {
+    "trial": "catanzaro/B0/rep-1",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 6,
+      "CORRECT_PROPOSAL_GROUNDED": 9,
+      "BACKEND_NO_NONEMPTY_LOCAL_FORM_PROOF": 13,
+      "MODEL_FACT_CITATION_INSUFFICIENT_OR_NONLITERAL": 3
+    },
+    "reference_excluding_structural_barrier": 18
+  },
+  {
+    "trial": "catanzaro/E1/rep-1",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 6,
+      "CORRECT_PROPOSAL_GROUNDED": 12,
+      "BACKEND_NO_NONEMPTY_LOCAL_FORM_PROOF": 13
+    },
+    "reference_excluding_structural_barrier": 18
+  },
+  {
+    "trial": "bella/B0/rep-1",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 4,
+      "MODEL_VALUE_INSTEAD_OF_CONDITIONAL": 4
+    },
+    "reference_excluding_structural_barrier": 8
+  },
+  {
+    "trial": "bella/E1/rep-1",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 4,
+      "CORRECT_PROPOSAL_GROUNDED": 4
+    },
+    "reference_excluding_structural_barrier": 8
+  },
+  {
+    "trial": "bella/E2-A/rep-1",
+    "counts": {
+      "MODEL_INVALID_CONDITION_REFERENCE": 8
+    },
+    "reference_excluding_structural_barrier": 8
+  },
+  {
+    "trial": "catanzaro/E1/rep-2",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 5,
+      "CORRECT_PROPOSAL_GROUNDED": 13,
+      "BACKEND_NO_NONEMPTY_LOCAL_FORM_PROOF": 13
+    },
+    "reference_excluding_structural_barrier": 18
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "counts": {
+      "MODEL_FACT_CITATION_INSUFFICIENT_OR_NONLITERAL": 1,
+      "COMPOUND_VALUE_LITERAL_CONTRACT_LIMIT": 2,
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 2,
+      "CORRECT_PROPOSAL_GROUNDED": 13,
+      "BACKEND_NO_NONEMPTY_LOCAL_FORM_PROOF": 13
+    },
+    "reference_excluding_structural_barrier": 18
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "counts": {
+      "MODEL_FACT_CITATION_INSUFFICIENT_OR_NONLITERAL": 1,
+      "COMPOUND_VALUE_LITERAL_CONTRACT_LIMIT": 1,
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 2,
+      "CORRECT_PROPOSAL_GROUNDED": 13,
+      "BACKEND_NO_NONEMPTY_LOCAL_FORM_PROOF": 13,
+      "MODEL_WRONG_INCOMPLETE_VALUE_SUBJECT_OR_DISPOSITION": 1
+    },
+    "reference_excluding_structural_barrier": 18
+  },
+  {
+    "trial": "minervino/E2-A/rep-2",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 9,
+      "CORRECT_PROPOSAL_GROUNDED": 43,
+      "BACKEND_CONDITIONAL_OWNER_GATE": 1,
+      "MODEL_FORM_QUOTE_INSUFFICIENT_UNDER_FROZEN_CONTRACT": 1,
+      "MODEL_ROLE_OR_RECORD_PROOF_INSUFFICIENT": 6
+    },
+    "reference_excluding_structural_barrier": 60
+  },
+  {
+    "trial": "minervino/B0/rep-2",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 10,
+      "CORRECT_PROPOSAL_GROUNDED": 44,
+      "BACKEND_CONDITIONAL_OWNER_GATE": 1,
+      "MODEL_WRONG_INCOMPLETE_VALUE_SUBJECT_OR_DISPOSITION": 1,
+      "BACKEND_DOCUMENTED_PROVINCE_REPRESENTATIONS_REVIEW": 2,
+      "BACKEND_EQUIVALENT_DATE_REVIEW": 2
+    },
+    "reference_excluding_structural_barrier": 60
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 9,
+      "CORRECT_PROPOSAL_GROUNDED": 9,
+      "MODEL_FORM_QUOTE_INSUFFICIENT_UNDER_FROZEN_CONTRACT": 1,
+      "MODEL_INVALID_CONDITION_REFERENCE": 41
+    },
+    "reference_excluding_structural_barrier": 60
+  },
+  {
+    "trial": "bella/B0/rep-2",
+    "counts": {
+      "MODEL_FACT_CITATION_INSUFFICIENT_OR_NONLITERAL": 1,
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 3,
+      "CORRECT_PROPOSAL_GROUNDED": 4
+    },
+    "reference_excluding_structural_barrier": 8
+  },
+  {
+    "trial": "bella/E1/rep-2",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 4,
+      "CORRECT_PROPOSAL_GROUNDED": 4
+    },
+    "reference_excluding_structural_barrier": 8
+  },
+  {
+    "trial": "bella/E2-A/rep-2",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 4,
+      "CORRECT_PROPOSAL_GROUNDED": 4
+    },
+    "reference_excluding_structural_barrier": 8
+  },
+  {
+    "trial": "trapani/E1/rep-2",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 8,
+      "CORRECT_PROPOSAL_GROUNDED": 9
+    },
+    "reference_excluding_structural_barrier": 17
+  },
+  {
+    "trial": "trapani/E2-A/rep-2",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 8,
+      "CORRECT_PROPOSAL_GROUNDED": 8,
+      "MODEL_WRONG_INCOMPLETE_VALUE_SUBJECT_OR_DISPOSITION": 1
+    },
+    "reference_excluding_structural_barrier": 17
+  },
+  {
+    "trial": "trapani/B0/rep-2",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 8,
+      "CORRECT_PROPOSAL_GROUNDED": 9
+    },
+    "reference_excluding_structural_barrier": 17
+  },
+  {
+    "trial": "trapani/E2-A/rep-3",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 8,
+      "CORRECT_PROPOSAL_GROUNDED": 8,
+      "MODEL_WRONG_INCOMPLETE_VALUE_SUBJECT_OR_DISPOSITION": 1
+    },
+    "reference_excluding_structural_barrier": 17
+  },
+  {
+    "trial": "trapani/B0/rep-3",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 8,
+      "CORRECT_PROPOSAL_GROUNDED": 9
+    },
+    "reference_excluding_structural_barrier": 17
+  },
+  {
+    "trial": "trapani/E1/rep-3",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 8,
+      "CORRECT_PROPOSAL_GROUNDED": 9
+    },
+    "reference_excluding_structural_barrier": 17
+  },
+  {
+    "trial": "catanzaro/B0/rep-3",
+    "counts": {
+      "MODEL_FACT_CITATION_INSUFFICIENT_OR_NONLITERAL": 1,
+      "COMPOUND_VALUE_LITERAL_CONTRACT_LIMIT": 1,
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 2,
+      "CORRECT_PROPOSAL_GROUNDED": 8,
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 2,
+      "BACKEND_NO_NONEMPTY_LOCAL_FORM_PROOF": 13,
+      "MODEL_ROLE_OR_RECORD_PROOF_INSUFFICIENT": 4
+    },
+    "reference_excluding_structural_barrier": 18
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 3,
+      "COMPOUND_VALUE_LITERAL_CONTRACT_LIMIT": 2,
+      "CORRECT_PROPOSAL_GROUNDED": 13,
+      "BACKEND_NO_NONEMPTY_LOCAL_FORM_PROOF": 13
+    },
+    "reference_excluding_structural_barrier": 18
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 3,
+      "COMPOUND_VALUE_LITERAL_CONTRACT_LIMIT": 2,
+      "CORRECT_PROPOSAL_GROUNDED": 13,
+      "BACKEND_NO_NONEMPTY_LOCAL_FORM_PROOF": 13
+    },
+    "reference_excluding_structural_barrier": 18
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 9,
+      "CORRECT_PROPOSAL_GROUNDED": 10,
+      "MODEL_INVALID_CONDITION_REFERENCE": 41
+    },
+    "reference_excluding_structural_barrier": 60
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 8,
+      "MODEL_WRONG_INCOMPLETE_VALUE_SUBJECT_OR_DISPOSITION": 2,
+      "CORRECT_PROPOSAL_GROUNDED": 44,
+      "BACKEND_CONDITIONAL_OWNER_GATE": 1,
+      "MODEL_FORM_QUOTE_INSUFFICIENT_UNDER_FROZEN_CONTRACT": 1,
+      "MODEL_ROLE_OR_RECORD_PROOF_INSUFFICIENT": 4
+    },
+    "reference_excluding_structural_barrier": 60
+  },
+  {
+    "trial": "minervino/B0/rep-3",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 9,
+      "MODEL_VALUE_INSTEAD_OF_CONDITIONAL": 1,
+      "NECESSARY_UNPROVEN_OWNER_REJECTION": 1,
+      "CORRECT_PROPOSAL_GROUNDED": 42,
+      "MODEL_WRONG_INCOMPLETE_VALUE_SUBJECT_OR_DISPOSITION": 1,
+      "BACKEND_EQUIVALENT_DATE_REVIEW": 2,
+      "MODEL_ROLE_OR_RECORD_PROOF_INSUFFICIENT": 4
+    },
+    "reference_excluding_structural_barrier": 60
+  },
+  {
+    "trial": "bella/E2-A/rep-3",
+    "counts": {
+      "MODEL_INVALID_CONDITION_REFERENCE": 8
+    },
+    "reference_excluding_structural_barrier": 8
+  },
+  {
+    "trial": "bella/B0/rep-3",
+    "counts": {
+      "MODEL_BINDING_CITATION_INSUFFICIENT": 4,
+      "CORRECT_PROPOSAL_GROUNDED": 4
+    },
+    "reference_excluding_structural_barrier": 8
+  },
+  {
+    "trial": "bella/E1/rep-3",
+    "counts": {
+      "GLOBAL_OR_LOCAL_OMISSION_WITH_AVAILABLE_INPUT": 4,
+      "MODEL_INVALID_CONDITION_REFERENCE": 4
+    },
+    "reference_excluding_structural_barrier": 8
+  }
+]

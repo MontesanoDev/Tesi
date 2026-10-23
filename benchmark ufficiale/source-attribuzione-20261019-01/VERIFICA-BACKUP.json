@@ -1,0 +1,88 @@
+{
+  "all_manifest_files_verified": 486,
+  "archive_SHA256_verified": true,
+  "newly_extracted_separate_process": true,
+  "uses_archived_application_code": true,
+  "database_not_used": true,
+  "network_forbidden": true,
+  "provider_calls": 0,
+  "all_nine_audits_and_DOCX_recreated_identically": true,
+  "results": [
+    {
+      "case": "bella",
+      "audit_identical": true,
+      "DOCX_identical": true,
+      "texts": 4,
+      "checkboxes": {},
+      "SHA256": "781f7db27db8d3fda3c04f4da056552213659811347eb9788a0867d899183b14"
+    },
+    {
+      "case": "catanzaro",
+      "audit_identical": true,
+      "DOCX_identical": true,
+      "texts": 13,
+      "checkboxes": {},
+      "SHA256": "aa940efde8dcc76796b07e247f59baceaaa8ab2af0e092681c58aba60ac9a7b0"
+    },
+    {
+      "case": "cesano",
+      "audit_identical": true,
+      "DOCX_identical": true,
+      "texts": 0,
+      "checkboxes": {},
+      "SHA256": "409170f436884a9cf5a7c5a4631a2c9505321b4142b61b56fa637c4c11b10a34"
+    },
+    {
+      "case": "cesano-reale-8",
+      "audit_identical": true,
+      "DOCX_identical": true,
+      "texts": 1,
+      "checkboxes": {},
+      "SHA256": "8758106d09b3ad8f4b59ec32530a6f3d45a779838556313629fa80d91da46ee7"
+    },
+    {
+      "case": "craa",
+      "audit_identical": true,
+      "DOCX_identical": true,
+      "texts": 9,
+      "checkboxes": {},
+      "SHA256": "006f576fc9f3c0e1534a1253f008e8a1d0022ed1e6f8fe80f74e60a8b2d30159"
+    },
+    {
+      "case": "e2e-catanzaro",
+      "audit_identical": true,
+      "DOCX_identical": true,
+      "texts": 15,
+      "checkboxes": {},
+      "SHA256": "433c3eb3aba3ba7b86fe48698fa6dc5fdba7ac6236a3607a4d3453cae9857960"
+    },
+    {
+      "case": "minervino",
+      "audit_identical": true,
+      "DOCX_identical": true,
+      "texts": 54,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "SHA256": "c2d03fb53ae7baf30b876b3b7a2e34a4beccbd9aac0c12e6319198b15564a6ac"
+    },
+    {
+      "case": "minervino-v12-61",
+      "audit_identical": true,
+      "DOCX_identical": true,
+      "texts": 60,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "SHA256": "84e33e53477f0bb4935eaa9667ed02c6eea6d010beb091cab4f650a1b87feddd"
+    },
+    {
+      "case": "trapani",
+      "audit_identical": true,
+      "DOCX_identical": true,
+      "texts": 10,
+      "checkboxes": {},
+      "SHA256": "2cb8c448475714f234fafcccd535f2b3e9e6d3fade23b2908aa2689e2652fbbb"
+    }
+  ]
+}

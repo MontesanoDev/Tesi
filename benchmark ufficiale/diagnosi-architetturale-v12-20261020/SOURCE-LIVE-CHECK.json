@@ -1,0 +1,19 @@
+{
+  "live_SOURCE_equal_to_frozen": true,
+  "chunks": 22,
+  "knowledge_files_SHA256": {
+    "backend/data/knowledge/projects/catanzaro-direzione-lavori-e-sicurezza/call-facts.md": "0dee976eb02e4f0ecf4efbbd5b7c7344c9d448083501c1f623f7d3d06a9e9c8b",
+    "backend/data/knowledge/projects/catanzaro-direzione-lavori-e-sicurezza/draft.md": "e2367a634817b84f18050f035b6ed4d0218522bba1c93759702e22615d544419",
+    "backend/data/knowledge/projects/catanzaro-direzione-lavori-e-sicurezza/project-facts.md": "9911aa691cf9e51168ddfc7185bfbd97accb5d2991d5920cdd0bedff44724095",
+    "backend/data/knowledge/projects/catanzaro-direzione-lavori-e-sicurezza/template.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "backend/data/knowledge/projects/minervino-di-lecce-elenco-sia/call-facts.md": "e39afef0a3dc0855cf652cd6242dd5b8fb63d86c5cdef3f923424d7c921eee2e",
+    "backend/data/knowledge/projects/minervino-di-lecce-elenco-sia/draft.md": "8c9eb3e93796e79c11cc15ab5a49ec611c62719e2f92532cd5f3bec777d3b4b0",
+    "backend/data/knowledge/projects/minervino-di-lecce-elenco-sia/project-facts.md": "a75b8dd544bccd53e8f24b6dd9210c0908cfda2d18c11a45c2d6e42738a751b5",
+    "backend/data/knowledge/projects/minervino-di-lecce-elenco-sia/template.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "backend/data/knowledge/projects/prova/call-facts.md": "40e1bca3f57a6e64dc1f9e897842022da2871b1069bc039a7db4cb8c97e23065",
+    "backend/data/knowledge/projects/prova/draft.md": "91782467f84743db001ffe0fa6e9c03d5ce84f9ea85b1f1a1cf8a5d3cf1dccc2",
+    "backend/data/knowledge/projects/prova/project-facts.md": "2631e60bc51d09b43ada4b357eb1038b549a306ac3d9e25cacae78d5b588f05c",
+    "backend/data/knowledge/projects/prova/template.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "read_only_live_database": true
+}

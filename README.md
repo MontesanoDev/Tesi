@@ -78,12 +78,23 @@ dell'utente: `systemctl --user status ollama` ne verifica lo stato e
    **Usa predefinito**: la preferenza resta salvata per progetto quando si cambia
    modello. Il progetto continua a seguire il predefinito generale. Le vecchie
    impostazioni si aggiornano automaticamente all'avvio del backend.
-2. In **Ricerca nelle fonti**, scegliere FTS5 oppure Qdrant. La ricerca
-   vettoriale usa **BGE-M3** tramite Ollama; Qdrant
-   può usare un archivio locale oppure un servizio raggiungibile tramite URL.
-   Gli indirizzi dei servizi e i comandi di verifica sono nelle impostazioni
-   avanzate. Il modello di embedding è mostrato in sola lettura ed è comune
-   a tutti i progetti.
+2. I riquadri sono ordinati in **Modelli AI**, **Modelli di embedding** e
+   **Ricerca nelle fonti**. Per gli embedding si può scegliere Ollama (predefinito
+   **bge-m3**), OpenAI, Mistral o un servizio compatibile con le API embedding
+   OpenAI, con credenziali separate dalla chat. In **Ricerca nelle fonti**,
+   scegliere **Per parole chiave** (FTS5) oppure **Semantica**.
+   Le **Impostazioni avanzate** contengono l'archivio
+   Qdrant, la verifica del collegamento e la manutenzione dell'indice.
+   **Modelli di embedding** permette di scegliere i modelli embedding disponibili
+   sul servizio; per un endpoint compatibile si può anche inserire il nome
+   manualmente. Indirizzo e chiave del provider sono nelle sue
+   **Impostazioni avanzate**. **Ricarica modelli** legge l'elenco senza scaricare
+   o indicizzare nulla. **Salva impostazioni** applica entrambi i riquadri a
+   tutti i progetti. **Verifica collegamento** prova i dati inseriti senza
+   salvarli; **Aggiorna indice** usa le impostazioni già salvate.
+   Salvare non avvia l'indicizzazione:
+   l'indice si sincronizza alla successiva ricerca semantica o con il comando
+   esplicito. Un cambio di modello o archivio può richiedere un nuovo indice.
 3. Caricare le fonti PDF, TXT o Markdown nel progetto o nella conoscenza
    aziendale. La chat cerca nelle fonti e mostra le evidenze utilizzate.
 4. In **Moduli da compilare**, caricare uno o più originali DOCX o TXT,

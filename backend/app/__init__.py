@@ -1,1 +1,1 @@
-"""Mapi RAG API package."""
+"""Document assistant API package."""

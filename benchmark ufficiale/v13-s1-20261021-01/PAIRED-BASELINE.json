@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "network_SQLite_forbidden": true,
+  "results": [
+    {
+      "trial": "minervino",
+      "V12_texts": 43,
+      "V13_texts": 43,
+      "added": {},
+      "removed": {},
+      "changed": {},
+      "newly_SOURCE_validable": [
+        "p12.s0",
+        "p12.s1",
+        "p12.s2",
+        "p12.s3",
+        "p13.s0",
+        "p13.s1",
+        "p13.s2",
+        "p13.s3",
+        "p14.s0",
+        "p15.s0",
+        "p51.s0",
+        "p52.s0",
+        "p53.s0",
+        "p53.s1",
+        "p53.s2",
+        "p53.s4"
+      ],
+      "facts_conditions_bindings_unchanged": true,
+      "checkboxes_unchanged": true,
+      "actual_export_exactly_reconstructed": true,
+      "same_MODEL_and_USER": true,
+      "new_provider_calls": 0
+    },
+    {
+      "trial": "cesano",
+      "V12_texts": 4,
+      "V13_texts": 4,
+      "added": {},
+      "removed": {},
+      "changed": {},
+      "newly_SOURCE_validable": [],
+      "facts_conditions_bindings_unchanged": true,
+      "checkboxes_unchanged": true,
+      "actual_export_exactly_reconstructed": true,
+      "same_MODEL_and_USER": true,
+      "new_provider_calls": 0
+    },
+    {
+      "trial": "craa",
+      "V12_texts": 7,
+      "V13_texts": 7,
+      "added": {},
+      "removed": {},
+      "changed": {},
+      "newly_SOURCE_validable": [
+        "p5.s0"
+      ],
+      "facts_conditions_bindings_unchanged": true,
+      "checkboxes_unchanged": true,
+      "actual_export_exactly_reconstructed": true,
+      "same_MODEL_and_USER": true,
+      "new_provider_calls": 0
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "status": "PASS_SCOPED_FORM_APPLICABILITY",
+  "report": "docs/applicabilita-form-v12-2026-10-20.md",
+  "delivery": "benchmark ufficiale/form-applicability-20261020-01",
+  "raw": "backend/data/compilation-audit/form-applicability-20261020-01",
+  "backend_tests": {
+    "baseline": 2905,
+    "baseline_seconds": 234.42,
+    "new_permanent": 91,
+    "first_full_failures": 13,
+    "first_full_pass": 2980,
+    "final_pass": 2996,
+    "final_seconds": 281.8,
+    "ruff": "PASS",
+    "providers_simulated_in_software_tests": true
+  },
+  "exact_counterexamples": {
+    "B0-3": {
+      "before": 7,
+      "after": 6
+    },
+    "E1-3": {
+      "before": 9,
+      "after": 8
+    },
+    "only_removed_candidate": "t0.r8.c1",
+    "SOURCE_fact_original_field_and_MODEL_conditions_unchanged": true
+  },
+  "replay": {
+    "cases": 67,
+    "DOCX_exact": 65,
+    "only_expected_deltas": 2,
+    "XML_positions_CRC_geometry_verified": true,
+    "Minervino61_preserved": true,
+    "network_SQLite_forbidden": true
+  },
+  "historical_validators": {
+    "cases": 213,
+    "versions": "V2-V12",
+    "validated_unchanged": 207,
+    "previous_rejections_unchanged": 6,
+    "additional_FORM_dimension_only": true
+  },
+  "real_E2E": {
+    "status": "PASS_SCOPED_FORM_APPLICABILITY",
+    "session_id": "196e0ac512b0410e9b7d71cea6cf04a8",
+    "version": 7,
+    "actual_status": "GENERATED",
+    "new_provider_calls": 7,
+    "new_global_calls": 1,
+    "total_tokens": 150364,
+    "total_HTTP_AI_seconds": 129.92470302600123,
+    "global_seconds": 122.0476188399989,
+    "fingerprints": [
+      "e72d3c7f663d3e1383b00b3884cb4501"
+    ],
+    "model": [
+      "deepseek-flash"
+    ],
+    "raw_MODEL_fields": 18,
+    "effective_grounded_fields": 16,
+    "written_SOURCE": 15,
+    "written_USER": 0,
+    "checkboxes": {},
+    "MODEL_repeated_original_omission": true,
+    "independent_FORM_result": "false",
+    "unsafe_destination_written": false,
+    "known_independent_partial_answer": {
+      "candidate_id": "t25.r3.c1",
+      "FORM": "numero e data d’iscrizione",
+      "written": "01234560981",
+      "missing_required_component": "data",
+      "not_fixed_this_phase": true
+    },
+    "aborted_GETs": 10,
+    "other_browser_errors": [],
+    "failed_API_POSTs": [],
+    "no_mock_interception_or_manual_state_edits": true
+  },
+  "backup_verification": "benchmark ufficiale/form-applicability-20261020-01/VERIFICA-BACKUP.json",
+  "limits": [
+    "Bounded local grammar, not arbitrary natural-language conditions.",
+    "Recognized but unproved conditions stay UNKNOWN and blocked.",
+    "No replacement USER assent path for this predicate.",
+    "Existing number-without-date partial answer is not fixed.",
+    "13 tabular destinations and other independent issues remain outside scope.",
+    "No Microsoft Word desktop test or exhaustive visual review."
+  ],
+  "no_commit_push": true
+}

@@ -1,0 +1,1761 @@
+{
+  "project_id": "attribuzione-source-catanzaro",
+  "sources": [
+    {
+      "chunk_id": -43,
+      "file_id": -7,
+      "chunk_index": 0,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "## 1. Identificazione della societa' - dati simulati\n\n- Ragione sociale: Mapi Ingegneria S.r.l.\n- Forma giuridica: Societa a responsabilita limitata.\n- Tipologia di attivita': societa' di ingegneria civile.\n- Stato dell'attivita' nel dataset: Attiva.\n- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.\n- Natura dell'identificativo fiscale: valore fittizio della fixture, non valido come identificativo fiscale reale; la scheda lo conserva senza correggerlo.\n- Numero REA simulato: BA - 654321.\n- Data di costituzione: 27 febbraio 2019.\n- Data di iscrizione riportata nella visura demo: 14 marzo 2019.\n- Durata della societa': fino al 31 dicembre 2050.\n- Capitale sociale: EUR 50.000,00, interamente versato.\n\nIl numero REA non identifica automaticamente il numero di iscrizione al Registro delle Imprese. Gli estremi completi della CCIAA e del Registro delle Imprese non sono disponibili in questa scheda.\n\n## 2. Sedi e contatti aziendali - dati simulati\n\n- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Rapporto tra le sedi:"
+    },
+    {
+      "chunk_id": -44,
+      "file_id": -7,
+      "chunk_index": 1,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Rapporto tra le sedi: sede operativa coincidente con la sede legale.\n- Ulteriori unita' locali nel dataset: nessuna oltre alla sede operativa indicata.\n- PEC aziendale simulata: mapi.ingegneria@pec.demo.\n- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo.\n- Telefono aziendale simulato: +39 080 000 2040.\n- Sito web simulato: www.mapi-ingegneria.demo.\n- Cellulare aziendale: non disponibile nel dataset.\n\nQuesti recapiti sono dati dimostrativi, non canali da usare per contatti o invii reali. L'indirizzo aziendale non rappresenta la residenza personale degli amministratori o dei tecnici.\n\n## 3. Persone e ruoli - dati simulati\n\n### Ing. Luca Ferri - amministratore unico\n\n- Nome: Luca.\n- Cognome: Ferri.\n- Nominativo completo: Ing. Luca Ferri.\n- Carica in Mapi Ingegneria S.r.l.: Amministratore unico.\n- Data di nomina: 18 aprile 2024.\n- Durata della carica nel dataset: fino all'approvazione del bilancio 2026.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n- Procure,"
+    },
+    {
+      "chunk_id": -45,
+      "file_id": -7,
+      "chunk_index": 2,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "Data di nomina: 18 aprile 2024.\n- Durata della carica nel dataset: fino all'approvazione del bilancio 2026.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n- Procure, deleghe e dettaglio dei poteri di rappresentanza: non documentati nella scheda.\n\nIl nominativo dell'amministratore non determina da solo chi sottoscrive una specifica candidatura. La scelta del sottoscrittore e la documentazione dei suoi poteri restano informazioni della singola pratica.\n\n### Ing. Elisa Romano - direttore tecnico\n\n- Nome: Elisa.\n- Cognome: Romano.\n- Nominativo completo: Ing. Elisa Romano.\n- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.\n- Qualifica professionale nello scenario: Ingegnere.\n- Ordine professionale simulato: Ordine degli Ingegneri di Bari.\n- Numero di iscrizione professionale simulato: 8421.\n- Data di abilitazione, sezione e settore dell'albo: non disponibili.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n\nIl ruolo di direttore tecnico aziendale non equivale a una designazione come direttore dei lavori o coordinatore della sicurezza per uno specifico incarico.\n\n### Arch. Andrea Greco - responsabile qualita'\n\n-"
+    },
+    {
+      "chunk_id": -46,
+      "file_id": -7,
+      "chunk_index": 3,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "o di direttore tecnico aziendale non equivale a una designazione come direttore dei lavori o coordinatore della sicurezza per uno specifico incarico.\n\n### Arch. Andrea Greco - responsabile qualita'\n\n- Nome: Andrea.\n- Cognome: Greco.\n- Nominativo completo: Arch. Andrea Greco.\n- Ruolo in Mapi Ingegneria S.r.l.: Responsabile qualita'.\n- Dati personali, iscrizione all'albo e poteri di firma: non disponibili.\n\n### Ing. Mario Rossi - referente organizzativo della demo\n\n- Nome: Mario.\n- Cognome: Rossi.\n- Nominativo completo: Ing. Mario Rossi.\n- Ruolo ipotizzato in questa scheda: Referente organizzativo interno.\n- Compiti nello scenario dimostrativo: raccolta dei documenti aziendali, coordinamento delle informazioni e contatto con il gruppo che prepara le candidature.\n- Poteri di firma, procure e qualifica di legale rappresentante: non attribuiti da questa scheda.\n- Dati personali e iscrizione all'albo: non disponibili.\n\nLa voce generica \"Responsabile: Ing. Mario Rossi\" del profilo iniziale viene qui precisata come referente organizzativo. Non sostituisce l'amministratore unico Luca Ferri o il direttore tecnico Elisa Romano.\n\n### Dimensione della struttura - dati simulati\n\n- Addetti di"
+    },
+    {
+      "chunk_id": -47,
+      "file_id": -7,
+      "chunk_index": 4,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "e viene qui precisata come referente organizzativo. Non sostituisce l'amministratore unico Luca Ferri o il direttore tecnico Elisa Romano.\n\n### Dimensione della struttura - dati simulati\n\n- Addetti di Mapi Ingegneria S.r.l. al 31 dicembre 2025: 7 unita'.\n- Addetti tecnici al 31 dicembre 2025: 5 unita'.\n- Elenco nominativo completo degli addetti e organigramma: non disponibili.\n\nI nominativi descritti non costituiscono l'elenco completo dei soci, dei titolari effettivi o di tutti i soggetti da dichiarare in una procedura.\n\n## 4. Attivita' e servizi - profilo simulato\n\nMapi Ingegneria S.r.l. svolge, nello scenario dimostrativo, servizi integrati di ingegneria e architettura relativi a opere civili e infrastrutture pubbliche. Opera come consulente tecnico di enti pubblici e committenti privati.\n\n- Codice ATECO riportato nel dataset simulato: 71.12.10 - Attivita degli studi di ingegneria.\n- Ambito territoriale del profilo: Italia, con operativita' prevalente nelle regioni del Mezzogiorno.\n- Progettazione di fattibilita' tecnico-economica, definitiva ed esecutiva, secondo la descrizione della visura demo.\n- Verifiche strutturali e valutazioni di vulnerabilita' sismica.\n- Progettazione"
+    },
+    {
+      "chunk_id": -48,
+      "file_id": -7,
+      "chunk_index": 5,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": ".\n- Progettazione di fattibilita' tecnico-economica, definitiva ed esecutiva, secondo la descrizione della visura demo.\n- Verifiche strutturali e valutazioni di vulnerabilita' sismica.\n- Progettazione di interventi di adeguamento e riqualificazione degli edifici.\n- Riqualificazione energetica e funzionale di edifici pubblici.\n- Direzione lavori, coordinamento della sicurezza e contabilita' dei lavori.\n- Modellazione BIM e gestione documentale.\n- Supporto ai processi autorizzativi.\n- Assistenza tecnica agli enti per bandi e programmi di finanziamento.\n\nQuesta descrizione dei servizi non prova incarichi gia' eseguiti, importi di lavori, qualificazioni individuali o il possesso dei requisiti richiesti da una gara. Il codice ATECO e le denominazioni delle attivita' sono dati della fixture, non una verifica della classificazione o normativa vigente.\n\n## 5. Qualita' e coperture - dati esclusivamente simulati\n\n### Sistema di gestione qualita' della societa'\n\n- Riferimento riportato nella visura demo: ISO 9001:2015.\n- Identificativo del certificato simulato: MAPI-QMS-2024-001.\n- Scadenza simulata: 30 settembre 2027.\n- Certificato autentico, organismo emittente e relativo campo di"
+    },
+    {
+      "chunk_id": -49,
+      "file_id": -7,
+      "chunk_index": 6,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "nella visura demo: ISO 9001:2015.\n- Identificativo del certificato simulato: MAPI-QMS-2024-001.\n- Scadenza simulata: 30 settembre 2027.\n- Certificato autentico, organismo emittente e relativo campo di applicazione: non disponibili.\n\n### Polizza professionale della societa'\n\n- Identificativo della polizza simulata: RC-MAPI-2026-018.\n- Massimale simulato: EUR 2.000.000,00.\n- Scadenza simulata: 31 dicembre 2026.\n- Compagnia, condizioni contrattuali e documento di polizza autentico: non disponibili.\n\nQuesti riferimenti permettono di provare il riconoscimento dei dati nel prototipo; non dimostrano una copertura reale, una certificazione posseduta o la loro validita' alla data di una gara storica.\n\n## 6. Indicatori economici - dati esclusivamente simulati\n\n- Ricavi complessivi di Mapi Ingegneria S.r.l. per il 2024: EUR 1.080.000,00.\n- Ricavi complessivi di Mapi Ingegneria S.r.l. per il 2025: EUR 1.280.000,00.\n- Patrimonio netto di Mapi Ingegneria S.r.l. per il 2025: EUR 410.000,00.\n\nI ricavi complessivi non sono automaticamente fatturato specifico per una categoria di servizi, importi di opere progettate o importi di servizi di punta. Bilanci, contratti, certificati di esecuzione e"
+    },
+    {
+      "chunk_id": -50,
+      "file_id": -7,
+      "chunk_index": 7,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "ricavi complessivi non sono automaticamente fatturato specifico per una categoria di servizi, importi di opere progettate o importi di servizi di punta. Bilanci, contratti, certificati di esecuzione e suddivisioni per categoria non sono presenti in questa scheda.\n\n## 7. Informazioni non disponibili o specifiche della candidatura\n\nLa scheda non contiene evidenze su regolarita' contributiva o fiscale, casellario, assenza di cause di esclusione, assetto proprietario, titolarita' effettiva, poteri di firma o allegati effettivamente presentati. L'assenza di informazioni non equivale a una dichiarazione positiva o negativa.\n\nRestano da fornire, quando pertinenti:\n\n- Dati personali del sottoscrittore e degli altri soggetti richiesti dal modulo.\n- Identificativi fiscali reali e documentazione camerale completa.\n- Scelta di partecipazione singola, in raggruppamento o in altra forma.\n- Sottoscrittore della specifica domanda ed eventuale procura.\n- Professionisti proposti per lo specifico incarico e relative qualifiche documentate.\n- Servizi pregressi pertinenti, date, committenti, categorie e importi documentati.\n- Descrizione dell'intervento, offerta economica, cronoprogramma e impegni"
+    },
+    {
+      "chunk_id": -51,
+      "file_id": -7,
+      "chunk_index": 8,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "carico e relative qualifiche documentate.\n- Servizi pregressi pertinenti, date, committenti, categorie e importi documentati.\n- Descrizione dell'intervento, offerta economica, cronoprogramma e impegni della candidatura.\n- Dichiarazioni richieste, allegati, luogo e data di sottoscrizione.\n\nLe scelte di una singola candidatura non sono caratteristiche permanenti dell'azienda. Nessuna firma, autorizzazione all'invio o attestazione di ammissibilita' e' contenuta in questo profilo."
+    },
+    {
+      "chunk_id": -26,
+      "file_id": -8,
+      "chunk_index": 0,
+      "source_name": "progettazione-opere-pubbliche.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "general",
+      "content": "PROGETTAZIONE DI OPERE PUBBLICHE: INPUT, LIVELLI E CONTROLLI\n\nAmbito: progettazione di lavori pubblici e supporto tecnico-amministrativo.\nVersione del documento: 17 agosto 2026.\nParole chiave: quadro esigenziale, DIP, PFTE, progetto esecutivo, vincoli, costi,\ntempi, autorizzazioni, manutenzione, verifica del progetto.\n\nSCOPO\n\nQuesto documento descrive un metodo generale per organizzare la progettazione di\nun'opera pubblica. Non stabilisce quali elaborati siano obbligatori in uno\nspecifico affidamento: tali elaborati dipendono dalla disciplina vigente, dal\nDocumento di indirizzo alla progettazione e dalle caratteristiche dell'opera.\n\nQUADRO DI PARTENZA\n\nLa progettazione deve partire dal fabbisogno pubblico e non dalla scelta\nanticipata di una soluzione. Il quadro iniziale dovrebbe chiarire almeno:\n\n- problema da risolvere e utenti interessati;\n- prestazioni attese e criteri misurabili di successo;\n- stato dei luoghi, disponibilita delle aree e interferenze note;\n- vincoli urbanistici, ambientali, paesaggistici, culturali, idrogeologici,\n sismici e archeologici da verificare;\n- importo disponibile, fonti di finanziamento e limiti di ammissibilita;\n- tempi amministrativi,"
+    },
+    {
+      "chunk_id": -27,
+      "file_id": -8,
+      "chunk_index": 1,
+      "source_name": "progettazione-opere-pubbliche.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "general",
+      "content": "rbanistici, ambientali, paesaggistici, culturali, idrogeologici,\n sismici e archeologici da verificare;\n- importo disponibile, fonti di finanziamento e limiti di ammissibilita;\n- tempi amministrativi, progettuali, autorizzativi e realizzativi;\n- dati, rilievi, indagini e autorizzazioni gia disponibili o mancanti;\n- soggetti responsabili delle decisioni e delle validazioni.\n\nIl Documento di indirizzo alla progettazione, predisposto dalla stazione\nappaltante, traduce il quadro esigenziale in requisiti, livelli di approfondimento\ned elaborati richiesti. Se il processo usa la gestione informativa digitale, il\nDIP deve coordinarsi anche con i requisiti informativi e con il capitolato\ninformativo.\n\nLIVELLI DI PROGETTAZIONE\n\nIl Codice dei contratti pubblici articola normalmente la progettazione in due\nlivelli: progetto di fattibilita tecnico-economica, o PFTE, e progetto esecutivo.\n\nIl PFTE confronta le alternative praticabili e motiva la soluzione preferibile\nrispetto a bisogni, benefici, costi, rischi, vincoli e prestazioni. Deve essere\nsufficientemente definito per sostenere le autorizzazioni previste, determinare\nle caratteristiche essenziali dell'intervento e impostare la"
+    },
+    {
+      "chunk_id": -28,
+      "file_id": -8,
+      "chunk_index": 2,
+      "source_name": "progettazione-opere-pubbliche.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "general",
+      "content": "benefici, costi, rischi, vincoli e prestazioni. Deve essere\nsufficientemente definito per sostenere le autorizzazioni previste, determinare\nle caratteristiche essenziali dell'intervento e impostare la manutenzione. Le\nindagini non sono allegati ornamentali: devono ridurre le incertezze che possono\nmodificare soluzione, costo o tempo.\n\nIl progetto esecutivo sviluppa in dettaglio la soluzione approvata. Definisce le\nlavorazioni, le caratteristiche tecniche, il costo, i tempi, il piano di\nmanutenzione e gli elementi necessari all'esecuzione. Ogni variazione rispetto al\nPFTE deve essere riconoscibile, motivata e approvata dal soggetto competente.\n\nMATRICE DI CONTROLLO\n\nPer ogni requisito e utile registrare:\n\n- identificativo e descrizione del requisito;\n- fonte e riferimento puntuale;\n- elaborato che fornisce la risposta;\n- responsabile della produzione e responsabile della verifica;\n- stato: da analizzare, in lavorazione, verificato, non applicabile;\n- evidenza della verifica e data dell'ultima revisione;\n- dipendenze e informazioni mancanti.\n\nUn requisito non e soddisfatto soltanto perche compare in una relazione. Deve\nesistere coerenza fra relazioni, elaborati grafici, computo,"
+    },
+    {
+      "chunk_id": -29,
+      "file_id": -8,
+      "chunk_index": 3,
+      "source_name": "progettazione-opere-pubbliche.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "general",
+      "content": "dell'ultima revisione;\n- dipendenze e informazioni mancanti.\n\nUn requisito non e soddisfatto soltanto perche compare in una relazione. Deve\nesistere coerenza fra relazioni, elaborati grafici, computo, quadro economico,\ncronoprogramma e piano di manutenzione.\n\nGESTIONE DELLE INFORMAZIONI MANCANTI\n\nUn sistema di supporto non deve inventare dati tecnici o amministrativi. Quando\nun'informazione non e disponibile deve segnalarla, indicarne il proprietario e\nspiegare quale decisione o elaborato ne dipende. Esempi: titolarita dell'area,\nrilievo aggiornato, indagini sui materiali, costo massimo, parere di un ente,\ndurata utile o requisito prestazionale.\n\nFONTI UFFICIALI DI RIFERIMENTO\n\n- Decreto legislativo 31 marzo 2023, n. 36, articolo 41, livelli e contenuti\n della progettazione:\n https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2023;036~art41=\n- Decreto legislativo 31 marzo 2023, n. 36, Allegato I.7, contenuti dei livelli\n progettuali e del DIP:\n https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:2023;36:8~art3@originale!:=\n\nNota: verificare sempre il testo vigente e gli atti specifici dell'intervento."
+    },
+    {
+      "chunk_id": -30,
+      "file_id": -9,
+      "chunk_index": 0,
+      "source_name": "visura-mapi-ingegneria-simulata.pdf",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "FAC-SIMILE PER TESI - DOCUMENTO SIMULATO - NON UFFICIALE\nMAPI INGEGNERIA S.R.L.\nSOCIETA DI INGEGNERIA CIVILE\nEstratto dati impresa\nGenerato il 6 agosto 2026\nIdentiﬁcativo demo: MAPI-VIS-2026-001\nVisura aziendale simulata\nProﬁlo societario predisposto esclusivamente per la dimostrazione del sistema Mapi RAG.\n1. DATI IDENTIFICATIVI\nDENOMINAZIONE Mapi Ingegneria S.r.l.\nFORMA GIURIDICA Societa a responsabilita limitata\nSTATO ATTIVITA ATTIVA\nCODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)\nNUMERO REA BA - 654321 (dato simulato)\nDATA COSTITUZIONE 27 febbraio 2019\nDATA ISCRIZIONE 14 marzo 2019\nDURATA SOCIETA Fino al 31 dicembre 2050\nCAPITALE SOCIALE EUR 50.000,00, interamente versato\n2. SEDE E CONTATTI\nSEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia\nPEC mapi.ingegneria@pec.demo\nE-MAIL segreteria@mapi-ingegneria.demo\nTELEFONO +39 080 000 2040 (recapito simulato)\nSITO WEB www.mapi-ingegneria.demo\n3. ATTIVITA PREVALENTE\nCODICE ATECO 71.12.10 - Attivita degli studi di ingegneria\nRUOLO OPERATIVO Consulenza tecnica e supporto alla progettazione per enti pubblici e\ncommittenti privati\nAMBITO TERRITORIALE Italia, con operativita prevalente nelle regioni del"
+    },
+    {
+      "chunk_id": -31,
+      "file_id": -9,
+      "chunk_index": 1,
+      "source_name": "visura-mapi-ingegneria-simulata.pdf",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "li studi di ingegneria\nRUOLO OPERATIVO Consulenza tecnica e supporto alla progettazione per enti pubblici e\ncommittenti privati\nAMBITO TERRITORIALE Italia, con operativita prevalente nelle regioni del Mezzogiorno\nQuesto documento non proviene dal Registro delle Imprese e non certiﬁca l'esistenza dei soggetti o dei dati indicati.\nTutti i riferimenti sono simulati per ﬁnalita didattiche.\nMapi RAG - dataset dimostrativo Pagina 1 di 2\n\nFAC-SIMILE PER TESI - DOCUMENTO SIMULATO - NON UFFICIALE\nMAPI INGEGNERIA S.R.L.\nSOCIETA DI INGEGNERIA CIVILE\nDettaglio attivita e capacita\nIdentiﬁcativo demo: MAPI-VIS-2026-001\n4. OGGETTO SOCIALE E SERVIZI\nLa societa svolge servizi integrati di ingegneria e architettura con particolare riferimento alle opere civili e\nalle infrastrutture pubbliche.\nprogettazione di fattibilita tecnico-economica, deﬁnitiva ed esecutiva;\nveriﬁche strutturali, valutazioni di vulnerabilita sismica e interventi di adeguamento;\nriqualiﬁcazione energetica e funzionale di ediﬁci pubblici;\ndirezione lavori, coordinamento della sicurezza e contabilita dei lavori;\nmodellazione BIM, gestione documentale e supporto ai processi autorizzativi;\nassistenza tecnica agli enti nella"
+    },
+    {
+      "chunk_id": -32,
+      "file_id": -9,
+      "chunk_index": 2,
+      "source_name": "visura-mapi-ingegneria-simulata.pdf",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "iﬁci pubblici;\ndirezione lavori, coordinamento della sicurezza e contabilita dei lavori;\nmodellazione BIM, gestione documentale e supporto ai processi autorizzativi;\nassistenza tecnica agli enti nella partecipazione a bandi e programmi di ﬁnanziamento.\n5. AMMINISTRAZIONE E STRUTTURA TECNICA\nAMMINISTRATORE UNICO Ing. Luca Ferri - nominato il 18 aprile 2024, in carica ﬁno ad\napprovazione del bilancio 2026\nDIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421,\nOrdine degli Ingegneri di Bari\nRESPONSABILE QUALITA Arch. Andrea Greco\nADDETTI AL 31/12/2025 7 unita, di cui 5 tecnici\n6. CERTIFICAZIONI E COPERTURE\nSISTEMA DI GESTIONE QUALITA\nISO 9001:2015\nCertiﬁcato demo MAPI-QMS-2024-001\nScadenza: 30 settembre 2027\nPOLIZZA PROFESSIONALE\nMassimale: EUR 2.000.000,00\nPolizza demo RC-MAPI-2026-018\nScadenza: 31 dicembre 2026\n7. INDICATORI ECONOMICI SINTETICI\nRICAVI 2024 EUR 1.080.000,00 (valore simulato)\nRICAVI 2025 EUR 1.280.000,00 (valore simulato)\nPATRIMONIO NETTO 2025 EUR 410.000,00 (valore simulato)\n8. DICHIARAZIONI DI STATO\nPROCEDURE CONCORSUALI Nessuna procedura indicata nel dataset simulato\nSCIOGLIMENTO O LIQUIDAZIONE Nessuna procedura indicata nel dataset"
+    },
+    {
+      "chunk_id": -33,
+      "file_id": -9,
+      "chunk_index": 3,
+      "source_name": "visura-mapi-ingegneria-simulata.pdf",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "2025 EUR 410.000,00 (valore simulato)\n8. DICHIARAZIONI DI STATO\nPROCEDURE CONCORSUALI Nessuna procedura indicata nel dataset simulato\nSCIOGLIMENTO O LIQUIDAZIONE Nessuna procedura indicata nel dataset simulato\nUNITA LOCALI Nessuna unita locale ulteriore rispetto alla sede operativa\nDocumento dimostrativo prodotto per una tesi universitaria sul Retrieval-Augmented Generation. Non utilizzare per\npratiche amministrative, dichiarazioni sostitutive o veriﬁche camerali.\nMapi RAG - dataset dimostrativo Pagina 2 di 2"
+    },
+    {
+      "chunk_id": -52,
+      "file_id": -10,
+      "chunk_index": 0,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "# Integrazione Company\n\n# Mapi Ingegneria S.r.l. — Integrazione anagrafica e societaria (fixture sintetica)\n\n**Versione della fixture:** 1.0 — **Data di riferimento:** 15 ottobre 2026.\n\n## Provenienza e rapporto con i documenti precedenti\n\nQuesta scheda è un'integrazione sintetica rispetto alla *visura-mapi-ingegneria-simulata* (6 agosto 2026) e a *generalita-mapi* (17 settembre 2026). Per le cariche sociali specificate di seguito descrive **eventi successivi**, non corregge retroattivamente le fotografie precedenti. Se due fonti sembrano discordanti, mantenere entrambe le versioni con le relative date ed esaminare la validità temporale; non sovrascrivere silenziosamente una fonte.\n\n## 1. Dati societari integrativi\n\n- **Società:** Mapi Ingegneria S.r.l.\n- **Camera di Commercio competente nello scenario:** Bari.\n- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981.\n- **Numero REA:** BA-654321 (dato già riportato nella visura demo; **non è** il numero di iscrizione al Registro delle Imprese).\n- **Sede legale — via:** Via Giovanni Amendola.\n- **Sede legale — numero civico:** 172/C.\n- **Sede legale — CAP:** 70126.\n- **Sede legale — comune:** Bari."
+    },
+    {
+      "chunk_id": -53,
+      "file_id": -10,
+      "chunk_index": 1,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "numero di iscrizione al Registro delle Imprese).\n- **Sede legale — via:** Via Giovanni Amendola.\n- **Sede legale — numero civico:** 172/C.\n- **Sede legale — CAP:** 70126.\n- **Sede legale — comune:** Bari.\n- **Sede legale — provincia:** BA.\n- **Sede legale — Paese:** Italia.\n- **Fax aziendale sintetico:** +39 080 000 2041.\n\nGli altri recapiti e gli ulteriori dati societari continuano a essere quelli della visura simulata e della scheda generalità, salvo esplicito aggiornamento successivo.\n\n## 2. Amministrazione e rappresentanza della società\n\n- **Luca Ferri**: amministratore unico nella visura sintetica del 6 agosto 2026. **Cessazione della carica nello scenario: 1 ottobre 2026.**\n- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**. La sua carica deriva da questa integrazione sintetica successiva e non è documentata dalla visura di agosto.\n\nLa carica societaria non equivale automaticamente alla scelta del firmatario di una specifica domanda: tale scelta resta riferita alla singola pratica.\n\n### Leonardo Montemurro — anagrafica sintetica\n\n- Nome: Leonardo.\n- Cognome: Montemurro.\n- Luogo di nascita: Lecce (LE).\n-"
+    },
+    {
+      "chunk_id": -54,
+      "file_id": -10,
+      "chunk_index": 2,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "firmatario di una specifica domanda: tale scelta resta riferita alla singola pratica.\n\n### Leonardo Montemurro — anagrafica sintetica\n\n- Nome: Leonardo.\n- Cognome: Montemurro.\n- Luogo di nascita: Lecce (LE).\n- Data di nascita: 14 novembre 1982.\n- Comune di residenza: Bari (BA).\n- Indirizzo di residenza: Via Amedeo 24.\n- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.\n\nL'indirizzo di residenza di Leonardo **non** è la sede legale della società.\n\n## 3. Soci della società al 15 ottobre 2026 — scenario sintetico\n\n| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |\n| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |\n| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |\n\n**Controllo di coerenza:** quote 30% + 40% + 30% = 100%.\n\n## 4. Ruoli tecnici aziendali\n\n- **Elisa Romano:**"
+    },
+    {
+      "chunk_id": -55,
+      "file_id": -10,
+      "chunk_index": 3,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "| Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |\n\n**Controllo di coerenza:** quote 30% + 40% + 30% = 100%.\n\n## 4. Ruoli tecnici aziendali\n\n- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.\n- **Andrea Greco:** responsabile qualità aziendale, architetto, Ordine degli Architetti di Bari, sezione A, numero 5267.\n\nUn ruolo aziendale **non** costituisce una designazione per uno specifico incarico di progettazione, coordinamento della sicurezza, collaudo o direzione lavori.\n\n## 5. Ambito di utilizzo\n\nQuesta scheda registra **solo informazioni aziendali e anagrafiche riutilizzabili**. Non contiene né determina:\n\n- la forma di partecipazione scelta per una procedura specifica;\n- il soggetto che sottoscrive una determinata domanda;\n- le categorie e le fasce di servizi per cui candidarsi;\n- i professionisti designati per una specifica prestazione;\n- dichiarazioni personali, consenso, allegati effettivamente prodotti, luogo e data della domanda;\n- attestazioni di assenza di cause di esclusione e decisioni sulla firma digitale.\n\nTutte queste"
+    },
+    {
+      "chunk_id": -56,
+      "file_id": -10,
+      "chunk_index": 4,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "prestazione;\n- dichiarazioni personali, consenso, allegati effettivamente prodotti, luogo e data della domanda;\n- attestazioni di assenza di cause di esclusione e decisioni sulla firma digitale.\n\nTutte queste informazioni devono essere gestite come **decisioni o attestazioni della singola pratica** e non inferite automaticamente dalla Company KB."
+    }
+  ],
+  "proposal": {
+    "version": 12,
+    "uncertain_paragraph_ids": [],
+    "conditions": {
+      "c_concordato": {
+        "form": {
+          "paragraph_id": "paragraph:172",
+          "quote": "[per gli operatori economici ammessi al concordato preventivo con continuità aziendale di cui all’articolo 372 del decreto legislativo 12 gennaio 2019, n. 14],"
+        },
+        "aspect": "other",
+        "operator": "semantic",
+        "fact_ids": [],
+        "reason": "Stato di concordato non documentato",
+        "scope": [
+          {
+            "kind": "candidate",
+            "id": "p175.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p175.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p176.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p180.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p180.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p180.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p182.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p182.s1"
+          },
+          {
+            "kind": "candidate",
+            "id": "p182.s2"
+          },
+          {
+            "kind": "candidate",
+            "id": "p184.s0"
+          }
+        ]
+      },
+      "c_sede_diversa": {
+        "form": {
+          "paragraph_id": "paragraph:35",
+          "quote": "(se diversa dalla sede legale)"
+        },
+        "aspect": "location",
+        "operator": "different",
+        "fact_ids": [
+          "f_sede_legale",
+          "f_sede_operativa"
+        ],
+        "reason": "Sede operativa documentata coincidente con la sede legale",
+        "scope": [
+          {
+            "kind": "candidate",
+            "id": "t0.r8.c1"
+          }
+        ]
+      },
+      "c_partecipante": {
+        "form": {
+          "paragraph_id": "paragraph:126",
+          "quote": "CHIEDE di partecipare alla presente gara"
+        },
+        "aspect": "participation",
+        "operator": "semantic",
+        "fact_ids": [],
+        "reason": "Partecipazione di Mapi non confermata da decisione registrata",
+        "scope": [
+          {
+            "kind": "table",
+            "id": "table:0"
+          },
+          {
+            "kind": "table",
+            "id": "table:25"
+          },
+          {
+            "kind": "table",
+            "id": "table:26"
+          },
+          {
+            "kind": "table",
+            "id": "table:44"
+          }
+        ]
+      },
+      "c_soc_ing": {
+        "form": {
+          "paragraph_id": "paragraph:432",
+          "quote": "da compilare in caso di SOCIETÀ DI INGEGNERIA"
+        },
+        "aspect": "legal_type",
+        "operator": "semantic",
+        "fact_ids": [
+          "f_tipologia"
+        ],
+        "reason": "Applicabilità della sezione 5.d alla società di ingegneria da confermare",
+        "scope": [
+          {
+            "kind": "table",
+            "id": "table:25"
+          },
+          {
+            "kind": "table",
+            "id": "table:26"
+          }
+        ]
+      },
+      "c_parte_terza": {
+        "form": {
+          "paragraph_id": "paragraph:639",
+          "quote": "[da compilare solo a cura di società di professionisti, società di ingegneria, consorzi art. 66, co. 1 lettera g) e loro consorziate esecutrici e società tra professionisti (v. art. 10 L. 183/2011 e D.M. n. 34/2013)]"
+        },
+        "aspect": "legal_type",
+        "operator": "semantic",
+        "fact_ids": [
+          "f_tipologia"
+        ],
+        "reason": "Applicabilità della Parte terza alla società di ingegneria da confermare",
+        "scope": [
+          {
+            "kind": "table",
+            "id": "table:44"
+          }
+        ]
+      },
+      "c_rti": {
+        "form": {
+          "paragraph_id": "paragraph:805",
+          "quote": "Solo per raggruppamenti temporanei:"
+        },
+        "aspect": "participation",
+        "operator": "semantic",
+        "fact_ids": [],
+        "reason": "Presenza di RTI, consorzio o rete non confermata",
+        "scope": [
+          {
+            "kind": "candidate",
+            "id": "p807.s0"
+          },
+          {
+            "kind": "candidate",
+            "id": "p822.s0"
+          }
+        ]
+      },
+      "c_forma_partecipazione": {
+        "form": {
+          "paragraph_id": "paragraph:75",
+          "quote": "L’operatore economico partecipa alla procedura insieme ad altri?"
+        },
+        "aspect": "participation",
+        "operator": "semantic",
+        "fact_ids": [],
+        "reason": "Forma di partecipazione non confermata",
+        "scope": [
+          {
+            "kind": "table",
+            "id": "table:3"
+          }
+        ]
+      }
+    },
+    "bindings": {
+      "b_elisa_dt": {
+        "form": {
+          "paragraph_id": "paragraph:451",
+          "quote": "che gli estremi dei requisiti del direttore tecnico di cui all’art. 36, comma 1 dell’allegato II.12 al D.lgs. n. 36/2023 sono:"
+        },
+        "required_role": "direttore tecnico",
+        "source_role": "direttore tecnico",
+        "evidence": [
+          {
+            "chunk_id": -45,
+            "quote": "### Ing. Elisa Romano - direttore tecnico"
+          },
+          {
+            "chunk_id": -45,
+            "quote": "- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico."
+          }
+        ]
+      }
+    },
+    "choice_groups": {},
+    "fields": {
+      "t0.r5.c1": {
+        "label": "Operatore economico",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:28",
+          "quote": "Operatore economico"
+        },
+        "conditions": [
+          "c_partecipante"
+        ],
+        "property": "denominazione",
+        "fact_id": "f_company_name",
+        "reason": "Dato aziendale documentato; partecipazione di Mapi da confermare"
+      },
+      "t0.r6.c1": {
+        "label": "Forma giuridica",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:30",
+          "quote": "Forma giuridica"
+        },
+        "conditions": [
+          "c_partecipante"
+        ],
+        "property": "forma_giuridica",
+        "fact_id": "f_forma",
+        "reason": "Dato aziendale documentato; partecipazione di Mapi da confermare"
+      },
+      "t0.r7.c1": {
+        "label": "Sede legale (via, città, prov.)",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:32",
+          "quote": "Sede legale (via, città, prov.)"
+        },
+        "conditions": [
+          "c_partecipante"
+        ],
+        "property": "sede_legale",
+        "fact_id": "f_sede_legale",
+        "reason": "Dato aziendale documentato; partecipazione di Mapi da confermare"
+      },
+      "t0.r8.c1": {
+        "label": "Sede operativa (se diversa dalla sede legale)",
+        "kind": "data",
+        "disposition": "not_applicable",
+        "form": {
+          "paragraph_id": "paragraph:34",
+          "quote": "Sede operativa "
+        },
+        "conditions": [
+          "c_sede_diversa"
+        ],
+        "reason": "La sede operativa documentata coincide con la sede legale"
+      },
+      "t0.r9.c1": {
+        "label": "Codice fiscale operatore economico",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:37",
+          "quote": "Codice fiscale operatore economico"
+        },
+        "conditions": [
+          "c_partecipante"
+        ],
+        "property": "codice_fiscale",
+        "fact_id": "f_cf",
+        "reason": "Dato aziendale documentato; partecipazione di Mapi da confermare"
+      },
+      "t0.r10.c1": {
+        "label": "Partita IVA operatore economico",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:39",
+          "quote": "Partita IVA operatore economico"
+        },
+        "conditions": [
+          "c_partecipante"
+        ],
+        "property": "partita_iva",
+        "fact_id": "f_piva",
+        "reason": "Dato aziendale documentato; partecipazione di Mapi da confermare"
+      },
+      "t25.r0.c1": {
+        "label": "Denominazione sociale:",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:437",
+          "quote": "Denominazione sociale:"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "denominazione",
+        "fact_id": "f_company_name",
+        "reason": "Dato aziendale documentato; sezione 5.d e partecipazione da confermare"
+      },
+      "t25.r2.c0": {
+        "label": "iscrizione alla CCIAA di: (per gli stranieri registri equipollenti)",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:439",
+          "quote": "iscrizione alla CCIAA di: (per gli stranieri registri equipollenti)"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "camera_commercio",
+        "fact_id": "f_cciaa",
+        "reason": "Dato aziendale documentato; sezione 5.d e partecipazione da confermare"
+      },
+      "t25.r3.c1": {
+        "label": "numero e data d’iscrizione:",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:441",
+          "quote": "numero e data d’iscrizione:"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "numero_iscrizione_registro_imprese",
+        "fact_id": "f_num_iscr",
+        "reason": "Numero d’iscrizione documentato; sezione 5.d e partecipazione da confermare"
+      },
+      "t25.r4.c1": {
+        "label": "forma giuridica:",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:443",
+          "quote": "forma giuridica:"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "forma_giuridica",
+        "fact_id": "f_forma",
+        "reason": "Dato aziendale documentato; sezione 5.d e partecipazione da confermare"
+      },
+      "t25.r4.c3": {
+        "label": "sede legale:",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:445",
+          "quote": "sede legale:"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "sede_legale",
+        "fact_id": "f_sede_legale",
+        "reason": "Dato aziendale documentato; sezione 5.d e partecipazione da confermare"
+      },
+      "t26.r0.c1": {
+        "label": "Nome e cognome:",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:452",
+          "quote": "Nome e cognome:"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "nome",
+        "fact_id": "f_elisa_nome",
+        "binding_id": "b_elisa_dt",
+        "reason": "Direttore tecnico documentato; sezione 5.d e partecipazione da confermare"
+      },
+      "t26.r1.c1": {
+        "label": "qualifica professionale:",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:454",
+          "quote": "qualifica professionale:"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "qualifica_professionale",
+        "fact_id": "f_elisa_qualifica",
+        "binding_id": "b_elisa_dt",
+        "reason": "Qualifica del direttore tecnico documentata; sezione 5.d e partecipazione da confermare"
+      },
+      "t26.r3.c1": {
+        "label": "Ordine professionale di appartenenza:",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:458",
+          "quote": "Ordine professionale di appartenenza:"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "ordine_professionale",
+        "fact_id": "f_elisa_ordine",
+        "binding_id": "b_elisa_dt",
+        "reason": "Ordine del direttore tecnico documentato; sezione 5.d e partecipazione da confermare"
+      },
+      "t26.r4.c1": {
+        "label": "numero di iscrizione all’Albo professionale:",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:460",
+          "quote": "numero di iscrizione all’Albo professionale:"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_soc_ing"
+        ],
+        "property": "numero_iscrizione_albo",
+        "fact_id": "f_elisa_num",
+        "binding_id": "b_elisa_dt",
+        "reason": "Numero di iscrizione del direttore tecnico documentato; sezione 5.d e partecipazione da confermare"
+      },
+      "t44.r1.c0": {
+        "label": "Nome e cognome",
+        "kind": "data",
+        "disposition": "conditional",
+        "form": {
+          "paragraph_id": "paragraph:713",
+          "quote": "Nome e cognome"
+        },
+        "conditions": [
+          "c_partecipante",
+          "c_parte_terza"
+        ],
+        "property": "nome",
+        "fact_id": "f_elisa_nome",
+        "binding_id": "b_elisa_dt",
+        "reason": "Direttore tecnico documentato; Parte terza e partecipazione da confermare"
+      }
+    },
+    "facts": {
+      "f_company_name": {
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "identity",
+        "property": "denominazione",
+        "value": "Mapi Ingegneria S.r.l.",
+        "evidence": [
+          {
+            "chunk_id": -43,
+            "quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+          }
+        ]
+      },
+      "f_forma": {
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "identity",
+        "property": "forma_giuridica",
+        "value": "Societa a responsabilita limitata",
+        "evidence": [
+          {
+            "chunk_id": -43,
+            "quote": "- Forma giuridica: Societa a responsabilita limitata."
+          }
+        ]
+      },
+      "f_sede_legale": {
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "location",
+        "property": "sede_legale",
+        "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+        "evidence": [
+          {
+            "chunk_id": -43,
+            "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+          }
+        ]
+      },
+      "f_sede_operativa": {
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "location",
+        "property": "sede_operativa",
+        "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+        "evidence": [
+          {
+            "chunk_id": -43,
+            "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+          }
+        ]
+      },
+      "f_cf": {
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "identity",
+        "property": "codice_fiscale",
+        "value": "IT01234567890",
+        "evidence": [
+          {
+            "chunk_id": -43,
+            "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+          }
+        ]
+      },
+      "f_piva": {
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "identity",
+        "property": "partita_iva",
+        "value": "IT01234567890",
+        "evidence": [
+          {
+            "chunk_id": -43,
+            "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+          }
+        ]
+      },
+      "f_tipologia": {
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "legal_type",
+        "property": "tipologia_operatore",
+        "value": "societa' di ingegneria civile",
+        "evidence": [
+          {
+            "chunk_id": -43,
+            "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+          }
+        ]
+      },
+      "f_cciaa": {
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "location",
+        "property": "camera_commercio",
+        "value": "Bari",
+        "evidence": [
+          {
+            "chunk_id": -52,
+            "quote": "- **Camera di Commercio competente nello scenario:** Bari."
+          }
+        ]
+      },
+      "f_num_iscr": {
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "identity",
+        "property": "numero_iscrizione_registro_imprese",
+        "value": "01234560981",
+        "evidence": [
+          {
+            "chunk_id": -52,
+            "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+          }
+        ]
+      },
+      "f_elisa_nome": {
+        "subject": "Elisa Romano",
+        "entity": "person",
+        "aspect": "identity",
+        "property": "nome",
+        "value": "Ing. Elisa Romano",
+        "evidence": [
+          {
+            "chunk_id": -45,
+            "quote": "- Nominativo completo: Ing. Elisa Romano."
+          }
+        ]
+      },
+      "f_elisa_qualifica": {
+        "subject": "Elisa Romano",
+        "entity": "person",
+        "aspect": "professional",
+        "property": "qualifica_professionale",
+        "value": "Ingegnere",
+        "evidence": [
+          {
+            "chunk_id": -45,
+            "quote": "- Qualifica professionale nello scenario: Ingegnere."
+          }
+        ]
+      },
+      "f_elisa_ordine": {
+        "subject": "Elisa Romano",
+        "entity": "person",
+        "aspect": "professional",
+        "property": "ordine_professionale",
+        "value": "Ordine degli Ingegneri di Bari",
+        "evidence": [
+          {
+            "chunk_id": -45,
+            "quote": "- Ordine professionale simulato: Ordine degli Ingegneri di Bari."
+          }
+        ]
+      },
+      "f_elisa_num": {
+        "subject": "Elisa Romano",
+        "entity": "person",
+        "aspect": "professional",
+        "property": "numero_iscrizione_albo",
+        "value": "8421",
+        "evidence": [
+          {
+            "chunk_id": -45,
+            "quote": "- Numero di iscrizione professionale simulato: 8421."
+          }
+        ]
+      }
+    },
+    "clarifications": {
+      "t0.r0.c1": {
+        "label": "Il/La sottoscritto/a",
+        "form": {
+          "paragraph_id": "paragraph:18",
+          "quote": "Il/La sottoscritto/a"
+        },
+        "conditions": [
+          "c_partecipante"
+        ],
+        "reason": "Confermare il nominativo del firmatario; la fonte attesta il ruolo ma non la scelta della pratica"
+      },
+      "t0.r3.c1": {
+        "label": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)",
+        "form": {
+          "paragraph_id": "paragraph:24",
+          "quote": "In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)"
+        },
+        "conditions": [
+          "c_partecipante"
+        ],
+        "reason": "Confermare la carica con cui firma Leonardo Montemurro"
+      },
+      "t0.r4.c1": {
+        "label": "(se procuratore) estremi procura (notaio, repertorio, raccolta)",
+        "form": {
+          "paragraph_id": "paragraph:26",
+          "quote": "(se procuratore) estremi procura (notaio, repertorio, raccolta)"
+        },
+        "conditions": [
+          "c_partecipante"
+        ],
+        "reason": "Confermare se il firmatario agisce come procuratore e indicare gli estremi"
+      }
+    },
+    "coverage": [
+      {
+        "candidate_ids": [
+          "p175.s0",
+          "p175.s1",
+          "p176.s0"
+        ],
+        "outcome": "condition_unknown",
+        "reason": "Ramo concordato preventivo: stato non documentato",
+        "form": {
+          "paragraph_id": "paragraph:175",
+          "quote": "gli estremi del provvedimento di ammissione rilasciato dal Tribunale di"
+        },
+        "conditions": [
+          "c_concordato"
+        ]
+      },
+      {
+        "candidate_ids": [
+          "p180.s0",
+          "p180.s1",
+          "p180.s2"
+        ],
+        "outcome": "condition_unknown",
+        "reason": "Ramo concordato senza decreto: stato non documentato",
+        "form": {
+          "paragraph_id": "paragraph:180",
+          "quote": "gli estremi del deposito della domanda di ammissione sono i seguenti"
+        },
+        "conditions": [
+          "c_concordato"
+        ]
+      },
+      {
+        "candidate_ids": [
+          "p182.s0",
+          "p182.s1",
+          "p182.s2"
+        ],
+        "outcome": "condition_unknown",
+        "reason": "Ramo autorizzazione del Tribunale: stato non documentato",
+        "form": {
+          "paragraph_id": "paragraph:182",
+          "quote": "il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di"
+        },
+        "conditions": [
+          "c_concordato"
+        ]
+      },
+      {
+        "candidate_ids": [
+          "p184.s0"
+        ],
+        "outcome": "condition_unknown",
+        "reason": "Ramo avvalimento ex art. 372: stato non documentato",
+        "form": {
+          "paragraph_id": "paragraph:184",
+          "quote": "il soggetto di cui intende avvalersi, ai sensi dell'articolo 372 del D.Lgs. 14/2019, è il seguente:"
+        },
+        "conditions": [
+          "c_concordato"
+        ]
+      },
+      {
+        "candidate_ids": [
+          "p63.s0"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Mapi è operatore italiano; slot per prestatore stabilito in Stato membro estero",
+        "form": {
+          "paragraph_id": "paragraph:63",
+          "quote": "Prestatore di servizi di ingegneria e architettura, stabilito nello Stato membro di"
+        }
+      },
+      {
+        "candidate_ids": [
+          "p799.s0"
+        ],
+        "outcome": "manual_input",
+        "reason": "Indicare l’eventuale banca dati o pubblico registro per i soggetti ex art. 94",
+        "form": {
+          "paragraph_id": "paragraph:799",
+          "quote": "banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "p807.s0"
+        ],
+        "outcome": "condition_unknown",
+        "reason": "Dato del giovane professionista dipende dalla forma di partecipazione",
+        "form": {
+          "paragraph_id": "paragraph:806",
+          "quote": "Giovane professionista abilitato da meno di 5 (cinque) anni all'esercizio della professione, quale progettista"
+        },
+        "conditions": [
+          "c_rti"
+        ]
+      },
+      {
+        "candidate_ids": [
+          "p822.s0"
+        ],
+        "outcome": "condition_unknown",
+        "reason": "Documentazione aggiuntiva per RTI/consorzi/reti non confermata",
+        "form": {
+          "paragraph_id": "paragraph:822",
+          "quote": "(eventuale altra documentazione prevista in caso di RTI, consorzi e imprese retiste)"
+        },
+        "conditions": [
+          "c_rti"
+        ]
+      },
+      {
+        "candidate_ids": [
+          "p49.cb0",
+          "p51.cb0",
+          "p53.cb0",
+          "p55.cb0",
+          "p60.cb0",
+          "p62.cb0",
+          "p64.cb0"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Mapi è società di ingegneria; opzioni di diversa tipologia non pertinenti",
+        "form": {
+          "paragraph_id": "paragraph:48",
+          "quote": "Specificare la tipologia dell’operatore economico secondo la propria natura giuridica"
+        }
+      },
+      {
+        "candidate_ids": [
+          "p57.cb0"
+        ],
+        "outcome": "source_not_found",
+        "reason": "La fonte indica società di ingegneria civile e forma Srl, ma non la label esatta dell’opzione",
+        "form": {
+          "paragraph_id": "paragraph:48",
+          "quote": "Specificare la tipologia dell’operatore economico secondo la propria natura giuridica"
+        }
+      },
+      {
+        "candidate_ids": [
+          "p69.cb0"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Mapi non è consorzio stabile",
+        "form": {
+          "paragraph_id": "paragraph:68",
+          "quote": "Nell’ipotesi di partecipazione di consorzio stabile, di essere:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t3.r3.c0",
+          "t3.r4.c0",
+          "t3.r5.c0",
+          "t3.r6.c0"
+        ],
+        "outcome": "not_a_field",
+        "reason": "Celle vuote di impaginazione accanto alle opzioni",
+        "form": {
+          "paragraph_id": "paragraph:73",
+          "quote": "Forma di partecipazione: "
+        }
+      },
+      {
+        "candidate_ids": [
+          "p76.cb0",
+          "p76.cb1",
+          "p80.cb0",
+          "p82.cb0",
+          "p84.cb0",
+          "p86.cb0",
+          "p89.cb0",
+          "p91.cb0",
+          "p91.cb1",
+          "p96.cb0",
+          "p101.cb0",
+          "p103.cb0",
+          "p103.cb1",
+          "p107.cb0",
+          "p110.cb0",
+          "p111.cb0",
+          "p114.cb0"
+        ],
+        "outcome": "condition_unknown",
+        "reason": "Forma di partecipazione e ruolo nel raggruppamento non attestati da SOURCE",
+        "form": {
+          "paragraph_id": "paragraph:75",
+          "quote": "L’operatore economico partecipa alla procedura insieme ad altri?"
+        },
+        "conditions": [
+          "c_forma_partecipazione"
+        ]
+      },
+      {
+        "candidate_ids": [
+          "p147.cb0",
+          "p149.cb0"
+        ],
+        "outcome": "manual_input",
+        "reason": "Dichiarazione su partecipazioni plurime non attestata; richiede scelta utente",
+        "form": {
+          "paragraph_id": "paragraph:144",
+          "quote": "di partecipare alla medesima gara contemporaneamente in forme diverse"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t7.r1.c3",
+          "t7.r2.c3",
+          "t7.r3.c3",
+          "t7.r4.c3",
+          "t7.r5.c3"
+        ],
+        "outcome": "source_not_found",
+        "reason": "Nessun importo di servizi pregessati per categoria documentato",
+        "form": {
+          "paragraph_id": "paragraph:192",
+          "quote": "di avere espletato negli ultimi dieci anni antecedenti la data di pubblicazione del bando servizi di ingegneria e di architettura relativi ai lavori di ciascuna categoria e ID sottoelencate per un importo complessivo pari :"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t9.r0.c1",
+          "t9.r1.c1",
+          "t9.r2.c1",
+          "t9.r3.c1",
+          "t9.r4.c1",
+          "t9.r5.c1",
+          "t9.r6.c1",
+          "t9.r7.c0",
+          "t9.r7.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.a riservata al professionista singolo; Mapi è società di ingegneria",
+        "form": {
+          "paragraph_id": "paragraph:229",
+          "quote": "5.a)\tdati identificativi da compilare in caso di PROFESSIONISTA SINGOLO"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t11.r0.c1",
+          "t11.r1.c0",
+          "t11.r3.c0",
+          "t11.r3.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.b riservata allo studio associato; Mapi è società di ingegneria",
+        "form": {
+          "paragraph_id": "paragraph:249",
+          "quote": "5.b)\tdati identificativi da compilare in caso di professionisti associati (studio associato)"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t12.r0.c1",
+          "t12.r1.c1",
+          "t12.r2.c1",
+          "t12.r3.c1",
+          "t12.r4.c1",
+          "t12.r5.c1",
+          "t12.r6.c1",
+          "t12.r7.c0",
+          "t12.r7.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.b riservata allo studio associato; Mapi è società di ingegneria",
+        "form": {
+          "paragraph_id": "paragraph:249",
+          "quote": "5.b)\tdati identificativi da compilare in caso di professionisti associati (studio associato)"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t13.r0.c1",
+          "t13.r1.c1",
+          "t13.r2.c1",
+          "t13.r3.c1",
+          "t13.r4.c1",
+          "t13.r5.c1",
+          "t13.r6.c1",
+          "t13.r7.c0",
+          "t13.r7.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.b riservata allo studio associato; Mapi è società di ingegneria",
+        "form": {
+          "paragraph_id": "paragraph:249",
+          "quote": "5.b)\tdati identificativi da compilare in caso di professionisti associati (studio associato)"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t14.r0.c1",
+          "t14.r1.c1",
+          "t14.r2.c1",
+          "t14.r3.c1",
+          "t14.r4.c1",
+          "t14.r5.c1",
+          "t14.r6.c1",
+          "t14.r7.c0",
+          "t14.r7.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.b riservata allo studio associato; Mapi è società di ingegneria",
+        "form": {
+          "paragraph_id": "paragraph:249",
+          "quote": "5.b)\tdati identificativi da compilare in caso di professionisti associati (studio associato)"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t15.r0.c1",
+          "t15.r1.c1",
+          "t15.r2.c1",
+          "t15.r3.c1",
+          "t15.r4.c1",
+          "t15.r5.c1",
+          "t15.r6.c1",
+          "t15.r7.c0",
+          "t15.r7.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.b riservata allo studio associato; Mapi è società di ingegneria",
+        "form": {
+          "paragraph_id": "paragraph:249",
+          "quote": "5.b)\tdati identificativi da compilare in caso di professionisti associati (studio associato)"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t17.r0.c1",
+          "t17.r1.c0",
+          "t17.r10.c0",
+          "t17.r10.c1",
+          "t17.r2.c0",
+          "t17.r2.c1",
+          "t17.r3.c1",
+          "t17.r4.c1",
+          "t17.r5.c1",
+          "t17.r6.c1",
+          "t17.r7.c1",
+          "t17.r8.c1",
+          "t17.r9.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.b-bis riservata allo studio associato senza rappresentante",
+        "form": {
+          "paragraph_id": "paragraph:333",
+          "quote": "5.b-bis)\tdati identificativi da compilare in caso di professionisti associati (STUDIO ASSOCIATO) in assenza di rappresentante munito di idonei poteri."
+        }
+      },
+      {
+        "candidate_ids": [
+          "t19.r0.c1",
+          "t19.r2.c0",
+          "t19.r3.c1",
+          "t19.r4.c1",
+          "t19.r4.c3"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.c riservata alla società di professionisti; Mapi è società di ingegneria",
+        "form": {
+          "paragraph_id": "paragraph:362",
+          "quote": "5.c)\tda compilare in caso di SOCIETÀ DI PROFESSIONISTI"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t20.r0.c1",
+          "t20.r1.c1",
+          "t20.r2.c1",
+          "t20.r3.c1",
+          "t20.r4.c0",
+          "t20.r4.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Soci della società di professionisti; sezione non pertinente",
+        "form": {
+          "paragraph_id": "paragraph:379",
+          "quote": "che la società è formata dai seguenti soci indicati in uno agli estremi di iscrizione ai relativi albi professionali:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t21.r0.c1",
+          "t21.r1.c1",
+          "t21.r2.c1",
+          "t21.r3.c1",
+          "t21.r4.c0",
+          "t21.r4.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Soci della società di professionisti; sezione non pertinente",
+        "form": {
+          "paragraph_id": "paragraph:379",
+          "quote": "che la società è formata dai seguenti soci indicati in uno agli estremi di iscrizione ai relativi albi professionali:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t22.r0.c1",
+          "t22.r1.c1",
+          "t22.r2.c1",
+          "t22.r3.c1",
+          "t22.r4.c0",
+          "t22.r4.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Soci della società di professionisti; sezione non pertinente",
+        "form": {
+          "paragraph_id": "paragraph:379",
+          "quote": "che la società è formata dai seguenti soci indicati in uno agli estremi di iscrizione ai relativi albi professionali:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t23.r0.c1",
+          "t23.r1.c1",
+          "t23.r2.c1",
+          "t23.r3.c1",
+          "t23.r4.c0",
+          "t23.r4.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Soci della società di professionisti; sezione non pertinente",
+        "form": {
+          "paragraph_id": "paragraph:379",
+          "quote": "che la società è formata dai seguenti soci indicati in uno agli estremi di iscrizione ai relativi albi professionali:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t25.r5.c0",
+          "t25.r5.c1"
+        ],
+        "outcome": "not_a_field",
+        "reason": "Riga vuota aggiuntiva nella tabella",
+        "form": {
+          "paragraph_id": "paragraph:445",
+          "quote": "sede legale:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t26.r2.c1"
+        ],
+        "outcome": "source_not_found",
+        "reason": "Data di abilitazione del direttore tecnico non disponibile",
+        "form": {
+          "paragraph_id": "paragraph:456",
+          "quote": "Data di abilitazione"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t26.r5.c0",
+          "t26.r5.c1"
+        ],
+        "outcome": "not_a_field",
+        "reason": "Riga vuota aggiuntiva nella tabella",
+        "form": {
+          "paragraph_id": "paragraph:460",
+          "quote": "numero di iscrizione all’Albo professionale:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t28.r0.c1",
+          "t28.r2.c0",
+          "t28.r3.c1",
+          "t28.r3.c3",
+          "t28.r4.c0",
+          "t28.r4.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.e riservata ad altro soggetto abilitato; Mapi è società di ingegneria",
+        "form": {
+          "paragraph_id": "paragraph:468",
+          "quote": "5.e)\tda compilare in caso di altro soggetto abilitato in forza del diritto nazionale a offrire sul mercato servizi di ingegneria e di architettura."
+        }
+      },
+      {
+        "candidate_ids": [
+          "t29.r0.c1",
+          "t29.r1.c1",
+          "t29.r2.c1",
+          "t29.r3.c1",
+          "t29.r4.c1",
+          "t29.r5.c0",
+          "t29.r5.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.e non pertinente alla società di ingegneria",
+        "form": {
+          "paragraph_id": "paragraph:484",
+          "quote": "che gli estremi dei requisiti del direttore tecnico di cui all’art. 37, comma 2, lett. b) dell’allegato II.12 al D.lgs.  n. 36/2023 sono:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t31.r0.c1",
+          "t31.r2.c0",
+          "t31.r3.c1",
+          "t31.r4.c1",
+          "t31.r4.c3",
+          "t31.r5.c0",
+          "t31.r5.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.f riservata alla società tra professionisti",
+        "form": {
+          "paragraph_id": "paragraph:503",
+          "quote": "5.f)\tda compilare in caso di SOCIETÀ TRA PROFESSIONISTI"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t32.r0.c1",
+          "t32.r1.c1",
+          "t32.r2.c1",
+          "t32.r3.c1",
+          "t32.r4.c0",
+          "t32.r4.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Soci professionisti della società tra professionisti; sezione non pertinente",
+        "form": {
+          "paragraph_id": "paragraph:521",
+          "quote": "che la società è formata dai seguenti soci professionisti indicati in uno agli estremi di iscrizione ai relativi albi professionali:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t33.r0.c1",
+          "t33.r1.c1",
+          "t33.r2.c1",
+          "t33.r3.c1",
+          "t33.r4.c0",
+          "t33.r4.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Soci professionisti della società tra professionisti; sezione non pertinente",
+        "form": {
+          "paragraph_id": "paragraph:521",
+          "quote": "che la società è formata dai seguenti soci professionisti indicati in uno agli estremi di iscrizione ai relativi albi professionali:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t34.r0.c1",
+          "t34.r1.c1",
+          "t34.r2.c1",
+          "t34.r3.c1",
+          "t34.r4.c0",
+          "t34.r4.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Soci professionisti della società tra professionisti; sezione non pertinente",
+        "form": {
+          "paragraph_id": "paragraph:521",
+          "quote": "che la società è formata dai seguenti soci professionisti indicati in uno agli estremi di iscrizione ai relativi albi professionali:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t35.r0.c1",
+          "t35.r1.c1",
+          "t35.r2.c0",
+          "t35.r2.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Soci non professionisti della società tra professionisti; sezione non pertinente",
+        "form": {
+          "paragraph_id": "paragraph:562",
+          "quote": "che la società è formata dai seguenti soci non professionisti (indicare i nominativi/ denominazione):"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t37.r0.c1",
+          "t37.r2.c0",
+          "t37.r3.c1",
+          "t37.r4.c1",
+          "t37.r4.c3",
+          "t37.r5.c0",
+          "t37.r5.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.g riservata al consorzio stabile",
+        "form": {
+          "paragraph_id": "paragraph:573",
+          "quote": "5.g)\tda compilare in caso di CONSORZIO STABILE"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t38.r1.c0",
+          "t38.r1.c1",
+          "t38.r1.c2",
+          "t38.r2.c0",
+          "t38.r2.c1",
+          "t38.r2.c2",
+          "t38.r3.c0",
+          "t38.r3.c1",
+          "t38.r3.c2",
+          "t38.r4.c0",
+          "t38.r4.c1",
+          "t38.r4.c2",
+          "t38.r5.c0",
+          "t38.r5.c1",
+          "t38.r5.c2"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Tabella consorziate del consorzio stabile; sezione non pertinente",
+        "form": {
+          "paragraph_id": "paragraph:595",
+          "quote": "che il consorzio è costituito dalle seguenti consorziate con indicazione di quelle per conto delle quali partecipa/esecutrici:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t40.r0.c1",
+          "t40.r2.c0",
+          "t40.r3.c1",
+          "t40.r4.c1",
+          "t40.r4.c3",
+          "t40.r5.c0",
+          "t40.r5.c1"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Sezione 5.h riservata alla consorziata esecutrice di consorzio stabile",
+        "form": {
+          "paragraph_id": "paragraph:618",
+          "quote": "5.h)\tda compilare in caso di CONSORZIATA ESECUTRICE di Consorzio Stabile"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t41.r1.c0",
+          "t41.r1.c1",
+          "t41.r1.c2",
+          "t41.r1.c3",
+          "t41.r1.c4",
+          "t41.r2.c0",
+          "t41.r2.c1",
+          "t41.r2.c2",
+          "t41.r2.c3",
+          "t41.r2.c4"
+        ],
+        "outcome": "unassessed",
+        "reason": "Dati e poteri del soggetto da dichiarare non coincidono letteralmente con il ruolo SOURCE disponibile",
+        "form": {
+          "paragraph_id": "paragraph:648",
+          "quote": "i soggetti titolari di poteri di amministrazione e rappresentanza, ivi compresi institori e procuratori generali, nonché i poteri loro conferiti, sono:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t42.r1.c0",
+          "t42.r1.c1",
+          "t42.r1.c2",
+          "t42.r1.c3",
+          "t42.r1.c4",
+          "t42.r2.c0",
+          "t42.r2.c1",
+          "t42.r2.c2",
+          "t42.r2.c3",
+          "t42.r2.c4"
+        ],
+        "outcome": "source_not_found",
+        "reason": "Nessun componente di organi di direzione o vigilanza documentato",
+        "form": {
+          "paragraph_id": "paragraph:669",
+          "quote": "i componenti degli organi con poteri di direzione o di vigilanza sono:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t43.r1.c0",
+          "t43.r1.c1",
+          "t43.r1.c2",
+          "t43.r1.c3",
+          "t43.r1.c4",
+          "t43.r2.c0",
+          "t43.r2.c1",
+          "t43.r2.c2",
+          "t43.r2.c3",
+          "t43.r2.c4"
+        ],
+        "outcome": "unassessed",
+        "reason": "Soggetti con poteri di rappresentanza/direzione/controllo non associabili senza chiarire il ruolo FORM",
+        "form": {
+          "paragraph_id": "paragraph:691",
+          "quote": "i soggetti muniti di poteri di rappresentanza, di direzione o di controllo sono:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t44.r1.c1"
+        ],
+        "outcome": "source_not_found",
+        "reason": "Data e luogo di nascita del direttore tecnico non disponibili",
+        "form": {
+          "paragraph_id": "paragraph:714",
+          "quote": "Data e luogo di nascita "
+        }
+      },
+      {
+        "candidate_ids": [
+          "t44.r1.c2"
+        ],
+        "outcome": "source_not_found",
+        "reason": "Residenza del direttore tecnico non disponibile",
+        "form": {
+          "paragraph_id": "paragraph:715",
+          "quote": "Residenza"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t44.r1.c3"
+        ],
+        "outcome": "source_not_found",
+        "reason": "Codice fiscale del direttore tecnico non disponibile",
+        "form": {
+          "paragraph_id": "paragraph:716",
+          "quote": "Codice fiscale "
+        }
+      },
+      {
+        "candidate_ids": [
+          "t44.r2.c0",
+          "t44.r2.c1",
+          "t44.r2.c2",
+          "t44.r2.c3"
+        ],
+        "outcome": "not_a_field",
+        "reason": "Riga vuota aggiuntiva della tabella",
+        "form": {
+          "paragraph_id": "paragraph:713",
+          "quote": "Nome e cognome"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t45.r1.c0",
+          "t45.r1.c1",
+          "t45.r1.c2",
+          "t45.r1.c3",
+          "t45.r2.c0",
+          "t45.r2.c1",
+          "t45.r2.c2",
+          "t45.r2.c3"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Mapi è Srl; sezione per società in nome collettivo o accomandita semplice",
+        "form": {
+          "paragraph_id": "paragraph:729",
+          "quote": "che il socio amministratore in caso di società in nome collettivo o i soci accomandatari in caso di società in accomandita semplice è / sono:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t46.r1.c0",
+          "t46.r1.c1",
+          "t46.r1.c2",
+          "t46.r1.c3"
+        ],
+        "outcome": "not_applicable",
+        "reason": "Mapi ha più soci documentati; non è socio unico",
+        "form": {
+          "paragraph_id": "paragraph:747",
+          "quote": "che il socio unico è"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t47.r1.c0",
+          "t47.r1.c1",
+          "t47.r1.c2",
+          "t47.r1.c3",
+          "t47.r2.c0",
+          "t47.r2.c1",
+          "t47.r2.c2",
+          "t47.r2.c3"
+        ],
+        "outcome": "source_not_found",
+        "reason": "Nessun amministratore di fatto documentato",
+        "form": {
+          "paragraph_id": "paragraph:761",
+          "quote": "che l’amministratore di fatto di cui all’art. 94, comma 3, lett. h) del Codice è:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t48.r1.c0",
+          "t48.r1.c1",
+          "t48.r1.c2",
+          "t48.r1.c3",
+          "t48.r1.c4",
+          "t48.r2.c0",
+          "t48.r2.c1",
+          "t48.r2.c2",
+          "t48.r2.c3",
+          "t48.r2.c4"
+        ],
+        "outcome": "not_applicable",
+        "reason": "I soci documentati sono persone fisiche, non persona giuridica",
+        "form": {
+          "paragraph_id": "paragraph:779",
+          "quote": "in caso di socio persona giuridica, gli amministratori della stessa, ai fini dell’art. 94 comma 4 del Codice, sono:"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t0.r1.c1"
+        ],
+        "outcome": "unassessed",
+        "reason": "Dato anagrafico del possibile sottoscrittore documentato, ma ruolo FORM di sottoscrittore non attestato",
+        "form": {
+          "paragraph_id": "paragraph:20",
+          "quote": "Data e luogo di nascita"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t0.r2.c1"
+        ],
+        "outcome": "unassessed",
+        "reason": "Codice fiscale del possibile sottoscrittore documentato, ma ruolo FORM di sottoscrittore non attestato",
+        "form": {
+          "paragraph_id": "paragraph:22",
+          "quote": "Codice fiscale"
+        }
+      },
+      {
+        "candidate_ids": [
+          "t0.r11.c1"
+        ],
+        "outcome": "source_not_found",
+        "reason": "SOURCE ha telefono ma non cellulare; campo combinato non integralmente sostenuto",
+        "form": {
+          "paragraph_id": "paragraph:41",
+          "quote": "Cellulare + Telefono"
+        }
+      }
+    ]
+  }
+}

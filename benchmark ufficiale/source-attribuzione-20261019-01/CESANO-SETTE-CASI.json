@@ -1,0 +1,255 @@
+[
+  {
+    "candidate_id": "p12.ft10",
+    "label": "Indirizzo mail",
+    "value": "segreteria@mapi-ingegneria.demo",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -44,
+        "file_id": -7,
+        "chunk_index": 1,
+        "source_name": "generalita-mapi.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -44,
+        "citation_rebound": false,
+        "quote": "- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo.",
+        "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+      }
+    ],
+    "SOURCE_subject": "Mapi Ingegneria S.r.l.",
+    "SOURCE_entity": "company",
+    "FORM_expected_entity": "person",
+    "FORM_evidence": {
+      "paragraph_id": "paragraph:12",
+      "subject_anchor": "sottoscritto",
+      "marked_prefix": "Il sottoscritto [[p12.ft0]] Nato a [[p12.ft1]] il [[p12.ft2]] con studio in [[p12.ft3]] via [[p12.ft4]] numero  [[p12.ft5]]  Partita IVA [[p12.ft6]] Numero posizione INAIL [[p12.ft7]]  Numero matricola INPS  [[p12.ft8]] Numero Posizione INARCASSA [[p12.ft9]] Indirizzo mail [[p12.ft10]]"
+    },
+    "prior_personal_binding_gate_entered": false,
+    "prior_grounded": "GROUNDED_PROPOSAL",
+    "new_validation": "REJECTED",
+    "validation_codes": [
+      "source_subject_type_mismatch"
+    ],
+    "classification": "Company fact not demonstrated as signatory personal/professional property; no same-person inference from company role"
+  },
+  {
+    "candidate_id": "p12.ft11",
+    "label": "Pec",
+    "value": "mapi.ingegneria@pec.demo",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -44,
+        "file_id": -7,
+        "chunk_index": 1,
+        "source_name": "generalita-mapi.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -44,
+        "citation_rebound": false,
+        "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo.",
+        "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+      }
+    ],
+    "SOURCE_subject": "Mapi Ingegneria S.r.l.",
+    "SOURCE_entity": "company",
+    "FORM_expected_entity": "person",
+    "FORM_evidence": {
+      "paragraph_id": "paragraph:12",
+      "subject_anchor": "sottoscritto",
+      "marked_prefix": "Il sottoscritto [[p12.ft0]] Nato a [[p12.ft1]] il [[p12.ft2]] con studio in [[p12.ft3]] via [[p12.ft4]] numero  [[p12.ft5]]  Partita IVA [[p12.ft6]] Numero posizione INAIL [[p12.ft7]]  Numero matricola INPS  [[p12.ft8]] Numero Posizione INARCASSA [[p12.ft9]] Indirizzo mail [[p12.ft10]] Pec [[p12.ft11]]"
+    },
+    "prior_personal_binding_gate_entered": false,
+    "prior_grounded": "GROUNDED_PROPOSAL",
+    "new_validation": "REJECTED",
+    "validation_codes": [
+      "source_subject_type_mismatch"
+    ],
+    "classification": "Company fact not demonstrated as signatory personal/professional property; no same-person inference from company role"
+  },
+  {
+    "candidate_id": "p12.ft12",
+    "label": "Numero di telefono",
+    "value": "+39 080 000 2040",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -44,
+        "file_id": -7,
+        "chunk_index": 1,
+        "source_name": "generalita-mapi.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -44,
+        "citation_rebound": false,
+        "quote": "- Telefono aziendale simulato: +39 080 000 2040.",
+        "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+      }
+    ],
+    "SOURCE_subject": "Mapi Ingegneria S.r.l.",
+    "SOURCE_entity": "company",
+    "FORM_expected_entity": "person",
+    "FORM_evidence": {
+      "paragraph_id": "paragraph:12",
+      "subject_anchor": "sottoscritto",
+      "marked_prefix": "Il sottoscritto [[p12.ft0]] Nato a [[p12.ft1]] il [[p12.ft2]] con studio in [[p12.ft3]] via [[p12.ft4]] numero  [[p12.ft5]]  Partita IVA [[p12.ft6]] Numero posizione INAIL [[p12.ft7]]  Numero matricola INPS  [[p12.ft8]] Numero Posizione INARCASSA [[p12.ft9]] Indirizzo mail [[p12.ft10]] Pec [[p12.ft11]] numero di telefono [[p12.ft12]]"
+    },
+    "prior_personal_binding_gate_entered": false,
+    "prior_grounded": "GROUNDED_PROPOSAL",
+    "new_validation": "REJECTED",
+    "validation_codes": [
+      "source_subject_type_mismatch"
+    ],
+    "classification": "Company fact not demonstrated as signatory personal/professional property; no same-person inference from company role"
+  },
+  {
+    "candidate_id": "p12.ft3",
+    "label": "Comune dello studio",
+    "value": "Bari",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -52,
+        "file_id": -10,
+        "chunk_index": 0,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -52,
+        "citation_rebound": false,
+        "quote": "- **Sede legale — comune:** Bari.",
+        "content_sha256": "3a75b3865fbde9ccfa40b9382ed34398e43632ce507fdf4f6e0ceb66c35953a4"
+      }
+    ],
+    "SOURCE_subject": "Mapi Ingegneria S.r.l.",
+    "SOURCE_entity": "company",
+    "FORM_expected_entity": "person",
+    "FORM_evidence": {
+      "paragraph_id": "paragraph:12",
+      "subject_anchor": "sottoscritto",
+      "marked_prefix": "Il sottoscritto [[p12.ft0]] Nato a [[p12.ft1]] il [[p12.ft2]] con studio in [[p12.ft3]]"
+    },
+    "prior_personal_binding_gate_entered": false,
+    "prior_grounded": "GROUNDED_PROPOSAL",
+    "new_validation": "REJECTED",
+    "validation_codes": [
+      "source_subject_type_mismatch",
+      "source_property_scope_mismatch"
+    ],
+    "classification": "Company fact not demonstrated as signatory personal/professional property; no same-person inference from company role"
+  },
+  {
+    "candidate_id": "p12.ft4",
+    "label": "Indirizzo dello studio",
+    "value": "Via Giovanni Amendola",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -52,
+        "file_id": -10,
+        "chunk_index": 0,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -52,
+        "citation_rebound": false,
+        "quote": "- **Sede legale — via:** Via Giovanni Amendola.",
+        "content_sha256": "3a75b3865fbde9ccfa40b9382ed34398e43632ce507fdf4f6e0ceb66c35953a4"
+      }
+    ],
+    "SOURCE_subject": "Mapi Ingegneria S.r.l.",
+    "SOURCE_entity": "company",
+    "FORM_expected_entity": "person",
+    "FORM_evidence": {
+      "paragraph_id": "paragraph:12",
+      "subject_anchor": "sottoscritto",
+      "marked_prefix": "Il sottoscritto [[p12.ft0]] Nato a [[p12.ft1]] il [[p12.ft2]] con studio in [[p12.ft3]] via [[p12.ft4]]"
+    },
+    "prior_personal_binding_gate_entered": false,
+    "prior_grounded": "GROUNDED_PROPOSAL",
+    "new_validation": "REJECTED",
+    "validation_codes": [
+      "source_subject_type_mismatch"
+    ],
+    "classification": "Company fact not demonstrated as signatory personal/professional property; no same-person inference from company role"
+  },
+  {
+    "candidate_id": "p12.ft5",
+    "label": "Numero civico dello studio",
+    "value": "172/C",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -52,
+        "file_id": -10,
+        "chunk_index": 0,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -52,
+        "citation_rebound": false,
+        "quote": "- **Sede legale — numero civico:** 172/C.",
+        "content_sha256": "3a75b3865fbde9ccfa40b9382ed34398e43632ce507fdf4f6e0ceb66c35953a4"
+      }
+    ],
+    "SOURCE_subject": "Mapi Ingegneria S.r.l.",
+    "SOURCE_entity": "company",
+    "FORM_expected_entity": "person",
+    "FORM_evidence": {
+      "paragraph_id": "paragraph:12",
+      "subject_anchor": "sottoscritto",
+      "marked_prefix": "Il sottoscritto [[p12.ft0]] Nato a [[p12.ft1]] il [[p12.ft2]] con studio in [[p12.ft3]] via [[p12.ft4]] numero  [[p12.ft5]]"
+    },
+    "prior_personal_binding_gate_entered": false,
+    "prior_grounded": "GROUNDED_PROPOSAL",
+    "new_validation": "REJECTED",
+    "validation_codes": [
+      "source_subject_type_mismatch"
+    ],
+    "classification": "Company fact not demonstrated as signatory personal/professional property; no same-person inference from company role"
+  },
+  {
+    "candidate_id": "p12.ft6",
+    "label": "Partita IVA",
+    "value": "IT01234567890",
+    "SOURCE_evidence": [
+      {
+        "chunk_id": -43,
+        "file_id": -7,
+        "chunk_index": 0,
+        "source_name": "generalita-mapi.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -43,
+        "citation_rebound": false,
+        "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+        "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+      }
+    ],
+    "SOURCE_subject": "Mapi Ingegneria S.r.l.",
+    "SOURCE_entity": "company",
+    "FORM_expected_entity": "person",
+    "FORM_evidence": {
+      "paragraph_id": "paragraph:12",
+      "subject_anchor": "sottoscritto",
+      "marked_prefix": "Il sottoscritto [[p12.ft0]] Nato a [[p12.ft1]] il [[p12.ft2]] con studio in [[p12.ft3]] via [[p12.ft4]] numero  [[p12.ft5]]  Partita IVA [[p12.ft6]]"
+    },
+    "prior_personal_binding_gate_entered": false,
+    "prior_grounded": "GROUNDED_PROPOSAL",
+    "new_validation": "REJECTED",
+    "validation_codes": [
+      "source_subject_type_mismatch"
+    ],
+    "classification": "Company fact not demonstrated as signatory personal/professional property; no same-person inference from company role"
+  }
+]

@@ -39,7 +39,7 @@ for (const scenario of ['form', 'source', 'no_evidence'] as const) {
       return route.fulfill({ json: [] })
     })
     await page.goto('/projects/chat-limitations')
-    await page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }).fill('Riassumi il documento')
+    await page.getByRole('textbox', { name: 'Messaggio per l’assistente' }).fill('Riassumi il documento')
     await page.getByRole('button', { name: 'Invia', exact: true }).click()
     await expect(page.getByText(message)).toBeVisible()
     await expect(page.getByText('Informazioni mancanti')).toHaveCount(0)

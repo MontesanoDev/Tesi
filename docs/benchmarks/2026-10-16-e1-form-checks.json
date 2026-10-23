@@ -1,0 +1,15 @@
+{
+  "bundle_and_current_raw_manifest_verified": 386,
+  "bundle_sha256": "9cafd05bb2db9d4180aa37d9d47cfb79ad88b9b8bb7bd4a26bdf2215af6516d5",
+  "public_summary_matches_raw": true,
+  "all_267_destinations_per_word_verified": true,
+  "all_table_cells_including_headers_checked": 330,
+  "docx_parts_and_member_sets_preserved": true,
+  "all_six_export_copies_exact": true,
+  "all_outputs_partial": true,
+  "provider_errors": 0,
+  "known_credentials_excluded": "archive-checks.json and package_audit.py in bundle",
+  "local_links_checked": 22,
+  "software_tests": "116 targeted and 2258 backend passed, Ruff; full logs and initial four failures in bundle",
+  "scope": "Offline checks; no additional provider calls; no frontend changes"
+}

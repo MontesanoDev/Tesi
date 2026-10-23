@@ -1,0 +1,66 @@
+{
+  "status": "REPRODUCED_EXACTLY",
+  "results": [
+    {
+      "trial": "catanzaro-04",
+      "document": "catanzaro",
+      "finish_reason": "stop",
+      "same_failure_before_and_after_S1": true,
+      "raw_validator_outcome": {
+        "status": "REJECTED",
+        "exception": "JSONDecodeError",
+        "message": "Invalid control character at: line 1 column 15093 (char 15092)"
+      },
+      "no_DOCX_exported": true,
+      "new_provider_calls": 0,
+      "cause": "MODEL_INVALID_JSON",
+      "UI_timeout_is_secondary_to_failed_analysis": true
+    },
+    {
+      "trial": "cesano-07",
+      "document": "cesano",
+      "finish_reason": "stop",
+      "same_failure_before_and_after_S1": true,
+      "raw_validator_outcome": {
+        "status": "REJECTED",
+        "exception": "JSONDecodeError",
+        "message": "Expecting ',' delimiter: line 2 column 1 (char 19963)"
+      },
+      "no_DOCX_exported": true,
+      "new_provider_calls": 0,
+      "cause": "MODEL_INVALID_JSON",
+      "UI_timeout_is_secondary_to_failed_analysis": true
+    },
+    {
+      "trial": "minervino-08",
+      "document": "minervino",
+      "finish_reason": "length",
+      "same_failure_before_and_after_S1": true,
+      "raw_validator_outcome": {
+        "status": "REJECTED",
+        "exception": "JSONDecodeError",
+        "message": "Unterminated string starting at: line 1 column 39451 (char 39450)"
+      },
+      "no_DOCX_exported": true,
+      "new_provider_calls": 0,
+      "cause": "MODEL_OUTPUT_LIMIT",
+      "UI_timeout_is_secondary_to_failed_analysis": true
+    },
+    {
+      "trial": "minervino-09",
+      "document": "minervino",
+      "finish_reason": "length",
+      "same_failure_before_and_after_S1": true,
+      "raw_validator_outcome": {
+        "status": "REJECTED",
+        "exception": "JSONDecodeError",
+        "message": "Unterminated string starting at: line 1 column 41353 (char 41352)"
+      },
+      "no_DOCX_exported": true,
+      "new_provider_calls": 0,
+      "cause": "MODEL_OUTPUT_LIMIT",
+      "UI_timeout_is_secondary_to_failed_analysis": true
+    }
+  ],
+  "no_replacement_attempts_in_this_cohort": true
+}

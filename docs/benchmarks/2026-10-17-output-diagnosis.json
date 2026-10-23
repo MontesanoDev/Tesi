@@ -1,0 +1,1047 @@
+{
+  "scope": "Nine existing global analyses only, zero new LLM calls. B0 retained, FORM compaction experiments stopped. No changes to code/prompts/validators/writer.",
+  "records": [
+    {
+      "id": "B0-01",
+      "variant": "B0",
+      "run": 1,
+      "artifact_root": "backend/data/compilation-audit/b0-minervino-20261016T154354Z/analysis-01",
+      "state": "proposal_audited",
+      "http_status": 200,
+      "finish_reason": "stop",
+      "error_type": null,
+      "error": null,
+      "seconds": 146.7337017509999,
+      "timeout_seconds": 300,
+      "input_tokens": 75864,
+      "output_tokens": 33962,
+      "reasoning_tokens": 26284,
+      "non_reasoning_tokens_by_difference": 7678,
+      "reasoning_percent": 77.39237971850892,
+      "visible_characters": 24315,
+      "reasoning_characters": 83734,
+      "request_output_limit": 49152,
+      "request_format": {
+        "type": "json_object"
+      },
+      "request_thinking": {
+        "type": "enabled"
+      },
+      "request_reasoning_effort": "low",
+      "actual_request_source_list_sha256": "8b3fa4ad45e147776d7e1bb612e790c84b5a57e127f3c4178cf8999a937539ba",
+      "visible_json_valid": true,
+      "root_keys": [
+        "version",
+        "uncertain_paragraph_ids",
+        "conditions",
+        "bindings",
+        "choice_groups",
+        "fields",
+        "facts",
+        "clarifications",
+        "coverage"
+      ],
+      "record_counts": {
+        "fields": 23,
+        "facts": 17,
+        "conditions": 2,
+        "bindings": 1,
+        "choice_groups": 1,
+        "clarifications": 2,
+        "coverage": 21
+      },
+      "section_sizes": {
+        "version": 2,
+        "uncertain_paragraph_ids": 2,
+        "conditions": 1130,
+        "bindings": 348,
+        "choice_groups": 2407,
+        "fields": 7123,
+        "facts": 4018,
+        "clarifications": 478,
+        "coverage": 8676
+      },
+      "redundancy": {
+        "exact_duplicate_records_by_section": {
+          "fields": 0,
+          "facts": 0,
+          "conditions": 0,
+          "bindings": 0,
+          "choice_groups": 0,
+          "clarifications": 0,
+          "coverage": 0
+        },
+        "semantic_duplicate_facts": [],
+        "unused_fact_ids": [],
+        "unused_binding_ids": [],
+        "fact_references_total": 23,
+        "coverage_id_occurrences": 242,
+        "coverage_unique_ids": 242,
+        "duplicate_coverage_ids": {},
+        "coverage_overlaps_fields": [],
+        "repeated_field_reason_occurrences": 0
+      },
+      "sparse_coverage_size_counterfactual": {
+        "removed_coverage_records": 21,
+        "visible_characters_removed": 8674,
+        "visible_percent_removed": 35.67345260127493,
+        "not_tokenized_or_sent": true
+      },
+      "source_field_counts": {
+        "targets": 60,
+        "proposed": 23,
+        "correct_raw": 22,
+        "wrong_raw": 1,
+        "omitted": 37,
+        "locally_grounded_correct": 21,
+        "locally_blocked_correct": 1,
+        "whole_envelope_blocked_correct": 0
+      },
+      "coverage_audit": {
+        "total": 267,
+        "proposed": 22,
+        "clarifications": 2,
+        "rejected": 1,
+        "explained_unfilled": 97,
+        "explicitly_unassessed": 0,
+        "unexplained": 0,
+        "rejected_explanations": 145,
+        "explicit_decisions_complete": true,
+        "coverage_checks_passed": false,
+        "semantic_completeness_verified": false,
+        "outcomes": {
+          "manual_input": 84,
+          "source_not_found": 13
+        }
+      }
+    },
+    {
+      "id": "B0-02",
+      "variant": "B0",
+      "run": 2,
+      "artifact_root": "backend/data/compilation-audit/b0-minervino-20261016T154354Z/analysis-02",
+      "state": "proposal_audited",
+      "http_status": 200,
+      "finish_reason": "stop",
+      "error_type": null,
+      "error": null,
+      "seconds": 179.83673677600018,
+      "timeout_seconds": 300,
+      "input_tokens": 75864,
+      "output_tokens": 40104,
+      "reasoning_tokens": 30944,
+      "non_reasoning_tokens_by_difference": 9160,
+      "reasoning_percent": 77.15938559744664,
+      "visible_characters": 27932,
+      "reasoning_characters": 103818,
+      "request_output_limit": 49152,
+      "request_format": {
+        "type": "json_object"
+      },
+      "request_thinking": {
+        "type": "enabled"
+      },
+      "request_reasoning_effort": "low",
+      "actual_request_source_list_sha256": "8b3fa4ad45e147776d7e1bb612e790c84b5a57e127f3c4178cf8999a937539ba",
+      "visible_json_valid": true,
+      "root_keys": [
+        "version",
+        "uncertain_paragraph_ids",
+        "conditions",
+        "bindings",
+        "choice_groups",
+        "fields",
+        "facts",
+        "clarifications",
+        "coverage"
+      ],
+      "record_counts": {
+        "fields": 23,
+        "facts": 19,
+        "conditions": 7,
+        "bindings": 1,
+        "choice_groups": 0,
+        "clarifications": 2,
+        "coverage": 21
+      },
+      "section_sizes": {
+        "version": 2,
+        "uncertain_paragraph_ids": 2,
+        "conditions": 5866,
+        "bindings": 351,
+        "choice_groups": 2,
+        "fields": 7461,
+        "facts": 4974,
+        "clarifications": 480,
+        "coverage": 8663
+      },
+      "redundancy": {
+        "exact_duplicate_records_by_section": {
+          "fields": 0,
+          "facts": 0,
+          "conditions": 0,
+          "bindings": 0,
+          "choice_groups": 0,
+          "clarifications": 0,
+          "coverage": 0
+        },
+        "semantic_duplicate_facts": [],
+        "unused_fact_ids": [],
+        "unused_binding_ids": [],
+        "fact_references_total": 23,
+        "coverage_id_occurrences": 243,
+        "coverage_unique_ids": 242,
+        "duplicate_coverage_ids": {
+          "p64.cb0": 2
+        },
+        "coverage_overlaps_fields": [],
+        "repeated_field_reason_occurrences": 0
+      },
+      "sparse_coverage_size_counterfactual": {
+        "removed_coverage_records": 21,
+        "visible_characters_removed": 8661,
+        "visible_percent_removed": 31.007446656164973,
+        "not_tokenized_or_sent": true
+      },
+      "source_field_counts": {
+        "targets": 60,
+        "proposed": 23,
+        "correct_raw": 22,
+        "wrong_raw": 1,
+        "omitted": 37,
+        "locally_grounded_correct": 17,
+        "locally_blocked_correct": 5,
+        "whole_envelope_blocked_correct": 0
+      },
+      "coverage_audit": {
+        "total": 267,
+        "proposed": 18,
+        "clarifications": 2,
+        "rejected": 5,
+        "explained_unfilled": 134,
+        "explicitly_unassessed": 0,
+        "unexplained": 0,
+        "rejected_explanations": 108,
+        "explicit_decisions_complete": true,
+        "coverage_checks_passed": false,
+        "semantic_completeness_verified": false,
+        "outcomes": {
+          "condition_unknown": 42,
+          "source_not_found": 17,
+          "manual_input": 75
+        }
+      }
+    },
+    {
+      "id": "B0-03",
+      "variant": "B0",
+      "run": 3,
+      "artifact_root": "backend/data/compilation-audit/b0-minervino-20261016T154354Z/analysis-03",
+      "state": "proposal_audited",
+      "http_status": 200,
+      "finish_reason": "stop",
+      "error_type": null,
+      "error": null,
+      "seconds": 183.847245388999,
+      "timeout_seconds": 300,
+      "input_tokens": 75864,
+      "output_tokens": 46156,
+      "reasoning_tokens": 32497,
+      "non_reasoning_tokens_by_difference": 13659,
+      "reasoning_percent": 70.40688101221943,
+      "visible_characters": 42623,
+      "reasoning_characters": 106270,
+      "request_output_limit": 49152,
+      "request_format": {
+        "type": "json_object"
+      },
+      "request_thinking": {
+        "type": "enabled"
+      },
+      "request_reasoning_effort": "low",
+      "actual_request_source_list_sha256": "8b3fa4ad45e147776d7e1bb612e790c84b5a57e127f3c4178cf8999a937539ba",
+      "visible_json_valid": true,
+      "root_keys": [
+        "version",
+        "uncertain_paragraph_ids",
+        "conditions",
+        "bindings",
+        "choice_groups",
+        "fields",
+        "facts",
+        "clarifications",
+        "coverage"
+      ],
+      "record_counts": {
+        "fields": 50,
+        "facts": 36,
+        "conditions": 1,
+        "bindings": 4,
+        "choice_groups": 0,
+        "clarifications": 1,
+        "coverage": 28
+      },
+      "section_sizes": {
+        "version": 2,
+        "uncertain_paragraph_ids": 2,
+        "conditions": 2255,
+        "bindings": 1791,
+        "choice_groups": 2,
+        "fields": 17955,
+        "facts": 9701,
+        "clarifications": 249,
+        "coverage": 10535
+      },
+      "redundancy": {
+        "exact_duplicate_records_by_section": {
+          "fields": 0,
+          "facts": 0,
+          "conditions": 0,
+          "bindings": 0,
+          "choice_groups": 0,
+          "clarifications": 0,
+          "coverage": 0
+        },
+        "semantic_duplicate_facts": [],
+        "unused_fact_ids": [],
+        "unused_binding_ids": [],
+        "fact_references_total": 50,
+        "coverage_id_occurrences": 216,
+        "coverage_unique_ids": 216,
+        "duplicate_coverage_ids": {},
+        "coverage_overlaps_fields": [],
+        "repeated_field_reason_occurrences": 20
+      },
+      "sparse_coverage_size_counterfactual": {
+        "removed_coverage_records": 28,
+        "visible_characters_removed": 10533,
+        "visible_percent_removed": 24.71200994768083,
+        "not_tokenized_or_sent": true
+      },
+      "source_field_counts": {
+        "targets": 60,
+        "proposed": 50,
+        "correct_raw": 49,
+        "wrong_raw": 1,
+        "omitted": 10,
+        "locally_grounded_correct": 21,
+        "locally_blocked_correct": 28,
+        "whole_envelope_blocked_correct": 0
+      },
+      "coverage_audit": {
+        "total": 267,
+        "proposed": 22,
+        "clarifications": 1,
+        "rejected": 28,
+        "explained_unfilled": 80,
+        "explicitly_unassessed": 1,
+        "unexplained": 0,
+        "rejected_explanations": 135,
+        "explicit_decisions_complete": true,
+        "coverage_checks_passed": false,
+        "semantic_completeness_verified": false,
+        "outcomes": {
+          "manual_input": 10,
+          "unassessed": 1,
+          "source_not_found": 70
+        }
+      }
+    },
+    {
+      "id": "E1-01",
+      "variant": "E1",
+      "run": 1,
+      "artifact_root": "backend/data/compilation-audit/e1-form-20261016-01/analysis-01",
+      "state": "proposal_audited",
+      "http_status": 200,
+      "finish_reason": "stop",
+      "error_type": null,
+      "error": null,
+      "seconds": 150.96037052899965,
+      "timeout_seconds": 300,
+      "input_tokens": 63661,
+      "output_tokens": 36542,
+      "reasoning_tokens": 28304,
+      "non_reasoning_tokens_by_difference": 8238,
+      "reasoning_percent": 77.4560779377155,
+      "visible_characters": 25832,
+      "reasoning_characters": 94647,
+      "request_output_limit": 49152,
+      "request_format": {
+        "type": "json_object"
+      },
+      "request_thinking": {
+        "type": "enabled"
+      },
+      "request_reasoning_effort": "low",
+      "actual_request_source_list_sha256": "8b3fa4ad45e147776d7e1bb612e790c84b5a57e127f3c4178cf8999a937539ba",
+      "visible_json_valid": true,
+      "root_keys": [
+        "version",
+        "uncertain_paragraph_ids",
+        "conditions",
+        "bindings",
+        "choice_groups",
+        "fields",
+        "facts",
+        "clarifications",
+        "coverage"
+      ],
+      "record_counts": {
+        "fields": 18,
+        "facts": 18,
+        "conditions": 1,
+        "bindings": 1,
+        "choice_groups": 1,
+        "clarifications": 1,
+        "coverage": 33
+      },
+      "section_sizes": {
+        "version": 2,
+        "uncertain_paragraph_ids": 2,
+        "conditions": 566,
+        "bindings": 351,
+        "choice_groups": 2229,
+        "fields": 5971,
+        "facts": 4536,
+        "clarifications": 265,
+        "coverage": 11779
+      },
+      "redundancy": {
+        "exact_duplicate_records_by_section": {
+          "fields": 0,
+          "facts": 0,
+          "conditions": 0,
+          "bindings": 0,
+          "choice_groups": 0,
+          "clarifications": 0,
+          "coverage": 0
+        },
+        "semantic_duplicate_facts": [],
+        "unused_fact_ids": [],
+        "unused_binding_ids": [],
+        "fact_references_total": 18,
+        "coverage_id_occurrences": 241,
+        "coverage_unique_ids": 241,
+        "duplicate_coverage_ids": {},
+        "coverage_overlaps_fields": [],
+        "repeated_field_reason_occurrences": 4
+      },
+      "sparse_coverage_size_counterfactual": {
+        "removed_coverage_records": 33,
+        "visible_characters_removed": 11777,
+        "visible_percent_removed": 45.590740167234436,
+        "not_tokenized_or_sent": true
+      },
+      "source_field_counts": {
+        "targets": 60,
+        "proposed": 18,
+        "correct_raw": 18,
+        "wrong_raw": 0,
+        "omitted": 42,
+        "locally_grounded_correct": 13,
+        "locally_blocked_correct": 5,
+        "whole_envelope_blocked_correct": 0
+      },
+      "coverage_audit": {
+        "total": 267,
+        "proposed": 13,
+        "clarifications": 1,
+        "rejected": 5,
+        "explained_unfilled": 95,
+        "explicitly_unassessed": 0,
+        "unexplained": 7,
+        "rejected_explanations": 146,
+        "explicit_decisions_complete": false,
+        "coverage_checks_passed": false,
+        "semantic_completeness_verified": false,
+        "outcomes": {
+          "source_not_found": 21,
+          "manual_input": 74
+        }
+      }
+    },
+    {
+      "id": "E1-02",
+      "variant": "E1",
+      "run": 2,
+      "artifact_root": "backend/data/compilation-audit/e1-form-20261016-01/analysis-02",
+      "state": "proposal_audited",
+      "http_status": 200,
+      "finish_reason": "stop",
+      "error_type": null,
+      "error": null,
+      "seconds": 102.39525274000016,
+      "timeout_seconds": 300,
+      "input_tokens": 63661,
+      "output_tokens": 26692,
+      "reasoning_tokens": 17408,
+      "non_reasoning_tokens_by_difference": 9284,
+      "reasoning_percent": 65.21804285928368,
+      "visible_characters": 28171,
+      "reasoning_characters": 56935,
+      "request_output_limit": 49152,
+      "request_format": {
+        "type": "json_object"
+      },
+      "request_thinking": {
+        "type": "enabled"
+      },
+      "request_reasoning_effort": "low",
+      "actual_request_source_list_sha256": "8b3fa4ad45e147776d7e1bb612e790c84b5a57e127f3c4178cf8999a937539ba",
+      "visible_json_valid": true,
+      "root_keys": [
+        "version",
+        "uncertain_paragraph_ids",
+        "conditions",
+        "bindings",
+        "choice_groups",
+        "fields",
+        "facts",
+        "clarifications",
+        "coverage"
+      ],
+      "record_counts": {
+        "fields": 26,
+        "facts": 20,
+        "conditions": 8,
+        "bindings": 1,
+        "choice_groups": 0,
+        "clarifications": 0,
+        "coverage": 20
+      },
+      "section_sizes": {
+        "version": 2,
+        "uncertain_paragraph_ids": 2,
+        "conditions": 7701,
+        "bindings": 348,
+        "choice_groups": 2,
+        "fields": 7638,
+        "facts": 4867,
+        "clarifications": 2,
+        "coverage": 7478
+      },
+      "redundancy": {
+        "exact_duplicate_records_by_section": {
+          "fields": 0,
+          "facts": 0,
+          "conditions": 0,
+          "bindings": 0,
+          "choice_groups": 0,
+          "clarifications": 0,
+          "coverage": 0
+        },
+        "semantic_duplicate_facts": [],
+        "unused_fact_ids": [],
+        "unused_binding_ids": [],
+        "fact_references_total": 26,
+        "coverage_id_occurrences": 241,
+        "coverage_unique_ids": 241,
+        "duplicate_coverage_ids": {},
+        "coverage_overlaps_fields": [],
+        "repeated_field_reason_occurrences": 0
+      },
+      "sparse_coverage_size_counterfactual": {
+        "removed_coverage_records": 20,
+        "visible_characters_removed": 7476,
+        "visible_percent_removed": 26.537929076000143,
+        "not_tokenized_or_sent": true
+      },
+      "source_field_counts": {
+        "targets": 60,
+        "proposed": 26,
+        "correct_raw": 25,
+        "wrong_raw": 1,
+        "omitted": 34,
+        "locally_grounded_correct": 19,
+        "locally_blocked_correct": 6,
+        "whole_envelope_blocked_correct": 0
+      },
+      "coverage_audit": {
+        "total": 267,
+        "proposed": 20,
+        "clarifications": 0,
+        "rejected": 6,
+        "explained_unfilled": 151,
+        "explicitly_unassessed": 0,
+        "unexplained": 0,
+        "rejected_explanations": 90,
+        "explicit_decisions_complete": true,
+        "coverage_checks_passed": false,
+        "semantic_completeness_verified": false,
+        "outcomes": {
+          "manual_input": 13,
+          "source_not_found": 84,
+          "condition_unknown": 54
+        }
+      }
+    },
+    {
+      "id": "E1-03",
+      "variant": "E1",
+      "run": 3,
+      "artifact_root": "backend/data/compilation-audit/e1-form-20261016-01/analysis-03",
+      "state": "proposal_audited",
+      "http_status": 200,
+      "finish_reason": "stop",
+      "error_type": null,
+      "error": null,
+      "seconds": 166.16403656199964,
+      "timeout_seconds": 300,
+      "input_tokens": 63661,
+      "output_tokens": 40473,
+      "reasoning_tokens": 31970,
+      "non_reasoning_tokens_by_difference": 8503,
+      "reasoning_percent": 78.99093222642256,
+      "visible_characters": 26776,
+      "reasoning_characters": 107515,
+      "request_output_limit": 49152,
+      "request_format": {
+        "type": "json_object"
+      },
+      "request_thinking": {
+        "type": "enabled"
+      },
+      "request_reasoning_effort": "low",
+      "actual_request_source_list_sha256": "8b3fa4ad45e147776d7e1bb612e790c84b5a57e127f3c4178cf8999a937539ba",
+      "visible_json_valid": true,
+      "root_keys": [
+        "version",
+        "uncertain_paragraph_ids",
+        "conditions",
+        "bindings",
+        "choice_groups",
+        "fields",
+        "facts",
+        "clarifications",
+        "coverage"
+      ],
+      "record_counts": {
+        "fields": 23,
+        "facts": 16,
+        "conditions": 2,
+        "bindings": 1,
+        "choice_groups": 1,
+        "clarifications": 2,
+        "coverage": 36
+      },
+      "section_sizes": {
+        "version": 2,
+        "uncertain_paragraph_ids": 2,
+        "conditions": 1019,
+        "bindings": 267,
+        "choice_groups": 2410,
+        "fields": 6984,
+        "facts": 3800,
+        "clarifications": 478,
+        "coverage": 11683
+      },
+      "redundancy": {
+        "exact_duplicate_records_by_section": {
+          "fields": 0,
+          "facts": 0,
+          "conditions": 0,
+          "bindings": 0,
+          "choice_groups": 0,
+          "clarifications": 0,
+          "coverage": 0
+        },
+        "semantic_duplicate_facts": [],
+        "unused_fact_ids": [],
+        "unused_binding_ids": [],
+        "fact_references_total": 23,
+        "coverage_id_occurrences": 242,
+        "coverage_unique_ids": 242,
+        "duplicate_coverage_ids": {},
+        "coverage_overlaps_fields": [],
+        "repeated_field_reason_occurrences": 7
+      },
+      "sparse_coverage_size_counterfactual": {
+        "removed_coverage_records": 36,
+        "visible_characters_removed": 11681,
+        "visible_percent_removed": 43.624887959366596,
+        "not_tokenized_or_sent": true
+      },
+      "source_field_counts": {
+        "targets": 60,
+        "proposed": 23,
+        "correct_raw": 23,
+        "wrong_raw": 0,
+        "omitted": 37,
+        "locally_grounded_correct": 21,
+        "locally_blocked_correct": 2,
+        "whole_envelope_blocked_correct": 0
+      },
+      "coverage_audit": {
+        "total": 267,
+        "proposed": 21,
+        "clarifications": 2,
+        "rejected": 2,
+        "explained_unfilled": 98,
+        "explicitly_unassessed": 0,
+        "unexplained": 0,
+        "rejected_explanations": 144,
+        "explicit_decisions_complete": true,
+        "coverage_checks_passed": false,
+        "semantic_completeness_verified": false,
+        "outcomes": {
+          "manual_input": 83,
+          "source_not_found": 15
+        }
+      }
+    },
+    {
+      "id": "INDEX-01",
+      "variant": "INDEX",
+      "run": 1,
+      "artifact_root": "backend/data/compilation-audit/e1-index-20261017-01/analysis-01",
+      "state": "failed",
+      "http_status": 200,
+      "finish_reason": "stop",
+      "error_type": "ValidationError",
+      "error": "2 validation errors for CoverageAwareProposal\nproposal_stage\n  Extra inputs are not permitted [type=extra_forbidden, input_value='source_backed_hypotheses', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\nproject_id\n  Extra inputs are not permitted [type=extra_forbidden, input_value='minervino-di-lecce-elenco-sia', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden",
+      "seconds": 173.44440934700106,
+      "timeout_seconds": 300,
+      "input_tokens": 65770,
+      "output_tokens": 39871,
+      "reasoning_tokens": 32272,
+      "non_reasoning_tokens_by_difference": 7599,
+      "reasoning_percent": 80.94103483735046,
+      "visible_characters": 23611,
+      "reasoning_characters": 104475,
+      "request_output_limit": 49152,
+      "request_format": {
+        "type": "json_object"
+      },
+      "request_thinking": {
+        "type": "enabled"
+      },
+      "request_reasoning_effort": "low",
+      "actual_request_source_list_sha256": "8b3fa4ad45e147776d7e1bb612e790c84b5a57e127f3c4178cf8999a937539ba",
+      "visible_json_valid": true,
+      "root_keys": [
+        "version",
+        "proposal_stage",
+        "project_id",
+        "uncertain_paragraph_ids",
+        "conditions",
+        "bindings",
+        "choice_groups",
+        "fields",
+        "facts",
+        "clarifications",
+        "coverage"
+      ],
+      "record_counts": {
+        "fields": 27,
+        "facts": 20,
+        "conditions": 2,
+        "bindings": 1,
+        "choice_groups": 0,
+        "clarifications": 2,
+        "coverage": 25
+      },
+      "section_sizes": {
+        "version": 2,
+        "proposal_stage": 26,
+        "project_id": 31,
+        "uncertain_paragraph_ids": 2,
+        "conditions": 1217,
+        "bindings": 351,
+        "choice_groups": 2,
+        "fields": 8125,
+        "facts": 5384,
+        "clarifications": 465,
+        "coverage": 7843
+      },
+      "redundancy": {
+        "exact_duplicate_records_by_section": {
+          "fields": 0,
+          "facts": 0,
+          "conditions": 0,
+          "bindings": 0,
+          "choice_groups": 0,
+          "clarifications": 0,
+          "coverage": 0
+        },
+        "semantic_duplicate_facts": [],
+        "unused_fact_ids": [],
+        "unused_binding_ids": [],
+        "fact_references_total": 27,
+        "coverage_id_occurrences": 238,
+        "coverage_unique_ids": 238,
+        "duplicate_coverage_ids": {},
+        "coverage_overlaps_fields": [],
+        "repeated_field_reason_occurrences": 0
+      },
+      "sparse_coverage_size_counterfactual": {
+        "removed_coverage_records": 25,
+        "visible_characters_removed": 7841,
+        "visible_percent_removed": 33.20909745457626,
+        "not_tokenized_or_sent": true
+      },
+      "source_field_counts": {
+        "targets": 60,
+        "proposed": 27,
+        "correct_raw": 25,
+        "wrong_raw": 2,
+        "omitted": 33,
+        "locally_grounded_correct": null,
+        "locally_blocked_correct": null,
+        "whole_envelope_blocked_correct": 25
+      }
+    },
+    {
+      "id": "INDEX-02",
+      "variant": "INDEX",
+      "run": 2,
+      "artifact_root": "backend/data/compilation-audit/e1-index-20261017-01/analysis-02",
+      "state": "failed",
+      "http_status": 200,
+      "finish_reason": "length",
+      "error_type": "GenerationTruncatedError",
+      "error": "Il modello ha raggiunto il limite di 49152 token di risposta prima di completarla. Riprova con una richiesta piu breve.",
+      "seconds": 214.624809025001,
+      "timeout_seconds": 300,
+      "input_tokens": 65770,
+      "output_tokens": 49152,
+      "reasoning_tokens": 44316,
+      "non_reasoning_tokens_by_difference": 4836,
+      "reasoning_percent": 90.1611328125,
+      "visible_characters": 16153,
+      "reasoning_characters": 148894,
+      "request_output_limit": 49152,
+      "request_format": {
+        "type": "json_object"
+      },
+      "request_thinking": {
+        "type": "enabled"
+      },
+      "request_reasoning_effort": "low",
+      "actual_request_source_list_sha256": "8b3fa4ad45e147776d7e1bb612e790c84b5a57e127f3c4178cf8999a937539ba",
+      "visible_json_valid": false,
+      "json_error": "Unterminated string starting at: line 1 column 16151 (char 16150)",
+      "record_counts": null,
+      "section_sizes": null,
+      "redundancy": null,
+      "source_field_counts": null
+    },
+    {
+      "id": "INDEX-03",
+      "variant": "INDEX",
+      "run": 3,
+      "artifact_root": "backend/data/compilation-audit/e1-index-20261017-01/analysis-03",
+      "state": "proposal_audited",
+      "http_status": 200,
+      "finish_reason": "stop",
+      "error_type": null,
+      "error": null,
+      "seconds": 159.94398529200043,
+      "timeout_seconds": 300,
+      "input_tokens": 65770,
+      "output_tokens": 36508,
+      "reasoning_tokens": 29806,
+      "non_reasoning_tokens_by_difference": 6702,
+      "reasoning_percent": 81.64237975238304,
+      "visible_characters": 20774,
+      "reasoning_characters": 97869,
+      "request_output_limit": 49152,
+      "request_format": {
+        "type": "json_object"
+      },
+      "request_thinking": {
+        "type": "enabled"
+      },
+      "request_reasoning_effort": "low",
+      "actual_request_source_list_sha256": "8b3fa4ad45e147776d7e1bb612e790c84b5a57e127f3c4178cf8999a937539ba",
+      "visible_json_valid": true,
+      "root_keys": [
+        "version",
+        "uncertain_paragraph_ids",
+        "conditions",
+        "bindings",
+        "choice_groups",
+        "fields",
+        "facts",
+        "clarifications",
+        "coverage"
+      ],
+      "record_counts": {
+        "fields": 23,
+        "facts": 16,
+        "conditions": 2,
+        "bindings": 1,
+        "choice_groups": 0,
+        "clarifications": 0,
+        "coverage": 26
+      },
+      "section_sizes": {
+        "version": 2,
+        "uncertain_paragraph_ids": 2,
+        "conditions": 1231,
+        "bindings": 348,
+        "choice_groups": 2,
+        "fields": 6753,
+        "facts": 3664,
+        "clarifications": 2,
+        "coverage": 8639
+      },
+      "redundancy": {
+        "exact_duplicate_records_by_section": {
+          "fields": 0,
+          "facts": 0,
+          "conditions": 0,
+          "bindings": 0,
+          "choice_groups": 0,
+          "clarifications": 0,
+          "coverage": 0
+        },
+        "semantic_duplicate_facts": [],
+        "unused_fact_ids": [],
+        "unused_binding_ids": [],
+        "fact_references_total": 23,
+        "coverage_id_occurrences": 244,
+        "coverage_unique_ids": 244,
+        "duplicate_coverage_ids": {},
+        "coverage_overlaps_fields": [],
+        "repeated_field_reason_occurrences": 0
+      },
+      "sparse_coverage_size_counterfactual": {
+        "removed_coverage_records": 26,
+        "visible_characters_removed": 8637,
+        "visible_percent_removed": 41.57600847212862,
+        "not_tokenized_or_sent": true
+      },
+      "source_field_counts": {
+        "targets": 60,
+        "proposed": 23,
+        "correct_raw": 23,
+        "wrong_raw": 0,
+        "omitted": 37,
+        "locally_grounded_correct": 21,
+        "locally_blocked_correct": 2,
+        "whole_envelope_blocked_correct": 0
+      },
+      "coverage_audit": {
+        "total": 267,
+        "proposed": 21,
+        "clarifications": 0,
+        "rejected": 2,
+        "explained_unfilled": 143,
+        "explicitly_unassessed": 0,
+        "unexplained": 0,
+        "rejected_explanations": 101,
+        "explicit_decisions_complete": true,
+        "coverage_checks_passed": false,
+        "semantic_completeness_verified": false,
+        "outcomes": {
+          "manual_input": 16,
+          "source_not_found": 127
+        }
+      }
+    }
+  ],
+  "actual_request_sources_exactly_equal_all_nine": true,
+  "actual_request_reading_plans_exactly_equal_all_nine": true,
+  "availability": {
+    "source_targets_per_run": 60,
+    "runs": 9,
+    "target_run_checks": 540,
+    "all_frozen_evidence_quotes_found_in_actual_request_chunks": true,
+    "chunks": 56,
+    "source_files": {
+      "avviso.pdf": 34,
+      "generalita-mapi.md": 9,
+      "progettazione-opere-pubbliche.txt": 4,
+      "visura-mapi-ingegneria-simulata.pdf": 4,
+      "integrazione-company.md": 5
+    },
+    "source_text_characters": 63655,
+    "reading_plan_units": 58,
+    "source_property_lines": 125,
+    "omitted_property_lines": 0,
+    "partner_table_rows_in_property_index": 0,
+    "source_role_targets": [
+      {
+        "form_paragraph_id": "paragraph:50",
+        "source_role": "direttore tecnico",
+        "candidate_ids": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "source_records": [
+          {
+            "chunk_id": -45,
+            "header": "### Ing. Elisa Romano - direttore tecnico"
+          }
+        ]
+      }
+    ],
+    "initial_user_values": []
+  },
+  "totals": {
+    "output_tokens": 349460,
+    "reasoning_tokens": 273801,
+    "non_reasoning_tokens_by_difference": 75659,
+    "complete_json_responses": 8,
+    "audited_responses": 7,
+    "truncated_responses": 1,
+    "exact_duplicate_records_by_section": {
+      "fields": 0,
+      "facts": 0,
+      "conditions": 0,
+      "bindings": 0,
+      "choice_groups": 0,
+      "clarifications": 0,
+      "coverage": 0
+    },
+    "complete_response_record_counts": {
+      "fields": 213,
+      "facts": 162,
+      "conditions": 25,
+      "bindings": 11,
+      "choice_groups": 3,
+      "clarifications": 10,
+      "coverage": 210
+    },
+    "coverage_id_occurrences": 1907,
+    "duplicate_coverage_id_occurrences": 1,
+    "unused_facts": 0,
+    "semantic_duplicate_facts": 0,
+    "locally_correct_blocked_occurrences": 49,
+    "unique_correct_blocked_destination_ids": 32,
+    "primary_rejection_causes": {
+      "FORM_quote": 8,
+      "role_and_value_in_different_chunks_or_record_format": 16,
+      "role_binding_literal_gate": 23,
+      "SOURCE_quote_does_not_contain_value": 2
+    },
+    "rejection_error_counts_nonexclusive": {
+      "Il solo marker non documenta la richiesta del campo": 7,
+      "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore": 16,
+      "Binding di ruolo rifiutato": 24,
+      "Fatto SOURCE assente o rifiutato": 2,
+      "Binding senza fatto SOURCE grounded": 1,
+      "Estratto non presente nel FORM": 1
+    },
+    "whole_envelope_correct_values_lost": 25,
+    "reasoning_percent": 78.34973959823728,
+    "complete_visible_characters": 220034,
+    "coverage_value_characters": 75296,
+    "coverage_percent_complete_visible": 34.22016597434942
+  },
+  "limits": [
+    "No causal attribution of response failures to FORM compaction from this historical sample.",
+    "Reasoning is provider content, not executable backend input. No exact token allocation by JSON section; section sizes measured in Unicode characters.",
+    "Gold matching is not complete SOURCE entailment, applicability or professional/legal certification.",
+    "Whole-envelope rejection and truncated response are distinct from field-level rejections; no scores imputed to truncated JSON.",
+    "All exact duplicate and unused record counts concern eight complete parsed JSON responses; ninth is not repaired.",
+    "Coverage is used for audit/narration, though not factual or write authority; sparse coverage trades off omission explanations and must remain visibly unassessed."
+  ]
+}

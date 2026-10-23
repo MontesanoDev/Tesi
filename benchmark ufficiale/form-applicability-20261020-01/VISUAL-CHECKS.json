@@ -1,0 +1,22 @@
+{
+  "replay_B0_before": [
+    2
+  ],
+  "replay_B0_after": [
+    1,
+    2
+  ],
+  "replay_E1_after": [
+    2
+  ],
+  "real_Catanzaro": [
+    1,
+    2,
+    11
+  ],
+  "notes": [
+    "Page 2 operating office is empty after correction in both exact replays and real output.",
+    "Legal office remains readable. Real page 11 has registration number without date: independent known partial answer, not fixed.",
+    "All rendered PDFs have 17 pages; not exhaustive human review or Microsoft Word test."
+  ]
+}

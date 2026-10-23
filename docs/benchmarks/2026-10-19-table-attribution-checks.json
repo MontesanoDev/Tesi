@@ -1,0 +1,46 @@
+{
+  "actual_saved_LLM_wrong_table_writes_found": 0,
+  "controlled_proposals_on_real_FORM_SOURCE": 4,
+  "unsupported_grounded_before": 4,
+  "unsupported_grounded_after": 0,
+  "not_new_real_LLM_outputs": true,
+  "grounding_distinct_from_applicability_and_export_review": true,
+  "regression_cases": 9,
+  "regression_audits_and_DOCX_identical": true,
+  "Minervino_V12_writes": 61,
+  "latest_Catanzaro_writes": 15,
+  "Cesano_after_previous_fix_writes": 1,
+  "examined_saved_table_writes": 37,
+  "SOURCE_table_writes": 35,
+  "USER_table_writes": 2,
+  "SOURCE_subject_type_constraint_determined": 13,
+  "SOURCE_subject_type_constraint_not_determined": 22,
+  "type_compatibility_does_not_prove_identity_property_or_applicability": true,
+  "new_permanent_table_tests": 23,
+  "focused_tests": 347,
+  "backend_suite": {
+    "result": "PASS",
+    "tests": 2744,
+    "seconds": 209.28
+  },
+  "ruff": "PASS",
+  "coverage": [
+    "Single-paragraph inline subjects, unchanged",
+    "Fixed-label/value tables, two physical cells per row, bounded supported labels",
+    "Source identity/role/citation checks remain independent",
+    "Explicit residence/studio conflict veto"
+  ],
+  "not_covered": [
+    "General multi-column person records",
+    "Arbitrary prose or label aliases",
+    "Person identity inferred from name similarity",
+    "New cross-record identity joins",
+    "Automatic applicability or checkbox decisions",
+    "Unsupported complex/nested/vertical-merged boundaries"
+  ],
+  "provider_calls": 0,
+  "new_sessions": 0,
+  "no_commit_push": true,
+  "permanent_table_tests_seconds": 3.16,
+  "focused_seconds": 28.75
+}

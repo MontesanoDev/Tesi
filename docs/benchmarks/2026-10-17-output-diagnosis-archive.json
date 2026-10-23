@@ -1,0 +1,9 @@
+{
+  "files": 18,
+  "bytes": 99771,
+  "sha256": "080bb3190e05e1c7b68a36e40a5a37056683af42b99074dfd1b06c6f1380ec65",
+  "raw_root": "backend/data/compilation-audit/diagnosi-output-b0-e1-20261017-01",
+  "path": "docs/benchmarks/2026-10-17-output-diagnosis-audit.tar.gz",
+  "manifest_verified": true,
+  "contains": "Derived diagnostic data and original artifact references/hashes only; original three bundles preserved."
+}

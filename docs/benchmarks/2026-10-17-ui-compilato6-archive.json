@@ -1,0 +1,11 @@
+{
+  "archive": "docs/benchmarks/2026-10-17-ui-compilato6-audit.tar.gz",
+  "sha256": "06cde9948a3751105511866cf26f673ed1a9864b938d48d2bd567986a192c0ef",
+  "files": 64,
+  "uncompressed_bytes": 4672942,
+  "archive_bytes": 2038675,
+  "all_member_hashes_verified": true,
+  "raw_directory": "backend/data/compilation-audit/ui-compilato6-20261017-01",
+  "includes_actual_input_output_audit_download_and_rendering": true,
+  "private_database_included": false
+}

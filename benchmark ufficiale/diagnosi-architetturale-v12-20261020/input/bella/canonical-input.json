@@ -1,0 +1,4728 @@
+{
+  "proposal_stage": "source_backed_hypotheses",
+  "project_id": "prova",
+  "form": {
+    "version": 5,
+    "role": "form",
+    "template_sha256": "4d894b3faee91909275589ac5ed8e1dd2eddc09890f95ac0456780bbb6828ae0",
+    "candidate_scope": "document_body",
+    "checkbox_write_supported": true,
+    "blocks": [
+      {
+        "id": "paragraph:0",
+        "paragraphs": [
+          {
+            "id": "paragraph:0",
+            "text": "\tALLEGATO A",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:1",
+        "paragraphs": [
+          {
+            "id": "paragraph:1",
+            "text": "da inserire nella “Documentazione Amministrativa”  ",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:2",
+        "paragraphs": [
+          {
+            "id": "paragraph:2",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:3",
+        "paragraphs": [
+          {
+            "id": "paragraph:3",
+            "text": "COMUNE DI BELLA"
+          },
+          {
+            "id": "paragraph:4",
+            "text": "PROVINCIA DI POTENZA"
+          },
+          {
+            "id": "paragraph:5",
+            "text": "Medaglia d’Oro al Valore Civile",
+            "all_text_direct_bold": true
+          },
+          {
+            "id": "paragraph:6",
+            "text": "Corso Italia 28 – 85051 BELLA (PZ) – C.F.:  00224880765"
+          },
+          {
+            "id": "paragraph:7",
+            "text": "www.comune.bella.pz.it – pec: protocollo@pec.comune.bella.pz.it"
+          },
+          {
+            "id": "paragraph:8",
+            "text": "AREA III - LAVORI PUBBLICI E APPALTI",
+            "all_text_direct_bold": true
+          },
+          {
+            "id": "paragraph:9",
+            "text": ""
+          }
+        ],
+        "tables": [
+          {
+            "id": "table:0",
+            "rows": [
+              [
+                {
+                  "id": "t0.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:3",
+                    "paragraph:4",
+                    "paragraph:5",
+                    "paragraph:6",
+                    "paragraph:7",
+                    "paragraph:8"
+                  ]
+                },
+                {
+                  "id": "t0.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:9"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:10",
+        "paragraphs": [
+          {
+            "id": "paragraph:10",
+            "text": "  "
+          }
+        ]
+      },
+      {
+        "id": "paragraph:11",
+        "paragraphs": [
+          {
+            "id": "paragraph:11",
+            "text": " "
+          }
+        ]
+      },
+      {
+        "id": "paragraph:12",
+        "paragraphs": [
+          {
+            "id": "paragraph:12",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:13",
+        "paragraphs": [
+          {
+            "id": "paragraph:13",
+            "text": "OGGETTO: SERVIZI DI ARCHITETTURA E INGEGNERIA PER LO STUDIO DI FATTIBILITÀ TECNICA ED ECONOMICA PER LA REALIZZAZIONE DEGLI INTERVENTI “PROGETTO DI RECUPERO, RIQUALIFICAZIONE URBANA ED AMBIENTALE DEL COMUNE DI BELLA (PZ) - MITIGAZIONE DEL RISCHIO IDROGEOLOGICO VERSANTE EX MUNICIPIO.",
+            "all_text_direct_bold": true
+          },
+          {
+            "id": "paragraph:14",
+            "text": " "
+          },
+          {
+            "id": "paragraph:15",
+            "text": "CUP: D64D22004040006",
+            "all_text_direct_bold": true
+          },
+          {
+            "id": "paragraph:16",
+            "text": "CIG: Z7B39E59CB",
+            "all_text_direct_bold": true
+          }
+        ],
+        "tables": [
+          {
+            "id": "table:1",
+            "rows": [
+              [
+                {
+                  "id": "t1.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:13",
+                    "paragraph:14"
+                  ],
+                  "grid_span": "2"
+                }
+              ],
+              [
+                {
+                  "id": "t1.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:15"
+                  ]
+                },
+                {
+                  "id": "t1.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:16"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:17",
+        "paragraphs": [
+          {
+            "id": "paragraph:17",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:18",
+        "paragraphs": [
+          {
+            "id": "paragraph:18",
+            "text": "DOMANDA DI AMMISSIONE ALLA GARA",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:19",
+        "paragraphs": [
+          {
+            "id": "paragraph:19",
+            "text": "E DICHIARAZIONE A CORREDO DELL’OFFERTA",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:20",
+        "paragraphs": [
+          {
+            "id": "paragraph:20",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:21",
+        "paragraphs": [
+          {
+            "id": "paragraph:21",
+            "text": "Il/la sottoscritto/a .............................................................................................................................................. nato/a a ....................................................................................................... il .................................................... in qualità di ................................................................................................................................................... dello studio/società/consorzio .......................................................................................................................... con sede in .......................................................................................................................................................... con codice fiscale n. ........................................................................................................................................... con partita IVA n. ................................................................................................................................................",
+            "text_with_fields": "Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:0",
+          "paragraph:1",
+          "paragraph:18",
+          "paragraph:19"
+        ]
+      },
+      {
+        "id": "paragraph:22",
+        "paragraphs": [
+          {
+            "id": "paragraph:22",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:23",
+        "paragraphs": [
+          {
+            "id": "paragraph:23",
+            "text": "C H I E D E",
+            "outline_level": 4
+          }
+        ]
+      },
+      {
+        "id": "paragraph:24",
+        "paragraphs": [
+          {
+            "id": "paragraph:24",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:25",
+        "paragraphs": [
+          {
+            "id": "paragraph:25",
+            "text": "di partecipare alla procedura negoziata indicata in oggetto come:"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:26",
+        "paragraphs": [
+          {
+            "id": "paragraph:26",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:27",
+        "paragraphs": [
+          {
+            "id": "paragraph:27",
+            "text": "\tlibero professionista singolo;",
+            "controls": [
+              {
+                "id": "p27.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p27.cb0]]\tlibero professionista singolo;"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:1",
+          "paragraph:18",
+          "paragraph:19",
+          "paragraph:21",
+          "paragraph:23",
+          "paragraph:25"
+        ]
+      },
+      {
+        "id": "paragraph:28",
+        "paragraphs": [
+          {
+            "id": "paragraph:28",
+            "text": "\tlibero professionista associato (nelle forme di cui alla legge 23 novembre 1939, n. 1815); ",
+            "controls": [
+              {
+                "id": "p28.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p28.cb0]]\tlibero professionista associato (nelle forme di cui alla legge 23 novembre 1939, n. 1815); "
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:18",
+          "paragraph:19",
+          "paragraph:21",
+          "paragraph:23",
+          "paragraph:25",
+          "paragraph:27"
+        ]
+      },
+      {
+        "id": "paragraph:29",
+        "paragraphs": [
+          {
+            "id": "paragraph:29",
+            "text": "\tlegale rappresentante di una società di professionisti; ",
+            "controls": [
+              {
+                "id": "p29.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p29.cb0]]\tlegale rappresentante di una società di professionisti; "
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:19",
+          "paragraph:21",
+          "paragraph:23",
+          "paragraph:25",
+          "paragraph:27",
+          "paragraph:28"
+        ]
+      },
+      {
+        "id": "paragraph:30",
+        "paragraphs": [
+          {
+            "id": "paragraph:30",
+            "text": "\tlegale rappresentante di una società di ingegneria; ",
+            "controls": [
+              {
+                "id": "p30.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p30.cb0]]\tlegale rappresentante di una società di ingegneria; "
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:21",
+          "paragraph:23",
+          "paragraph:25",
+          "paragraph:27",
+          "paragraph:28",
+          "paragraph:29"
+        ]
+      },
+      {
+        "id": "paragraph:31",
+        "paragraphs": [
+          {
+            "id": "paragraph:31",
+            "text": "\tcapogruppo o legale rappresentante del soggetto capogruppo di un raggruppamento temporaneo tra i soggetti di cui alle lettere a) b) c) e d), dell’art. 46, comma 1, del D. Lgs. 18 aprile 2016, n. 50 s.m.i.;",
+            "controls": [
+              {
+                "id": "p31.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p31.cb0]]\tcapogruppo o legale rappresentante del soggetto capogruppo di un raggruppamento temporaneo tra i soggetti di cui alle lettere a) b) c) e d), dell’art. 46, comma 1, del D. Lgs. 18 aprile 2016, n. 50 s.m.i.;"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:23",
+          "paragraph:25",
+          "paragraph:27",
+          "paragraph:28",
+          "paragraph:29",
+          "paragraph:30"
+        ]
+      },
+      {
+        "id": "paragraph:32",
+        "paragraphs": [
+          {
+            "id": "paragraph:32",
+            "text": "\tconsorzio stabile di società di professionisti e di società di ingegneria di cui all’art. 46, comma 1, lettera f) del D. Lgs. 18 aprile 2016, n. 50 s.m.i.; ",
+            "controls": [
+              {
+                "id": "p32.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p32.cb0]]\tconsorzio stabile di società di professionisti e di società di ingegneria di cui all’art. 46, comma 1, lettera f) del D. Lgs. 18 aprile 2016, n. 50 s.m.i.; "
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:25",
+          "paragraph:27",
+          "paragraph:28",
+          "paragraph:29",
+          "paragraph:30",
+          "paragraph:31"
+        ]
+      },
+      {
+        "id": "paragraph:33",
+        "paragraphs": [
+          {
+            "id": "paragraph:33",
+            "text": "\toperatore economico che svolge servizi di ingegneria ed architettura di cui all’art. 46, comma 1, del D. Lgs. n. 50/2016 s.m.i. stabilito in altri Stati membri dell’Unione Europea; ",
+            "controls": [
+              {
+                "id": "p33.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p33.cb0]]\toperatore economico che svolge servizi di ingegneria ed architettura di cui all’art. 46, comma 1, del D. Lgs. n. 50/2016 s.m.i. stabilito in altri Stati membri dell’Unione Europea; "
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:27",
+          "paragraph:28",
+          "paragraph:29",
+          "paragraph:30",
+          "paragraph:31",
+          "paragraph:32"
+        ]
+      },
+      {
+        "id": "paragraph:34",
+        "paragraphs": [
+          {
+            "id": "paragraph:34",
+            "text": "\tpartecipante con l’operatore ausiliario……………………………………….;",
+            "controls": [
+              {
+                "id": "p34.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p34.cb0]]\tpartecipante con l’operatore ausiliario……………………………………….;"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:28",
+          "paragraph:29",
+          "paragraph:30",
+          "paragraph:31",
+          "paragraph:32",
+          "paragraph:33"
+        ]
+      },
+      {
+        "id": "paragraph:35",
+        "paragraphs": [
+          {
+            "id": "paragraph:35",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:36",
+        "paragraphs": [
+          {
+            "id": "paragraph:36",
+            "text": "\t………………………………………………………………………………………………..;",
+            "controls": [
+              {
+                "id": "p36.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p36.cb0]]\t………………………………………………………………………………………………..;"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:29",
+          "paragraph:30",
+          "paragraph:31",
+          "paragraph:32",
+          "paragraph:33",
+          "paragraph:34"
+        ]
+      },
+      {
+        "id": "paragraph:37",
+        "paragraphs": [
+          {
+            "id": "paragraph:37",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:38",
+        "paragraphs": [
+          {
+            "id": "paragraph:38",
+            "text": "Al fine di dimostrare il possesso dei requisiti di capacità economico-finanziaria e tecnico-organizzativa, ai sensi degli articoli 46, 47 e 77-bis del d.P.R. 28 dicembre 2000, n. 445, e successive modifiche, consapevole delle sanzioni penali previste dall'articolo 76 del medesimo d.P.R. n. 445/2000, per le ipotesi di falsità in atti e dichiarazioni mendaci ivi indicate"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:39",
+        "paragraphs": [
+          {
+            "id": "paragraph:39",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:40",
+        "paragraphs": [
+          {
+            "id": "paragraph:40",
+            "text": "DICHIARA"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:41",
+        "paragraphs": [
+          {
+            "id": "paragraph:41",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:42",
+        "paragraphs": [
+          {
+            "id": "paragraph:42",
+            "text": "Che l’offerta economica presentata è remunerativa giacché, per la sua formulazione, si è preso atto e tenuto conto:"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:43",
+        "paragraphs": [
+          {
+            "id": "paragraph:43",
+            "text": "delle condizioni contrattuali e degli oneri compresi quelli eventuali relativi in materia, di assicurazione, di condizioni di lavoro e di previdenza e assistenza in vigore nel luogo dove devono essere svolti i servizi;"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:44",
+        "paragraphs": [
+          {
+            "id": "paragraph:44",
+            "text": "di tutte le circostanze generali, particolari e locali, nessuna esclusa ed eccettuata, che possono avere influito o influire sia sulla prestazione dei servizi, sia sulla determinazione della propria offerta;"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:45",
+        "paragraphs": [
+          {
+            "id": "paragraph:45",
+            "text": "di considerare, pertanto, valida e fondata l’offerta economica presentata;"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:46",
+        "paragraphs": [
+          {
+            "id": "paragraph:46",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:47",
+        "paragraphs": [
+          {
+            "id": "paragraph:47",
+            "text": "di accettare, senza condizione o riserva alcuna, tutte le norme e disposizioni contenute nel Capitolato speciale prestazionale e d'oneri, nel disciplinare di gara e nello schema di contratto di incarico professionale;"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:48",
+        "paragraphs": [
+          {
+            "id": "paragraph:48",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:49",
+        "paragraphs": [
+          {
+            "id": "paragraph:49",
+            "text": "di impegnarsi a stipulare apposita polizza di responsabilità civile professionale per i rischi derivanti dallo svolgimento dell’attività di propria competenza ai sensi dell’art ai sensi dell’articolo 24, comma 4, del D. Lgs. n. 50/2016 s.m.i.;"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:50",
+        "paragraphs": [
+          {
+            "id": "paragraph:50",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:51",
+        "paragraphs": [
+          {
+            "id": "paragraph:51",
+            "text": "l’indirizzo PEC e/o mail indicati nel DGUE sono idonei per l’invio per l’eventuale richiesta di integrazioni di cui all’art. 83, comma 9 del D.lgs. n. 50/2016 (soccorso istruttorio) e qualsiasi altra comunicazione prevista dal medesimo decreto; "
+          }
+        ]
+      },
+      {
+        "id": "paragraph:52",
+        "paragraphs": [
+          {
+            "id": "paragraph:52",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:53",
+        "paragraphs": [
+          {
+            "id": "paragraph:53",
+            "text": "(nel caso di raggruppamento temporaneo di professionisti) che, in caso di aggiudicazione, sarà conferito mandato speciale con rappresentanza o funzioni di capogruppo/capoprogetto a ………………………………………………………………….……………………………..…………..................………………………………………………………………….………;",
+            "text_with_fields": "(nel caso di raggruppamento temporaneo di professionisti) che, in caso di aggiudicazione, sarà conferito mandato speciale con rappresentanza o funzioni di capogruppo/capoprogetto a [[p53.s0]];"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:43",
+          "paragraph:44",
+          "paragraph:45",
+          "paragraph:47",
+          "paragraph:49",
+          "paragraph:51"
+        ]
+      },
+      {
+        "id": "paragraph:54",
+        "paragraphs": [
+          {
+            "id": "paragraph:54",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:55",
+        "paragraphs": [
+          {
+            "id": "paragraph:55",
+            "text": "(nel caso di raggruppamento temporaneo di professionisti) di assumersi l’impegno, in caso di aggiudicazione, ad uniformarsi alla disciplina vigente in materia di associazioni temporanee;"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:56",
+        "paragraphs": [
+          {
+            "id": "paragraph:56",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:57",
+        "paragraphs": [
+          {
+            "id": "paragraph:57",
+            "text": "(nel caso di raggruppamento temporaneo di professionisti) che, ai sensi dell’art. 24, comma 5, del D. Lgs. n. 50/2016 ed art. 4 comma 1 D.M. 02/12/2016 n. 263 il giovane professionista laureato progettista risulta essere:"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:58",
+        "paragraphs": [
+          {
+            "id": "paragraph:58",
+            "text": "nome: …………………………………………………………………………………………………..",
+            "text_with_fields": "￼nome: [[p58.s0]]"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:47",
+          "paragraph:49",
+          "paragraph:51",
+          "paragraph:53",
+          "paragraph:55",
+          "paragraph:57"
+        ]
+      },
+      {
+        "id": "paragraph:59",
+        "paragraphs": [
+          {
+            "id": "paragraph:59",
+            "text": "cognome: ………………………………………………………………………………………………",
+            "text_with_fields": "cognome: [[p59.s0]]"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:49",
+          "paragraph:51",
+          "paragraph:53",
+          "paragraph:55",
+          "paragraph:57",
+          "paragraph:58"
+        ]
+      },
+      {
+        "id": "paragraph:60",
+        "paragraphs": [
+          {
+            "id": "paragraph:60",
+            "text": "titolo professionale: …………………………………………………………………………………...",
+            "text_with_fields": "titolo professionale: [[p60.s0]]"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:51",
+          "paragraph:53",
+          "paragraph:55",
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:59"
+        ]
+      },
+      {
+        "id": "paragraph:61",
+        "paragraphs": [
+          {
+            "id": "paragraph:61",
+            "text": "data di nascita: …………………………………………………………………………………………",
+            "text_with_fields": "data di nascita: [[p61.s0]]"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:53",
+          "paragraph:55",
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:59",
+          "paragraph:60"
+        ]
+      },
+      {
+        "id": "paragraph:62",
+        "paragraphs": [
+          {
+            "id": "paragraph:62",
+            "text": "data di abilitazione professionale ……………………………………………………………………",
+            "text_with_fields": "data di abilitazione professionale [[p62.s0]]"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:55",
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:59",
+          "paragraph:60",
+          "paragraph:61"
+        ]
+      },
+      {
+        "id": "paragraph:63",
+        "paragraphs": [
+          {
+            "id": "paragraph:63",
+            "text": "qualifica: ……………………………………………………………..……………………………….. ",
+            "text_with_fields": "qualifica: [[p63.s0]] "
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:57",
+          "paragraph:58",
+          "paragraph:59",
+          "paragraph:60",
+          "paragraph:61",
+          "paragraph:62"
+        ]
+      },
+      {
+        "id": "paragraph:64",
+        "paragraphs": [
+          {
+            "id": "paragraph:64",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:65",
+        "paragraphs": [
+          {
+            "id": "paragraph:65",
+            "text": "che i tecnici persone fisiche  del consorzio stabile,   della società di ingegneria o   della società di professionisti, che seguiranno personalmente l’incarico saranno:",
+            "controls": [
+              {
+                "id": "p65.cb0",
+                "offset": 30
+              },
+              {
+                "id": "p65.cb1",
+                "offset": 55
+              },
+              {
+                "id": "p65.cb2",
+                "offset": 87
+              }
+            ],
+            "text_with_choices": "che i tecnici persone fisiche [[p65.cb0]] del consorzio stabile,  [[p65.cb1]] della società di ingegneria o  [[p65.cb2]] della società di professionisti, che seguiranno personalmente l’incarico saranno:"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:58",
+          "paragraph:59",
+          "paragraph:60",
+          "paragraph:61",
+          "paragraph:62",
+          "paragraph:63"
+        ]
+      },
+      {
+        "id": "paragraph:66",
+        "paragraphs": [
+          {
+            "id": "paragraph:66",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:67",
+        "paragraphs": [
+          {
+            "id": "paragraph:67",
+            "text": "Num."
+          },
+          {
+            "id": "paragraph:68",
+            "text": "Qualifica e generalità del Tecnico"
+          },
+          {
+            "id": "paragraph:69",
+            "text": "Data di conseguimento abilitazione"
+          },
+          {
+            "id": "paragraph:70",
+            "text": "Natura del rapporto professionale"
+          },
+          {
+            "id": "paragraph:71",
+            "text": "N. ordine prof. e Città sede dell’Ordine"
+          },
+          {
+            "id": "paragraph:72",
+            "text": ""
+          },
+          {
+            "id": "paragraph:73",
+            "text": ""
+          },
+          {
+            "id": "paragraph:74",
+            "text": ""
+          },
+          {
+            "id": "paragraph:75",
+            "text": ""
+          },
+          {
+            "id": "paragraph:76",
+            "text": ""
+          },
+          {
+            "id": "paragraph:77",
+            "text": ""
+          },
+          {
+            "id": "paragraph:78",
+            "text": ""
+          },
+          {
+            "id": "paragraph:79",
+            "text": ""
+          },
+          {
+            "id": "paragraph:80",
+            "text": ""
+          },
+          {
+            "id": "paragraph:81",
+            "text": ""
+          },
+          {
+            "id": "paragraph:82",
+            "text": ""
+          },
+          {
+            "id": "paragraph:83",
+            "text": ""
+          },
+          {
+            "id": "paragraph:84",
+            "text": ""
+          },
+          {
+            "id": "paragraph:85",
+            "text": ""
+          },
+          {
+            "id": "paragraph:86",
+            "text": ""
+          },
+          {
+            "id": "paragraph:87",
+            "text": ""
+          },
+          {
+            "id": "paragraph:88",
+            "text": ""
+          },
+          {
+            "id": "paragraph:89",
+            "text": ""
+          },
+          {
+            "id": "paragraph:90",
+            "text": ""
+          },
+          {
+            "id": "paragraph:91",
+            "text": ""
+          },
+          {
+            "id": "paragraph:92",
+            "text": ""
+          },
+          {
+            "id": "paragraph:93",
+            "text": ""
+          },
+          {
+            "id": "paragraph:94",
+            "text": ""
+          },
+          {
+            "id": "paragraph:95",
+            "text": ""
+          },
+          {
+            "id": "paragraph:96",
+            "text": ""
+          },
+          {
+            "id": "paragraph:97",
+            "text": ""
+          },
+          {
+            "id": "paragraph:98",
+            "text": ""
+          },
+          {
+            "id": "paragraph:99",
+            "text": ""
+          },
+          {
+            "id": "paragraph:100",
+            "text": ""
+          },
+          {
+            "id": "paragraph:101",
+            "text": ""
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:59",
+          "paragraph:60",
+          "paragraph:61",
+          "paragraph:62",
+          "paragraph:63",
+          "paragraph:65"
+        ],
+        "tables": [
+          {
+            "id": "table:2",
+            "rows": [
+              [
+                {
+                  "id": "t2.r0.c0",
+                  "paragraph_ids": [
+                    "paragraph:67"
+                  ]
+                },
+                {
+                  "id": "t2.r0.c1",
+                  "paragraph_ids": [
+                    "paragraph:68"
+                  ]
+                },
+                {
+                  "id": "t2.r0.c2",
+                  "paragraph_ids": [
+                    "paragraph:69"
+                  ]
+                },
+                {
+                  "id": "t2.r0.c3",
+                  "paragraph_ids": [
+                    "paragraph:70"
+                  ]
+                },
+                {
+                  "id": "t2.r0.c4",
+                  "paragraph_ids": [
+                    "paragraph:71"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t2.r1.c0",
+                  "paragraph_ids": [
+                    "paragraph:72"
+                  ]
+                },
+                {
+                  "id": "t2.r1.c1",
+                  "paragraph_ids": [
+                    "paragraph:73"
+                  ]
+                },
+                {
+                  "id": "t2.r1.c2",
+                  "paragraph_ids": [
+                    "paragraph:74"
+                  ]
+                },
+                {
+                  "id": "t2.r1.c3",
+                  "paragraph_ids": [
+                    "paragraph:75"
+                  ]
+                },
+                {
+                  "id": "t2.r1.c4",
+                  "paragraph_ids": [
+                    "paragraph:76"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t2.r2.c0",
+                  "paragraph_ids": [
+                    "paragraph:77"
+                  ]
+                },
+                {
+                  "id": "t2.r2.c1",
+                  "paragraph_ids": [
+                    "paragraph:78"
+                  ]
+                },
+                {
+                  "id": "t2.r2.c2",
+                  "paragraph_ids": [
+                    "paragraph:79"
+                  ]
+                },
+                {
+                  "id": "t2.r2.c3",
+                  "paragraph_ids": [
+                    "paragraph:80"
+                  ]
+                },
+                {
+                  "id": "t2.r2.c4",
+                  "paragraph_ids": [
+                    "paragraph:81"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t2.r3.c0",
+                  "paragraph_ids": [
+                    "paragraph:82"
+                  ]
+                },
+                {
+                  "id": "t2.r3.c1",
+                  "paragraph_ids": [
+                    "paragraph:83"
+                  ]
+                },
+                {
+                  "id": "t2.r3.c2",
+                  "paragraph_ids": [
+                    "paragraph:84"
+                  ]
+                },
+                {
+                  "id": "t2.r3.c3",
+                  "paragraph_ids": [
+                    "paragraph:85"
+                  ]
+                },
+                {
+                  "id": "t2.r3.c4",
+                  "paragraph_ids": [
+                    "paragraph:86"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t2.r4.c0",
+                  "paragraph_ids": [
+                    "paragraph:87"
+                  ]
+                },
+                {
+                  "id": "t2.r4.c1",
+                  "paragraph_ids": [
+                    "paragraph:88"
+                  ]
+                },
+                {
+                  "id": "t2.r4.c2",
+                  "paragraph_ids": [
+                    "paragraph:89"
+                  ]
+                },
+                {
+                  "id": "t2.r4.c3",
+                  "paragraph_ids": [
+                    "paragraph:90"
+                  ]
+                },
+                {
+                  "id": "t2.r4.c4",
+                  "paragraph_ids": [
+                    "paragraph:91"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t2.r5.c0",
+                  "paragraph_ids": [
+                    "paragraph:92"
+                  ]
+                },
+                {
+                  "id": "t2.r5.c1",
+                  "paragraph_ids": [
+                    "paragraph:93"
+                  ]
+                },
+                {
+                  "id": "t2.r5.c2",
+                  "paragraph_ids": [
+                    "paragraph:94"
+                  ]
+                },
+                {
+                  "id": "t2.r5.c3",
+                  "paragraph_ids": [
+                    "paragraph:95"
+                  ]
+                },
+                {
+                  "id": "t2.r5.c4",
+                  "paragraph_ids": [
+                    "paragraph:96"
+                  ]
+                }
+              ],
+              [
+                {
+                  "id": "t2.r6.c0",
+                  "paragraph_ids": [
+                    "paragraph:97"
+                  ]
+                },
+                {
+                  "id": "t2.r6.c1",
+                  "paragraph_ids": [
+                    "paragraph:98"
+                  ]
+                },
+                {
+                  "id": "t2.r6.c2",
+                  "paragraph_ids": [
+                    "paragraph:99"
+                  ]
+                },
+                {
+                  "id": "t2.r6.c3",
+                  "paragraph_ids": [
+                    "paragraph:100"
+                  ]
+                },
+                {
+                  "id": "t2.r6.c4",
+                  "paragraph_ids": [
+                    "paragraph:101"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "paragraph:102",
+        "paragraphs": [
+          {
+            "id": "paragraph:102",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:103",
+        "paragraphs": [
+          {
+            "id": "paragraph:103",
+            "text": "e che la quota di partecipazione al raggruppamento, corrispondente alla percentuale di servizi che verranno eseguiti da ciascun concorrente è la seguente ……………………………………………….…. …………………………………………………………………………………………………………...…………………………………………………",
+            "text_with_fields": "e che la quota di partecipazione al raggruppamento, corrispondente alla percentuale di servizi che verranno eseguiti da ciascun concorrente è la seguente [[p103.s0]]"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:59",
+          "paragraph:60",
+          "paragraph:61",
+          "paragraph:62",
+          "paragraph:63",
+          "paragraph:65"
+        ]
+      },
+      {
+        "id": "paragraph:104",
+        "paragraphs": [
+          {
+            "id": "paragraph:104",
+            "text": "e la natura del servizio d’ingegneria che verrà eseguita da ciascun concorrente è la seguente ………………………………………………………………………………………………………………………………………………………………",
+            "text_with_fields": "e la natura del servizio d’ingegneria che verrà eseguita da ciascun concorrente è la seguente [[p104.s0]]"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:60",
+          "paragraph:61",
+          "paragraph:62",
+          "paragraph:63",
+          "paragraph:65",
+          "paragraph:103"
+        ]
+      },
+      {
+        "id": "paragraph:105",
+        "paragraphs": [
+          {
+            "id": "paragraph:105",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:106",
+        "paragraphs": [
+          {
+            "id": "paragraph:106",
+            "text": "di essere informato, ai sensi e per gli effetti di cui all’articolo 10 del D. Lgs. 30 giugno 2003, n. 196, che i dati personali raccolti saranno trattati, anche con strumenti informatici, esclusivamente nell’ambito del procedimento per il quale la presente dichiarazione viene resa;"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:107",
+        "paragraphs": [
+          {
+            "id": "paragraph:107",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:108",
+        "paragraphs": [
+          {
+            "id": "paragraph:108",
+            "text": "⁭ dichiara di non essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e successive modificazioni;",
+            "controls": [
+              {
+                "id": "p108.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p108.cb0]]⁭ dichiara di non essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e successive modificazioni;"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:62",
+          "paragraph:63",
+          "paragraph:65",
+          "paragraph:103",
+          "paragraph:104",
+          "paragraph:106"
+        ]
+      },
+      {
+        "id": "paragraph:109",
+        "paragraphs": [
+          {
+            "id": "paragraph:109",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:110",
+        "paragraphs": [
+          {
+            "id": "paragraph:110",
+            "text": "oppure",
+            "all_text_direct_bold": true
+          }
+        ]
+      },
+      {
+        "id": "paragraph:111",
+        "paragraphs": [
+          {
+            "id": "paragraph:111",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:112",
+        "paragraphs": [
+          {
+            "id": "paragraph:112",
+            "text": " ⁭ dichiara di essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e succ. mod., ma che il periodo di emersione si è concluso;",
+            "controls": [
+              {
+                "id": "p112.cb0",
+                "offset": 1
+              }
+            ],
+            "text_with_choices": " [[p112.cb0]]⁭ dichiara di essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e succ. mod., ma che il periodo di emersione si è concluso;"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:65",
+          "paragraph:103",
+          "paragraph:104",
+          "paragraph:106",
+          "paragraph:108",
+          "paragraph:110"
+        ]
+      },
+      {
+        "id": "paragraph:113",
+        "paragraphs": [
+          {
+            "id": "paragraph:113",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:114",
+        "paragraphs": [
+          {
+            "id": "paragraph:114",
+            "text": "⁭ di essere edotto degli obblighi derivanti dal Codice di comportamento adottato dalla stazione appaltante con la deliberazione di Giunta Comunale n. 9 del 29 gennaio 2014 reperibile al seguente link: Amministrazione Trasparente - Codice Comportamentale dei dipendenti pubblici (openacta.it) e si impegna, in caso di aggiudicazione, ad osservare e a far osservare ai propri dipendenti e collaboratori, per quanto applicabile, il suddetto codice, pena la risoluzione del contratto;",
+            "controls": [
+              {
+                "id": "p114.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p114.cb0]]⁭ di essere edotto degli obblighi derivanti dal Codice di comportamento adottato dalla stazione appaltante con la deliberazione di Giunta Comunale n. 9 del 29 gennaio 2014 reperibile al seguente link: Amministrazione Trasparente - Codice Comportamentale dei dipendenti pubblici (openacta.it) e si impegna, in caso di aggiudicazione, ad osservare e a far osservare ai propri dipendenti e collaboratori, per quanto applicabile, il suddetto codice, pena la risoluzione del contratto;"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:103",
+          "paragraph:104",
+          "paragraph:106",
+          "paragraph:108",
+          "paragraph:110",
+          "paragraph:112"
+        ]
+      },
+      {
+        "id": "paragraph:115",
+        "paragraphs": [
+          {
+            "id": "paragraph:115",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:116",
+        "paragraphs": [
+          {
+            "id": "paragraph:116",
+            "text": " ⁭ si impegna ad uniformarsi, in caso di aggiudicazione, alla disciplina di cui agli articoli 17, comma 2, e 53, comma 3 del D.P.R. n. 633/1972 e a comunicare, alla stazione appaltante, la nomina del proprio rappresentante fiscale, nelle forme di legge;",
+            "controls": [
+              {
+                "id": "p116.cb0",
+                "offset": 1
+              }
+            ],
+            "text_with_choices": " [[p116.cb0]]⁭ si impegna ad uniformarsi, in caso di aggiudicazione, alla disciplina di cui agli articoli 17, comma 2, e 53, comma 3 del D.P.R. n. 633/1972 e a comunicare, alla stazione appaltante, la nomina del proprio rappresentante fiscale, nelle forme di legge;"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:104",
+          "paragraph:106",
+          "paragraph:108",
+          "paragraph:110",
+          "paragraph:112",
+          "paragraph:114"
+        ]
+      },
+      {
+        "id": "paragraph:117",
+        "paragraphs": [
+          {
+            "id": "paragraph:117",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:118",
+        "paragraphs": [
+          {
+            "id": "paragraph:118",
+            "text": "⁭ dichiara di autorizzare la stazione appaltante a rilasciare copia di tutta la documentazione presentata per la partecipazione alla gara, qualora un partecipante alla gara eserciti, ai sensi della L. 07.08.1990, n° 241, la facoltà di “accesso agli atti”;",
+            "controls": [
+              {
+                "id": "p118.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p118.cb0]]⁭ dichiara di autorizzare la stazione appaltante a rilasciare copia di tutta la documentazione presentata per la partecipazione alla gara, qualora un partecipante alla gara eserciti, ai sensi della L. 07.08.1990, n° 241, la facoltà di “accesso agli atti”;"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:106",
+          "paragraph:108",
+          "paragraph:110",
+          "paragraph:112",
+          "paragraph:114",
+          "paragraph:116"
+        ]
+      },
+      {
+        "id": "paragraph:119",
+        "paragraphs": [
+          {
+            "id": "paragraph:119",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:120",
+        "paragraphs": [
+          {
+            "id": "paragraph:120",
+            "text": "⁭ dichiara l’assunzione di tutti gli obblighi di tracciabilità dei flussi finanziari di cui all’articolo 3 della L. 13.08.2010 n° 136 e s.m.i.;",
+            "controls": [
+              {
+                "id": "p120.cb0",
+                "offset": 0
+              }
+            ],
+            "text_with_choices": "[[p120.cb0]]⁭ dichiara l’assunzione di tutti gli obblighi di tracciabilità dei flussi finanziari di cui all’articolo 3 della L. 13.08.2010 n° 136 e s.m.i.;"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:108",
+          "paragraph:110",
+          "paragraph:112",
+          "paragraph:114",
+          "paragraph:116",
+          "paragraph:118"
+        ]
+      },
+      {
+        "id": "paragraph:121",
+        "paragraphs": [
+          {
+            "id": "paragraph:121",
+            "text": ""
+          },
+          {
+            "id": "paragraph:122",
+            "text": ""
+          },
+          {
+            "id": "paragraph:123",
+            "text": "Timbro",
+            "outline_level": 0
+          },
+          {
+            "id": "paragraph:124",
+            "text": "Professionale"
+          },
+          {
+            "id": "paragraph:125",
+            "text": ""
+          },
+          {
+            "id": "paragraph:126",
+            "text": "Timbro",
+            "outline_level": 0
+          },
+          {
+            "id": "paragraph:127",
+            "text": "Professionale"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:128",
+        "paragraphs": [
+          {
+            "id": "paragraph:128",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:129",
+        "paragraphs": [
+          {
+            "id": "paragraph:129",
+            "text": "Data ........................................... \t\t\tFIRMA ..................................................................",
+            "text_with_fields": "Data [[p129.s0]] \t\t\tFIRMA [[p129.s1]]"
+          }
+        ],
+        "preceding_body_paragraph_ids": [
+          "paragraph:110",
+          "paragraph:112",
+          "paragraph:114",
+          "paragraph:116",
+          "paragraph:118",
+          "paragraph:120"
+        ]
+      },
+      {
+        "id": "paragraph:130",
+        "paragraphs": [
+          {
+            "id": "paragraph:130",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:131",
+        "paragraphs": [
+          {
+            "id": "paragraph:131",
+            "text": "\t"
+          }
+        ]
+      },
+      {
+        "id": "paragraph:132",
+        "paragraphs": [
+          {
+            "id": "paragraph:132",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:133",
+        "paragraphs": [
+          {
+            "id": "paragraph:133",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:134",
+        "paragraphs": [
+          {
+            "id": "paragraph:134",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "id": "paragraph:135",
+        "paragraphs": [
+          {
+            "id": "paragraph:135",
+            "text": "N.B. 1 La domanda e dichiarazione deve essere corredata da fotocopia, non autenticata, di documento di identità del sottoscrittore, in corso di validità."
+          }
+        ]
+      },
+      {
+        "id": "paragraph:136",
+        "paragraphs": [
+          {
+            "id": "paragraph:136",
+            "text": "N.B.2: Alla presente domanda va allegato il DGUE previsto per la verifica dei requisiti di partecipazione."
+          }
+        ]
+      }
+    ],
+    "candidates": {
+      "p103.s0": {
+        "type": "text",
+        "context_id": "paragraph:103",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "range": [
+          154,
+          238
+        ],
+        "slot_context": {
+          "before": "l raggruppamento, corrispondente alla percentuale di servizi che verranno eseguiti da ciascun concorrente è la seguente ",
+          "after": ""
+        },
+        "location": {
+          "block_id": "paragraph:103"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:103"
+        ]
+      },
+      "p104.s0": {
+        "type": "text",
+        "context_id": "paragraph:104",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "range": [
+          94,
+          154
+        ],
+        "slot_context": {
+          "before": "e la natura del servizio d’ingegneria che verrà eseguita da ciascun concorrente è la seguente ",
+          "after": ""
+        },
+        "location": {
+          "block_id": "paragraph:104"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:104"
+        ]
+      },
+      "p129.s0": {
+        "type": "text",
+        "context_id": "paragraph:129",
+        "section_ids": [
+          "paragraph:126"
+        ],
+        "range": [
+          5,
+          48
+        ],
+        "slot_context": {
+          "before": "Data ",
+          "after": " \t\t\tFIRMA "
+        },
+        "location": {
+          "block_id": "paragraph:129"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:129"
+        ]
+      },
+      "p129.s1": {
+        "type": "text",
+        "context_id": "paragraph:129",
+        "section_ids": [
+          "paragraph:126"
+        ],
+        "range": [
+          58,
+          124
+        ],
+        "write_protected": true,
+        "slot_context": {
+          "before": " \t\t\tFIRMA ",
+          "after": ""
+        },
+        "location": {
+          "block_id": "paragraph:129"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:129"
+        ]
+      },
+      "p21.s0": {
+        "type": "text",
+        "context_id": "paragraph:21",
+        "section_ids": [],
+        "range": [
+          21,
+          163
+        ],
+        "slot_context": {
+          "before": "Il/la sottoscritto/a ",
+          "after": " nato/a a "
+        },
+        "location": {
+          "block_id": "paragraph:21"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:21"
+        ]
+      },
+      "p21.s1": {
+        "type": "text",
+        "context_id": "paragraph:21",
+        "section_ids": [],
+        "range": [
+          173,
+          276
+        ],
+        "slot_context": {
+          "before": " nato/a a ",
+          "after": " il "
+        },
+        "location": {
+          "block_id": "paragraph:21"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:21"
+        ]
+      },
+      "p21.s2": {
+        "type": "text",
+        "context_id": "paragraph:21",
+        "section_ids": [],
+        "range": [
+          280,
+          332
+        ],
+        "slot_context": {
+          "before": " il ",
+          "after": " in qualità di "
+        },
+        "location": {
+          "block_id": "paragraph:21"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:21"
+        ]
+      },
+      "p21.s3": {
+        "type": "text",
+        "context_id": "paragraph:21",
+        "section_ids": [],
+        "range": [
+          347,
+          494
+        ],
+        "slot_context": {
+          "before": " in qualità di ",
+          "after": " dello studio/società/consorzio "
+        },
+        "location": {
+          "block_id": "paragraph:21"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:21"
+        ]
+      },
+      "p21.s4": {
+        "type": "text",
+        "context_id": "paragraph:21",
+        "section_ids": [],
+        "range": [
+          526,
+          648
+        ],
+        "slot_context": {
+          "before": " dello studio/società/consorzio ",
+          "after": " con sede in "
+        },
+        "location": {
+          "block_id": "paragraph:21"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:21"
+        ]
+      },
+      "p21.s5": {
+        "type": "text",
+        "context_id": "paragraph:21",
+        "section_ids": [],
+        "range": [
+          661,
+          815
+        ],
+        "slot_context": {
+          "before": " con sede in ",
+          "after": " con codice fiscale n. "
+        },
+        "location": {
+          "block_id": "paragraph:21"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:21"
+        ]
+      },
+      "p21.s6": {
+        "type": "text",
+        "context_id": "paragraph:21",
+        "section_ids": [],
+        "range": [
+          838,
+          977
+        ],
+        "slot_context": {
+          "before": " con codice fiscale n. ",
+          "after": " con partita IVA n. "
+        },
+        "location": {
+          "block_id": "paragraph:21"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:21"
+        ]
+      },
+      "p21.s7": {
+        "type": "text",
+        "context_id": "paragraph:21",
+        "section_ids": [],
+        "range": [
+          997,
+          1141
+        ],
+        "slot_context": {
+          "before": " con partita IVA n. ",
+          "after": ""
+        },
+        "location": {
+          "block_id": "paragraph:21"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:21"
+        ]
+      },
+      "p53.s0": {
+        "type": "text",
+        "context_id": "paragraph:53",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "range": [
+          181,
+          271
+        ],
+        "slot_context": {
+          "before": ", in caso di aggiudicazione, sarà conferito mandato speciale con rappresentanza o funzioni di capogruppo/capoprogetto a ",
+          "after": ";"
+        },
+        "location": {
+          "block_id": "paragraph:53"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:53"
+        ]
+      },
+      "p58.s0": {
+        "type": "text",
+        "context_id": "paragraph:58",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "range": [
+          7,
+          46
+        ],
+        "slot_context": {
+          "before": "￼nome: ",
+          "after": ""
+        },
+        "location": {
+          "block_id": "paragraph:58"
+        },
+        "continuation_origin_paragraph_id": "paragraph:57",
+        "anchor_paragraph_ids": [
+          "paragraph:58"
+        ]
+      },
+      "p59.s0": {
+        "type": "text",
+        "context_id": "paragraph:59",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "range": [
+          9,
+          45
+        ],
+        "slot_context": {
+          "before": "cognome: ",
+          "after": ""
+        },
+        "location": {
+          "block_id": "paragraph:59"
+        },
+        "continuation_origin_paragraph_id": "paragraph:57",
+        "anchor_paragraph_ids": [
+          "paragraph:59"
+        ]
+      },
+      "p60.s0": {
+        "type": "text",
+        "context_id": "paragraph:60",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "range": [
+          22,
+          56
+        ],
+        "slot_context": {
+          "before": "titolo professionale: ",
+          "after": ""
+        },
+        "location": {
+          "block_id": "paragraph:60"
+        },
+        "continuation_origin_paragraph_id": "paragraph:57",
+        "anchor_paragraph_ids": [
+          "paragraph:60"
+        ]
+      },
+      "p61.s0": {
+        "type": "text",
+        "context_id": "paragraph:61",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "range": [
+          17,
+          51
+        ],
+        "slot_context": {
+          "before": "data di nascita: ",
+          "after": ""
+        },
+        "location": {
+          "block_id": "paragraph:61"
+        },
+        "continuation_origin_paragraph_id": "paragraph:57",
+        "anchor_paragraph_ids": [
+          "paragraph:61"
+        ]
+      },
+      "p62.s0": {
+        "type": "text",
+        "context_id": "paragraph:62",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "range": [
+          35,
+          61
+        ],
+        "slot_context": {
+          "before": "data di abilitazione professionale ",
+          "after": ""
+        },
+        "location": {
+          "block_id": "paragraph:62"
+        },
+        "continuation_origin_paragraph_id": "paragraph:57",
+        "anchor_paragraph_ids": [
+          "paragraph:62"
+        ]
+      },
+      "p63.s0": {
+        "type": "text",
+        "context_id": "paragraph:63",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "range": [
+          11,
+          50
+        ],
+        "slot_context": {
+          "before": "qualifica: ",
+          "after": " "
+        },
+        "location": {
+          "block_id": "paragraph:63"
+        },
+        "continuation_origin_paragraph_id": "paragraph:57",
+        "anchor_paragraph_ids": [
+          "paragraph:63"
+        ]
+      },
+      "t2.r1.c0": {
+        "type": "text",
+        "context_id": "t2.r1.c0",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r1.c1": {
+        "type": "text",
+        "context_id": "t2.r1.c1",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r1.c2": {
+        "type": "text",
+        "context_id": "t2.r1.c2",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r1.c3": {
+        "type": "text",
+        "context_id": "t2.r1.c3",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r1.c4": {
+        "type": "text",
+        "context_id": "t2.r1.c4",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 1
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r2.c0": {
+        "type": "text",
+        "context_id": "t2.r2.c0",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r2.c1": {
+        "type": "text",
+        "context_id": "t2.r2.c1",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r2.c2": {
+        "type": "text",
+        "context_id": "t2.r2.c2",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r2.c3": {
+        "type": "text",
+        "context_id": "t2.r2.c3",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r2.c4": {
+        "type": "text",
+        "context_id": "t2.r2.c4",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 2
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r3.c0": {
+        "type": "text",
+        "context_id": "t2.r3.c0",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 3
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r3.c1": {
+        "type": "text",
+        "context_id": "t2.r3.c1",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 3
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r3.c2": {
+        "type": "text",
+        "context_id": "t2.r3.c2",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 3
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r3.c3": {
+        "type": "text",
+        "context_id": "t2.r3.c3",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 3
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r3.c4": {
+        "type": "text",
+        "context_id": "t2.r3.c4",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 3
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r4.c0": {
+        "type": "text",
+        "context_id": "t2.r4.c0",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 4
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r4.c1": {
+        "type": "text",
+        "context_id": "t2.r4.c1",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 4
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r4.c2": {
+        "type": "text",
+        "context_id": "t2.r4.c2",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 4
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r4.c3": {
+        "type": "text",
+        "context_id": "t2.r4.c3",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 4
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r4.c4": {
+        "type": "text",
+        "context_id": "t2.r4.c4",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 4
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r5.c0": {
+        "type": "text",
+        "context_id": "t2.r5.c0",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 5
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r5.c1": {
+        "type": "text",
+        "context_id": "t2.r5.c1",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 5
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r5.c2": {
+        "type": "text",
+        "context_id": "t2.r5.c2",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 5
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r5.c3": {
+        "type": "text",
+        "context_id": "t2.r5.c3",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 5
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r5.c4": {
+        "type": "text",
+        "context_id": "t2.r5.c4",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 5
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r6.c0": {
+        "type": "text",
+        "context_id": "t2.r6.c0",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 6
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r6.c1": {
+        "type": "text",
+        "context_id": "t2.r6.c1",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 6
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r6.c2": {
+        "type": "text",
+        "context_id": "t2.r6.c2",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 6
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r6.c3": {
+        "type": "text",
+        "context_id": "t2.r6.c3",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 6
+        },
+        "anchor_paragraph_ids": []
+      },
+      "t2.r6.c4": {
+        "type": "text",
+        "context_id": "t2.r6.c4",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "location": {
+          "block_id": "paragraph:67",
+          "table_id": "table:2",
+          "row_index": 6
+        },
+        "anchor_paragraph_ids": []
+      },
+      "p27.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:27",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:27"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:27"
+        ]
+      },
+      "p28.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:28",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:28"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:28"
+        ]
+      },
+      "p29.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:29",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:29"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:29"
+        ]
+      },
+      "p30.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:30",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:30"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:30"
+        ]
+      },
+      "p31.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:31",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:31"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:31"
+        ]
+      },
+      "p32.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:32",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:32"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:32"
+        ]
+      },
+      "p33.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:33",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:33"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:33"
+        ]
+      },
+      "p34.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:34",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:34"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:34"
+        ]
+      },
+      "p36.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:36",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:36"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:36"
+        ]
+      },
+      "p65.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:65",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:65"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:65"
+        ]
+      },
+      "p65.cb1": {
+        "type": "checkbox",
+        "context_id": "paragraph:65",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:65"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:65"
+        ]
+      },
+      "p65.cb2": {
+        "type": "checkbox",
+        "context_id": "paragraph:65",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:65"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:65"
+        ]
+      },
+      "p108.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:108",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:108"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:108"
+        ]
+      },
+      "p112.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:112",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:112"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:112"
+        ]
+      },
+      "p114.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:114",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:114"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:114"
+        ]
+      },
+      "p116.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:116",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:116"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:116"
+        ]
+      },
+      "p118.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:118",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:118"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:118"
+        ]
+      },
+      "p120.cb0": {
+        "type": "checkbox",
+        "context_id": "paragraph:120",
+        "section_ids": [
+          "paragraph:23"
+        ],
+        "control_type": "legacy",
+        "initial_checked": false,
+        "location": {
+          "block_id": "paragraph:120"
+        },
+        "anchor_paragraph_ids": [
+          "paragraph:120"
+        ]
+      }
+    },
+    "read_only_parts": [
+      {
+        "part": "word/footer2.xml",
+        "read_only_checkbox_count": 0,
+        "paragraphs": [
+          "2"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "chunk_id": -43,
+      "file_id": -7,
+      "chunk_index": 0,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "## 1. Identificazione della societa' - dati simulati\n\n- Ragione sociale: Mapi Ingegneria S.r.l.\n- Forma giuridica: Societa a responsabilita limitata.\n- Tipologia di attivita': societa' di ingegneria civile.\n- Stato dell'attivita' nel dataset: Attiva.\n- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.\n- Natura dell'identificativo fiscale: valore fittizio della fixture, non valido come identificativo fiscale reale; la scheda lo conserva senza correggerlo.\n- Numero REA simulato: BA - 654321.\n- Data di costituzione: 27 febbraio 2019.\n- Data di iscrizione riportata nella visura demo: 14 marzo 2019.\n- Durata della societa': fino al 31 dicembre 2050.\n- Capitale sociale: EUR 50.000,00, interamente versato.\n\nIl numero REA non identifica automaticamente il numero di iscrizione al Registro delle Imprese. Gli estremi completi della CCIAA e del Registro delle Imprese non sono disponibili in questa scheda.\n\n## 2. Sedi e contatti aziendali - dati simulati\n\n- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Rapporto tra le sedi:"
+    },
+    {
+      "chunk_id": -44,
+      "file_id": -7,
+      "chunk_index": 1,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Rapporto tra le sedi: sede operativa coincidente con la sede legale.\n- Ulteriori unita' locali nel dataset: nessuna oltre alla sede operativa indicata.\n- PEC aziendale simulata: mapi.ingegneria@pec.demo.\n- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo.\n- Telefono aziendale simulato: +39 080 000 2040.\n- Sito web simulato: www.mapi-ingegneria.demo.\n- Cellulare aziendale: non disponibile nel dataset.\n\nQuesti recapiti sono dati dimostrativi, non canali da usare per contatti o invii reali. L'indirizzo aziendale non rappresenta la residenza personale degli amministratori o dei tecnici.\n\n## 3. Persone e ruoli - dati simulati\n\n### Ing. Luca Ferri - amministratore unico\n\n- Nome: Luca.\n- Cognome: Ferri.\n- Nominativo completo: Ing. Luca Ferri.\n- Carica in Mapi Ingegneria S.r.l.: Amministratore unico.\n- Data di nomina: 18 aprile 2024.\n- Durata della carica nel dataset: fino all'approvazione del bilancio 2026.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n- Procure,"
+    },
+    {
+      "chunk_id": -45,
+      "file_id": -7,
+      "chunk_index": 2,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "Data di nomina: 18 aprile 2024.\n- Durata della carica nel dataset: fino all'approvazione del bilancio 2026.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n- Procure, deleghe e dettaglio dei poteri di rappresentanza: non documentati nella scheda.\n\nIl nominativo dell'amministratore non determina da solo chi sottoscrive una specifica candidatura. La scelta del sottoscrittore e la documentazione dei suoi poteri restano informazioni della singola pratica.\n\n### Ing. Elisa Romano - direttore tecnico\n\n- Nome: Elisa.\n- Cognome: Romano.\n- Nominativo completo: Ing. Elisa Romano.\n- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.\n- Qualifica professionale nello scenario: Ingegnere.\n- Ordine professionale simulato: Ordine degli Ingegneri di Bari.\n- Numero di iscrizione professionale simulato: 8421.\n- Data di abilitazione, sezione e settore dell'albo: non disponibili.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n\nIl ruolo di direttore tecnico aziendale non equivale a una designazione come direttore dei lavori o coordinatore della sicurezza per uno specifico incarico.\n\n### Arch. Andrea Greco - responsabile qualita'\n\n-"
+    },
+    {
+      "chunk_id": -46,
+      "file_id": -7,
+      "chunk_index": 3,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "o di direttore tecnico aziendale non equivale a una designazione come direttore dei lavori o coordinatore della sicurezza per uno specifico incarico.\n\n### Arch. Andrea Greco - responsabile qualita'\n\n- Nome: Andrea.\n- Cognome: Greco.\n- Nominativo completo: Arch. Andrea Greco.\n- Ruolo in Mapi Ingegneria S.r.l.: Responsabile qualita'.\n- Dati personali, iscrizione all'albo e poteri di firma: non disponibili.\n\n### Ing. Mario Rossi - referente organizzativo della demo\n\n- Nome: Mario.\n- Cognome: Rossi.\n- Nominativo completo: Ing. Mario Rossi.\n- Ruolo ipotizzato in questa scheda: Referente organizzativo interno.\n- Compiti nello scenario dimostrativo: raccolta dei documenti aziendali, coordinamento delle informazioni e contatto con il gruppo che prepara le candidature.\n- Poteri di firma, procure e qualifica di legale rappresentante: non attribuiti da questa scheda.\n- Dati personali e iscrizione all'albo: non disponibili.\n\nLa voce generica \"Responsabile: Ing. Mario Rossi\" del profilo iniziale viene qui precisata come referente organizzativo. Non sostituisce l'amministratore unico Luca Ferri o il direttore tecnico Elisa Romano.\n\n### Dimensione della struttura - dati simulati\n\n- Addetti di"
+    },
+    {
+      "chunk_id": -47,
+      "file_id": -7,
+      "chunk_index": 4,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "e viene qui precisata come referente organizzativo. Non sostituisce l'amministratore unico Luca Ferri o il direttore tecnico Elisa Romano.\n\n### Dimensione della struttura - dati simulati\n\n- Addetti di Mapi Ingegneria S.r.l. al 31 dicembre 2025: 7 unita'.\n- Addetti tecnici al 31 dicembre 2025: 5 unita'.\n- Elenco nominativo completo degli addetti e organigramma: non disponibili.\n\nI nominativi descritti non costituiscono l'elenco completo dei soci, dei titolari effettivi o di tutti i soggetti da dichiarare in una procedura.\n\n## 4. Attivita' e servizi - profilo simulato\n\nMapi Ingegneria S.r.l. svolge, nello scenario dimostrativo, servizi integrati di ingegneria e architettura relativi a opere civili e infrastrutture pubbliche. Opera come consulente tecnico di enti pubblici e committenti privati.\n\n- Codice ATECO riportato nel dataset simulato: 71.12.10 - Attivita degli studi di ingegneria.\n- Ambito territoriale del profilo: Italia, con operativita' prevalente nelle regioni del Mezzogiorno.\n- Progettazione di fattibilita' tecnico-economica, definitiva ed esecutiva, secondo la descrizione della visura demo.\n- Verifiche strutturali e valutazioni di vulnerabilita' sismica.\n- Progettazione"
+    },
+    {
+      "chunk_id": -48,
+      "file_id": -7,
+      "chunk_index": 5,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": ".\n- Progettazione di fattibilita' tecnico-economica, definitiva ed esecutiva, secondo la descrizione della visura demo.\n- Verifiche strutturali e valutazioni di vulnerabilita' sismica.\n- Progettazione di interventi di adeguamento e riqualificazione degli edifici.\n- Riqualificazione energetica e funzionale di edifici pubblici.\n- Direzione lavori, coordinamento della sicurezza e contabilita' dei lavori.\n- Modellazione BIM e gestione documentale.\n- Supporto ai processi autorizzativi.\n- Assistenza tecnica agli enti per bandi e programmi di finanziamento.\n\nQuesta descrizione dei servizi non prova incarichi gia' eseguiti, importi di lavori, qualificazioni individuali o il possesso dei requisiti richiesti da una gara. Il codice ATECO e le denominazioni delle attivita' sono dati della fixture, non una verifica della classificazione o normativa vigente.\n\n## 5. Qualita' e coperture - dati esclusivamente simulati\n\n### Sistema di gestione qualita' della societa'\n\n- Riferimento riportato nella visura demo: ISO 9001:2015.\n- Identificativo del certificato simulato: MAPI-QMS-2024-001.\n- Scadenza simulata: 30 settembre 2027.\n- Certificato autentico, organismo emittente e relativo campo di"
+    },
+    {
+      "chunk_id": -49,
+      "file_id": -7,
+      "chunk_index": 6,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "nella visura demo: ISO 9001:2015.\n- Identificativo del certificato simulato: MAPI-QMS-2024-001.\n- Scadenza simulata: 30 settembre 2027.\n- Certificato autentico, organismo emittente e relativo campo di applicazione: non disponibili.\n\n### Polizza professionale della societa'\n\n- Identificativo della polizza simulata: RC-MAPI-2026-018.\n- Massimale simulato: EUR 2.000.000,00.\n- Scadenza simulata: 31 dicembre 2026.\n- Compagnia, condizioni contrattuali e documento di polizza autentico: non disponibili.\n\nQuesti riferimenti permettono di provare il riconoscimento dei dati nel prototipo; non dimostrano una copertura reale, una certificazione posseduta o la loro validita' alla data di una gara storica.\n\n## 6. Indicatori economici - dati esclusivamente simulati\n\n- Ricavi complessivi di Mapi Ingegneria S.r.l. per il 2024: EUR 1.080.000,00.\n- Ricavi complessivi di Mapi Ingegneria S.r.l. per il 2025: EUR 1.280.000,00.\n- Patrimonio netto di Mapi Ingegneria S.r.l. per il 2025: EUR 410.000,00.\n\nI ricavi complessivi non sono automaticamente fatturato specifico per una categoria di servizi, importi di opere progettate o importi di servizi di punta. Bilanci, contratti, certificati di esecuzione e"
+    },
+    {
+      "chunk_id": -50,
+      "file_id": -7,
+      "chunk_index": 7,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "ricavi complessivi non sono automaticamente fatturato specifico per una categoria di servizi, importi di opere progettate o importi di servizi di punta. Bilanci, contratti, certificati di esecuzione e suddivisioni per categoria non sono presenti in questa scheda.\n\n## 7. Informazioni non disponibili o specifiche della candidatura\n\nLa scheda non contiene evidenze su regolarita' contributiva o fiscale, casellario, assenza di cause di esclusione, assetto proprietario, titolarita' effettiva, poteri di firma o allegati effettivamente presentati. L'assenza di informazioni non equivale a una dichiarazione positiva o negativa.\n\nRestano da fornire, quando pertinenti:\n\n- Dati personali del sottoscrittore e degli altri soggetti richiesti dal modulo.\n- Identificativi fiscali reali e documentazione camerale completa.\n- Scelta di partecipazione singola, in raggruppamento o in altra forma.\n- Sottoscrittore della specifica domanda ed eventuale procura.\n- Professionisti proposti per lo specifico incarico e relative qualifiche documentate.\n- Servizi pregressi pertinenti, date, committenti, categorie e importi documentati.\n- Descrizione dell'intervento, offerta economica, cronoprogramma e impegni"
+    },
+    {
+      "chunk_id": -51,
+      "file_id": -7,
+      "chunk_index": 8,
+      "source_name": "generalita-mapi.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "carico e relative qualifiche documentate.\n- Servizi pregressi pertinenti, date, committenti, categorie e importi documentati.\n- Descrizione dell'intervento, offerta economica, cronoprogramma e impegni della candidatura.\n- Dichiarazioni richieste, allegati, luogo e data di sottoscrizione.\n\nLe scelte di una singola candidatura non sono caratteristiche permanenti dell'azienda. Nessuna firma, autorizzazione all'invio o attestazione di ammissibilita' e' contenuta in questo profilo."
+    },
+    {
+      "chunk_id": -26,
+      "file_id": -8,
+      "chunk_index": 0,
+      "source_name": "progettazione-opere-pubbliche.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "general",
+      "content": "PROGETTAZIONE DI OPERE PUBBLICHE: INPUT, LIVELLI E CONTROLLI\n\nAmbito: progettazione di lavori pubblici e supporto tecnico-amministrativo.\nVersione del documento: 17 agosto 2026.\nParole chiave: quadro esigenziale, DIP, PFTE, progetto esecutivo, vincoli, costi,\ntempi, autorizzazioni, manutenzione, verifica del progetto.\n\nSCOPO\n\nQuesto documento descrive un metodo generale per organizzare la progettazione di\nun'opera pubblica. Non stabilisce quali elaborati siano obbligatori in uno\nspecifico affidamento: tali elaborati dipendono dalla disciplina vigente, dal\nDocumento di indirizzo alla progettazione e dalle caratteristiche dell'opera.\n\nQUADRO DI PARTENZA\n\nLa progettazione deve partire dal fabbisogno pubblico e non dalla scelta\nanticipata di una soluzione. Il quadro iniziale dovrebbe chiarire almeno:\n\n- problema da risolvere e utenti interessati;\n- prestazioni attese e criteri misurabili di successo;\n- stato dei luoghi, disponibilita delle aree e interferenze note;\n- vincoli urbanistici, ambientali, paesaggistici, culturali, idrogeologici,\n sismici e archeologici da verificare;\n- importo disponibile, fonti di finanziamento e limiti di ammissibilita;\n- tempi amministrativi,"
+    },
+    {
+      "chunk_id": -27,
+      "file_id": -8,
+      "chunk_index": 1,
+      "source_name": "progettazione-opere-pubbliche.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "general",
+      "content": "rbanistici, ambientali, paesaggistici, culturali, idrogeologici,\n sismici e archeologici da verificare;\n- importo disponibile, fonti di finanziamento e limiti di ammissibilita;\n- tempi amministrativi, progettuali, autorizzativi e realizzativi;\n- dati, rilievi, indagini e autorizzazioni gia disponibili o mancanti;\n- soggetti responsabili delle decisioni e delle validazioni.\n\nIl Documento di indirizzo alla progettazione, predisposto dalla stazione\nappaltante, traduce il quadro esigenziale in requisiti, livelli di approfondimento\ned elaborati richiesti. Se il processo usa la gestione informativa digitale, il\nDIP deve coordinarsi anche con i requisiti informativi e con il capitolato\ninformativo.\n\nLIVELLI DI PROGETTAZIONE\n\nIl Codice dei contratti pubblici articola normalmente la progettazione in due\nlivelli: progetto di fattibilita tecnico-economica, o PFTE, e progetto esecutivo.\n\nIl PFTE confronta le alternative praticabili e motiva la soluzione preferibile\nrispetto a bisogni, benefici, costi, rischi, vincoli e prestazioni. Deve essere\nsufficientemente definito per sostenere le autorizzazioni previste, determinare\nle caratteristiche essenziali dell'intervento e impostare la"
+    },
+    {
+      "chunk_id": -28,
+      "file_id": -8,
+      "chunk_index": 2,
+      "source_name": "progettazione-opere-pubbliche.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "general",
+      "content": "benefici, costi, rischi, vincoli e prestazioni. Deve essere\nsufficientemente definito per sostenere le autorizzazioni previste, determinare\nle caratteristiche essenziali dell'intervento e impostare la manutenzione. Le\nindagini non sono allegati ornamentali: devono ridurre le incertezze che possono\nmodificare soluzione, costo o tempo.\n\nIl progetto esecutivo sviluppa in dettaglio la soluzione approvata. Definisce le\nlavorazioni, le caratteristiche tecniche, il costo, i tempi, il piano di\nmanutenzione e gli elementi necessari all'esecuzione. Ogni variazione rispetto al\nPFTE deve essere riconoscibile, motivata e approvata dal soggetto competente.\n\nMATRICE DI CONTROLLO\n\nPer ogni requisito e utile registrare:\n\n- identificativo e descrizione del requisito;\n- fonte e riferimento puntuale;\n- elaborato che fornisce la risposta;\n- responsabile della produzione e responsabile della verifica;\n- stato: da analizzare, in lavorazione, verificato, non applicabile;\n- evidenza della verifica e data dell'ultima revisione;\n- dipendenze e informazioni mancanti.\n\nUn requisito non e soddisfatto soltanto perche compare in una relazione. Deve\nesistere coerenza fra relazioni, elaborati grafici, computo,"
+    },
+    {
+      "chunk_id": -29,
+      "file_id": -8,
+      "chunk_index": 3,
+      "source_name": "progettazione-opere-pubbliche.txt",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "general",
+      "content": "dell'ultima revisione;\n- dipendenze e informazioni mancanti.\n\nUn requisito non e soddisfatto soltanto perche compare in una relazione. Deve\nesistere coerenza fra relazioni, elaborati grafici, computo, quadro economico,\ncronoprogramma e piano di manutenzione.\n\nGESTIONE DELLE INFORMAZIONI MANCANTI\n\nUn sistema di supporto non deve inventare dati tecnici o amministrativi. Quando\nun'informazione non e disponibile deve segnalarla, indicarne il proprietario e\nspiegare quale decisione o elaborato ne dipende. Esempi: titolarita dell'area,\nrilievo aggiornato, indagini sui materiali, costo massimo, parere di un ente,\ndurata utile o requisito prestazionale.\n\nFONTI UFFICIALI DI RIFERIMENTO\n\n- Decreto legislativo 31 marzo 2023, n. 36, articolo 41, livelli e contenuti\n della progettazione:\n https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2023;036~art41=\n- Decreto legislativo 31 marzo 2023, n. 36, Allegato I.7, contenuti dei livelli\n progettuali e del DIP:\n https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:2023;36:8~art3@originale!:=\n\nNota: verificare sempre il testo vigente e gli atti specifici dell'intervento."
+    },
+    {
+      "chunk_id": -30,
+      "file_id": -9,
+      "chunk_index": 0,
+      "source_name": "visura-mapi-ingegneria-simulata.pdf",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "FAC-SIMILE PER TESI - DOCUMENTO SIMULATO - NON UFFICIALE\nMAPI INGEGNERIA S.R.L.\nSOCIETA DI INGEGNERIA CIVILE\nEstratto dati impresa\nGenerato il 6 agosto 2026\nIdentiﬁcativo demo: MAPI-VIS-2026-001\nVisura aziendale simulata\nProﬁlo societario predisposto esclusivamente per la dimostrazione del sistema Mapi RAG.\n1. DATI IDENTIFICATIVI\nDENOMINAZIONE Mapi Ingegneria S.r.l.\nFORMA GIURIDICA Societa a responsabilita limitata\nSTATO ATTIVITA ATTIVA\nCODICE FISCALE E PARTITA IVA IT01234567890 (dato simulato)\nNUMERO REA BA - 654321 (dato simulato)\nDATA COSTITUZIONE 27 febbraio 2019\nDATA ISCRIZIONE 14 marzo 2019\nDURATA SOCIETA Fino al 31 dicembre 2050\nCAPITALE SOCIALE EUR 50.000,00, interamente versato\n2. SEDE E CONTATTI\nSEDE LEGALE E OPERATIVA Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia\nPEC mapi.ingegneria@pec.demo\nE-MAIL segreteria@mapi-ingegneria.demo\nTELEFONO +39 080 000 2040 (recapito simulato)\nSITO WEB www.mapi-ingegneria.demo\n3. ATTIVITA PREVALENTE\nCODICE ATECO 71.12.10 - Attivita degli studi di ingegneria\nRUOLO OPERATIVO Consulenza tecnica e supporto alla progettazione per enti pubblici e\ncommittenti privati\nAMBITO TERRITORIALE Italia, con operativita prevalente nelle regioni del"
+    },
+    {
+      "chunk_id": -31,
+      "file_id": -9,
+      "chunk_index": 1,
+      "source_name": "visura-mapi-ingegneria-simulata.pdf",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "li studi di ingegneria\nRUOLO OPERATIVO Consulenza tecnica e supporto alla progettazione per enti pubblici e\ncommittenti privati\nAMBITO TERRITORIALE Italia, con operativita prevalente nelle regioni del Mezzogiorno\nQuesto documento non proviene dal Registro delle Imprese e non certiﬁca l'esistenza dei soggetti o dei dati indicati.\nTutti i riferimenti sono simulati per ﬁnalita didattiche.\nMapi RAG - dataset dimostrativo Pagina 1 di 2\n\nFAC-SIMILE PER TESI - DOCUMENTO SIMULATO - NON UFFICIALE\nMAPI INGEGNERIA S.R.L.\nSOCIETA DI INGEGNERIA CIVILE\nDettaglio attivita e capacita\nIdentiﬁcativo demo: MAPI-VIS-2026-001\n4. OGGETTO SOCIALE E SERVIZI\nLa societa svolge servizi integrati di ingegneria e architettura con particolare riferimento alle opere civili e\nalle infrastrutture pubbliche.\nprogettazione di fattibilita tecnico-economica, deﬁnitiva ed esecutiva;\nveriﬁche strutturali, valutazioni di vulnerabilita sismica e interventi di adeguamento;\nriqualiﬁcazione energetica e funzionale di ediﬁci pubblici;\ndirezione lavori, coordinamento della sicurezza e contabilita dei lavori;\nmodellazione BIM, gestione documentale e supporto ai processi autorizzativi;\nassistenza tecnica agli enti nella"
+    },
+    {
+      "chunk_id": -32,
+      "file_id": -9,
+      "chunk_index": 2,
+      "source_name": "visura-mapi-ingegneria-simulata.pdf",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "iﬁci pubblici;\ndirezione lavori, coordinamento della sicurezza e contabilita dei lavori;\nmodellazione BIM, gestione documentale e supporto ai processi autorizzativi;\nassistenza tecnica agli enti nella partecipazione a bandi e programmi di ﬁnanziamento.\n5. AMMINISTRAZIONE E STRUTTURA TECNICA\nAMMINISTRATORE UNICO Ing. Luca Ferri - nominato il 18 aprile 2024, in carica ﬁno ad\napprovazione del bilancio 2026\nDIRETTORE TECNICO Ing. Elisa Romano - iscrizione professionale simulata n. 8421,\nOrdine degli Ingegneri di Bari\nRESPONSABILE QUALITA Arch. Andrea Greco\nADDETTI AL 31/12/2025 7 unita, di cui 5 tecnici\n6. CERTIFICAZIONI E COPERTURE\nSISTEMA DI GESTIONE QUALITA\nISO 9001:2015\nCertiﬁcato demo MAPI-QMS-2024-001\nScadenza: 30 settembre 2027\nPOLIZZA PROFESSIONALE\nMassimale: EUR 2.000.000,00\nPolizza demo RC-MAPI-2026-018\nScadenza: 31 dicembre 2026\n7. INDICATORI ECONOMICI SINTETICI\nRICAVI 2024 EUR 1.080.000,00 (valore simulato)\nRICAVI 2025 EUR 1.280.000,00 (valore simulato)\nPATRIMONIO NETTO 2025 EUR 410.000,00 (valore simulato)\n8. DICHIARAZIONI DI STATO\nPROCEDURE CONCORSUALI Nessuna procedura indicata nel dataset simulato\nSCIOGLIMENTO O LIQUIDAZIONE Nessuna procedura indicata nel dataset"
+    },
+    {
+      "chunk_id": -33,
+      "file_id": -9,
+      "chunk_index": 3,
+      "source_name": "visura-mapi-ingegneria-simulata.pdf",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "2025 EUR 410.000,00 (valore simulato)\n8. DICHIARAZIONI DI STATO\nPROCEDURE CONCORSUALI Nessuna procedura indicata nel dataset simulato\nSCIOGLIMENTO O LIQUIDAZIONE Nessuna procedura indicata nel dataset simulato\nUNITA LOCALI Nessuna unita locale ulteriore rispetto alla sede operativa\nDocumento dimostrativo prodotto per una tesi universitaria sul Retrieval-Augmented Generation. Non utilizzare per\npratiche amministrative, dichiarazioni sostitutive o veriﬁche camerali.\nMapi RAG - dataset dimostrativo Pagina 2 di 2"
+    },
+    {
+      "chunk_id": -52,
+      "file_id": -10,
+      "chunk_index": 0,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "# Integrazione Company\n\n# Mapi Ingegneria S.r.l. — Integrazione anagrafica e societaria (fixture sintetica)\n\n**Versione della fixture:** 1.0 — **Data di riferimento:** 15 ottobre 2026.\n\n## Provenienza e rapporto con i documenti precedenti\n\nQuesta scheda è un'integrazione sintetica rispetto alla *visura-mapi-ingegneria-simulata* (6 agosto 2026) e a *generalita-mapi* (17 settembre 2026). Per le cariche sociali specificate di seguito descrive **eventi successivi**, non corregge retroattivamente le fotografie precedenti. Se due fonti sembrano discordanti, mantenere entrambe le versioni con le relative date ed esaminare la validità temporale; non sovrascrivere silenziosamente una fonte.\n\n## 1. Dati societari integrativi\n\n- **Società:** Mapi Ingegneria S.r.l.\n- **Camera di Commercio competente nello scenario:** Bari.\n- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981.\n- **Numero REA:** BA-654321 (dato già riportato nella visura demo; **non è** il numero di iscrizione al Registro delle Imprese).\n- **Sede legale — via:** Via Giovanni Amendola.\n- **Sede legale — numero civico:** 172/C.\n- **Sede legale — CAP:** 70126.\n- **Sede legale — comune:** Bari."
+    },
+    {
+      "chunk_id": -53,
+      "file_id": -10,
+      "chunk_index": 1,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "numero di iscrizione al Registro delle Imprese).\n- **Sede legale — via:** Via Giovanni Amendola.\n- **Sede legale — numero civico:** 172/C.\n- **Sede legale — CAP:** 70126.\n- **Sede legale — comune:** Bari.\n- **Sede legale — provincia:** BA.\n- **Sede legale — Paese:** Italia.\n- **Fax aziendale sintetico:** +39 080 000 2041.\n\nGli altri recapiti e gli ulteriori dati societari continuano a essere quelli della visura simulata e della scheda generalità, salvo esplicito aggiornamento successivo.\n\n## 2. Amministrazione e rappresentanza della società\n\n- **Luca Ferri**: amministratore unico nella visura sintetica del 6 agosto 2026. **Cessazione della carica nello scenario: 1 ottobre 2026.**\n- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**. La sua carica deriva da questa integrazione sintetica successiva e non è documentata dalla visura di agosto.\n\nLa carica societaria non equivale automaticamente alla scelta del firmatario di una specifica domanda: tale scelta resta riferita alla singola pratica.\n\n### Leonardo Montemurro — anagrafica sintetica\n\n- Nome: Leonardo.\n- Cognome: Montemurro.\n- Luogo di nascita: Lecce (LE).\n-"
+    },
+    {
+      "chunk_id": -54,
+      "file_id": -10,
+      "chunk_index": 2,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "firmatario di una specifica domanda: tale scelta resta riferita alla singola pratica.\n\n### Leonardo Montemurro — anagrafica sintetica\n\n- Nome: Leonardo.\n- Cognome: Montemurro.\n- Luogo di nascita: Lecce (LE).\n- Data di nascita: 14 novembre 1982.\n- Comune di residenza: Bari (BA).\n- Indirizzo di residenza: Via Amedeo 24.\n- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.\n\nL'indirizzo di residenza di Leonardo **non** è la sede legale della società.\n\n## 3. Soci della società al 15 ottobre 2026 — scenario sintetico\n\n| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| Luca Ferri | 30% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 21/03/2012 | 7294 | FRRLCU80A01A662K |\n| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |\n| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |\n\n**Controllo di coerenza:** quote 30% + 40% + 30% = 100%.\n\n## 4. Ruoli tecnici aziendali\n\n- **Elisa Romano:**"
+    },
+    {
+      "chunk_id": -55,
+      "file_id": -10,
+      "chunk_index": 3,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "| Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |\n\n**Controllo di coerenza:** quote 30% + 40% + 30% = 100%.\n\n## 4. Ruoli tecnici aziendali\n\n- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.\n- **Andrea Greco:** responsabile qualità aziendale, architetto, Ordine degli Architetti di Bari, sezione A, numero 5267.\n\nUn ruolo aziendale **non** costituisce una designazione per uno specifico incarico di progettazione, coordinamento della sicurezza, collaudo o direzione lavori.\n\n## 5. Ambito di utilizzo\n\nQuesta scheda registra **solo informazioni aziendali e anagrafiche riutilizzabili**. Non contiene né determina:\n\n- la forma di partecipazione scelta per una procedura specifica;\n- il soggetto che sottoscrive una determinata domanda;\n- le categorie e le fasce di servizi per cui candidarsi;\n- i professionisti designati per una specifica prestazione;\n- dichiarazioni personali, consenso, allegati effettivamente prodotti, luogo e data della domanda;\n- attestazioni di assenza di cause di esclusione e decisioni sulla firma digitale.\n\nTutte queste"
+    },
+    {
+      "chunk_id": -56,
+      "file_id": -10,
+      "chunk_index": 4,
+      "source_name": "integrazione-company.md",
+      "role": "source",
+      "scope": "global",
+      "project_id": null,
+      "category": "company",
+      "content": "prestazione;\n- dichiarazioni personali, consenso, allegati effettivamente prodotti, luogo e data della domanda;\n- attestazioni di assenza di cause di esclusione e decisioni sulla firma digitale.\n\nTutte queste informazioni devono essere gestite come **decisioni o attestazioni della singola pratica** e non inferite automaticamente dalla Company KB."
+    }
+  ],
+  "user_values": [],
+  "source_coverage": {
+    "strategy": "complete_small_corpus",
+    "partial": false,
+    "chunks": 22
+  },
+  "schema_output": {
+    "$defs": {
+      "AlternativeAssignment": {
+        "additionalProperties": false,
+        "description": "Grounded alternatives are proposals to review, never a chosen value.",
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "kind": {
+            "const": "data",
+            "title": "Kind",
+            "type": "string"
+          },
+          "disposition": {
+            "const": "review",
+            "title": "Disposition",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          },
+          "fact_id": {
+            "default": null,
+            "title": "Fact Id",
+            "type": "null"
+          },
+          "choice": {
+            "default": null,
+            "title": "Choice",
+            "type": "null"
+          },
+          "reason": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          },
+          "property": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Property",
+            "type": "string"
+          },
+          "review_kind": {
+            "enum": [
+              "ambiguous",
+              "conflicting"
+            ],
+            "title": "Review Kind",
+            "type": "string"
+          },
+          "alternative_fact_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 4,
+            "minItems": 2,
+            "title": "Alternative Fact Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "label",
+          "kind",
+          "disposition",
+          "form",
+          "conditions",
+          "reason",
+          "property",
+          "review_kind",
+          "alternative_fact_ids"
+        ],
+        "title": "AlternativeAssignment",
+        "type": "object"
+      },
+      "ChoiceConditionalValue": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "data",
+              "choice"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "disposition": {
+            "const": "conditional",
+            "title": "Disposition",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Conditions",
+            "type": "array"
+          },
+          "fact_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Fact Id",
+            "type": "string"
+          },
+          "choice": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Choice"
+          },
+          "reason": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          },
+          "property": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Property",
+            "type": "string"
+          },
+          "binding_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Binding Id"
+          },
+          "choice_group_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Choice Group Id"
+          }
+        },
+        "required": [
+          "label",
+          "kind",
+          "disposition",
+          "form",
+          "conditions",
+          "fact_id",
+          "reason",
+          "property"
+        ],
+        "title": "ChoiceConditionalValue",
+        "type": "object"
+      },
+      "ChoiceGroup": {
+        "additionalProperties": false,
+        "description": "Proposed semantics; the backend owns physical controls and cardinality.",
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "subject": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Subject",
+            "type": "string"
+          },
+          "property": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Property",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "selection": {
+            "enum": [
+              "single",
+              "multiple",
+              "unknown"
+            ],
+            "title": "Selection",
+            "type": "string"
+          },
+          "min_selected": {
+            "maximum": 1,
+            "minimum": 0,
+            "title": "Min Selected",
+            "type": "integer"
+          },
+          "options": {
+            "additionalProperties": {
+              "$ref": "#/$defs/ChoiceOption"
+            },
+            "maxProperties": 32,
+            "minProperties": 1,
+            "propertyNames": {
+              "maxLength": 80,
+              "minLength": 1
+            },
+            "title": "Options",
+            "type": "object"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "label",
+          "subject",
+          "property",
+          "form",
+          "selection",
+          "min_selected",
+          "options"
+        ],
+        "title": "ChoiceGroup",
+        "type": "object"
+      },
+      "ChoiceOption": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          }
+        },
+        "required": [
+          "label",
+          "form"
+        ],
+        "title": "ChoiceOption",
+        "type": "object"
+      },
+      "ChoiceValue": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "data",
+              "choice",
+              "declaration",
+              "signature",
+              "decorative"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "disposition": {
+            "const": "value",
+            "title": "Disposition",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          },
+          "fact_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Fact Id",
+            "type": "string"
+          },
+          "choice": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Choice"
+          },
+          "reason": {
+            "default": "",
+            "maxLength": 200,
+            "title": "Reason",
+            "type": "string"
+          },
+          "property": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Property",
+            "type": "string"
+          },
+          "binding_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Binding Id"
+          },
+          "choice_group_id": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Choice Group Id"
+          }
+        },
+        "required": [
+          "label",
+          "kind",
+          "disposition",
+          "form",
+          "conditions",
+          "fact_id",
+          "property"
+        ],
+        "title": "ChoiceValue",
+        "type": "object"
+      },
+      "ConditionTarget": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "candidate",
+              "paragraph",
+              "table",
+              "section"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "id"
+        ],
+        "title": "ConditionTarget",
+        "type": "object"
+      },
+      "FormSpan": {
+        "additionalProperties": false,
+        "properties": {
+          "paragraph_id": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Paragraph Id",
+            "type": "string"
+          },
+          "quote": {
+            "maxLength": 500,
+            "title": "Quote",
+            "type": "string"
+          }
+        },
+        "required": [
+          "paragraph_id",
+          "quote"
+        ],
+        "title": "FormSpan",
+        "type": "object"
+      },
+      "NonApplicableAssignment": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "data",
+              "choice",
+              "declaration",
+              "signature",
+              "decorative"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "disposition": {
+            "const": "not_applicable",
+            "title": "Disposition",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          },
+          "fact_id": {
+            "default": null,
+            "title": "Fact Id",
+            "type": "null"
+          },
+          "choice": {
+            "default": null,
+            "title": "Choice",
+            "type": "null"
+          },
+          "reason": {
+            "default": "",
+            "maxLength": 200,
+            "title": "Reason",
+            "type": "string"
+          },
+          "property": {
+            "default": null,
+            "title": "Property",
+            "type": "null"
+          }
+        },
+        "required": [
+          "label",
+          "kind",
+          "disposition",
+          "form",
+          "conditions"
+        ],
+        "title": "NonApplicableAssignment",
+        "type": "object"
+      },
+      "SharedFact": {
+        "additionalProperties": false,
+        "properties": {
+          "subject": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Subject",
+            "type": "string"
+          },
+          "entity": {
+            "enum": [
+              "company",
+              "person",
+              "project",
+              "authority",
+              "other"
+            ],
+            "title": "Entity",
+            "type": "string"
+          },
+          "aspect": {
+            "enum": [
+              "identity",
+              "legal_type",
+              "location",
+              "participation",
+              "representation",
+              "professional",
+              "other"
+            ],
+            "title": "Aspect",
+            "type": "string"
+          },
+          "property": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Property",
+            "type": "string"
+          },
+          "value": {
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Value",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/$defs/SourceSpan"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          }
+        },
+        "required": [
+          "subject",
+          "entity",
+          "aspect",
+          "property",
+          "value",
+          "evidence"
+        ],
+        "title": "SharedFact",
+        "type": "object"
+      },
+      "SourceSpan": {
+        "additionalProperties": false,
+        "properties": {
+          "chunk_id": {
+            "title": "Chunk Id",
+            "type": "integer"
+          },
+          "quote": {
+            "maxLength": 800,
+            "minLength": 1,
+            "title": "Quote",
+            "type": "string"
+          }
+        },
+        "required": [
+          "chunk_id",
+          "quote"
+        ],
+        "title": "SourceSpan",
+        "type": "object"
+      },
+      "StructuralCondition": {
+        "additionalProperties": false,
+        "properties": {
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "aspect": {
+            "enum": [
+              "identity",
+              "legal_type",
+              "location",
+              "participation",
+              "representation",
+              "professional",
+              "other"
+            ],
+            "title": "Aspect",
+            "type": "string"
+          },
+          "operator": {
+            "enum": [
+              "same",
+              "different",
+              "semantic"
+            ],
+            "title": "Operator",
+            "type": "string"
+          },
+          "fact_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 2,
+            "title": "Fact Ids",
+            "type": "array"
+          },
+          "reason": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          },
+          "scope": {
+            "items": {
+              "$ref": "#/$defs/ConditionTarget"
+            },
+            "maxItems": 400,
+            "title": "Scope",
+            "type": "array"
+          }
+        },
+        "required": [
+          "form",
+          "aspect",
+          "operator",
+          "fact_ids",
+          "reason",
+          "scope"
+        ],
+        "title": "StructuralCondition",
+        "type": "object"
+      },
+      "SubjectBinding": {
+        "additionalProperties": false,
+        "description": "Proposed role association, with independently reloaded FORM/SOURCE spans.",
+        "properties": {
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "required_role": {
+            "maxLength": 150,
+            "minLength": 2,
+            "title": "Required Role",
+            "type": "string"
+          },
+          "source_role": {
+            "maxLength": 150,
+            "minLength": 2,
+            "title": "Source Role",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/$defs/SourceSpan"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Evidence",
+            "type": "array"
+          }
+        },
+        "required": [
+          "form",
+          "required_role",
+          "source_role",
+          "evidence"
+        ],
+        "title": "SubjectBinding",
+        "type": "object"
+      },
+      "UnfilledExplanation": {
+        "additionalProperties": false,
+        "description": "Model reasoning about unwritten positions, never a factual value or write permission.",
+        "properties": {
+          "candidate_ids": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 400,
+            "minItems": 1,
+            "title": "Candidate Ids",
+            "type": "array"
+          },
+          "outcome": {
+            "enum": [
+              "source_not_found",
+              "condition_unknown",
+              "not_applicable",
+              "not_a_field",
+              "manual_input",
+              "unassessed"
+            ],
+            "title": "Outcome",
+            "type": "string"
+          },
+          "reason": {
+            "maxLength": 300,
+            "minLength": 4,
+            "title": "Reason",
+            "type": "string"
+          },
+          "form": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/FormSpan"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "candidate_ids",
+          "outcome",
+          "reason"
+        ],
+        "title": "UnfilledExplanation",
+        "type": "object"
+      },
+      "UserFieldRequest": {
+        "additionalProperties": false,
+        "description": "A local FORM question, never proof of a value or of source absence.",
+        "properties": {
+          "label": {
+            "maxLength": 250,
+            "minLength": 1,
+            "title": "Label",
+            "type": "string"
+          },
+          "form": {
+            "$ref": "#/$defs/FormSpan"
+          },
+          "conditions": {
+            "items": {
+              "maxLength": 80,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "title": "Conditions",
+            "type": "array"
+          },
+          "reason": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "form",
+          "reason"
+        ],
+        "title": "UserFieldRequest",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "version": {
+        "const": 12,
+        "title": "Version",
+        "type": "integer"
+      },
+      "conditions": {
+        "additionalProperties": {
+          "$ref": "#/$defs/StructuralCondition"
+        },
+        "maxProperties": 128,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Conditions",
+        "type": "object"
+      },
+      "fields": {
+        "additionalProperties": {
+          "discriminator": {
+            "mapping": {
+              "conditional": "#/$defs/ChoiceConditionalValue",
+              "not_applicable": "#/$defs/NonApplicableAssignment",
+              "review": "#/$defs/AlternativeAssignment",
+              "value": "#/$defs/ChoiceValue"
+            },
+            "propertyName": "disposition"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ChoiceValue"
+            },
+            {
+              "$ref": "#/$defs/ChoiceConditionalValue"
+            },
+            {
+              "$ref": "#/$defs/NonApplicableAssignment"
+            },
+            {
+              "$ref": "#/$defs/AlternativeAssignment"
+            }
+          ]
+        },
+        "maxProperties": 400,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Fields",
+        "type": "object"
+      },
+      "facts": {
+        "additionalProperties": {
+          "$ref": "#/$defs/SharedFact"
+        },
+        "maxProperties": 128,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Facts",
+        "type": "object"
+      },
+      "uncertain_paragraph_ids": {
+        "items": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "maxItems": 2048,
+        "title": "Uncertain Paragraph Ids",
+        "type": "array"
+      },
+      "bindings": {
+        "additionalProperties": {
+          "$ref": "#/$defs/SubjectBinding"
+        },
+        "maxProperties": 128,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Bindings",
+        "type": "object"
+      },
+      "choice_groups": {
+        "additionalProperties": {
+          "$ref": "#/$defs/ChoiceGroup"
+        },
+        "maxProperties": 64,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Choice Groups",
+        "type": "object"
+      },
+      "clarifications": {
+        "additionalProperties": {
+          "$ref": "#/$defs/UserFieldRequest"
+        },
+        "maxProperties": 16,
+        "propertyNames": {
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "title": "Clarifications",
+        "type": "object"
+      },
+      "coverage": {
+        "items": {
+          "$ref": "#/$defs/UnfilledExplanation"
+        },
+        "maxItems": 400,
+        "title": "Coverage",
+        "type": "array"
+      }
+    },
+    "required": [
+      "version",
+      "conditions",
+      "fields",
+      "facts",
+      "coverage"
+    ],
+    "title": "CoverageAwareProposal",
+    "type": "object"
+  },
+  "reading_plan": {
+    "units": [
+      {
+        "context_id": "paragraph:103",
+        "candidate_ids": [
+          "p103.s0"
+        ]
+      },
+      {
+        "context_id": "paragraph:104",
+        "candidate_ids": [
+          "p104.s0"
+        ]
+      },
+      {
+        "context_id": "paragraph:129",
+        "candidate_ids": [
+          "p129.s0",
+          "p129.s1"
+        ]
+      },
+      {
+        "context_id": "paragraph:21",
+        "candidate_ids": [
+          "p21.s0",
+          "p21.s1",
+          "p21.s2",
+          "p21.s3",
+          "p21.s4",
+          "p21.s5",
+          "p21.s6",
+          "p21.s7"
+        ]
+      },
+      {
+        "context_id": "paragraph:53",
+        "candidate_ids": [
+          "p53.s0"
+        ]
+      },
+      {
+        "context_id": "paragraph:57",
+        "candidate_ids": [
+          "p58.s0",
+          "p59.s0",
+          "p60.s0",
+          "p61.s0",
+          "p62.s0",
+          "p63.s0"
+        ]
+      },
+      {
+        "context_id": "table:2",
+        "candidate_ids": [
+          "t2.r1.c0",
+          "t2.r1.c1",
+          "t2.r1.c2",
+          "t2.r1.c3",
+          "t2.r1.c4",
+          "t2.r2.c0",
+          "t2.r2.c1",
+          "t2.r2.c2",
+          "t2.r2.c3",
+          "t2.r2.c4",
+          "t2.r3.c0",
+          "t2.r3.c1",
+          "t2.r3.c2",
+          "t2.r3.c3",
+          "t2.r3.c4",
+          "t2.r4.c0",
+          "t2.r4.c1",
+          "t2.r4.c2",
+          "t2.r4.c3",
+          "t2.r4.c4",
+          "t2.r5.c0",
+          "t2.r5.c1",
+          "t2.r5.c2",
+          "t2.r5.c3",
+          "t2.r5.c4",
+          "t2.r6.c0",
+          "t2.r6.c1",
+          "t2.r6.c2",
+          "t2.r6.c3",
+          "t2.r6.c4"
+        ],
+        "shared_table_anchor_ids": [
+          "paragraph:100",
+          "paragraph:101",
+          "paragraph:59",
+          "paragraph:60",
+          "paragraph:61",
+          "paragraph:62",
+          "paragraph:63",
+          "paragraph:65",
+          "paragraph:67",
+          "paragraph:68",
+          "paragraph:69",
+          "paragraph:70",
+          "paragraph:71",
+          "paragraph:72",
+          "paragraph:73",
+          "paragraph:74",
+          "paragraph:75",
+          "paragraph:76",
+          "paragraph:77",
+          "paragraph:78",
+          "paragraph:79",
+          "paragraph:80",
+          "paragraph:81",
+          "paragraph:82",
+          "paragraph:83",
+          "paragraph:84",
+          "paragraph:85",
+          "paragraph:86",
+          "paragraph:87",
+          "paragraph:88",
+          "paragraph:89",
+          "paragraph:90",
+          "paragraph:91",
+          "paragraph:92",
+          "paragraph:93",
+          "paragraph:94",
+          "paragraph:95",
+          "paragraph:96",
+          "paragraph:97",
+          "paragraph:98",
+          "paragraph:99"
+        ]
+      },
+      {
+        "context_id": "paragraph:27",
+        "candidate_ids": [
+          "p27.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:28",
+        "candidate_ids": [
+          "p28.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:29",
+        "candidate_ids": [
+          "p29.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:30",
+        "candidate_ids": [
+          "p30.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:31",
+        "candidate_ids": [
+          "p31.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:32",
+        "candidate_ids": [
+          "p32.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:33",
+        "candidate_ids": [
+          "p33.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:34",
+        "candidate_ids": [
+          "p34.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:36",
+        "candidate_ids": [
+          "p36.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:65",
+        "candidate_ids": [
+          "p65.cb0",
+          "p65.cb1",
+          "p65.cb2"
+        ]
+      },
+      {
+        "context_id": "paragraph:108",
+        "candidate_ids": [
+          "p108.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:112",
+        "candidate_ids": [
+          "p112.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:114",
+        "candidate_ids": [
+          "p114.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:116",
+        "candidate_ids": [
+          "p116.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:118",
+        "candidate_ids": [
+          "p118.cb0"
+        ]
+      },
+      {
+        "context_id": "paragraph:120",
+        "candidate_ids": [
+          "p120.cb0"
+        ]
+      }
+    ],
+    "source_role_targets": [],
+    "omitted_role_hints": 0,
+    "source_property_lines": [
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Forma giuridica: Societa a responsabilita limitata."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Stato dell'attivita' nel dataset: Attiva."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Natura dell'identificativo fiscale: valore fittizio della fixture, non valido come identificativo fiscale reale; la scheda lo conserva senza correggerlo."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Numero REA simulato: BA - 654321."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Data di costituzione: 27 febbraio 2019."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Data di iscrizione riportata nella visura demo: 14 marzo 2019."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Durata della societa': fino al 31 dicembre 2050."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 1. Identificazione della societa' - dati simulati",
+        "quote": "- Capitale sociale: EUR 50.000,00, interamente versato."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 2. Sedi e contatti aziendali - dati simulati",
+        "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+      },
+      {
+        "chunk_id": -43,
+        "section_header": "## 2. Sedi e contatti aziendali - dati simulati",
+        "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "",
+        "quote": "Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "",
+        "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "",
+        "quote": "- Rapporto tra le sedi: sede operativa coincidente con la sede legale."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "",
+        "quote": "- Ulteriori unita' locali nel dataset: nessuna oltre alla sede operativa indicata."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "",
+        "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "",
+        "quote": "- E-mail aziendale simulata: segreteria@mapi-ingegneria.demo."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "",
+        "quote": "- Telefono aziendale simulato: +39 080 000 2040."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "",
+        "quote": "- Sito web simulato: www.mapi-ingegneria.demo."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "",
+        "quote": "- Cellulare aziendale: non disponibile nel dataset."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "### Ing. Luca Ferri - amministratore unico",
+        "quote": "- Nome: Luca."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "### Ing. Luca Ferri - amministratore unico",
+        "quote": "- Cognome: Ferri."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "### Ing. Luca Ferri - amministratore unico",
+        "quote": "- Nominativo completo: Ing. Luca Ferri."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "### Ing. Luca Ferri - amministratore unico",
+        "quote": "- Carica in Mapi Ingegneria S.r.l.: Amministratore unico."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "### Ing. Luca Ferri - amministratore unico",
+        "quote": "- Data di nomina: 18 aprile 2024."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "### Ing. Luca Ferri - amministratore unico",
+        "quote": "- Durata della carica nel dataset: fino all'approvazione del bilancio 2026."
+      },
+      {
+        "chunk_id": -44,
+        "section_header": "### Ing. Luca Ferri - amministratore unico",
+        "quote": "- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "",
+        "quote": "Data di nomina: 18 aprile 2024."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "",
+        "quote": "- Durata della carica nel dataset: fino all'approvazione del bilancio 2026."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "",
+        "quote": "- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "",
+        "quote": "- Procure, deleghe e dettaglio dei poteri di rappresentanza: non documentati nella scheda."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "### Ing. Elisa Romano - direttore tecnico",
+        "quote": "- Nome: Elisa."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "### Ing. Elisa Romano - direttore tecnico",
+        "quote": "- Cognome: Romano."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "### Ing. Elisa Romano - direttore tecnico",
+        "quote": "- Nominativo completo: Ing. Elisa Romano."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "### Ing. Elisa Romano - direttore tecnico",
+        "quote": "- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "### Ing. Elisa Romano - direttore tecnico",
+        "quote": "- Qualifica professionale nello scenario: Ingegnere."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "### Ing. Elisa Romano - direttore tecnico",
+        "quote": "- Ordine professionale simulato: Ordine degli Ingegneri di Bari."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "### Ing. Elisa Romano - direttore tecnico",
+        "quote": "- Numero di iscrizione professionale simulato: 8421."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "### Ing. Elisa Romano - direttore tecnico",
+        "quote": "- Data di abilitazione, sezione e settore dell'albo: non disponibili."
+      },
+      {
+        "chunk_id": -45,
+        "section_header": "### Ing. Elisa Romano - direttore tecnico",
+        "quote": "- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Arch. Andrea Greco - responsabile qualita'",
+        "quote": "- Nome: Andrea."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Arch. Andrea Greco - responsabile qualita'",
+        "quote": "- Cognome: Greco."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Arch. Andrea Greco - responsabile qualita'",
+        "quote": "- Nominativo completo: Arch. Andrea Greco."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Arch. Andrea Greco - responsabile qualita'",
+        "quote": "- Ruolo in Mapi Ingegneria S.r.l.: Responsabile qualita'."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Arch. Andrea Greco - responsabile qualita'",
+        "quote": "- Dati personali, iscrizione all'albo e poteri di firma: non disponibili."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Ing. Mario Rossi - referente organizzativo della demo",
+        "quote": "- Nome: Mario."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Ing. Mario Rossi - referente organizzativo della demo",
+        "quote": "- Cognome: Rossi."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Ing. Mario Rossi - referente organizzativo della demo",
+        "quote": "- Nominativo completo: Ing. Mario Rossi."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Ing. Mario Rossi - referente organizzativo della demo",
+        "quote": "- Ruolo ipotizzato in questa scheda: Referente organizzativo interno."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Ing. Mario Rossi - referente organizzativo della demo",
+        "quote": "- Compiti nello scenario dimostrativo: raccolta dei documenti aziendali, coordinamento delle informazioni e contatto con il gruppo che prepara le candidature."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Ing. Mario Rossi - referente organizzativo della demo",
+        "quote": "- Poteri di firma, procure e qualifica di legale rappresentante: non attribuiti da questa scheda."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Ing. Mario Rossi - referente organizzativo della demo",
+        "quote": "- Dati personali e iscrizione all'albo: non disponibili."
+      },
+      {
+        "chunk_id": -46,
+        "section_header": "### Ing. Mario Rossi - referente organizzativo della demo",
+        "quote": "La voce generica \"Responsabile: Ing. Mario Rossi\" del profilo iniziale viene qui precisata come referente organizzativo. Non sostituisce l'amministratore unico Luca Ferri o il direttore tecnico Elisa Romano."
+      },
+      {
+        "chunk_id": -47,
+        "section_header": "### Dimensione della struttura - dati simulati",
+        "quote": "- Addetti di Mapi Ingegneria S.r.l. al 31 dicembre 2025: 7 unita'."
+      },
+      {
+        "chunk_id": -47,
+        "section_header": "### Dimensione della struttura - dati simulati",
+        "quote": "- Addetti tecnici al 31 dicembre 2025: 5 unita'."
+      },
+      {
+        "chunk_id": -47,
+        "section_header": "### Dimensione della struttura - dati simulati",
+        "quote": "- Elenco nominativo completo degli addetti e organigramma: non disponibili."
+      },
+      {
+        "chunk_id": -47,
+        "section_header": "## 4. Attivita' e servizi - profilo simulato",
+        "quote": "- Codice ATECO riportato nel dataset simulato: 71.12.10 - Attivita degli studi di ingegneria."
+      },
+      {
+        "chunk_id": -47,
+        "section_header": "## 4. Attivita' e servizi - profilo simulato",
+        "quote": "- Ambito territoriale del profilo: Italia, con operativita' prevalente nelle regioni del Mezzogiorno."
+      },
+      {
+        "chunk_id": -48,
+        "section_header": "### Sistema di gestione qualita' della societa'",
+        "quote": "- Riferimento riportato nella visura demo: ISO 9001:2015."
+      },
+      {
+        "chunk_id": -48,
+        "section_header": "### Sistema di gestione qualita' della societa'",
+        "quote": "- Identificativo del certificato simulato: MAPI-QMS-2024-001."
+      },
+      {
+        "chunk_id": -48,
+        "section_header": "### Sistema di gestione qualita' della societa'",
+        "quote": "- Scadenza simulata: 30 settembre 2027."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "",
+        "quote": "nella visura demo: ISO 9001:2015."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "",
+        "quote": "- Identificativo del certificato simulato: MAPI-QMS-2024-001."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "",
+        "quote": "- Scadenza simulata: 30 settembre 2027."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "",
+        "quote": "- Certificato autentico, organismo emittente e relativo campo di applicazione: non disponibili."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "### Polizza professionale della societa'",
+        "quote": "- Identificativo della polizza simulata: RC-MAPI-2026-018."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "### Polizza professionale della societa'",
+        "quote": "- Massimale simulato: EUR 2.000.000,00."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "### Polizza professionale della societa'",
+        "quote": "- Scadenza simulata: 31 dicembre 2026."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "### Polizza professionale della societa'",
+        "quote": "- Compagnia, condizioni contrattuali e documento di polizza autentico: non disponibili."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "## 6. Indicatori economici - dati esclusivamente simulati",
+        "quote": "- Ricavi complessivi di Mapi Ingegneria S.r.l. per il 2024: EUR 1.080.000,00."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "## 6. Indicatori economici - dati esclusivamente simulati",
+        "quote": "- Ricavi complessivi di Mapi Ingegneria S.r.l. per il 2025: EUR 1.280.000,00."
+      },
+      {
+        "chunk_id": -49,
+        "section_header": "## 6. Indicatori economici - dati esclusivamente simulati",
+        "quote": "- Patrimonio netto di Mapi Ingegneria S.r.l. per il 2025: EUR 410.000,00."
+      },
+      {
+        "chunk_id": -30,
+        "section_header": "",
+        "quote": "Identiﬁcativo demo: MAPI-VIS-2026-001"
+      },
+      {
+        "chunk_id": -31,
+        "section_header": "",
+        "quote": "Identiﬁcativo demo: MAPI-VIS-2026-001"
+      },
+      {
+        "chunk_id": -32,
+        "section_header": "",
+        "quote": "ISO 9001:2015"
+      },
+      {
+        "chunk_id": -32,
+        "section_header": "",
+        "quote": "Scadenza: 30 settembre 2027"
+      },
+      {
+        "chunk_id": -32,
+        "section_header": "",
+        "quote": "Massimale: EUR 2.000.000,00"
+      },
+      {
+        "chunk_id": -32,
+        "section_header": "",
+        "quote": "Scadenza: 31 dicembre 2026"
+      },
+      {
+        "chunk_id": -52,
+        "section_header": "# Mapi Ingegneria S.r.l. — Integrazione anagrafica e societaria (fixture sintetica)",
+        "quote": "**Versione della fixture:** 1.0 — **Data di riferimento:** 15 ottobre 2026."
+      },
+      {
+        "chunk_id": -52,
+        "section_header": "## 1. Dati societari integrativi",
+        "quote": "- **Società:** Mapi Ingegneria S.r.l."
+      },
+      {
+        "chunk_id": -52,
+        "section_header": "## 1. Dati societari integrativi",
+        "quote": "- **Camera di Commercio competente nello scenario:** Bari."
+      },
+      {
+        "chunk_id": -52,
+        "section_header": "## 1. Dati societari integrativi",
+        "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+      },
+      {
+        "chunk_id": -52,
+        "section_header": "## 1. Dati societari integrativi",
+        "quote": "- **Numero REA:** BA-654321 (dato già riportato nella visura demo; **non è** il numero di iscrizione al Registro delle Imprese)."
+      },
+      {
+        "chunk_id": -52,
+        "section_header": "## 1. Dati societari integrativi",
+        "quote": "- **Sede legale — via:** Via Giovanni Amendola."
+      },
+      {
+        "chunk_id": -52,
+        "section_header": "## 1. Dati societari integrativi",
+        "quote": "- **Sede legale — numero civico:** 172/C."
+      },
+      {
+        "chunk_id": -52,
+        "section_header": "## 1. Dati societari integrativi",
+        "quote": "- **Sede legale — CAP:** 70126."
+      },
+      {
+        "chunk_id": -52,
+        "section_header": "## 1. Dati societari integrativi",
+        "quote": "- **Sede legale — comune:** Bari."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "",
+        "quote": "- **Sede legale — via:** Via Giovanni Amendola."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "",
+        "quote": "- **Sede legale — numero civico:** 172/C."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "",
+        "quote": "- **Sede legale — CAP:** 70126."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "",
+        "quote": "- **Sede legale — comune:** Bari."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "",
+        "quote": "- **Sede legale — provincia:** BA."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "",
+        "quote": "- **Sede legale — Paese:** Italia."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "",
+        "quote": "- **Fax aziendale sintetico:** +39 080 000 2041."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "## 2. Amministrazione e rappresentanza della società",
+        "quote": "- **Luca Ferri**: amministratore unico nella visura sintetica del 6 agosto 2026. **Cessazione della carica nello scenario: 1 ottobre 2026.**"
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "## 2. Amministrazione e rappresentanza della società",
+        "quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**. La sua carica deriva da questa integrazione sintetica successiva e non è documentata dalla visura di agosto."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "## 2. Amministrazione e rappresentanza della società",
+        "quote": "La carica societaria non equivale automaticamente alla scelta del firmatario di una specifica domanda: tale scelta resta riferita alla singola pratica."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "### Leonardo Montemurro — anagrafica sintetica",
+        "quote": "- Nome: Leonardo."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "### Leonardo Montemurro — anagrafica sintetica",
+        "quote": "- Cognome: Montemurro."
+      },
+      {
+        "chunk_id": -53,
+        "section_header": "### Leonardo Montemurro — anagrafica sintetica",
+        "quote": "- Luogo di nascita: Lecce (LE)."
+      },
+      {
+        "chunk_id": -54,
+        "section_header": "",
+        "quote": "firmatario di una specifica domanda: tale scelta resta riferita alla singola pratica."
+      },
+      {
+        "chunk_id": -54,
+        "section_header": "### Leonardo Montemurro — anagrafica sintetica",
+        "quote": "- Nome: Leonardo."
+      },
+      {
+        "chunk_id": -54,
+        "section_header": "### Leonardo Montemurro — anagrafica sintetica",
+        "quote": "- Cognome: Montemurro."
+      },
+      {
+        "chunk_id": -54,
+        "section_header": "### Leonardo Montemurro — anagrafica sintetica",
+        "quote": "- Luogo di nascita: Lecce (LE)."
+      },
+      {
+        "chunk_id": -54,
+        "section_header": "### Leonardo Montemurro — anagrafica sintetica",
+        "quote": "- Data di nascita: 14 novembre 1982."
+      },
+      {
+        "chunk_id": -54,
+        "section_header": "### Leonardo Montemurro — anagrafica sintetica",
+        "quote": "- Comune di residenza: Bari (BA)."
+      },
+      {
+        "chunk_id": -54,
+        "section_header": "### Leonardo Montemurro — anagrafica sintetica",
+        "quote": "- Indirizzo di residenza: Via Amedeo 24."
+      },
+      {
+        "chunk_id": -54,
+        "section_header": "### Leonardo Montemurro — anagrafica sintetica",
+        "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+      },
+      {
+        "chunk_id": -54,
+        "section_header": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+        "quote": "**Controllo di coerenza:** quote 30% + 40% + 30% = 100%."
+      },
+      {
+        "chunk_id": -54,
+        "section_header": "## 4. Ruoli tecnici aziendali",
+        "quote": "- **Elisa Romano:**"
+      },
+      {
+        "chunk_id": -55,
+        "section_header": "",
+        "quote": "**Controllo di coerenza:** quote 30% + 40% + 30% = 100%."
+      },
+      {
+        "chunk_id": -55,
+        "section_header": "## 4. Ruoli tecnici aziendali",
+        "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421."
+      },
+      {
+        "chunk_id": -55,
+        "section_header": "## 4. Ruoli tecnici aziendali",
+        "quote": "- **Andrea Greco:** responsabile qualità aziendale, architetto, Ordine degli Architetti di Bari, sezione A, numero 5267."
+      }
+    ],
+    "omitted_property_lines": 0,
+    "meaning": "Reading references only; each value still needs its own validated SOURCE."
+  },
+  "user_context": [
+    {
+      "kind": "recorded_request",
+      "provenance": "USER",
+      "turn_id": 1,
+      "user_quote": "Compila una bozza parziale della domanda Bella. Per questa domanda il firmatario scelto è Leonardo Montemurro. Mapi Ingegneria S.r.l. partecipa come società di ingegneria in forma singola. Verifica nelle SOURCE i dati personali e aziendali: questa scelta non ne prova i valori e non conferisce nuovi poteri. Preferenze di incarico, attestazioni e consensi procedurali, esecutori designati, integrazione delle prestazioni e luogo/data restano da decidere. Non compilare firme o dichiarazioni non confermate."
+    }
+  ]
+}

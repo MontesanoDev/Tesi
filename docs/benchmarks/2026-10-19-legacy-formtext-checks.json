@@ -1,0 +1,40 @@
+{
+  "application_files_changed": [
+    "backend/app/docx_templates.py"
+  ],
+  "other_protected_files_unchanged": 317,
+  "new_test_file": "backend/tests/test_docx_formtext.py",
+  "historical_artifacts_unchanged": 546,
+  "live_storage_files_unchanged": 285,
+  "live_sessions_unchanged": 29,
+  "live_sessions_added": 0,
+  "all_six_original_FORM_hashes_unchanged": true,
+  "LLM_global_prompt_grounding_dialogue_API_unchanged": true,
+  "database_not_modified_by_experiment": true,
+  "provider_calls": 0,
+  "commit_push": false,
+  "offline_regression_network_forbidden": true,
+  "pytest_final": {
+    "passed": 2654,
+    "seconds": 197.46,
+    "log": "tests-full-final.log"
+  },
+  "pytest_targeted": {
+    "passed": 230,
+    "seconds": 15.0,
+    "log": "tests-word-final.log"
+  },
+  "ruff_all_backend_passed": true,
+  "source_and_synthetic_DOCX_tests_are_not_real_chat_benchmarks": true,
+  "Word_desktop_not_tested": true,
+  "render_visual_pages_inspected": {
+    "4_SOURCE": [
+      1,
+      3
+    ],
+    "20_synthetic": [
+      1,
+      3
+    ]
+  }
+}

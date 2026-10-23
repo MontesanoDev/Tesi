@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "application_files_unchanged": 119,
+  "prior_compound_fix_unchanged": true,
+  "three_fresh_real_global_calls": true,
+  "no_frozen_LLM_response_used_for_new_proposals": true,
+  "no_selective_retry": true,
+  "all_artifact_checks": [
+    {
+      "document": "minervino",
+      "new_global_calls": 1,
+      "USER_reply_rounds": 2,
+      "scenario_unchanged": true,
+      "FORM_MODEL_parameters_SOURCE_exact": true,
+      "ordinary_UI_download_exact": true,
+      "DOCX_PDF_SHA256": {
+        "DOCX": "ce6df51bec2cd05b625666fe4323c26dbbf6787dc914d03b656d73e216d6b5cb",
+        "PDF": "6fe451aa14fdd118f5d0b2cda9e93b622596a39654b4d29db4422bac0ee449c1"
+      },
+      "all_actual_writes_reviewed": true,
+      "all_catalogue_destinations_classified": true,
+      "no_MODEL_condition_promoted_by_USER": true
+    },
+    {
+      "document": "cesano",
+      "new_global_calls": 1,
+      "USER_reply_rounds": 2,
+      "scenario_unchanged": true,
+      "FORM_MODEL_parameters_SOURCE_exact": true,
+      "ordinary_UI_download_exact": true,
+      "DOCX_PDF_SHA256": {
+        "DOCX": "e75115320934d2c62f59be0033352451183a926ed438b64dd873b60028d676ad",
+        "PDF": "684b4362800deb0fffa9f301ce3d2635dfaaba0c20baaa0717686f1e07564b89"
+      },
+      "all_actual_writes_reviewed": true,
+      "all_catalogue_destinations_classified": true,
+      "no_MODEL_condition_promoted_by_USER": true
+    },
+    {
+      "document": "craa",
+      "new_global_calls": 1,
+      "USER_reply_rounds": 1,
+      "scenario_unchanged": true,
+      "FORM_MODEL_parameters_SOURCE_exact": true,
+      "ordinary_UI_download_exact": true,
+      "DOCX_PDF_SHA256": {
+        "DOCX": "69edd5aa8dbfca8d61f51fc7062c0734656c843de78623be7eef043a1f2a963a",
+        "PDF": "6b08beb86b379c30645c7e0f80b0f0a2ee29ef2b343f5ffc1451e6be15023fa6"
+      },
+      "all_actual_writes_reviewed": true,
+      "all_catalogue_destinations_classified": true,
+      "no_MODEL_condition_promoted_by_USER": true
+    }
+  ],
+  "proposal_status": "PROPOSED_NOT_ADOPTED"
+}
