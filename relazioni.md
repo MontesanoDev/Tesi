@@ -5336,3 +5336,35 @@ Limiti:
 - copertura bassa su Catanzaro e So.Re.Sa.
 
 Rapporto: docs/candidata-corretta-2026-10-23.md.
+
+## 23 ottobre 2026 — Sprint offline sulla compilazione per sezioni (rev 3)
+
+Nessuna chiamata LLM: rigiochi deterministici delle uscite registrate e test con provider
+simulato. Rapporto: `docs/sprint-sezioni-2026-10-23.md`. Grezzi e strumenti:
+`backend/data/compilation-audit/sprint-sezioni-20261023-01/`.
+
+- **Passo 1, R1** (`rigioco_r1.py`, `valuta_r1.py`):
+  - 25 scritture sbagliate rev 2, tutte accertate; R1 chiude le 7 di Minervino (`p37.*`);
+  - 245/245 corrette preservate con la guardia simulata, 718 scritture corrette di quattro
+    campagne non toccate;
+  - **Alternativa scartata, casella spuntata obbligatoria:** 116 falsi rifiuti.
+  - **Limite:** le altre 18 richiedono la semantica delle sezioni.
+- **Passo 2, sospensioni** (`sospensioni_passo2.py`, `rigioco_passo2.py`):
+  - le 21 di minervino-2 sono non fondate: citano la clausola del direttore tecnico, che governa
+    altre destinazioni;
+  - il criterio M le isola fra 145, senza falsi positivi;
+  - **Rigioco controfattuale:** export +21 solo se il narratore non le risospende.
+  - **Limite:** l'esito reale non è misurato.
+- **Passo 3, ripresa:** 10 scenari deterministici.
+  - **Difetto trovato:** bozza esplicita con una proposta sospesa accettata (200). Corretto in
+    rev 3, il profilo ordinario è invariato e il difetto vi è segnalato.
+- **Verifiche complessive:**
+  - suite 3.740 PASS, Ruff PASS;
+  - codice base e sprint identici su 79 stati salvati;
+  - V14 e K3 185/185 con entrambi i profili;
+  - originali DOCX 17/17.
+- **Limiti delle misure:**
+  - revisione autoriale non indipendente;
+  - rigiochi che non riproducono il modello;
+  - la sicurezza dei rami resta empirica per 18 casi.
+

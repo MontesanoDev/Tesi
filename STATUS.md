@@ -1,5 +1,46 @@
 # Stato di Mapi RAG
 
+## Sprint sulla compilazione per sezioni (rev 3) — 23 ottobre 2026, offline
+
+**Punto di ripresa: decisione dell'utente sulla proposta E2E**
+(`docs/proposta-e2e-sprint-2026-10-23.md`). Nessuna chiamata LLM, nessun push.
+
+- **Branch:** `sprint/2026-10-23-sezioni`, worktree `/home/montesano/tesi-sprint`, base
+  `dd41e2e`.
+- **Commit locali:** uno per passo.
+- **App live:** invariata; profilo ordinario, nessuna variabile `MAPI_*REVISION`.
+- **Rapporto:** `docs/sprint-sezioni-2026-10-23.md`.
+- **Grezzi:** `backend/data/compilation-audit/sprint-sezioni-20261023-01/`.
+
+**Implementato** (opt-in, solo nuove sessioni con `MAPI_GENERATION_REVISION=3` e il proprio flag):
+- **PASSO 1, R1 `branch_scope_revision 1`** (`MAPI_BRANCH_SCOPE_REVISION=1`): una condizione
+  del modello ancorata a un'opzione (casella nativa o simbolo V14) si estende alla continuazione
+  dell'opzione.
+  - **Rigioco:** sbagliate rev 2 esportabili da 25 a 18 (guardia simulata), 245/245 corrette
+    preservate, 0 nuovi falsi rifiuti.
+  - **Limite:** le altre 18 richiedono una semantica delle sezioni, quindi sono documentate come
+    limite.
+- **PASSO 2, `hold_rereview_revision 1`** (`MAPI_HOLD_REREVIEW_REVISION=1`): una sospensione di
+  applicabilità che cita la clausola di un'altra condizione torna una sola volta alla revisione
+  del narratore. Il backend non rilascia nulla.
+  - **minervino-2:** 21/21 sospensioni non fondate marcate, 0 falsi positivi su 145.
+  - **Se non risospese:** l'export aggiunge esattamente le 21.
+- **PASSO 3:** 10 scenari di ripresa testati.
+  - **Difetto trovato e corretto solo in rev 3:** la bozza esplicita via API accettava proposte
+    sospese o non revisionate.
+
+**Verifiche eseguite:**
+- **Suite:** 3.740 PASS alla fine (3.703 dopo il passo 1, 3.717 dopo il passo 2); Ruff PASS.
+- **Rigiochi:** con il codice finale.
+- **Confronto base/sprint:** 79 stati salvati (29 sessioni live, campagne), nessuna differenza.
+- **Test V14, K3, rev 3 e narratore:** 185/185 con entrambi i profili.
+- **Originali DOCX:** 17/17 intatti.
+
+**Rischi residui:**
+- la sicurezza dei rami resta empirica per 18 dei 25 casi;
+- la revisione unica dipende dal modello;
+- la lacuna della bozza esplicita resta nel profilo ordinario: è segnalata, non corretta.
+
 ## Campagna sulla candidata corretta — conclusa, esito favorevole, 23 ottobre 2026
 
 **Punto di ripresa: fermarsi; decisione dell'utente sulla chiusura del lavoro sperimentale.**

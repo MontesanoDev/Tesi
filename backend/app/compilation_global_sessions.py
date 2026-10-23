@@ -803,6 +803,13 @@ def _selected(row, state, request, db):
 
         if set(ids) - narration_source_ids(data):
             raise HTTPException(409, "Sintesi incompleta: proposta non revisionata o sospesa")
+    if data.get("generation_revision") == 3:
+        from app.compilation_global_dialogue import reviewed_unheld_ids
+
+        # Rev 3 candidate: an explicit client selection cannot pass a proposal that the
+        # chat export would exclude because it is unreviewed or held by the narrator.
+        if set(ids) - reviewed_unheld_ids(data):
+            raise HTTPException(409, "Proposta non revisionata dalla sintesi o sospesa")
     from app.compilation_form_applicability import blocked_fields as inapplicable
     from app.compilation_procedural_consent import blocked_fields
     from app.compilation_value_completeness import blocked_fields as incomplete

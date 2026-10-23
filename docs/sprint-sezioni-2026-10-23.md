@@ -249,3 +249,58 @@ guardia dei cicli. Il comportamento reale del narratore alla revisione non è mi
   - flag spento.
 
 **Sensibilità:** con la correzione neutralizzata falliscono i 7 test positivi.
+
+## PASSO 3 — ripresa delle compilazioni segmentate
+
+**Riferimenti:**
+- **Scenari e risultati attesi:** `PASSO3-ATTESI.md`, scritto alle 15:41:39 UTC prima dei test,
+  con hash registrato.
+- **Test:** `backend/tests/test_compilation_rev3_resumption.py`, 10 scenari (23 casi con le
+  parametrizzazioni).
+- **Profilo dei test:** candidata completa: rev 3, dialogo P3, derivazione, recupero del
+  narratore, R1, revisione unica.
+
+**Nessun nuovo orchestratore:** cache per digest della richiesta, retry limitati e recupero del
+narratore sono quelli esistenti.
+
+| # | Scenario | Esito |
+|---|---|---|
+| 1 | Interruzione dopo segmenti validati | FAILED, nessun audit né valore esportabile, cache con i soli 2 segmenti validati, bozza 409 |
+| 2 | Ripresa | 2 segmenti dalla cache, 1 chiamato; bozza 200 con gli stessi gate |
+| 3 | Nessuna duplicazione | una sola chiamata per il segmento mancante; destinazioni uniche nell'audit e nell'export |
+| 4 | SOURCE modificata | nessun segmento dalla cache, 3 chiamate |
+| 5a | Decisioni USER nel digest | digest uguale con le stesse decisioni, diverso con conferma e con revoca, in ogni segmento |
+| 5b | Decisione revocata o condizione cambiata | la destinazione dipendente esce dall'export (bozza 409), quella indipendente resta (bozza 200) |
+| 6 | JSON non valido in un segmento | solo quel segmento fallisce, senza riparazione; 4 valori indipendenti esportabili |
+| 7 | Conflitto fra segmenti | le destinazioni in conflitto vanno in revisione e sono rifiutate se forzate; la proprietà indipendente resta |
+| 8 | Retry esauriti | 2 retry per analisi, tentativi [2, 2, 1]; il segmento indipendente resta; con tutti i segmenti falliti nessun valore |
+| 9 | Narratore fallito due volte | modalità degradata con audit e sospensioni invariati; la ripresa rifà solo la sintesi, senza chiamate di analisi; la sospensione resta |
+| 10 | Export parziale | bozza 200 con le sole destinazioni ammesse; i limiti restano espliciti: riepilogo con pending, segmento fallito, copertura UNASSESSED, report |
+
+### Difetto trovato e corretto (scenario 10)
+
+**Difetto:** la rivalidazione finale lato server (`_selected`, endpoint `global-draft`) non
+controllava revisione e sospensioni del narratore fuori dalla modalità degradata. Un client che
+chiedeva esplicitamente una proposta sospesa otteneva 200 e un DOCX con quel valore.
+
+**Portata:**
+- Chat e UI usano `export_selection`, che la esclude.
+- `generateGlobalDraft` del frontend non è usato da nessun componente.
+- La lacuna esiste in ogni profilo.
+
+**Correzione minima, solo per `generation_revision 3`:** la rivalidazione finale rifiuta (409) gli
+id che `export_selection` non ammetterebbe per revisione o sospensione
+(`reviewed_unheld_ids`, `compilation_global_dialogue.py`).
+
+**Non toccato:** il profilo ordinario, segnalato come rischio residuo.
+
+**Sensibilità:** senza la correzione falliscono i casi dello scenario 10.
+
+**Storico:** sulle scritture SOURCE dei 9 tentativi rev 3 la nuova rivalidazione non avrebbe
+rifiutato nulla.
+
+**Correzioni dei test:**
+- Due attese iniziali erano sbagliate e le ho corrette:
+  - il conflitto coinvolge per costruzione ogni segmento con la stessa proprietà;
+  - la condizione va indicata con l'id rinominato dal merge.
+- Non sono difetti del codice.
