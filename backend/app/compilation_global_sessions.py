@@ -853,6 +853,14 @@ def _selected(row, state, request, db):
     refreshed = {f["candidate_id"]: f for f in fresh["fields"]}
     if any(refreshed[i] != fields[i] for i in ids):
         raise HTTPException(409, "Una SOURCE o una condizione è cambiata: ripeti l'analisi")
+    if data.get("dialogue"):
+        from app.compilation_global_dialogue import reviewed_unheld_ids
+
+        # The chat builds this selection from its persisted state; no manual selection may
+        # pass a proposal the chat export excludes as held or not reviewed by the summary.
+        # A hold is released only through its recorded USER answer or a narrator review.
+        if set(ids) - reviewed_unheld_ids(data):
+            raise HTTPException(409, "Proposta sospesa o non revisionata dalla sintesi")
     from app.compilation_choices import materialize_choices
 
     try:
