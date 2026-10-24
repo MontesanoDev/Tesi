@@ -1,5 +1,55 @@
 # Stato di Mapi RAG
 
+## Compilazione DOCX per sezioni come sistema predefinito — 24 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Decisione definitiva dell'utente, integrata e attivata. Rapporto,
+verifiche e rollback: `docs/integrazione-compilazione-sezioni-2026-10-24.md`.
+
+- **Profilo:**
+  - un solo profilo canonico per le nuove sessioni, `backend/app/compilation_profile.py`
+    (`sezioni-2026-10-24`);
+  - contenuto: sezioni rev 3, V14, K3, stato derivato, dialogo P3, recupero del narratore, R1,
+    tabelle condizionali, riesame rev 2, veto API;
+  - nessuna variabile necessaria; le vecchie `MAPI_*_REVISION` sono ignorate;
+  - le sessioni esistenti conservano i loro flag.
+- **Interfaccia:**
+  - solo «Compilazione DOCX», stati reali senza percentuali;
+  - segmenti falliti dichiarati incompleti;
+  - orario di ripresa dopo un crash, quando il lease non è ancora scaduto.
+- **Commit** sul branch `integrazione/2026-10-24-compilazione-sezioni`, base `670e69c`:
+  - `6d7477c` profilo;
+  - `0933353` interfaccia;
+  - `dc640fc` etichetta delle sezioni solo per sessioni rev 3;
+  - più la documentazione.
+- **Verifiche:**
+  - backend 3860 PASS, Ruff PASS; frontend 152 PASS, oxlint, build;
+  - E2E simulati 18/18 e continuation 4/4; `compilation-clarifications` 2 fallimenti
+    preesistenti;
+  - rigioco 25 controesempi: 13 ancora esportabili con guardia simulata, 245/245 corrette;
+  - 162 esportazioni storiche senza rifiuti;
+  - 29 sessioni live invariate;
+  - bundle senza etichette sperimentali.
+- **Attivazione nel working tree ordinario** (`/home/montesano/tesi`, senza commit
+  sul branch dell'utente):
+  - patch applicate, 370 file uguali a `dc640fc`, suite ripetute;
+  - `./start.sh` su 8000 e 5173;
+  - il processo reale crea sessioni con `SECTIONS`, verificato via API senza LLM con un progetto
+    temporaneo eliminato;
+  - dati e originali invariati.
+- **Rollback di emergenza:** `MAPI_COMPILATION_PROFILE=storico` e riavvio. Il revert del codice
+  nel working tree ordinario toglie anche il veto API e va usato solo dopo aver chiuso le
+  sessioni create per sezioni.
+- **Limiti:**
+  - 13/25 errori storici dei rami non bloccati deterministicamente;
+  - attesa del lease dopo un crash;
+  - riesame e tabelle dimostrati solo offline;
+  - costo da 1,8 a 4,1 volte la monolitica;
+  - So.Re.Sa. invariata.
+- **Non eseguiti:**
+  - nessuna inferenza, campagna o micro-test DeepSeek, solo proposto;
+  - nessun merge in `main`.
+- **Grezzi:** `backend/data/compilation-audit/integrazione-sezioni-20261024-01/`.
+
 ## Campagna E2E della candidata incrementale — conclusa, 24 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Nessun nuovo sprint senza decisione dell'utente. Candidata non

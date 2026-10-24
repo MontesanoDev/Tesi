@@ -5464,3 +5464,28 @@ Branch sperimentale pubblicabile dopo controllo; nessun merge o adozione live.
   - attesa del lease di circa 25 minuti dopo un crash.
 - **Rapporto:** `docs/campagna-e2e-incrementale-2026-10-24.md`.
 
+## 24 ottobre 2026 — Compilazione DOCX per sezioni come sistema predefinito (integrazione)
+
+- **Decisione:** dell'utente. Nessuna inferenza e nessuna nuova campagna: verifiche
+  deterministiche e con provider simulati.
+- **Profilo:**
+  - `compilation_profile.py`, `SECTIONS`: backend 13, V14, K3, derivazione 1, dialogo 1,
+    generazione 3, recupero del narratore 1, R1, tabelle 1, riesame 2;
+  - interruttore di emergenza `MAPI_COMPILATION_PROFILE=storico`, uguale alle regole precedenti.
+- **Commit:**
+  - `6d7477c`, `0933353`, `dc640fc`;
+  - suite 3860 PASS, frontend 152 PASS;
+  - E2E simulati 18/18 più 4/4.
+- **Rigioco dei 25 controesempi** con il codice integrato:
+  - errori esportabili 13 con guardia simulata (7 con le sole ricevute registrate);
+  - corrette conservate 245/245;
+  - 0 nuovi falsi rifiuti.
+- **Confronti:**
+  - 162 esportazioni storiche, 0 rifiuti;
+  - 90 stati con esiti identici alla candidata `3ec0af0`.
+- **Processo reale:**
+  - la sessione creata via API senza analisi ha i flag `SECTIONS`;
+  - 29 sessioni e 273 file archiviati invariati.
+- **Limiti:** l'accuratezza semantica non è stata misurata qui; restano validi gli esiti e i
+  limiti della campagna incrementale (n = 6, revisione non indipendente).
+- **Rapporto:** `docs/integrazione-compilazione-sezioni-2026-10-24.md`.

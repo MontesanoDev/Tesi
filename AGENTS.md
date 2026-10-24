@@ -66,6 +66,10 @@ embedding hanno configurazioni distinte. Il modello predefinito degli embedding
   una sola chiamata; la vecchia modalità a gruppi e le riparazioni automatiche
   sono state rimosse. La CompilationSession V1, autorizzata successivamente,
   itera sullo stato persistente con passi limitati, sempre da un solo originale.
+  Dal 24 ottobre le nuove sessioni usano un solo profilo per sezioni, definito in
+  `compilation_profile.py` (la UI lo chiama soltanto «Compilazione DOCX»); le sessioni
+  esistenti conservano il loro profilo e `MAPI_COMPILATION_PROFILE=storico` è solo
+  un rollback di emergenza lato server, non una modalità da esporre.
   Dal 13 ottobre le nuove compilazioni della chat usano il motore globale V12:
   una chiamata per il catalogo, proposta persistita, dialogo USER ed export
   esplicito di una bozza parziale dall'originale. La breve sintesi AI è separata
