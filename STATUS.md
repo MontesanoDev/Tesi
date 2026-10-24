@@ -1,5 +1,29 @@
 # Stato di Mapi RAG
 
+## Campagna E2E della candidata incrementale — conclusa, 24 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Nessun nuovo sprint senza decisione dell'utente. Candidata non
+adottata, nessun merge in `main`, app live invariata. Rapporto:
+`docs/campagna-e2e-incrementale-2026-10-24.md`.
+
+- **Svolgimento:**
+  - 6/6 tentativi, 5 DOCX: minervino-1 è un fallimento infrastrutturale, frontend spento, 0
+    chiamate;
+  - 101 scritture, tutte DIMOSTRATA (revisione autoriale, non indipendente: Codex e poi Claude);
+  - 0 aggiramenti, 0 rami sbagliati, 0 risposte 409;
+  - 1.959.366 token su un tetto di 3,0 M, circa 0,31 USD.
+- **Controllo delle tabelle:** non esercitato, il modello non ha proposto la sezione 5.c.
+- **Riesame SOURCE:** 0 campi recuperati; 1 marcatura senza revisione successiva.
+- **Ripresa dopo l'interruzione programmata:** riuscita, con cache riusata e senza duplicazioni;
+  attesa del lease circa 25 minuti.
+- **Copertura mediana:** Catanzaro 52%, Minervino 92% (1 DOCX), So.Re.Sa. 13%, Cesano 100%.
+- **Grezzi:**
+  - `backend/data/compilation-audit/incrementale-e2e-20261024-01/`;
+  - `…-rapporto/`.
+- **Risultati:** `benchmark ufficiale/incrementale-e2e-20261024-01/`.
+- **Backup:** `backend/data/compilation-audit/incrementale-e2e-backup-20261024/` e
+  `D:\Backup-tesi-2026-10-23\incrementale-e2e-20261024\`.
+
 ## Interventi incrementali offline — aggiornamento 24 ottobre 2026
 
 Nuovo lavoro autorizzato su `miglioramenti/2026-10-23-docx-offline`, worktree

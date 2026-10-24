@@ -5441,3 +5441,26 @@ riesaminabili non equivalgono a quattordici recuperi già dimostrati dal modello
 Rapporto `docs/docx-incrementale-2026-10-23.md`; proposta E2E separata
 `docs/proposta-e2e-incrementale-2026-10-24.md`, non avviata e da autorizzare.
 Branch sperimentale pubblicabile dopo controllo; nessun merge o adozione live.
+
+## 24 ottobre 2026 — Campagna E2E della candidata incrementale (6 tentativi, autorizzata)
+
+- **Preregistrazione:** `PREREG-INCREMENTALE-E2E.md`, congelata alle 10:37 UTC.
+- **Ordine:** catanzaro-1, minervino-1, soresa2023-1, cesano-1, catanzaro-2, minervino-2; con
+  interruzione programmata in minervino-2.
+- **Esiti:**
+  - 5/6 DOCX: minervino-1 è un fallimento DRIVER, frontend spento, 0 chiamate, non ripetuto;
+  - 101 scritture DIMOSTRATA, 0 dubbie, 0 indebite;
+  - 0 rami sbagliati, 0 aggiramenti;
+  - 1,96 M token, circa 0,31 USD.
+- **Effetti delle correzioni dal vivo:**
+  - controllo delle tabelle non esercitato, nessuna proposta 5.c;
+  - riesame SOURCE non esercitato, 0 recuperi;
+  - ripresa riuscita, con cache del segmento 1 e 4 segmenti chiamati.
+- **Omissioni:**
+  - So.Re.Sa.: le stesse sospensioni non fondate sulla partecipazione singola;
+  - Minervino: 2 campi rinviati dall'USER.
+- **Limiti:**
+  - revisione non indipendente; n = 6;
+  - attesa del lease di circa 25 minuti dopo un crash.
+- **Rapporto:** `docs/campagna-e2e-incrementale-2026-10-24.md`.
+
