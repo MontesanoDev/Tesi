@@ -109,8 +109,76 @@ promessa di generalizzazione universale.
 
 Suite completa: **3775 PASS in 351,19 s**, Ruff PASS. Test nuovi: 25 casi,
 compresi export positivo/negativo, strutture ambigue e flag. Il replay finale
-conferma le stesse 245 scritture corrette. Rollback da registrare dopo il commit.
+conferma le stesse 245 scritture corrette. Commit:
+`480e7e52b3af12ba0ee4ccc6d8c2912588839c39`. Rollback verificato in
+`tesi-docx-rollback-p2`: revert `7121d99`, albero identico alla priorità 1 e
+riproduzione tornata a 2 FAIL / 2 PASS. Nessuna modifica a sessioni o database.
 Rollback: revert del commit dedicato; nessuna migrazione. Rimuovere solo la
 variabile d'ambiente disabilita il flag nelle nuove sessioni, non in quelle che
 lo hanno già persistito. Il revert elimina il comportamento anche per tali
 sessioni conservandone i dati e la leggibilità.
+
+## Priorità 3: una sola rilettura delle prove SOURCE già collegate
+
+Inventario: 143 sospensioni attive nei cinque insiemi di stati finali disponibili,
+di cui 90 SOURCE. Sono stati finali, non tutti gli episodi di sospensione: non si
+confrontano direttamente con i 145 episodi contati nel rapporto dello sprint.
+Il sottoinsieme dello sprint comprende 24 sospensioni attive:
+
+| Caso | Sospensioni | Diagnosi e intervento |
+|---|---:|---|
+| Minervino-1 | 6 | Il narratore cita la riga dei soci ma ne trascura intestazione e ruolo già collegati. Una rilettura con il record completo. |
+| Minervino-2 | 8 tecnici | Il FORM chiede il ruolo aziendale di responsabile della progettazione/direttore tecnico; il dubbio aggiunge una designazione per la domanda. Una rilettura con FORM e ruolo SOURCE. |
+| Minervino-2 | 1 firmatario | Binding `review_required` e dubbio sulla carica corrente: escluso dalla rilettura automatica. |
+| Catanzaro-1 | 4 | Dubbi di applicabilità, con decisioni USER pertinenti ma senza l'ancoraggio esatto richiesto dal criterio precedente. Nessun rilascio. |
+| So.Re.Sa.-1 | 5 | Analogo problema di ambito della scelta individuale; nessun rilascio. |
+
+La diagnosi sui tecnici corregge l'interpretazione prudenziale del rapporto
+precedente: nel paragrafo 50 del FORM esaminato non si trova il requisito di una
+nuova designazione per la gara. Questo non autorizza a ignorare una nomina
+specifica quando un altro FORM la richiede.
+
+Modifica opt-in `MAPI_HOLD_REREVIEW_REVISION=2`, soltanto con generazione rev 3.
+Si riusa la finestra di revisione già esistente, senza nuova chiamata autonoma:
+alla successiva sintesi il narratore riceve intestazione/colonne/riga del record,
+ruolo e relative evidenze FORM/SOURCE. La proposta deve essere ammissibile ai
+gate correnti, con fatto persona grounded e binding letterale senza errori,
+ruoli richiesto/documentato coincidenti. Il dubbio deve citare esattamente la
+riga univoca oppure nominare il ruolo già collegato. Quest'ultimo criterio è
+un motivo per rileggere, non una prova che il dubbio sia infondato.
+
+Nessun rilascio del backend: il campo rimane sospeso fino alla rilettura. Una
+seconda sospensione è definitiva per questa revisione. Prove modificate o
+condizioni revocate impediscono il riuso del controllo preparato. I flag delle
+sessioni precedenti, il criterio rev 1 e tutti i gate di export sono conservati.
+
+Riproduzione prima della modifica: 2 FAIL / 2 PASS (manca la rilettura nel nuovo
+profilo, il vecchio profilo è preservato). Dopo: 123 test mirati PASS, compresi
+release/nuova sospensione, revisione una sola volta, prove cambiate, condizioni
+revocate, riferimenti invalidi e API. Il rigioco degli stati reali, con entrambe
+le risposte simulate del narratore, verifica:
+
+- il solo accodamento non cambia alcuna selezione;
+- se il narratore rilascia i dubbi, Minervino-1 passa da 46 a 52 SOURCE e
+  Minervino-2 da 51 a 59; se li conferma, restano rispettivamente 46 e 51;
+- firmatario, quattro sospensioni Catanzaro e cinque So.Re.Sa. restano protetti;
+- le selezioni USER restano identiche e non si riapre un terzo riesame.
+
+Sono controfattuali offline, **non 14 recuperi dimostrati con DeepSeek**.
+Nessun miglioramento reale della copertura o del costo è ancora misurato.
+Restano possibili sospensioni superflue fuori dai criteri, e la rilettura può
+confermare anche un dubbio superfluo. Non si sostituisce una decisione del
+narratore con un'assunzione del backend.
+
+Il rigioco finale preserva 245/245 scritture corrette con condizioni soddisfatte
+e mantiene 13/25 negativi ancora ammissibili: nessuna regressione di ramo
+introdotta dalla rilettura. Dati in `out/p3-recorded-replay.json`,
+`out/p3-preservation.log`, `out/p3-hold-inventory-role.json` nell'audit locale.
+
+Suite completa **3796 PASS in 351,38 s**, Ruff PASS. I 21 test della nuova
+rilettura passano anche dopo averne reso la fixture indipendente dal fix sulle
+tabelle. Il controllo storico finale conferma 210 stati / 157 esportazioni
+senza nuove esclusioni. Nessuna migrazione. Disattivare il flag torna al profilo
+precedente nelle nuove sessioni; il revert ripristina il comportamento anche
+per quelle che hanno persistito la revisione 2. Non annulla scritture o
+decisioni già registrate: queste restano sottoposte ai controlli ordinari.

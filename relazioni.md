@@ -5395,7 +5395,7 @@ Worktree dedicato `tesi-docx-offline`, base `ff0d4f9`. Riutilizzato il commit
 `4890daa`, senza riscrivere il fix. Riproduzione prima: 8 FAIL / 2 PASS; dopo:
 62 test mirati PASS. Preservate 157 esportazioni storiche e 245 scritture corrette
 nel replay con condizioni soddisfatte. Suite completa 3747 PASS + 3 casi storici PASS separati; Ruff PASS.
-Rollback da registrare dopo il commit.
+Commit `4554ae1`; rollback verificato, albero identico alla base dello sprint.
 Nessuna inferenza o adozione. Dettagli in `docs/docx-incrementale-2026-10-23.md`.
 
 ## 24 ottobre 2026 — Applicabilità delle tabelle, verifica offline conclusa
@@ -5407,3 +5407,17 @@ bloccati, 245/245 scritture corrette preservate alle stesse condizioni.
 Prima: 2 FAIL/2 PASS nella riproduzione; dopo: suite 3775 PASS e Ruff PASS.
 Restano 13 controesempi non chiusi deterministicamente. Nessuna inferenza o
 adozione live. Dettagli in `docs/docx-incrementale-2026-10-23.md`.
+
+## 24 ottobre 2026 — Rilettura mirata dei dubbi SOURCE, offline
+
+Inventario di 143 hold attivi, 90 SOURCE. Nei dati dello sprint, 6 campi soci e
+8 tecnici di Minervino hanno prove di ruolo già collegate che meritano una sola
+rilettura del narratore. Il FORM esaminato chiede il ruolo aziendale, senza la
+nuova designazione per la gara ipotizzata nel dubbio. Il conflitto sul firmatario
+e 9 hold di applicabilità Catanzaro/So.Re.Sa. restano esclusi.
+Nuovo flag `MAPI_HOLD_REREVIEW_REVISION=2`, solo rev 3: nessun rilascio backend,
+seconda sospensione definitiva, invalidazione delle prove cambiate. Prima:
+2 FAIL/2 PASS; 123 test mirati dopo PASS. Rigioco delle due risposte simulate:
+14 rilasci se il narratore li approva, zero se conferma il dubbio. Non sono
+recuperi misurati con un modello reale. Suite completa 3796 PASS, Ruff PASS;
+21 test della rilettura ripetuti con fixture indipendente dalla priorità 2.

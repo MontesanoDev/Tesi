@@ -581,7 +581,7 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
     proposal's own context, a repeated or an unresolvable reference (irregular) keeps
     the proposals held, without any automatic release.
     """
-    from app.compilation_hold_rereview import due, enabled, foreign_condition
+    from app.compilation_hold_rereview import due, enabled, foreign_condition, source_check
     from app.requirement_checks import contains_form_span
 
     irregular = irregular or {"invalid_references": [], "repeated_references": {}}
@@ -631,6 +631,11 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
                 rereview and review.blocker == "applicability") else None
             if foreign:
                 notes[cid].update(misattributed_condition=foreign, rereview="pending")
+        check = source_check(data, proposals[review.proposal_slot - 1], review.model_dump()) if (
+            rereview and not unresolved and not repeated and
+            records.get(cid, {}).get("rereview") != "done") else None
+        if check:
+            notes[cid].update(source_rereview=check, rereview="pending")
         if cid in reviewing:
             notes[cid]["rereview"] = "done"  # A second hold is final: no further re-review.
         if repeated:
@@ -708,8 +713,7 @@ def model_context(data, pool):
     audited = {f["candidate_id"]: f for f in audit.get("fields", [])}
     proposals = _review_window(data)
     applicability, condition_slots = _applicability_contexts(data, proposals, audited)
-    from app.compilation_hold_rereview import NOTE as REREVIEW_NOTE
-    from app.compilation_hold_rereview import due
+    from app.compilation_hold_rereview import context_note, due
 
     rereview = due(data)
     role_contexts, role_slots, proposal_roles = [], {}, {}
@@ -736,7 +740,8 @@ def model_context(data, pool):
                  f["candidate_id"], {"status": "held", "reason_status": "not_recorded"}).items()
                  if k in {"status", "reason_status", "blocker", "reason", "missing_information",
                           "evidence_quote"}} | (
-                {"backend_check": REREVIEW_NOTE} if f["candidate_id"] in rereview else {})}
+                {"backend_check": context_note(data, f["candidate_id"])}
+                if f["candidate_id"] in rereview else {})}
             if f["candidate_id"] in dialogue.get("held_candidate_ids", []) else {}),
          "deferred": any(answers.get("condition:" + c, {}).get("action") in {
              "SKIP", "UNKNOWN", "REFUSE"} for c in f["conditions"]),

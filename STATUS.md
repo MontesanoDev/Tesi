@@ -1,6 +1,6 @@
 # Stato di Mapi RAG
 
-## Interventi incrementali offline — 23 ottobre 2026
+## Interventi incrementali offline — aggiornamento 24 ottobre 2026
 
 Nuovo lavoro autorizzato su `miglioramenti/2026-10-23-docx-offline`, worktree
 `/home/montesano/tesi-docx-offline`, base sprint `ff0d4f9`. Priorità 1: integrato
@@ -8,7 +8,13 @@ il codice dell’hotfix API già esistente (`4890daa`); 62 test mirati PASS, sui
 Commit priorità 1: `4554ae1`; rollback verificato (albero identico a `ff0d4f9`).
 Priorità 2: nuova protezione opt-in `MAPI_TABLE_SCOPE_REVISION=1` sulle intestazioni
 condizionali di tabella: controesempi bloccati 7 → 12 su 25, corrette 245/245.
-Suite 3775 PASS, Ruff PASS; commit e rollback della priorità 2 in preparazione.
+Suite 3775 PASS, Ruff PASS; commit `480e7e5`, rollback verificato
+(albero identico a `4554ae1`).
+Priorità 3: nuova revisione opt-in `MAPI_HOLD_REREVIEW_REVISION=2` per rileggere
+una sola volta alcuni dubbi SOURCE con fatto/ruolo già collegati. 123 test mirati
+PASS; rigioco: 6 campi soci e 8 tecnici di Minervino riesaminabili, nessun
+rilascio del backend. Il recupero reale dipenderà dal narratore e non è misurato.
+Suite completa 3796 PASS, Ruff PASS; poi commit/rollback e verifica della ripresa.
 Nessuna chiamata LLM, E2E o adozione live. Rapporto: `docs/docx-incrementale-2026-10-23.md`.
 
 

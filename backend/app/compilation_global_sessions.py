@@ -58,8 +58,8 @@ def initial_state(layout):
             and os.environ.get("MAPI_BRANCH_SCOPE_REVISION") == "1"):
         experiment["branch_scope_revision"] = 1
     if (experiment.get("generation_revision") == 3
-            and os.environ.get("MAPI_HOLD_REREVIEW_REVISION") == "1"):
-        experiment["hold_rereview_revision"] = 1
+            and os.environ.get("MAPI_HOLD_REREVIEW_REVISION") in {"1", "2"}):
+        experiment["hold_rereview_revision"] = int(os.environ["MAPI_HOLD_REREVIEW_REVISION"])
     if (experiment.get("generation_revision") == 3
             and os.environ.get("MAPI_TABLE_SCOPE_REVISION") == "1"):
         experiment["table_scope_revision"] = 1
