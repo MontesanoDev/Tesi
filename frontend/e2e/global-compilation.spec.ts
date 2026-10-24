@@ -115,7 +115,7 @@ test('global compilation in chat, explicit partial export and refresh', async ({
   await composer.fill('me lo compili?')
   await page.getByRole('button', { name: 'Invia', exact: true }).click()
   await expect(page.getByRole('status', { name: 'Elaborazione in corso' }))
-    .toHaveText('Analisi del documento e compilazione delle sezioni…')
+    .toHaveText('Analizzo il modulo…')
   expect(exports).toBe(0)
   release()
   await expect(page.getByText('Ho trovato denominazione e recapiti nelle fonti. La partecipazione è come società?')).toBeVisible()
