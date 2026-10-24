@@ -5,7 +5,10 @@
 Nuovo lavoro autorizzato su `miglioramenti/2026-10-23-docx-offline`, worktree
 `/home/montesano/tesi-docx-offline`, base sprint `ff0d4f9`. Priorità 1: integrato
 il codice dell’hotfix API già esistente (`4890daa`); 62 test mirati PASS, suite 3747 PASS + 3 casi storici PASS separati, Ruff PASS.
-Rollback da registrare dopo il commit.
+Commit priorità 1: `4554ae1`; rollback verificato (albero identico a `ff0d4f9`).
+Priorità 2: nuova protezione opt-in `MAPI_TABLE_SCOPE_REVISION=1` sulle intestazioni
+condizionali di tabella: controesempi bloccati 7 → 12 su 25, corrette 245/245.
+Suite 3775 PASS, Ruff PASS; commit e rollback della priorità 2 in preparazione.
 Nessuna chiamata LLM, E2E o adozione live. Rapporto: `docs/docx-incrementale-2026-10-23.md`.
 
 

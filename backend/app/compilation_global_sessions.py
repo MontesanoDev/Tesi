@@ -60,6 +60,9 @@ def initial_state(layout):
     if (experiment.get("generation_revision") == 3
             and os.environ.get("MAPI_HOLD_REREVIEW_REVISION") == "1"):
         experiment["hold_rereview_revision"] = 1
+    if (experiment.get("generation_revision") == 3
+            and os.environ.get("MAPI_TABLE_SCOPE_REVISION") == "1"):
+        experiment["table_scope_revision"] = 1
     return {"phase": "PENDING", "backend_revision": 13, "option_authorization_revision": 1,
             "attribution_safety_revision": 1, **experiment,
             "candidate_count": len(catalog["candidates"]),
@@ -78,8 +81,10 @@ def review_fields(data):
     from app.compilation_procedural_consent import accepted, requirements
     from app.compilation_scope_review import blocked_source_fields
     from app.compilation_segments import unassessed_fields, unverified_fields
+    from app.compilation_table_scope import blocked_fields as table_scope_blocked
     from app.compilation_value_completeness import blocked_fields as incomplete
 
+    table_unknown = table_scope_blocked(data)
     form_blocked = inapplicable(data)
     # Owner section not analyzed or local clause uncertain: no SOURCE write, but no FORM
     # verdict either (USER may fill).
@@ -140,6 +145,9 @@ def review_fields(data):
                 if field["candidate_id"] in incomplete_fields else []) + (
                 ["Sezione del modulo non analizzata: applicabilità non accertata"]
                 if field["candidate_id"] in unassessed else
+                ["Applicabilità dell’intestazione FORM non accertata: "
+                 "condizione assente o non collegata"]
+                if field["candidate_id"] in table_unknown else
                 ["Ambito della decisione USER non verificato o non più coerente con il modulo"]
                 if field["candidate_id"] in scope_blocked else
                 ["Condizioni del paragrafo FORM dichiarate incerte dal modello"]
@@ -278,7 +286,13 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
         from app.compilation_branch_scope import enabled, propagate
 
         # The claimed public state omits the catalog: rebuild it from the same original.
-        return propagate(audit, build_compilation_catalog(layout)) if enabled(data) else audit
+        catalog = build_compilation_catalog(layout)
+        if enabled(data):
+            audit = propagate(audit, catalog)
+        from app import compilation_table_scope
+
+        return compilation_table_scope.apply(audit, catalog) if (
+            compilation_table_scope.enabled(data)) else audit
     audit = validate_global_proposal(raw, layout, project_id, sources,
                                      expected_version=expected_version)
     if data.get("generation_revision") == 1 and report.is_file():
@@ -657,7 +671,7 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "attribution_safety_revision", "dialogue_revision",
                          "generation_revision", "derivation_revision",
                          "narration_recovery_revision", "branch_scope_revision",
-                         "hold_rereview_revision"):
+                         "hold_rereview_revision", "table_scope_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:

@@ -5397,3 +5397,13 @@ Worktree dedicato `tesi-docx-offline`, base `ff0d4f9`. Riutilizzato il commit
 nel replay con condizioni soddisfatte. Suite completa 3747 PASS + 3 casi storici PASS separati; Ruff PASS.
 Rollback da registrare dopo il commit.
 Nessuna inferenza o adozione. Dettagli in `docs/docx-incrementale-2026-10-23.md`.
+
+## 24 ottobre 2026 — Applicabilità delle tabelle, verifica offline conclusa
+
+Regola strutturale opt-in: intestazione condizionale esplicita in tabella non
+editabile e tabella dati immediatamente seguente. Non inventa condizioni; se la
+condizione manca, SOURCE e USER restano bloccati. Cinque errori storici aggiuntivi
+bloccati, 245/245 scritture corrette preservate alle stesse condizioni.
+Prima: 2 FAIL/2 PASS nella riproduzione; dopo: suite 3775 PASS e Ruff PASS.
+Restano 13 controesempi non chiusi deterministicamente. Nessuna inferenza o
+adozione live. Dettagli in `docs/docx-incrementale-2026-10-23.md`.

@@ -91,7 +91,9 @@ def blocked_source_fields(data):
         return set()
     audit = data.get("audit") or {}
     answers = (data.get("dialogue") or {}).get("answers", {})
-    blocked = set()
+    from app.compilation_table_scope import blocked_fields
+
+    blocked = blocked_fields(data)
     for field in audit.get("fields", []):
         cid = field["candidate_id"]
         for c in field.get("conditions", []):
