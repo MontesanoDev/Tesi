@@ -1,5 +1,26 @@
 # Stato di Mapi RAG
 
+## Micro-test E2E della Compilazione DOCX predefinita (Cesano) — concluso, 24 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Un solo tentativo autorizzato, nessun altro test. Rapporto:
+`docs/microtest-e2e-predefinito-2026-10-24.md`.
+
+- **Esito:** DOCX prodotto dall'interfaccia ordinaria, profilo `sezioni-2026-10-24` verificato a
+  ogni chiamata.
+  - **Scritture:** 10 destinazioni, tutte DIMOSTRATA: 4 testi, 1 checkbox scelta dall'USER, 5
+    deselezioni come effetto della scelta esclusiva. Revisione autoriale, non indipendente.
+  - **Nucleo v3:** 4/4, più la decisione USER attesa `p19.cb0`, che in cesano-1 mancava.
+  - **Costi e tempi:** 163.006 token su 300.000, circa 0,033 USD, 189 s; 2 segmenti, 0 retry.
+- **Differenze d'interfaccia:**
+  - «Sto lavorando…» per 2-6 s durante l'interpretazione di ogni messaggio;
+  - «Preparazione del DOCX…» non compare, perché l'export avviene nella stessa richiesta.
+- **Controlli non esercitati da Cesano:** R1, tabelle, riesame, ripresa.
+- **Scostamento dichiarato:** backend avviato da un osservatore (stesso codice, `.env` e database;
+  senza `--reload`) per il budget vincolante; poi app riportata a `./start.sh`.
+- **Pulizia:** progetto temporaneo copiato ed eliminato; 29 sessioni e 273 file invariati.
+- **Grezzi:** `backend/data/compilation-audit/microtest-predefinito-20261024-01/`.
+- **Risultati:** `benchmark ufficiale/microtest-predefinito-20261024-01/`.
+
 ## Compilazione DOCX per sezioni come sistema predefinito — 24 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Decisione definitiva dell'utente, integrata e attivata. Rapporto,

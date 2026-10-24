@@ -5489,3 +5489,25 @@ Branch sperimentale pubblicabile dopo controllo; nessun merge o adozione live.
 - **Limiti:** l'accuratezza semantica non è stata misurata qui; restano validi gli esiti e i
   limiti della campagna incrementale (n = 6, revisione non indipendente).
 - **Rapporto:** `docs/integrazione-compilazione-sezioni-2026-10-24.md`.
+
+## 24 ottobre 2026 — Micro-test E2E della Compilazione DOCX predefinita (Cesano, 1 tentativo)
+
+- **Configurazione:**
+  - app ordinaria (codice `dc640fc`), scenario e SOURCE di cesano-1 invariati;
+  - DeepSeek `deepseek-flash`, tetto di 300.000 token;
+  - harness congelato prima delle chiamate.
+- **Esito:**
+  - DOCX scaricato e identico all'archiviato;
+  - 4/4 valori testuali visibili nel PDF.
+- **Scritture:**
+  - 5 positive e 5 deselezioni di effetto, tutte DIMOSTRATA;
+  - 0 dubbie, 0 indebite.
+- **Rispetto a cesano-1:**
+  - stesso nucleo 4/4, in più la checkbox «Società di Ingegneria» attesa dal riferimento;
+  - 163.006 token contro 175.331, 189 s contro 197 s;
+  - richieste di segmento identiche.
+- **Limiti:**
+  - n = 1, revisione non indipendente;
+  - R1, tabelle, riesame e ripresa non esercitati;
+  - «Preparazione del DOCX…» non visibile.
+- **Rapporto:** `docs/microtest-e2e-predefinito-2026-10-24.md`.
