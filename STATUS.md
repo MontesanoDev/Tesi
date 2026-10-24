@@ -14,7 +14,18 @@ Priorità 3: nuova revisione opt-in `MAPI_HOLD_REREVIEW_REVISION=2` per rilegger
 una sola volta alcuni dubbi SOURCE con fatto/ruolo già collegati. 123 test mirati
 PASS; rigioco: 6 campi soci e 8 tecnici di Minervino riesaminabili, nessun
 rilascio del backend. Il recupero reale dipenderà dal narratore e non è misurato.
-Suite completa 3796 PASS, Ruff PASS; poi commit/rollback e verifica della ripresa.
+Commit `3ec0af0`, suite 3796 PASS, Ruff PASS; rollback verificato.
+Priorità 4: stessi dieci scenari di ripresa su entrambi i profili, 46 PASS,
+nessuna modifica applicativa. Suite finale 3819 PASS, Ruff PASS.
+Revert selettivi: rimosso ciascun fix, gli altri superano rispettivamente
+69 / 54 / 58 test; nel revert delle tabelle è documentato il conflitto locale
+fra i due flag adiacenti. Nessuna migrazione o perdita di sessioni.
+Restano 13/25 errori storici non bloccati deterministicamente; il recupero reale
+del narratore non è dimostrato. Ripresa offline positiva, invalidazione cache
+conservativa su tutto il contesto SOURCE/USER.
+**Punto di ripresa: decisione dell'utente sulla sola proposta E2E**,
+`docs/proposta-e2e-incrementale-2026-10-24.md` (6 tentativi, tetto 3 M token).
+Non avviare altre correzioni, inferenze o adozioni automaticamente.
 Nessuna chiamata LLM, E2E o adozione live. Rapporto: `docs/docx-incrementale-2026-10-23.md`.
 
 

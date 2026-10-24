@@ -39,10 +39,14 @@ PROFILE = {"MAPI_GENERATION_REVISION": "3", "MAPI_DIALOGUE_REVISION": "1",
            "MAPI_BRANCH_SCOPE_REVISION": "1", "MAPI_HOLD_REREVIEW_REVISION": "1"}
 
 
-@pytest.fixture(autouse=True)
-def candidate_profile(monkeypatch):
-    for variable, value in PROFILE.items():
+@pytest.fixture(autouse=True, params=["sprint", "incrementale"])
+def candidate_profile(monkeypatch, request):
+    profile = dict(PROFILE)
+    if request.param == "incrementale":
+        profile.update(MAPI_HOLD_REREVIEW_REVISION="2", MAPI_TABLE_SCOPE_REVISION="1")
+    for variable, value in profile.items():
         monkeypatch.setenv(variable, value)
+    return profile
 
 
 def flags(session):
@@ -93,7 +97,7 @@ async def resumed(api, session, model):
 
 @pytest.mark.anyio
 async def test_1_interruption_after_validated_segments_keeps_work_but_exports_nothing(
-    api, provider, monkeypatch,
+    api, provider, monkeypatch, candidate_profile,
 ):
     session, _ = await interrupted(api, monkeypatch)
     stored = rev2.state_of(session)
@@ -101,6 +105,8 @@ async def test_1_interruption_after_validated_segments_keeps_work_but_exports_no
     assert len(list(cache_of(session).glob("*.json"))) == 2  # Only validated segments.
     assert {"generation_revision", "branch_scope_revision",
             "hold_rereview_revision"} <= set(flags(session))
+    for variable, value in candidate_profile.items():
+        assert flags(session)[variable.removeprefix("MAPI_").lower()] == int(value)
     current = (await api.get(f"{rev2.BASE}/{session['id']}")).json()
     assert dialogue.export_selection(current) == ([], [], [])
     assert (await rev2.draft(api, current, ["p0.s0"])).status_code == 409

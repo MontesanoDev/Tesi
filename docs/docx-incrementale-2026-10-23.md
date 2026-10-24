@@ -182,3 +182,126 @@ senza nuove esclusioni. Nessuna migrazione. Disattivare il flag torna al profilo
 precedente nelle nuove sessioni; il revert ripristina il comportamento anche
 per quelle che hanno persistito la revisione 2. Non annulla scritture o
 decisioni già registrate: queste restano sottoposte ai controlli ordinari.
+
+Commit: `3ec0af00e5088d14455f5da9e12acba0ebbbabbc`. Revert verificato in
+`tesi-docx-selective-p3`: `06cb5dc`, albero identico alla priorità 2,
+riproduzione tornata a 2 FAIL / 2 PASS.
+
+## Priorità 4: ripresa, verifica del profilo completo
+
+Nessuna modifica applicativa. Gli stessi dieci scenari già presenti sono stati
+eseguiti sia con il profilo sprint sia con `table_scope_revision=1` e
+`hold_rereview_revision=2`: **46 PASS** complessivi (23 per profilo).
+
+Sono verificati con API, provider simulati e storage temporaneo:
+
+- interruzione dopo due segmenti validati: cache conservata, export ancora
+  bloccato; ripresa con due cache hit e una sola chiamata al segmento mancante;
+- niente duplicazioni di proposte o chiamate; SOURCE modificate e decisioni
+  USER cambiate non riusano richieste obsolete;
+- revoca/condizione modificata blocca le scritture dipendenti e mantiene quelle
+  indipendenti, con tentativo di forzatura API respinto;
+- JSON invalido, conflitti tra segmenti e retry esauriti conservano le parti
+  indipendenti; tutti i segmenti falliti non producono un audit compilabile;
+- doppio errore del narratore, degradazione e ripresa della sola sintesi senza
+  rigenerare i segmenti o eliminare le sospensioni;
+- export parziale con rivalidazione: 409 per campi sospesi, non analizzati o
+  con condizione aperta; 200 per le sole scritture indipendenti autorizzate.
+
+Limite concreto: quando si richiede una nuova analisi, una modifica SOURCE o
+del contesto USER cambia il digest di **tutti** i segmenti. La cache è sicura ma
+l'invalidazione è conservativa, non selettiva per dipendenza semantica. Questo
+può aumentare costo e latenza. Le revoche sulle scritture, invece, sono mirate.
+Le prove simulano un'interruzione con eccezione del processo: non certificano
+crash del filesystem, mancanza di alimentazione o comportamento del provider
+remoto. Non è stato costruito un nuovo orchestratore.
+
+Il limite di due retry è per singola analisi, non un budget cumulativo di tutte
+le possibili riprese della sessione. Una campagna deve contare anche queste.
+Suite finale **3819 PASS in 354,50 s**, Ruff PASS. La differenza rispetto ai 3796
+casi precedenti è l'esecuzione degli stessi 23 casi sul secondo profilo: il
+numero da solo non dimostra un miglioramento del compilatore.
+
+## Reversibilità verificata e file interessati
+
+| Intervento | Commit applicativo | File principali |
+|---|---|---|
+| Veto API generale | `4554ae1dfb3c9d6dc780e44aaeedeab57e13ba04` | `compilation_global_sessions.py`, `test_compilation_explicit_draft_gate.py` |
+| Applicabilità di tabelle condizionali | `480e7e52b3af12ba0ee4ccc6d8c2912588839c39` | nuovo `compilation_table_scope.py`; `compilation_global_sessions.py`, `compilation_scope_review.py`, `compilation_segments.py`; test dedicato |
+| Rilettura SOURCE | `3ec0af00e5088d14455f5da9e12acba0ebbbabbc` | `compilation_hold_rereview.py`, `compilation_global_dialogue.py`, `compilation_global_sessions.py`; test dedicato |
+| Verifica della ripresa | commit di chiusura associato a questo rapporto | soltanto `test_compilation_rev3_resumption.py` e documentazione |
+
+Tutti i percorsi Python della tabella sono sotto `backend/app` o `backend/tests`.
+Ogni commit aggiorna la continuità. Nessuna dipendenza, migrazione, reindicizzazione
+o modifica al formato del database. I flag aggiunti restano opzionali e persistiti
+nelle nuove sessioni; non si migrano quelle vecchie.
+
+Oltre al ritorno esatto al genitore di ciascun fix, sono stati provati i revert
+selettivi sul codice che contiene tutti e tre gli interventi:
+
+| Fix rimosso | Effetto precedente riprodotto | Verifica degli altri interventi | Worktree locale di prova |
+|---|---|---|---|
+| API | 8 FAIL / 2 PASS, come prima del fix | 69 PASS su tabelle, narratore e ripresa | `tesi-docx-selective-p1` (`a20887f`) |
+| Tabelle | 2 FAIL / 2 PASS, come prima del fix | 54 PASS su API, narratore e ripresa | `tesi-docx-selective-p2` (`e1862c2`) |
+| Narratore | 2 FAIL / 2 PASS, come prima del fix | 58 PASS su API, tabelle e ripresa | `tesi-docx-selective-p3` (`06cb5dc`) |
+
+I FAIL in questa tabella sono **attesi soltanto nei worktree di rollback**:
+dimostrano che la correzione rimossa non agisce più. La candidata finale passa
+tutti i test. I commit di prova non vengono pubblicati.
+
+Procedura conservativa, già esercitata:
+
+1. Da un worktree pulito della candidata, creare un nuovo branch/worktree di
+   rollback con `git worktree add -b rollback/<nome> <percorso-nuovo> <SHA-candidata>`.
+2. In quel worktree eseguire `git revert --no-commit <SHA-fix>`.
+3. Conservare la versione corrente dei soli rapporti cumulativi in conflitto
+   (`STATUS.md`, `relazioni.md`, questo rapporto), poi annotare il rollback.
+   Non risolvere indiscriminatamente conflitti di codice con `ours`/`theirs`.
+4. Nel revert di `480e7e5` dopo `3ec0af0`, esiste un conflitto locale verificato
+   in `initial_state`: conservare le due righe che accettano
+   `MAPI_HOLD_REREVIEW_REVISION` 1/2 e ne persistono il valore; rimuovere il blocco
+   di tre righe che abilita `table_scope_revision`. Gli altri hunk si applicano.
+5. Eseguire i test pertinenti degli interventi rimasti, `git diff --check`, quindi
+   creare il commit di revert. Nessun reset, clean, cancellazione di sessioni
+   o ripristino del database.
+
+Il solo `git revert` non è quindi sempre privo di conflitti: i documenti sono
+cumulativi e i due flag sono adiacenti. La risoluzione sopra è stata verificata,
+non ipotizzata. Per tornare esattamente alla configurazione precedente nelle
+nuove sessioni, rimuovere `MAPI_TABLE_SCOPE_REVISION` quando si rimuove il fix
+tabelle; per il narratore riportare `MAPI_HOLD_REREVIEW_REVISION=1` (o assente
+se già assente). Nessun flag nuovo è necessario per l'hotfix API. Togliere solo
+un flag d'ambiente **non** modifica retroattivamente il profilo persistito;
+il revert ripristina il codice anche per queste sessioni, conservandone i dati.
+Rimuovere il veto API reintroduce il difetto noto nei profili ordinari/P3.
+
+## Esito, limiti e passo successivo
+
+Sono dimostrati offline: veto esplicito dell'export, cinque esclusioni aggiuntive
+di rami errati, preservazione delle 245 scritture corrette alle stesse condizioni,
+riesame SOURCE limitato senza rilascio backend e ripresa nei casi simulati.
+Non sono dimostrati: più DOCX reali, maggiore copertura generale, minore latenza
+o costo, efficacia reale del narratore. Restano 13/25 controesempi non bloccati
+deterministicamente e le sospensioni di applicabilità qui escluse.
+
+La monolitica acquisisce soltanto il veto API quando si usa questo branch;
+le due novità ulteriori richiedono la candidata rev 3 e i rispettivi flag.
+L'app ordinaria in esecuzione non è stata modificata né riavviata. V12, benchmark,
+gold e risultati storici restano preservati. Il working tree ordinario già
+modificato non è entrato in nessun commit.
+
+Proposta separata: [sei tentativi esplorativi, tetto 3 milioni di token](proposta-e2e-incrementale-2026-10-24.md).
+Richiede autorizzazione prima di qualsiasi inferenza. Non è una nuova campagna
+da 35 tentativi né una certificazione delle soglie congelate.
+
+Grezzi, preregistrazioni, replay e log sono nell'audit locale
+`backend/data/compilation-audit/docx-incrementale-20261023-01/`, escluso da Git.
+Backup separato previsto in `backend/data/compilation-audit/docx-incrementale-backup-20261024/`:
+manifest per file, archivio audit/rapporti e bundle incrementale dei soli commit
+nuovi, con base richiesta `ff0d4f9`. Esito della verifica in `VERIFICA.json`.
+Non include database, credenziali o documenti originali.
+
+Pubblicazione autorizzata del solo branch sperimentale dopo controllo dei nuovi
+file e della loro cronologia; nessun merge, modifica di tag o force push. Le
+evidenze grezze locali non vengono pubblicate. Nessuna revisione autoriale è
+presentata come indipendente.

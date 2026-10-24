@@ -5421,3 +5421,23 @@ seconda sospensione definitiva, invalidazione delle prove cambiate. Prima:
 14 rilasci se il narratore li approva, zero se conferma il dubbio. Non sono
 recuperi misurati con un modello reale. Suite completa 3796 PASS, Ruff PASS;
 21 test della rilettura ripetuti con fixture indipendente dalla priorità 2.
+
+## 24 ottobre 2026 — Ripresa e chiusura delle verifiche incrementali
+
+I meccanismi esistenti superano i dieci scenari su profilo sprint e nuovo profilo:
+46 PASS. Nessuna modifica applicativa per la ripresa. Suite finale 3819 PASS,
+Ruff PASS. Limite dichiarato: ogni nuovo contesto SOURCE/USER invalida tutti i
+digest dei segmenti alla successiva analisi; le scritture dopo revoca restano
+invece bloccate per dipendenza. Guasti e provider sono simulati, non E2E reali.
+
+Fix API `4554ae1`, tabelle `480e7e5`, narratore `3ec0af0`, ciascuno con
+rollback al comportamento precedente e verifica selettiva degli altri fix.
+Nella rimozione del fix tabelle dopo quello narratore serve preservare le due
+righe del flag hold rev 2 nel conflitto locale di `initial_state`.
+Tutte le 245 scritture corrette del replay con condizioni soddisfatte sono
+preservate; errori storici chiusi 7 → 12 su 25. Quattordici sospensioni SOURCE
+riesaminabili non equivalgono a quattordici recuperi già dimostrati dal modello.
+
+Rapporto `docs/docx-incrementale-2026-10-23.md`; proposta E2E separata
+`docs/proposta-e2e-incrementale-2026-10-24.md`, non avviata e da autorizzare.
+Branch sperimentale pubblicabile dopo controllo; nessun merge o adozione live.
