@@ -30,11 +30,16 @@ Da Linux o macOS (x64/arm64), dalla radice del repository:
 - Applicazione: `http://localhost:5173`
 - API e schema OpenAPI: `http://localhost:8000/docs`
 
-Per provare la compilazione globale: nuova conversazione nel progetto,
-`@modulo.docx` e **«me lo compili?»**. Un'analisi globale, poi una sintesi e
-pochi chiarimenti nella chat: rispondere nel composer, senza checklist.
-Per esportare chiedere **«genera la bozza parziale»**. Le sessioni
-precedenti sono conservate. [Istruzioni e limiti](docs/compilation-session-v1.md).
+**Compilazione DOCX:** nuova conversazione nel progetto,
+`@modulo.docx` e **«me lo compili?»**. Il modulo viene analizzato per sezioni,
+ognuna con il FORM completo e validata separatamente; poi una sintesi e pochi
+chiarimenti nella chat: rispondere nel composer, senza checklist.
+Per esportare chiedere **«genera la bozza parziale»**. Il DOCX è una bozza da
+verificare. È l'unico percorso offerto, senza opzioni da configurare: il profilo
+delle nuove sessioni è definito in `backend/app/compilation_profile.py`. Le
+sessioni precedenti conservano il loro profilo. [Profilo, verifiche e rollback di
+emergenza](docs/integrazione-compilazione-sezioni-2026-10-24.md);
+[istruzioni e limiti](docs/compilation-session-v1.md).
 Le nuove sessioni V12 conservano anche i motivi dei campi lasciati vuoti,
 distinguendo spiegazioni respinte e omissioni; non certificano completezza.
 Possono scrivere checkbox native Word con gruppi di scelta
