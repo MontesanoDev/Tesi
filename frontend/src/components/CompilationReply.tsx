@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { api } from '../api'
 import { compilationReplyParagraphs } from '../compilationReply'
+import { compilationState } from '../compilationStatus'
 import type { CompilationSession, GroundedAnswer } from '../types'
 
 export function CompilationReply({ session, response, pending, processing, locked, error, onRetry }: {
@@ -43,8 +44,13 @@ export function CompilationReply({ session, response, pending, processing, locke
   }
 
   if (pending) return null
+  const state = processing ? null : compilationState(session)
   return <>
     {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+    {state && <div className="compilation-state">
+      <p><strong>{state.label}</strong></p>
+      {state.notes.map((note) => <p key={note}>{note}</p>)}
+    </div>}
     {(error || session.last_error) && <p role="alert">{error
       || (session.engine === 'global' ? 'Analisi interrotta: nessun valore applicato. Chiedimi di riprendere per ritentare.'
         : 'Ho conservato il lavoro fatto finora, ma non sono riuscito a completare il modulo. Possiamo riprendere o preparare una bozza parziale.')}</p>}

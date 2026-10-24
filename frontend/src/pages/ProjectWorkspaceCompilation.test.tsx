@@ -799,7 +799,7 @@ describe('CompilationSession nella chat', () => {
     submit('1 sì e 2 lascia vuoto')
     await waitFor(() => expect(api.compilationSession).toHaveBeenCalledTimes(2))
     let current = screen.getAllByRole('region', { name: 'Risposta' }).at(-1)!
-    expect(current).toHaveTextContent('Aggiorno la compilazione…')
+    expect(current).toHaveTextContent('Verifica dei dati…')
     expect(current).not.toHaveTextContent('Ho registrato le indicazioni univoche')
     expect(current).not.toHaveTextContent(summary)
     expect(current).not.toHaveTextContent('Analizzo')

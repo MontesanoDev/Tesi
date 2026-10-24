@@ -87,7 +87,7 @@ for (const motion of ['reduce', 'no-preference'] as const) {
     await page.getByRole('textbox', { name: 'Messaggio per l’assistente' }).fill('1 sì 2 sì e 3 lascia in bianco')
     await page.getByRole('button', { name: 'Invia', exact: true }).click()
     const current = page.locator('.chat-turn').last().locator('.grounded-answer')
-    await expect(current.getByRole('status')).toHaveText('Aggiorno la compilazione…')
+    await expect(current.getByRole('status')).toHaveText('Verifica dei dati…')
     await expect(current.getByRole('status')).toHaveCount(1)
     releaseRead()
     await expect.poll(() => updates).toBe(1)

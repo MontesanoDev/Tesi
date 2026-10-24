@@ -24,6 +24,7 @@ import { readChatDraft, saveChatDraft, type RecoverableMessage } from '../chatMe
 import { AppShell } from '../components/AppShell'
 import { AssistantMessage } from '../components/AssistantMessage'
 import { CompilationReply } from '../components/CompilationReply'
+import { compilationActivity as compilationActivityLabel } from '../compilationStatus'
 import '../components/ChatComposer.css'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
@@ -435,10 +436,7 @@ export function ProjectWorkspacePage() {
   const sessionProcessing = compilation.processing || compilation.loading
   const awaitingSession = Boolean(latestTurn?.result?.compilation && !activeSession
     && compilation.loading && !compilation.error)
-  const compilationActivity = activeSession?.engine === 'global'
-    ? activeSession.global_compilation?.phase === 'REVIEW'
-      ? 'Aggiorno la compilazione…' : 'Analizzo il modulo…'
-    : 'Sto lavorando…'
+  const compilationActivity = compilationActivityLabel(activeSession)
   const sessionMessage = activeSession ? (
     <CompilationReply key={activeSession.id} session={activeSession} response={latestTurn?.result}
       pending={Boolean(latestTurn && !latestTurn.result && !latestTurn.error)}
@@ -510,7 +508,7 @@ export function ProjectWorkspacePage() {
           composerInput.current?.focus()
         }}>Recupera messaggio</button>
       </div>}
-      {compilation.busy && !activeSession && <p role="status">Preparazione della compilazione…</p>}
+      {compilation.busy && !activeSession && <p role="status">{compilationActivityLabel(null)}</p>}
       <div className="composer-tools">
         <button
           className={`composer-mention-trigger${mention ? ' is-active' : ''}`}

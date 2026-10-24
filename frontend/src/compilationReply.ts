@@ -4,7 +4,7 @@ import type { CompilationSession, GroundedAnswer } from './types'
 export function compilationReplyParagraphs(session: CompilationSession,
   response: GroundedAnswer | null | undefined, processing: boolean, error: string | null) {
   if (session.engine === 'legacy') return [response?.answer,
-    'Questa sessione usa il motore precedente. Per provare la compilazione globale, apri una nuova conversazione e seleziona il modulo con @.'].filter((text): text is string => Boolean(text))
+    'Questa sessione usa il motore precedente. Per una nuova Compilazione DOCX, apri una nuova conversazione e seleziona il modulo con @.'].filter((text): text is string => Boolean(text))
   if (session.engine === 'global') {
     if (response && response.compilation?.session_id !== session.id) return [response.answer]
     if (response?.compilation?.action === 'clarify') return [response.answer]
