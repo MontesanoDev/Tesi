@@ -9,7 +9,6 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import json
-import os
 import time
 from datetime import UTC, datetime, timedelta
 from uuid import uuid4
@@ -37,34 +36,12 @@ TIMEOUT_SECONDS = 300
 
 
 def initial_state(layout):
+    from app.compilation_profile import new_session_flags
+
     catalog = build_compilation_catalog(layout)
-    # Ordinary profile: V14 + K3, plus coherent derived state after USER replies.
-    # P3 candidate (not adopted): dialogue state and generation by FORM segments are
-    # opt-in, separately, for a private experiment runtime (no UI); by default new
-    # sessions keep the ordinary profile. Existing sessions keep their stored flags.
-    experiment = {revision: 1 for revision, variable in (
-        ("dialogue_revision", "MAPI_DIALOGUE_REVISION"),
-        ("narration_recovery_revision", "MAPI_NARRATION_RECOVERY_REVISION"),
-        ("generation_revision", "MAPI_GENERATION_REVISION")) if os.environ.get(variable) == "1"}
-    # Promoted independently of P3. Explicit 0 preserves the previous creation profile
-    # for comparisons; no missing flag in an existing session is upgraded at runtime.
-    if os.environ.get("MAPI_DERIVATION_REVISION", "1") == "1":
-        experiment["derivation_revision"] = 1
-    # Resilient segments (candidate, not adopted): a separate opt-in revision.
-    if os.environ.get("MAPI_GENERATION_REVISION") in {"2", "3"}:
-        experiment["generation_revision"] = int(os.environ["MAPI_GENERATION_REVISION"])
-    # Option continuations (rev 3 candidate only, not adopted): a separate opt-in revision.
-    if (experiment.get("generation_revision") == 3
-            and os.environ.get("MAPI_BRANCH_SCOPE_REVISION") == "1"):
-        experiment["branch_scope_revision"] = 1
-    if (experiment.get("generation_revision") == 3
-            and os.environ.get("MAPI_HOLD_REREVIEW_REVISION") in {"1", "2"}):
-        experiment["hold_rereview_revision"] = int(os.environ["MAPI_HOLD_REREVIEW_REVISION"])
-    if (experiment.get("generation_revision") == 3
-            and os.environ.get("MAPI_TABLE_SCOPE_REVISION") == "1"):
-        experiment["table_scope_revision"] = 1
-    return {"phase": "PENDING", "backend_revision": 13, "option_authorization_revision": 1,
-            "attribution_safety_revision": 1, **experiment,
+    # One canonical creation profile for new sessions (compilation_profile.py).
+    # Existing sessions keep their stored flags; nothing is upgraded at runtime.
+    return {"phase": "PENDING", **new_session_flags(),
             "candidate_count": len(catalog["candidates"]),
             "catalog": catalog,
             "writable_ids": sorted(catalog["candidates"]), "paused": False,

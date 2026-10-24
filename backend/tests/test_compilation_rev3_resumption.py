@@ -39,8 +39,14 @@ PROFILE = {"MAPI_GENERATION_REVISION": "3", "MAPI_DIALOGUE_REVISION": "1",
            "MAPI_BRANCH_SCOPE_REVISION": "1", "MAPI_HOLD_REREVIEW_REVISION": "1"}
 
 
-@pytest.fixture(autouse=True, params=["sprint", "incrementale"])
+@pytest.fixture(autouse=True, params=["sprint", "incrementale", "predefinito"])
 def candidate_profile(monkeypatch, request):
+    if request.param == "predefinito":
+        # The ordinary «Compilazione DOCX» profile: no variable at all, canonical defaults.
+        monkeypatch.delenv("MAPI_COMPILATION_PROFILE", raising=False)
+        for variable in PROFILE:
+            monkeypatch.delenv(variable, raising=False)
+        return {}
     profile = dict(PROFILE)
     if request.param == "incrementale":
         profile.update(MAPI_HOLD_REREVIEW_REVISION="2", MAPI_TABLE_SCOPE_REVISION="1")
@@ -107,6 +113,10 @@ async def test_1_interruption_after_validated_segments_keeps_work_but_exports_no
             "hold_rereview_revision"} <= set(flags(session))
     for variable, value in candidate_profile.items():
         assert flags(session)[variable.removeprefix("MAPI_").lower()] == int(value)
+    if not candidate_profile:  # Ordinary default: the complete canonical profile.
+        from app.compilation_profile import SECTIONS
+
+        assert flags(session) == SECTIONS
     current = (await api.get(f"{rev2.BASE}/{session['id']}")).json()
     assert dialogue.export_selection(current) == ([], [], [])
     assert (await rev2.draft(api, current, ["p0.s0"])).status_code == 409
