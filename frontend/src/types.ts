@@ -166,6 +166,7 @@ export interface CompilationSession extends CompilationSessionSummary {
     dialogue?: { phase: 'PENDING' | 'READY'; message?: string; user_turns?: number }
     phase: 'PENDING' | 'ANALYZING' | 'REVIEW'
     compilation_profile?: string
+    generation_revision?: number
     segments?: { index: number; status: string; source?: string; attempts?: number; error?: string | null }[]
     attempts: number
     candidate_count: number

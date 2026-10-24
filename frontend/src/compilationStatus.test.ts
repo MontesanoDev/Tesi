@@ -20,8 +20,11 @@ function session(patch: Record<string, unknown> = {}, data: Record<string, unkno
 describe('Compilazione DOCX: stati reali', () => {
   it('names the running step without percentages', () => {
     expect(compilationActivity(null)).toBe('Avvio della Compilazione DOCX…')
-    expect(compilationActivity(session({ status: 'ANALYZING' }, { phase: 'ANALYZING' })))
+    expect(compilationActivity(session({ status: 'ANALYZING' }, { phase: 'ANALYZING', generation_revision: 3 })))
       .toBe('Analisi del documento e compilazione delle sezioni…')
+    // A session created before the sections profile is analyzed in one call: no sections to name.
+    expect(compilationActivity(session({ status: 'ANALYZING' }, { phase: 'ANALYZING' })))
+      .toBe('Analisi del documento…')
     expect(compilationActivity(session())).toBe('Verifica dei dati…')
     const generate = session({ chat: { ...session().chat, question: { kind: 'generate', field_ids: [], message: 'Genero?' } } })
     expect(compilationActivity(generate)).toBe('Preparazione del DOCX…')

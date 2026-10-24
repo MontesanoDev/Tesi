@@ -17,7 +17,9 @@ export function compilationActivity(session?: CompilationSession | null) {
   if (session.engine !== 'global') return 'Sto lavorando…'
   const data = session.global_compilation
   if (session.status === 'ANALYZING' || !data || data.phase !== 'REVIEW') {
-    return 'Analisi del documento e compilazione delle sezioni…'
+    // Only sessions created by FORM segments (rev 3) compile by sections; older ones in one call.
+    return data?.generation_revision === 3
+      ? 'Analisi del documento e compilazione delle sezioni…' : 'Analisi del documento…'
   }
   if (session.chat?.question?.kind === 'generate') return 'Preparazione del DOCX…'
   return 'Verifica dei dati…'
