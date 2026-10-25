@@ -214,27 +214,22 @@ def test_revision_one_ignores_instructions_and_stays_unchanged():
     assert not scope.blocked_source_fields(data)
 
 
-def test_creation_requires_the_explicit_revision_two_opt_in(monkeypatch):
+def test_new_sessions_get_revision_two_by_default(monkeypatch):
     from app import compilation_form_option_scope as options
 
     monkeypatch.delenv("MAPI_COMPILATION_PROFILE", raising=False)
-    monkeypatch.delenv("MAPI_FORM_OPTION_SCOPE_REVISION", raising=False)
-    default = compilation_profile.new_session_flags()
-    monkeypatch.setenv("MAPI_FORM_OPTION_SCOPE_REVISION", "1")
-    first = compilation_profile.new_session_flags()
-    monkeypatch.setenv("MAPI_FORM_OPTION_SCOPE_REVISION", "2")
-    second = compilation_profile.new_session_flags()
-    assert "form_option_scope_revision" not in default
-    assert first["form_option_scope_revision"] == 1
-    assert first["compilation_profile"] == "sezioni-opzioni-2026-10-25"
-    assert second["form_option_scope_revision"] == 2
-    assert second["compilation_profile"] == "sezioni-istruzioni-2026-10-25"
-    assert options.enabled(second)
-    assert {k: v for k, v in second.items() if k not in {"compilation_profile",
-                                                       "form_option_scope_revision"}} == {
-        k: v for k, v in default.items() if k != "compilation_profile"}
-    monkeypatch.setenv("MAPI_COMPILATION_PROFILE", "storico")
-    assert not options.enabled(compilation_profile.new_session_flags())
+    for stale in ("1", "0", None):
+        if stale is None:
+            monkeypatch.delenv("MAPI_FORM_OPTION_SCOPE_REVISION", raising=False)
+        else:
+            monkeypatch.setenv("MAPI_FORM_OPTION_SCOPE_REVISION", stale)
+        flags = compilation_profile.new_session_flags()
+        assert flags["form_option_scope_revision"] == 2
+        assert flags["compilation_profile"] == "sezioni-2026-10-25"
+        assert options.enabled(flags)
+    for previous in ("sezioni-2026-10-24", "storico"):
+        monkeypatch.setenv("MAPI_COMPILATION_PROFILE", previous)
+        assert not options.enabled(compilation_profile.new_session_flags())
 
 
 @pytest.mark.anyio

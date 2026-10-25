@@ -13,13 +13,14 @@ from test_compilation_p3_hold_validation import SUMMARY, hold, narrator
 
 from app import (
     compilation_branch_scope,
+    compilation_form_option_scope,
     compilation_hold_rereview,
     compilation_scope_review,
     compilation_table_scope,
 )
 from app import compilation_global_dialogue as dialogue
 from app import compilation_global_sessions as adapter
-from app.compilation_profile import PROFILE_NAME, SECTIONS, historical_flags
+from app.compilation_profile import PREVIOUS, PROFILE_NAME, SECTIONS, historical_flags
 from app.db import get_storage_path
 from app.docx_templates import inspect_docx
 
@@ -28,7 +29,7 @@ __all__ = ["api", "provider"]
 EXPERIMENT = ["MAPI_DIALOGUE_REVISION", "MAPI_NARRATION_RECOVERY_REVISION",
               "MAPI_GENERATION_REVISION", "MAPI_DERIVATION_REVISION",
               "MAPI_BRANCH_SCOPE_REVISION", "MAPI_HOLD_REREVIEW_REVISION",
-              "MAPI_TABLE_SCOPE_REVISION"]
+              "MAPI_TABLE_SCOPE_REVISION", "MAPI_FORM_OPTION_SCOPE_REVISION"]
 
 
 @pytest.fixture(autouse=True)
@@ -50,7 +51,8 @@ def test_new_sessions_get_the_complete_sections_profile_without_any_variable():
         "backend_revision": 13, "option_authorization_revision": 1,
         "attribution_safety_revision": 1, "derivation_revision": 1, "dialogue_revision": 1,
         "generation_revision": 3, "narration_recovery_revision": 1, "branch_scope_revision": 1,
-        "table_scope_revision": 1, "hold_rereview_revision": 2}
+        "table_scope_revision": 1, "hold_rereview_revision": 2, "form_option_scope_revision": 2}
+    assert PROFILE_NAME == "sezioni-2026-10-25"
 
 
 @pytest.mark.parametrize("stale", [
@@ -58,6 +60,7 @@ def test_new_sessions_get_the_complete_sections_profile_without_any_variable():
     {"MAPI_DIALOGUE_REVISION": "0", "MAPI_DERIVATION_REVISION": "0"},
     {"MAPI_HOLD_REREVIEW_REVISION": "1", "MAPI_TABLE_SCOPE_REVISION": "0"},
     {"MAPI_COMPILATION_PROFILE": "qualsiasi altro valore"},
+    {"MAPI_FORM_OPTION_SCOPE_REVISION": "1"}, {"MAPI_FORM_OPTION_SCOPE_REVISION": "0"},
 ])
 def test_stale_experiment_variables_cannot_alter_the_ordinary_profile(monkeypatch, stale):
     for variable, value in stale.items():
@@ -72,6 +75,7 @@ def test_every_control_of_the_profile_is_actually_enabled_by_these_flags():
     assert compilation_branch_scope.enabled(data)  # R1.
     assert compilation_table_scope.enabled(data)  # Conditional tables.
     assert compilation_hold_rereview.enabled(data)  # Misattributed holds.
+    assert compilation_form_option_scope.enabled(data)  # FORM options and instructions.
     assert data["hold_rereview_revision"] == 2  # And grounded SOURCE role holds.
     assert dialogue.narration_attempt_limit(data) == 2  # Narrator recovery.
     assert data["dialogue_revision"] == 1  # Hold re-reviews need the P3 question pool.
@@ -168,3 +172,13 @@ async def test_an_existing_session_keeps_the_profile_it_was_created_with(
     data = rev2.state_of(session)["global_compilation"]
     assert revisions(data) == created and "compilation_profile" not in data
     assert "generation_segments" not in data["audit"]  # Still the monolithic analysis.
+
+
+def test_the_emergency_switch_recreates_the_profile_before_the_form_scope_adoption(monkeypatch):
+    monkeypatch.setenv("MAPI_COMPILATION_PROFILE", "sezioni-2026-10-24")
+    state = adapter.initial_state(inspect_docx(rev2.form_docx(3)))
+    assert revisions(state) == PREVIOUS["sezioni-2026-10-24"]
+    assert state["compilation_profile"] == "sezioni-2026-10-24"
+    assert "form_option_scope_revision" not in state
+    assert not compilation_form_option_scope.enabled(state)
+    assert {**PREVIOUS["sezioni-2026-10-24"], "form_option_scope_revision": 2} == SECTIONS

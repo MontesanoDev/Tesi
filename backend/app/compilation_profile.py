@@ -9,13 +9,15 @@ MAPI_COMPILATION_PROFILE=storico is a server-side emergency rollback and reprodu
 not a user option: new sessions then follow the previous creation rules, driven by the former
 MAPI_*_REVISION variables (monolithic generation when they are absent). Without it, those
 experiment variables are ignored, so a stale environment cannot alter the ordinary profile.
+MAPI_COMPILATION_PROFILE=sezioni-2026-10-24 recreates the canonical profile in force before the
+FORM option/instruction scope was adopted (25 October 2026), also only as an emergency switch.
 """
 
 from __future__ import annotations
 
 import os
 
-PROFILE_NAME = "sezioni-2026-10-24"
+PROFILE_NAME = "sezioni-2026-10-25"
 SECTIONS = {
     "backend_revision": 13,
     "option_authorization_revision": 1,   # V14: assent to printed option clauses.
@@ -27,19 +29,19 @@ SECTIONS = {
     "branch_scope_revision": 1,           # R1: option conditions cover their continuation.
     "table_scope_revision": 1,            # Conditional table sections need applicability.
     "hold_rereview_revision": 2,          # One re-review of misattributed or role holds.
+    "form_option_scope_revision": 2,      # Data bound to their FORM option or instruction.
 }
+# Earlier canonical profiles, recreated only by the server-side emergency switch.
+PREVIOUS = {"sezioni-2026-10-24": {k: v for k, v in SECTIONS.items()
+                                   if k != "form_option_scope_revision"}}
 
 
 def new_session_flags():
-    if os.environ.get("MAPI_COMPILATION_PROFILE") == "storico":
+    profile = os.environ.get("MAPI_COMPILATION_PROFILE")
+    if profile == "storico":
         return historical_flags()
-    # Isolated offline candidate; no implicit upgrade of previously stored sessions.
-    if os.environ.get("MAPI_FORM_OPTION_SCOPE_REVISION") == "1":
-        return {**SECTIONS, "form_option_scope_revision": 1,
-                "compilation_profile": "sezioni-opzioni-2026-10-25"}
-    if os.environ.get("MAPI_FORM_OPTION_SCOPE_REVISION") == "2":
-        return {**SECTIONS, "form_option_scope_revision": 2,
-                "compilation_profile": "sezioni-istruzioni-2026-10-25"}
+    if profile in PREVIOUS:
+        return {**PREVIOUS[profile], "compilation_profile": profile}
     return {**SECTIONS, "compilation_profile": PROFILE_NAME}
 
 

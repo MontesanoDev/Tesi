@@ -113,27 +113,29 @@ def test_the_condition_is_propagated_without_becoming_a_source_fact_or_user_deci
 
 
 @pytest.mark.anyio
-@pytest.mark.parametrize("created_with_opt_in", [False, True])
+@pytest.mark.parametrize("created_with_protection", [False, True])
 async def test_real_creation_profile_is_persisted_across_an_environment_change(
-    api, provider, monkeypatch, created_with_opt_in,
+    api, provider, monkeypatch, created_with_protection,
 ):
-    monkeypatch.delenv("MAPI_COMPILATION_PROFILE", raising=False)
-    if created_with_opt_in:
-        monkeypatch.setenv("MAPI_FORM_OPTION_SCOPE_REVISION", "1")
+    # Default profile (protection adopted) vs the previous canonical profile (emergency switch).
+    before = None if created_with_protection else "sezioni-2026-10-24"
+    after = "sezioni-2026-10-24" if created_with_protection else None
+    if before:
+        monkeypatch.setenv("MAPI_COMPILATION_PROFILE", before)
     else:
-        monkeypatch.delenv("MAPI_FORM_OPTION_SCOPE_REVISION", raising=False)
+        monkeypatch.delenv("MAPI_COMPILATION_PROFILE", raising=False)
     s = await rev2.started(api, monkeypatch, form(), rev2.Model({0: [writer], 1: [writer]}))
     initial_flags = {k: v for k, v in s["global_compilation"].items() if k.endswith("revision")}
-    if created_with_opt_in:
-        monkeypatch.delenv("MAPI_FORM_OPTION_SCOPE_REVISION", raising=False)
+    if after:
+        monkeypatch.setenv("MAPI_COMPILATION_PROFILE", after)
     else:
-        monkeypatch.setenv("MAPI_FORM_OPTION_SCOPE_REVISION", "1")
+        monkeypatch.delenv("MAPI_COMPILATION_PROFILE", raising=False)
     response = await rev2.analyze(api, s)
     assert response.status_code == 200, response.text
     data = rev2.state_of(response.json())["global_compilation"]
     assert {k: v for k, v in data.items() if k.endswith("revision")} == initial_flags
     selected, _, _ = dialogue.export_selection(response.json())
-    assert ("p4.s0" not in selected) == created_with_opt_in
+    assert ("p4.s0" not in selected) == created_with_protection
 
 
 @pytest.mark.parametrize("defect", ["missing", "foreign", "partial", "invalid", "detached"])
@@ -258,18 +260,16 @@ def test_only_the_first_data_paragraph_is_owned_and_quote_can_omit_the_box_marke
     assert options.blocked_fields(data) == set()
 
 
-def test_creation_requires_explicit_opt_in_and_does_not_upgrade_existing_sessions(monkeypatch):
+def test_the_default_profile_includes_the_protection_and_ignores_stale_opt_ins(monkeypatch):
     from app import compilation_form_option_scope as options
 
     monkeypatch.delenv("MAPI_COMPILATION_PROFILE", raising=False)
-    monkeypatch.delenv("MAPI_FORM_OPTION_SCOPE_REVISION", raising=False)
-    old = compilation_profile.new_session_flags()
-    monkeypatch.setenv("MAPI_FORM_OPTION_SCOPE_REVISION", "1")
+    monkeypatch.setenv("MAPI_FORM_OPTION_SCOPE_REVISION", "1")  # Former opt-in: ignored.
     new = compilation_profile.new_session_flags()
-    assert "form_option_scope_revision" not in old
-    assert not options.enabled(old)
-    assert options.enabled(new)
-    assert new["compilation_profile"] != old["compilation_profile"]
+    monkeypatch.setenv("MAPI_COMPILATION_PROFILE", "sezioni-2026-10-24")
+    old = compilation_profile.new_session_flags()
+    assert new["form_option_scope_revision"] == 2 and options.enabled(new)
+    assert "form_option_scope_revision" not in old and not options.enabled(old)
     assert {k: new[k] for k in old if k != "compilation_profile"} == {
         k: v for k, v in old.items() if k != "compilation_profile"}
     monkeypatch.setenv("MAPI_COMPILATION_PROFILE", "storico")
