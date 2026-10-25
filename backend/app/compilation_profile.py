@@ -37,6 +37,9 @@ def new_session_flags():
     if os.environ.get("MAPI_FORM_OPTION_SCOPE_REVISION") == "1":
         return {**SECTIONS, "form_option_scope_revision": 1,
                 "compilation_profile": "sezioni-opzioni-2026-10-25"}
+    if os.environ.get("MAPI_FORM_OPTION_SCOPE_REVISION") == "2":
+        return {**SECTIONS, "form_option_scope_revision": 2,
+                "compilation_profile": "sezioni-istruzioni-2026-10-25"}
     return {**SECTIONS, "compilation_profile": PROFILE_NAME}
 
 
