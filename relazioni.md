@@ -5538,3 +5538,24 @@ Branch sperimentale pubblicabile dopo controllo; nessun merge o adozione live.
   Rapporto `docs/ambiti-form-2026-10-25.md`; audit locale
   `backend/data/compilation-audit/ambiti-form-20261025-01/`, backup separato
   `…/ambiti-form-backup-20261025/`. Due E2E futuri soltanto proposti nel rapporto.
+
+## 25 ottobre 2026 — Istruzioni condizionali del FORM, revisione 2 (offline, autorizzata)
+
+- **Obiettivo:** i sei controesempi residui dopo `ddb8cb7`, tutti So.Re.Sa., cioè dati
+  dell'impresa singola nelle schede dei componenti RT governate dal paragrafo 19 «(da compilare
+  nel caso di … RT … non ancora costituito)».
+- **Metodo:** inventario strutturale e preregistrazione prima del codice; rigioco degli output
+  registrati; zero inferenze.
+- **Arresto preregistrato:** con la citazione intera la regola perdeva 7 corrette. Le cause:
+  - 5 per una citazione del paragrafo 7 senza la coda normativa;
+  - 2 `p31.s0` USER in una scheda RT.
+
+  Misurate offline A2 e A3; l'utente ha scelto A2.
+- **Esito con A2:**
+  - insieme congelato: errori 0/25 (simulati) e 0/25 (registrati), corrette 243/245;
+  - positive estese: 236/240, come la base;
+  - K3 identico; suite 3937 PASS.
+- **Discrepanza:** i 2 `p31.s0` sono giudicati DIMOSTRATA nella revisione storica e ritenuti
+  dati nel ramo sbagliato da Claude (giudizio non indipendente). Il benchmark non è modificato.
+- **Limiti:** grassetto e marcatore letterale; rischio di omissione non misurato dal vivo.
+- **Rapporto:** `docs/istruzioni-form-2026-10-25.md`.

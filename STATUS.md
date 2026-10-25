@@ -1,5 +1,36 @@
 # Stato di Mapi RAG
 
+## Istruzioni condizionali del FORM (revisione 2) — intervento offline del 25 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Continuazione dell'intervento di Astra sui tredici controesempi,
+completata da Claude dopo l'interruzione per limiti. Rapporto:
+`docs/istruzioni-form-2026-10-25.md`.
+
+- **Chiusura del lavoro di Astra:** il backup previsto, mancante, è stato creato in
+  `…/ambiti-form-backup-20261025/` e su `D:`; i 38 test sono stati rieseguiti con esito PASS.
+  Nessun push.
+- **Correzione `9711030`**, revisione 2 opt-in (`MAPI_FORM_OPTION_SCOPE_REVISION=2`, profilo
+  `sezioni-istruzioni-2026-10-25`): un paragrafo in grassetto «(da compilare in/nel caso di …)»
+  governa i campi di testo delle schede successive fino al titolo seguente.
+  - Servono una condizione ancorata all'istruzione e una conferma USER verificata.
+  - Citazione: istruzione intera, oppure prefisso fino alla prima alternativa (regola A2,
+    scelta dall'utente dopo l'arresto preregistrato).
+- **Rigioco:**
+  - errori residui 6/25 → **0/25** con guardia simulata e 4/25 → **0/25** con ricevute
+    registrate;
+  - corrette 243/245: i 2 `p31.s0` USER nella scheda di un componente RT sono una
+    discrepanza dichiarata, con giudizio storico invariato;
+  - positive estese 236/240, come la base.
+- **Verifiche:** 39 test nuovi; suite **3937 PASS**, Ruff PASS; K3 identico; 29 sessioni live e
+  1244 file invariati; rollback verificato.
+- **Limiti:**
+  - la regola dipende dal grassetto e dal marcatore letterale;
+  - possibile rischio di omissione se il modello non cita l'istruzione;
+  - nessuna misura dal vivo.
+- **Grezzi e backup:** `backend/data/compilation-audit/ambiti-istruzioni-20261025-01/`, backup
+  `…/ambiti-istruzioni-backup-20261025/` e su `D:`.
+- **Non eseguiti:** nessuna adozione nell'app, nessuna inferenza, nessun push.
+
 ## Sicurezza dei rami FORM — intervento offline del 25 ottobre 2026
 
 **Punto di ripresa: fermarsi dopo il rapporto.** L'utente ha autorizzato il solo
