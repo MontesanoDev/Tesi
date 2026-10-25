@@ -1,5 +1,35 @@
 # Stato di Mapi RAG
 
+## Protezione dei rami FORM adottata nell'app e prova E2E reale — 25 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Decisione dell'utente («fai tutti e 3»). Rapporto:
+`docs/rami-e2e-2026-10-25.md`.
+
+- **Adozione `a152d7f`:** le nuove sessioni nascono con il profilo `sezioni-2026-10-25`, cioè
+  `sezioni-2026-10-24` più `form_option_scope_revision 2`.
+  - Le sessioni esistenti sono invariate.
+  - Emergenza lato server: `MAPI_COMPILATION_PROFILE=sezioni-2026-10-24` oppure `storico`.
+  - Suite 3940 PASS, Ruff PASS.
+- **App ordinaria:**
+  - patch nel working tree, 373 file uguali ad `a152d7f`, suite 3940 PASS;
+  - riavvio con `./start.sh`;
+  - profilo del processo reale `sezioni-2026-10-25`, verificato senza LLM;
+  - 29 sessioni e 273 file identici.
+- **Push:** `origin/miglioramenti/2026-10-25-ambiti-form`; `main` remoto invariato.
+- **Prova reale**, 2 tentativi in runtime isolati, 247.443 token su 750.000, circa 0,043 USD:
+  - **So.Re.Sa.:** DOCX, 7 scritture DIMOSTRATA, nucleo v3 7/15; dati del concorrente scritti;
+    4 proposte nelle schede RT non scritte (veto concorrente, non determinante).
+  - **Sintetico:** DOCX, 8/8 attese corrette; trappola della scheda singola vuota; nessun falso
+    rifiuto.
+- **Limiti:**
+  - n = 2, revisione non indipendente;
+  - nessun caso dal vivo in cui la sola protezione abbia impedito una scrittura: lo dimostra il
+    rigioco;
+  - A2 non esercitata dal vivo;
+  - la casella ASCII dell'avvalimento non viene spuntata.
+- **Grezzi:** `backend/data/compilation-audit/rami-e2e-20261025-01/`.
+- **Risultati:** `benchmark ufficiale/rami-e2e-20261025-01/`.
+
 ## Istruzioni condizionali del FORM (revisione 2) — intervento offline del 25 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Continuazione dell'intervento di Astra sui tredici controesempi,

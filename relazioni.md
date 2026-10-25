@@ -5559,3 +5559,26 @@ Branch sperimentale pubblicabile dopo controllo; nessun merge o adozione live.
   dati nel ramo sbagliato da Claude (giudizio non indipendente). Il benchmark non è modificato.
 - **Limiti:** grassetto e marcatore letterale; rischio di omissione non misurato dal vivo.
 - **Rapporto:** `docs/istruzioni-form-2026-10-25.md`.
+
+## 25 ottobre 2026 — Adozione della protezione dei rami FORM e prova E2E reale (2 tentativi)
+
+- **Adozione:** profilo predefinito `sezioni-2026-10-25` (commit `a152d7f`), integrato nell'app
+  ordinaria e verificato sul processo reale senza LLM.
+- **Prova:**
+  - preregistrata, con harness congelato;
+  - runtime isolati clonati dai seed, DeepSeek `deepseek-flash`;
+  - tetto 750.000 token, consumati 247.443.
+- **soresa2023-rami-1** (scenario e politica della campagna incrementale):
+  - DOCX, 7/7 DIMOSTRATA, nucleo v3 7/15;
+  - 4 proposte RT nel ramo sbagliato non scritte; il modello le aveva già legate alla
+    condizione RT.
+- **sintetico-rami-1** (FORM sintetico con RT e avvalimento):
+  - DOCX, riferimento 8/8;
+  - trappola della scheda singola vuota; 0 falsi rifiuti.
+- **Osservazioni:**
+  - le citazioni delle condizioni erano intere, quindi la regola A2 non è servita;
+  - render PDF del sintetico completato con le funzioni del renderer congelato (DOCX di una
+    pagina).
+- **Limiti:** n = 2, revisione non indipendente; veto della protezione mai determinante dal
+  vivo.
+- **Rapporto:** `docs/rami-e2e-2026-10-25.md`.
