@@ -55,7 +55,6 @@ def grounded(field):
 
 def review_fields(data):
     from app.compilation_form_applicability import blocked_fields as inapplicable
-    from app.compilation_form_option_scope import instruction_uncovered_fields
     from app.compilation_form_option_scope import uncovered_fields as option_uncovered
     from app.compilation_procedural_consent import accepted, requirements
     from app.compilation_scope_review import blocked_source_fields
@@ -65,7 +64,6 @@ def review_fields(data):
 
     table_unknown = table_scope_blocked(data)
     option_unknown = option_uncovered(data)
-    instruction_unknown = instruction_uncovered_fields(data)
     form_blocked = inapplicable(data)
     # Owner section not analyzed or local clause uncertain: no SOURCE write, but no FORM
     # verdict either (USER may fill).
@@ -129,9 +127,6 @@ def review_fields(data):
                 ["Applicabilità dell’intestazione FORM non accertata: "
                  "condizione assente o non collegata"]
                 if field["candidate_id"] in table_unknown else
-                ["Applicabilità dell’istruzione FORM non accertata: manca una condizione "
-                 "valida riferita all’istruzione «da compilare nel caso di…» che governa i dati"]
-                if field["candidate_id"] in instruction_unknown else
                 ["Applicabilità dell’opzione FORM non accertata: "
                  "manca una condizione valida riferita all’opzione che introduce i dati"]
                 if field["candidate_id"] in option_unknown else
@@ -280,8 +275,7 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
 
         if compilation_table_scope.enabled(data):
             audit = compilation_table_scope.apply(audit, catalog)
-        return compilation_form_option_scope.apply(
-            audit, catalog, data["form_option_scope_revision"]) if (
+        return compilation_form_option_scope.apply(audit, catalog) if (
             compilation_form_option_scope.enabled(data)) else audit
     audit = validate_global_proposal(raw, layout, project_id, sources,
                                      expected_version=expected_version)
