@@ -5511,3 +5511,30 @@ Branch sperimentale pubblicabile dopo controllo; nessun merge o adozione live.
   - R1, tabelle, riesame e ripresa non esercitati;
   - «Preparazione del DOCX…» non visibile.
 - **Rapporto:** `docs/microtest-e2e-predefinito-2026-10-24.md`.
+
+## 25 ottobre 2026 — opzioni FORM e dati del ramo, verifica offline
+
+- Richiesta: partire dai tredici errori residui e correggere soltanto dipendenze
+  dimostrabili, preservando le 245 scritture corrette. Base attuale `9cb3129`.
+- Preregistrazione: `docs/piano-ambiti-form-2026-10-25.md`, copia/hash nei grezzi
+  prima della modifica. Nessuna nuova chiamata LLM o compilazione E2E.
+- Diagnosi: sette casi nei dati dell'ausiliaria introdotti da opzione ASCII e
+  `OPPURE`; sei nei blocchi ripetuti dei componenti RT. Nel JSON la condizione
+  locale è omessa o sostituita da una condizione di partecipazione con scope misto.
+- Fix `ddb8cb764bcb8dece4a43f80499b4933e759ed08`, isolato con flag persistito:
+  opzione locale riconosciuta senza condizione propria -> NON_ACCERTATA; una
+  risposta estranea non autorizza; condizione valida e conferma pertinente
+  consentono l'export positivo. Nessuna classificazione semantica generale.
+- Prima: 2 FAIL / 2 PASS, HTTP 200 errato. Dopo: 38 test nuovi PASS; replay
+  residui 13 -> 6 (ricevute simulate) / 7 -> 4 (registrate), positive 245 -> 245
+  / 211 -> 211. Sei casi RT lasciati aperti, nessuna regola specifica per bando.
+- Suite 3898 PASS, Ruff PASS; 26 controesempi K3 con output identico alla base.
+  Le prove misurano il software e i gate su output registrati, non nuova qualità
+  LLM; revisione autoriale, non indipendente.
+- Rollback `c16d2a3` verificato in un worktree separato: albero identico alla base
+  e ritorno degli stessi 2 FAIL / 2 PASS. Conservato anche l'errore iniziale di
+  import della sonda esterna, poi collocata correttamente nel percorso test.
+- App ordinaria, V12, benchmark e 29 sessioni live invariati; nessuna adozione.
+  Rapporto `docs/ambiti-form-2026-10-25.md`; audit locale
+  `backend/data/compilation-audit/ambiti-form-20261025-01/`, backup separato
+  `…/ambiti-form-backup-20261025/`. Due E2E futuri soltanto proposti nel rapporto.

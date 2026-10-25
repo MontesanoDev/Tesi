@@ -1,5 +1,33 @@
 # Stato di Mapi RAG
 
+## Sicurezza dei rami FORM — intervento offline del 25 ottobre 2026
+
+**Punto di ripresa: fermarsi dopo il rapporto.** L'utente ha autorizzato il solo
+lavoro sui tredici controesempi residui. Nessuna inferenza, adozione o modifica
+all'app ordinaria. Rapporto: `docs/ambiti-form-2026-10-25.md`.
+
+- Base reale `9cb3129`, branch `miglioramenti/2026-10-25-ambiti-form`, worktree
+  `/home/montesano/tesi-ambiti-form`; preservata l'integrazione ordinaria recente.
+- Fix `ddb8cb764bcb8dece4a43f80499b4933e759ed08`: dati introdotti da un'opzione
+  ASCII locale `OPPURE ...:` richiedono una condizione propria valida e una
+  scelta USER verificata. Nessuna inferenza su nomi di impresa o tipo di bando.
+- Rigioco negativo: residui **13 -> 6 su 25** con guardia simulata SUPPORTED;
+  **7 -> 4** con ricevute registrate. Sette ulteriori blocchi nell'ausiliaria;
+  sei casi dei componenti RT ancora aperti.
+- Positive: **245/245** con condizioni soddisfatte, **211/245** con sole ricevute
+  storiche, invariati. Nessun falso rifiuto nuovo in questo insieme.
+- 38 test nuovi PASS; suite **3898 PASS**, Ruff PASS. 26 casi K3 identici alla
+  base. Revisione autoriale, nessuna nuova misura di qualità LLM.
+- Rollback verificato: revert `c16d2a3`, albero esatto della base, difetto
+  originale riprodotto (2 FAIL / 2 PASS). Nessuna migrazione o dipendenza.
+- Opt-in **solo candidato**, `MAPI_FORM_OPTION_SCOPE_REVISION=1`; profilo
+  `sezioni-opzioni-2026-10-25`. Il default e le sessioni precedenti non cambiano.
+- 1244 file controllati e 29 sessioni live invariati; V12 preservata.
+- Audit: `backend/data/compilation-audit/ambiti-form-20261025-01/` nel repository
+  originario. Backup separato: `…/ambiti-form-backup-20261025/`.
+- Il rapporto propone soltanto un micro-test futuro di due tentativi, massimo
+  750.000 token: **non autorizzato e non avviato**. Nessun altro filone iniziato.
+
 ## Micro-test E2E della Compilazione DOCX predefinita (Cesano) — concluso, 24 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Un solo tentativo autorizzato, nessun altro test. Rapporto:
