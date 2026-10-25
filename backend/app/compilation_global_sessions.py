@@ -55,6 +55,7 @@ def grounded(field):
 
 def review_fields(data):
     from app.compilation_form_applicability import blocked_fields as inapplicable
+    from app.compilation_form_option_scope import uncovered_fields as option_uncovered
     from app.compilation_procedural_consent import accepted, requirements
     from app.compilation_scope_review import blocked_source_fields
     from app.compilation_segments import unassessed_fields, unverified_fields
@@ -62,6 +63,7 @@ def review_fields(data):
     from app.compilation_value_completeness import blocked_fields as incomplete
 
     table_unknown = table_scope_blocked(data)
+    option_unknown = option_uncovered(data)
     form_blocked = inapplicable(data)
     # Owner section not analyzed or local clause uncertain: no SOURCE write, but no FORM
     # verdict either (USER may fill).
@@ -125,6 +127,9 @@ def review_fields(data):
                 ["Applicabilità dell’intestazione FORM non accertata: "
                  "condizione assente o non collegata"]
                 if field["candidate_id"] in table_unknown else
+                ["Applicabilità dell’opzione FORM non accertata: "
+                 "manca una condizione valida riferita all’opzione che introduce i dati"]
+                if field["candidate_id"] in option_unknown else
                 ["Ambito della decisione USER non verificato o non più coerente con il modulo"]
                 if field["candidate_id"] in scope_blocked else
                 ["Condizioni del paragrafo FORM dichiarate incerte dal modello"]
@@ -266,10 +271,12 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
         catalog = build_compilation_catalog(layout)
         if enabled(data):
             audit = propagate(audit, catalog)
-        from app import compilation_table_scope
+        from app import compilation_form_option_scope, compilation_table_scope
 
-        return compilation_table_scope.apply(audit, catalog) if (
-            compilation_table_scope.enabled(data)) else audit
+        if compilation_table_scope.enabled(data):
+            audit = compilation_table_scope.apply(audit, catalog)
+        return compilation_form_option_scope.apply(audit, catalog) if (
+            compilation_form_option_scope.enabled(data)) else audit
     audit = validate_global_proposal(raw, layout, project_id, sources,
                                      expected_version=expected_version)
     if data.get("generation_revision") == 1 and report.is_file():
@@ -648,7 +655,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "attribution_safety_revision", "dialogue_revision",
                          "generation_revision", "derivation_revision",
                          "narration_recovery_revision", "branch_scope_revision",
-                         "hold_rereview_revision", "table_scope_revision"):
+                         "hold_rereview_revision", "table_scope_revision",
+                         "form_option_scope_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:

@@ -599,9 +599,11 @@ def applicability_states(data):
     audit = data.get("audit") or {}
     answers = (data.get("dialogue") or {}).get("answers", {})
     users = effective_user_values(data)
+    from app.compilation_form_option_scope import uncovered_fields as option_uncovered
     from app.compilation_table_scope import blocked_fields as table_scope_blocked
 
     table_unknown = table_scope_blocked(data)
+    option_unknown = option_uncovered(data)
     unassessed = unassessed_fields(data)
     pending = {"predicato_FORM": predicates(data), "autorizzazione_V14": authorizations(data),
                "paragrafo_locale_incerto": uncertain_fields(data)}
@@ -610,6 +612,7 @@ def applicability_states(data):
     user_blocked = blocked_user_fields(data)
     independent_users = set(users) - user_blocked if enabled(data) else set()
     pending["condizione_intestazione_FORM_non_accertata"] = table_unknown
+    pending["condizione_opzione_FORM_non_accertata"] = option_unknown
     pending["ambito_USER_non_verificato"] = blocked_source_fields(data) | user_blocked
     pending["paragrafo_locale_incerto"] -= independent_users
     states = {}
@@ -635,7 +638,7 @@ def applicability_states(data):
         if cid in unassessed and not user_only:
             states[cid] = {"state": "NON_ACCERTATA", "reasons": ["segmento_non_analizzato"]
                            + reasons}
-        elif cid in table_unknown:
+        elif cid in table_unknown or cid in option_unknown:
             states[cid] = {"state": "NON_ACCERTATA", "reasons": reasons}
         elif reasons:
             states[cid] = {"state": "CONDIZIONATA", "reasons": reasons}

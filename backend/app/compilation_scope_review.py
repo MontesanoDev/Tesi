@@ -91,9 +91,10 @@ def blocked_source_fields(data):
         return set()
     audit = data.get("audit") or {}
     answers = (data.get("dialogue") or {}).get("answers", {})
+    from app.compilation_form_option_scope import blocked_fields as option_blocked
     from app.compilation_table_scope import blocked_fields
 
-    blocked = blocked_fields(data)
+    blocked = blocked_fields(data) | option_blocked(data)
     for field in audit.get("fields", []):
         cid = field["candidate_id"]
         for c in field.get("conditions", []):
