@@ -30,10 +30,12 @@ SECTIONS = {
     "table_scope_revision": 1,            # Conditional table sections need applicability.
     "hold_rereview_revision": 2,          # One re-review of misattributed or role holds.
     "form_option_scope_revision": 2,      # Data bound to their FORM option or instruction.
+    "text_checkbox_revision": 1,          # Supported ASCII markers; verified USER choice.
 }
 # Earlier canonical profiles, recreated only by the server-side emergency switch.
-PREVIOUS = {"sezioni-2026-10-24": {k: v for k, v in SECTIONS.items()
-                                   if k != "form_option_scope_revision"}}
+PREVIOUS = {"sezioni-2026-10-24": {
+    k: v for k, v in SECTIONS.items()
+    if k not in {"form_option_scope_revision", "text_checkbox_revision"}}}
 
 
 def new_session_flags():

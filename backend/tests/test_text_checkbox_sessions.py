@@ -44,7 +44,7 @@ def model_response(inp, ids, *, conditional=False):
 
 
 async def analyzed(api, monkeypatch, *, conditional=False):
-    monkeypatch.setenv('MAPI_COMPILATION_PROFILE', 'checkbox-testuali-2026-10-26')
+    monkeypatch.delenv('MAPI_COMPILATION_PROFILE', raising=False)
     narrator(monkeypatch, {'message': 'La clausola richiede una scelta.', 'hold_groups': []},
              {'questions': []})
     def response(inp, ids):
