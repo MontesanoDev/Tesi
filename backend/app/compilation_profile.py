@@ -38,6 +38,8 @@ PREVIOUS = {"sezioni-2026-10-24": {k: v for k, v in SECTIONS.items()
 
 def new_session_flags():
     profile = os.environ.get("MAPI_COMPILATION_PROFILE")
+    if profile == "checkbox-testuali-2026-10-26":
+        return {**SECTIONS, "compilation_profile": profile, "text_checkbox_revision": 1}
     if profile == "storico":
         return historical_flags()
     if profile in PREVIOUS:

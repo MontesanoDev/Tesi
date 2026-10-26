@@ -67,6 +67,11 @@ def choice_form(candidate_id, form, catalog, paragraphs):
     restored = _form_quote(paragraphs[form.paragraph_id], restored)
     if not restored.strip():
         raise ValueError("Opzione checkbox senza etichetta FORM")
+    if candidate.get("control_type") == "text_ascii" and (
+        form.paragraph_id != candidate["context_id"]
+        or restored.strip() != paragraphs[form.paragraph_id].strip()
+    ):
+        raise ValueError("Casella testuale senza la clausola FORM locale intera")
     return FormSpan(paragraph_id=form.paragraph_id, quote=restored)
 
 
@@ -132,7 +137,11 @@ def _exclusive_region(group, catalog, paragraphs):
         pos = index + direction
         while 0 <= pos < len(order):
             pid = order[pos]
-            if pid in table_paragraphs or (paragraphs[pid].strip() and pid not in by_paragraph):
+            separator = (first.get('control_type') == 'text_ascii'
+                         and _option_text(paragraphs[pid]) == 'oppure')
+            if pid in table_paragraphs or (
+                paragraphs[pid].strip() and pid not in by_paragraph and not separator
+            ):
                 break
             peers = by_paragraph.get(pid, set())
             if any(controls[cid]["section_ids"] != first["section_ids"] for cid in peers):
@@ -265,6 +274,8 @@ def attach_choice_audit(result, groups, items, catalog, source_map):
         if item is None or item.disposition not in {"value", "conditional"}:
             continue
         try:
+            if catalog['candidates'][cid].get('control_type') == 'text_ascii':
+                raise ValueError('Casella testuale: necessaria una scelta USER del gruppo')
             group = groups.get(item.choice_group_id, {})
             proofs = check_choice(item, result["facts"][item.fact_id], group, cid, source_map)
             field["source_evidence"] = proofs
@@ -300,6 +311,9 @@ def materialize_choices(data, source_ids, user_ids):
               for cid in [*source_ids, *user_ids]
               if data["catalog"]["candidates"][cid]["type"] == "checkbox"}
     values, effects = {}, []
+    if any(data['catalog']['candidates'][cid].get('control_type') == 'text_ascii'
+           and cid not in user_ids for cid in chosen):
+        raise ValueError('Casella testuale senza scelta USER verificata')
     for key, group in data["audit"].get("choice_groups", {}).items():
         selected = {cid: value for cid, value in chosen.items() if cid in group["options"]}
         if not selected:

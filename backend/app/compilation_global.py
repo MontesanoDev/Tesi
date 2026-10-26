@@ -540,6 +540,15 @@ def build_global_input(layout, project_id, sources, *, user_context=None):
 def global_request(settings, data, *, thinking=True, segment=None):
     """segment: P3 instruction appended after the shared, cacheable input prefix."""
     task = TASK
+    if any(c.get("control_type") == "text_ascii"
+           for c in data.get("form", {}).get("candidates", {}).values()):
+        task += """
+
+CASELLA TESTUALE. I controlli text_ascii del catalogo sono checkbox scrivibili:
+usa gli stessi choice_groups e marker [[ID]], citando l'intera clausola locale.
+Proponi tutte le condizioni FORM pertinenti. La selezione richiede una scelta
+USER del gruppo: non proporre valori booleani fondati soltanto sulle SOURCE.
+"""
     if data.get("reference_date"):
         task += """
 

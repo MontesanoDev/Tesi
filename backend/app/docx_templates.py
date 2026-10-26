@@ -437,6 +437,7 @@ class DocxLayout:
     paragraph_catalog: list[dict]
     unsupported_locations: list[dict]
     field_types: dict[str, str]
+    text_checkbox_revision: int = 0
 
     @property
     def candidate_ids(self) -> set[str]:
@@ -653,6 +654,12 @@ def fill_docx(layout: DocxLayout, values: dict[str, str], *,
         raise DocumentInputError("Il modello e cambiato durante la compilazione")
     # Reopen the original so repeated exports cannot accumulate edits or draft notices.
     fresh = inspect_docx(layout.original, require_candidates=checkbox_values is None)
+    fresh.text_checkbox_revision = layout.text_checkbox_revision
+    from app.docx_text_checkboxes import controls as text_controls
+
+    # Freeze original nodes before ordinary cell writes can remove empty paragraphs
+    # or insert text resembling a marker. Inserted data never creates new destinations.
+    text_positions = text_controls(fresh) if checkbox_values is not None else {}
     for cell_id, value in values.items():
         if cell_id not in fresh.candidate_ids or not isinstance(value, str) or not value.strip():
             raise DocumentInputError("Tentativo di scrittura su un campo non autorizzato")
@@ -699,7 +706,7 @@ def fill_docx(layout: DocxLayout, values: dict[str, str], *,
     if checkbox_values is not None:
         from app.docx_checkboxes import write_checkboxes
 
-        write_checkboxes(fresh, checkbox_values)
+        write_checkboxes(fresh, checkbox_values, text_positions=text_positions)
 
     notice = OxmlElement("w:p")
     run = OxmlElement("w:r")

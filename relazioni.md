@@ -5582,3 +5582,16 @@ Branch sperimentale pubblicabile dopo controllo; nessun merge o adozione live.
 - **Limiti:** n = 2, revisione non indipendente; veto della protezione mai determinante dal
   vivo.
 - **Rapporto:** `docs/rami-e2e-2026-10-25.md`.
+
+
+## 26 ottobre 2026 — snapshot e caselle ASCII, sole verifiche offline
+
+Snapshot `1785357` e backup privati ripristinati con hash verificati. Candidata
+separata per il caso avvalimento `[]`: destinazione testuale, scelta USER e writer
+circoscritto, senza adozione nell'app. Due test iniziali fallenti, poi correzione;
+117 test mirati PASS; suite 3980 PASS e otto test storici recuperati PASS; Ruff PASS.
+Replay 0/25 errori ancora ammessi, 243/245 positivi congelati e 236/240 estesi con
+ambiti simulati, invariati. Riutilizzare ricevute del vecchio catalogo nel nuovo
+resta bloccato dove l'ambito è cambiato: nessuna migrazione implicita. DOCX e PDF
+controllati sul FORM storico sintetico, separatamente dall'API simulata.
+Nessun provider reale chiamato. Rapporto: `docs/checkbox-testuali-2026-10-26.md`.
