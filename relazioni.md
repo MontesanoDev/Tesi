@@ -5582,3 +5582,11 @@ Branch sperimentale pubblicabile dopo controllo; nessun merge o adozione live.
 - **Limiti:** n = 2, revisione non indipendente; veto della protezione mai determinante dal
   vivo.
 - **Rapporto:** `docs/rami-e2e-2026-10-25.md`.
+
+
+## 26 ottobre 2026 — recupero dei messaggi nella chat
+
+Correzione UI isolata: recupero solo dopo errori, nessun comando sui messaggi
+riusciti. Test prima: 4 fallimenti; dopo: 154 test frontend superati, lint e build
+OK. Rollback della patch verificato. Nessuna inferenza o modifica DOCX.
+Rapporto: `docs/recupero-messaggi-ui-2026-10-26.md`.

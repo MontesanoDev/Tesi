@@ -1,5 +1,12 @@
 # Stato di Mapi RAG
 
+## Recupero messaggi dopo errori — 26 ottobre 2026
+
+Corretto il comando mostrato anche sui messaggi riusciti: ora «Recupera messaggio»
+compare solo dopo errori, senza duplicare il recupero locale. 154 test frontend,
+lint e build superati. Rollback della patch verificato. Nessuna modifica backend
+o adozione della candidata checkbox. [Dettagli](docs/recupero-messaggi-ui-2026-10-26.md).
+
 ## Protezione dei rami FORM adottata nell'app e prova E2E reale — 25 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Decisione dell'utente («fai tutti e 3»). Rapporto:
