@@ -58,8 +58,10 @@ def _instruction_regions(catalog, owned, body):
                         and not norm(following["text"]).startswith("("))):
                 break
             scope.append(following["id"])
-        ids = sorted(cid for pid in scope for cid in owned.get(pid, [])
-                     if catalog["candidates"][cid].get("type") == "text")
+        ids = sorted(cid for cid, candidate in catalog['candidates'].items()
+                     if candidate.get('context_id') in scope
+                     and (candidate.get('type') == 'text'
+                          or candidate.get('control_type') == 'text_ascii'))
         if ids:
             result.append({"kind": "instruction", "paragraph_id": paragraph["id"],
                            "quote": paragraph["text"], "paragraph_ids": scope,
@@ -68,8 +70,14 @@ def _instruction_regions(catalog, owned, body):
 
 
 def regions(catalog, revision=1):
+    # Text markers were already FORM scope boundaries before becoming writable.
+    # Preserve that structural view so enabling their writer cannot erase a veto.
+    textual = {cid for cid, c in catalog.get('candidates', {}).items()
+               if c.get('control_type') == 'text_ascii'}
     owned = {}
     for cid, candidate in catalog.get("candidates", {}).items():
+        if cid in textual:
+            continue
         owned.setdefault(candidate.get("context_id"), []).append(cid)
     # None is a barrier, including nested/cell paragraphs. Never cross a table.
     body = []
@@ -77,7 +85,9 @@ def regions(catalog, revision=1):
         if block.get("tables"):
             body.append(None)
         else:
-            body.extend(p for p in block["paragraphs"] if p["text"].strip()
+            body.extend({**p, 'controls': [c for c in p.get('controls', [])
+                                         if c['id'] not in textual]} if textual else p
+                        for p in block["paragraphs"] if p["text"].strip()
                         or p.get("controls") or owned.get(p["id"]))
     result = _instruction_regions(catalog, owned, body) if revision == 2 else []
     for index in range(2, len(body) - 1):

@@ -258,7 +258,10 @@ def _bind_continuations(blocks, candidates):
     headings, blank paragraphs and new prose break the run. No text is copied.
     """
     by_block = {}
-    for candidate in candidates.values():
+    textual = {cid for cid, c in candidates.items() if c.get('control_type') == 'text_ascii'}
+    for cid, candidate in candidates.items():
+        if cid in textual:
+            continue
         by_block.setdefault(candidate["location"]["block_id"], []).append(candidate)
     origin, length = None, 0
     for block in blocks:
@@ -268,7 +271,8 @@ def _bind_continuations(blocks, candidates):
             continue
         paragraph = paragraphs[0]
         fields = by_block.get(block["id"], [])
-        if (not paragraph["text"].strip() or paragraph.get("controls")
+        native_controls = [c for c in paragraph.get('controls', []) if c['id'] not in textual]
+        if (not paragraph["text"].strip() or native_controls
                 or "outline_level" in paragraph):
             origin, length = None, 0
         elif not fields:
@@ -288,6 +292,9 @@ def build_compilation_catalog(layout):
     )}
     styles = {style.get(qn("w:styleId")): style for style in layout.document.styles.element}
     native_controls = _checkboxes(layout.document.element.body, positions)
+    from app.docx_text_checkboxes import paragraph_records
+
+    text_controls = paragraph_records(layout)
     sections, stack, paragraphs = {}, [], {}
     controls = {}
     for paragraph, index in positions.items():
@@ -295,6 +302,7 @@ def build_compilation_catalog(layout):
         text, paragraph_controls, references = _paragraph_content(
             paragraph, native_controls.get(paragraph, []),
         )
+        paragraph_controls.extend(text_controls.get(paragraph, []))
         level = _outline_level(paragraph, styles)
         if level is not None:
             while stack and stack[-1][0] >= level:
