@@ -67,7 +67,7 @@ function ConversationTurn({ turn, assistantContent, processing = false, activity
         <span>Tu</span>
         <p>{turn.question}</p>
         {turn.document_reference && <small className="chat-form-reference">@{turn.document_reference.name}</small>}
-        {onReuse && <button type="button" onClick={onReuse}>Riutilizza messaggio</button>}
+        {onReuse && <button type="button" className="button button--compact" onClick={onReuse}>Recupera messaggio</button>}
       </div>
 
       <AssistantMessage id={answerTitleId} model={result?.model}
@@ -632,7 +632,8 @@ export function ProjectWorkspacePage() {
                   <div key={turn.id}>
                     <ConversationTurn
                       turn={turn}
-                      onReuse={!searching && !sessionProcessing && !prompt ? () => {
+                      onReuse={!searching && !sessionProcessing && !prompt && !recoverableMessage
+                        && (turn.error || ['failed', 'not_configured'].includes(turn.result?.generation_status ?? '')) ? () => {
                         setPrompt(turn.question)
                         setDocumentReference(turn.document_reference ?? null)
                         retainMessage(turn.question, turn.document_reference ?? null)

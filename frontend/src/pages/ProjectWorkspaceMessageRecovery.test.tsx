@@ -118,6 +118,7 @@ describe('Conservazione e recupero dei messaggi USER', () => {
     vi.mocked(api.projectAnswer).mockResolvedValue(result())
     await setup(); type(long); send()
     await screen.findByText('Risposta del sistema')
+    expect(screen.queryByRole('button', { name: /Riutilizza messaggio|Recupera messaggio/ })).not.toBeInTheDocument()
     cleanup(); await setup()
     expect(screen.queryByRole('button', { name: 'Recupera messaggio' })).not.toBeInTheDocument()
     expect(input()).toHaveValue('')
@@ -142,14 +143,21 @@ describe('Conservazione e recupero dei messaggi USER', () => {
     expect(input()).toHaveValue('Messaggio successivo ancora da inviare')
   })
 
-  it('rende recuperabile anche il messaggio conservato dal server senza copia locale', async () => {
+  it.each(['failed', 'not_configured', 'direct'] as const)(
+    'offre il recupero dallo storico solo dopo un errore: %s', async (status) => {
     vi.mocked(api.conversation).mockResolvedValue({
       id: 'c1', title: 'c1', project_id: 'alfa', metadata: '', target: null,
-      turns: [{ ...result('failed'), id: 1, question: long, answer: 'Interpretazione non riuscita' }],
+      turns: [{ ...result(status), id: 1, question: long, answer: 'Risposta registrata' }],
     })
     await setup()
-    fireEvent.click(await screen.findByRole('button', { name: 'Riutilizza messaggio' }))
-    expect(input()).toHaveValue(long)
+    await screen.findByText('Risposta registrata')
+    expect(screen.queryByRole('button', { name: 'Riutilizza messaggio' })).not.toBeInTheDocument()
+    if (status === 'direct') {
+      expect(screen.queryByRole('button', { name: 'Recupera messaggio' })).not.toBeInTheDocument()
+    } else {
+      fireEvent.click(screen.getByRole('button', { name: 'Recupera messaggio' }))
+      expect(input()).toHaveValue(long)
+    }
     expect(api.projectAnswer).not.toHaveBeenCalled()
   })
 
