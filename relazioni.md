@@ -5596,3 +5596,6 @@ Rollback verificato. Avvio preesistente rigenera 82 ID di artefatti: riprodotto
 su copia precedente e ripristinati ID/timestamp senza perdita di contenuti;
 limite e differenze fisiche FTS dichiarati. Sessioni e originali invariati.
 Dettagli: `docs/integrazione-checkbox-testuali-2026-10-27.md`.
+
+Pubblicazione del branch di integrazione completata; SHA remoto verificato,
+nessun merge in main. App attiva su 5173/8000 con il profilo ordinario.

@@ -17,6 +17,7 @@ al narratore o al retrieval. Sessioni precedenti non aggiornate.
   rigenerato 82 ID di frammenti degli artefatti: riprodotto su base, ripristinati
   i soli ID/timestamp. Nessuna perdita di dati; differenze fisiche FTS dichiarate.
 - Rollback selettivi verificati, backup aggiornati anche su D.
+- Branch di integrazione pubblicato: SHA remoto verificato, `main` invariato.
 - [Rapporto, limiti e procedure](docs/integrazione-checkbox-testuali-2026-10-27.md).
 
 Intervento concluso: non avviare ulteriori campagne o sprint automaticamente.

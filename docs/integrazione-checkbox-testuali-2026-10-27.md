@@ -142,7 +142,9 @@ commit: soltanto codice, test e documentazione. La scansione a pattern non è un
 certificazione universale di riservatezza. Nessun nuovo backup, database,
 DOCX/PDF di prova o audit grezzo entra nei commit. I benchmark già pubblicati
 non vengono riscritti. Push normale del solo branch, nessun merge in main,
-nessuna modifica di tag o force push; SHA remoto da confrontare con HEAD.
+nessuna modifica di tag o force push. Pubblicazione completata e SHA remoto
+confrontato con HEAD; `main` remoto invariato. Esito conservato in
+`publication-verified.json`. [Branch pubblicato](https://github.com/MontesanoDev/Tesi/tree/integrazione/2026-10-26-checkbox-testuali).
 
 ## Rollback verificato
 
