@@ -266,8 +266,10 @@ def signatory_fields(data):
         field = fields.get(ids[0])
         if field is None or field.get("proposal") or field.get("validation_errors"):
             continue
-        result[ids[0]] = {**field, "label": "Il sottoscritto", "kind": "data",
-            "disposition": "review", "form_evidence": {
+        # Derivation must not change the FORM target already checked by the USER guard.
+        # Supply missing metadata, but preserve validated labels/anchors and their receipt.
+        result[ids[0]] = {**field, "label": field.get("label") or "Il sottoscritto", "kind": "data",
+            "disposition": "review", "form_evidence": field.get("form_evidence") or {
                 "paragraph_id": paragraphs[0]["id"], "quote": paragraphs[0]["text"]}}
     for group in _signatory_groups(data):
         cid = group["name_id"]
@@ -275,8 +277,9 @@ def signatory_fields(data):
         if (cid in result or not field or field.get("proposal") or field.get("source_reuse")
                 or field.get("validation_errors")):
             continue
-        result[cid] = {**field, "label": "Nome del firmatario della domanda", "kind": "data",
-            "disposition": "review", "form_evidence": {
+        result[cid] = {**field, "label": field.get("label") or "Nome del firmatario della domanda",
+            "kind": "data", "disposition": "review",
+            "form_evidence": field.get("form_evidence") or {
                 "paragraph_id": group["proofs"][0]["id"],
                 "quote": group["proofs"][0]["text"]}}
     return result

@@ -28,6 +28,11 @@ def session_data(session):
 def target(data, key, field_ids):
     catalog, audit = data.get("catalog") or {}, data.get("audit") or {}
     fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
+    from app.compilation_source_reuse import signatory_fields
+
+    # The guard must see the same fallback FORM target as the backend-owned question
+    # and later SOURCE derivation, including when the model omitted the name field.
+    fields.update(signatory_fields(data))
     ids = sorted(set(field_ids))
     conditions = {c for cid in ids for c in fields.get(cid, {}).get("conditions", [])}
     if key.startswith("condition:"):
