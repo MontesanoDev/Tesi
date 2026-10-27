@@ -255,21 +255,30 @@ domande residue. Non ripetere nelle domande elenchi di valori già trovati.
 def continuation_receipt(dialogue, *, newly_held=False):
     """Acknowledge actual mutations, never regenerate an inventory of SOURCE facts."""
     latest = dialogue.get("latest_turn") or {}
-    actions = [r["action"] for r in latest.get("accepted", [])]
+    accepted = latest.get("accepted", [])
+
+    def labels(records):
+        return "; ".join(dict.fromkeys(
+            str(r['label'])[:180] for r in records
+            if r.get('label') and no_technical_ids(str(r['label'])))) or "punti indicati"
+
     parts = []
-    if any(a in {"CONDITION_TRUE", "CONDITION_FALSE"} for a in actions):
-        parts.append("Ho registrato le tue conferme.")
-    if any(r["action"] == "VALUE" and r.get("write_authorized") is not False
-           for r in latest.get("accepted", [])):
-        parts.append("Ho aggiornato i dati che hai fornito.")
-    if any(r["action"] == "VALUE" and r.get("write_authorized") is False
-           for r in latest.get("accepted", [])):
-        parts.append("Ho registrato la decisione: va ancora verificata per i campi del modulo. "
-                     "Non ho aggiunto valori né selezionato caselle per questa risposta.")
-    if any(a in {"SKIP", "UNKNOWN", "REFUSE"} for a in actions):
-        parts.append("Lascio in bianco i punti che hai rinviato.")
+    for action, outcome in [("CONDITION_TRUE", "confermate"), ("CONDITION_FALSE", "escluse")]:
+        if records := [r for r in accepted if r["action"] == action]:
+            parts.append(f"Condizioni {outcome}: {labels(records)}.")
+    if records := [r for r in accepted if r["action"] == "VALUE"
+                   and r.get("write_authorized") is not False]:
+        parts.append(f"Ho registrato i dati: {labels(records)}. "
+                     "L'inserimento resta soggetto ai controlli del modulo e alle sospensioni.")
+    if records := [r for r in accepted if r["action"] == "VALUE"
+                   and r.get("write_authorized") is False]:
+        parts.append(f"Decisione registrata per {labels(records)}: "
+                     "non autorizza ancora scritture; manca la verifica dei campi destinatari.")
+    if records := [r for r in accepted if r["action"] in {"SKIP", "UNKNOWN", "REFUSE"}]:
+        parts.append(f"Lascio in bianco i punti rinviati o non confermati: {labels(records)}.")
     if latest.get("unaccepted"):
-        parts.append("Mi serve ancora un chiarimento sui punti che non ho potuto interpretare.")
+        parts.append(f"Risposte non accettate: {labels(latest['unaccepted'])}. "
+                     "Non le ho usate per autorizzare scritture; serve un chiarimento.")
     if not parts:
         parts.append("Riprendiamo dal punto rimasto aperto.")
     if newly_held:
