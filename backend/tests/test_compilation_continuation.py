@@ -138,7 +138,7 @@ async def test_follow_up_has_only_latest_receipt_and_keeps_source_proofs(
     s = await resolve(api, s)
     saved = get_conversation("alpha", s["conversation_id"])["turns"][-1]["answer"]
     assert saved == s["global_compilation"]["dialogue"]["message"]
-    assert saved.startswith("Condizioni confermate:") and "Ho trovato" not in saved
+    assert saved.startswith("Ho registrato le tue conferme.") and "Ho trovato" not in saved
     assert "Lascio in bianco" in saved
     assert dialogue.question_pool(stored_data(s)) == []
     assert dialogue.export_selection(s)[0] == ["t0.r0.c1", "t0.r1.c1"]
@@ -192,10 +192,10 @@ def test_narration_schema_and_validator_bind_closed_questions_to_boolean_slots()
 
 
 @pytest.mark.parametrize("actions,expected", [
-    (["VALUE"], "Ho registrato i dati:"),
-    (["CONDITION_FALSE"], "Condizioni escluse:"),
-    (["UNKNOWN"], "Lascio in bianco i punti rinviati o non confermati:"),
-    (["SKIP", "CONDITION_TRUE"], "Condizioni confermate:"),
+    (["VALUE"], "Ho aggiornato i dati che hai fornito."),
+    (["CONDITION_FALSE"], "Ho registrato le tue conferme."),
+    (["UNKNOWN"], "Lascio in bianco i punti che hai rinviato."),
+    (["SKIP", "CONDITION_TRUE"], "Ho registrato le tue conferme. Lascio in bianco"),
     ([], "Riprendiamo dal punto rimasto aperto."),
 ])
 def test_receipt_uses_only_recorded_actions_without_source_inventory(actions, expected):
@@ -203,8 +203,7 @@ def test_receipt_uses_only_recorded_actions_without_source_inventory(actions, ex
         "value": "Valore da non ripetere"} for a in actions], "unaccepted": []}}
     receipt = dialogue.continuation_receipt(saved)
     assert receipt.startswith(expected)
-    assert "Valore da non ripetere" not in receipt
-    assert ("Motivo tecnico lungo" in receipt) is bool(actions)
+    assert "Valore da non ripetere" not in receipt and "Motivo tecnico" not in receipt
 
 
 @pytest.mark.anyio
