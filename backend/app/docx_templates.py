@@ -613,6 +613,17 @@ def _replace_slot(slot: ParagraphSlot, value: str) -> None:
     text, nodes = _paragraph_text(slot.paragraph)
     if text[slot.start : slot.end] != slot.placeholder:
         raise DocumentInputError("Il segnaposto del paragrafo non coincide con il modello")
+    if (slot.form_text_end is None and re.fullmatch(r"[.\u2026]{3,}", slot.placeholder)
+            and value):
+        # Dot leaders visually separate words even when the FORM contains no spaces.
+        # Only lexical neighbours qualify: preserve codes, numeric/date components,
+        # underscores, punctuation and native Word form fields literally.
+        left = re.search(r"(?<!\w)[^\W\d_]{3,}$", text[:slot.start])
+        right = re.match(r"[^\W\d_]{3,}(?!\w)", text[slot.end:])
+        if left and not left[0].isupper() and value[0].isalpha():
+            value = " " + value
+        if right and not right[0].isupper() and value[-1].isalpha():
+            value += " "
     affected = [
         (node, start, end) for node, start, end in nodes if start < slot.end and end > slot.start
     ]
