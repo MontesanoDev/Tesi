@@ -1,5 +1,26 @@
 # Stato di Mapi RAG
 
+## Checkbox testuali integrate nell'app ordinaria — 27 ottobre 2026
+
+Profilo predefinito sempre `sezioni-2026-10-25`, ora con `text_checkbox_revision=1`
+nelle nuove sessioni. Sezioni e protezioni FORM preservate, nessun cambio ai prompt,
+al narratore o al retrieval. Sessioni precedenti non aggiornate.
+
+- Branch `integrazione/2026-10-26-checkbox-testuali`: UI `e47b817`, supporto
+  checkbox `f5f6bd5`, attivazione `59a2dcd`. Port selettivo da base pubblica;
+  snapshot privati esclusi dalla cronologia nuova.
+- Backend 3940 PASS prima / 3989 PASS dopo, Ruff PASS; frontend 154 PASS,
+  lint/build PASS. Replay 0/25 errori, 243/245 positivi con guardia simulata.
+- Worker reale: 4 prove API su dati temporanei, `[X]` e `[]` nei DOCX/PDF;
+  nessuna connessione esterna. App raggiungibile su 5173 e 8000.
+- 29 sessioni e 273 uploads invariati. All'avvio una routine preesistente ha
+  rigenerato 82 ID di frammenti degli artefatti: riprodotto su base, ripristinati
+  i soli ID/timestamp. Nessuna perdita di dati; differenze fisiche FTS dichiarate.
+- Rollback selettivi verificati, backup aggiornati anche su D.
+- [Rapporto, limiti e procedure](docs/integrazione-checkbox-testuali-2026-10-27.md).
+
+Intervento concluso: non avviare ulteriori campagne o sprint automaticamente.
+
 ## Protezione dei rami FORM adottata nell'app e prova E2E reale — 25 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Decisione dell'utente («fai tutti e 3»). Rapporto:

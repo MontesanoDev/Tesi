@@ -44,6 +44,12 @@ Le nuove sessioni V12 conservano anche i motivi dei campi lasciati vuoti,
 distinguendo spiegazioni respinte e omissioni; non certificano completezza.
 Possono scrivere checkbox native Word con gruppi di scelta
 validati e provenienza SOURCE/USER; [prove e limiti](docs/checkbox-2026-10-13.md).
+Dal 27 ottobre le nuove sessioni del profilo `sezioni-2026-10-25` mantengono le
+protezioni FORM e riconoscono anche le caselle testuali supportate (`[]`, `[ ]`):
+la scelta USER verificata può marcarle `[X]`. Le sessioni precedenti mantengono
+il proprio comportamento. Il supporto non copre tutte le rappresentazioni Word;
+il DOCX resta una bozza da revisionare. [Integrazione e rollback](docs/integrazione-checkbox-testuali-2026-10-27.md).
+
 
 Lo script installa automaticamente le dipendenze frontend mancanti o non valide
 con `npm ci` e sincronizza quelle backend con `uv sync --locked` prima di

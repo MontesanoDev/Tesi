@@ -5582,3 +5582,17 @@ Branch sperimentale pubblicabile dopo controllo; nessun merge o adozione live.
 - **Limiti:** n = 2, revisione non indipendente; veto della protezione mai determinante dal
   vivo.
 - **Rapporto:** `docs/rami-e2e-2026-10-25.md`.
+
+
+## 27 ottobre 2026 — adozione delle caselle testuali
+
+Port selettivo dal fix locale senza ereditarne lo snapshot e senza l'aggiunta al
+prompt. Profilo `sezioni-2026-10-25` con caselle testuali nelle nuove sessioni;
+vecchie sessioni conservate. Commit `e47b817`, `f5f6bd5`, `59a2dcd`.
+Backend 3989 PASS (3940 prima), frontend 154 PASS, Ruff/lint/build OK; replay
+0/25 errori e 243/245 positivi con guardia simulata. Quattro esportazioni API
+nel worker ordinario, su database temporanei, DOCX/PDF verificati, zero LLM.
+Rollback verificato. Avvio preesistente rigenera 82 ID di artefatti: riprodotto
+su copia precedente e ripristinati ID/timestamp senza perdita di contenuti;
+limite e differenze fisiche FTS dichiarati. Sessioni e originali invariati.
+Dettagli: `docs/integrazione-checkbox-testuali-2026-10-27.md`.
