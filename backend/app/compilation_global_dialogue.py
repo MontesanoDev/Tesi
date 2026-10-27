@@ -629,8 +629,22 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
                 data, proposals[review.proposal_slot - 1], value, context, review,
                 records.get(cid, {})):
             redundant.add(cid)
+        from app.compilation_temporal_hold import comparison_proof
+
+        original = records.get(cid, {})
+        temporal = comparison_proof(data, cid, review.model_dump(),
+            context.get('_validation_sources', []), context.get('_validation_project_id'),
+            context.get('reference_date')) if (
+                validation == 'RECORDED' and not unresolved and not repeated
+                and (not original or all(original.get(k) == getattr(review, k)
+                     for k in ('blocker', 'reason', 'missing_information',
+                               'evidence_quote')))) else None
+        if temporal:
+            redundant.add(cid)
         notes[cid] = {**review.model_dump(), "reason_validation": (
-            "REJECTED_REDUNDANT_ROLE_CONFIRMATION" if cid in redundant else validation)}
+            'REJECTED_TEMPORAL_COMPARISON' if temporal else
+            "REJECTED_REDUNDANT_ROLE_CONFIRMATION" if cid in redundant else validation),
+            **({'temporal_comparison': temporal} if temporal else {})}
         if pool is None:
             continue
         notes[cid]["reason_status"] = "recorded" if validation == "RECORDED" else "unverified"
@@ -978,7 +992,13 @@ async def _narrate_once(data, folder):
                 or any(type(i) is not int or not 1 <= i <= len(proposals)
                        for i in plan.held_proposal_slots)):
             raise ValueError("Esclusioni di proposte non valide")
-        hold_update = _hold_updates(data, proposals, context, plan, root.name,
+        # Validation-only full corpus: never added to the narrator request or trusted as
+        # model output. The same proof is recomputed from current SOURCE at export.
+        validation_context = {**context, **({
+            '_validation_sources': saved_input.get('sources', []),
+            '_validation_project_id': saved_input.get('project_id')} if (
+                folder / 'input.json').is_file() else {})}
+        hold_update = _hold_updates(data, proposals, validation_context, plan, root.name,
                                     pool if revised else None, irregular)
         held = set(hold_update["held_candidate_ids"])
         reviewed = {"reviewed_candidate_ids": [f["candidate_id"] for f in proposals],

@@ -865,6 +865,10 @@ def _selected(row, state, request, db):
             raise HTTPException(409, "Conferma l'applicabilità delle condizioni "
                                 "dei valori selezionati")
     fresh = refreshed_audit(db, row, state)
+    from app.compilation_temporal_hold import validate_releases
+
+    validate_releases({**data, 'audit': fresh}, ids,
+                      load_document_corpus(db, row['project_id']), row['project_id'])
     if recovering and set(ids) - narration_source_ids({**data, "audit": fresh}):
         raise HTTPException(409, "Sintesi incompleta: revisione della proposta non più valida")
     if data.get("generation_revision") == 3 and (
