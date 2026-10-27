@@ -22,20 +22,6 @@ TEXT_IDS = [f"p12.ft{i}" for i in range(15)] + [
     "p18.ft0", "p19.ft0", "p20.ft0", "p21.ft0", "p105.ft0",
 ]
 
-# Frozen exports remain immutable. The word-spacing fix deliberately changes only
-# these five text nodes; compare all other XML and package bytes to the old files.
-SPACING_DELTAS = {
-    'minervino': [
-        ('Ordine degli Ingegneri di Bari', ' Ordine degli Ingegneri di Bari'),
-        ('iscritto all’Ordine/Collegio professionaleOrdine degli Ingegneri di Bari sezione A',
-         'iscritto all’Ordine/Collegio professionale Ordine degli Ingegneri di Bari sezione A'),
-        ('iscritto all’Ordine/Collegio professionaleOrdine degli Architetti di Bari sezione A',
-         'iscritto all’Ordine/Collegio professionale Ordine degli Architetti di Bari sezione A'),
-    ],
-    'craa': [('dell’impresaMapi Ingegneria S.r.l.', 'dell’impresa Mapi Ingegneria S.r.l.'),
-             ('Codice fiscaleIT01234567890', 'Codice fiscale IT01234567890')],
-}
-
 
 def read_json(path):
     return json.loads(path.read_text())
@@ -99,25 +85,7 @@ def test_six_frozen_catalogs_IDs_and_previous_DOCX_bytes(slug):
     writes = read_json(folder / "writes.json")
     first = fill_docx(parsed, writes["text_values"], checkbox_values=writes["checkbox_values"])
     second = fill_docx(parsed, writes["text_values"], checkbox_values=writes["checkbox_values"])
-    assert first == second
-    previous = (folder / "previous-export.docx").read_bytes()
-    if slug not in SPACING_DELTAS:
-        assert first == previous
-    else:
-        with ZipFile(BytesIO(previous)) as old, ZipFile(BytesIO(first)) as new:
-            assert old.namelist() == new.namelist()
-            for name in old.namelist():
-                if name != 'word/document.xml':
-                    assert old.read(name) == new.read(name)
-            old_xml = etree.fromstring(old.read('word/document.xml'))
-            new_xml = etree.fromstring(new.read('word/document.xml'))
-            differences = []
-            for a, b in zip(old_xml.iter(qn('w:t')), new_xml.iter(qn('w:t')), strict=True):
-                if a.text != b.text:
-                    differences.append((a.text, b.text))
-                    b.text = a.text  # Ignore precisely the independently listed spacing delta.
-            assert differences == SPACING_DELTAS[slug]
-            assert etree.tostring(old_xml) == etree.tostring(new_xml)
+    assert first == second == (folder / "previous-export.docx").read_bytes()
     with ZipFile(BytesIO(original)) as before, ZipFile(BytesIO(first)) as after:
         assert after.testzip() is None
         assert before.namelist() == after.namelist()
