@@ -5599,3 +5599,33 @@ Dettagli: `docs/integrazione-checkbox-testuali-2026-10-27.md`.
 
 Pubblicazione del branch di integrazione completata; SHA remoto verificato,
 nessun merge in main. App attiva su 5173/8000 con il profilo ordinario.
+
+## 27 ottobre 2026 — diagnosi offline di conferme USER perse e rendering
+
+Richiesta: tracciare una compilazione reale dalle decisioni al DOCX, senza nuove
+inferenze o modifiche dell'app ordinaria. Diagnosi congelata `ac98085`, tre fix
+separati: ricevuta del nome `fa83800a`, separatori ai puntini `3cfd5213`, testo
+delle ricevute `0dda3ffe`. Branch `fix/2026-10-27-conferme-docx`.
+
+Il rigioco della base è identico byte per byte al documento osservato. Dopo i
+fix, con le medesime decisioni e hold: 55 → 56 scritture, solo il nome USER
+recuperato; cinque spazi correggono quattro paragrafi. Restano vuoti la carica
+sospesa, la checkbox mai proposta e i punti rinviati. Non dichiarare risolto
+l'intero caso né interpretare la revisione autoriale come indipendente.
+
+I test riproducono prima i difetti e i rollback li fanno ricomparire singolarmente.
+Il primo giro completo ha 4016 PASS e due confronti byte fallenti: verificati
+cinque soli separatori nei vecchi export, adeguate le sole asserzioni mantenendo
+immutati gli artefatti congelati. Replay FORM identici alla base precedente:
+0/25 errori ammessi, 243/245 e 236/240 positivi con guardia simulata.
+
+[Rapporto completo, verifiche finali e rollback](docs/conferme-docx-esito-2026-10-27.md).
+Grezzi privati e confronto DOCX/PDF nel checkout ordinario:
+`backend/data/compilation-audit/diagnosi-compilato7-20261027-01/`.
+Nessuna adozione, merge, push o campagna; fermarsi alla consegna.
+
+Chiusura verifiche: **4018 PASS, zero FAIL/SKIP**, Ruff PASS. Seconda riproduzione
+da seed documentale congelato senza credenziali: stesso DOCX corretto byte per
+byte. Il nome è recuperato nella sola copia offline; nessuna migrazione della
+sessione ordinaria. Tutti i 355 file preesistenti e la sessione esaminata invariati;
+nuova attività concorrente nell'app conservata senza ripristinare il database.

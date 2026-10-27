@@ -1,5 +1,32 @@
 # Stato di Mapi RAG
 
+## Diagnosi conferme e rendering DOCX — 27 ottobre 2026, worktree isolato
+
+**Non adottato. Fermarsi dopo il rapporto e attendere la valutazione dell'utente.**
+Branch `fix/2026-10-27-conferme-docx`, worktree `tesi-conferme-docx-20261027`.
+Nessuna inferenza, modifica dell'app ordinaria, merge o push.
+
+- Diagnosi congelata prima dei fix: `ac98085`.
+- Nome USER perso per mutazione del target FORM durante il riuso SOURCE:
+  `fa83800a`. Ricevuta conservata, nessun controllo aggirato.
+- Spazi ai leader di puntini: `3cfd5213`. Non è un nuovo motore né un fix generico
+  delle checkbox; controlli nativi invariati.
+- Ricevute conversazionali distinguono conferme, dati registrati, decisioni
+  pendenti, rinvii e risposte non accettate: `0dda3ffe`.
+- Rigioco privato: base identica byte per byte al DOCX osservato; 55 → 56
+  scritture (solo il nome aggiunto), cinque separatori in quattro paragrafi.
+- Restano aperti: hold SOURCE sulla carica, checkbox senza proposta/gruppo e
+  verifica USER sul destinatario, attribuzione errata di una domanda sul soggetto.
+  Nessuna spunta o rilascio del hold forzato.
+- Rollback separati verificati; documenti e sessione live preservati. Una nuova
+  sessione concorrente impedisce di dichiarare immutato l'intero database.
+- Suite finale **4018 PASS**, zero FAIL/SKIP, Ruff PASS; replay FORM invariati.
+  Secondo rigioco da seed congelato senza credenziali: DOCX identico byte per byte.
+- [Diagnosi](docs/diagnosi-conferme-docx-2026-10-27.md) e
+  [esito, prove, limiti e rollback](docs/conferme-docx-esito-2026-10-27.md).
+  Dati e DOCX privati in `backend/data/compilation-audit/diagnosi-compilato7-20261027-01/`
+  del checkout ordinario: non aggiungerli a Git.
+
 ## Checkbox testuali integrate nell'app ordinaria — 27 ottobre 2026
 
 Profilo predefinito sempre `sezioni-2026-10-25`, ora con `text_checkbox_revision=1`
