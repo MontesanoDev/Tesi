@@ -254,8 +254,10 @@ async def observe(original, client, settings, body, root, *, context=None, rates
         exchange.finish(error)
 
 
-def observe_sync(operation, body, root, *, rates=None, limit=budget.LIMIT, before_dispatch=None):
-    exchange = Exchange(root, body, rates=rates, limit=limit, before_dispatch=before_dispatch)
+def observe_sync(operation, body, root, *, rates=None, limit=budget.LIMIT, before_dispatch=None,
+                 simulated=False):
+    exchange = Exchange(root, body, rates=rates, limit=limit, before_dispatch=before_dispatch,
+                        simulated=simulated)
     exchange.reserve()
     token = ACTIVE.set(exchange)
     error = None
