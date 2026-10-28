@@ -17,6 +17,7 @@ from audit_tools.tests.simulated_compiler import (
     records,
     report,
     resolve,
+    segment_bound,
     session,
     world,
 )
@@ -25,10 +26,6 @@ from audit_tools.tests.test_metrics import RATES, SETTINGS, USAGE, post
 __all__ = ['world']
 BODY = {'model':'deepseek-flash','messages':[{'role':'user','content':'synthetic'}],'max_tokens':20}
 ONE = budget.bound(BODY)
-
-
-def segment_bound(provider):
-    return max(budget.bound(json.loads(content)) for _, content in provider.wires)
 
 
 @pytest.mark.parametrize('admission', [False, True])
