@@ -3,17 +3,11 @@
 No payload/header/URL/timeout mutation. The client continues to own redirects,
 cookies, hooks and response reading. Each additional hop gets its own reservation.
 The adapter is verified against the locked HTTPX 0.28.1 implementation.
-
-Budget waits have no fixed limit: a request waits only while live reservations can still
-settle, and a segment of a planned analysis waits when its HTTP client opens, before the
-compiler starts the model timeout. Queue time therefore never becomes a provider timeout.
 """
 from __future__ import annotations
 
 import asyncio
-import contextlib
 import contextvars
-import functools
 import hashlib
 import json
 import time
@@ -26,9 +20,6 @@ import httpx
 from . import budget
 
 ACTIVE = contextvars.ContextVar('audited_http_exchange', default=None)
-PLAN = contextvars.ContextVar('segment_admission_plan', default=None)
-TICKET = contextvars.ContextVar('segment_admission_ticket', default=None)
-POLL_SECONDS = .1
 
 
 def utc():
@@ -100,59 +91,36 @@ class Exchange:
                                      'elapsed_seconds': time.perf_counter() - self.start, **values})
         self.save('metrics.json', self.record)
 
-    def reserve(self):
-        """Immediate reservation or refusal (synchronous calls)."""
+    def reserve(self, waiting=False):
+        """True once reserved; False while waiting in the FIFO line (only if waiting)."""
         try:
-            amount = budget.reserve(self.ledger, self.key, self.body, self.limit,
-                                    reserve_tokens=self.reserve_tokens, analysis=self.analysis)
+            if waiting:
+                amount = budget.bound(self.body)
+                done = budget.enqueue(self.ledger, self.key, amount, limit=self.limit,
+                                      reserve_tokens=self.reserve_tokens, analysis=self.analysis)
+            else:
+                amount, done = budget.reserve(self.ledger, self.key, self.body, self.limit,
+                    reserve_tokens=self.reserve_tokens, analysis=self.analysis), True
         except (AssertionError, RuntimeError) as exc:
             self.refuse(exc)
             raise
-        self.reserved(amount, 0, 'immediate')
-
-    async def admit(self, wait_check=None):
-        """Exact reservation: in place of the segment's ticket when it has one, else in the
-        FIFO line (immediate or refused without wait_check)."""
-        ticket = TICKET.get()
-        try:
-            amount = budget.bound(self.body)
-            if ticket is not None and not ticket['used']:
-                ticket['used'] = True
-                if budget.convert(self.ledger, ticket['key'], self.key, self.body) is not None:
-                    return self.reserved(amount, ticket['waited'], 'before_client_open',
-                                         ticket['key'])
-                budget.release(self.ledger, ticket['key'])
-            if wait_check is None:
-                budget.reserve(self.ledger, self.key, self.body, self.limit,
-                               reserve_tokens=self.reserve_tokens, analysis=self.analysis)
-                return self.reserved(amount, 0, 'immediate')
-            waited = await wait_in_line(self.ledger, self.key, amount, limit=self.limit,
-                reserve_tokens=self.reserve_tokens, analysis=self.analysis,
-                wait_check=wait_check, on_queue=lambda: self.queued(amount))
-            self.reserved(amount, waited, 'inside_request')
-        except asyncio.CancelledError as exc:
-            self.refuse(exc, 'cancelled_while_queued')
-            raise
-        except BaseException as exc:
-            self.refuse(exc)
-            raise
-
-    def queued(self, amount):
-        self.record['queued_UTC'] = utc()
-        self.event('queued_for_budget', tokens=amount)
-
-    def reserved(self, amount, waited, where, ticket=None):
-        # Where the wait happened: before_client_open is outside any application timeout.
+        if not done:
+            if 'queued_UTC' not in self.record:
+                self.record['queued_UTC'] = utc()
+                self.event('queued_for_budget', tokens=amount)
+            return False
+        for field in ('outcome', 'error', 'billing', 'measured_tokens'):
+            self.record.pop(field, None)
+        self.record['estimated_cost_USD'] = None
         self.record['reserved_tokens'] = amount
         self.record['reservation_wait_seconds'] = time.perf_counter() - self.start
-        self.record['budget_wait'] = {'seconds': waited, 'where': where, 'ticket': ticket}
         self.event('tokens_reserved', tokens=amount)
+        return True
 
-    def refuse(self, exc, outcome='refused_before_dispatch'):
+    def refuse(self, exc):
         budget.withdraw(self.ledger, self.key)
-        self.record.update(outcome=outcome, error=type(exc).__name__,
-                           refusal=getattr(exc, 'kind', None), billing='not_dispatched',
-                           measured_tokens=0, estimated_cost_USD=0)
+        self.record.update(outcome='refused_before_dispatch', error=type(exc).__name__,
+                           billing='not_dispatched', measured_tokens=0, estimated_cost_USD=0)
         self.event('reservation_refused', reason=str(exc))
 
     def start_transport(self, request):
@@ -162,8 +130,7 @@ class Exchange:
         key = self.key if number == 1 else f'{self.key}/hop-{number}'
         if number > 1:
             # Even an intermediate redirect might have been billed. Never assume zero.
-            amount = budget.reserve(self.ledger, key, self.body, self.limit,
-                reserve_tokens=self.reserve_tokens, analysis=self.analysis)
+            amount = budget.reserve(self.ledger, key, self.body, self.limit)
             self.record['reserved_tokens'] += amount
             self.event('tokens_reserved_additional_hop', tokens=amount, hop=number)
         try:
@@ -195,13 +162,6 @@ class Exchange:
         self.record['elapsed_seconds'] = time.perf_counter() - self.start
         if error is not None:
             self.record['error'] = type(error).__name__
-            if self.record['transport_started']:
-                # A provider timeout is a transport timeout after dispatch, never queue time.
-                self.record['interruption'] = (
-                    'provider_timeout' if isinstance(error, httpx.TimeoutException) else
-                    'cancelled_after_dispatch' if isinstance(error, (asyncio.CancelledError,
-                                                                     TimeoutError)) else
-                    'transport_error')
         if not self.record['transport_started']:
             if self.record['reserved_tokens']:
                 budget.cancel_unstarted(self.ledger, self.key)
@@ -281,100 +241,26 @@ def install_transport_observer():
     httpx.AsyncClient._narrator_observer = True
 
 
-async def wait_in_line(ledger, key, amount, *, limit, reserve_tokens, analysis, wait_check,
-                       ticket=False, on_queue=None):
-    """Seconds waited; None for a ticket that can never fit. No time limit: budget.enqueue
-    refuses as soon as no live reservation could make room, and wait_check (gate, stop)
-    lets the operator end any wait. A waiter that leaves for any reason leaves the line."""
-    started = time.perf_counter()
-    try:
-        while (done := budget.enqueue(ledger, key, amount, limit=limit,
-                                      reserve_tokens=reserve_tokens, analysis=analysis,
-                                      ticket=ticket)) is False:
-            if on_queue:
-                on_queue()
-                on_queue = None
-            wait_check()
-            await asyncio.sleep(POLL_SECONDS)
-    except BaseException:
-        budget.withdraw(ledger, key)
-        raise
-    return None if done is None else time.perf_counter() - started
-
-
-def install_admission_hook():
-    """A segment of a planned analysis gets its ticket when its HTTP client opens: the
-    compiler holds its own concurrency slot, but its model timeout has not started yet.
-    Clients outside a plan, and the requests themselves, are untouched."""
-    if getattr(httpx.AsyncClient, '_narrator_admission', False):
-        return
-    if httpx.__version__ != '0.28.1':
-        raise RuntimeError('Revalidate audit adapter against this HTTPX version before use')
-    real_enter, real_exit = httpx.AsyncClient.__aenter__, httpx.AsyncClient.__aexit__
-
-    async def enter(client):
-        plan = PLAN.get()
-        if plan is None or not plan['amounts'] or TICKET.get() is not None:
-            return await real_enter(client)
-        key, amount = 'ticket-' + uuid4().hex, max(plan['amounts'])
-        waited = await wait_in_line(plan['ledger'], key, amount, limit=plan['limit'],
-                                    reserve_tokens=plan['reserve_tokens'], analysis=True,
-                                    wait_check=plan['wait_check'], ticket=True)
-        if waited is None:  # The largest segment can never fit: let the exact request decide.
-            return await real_enter(client)
-        token = TICKET.set({'key': key, 'waited': waited, 'used': False})
-        try:
-            result = await real_enter(client)
-        except BaseException:
-            TICKET.reset(token)
-            budget.release(plan['ledger'], key)
-            raise
-        client._narrator_ticket = token, plan['ledger'], key
-        return result
-
-    async def exit_(client, *args):
-        try:
-            return await real_exit(client, *args)
-        finally:
-            if held := client.__dict__.pop('_narrator_ticket', None):
-                TICKET.reset(held[0])
-                budget.release(held[1], held[2])
-
-    httpx.AsyncClient.__aenter__, httpx.AsyncClient.__aexit__ = enter, exit_
-    httpx.AsyncClient._narrator_admission = True
-
-
-def plan_segments(proposal, build, *, ledger, limit=budget.LIMIT, reserve_tokens=0,
-                  wait_check=None):
-    """Wrap the compiler's segmented analysis and its request builder, unchanged in
-    arguments and results: bodies built during the analysis size its tickets."""
-    @functools.wraps(proposal)
-    async def planned(*args, **kwargs):
-        token = PLAN.set({'ledger': Path(ledger), 'limit': limit, 'amounts': [],
-                          'reserve_tokens': reserve_tokens, 'wait_check': wait_check or (
-                              lambda: None)})
-        try:
-            return await proposal(*args, **kwargs)
-        finally:
-            PLAN.reset(token)
-
-    @functools.wraps(build)
-    def built(*args, **kwargs):
-        body = build(*args, **kwargs)
-        if (plan := PLAN.get()) is not None:
-            with contextlib.suppress(AssertionError):  # Unbounded: refused at its reservation.
-                plan['amounts'].append(budget.bound(body))
-        return body
-
-    return planned, built
-
-
 async def observe(original, client, settings, body, root, *, context=None, rates=None,
                   simulated=False, limit=budget.LIMIT, reserve_tokens=0, analysis=False,
                   before_dispatch=None, wait_check=None, **kwargs):
     exchange = Exchange(root, body, settings.api_key or '', context, rates, simulated, limit,
-                        before_dispatch, reserve_tokens, analysis or PLAN.get() is not None)
-    await exchange.admit(wait_check)
+                        before_dispatch, reserve_tokens, analysis)
+    try:
+        # Without wait_check the reservation is immediate or refused, as for redirect hops.
+        while not exchange.reserve(waiting=wait_check is not None):
+            with budget.locked(exchange.ledger) as state:
+                pending = any(c['status'] == 'pending' for c in state['calls'].values())
+            if not pending:
+                raise RuntimeError('No pending reservation can free the budget')
+            wait_check()
+            if time.perf_counter() - exchange.start > 120:
+                raise RuntimeError('Pending reservation unresolved; operator review required')
+            await asyncio.sleep(.1)
+    except BaseException as exc:
+        if 'outcome' not in exchange.record:
+            exchange.refuse(exc)  # Leaves the line: a cancelled waiter never blocks the next.
+        raise
     token = ACTIVE.set(exchange)
     error = None
     try:
