@@ -24,7 +24,7 @@ os.environ.update(PYTHON_DOTENV_DISABLED='1',MAPI_COMPILATION_PROFILE='sezioni-2
 sys.path.insert(0,str(ROOT/'backend'))
 from app import ai_transport, draft_generation, fact_extraction, generation
 
-from .budget import Refused, totals
+from .budget import totals
 
 assert Path(ai_transport.__file__).resolve().is_relative_to(ROOT/'backend')
 scope=contextvars.ContextVar('audit_request',default=None)
@@ -44,9 +44,8 @@ def stop(reason):save(RAW/'STOP.json',{'reason':reason,'UTC':utc()})
 def frozen():
     freeze=json.loads((RAW/'FREEZE.json').read_text())
     assert all(hashlib.sha256(Path(p).read_bytes()).hexdigest()==h for p,h in freeze['files'].items()),'Frozen file changed'
-    # A closed gate or a stop refuses like the budget does: nothing sent, controlled 503.
-    if not json.loads((RAW/'gate.json').read_text())['open']:raise Refused('stopped','Gate closed')
-    if (RAW/'STOP.json').exists():raise Refused('stopped','Campaign stopped')
+    assert json.loads((RAW/'gate.json').read_text())['open'],'Gate closed'
+    assert not (RAW/'STOP.json').exists(),'Campaign stopped'
 
 # Any paid HTTP exchange must carry the reservation established by observed().
 import httpx
@@ -92,9 +91,7 @@ def check_wire(request):
     assert json.loads(request.content)==p['body'], 'Outgoing payload changed'
 
 async def observed(client,settings,body,**kwargs):
-    try:frozen()
-    except Refused as exc:raise metrics.controlled(exc) from exc
-    ctx=scope.get()
+    frozen();ctx=scope.get()
     assert ctx.get('project_id')==CFG['project_id'],'Provider call outside test project'
     assert settings.provider=='deepseek' and settings.model=='deepseek-flash'
     assert settings.base_url.rstrip('/')=='https://api.deepseek.com'
@@ -111,7 +108,7 @@ async def observed(client,settings,body,**kwargs):
             rates=CFG.get('rates_USD_per_million'),before_dispatch=check_wire,
             reserve_tokens=CFG.get('reserve_tokens',0),
             analysis='compilation_global_sessions._resilient_proposal' in phase.get(),
-            wait_check=frozen,on_refusal=metrics.controlled,**kwargs)
+            wait_check=frozen,**kwargs)
     finally:
         permit.reset(token)
         if LEDGER.exists() and totals(LEDGER)['stop']:
@@ -177,7 +174,7 @@ from app import compilation_global_sessions as adapter
 metrics.install_admission_hook()
 adapter._resilient_proposal,adapter.global_request=metrics.plan_segments(
     adapter._resilient_proposal,adapter.global_request,ledger=LEDGER,
-    reserve_tokens=CFG.get('reserve_tokens',0),wait_check=frozen,on_refusal=metrics.controlled)
+    reserve_tokens=CFG.get('reserve_tokens',0),wait_check=frozen)
 
 @app.middleware('http')
 async def audit_http(request,call_next):

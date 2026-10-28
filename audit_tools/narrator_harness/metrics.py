@@ -7,8 +7,6 @@ The adapter is verified against the locked HTTPX 0.28.1 implementation.
 Budget waits have no fixed limit: a request waits only while live reservations can still
 settle, and a segment of a planned analysis waits when its HTTP client opens, before the
 compiler starts the model timeout. Queue time therefore never becomes a provider timeout.
-A refusal can reach the application as a controlled HTTP 503 (on_refusal=controlled): no
-compiler or narrator path absorbs it as a model failure, and nothing in flight is cancelled.
 """
 from __future__ import annotations
 
@@ -304,21 +302,6 @@ async def wait_in_line(ledger, key, amount, *, limit, reserve_tokens, analysis, 
     return None if done is None else time.perf_counter() - started
 
 
-def controlled(exc):
-    """The application's own error path for a request that was never sent: HTTP 503, not a
-    provider failure (which segments retry and the narrator degrades) and not a crash."""
-    from fastapi import HTTPException
-
-    return HTTPException(503, f'Audit: richiesta non inviata al provider ({exc.kind}). '
-                              'Nessuna chiamata eseguita; campagna da rivedere.')
-
-
-def _refused(exc, on_refusal):
-    if on_refusal is None:
-        raise exc
-    raise on_refusal(exc) from exc
-
-
 def install_admission_hook():
     """A segment of a planned analysis gets its ticket when its HTTP client opens: the
     compiler holds its own concurrency slot, but its model timeout has not started yet.
@@ -334,12 +317,9 @@ def install_admission_hook():
         if plan is None or not plan['amounts'] or TICKET.get() is not None:
             return await real_enter(client)
         key, amount = 'ticket-' + uuid4().hex, max(plan['amounts'])
-        try:
-            waited = await wait_in_line(plan['ledger'], key, amount, limit=plan['limit'],
-                                        reserve_tokens=plan['reserve_tokens'], analysis=True,
-                                        wait_check=plan['wait_check'], ticket=True)
-        except budget.Refused as exc:
-            _refused(exc, plan['on_refusal'])
+        waited = await wait_in_line(plan['ledger'], key, amount, limit=plan['limit'],
+                                    reserve_tokens=plan['reserve_tokens'], analysis=True,
+                                    wait_check=plan['wait_check'], ticket=True)
         if waited is None:  # The largest segment can never fit: let the exact request decide.
             return await real_enter(client)
         token = TICKET.set({'key': key, 'waited': waited, 'used': False})
@@ -365,14 +345,14 @@ def install_admission_hook():
 
 
 def plan_segments(proposal, build, *, ledger, limit=budget.LIMIT, reserve_tokens=0,
-                  wait_check=None, on_refusal=None):
+                  wait_check=None):
     """Wrap the compiler's segmented analysis and its request builder, unchanged in
     arguments and results: bodies built during the analysis size its tickets."""
     @functools.wraps(proposal)
     async def planned(*args, **kwargs):
         token = PLAN.set({'ledger': Path(ledger), 'limit': limit, 'amounts': [],
-                          'reserve_tokens': reserve_tokens, 'on_refusal': on_refusal,
-                          'wait_check': wait_check or (lambda: None)})
+                          'reserve_tokens': reserve_tokens, 'wait_check': wait_check or (
+                              lambda: None)})
         try:
             return await proposal(*args, **kwargs)
         finally:
@@ -391,13 +371,10 @@ def plan_segments(proposal, build, *, ledger, limit=budget.LIMIT, reserve_tokens
 
 async def observe(original, client, settings, body, root, *, context=None, rates=None,
                   simulated=False, limit=budget.LIMIT, reserve_tokens=0, analysis=False,
-                  before_dispatch=None, wait_check=None, on_refusal=None, **kwargs):
+                  before_dispatch=None, wait_check=None, **kwargs):
     exchange = Exchange(root, body, settings.api_key or '', context, rates, simulated, limit,
                         before_dispatch, reserve_tokens, analysis or PLAN.get() is not None)
-    try:
-        await exchange.admit(wait_check)
-    except budget.Refused as exc:
-        _refused(exc, on_refusal)
+    await exchange.admit(wait_check)
     token = ACTIVE.set(exchange)
     error = None
     try:

@@ -37,7 +37,6 @@ from test_compilation_sessions import source
 from audit_tools.narrator_harness import budget, metrics
 
 assert Path(adapter.__file__).resolve().is_relative_to(BACKEND)
-ORIGINAL = adapter._resilient_proposal, adapter.global_request  # Re-instrumenting never nests.
 SETTINGS = AISettings(api_key='synthetic-test-key', model='deepseek-flash',
                       base_url='https://api.deepseek.com', provider='deepseek')
 BASE = '/api/projects/alpha/compilation-sessions'
@@ -51,7 +50,7 @@ class Provider:
     """Per segment index: a delay and an outcome ('ok', an exception, or an awaitable hook)."""
 
     def __init__(self):
-        self.delay, self.plan, self.usage, self.wires = {}, {}, {}, []
+        self.delay, self.plan, self.wires = {}, {}, []
         self.flight = self.peak = 0
         self.default_delay = .3
 
@@ -72,10 +71,8 @@ class Provider:
         finally:
             self.flight -= 1
         raw = rev2.ordinary(json.loads(body['messages'][1]['content']), ids)
-        usage = self.usage.get(index, USAGE)  # None: a valid answer without usage.
-        return httpx.Response(200, json={'model':'deepseek-flash','choices':[
-            {'message':{'role':'assistant','content':raw},'finish_reason':'stop'}],
-            **({'usage':usage} if usage is not None else {})})
+        return httpx.Response(200, json={'model':'deepseek-flash','usage':USAGE,'choices':[
+            {'message':{'role':'assistant','content':raw},'finish_reason':'stop'}]})
 
 
 async def summarize(client, settings, body, timeout, **kwargs):
@@ -125,25 +122,24 @@ def world(tmp_path, monkeypatch):
 
 
 def instrument(monkeypatch, root, *, limit=budget.LIMIT, reserve_tokens=0, admission=True,
-               wait_check=None, on_refusal=None):
+               wait_check=None, wrap=None):
     """The campaign wiring of server.py, without its FREEZE/gate files: post_chat observed,
-    (admission) segment tickets taken when each client opens, and (on_refusal) refusals
-    turned into the controlled error. Without them: the behaviour of the 02 harness."""
+    and (admission) segment tickets taken when each client opens."""
     metrics.install_transport_observer()
     wait_check = wait_check or (lambda: None)
-    extra = {'on_refusal': on_refusal} if on_refusal else {}
 
     async def observed(client, settings, body, **kwargs):
-        return await metrics.observe(ai_transport.post_chat, client, settings, body, root,
-                                     limit=limit, reserve_tokens=reserve_tokens, rates=RATES,
-                                     wait_check=wait_check, **extra, **kwargs)
+        call = metrics.observe(ai_transport.post_chat, client, settings, body, root, limit=limit,
+                               reserve_tokens=reserve_tokens, rates=RATES,
+                               wait_check=wait_check, **kwargs)
+        return await (wrap(call) if wrap else call)
 
     monkeypatch.setattr(generation, 'post_chat', observed)
     if admission:
         metrics.install_admission_hook()
         planned, built = metrics.plan_segments(
-            *ORIGINAL, ledger=root / 'budget-ledger.json', limit=limit,
-            reserve_tokens=reserve_tokens, wait_check=wait_check, **extra)
+            adapter._resilient_proposal, adapter.global_request, ledger=root / 'budget-ledger.json',
+            limit=limit, reserve_tokens=reserve_tokens, wait_check=wait_check)
         monkeypatch.setattr(adapter, '_resilient_proposal', planned)
         monkeypatch.setattr(adapter, 'global_request', built)
     return root / 'budget-ledger.json'
@@ -192,11 +188,6 @@ def report(current):
     """Segment report of the latest analysis of the session."""
     root = get_storage_path().resolve() / state(current)['global_compilation']['artifact_path']
     return json.loads((root / 'segments' / 'report.json').read_text())
-
-
-def segment_bound(provider):
-    """Largest reservation among the segment requests seen by the provider."""
-    return max(budget.bound(json.loads(content)) for _, content in provider.wires)
 
 
 def records(root):
