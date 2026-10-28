@@ -1,5 +1,23 @@
 # Stato di Mapi RAG
 
+## Ruolo e checkbox Minervino — 28 ottobre 2026, offline
+
+**Non adottato. Fermarsi dopo il rapporto.** Branch `fix/2026-10-27-ruolo-checkbox`,
+worktree `tesi-ruolo-checkbox-20261027`, base `0d62a11` con le tre correzioni precedenti.
+
+- A `f3bc281`: respinge soltanto la contraddizione temporale chiusa verificata
+  nelle SOURCE, con nuova prova all'export; nessun rilascio generalizzato dei hold.
+- B: riusa la ricevuta di rappresentanza già valida per la checkbox nativa
+  esplicitamente compresa nello scope; nessuna nuova conferma o ricevuta.
+- Rigioco: **56 → 58** scritture, solo p14.s0 e p39.cb0 aggiunte; nome,
+  separatori, le altre 12 checkbox, risposte USER e rinvii invariati.
+- **4050 PASS**, zero FAIL/SKIP; Ruff PASS. Replay dei gate identici alla base:
+  0/25 errori storici esportabili; positive con ambito simulato 243/245.
+- App ordinaria, baseline e dati originali non modificati; zero chiamate LLM,
+  nessun push/merge. Il problema della domanda sulla data del soggetto sbagliato
+  resta separato e aperto.
+- [Rapporto completo](docs/ruolo-checkbox-esito-2026-10-28.md).
+
 ## Diagnosi conferme e rendering DOCX — 27 ottobre 2026, worktree isolato
 
 **Non adottato. Fermarsi dopo il rapporto e attendere la valutazione dell'utente.**

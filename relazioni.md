@@ -5629,3 +5629,26 @@ da seed documentale congelato senza credenziali: stesso DOCX corretto byte per
 byte. Il nome è recuperato nella sola copia offline; nessuna migrazione della
 sessione ordinaria. Tutti i 355 file preesistenti e la sessione esaminata invariati;
 nuova attività concorrente nell'app conservata senza ripristinare il database.
+
+
+## 28 ottobre 2026 — carica e checkbox della sessione Minervino, offline
+
+Base `0d62a11`, worktree isolato `tesi-ruolo-checkbox-20261027`. Due correzioni
+separate: confronto della motivazione temporale con prova SOURCE e ricevuta USER
+(A `f3bc281`); collegamento della conferma di rappresentanza alla checkbox nativa
+esplicitamente compresa nel suo scope (B, commit contenente questa registrazione).
+Nessuna nuova inferenza o conferma USER nel rigioco.
+
+Da 56 a 58 scritture: aggiunti soltanto ruolo e opzione societaria. Le precedenti
+56 scritture, le altre 12 checkbox, i separatori, le risposte e i rinvii restano
+invariati. Verificati XML e PDF. Revisione autoriale, non indipendente.
+Test iniziali fallenti per entrambi i difetti; 32 test mirati finali passati,
+suite backend 4050 PASS senza skip, Ruff PASS. Gate replay identico prima/dopo:
+0/25 errori storici esportabili, 243/245 positive con ambito simulato; i due
+rifiuti preesistenti restano. Nessun cambiamento all'app, push o migrazione.
+
+[Diagnosi, limiti, prove e rollback](docs/ruolo-checkbox-esito-2026-10-28.md).
+La motivazione temporale viene riconosciuta solo nella forma chiusa dimostrata;
+non è una soluzione generale delle interpretazioni temporali del modello.
+La domanda su una data attribuita al professionista sbagliato resta fuori ambito.
+Fermarsi dopo il rapporto e attendere la valutazione dell'utente.

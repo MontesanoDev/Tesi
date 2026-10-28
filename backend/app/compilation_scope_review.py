@@ -90,7 +90,7 @@ def valid_receipt(data, key, receipt, cid):
     return receipt["scope_validation"] == proof(target(data, key, ids), receipt)
 
 
-def blocked_source_fields(data):
+def blocked_source_fields(data, *, linked_user_controls=False):
     """Direct export confirmations cannot bypass the candidate's USER scope verification."""
     if not enabled(data):
         return set()
@@ -108,7 +108,11 @@ def blocked_source_fields(data):
             if result == "false" or receipt.get("applies") is False:
                 blocked.add(cid)
             elif receipt.get("applies") is True or result == "unknown":
-                if receipt.get("applies") is not True or not valid_receipt(data, key, receipt, cid):
+                from app.compilation_branch_evidence import linked_receipt_valid
+
+                valid = valid_receipt(data, key, receipt, cid) or (
+                    linked_user_controls and linked_receipt_valid(data, cid, key))
+                if receipt.get("applies") is not True or not valid:
                     blocked.add(cid)
     return blocked
 
@@ -121,8 +125,12 @@ def blocked_user_fields(data):
 
     dialogue = data.get("dialogue") or {}
     answers = dialogue.get("answers", {})
-    blocked = blocked_source_fields(data)
+    blocked = blocked_source_fields(data, linked_user_controls=True)
     for cid, value in effective_user_values(data).items():
+        from app.compilation_branch_evidence import linked_receipt_valid
+
+        if linked_receipt_valid(data, cid):
+            continue  # Proven condition link; it does not relax any other blocked condition.
         key = "choice:" + str(value["choice_group_id"]) if value.get("choice_group_id") else \
             "field:" + cid
         receipt = answers.get(key, {})
