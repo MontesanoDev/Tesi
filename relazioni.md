@@ -5655,3 +5655,24 @@ Rollback A e B rigiocati separatamente: 57 scritture ciascuno, persa soltanto
 la relativa aggiunta; 45 test PASS per ciascuno. Il backup di input conserva
 tutti i 328 hash. Nuovo backup privato separato anche su D, senza pubblicazione.
 Fermarsi dopo il rapporto e attendere la valutazione dell'utente.
+
+
+## 28 ottobre 2026 — audit reale narratore: arresto dell'harness, nessuna inferenza
+
+Unico tentativo autorizzato, candidata `7b31d25`, Minervino e SOURCE del seed
+precedente, UI e FastAPI reali in runtime isolato. Il primo POST chat fallisce
+prima del dispatch a DeepSeek: il guard dei redirect considera True la
+sentinella HTTPX `UseClientDefault`, pur con client `follow_redirects=False`.
+Riprodotto offline con httpx 0.28.1 e zero dispatch al trasporto finto.
+
+Nessuna ripetizione o correzione durante la campagna. 1 invio USER, 0 turni
+narratore, 0 sessioni e 0 DOCX; 63.494 token prenotati prudenzialmente, non
+consumati dal modello. Costo stimato 0 USD, nessuna fattura verificata.
+La voce grezza `forwarded=true` è anticipata e non dimostra un invio effettivo.
+Nessuna valutazione di qualità: i fix recenti sono NON ESERCITATI dal vivo.
+11 test budget offline passati non coprivano la sentinella del trasporto.
+
+[Rapporto anonimizzato](docs/narratore-minervino-audit-2026-10-28.md); sette
+rapporti completi e JSON nella directory privata dell'audit. 159 hash invariati,
+backup preflight verificato, servizi isolati arrestati. Nessun cambiamento del
+prodotto, push, merge, adozione o ulteriore tentativo. Revisione autoriale.

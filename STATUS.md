@@ -1,5 +1,22 @@
 # Stato di Mapi RAG
 
+## Audit reale del narratore — 28 ottobre 2026, tentativo interrotto
+
+**Fermarsi: nessuna ripetizione autorizzata.** Branch `audit/2026-10-28-narratore-minervino`,
+worktree isolato `tesi-audit-narratore-20261028`, candidata testata `7b31d25`.
+
+- Un solo invio reale dal frontend a FastAPI, HTTP 500 nell'harness prima di
+  DeepSeek: sentinella HTTPX `UseClientDefault` interpretata erroneamente come True.
+- Zero chiamate DeepSeek inviate, zero DOCX, zero sessioni, una conversazione vuota.
+  Prenotazione prudenziale 63.494/900.000 token: non consumo del modello.
+- Errore riprodotto offline; nessun fix implementato né nuovo tentativo.
+- Narratore e fix del ruolo/checkbox NON ESERCITATI. Nessuna conclusione nuova
+  su qualità, memoria, sospensioni, copertura o sicurezza del prodotto.
+- Sette rapporti e JSON completi privati in `backend/data/compilation-audit/`;
+  solo [riepilogo anonimizzato](docs/narratore-minervino-audit-2026-10-28.md) in Git.
+- 159 hash congelati invariati; servizi isolati arrestati. Nessun cambiamento
+  all'app ordinaria, nessun push/merge o nuova inferenza.
+
 ## Ruolo e checkbox Minervino — 28 ottobre 2026, offline
 
 **Non adottato. Fermarsi dopo il rapporto.** Branch `fix/2026-10-27-ruolo-checkbox`,
