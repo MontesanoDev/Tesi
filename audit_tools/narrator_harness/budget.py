@@ -3,7 +3,10 @@
 Three quantities never mix: a reservation is a proven upper bound held while a request may
 be in flight; the provider-reported usage replaces it once known; estimates (expected usage,
 cost) never enter this ledger. Requests that do not fit wait in FIFO order, and calls of the
-initial analysis can never commit the reserve kept for the later phases.
+initial analysis can never commit the reserve kept for the later phases. A request waits only
+while live reservations of this process can still settle; if it could not fit even with all of
+them settled at zero, the campaign stops at once. Reservations left pending by another process
+stay charged and are never awaited.
 """
 import contextlib
 import fcntl
@@ -11,9 +14,11 @@ import hashlib
 import json
 import os
 from pathlib import Path
+from uuid import uuid4
 
 LIMIT=900_000
-LIVE={'pending'}
+LIVE={'pending','ticket'}
+OWNER=f'{os.getpid()}-{uuid4().hex}'  # This process: only its reservations can still settle.
 
 
 class Refused(RuntimeError):
@@ -50,11 +55,16 @@ def locked(path):
         if text!=before:  # Polling waiters read without rewriting the ledger.
             tmp=path.with_suffix(f'.{os.getpid()}.tmp');tmp.write_text(text);tmp.replace(path)
 
+def _entries(data):
+    return [*data['calls'].values(),*data.get('tickets',{}).values()]
+
 def accounts(data):
-    """Held tokens by kind: live reservations, measured usage, carried and uncertain charges."""
-    held=dict.fromkeys(('reserved_live','consumed','carried','unknown_held'),0)
-    for c in data['calls'].values():
-        if c['status'] in LIVE:held['reserved_live']+=c['reserved']
+    """Held tokens by kind: live and stale reservations, measured usage, carried and uncertain
+    charges. Stale: pending for a process that is gone, so never released and never awaited."""
+    held=dict.fromkeys(('reserved_live','reserved_stale','consumed','carried','unknown_held'),0)
+    for c in _entries(data):
+        if c['status'] in LIVE:
+            held['reserved_live' if c.get('owner')==OWNER else 'reserved_stale']+=c['reserved']
         elif c['status']=='measured':held['consumed']+=c['charged']
         elif c['status']=='carried':held['carried']+=c['charged']
         elif c['status']=='unknown_fully_charged':held['unknown_held']+=c['charged']
@@ -67,43 +77,94 @@ def _configure(data,limit,reserve_tokens):
     assert not data['calls'] or data.get('reserve',0) == reserve_tokens, 'Budget reserve changed'
     data.update(limit=limit,reserve=reserve_tokens);data.setdefault('queue',[])
 
-def _admit(data,key,amount,analysis,waiting):
-    """True when reserved, False while queued, else the refusal kind. No request overtakes
-    an earlier waiter; analysis calls stop below the reserve for the later phases."""
-    assert key not in data['calls']
+def _admit(data,key,amount,analysis,waiting,ticket=False):
+    """True when reserved, False while queued, None for a ticket that can never fit, else the
+    refusal kind. No request overtakes an earlier waiter; analysis calls stop below the
+    reserve for the later phases."""
+    assert key not in data['calls'] and key not in data.get('tickets',{})
     if data.get('stop'):
         return 'stopped'
     held=accounts(data);ceiling=data['limit']-(data['reserve'] if analysis else 0)
-    line=data['queue'];position=next((i for i,q in enumerate(line) if q['key']==key),len(line))
+    line=data['queue']=[q for q in data['queue'] if q.get('owner')==OWNER]  # Dead waiters.
+    position=next((i for i,q in enumerate(line) if q['key']==key),len(line))
+    if held['committed']-held['reserved_live']+amount>ceiling:
+        # Not even with every live reservation settled at zero: no progress is possible.
+        line[:]=[q for q in line if q['key']!=key]
+        if ticket:
+            return None  # The exact request may still fit: it decides at its own reservation.
+        data['stop']=(f'Budget insufficient: {amount} tokens over a ceiling of {ceiling} with '
+                      f'{held["committed"]-held["reserved_live"]} irreversibly charged')
+        return 'impossible'
     if not line[:position] and held['committed']+amount<=ceiling:
         line[:]=[q for q in line if q['key']!=key]
-        data['calls'][key]={'reserved':amount,'charged':amount,'status':'pending','analysis':analysis,
-                            'admission':{'committed_before':held['committed'],'ceiling':ceiling}}
+        (data.setdefault('tickets',{}) if ticket else data['calls'])[key]={
+            'reserved':amount,'charged':amount,'status':'ticket' if ticket else 'pending',
+            'owner':OWNER,'analysis':analysis,
+            'admission':{'committed_before':held['committed'],'ceiling':ceiling}}
         return True
     if not waiting:
         return 'busy'
     if position==len(line):
-        line.append({'key':key,'amount':amount,'analysis':analysis})
+        line.append({'key':key,'amount':amount,'analysis':analysis,'owner':OWNER})
     return False
+
+def _refused(data,key,amount,analysis,kind):
+    data.setdefault('refusals',[]).append({'key':key,'tokens':amount,'analysis':analysis,
+                                          'kind':kind,'stop':data.get('stop')})
+    return Refused(kind,data.get('stop') or '')
 
 def reserve(path,key,body,limit=LIMIT,*,reserve_tokens=0,analysis=False):
     """Immediate reservation, refused if it would have to wait (redirect hops, sync calls)."""
-    amount=bound(body)
+    amount=bound(body);refusal=None
     with locked(path) as data:
         _configure(data,limit,reserve_tokens)
         outcome=_admit(data,key,amount,analysis,waiting=False)
         if outcome is not True:
-            raise Refused(outcome,data.get('stop') or '')
+            refusal=_refused(data,key,amount,analysis,outcome)
+    if refusal:  # Raised after the write: the refusal and any stop are recorded.
+        raise refusal
     return amount
 
-def enqueue(path,key,amount,*,limit=LIMIT,reserve_tokens=0,analysis=False):
-    """One FIFO step: True once reserved, False while waiting in line."""
+def enqueue(path,key,amount,*,limit=LIMIT,reserve_tokens=0,analysis=False,ticket=False):
+    """One FIFO step: True once reserved, False while waiting in line, None for a ticket that
+    can never fit."""
+    refusal=None
     with locked(path) as data:
         _configure(data,limit,reserve_tokens)
-        outcome=_admit(data,key,amount,analysis,waiting=True)
+        outcome=_admit(data,key,amount,analysis,waiting=True,ticket=ticket)
         if isinstance(outcome,str):
-            raise Refused(outcome,data.get('stop') or '')
+            refusal=_refused(data,key,amount,analysis,outcome)
+    if refusal:
+        raise refusal
     return outcome
+
+def convert(path,ticket,key,body):
+    """Exact reservation in place of a ticket admitted earlier: never larger, so the earlier
+    admission still holds. None, with nothing changed, if it does not fit in the ticket."""
+    amount=bound(body);refusal=None
+    with locked(path) as data:
+        t=data['tickets'][ticket]
+        assert t['status']=='ticket' and t['owner']==OWNER and key not in data['calls']
+        if data.get('stop'):
+            t.update(status='released',charged=0)
+            refusal=_refused(data,key,amount,True,'stopped')
+        elif amount>t['reserved']:
+            return None
+        else:
+            t.update(status='converted',charged=0,call=key)
+            data['calls'][key]={'reserved':amount,'charged':amount,'status':'pending',
+                                'owner':OWNER,'analysis':True,
+                                'admission':{**t['admission'],'ticket':ticket}}
+    if refusal:
+        raise refusal
+    return amount
+
+def release(path,ticket):
+    """A ticket never converted (its client closed without a request) frees its bound."""
+    with locked(path) as data:
+        t=data['tickets'][ticket]
+        if t['status']=='ticket':
+            t.update(status='released',charged=0)
 
 def withdraw(path,key):
     """Leave the line without a reservation (refusal or cancellation while waiting)."""
@@ -151,7 +212,7 @@ def verify(path):
     ceiling of every analysis call excluded the reserve."""
     with locked(path) as data:
         reserve=data.get('reserve',0);violations=[]
-        for key,c in data['calls'].items():
+        for key,c in [*data['calls'].items(),*data.get('tickets',{}).items()]:
             a=c.get('admission')
             if a is None:
                 continue
@@ -166,7 +227,8 @@ def totals(path):
         held=accounts(data)
         return {'charged':held['committed'],**held,'available':data['limit']-held['committed'],
                 'limit':data['limit'],'reserve':data.get('reserve',0),
-                'queued':len(data.get('queue',[])),
+                'queued':len(data.get('queue',[])),'tickets':len(data.get('tickets',{})),
+                'refusals':len(data.get('refusals',[])),
                 'provider_reported':sum(c.get('usage',{}).get('total_tokens',0)
                     for c in data['calls'].values() if c.get('usage')),
                 'unknown':sum(c['status']=='unknown_fully_charged' for c in data['calls'].values()),

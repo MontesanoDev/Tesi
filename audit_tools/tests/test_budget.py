@@ -16,8 +16,10 @@ def test_unknown_charges_full_and_stops(tmp_path):
     with pytest.raises(RuntimeError):reserve(p,'b',body())
 def test_over_limit_never_reserved(tmp_path):
     p=tmp_path/'l.json';b=body();b['messages'][0]['content']='x'*500000
-    with pytest.raises(RuntimeError):reserve(p,'a',b)
-    assert not p.exists()
+    with pytest.raises(RuntimeError,match='impossible'):reserve(p,'a',b)
+    t=totals(p);assert t['charged']==0 and t['calls']==0 and t['refusals']==1
+    assert t['stop'].startswith('Budget insufficient')  # It can never fit: campaign stopped.
+    with pytest.raises(RuntimeError,match='stopped'):reserve(p,'b',body())
 def test_atomic_concurrent_reservations(tmp_path):
     p=tmp_path/'l.json'
     def one(i):

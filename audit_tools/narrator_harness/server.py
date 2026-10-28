@@ -168,6 +168,13 @@ for modname,mod in list(sys.modules.items()):
     if not modname.startswith('app.'):continue
     for name,value in list(vars(mod).items()):
         if inspect.isfunction(value) and value in replacements:setattr(mod,name,replacements[value])
+# Segment tickets wait when the compiler opens each client, before its model timeout starts.
+from app import compilation_global_sessions as adapter
+
+metrics.install_admission_hook()
+adapter._resilient_proposal,adapter.global_request=metrics.plan_segments(
+    adapter._resilient_proposal,adapter.global_request,ledger=LEDGER,
+    reserve_tokens=CFG.get('reserve_tokens',0),wait_check=frozen)
 
 @app.middleware('http')
 async def audit_http(request,call_next):
