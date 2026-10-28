@@ -1,5 +1,21 @@
 # Stato di Mapi RAG
 
+## Audit narratore Minervino, tentativo 03 — completato, 28 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Unico tentativo autorizzato consumato; nessun fix.
+[Rapporto](docs/narratore-minervino-audit-03-2026-10-28.md).
+
+- **Esito:** nessun guasto e DOCX scaricato, ma 0 valori scritti.
+- **Analisi:** 56/58 valori del replay proposti identici.
+- **Dialogo:** 7 domande, 0 ripetute, 0 ricevute perse, 0 sospensioni.
+- **Rinvii:** tutte le 7 ricevute sono SKIP, per due motivi:
+  - la policy USER congelata non riconosce gli slot `applicability`/`decision` e risponde al
+    ramo società con il testo sulle date;
+  - il sottoscrittore e il direttore tecnico non vengono mai chiesti, perché il loro binding di
+    ruolo è respinto.
+- **Token:** 482.332 su 3.000.000, circa 0,054 USD (stima); analisi 75%, circa 4 minuti.
+- **Harness:** `d508b64` legge il limite della campagna dal config (cap 3.000.000).
+
 ## Harness narratore: coda, attesa ed errore controllato — 28 ottobre 2026, offline
 
 **Punto di ripresa: fermarsi.** Nessuna chiamata DeepSeek, nessuna ripresa, push o merge.

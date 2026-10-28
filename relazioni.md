@@ -5723,3 +5723,19 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   (`reference_date` nel digest). Va autorizzata a parte.
 - **Rapporti:** `docs/harness-narratore-coda-budget-2026-10-28.md`,
   `docs/narratore-minervino-ripresa-02-addendum-2026-10-28.md`.
+
+## 28 ottobre 2026 — Audit E2E del narratore su Minervino, tentativo 03
+
+- **Configurazione:** compilatore `7b31d25`; harness `89d1e2e` più `d508b64` (limite da config);
+  budget di 3.000.000 con riserva di 800.000; runtime nuovo, senza cache.
+- **Svolgimento:** 5 segmenti, con i segmenti 2-4 in parallelo e nessuna attesa di budget; 4
+  turni di dialogo ed export; DOCX scaricato.
+- **Esito:** 0 scritture, mentre l'analisi aveva proposto 56/58 valori del replay. Le perdite
+  sono:
+  - conferme rinviate dalla policy USER (incompatibile con gli slot reali);
+  - sottoscrittore e direttore tecnico mai chiesti (binding di ruolo respinto);
+  - 6 rifiuti del validatore;
+  - 2 campi non proposti.
+- **Token:** 482.332, 0 ignoti.
+- **Rapporto:** `docs/narratore-minervino-audit-03-2026-10-28.md`.
+
