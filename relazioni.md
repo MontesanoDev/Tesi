@@ -5704,3 +5704,22 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   segmenti; `RuntimeError` dell'harness fuori dalle eccezioni gestite per segmento.
 - **Fix proposti:** 3, non applicati.
 - **Rapporto:** `docs/narratore-minervino-audit-02-2026-10-28.md`.
+
+## 28 ottobre 2026 — Harness narratore: coda del budget, attesa ed errore controllato (offline)
+
+- **Fix con commit separati, solo nell'harness (compilatore `7b31d25` invariato):**
+  - `bb602bb`: coda FIFO e riserva per le fasi successive;
+  - `c7e5fd7`: attesa senza limite fisso, fuori dal timeout del modello; impossibile = STOP;
+  - `89d1e2e`: rifiuto come HTTP 503, senza cancellazioni.
+- **Prove:**
+  - 69 test PASS, con il candidato reale dietro FastAPI e solo il trasporto simulato;
+  - prima di ogni fix i nuovi test falliscono;
+  - rollback verificati;
+  - nessuna chiamata DeepSeek.
+- **Compilatore caratterizzato:** dopo un errore non gestito i segmenti in volo completano e
+  vanno in cache, e la ripresa chiama solo i mancanti. Sotto audit, un errore senza usage ferma
+  la campagna invece di produrre un'analisi parziale.
+- **Ripresa della sessione 02:** possibile senza scostamenti solo nella stessa data UTC
+  (`reference_date` nel digest). Va autorizzata a parte.
+- **Rapporti:** `docs/harness-narratore-coda-budget-2026-10-28.md`,
+  `docs/narratore-minervino-ripresa-02-addendum-2026-10-28.md`.

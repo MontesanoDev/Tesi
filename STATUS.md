@@ -1,5 +1,32 @@
 # Stato di Mapi RAG
 
+## Harness narratore: coda, attesa ed errore controllato — 28 ottobre 2026, offline
+
+**Punto di ripresa: fermarsi.** Nessuna chiamata DeepSeek, nessuna ripresa, push o merge.
+Branch `fix/2026-10-28-harness-narratore`; compilatore `7b31d25` invariato.
+
+- **`bb602bb`:** prenotazioni in coda FIFO; riserva per le fasi successive che l'analisi non
+  impegna mai; prenotato, consumato, riportato e incerto restano separati; `carry()`.
+- **`c7e5fd7`:**
+  - nessun limite di 120 s;
+  - budget impossibile = STOP immediato prima dell'invio;
+  - prenotazioni di processi morti addebitate e mai attese;
+  - ticket del segmento preso prima del timeout del modello;
+  - timeout del provider distinti dall'attesa.
+- **`89d1e2e`:** i rifiuti arrivano all'app come HTTP 503 invece di 500; nessuna chiamata in
+  volo annullata. La cache e la ripresa conservano il lavoro valido.
+- **Verifiche:**
+  - test 51 → 69 PASS con provider simulato sul compilatore reale; Ruff PASS;
+  - prima di ciascun fix i nuovi test falliscono: 6/6, 8/8, 3/5;
+  - rollback verificati in 3 worktree;
+  - preflight: 5 casi, cambia solo `budget`, da 500 a 503.
+- **Invariati:** tentativo 02 (backup e `tar -d` OK), input preregistrati, app ordinaria.
+- **Ripresa della sessione 02:** recuperabile senza scostamenti solo **entro le 00:00 UTC del
+  29/10**, perché la data UTC entra nei digest della cache. Residuo 594.154; garantito per il
+  narratore ≤ 48k con `2 × byte`. Da autorizzare.
+- [Rapporto](docs/harness-narratore-coda-budget-2026-10-28.md) ·
+  [Addendum ripresa](docs/narratore-minervino-ripresa-02-addendum-2026-10-28.md).
+
 ## Audit narratore Minervino, tentativo 02 — fallito nell'harness, 28 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Unico tentativo autorizzato consumato; nessuna ripetizione.
