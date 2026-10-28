@@ -106,8 +106,6 @@ async def observed(client,settings,body,**kwargs):
         return await metrics.observe(original,client,settings,body,RAW,
             context={'request':ctx,'phase':phase.get(),'sequence':number},
             rates=CFG.get('rates_USD_per_million'),before_dispatch=check_wire,
-            reserve_tokens=CFG.get('reserve_tokens',0),
-            analysis='compilation_global_sessions._resilient_proposal' in phase.get(),
             wait_check=frozen,**kwargs)
     finally:
         permit.reset(token)

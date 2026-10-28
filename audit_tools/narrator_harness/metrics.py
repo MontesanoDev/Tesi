@@ -6,7 +6,6 @@ The adapter is verified against the locked HTTPX 0.28.1 implementation.
 """
 from __future__ import annotations
 
-import asyncio
 import contextvars
 import hashlib
 import json
@@ -63,9 +62,8 @@ def cost(usage, rates):
 
 class Exchange:
     def __init__(self, root, body, secret='', context=None, rates=None, simulated=False,
-                 limit=budget.LIMIT, before_dispatch=None, reserve_tokens=0, analysis=False):
+                 limit=budget.LIMIT, before_dispatch=None):
         self.root, self.body, self.secret = Path(root), body, secret
-        self.reserve_tokens, self.analysis = reserve_tokens, analysis
         self.key = uuid4().hex
         self.folder = self.root / 'provider-calls' / self.key
         self.folder.mkdir(parents=True, exist_ok=False)
@@ -75,7 +73,7 @@ class Exchange:
         self.start = time.perf_counter()
         self.record = {'id': self.key, 'context': context or {}, 'simulated': simulated,
                        'prepared_UTC': utc(), 'events': [], 'transports': [],
-                       'reserved_tokens': 0, 'analysis_call': analysis, 'transport_started': False,
+                       'reserved_tokens': 0, 'transport_started': False,
                        'provider_usage': None, 'estimated_cost_USD': None}
         self.save('request.json', body)
         self.event('request_prepared')
@@ -91,37 +89,20 @@ class Exchange:
                                      'elapsed_seconds': time.perf_counter() - self.start, **values})
         self.save('metrics.json', self.record)
 
-    def reserve(self, waiting=False):
-        """True once reserved; False while waiting in the FIFO line (only if waiting)."""
+    def reserve(self):
         try:
-            if waiting:
-                amount = budget.bound(self.body)
-                done = budget.enqueue(self.ledger, self.key, amount, limit=self.limit,
-                                      reserve_tokens=self.reserve_tokens, analysis=self.analysis)
-            else:
-                amount, done = budget.reserve(self.ledger, self.key, self.body, self.limit,
-                    reserve_tokens=self.reserve_tokens, analysis=self.analysis), True
+            amount = budget.reserve(self.ledger, self.key, self.body, self.limit)
         except (AssertionError, RuntimeError) as exc:
-            self.refuse(exc)
+            self.record.update(outcome='refused_before_dispatch', error=type(exc).__name__,
+                               billing='not_dispatched', measured_tokens=0, estimated_cost_USD=0)
+            self.event('reservation_refused')
             raise
-        if not done:
-            if 'queued_UTC' not in self.record:
-                self.record['queued_UTC'] = utc()
-                self.event('queued_for_budget', tokens=amount)
-            return False
         for field in ('outcome', 'error', 'billing', 'measured_tokens'):
             self.record.pop(field, None)
         self.record['estimated_cost_USD'] = None
         self.record['reserved_tokens'] = amount
         self.record['reservation_wait_seconds'] = time.perf_counter() - self.start
         self.event('tokens_reserved', tokens=amount)
-        return True
-
-    def refuse(self, exc):
-        budget.withdraw(self.ledger, self.key)
-        self.record.update(outcome='refused_before_dispatch', error=type(exc).__name__,
-                           billing='not_dispatched', measured_tokens=0, estimated_cost_USD=0)
-        self.event('reservation_refused', reason=str(exc))
 
     def start_transport(self, request):
         if self.before_dispatch:
@@ -242,25 +223,25 @@ def install_transport_observer():
 
 
 async def observe(original, client, settings, body, root, *, context=None, rates=None,
-                  simulated=False, limit=budget.LIMIT, reserve_tokens=0, analysis=False,
-                  before_dispatch=None, wait_check=None, **kwargs):
+                  simulated=False, limit=budget.LIMIT, before_dispatch=None, wait_check=None, **kwargs):
     exchange = Exchange(root, body, settings.api_key or '', context, rates, simulated, limit,
-                        before_dispatch, reserve_tokens, analysis)
-    try:
-        # Without wait_check the reservation is immediate or refused, as for redirect hops.
-        while not exchange.reserve(waiting=wait_check is not None):
+                        before_dispatch)
+    while True:
+        try:
+            exchange.reserve()
+            break
+        except RuntimeError:
+            if not wait_check:
+                raise
             with budget.locked(exchange.ledger) as state:
-                pending = any(c['status'] == 'pending' for c in state['calls'].values())
+                pending = not state.get('stop') and any(c['status'] == 'pending' for c in state['calls'].values())
             if not pending:
-                raise RuntimeError('No pending reservation can free the budget')
+                raise
             wait_check()
             if time.perf_counter() - exchange.start > 120:
                 raise RuntimeError('Pending reservation unresolved; operator review required')
+            import asyncio
             await asyncio.sleep(.1)
-    except BaseException as exc:
-        if 'outcome' not in exchange.record:
-            exchange.refuse(exc)  # Leaves the line: a cancelled waiter never blocks the next.
-        raise
     token = ACTIVE.set(exchange)
     error = None
     try:
