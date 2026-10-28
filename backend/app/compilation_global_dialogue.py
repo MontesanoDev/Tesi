@@ -301,7 +301,8 @@ def question_pool(data):
     audit, dialogue = data.get("audit") or {}, data.get("dialogue") or {}
     answers = dialogue.get("answers", {})
     prepared = {f["candidate_id"]: f for f in audit.get("fields", [])}
-    prepared.update(signatory_fields(data))
+    signatory = signatory_fields(data)
+    prepared.update(signatory)
     fields = [f for f in prepared.values()
               if f.get("form_evidence") and not f.get("validation_errors")]
     unassessed_role_fields = {cid for target in source_role_coverage(data)
@@ -368,7 +369,8 @@ def question_pool(data):
         pool.append({"key": "field:" + cid, "kind": "value", "field_ids": [cid],
                      "label": field["label"], "condition": "",
                      "context": field["form_evidence"]["quote"], "impact": 1,
-                     "alternatives": [a["value"] for a in field.get("alternatives", [])]})
+                     "alternatives": [a["value"] for a in field.get("alternatives", [])],
+                     **({"form_owned": True} if cid in signatory else {})})
     pool.extend(decision_questions(data, {cid for q in pool for cid in q["field_ids"]}))
     return [{**item, "slot": i + 1} for i, item in enumerate(pool[:MAX_POOL])]
 
@@ -832,9 +834,14 @@ def narration_schema(model_class, pool):
 
 
 def open_condition_questions(pool):
-    """P3: open FORM conditions asked by the backend when the narrator asks nothing."""
+    """P3: open FORM conditions asked by the backend when the narrator asks nothing, then the
+    FORM-owned signatory name, which no MODEL proposal or condition supplies."""
     questions = []
     for q in pool:
+        if q.get("form_owned") and q["kind"] == "value":
+            questions.append(DialogueQuestion(slot=q["slot"], question=(
+                "Chi sottoscrive la domanda? Indica nome e cognome del firmatario.")))
+            continue
         if q["kind"] != "applicability" or not q["key"].startswith("condition:"):
             continue
         quote = " ".join(re.sub(r"[?\[\]]", " ", q.get("condition") or "").split())[:300]
