@@ -80,40 +80,10 @@ def _capacity_region(catalog, cid):
     return paragraphs[start], options
 
 
-def _representation_receipt(data, key, condition, receipt, cid, paragraph):
-    """A verified representation condition already includes this native option in its scope.
-
-    The control need not be an independently valued text destination in the receipt.
-    Its explicit condition scope and the entire FORM were part of the checked digest.
-    Never extend that scope, remint the proof or infer a declaration from company identity.
-    """
-    from app.compilation_scope_review import enabled, valid_receipt
-
-    if (not enabled(data) or receipt.get('ambiguity_check') != 'SEMANTIC_GUARD'
-            or data['catalog']['candidates'][cid].get('control_type') != 'content_control'
-            or {'kind': 'candidate', 'id': cid} not in condition.get('scope', [])
-            or _uncertain(receipt.get('user_quote', ''))):
-        return False
-    ids = receipt.get('affected_fields') or []
-    if not ids or not valid_receipt(data, 'condition:' + key, receipt, ids[0]):
-        return False
-    full, quote = _text(paragraph['text']), _text(condition['form_evidence']['quote'])
-    if not full.startswith(quote) or full[len(quote):].strip() not in {
-            '', 'avente la seguente', 'avente la seguente denominazione'}:
-        return False  # A legal assertion or an omitted alternative is not a neutral lead-in.
-    clause = _text(re.sub(r'\([^()]*\)', '', quote))
-    match = re.fullmatch(r'legale rappresentante di società di (professionisti|ingegneria)'
-                         r'(?: o di società di (professionisti|ingegneria))?', clause)
-    answer = _text(receipt['user_quote'])
-    return bool(match and 'legale rappresentante' in answer and any(
-        kind and 'società di ' + kind in answer for kind in match.groups()))
-
-
 def _receipt_control(data, key, condition, receipt):
     if not _accepted(condition, receipt) or condition.get("aspect") not in {
         "legal_type",
         "participation",
-        "representation",
     }:
         return None
     catalog = data["catalog"]
@@ -129,11 +99,8 @@ def _receipt_control(data, key, condition, receipt):
     paragraph = next(
         p for b in catalog["blocks"] for p in b["paragraphs"] if p["id"] == form["paragraph_id"]
     )
-    representation = condition.get('aspect') == 'representation'
     if (
-        (representation and not _representation_receipt(data, key, condition, receipt,
-                                                       cid, paragraph))
-        or (not representation and _text(paragraph["text"]) != _text(form["quote"]))
+        _text(paragraph["text"]) != _text(form["quote"])
         or cid not in condition.get("applies_to", [])
         or not (region := _capacity_region(catalog, cid))
     ):
@@ -155,18 +122,6 @@ def _receipt_control(data, key, condition, receipt):
         ):
             return None
     return cid, region
-
-
-def linked_receipt_valid(data, cid, key=None):
-    """Check the original verified condition receipt, not an invented choice receipt."""
-    value = receipt_choice_value(data, cid)
-    if not value or (key is not None and value.get('receipt_key') != key):
-        return False
-    receipt_key = value.get('receipt_key', '')
-    condition = data['audit'].get('conditions', {}).get(
-        receipt_key.removeprefix('condition:'), {})
-    # This bridge is deliberately restricted to the separately proved representation link.
-    return condition.get('aspect') == 'representation'
 
 
 def effective_user_values(data):
