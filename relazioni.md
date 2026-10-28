@@ -5692,3 +5692,15 @@ Rollback verificati, candidata `7b31d25` identica, 64 artefatti e 159 hash del
 precedente tentativo invariati. Nessun push/merge o adozione. Nuovo tentativo
 Minervino proposto, non avviato, 900.000 token da autorizzare.
 Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10-28.md).
+
+## 28 ottobre 2026 — Audit E2E del narratore su Minervino, tentativo 02 (fallito)
+
+- **Configurazione:** compilatore `7b31d25`, harness `7eb8f67`, runtime isolato, tetto 900.000
+  token.
+- **Svolgimento:** routing e 4 segmenti su 5 riusciti. Il segmento 4 è stato rifiutato
+  dall'harness dopo 120 s di attesa della prenotazione; HTTP 500 su `/resolve`.
+- **Esito:** nessun dialogo né DOCX; 305.846 token misurati.
+- **Causa:** prenotazioni 6,5-8,4 volte l'usage reale incompatibili con la concorrenza a 3
+  segmenti; `RuntimeError` dell'harness fuori dalle eccezioni gestite per segmento.
+- **Fix proposti:** 3, non applicati.
+- **Rapporto:** `docs/narratore-minervino-audit-02-2026-10-28.md`.

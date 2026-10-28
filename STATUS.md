@@ -1,5 +1,28 @@
 # Stato di Mapi RAG
 
+## Audit narratore Minervino, tentativo 02 — fallito nell'harness, 28 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Unico tentativo autorizzato consumato; nessuna ripetizione.
+Rapporto: `docs/narratore-minervino-audit-02-2026-10-28.md`.
+
+- **Svolgimento:** l'analisi ha raggiunto DeepSeek. 4 segmenti su 5 hanno risposto, il segmento 4
+  non è stato inoltrato. L'attesa della prenotazione dell'harness ha superato i 120 s:
+  `RuntimeError`, HTTP 500.
+- **Esito:** nessun dialogo e nessun DOCX; i punti 1-6 del mandato non sono osservabili.
+- **Token:** 305.846 su 900.000, circa 0,044 USD (stima); 69.590 consumati dopo il fallimento.
+  4 segmenti validati in cache.
+- **Cause:**
+  - prenotazioni `2 × byte` di 529-546k per segmento con 3 segmenti paralleli;
+  - attesa limitata a 120 s dentro il timeout del modello;
+  - eccezione non gestita per segmento.
+- **Fix proposti, non applicati:**
+  1. budget compatibile con la concorrenza;
+  2. attesa senza crash;
+  3. annullamento dei segmenti paralleli al primo errore non recuperabile.
+- **Da autorizzare:** una ripresa che riuserebbe la cache. Sarebbe un secondo tentativo.
+- **Grezzi:** `backend/data/compilation-audit/narratore-minervino-20261028-02/`; backup in
+  `…/narratore-minervino-20261028-02-backup/` e su `D:`.
+
 ## Harness narratore riparato — 28 ottobre 2026, solo offline
 
 **Fermarsi: nuovo audit reale da autorizzare.** Branch isolato
