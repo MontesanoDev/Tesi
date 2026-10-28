@@ -1,5 +1,5 @@
+# App imports must follow isolated environment configuration.
 """One isolated real application, transparent observation and pre-call budget gate."""
-import asyncio
 import contextvars
 import functools
 import hashlib
@@ -22,13 +22,14 @@ os.environ.update(PYTHON_DOTENV_DISABLED='1',MAPI_COMPILATION_PROFILE='sezioni-2
  MAPI_DB_PATH=str(RUNTIME/'runtime.db'),MAPI_STORAGE_PATH=str(RUNTIME/'uploads'),
  MAPI_KNOWLEDGE_PATH=str(RUNTIME/'knowledge'))
 sys.path.insert(0,str(ROOT/'backend'))
-from .budget import bound,reserve,settle,totals
-from app import ai_transport,draft_generation,fact_extraction,generation
+from app import ai_transport, draft_generation, fact_extraction, generation
+
+from .budget import totals
 
 assert Path(ai_transport.__file__).resolve().is_relative_to(ROOT/'backend')
-scope=contextvars.ContextVar('audit_request',default={})
+scope=contextvars.ContextVar('audit_request',default=None)
 permit=contextvars.ContextVar('network_reservation',default=None)
-phase=contextvars.ContextVar('audit_phase',default=[])
+phase=contextvars.ContextVar('audit_phase',default=())
 counter=itertools.count(1);requests=itertools.count(1);events=itertools.count(1)
 lock=threading.Lock();LEDGER=RAW/'budget-ledger.json'
 def utc():return datetime.now(UTC).isoformat()
@@ -38,8 +39,7 @@ def save(path,value,secret=None):
     if secret:s=s.replace(secret,'[REDACTED]')
     path.write_text(s)
 def log(name,value):
-    with lock:
-        with (RAW/name).open('a') as f:f.write(json.dumps(value,ensure_ascii=False,default=str)+'\n')
+    with lock, (RAW/name).open('a') as f:f.write(json.dumps(value,ensure_ascii=False,default=str)+'\n')
 def stop(reason):save(RAW/'STOP.json',{'reason':reason,'UTC':utc()})
 def frozen():
     freeze=json.loads((RAW/'FREEZE.json').read_text())
@@ -49,6 +49,7 @@ def frozen():
 
 # Any paid HTTP exchange must carry the reservation established by observed().
 import httpx
+
 real_send=httpx.AsyncClient.send
 def effective_redirects(client, kwargs):
     value = kwargs.get('follow_redirects', httpx.USE_CLIENT_DEFAULT)
@@ -61,6 +62,15 @@ async def send_checked(client,request,*args,**kwargs):
         assert json.loads(request.content)==p['body'],'Outgoing payload changed'
         assert not effective_redirects(client,kwargs),'Redirect forbidden'
     return await real_send(client,request,*args,**kwargs)
+real_sync_send=httpx.Client.send
+def send_checked_sync(client,request,*args,**kwargs):
+    if request.url.host not in {'127.0.0.1','localhost','::1'}:
+        p=permit.get()
+        assert p and str(request.url)=='https://api.deepseek.com/chat/completions','Unbudgeted outbound HTTP blocked'
+        assert json.loads(request.content)==p['body'],'Outgoing payload changed'
+        assert not effective_redirects(client,kwargs),'Redirect forbidden'
+    return real_sync_send(client,request,*args,**kwargs)
+httpx.Client.send=send_checked_sync
 httpx.AsyncClient.send=send_checked
 real_connect=socket.socket.connect
 def connect_checked(s,address):
@@ -69,7 +79,17 @@ def connect_checked(s,address):
     return real_connect(s,address)
 socket.socket.connect=connect_checked
 
+from . import metrics
+
+metrics.install_transport_observer()
 original=ai_transport.post_chat
+
+def check_wire(request):
+    # Recheck at the actual transport boundary, after HTTPX request hooks.
+    p=permit.get()
+    assert p and str(request.url)=='https://api.deepseek.com/chat/completions', 'Unexpected wire URL'
+    assert json.loads(request.content)==p['body'], 'Outgoing payload changed'
+
 async def observed(client,settings,body,**kwargs):
     frozen();ctx=scope.get()
     assert ctx.get('project_id')==CFG['project_id'],'Provider call outside test project'
@@ -81,42 +101,16 @@ async def observed(client,settings,body,**kwargs):
     assert all({k:v for k,v in s.get('global_compilation',{}).items() if
                 k.endswith('revision') or k=='compilation_profile'}==CFG['profile'] for s in states)
     number=next(counter);assert number<=100,'Maximum safety call count'
-    key=f'{number:03d}';folder=RAW/'provider-calls'/key;folder.mkdir(parents=True,exist_ok=False)
-    entry={'id':key,'request':ctx,'phase':phase.get(),'start_UTC':utc(),
-           'requested_model':settings.model,'reservation':bound(body)}
-    save(folder/'request.json',{'body':body,'response_schema':kwargs.get('response_schema')},settings.api_key)
-    wait=time.perf_counter()
-    while True:
-        frozen()
-        try:
-            reserve(LEDGER,key,body);break
-        except RuntimeError:
-            with sqlite3.connect(f'file:{RUNTIME}/runtime.db?mode=ro',uri=True):pass
-            ledger=json.loads(LEDGER.read_text()) if LEDGER.exists() else {'calls':{}}
-            if ledger.get('stop') or not any(c['status']=='pending' for c in ledger['calls'].values()):
-                stop('budget exhausted before call');entry.update(forwarded=False,error='BudgetRefused')
-                save(folder/'metrics.json',entry);raise
-            await asyncio.sleep(.1)  # Budget queue only; requests and model output unchanged.
-    entry['budget_wait_seconds']=time.perf_counter()-wait
-    token=permit.set({'key':key,'body':body});started=time.perf_counter()
+    token=permit.set({'body':body})
     try:
-        response=await original(client,settings,body,**kwargs);await response.aread()
-        payload=response.json();usage=payload.get('usage',{})
-        save(folder/'response.json',payload,settings.api_key)
-        entry.update(forwarded=True,http_status=response.status_code,usage=usage,
-                     returned_model=payload.get('model'),system_fingerprint=payload.get('system_fingerprint'),
-                     finish_reasons=[c.get('finish_reason') for c in payload.get('choices',[])],
-                     payload_unchanged=True)
-        settle(LEDGER,key,usage)
-        if totals(LEDGER)['stop']:stop(totals(LEDGER)['stop'])
-        return response
-    except BaseException as exc:
-        entry.update(forwarded=True,error=type(exc).__name__)
-        settle(LEDGER,key,None);stop('Unknown provider usage: '+type(exc).__name__)
-        raise
+        return await metrics.observe(original,client,settings,body,RAW,
+            context={'request':ctx,'phase':phase.get(),'sequence':number},
+            rates=CFG.get('rates_USD_per_million'),before_dispatch=check_wire,
+            wait_check=frozen,**kwargs)
     finally:
-        permit.reset(token);entry.update(end_UTC=utc(),provider_seconds=time.perf_counter()-started)
-        save(folder/'metrics.json',entry,settings.api_key)
+        permit.reset(token)
+        if LEDGER.exists() and totals(LEDGER)['stop']:
+            stop(totals(LEDGER)['stop'])
 
 for mod in [ai_transport,generation,draft_generation,fact_extraction]:mod.post_chat=observed
 from app.main import app

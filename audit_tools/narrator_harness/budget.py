@@ -30,14 +30,24 @@ def locked(path):
         yield data
         tmp=path.with_suffix(f'.{os.getpid()}.tmp');tmp.write_text(json.dumps(data,indent=2));tmp.replace(path)
 
-def reserve(path,key,body):
+def reserve(path,key,body,limit=LIMIT):
     amount=bound(body)
     with locked(path) as data:
+        assert type(limit) is int and 0 < limit <= LIMIT
+        assert not data['calls'] or data['limit'] == limit, 'Budget limit changed'
+        data['limit'] = limit
         assert key not in data['calls']
-        if data.get('stop') or sum(c['charged'] for c in data['calls'].values())+amount>LIMIT:
+        if data.get('stop') or sum(c['charged'] for c in data['calls'].values())+amount>limit:
             raise RuntimeError('Budget reservation refused before network request')
         data['calls'][key]={'reserved':amount,'charged':amount,'status':'pending'}
     return amount
+
+def cancel_unstarted(path,key):
+    """Only a request known not to have entered any transport can release its bound."""
+    with locked(path) as data:
+        call=data['calls'][key]
+        assert call['status']=='pending', 'Reservation already settled'
+        call.update(charged=0,status='not_dispatched',usage=None)
 
 def settle(path,key,usage):
     with locked(path) as data:
@@ -56,4 +66,7 @@ def settle(path,key,usage):
 def totals(path):
     with locked(path) as data:
         return {'charged':sum(c['charged'] for c in data['calls'].values()),
+                'provider_reported':sum(c.get('usage',{}).get('total_tokens',0)
+                    for c in data['calls'].values() if c.get('usage')),
+                'unknown':sum(c['status']=='unknown_fully_charged' for c in data['calls'].values()),
                 'calls':len(data['calls']),'stop':data.get('stop')}
