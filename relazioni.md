@@ -5676,3 +5676,19 @@ Nessuna valutazione di qualità: i fix recenti sono NON ESERCITATI dal vivo.
 rapporti completi e JSON nella directory privata dell'audit. 159 hash invariati,
 backup preflight verificato, servizi isolati arrestati. Nessun cambiamento del
 prodotto, push, merge, adozione o ulteriore tentativo. Revisione autoriale.
+
+
+## 28 ottobre 2026 — Riparazione isolata dell'harness narratore
+
+Mandato: nessun cambiamento del compilatore e nessuna inferenza. Sentinella HTTPX
+riprodotta (1 FAIL prima), poi corretta in `8524aa5`; due difetti metrici riprodotti
+prima di `8d047dc`. Strumentazione finale `4fc0377`: 51 test PASS, Ruff PASS.
+Preflight reale React/FastAPI con provider simulato: risposta corretta, HTTP 503,
+timeout, errore di trasporto e budget esaurito; 6 probe per redirect/egress.
+La prima esecuzione offline si è fermata per un'aspettativa errata del test sul
+200 dell'app con generation_status=failed; conservata, poi corretta solo la prova.
+Seconda esecuzione completa. Nessun risultato del narratore reale deducibile.
+Rollback verificati, candidata `7b31d25` identica, 64 artefatti e 159 hash del
+precedente tentativo invariati. Nessun push/merge o adozione. Nuovo tentativo
+Minervino proposto, non avviato, 900.000 token da autorizzare.
+Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10-28.md).

@@ -1,5 +1,23 @@
 # Stato di Mapi RAG
 
+## Harness narratore riparato — 28 ottobre 2026, solo offline
+
+**Fermarsi: nuovo audit reale da autorizzare.** Branch isolato
+`fix/2026-10-28-harness-narratore`, compilatore sempre `7b31d25` senza modifiche.
+
+- `8524aa5`: sentinella HTTPX risolta con il default effettivo del client.
+- `8d047dc`: metriche al confine del trasporto; prenotazioni separate dall'usage;
+  errore prima dell'invio distinto da esito/fatturazione sconosciuti.
+- `4fc0377`: collaudo offline tramite React e FastAPI reali, provider simulato e
+  blocco della rete esterna; 5 casi dal composer e 6 probe aggiuntive.
+- 51 test PASS e Ruff PASS; rollback verificati nei worktree dedicati.
+- 64 artefatti e 159 hash congelati del tentativo fallito invariati; vecchi
+  backup verificati. Nessuna inferenza, modifica dell'app ordinaria o push/merge.
+- Il preflight valida lo strumento; non la qualità del narratore o un DOCX.
+- [Rapporto e rollback](docs/harness-narratore-riparazione-2026-10-28.md).
+  [Proposta nuovo audit: 1 tentativo, 900.000 token](docs/proposta-nuovo-audit-narratore-2026-10-28.md).
+
+
 ## Audit reale del narratore — 28 ottobre 2026, tentativo interrotto
 
 **Fermarsi: nessuna ripetizione autorizzata.** Branch `audit/2026-10-28-narratore-minervino`,
