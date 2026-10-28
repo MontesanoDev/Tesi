@@ -24,7 +24,7 @@ os.environ.update(PYTHON_DOTENV_DISABLED='1',MAPI_COMPILATION_PROFILE='sezioni-2
 sys.path.insert(0,str(ROOT/'backend'))
 from app import ai_transport, draft_generation, fact_extraction, generation
 
-from .budget import Refused, totals
+from .budget import LIMIT, Refused, totals
 
 assert Path(ai_transport.__file__).resolve().is_relative_to(ROOT/'backend')
 scope=contextvars.ContextVar('audit_request',default=None)
@@ -32,6 +32,7 @@ permit=contextvars.ContextVar('network_reservation',default=None)
 phase=contextvars.ContextVar('audit_phase',default=())
 counter=itertools.count(1);requests=itertools.count(1);events=itertools.count(1)
 lock=threading.Lock();LEDGER=RAW/'budget-ledger.json'
+BUDGET=CFG.get('budget_limit',LIMIT)  # Frozen campaign limit; capped in budget._configure.
 def utc():return datetime.now(UTC).isoformat()
 def save(path,value,secret=None):
     path.parent.mkdir(parents=True,exist_ok=True)
@@ -106,7 +107,7 @@ async def observed(client,settings,body,**kwargs):
     number=next(counter);assert number<=100,'Maximum safety call count'
     token=permit.set({'body':body})
     try:
-        return await metrics.observe(original,client,settings,body,RAW,
+        return await metrics.observe(original,client,settings,body,RAW,limit=BUDGET,
             context={'request':ctx,'phase':phase.get(),'sequence':number},
             rates=CFG.get('rates_USD_per_million'),before_dispatch=check_wire,
             reserve_tokens=CFG.get('reserve_tokens',0),
@@ -176,7 +177,7 @@ from app import compilation_global_sessions as adapter
 
 metrics.install_admission_hook()
 adapter._resilient_proposal,adapter.global_request=metrics.plan_segments(
-    adapter._resilient_proposal,adapter.global_request,ledger=LEDGER,
+    adapter._resilient_proposal,adapter.global_request,ledger=LEDGER,limit=BUDGET,
     reserve_tokens=CFG.get('reserve_tokens',0),wait_check=frozen,on_refusal=metrics.controlled)
 
 @app.middleware('http')

@@ -17,6 +17,7 @@ from pathlib import Path
 from uuid import uuid4
 
 LIMIT=900_000
+CAP=3_000_000  # Largest authorized campaign budget (attempt 03, 28 Oct 2026); limit from config.
 LIVE={'pending','ticket'}
 OWNER=f'{os.getpid()}-{uuid4().hex}'  # This process: only its reservations can still settle.
 
@@ -71,7 +72,7 @@ def accounts(data):
     return {**held,'committed':sum(held.values())}
 
 def _configure(data,limit,reserve_tokens):
-    assert type(limit) is int and 0 < limit <= LIMIT
+    assert type(limit) is int and 0 < limit <= CAP
     assert type(reserve_tokens) is int and 0 <= reserve_tokens < limit
     assert not data['calls'] or data['limit'] == limit, 'Budget limit changed'
     assert not data['calls'] or data.get('reserve',0) == reserve_tokens, 'Budget reserve changed'

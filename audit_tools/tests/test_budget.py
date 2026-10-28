@@ -45,3 +45,7 @@ def test_provider_bound_violation_stops(tmp_path):
     p=tmp_path/'l.json';n=reserve(p,'a',body());settle(p,'a',{'prompt_tokens':n,'completion_tokens':1,'total_tokens':n+1})
     assert totals(p)['stop']
     with pytest.raises(RuntimeError):reserve(p,'b',body())
+def test_campaign_limit_comes_from_config_up_to_the_cap(tmp_path):
+    from audit_tools.narrator_harness.budget import CAP
+    p=tmp_path/'l.json';reserve(p,'a',body(),CAP);assert totals(p)['limit']==CAP==3_000_000
+    with pytest.raises(AssertionError):reserve(tmp_path/'m.json','a',body(),CAP+1)
