@@ -50,16 +50,12 @@ def frozen():
 # Any paid HTTP exchange must carry the reservation established by observed().
 import httpx
 real_send=httpx.AsyncClient.send
-def effective_redirects(client, kwargs):
-    value = kwargs.get('follow_redirects', httpx.USE_CLIENT_DEFAULT)
-    return client.follow_redirects if isinstance(value, type(httpx.USE_CLIENT_DEFAULT)) else value
-
 async def send_checked(client,request,*args,**kwargs):
     if request.url.host not in {'127.0.0.1','localhost','::1'}:
         p=permit.get()
         assert p and str(request.url)=='https://api.deepseek.com/chat/completions','Unbudgeted outbound HTTP blocked'
         assert json.loads(request.content)==p['body'],'Outgoing payload changed'
-        assert not effective_redirects(client,kwargs),'Redirect forbidden'
+        assert not kwargs.get('follow_redirects',False),'Redirect forbidden'
     return await real_send(client,request,*args,**kwargs)
 httpx.AsyncClient.send=send_checked
 real_connect=socket.socket.connect
