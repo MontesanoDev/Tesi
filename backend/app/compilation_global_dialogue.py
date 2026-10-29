@@ -596,8 +596,7 @@ def question_pool(data):
                      "label": field["label"], "condition": "",
                      "context": field["form_evidence"]["quote"], "impact": 1,
                      "alternatives": [a["value"] for a in field.get("alternatives", [])],
-                     **({"form_owned": True, "question": SIGNATORY_QUESTION}
-                        if cid in signatory else {})})
+                     **({"form_owned": True} if cid in signatory else {})})
     pool.extend(decision_questions(data, {cid for q in pool for cid in q["field_ids"]}))
     # A reply refused in the previous turn is asked first again (the receipt promised the
     # clarification); after a second refusal the loop guard closes it explicitly.
@@ -1068,11 +1067,6 @@ def narration_schema(model_class, pool):
     return schema
 
 
-# Backend text of the FORM-owned signatory name (test 2: the narrator asked it as «Quale dato
-# o decisione vuoi indicare?», so the USER could not tell what was asked).
-SIGNATORY_QUESTION = "Chi sottoscrive la domanda? Indica nome e cognome del firmatario."
-
-
 def open_condition_questions(pool):
     """P3: open FORM conditions asked by the backend when the narrator asks nothing, then the
     FORM-owned signatory name, which no MODEL proposal or condition supplies, and the FORM
@@ -1080,7 +1074,8 @@ def open_condition_questions(pool):
     questions = []
     for q in pool:
         if q.get("form_owned") and q["kind"] == "value":
-            questions.append(DialogueQuestion(slot=q["slot"], question=SIGNATORY_QUESTION))
+            questions.append(DialogueQuestion(slot=q["slot"], question=(
+                "Chi sottoscrive la domanda? Indica nome e cognome del firmatario.")))
             continue
         if q.get("form_owned") and q["kind"] == "choice":
             questions.append(DialogueQuestion(slot=q["slot"], question="Scelta del modulo"))
@@ -1138,7 +1133,7 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
         if not text or not no_technical_ids(text):
             raise ValueError("Domanda senza testo naturale utilizzabile")
         if (slot["kind"] == "decision" or slot.get("authorization")
-                or slot["kind"] in {"choice", "value"} and slot.get("form_owned")
+                or slot["kind"] == "choice" and slot.get("form_owned")
                 or slot["kind"] == "applicability" and slot.get("extension")):
             text = slot["question"]  # Keep every attestation/choice visible, never a vague assent.
         slots.append({**slot, "slot": i + 1, "question": text})
