@@ -74,11 +74,15 @@ class ClarificationDecision(StrictModel):
     unaccepted_slots: list[int] = Field(default_factory=list, max_length=4)
     scope_verifications: dict[int, str] = Field(default_factory=dict)
     unaccepted_reasons: dict[int, str] = Field(default_factory=dict)  # Guard codes per slot.
+    # Internal: the same message also asked for the draft (global engine only).
+    then_finish: bool = False
 
     @model_validator(mode="after")
     def distinct_slots(self):
         if len({r.slot for r in self.replies}) != len(self.replies):
             raise ValueError("Slot duplicato")
+        if self.then_finish and (self.action != "ANSWER" or not self.replies):
+            raise ValueError("La bozza dopo le risposte richiede almeno una risposta")
         if self.action in {"PAUSE", "FINISH"} and self.replies:
             raise ValueError("PAUSE/FINISH non aggiorna campi")
         if any(r.action in {"PAUSE", "FINISH"} for r in self.replies):

@@ -82,8 +82,9 @@ async def test_same_prompt_and_schema_in_every_state_one_call_per_turn(chat):
     assert len(routing_context(contexts()[1])["slots"][0]["context"]) == 1500
 
 
-@pytest.mark.parametrize("intent", ["reply", "explain", "retrieve", "pause", "resume", "finish",
-                                          "generate", "compile"])
+# finish/generate may carry the replies of the same message, recorded before the draft:
+# test_answers_with_draft_request.py (manual Minervino test 4).
+@pytest.mark.parametrize("intent", ["reply", "explain", "retrieve", "pause", "resume", "compile"])
 def test_only_answer_fields_can_contain_updates(intent):
     candidate = turn(intent, replies=[reply(1, value="a@b.it")])
     if intent in {"reply", "explain"}:

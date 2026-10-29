@@ -275,7 +275,9 @@ class TurnPlan(StrictModel):
                 raise ValueError("La compilazione richiede target=form, answer vuota e query vuote")
             if self.intent != "compile" and self.form_id is not None:
                 raise ValueError("Solo compile o retrieve seleziona un modulo")
-            if self.intent == "answer_fields":
+            if self.intent in {"answer_fields", "finish", "generate"}:
+                # finish/generate may carry the replies of the same message: they are
+                # verified and recorded before the draft (manual test 4).
                 ClarificationDecision(action="ANSWER", replies=self.replies)
             elif self.replies:
                 raise ValueError("Un comando di sessione non aggiorna campi")
@@ -343,11 +345,15 @@ Con CAPACITÀ DI COMPILAZIONE DISPONIBILE puoi inoltre scegliere:
 
 Per compile/answer_fields/pause/resume/finish/generate: answer="", target=form,
 queries=[], source_queries=[]. Solo compile seleziona form_id; gli altri null.
-Pause/resume/finish/generate richiedono una sessione abilitata e replies=[].
+Pause/resume/finish/generate richiedono una sessione abilitata; pause/resume
+hanno replies=[], finish/generate possono avere replies (regola 1).
 Prima di elaborare i dati, determina l'OGGETTO e la POLARITÀ dei comandi:
 1. Un comando affermativo sull'intera sessione (pause/resume/finish) prevale
    sulle risposte ai campi, anche se queste vengono prima nel messaggio.
-   Non acquisire valori nello stesso turno di pausa o esportazione.
+   Non acquisire valori nello stesso turno di pausa o ripresa. Con finish/generate
+   metti in replies, come per answer_fields, le risposte agli slot attivi scritte
+   nello stesso messaggio: il backend le verifica e le registra prima della bozza,
+   che genera solo se sono tutte accettate. Senza risposte, replies=[].
 2. Un rinvio riferito alla domanda corrente, a una voce o a un sottoinsieme
    degli slot è answer_fields/SKIP, non pause. Continua con gli altri punti;
    seleziona solo gli slot indicati. Non conoscere un dato è UNKNOWN.
@@ -450,6 +456,11 @@ def bind_turn_plan(plan, compilation, message):
     if plan.intent in {"pause", "resume", "finish", "generate"}:
         if not compilation or not compilation.get("enabled"):
             raise ValueError("Il comando richiede una sessione di compilazione abilitata")
+        if plan.replies:
+            # The replies are recorded first; the draft follows only if all are accepted.
+            if compilation.get("engine") != "global":
+                raise ValueError("Risposte e bozza nello stesso turno: solo motore globale")
+            return ClarificationDecision(action="ANSWER", replies=plan.replies, then_finish=True)
         if plan.intent != "generate":
             return ChatDecision(
                 action="compilation_control", answer="", queries=[], target="form",
@@ -750,7 +761,7 @@ async def plan_chat_turn(
                     "Unico retry: correggi il JSON secondo il contratto unico e lo "
                     "SCHEMA OUTPUT originale. Sono obbligatori intent, answer, queries, target. "
                     f"Usa soltanto gli slot attivi {sorted(allowed_slots)}; nessun field_id. "
-                    "Spiegazioni e comandi di sessione non contengono replies. "
+                    "Spiegazioni, pausa e ripresa non contengono replies. "
                     f"Errori di validazione: {error[:2000]}"
                 )
                 body = {**body, "messages": [
@@ -762,7 +773,7 @@ async def plan_chat_turn(
                     {"role": "user", "content": repair},
                 ]}
                 continue
-            if proposed.intent == "answer_fields":
+            if proposed.intent == "answer_fields" or proposed.replies:
                 raw_slots = {r["slot"] for r in data.get("replies", [])
                              if isinstance(r, dict) and type(r.get("slot")) is int
                              and r["slot"] in allowed_slots}
@@ -794,6 +805,8 @@ async def plan_chat_turn(
                                   "oppure soltanto una specifica informazione?" if wide_defer else
                                   f"Non ho usato la risposta su {names}: {why}. Puoi precisare "
                                   "soltanto questo punto?")
+                        if proposed.intent != "answer_fields":
+                            answer += " Non ho ancora generato la bozza."
                         proposed = TurnPlan(intent="explain", target="source", queries=[],
                                             answer=answer)
                     else:

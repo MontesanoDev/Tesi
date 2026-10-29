@@ -830,7 +830,13 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
                 )
                 compilation_stage = "workflow"
                 if isinstance(planned.decision, ClarificationDecision):
-                    text, command = await handle_group_decision(
+                    if planned.decision.then_finish:
+                        from app.compilation_global_sessions import answer_then_finish
+
+                        handler = answer_then_finish
+                    else:
+                        handler = handle_group_decision
+                    text, command = await handler(
                         project_id, conversation_id, planned.decision,
                         compilation_session, payload.question, payload.compilation_version,
                     )

@@ -737,6 +737,42 @@ def control_session(project_id, session_id, version, kind):
         return sessions.save_state(db, row, state, f"global_{kind}")
 
 
+REFRESH_STEPS = 10  # Same bound as an automatic continuation: never an unbounded loop.
+
+
+async def answer_then_finish(project_id, conversation_id, decision, session, message,
+                             expected_version=None):
+    """Replies sent together with an explicit request for the draft are recorded first.
+
+    Manual Minervino test 4: «Scelgo l'opzione 4 … Genera ora la bozza parziale» was routed as
+    a draft request and the choice was silently discarded. The replies go through the same
+    guard and receipts as any answer; the review is completed as an automatic continuation;
+    the draft follows only if every reply was accepted, otherwise nothing is exported.
+    """
+    from app.compilation_chat import ChatControl, handle_group_decision
+    from app.compilation_global_dialogue import continuation_receipt
+    from app.intents import ChatDecision
+
+    text, command = await handle_group_decision(
+        project_id, conversation_id, decision.model_copy(update={"then_finish": False}),
+        session, message, expected_version)
+    current = await run_in_threadpool(sessions.get_session, project_id, session["id"])
+    for _ in range(REFRESH_STEPS):
+        if (current["global_compilation"].get("dialogue") or {}).get("phase") != "PENDING":
+            break
+        current = await resolve_global(project_id, current["id"], current["version"])
+    dialogue = current["global_compilation"].get("dialogue") or {}
+    refused = decision.unaccepted_slots or (dialogue.get("latest_turn") or {}).get("unaccepted")
+    if refused or command.get("action") == "clarify" or dialogue.get("phase") != "READY":
+        return ((dialogue.get("message") or text) + "\n\nNon ho ancora generato la bozza: "
+                "prima serve il chiarimento indicato sopra."), {
+                    "session_id": session["id"], "action": "clarify"}
+    finish = ChatDecision(action="compilation_control", answer="", target="form", queries=[],
+                          control=ChatControl(kind="finish", user_quote=message))
+    exported, outcome = await handle_chat_action(current, finish, current["version"], message)
+    return continuation_receipt(dialogue) + "\n\n" + exported, outcome
+
+
 async def handle_chat_action(session, decision, expected_version, message):
     from app.compilation_chat import contains_span
 
