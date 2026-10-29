@@ -457,7 +457,11 @@ def _extension(labels):
 def question_pool(data):
     from app.compilation_branch_evidence import capacity_choice_valid
     from app.compilation_procedural_consent import questions as consent_questions
-    from app.compilation_source_reuse import pending_signatory_conditions, signatory_fields
+    from app.compilation_source_reuse import (
+        equivalent_clause,
+        pending_signatory_conditions,
+        signatory_fields,
+    )
     from app.compilation_user_decisions import decision_questions
 
     audit, dialogue = data.get("audit") or {}, data.get("dialogue") or {}
@@ -508,8 +512,8 @@ def question_pool(data):
             continue
         ids = list(dict.fromkeys([*covered, *ids]))
         extension = new if receipt else []
-        same = by_paragraph.get(item["form_evidence"]["paragraph_id"]) if item.get(
-            "operator") == "semantic" else None
+        clause = equivalent_clause(item)
+        same = by_paragraph.get(clause) if clause else None
         if same is not None:
             same["condition_ids"].append(key)
             same["field_ids"] = list(dict.fromkeys(same["field_ids"] + ids))
@@ -529,8 +533,8 @@ def question_pool(data):
                                      for f in impacted[:8]],
                  **(_extension(extension) if extension else {})}
         pool.append(entry)
-        if item.get("operator") == "semantic":
-            by_paragraph[item["form_evidence"]["paragraph_id"]] = entry
+        if clause:
+            by_paragraph[clause] = entry
     pool.sort(key=lambda q: -q["impact"])
     for key, group in audit.get("choice_groups", {}).items():
         # The FORM capacity region (unknown cardinality) is asked only under the

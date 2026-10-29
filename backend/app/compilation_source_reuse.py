@@ -292,7 +292,19 @@ def pending_signatory_conditions(data):
         if ids[0] not in question or "field:" + ids[0] in answers:
             continue
         pending |= {c for cid in ids for c in fields.get(cid, {}).get("conditions", [])}
-    return pending
+    # Never split one FORM clause: a held condition whose clause another segment also declares
+    # outside the hold is asked with it now (manual test 3: the USER confirmed the society
+    # clause for one segment only; the held one was never asked and its proposals stayed empty).
+    conditions = (data.get("audit") or {}).get("conditions", {})
+    shared = {equivalent_clause(item) for c, item in conditions.items() if c not in pending}
+    return {c for c in pending if equivalent_clause(conditions.get(c) or {}) not in shared - {None}}
+
+
+def equivalent_clause(condition):
+    """The FORM clause under which question_pool asks equivalent conditions once, or None."""
+    if condition.get("operator") != "semantic":
+        return None
+    return (condition.get("form_evidence") or {}).get("paragraph_id")
 
 
 def signatory_fields(data):
