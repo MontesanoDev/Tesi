@@ -367,12 +367,17 @@ def question_pool(data):
                                              for f in impacted[:8]]})
     pool.sort(key=lambda q: -q["impact"])
     for key, group in audit.get("choice_groups", {}).items():
-        if (group["validation"] != "GROUNDED_GROUP" or group["selection"] == "unknown"
-                or "choice:" + key in answers or not group["min_selected"]):
+        # The FORM capacity region (unknown cardinality) is asked only under the
+        # accepted conditions that make one of its options applicable.
+        capacity = group.get("origin") == "FORM_capacity_choice"
+        if (group["validation"] != "GROUNDED_GROUP" or "choice:" + key in answers
+                or not capacity and (group["selection"] == "unknown"
+                                     or not group["min_selected"])):
             continue
-        conditions = set(group["conditions"]) | {
-            c for f in audit.get("fields", []) if f.get("choice_group_id") == key
-            for c in f.get("conditions", [])}
+        conditions = set(group["applicable"].values()) if capacity else (
+            set(group["conditions"]) | {
+                c for f in audit.get("fields", []) if f.get("choice_group_id") == key
+                for c in f.get("conditions", [])})
         if any(audit.get("conditions", {}).get(c, {}).get("result", "unknown") != "true"
                and answers.get("condition:" + c, {}).get("applies") is not True
                for c in conditions):
@@ -387,7 +392,12 @@ def question_pool(data):
                      "choice_group_id": key, "field_ids": list(group["options"]),
                      "alternatives": [o["label"] for o in group["options"].values()],
                      "selection": group["selection"], "min_selected": group["min_selected"],
-                     "impact": len(group["options"])})
+                     "impact": len(group["options"]),
+                     **({"form_owned": True, "question": "\n".join([
+                         "Quale qualità del modulo scegli per questa domanda? Indica una sola "
+                         "opzione: nessuna casella viene spuntata senza la tua scelta.",
+                         group["label"], *("☐ " + o["label"] for o in group["options"].values())
+                     ])} if capacity else {})})
     for field in fields:
         cid = field["candidate_id"]
         if (cid not in data["writable_ids"] or "field:" + cid in answers
@@ -873,12 +883,16 @@ def narration_schema(model_class, pool):
 
 def open_condition_questions(pool):
     """P3: open FORM conditions asked by the backend when the narrator asks nothing, then the
-    FORM-owned signatory name, which no MODEL proposal or condition supplies."""
+    FORM-owned signatory name, which no MODEL proposal or condition supplies, and the FORM
+    capacity choice (its backend text lists the FORM options)."""
     questions = []
     for q in pool:
         if q.get("form_owned") and q["kind"] == "value":
             questions.append(DialogueQuestion(slot=q["slot"], question=(
                 "Chi sottoscrive la domanda? Indica nome e cognome del firmatario.")))
+            continue
+        if q.get("form_owned") and q["kind"] == "choice":
+            questions.append(DialogueQuestion(slot=q["slot"], question="Scelta del modulo"))
             continue
         if q["kind"] != "applicability" or not q["key"].startswith("condition:"):
             continue
@@ -917,7 +931,8 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
             text = "Confermi che " + q.confirmation.rstrip(" .!;") + "?"
         if not text or not no_technical_ids(text):
             raise ValueError("Domanda senza testo naturale utilizzabile")
-        if slot["kind"] == "decision" or slot.get("authorization"):
+        if (slot["kind"] == "decision" or slot.get("authorization")
+                or slot["kind"] == "choice" and slot.get("form_owned")):
             text = slot["question"]  # Keep every attestation/choice visible, never a vague assent.
         slots.append({**slot, "slot": i + 1, "question": text})
     if not no_technical_ids(plan.message):

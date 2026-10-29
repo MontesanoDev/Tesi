@@ -157,6 +157,56 @@ def _receipt_control(data, key, condition, receipt):
     return cid, region
 
 
+def _capacity_trigger(data, key, condition, receipt):
+    """An accepted condition whose own native option no receipt link can mark.
+
+    Only an explicit USER choice of the FORM region may mark it; nothing is selected here.
+    """
+    from app.compilation_scope_review import enabled
+
+    if not enabled(data) or not _accepted(condition, receipt) or condition.get("aspect") not in {
+        "legal_type",
+        "participation",
+        "representation",
+    }:
+        return None
+    catalog = data["catalog"]
+    matches = [
+        cid
+        for cid, c in catalog["candidates"].items()
+        if c["type"] == "checkbox" and c["context_id"] == condition["form_evidence"]["paragraph_id"]
+    ]
+    if len(matches) != 1 or matches[0] not in condition.get("applies_to", []):
+        return None
+    region = _capacity_region(catalog, matches[0])
+    if not region or any(catalog["candidates"][peer].get("initial_checked") for peer in region[1]):
+        return None  # Unknown cardinality: an existing mark is never combined or cleared.
+    return matches[0], region
+
+
+def capacity_choice_valid(data, cid, key=None):
+    """The exact USER choice of this option, under the condition that made it applicable."""
+    from app.compilation_scope_review import valid_receipt
+
+    dialogue = data.get("dialogue") or {}
+    value = dialogue.get("user_values", {}).get(cid) or {}
+    group_id = str(value.get("choice_group_id"))
+    group = (data.get("audit") or {}).get("choice_groups", {}).get(group_id, {})
+    answer = dialogue.get("answers", {}).get("choice:" + group_id, {})
+    options = list(group.get("options", {}))
+    return bool(
+        group.get("origin") == "FORM_capacity_choice"
+        and group.get("validation") == "GROUNDED_GROUP"
+        and cid in group.get("applicable", {})
+        and (key is None or group["applicable"][cid] == key)
+        and value.get("value") is True
+        and value.get("provenance") == "USER"
+        and answer.get("selected_options") == [options.index(cid) + 1]
+        and answer.get("user_quote") == value.get("user_quote")
+        and valid_receipt(data, "choice:" + group_id, answer, cid)
+    )
+
+
 def linked_receipt_valid(data, cid, key=None):
     """Check the original verified condition receipt, not an invented choice receipt."""
     value = receipt_choice_value(data, cid)
@@ -395,10 +445,14 @@ def reconcile_branches(data, layout, project_id, sources):
         for group in result.get("choice_groups", {}).values()
         for cid in group.get("options", {})
     }
+    capacity = {}
     for key, condition in result.get("conditions", {}).items():
         receipt = (data.get("dialogue") or {}).get("answers", {}).get("condition:" + key, {})
         match = _receipt_control(current, key, condition, receipt)
         if not match:
+            if trigger := _capacity_trigger(current, key, condition, receipt):
+                cid, (heading, options) = trigger
+                capacity.setdefault(heading["id"], (heading, options, {}))[2][cid] = key
             continue
         cid, (heading, options) = match
         if used & options.keys():
@@ -439,4 +493,40 @@ def reconcile_branches(data, layout, project_id, sources):
             "receipt": deepcopy(receipt),
             "choice_group_id": group_id,
         }
+    # A derived link or a MODEL group already owns the region: no second question.
+    for heading_id, (heading, options, applicable) in capacity.items():
+        if used & options.keys():
+            continue
+        group_id = "form_capacity_" + heading_id.removeprefix("paragraph:")
+        record = dict(
+            label=heading["text"],
+            subject="Richiedente",
+            property="qualità di partecipazione",
+            form={"paragraph_id": heading["id"], "quote": heading["text"]},
+            selection="unknown",
+            min_selected=0,
+            options=options,
+            conditions=[],
+        )
+        group = validate_groups(
+            {group_id: record}, catalog, paragraphs, local, result["conditions"]
+        )[group_id]
+        if group["validation"] != "GROUNDED_GROUP":
+            continue
+        group.update(origin="FORM_capacity_choice", applicable=applicable)
+        result.setdefault("choice_groups", {})[group_id] = group
+        used.update(options)
+        for field in result["fields"]:
+            cid = field["candidate_id"]
+            if cid not in options:
+                continue
+            field["choice_group_id"] = group_id
+            # Only applicable options get a FORM target: no new branch question opens
+            # for the others, and existing targets (and their receipts) stay unchanged.
+            if cid in applicable:
+                for name, value in [("kind", "choice"),
+                                    ("form_evidence", group["options"][cid]["form_evidence"]),
+                                    ("label", options[cid]["label"])]:
+                    if not field.get(name):
+                        field[name] = value
     return result

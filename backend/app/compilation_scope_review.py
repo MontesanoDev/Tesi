@@ -108,10 +108,16 @@ def blocked_source_fields(data, *, linked_user_controls=False):
             if result == "false" or receipt.get("applies") is False:
                 blocked.add(cid)
             elif receipt.get("applies") is True or result == "unknown":
-                from app.compilation_branch_evidence import linked_receipt_valid
+                from app.compilation_branch_evidence import (
+                    capacity_choice_valid,
+                    linked_receipt_valid,
+                )
 
+                # The explicit choice receipt covers its option and binds this condition's
+                # USER answer; it releases no other condition of the same control.
                 valid = valid_receipt(data, key, receipt, cid) or (
-                    linked_user_controls and linked_receipt_valid(data, cid, key))
+                    linked_user_controls and (linked_receipt_valid(data, cid, key)
+                                              or capacity_choice_valid(data, cid, c)))
                 if receipt.get("applies") is not True or not valid:
                     blocked.add(cid)
     return blocked
@@ -126,8 +132,9 @@ def blocked_user_fields(data):
     dialogue = data.get("dialogue") or {}
     answers = dialogue.get("answers", {})
     blocked = blocked_source_fields(data, linked_user_controls=True)
+    groups = (data.get("audit") or {}).get("choice_groups", {})
     for cid, value in effective_user_values(data).items():
-        from app.compilation_branch_evidence import linked_receipt_valid
+        from app.compilation_branch_evidence import capacity_choice_valid, linked_receipt_valid
 
         if linked_receipt_valid(data, cid):
             continue  # Proven condition link; it does not relax any other blocked condition.
@@ -136,6 +143,9 @@ def blocked_user_fields(data):
         receipt = answers.get(key, {})
         if not valid_receipt(data, key, receipt, cid):
             blocked.add(cid)
+        elif groups.get(str(value.get("choice_group_id")), {}).get(
+                "origin") == "FORM_capacity_choice" and not capacity_choice_valid(data, cid):
+            blocked.add(cid)  # Only the selected, applicable option of the region.
         elif not value.get("choice_group_id") and (receipt.get("value") != value.get("value")
                                                    or receipt.get("user_quote") != value.get(
                                                        "user_quote")):
