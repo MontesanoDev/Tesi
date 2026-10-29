@@ -36,12 +36,12 @@ def test_the_receipt_names_the_refused_question_the_reason_and_only_what_is_miss
         {'label': 'IN QUALITÀ DI', 'kind': 'choice', 'reason': REASON_TEXT['AMBIGUOUS']}]}})
     assert message == (
         "Non ho usato la risposta su «IN QUALITÀ DI»: non indica con certezza l'opzione o il "
-        "dato scelto. Per chiarire indica il numero di una sola opzione, oppure rinvia; nulla è "
-        "stato scritto.")
+        "dato scelto. Te la richiedo: indica il numero di una sola opzione, oppure rinvia; nulla "
+        "è stato scritto.")
     backend = continuation_receipt({'latest_turn': {'accepted': [], 'unaccepted': [
         {'label': 'Firmatario', 'kind': 'value',
          'reason': 'Valore non valido per la posizione DOCX'}]}})
-    assert ': Valore non valido per la posizione DOCX. Per chiarire indica il dato esatto' in (
+    assert ': Valore non valido per la posizione DOCX. Te la richiedo: indica il dato esatto' in (
         backend)
 
 

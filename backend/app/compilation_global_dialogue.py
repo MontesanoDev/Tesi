@@ -330,13 +330,17 @@ def continuation_receipt(dialogue, *, newly_held=False):
                      "non autorizza ancora scritture; manca la verifica dei campi destinatari.")
     if records := [r for r in accepted if r["action"] in {"SKIP", "UNKNOWN", "REFUSE"}]:
         parts.append(f"Lascio in bianco i punti rinviati o non confermati: {labels(records)}.")
+    closed = set(latest.get("loop_guard", []))
     for refused in latest.get("unaccepted", []):
         label = str(refused.get("label") or "questa domanda")[:120]
         reason = refused.get("reason")
-        parts.append(f"Non ho usato la risposta su «{label}»"
-                     + (f": {reason}" if reason and no_technical_ids(reason) else "")
-                     + f". Per chiarire {CLARIFY.get(refused.get('kind'), 'precisa la risposta')}"
-                       ", oppure rinvia; nulla è stato scritto.")
+        why = f": {reason}" if reason and no_technical_ids(reason) else ""
+        parts.append(
+            f"Lascio vuoto «{label}»{why}; dopo due tentativi non lo richiedo, ma puoi "
+            "indicarlo quando vuoi." if refused.get("label") in closed else
+            f"Non ho usato la risposta su «{label}»{why}. Te la richiedo: "
+            f"{CLARIFY.get(refused.get('kind'), 'precisa la risposta')}, oppure rinvia; "
+            "nulla è stato scritto.")
     if not parts:
         parts.append("Riprendiamo dal punto rimasto aperto.")
     if newly_held:
@@ -509,6 +513,14 @@ def question_pool(data):
                      "alternatives": [a["value"] for a in field.get("alternatives", [])],
                      **({"form_owned": True} if cid in signatory else {})})
     pool.extend(decision_questions(data, {cid for q in pool for cid in q["field_ids"]}))
+    # A reply refused in the previous turn is asked first again (the receipt promised the
+    # clarification); after a second refusal the loop guard closes it explicitly.
+    refused = {u.get("key"): u for u in (dialogue.get("latest_turn") or {}).get("unaccepted", [])
+               if u.get("key") and u["key"] not in answers}
+    for item in pool:
+        if item["key"] in refused:
+            item.update(retry=True, previous_question=refused[item["key"]].get("question"))
+    pool.sort(key=lambda q: not q.get("retry"))
     return [{**item, "slot": i + 1} for i, item in enumerate(pool[:MAX_POOL])]
 
 
@@ -994,6 +1006,19 @@ def open_condition_questions(pool):
     return questions
 
 
+def _retry_question(q):
+    """The refused question again, as the USER saw it, or its FORM clause."""
+    if q["kind"] == "applicability":
+        clause = short_form_text(q.get("condition"), 200)
+        return DialogueQuestion(slot=q["slot"], confirmation=(
+            f"si applica al vostro caso quanto indicato nel modulo: «{clause}»"
+            if len(clause) >= 4 and no_technical_ids(clause) else "questa situazione si applica"))
+    previous = q.get("previous_question") or ""
+    text = previous if 4 <= len(previous) <= 600 and no_technical_ids(previous) else (
+        f"Puoi precisare «{str(q.get('label') or 'questo dato')[:120]}»?")
+    return DialogueQuestion(slot=q["slot"], question=text)
+
+
 def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
                     require_confirmation=False, fill_open=False):
     by_slot = {q["slot"]: q for q in pool}
@@ -1006,7 +1031,8 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
         DialogueQuestion(slot=q["slot"], question="Decisione del modulo")
         for q in pool if q["kind"] == "decision"])[:MAX_QUESTIONS]
     required = [DialogueQuestion(slot=q["slot"], confirmation="autorizzi questa dichiarazione")
-                for q in pool if q.get("authorization")]
+                for q in pool if q.get("authorization")] + [
+        _retry_question(q) for q in pool if q.get("retry") and not q.get("authorization")]
     if required:
         required_ids = {q.slot for q in required}
         questions = (required + [q for q in questions
@@ -1482,7 +1508,8 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
         # Why each reply was not used: the guard's verdict code or the backend check, so that
         # only the missing clarification is asked. The model's own rationale is never shown.
         dialogue["latest_turn"] = {"accepted": accepted, "unaccepted": [
-            {"label": slots[n]["label"], "kind": slots[n]["kind"],
+            {"label": slots[n]["label"], "kind": slots[n]["kind"], "key": slots[n]["key"],
+             "question": slots[n].get("question", ""),
              "reason": refused.get(n) or REASON_TEXT.get((unaccepted_reasons or {}).get(n), "")}
             for n in sorted(set(errors) | set(unaccepted_slots)) if n in slots]}
         if guarded:
