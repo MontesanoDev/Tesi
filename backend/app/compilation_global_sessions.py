@@ -222,6 +222,16 @@ def _folder(project_id, session_id, attempt):
     return folder
 
 
+def source_budget_message(sources):
+    from app.compilation_global import MAX_SOURCE_CHARACTERS, MAX_SOURCES
+
+    size = sum(len(source.get("content") or "") for source in sources)
+    return (f"Le fonti superano il limite dell'analisi: {len(sources)} frammenti e "
+            f"{size:,} caratteri (al massimo {MAX_SOURCES} e {MAX_SOURCE_CHARACTERS:,}). "
+            "Non le tronco in automatico: togli dal progetto o dalla Company KB i documenti "
+            "non necessari alla compilazione e avvia una nuova analisi.").replace(",", ".")
+
+
 def _prepare(project_id, session_id, version):
     with connection() as db:
         db.execute("BEGIN IMMEDIATE")
@@ -233,11 +243,24 @@ def _prepare(project_id, session_id, version):
         sources = load_document_corpus(db, project_id)
         from app.compilation_user_context import registered_user_context
 
+        failure = None
         try:
             model_input = build_global_input(layout, project_id, sources,
                 user_context=registered_user_context(db, row, state))
         except ValueError as exc:
-            raise DocumentInputError(str(exc)) from exc
+            if "oltre budget" not in str(exc):
+                raise DocumentInputError(str(exc)) from exc
+            # Persisted, so the chat stops its automatic steps and says why (E2E Catanzaro:
+            # tender PDFs of 200 chunks left the session starting forever, reason unshown).
+            failure = source_budget_message(sources)
+            state.update(status="FAILED", last_error=failure, lease_until=None)
+            sessions.save_state(db, row, state, "global_analysis_over_budget")
+    if failure:
+        raise DocumentInputError(failure)
+    with connection() as db:
+        db.execute("BEGIN IMMEDIATE")
+        row, state = _row_state(db, project_id, session_id, version)
+        data = state["global_compilation"]
         if data.get("dialogue_revision") == 1:
             # Context to tell current from past offices; never a SOURCE fact.
             model_input["reference_date"] = datetime.now(UTC).date().isoformat()
