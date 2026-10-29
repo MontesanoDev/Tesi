@@ -5756,4 +5756,3 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   scritture, di cui 46 uguali al replay a 58.
 - **Suite:** backend 4.077 PASS, Ruff PASS.
 - **Rapporto:** `docs/correzioni-audit-03-2026-10-29.md`.
-\n
