@@ -351,6 +351,15 @@ def source_role_coverage(data):
                          data.get("reading_plan") or {"source_role_targets": []})
 
 
+def _extension(labels):
+    """A confirmed condition gained destinations: say which ones before asking again."""
+    labels = list(dict.fromkeys(str(label)[:60] for label in labels))
+    shown = "; ".join(labels[:6]) + (f" e altri {len(labels) - 6}" if len(labels) > 6 else "")
+    return {"extension": labels, "question": (
+        f"Dopo la tua conferma ho ricavato dalle fonti altri dati collegati ({shown}). "
+        "Confermi che la conferma vale anche per questi?")}
+
+
 def question_pool(data):
     from app.compilation_branch_evidence import capacity_choice_valid
     from app.compilation_procedural_consent import questions as consent_questions
@@ -374,19 +383,37 @@ def question_pool(data):
     # FORM paragraph, one receipt per condition (apply_replies), never a second request.
     by_paragraph = {}
     from app.compilation_branch_evidence import decided_peers
+    from app.compilation_scope_review import enabled as scope_enabled
 
     peers = decided_peers(data)
+    # Options of a derived capacity group are marked by the explicit choice or the receipt
+    # link, never by a condition receipt: gaining a FORM target is not a new destination.
+    derived_options = {cid for g in audit.get("choice_groups", {}).values()
+                       if g.get("origin") in {"FORM_capacity_choice", "FORM_receipt_link"}
+                       for cid in g.get("options", {})}
     for key, item in audit.get("conditions", {}).items():
+        receipt = answers.get("condition:" + key)
         if item["result"] != "unknown" or item.get("validation_errors") or not item.get(
             "form_evidence"
-        ) or "condition:" + key in answers or key in postponed:
-            continue
+        ) or key in postponed or receipt and receipt.get("applies") is not True:
+            continue  # A deferral, an exclusion or a closed question is never asked again.
         impacted = [f for f in fields if key in f.get("conditions", []) and not any(
             answers.get("condition:" + c, {}).get("applies") is False
             for c in f.get("conditions", []) if c != key)]
         ids = [f["candidate_id"] for f in impacted]
         if not impacted or set(ids) <= peers:  # Only alternatives of a decided option.
             continue
+        # A confirmation is asked again only for destinations its receipt never showed (e.g.
+        # derived from SOURCE after the USER chose a person), naming them: never silently lost.
+        covered = (receipt or {}).get("affected_fields") or []
+        new = [f.get("label") or "dato collegato" for f in impacted
+               if f["candidate_id"] not in covered and f["candidate_id"] not in derived_options]
+        # Without USER scope verification (older profiles) a receipt has no destinations to
+        # extend: answered stays answered, as before.
+        if receipt and (not new or not scope_enabled(data) or "affected_fields" not in receipt):
+            continue
+        ids = list(dict.fromkeys([*covered, *ids]))
+        extension = new if receipt else []
         same = by_paragraph.get(item["form_evidence"]["paragraph_id"]) if item.get(
             "operator") == "semantic" else None
         if same is not None:
@@ -395,6 +422,8 @@ def question_pool(data):
             same["impact"] = len(same["field_ids"])
             same["affected_fields"] = list(dict.fromkeys(same["affected_fields"] + [
                 f.get("label", "Dato del blocco")[:150] for f in impacted]))[:8]
+            if extension:
+                same.update(_extension(same.get("extension", []) + extension))
             continue
         entry = {"key": "condition:" + key, "kind": "applicability",
                  "condition_id": key, "condition_ids": [key],
@@ -403,7 +432,8 @@ def question_pool(data):
                  "context": item["form_evidence"]["quote"],
                  "field_ids": ids, "alternatives": [], "impact": len(ids),
                  "affected_fields": [f.get("label", "Dato del blocco")[:150]
-                                     for f in impacted[:8]]}
+                                     for f in impacted[:8]],
+                 **(_extension(extension) if extension else {})}
         pool.append(entry)
         if item.get("operator") == "semantic":
             by_paragraph[item["form_evidence"]["paragraph_id"]] = entry
@@ -463,11 +493,14 @@ def question_pool(data):
                 or field.get("disposition") not in {"missing", "review"}
                 or not field.get("label") or field["label"] == cid):
             continue
-        # A dependent value is not asked before its condition has been settled.
+        # A dependent value is not asked before its condition has been settled, except the
+        # FORM-owned signatory name: its block's open conditions wait for it (exported only
+        # once they are confirmed), otherwise neither would ever be asked.
         if any(answers.get("condition:" + c, {}).get("applies") is False or
             audit.get("conditions", {}).get(c, {}).get("result") == "false" or (
             audit.get("conditions", {}).get(c, {}).get("result", "unknown") == "unknown"
             and answers.get("condition:" + c, {}).get("applies") is not True
+            and not (cid in signatory and c in postponed)
         ) for c in field.get("conditions", [])):
             continue
         pool.append({"key": "field:" + cid, "kind": "value", "field_ids": [cid],
@@ -989,7 +1022,8 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
         if not text or not no_technical_ids(text):
             raise ValueError("Domanda senza testo naturale utilizzabile")
         if (slot["kind"] == "decision" or slot.get("authorization")
-                or slot["kind"] == "choice" and slot.get("form_owned")):
+                or slot["kind"] == "choice" and slot.get("form_owned")
+                or slot["kind"] == "applicability" and slot.get("extension")):
             text = slot["question"]  # Keep every attestation/choice visible, never a vague assent.
         slots.append({**slot, "slot": i + 1, "question": text})
     if not no_technical_ids(plan.message):

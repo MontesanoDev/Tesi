@@ -277,21 +277,21 @@ def _question_field(field):
 
 
 def pending_signatory_conditions(data):
-    """Conditions the SOURCE derivation will attach to a signatory block whose blocked MODEL
-    proposal is replaced by the FORM-owned name question, while that name is unanswered: the
-    operator's (inherited by the derived role) and the blocked proposals' own. Asked before the
-    choice, their USER scope could not include the destinations derived after it."""
+    """Conditions of a signatory block while its FORM-owned name question is unanswered.
+
+    The SOURCE derivation adds the block's destinations only after the name: asked before it,
+    a condition's USER scope could not include them (manual Minervino test 2: the signatory
+    condition was confirmed first and the derived personal data and office stayed empty).
+    Every condition governing a destination of the block waits; a deferred name releases them.
+    """
     answers = (data.get("dialogue") or {}).get("answers", {})
     fields = {f["candidate_id"]: f for f in (data.get("audit") or {}).get("fields", [])}
     question = signatory_fields(data)
     pending = set()
     for ids, _, _ in _form_groups(data.get("catalog", {})):
-        entry = question.get(ids[0]) or {}
-        if "blocked_model_proposal" not in entry or "field:" + ids[0] in answers:
+        if ids[0] not in question or "field:" + ids[0] in answers:
             continue
-        pending |= set(fields.get(ids[9], {}).get("conditions", []))
-        pending |= {c for cid in ids for c in fields.get(cid, {}).get("conditions", [])
-                    if fields.get(cid, {}).get("validation_errors")}
+        pending |= {c for cid in ids for c in fields.get(cid, {}).get("conditions", [])}
     return pending
 
 
