@@ -24,8 +24,7 @@ def compact_question(question, lines, entries=()):
         return question + "\n" + "\n".join(lines), []
     head = lines[0] if len(lines[0]) <= HEAD_CHARS else (
         lines[0][:HEAD_CHARS - 1].rsplit(" ", 1)[0] + "…")
-    columns = list(dict.fromkeys(" ".join(name.split()) for _, names in entries
-                                 for name in names))
+    columns = list(dict.fromkeys(name for _, names in entries for name in names))
     summary = (f"{len(entries)} voci, colonne: {', '.join(columns)}." if entries else
                f"Seguono altre {len(lines) - 1} righe del modulo.")
     return f"{question}\n{head}\n{summary} Il testo completo è nei dettagli.", lines

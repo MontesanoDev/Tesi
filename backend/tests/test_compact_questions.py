@@ -34,13 +34,6 @@ def test_an_option_table_is_summarized_with_its_entries_and_columns():
     assert details == lines
 
 
-def test_columns_differing_only_by_spaces_are_named_once():
-    entries = [('Edilizia', ['Fascia A ', 'Fascia B ']), ('CSP/CSE', ['Fascia A', 'Fascia  B'])]
-    lines = ['istruzione:', *(f'riga {n}' for n in range(8))]
-    text, _ = compact_question('Quali scegli?', lines, entries)
-    assert '2 voci, colonne: Fascia A, Fascia B.' in text
-
-
 def test_a_short_excerpt_is_unchanged_and_has_no_details():
     text, details = compact_question('Quali luogo e data indichi?', ['Luogo e data, ______'])
     assert text == 'Quali luogo e data indichi?\nLuogo e data, ______' and details == []
