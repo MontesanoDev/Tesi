@@ -180,6 +180,18 @@ senza domanda.
 - **In entrambi:** 0 valori diversi, 0 domande ripetute, 0 sospensioni.
 - **Nel DOCX controfattuale:** su 13 caselle native è spuntata solo `p39.cb0`.
 
+## Istanza isolata per la prova manuale (non avviata)
+
+- **Codice:** worktree staccato sull'ultimo commit del branch, separato dall'app ordinaria.
+- **Dati:** copia del runtime 03 in `.tools/prova-manuale/` del nuovo worktree, senza
+  `runtime.ai-key`. Nella copia le chiavi cifrate e i flussi di login vengono azzerati.
+- **Avvio:** `./start.sh` su `127.0.0.1`, porte 8011/5184. Si usano `MAPI_DB_PATH`,
+  `MAPI_STORAGE_PATH` e `MAPI_KNOWLEDGE_PATH`, con `PYTHON_DOTENV_DISABLED=1` e senza
+  `DEEPSEEK_API_KEY` nell'ambiente.
+- **Costo:** senza una chiave inserita dall'interfaccia nessuna inferenza può partire.
+  Analisi e narrazione da interfaccia sono chiamate DeepSeek a pagamento; nel tentativo 03
+  sono stati circa 482.000 token.
+
 ## Fix 2a e fix 2b
 
 | | 2a (`f7d35f8`, `4712c49`; policy `2bdaf45`) | 2b (`f2d7577`) |
