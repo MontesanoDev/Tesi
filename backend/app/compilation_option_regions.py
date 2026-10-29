@@ -1,9 +1,12 @@
 """FORM option regions for the declaration-authorization gate (catalog only).
 
 An option is a native checkbox of the catalog or a box glyph in the paragraph text.
-Its region is the paragraph from the first marker onwards and, for a body option,
-the table that immediately follows it. An option inside a table cell governs only
-its own paragraph. The option's own controls are the decision, never governed.
+Its region is the paragraph from the first marker onwards and, for a body option that
+announces it («… con i seguenti dati:», «… avente la seguente»), the table that immediately
+follows it. A complete statement («☐ Dichiaro il possesso della ISO 9001») does not govern an
+unrelated table after it (E2E benchmark compilazione V1: refusing the declaration emptied the
+CCIAA data). An option inside a table cell governs only its own paragraph. The option's own
+controls are the decision, never governed.
 
 A region proves nothing: it only says which writes need an explicit authorization
 of the whole printed clause. A branch selection or condition receipt is not one.
@@ -16,6 +19,8 @@ from __future__ import annotations
 import re
 
 BOX_GLYPHS = re.compile("[☐□❏❑◻☑☒]")
+ANNOUNCES = re.compile(r":\s*$|\bseguent[ei]\b|\bdi seguito\b|\bcome segue\b|\bsotto(?:stante|"
+                       r"\s*(?:indicat|riportat))", re.I)
 
 
 def _cells(catalog):
@@ -86,7 +91,7 @@ def option_regions(catalog):
             clause = _marked(text, 0, inline)
             in_cell = paragraph["id"] in cells
             last_in_block = paragraph["id"] == block["paragraphs"][-1]["id"]
-            if not in_cell and last_in_block:
+            if not in_cell and last_in_block and ANNOUNCES.search(text):
                 for table_id in _adjacent_tables(catalog, index):
                     table_ids = [cid for cid, c in candidates.items()
                                  if c.get("location", {}).get("table_id") == table_id
