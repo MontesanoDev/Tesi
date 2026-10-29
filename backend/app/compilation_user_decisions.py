@@ -10,6 +10,25 @@ import hashlib
 import json
 import re
 
+SHORT_LINES, SHORT_CHARS, HEAD_CHARS = 6, 400, 240
+
+
+def compact_question(question, lines, entries=()):
+    """The question with only the indispensable FORM lines; the full text becomes details.
+
+    A long FORM excerpt keeps its first line (the instruction) and a count of the options or
+    lines; nothing is reworded or chosen. Decisions never authorize writes either way.
+    """
+    lines = [line for line in lines if line.strip()]
+    if len(lines) <= SHORT_LINES and sum(map(len, lines)) <= SHORT_CHARS:
+        return question + "\n" + "\n".join(lines), []
+    head = lines[0] if len(lines[0]) <= HEAD_CHARS else (
+        lines[0][:HEAD_CHARS - 1].rsplit(" ", 1)[0] + "…")
+    columns = list(dict.fromkeys(name for _, names in entries for name in names))
+    summary = (f"{len(entries)} voci, colonne: {', '.join(columns)}." if entries else
+               f"Seguono altre {len(lines) - 1} righe del modulo.")
+    return f"{question}\n{head}\n{summary} Il testo completo è nei dettagli.", lines
+
 
 def decision_questions(data, reserved_ids=()):
     if (data.get("audit") or {}).get("version") != 12:
@@ -47,7 +66,7 @@ def decision_questions(data, reserved_ids=()):
             material, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:24]
         if not remaining or key in answers:
             return
-        context = "\n".join(p["quote"] for p in proofs)
+        context, entries = "\n".join(p["quote"] for p in proofs), []
         if options:
             lines, previous = [proofs[0]["quote"]], None
             for option in options:
@@ -58,11 +77,14 @@ def decision_questions(data, reserved_ids=()):
                     lines.extend([option["title"], " | ".join(option["headers"])])
                     previous = option["table_id"]
                 lines.append(option["label"] + ": " + ", ".join(columns))
+                entries.append((option["label"], columns))
             context = "\n".join(lines)
+        text, details = compact_question(question, context.split("\n"), entries)
         pool.append({"key": key, "kind": "decision", "decision_type": kind,
             "label": label, "field_ids": remaining, "condition": "", "context": context,
             "form_evidence": proofs, "alternatives": [], "impact": len(remaining),
-            "write_authorized": False, "question": question + "\n" + context})
+            "write_authorized": False, "question": text,
+            **({"details": details} if details else {})})
         reserved.update(remaining)
 
     def proof(p):

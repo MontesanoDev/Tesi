@@ -45,8 +45,19 @@ export function CompilationReply({ session, response, pending, processing, locke
 
   if (pending) return null
   const state = processing ? null : compilationState(session)
+  const dialogue = session.global_compilation?.dialogue
+  // Only beside the dialogue message these questions belong to, never a stale or other reply.
+  const details = session.engine === 'global' && !processing && !error && !session.chat?.paused
+    && session.global_compilation?.phase === 'REVIEW' && dialogue?.phase === 'READY'
+    && response?.compilation?.action !== 'clarify'
+    && (!response?.compilation || response.compilation.session_id === session.id)
+    ? (dialogue.question?.slots ?? []).filter((slot) => slot.details?.length) : []
   return <>
     {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+    {details.map((slot) => <details key={slot.slot} className="compilation-details">
+      <summary>Testo completo del modulo: {slot.label ?? `domanda ${slot.slot}`}</summary>
+      {slot.details!.map((line, index) => <p key={index}>{line}</p>)}
+    </details>)}
     {state && <div className="compilation-state">
       <p><strong>{state.label}</strong></p>
       {state.notes.map((note) => <p key={note}>{note}</p>)}
