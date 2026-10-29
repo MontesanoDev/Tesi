@@ -445,13 +445,20 @@ def source_role_coverage(data):
                          data.get("reading_plan") or {"source_role_targets": []})
 
 
-def _extension(labels):
-    """A confirmed condition gained destinations: say which ones before asking again."""
+def _extension(labels, clause=""):
+    """A confirmed condition gained destinations: say which ones before asking again.
+
+    The question names the FORM clause: without it the reply guard cannot tell what a plain
+    «sì» confirms (E2E Minervino, real guard: refused twice, the derived data stayed empty).
+    """
     labels = list(dict.fromkeys(str(label)[:60] for label in labels))
     shown = "; ".join(labels[:6]) + (f" e altri {len(labels) - 6}" if len(labels) > 6 else "")
+    clause = short_form_text(re.sub(r"[?\[\]]", " ", clause or ""), 200)
+    confirmed = (f"Avevi confermato che si applica al vostro caso quanto indicato nel modulo: "
+                 f"«{clause}». " if len(clause) >= 4 and no_technical_ids(clause) else "")
     return {"extension": labels, "question": (
-        f"Dopo la tua conferma ho ricavato dalle fonti altri dati collegati ({shown}). "
-        "Confermi che la conferma vale anche per questi?")}
+        f"{confirmed}Dopo la tua conferma ho ricavato dalle fonti altri dati collegati "
+        f"({shown}). Confermi che si applica anche a questi?")}
 
 
 def question_pool(data):
@@ -523,7 +530,8 @@ def question_pool(data):
             same["affected_fields"] = list(dict.fromkeys(same["affected_fields"] + [
                 f.get("label", "Dato del blocco")[:150] for f in impacted]))[:8]
             if extension:
-                same.update(_extension(same.get("extension", []) + extension))
+                same.update(_extension(same.get("extension", []) + extension,
+                                       same.get("condition")))
             continue
         entry = {"key": "condition:" + key, "kind": "applicability",
                  "condition_id": key, "condition_ids": [key],
@@ -534,7 +542,8 @@ def question_pool(data):
                  "documented": documented,
                  "affected_fields": [f.get("label", "Dato del blocco")[:150]
                                      for f in impacted[:8]],
-                 **(_extension(extension) if extension else {})}
+                 **(_extension(extension, item["form_evidence"]["quote"])
+                    if extension else {})}
         pool.append(entry)
         if clause:
             by_paragraph[clause] = entry
