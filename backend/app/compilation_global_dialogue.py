@@ -27,43 +27,6 @@ MAX_QUESTIONS = 3
 MAX_POOL = 24
 NARRATION_SECONDS = 45
 PRESENTATION_VERSION = 4
-ABSENCE_CAVEAT = ("Alcuni dati non sono ancora proposti o verificati: questo non dimostra la "
-                  "loro assenza dalle fonti.")
-_NEGATION = re.compile(r"\b(?:non|senza|manc\w*|assent\w*|nessun\w*|sconosciut\w*|"
-                       r"irreperibil\w*)\b", re.I)
-# A denial of presence names what is (not) there or where it was (not) found.
-_PRESENCE = re.compile(r"\b(?:font[ei]|document\w*|source|risult\w*|present\w*|trovat\w*|"
-                       r"reperi\w*|disponibil\w*|indic\w*|dat[io]|informazion\w*|riportat\w*|"
-                       r"conten\w*|contien\w*|cit\w*|menzion\w*|emerg\w*|compar\w*)\b", re.I)
-_ABBREVIATION = re.compile(r"\b(?:Ing|Dott|Dr|Arch|Avv|Geom|Sig|Prof|S\.r\.l|S\.p\.A|S\.n\.c|"
-                           r"n|nn|art|artt|lett|D\.\s?Lgs)\.$", re.I)
-
-
-def _sentences(text):
-    parts = re.split(r"(?<=[.!?])\s+(?=[A-ZÀ-ÖØ-Ý«\"(])", text.strip())
-    sentences = []
-    for part in parts:
-        if sentences and _ABBREVIATION.search(sentences[-1]):
-            sentences[-1] += " " + part  # «Ing. Rossi»: one sentence, never an innocent half.
-        else:
-            sentences.append(part)
-    return sentences
-
-
-def absence_safe_message(message):
-    """No exhaustive SOURCE search receipt exists for a summary, so a model explanation cannot
-    certify absence: drop each sentence that denies presence (a negation with a presence or
-    source term), keep the others verbatim and add the caveat. Nothing left: generic text."""
-    if not _NEGATION.search(message):
-        return message
-    sentences = _sentences(message)
-    kept = [s for s in sentences if not (_NEGATION.search(s) and _PRESENCE.search(s))]
-    if len(kept) == len(sentences):
-        return message
-    if not kept:
-        return ("Ho conservato le proposte verificabili. " + ABSENCE_CAVEAT +
-                " Le proposte respinte e quelle in attesa di conferma restano distinte.")
-    return " ".join(kept) + " " + ABSENCE_CAVEAT
 
 
 class DialogueQuestion(StrictModel):
@@ -1020,9 +983,16 @@ async def _narrate_once(data, folder):
             plan, irregular = expanded_plan(plan, model_class, len(_review_window(data)))
         if not follow_up and not no_technical_ids(plan.message):
             raise ValueError("Sintesi con identificativi tecnici")
-        if not follow_up:
-            # Only the absence claims go; questions/holds stay intact.
-            plan = plan.model_copy(update={"message": absence_safe_message(plan.message)})
+        if not follow_up and re.search(
+            r"\b(?:non|senza|manc\w*|assent\w*|nessun\w*|sconosciut\w*|irreperibil\w*)\b",
+            plan.message, re.I | re.S,
+        ):
+            # No exhaustive SOURCE search receipt exists in this path. A model
+            # explanation cannot certify absence. Keep questions/holds intact.
+            plan = plan.model_copy(update={"message": (
+                "Ho conservato le proposte verificabili. Alcuni dati non sono ancora "
+                "proposti o verificati: questo non dimostra la loro assenza dalle fonti. "
+                "Le proposte respinte e quelle in attesa di conferma restano distinte.")})
         from app.compilation_global_sessions import review_fields
 
         proposals = _review_window(data)
