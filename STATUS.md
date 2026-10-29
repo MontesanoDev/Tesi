@@ -1,5 +1,21 @@
 # Stato di Mapi RAG
 
+## Regressione della terza prova manuale Minervino — 29 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Nessuna nuova prova reale; l'istanza 3 resta su `5dc8918`.
+- **Causa:** `010192b` tratteneva ogni condizione del blocco firmatario finché il nome era aperto.
+  Così ha spezzato una clausola FORM dichiarata da due segmenti: la conferma USER ha coperto solo
+  `s2_c_soc`, mentre `s1_c_soc` non è mai stata chiesta. Risultato: 47 proposte SOURCE e
+  `p39.cb0` bloccate, 8 scritture contro 49.
+- **Replay precedente:** usava solo i dati delle prove 1-2 e lo stub abbinava per chiave,
+  nascondendo lo split. Versione 2: abbinamento per condizione, prova 3 dalle evidenze congelate.
+- **Fix `f5c3ef9`:** una trattenuta non spezza mai una clausola equivalente.
+  - Prova 3 replay: 8 → 60 (59 senza estensioni, identiche al codice della prova 2).
+  - Prove 1 e 2 invariate.
+  - Backend 4.164 PASS, Ruff PASS; rollback verificato.
+- **Aperto:** il backend non impone le condizioni aperte né avvisa alla bozza dei campi bloccati.
+  Da decidere. [Rapporto](docs/regressione-prova-manuale-3-2026-10-29.md).
+
 ## Narratore piacevole dalle due prove manuali Minervino — 29 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Nessuna chiamata DeepSeek, push o merge; l'istanza 2 usa ancora

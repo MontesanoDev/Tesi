@@ -5834,3 +5834,21 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   conferme USER; nessuna conferma persa. Prova 1 invariata (9 domande, 57 scritture).
 - **Rapporto:** `docs/narratore-piacevole-2026-10-29.md`; confronto leggibile in
   `backend/data/compilation-audit/prova-manuale-minervino-20261029/CONFRONTO-DIALOGO.md`.
+
+## 29 ottobre 2026 — Regressione della terza prova manuale Minervino
+
+- **Esito reale:** 8 scritture contro 49 della prova 2; dati dell'operatore, soci, direttore
+  tecnico, date e casella 4 assenti.
+- **Diagnosi** (evidenze congelate, replay fedele al DOCX reale):
+  - tutte le proposte erano presenti e bloccate dalla sola `s1_c_soc` aperta;
+  - la trattenuta del blocco firmatario (`010192b`) aveva separato `s1_c_soc` dalla clausola
+    equivalente `s2_c_soc`;
+  - il narratore non ha mai chiesto la domanda rimasta separata.
+- **Replay precedente insufficiente:** dati solo delle prove 1-2 e abbinamento dello stub per
+  chiave.
+- **Correzione `f5c3ef9`:** criterio di equivalenza condiviso fra pool e trattenuta.
+  - Prova 3: 8 → 60 nel replay (59 senza estensioni).
+  - Prove 1 e 2 invariate.
+  - Test fallito prima e passato dopo; rollback verificato.
+- **Limite aperto:** condizioni aperte non imposte dal backend e non segnalate alla bozza.
+- **Rapporto:** `docs/regressione-prova-manuale-3-2026-10-29.md`.

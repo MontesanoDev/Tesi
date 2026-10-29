@@ -14,6 +14,10 @@ Nessuna chiamata DeepSeek, push o merge; app ordinaria e audit storici non tocca
 - `suite-narratore-piacevole-e28475c.txt`;
 - `rollback-narratore-piacevole.txt`.
 
+> **Nota successiva (stesso giorno):** la verifica con replay qui riportata non bastava. La prova
+> reale 3 ha mostrato una regressione di `010192b`, nascosta dallo stub e dai dati delle sole
+> prove 1-2. Vedi `docs/regressione-prova-manuale-3-2026-10-29.md` e la correzione `f5c3ef9`.
+
 ## Dove si rompeva la catena
 
 | Problema osservato | Anello rotto | Causa |
