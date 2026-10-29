@@ -5756,3 +5756,8 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   scritture, di cui 46 uguali al replay a 58.
 - **Suite:** backend 4.077 PASS, Ruff PASS.
 - **Rapporto:** `docs/correzioni-audit-03-2026-10-29.md`.
+- **Chiusura:**
+  - 12 vuoti contati per ID univoci, `p53.s1` prima contato due volte;
+  - le 2 scritture in più sono date SOURCE corrette;
+  - i 6 campi del direttore tecnico restano vuoti per la sola ricevuta SKIP di `s2_c_dt`;
+  - per `p39.cb0` è proposta una domanda `choice` esplicita, non applicata.

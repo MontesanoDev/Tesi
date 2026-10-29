@@ -60,11 +60,38 @@ del modello.
 **Comportamento del dialogo:** 0 domande ripetute, 0 sospensioni e 0 valori diversi dal
 riferimento.
 
-**Campi che restano vuoti (12):**
-- **Validatore:** provincia della sede e nomi dei 3 soci (citazione senza il nome).
-- **Scenario:** 7 campi del direttore tecnico, rinviati dalla policy preregistrata.
-- **Non proposto:** la sezione del direttore tecnico.
-- **`p39.cb0`:** vedi sotto.
+**Scritture (48) rispetto al riferimento (58):** 46 uguali, 0 diverse, 2 fuori dal riferimento.
+Le 2 in più sono date di iscrizione SOURCE, coperte dalla ricevuta del ramo società:
+
+| ID | Valore | Riga SOURCE `-54` | Esito |
+|---|---|---|---|
+| `p46.s1` | 18/05/2015 | Elisa Romano, stesso C.F. di `p45.s2` | Corretta |
+| `p49.s3` | 12/06/2014 | Andrea Greco, stesso C.F. di `p48.s1` | Corretta |
+
+Nel riferimento restavano vuote per il difetto di dialogo già documentato: la domanda su
+`p46.s1` nominava Andrea Greco ed era stata rinviata, e un hold USER bloccava `p49.s3`. Nel
+rigioco nessuna domanda sulle date viene posta.
+
+**Campi del riferimento rimasti vuoti (12 ID univoci, 58 − 46):**
+
+| Causa | ID | N |
+|---|---|---:|
+| Validatore: la citazione FORM è il solo marcatore | `p15.s1` | 1 |
+| Validatore: estratto SOURCE del fatto non presente nella fonte citata | `p43.s0`, `p45.s0`, `p47.s0` | 3 |
+| Condizione `s2_c_dt` rinviata dalla policy USER, proposta valida | `p51.s0`, `p52.s0`, `p52.s1`, `p53.s0`, `p53.s2`, `p53.s4` | 6 |
+| Sotto `s2_c_dt`, nessuna proposta del modello | `p53.s1` | 1 |
+| Casella fuori dallo scope della condizione | `p39.cb0` | 1 |
+
+La versione precedente di questo elenco contava `p53.s1` due volte (fra i 7 campi del direttore
+tecnico e come sezione non proposta). Fuori dal riferimento resta vuoto anche `p53.s3` (data del
+direttore tecnico, nessuna proposta), vuoto anche nel riferimento.
+
+**Direttore tecnico:** i 6 campi rinviati sono `REVIEW_REQUIRED` senza errori. La ricevuta di
+`s2_c_soc` li elenca, ma ciascuno richiede anche `s2_c_dt`, che ha ricevuta SKIP. Nella bozza il
+blocco è vuoto: il C.F. `RMNLSI85C47A662Y` e il numero `8421` compaiono una sola volta, nel blocco
+del socio. Il rinvio è coerente con la policy: le risposte preregistrate non coprono il direttore
+tecnico. Nel riferimento il blocco era scritto perché il modello lo aveva incluso nella sola
+condizione del ramo società.
 
 ## `p39.cb0`: solo diagnosi, casella non selezionata
 
@@ -78,7 +105,51 @@ La derivazione della rappresentanza (`_representation_receipt`) richiede la case
 scope e non lo estende per regola, quindi la casella resta non spuntata. È una scelta
 conservativa, non modificata.
 
-**Soluzione possibile, da discutere:** una domanda di scelta sul gruppo «IN QUALITÀ DI».
+**Verifica di chiusura (offline, in memoria, nessuna scrittura):** con l'output 03 la
+derivazione dalla ricevuta di `s2_c_soc` fallisce per quattro motivi indipendenti.
+1. La casella manca dallo scope della condizione: c'è solo in `applies_to`.
+2. Aggiungendola allo scope, la stessa ricevuta non è più valida, perché la prova di ambito
+   cambia. È il comportamento corretto: una ricevuta non si estende.
+3. La citazione FORM del modello include «avente la seguente», quindi la clausola non supera il
+   confronto esatto.
+4. La risposta preregistrata contiene «non autorizza altre dichiarazioni» e il controllo
+   lessicale `_uncertain` la tratta come incerta.
+
+Nel riferimento lo scope comprendeva la casella e la risposta non conteneva negazioni.
+
+**Esito:** con questo output del modello serve una domanda esplicita. Nel pool non c'è, perché il
+modello non ha dichiarato `choice_groups` e la regione «IN QUALITÀ DI» non ha una domanda propria.
+La regione (`_capacity_region`) ha 7 opzioni: `p20.cb0`, `p21.cb0`, `p35.cb0`, `p39.cb0`,
+`p54.cb0`, `p61.cb0`, `p64.cb0`.
+
+**Modifica minima proposta (non applicata):**
+- **Quando:** una condizione di rappresentanza, partecipazione o forma giuridica è accettata e ha la
+  sua casella in `applies_to`, ma `_receipt_control` non deriva nulla. Inoltre nessuna opzione della
+  regione è già spuntata e nessun gruppo fondato del modello la copre.
+- **Cosa:** il pool aggiunge una sola domanda `choice` di proprietà del FORM sulla regione, con le
+  etichette FORM delle 7 opzioni.
+- **Risposta:** passa da `user_choice`. La ricevuta copre le opzioni mostrate; la casella si spunta
+  solo se l'USER la seleziona, e un rinvio lascia la regione vuota.
+- **Restano invariati:** `_representation_receipt`, `_uncertain` e le ricevute già rese.
+
+**Test necessari:**
+- positivo: con una selezione esplicita diventa vera solo `p39.cb0`;
+- negativi: rinvio; risposta ambigua; opzione già spuntata; condizione non accettata; derivazione
+  già riuscita, che non deve produrre una domanda duplicata;
+- rigioco 03: atteso 49 scritture, 47 uguali al riferimento.
+
+## Fix 2a e fix 2b
+
+| | 2a (`f7d35f8`, `4712c49`; policy `2bdaf45`) | 2b (`f2d7577`) |
+|---|---|---|
+| Soggetto | Sottoscrittore (`s1_b_leo`) | Direttore tecnico (`s2_b_dt`) |
+| Binding | Resta respinto, correttamente: il FORM lascia la carica in bianco | Da respinto a fondato: la riga soci è registrata come citazione non attestante |
+| Meccanismo | Dialogo: domanda sul nome, riuso SOURCE, ordine delle condizioni | Validatore: una citazione senza ruolo non invalida un'attestazione letterale |
+| Campi con errori | 19 → 10 | 10 → 4 |
+| Scritture | 39 → 48 | 48 → 48 |
+| Pool | Più `field:p12.s0` e `condition:s1_c_firmatario` | Più `condition:s2_c_dt` (6 campi), rinviata dalla policy |
+
+Il 2b rende quindi i campi del direttore tecnico confermabili dall'USER, senza scriverli.
 
 ## Limiti
 
