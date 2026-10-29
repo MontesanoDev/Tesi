@@ -352,9 +352,6 @@ def question_pool(data):
     # Segments may each declare the same FORM clause as their own condition: one question per
     # FORM paragraph, one receipt per condition (apply_replies), never a second request.
     by_paragraph = {}
-    from app.compilation_branch_evidence import decided_peers
-
-    peers = decided_peers(data)
     for key, item in audit.get("conditions", {}).items():
         if item["result"] != "unknown" or item.get("validation_errors") or not item.get(
             "form_evidence"
@@ -363,9 +360,9 @@ def question_pool(data):
         impacted = [f for f in fields if key in f.get("conditions", []) and not any(
             answers.get("condition:" + c, {}).get("applies") is False
             for c in f.get("conditions", []) if c != key)]
-        ids = [f["candidate_id"] for f in impacted]
-        if not impacted or set(ids) <= peers:  # Only alternatives of a decided option.
+        if not impacted:
             continue
+        ids = [f["candidate_id"] for f in impacted]
         same = by_paragraph.get(item["form_evidence"]["paragraph_id"]) if item.get(
             "operator") == "semantic" else None
         if same is not None:
