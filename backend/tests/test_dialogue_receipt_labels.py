@@ -14,7 +14,7 @@ def test_mixed_answers_identify_the_pending_decision_and_rejected_point():
                   'Forma di partecipazione']:
         assert label in message
     assert 'Non ho aggiunto valori né selezionato caselle per questa risposta' not in message
-    assert 'non autorizza ancora scritture' in message
+    assert 'non scrive ancora nel modulo' in message
 
 
 def test_receipt_does_not_promise_export_for_a_registered_value():

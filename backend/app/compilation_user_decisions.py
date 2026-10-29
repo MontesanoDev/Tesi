@@ -99,8 +99,8 @@ def decision_questions(data, reserved_ids=()):
         if instruction is not None:
             append("preferences", "Categorie e fasce d'incarico", preference_ids,
                    [proof(instruction), *preference_proofs],
-                   "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? "
-                   "Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.",
+                   "Quali categorie, servizi e fasce d'incarico scegli? Indica solo quelle "
+                   "ancora aperte.",
                    options)
 
     for block in blocks:
@@ -166,8 +166,8 @@ def decision_questions(data, reserved_ids=()):
                     break
                 proofs.append(proof(following))
             append("attestation", "Dichiarazioni e attestazioni", ids, proofs,
-                   "Quali delle seguenti dichiarazioni puoi confermare espressamente? "
-                   "Le informazioni aziendali non costituiscono una conferma delle attestazioni.")
+                   "Puoi confermare espressamente queste dichiarazioni del modulo? Non le "
+                   "ricavo dai dati aziendali.")
         elif (re.search(r"\bprofessionist[ai]\b", text, re.I) and (
             re.search(r"\bconferimento\b.*\bprestazione\b", text, re.I)
             or re.search(r"\bintegrazione delle prestazioni\b", text, re.I)
@@ -182,9 +182,8 @@ def decision_questions(data, reserved_ids=()):
             integration = bool(re.search(r"\bintegrazione delle prestazioni\b", text, re.I))
             append("designation", "Professionista incaricato dell'integrazione" if integration
                    else "Professionisti esecutori", ids, [proof(paragraph)],
-                   "Chi designi per questo incarico? La designazione della pratica "
-                   "non si deduce dai ruoli aziendali.")
+                   "Chi designi per questo incarico? Non lo ricavo dai ruoli aziendali.")
         elif re.match(r"\s*Luogo e data\b", text, re.I) and "text_with_fields" in paragraph:
             append("location_date", "Luogo e data della domanda", ids, [proof(paragraph)],
-                   "Quali luogo e data vuoi indicare per questa domanda?")
+                   "Quali luogo e data indichi?")
     return pool

@@ -139,7 +139,7 @@ async def test_follow_up_has_only_latest_receipt_and_keeps_source_proofs(
     saved = get_conversation("alpha", s["conversation_id"])["turns"][-1]["answer"]
     assert saved == s["global_compilation"]["dialogue"]["message"]
     assert saved.startswith("Confermato:") and "Ho trovato" not in saved
-    assert "Lascio in bianco" in saved
+    assert "Rinviato, lascio vuoto" in saved
     assert dialogue.question_pool(stored_data(s)) == []
     assert dialogue.export_selection(s)[0] == ["t0.r0.c1", "t0.r1.c1"]
     assert all(a["source_evidence"] == b["source_evidence"]
@@ -192,9 +192,9 @@ def test_narration_schema_and_validator_bind_closed_questions_to_boolean_slots()
 
 
 @pytest.mark.parametrize("actions,expected", [
-    (["VALUE"], "Ho registrato i dati:"),
+    (["VALUE"], "Ho registrato:"),
     (["CONDITION_FALSE"], "Escluso:"),
-    (["UNKNOWN"], "Lascio in bianco i punti rinviati o non confermati:"),
+    (["UNKNOWN"], "Rinviato, lascio vuoto:"),
     (["SKIP", "CONDITION_TRUE"], "Confermato:"),
     ([], "Riprendiamo dal punto rimasto aperto."),
 ])

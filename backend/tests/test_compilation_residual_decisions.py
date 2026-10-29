@@ -155,11 +155,13 @@ def test_decision_fallback_and_partial_export_offer_when_narrator_omits_question
     pool = dialogue.question_pool(data())
     rendered = dialogue.render_dialogue(dialogue.DialoguePlan(
         message="Ho conservato i dati disponibili.", questions=[]), pool, exportable_count=0)
-    assert len(rendered["question"]["slots"]) == 3
+    # Up to four decisions in one turn (MAX_QUESTIONS), fewer turns for the USER.
+    assert len(rendered["question"]["slots"]) == min(4, len(
+        [q for q in pool if q["kind"] == "decision"]))
     assert all(s["kind"] == "decision" for s in rendered["question"]["slots"])
-    assert "bozza parziale" in rendered["message"] and "non sai" in rendered["message"]
+    assert "bozza parziale" in rendered["message"] and "rinviare" in rendered["message"]
     assert rendered["empty_export_offered"] is True
-    assert "senza aggiungere valori" in rendered["message"]
+    assert "sarà senza valori" in rendered["message"]
 
 
 async def start_decisions(api, monkeypatch):

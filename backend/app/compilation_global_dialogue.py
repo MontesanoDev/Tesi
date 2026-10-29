@@ -23,7 +23,7 @@ from app.db import connection, get_storage_path
 from app.document_compilation import StrictModel
 from app.generation import GenerationError, request_model_content
 
-MAX_QUESTIONS = 3
+MAX_QUESTIONS = 4  # The planner and the reply guard accept four replies.
 MAX_POOL = 24
 NARRATION_SECONDS = 45
 PRESENTATION_VERSION = 4
@@ -192,7 +192,7 @@ Riassumi solo categorie di vuoti pertinenti, senza elenchi di ID o contatori.
 Spiega brevemente le motivazioni esplicite dei vuoti, non soltanto l'inventario
 dei valori trovati. Il backend aggiunge l'avviso di copertura incompleta quando
 necessario: non inventare ragioni per le omissioni o motivazioni non validate.
-Puoi porre al massimo tre domande, scegliendole dal pool di slot del backend:
+Puoi porre al massimo quattro domande, scegliendole dal pool di slot del backend:
 preferisci condizioni che sbloccano più valori e poi ambiguità importanti.
 Non accettare una condizione come vera soltanto perché compare nel modulo.
 Per una domanda di applicabilità chiedi se il caso descritto si applica; per un
@@ -299,6 +299,23 @@ def short_form_text(text, limit=120):
     return text if len(text) <= limit else text[:limit - 1].rsplit(" ", 1)[0] + "…"
 
 
+def confirmed_text(slot):
+    """What the USER confirmed, readable: the closed question asked, else the FORM clause.
+
+    A clause with field placeholders («Il sottoscritto ____, nato a») is not readable alone.
+    """
+    question = (slot.get("question") or "").strip()
+    if question.startswith("Confermi che ") and question.endswith("?"):
+        statement = question[len("Confermi che "):-1].strip()
+        if "«" in statement and "»" in statement:  # «… quanto indicato nel modulo: «X»»
+            statement = statement.split("«", 1)[1].rsplit("»", 1)[0]
+        if not re.fullmatch(r"(?:questa situazione|ciò|questo) si applica", statement, re.I):
+            return statement[:1].upper() + statement[1:]
+    clause = slot.get("condition") or ""
+    return (short_form_text(clause) if not re.search(r"\[\[|_{2,}|\.{3,}|…", clause)
+            else slot.get("label"))
+
+
 # How to clarify a refused reply, per slot kind: only the missing piece is asked.
 CLARIFY = {"choice": "indica il numero di una sola opzione", "applicability": "rispondi sì o no",
            "value": "indica il dato esatto", "decision": "indica la tua scelta"}
@@ -322,14 +339,13 @@ def continuation_receipt(dialogue, *, newly_held=False):
             parts.append(f"{outcome}: {labels(records, 'form_clause')}.")
     if records := [r for r in accepted if r["action"] == "VALUE"
                    and r.get("write_authorized") is not False]:
-        parts.append(f"Ho registrato i dati: {labels(records)}. "
-                     "L'inserimento resta soggetto ai controlli del modulo e alle sospensioni.")
+        parts.append(f"Ho registrato: {labels(records)}.")
     if records := [r for r in accepted if r["action"] == "VALUE"
                    and r.get("write_authorized") is False]:
-        parts.append(f"Decisione registrata per {labels(records)}: "
-                     "non autorizza ancora scritture; manca la verifica dei campi destinatari.")
+        parts.append(f"Ho registrato la decisione su {labels(records)}; non scrive ancora "
+                     "nel modulo.")
     if records := [r for r in accepted if r["action"] in {"SKIP", "UNKNOWN", "REFUSE"}]:
-        parts.append(f"Lascio in bianco i punti rinviati o non confermati: {labels(records)}.")
+        parts.append(f"Rinviato, lascio vuoto: {labels(records)}.")
     closed = set(latest.get("loop_guard", []))
     for refused in latest.get("unaccepted", []):
         label = str(refused.get("label") or "questa domanda")[:120]
@@ -1061,11 +1077,11 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
             for i, q in enumerate(slots))
         if len(slots) > 1 and not follow_up:
             message += "\nPuoi rispondere in un unico messaggio."
-        message += ("\nSe non sai rispondere puoi rinviare le domande, oppure chiedermi "
-                    "di terminare e generare una bozza parziale lasciando i punti irrisolti vuoti.")
+        message += ("\nPuoi rispondere, rinviare qualunque punto o chiedermi subito la bozza "
+                    "parziale.")
         if exportable_count == 0:
-            message += (" Al momento nessun valore può essere inserito in sicurezza: "
-                        "in questo caso genererò una copia del modulo senza aggiungere valori.")
+            message += (" Se la chiedi ora sarà senza valori: i dati trovati aspettano queste "
+                        "conferme.")
     else:
         message += ("\n\nAl momento nessun valore può essere inserito in sicurezza. "
                     "Posso preparare una copia del modulo senza aggiungere valori, "
@@ -1470,7 +1486,7 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                     if alternatives(reply):
                         raise ValueError("Risposta incerta sulla condizione")
                     record.update(applies=reply.action == "CONDITION_TRUE",
-                                  form_clause=short_form_text(slot.get("condition")))
+                                  form_clause=confirmed_text(slot))
                 elif slot["kind"] == "value" and reply.action == "VALUE":
                     if reply.selected_options is not None:
                         raise ValueError("Opzioni non ammesse per un campo testuale")
