@@ -276,6 +276,25 @@ def _question_field(field):
     return question
 
 
+def pending_signatory_conditions(data):
+    """Conditions the SOURCE derivation will attach to a signatory block whose blocked MODEL
+    proposal is replaced by the FORM-owned name question, while that name is unanswered: the
+    operator's (inherited by the derived role) and the blocked proposals' own. Asked before the
+    choice, their USER scope could not include the destinations derived after it."""
+    answers = (data.get("dialogue") or {}).get("answers", {})
+    fields = {f["candidate_id"]: f for f in (data.get("audit") or {}).get("fields", [])}
+    question = signatory_fields(data)
+    pending = set()
+    for ids, _, _ in _form_groups(data.get("catalog", {})):
+        entry = question.get(ids[0]) or {}
+        if "blocked_model_proposal" not in entry or "field:" + ids[0] in answers:
+            continue
+        pending |= set(fields.get(ids[9], {}).get("conditions", []))
+        pending |= {c for cid in ids for c in fields.get(cid, {}).get("conditions", [])
+                    if fields.get(cid, {}).get("validation_errors")}
+    return pending
+
+
 def signatory_fields(data):
     """One FORM-owned name question even if the model omitted a clarification."""
     if (data.get("audit") or {}).get("version") != 12:

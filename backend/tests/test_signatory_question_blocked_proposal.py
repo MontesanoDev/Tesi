@@ -138,3 +138,45 @@ def test_negative_receipt_blocks_and_absent_person_reuses_nothing():
     absent = chosen("Bruno Verdi")
     assert not any(f.get("source_reuse") for f in absent["audit"]["fields"])
     assert "condition:c_firm" not in keys(question_pool(absent))
+
+
+def operator_case():
+    """The operator destination is grounded but conditional, as s1_c_op in attempt 03."""
+    data, layout, sources = blocked_case()
+    data["audit"]["conditions"]["c_op"] = {
+        "result": "unknown", "reason": "Operatore economico non confermato",
+        "form_evidence": {"paragraph_id": "paragraph:2", "quote": "dell’operatore economico"}}
+    next(f for f in data["audit"]["fields"] if f["candidate_id"] == "p2.s1")["conditions"] = [
+        "c_op"]
+    return data, layout, sources
+
+
+def test_operator_condition_waits_for_the_pending_signatory_choice():
+    data, _, _ = operator_case()
+    pool = keys(question_pool(data))
+    assert "field:p0.s0" in pool and "condition:c_op" not in pool
+    data["dialogue"]["answers"]["field:p0.s0"] = {"action": "SKIP", "provenance": "USER",
+                                                 "user_quote": "Rinvio"}
+    assert "condition:c_op" in keys(question_pool(data))  # A deferred name no longer waits.
+
+
+def test_operator_condition_after_the_choice_covers_the_derived_role():
+    data, layout, sources = operator_case()
+    name = NAME
+    receipt(data, "field:p0.s0", ["p0.s0"], "VALUE", value=name)
+    data["dialogue"]["user_values"]["p0.s0"] = {"value": name, "user_quote": name,
+                                                "provenance": "USER"}
+    data["audit"] = reuse_selected_person(data, layout, "alpha", sources)
+    role = next(f for f in data["audit"]["fields"] if f["candidate_id"] == "p2.s0")
+    question = next(q for q in question_pool(data) if q["key"] == "condition:c_op")
+    assert "p2.s1" in question["field_ids"]
+    if role.get("source_reuse"):  # The role is derived only with the operator's SOURCE link.
+        assert "c_op" in role["conditions"] and "p2.s0" in question["field_ids"]
+
+
+def test_without_a_blocked_signatory_the_operator_condition_is_not_postponed():
+    data, _, _ = operator_case()
+    for field in data["audit"]["fields"]:
+        field.update(validation_errors=[], subject_binding={"binding_id": "b",
+                                                            "validation_errors": []})
+    assert "condition:c_op" in keys(question_pool(data))
