@@ -295,7 +295,7 @@ def source_role_coverage(data):
 
 def question_pool(data):
     from app.compilation_procedural_consent import questions as consent_questions
-    from app.compilation_source_reuse import pending_signatory_conditions, signatory_fields
+    from app.compilation_source_reuse import signatory_fields
     from app.compilation_user_decisions import decision_questions
 
     audit, dialogue = data.get("audit") or {}, data.get("dialogue") or {}
@@ -310,11 +310,10 @@ def question_pool(data):
                              for cid in target["candidate_ids"]}
     pool = consent_questions(data)
     authorization_ids = {cid for q in pool for cid in q["field_ids"]}
-    postponed = pending_signatory_conditions(data)
     for key, item in audit.get("conditions", {}).items():
         if item["result"] != "unknown" or item.get("validation_errors") or not item.get(
             "form_evidence"
-        ) or "condition:" + key in answers or key in postponed:
+        ) or "condition:" + key in answers:
             continue
         impacted = [f for f in fields if key in f.get("conditions", []) and not any(
             answers.get("condition:" + c, {}).get("applies") is False
