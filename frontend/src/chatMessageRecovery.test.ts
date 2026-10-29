@@ -30,20 +30,10 @@ describe('Copia di recupero confinata alla scheda e alla conversazione', () => {
     expect(readChatDraft('alfa', null)).toEqual({ message: null, unavailable: true })
   })
 
-  it.each(['broken JSON', '{"text":3}', '{"text":"Originale","document_reference":{"role":"admin"}}',
-    '{"text":"Originale","document_reference":null,"submitted":"sì"}'])(
+  it.each(['broken JSON', '{"text":3}', '{"text":"Originale","document_reference":{"role":"admin"}}'])(
     'rifiuta copie corrotte senza inviare dati: %s', (raw) => {
       sessionStorage.setItem('mapi:chat-draft:alfa:c1', raw)
       expect(readChatDraft('alfa', 'c1')).toEqual({ message: null, unavailable: true })
     },
   )
-
-  it('distingue una copia inviata da una bozza digitata e legge le copie precedenti', () => {
-    for (const submitted of [true, false]) {
-      saveChatDraft('alfa', 'c1', { text: 'Testo', document_reference: null, submitted })
-      expect(readChatDraft('alfa', 'c1').message?.submitted).toBe(submitted)
-    }
-    sessionStorage.setItem('mapi:chat-draft:alfa:c1', '{"text":"Testo","document_reference":null}')
-    expect(readChatDraft('alfa', 'c1').message).toEqual({ text: 'Testo', document_reference: null })
-  })
 })

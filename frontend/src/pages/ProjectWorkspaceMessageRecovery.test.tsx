@@ -71,9 +71,8 @@ describe('Conservazione e recupero dei messaggi USER', () => {
     fireEvent.submit(input().closest('form')!)
     expect(api.projectAnswer).not.toHaveBeenCalled()
     cleanup(); await setup()
-    // Typed and never sent: it is simply back in the composer, no recovery to confirm.
+    fireEvent.click(screen.getByRole('button', { name: 'Recupera messaggio' }))
     expect(input()).toHaveValue('a'.repeat(4001))
-    expect(screen.queryByRole('button', { name: 'Recupera messaggio' })).not.toBeInTheDocument()
   })
 
   it.each(['rete', 'schema', 'non configurato'])(
@@ -180,8 +179,8 @@ describe('Conservazione e recupero dei messaggi USER', () => {
     type('Nuova bozza durante avvio')
     await act(async () => resolve(result()))
     cleanup(); await setup()
-    await waitFor(() => expect(input()).toHaveValue('Nuova bozza durante avvio'))
-    expect(screen.queryByRole('button', { name: 'Recupera messaggio' })).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Recupera messaggio' }))
+    expect(input()).toHaveValue('Nuova bozza durante avvio')
   })
 
   function history(...turns: [string, GroundedAnswer['generation_status']][]) {
@@ -244,29 +243,8 @@ describe('Conservazione e recupero dei messaggi USER', () => {
     history([long, 'direct'])
     await setup()
     await screen.findByText('Risposta 1')
-    await waitFor(() => expect(input()).toHaveValue('Bozza non ancora inviata'))
-    expect(recoveries()).toHaveLength(0)
-  })
-
-  // Prova manuale (29 ottobre): testo digitato, «Aggiungi un modello nelle impostazioni» e
-  // ritorno al progetto mostravano «Un messaggio è conservato…» invece del testo.
-  it('riporta nel composer il testo digitato dopo le impostazioni AI, senza inviarlo', async () => {
-    await setup('/projects/alfa'); type('compila il modulo')
-    cleanup()  // The settings page replaces the workspace.
-    await setup('/projects/alfa')
-    await waitFor(() => expect(input()).toHaveValue('compila il modulo'))
-    expect(recoveries()).toHaveLength(0)
-    expect(api.projectAnswer).not.toHaveBeenCalled()
-  })
-
-  it('non scarta una bozza digitata uguale all’ultimo messaggio registrato', async () => {
-    await setup(); type(long)
-    cleanup()
-    history([long, 'direct'])
-    await setup()
-    await screen.findByText('Risposta 1')
-    await waitFor(() => expect(input()).toHaveValue(long))
-    expect(sessionStorage.getItem('mapi:chat-draft:alfa:c1')).not.toBeNull()
+    fireEvent.click(await screen.findByRole('button', { name: 'Recupera messaggio' }))
+    expect(input()).toHaveValue('Bozza non ancora inviata')
   })
 
   it('avverte quando lo storage non funziona e consente il recupero in memoria', async () => {

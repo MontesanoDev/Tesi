@@ -162,17 +162,10 @@ export function ProjectWorkspacePage() {
     setDraftUnavailable(draft.unavailable)
   }, [projectId, conversationId])
 
-  function retainMessage(text: string, reference = documentReference, submitted = false) {
-    const message = text ? { text, document_reference: reference, submitted } : null
+  function retainMessage(text: string, reference = documentReference) {
+    const message = text ? { text, document_reference: reference } : null
     setRecoverableMessage(message)
     if (projectId) setDraftUnavailable(!saveChatDraft(projectId, conversationId, message))
-  }
-
-  // A draft only typed goes back into the composer (e.g. after the AI settings page); only a
-  // copy of a sent message is offered with the explicit «Recupera messaggio».
-  function typedDraft(conversation = conversationId) {
-    const draft = projectId ? readChatDraft(projectId, conversation).message : null
-    return draft && draft.submitted === false ? draft : null
   }
 
   useEffect(() => {
@@ -184,12 +177,11 @@ export function ProjectWorkspacePage() {
   }, [projectId, conversationId])
 
   useEffect(() => {
-    const typed = typedDraft()
-    setPrompt(typed?.text ?? '')
+    setPrompt('')
     setTurns([])
     setSearching(false)
     setConversationError(null)
-    setDocumentReference(typed?.document_reference ?? null)
+    setDocumentReference(null)
     setMention(null)
     turnSequence.current = 0
     activeConversation.current = null
@@ -204,9 +196,7 @@ export function ProjectWorkspacePage() {
       setTurns([])
       setConversationLoading(false)
       setConversationError(null)
-      const typed = typedDraft()
-      if (typed) setPrompt(typed.text)
-      setDocumentReference(typed?.document_reference ?? null)
+      setDocumentReference(null)
       setMention(null)
       return
     }
@@ -231,12 +221,7 @@ export function ProjectWorkspacePage() {
         const last = conversation.turns.at(-1)
         const kept = readChatDraft(projectId, conversation.id).message
         const reference = last ? documentReferenceOf(last) : null
-        const typed = typedDraft(conversation.id)
-        if (typed) {
-          setPrompt(typed.text)
-          setDocumentReference(typed.document_reference)
-        }
-        if (kept && !typed && last && kept.text === last.question
+        if (kept && last && kept.text === last.question
           && !['failed', 'not_configured'].includes(last.generation_status)
           && kept.document_reference?.document_id === reference?.document_id
           && kept.document_reference?.role === reference?.role) {
@@ -303,7 +288,7 @@ export function ProjectWorkspacePage() {
     const controller = new AbortController()
     answerRequest.current = controller
     const turnId = `local-${++turnSequence.current}`
-    retainMessage(query, documentReference, true)
+    retainMessage(query)
     stickToBottom.current = true
     setTurns((current) => [
       ...current.map((turn, index) => {
@@ -665,7 +650,7 @@ export function ProjectWorkspacePage() {
                         && (turn.error || ['failed', 'not_configured'].includes(turn.result?.generation_status ?? '')) ? () => {
                         setPrompt(turn.question)
                         setDocumentReference(turn.document_reference ?? null)
-                        retainMessage(turn.question, turn.document_reference ?? null, true)
+                        retainMessage(turn.question, turn.document_reference ?? null)
                         composerInput.current?.focus()
                       } : undefined}
                       assistantContent={index === turns.length - 1 ? sessionMessage ?? undefined : undefined}
