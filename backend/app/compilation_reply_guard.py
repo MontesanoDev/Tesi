@@ -50,6 +50,9 @@ class ReplyScopeResult:
     scope_verifications: dict[int, str] = field(default_factory=dict)
     # Backend codes for refused slots (UNRELATED, AMBIGUOUS, SCOPE, UNCHECKED); never model text.
     reasons: dict[int, str] = field(default_factory=dict)
+    # Private diagnostics for the routing trace only (E2E campaign: a real refusal could not be
+    # explained afterwards): the raw verdicts, never shown to the USER or used to decide.
+    raw: str | None = None
 
 
 REASON_TEXT = {
@@ -214,7 +217,7 @@ async def verify_field_replies(message, context, replies, *, request):
         }, ensure_ascii=False)},
     ], "response_format": {"type": "json_object"}, "thinking": {"type": "disabled"},
         "temperature": 0, "max_tokens": CHECK_OUTPUT_TOKENS}
-    tokens, verifications = None, {}
+    tokens, verifications, raw = None, {}, None
     try:
         async with httpx.AsyncClient(timeout=httpx.Timeout(CHECK_SECONDS, connect=5)) as client:
             raw, _, usage = await request(client, settings, body, CHECK_SECONDS,
@@ -247,4 +250,4 @@ async def verify_field_replies(message, context, replies, *, request):
         allowed, checks = frozenset(), []
     logger.info("DOCX reply scope checked=%d accepted=%d", len(proposals), len(allowed))
     reasons = refusal_reasons(checks, {p["slot"] for p in proposals}, allowed)
-    return ReplyScopeResult(allowed, tokens, verifications, reasons)
+    return ReplyScopeResult(allowed, tokens, verifications, reasons, raw)

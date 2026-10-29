@@ -782,6 +782,8 @@ async def plan_chat_turn(
                 verification = await verify_field_replies(question, guard_context, proposed.replies,
                                                          request=request_model_content)
                 token_counts.append(verification.total_tokens)
+                if trace:
+                    trace.guard(verification)
                 rejected = [r for r in proposed.replies if requires_scope_check(r, context)
                             and r.slot not in verification.allowed_slots]
                 if rejected:
