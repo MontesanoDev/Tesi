@@ -25,7 +25,7 @@ def session_data(session):
             **({"fields": data["fields"]} if "fields" in data else {})}
 
 
-def target(data, key, field_ids):
+def target(data, key, field_ids, user_conditions=None):
     catalog, audit = data.get("catalog") or {}, data.get("audit") or {}
     fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
     from app.compilation_source_reuse import signatory_fields
@@ -52,6 +52,8 @@ def target(data, key, field_ids):
                                  if k in {"action", "user_quote", "applies"}}
                             for c in sorted(conditions) if not key.startswith("condition:")},
     }
+    if user_conditions is not None:
+        description["user_conditions"] = user_conditions
     return {**description, "digest": request_digest({
         "target": description, "form": catalog.get("blocks", []),
         "initial_user_requests": data.get("user_context", [])})}
@@ -76,6 +78,15 @@ def proof(scope_target, reply):
                            "selected_options": record.get("selected_options")})
 
 
+def scope_receipt(data, key, field_ids, reply):
+    """Backend scope proof of a checked reply; a value keeps the condition replies it saw."""
+    scope_target = target(data, key, field_ids)
+    scope = {"scope_validation": proof(scope_target, reply), "affected_fields": list(field_ids)}
+    if not key.startswith("condition:"):
+        scope["checked_conditions"] = scope_target["user_conditions"]
+    return scope
+
+
 def valid_receipt(data, key, receipt, cid):
     ids = receipt.get("affected_fields") or []
     if (cid not in ids or not receipt.get("scope_validation")
@@ -87,7 +98,19 @@ def valid_receipt(data, key, receipt, cid):
             return False
     elif receipt.get("action") != "VALUE":
         return False
-    return receipt["scope_validation"] == proof(target(data, key, ids), receipt)
+    seen = receipt.get("checked_conditions")
+    if key.startswith("condition:") or seen is None:
+        return receipt["scope_validation"] == proof(target(data, key, ids), receipt)
+    if receipt["scope_validation"] != proof(target(data, key, ids, seen), receipt):
+        return False
+    # A later USER confirmation covering this field keeps the value checked before it
+    # (signatory name asked before its condition, or a confirmation extended to derived
+    # data). Any other change, an exclusion or a deferral invalidates it.
+    answers = (data.get("dialogue") or {}).get("answers", {})
+    return all(now == seen.get(c) or (
+        seen.get(c, {}).get("applies") in {None, True} and now.get("applies") is True
+        and valid_receipt(data, "condition:" + c, answers.get("condition:" + c, {}), cid))
+        for c, now in target(data, key, ids)["user_conditions"].items())
 
 
 def blocked_source_fields(data, *, linked_user_controls=False):

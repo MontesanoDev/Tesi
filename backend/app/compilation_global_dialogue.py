@@ -1502,14 +1502,13 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                           "provenance": "USER", "label": slot["label"]}
                 if guarded:
                     record["ambiguity_check"] = "SEMANTIC_GUARD"
-                from app.compilation_scope_review import enabled, proof, target
+                from app.compilation_scope_review import enabled, scope_receipt
 
                 if enabled(data) and reply.action in {"VALUE", "CONDITION_TRUE", "CONDITION_FALSE"}:
-                    expected = proof(target(data, slot["key"], slot["field_ids"]), reply)
-                    if (scope_verifications or {}).get(reply.slot) != expected:
+                    scope = scope_receipt(data, slot["key"], slot["field_ids"], reply)
+                    if (scope_verifications or {}).get(reply.slot) != scope["scope_validation"]:
                         raise ValueError("Ambito FORM della risposta USER non verificato")
-                    record.update(scope_validation=expected,
-                                  affected_fields=list(slot["field_ids"]))
+                    record.update(scope)
                 if slot.get("question"):
                     record["question"] = slot["question"]
                 if slot.get("authorization"):
