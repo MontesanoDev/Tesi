@@ -302,11 +302,7 @@ def attach_choice_audit(result, groups, items, catalog, source_map):
 
 def materialize_choices(data, source_ids, user_ids):
     """Validate the final subset, including USER overrides and initial checked peers."""
-    from app.compilation_branch_evidence import (
-        capacity_choice_valid,
-        effective_user_values,
-        receipt_choice_value,
-    )
+    from app.compilation_branch_evidence import effective_user_values, receipt_choice_value
 
     fields = {f["candidate_id"]: f for f in data["audit"]["fields"]}
     users = effective_user_values(data)
@@ -325,15 +321,10 @@ def materialize_choices(data, source_ids, user_ids):
         if group["validation"] != "GROUNDED_GROUP":
             raise ValueError("Gruppo di scelta non validato")
         if group["selection"] == "unknown":
-            # Cardinality is still unknown. Only an exact positive condition receipt or
-            # the explicit USER choice of the region can mark one control; never clear
-            # or infer peers.
-            capacity = group.get("origin") == "FORM_capacity_choice"
-            if (capacity and len(selected) != 1) or any(
-                    cid not in user_ids or value is not True
-                    or not (capacity_choice_valid(data, cid) if capacity
-                            else receipt_choice_value(data, cid) == users[cid])
-                    for cid, value in selected.items()):
+            # Cardinality is still unknown. Only an exact positive condition
+            # receipt can mark its own control; never clear or infer peers.
+            if any(cid not in user_ids or receipt_choice_value(data, cid) != users[cid]
+                   or value is not True for cid, value in selected.items()):
                 raise ValueError("Cardinalità ignota senza ricevuta positiva verificata")
             values.update(selected)
             continue
@@ -363,18 +354,6 @@ def user_choice(data, slot, reply):
     group = data["audit"]["choice_groups"].get(slot["choice_group_id"], {})
     options = list(group.get("options", {}))
     chosen = reply.selected_options
-    if group.get("origin") == "FORM_capacity_choice":
-        # Unknown cardinality: exactly one option, and only one an accepted condition
-        # makes applicable. The other options are neither marked nor cleared.
-        if (group.get("validation") != "GROUNDED_GROUP" or slot["field_ids"] != options
-                or chosen is None or reply.normalized_value or len(chosen) != 1
-                or not 1 <= chosen[0] <= len(options)):
-            raise ValueError("Scelta USER ambigua o incompatibile col gruppo attivo")
-        cid = options[chosen[0] - 1]
-        if cid not in group.get("applicable", {}):
-            raise ValueError("Qualità non applicabile: nessuna condizione confermata la prevede")
-        return {cid: {"value": True, "provenance": "USER", "label": group["options"][cid]["label"],
-                      "user_quote": reply.user_quote, "choice_group_id": slot["choice_group_id"]}}
     if (group.get("validation") != "GROUNDED_GROUP" or group["selection"] == "unknown"
             or slot["field_ids"] != options or chosen is None or reply.normalized_value
             or len(chosen) != len(set(chosen)) or any(not 1 <= i <= len(options) for i in chosen)
