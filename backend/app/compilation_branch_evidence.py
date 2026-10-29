@@ -207,6 +207,25 @@ def capacity_choice_valid(data, cid, key=None):
     )
 
 
+def decided_peers(data):
+    """The other options of each capacity region whose box already has a positive decision.
+
+    A question about one of them could change no box: a positive answer is never silently
+    combined with the decided option, a negative one marks nothing. Their conditions stay
+    open (neither excluded nor confirmed); only the question is not asked.
+    """
+    catalog = data.get("catalog") or {}
+    peers = set()
+    for cid, value in effective_user_values(data).items():
+        candidate = catalog.get("candidates", {}).get(cid) or {}
+        if value.get("value") is not True or candidate.get("type") != "checkbox" or not (
+                receipt_choice_value(data, cid) or capacity_choice_valid(data, cid)):
+            continue
+        if region := _capacity_region(catalog, cid):
+            peers |= set(region[1]) - {cid}
+    return peers
+
+
 def linked_receipt_valid(data, cid, key=None):
     """Check the original verified condition receipt, not an invented choice receipt."""
     value = receipt_choice_value(data, cid)
