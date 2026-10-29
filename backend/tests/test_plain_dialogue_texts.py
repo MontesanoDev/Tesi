@@ -53,3 +53,18 @@ def test_four_questions_per_turn_are_accepted_by_narrator_and_planner():
     ContinuationPlan(questions=questions)
     ClarificationDecision(action='ANSWER', replies=[
         ClarificationReply(slot=n, action='SKIP', user_quote='Rinvio') for n in range(1, 5)])
+
+
+def test_the_signatory_name_is_asked_with_the_backend_text_not_a_vague_one():
+    """Manual test 2: the narrator asked the name as «Quale dato o decisione vuoi indicare?»."""
+    from test_signatory_order_and_extension import open_name_case
+
+    from app.compilation_global_dialogue import question_pool, render_dialogue
+
+    data, _, _ = open_name_case()
+    pool = question_pool(data)
+    [name] = [q for q in pool if q['key'] == 'field:p0.s0']
+    plan = DialoguePlan(message='Riepilogo dei punti aperti.', questions=[
+        {'slot': name['slot'], 'question': 'Quale dato o decisione vuoi indicare?'}])
+    [slot] = render_dialogue(plan, pool)['question']['slots']
+    assert slot['question'] == 'Chi sottoscrive la domanda? Indica nome e cognome del firmatario.'
