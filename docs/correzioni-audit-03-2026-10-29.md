@@ -18,9 +18,10 @@
 | 2a' | `4712c49` | La condizione dell'operatore, chiesta prima del nome, non poteva coprire la carica derivata dopo: il gate di ambito USER la bloccava | Finché il nome è aperto, le condizioni che il blocco erediterà aspettano; un nome rinviato le libera | 1/9 → 9/9 |
 | 2b | `f2d7577` | Il binding del direttore tecnico veniva respinto perché la seconda citazione (riga della tabella soci) non contiene il ruolo | Una citazione senza ruolo viene solo registrata; serve almeno un'attestazione letterale; respinti come prima i casi senza attestazione, le citazioni inventate, la General KB e il ruolo assente dal FORM | 2/13 falliti → 13/13 (normale e structural) |
 | 3 | `9aa37a9` | Qualunque «non» o «nessun» sostituiva l'intera sintesi iniziale con un testo generico | Si eliminano solo le frasi che negano la presenza (negazione più termine di presenza o fonte); il resto resta letterale, con l'avvertenza; con sole negazioni si usa ancora il testo generico | Funzione nuova → 13/13 |
+| 4 | `be5be0f` | Ramo società confermato, ma la casella fuori dallo scope del modello: nessuna derivazione e nessuna domanda | Domanda `choice` del backend sulle opzioni FORM «IN QUALITÀ DI»; spunta solo la scelta USER applicabile | 15/25 falliti → 25/25 |
 
 **Rollback:**
-- uno per fix, nei worktree `tesi-rollback-audit03-{policy,firmatario,policy-firmatario,ordine,binding-dt,sintesi}-20261029`;
+- uno per fix, nei worktree `tesi-rollback-audit03-{policy,firmatario,policy-firmatario,ordine,binding-dt,sintesi,p39}-20261029`;
 - ogni revert restituisce l'albero del commit genitore;
 - i test del genitore passano (harness 70/70; mirati backend 6-39).
 
@@ -28,7 +29,7 @@
 
 | Controllo | Esito |
 |---|---|
-| Backend | **4.077 PASS**, 0 falliti, in 384 s |
+| Backend | **4.077 PASS**, 0 falliti, in 384 s; con il fix 4 **4.102 PASS** in 446 s |
 | Ruff (backend e harness) | PASS |
 | Harness `audit_tools` | 89/89 PASS |
 
@@ -93,7 +94,7 @@ del socio. Il rinvio è coerente con la policy: le risposte preregistrate non co
 tecnico. Nel riferimento il blocco era scritto perché il modello lo aveva incluso nella sola
 condizione del ramo società.
 
-## `p39.cb0`: solo diagnosi, casella non selezionata
+## `p39.cb0`: diagnosi
 
 **Stato della condizione `s2_c_soc`:**
 - fondata;
@@ -122,7 +123,7 @@ modello non ha dichiarato `choice_groups` e la regione «IN QUALITÀ DI» non ha
 La regione (`_capacity_region`) ha 7 opzioni: `p20.cb0`, `p21.cb0`, `p35.cb0`, `p39.cb0`,
 `p54.cb0`, `p61.cb0`, `p64.cb0`.
 
-**Modifica minima proposta (non applicata):**
+**Modifica minima proposta** (applicata il 29 ottobre in `be5be0f`, vedi la sezione seguente):
 - **Quando:** una condizione di rappresentanza, partecipazione o forma giuridica è accettata e ha la
   sua casella in `applies_to`, ma `_receipt_control` non deriva nulla. Inoltre nessuna opzione della
   regione è già spuntata e nessun gruppo fondato del modello la copre.
@@ -137,6 +138,47 @@ La regione (`_capacity_region`) ha 7 opzioni: `p20.cb0`, `p21.cb0`, `p35.cb0`, `
 - negativi: rinvio; risposta ambigua; opzione già spuntata; condizione non accettata; derivazione
   già riuscita, che non deve produrre una domanda duplicata;
 - rigioco 03: atteso 49 scritture, 47 uguali al riferimento.
+
+## Fix 4: scelta esplicita «IN QUALITÀ DI» (`be5be0f`)
+
+**Quando:** una condizione di rappresentanza, partecipazione o forma giuridica è accettata
+dall'USER e la sua casella FORM sta in `applies_to`, ma la ricevuta non può marcarla.
+**Cosa:** il pool aggiunge una sola domanda `choice` sulla regione «IN QUALITÀ DI». Il testo è
+del backend ed elenca le opzioni con le etichette FORM; lo stesso testo compare nel fallback
+quando il narratore non sceglie domande.
+
+**Controlli mantenuti:**
+- **Applicabilità:** si può scegliere solo un'opzione resa applicabile da una condizione
+  accettata. «Libero professionista singolo» o «Mandatario» senza ramo confermato sono rifiutati.
+- **Ambito:** la ricevuta della scelta copre le opzioni mostrate e lega la risposta USER alla
+  condizione. Se quella risposta viene revocata o cambia, la scelta decade. Non sblocca altre
+  condizioni della casella; le ricevute esistenti non vengono estese né rifirmate.
+- **Esclusività:** un'opzione sola; le altre non vengono marcate né svuotate (cardinalità
+  ignota). Nessuna domanda se un'opzione è già spuntata.
+- **Autorizzazione USER:** nulla si seleziona senza una risposta VALUE dell'USER. Il rinvio
+  lascia la regione vuota e la domanda non viene ripetuta.
+- **Nessun duplicato:** nessuna domanda se la ricevuta deriva già la casella o se un gruppo
+  del modello copre la regione.
+
+**Test (`test_capacity_choice_question.py`, 25):** conferma esplicita, rinvio, 6 risposte ambigue
+o malformate, 2 scelte non applicabili, valore non ottenuto dalla scelta, 10 casi senza ramo
+applicabile accettato, assenza di duplicati, revoca o modifica della condizione, altra
+condizione aperta. Sul genitore 15 su 25 falliscono; i 10 che passano sono i casi negativi
+senza domanda.
+
+**Rigioco (nuove etichette; il replay storico e i suoi file restano invariati):**
+
+| Scenario | Domanda di scelta | Scritture | Uguali al riferimento | `p39.cb0` |
+|---|---|---:|---:|---|
+| Storico, policy preregistrata (`p39-storico-policy-v2`) | Posta una volta, rinviata | 48 | 46 | Vuota |
+| Controfattuale (`cf-p39-scelta-autorizzata`) | Posta una volta, scelta autorizzata | 49 | 47 | Spuntata |
+
+- **Controfattuale:** `policy-cf-p39.cjs` risponde alla sola domanda di scelta con il testo
+  preregistrato «corporate», che nomina l'opzione. Lo script `replay03_controfattuale.py` è una
+  copia di `replay03.py` che seleziona la policy e codifica la scelta con l'estratto letterale
+  della risposta.
+- **In entrambi:** 0 valori diversi, 0 domande ripetute, 0 sospensioni.
+- **Nel DOCX controfattuale:** su 13 caselle native è spuntata solo `p39.cb0`.
 
 ## Fix 2a e fix 2b
 
@@ -161,4 +203,10 @@ Il 2b rende quindi i campi del direttore tecnico confermabili dall'USER, senza s
 - **Fix 2a':** riguarda solo il blocco del sottoscrittore che sostituisce una proposta bloccata.
 - **Ricevute già rese:** non vengono estese né rifirmate. Una conferma resa prima resta limitata
   al suo ambito.
+- **Fix 4:**
+  - la ricevuta della scelta lega anche le condizioni delle altre opzioni. Se una di esse riceve
+    una risposta dopo la scelta, la ricevuta diventa obsoleta e la casella resta vuota senza una
+    nuova domanda; è un comportamento conservativo;
+  - la policy preregistrata rinvia la nuova domanda, perché la regola «corporate» non vede le
+    opzioni. La scrittura c'è solo nello scenario controfattuale.
 - **Nessun nuovo audit reale.** Va autorizzato a parte.

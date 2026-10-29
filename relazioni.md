@@ -5761,3 +5761,10 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - le 2 scritture in più sono date SOURCE corrette;
   - i 6 campi del direttore tecnico restano vuoti per la sola ricevuta SKIP di `s2_c_dt`;
   - per `p39.cb0` è proposta una domanda `choice` esplicita, non applicata.
+- **Scelta «IN QUALITÀ DI» (`be5be0f`):**
+  - una condizione accettata la cui casella non è derivabile apre una sola domanda `choice` sulle
+    opzioni FORM; si accetta un'opzione sola, resa applicabile da una condizione confermata;
+  - 25 test (15 falliti sul genitore);
+  - rigioco storico invariato a 48 scritture; controfattuale con risposta autorizzante a 49,
+    con la sola `p39.cb0` spuntata;
+  - suite backend 4.102 PASS; rollback verificato.

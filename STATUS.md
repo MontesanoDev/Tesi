@@ -16,10 +16,12 @@ Branch `fix/2026-10-28-correzioni-audit-03`;
 - **Ancora vuoti:** 12 ID univoci del riferimento: 4 per il validatore, 6 rinviati con `s2_c_dt`,
   `p53.s1` senza proposta e `p39.cb0`. Le 2 scritture in più (`p46.s1`, `p49.s3`) sono date
   SOURCE corrette.
-- **`p39.cb0`:** serve una domanda `choice` esplicita sulla regione «IN QUALITÀ DI»; la modifica è
-  proposta nel rapporto e non applicata.
-- **Verifiche:** backend 4.077 PASS (8 saltati per artefatti locali assenti), harness 89 PASS,
-  Ruff PASS; rollback verificati in 6 worktree.
+- **`p39.cb0` (`be5be0f`):** se la casella non è derivabile, il backend chiede una scelta esplicita
+  fra le 7 opzioni FORM «IN QUALITÀ DI» e non seleziona nulla da solo. Nel rigioco storico la
+  policy preregistrata la rinvia (48 scritture); nel controfattuale con risposta autorizzante
+  la casella viene spuntata (49 scritture, 47 uguali al riferimento).
+- **Verifiche:** backend 4.102 PASS (8 saltati per artefatti locali assenti), harness 89 PASS,
+  Ruff PASS; rollback verificati in 7 worktree.
 
 ## Audit narratore Minervino, tentativo 03 — completato, 28 ottobre 2026
 
