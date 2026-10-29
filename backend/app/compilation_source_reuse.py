@@ -256,26 +256,6 @@ def source_reuse_requested(data):
             or any(_selection(data, g["name_id"]) for g in _signatory_groups(data)))
 
 
-_PROPOSAL_KEYS = {"proposal", "fact_id", "proposed_fact_id", "evidence", "source_evidence",
-                  "subject_binding", "validation_errors", "value", "proposed_value", "property",
-                  "proposal_grounding", "conditions", "condition_checks", "disposition"}
-
-
-def _question_field(field):
-    """The name field as a FORM-owned question. A MODEL proposal blocked by validation stays
-    blocked and is only recorded: never a value, never released, and its MODEL conditions do
-    not gate the question (they stay on the derived destinations, confirmed after the choice).
-    Without a proposal, or with a usable one, the previous treatment is unchanged."""
-    if not field.get("proposal"):
-        return None if field.get("validation_errors") else field
-    if not field.get("validation_errors"):
-        return None  # The narrator reviews the usable proposal.
-    question = {k: v for k, v in field.items() if k not in _PROPOSAL_KEYS}
-    question["blocked_model_proposal"] = {k: field.get(k) for k in (
-        "validation_errors", "fact_id", "conditions")}
-    return question
-
-
 def signatory_fields(data):
     """One FORM-owned name question even if the model omitted a clarification."""
     if (data.get("audit") or {}).get("version") != 12:
@@ -284,7 +264,7 @@ def signatory_fields(data):
     result = {}
     for ids, paragraphs, _ in _form_groups(data.get("catalog", {})):
         field = fields.get(ids[0])
-        if field is None or (field := _question_field(field)) is None:
+        if field is None or field.get("proposal") or field.get("validation_errors"):
             continue
         # Derivation must not change the FORM target already checked by the USER guard.
         # Supply missing metadata, but preserve validated labels/anchors and their receipt.
@@ -294,8 +274,8 @@ def signatory_fields(data):
     for group in _signatory_groups(data):
         cid = group["name_id"]
         field = fields.get(cid)
-        if (cid in result or not field or field.get("source_reuse")
-                or (field := _question_field(field)) is None):
+        if (cid in result or not field or field.get("proposal") or field.get("source_reuse")
+                or field.get("validation_errors")):
             continue
         result[cid] = {**field, "label": field.get("label") or "Nome del firmatario della domanda",
             "kind": "data", "disposition": "review",
