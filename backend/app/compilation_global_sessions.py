@@ -984,6 +984,12 @@ def generate_draft(project_id, session_id, request):
                "Puoi scaricarla e controllarla." if not written_count else
                "Ho preparato una bozza parziale con i dati disponibili. "
                "Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.")
+    from app.compilation_global_dialogue import unexported_notice
+
+    notice = unexported_notice(state["global_compilation"],
+                               {f["cell_id"] for f in checked_fields})
+    if notice:
+        message += " " + notice
     report = {"schema_version": 7, "created_at": sessions.now(), "project_id": project_id,
               "session_id": session_id, "session_version": request.version,
               "status": "needs_review", "ready_for_submission": False,

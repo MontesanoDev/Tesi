@@ -512,12 +512,14 @@ def question_pool(data):
             continue
         ids = list(dict.fromkeys([*covered, *ids]))
         extension = new if receipt else []
+        documented = sum(documented_proposal(f) for f in impacted)
         clause = equivalent_clause(item)
         same = by_paragraph.get(clause) if clause else None
         if same is not None:
             same["condition_ids"].append(key)
             same["field_ids"] = list(dict.fromkeys(same["field_ids"] + ids))
             same["impact"] = len(same["field_ids"])
+            same["documented"] = same.get("documented", 0) + documented
             same["affected_fields"] = list(dict.fromkeys(same["affected_fields"] + [
                 f.get("label", "Dato del blocco")[:150] for f in impacted]))[:8]
             if extension:
@@ -529,6 +531,7 @@ def question_pool(data):
                  "label": item.get("reason", "Applicabilità della sezione"),
                  "context": item["form_evidence"]["quote"],
                  "field_ids": ids, "alternatives": [], "impact": len(ids),
+                 "documented": documented,
                  "affected_fields": [f.get("label", "Dato del blocco")[:150]
                                      for f in impacted[:8]],
                  **(_extension(extension) if extension else {})}
@@ -1100,6 +1103,68 @@ def open_condition_questions(pool):
     return questions
 
 
+def _open_confirmation(q):
+    """Backend confirmation of an open FORM condition (an extension keeps its own text)."""
+    if q.get("extension"):
+        return DialogueQuestion(slot=q["slot"], confirmation="la conferma vale anche per questi")
+    clause = short_form_text(re.sub(r"[?\[\]]", " ", q.get("condition") or ""), 200)
+    if len(clause) < 4 or not no_technical_ids(clause):
+        return None
+    # The anchored clause can be a fragment («dell’operatore economico», test 4): name the data.
+    labels = [short_form_text(label, 60) for label in q.get("affected_fields", [])[:3]]
+    labels = [label for label in labels if label and no_technical_ids(label)]
+    about = (" (riguarda: " + ", ".join(labels) + (" e altri" if len(
+        q.get("affected_fields", [])) > 3 else "") + ")") if labels else ""
+    return DialogueQuestion(slot=q["slot"], confirmation=(
+        f"si applica al vostro caso quanto indicato nel modulo: «{clause}»{about}"))
+
+
+def documented_proposal(field):
+    """A usable SOURCE proposal: grounded fact or SOURCE derivation, no validation error."""
+    proposal = field.get("proposal") if isinstance(field.get("proposal"), dict) else {}
+    return bool(not field.get("validation_errors") and (
+        field.get("validation") == "GROUNDED_PROPOSAL"
+        or field.get("proposal_grounding") == "GROUNDED_PROPOSAL"
+        or field.get("source_reuse") or field.get("fact_id") or proposal.get("fact_id")))
+
+
+def unexported_notice(data, written):
+    """Documented proposals the draft leaves empty and why (manual test 4: the operator and
+    technical-director data were empty behind «Le informazioni non verificate restano vuote»).
+    Exclusions and deferrals by the USER are not repeated; labels only, no MODEL reasons."""
+    audit, dialogue = data.get("audit") or {}, data.get("dialogue") or {}
+    answers, conditions = dialogue.get("answers", {}), audit.get("conditions", {})
+    held = set(dialogue.get("held_candidate_ids", []))
+    waiting, suspended = {}, []
+    for field in audit.get("fields", []):
+        cid, keys = field["candidate_id"], field.get("conditions", [])
+        if cid in written or not documented_proposal(field) or any(
+                answers.get("condition:" + c, {}).get("applies") is False
+                or conditions.get(c, {}).get("result") == "false" for c in keys):
+            continue
+        if cid in held:
+            suspended.append(field)
+            continue
+        open_keys = [c for c in keys if conditions.get(c, {}).get("result") != "true"
+                     and "condition:" + c not in answers and conditions.get(c, {}).get(
+                         "form_evidence")]
+        if open_keys:
+            waiting.setdefault(open_keys[0], []).append(field)
+
+    def names(fields):
+        labels = list(dict.fromkeys(f.get("label") or "dato" for f in fields))
+        return ", ".join(labels[:3]) + (" e altri" if len(labels) > 3 else "")
+
+    parts = [f"{len(fields)} dati trovati nelle fonti ({names(fields)}) aspettano la tua "
+             f"conferma su «{short_form_text(conditions[key]['form_evidence']['quote'], 120)}»"
+             for key, fields in waiting.items()]
+    if suspended:
+        parts.append(f"{len(suspended)} dati trovati nelle fonti ({names(suspended)}) sono "
+                     "sospesi in attesa di una verifica")
+    return ("Restano vuoti: " + "; ".join(parts) + ". Puoi confermarli o chiedermi di "
+            "riconsiderarli, poi rigenerare la bozza.") if parts else ""
+
+
 def _retry_question(q):
     """The refused question again, as the USER saw it, or its FORM clause."""
     if q["kind"] == "applicability":
@@ -1127,10 +1192,18 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
     required = [DialogueQuestion(slot=q["slot"], confirmation="autorizzi questa dichiarazione")
                 for q in pool if q.get("authorization")] + [
         _retry_question(q) for q in pool if q.get("retry") and not q.get("authorization")]
-    if required:
+    # A confirmation that releases documented SOURCE proposals is never left out (manual tests
+    # 3 and 4: the narrator preferred deferrable decisions and the draft left them empty).
+    chosen = {q.slot for q in questions} | {q.slot for q in required}
+    imposed = [q for q in (_open_confirmation(q) for q in sorted(
+        pool, key=lambda q: -q.get("documented", 0)) if q["kind"] == "applicability"
+        and q.get("documented") and q["slot"] not in chosen) if q]
+    if required or imposed:
         required_ids = {q.slot for q in required}
-        questions = (required + [q for q in questions
-                                 if q.slot not in required_ids])[:MAX_QUESTIONS]
+        rest = [q for q in questions if q.slot not in required_ids]
+        conditions = [q for q in rest if by_slot[q.slot]["kind"] == "applicability"]
+        questions = (required + conditions + imposed + [
+            q for q in rest if q not in conditions])[:MAX_QUESTIONS]
     for i, q in enumerate(questions):
         slot, text = by_slot[q.slot], q.question
         if require_confirmation and slot["kind"] == "applicability" and not q.confirmation:
