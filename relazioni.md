@@ -5739,3 +5739,21 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
 - **Token:** 482.332, 0 ignoti.
 - **Rapporto:** `docs/narratore-minervino-audit-03-2026-10-28.md`.
 
+
+
+## 29 ottobre 2026 — Correzioni offline delle cause dell'audit narratore 03
+
+- **Policy USER (`cfdbb06`, `2bdaf45`):** la regola segue tipo reale, ambito FORM e
+  destinazioni. Sulle 7 domande del 03 la revisione 1 falliva 4 casi su 17.
+- **Sottoscrittore (`f7d35f8`, `4712c49`):**
+  - la proposta bloccata non sopprime più la domanda sul nome di proprietà del FORM;
+  - le condizioni ereditate aspettano la scelta del firmatario, così la ricevuta copre la carica.
+- **Direttore tecnico (`f2d7577`):** una citazione di supporto senza ruolo non invalida più
+  un'attestazione letterale.
+- **Sintesi del narratore (`9aa37a9`):** vengono eliminate solo le frasi che negano la presenza
+  di un dato nelle fonti.
+- **Rigioco offline** (narratore, planner e guardia simulati; gate e writer reali): 48
+  scritture, di cui 46 uguali al replay a 58.
+- **Suite:** backend 4.077 PASS, Ruff PASS.
+- **Rapporto:** `docs/correzioni-audit-03-2026-10-29.md`.
+\n

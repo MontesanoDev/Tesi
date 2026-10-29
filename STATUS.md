@@ -1,5 +1,23 @@
 # Stato di Mapi RAG
 
+## Correzioni offline dopo l'audit 03 — 29 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Nessun audit reale senza autorizzazione; nessun push o merge.
+Branch `fix/2026-10-28-correzioni-audit-03`;
+[rapporto](docs/correzioni-audit-03-2026-10-29.md).
+
+- **Commit:**
+  - `cfdbb06` e `2bdaf45`: policy USER sui tipi reali degli slot;
+  - `f7d35f8` e `4712c49`: domanda sul sottoscrittore e ordine delle condizioni;
+  - `f2d7577`: citazioni di supporto nei binding di ruolo;
+  - `9aa37a9`: filtro della sintesi limitato alle frasi di assenza.
+- **Rigioco offline del 03:** 0 → 48 scritture, 46 uguali al replay a 58, 0 diverse, 0 domande
+  ripetute.
+- **Ancora vuoti:** 12 campi (validatore, scenario senza direttore tecnico, campi non proposti);
+  `p39.cb0` solo diagnosticata, con lo scope della condizione senza la casella.
+- **Verifiche:** backend 4.077 PASS (8 saltati per artefatti locali assenti), harness 89 PASS,
+  Ruff PASS; rollback verificati in 6 worktree.
+
 ## Audit narratore Minervino, tentativo 03 — completato, 28 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Unico tentativo autorizzato consumato; nessun fix.
