@@ -7,6 +7,7 @@ import hashlib
 import json
 import re
 import time
+import unicodedata
 from copy import deepcopy
 from datetime import UTC, datetime
 from typing import Literal
@@ -64,6 +65,74 @@ def absence_safe_message(message):
         return ("Ho conservato le proposte verificabili. " + ABSENCE_CAVEAT +
                 " Le proposte respinte e quelle in attesa di conferma restano distinte.")
     return " ".join(kept) + " " + ABSENCE_CAVEAT
+
+
+ROLE_CAVEAT = ("Indico cariche e ruoli delle persone solo quando le fonti li attestano per "
+               "questa domanda.")
+# Offices and roles a summary may attribute to a person (generic Italian wording).
+_ROLE = re.compile(r"\b(?:amministrator\w*|rappresentant\w*|legal\w* rappresentant\w*|"
+                   r"direttor\w*|responsabil\w*|soci[oa]?|president\w*|procurator\w*|"
+                   r"titolar\w*|consiglier\w*|sindac\w*)\b", re.I)
+
+
+def _plain(text):
+    return " ".join(unicodedata.normalize("NFKD", str(text or "")).encode(
+        "ascii", "ignore").decode().casefold().split())
+
+
+def attested_roles(data):
+    """Person → roles attested by a grounded binding (its SOURCE role, through its fields)."""
+    audit = data.get("audit") or {}
+    facts = audit.get("facts") or {}
+    people = {_plain(f.get("subject")) for f in facts.values()
+              if f.get("entity") == "person" and f.get("subject")}
+    roles = {person: set() for person in people if person}
+    for key, binding in (audit.get("bindings") or {}).items():
+        if binding.get("validation") != "GROUNDED_PROPOSAL":
+            continue
+        subjects = {_plain(r.get("subject")) for r in binding.get("record_attributions") or []}
+        subjects |= {_plain(facts.get(f.get("fact_id") or "", {}).get("subject"))
+                     for f in audit.get("fields", [])
+                     if (f.get("subject_binding") or {}).get("binding_id") == key}
+        # The binding's verified SOURCE quotes name its subject («Ing. Elisa Romano - …»).
+        quotes = [_plain(e.get("quote")) for e in binding.get("source_evidence") or []]
+        subjects |= {person for person in people if any(person in q for q in quotes)}
+        for subject in subjects - {""}:
+            roles.setdefault(subject, set()).update(
+                _plain(binding.get(k)) for k in ("source_role", "required_role") if binding.get(k))
+    return roles
+
+
+def role_safe_message(message, data):
+    """A summary attributes an office to a person only if a grounded binding attests it.
+
+    Manual Minervino test 2: «amministratore unico Luca Ferri», an office ceased before the
+    application date, while no grounded binding gave him that role. Each clause naming a known
+    person with an office that no grounded binding attests for that person is dropped; the
+    others stay verbatim, followed by the caveat. This is a filter on model prose only.
+    """
+    roles = attested_roles(data)
+    if not roles or not _ROLE.search(message):
+        return message
+    kept, dropped = [], False
+    for sentence in _sentences(message):
+        clauses = []
+        for clause in sentence.split(";"):
+            plain = _plain(clause)
+            words = {_plain(w) for w in _ROLE.findall(clause)}
+            named = [p for p in roles if p and p in plain]
+            if words and any(not any(w[:6] in r for w in words for r in roles[p])
+                             for p in named):
+                dropped = True
+                continue
+            clauses.append(clause.strip())
+        if clauses:
+            text = "; ".join(clauses)
+            text = text[:1].upper() + text[1:]
+            kept.append(text if text[-1:] in ".!?" else text + ".")
+    if not dropped:
+        return message
+    return " ".join(kept + [ROLE_CAVEAT])
 
 
 class DialogueQuestion(StrictModel):
@@ -1170,7 +1239,8 @@ async def _narrate_once(data, folder):
             raise ValueError("Sintesi con identificativi tecnici")
         if not follow_up:
             # Only the absence claims go; questions/holds stay intact.
-            plan = plan.model_copy(update={"message": absence_safe_message(plan.message)})
+            plan = plan.model_copy(update={"message": role_safe_message(
+                absence_safe_message(plan.message), data)})
         from app.compilation_global_sessions import review_fields
 
         proposals = _review_window(data)
