@@ -5803,3 +5803,11 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   Rollback verificati per ogni commit.
 - **Rapporto:** `docs/narratore-fluido-2026-10-29.md`; grezzo in
   `backend/data/compilation-audit/prova-manuale-minervino-20261029/`.
+
+## 29 ottobre 2026 — Seconda prova manuale: banner di recupero dopo le impostazioni AI
+
+- **Problema:** dopo «Aggiungi un modello» e il ritorno al progetto, il testo digitato e mai
+  inviato compariva come «messaggio conservato» da recuperare.
+- **Correzione `0264aca`:** la copia distingue un testo digitato da un messaggio inviato. Il testo
+  digitato torna nel composer; il recupero esplicito resta per gli invii. 6 test falliti prima
+  del fix; rollback verificato.

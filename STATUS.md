@@ -1,5 +1,11 @@
 # Stato di Mapi RAG
 
+## Seconda prova manuale: bozza digitata dopo le impostazioni AI — 29 ottobre 2026
+
+- **Correzione `0264aca`:** il testo solo digitato torna nel composer; «Recupera messaggio»
+  resta per le copie di messaggi inviati. Frontend 168/168; rollback verificato.
+- **Istanza:** quella della seconda prova (`a4582a1`) non è stata aggiornata durante la prova.
+
 ## Narratore fluido dalla prova manuale Minervino — 29 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Nessun audit reale, push o merge senza autorizzazione;

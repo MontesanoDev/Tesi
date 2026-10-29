@@ -69,3 +69,25 @@ originali passano e i nuovi tornano a 3 falliti.
 - una bozza identica all'ultimo messaggio riuscito viene considerata già inviata.
 
 L'istanza in esecuzione usa ancora il frontend di `dbdc317`.
+
+## 3. «Recupera messaggio» dopo l'aggiunta di un modello AI (seconda prova)
+
+- **Riproduzione:** testo digitato nel composer, poi «Aggiungi un modello nelle impostazioni»
+  (pagina `/settings`) e ritorno al progetto. Compare «Un messaggio è conservato in questa
+  scheda…» con «Recupera messaggio» al posto del testo.
+- **Tracce:** nella seconda istanza il primo invio («compila», 15:27:24) è successivo alla
+  creazione del profilo; prima nessun messaggio era stato inviato.
+- **Causa verificata:** il ritorno rimonta la pagina, che svuota il composer, mentre la copia del
+  testo digitato resta in `sessionStorage`. La copia non distingueva un testo solo digitato da un
+  messaggio inviato. Il banner è unico: il composer compare in due rami alternativi.
+- **Correzione (`0264aca`):**
+  - la copia registra se il messaggio è stato inviato;
+  - un testo solo digitato torna nel composer con il suo riferimento al documento, senza banner;
+  - il recupero esplicito resta per le copie di messaggi inviati (errore, invio interrotto);
+  - le copie salvate prima del campo contano come inviate;
+  - la rimozione delle copie già registrate dal server vale solo per le copie inviate, quindi
+    cade il limite sulla bozza identica all'ultimo messaggio.
+- **Test:** 6 nuovi o aggiornati falliscono senza il fix; frontend 168/168, lint e build PASS.
+- **Rollback:** `tesi-rollback-ux-bozza-0264aca-20261029`, albero uguale a `a4582a1`, 27 test del
+  genitore passati.
+- **Istanza:** l'istanza della seconda prova (`a4582a1`) non è stata aggiornata durante la prova.
