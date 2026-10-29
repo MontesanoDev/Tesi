@@ -390,6 +390,14 @@ def confirmed_text(slot):
                   r"da\s+(?:confermare|verificare))\b.*$", "", label, flags=re.I).strip() or label
 
 
+def refusal_label(slot):
+    """What a refused reply was about: the FORM clause for a confirmation, never the model's
+    note on it (E2E Minervino: «La qualità … non è confermata» was shown as the refused item)."""
+    if slot.get("kind") == "applicability" and (slot.get("condition") or "").strip():
+        return confirmed_text({**slot, "question": ""})
+    return slot.get("label")
+
+
 # How to clarify a refused reply, per slot kind: only the missing piece is asked.
 CLARIFY = {"choice": "indica il numero di una sola opzione", "applicability": "rispondi sì o no",
            "value": "indica il dato esatto", "decision": "indica la tua scelta"}
@@ -1694,7 +1702,7 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
         # Why each reply was not used: the guard's verdict code or the backend check, so that
         # only the missing clarification is asked. The model's own rationale is never shown.
         dialogue["latest_turn"] = {"accepted": accepted, "unaccepted": [
-            {"label": slots[n]["label"], "kind": slots[n]["kind"], "key": slots[n]["key"],
+            {"label": refusal_label(slots[n]), "kind": slots[n]["kind"], "key": slots[n]["key"],
              "question": slots[n].get("question", ""),
              "reason": refused.get(n) or REASON_TEXT.get((unaccepted_reasons or {}).get(n), "")}
             for n in sorted(set(errors) | set(unaccepted_slots)) if n in slots]}

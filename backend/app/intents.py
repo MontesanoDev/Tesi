@@ -787,10 +787,11 @@ async def plan_chat_turn(
                 if rejected:
                     kept = [r for r in proposed.replies if r not in rejected]
                     if not kept:
+                        from app.compilation_global_dialogue import refusal_label
                         from app.compilation_reply_guard import REASON_TEXT
 
                         # Short labels and the verified reason, not the whole FORM question.
-                        labels = {s["slot"]: s.get("label") or s.get("question") or "questo dato"
+                        labels = {s["slot"]: refusal_label(s) or s.get("question") or "questo dato"
                                   for s in context["slots"]}
                         names = ", ".join(f"«{str(labels[r.slot])[:120]}»" for r in rejected)
                         why = "; ".join(dict.fromkeys(REASON_TEXT[verification.reasons.get(
