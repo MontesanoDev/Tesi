@@ -289,20 +289,37 @@ domande residue. Non ripetere nelle domande elenchi di valori già trovati.
 """
 
 
+def short_form_text(text, limit=120):
+    """A FORM clause or option for a question: no legal references, lead-ins or glyphs."""
+    text = re.sub(r"\([^()]*\)", " ", text or "")
+    text = re.sub(r"[☐☑☒]|\[\s*\]|_{2,}|\.{3,}|…", " ", text)
+    text = " ".join(text.split()).strip(" :;,.")
+    text = re.sub(r"\s+(?:avente la seguente(?: denominazione)?|che, ai fini dell[’']inserimento "
+                  r"nell[’']elenco, assume la seguente denominazione|denominato)$", "", text)
+    return text if len(text) <= limit else text[:limit - 1].rsplit(" ", 1)[0] + "…"
+
+
+# How to clarify a refused reply, per slot kind: only the missing piece is asked.
+CLARIFY = {"choice": "indica il numero di una sola opzione", "applicability": "rispondi sì o no",
+           "value": "indica il dato esatto", "decision": "indica la tua scelta"}
+
+
 def continuation_receipt(dialogue, *, newly_held=False):
     """Acknowledge actual mutations, never regenerate an inventory of SOURCE facts."""
     latest = dialogue.get("latest_turn") or {}
     accepted = latest.get("accepted", [])
 
-    def labels(records):
+    def labels(records, key='label'):
         return "; ".join(dict.fromkeys(
-            str(r['label'])[:180] for r in records
-            if r.get('label') and no_technical_ids(str(r['label'])))) or "punti indicati"
+            str(r.get(key) or r['label'])[:180] for r in records
+            if r.get('label') and no_technical_ids(str(r.get(key) or r['label'])))
+        ) or "punti indicati"
 
     parts = []
-    for action, outcome in [("CONDITION_TRUE", "confermate"), ("CONDITION_FALSE", "escluse")]:
+    for action, outcome in [("CONDITION_TRUE", "Confermato"), ("CONDITION_FALSE", "Escluso")]:
         if records := [r for r in accepted if r["action"] == action]:
-            parts.append(f"Condizioni {outcome}: {labels(records)}.")
+            # The FORM clause the USER answered, not the model's note on what was missing.
+            parts.append(f"{outcome}: {labels(records, 'form_clause')}.")
     if records := [r for r in accepted if r["action"] == "VALUE"
                    and r.get("write_authorized") is not False]:
         parts.append(f"Ho registrato i dati: {labels(records)}. "
@@ -313,9 +330,13 @@ def continuation_receipt(dialogue, *, newly_held=False):
                      "non autorizza ancora scritture; manca la verifica dei campi destinatari.")
     if records := [r for r in accepted if r["action"] in {"SKIP", "UNKNOWN", "REFUSE"}]:
         parts.append(f"Lascio in bianco i punti rinviati o non confermati: {labels(records)}.")
-    if latest.get("unaccepted"):
-        parts.append(f"Risposte non accettate: {labels(latest['unaccepted'])}. "
-                     "Non le ho usate per autorizzare scritture; serve un chiarimento.")
+    for refused in latest.get("unaccepted", []):
+        label = str(refused.get("label") or "questa domanda")[:120]
+        reason = refused.get("reason")
+        parts.append(f"Non ho usato la risposta su «{label}»"
+                     + (f": {reason}" if reason and no_technical_ids(reason) else "")
+                     + f". Per chiarire {CLARIFY.get(refused.get('kind'), 'precisa la risposta')}"
+                       ", oppure rinvia; nulla è stato scritto.")
     if not parts:
         parts.append("Riprendiamo dal punto rimasto aperto.")
     if newly_held:
@@ -1277,7 +1298,7 @@ def condition_receipts(data, slot, record, reply):
 
 
 def apply_replies(project_id, session_id, version, replies, message, unaccepted_slots=(),
-                  scope_verifications=None):
+                  scope_verifications=None, unaccepted_reasons=None):
     from app.compilation_chat import (
         contains_span,
         has_user_alternatives,
@@ -1301,7 +1322,7 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
         fields.update(signatory_fields(data))
         answers, user_values = dialogue.setdefault("answers", {}), dialogue.setdefault(
             "user_values", {})
-        errors, changed, accepted = [], False, []
+        errors, changed, accepted, refused = [], False, [], {}
         # P3: alternatives/uncertainty are judged by the semantic reply guard upstream;
         # only a disjunction on a literal value itself remains a backend veto.
         guarded = data.get("dialogue_revision") == 1
@@ -1381,7 +1402,8 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                 }:
                     if alternatives(reply):
                         raise ValueError("Risposta incerta sulla condizione")
-                    record["applies"] = reply.action == "CONDITION_TRUE"
+                    record.update(applies=reply.action == "CONDITION_TRUE",
+                                  form_clause=short_form_text(slot.get("condition")))
                 elif slot["kind"] == "value" and reply.action == "VALUE":
                     if reply.selected_options is not None:
                         raise ValueError("Opzioni non ammesse per un campo testuale")
@@ -1411,10 +1433,16 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                 answers.update(condition_receipts(data, slot, record, reply))
                 accepted.append({k: v for k, v in record.items() if k != "affected_fields"})
                 changed = True
-            except ValueError:
+            except ValueError as exc:
                 errors.append(reply.slot)
+                refused[reply.slot] = str(exc)
+        from app.compilation_reply_guard import REASON_TEXT
+
+        # Why each reply was not used: the guard's verdict code or the backend check, so that
+        # only the missing clarification is asked. The model's own rationale is never shown.
         dialogue["latest_turn"] = {"accepted": accepted, "unaccepted": [
-            {"label": slots[n]["label"], "kind": slots[n]["kind"]}
+            {"label": slots[n]["label"], "kind": slots[n]["kind"],
+             "reason": refused.get(n) or REASON_TEXT.get((unaccepted_reasons or {}).get(n), "")}
             for n in sorted(set(errors) | set(unaccepted_slots)) if n in slots]}
         if guarded:
             # Loop guard: two unaccepted replies to the same slot leave it explicitly

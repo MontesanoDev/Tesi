@@ -48,6 +48,29 @@ class ReplyScopeResult:
     allowed_slots: frozenset[int]
     total_tokens: int | None
     scope_verifications: dict[int, str] = field(default_factory=dict)
+    # Backend codes for refused slots (UNRELATED, AMBIGUOUS, SCOPE, UNCHECKED); never model text.
+    reasons: dict[int, str] = field(default_factory=dict)
+
+
+REASON_TEXT = {
+    "UNRELATED": "non riguarda questa domanda",
+    "AMBIGUOUS": "non indica con certezza l'opzione o il dato scelto",
+    "SCOPE": "non riesco a verificare a quali campi del modulo si applica",
+    "UNCHECKED": "la verifica della risposta non è riuscita",
+}
+
+
+def refusal_reasons(checks, expected, allowed):
+    """Why each expected slot was refused, from the verdict fields only (rationale unused)."""
+    counts = Counter(c.slot for c in checks)
+    reasons = {}
+    for check in checks:
+        if check.slot not in expected or check.slot in allowed:
+            continue
+        # A supported answer can still be refused for its scope (or missing destinations).
+        reasons[check.slot] = ("AMBIGUOUS" if counts[check.slot] > 1 else
+                               check.result if check.result != "SUPPORTED" else "SCOPE")
+    return {slot: reasons.get(slot, "UNCHECKED") for slot in sorted(expected - allowed)}
 
 
 TASK = """Verifica la PERTINENZA delle risposte USER alle domande di compilazione.
@@ -215,8 +238,13 @@ async def verify_field_replies(message, context, replies, *, request):
             allowed = frozenset(verifications)
         else:
             allowed = accepted_slots(raw, {p["slot"] for p in proposals})
+            cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw.strip(), flags=re.I)
+            from app.compilation_json import checked_json
+
+            checks = ReplyScopeChecks.model_validate(checked_json(cleaned)).checks
     except (GenerationError, httpx.HTTPError, ValueError, RecursionError) as exc:
         logger.warning("DOCX reply scope check failed: %s", type(exc).__name__)
-        allowed = frozenset()
+        allowed, checks = frozenset(), []
     logger.info("DOCX reply scope checked=%d accepted=%d", len(proposals), len(allowed))
-    return ReplyScopeResult(allowed, tokens, verifications)
+    reasons = refusal_reasons(checks, {p["slot"] for p in proposals}, allowed)
+    return ReplyScopeResult(allowed, tokens, verifications, reasons)

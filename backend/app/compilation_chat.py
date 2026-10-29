@@ -73,6 +73,7 @@ class ClarificationDecision(StrictModel):
     # Internal receipt of discarded proposals; never returned by the LLM.
     unaccepted_slots: list[int] = Field(default_factory=list, max_length=4)
     scope_verifications: dict[int, str] = Field(default_factory=dict)
+    unaccepted_reasons: dict[int, str] = Field(default_factory=dict)  # Guard codes per slot.
 
     @model_validator(mode="after")
     def distinct_slots(self):
@@ -94,7 +95,8 @@ async def handle_group_decision(project_id, conversation_id, decision, session, 
 
         after, errors = await run_in_threadpool(apply_replies, project_id, session["id"],
             expected_version or session["version"], decision.replies, message,
-            decision.unaccepted_slots, decision.scope_verifications)
+            decision.unaccepted_slots, decision.scope_verifications,
+            decision.unaccepted_reasons)
         return ("Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti."
                 if after["chat"]["auto_continue"] else
                 after["global_compilation"]["dialogue"]["message"]), {
