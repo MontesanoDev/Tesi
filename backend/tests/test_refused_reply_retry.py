@@ -31,8 +31,8 @@ def test_the_refused_question_comes_first_even_if_the_narrator_skips_it():
     others = [q for q in pool if q['key'] != 'field:p0.s0']
     plan = DialoguePlan(message='Riprendo dal punto aperto.', questions=[])
     if others:  # The narrator chose another question only.
-        plan = DialoguePlan(message='Riprendo dal punto aperto.', questions=[{'slot': others[0]['slot'],
-                                                              'question': 'Altro dato?'}])
+        plan = DialoguePlan(message='Riprendo dal punto aperto.', questions=[
+            {'slot': others[0]['slot'], 'question': 'Altro dato?'}])
     slots = render_dialogue(plan, pool, follow_up=True)['question']['slots']
     assert slots[0]['key'] == 'field:p0.s0' and slots[0]['question'] == SHOWN
 
