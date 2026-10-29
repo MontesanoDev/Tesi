@@ -829,7 +829,7 @@ def _quote_location(context, quote):
                  if any(contains_form_span(text, quote) for text in _strings(item))), "not_found")
 
 
-def _blocker_link(proposal, value, context, review, pool):
+def _blocker_link(proposal, value, context, review, pool, audit=None):
     """Release key of a USER-resolvable hold, only when the backend can verify the link.
 
     The narrator's slot counts only if it gates this very proposal; otherwise the cited
@@ -841,6 +841,14 @@ def _blocker_link(proposal, value, context, review, pool):
         slot = pool[review.condition_slot - 1]
         if proposal["candidate_id"] in slot.get("field_ids", []):
             return slot["key"], "GOVERNING_SLOT"
+        # The FORM capacity choice decides the branch of the proposal's own conditions (E2E
+        # Minervino: partners held until «IN QUALITÀ DI» was chosen, never released after it).
+        group = (audit or {}).get("choice_groups", {}).get(
+            slot["key"].removeprefix("choice:"), {}) if slot["key"].startswith("choice:") else {}
+        branch = {c for keys in group.get("applicable", {}).values() for c in keys}
+        if group.get("origin") == "FORM_capacity_choice" and branch & set(
+                proposal.get("conditions", [])):
+            return slot["key"], "CAPACITY_CHOICE_BRANCH"
     own = [c["condition_key"] for c in context["applicability_contexts"]
            if c["slot"] in value["applicability_slots"] and norm(review.evidence_quote) == norm(
                (c.get("form_evidence") or {}).get("quote", ""))]
@@ -933,7 +941,7 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
         if (validation == "RECORDED" and not unresolved
                 and review.blocker in {"applicability", "user_decision"}):
             key, basis = _blocker_link(proposals[review.proposal_slot - 1], value, context,
-                                       review, pool)
+                                       review, pool, data.get("audit"))
             if key:
                 notes[cid].update(blocker_key=key, blocker_key_basis=basis)
     if unresolved:
