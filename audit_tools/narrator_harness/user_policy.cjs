@@ -17,7 +17,10 @@ function rule(slot){
   if(CONFIRMABLE.has(slot.kind)){
     if(/legale rappresentante di societa di professionisti/.test(form)
        &&/societa di ingegneria/.test(form))return 'corporate';
-    if(/^\W*il sottoscritto\b/.test(form)&&ids.includes('p12.s0'))return 'name';
+    // The signatory block: with the role among the destinations, the role confirmation
+    // (it names the person and the documented office); the name alone otherwise.
+    if(/^\W*il sottoscritto\b/.test(form)&&ids.some(id=>/^p1[234]\./.test(id)))
+      return ids.includes('p14.s0')?'role':'name';
     if(/(?:^|\W)dell'operatore economico\W*$/.test(form)&&ids.includes('p14.s1'))return 'company';
     if(/partecip/.test(ask+' '+form)&&/singol|raggrupp/.test(ask+' '+form))return 'single';
     return 'defer';
