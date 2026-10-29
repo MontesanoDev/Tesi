@@ -776,14 +776,9 @@ async def plan_chat_turn(
                 if rejected:
                     kept = [r for r in proposed.replies if r not in rejected]
                     if not kept:
-                        from app.compilation_reply_guard import REASON_TEXT
-
-                        # Short labels and the verified reason, not the whole FORM question.
-                        labels = {s["slot"]: s.get("label") or s.get("question") or "questo dato"
+                        labels = {s["slot"]: s.get("question") or s.get("label") or "questo dato"
                                   for s in context["slots"]}
-                        names = ", ".join(f"«{str(labels[r.slot])[:120]}»" for r in rejected)
-                        why = "; ".join(dict.fromkeys(REASON_TEXT[verification.reasons.get(
-                            r.slot, "UNCHECKED")] for r in rejected))
+                        names = ", ".join(f"«{labels[r.slot]}»" for r in rejected)
                         # Preserve the active question and every field. An unrelated
                         # correction is not permission to change a different field.
                         wide_defer = [s for s in context["slots"] if any(
@@ -792,8 +787,8 @@ async def plan_chat_turn(
                         answer = ("Il rinvio di questa conferma lascerebbe in bianco "
                                   "più dati collegati. Vuoi rinviare l'intera conferma "
                                   "oppure soltanto una specifica informazione?" if wide_defer else
-                                  f"Non ho usato la risposta su {names}: {why}. Puoi precisare "
-                                  "soltanto questo punto?")
+                                  f"Sto chiedendo {names}. Non posso associare con sicurezza "
+                                  "la tua indicazione a questa richiesta. Puoi precisare?")
                         proposed = TurnPlan(intent="explain", target="source", queries=[],
                                             answer=answer)
                     else:
@@ -802,8 +797,7 @@ async def plan_chat_turn(
                 if isinstance(decision, ClarificationDecision):
                     decision = decision.model_copy(update={"unaccepted_slots": sorted(
                         raw_slots - {r.slot for r in decision.replies}),
-                        "scope_verifications": verification.scope_verifications,
-                        "unaccepted_reasons": verification.reasons})
+                        "scope_verifications": verification.scope_verifications})
             total = sum(token_counts) if all(n is not None for n in token_counts) else None
             logger.info("Chat routing intent=%s slots=%d attempts=%d",
                         proposed.intent, len(allowed_slots), attempt + 1)

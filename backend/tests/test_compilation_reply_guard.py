@@ -105,8 +105,7 @@ async def test_wrong_subject_is_rejected_through_actual_http_and_state_preserved
         })
     assert response.status_code == 200, response.text
     assert response.json()["compilation"] is None
-    assert "Non ho usato la risposta su" in response.json()["answer"]
-    assert "non riguarda questa domanda" in response.json()["answer"]  # The verified reason.
+    assert "Non posso associare" in response.json()["answer"]
     assert compilation_sessions.get_session(project, before["id"]) == before
     assert len(calls) == 2
 
