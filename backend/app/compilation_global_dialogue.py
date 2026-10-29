@@ -440,19 +440,14 @@ def question_pool(data):
                      "alternatives": [o["label"] for o in group["options"].values()],
                      "selection": group["selection"], "min_selected": group["min_selected"],
                      "impact": len(group["options"]),
-                     # Numbered short options; the full FORM labels stay available as details.
                      **({"form_owned": True, "question": "\n".join([
                          *(["La scelta registrata non è più verificabile: è cambiata una "
                             "conferma collegata a queste opzioni. Indicala di nuovo."]
                            if stale else []),
-                         f"Quale opzione di «{short_form_text(group['label'])}» scegli? Indica "
-                         "il numero di una sola opzione: nessuna casella viene spuntata senza "
-                         "la tua scelta.",
-                         *(f"{n}. {short_form_text(o['label'], 90)}"
-                           + (" (ramo già confermato)" if cid in group["applicable"] else "")
-                           for n, (cid, o) in enumerate(group["options"].items(), 1))]),
-                        "details": ["☐ " + o["label"] for o in group["options"].values()]}
-                        if capacity else {})})
+                         "Quale qualità del modulo scegli per questa domanda? Indica una sola "
+                         "opzione: nessuna casella viene spuntata senza la tua scelta.",
+                         group["label"], *("☐ " + o["label"] for o in group["options"].values())
+                     ])} if capacity else {})})
     for field in fields:
         cid = field["candidate_id"]
         if (cid not in data["writable_ids"] or "field:" + cid in answers
@@ -951,8 +946,7 @@ def open_condition_questions(pool):
             continue
         if q["kind"] != "applicability" or not q["key"].startswith("condition:"):
             continue
-        # The clause itself, without legal references or lead-ins (details stay in the FORM).
-        quote = short_form_text(re.sub(r"[?\[\]]", " ", q.get("condition") or ""), 200)
+        quote = " ".join(re.sub(r"[?\[\]]", " ", q.get("condition") or "").split())[:300]
         if len(quote) < 4 or not no_technical_ids(quote):
             continue
         questions.append(DialogueQuestion(slot=q["slot"], confirmation=(

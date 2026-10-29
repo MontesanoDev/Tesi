@@ -83,15 +83,8 @@ def test_form_options_are_asked_and_nothing_is_selected_before_the_choice():
     assert CID not in data['audit'].get('receipt_choice_values', {})
     slot = slot_of(data)
     assert slot['key'] == KEY and slot['field_ids'] == OPTIONS and slot['form_owned']
-    # Short numbered options (the number is the USER's answer); the full FORM labels as details.
-    assert slot['question'].splitlines() == [
-        'Quale opzione di «IN QUALITÀ DI» scegli? Indica il numero di una sola opzione: '
-        'nessuna casella viene spuntata senza la tua scelta.',
-        '1. Professionista singolo',
-        '2. Legale rappresentante di società di ingegneria (ramo già confermato)',
-        '3. Mandatario di raggruppamento']
-    assert slot['details'] == [
-        '☐ Professionista singolo',
+    assert slot['question'].splitlines()[1:] == [
+        'IN QUALITÀ DI', '☐ Professionista singolo',
         '☐ Legale rappresentante di società di ingegneria avente la seguente',
         '☐ Mandatario di raggruppamento']
     # Backend text, also when the narrator asks nothing; never a vague assent.

@@ -163,11 +163,7 @@ export interface CompilationSessionField {
 
 export interface CompilationSession extends CompilationSessionSummary {
   global_compilation?: {
-    dialogue?: {
-      phase: 'PENDING' | 'READY'; message?: string; user_turns?: number
-      // Full FORM text of a question, kept out of the message and shown on request.
-      question?: { slots?: { slot: number; label?: string; details?: string[] }[] } | null
-    }
+    dialogue?: { phase: 'PENDING' | 'READY'; message?: string; user_turns?: number }
     phase: 'PENDING' | 'ANALYZING' | 'REVIEW'
     compilation_profile?: string
     generation_revision?: number
