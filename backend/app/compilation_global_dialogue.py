@@ -1135,7 +1135,7 @@ def unexported_notice(data, written):
     audit, dialogue = data.get("audit") or {}, data.get("dialogue") or {}
     answers, conditions = dialogue.get("answers", {}), audit.get("conditions", {})
     held = set(dialogue.get("held_candidate_ids", []))
-    waiting, suspended = {}, []
+    waiting, deferred, suspended = {}, {}, []
     for field in audit.get("fields", []):
         cid, keys = field["candidate_id"], field.get("conditions", [])
         if cid in written or not documented_proposal(field) or any(
@@ -1148,8 +1148,14 @@ def unexported_notice(data, written):
         open_keys = [c for c in keys if conditions.get(c, {}).get("result") != "true"
                      and "condition:" + c not in answers and conditions.get(c, {}).get(
                          "form_evidence")]
+        # A deferral is the USER's choice, but its cost is shown (E2E Trapani: 9 company data
+        # waited for a deferred confirmation and the draft did not say so).
+        later = [c for c in keys if answers.get("condition:" + c, {}).get("action") in {
+            "SKIP", "UNKNOWN"} and conditions.get(c, {}).get("form_evidence")]
         if open_keys:
             waiting.setdefault(open_keys[0], []).append(field)
+        elif later:
+            deferred.setdefault(later[0], []).append(field)
 
     def names(fields):
         labels = list(dict.fromkeys(f.get("label") or "dato" for f in fields))
@@ -1158,6 +1164,10 @@ def unexported_notice(data, written):
     parts = [f"{len(fields)} dati trovati nelle fonti ({names(fields)}) aspettano la tua "
              f"conferma su «{short_form_text(conditions[key]['form_evidence']['quote'], 120)}»"
              for key, fields in waiting.items()]
+    parts += [f"{len(fields)} dati trovati nelle fonti ({names(fields)}) restano vuoti perché hai "
+              "rinviato la conferma su "
+              f"«{short_form_text(conditions[key]['form_evidence']['quote'], 120)}»"
+              for key, fields in deferred.items()]
     if suspended:
         parts.append(f"{len(suspended)} dati trovati nelle fonti ({names(suspended)}) sono "
                      "sospesi in attesa di una verifica")

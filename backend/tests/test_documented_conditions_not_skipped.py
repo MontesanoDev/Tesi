@@ -67,3 +67,12 @@ def test_the_draft_names_documented_data_left_empty_and_why():
     assert "sono sospesi in attesa di una verifica" in unexported_notice(data, written=set())
     assert unexported_notice(data, written={OPERATOR}) == ""
     assert OUTSIDE not in unexported_notice(data, written=set())  # No proposal, not listed.
+
+
+def test_a_deferred_confirmation_says_how_many_documented_data_wait_for_it():
+    """E2E Trapani (29 Oct): nine company data waited for a deferred participation clause."""
+    data = case()
+    data["dialogue"]["answers"]["condition:c_firm"] = {"action": "SKIP", "provenance": "USER",
+                                                       "user_quote": "Rinvio"}
+    notice = unexported_notice(data, written=set())
+    assert f"restano vuoti perché hai rinviato la conferma su «{CLAUSE}»" in notice
