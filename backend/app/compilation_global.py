@@ -751,6 +751,14 @@ def _value_comparison_text(value):
     return _comparison_text(value).lower()
 
 
+def _sibling_value_text(value):
+    # One complete calendar date in two SOURCE wordings is the same value, not a
+    # choice (manual test 2: «18/05/2015» and «18 maggio 2015»). Partial dates stay text.
+    from app.compilation_chat import normalize_date
+
+    return normalize_date(value) or _value_comparison_text(value)
+
+
 def _shared_conditions(records, paragraphs, facts, *, preserve_form_unknown=False):
     conditions = {}
     for condition_id, record in records.items():
@@ -1639,9 +1647,9 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map, *, budget_sc
                     for ref, fact in result["facts"].items():
                         if (fact["validation"] == "GROUNDED_PROPOSAL"
                                 and _fact_identity(fact) == _fact_identity(chosen)
-                                and _value_comparison_text(fact["value"]) !=
-                                _value_comparison_text(chosen["value"])):
-                            siblings.setdefault(_value_comparison_text(fact["value"]), ref)
+                                and _sibling_value_text(fact["value"]) !=
+                                _sibling_value_text(chosen["value"])):
+                            siblings.setdefault(_sibling_value_text(fact["value"]), ref)
                     if siblings:
                         fact_ids = [item.fact_id, *siblings.values()]
                 if fact_ids:
