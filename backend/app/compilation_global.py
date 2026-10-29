@@ -1227,19 +1227,26 @@ def _subject_bindings(records, paragraphs, source_map, *, structural=False):
                                          + r"(?!\w)", _role_text(quote)):
                 raise ValueError("Ruolo richiesto assente nell'estratto FORM")
             output["form_evidence"] = {"paragraph_id": item.form.paragraph_id, "quote": quote}
-            proofs, role_missing = [], False
+            attested, unattested = [], []
             for citation in item.evidence:
                 source, quote = _source_quote(citation, source_map)
-                if not re.search(r"(?<!\w)" + re.escape(_role_text(item.source_role)) + r"(?!\w)",
-                                 _role_text(quote)):
-                    if not structural:
-                        raise ValueError("Ruolo attestato assente nell'estratto SOURCE")
-                    role_missing = True
                 if source["category"] == "general":
                     raise ValueError("General KB non attesta il ruolo personale/aziendale")
-                proofs.append(_citation_audit(citation, source, quote))
-                if not structural:
-                    output["source_evidence"].append(proofs[-1])
+                proof = _citation_audit(citation, source, quote)
+                if re.search(r"(?<!\w)" + re.escape(_role_text(item.source_role)) + r"(?!\w)",
+                             _role_text(quote)):
+                    attested.append(proof)
+                else:
+                    unattested.append(({"chunk_id": citation.chunk_id, "quote": quote}, proof))
+            # A supporting citation without the role proves nothing: with a literal attestation
+            # elsewhere it is only recorded. Without one, only a structural table record can
+            # supply the role (as before); otherwise the binding is rejected.
+            role_missing = not attested
+            if role_missing and not structural:
+                raise ValueError("Ruolo attestato assente nell'estratto SOURCE")
+            proofs = attested or [proof for _, proof in unattested]
+            if attested and unattested:
+                output["non_attesting_citations"] = [citation for citation, _ in unattested]
             if role_missing:
                 chunks = {p["chunk_id"] for p in proofs}
                 table = table_support(source_map[proofs[0]["chunk_id"]]["content"],
