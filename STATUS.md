@@ -1,5 +1,15 @@
 # Stato di Mapi RAG
 
+## Compilatore monolitico: verifica offline — 29 ottobre 2026
+
+- **In Git, esatto:** `99ab052` (tag `baseline-minervino-v1-20261016`). In un worktree isolato
+  passano 2.233 test; lo scorer B0 rieseguito dà risultati identici agli originali.
+- **Fuori da Git:** le monolitiche del 21 e del 22 ottobre, in `benchmark ufficiale/`
+  (anche nel backup del 26 ottobre). Nel codice attuale resta il profilo `storico`.
+- **Confronto:** FORM, SOURCE e criteri sono gli stessi; mancano una politica USER comune e un
+  braccio che vari la sola generazione.
+  [Rapporto](docs/verifica-compilatore-monolitico-2026-10-29.md).
+
 ## Correzioni offline dopo l'audit 03 — 29 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Nessun audit reale senza autorizzazione; nessun push o merge.

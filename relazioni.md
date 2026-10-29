@@ -5768,3 +5768,15 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - rigioco storico invariato a 48 scritture; controfattuale con risposta autorizzante a 49,
     con la sola `p39.cb0` spuntata;
   - suite backend 4.102 PASS; rollback verificato.
+
+## 29 ottobre 2026 — Compilatore DOCX monolitico: presenza ed eseguibilità
+
+- **Codice:**
+  - `99ab052` in Git;
+  - V12 del 21 ottobre e candidata del 22 ottobre archiviate in `benchmark ufficiale/`;
+  - profilo `storico` nel codice attuale.
+- **Verifiche offline:** suite di `99ab052` con 2.233 test passati; analisi a chiamata unica con
+  provider simulato; scorer B0 riprodotto byte per byte.
+- **Con lo stesso gold, su 60 SOURCE:** B0 23/17/22, V12 43, tentativo 03 per sezioni 0, rigioco
+  con i fix 47 (dialogo simulato). Prove non appaiate.
+- **Rapporto:** `docs/verifica-compilatore-monolitico-2026-10-29.md`.
