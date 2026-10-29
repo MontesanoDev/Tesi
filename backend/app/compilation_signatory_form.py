@@ -14,6 +14,7 @@ COMPANY = re.compile(r"\b(?:operatore\s+economico|società|studio/società/conso
 OTHER_PERSON = re.compile(r"\b(?:direttore\s+tecnico|socio|associato|professionista\s+"
                           r"(?:designato|incaricato)|responsabile\s+tecnico)\b", re.I)
 CONDITIONAL = re.compile(r"\b(?:se|qualora|ove|in\s+caso)\b", re.I)
+SIGNATURE = re.compile(r"\bfirm[ae]\b", re.I)  # The noun, not «firmatario».
 
 
 def _events(catalog):
@@ -133,7 +134,9 @@ def signatory_groups(catalog):
                 continue
             if SIGNER.search(prefix):
                 close()
-                if conditional_heading or CONDITIONAL.search(prefix):
+                # «Firma del sottoscrittore: ____» is the signature itself, never the name
+                # (E2E benchmark compilazione V1: the name was asked on the signature line).
+                if conditional_heading or CONDITIONAL.search(prefix) or SIGNATURE.search(prefix):
                     active, previous = None, None
                     offset = match.end()
                     continue
