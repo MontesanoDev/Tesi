@@ -185,7 +185,7 @@ def _capacity_trigger(data, key, condition, receipt):
 
 
 def capacity_choice_valid(data, cid, key=None):
-    """The exact USER choice of this option, under the condition that made it applicable."""
+    """The exact USER choice of this option, under a condition that made it applicable."""
     from app.compilation_scope_review import valid_receipt
 
     dialogue = data.get("dialogue") or {}
@@ -198,7 +198,7 @@ def capacity_choice_valid(data, cid, key=None):
         group.get("origin") == "FORM_capacity_choice"
         and group.get("validation") == "GROUNDED_GROUP"
         and cid in group.get("applicable", {})
-        and (key is None or group["applicable"][cid] == key)
+        and (key is None or key in group["applicable"][cid])
         and value.get("value") is True
         and value.get("provenance") == "USER"
         and answer.get("selected_options") == [options.index(cid) + 1]
@@ -449,10 +449,17 @@ def reconcile_branches(data, layout, project_id, sources):
     for key, condition in result.get("conditions", {}).items():
         receipt = (data.get("dialogue") or {}).get("answers", {}).get("condition:" + key, {})
         match = _receipt_control(current, key, condition, receipt)
+        # Only a representation link is ever exported (linked_receipt_valid). Where the
+        # explicit FORM choice is available, a participation/legal-type link must not occupy
+        # the region: the box could then never be written and the USER choice would be lost.
+        trigger = None if match and condition.get("aspect") == "representation" else (
+            _capacity_trigger(current, key, condition, receipt))
+        if trigger:
+            cid, (heading, options) = trigger
+            capacity.setdefault(heading["id"], (heading, options, {}))[2].setdefault(
+                cid, []).append(key)
+            continue
         if not match:
-            if trigger := _capacity_trigger(current, key, condition, receipt):
-                cid, (heading, options) = trigger
-                capacity.setdefault(heading["id"], (heading, options, {}))[2][cid] = key
             continue
         cid, (heading, options) = match
         if used & options.keys():

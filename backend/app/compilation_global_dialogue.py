@@ -331,6 +331,7 @@ def source_role_coverage(data):
 
 
 def question_pool(data):
+    from app.compilation_branch_evidence import capacity_choice_valid
     from app.compilation_procedural_consent import questions as consent_questions
     from app.compilation_source_reuse import pending_signatory_conditions, signatory_fields
     from app.compilation_user_decisions import decision_questions
@@ -387,11 +388,16 @@ def question_pool(data):
         # The FORM capacity region (unknown cardinality) is asked only under the
         # accepted conditions that make one of its options applicable.
         capacity = group.get("origin") == "FORM_capacity_choice"
-        if (group["validation"] != "GROUNDED_GROUP" or "choice:" + key in answers
+        # An explicit choice made unverifiable by a later change of a related answer is asked
+        # again, saying why; a deferral or a choice still valid is never asked again.
+        stale = capacity and answers.get("choice:" + key, {}).get("action") == "VALUE" and not any(
+            capacity_choice_valid(data, cid) for cid in group["options"])
+        if (group["validation"] != "GROUNDED_GROUP"
+                or "choice:" + key in answers and not stale
                 or not capacity and (group["selection"] == "unknown"
                                      or not group["min_selected"])):
             continue
-        conditions = set(group["applicable"].values()) if capacity else (
+        conditions = {c for keys in group["applicable"].values() for c in keys} if capacity else (
             set(group["conditions"]) | {
                 c for f in audit.get("fields", []) if f.get("choice_group_id") == key
                 for c in f.get("conditions", [])})
@@ -411,6 +417,9 @@ def question_pool(data):
                      "selection": group["selection"], "min_selected": group["min_selected"],
                      "impact": len(group["options"]),
                      **({"form_owned": True, "question": "\n".join([
+                         *(["La scelta registrata non è più verificabile: è cambiata una "
+                            "conferma collegata a queste opzioni. Indicala di nuovo."]
+                           if stale else []),
                          "Quale qualità del modulo scegli per questa domanda? Indica una sola "
                          "opzione: nessuna casella viene spuntata senza la tua scelta.",
                          group["label"], *("☐ " + o["label"] for o in group["options"].values())
@@ -1352,8 +1361,16 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                     if not reply.value or not contains_span(reply.user_quote, reply.value):
                         raise ValueError("Scelta non grounded nel messaggio USER")
                     updated = user_choice(data, slot, reply)
+                    superseded = {}
+                    if data["audit"]["choice_groups"].get(slot["choice_group_id"], {}).get(
+                            "origin") == "FORM_capacity_choice":
+                        # A new explicit choice replaces the region's previous one entirely.
+                        superseded = {cid: user_values.pop(cid) for cid in slot["field_ids"]
+                                      if user_values.get(cid, {}).get("choice_group_id")
+                                      == slot["choice_group_id"]}
                     for cid, chosen in updated.items():
-                        user_values[cid] = {**chosen, "previous": user_values.get(cid)}
+                        user_values[cid] = {**chosen, "previous": superseded.get(
+                            cid, user_values.get(cid))}
                     record["selected_options"] = reply.selected_options
                     record["value"] = reply.value
                 elif slot["kind"] == "applicability" and reply.action in {

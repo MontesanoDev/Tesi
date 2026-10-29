@@ -61,8 +61,15 @@ def case(second=True, paragraph='paragraph:3', operator='semantic'):
                                                  'quote': quote})
     data = {'generation_revision': 3, 'catalog': catalog, 'audit': audit,
             'writable_ids': list(catalog['candidates']),
-            'dialogue': {'answers': {}, 'user_values': {}}}
+            'dialogue': {'answers': {}, 'user_values': {}}, 'validated': deepcopy(audit)}
     return data, layout
+
+
+def derive(data, layout):
+    """As refreshed_audit: every derivation starts from the validated MODEL output."""
+    fresh = deepcopy(data['validated'])
+    return {**data, 'audit': branches.reconcile_branches({**data, 'audit': fresh}, layout,
+                                                         'alpha', [])}
 
 
 def confirm(data, layout, slot, action='CONDITION_TRUE', quote=QUOTE):
@@ -76,7 +83,7 @@ def confirm(data, layout, slot, action='CONDITION_TRUE', quote=QUOTE):
         record.update(applies=action == 'CONDITION_TRUE', scope_validation=scope.proof(
             scope.target(data, slot['key'], slot['field_ids']), reply))
     data['dialogue']['answers'].update(condition_receipts(data, slot, record, reply))
-    return {**data, 'audit': branches.reconcile_branches(data, layout, 'alpha', [])}
+    return derive(data, layout)
 
 
 def applicability(data):
@@ -123,7 +130,7 @@ def test_a_revoked_or_stale_grouped_receipt_blocks_again(change):
         stale['dialogue']['answers']['condition:seg2'].update(action='SKIP', applies=None)
     else:  # The destinations confirmed are no longer those of the receipt.
         stale['dialogue']['answers']['condition:seg2']['affected_fields'].remove('p6.s0')
-    stale = {**stale, 'audit': branches.reconcile_branches(stale, layout, 'alpha', [])}
+    stale = derive(stale, layout)
     assert 'p6.s0' in scope.blocked_source_fields(stale)
     assert 'p4.s0' not in scope.blocked_source_fields(stale)  # Only seg1 governs it.
 
