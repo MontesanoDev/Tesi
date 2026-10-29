@@ -53,12 +53,8 @@ def slot(kind, ids, label='', question='', condition='', context=None):
     (slot('value', ['p14.s0'], 'Carica documentata'), 'role'),
     (slot('value', ['p14.s1'], 'operatore economico'), 'company'),
     (slot('value', ['p242.s0'], 'Luogo e data'), 'defer'),
-    (slot('applicability', ['p12.s0', 'p12.s1'], 'Sottoscrittore non confermato',
+    (slot('applicability', ['p12.s0', 'p12.s1', 'p14.s0'], 'Sottoscrittore non confermato',
           condition='Il sottoscritto _____________________________, nato a'), 'name'),
-    (slot('applicability', ['p12.s1', 'p13.s3', 'p14.s0'], 'Sottoscrittore e carica',
-          condition='Il sottoscritto _____________________________, nato a'), 'role'),
-    (slot('applicability', ['p70.s1'], 'Altro sottoscrittore',
-          condition='Il sottoscritto _____________________________, nato a'), 'defer'),
     (slot('applicability', ['p40.s0', 'p46.s1', 'p49.s3'], condition=COMPANY), 'corporate'),
     (slot('choice', ['p39.cb0', 'p39.cb1'], 'IN QUALITÀ DI', context=COMPANY), 'corporate'),
     (slot('applicability', ['p20.s0'], condition='☐ Capogruppo di raggruppamento temporaneo '
