@@ -30,6 +30,15 @@ from app.compilation_global_dialogue import (
     ({'question': 'Confermi che questa situazione si applica?',
       'condition': 'Il sottoscritto [[p0.s0]], nato a [[p0.s1]]', 'label': 'Sottoscrittore'},
      'Sottoscrittore'),
+    # The label is the model's note on the open condition: its status words would contradict
+    # «Confermato: …» (replay of test 2: «…; Identità e ruolo del sottoscritto non confermati»).
+    ({'question': 'Confermi che questa situazione si applica?',
+      'condition': 'Il sottoscritto [[p0.s0]], nato a [[p0.s1]]',
+      'label': 'Identità e ruolo del sottoscritto non confermati'},
+     'Identità e ruolo del sottoscritto'),
+    ({'condition': 'Il sottoscritto ________', 'label': 'Ramo società da confermare'},
+     'Ramo società'),
+    ({'condition': '…', 'label': 'Firmatario non ancora verificato dalle fonti'}, 'Firmatario'),
 ])
 def test_the_receipt_says_what_was_confirmed(slot, text):
     assert confirmed_text(slot) == text

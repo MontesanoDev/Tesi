@@ -381,8 +381,13 @@ def confirmed_text(slot):
         if not re.fullmatch(r"(?:questa situazione|ciò|questo) si applica", statement, re.I):
             return statement[:1].upper() + statement[1:]
     clause = slot.get("condition") or ""
-    return (short_form_text(clause) if not re.search(r"\[\[|_{2,}|\.{3,}|…", clause)
-            else slot.get("label"))
+    if not re.search(r"\[\[|_{2,}|\.{3,}|…", clause):
+        return short_form_text(clause)
+    # The label is the model's note on the open condition («… non confermati», «… da
+    # confermare»): its status words would contradict «Confermato: …».
+    label = slot.get("label") or ""
+    return re.sub(r"[\s,;:–-]*\b(?:non\s+(?:ancora\s+)?(?:confermat|verificat)\w*|"
+                  r"da\s+(?:confermare|verificare))\b.*$", "", label, flags=re.I).strip() or label
 
 
 # How to clarify a refused reply, per slot kind: only the missing piece is asked.
