@@ -5788,3 +5788,18 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
 - **«Recupera messaggio»:** i turni falliti già superati e le copie di messaggi già registrati
   offrivano un recupero che porta a duplicare. Fix `c31d017`; 3 test falliti prima del fix.
 - **Rapporto:** `docs/prova-manuale-minervino-ux-2026-10-29.md`.
+
+## 29 ottobre 2026 — Narratore fluido: domande superflue della prova manuale
+
+- **Ricostruzione:** 21 istantanee. Il ramo società è stato chiesto 4 volte (v3, v6, v9, v15) e
+  le alternative a v18; `p39.cb0` è stata persa nell'export pur scelta dall'utente.
+- **Correzioni:**
+  - raggruppamento delle condizioni equivalenti;
+  - la scelta esplicita non viene sostituita da un collegamento non esportabile;
+  - nessuna domanda sulle alternative già decise;
+  - motivo dei rifiuti;
+  - domande brevi con dettagli separati.
+- **Replay registrato:** da 13 a 9 domande; scritture 56 → 57 (solo `p39.cb0`, USER).
+  Rollback verificati per ogni commit.
+- **Rapporto:** `docs/narratore-fluido-2026-10-29.md`; grezzo in
+  `backend/data/compilation-audit/prova-manuale-minervino-20261029/`.

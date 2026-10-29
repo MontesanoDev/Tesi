@@ -1,5 +1,22 @@
 # Stato di Mapi RAG
 
+## Narratore fluido dalla prova manuale Minervino — 29 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Nessun audit reale, push o merge senza autorizzazione;
+l'istanza manuale usa ancora `dbdc317`.
+- **Cause:**
+  - la stessa clausola FORM chiesta da due segmenti;
+  - un collegamento della casella non esportabile che occupava il gruppo, così la scelta USER
+    di `p39.cb0` andava persa;
+  - domande sulle alternative di un'opzione già decisa;
+  - testi FORM interi nelle domande;
+  - rifiuti senza motivo.
+- **Commit:** `e0ac426`, `23bbf78`, `23aefbf`, `038c062`, `fe47456`, `f47b8db`, più il test
+  `7e2951d`.
+- **Replay del dialogo registrato:** da 13 a 9 domande e da 5 a 3 turni; `p39.cb0` scritta
+  dalla scelta USER; nessun'altra scrittura cambia.
+  [Rapporto](docs/narratore-fluido-2026-10-29.md).
+
 ## Prova manuale Minervino: primi due problemi UX — 29 ottobre 2026
 
 - **Company KB 404:** gli originali della KB globale mancavano nello storage dell'istanza, perché
