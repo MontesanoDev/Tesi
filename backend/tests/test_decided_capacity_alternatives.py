@@ -103,3 +103,23 @@ def test_revoking_the_decision_reopens_the_alternatives():
     revoked = decide(deepcopy(after), layout, validated, action='SKIP')
     assert branches.decided_peers(revoked) == set()
     assert asked(revoked) == ['condition:group', 'condition:single']
+
+
+def test_incompatible_positive_answers_mark_nothing_and_ask_one_explicit_choice():
+    data, layout, validated = case()
+    after = decide(data, layout, validated)
+    receipt = {'provenance': 'USER', 'action': 'CONDITION_TRUE', 'applies': True,
+               'ambiguity_check': 'SEMANTIC_GUARD', 'question': 'Confermi: Mandatario?',
+               'user_quote': 'Sì, partecipiamo anche come mandatario.',
+               'affected_fields': ['p2.s0']}
+    receipt['scope_validation'] = scope.proof(
+        scope.target(after, 'condition:group', ['p2.s0']), receipt)
+    after['dialogue']['answers']['condition:group'] = receipt
+    both = {**after, 'audit': branches.reconcile_branches(
+        {**after, 'audit': deepcopy(validated)}, layout, 'alpha', [])}
+    assert branches.effective_user_values(both) == {}  # Never silently combined.
+    [choice] = [q for q in question_pool(both) if q['kind'] == 'choice']
+    assert [line for line in choice['question'].splitlines()
+            if line.endswith('(ramo già confermato)')] == [
+        '2. Legale rappresentante di società di ingegneria (ramo già confermato)',
+        '3. Mandatario di raggruppamento (ramo già confermato)']
