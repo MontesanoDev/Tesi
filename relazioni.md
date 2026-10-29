@@ -5780,3 +5780,11 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
 - **Con lo stesso gold, su 60 SOURCE:** B0 23/17/22, V12 43, tentativo 03 per sezioni 0, rigioco
   con i fix 47 (dialogo simulato). Prove non appaiate.
 - **Rapporto:** `docs/verifica-compilatore-monolitico-2026-10-29.md`.
+
+## 29 ottobre 2026 — Prova manuale Minervino: KB globale e «Recupera messaggio»
+
+- **KB globale:** 404 per i file originali assenti dal runtime isolato, mentre righe e frammenti
+  erano presenti. Ripristinati dalla fixture con SHA-256 verificato, senza reindicizzazione.
+- **«Recupera messaggio»:** i turni falliti già superati e le copie di messaggi già registrati
+  offrivano un recupero che porta a duplicare. Fix `c31d017`; 3 test falliti prima del fix.
+- **Rapporto:** `docs/prova-manuale-minervino-ux-2026-10-29.md`.

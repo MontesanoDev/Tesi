@@ -1,5 +1,14 @@
 # Stato di Mapi RAG
 
+## Prova manuale Minervino: primi due problemi UX — 29 ottobre 2026
+
+- **Company KB 404:** gli originali della KB globale mancavano nello storage dell'istanza, perché
+  il seed 02/03 non li copiava. Sono stati ripristinati dalla fixture V1, verificati con gli hash,
+  e il controllo è stato aggiunto agli strumenti locali. Nessun cambiamento all'app.
+- **«Recupera messaggio»** (`c31d017`): il pulsante compare solo sull'ultimo turno fallito; la
+  copia di un messaggio già registrato con risposta viene rimossa. Frontend 159/159; rollback
+  verificato. [Rapporto](docs/prova-manuale-minervino-ux-2026-10-29.md).
+
 ## Compilatore monolitico: verifica offline — 29 ottobre 2026
 
 - **In Git, esatto:** `99ab052` (tag `baseline-minervino-v1-20261016`). In un worktree isolato
