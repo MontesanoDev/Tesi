@@ -348,9 +348,6 @@ def question_pool(data):
     pool = consent_questions(data)
     authorization_ids = {cid for q in pool for cid in q["field_ids"]}
     postponed = pending_signatory_conditions(data)
-    # Segments may each declare the same FORM clause as their own condition: one question per
-    # FORM paragraph, one receipt per condition (apply_replies), never a second request.
-    by_paragraph = {}
     for key, item in audit.get("conditions", {}).items():
         if item["result"] != "unknown" or item.get("validation_errors") or not item.get(
             "form_evidence"
@@ -359,29 +356,15 @@ def question_pool(data):
         impacted = [f for f in fields if key in f.get("conditions", []) and not any(
             answers.get("condition:" + c, {}).get("applies") is False
             for c in f.get("conditions", []) if c != key)]
-        if not impacted:
-            continue
-        ids = [f["candidate_id"] for f in impacted]
-        same = by_paragraph.get(item["form_evidence"]["paragraph_id"]) if item.get(
-            "operator") == "semantic" else None
-        if same is not None:
-            same["condition_ids"].append(key)
-            same["field_ids"] = list(dict.fromkeys(same["field_ids"] + ids))
-            same["impact"] = len(same["field_ids"])
-            same["affected_fields"] = list(dict.fromkeys(same["affected_fields"] + [
-                f.get("label", "Dato del blocco")[:150] for f in impacted]))[:8]
-            continue
-        entry = {"key": "condition:" + key, "kind": "applicability",
-                 "condition_id": key, "condition_ids": [key],
-                 "condition": item["form_evidence"]["quote"],
-                 "label": item.get("reason", "Applicabilità della sezione"),
-                 "context": item["form_evidence"]["quote"],
-                 "field_ids": ids, "alternatives": [], "impact": len(ids),
-                 "affected_fields": [f.get("label", "Dato del blocco")[:150]
-                                     for f in impacted[:8]]}
-        pool.append(entry)
-        if item.get("operator") == "semantic":
-            by_paragraph[item["form_evidence"]["paragraph_id"]] = entry
+        if impacted:
+            pool.append({"key": "condition:" + key, "kind": "applicability",
+                         "condition_id": key, "condition": item["form_evidence"]["quote"],
+                         "label": item.get("reason", "Applicabilità della sezione"),
+                         "context": item["form_evidence"]["quote"],
+                         "field_ids": [f["candidate_id"] for f in impacted],
+                         "alternatives": [], "impact": len(impacted),
+                         "affected_fields": [f.get("label", "Dato del blocco")[:150]
+                                             for f in impacted[:8]]})
     pool.sort(key=lambda q: -q["impact"])
     for key, group in audit.get("choice_groups", {}).items():
         # The FORM capacity region (unknown cardinality) is asked only under the
@@ -1246,24 +1229,6 @@ async def refresh_dialogue(project_id, session_id, version):
     return await run_in_threadpool(complete)
 
 
-def condition_receipts(data, slot, record, reply):
-    """One question for an equivalent FORM clause of several segments, one receipt each.
-
-    Every grouped condition gets the same verified reply and destinations; its scope proof
-    is recomputed by the backend for its own key, never copied or taken from the model.
-    """
-    from app.compilation_scope_review import proof, target
-
-    receipts = {slot["key"]: record}
-    for other in slot.get("condition_ids", [])[1:]:
-        copy = {**deepcopy(record), "condition_group": slot["key"]}
-        if "scope_validation" in record:
-            copy["scope_validation"] = proof(
-                target(data, "condition:" + other, slot["field_ids"]), reply)
-        receipts["condition:" + other] = copy
-    return receipts
-
-
 def apply_replies(project_id, session_id, version, replies, message, unaccepted_slots=(),
                   scope_verifications=None):
     from app.compilation_chat import (
@@ -1388,7 +1353,7 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                     record["value"] = value
                 else:
                     raise ValueError("Risposta ambigua o non pertinente alla domanda")
-                answers.update(condition_receipts(data, slot, record, reply))
+                answers[slot["key"]] = record
                 accepted.append({k: v for k, v in record.items() if k != "affected_fields"})
                 changed = True
             except ValueError:
@@ -1406,14 +1371,12 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                     continue
                 attempts[key] = attempts.get(key, 0) + 1
                 if attempts[key] >= 2:
-                    for grouped in [key] + ["condition:" + c for c in
-                                            slots[n].get("condition_ids", [])[1:]]:
-                        answers[grouped] = {
-                            "action": "UNKNOWN", "provenance": "BACKEND",
-                            "origin": "BACKEND_LOOP_GUARD", "user_quote": "",
-                            "label": slots[n]["label"], "question": slots[n].get("question", ""),
-                            "affected_fields": list(slots[n].get("field_ids", [])),
-                            "reason": "Nessuna risposta univoca dopo due tentativi"}
+                    answers[key] = {"action": "UNKNOWN", "provenance": "BACKEND",
+                                    "origin": "BACKEND_LOOP_GUARD", "user_quote": "",
+                                    "label": slots[n]["label"],
+                                    "question": slots[n].get("question", ""),
+                                    "affected_fields": list(slots[n].get("field_ids", [])),
+                                    "reason": "Nessuna risposta univoca dopo due tentativi"}
                     dialogue["latest_turn"].setdefault("loop_guard", []).append(
                         slots[n]["label"])
                     changed = True
