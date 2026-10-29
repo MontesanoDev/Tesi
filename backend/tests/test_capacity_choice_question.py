@@ -87,9 +87,9 @@ def test_form_options_are_asked_and_nothing_is_selected_before_the_choice():
     assert slot['question'].splitlines() == [
         'Quale opzione di «IN QUALITÀ DI» scegli? Indica il numero di una sola opzione: '
         'nessuna casella viene spuntata senza la tua scelta.',
-        '1. Professionista singolo',
-        '2. Legale rappresentante di società di ingegneria (ramo già confermato)',
-        '3. Mandatario di raggruppamento']
+        '   1) Professionista singolo',
+        '   2) Legale rappresentante di società di ingegneria (ramo già confermato)',
+        '   3) Mandatario di raggruppamento']
     assert slot['details'] == [
         '☐ Professionista singolo',
         '☐ Legale rappresentante di società di ingegneria avente la seguente',

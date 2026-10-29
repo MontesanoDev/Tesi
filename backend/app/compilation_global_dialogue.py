@@ -448,7 +448,8 @@ def question_pool(data):
                          f"Quale opzione di «{short_form_text(group['label'])}» scegli? Indica "
                          "il numero di una sola opzione: nessuna casella viene spuntata senza "
                          "la tua scelta.",
-                         *(f"{n}. {short_form_text(o['label'], 90)}"
+                         # «n)» and indented: not confused with the numbered questions.
+                         *(f"   {n}) {short_form_text(o['label'], 110)}"
                            + (" (ramo già confermato)" if cid in group["applicable"] else "")
                            for n, (cid, o) in enumerate(group["options"].items(), 1))]),
                         "details": ["☐ " + o["label"] for o in group["options"].values()]}

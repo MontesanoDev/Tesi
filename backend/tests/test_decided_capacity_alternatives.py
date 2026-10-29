@@ -121,5 +121,5 @@ def test_incompatible_positive_answers_mark_nothing_and_ask_one_explicit_choice(
     [choice] = [q for q in question_pool(both) if q['kind'] == 'choice']
     assert [line for line in choice['question'].splitlines()
             if line.endswith('(ramo già confermato)')] == [
-        '2. Legale rappresentante di società di ingegneria (ramo già confermato)',
-        '3. Mandatario di raggruppamento (ramo già confermato)']
+        '   2) Legale rappresentante di società di ingegneria (ramo già confermato)',
+        '   3) Mandatario di raggruppamento (ramo già confermato)']
