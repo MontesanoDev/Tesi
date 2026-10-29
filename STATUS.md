@@ -1,5 +1,24 @@
 # Stato di Mapi RAG
 
+## Narratore piacevole dalle due prove manuali Minervino — 29 ottobre 2026
+
+**Punto di ripresa: fermarsi.** Nessuna chiamata DeepSeek, push o merge; l'istanza 2 usa ancora
+`a4582a1`.
+- **Cause:**
+  - firmatario confermato prima del nome, così i dati ricavati e la carica restavano bloccati e il
+    nome veniva richiesto;
+  - stessa data in due formati trattata come alternativa;
+  - risposta rifiutata mai richiesta;
+  - carica non attestata nel riepilogo;
+  - ricevute illeggibili;
+  - ricevuta del valore invalidata da una conferma successiva.
+- **Commit:** `010192b`, `178eac7`, `ee59c52`, `1bf55bd`, `b24c725`, `1b4b766`, `e28475c`, più
+  lo stile `c9af3ea`. `1663f67` annullato da `8365910` (causa non dimostrata).
+- **Replay prova 2:** da 10 a 9 domande, da 4 a 3 turni, scritture da 49 a 59. Le 10 nuove sono
+  tutte SOURCE confermate; nessuna conferma persa, nessuna domanda riproposta.
+- **Suite:** backend 4.161 PASS; frontend 168/168. Rollback verificati.
+  [Rapporto](docs/narratore-piacevole-2026-10-29.md).
+
 ## Seconda prova manuale: bozza digitata dopo le impostazioni AI — 29 ottobre 2026
 
 - **Correzione `0264aca`:** il testo solo digitato torna nel composer; «Recupera messaggio»

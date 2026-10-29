@@ -5811,3 +5811,26 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
 - **Correzione `0264aca`:** la copia distingue un testo digitato da un messaggio inviato. Il testo
   digitato torna nel composer; il recupero esplicito resta per gli invii. 6 test falliti prima
   del fix; rollback verificato.
+
+## 29 ottobre 2026 — Narratore piacevole: comportamento del dialogo nelle due prove manuali
+
+- **Ricostruzione:** istantanee delle due prove.
+  - Nella prova 2 il nome è stato chiesto dopo la conferma del firmatario («Lo avevo già
+    confermato»).
+  - I dati personali e la carica, ricavati dopo il nome, sono stati bloccati dal gate di ambito.
+  - La data di Elisa Romano era in revisione per due formati della stessa data; la risposta
+    dell'utente è stata rifiutata e mai richiesta.
+  - Il riepilogo attribuiva a Luca Ferri una carica non attestata.
+- **Correzioni generiche:**
+  - ordine nome → condizioni;
+  - estensione esplicita delle conferme ai dati ricavati;
+  - nuova richiesta delle risposte rifiutate;
+  - ricevute brevi e 4 domande per turno;
+  - filtro delle cariche non attestate;
+  - date equivalenti;
+  - ricevute dei valori che sopravvivono a conferme successive valide.
+  - Annullata una correzione basata su un artefatto del replay.
+- **Replay prova 2:** da 10 a 9 domande e da 4 a 3 turni; scritture 49 → 59, tutte SOURCE sotto
+  conferme USER; nessuna conferma persa. Prova 1 invariata (9 domande, 57 scritture).
+- **Rapporto:** `docs/narratore-piacevole-2026-10-29.md`; confronto leggibile in
+  `backend/data/compilation-audit/prova-manuale-minervino-20261029/CONFRONTO-DIALOGO.md`.
