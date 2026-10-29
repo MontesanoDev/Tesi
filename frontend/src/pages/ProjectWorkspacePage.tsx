@@ -216,6 +216,18 @@ export function ProjectWorkspacePage() {
         activeConversation.current = conversation.id
         loadedConversation.current = conversation.id
         setDocumentReference(documentReferenceOf(conversation))
+        // A copy kept while leaving the page is not unsent once the server registered and
+        // answered that same message: offering it again would only duplicate it.
+        const last = conversation.turns.at(-1)
+        const kept = readChatDraft(projectId, conversation.id).message
+        const reference = last ? documentReferenceOf(last) : null
+        if (kept && last && kept.text === last.question
+          && !['failed', 'not_configured'].includes(last.generation_status)
+          && kept.document_reference?.document_id === reference?.document_id
+          && kept.document_reference?.role === reference?.role) {
+          setDraftUnavailable(!saveChatDraft(projectId, conversation.id, null))
+          setRecoverableMessage(null)
+        }
         setTurns(conversation.turns.map((turn) => ({
           id: `turn-${turn.id}`,
           question: turn.question,
@@ -632,7 +644,9 @@ export function ProjectWorkspacePage() {
                   <div key={turn.id}>
                     <ConversationTurn
                       turn={turn}
+                      // Only the latest failed turn is still pending; later turns supersede it.
                       onReuse={!searching && !sessionProcessing && !prompt && !recoverableMessage
+                        && index === turns.length - 1
                         && (turn.error || ['failed', 'not_configured'].includes(turn.result?.generation_status ?? '')) ? () => {
                         setPrompt(turn.question)
                         setDocumentReference(turn.document_reference ?? null)
