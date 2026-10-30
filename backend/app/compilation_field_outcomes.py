@@ -38,6 +38,13 @@ def field_outcomes(data, written, *, selected=()):
     result = {}
     for field in audit.get("fields", []):
         cid, keys = field["candidate_id"], field.get("conditions", [])
+        proposal = field.get("proposal") if isinstance(field.get("proposal"), dict) else {}
+        if field.get("validation_errors") and (proposal.get("fact_id") or field.get("fact_id")) \
+                and cid not in written:
+            # A proposal the validator rejected (checkbox run of 30 Oct: not listed before).
+            result[cid] = {"esito": "errore_validazione",
+                           "errori": [str(e)[:200] for e in field["validation_errors"][:2]]}
+            continue
         if not documented_proposal(field) and "field:" + cid not in answers and cid not in written:
             if field.get("disposition") in {"missing", "review"}:
                 result[cid] = {"esito": "nessuna_proposta"}

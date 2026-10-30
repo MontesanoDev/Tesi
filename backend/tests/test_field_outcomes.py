@@ -35,3 +35,12 @@ def test_each_stage_has_its_own_outcome():
 def test_the_summary_counts_every_outcome():
     summary = field_outcomes(case(), set())["riepilogo"]
     assert summary.get("condizione_aperta", 0) >= 1 and sum(summary.values()) >= 1
+
+
+def test_a_rejected_proposal_is_a_validation_error_not_a_missing_one():
+    data = case()
+    field = next(f for f in data["audit"]["fields"] if f["candidate_id"] == OPERATOR)
+    field.update(validation="REJECTED", validation_errors=["SOURCE riferita a soggetto differente"],
+                 proposal={"fact_id": "company"})
+    entry = field_outcomes(data, set())["campi"][OPERATOR]
+    assert entry["esito"] == "errore_validazione" and "soggetto differente" in entry["errori"][0]
