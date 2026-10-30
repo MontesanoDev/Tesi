@@ -459,6 +459,20 @@ def resilient_instruction(segment, count, *, revision=2):
 
 
 MAX_RECOVERY_DESTINATIONS = 40
+MAX_FORMAT_RETRIES_PER_SEGMENT = 2
+MAX_FORMAT_RETRIES_PER_ANALYSIS = 4
+
+
+def format_feedback(body, error):
+    """The same segment request, saying where the previous answer stopped being valid JSON."""
+    note = (f"FORMATO NON VALIDO. La risposta precedente a questa stessa richiesta non era un "
+            f"oggetto JSON valido ({error.msg}, carattere {error.pos} di {len(error.doc)}). "
+            "Ripeti la risposta completa come un unico oggetto JSON valido secondo lo schema: "
+            "chiudi ogni parentesi e ogni stringa, nessun testo fuori dall'oggetto.\n")
+    body = deepcopy(body)
+    head, ids = body["messages"][-1]["content"].rsplit("segment_candidate_ids:", 1)
+    body["messages"][-1]["content"] = head + note + "segment_candidate_ids:" + ids
+    return body
 
 
 def _proposes(record):
@@ -726,6 +740,7 @@ def attach_resilient_status(audit, report):
         "segments": [{**{k: s.get(k) for k in ("index", "status", "candidate_count", "error",
                                                "source", "digest")},
                       "attempts": len(s.get("attempts") or []),
+                      "format_retries": s.get("format_retries", 0),
                       # Recovery: what was rejected, why, and what the second call recovered.
                       **({"recovery": {k: s["recovery"].get(k) for k in (
                           "status", "source", "rejected", "recovered", "still_rejected",
@@ -737,7 +752,7 @@ def attach_resilient_status(audit, report):
         "conflicts": report.get("conflicts", []),
         "unified_conditions": report.get("unified_conditions", []),
         "shared_conditions_not_unified": report.get("shared_conditions_not_unified", []),
-        "retries": report.get("retries", 0)}
+        "retries": report.get("retries", 0), "format_retries": report.get("format_retries", 0)}
     if "coverage_summary" in audit:
         from collections import Counter
 

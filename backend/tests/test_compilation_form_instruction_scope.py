@@ -225,7 +225,7 @@ def test_new_sessions_get_revision_two_by_default(monkeypatch):
             monkeypatch.setenv("MAPI_FORM_OPTION_SCOPE_REVISION", stale)
         flags = compilation_profile.new_session_flags()
         assert flags["form_option_scope_revision"] == 2
-        assert flags["compilation_profile"] == "sezioni-2026-10-30"
+        assert flags["compilation_profile"] == "sezioni-2026-10-30-r2"
         assert options.enabled(flags)
     for previous in ("sezioni-2026-10-24", "storico"):
         monkeypatch.setenv("MAPI_COMPILATION_PROFILE", previous)

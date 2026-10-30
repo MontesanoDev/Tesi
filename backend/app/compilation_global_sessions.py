@@ -322,7 +322,7 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
 
 
 async def _resilient_proposal(settings, data, root, metadata, layout, project_id, sources,
-                              *, revision=2, recovery=False):
+                              *, revision=2, recovery=False, format_retries=False):
     """Segments by dependency, validated one by one, cached by request digest (resumption).
 
     Bounded retries (MAX_RETRIES_PER_SEGMENT, MAX_RETRIES_PER_ANALYSIS) only for transport,
@@ -330,13 +330,18 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
     segment leaves its destinations unanalyzed; independent validated segments are merged.
     recovery: one targeted call per analyzed segment whose proposals the validators rejected,
     limited to those destinations; it is kept only if no accepted destination changes status.
+    format_retries: invalid JSON syntax gets up to MAX_FORMAT_RETRIES_PER_SEGMENT more attempts
+    (MAX_FORMAT_RETRIES_PER_ANALYSIS in all), each saying where the previous answer broke.
     """
     from app.compilation_segments import (
         MAX_CONCURRENT_SEGMENTS,
+        MAX_FORMAT_RETRIES_PER_ANALYSIS,
+        MAX_FORMAT_RETRIES_PER_SEGMENT,
         MAX_RETRIES_PER_ANALYSIS,
         MAX_RETRIES_PER_SEGMENT,
         accepted_destinations,
         apply_recovery,
+        format_feedback,
         parse,
         recovery_instruction,
         rejected_destinations,
@@ -373,7 +378,8 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                       "user_values": sha(inp.get("user_values")),
                       "reference_date": inp.get("reference_date"), "form_segment": sha(inp["form"])}
                   for i, inp in inputs.items()}
-    results, gate, budget = {}, asyncio.Semaphore(MAX_CONCURRENT_SEGMENTS), {"retries": 0}
+    results, gate = {}, asyncio.Semaphore(MAX_CONCURRENT_SEGMENTS)
+    budget = {"retries": 0, "format": 0}
 
     def structural(raw, segment):
         payload = parse(raw)
@@ -522,6 +528,16 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                 record["error"] = error
                 retry = (len(record["attempts"]) <= MAX_RETRIES_PER_SEGMENT
                          and budget["retries"] < MAX_RETRIES_PER_ANALYSIS)
+                syntax = format_retries and isinstance(exc, json.JSONDecodeError)
+                if syntax:
+                    # Invalid JSON syntax: the next attempt says where, never a JSON repair.
+                    body = format_feedback(bodies[index], exc)
+                    if not retry and (record.get("format_retries", 0)
+                                      < MAX_FORMAT_RETRIES_PER_SEGMENT
+                                      and budget["format"] < MAX_FORMAT_RETRIES_PER_ANALYSIS):
+                        record["format_retries"] = record.get("format_retries", 0) + 1
+                        budget["format"] += 1
+                        continue
                 if not retry:
                     break
                 budget["retries"] += 1
@@ -535,6 +551,7 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
 
     def summary(merged_ids, report=None):
         return {**(report or {}), "revision": revision, "retries": budget["retries"],
+                "format_retries": budget["format"],
                 "merged_segments": len(merged_ids), "segments": [
                     {"index": s["index"], "status": results[s["index"]]["status"],
                      "candidate_count": len(s["candidate_ids"]),
@@ -544,6 +561,7 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                      "digest": results[s["index"]]["digest"],
                      "inputs": references[s["index"]],
                      "attempts": results[s["index"]]["attempts"],
+                     "format_retries": results[s["index"]].get("format_retries", 0),
                      **({"recovery": results[s["index"]]["recovery"]}
                         if results[s["index"]].get("recovery") else {}),
                      "error": results[s["index"]]["error"]} for s in segments]}
@@ -592,6 +610,7 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                              "attempts": len(results[s["index"]]["attempts"]),
                              "error": results[s["index"]]["error"]} for s in segments]
     metadata["segment_retries"] = budget["retries"]
+    metadata["segment_format_retries"] = budget["format"]
     model = next((r.get("model") for r in results.values() if r.get("model")), settings.model)
     return json.dumps(merged, ensure_ascii=False, separators=(",", ":")), model, usage
 
@@ -748,7 +767,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
             raw, model, usage = await _resilient_proposal(settings, data, root, metadata,
                                                           layout, project_id, sources,
                 revision=claimed["global_compilation"]["generation_revision"],
-                recovery=claimed["global_compilation"].get("segment_recovery_revision") == 1)
+                recovery=claimed["global_compilation"].get("segment_recovery_revision") == 1,
+                format_retries=claimed["global_compilation"].get("format_retry_revision") == 1)
         elif claimed["global_compilation"].get("generation_revision") == 1:
             raw, model, usage = await _segmented_proposal(settings, data, root, metadata)
         else:
@@ -783,7 +803,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "narration_recovery_revision", "branch_scope_revision",
                          "hold_rereview_revision", "table_scope_revision",
                          "form_option_scope_revision", "segment_recovery_revision",
-                         "form_clause_revision", "hold_resolution_revision"):
+                         "form_clause_revision", "hold_resolution_revision",
+                         "format_retry_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:
