@@ -1,6 +1,34 @@
 # Stato di Mapi RAG
 
+## Riduzione delle omissioni del compilatore DOCX — 30 ottobre 2026
+
+**Punto di ripresa: decidere se e come intervenire sulla variabilità residua, che dipende dal
+modello (blocco soci di Minervino, condizione generica di partecipazione), e se il gold di
+`p14.s0` accetta la carica letterale della SOURCE.** Codice `c838339`, branch
+`riduzione-omissioni/2026-10-30`, nessun push o merge.
+- **Profilo nuovo `sezioni-2026-10-30-r2`** (`sezioni-2026-10-30` resta interruttore di
+  emergenza), tre meccanismi:
+  - riesame deterministico delle sospensioni del narratore su valori documentati;
+  - recupero delle destinazioni che il modello dichiara non valutate;
+  - ritentativi limitati per JSON malformato, con la posizione dell'errore.
+- **Due correzioni della fusione dei recuperi** nate dai giri reali: condizione sulla stessa
+  clausola, fatto identico a un fatto originale validato.
+- **31 run reali sul profilo nuovo:**
+  - Minervino 52,4 ± 8,8 contro 48,3 ± 10,9, minimo 33 contro 24;
+  - rinvii USER di sospensioni da 34 a 0;
+  - fuori dal blocco soci 30–36 corretti in 10 run su 11;
+  - Trapani 9 dopo la correzione, checkbox 7–8;
+  - compilazione e CNR corretti, salvo 2 run con una condizione generica rinviata dalla policy,
+    già presente sul codice precedente;
+  - 0 dichiarazioni o caselle non autorizzate.
+- **Verifiche:** suite 4.284 PASS e 8 saltati, Ruff PASS; rollback verificato per i 5 commit.
+- **Costo:** 31 run, 420 chiamate, circa 1,05 USD stimati.
+- [Rapporto](docs/riduzione-omissioni-2026-10-30.md).
+
 ## Stabilizzazione strutturale del compilatore DOCX — 30 ottobre 2026
+
+**Superato dalla riduzione delle omissioni sopra.** Il punto di ripresa che segue è stato
+affrontato lì.
 
 **Punto di ripresa: decidere come trattare i dubbi «source» non verificabili del narratore e le
 omissioni dell'analisi (Minervino).** Codice `4dd1087`, branch

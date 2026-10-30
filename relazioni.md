@@ -5941,3 +5941,30 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - autorizzazioni intatte.
 - **Costo:** circa 1,78 USD stimati per 59 run.
 - **Rapporto:** `docs/stabilizzazione-strutturale-2026-10-30.md`.
+
+## 30 ottobre 2026 — Riduzione delle omissioni del compilatore DOCX
+
+- **Obiettivo:** recuperare sistematicamente i dati documentati che si perdevano, riducendo la
+  variabilità senza ridurre la sicurezza, su FORM diversi.
+- **Tre meccanismi generali**, attivi nel profilo nuovo `sezioni-2026-10-30-r2`:
+  - un riesame deterministico decide i dubbi del narratore: il dubbio da solo non blocca un
+    valore documentato e non lo autorizza. Restano bloccati i valori:
+    - senza evidenza;
+    - contraddetti da un altro passo SOURCE;
+    - con una condizione ancora aperta;
+    - legati a una scelta USER;
+  - le destinazioni che il modello dichiara non valutate, con un'ancora FORM, tornano al modello
+    nell'unica chiamata di recupero del segmento, sotto i validatori ordinari;
+  - JSON malformato: al massimo 2 ritentativi per segmento e 4 per analisi, con la posizione
+    dell'errore.
+- **Due correzioni della fusione dei recuperi** emerse dai giri reali e verificate sulle 30
+  risposte di recupero registrate (destinazioni recuperate da 51 a 60).
+- **Esiti reali (31 run):**
+  - Minervino più alto e meno variabile;
+  - rinvii di sospensioni da 34 a 0;
+  - la variabilità residua viene dalla prima risposta del modello sul blocco dei soci;
+  - gli altri FORM restano corretti, salvo una condizione generica di partecipazione che il
+    modello apre talvolta e la policy simulata rinvia;
+  - autorizzazioni intatte.
+- **Costo:** circa 1,05 USD stimati per 31 run.
+- **Rapporto:** `docs/riduzione-omissioni-2026-10-30.md`.
