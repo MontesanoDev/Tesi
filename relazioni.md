@@ -5894,3 +5894,26 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - Stima deterministica sugli output registrati: Minervino da 28/42/1 a circa 57/47/41,
     senza attribuzioni errate.
 - **Rapporto:** `docs/stabilizzazione-compilatore-2026-10-30.md`.
+
+## 30 ottobre 2026 — Verifica reale della stabilizzazione del compilatore DOCX
+
+- **Campagna:** 64 compilazioni reali DeepSeek (compilatore, narratore e guardia reali), policy
+  USER v3 congelata, concorrenza 4.
+  - Due matrici da 25 sullo stesso FORM, SOURCE e parametri: codice `381ed63` e codice finale
+    `f0c48ba`.
+  - Un giro mirato da 13 su `cd47147` e una sonda.
+  - 785 chiamate, tutte 200.
+- **Verifica di ogni DOCX esportato:** testo dei valori e stato di ogni casella rispetto al report
+  e all'originale.
+- **Esiti:**
+  - sicurezza piena: 0 dichiarazioni autorizzate, 0 caselle senza decisione, nessuna risposta
+    USER persa;
+  - correttezza dei valori scritti: solo differenze di gold note;
+  - ripetibilità insufficiente: Minervino 55/56/51/43/34 su 61 (partenza 28/42/1).
+- **Cause residue:** output dell'analisi respinti dai validatori (fino a 26 campi), sospensioni
+  del narratore non verificabili, condizioni ancorate a istruzioni del FORM.
+- **Tre correzioni generali** con test e rollback: domanda sulle alternative SOURCE, ancoraggio
+  alla clausola dello slot citato, gruppo respinto che nascondeva la scelta di qualità.
+  - Effetto reale osservato per la seconda: 33 valori corretti in un run.
+- **Costo:** circa 1,87 USD stimati.
+- **Rapporto:** `docs/verifica-reale-stabilizzazione-2026-10-30.md`.

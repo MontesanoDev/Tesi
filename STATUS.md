@@ -1,9 +1,34 @@
 # Stato di Mapi RAG
 
+## Verifica reale della stabilizzazione — 30 ottobre 2026
+
+**Punto di ripresa: decisioni architetturali sul compilatore DOCX**, cioè sospensioni del narratore
+non verificabili, clausole scelte dal modello, seconda analisi dei segmenti respinti, equivalenza
+dei ruoli e rinvio con ambito ambiguo. Codice finale `f0c48ba` (branch
+`fix/2026-10-28-correzioni-audit-03`, nessun push).
+- **64 run reali DeepSeek, tutte le 785 chiamate 200:** due matrici da 25 (`381ed63`,
+  `f0c48ba`), un giro mirato da 13 (`cd47147`) e una sonda.
+- **Sicurezza in tutti i run:**
+  - 0 dichiarazioni autorizzate, 0 caselle senza decisione valida;
+  - DOCX sempre uguale al report (testo e caselle);
+  - nessuna risposta USER persa.
+- **Ripetibilità insufficiente:** Minervino 55/56/51/43/34 corretti su 61 (partenza 28/42/1);
+  solo 17 valori corretti in tutti i run. Trapani 1/9/9/1/9; checkbox 2/5/7; CNR 1/6/13.
+- **Cause residue:** output dell'analisi respinti dai validatori; sospensioni «source» non
+  verificabili; condizioni ancorate a istruzioni e rinviate dalla policy.
+- **Nuovi commit** (test prima e dopo, rollback, suite 4.209 PASS):
+  - `cd47147`: le scelte fra valori SOURCE alternativi sono sempre chieste;
+  - `87b756f`: la clausola dello slot citato ancora la sospensione (effetto reale: 33 valori in
+    un run);
+  - `f0c48ba`: un gruppo respinto non nasconde la scelta di qualità.
+- **Costo:** 16,09 M token, circa 1,87 USD stimati.
+- **Chiarimento:** la partenza aveva 28 run più 1 sonda; i conclusivi erano 18, non 21.
+- [Rapporto](docs/verifica-reale-stabilizzazione-2026-10-30.md).
+
 ## Stabilizzazione del compilatore DOCX — 30 ottobre 2026
 
-**Punto di ripresa: eseguire la verifica reale del codice `37ae15c`, bloccata dal credito
-DeepSeek esaurito** (402 dalle 02:07 UTC). Comando nel rapporto; prima una sonda.
+**Superato dalla verifica reale sopra.** La verifica del codice `381ed63` (bloccata dal 402) è
+stata eseguita.
 - **Partenza (`45b8794`), 21 run reali validi:**
   - Minervino 28/42/1 corretti; Trapani 9/9/9/9/1; checkbox 0/7/7; compilazione 17/18.
   - 0 dichiarazioni o caselle non autorizzate.

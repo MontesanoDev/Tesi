@@ -164,6 +164,12 @@ le domande vecchie, quindi la stima non vale come prova di stabilità.
 Gli scenari non sono perfettamente confrontabili: versioni di codice e policy diverse; nella
 seconda campagna corpus Catanzaro ridotto e due FORM nuovi.
 
+**Precisazione del 30 ottobre (verifica reale):** «21 valide» significa «senza risposte 402».
+Di queste, 3 (CNR 3, DGUE 2 e 3) si sono fermate al primo turno per un 429 non recuperato: i run
+conclusivi della partenza sono 18 (17 bozze più DGUE 1). I risultati delle tabelle sono
+invariati. La verifica reale del codice finale è in
+`docs/verifica-reale-stabilizzazione-2026-10-30.md`.
+
 ## Problemi aperti e rischi
 
 1. **Verifica reale del codice finale mancante (402).** Comando pronto, da lanciare dopo una
