@@ -633,6 +633,8 @@ def question_pool(data):
                      "label": field["label"], "condition": "",
                      "context": field["form_evidence"]["quote"], "impact": 1,
                      "alternatives": [a["value"] for a in field.get("alternatives", [])],
+                     **({"documented_alternatives": True}
+                        if documented_alternatives(field) else {}),
                      **({"form_owned": True} if cid in signatory else {})})
     pool.extend(decision_questions(data, {cid for q in pool for cid in q["field_ids"]}))
     # A reply refused in the previous turn is asked first again (the receipt promised the
@@ -1206,6 +1208,27 @@ def documented_proposal(field):
         or field.get("source_reuse") or field.get("fact_id") or proposal.get("fact_id")))
 
 
+def documented_alternatives(field):
+    """Two or more grounded SOURCE values left to a USER choice (ambiguous, conflicting or
+    unselected sibling facts), none selected."""
+    options = field.get("alternatives") or []
+    return bool(field.get("review_kind") in {"ambiguous", "conflicting", "unselected_alternatives"}
+                and not field.get("validation_errors") and len(options) >= 2
+                and all(o.get("source_evidence") for o in options))
+
+
+def _alternatives_question(q):
+    """Backend question for a choice between documented values: label, FORM point, values."""
+    label = short_form_text(q.get("label"), 80)
+    point = short_form_text(q.get("context"), 100)
+    values = [str(v)[:120] for v in q.get("alternatives", [])]
+    text = (f"Quale valore indico per «{label}»"
+            + (f" («{point}»)" if point and point.casefold() != label.casefold() else "")
+            + "? Le fonti riportano " + " oppure ".join(f"«{v}»" for v in values) + ".")
+    return DialogueQuestion(slot=q["slot"], question=text) if (
+        len(label) >= 3 and len(text) <= 600 and no_technical_ids(text)) else None
+
+
 def unexported_notice(data, written):
     """Documented proposals the draft leaves empty and why (manual test 4: the operator and
     technical-director data were empty behind «Le informazioni non verificate restano vuote»).
@@ -1213,10 +1236,11 @@ def unexported_notice(data, written):
     audit, dialogue = data.get("audit") or {}, data.get("dialogue") or {}
     answers, conditions = dialogue.get("answers", {}), audit.get("conditions", {})
     held = set(dialogue.get("held_candidate_ids", []))
-    waiting, deferred, suspended = {}, {}, []
+    waiting, deferred, suspended, choosing = {}, {}, [], []
     for field in audit.get("fields", []):
         cid, keys = field["candidate_id"], field.get("conditions", [])
-        if cid in written or not documented_proposal(field) or any(
+        alternatives = documented_alternatives(field)
+        if cid in written or not (documented_proposal(field) or alternatives) or any(
                 answers.get("condition:" + c, {}).get("applies") is False
                 or conditions.get(c, {}).get("result") == "false" for c in keys):
             continue
@@ -1234,6 +1258,8 @@ def unexported_notice(data, written):
             waiting.setdefault(open_keys[0], []).append(field)
         elif later:
             deferred.setdefault(later[0], []).append(field)
+        elif alternatives and "field:" + cid not in answers:
+            choosing.append(field)
 
     def names(fields):
         labels = list(dict.fromkeys(f.get("label") or "dato" for f in fields))
@@ -1246,6 +1272,9 @@ def unexported_notice(data, written):
               "rinviato la conferma su "
               f"«{short_form_text(conditions[key]['form_evidence']['quote'], 120)}»"
               for key, fields in deferred.items()]
+    if choosing:
+        parts.append(f"{len(choosing)} dati trovati nelle fonti ({names(choosing)}) aspettano "
+                     "la tua scelta tra valori diversi delle fonti")
     if suspended:
         parts.append(f"{len(suspended)} dati trovati nelle fonti ({names(suspended)}) sono "
                      "sospesi in attesa di una verifica")
@@ -1286,6 +1315,10 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
     imposed = [q for q in (_open_confirmation(q) for q in sorted(
         pool, key=lambda q: -q.get("documented", 0)) if q["kind"] == "applicability"
         and q.get("documented") and q["slot"] not in chosen) if q]
+    # Nor a choice between documented SOURCE values (E2E Minervino, 30 Oct: «Elisa Romano» or
+    # «Ing. Elisa Romano», never asked; the draft left both names empty).
+    imposed += [q for q in (_alternatives_question(q) for q in pool
+                            if q.get("documented_alternatives") and q["slot"] not in chosen) if q]
     if required or imposed:
         required_ids = {q.slot for q in required}
         rest = [q for q in questions if q.slot not in required_ids]
