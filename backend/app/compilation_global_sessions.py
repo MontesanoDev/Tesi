@@ -305,9 +305,13 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
 
         if compilation_table_scope.enabled(data):
             audit = compilation_table_scope.apply(audit, catalog)
-        return compilation_form_option_scope.apply(
-            audit, catalog, data["form_option_scope_revision"]) if (
-            compilation_form_option_scope.enabled(data)) else audit
+        if compilation_form_option_scope.enabled(data):
+            audit = compilation_form_option_scope.apply(
+                audit, catalog, data["form_option_scope_revision"])
+        from app import compilation_form_clauses
+
+        return compilation_form_clauses.apply(audit, catalog) if (
+            compilation_form_clauses.enabled(data)) else audit
     audit = validate_global_proposal(raw, layout, project_id, sources,
                                      expected_version=expected_version)
     if data.get("generation_revision") == 1 and report.is_file():
@@ -774,7 +778,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "generation_revision", "derivation_revision",
                          "narration_recovery_revision", "branch_scope_revision",
                          "hold_rereview_revision", "table_scope_revision",
-                         "form_option_scope_revision"):
+                         "form_option_scope_revision", "segment_recovery_revision",
+                         "form_clause_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:

@@ -549,11 +549,15 @@ def question_pool(data):
                 same.update(_extension(same.get("extension", []) + extension,
                                        same.get("condition")))
             continue
+        # A FORM clause is shown by its own label, never by the model's fragment of it.
+        shown = (item.get("form_clause") or {}).get("label") or item["form_evidence"]["quote"]
         entry = {"key": "condition:" + key, "kind": "applicability",
                  "condition_id": key, "condition_ids": [key],
-                 "condition": item["form_evidence"]["quote"],
+                 "condition": shown,
                  "label": item.get("reason", "Applicabilità della sezione"),
-                 "context": item["form_evidence"]["quote"],
+                 "context": shown,
+                 **({"form_clause": deepcopy(item["form_clause"])}
+                    if item.get("form_clause") else {}),
                  "field_ids": ids, "alternatives": [], "impact": len(ids),
                  "documented": documented,
                  "affected_fields": [f.get("label", "Dato del blocco")[:150]
@@ -769,6 +773,8 @@ def _applicability_contexts(data, proposals, audited):
         contexts.append({"slot": len(contexts) + 1, "condition_key": key,
             "result": result, "audit_result": condition.get("result", "unknown"),
             "form_evidence": condition.get("form_evidence"),
+            **({"form_clause": deepcopy(condition["form_clause"])}
+               if condition.get("form_clause") else {}),
             "grounding_basis": condition.get("grounding_basis"),
             "user_receipt": deepcopy(receipt),
             **({"branch_evidence": deepcopy(condition["branch_evidence"])}
@@ -1332,6 +1338,11 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
             q for q in rest if q not in conditions])[:MAX_QUESTIONS]
     for i, q in enumerate(questions):
         slot, text = by_slot[q.slot], q.question
+        if (slot["kind"] == "applicability" and slot.get("form_clause")
+                and not slot.get("extension") and not slot.get("authorization")):
+            # A FORM clause is asked by the backend in its own words: the same question in
+            # every run, whatever the narrator's paraphrase (E2E Trapani: four wordings).
+            q = _open_confirmation(slot) or q
         if require_confirmation and slot["kind"] == "applicability" and not q.confirmation:
             # The backend owns the slot: its closed confirmation replaces an open question, so
             # one ill-formed question no longer discards the whole narration (E2E Minervino:

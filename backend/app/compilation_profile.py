@@ -33,9 +33,10 @@ SECTIONS = {
     "form_option_scope_revision": 2,      # Data bound to their FORM option or instruction.
     "text_checkbox_revision": 1,          # Supported ASCII markers; verified USER choice.
     "segment_recovery_revision": 1,       # One targeted retry of validator-rejected proposals.
+    "form_clause_revision": 1,            # Conditions anchored on identifiable FORM clauses.
 }
 # Earlier canonical profiles, recreated only by the server-side emergency switch.
-NEW_2026_10_30 = {"segment_recovery_revision"}
+NEW_2026_10_30 = {"segment_recovery_revision", "form_clause_revision"}
 PREVIOUS = {
     "sezioni-2026-10-24": {k: v for k, v in SECTIONS.items() if k not in {
         "form_option_scope_revision", "text_checkbox_revision", *NEW_2026_10_30}},
