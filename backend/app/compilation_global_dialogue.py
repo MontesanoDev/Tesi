@@ -993,7 +993,9 @@ def hold_questions(data, exclude=()):
                         "affected_fields": [label[:150] for label in labels[:8]],
                         "hold_verification": {"cause": record.get("cause"), "values": [
                             [label, value] for label, value in values
-                            if isinstance(value, str) and value.strip()][:3]}})
+                            if isinstance(value, str) and value.strip()][:3],
+                            **({"contrary": record["resolution"]["contrary"]["quote"]}
+                               if (record.get("resolution") or {}).get("contrary") else {})}})
     return entries
 
 
@@ -1006,7 +1008,9 @@ def _hold_confirmation(q):
     values = (q.get("hold_verification") or {}).get("values") or []
     shown = "; ".join(f"{short_form_text(label, 60)} «{str(value)[:60]}»"
                       for label, value in values)
-    text = "posso usare questi dati trovati nelle fonti" + (f": {shown}" if shown else "")
+    contrary = (q.get("hold_verification") or {}).get("contrary")
+    text = "posso usare questi dati trovati nelle fonti" + (f": {shown}" if shown else "") + (
+        f", anche se un'altra fonte riporta «{short_form_text(contrary, 140)}»" if contrary else "")
     return text[:500 - len(about)].rstrip(" :;") + about
 
 
@@ -1136,9 +1140,13 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
         records[cid] = record
     answers = previous.get("answers", {}) if pool is not None else {}
     resolving = pool is not None and data.get("hold_resolution_revision") == 1
+    doubts, bound = set(), {}  # Deterministic review: unverifiable doubts, condition links.
     if resolving:
         # Every hold the backend could not link to a question gets a cause and a way the USER
         # settles it; the verified blocker key, when present, keeps its own release.
+        from app.compilation_hold_review import enabled as review_enabled
+        from app.compilation_hold_review import review
+
         for cid in incoming - redundant:
             record = records[cid]
             if cid in notes:
@@ -1148,11 +1156,28 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
                 record.pop("resolution", None)
             if not record.get("blocker_key") and not record.get("resolution"):
                 record.setdefault("cause", "fonte_insufficiente")
+                if review_enabled(data):
+                    # The backend decides from SOURCE, conditions, receipts and validators: a
+                    # narrator doubt alone neither blocks a valid value nor authorizes it.
+                    decision = review(data, cid, record, context.get("_validation_sources", []))
+                    record["review"] = decision
+                    if decision["action"] == "release":
+                        doubts.add(cid)
+                        continue
+                    if decision["action"] == "bind":
+                        record.update(blocker_key=decision["key"],
+                                      blocker_key_basis="DETERMINISTIC_REVIEW")
+                        bound[cid] = decision["key"]
+                        continue
+                    if decision["action"] == "keep":
+                        continue  # Invalid or excluded: the ordinary gates already block it.
                 record["resolution"] = _hold_resolution(data, cid, record)
-    stale = {cid for cid in incoming if _blocker_answered(
-        notes.get(cid, {}).get("blocker_key"), answers) or resolving and (
-            records[cid].get("user_verified") or _resolution_settled(
-                records[cid].get("resolution"), answers))}
+                if (record.get("review") or {}).get("contrary"):
+                    record["resolution"]["contrary"] = record["review"]["contrary"]
+    stale = {cid for cid in incoming if cid in doubts or _blocker_answered(
+        bound.get(cid) or notes.get(cid, {}).get("blocker_key"), answers)
+        or resolving and (records[cid].get("user_verified") or _resolution_settled(
+            records[cid].get("resolution"), answers))}
     resolved = {cid for cid in old - incoming
                 if _blocker_answered(records.get(cid, {}).get("blocker_key"), answers)
                 or resolving and _resolution_settled(records.get(cid, {}).get("resolution"),
@@ -1164,7 +1189,8 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
     for cid in stale | resolved:
         records[cid] = {**records.get(cid, {}), **notes.get(cid, {}), "status": "released",
                         "release_reason": "USER_RESOLUTION" if records.get(cid, {}).get(
-                            "user_verified") else "BLOCKER_ANSWERED", "last_review": review_id}
+                            "user_verified") else "DETERMINISTIC_REVIEW" if cid in doubts
+                        else "BLOCKER_ANSWERED", "last_review": review_id}
     # Not held again at its re-review: back to the backend gates (a MODEL decision).
     rereviewed = reviewing - incoming
     for cid in rereviewed:
@@ -1436,6 +1462,20 @@ def unexported_notice(data, written):
                      "sospesi in attesa di una verifica")
     return ("Restano vuoti: " + "; ".join(parts) + ". Puoi confermarli o chiedermi di "
             "riconsiderarli, poi rigenerare la bozza.") if parts else ""
+
+
+def reviewed_doubts_notice(data, written):
+    """Values written after the deterministic review set aside a narrator doubt: to review."""
+    records = (data.get("dialogue") or {}).get("hold_records", {})
+    fields = {f["candidate_id"]: f for f in (data.get("audit") or {}).get("fields", [])}
+    released = [cid for cid, r in records.items() if cid in written
+                and r.get("release_reason") == "DETERMINISTIC_REVIEW"]
+    if not released:
+        return ""
+    labels = list(dict.fromkeys(fields.get(c, {}).get("label") or "dato" for c in released))
+    return (f"Da rivedere: {len(released)} dati trovati nelle fonti ({', '.join(labels[:3])}"
+            f"{' e altri' if len(labels) > 3 else ''}) erano stati messi in dubbio senza un "
+            "motivo verificabile; li ho inseriti con i controlli ordinari.")
 
 
 def _retry_question(q):

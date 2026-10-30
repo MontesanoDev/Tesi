@@ -37,11 +37,12 @@ SECTIONS = {
     "form_clause_revision": 1,            # Conditions anchored on identifiable FORM clauses.
     "hold_resolution_revision": 1,        # Every hold has a cause and a USER resolution.
     "format_retry_revision": 1,           # Invalid JSON: bounded retries saying where.
+    "hold_review_revision": 1,            # Deterministic review of narrator SOURCE doubts.
 }
 # Earlier canonical profiles, recreated only by the server-side emergency switch.
 NEW_2026_10_30 = {"segment_recovery_revision", "form_clause_revision",
                   "hold_resolution_revision"}
-NEW_2026_10_30_R2 = {"format_retry_revision"}
+NEW_2026_10_30_R2 = {"format_retry_revision", "hold_review_revision"}
 PREVIOUS = {
     "sezioni-2026-10-24": {k: v for k, v in SECTIONS.items() if k not in {
         "form_option_scope_revision", "text_checkbox_revision", *NEW_2026_10_30,

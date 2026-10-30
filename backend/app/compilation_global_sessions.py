@@ -804,7 +804,7 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "hold_rereview_revision", "table_scope_revision",
                          "form_option_scope_revision", "segment_recovery_revision",
                          "form_clause_revision", "hold_resolution_revision",
-                         "format_retry_revision"):
+                         "format_retry_revision", "hold_review_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:
@@ -1130,6 +1130,11 @@ def generate_draft(project_id, session_id, request):
                                {f["cell_id"] for f in checked_fields})
     if notice:
         message += " " + notice
+    from app.compilation_global_dialogue import reviewed_doubts_notice
+
+    if doubts := reviewed_doubts_notice(state["global_compilation"],
+                                        set(values) | set(checkbox_values)):
+        message += " " + doubts
     from app.compilation_field_outcomes import field_outcomes
 
     outcomes = field_outcomes(state["global_compilation"],

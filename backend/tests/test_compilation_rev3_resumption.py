@@ -340,10 +340,14 @@ async def test_8_exhausted_retries_leave_independent_segments_valid(api, provide
 async def test_9_narrator_failing_twice_then_only_the_summary_is_resumed(
     api, provider, monkeypatch,
 ):
+    # A hold the deterministic review keeps too (sezioni-2026-10-30-r2): a SOURCE statement
+    # that contradicts the value for the same subject, so the invariant is tested everywhere.
+    contrary = "Aurora S.r.l.: codice non disponibile."
     seen = narrator(monkeypatch, {"message": SUMMARY, "hold_groups": [
-        hold([2], "Dato 9", "source")]}, {"questions": []})
+        hold([2], contrary, "source")]}, {"questions": []})
     model = rev2.Model()
-    session = await rev2.started(api, monkeypatch, rev2.form_docx(150), model)
+    session = await rev2.started(api, monkeypatch, rev2.form_docx(150), model,
+                                 content="Codice: ABC123\n" + contrary)
     session = (await rev2.analyze(api, session)).json()
     before = rev2.state_of(session)["global_compilation"]
     held = before["dialogue"]["held_candidate_ids"]

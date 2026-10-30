@@ -53,7 +53,8 @@ def test_new_sessions_get_the_complete_sections_profile_without_any_variable():
         "generation_revision": 3, "narration_recovery_revision": 1, "branch_scope_revision": 1,
         "table_scope_revision": 1, "hold_rereview_revision": 2, "form_option_scope_revision": 2,
         "text_checkbox_revision": 1, "segment_recovery_revision": 1, "form_clause_revision": 1,
-        "hold_resolution_revision": 1, "format_retry_revision": 1}
+        "hold_resolution_revision": 1, "format_retry_revision": 1,
+        "hold_review_revision": 1}
     assert PROFILE_NAME == "sezioni-2026-10-30-r2"
 
 
@@ -126,10 +127,13 @@ def test_the_historical_switch_reproduces_the_previous_creation_rules(monkeypatc
 async def test_a_new_ordinary_session_compiles_by_sections_and_exports_only_reviewed_values(
     api, provider, monkeypatch,
 ):
-    narrator(monkeypatch, {"message": SUMMARY, "hold_groups": [hold([2], "Dato 59", "source")]},
+    # A hold the deterministic review keeps: a SOURCE statement contradicting the value.
+    contrary = "Aurora S.r.l.: codice non disponibile."
+    narrator(monkeypatch, {"message": SUMMARY, "hold_groups": [hold([2], contrary, "source")]},
              {"questions": []})
     model = rev2.Model()
-    session = await rev2.started(api, monkeypatch, rev2.form_docx(150), model)
+    session = await rev2.started(api, monkeypatch, rev2.form_docx(150), model,
+                                 content="Codice: ABC123\n" + contrary)
     assert revisions(session["global_compilation"]) == SECTIONS
     session = (await rev2.analyze(api, session)).json()
     data = rev2.state_of(session)["global_compilation"]
@@ -186,7 +190,7 @@ def test_the_emergency_switch_recreates_the_profile_before_the_form_scope_adopti
     assert {**PREVIOUS["sezioni-2026-10-24"], "form_option_scope_revision": 2,
             "text_checkbox_revision": 1, "segment_recovery_revision": 1,
             "form_clause_revision": 1, "hold_resolution_revision": 1,
-            "format_retry_revision": 1} == SECTIONS
+            "format_retry_revision": 1, "hold_review_revision": 1} == SECTIONS
     assert "text_checkbox_revision" not in state
 
 
@@ -198,7 +202,7 @@ def test_the_emergency_switch_recreates_the_profile_before_the_structural_stabil
     assert "segment_recovery_revision" not in state and "form_clause_revision" not in state
     assert {**PREVIOUS["sezioni-2026-10-25"], "segment_recovery_revision": 1,
             "form_clause_revision": 1, "hold_resolution_revision": 1,
-            "format_retry_revision": 1} == SECTIONS
+            "format_retry_revision": 1, "hold_review_revision": 1} == SECTIONS
 
 
 def test_the_emergency_switch_recreates_the_profile_before_the_omission_revisions(
@@ -207,6 +211,7 @@ def test_the_emergency_switch_recreates_the_profile_before_the_omission_revision
     state = adapter.initial_state(inspect_docx(rev2.form_docx(3)))
     assert revisions(state) == PREVIOUS["sezioni-2026-10-30"]
     assert "format_retry_revision" not in state and state["hold_resolution_revision"] == 1
+    assert "hold_review_revision" not in state
 
 
 def test_text_checkbox_catalog_is_automatic_but_old_sessions_are_not_upgraded():

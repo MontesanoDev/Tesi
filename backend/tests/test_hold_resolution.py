@@ -23,8 +23,11 @@ __all__ = ["api", "provider"]
 
 
 @pytest.fixture(autouse=True)
-def ordinary_profile(monkeypatch):
-    monkeypatch.delenv("MAPI_COMPILATION_PROFILE", raising=False)
+def resolution_profile(monkeypatch):
+    """The profile that introduced structured holds: an unverifiable doubt on a valid value is
+    a verification question there. From sezioni-2026-10-30-r2 the deterministic review settles
+    it (test_hold_review)."""
+    monkeypatch.setenv("MAPI_COMPILATION_PROFILE", "sezioni-2026-10-30")
 
 
 def verification(session):
