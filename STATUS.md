@@ -1,5 +1,25 @@
 # Stato di Mapi RAG
 
+## Stabilizzazione del compilatore DOCX — 30 ottobre 2026
+
+**Punto di ripresa: eseguire la verifica reale del codice `37ae15c`, bloccata dal credito
+DeepSeek esaurito** (402 dalle 02:07 UTC). Comando nel rapporto; prima una sonda.
+- **Partenza (`45b8794`), 21 run reali validi:**
+  - Minervino 28/42/1 corretti; Trapani 9/9/9/9/1; checkbox 0/7/7; compilazione 17/18.
+  - 0 dichiarazioni o caselle non autorizzate.
+- **Cause dimostrate:** ambito delle conferme legato al testo libero del modello (rifiuti
+  `SUPPORTED/AMBIGUOUS`); sospensioni «source» con citazioni del FORM; rinvii sottoposti alla
+  guardia (ancora aperto).
+- **Commit:** `c994a99`, `c3dd35e`, `94f0e82`, `37ae15c`; annullati `3c91005` (rinvio) e
+  `e789315` (CF/P.IVA, premessa sbagliata), HEAD `381ed63`.
+- **Stima deterministica sugli output reali:** Minervino circa 57/47/41. Non è una prova.
+- **Aperti:**
+  - clausole scelte dal modello;
+  - variabilità dell'analisi;
+  - DGUE con campi modulo non supportato;
+  - 429 con 10 run paralleli.
+- [Rapporto](docs/stabilizzazione-compilatore-2026-10-30.md).
+
 ## Collaudo E2E autonomo con DeepSeek reale — 29-30 ottobre 2026
 
 **Punto di ripresa: fermarsi al rapporto.** Nessuna nuova istanza manuale preparata; nessun push o

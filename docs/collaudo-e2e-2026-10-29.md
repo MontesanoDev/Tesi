@@ -92,6 +92,9 @@ valori scritti dove il gold vuole vuoto.
   della fonte, contro «rappresentante legale» del gold. È più ampia del gold, sulla persona giusta.
 - **Catanzaro (2 run):** nel codice fiscale dell'impresa è stata scritta la partita IVA
   «IT01234567890». È un errore vero della proposta del modello e il validatore non lo blocca.
+  - **Correzione del 30 ottobre:** non è un errore del modello. La visura simulata dice «CODICE
+    FISCALE E PARTITA IVA IT01234567890»; la mappa lo vuole da confermare perché l'identificativo
+    fittizio non supera il controllo formale (`docs/stabilizzazione-compilatore-2026-10-30.md`).
 
 ## Difetti trovati e corretti (commit separati, test falliti prima e passati dopo, rollback verificato)
 

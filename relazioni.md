@@ -5877,3 +5877,20 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - un solo FORM fuori campione;
   - corpus dei bandi completi oltre il limite.
 - **Rapporto:** `docs/collaudo-e2e-2026-10-29.md`.
+
+## 30 ottobre 2026 — Stabilizzazione architetturale del compilatore DOCX
+
+- **Campagna reale:** 28 compilazioni sul codice di partenza, più 1 sonda; 21 valide.
+  - 7 run colpiti da 402: credito DeepSeek esaurito dalle 02:07 UTC.
+  - 11 risposte 429 con 10 run paralleli.
+- **Esiti per fase (nuovo report per campo):**
+  - Minervino: analisi stabile (55-58 proposte), variabilità a valle, cioè sospensioni «source»
+    con citazione FORM (29), rifiuti di ambito della guardia (41) e rinvii;
+  - checkbox: variabilità dell'analisi;
+  - DGUE: FORM non supportato.
+- **Quattro correzioni generali** con test e rollback; due annullate dopo la suite completa
+  (protezione sui rinvii parziali; premessa CF/P.IVA sbagliata).
+  - La verifica reale dopo le correzioni non è stata eseguita (402).
+  - Stima deterministica sugli output registrati: Minervino da 28/42/1 a circa 57/47/41,
+    senza attribuzioni errate.
+- **Rapporto:** `docs/stabilizzazione-compilatore-2026-10-30.md`.
