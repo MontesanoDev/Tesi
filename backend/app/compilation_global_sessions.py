@@ -779,7 +779,7 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "narration_recovery_revision", "branch_scope_revision",
                          "hold_rereview_revision", "table_scope_revision",
                          "form_option_scope_revision", "segment_recovery_revision",
-                         "form_clause_revision"):
+                         "form_clause_revision", "hold_resolution_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:

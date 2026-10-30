@@ -568,6 +568,10 @@ def question_pool(data):
         if clause:
             by_paragraph[clause] = entry
     pool.sort(key=lambda q: -q["impact"])
+    held_choices = {r["resolution"]["key"] for cid, r in dialogue.get("hold_records", {}).items()
+                    if cid in set(dialogue.get("held_candidate_ids", []))
+                    and (r.get("resolution") or {}).get("kind") == "selection"
+                    } if data.get("hold_resolution_revision") == 1 else set()
     for key, group in audit.get("choice_groups", {}).items():
         # The FORM capacity region (unknown cardinality) is asked only under the
         # accepted conditions that make one of its options applicable.
@@ -589,10 +593,13 @@ def question_pool(data):
                and answers.get("condition:" + c, {}).get("applies") is not True
                for c in conditions):
             continue
-        if any(f.get("choice_group_id") == key and
-               f.get("proposed_value", f.get("value")) is True and (
-                   f["validation"] == "GROUNDED_PROPOSAL" or
-                   f.get("proposal_grounding") == "GROUNDED_PROPOSAL") for f in fields):
+        # A documented selection is not asked again, unless the narrator held its options:
+        # then the explicit choice is the only way to settle the hold (E2E compilazione).
+        if "choice:" + key not in held_choices and any(
+                f.get("choice_group_id") == key and
+                f.get("proposed_value", f.get("value")) is True and (
+                    f["validation"] == "GROUNDED_PROPOSAL" or
+                    f.get("proposal_grounding") == "GROUNDED_PROPOSAL") for f in fields):
             continue
         pool.append({"key": "choice:" + key, "kind": "choice", "label": group["label"],
                      "condition": "", "context": group["form_evidence"]["quote"],
@@ -640,6 +647,7 @@ def question_pool(data):
                      **({"documented_alternatives": True}
                         if documented_alternatives(field) else {}),
                      **({"form_owned": True} if cid in signatory else {})})
+    pool.extend(hold_questions(data))
     pool.extend(decision_questions(data, {cid for q in pool for cid in q["field_ids"]}))
     # A reply refused in the previous turn is asked first again (the receipt promised the
     # clarification); after a second refusal the loop guard closes it explicitly.
@@ -892,6 +900,96 @@ def _blocker_answered(key, answers):
     return key in answers
 
 
+# Structured holds (hold_resolution_revision 1): what blocks a held proposal, in backend terms.
+HOLD_CAUSES = {"applicability": "applicabilita_incerta", "user_decision": "scelta_USER",
+               "source": "fonte_insufficiente", "form": "fonte_insufficiente",
+               "other": "fonte_insufficiente"}
+HOLD_CLAUSE = "Uso dei dati trovati nelle fonti, da verificare"
+
+
+def _hold_resolution(data, cid, record):
+    """How the USER settles a hold the backend could not link to an existing question.
+
+    A checkbox option of a valid group: the explicit choice of that group (a selection, never
+    a confirmation). Anything else: one verification question per cause and cited quote,
+    released only by an explicit USER confirmation (E2E campaign: 139 of 139 final narrator
+    holds were never asked, so no answer could ever settle them).
+    """
+    import hashlib
+
+    from app.requirement_checks import normalized_form_text as norm
+
+    groups = (data.get("audit") or {}).get("choice_groups", {})
+    group = next((key for key, g in groups.items() if g.get("validation") == "GROUNDED_GROUP"
+                  and cid in (g.get("options") or {})), None)
+    if group is not None:
+        return {"kind": "selection", "key": "choice:" + group}
+    basis = f"{record.get('cause')}|{norm(record.get('evidence_quote') or '')}"
+    return {"kind": "verification",
+            "key": "hold:" + hashlib.sha256(basis.encode()).hexdigest()[:12]}
+
+
+def _resolution_settled(resolution, answers):
+    """Only an explicit USER choice or confirmation settles a resolution, never a deferral."""
+    answer = answers.get((resolution or {}).get("key") or "", {})
+    if (resolution or {}).get("kind") == "selection":
+        return answer.get("action") == "VALUE"
+    return answer.get("applies") is True
+
+
+def hold_questions(data, exclude=()):
+    """Backend verification questions for held proposals waiting for one (pool entries)."""
+    from app.requirement_checks import contains_form_span
+
+    if data.get("hold_resolution_revision") != 1:
+        return []
+    dialogue, audit = data.get("dialogue") or {}, data.get("audit") or {}
+    answers, records = dialogue.get("answers", {}), dialogue.get("hold_records", {})
+    fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
+    form = [p.get("text", "") for b in (data.get("catalog") or {}).get("blocks", [])
+            for p in b.get("paragraphs", [])]
+    groups = {}
+    for cid in dialogue.get("held_candidate_ids", []):
+        resolution = records.get(cid, {}).get("resolution") or {}
+        if (resolution.get("kind") == "verification" and resolution["key"] not in answers
+                and resolution["key"] not in exclude):
+            groups.setdefault(resolution["key"], []).append(cid)
+    entries = []
+    for key, cids in groups.items():
+        record = records[cids[0]]
+        quote = record.get("evidence_quote") or ""
+        # An applicability doubt citing FORM text is asked on that clause; anything else is a
+        # verification of the documented values themselves, with no clause to match.
+        clause = quote if (record.get("cause") in {"applicabilita_incerta", "scelta_USER"}
+                           and any(contains_form_span(t, quote) for t in form)) else HOLD_CLAUSE
+        labels = [fields.get(c, {}).get("label") or "dato" for c in cids]
+        values = [(fields.get(c, {}).get("label") or "dato",
+                   fields.get(c, {}).get("proposed_value", fields.get(c, {}).get("value")))
+                  for c in cids]
+        entries.append({"key": key, "kind": "applicability", "condition": clause,
+                        "condition_ids": [], "label": "Dati trovati nelle fonti da verificare",
+                        "context": clause, "field_ids": cids, "alternatives": [],
+                        "impact": len(cids), "documented": len(cids),
+                        "affected_fields": [label[:150] for label in labels[:8]],
+                        "hold_verification": {"cause": record.get("cause"), "values": [
+                            [label, value] for label, value in values
+                            if isinstance(value, str) and value.strip()][:3]}})
+    return entries
+
+
+def _hold_confirmation(q):
+    """The backend wording of a hold verification: the clause, or the documented values."""
+    about = destinations_about(q)
+    if q["condition"] != HOLD_CLAUSE:
+        clause = short_form_text(q["condition"], 160)
+        return f"si applica al vostro caso quanto indicato nel modulo: «{clause}»{about}"
+    values = (q.get("hold_verification") or {}).get("values") or []
+    shown = "; ".join(f"{short_form_text(label, 60)} «{str(value)[:60]}»"
+                      for label, value in values)
+    text = "posso usare questi dati trovati nelle fonti" + (f": {shown}" if shown else "")
+    return text[:500 - len(about)].rstrip(" :;") + about
+
+
 def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregular=None):
     """pool (P3): bind each hold to the key of its blocking slot and release it once
     that blocker has a recorded answer. Every write gate stays in the backend.
@@ -1017,13 +1115,36 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
             record["rereview"] = "done"
         records[cid] = record
     answers = previous.get("answers", {}) if pool is not None else {}
+    resolving = pool is not None and data.get("hold_resolution_revision") == 1
+    if resolving:
+        # Every hold the backend could not link to a question gets a cause and a way the USER
+        # settles it; the verified blocker key, when present, keeps its own release.
+        for cid in incoming - redundant:
+            record = records[cid]
+            if cid in notes:
+                blocker = "applicability" if notes[cid].get("blocker_reclassified") else (
+                    notes[cid].get("blocker"))
+                record["cause"] = HOLD_CAUSES.get(blocker, "fonte_insufficiente")
+                record.pop("resolution", None)
+            if not record.get("blocker_key") and not record.get("resolution"):
+                record.setdefault("cause", "fonte_insufficiente")
+                record["resolution"] = _hold_resolution(data, cid, record)
     stale = {cid for cid in incoming if _blocker_answered(
-        notes.get(cid, {}).get("blocker_key"), answers)}
+        notes.get(cid, {}).get("blocker_key"), answers) or resolving and (
+            records[cid].get("user_verified") or _resolution_settled(
+                records[cid].get("resolution"), answers))}
     resolved = {cid for cid in old - incoming
-                if _blocker_answered(records.get(cid, {}).get("blocker_key"), answers)}
+                if _blocker_answered(records.get(cid, {}).get("blocker_key"), answers)
+                or resolving and _resolution_settled(records.get(cid, {}).get("resolution"),
+                                                     answers)}
+    if resolving:
+        for cid in stale | resolved:
+            if _resolution_settled(records.get(cid, {}).get("resolution"), answers):
+                records[cid]["user_verified"] = True  # Once confirmed, never asked again.
     for cid in stale | resolved:
         records[cid] = {**records.get(cid, {}), **notes.get(cid, {}), "status": "released",
-                        "release_reason": "BLOCKER_ANSWERED", "last_review": review_id}
+                        "release_reason": "USER_RESOLUTION" if records.get(cid, {}).get(
+                            "user_verified") else "BLOCKER_ANSWERED", "last_review": review_id}
     # Not held again at its re-review: back to the backend gates (a MODEL decision).
     rereviewed = reviewing - incoming
     for cid in rereviewed:
@@ -1184,6 +1305,10 @@ def _open_confirmation(q):
     """Backend confirmation of an open FORM condition (an extension keeps its own text)."""
     if q.get("extension"):
         return DialogueQuestion(slot=q["slot"], confirmation="la conferma vale anche per questi")
+    if q.get("hold_verification"):
+        text = _hold_confirmation(q)
+        return DialogueQuestion(slot=q["slot"], confirmation=text) if (
+            no_technical_ids(text) and "?" not in text) else None
     clause = short_form_text(re.sub(r"[?\[\]]", " ", q.get("condition") or ""), 200)
     if len(clause) < 4 or not no_technical_ids(clause):
         return None
@@ -1338,7 +1463,8 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
             q for q in rest if q not in conditions])[:MAX_QUESTIONS]
     for i, q in enumerate(questions):
         slot, text = by_slot[q.slot], q.question
-        if (slot["kind"] == "applicability" and slot.get("form_clause")
+        if (slot["kind"] == "applicability" and (slot.get("form_clause")
+                                                 or slot.get("hold_verification"))
                 and not slot.get("extension") and not slot.get("authorization")):
             # A FORM clause is asked by the backend in its own words: the same question in
             # every run, whatever the narrator's paraphrase (E2E Trapani: four wordings).
@@ -1489,6 +1615,17 @@ async def _narrate_once(data, folder):
         hold_update = _hold_updates(data, proposals, validation_context, plan, root.name,
                                     pool if revised else None, irregular)
         held = set(hold_update["held_candidate_ids"])
+        if revised and data.get("hold_resolution_revision") == 1:
+            # A hold made now is asked now, not after a turn the USER may never take; a
+            # verification for proposals released meanwhile is no longer imposed.
+            for q in pool:
+                if q.get("hold_verification") and not set(q["field_ids"]) & held:
+                    q["documented"] = 0
+            fresh = hold_questions({**data, "dialogue": {**(data.get("dialogue") or {}),
+                                                         **hold_update}},
+                                   exclude={q["key"] for q in pool})
+            pool = [*pool, *({**q, "slot": len(pool) + i + 1} for i, q in enumerate(
+                fresh[:max(0, MAX_POOL - len(pool))]))]
         reviewed = {"reviewed_candidate_ids": [f["candidate_id"] for f in proposals],
                     **hold_update}
         pending = False

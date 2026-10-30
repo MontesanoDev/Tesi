@@ -51,14 +51,18 @@ def field_outcomes(data, written, *, selected=()):
             continue
         state = {c: answers.get("condition:" + c, {}).get("action") or conditions.get(
             c, {}).get("result") for c in keys}
+        # A held proposal's own resolution (a verification or a choice) answered by the USER.
+        resolution = (records.get(cid) or {}).get("resolution") or {}
+        settled = answers.get(resolution.get("key") or "", {}) if cid in held else {}
         outcome = (
             "scritto" if cid in written else
             "escluso_USER" if any(answers.get("condition:" + c, {}).get("applies") is False
-                                  for c in keys) else
+                                  for c in keys) or settled.get("applies") is False else
             "condizione_falsa" if any(conditions.get(c, {}).get("result") == "false"
                                       for c in keys) else
             "errore_validazione" if field.get("validation_errors") else
             "dichiarazione_non_autorizzata" if cid in declared else
+            "rinvio_USER" if settled.get("action") in {"SKIP", "UNKNOWN", "REFUSE"} else
             "sospeso_narratore" if cid in held else
             "rinvio_USER" if any(answers.get("condition:" + c, {}).get("action") in {
                 "SKIP", "UNKNOWN", "REFUSE"} for c in keys) or answers.get(
@@ -73,7 +77,8 @@ def field_outcomes(data, written, *, selected=()):
         if outcome == "sospeso_narratore":
             record = records.get(cid, {})
             entry.update(blocker=record.get("blocker"), blocker_key=record.get("blocker_key"),
-                         reason_validation=record.get("reason_validation"))
+                         reason_validation=record.get("reason_validation"),
+                         causa=record.get("cause"), risoluzione=resolution or None)
         if outcome == "non_selezionato" and cid in selected:
             entry["esito"] = "errore_scrittura"  # Selected for export, absent from the DOCX.
         result[cid] = entry
