@@ -504,6 +504,7 @@ def question_pool(data):
     by_paragraph = {}
     from app.compilation_branch_evidence import decided_peers
     from app.compilation_scope_review import enabled as scope_enabled
+    from app.compilation_scope_review import valid_receipt
 
     peers = decided_peers(data)
     # Options of a derived capacity group are marked by the explicit choice or the receipt
@@ -529,12 +530,19 @@ def question_pool(data):
         covered = (receipt or {}).get("affected_fields") or []
         new = [f.get("label") or "dato collegato" for f in impacted
                if f["candidate_id"] not in covered and f["candidate_id"] not in derived_options]
+        # A confirmation whose destinations changed after the answer no longer proves its
+        # scope: it still blocks, and it is asked again instead of blocking in silence (real
+        # Minervino run: 52 documented values, «Ambito della decisione USER non verificato»).
+        stale = bool(receipt and covered and data.get("hold_resolution_revision") == 1
+                     and scope_enabled(data) and not valid_receipt(
+                         data, "condition:" + key, receipt, covered[0]))
         # Without USER scope verification (older profiles) a receipt has no destinations to
         # extend: answered stays answered, as before.
-        if receipt and (not new or not scope_enabled(data) or "affected_fields" not in receipt):
+        if receipt and not stale and (
+                not new or not scope_enabled(data) or "affected_fields" not in receipt):
             continue
         ids = list(dict.fromkeys([*covered, *ids]))
-        extension = new if receipt else []
+        extension = new if receipt and not stale else []
         documented = sum(documented_proposal(f) for f in impacted)
         clause = equivalent_clause(item)
         same = by_paragraph.get(clause) if clause else None
@@ -558,6 +566,7 @@ def question_pool(data):
                  "context": shown,
                  **({"form_clause": deepcopy(item["form_clause"])}
                     if item.get("form_clause") else {}),
+                 **({"stale_receipt": True} if stale else {}),
                  "field_ids": ids, "alternatives": [], "impact": len(ids),
                  "documented": documented,
                  "affected_fields": [f.get("label", "Dato del blocco")[:150]
@@ -905,6 +914,8 @@ HOLD_CAUSES = {"applicability": "applicabilita_incerta", "user_decision": "scelt
                "source": "fonte_insufficiente", "form": "fonte_insufficiente",
                "other": "fonte_insufficiente"}
 HOLD_CLAUSE = "Uso dei dati trovati nelle fonti, da verificare"
+STALE_RECEIPT = ("La tua conferma precedente non vale più per tutti i dati collegati: sono "
+                 "cambiati dopo la risposta. ")
 
 
 def _hold_resolution(data, cid, record):
@@ -1486,6 +1497,8 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
                 or slot["kind"] == "choice" and slot.get("form_owned")
                 or slot["kind"] == "applicability" and slot.get("extension")):
             text = slot["question"]  # Keep every attestation/choice visible, never a vague assent.
+        if slot.get("stale_receipt"):
+            text = STALE_RECEIPT + text
         shown = {}
         if slot["kind"] == "applicability" and not slot.get("authorization"):
             about = "" if slot.get("extension") or "(riguarda:" in text else destinations_about(
