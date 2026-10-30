@@ -5917,3 +5917,27 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - Effetto reale osservato per la seconda: 33 valori corretti in un run.
 - **Costo:** circa 1,87 USD stimati.
 - **Rapporto:** `docs/verifica-reale-stabilizzazione-2026-10-30.md`.
+
+## 30 ottobre 2026 — Stabilizzazione strutturale del compilatore DOCX
+
+- **Obiettivo:** risultati corretti, spiegabili e ripetibili su FORM diversi, senza dipendere da
+  un'esecuzione fortunata.
+- **Tre meccanismi generali**, attivi nel profilo nuovo `sezioni-2026-10-30`:
+  - recupero mirato dei segmenti con proposte respinte dal validatore: una chiamata limitata
+    alle destinazioni respinte, con i motivi, sotto validatori invariati;
+  - condizioni e domande ancorate a clausole FORM ricavate dal DOCX (opzioni, alternative di
+    elenchi da sfoltire), con testo del backend;
+  - ogni sospensione ha una causa e una domanda di risoluzione: rilascio solo con una
+    risposta USER esplicita.
+- **Tre correzioni dalla campagna reale intermedia:**
+  - recupero per componente;
+  - conferma con ambito cambiato richiesta di nuovo;
+  - scelta di un gruppo sospeso nello stesso turno.
+- **Esiti reali (25 run a codice costante):**
+  - Trapani, compilazione, CNR e checkbox stabili e corretti in ogni ripetizione;
+  - Minervino ancora variabile per omissioni dell'analisi e dubbi «source» del narratore,
+    oggi espliciti;
+  - nessuna sospensione silenziosa;
+  - autorizzazioni intatte.
+- **Costo:** circa 1,78 USD stimati per 59 run.
+- **Rapporto:** `docs/stabilizzazione-strutturale-2026-10-30.md`.

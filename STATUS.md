@@ -1,6 +1,31 @@
 # Stato di Mapi RAG
 
+## Stabilizzazione strutturale del compilatore DOCX — 30 ottobre 2026
+
+**Punto di ripresa: decidere come trattare i dubbi «source» non verificabili del narratore e le
+omissioni dell'analisi (Minervino).** Codice `4dd1087`, branch
+`stabilizzazione-strutturale/2026-10-30`, nessun push.
+- **Tre meccanismi generali** (profilo `sezioni-2026-10-30`; `sezioni-2026-10-25` resta
+  disponibile come interruttore di emergenza):
+  - recupero mirato delle proposte respinte dal validatore;
+  - condizioni ancorate a clausole FORM identificabili;
+  - sospensioni con causa e risoluzione USER.
+- **Tre correzioni emerse dalla campagna intermedia:** recupero per componente, conferma con
+  ambito cambiato richiesta di nuovo, scelta di un gruppo sospeso nello stesso turno.
+- **Campagna finale reale, 25 run a codice costante `94e8726`:**
+  - Trapani 9×5, compilazione 18×3, CNR 10×3, checkbox 7/8/7, contro una baseline che
+    oscillava fino a 1 contro 13;
+  - Minervino 24/43/53/59/52, ancora variabile;
+  - 0 sospensioni silenziose (erano 56 nella baseline);
+  - 0 dichiarazioni o caselle non autorizzate.
+- **Verifiche:** suite 4.255 PASS e 8 saltati, Ruff PASS; rollback verificato per i 6 commit.
+- **Costo:** 59 run, 763 chiamate, circa 1,78 USD stimati.
+- [Rapporto](docs/stabilizzazione-strutturale-2026-10-30.md).
+
 ## Verifica reale della stabilizzazione — 30 ottobre 2026
+
+**Superato dalla stabilizzazione strutturale sopra.** Il punto di ripresa che segue è stato
+affrontato lì.
 
 **Punto di ripresa: decisioni architetturali sul compilatore DOCX**, cioè sospensioni del narratore
 non verificabili, clausole scelte dal modello, seconda analisi dei segmenti respinti, equivalenza
