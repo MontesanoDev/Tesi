@@ -54,7 +54,7 @@ def test_new_sessions_get_the_complete_sections_profile_without_any_variable():
         "table_scope_revision": 1, "hold_rereview_revision": 2, "form_option_scope_revision": 2,
         "text_checkbox_revision": 1, "segment_recovery_revision": 1, "form_clause_revision": 1,
         "hold_resolution_revision": 1, "format_retry_revision": 1,
-        "hold_review_revision": 1}
+        "hold_review_revision": 1, "omission_recovery_revision": 1}
     assert PROFILE_NAME == "sezioni-2026-10-30-r2"
 
 
@@ -190,7 +190,8 @@ def test_the_emergency_switch_recreates_the_profile_before_the_form_scope_adopti
     assert {**PREVIOUS["sezioni-2026-10-24"], "form_option_scope_revision": 2,
             "text_checkbox_revision": 1, "segment_recovery_revision": 1,
             "form_clause_revision": 1, "hold_resolution_revision": 1,
-            "format_retry_revision": 1, "hold_review_revision": 1} == SECTIONS
+            "format_retry_revision": 1, "hold_review_revision": 1,
+            "omission_recovery_revision": 1} == SECTIONS
     assert "text_checkbox_revision" not in state
 
 
@@ -202,7 +203,8 @@ def test_the_emergency_switch_recreates_the_profile_before_the_structural_stabil
     assert "segment_recovery_revision" not in state and "form_clause_revision" not in state
     assert {**PREVIOUS["sezioni-2026-10-25"], "segment_recovery_revision": 1,
             "form_clause_revision": 1, "hold_resolution_revision": 1,
-            "format_retry_revision": 1, "hold_review_revision": 1} == SECTIONS
+            "format_retry_revision": 1, "hold_review_revision": 1,
+            "omission_recovery_revision": 1} == SECTIONS
 
 
 def test_the_emergency_switch_recreates_the_profile_before_the_omission_revisions(
@@ -211,7 +213,7 @@ def test_the_emergency_switch_recreates_the_profile_before_the_omission_revision
     state = adapter.initial_state(inspect_docx(rev2.form_docx(3)))
     assert revisions(state) == PREVIOUS["sezioni-2026-10-30"]
     assert "format_retry_revision" not in state and state["hold_resolution_revision"] == 1
-    assert "hold_review_revision" not in state
+    assert "hold_review_revision" not in state and "omission_recovery_revision" not in state
 
 
 def test_text_checkbox_catalog_is_automatic_but_old_sessions_are_not_upgraded():

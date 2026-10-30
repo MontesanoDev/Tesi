@@ -322,7 +322,8 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
 
 
 async def _resilient_proposal(settings, data, root, metadata, layout, project_id, sources,
-                              *, revision=2, recovery=False, format_retries=False):
+                              *, revision=2, recovery=False, format_retries=False,
+                              omissions=False):
     """Segments by dependency, validated one by one, cached by request digest (resumption).
 
     Bounded retries (MAX_RETRIES_PER_SEGMENT, MAX_RETRIES_PER_ANALYSIS) only for transport,
@@ -333,6 +334,7 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
     format_retries: invalid JSON syntax gets up to MAX_FORMAT_RETRIES_PER_SEGMENT more attempts
     (MAX_FORMAT_RETRIES_PER_ANALYSIS in all), each saying where the previous answer broke.
     """
+    from app.compilation_omissions import omitted_destinations
     from app.compilation_segments import (
         MAX_CONCURRENT_SEGMENTS,
         MAX_FORMAT_RETRIES_PER_ANALYSIS,
@@ -403,18 +405,23 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
         """One targeted second attempt on the destinations the validators rejected."""
         index, payload = segment["index"], record["payload"]
         audit = audited(payload)
-        rejected = rejected_destinations(payload, audit, [
-            c for c in segment["candidate_ids"] if c not in signatory])
-        if not rejected:
+        eligible = [c for c in segment["candidate_ids"] if c not in signatory]
+        rejected = rejected_destinations(payload, audit, eligible)
+        # Destinations the model itself declared not assessed (never justified empties).
+        omitted = omitted_destinations(payload, audit, eligible, data["form"]) if (
+            omissions) else {}
+        if not rejected and not omitted:
             return
         part = {**segment, "candidate_ids": [c for c in segment["candidate_ids"]
-                                             if c in rejected]}
+                                             if c in rejected or c in omitted]}
         body = global_request(settings, segment_input(data, part, revision=revision),
                               thinking=thinking, segment=recovery_instruction(
-                                  part, len(segments), rejected, revision=revision))
+                                  part, len(segments), rejected, revision=revision,
+                                  omitted=omitted))
         digest = request_digest(body)
         entry = {"status": "failed", "source": "called", "digest": digest,
-                 "rejected": rejected, "recovered": [], "still_rejected": sorted(rejected)}
+                 "rejected": rejected, "omitted": omitted, "recovered": [],
+                 "still_rejected": sorted(rejected), "still_omitted": sorted(omitted)}
         record["recovery"] = entry
         target = folder / f"{index}-recupero"
         target.mkdir()
@@ -452,18 +459,22 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                 kept = accepted_destinations(patched, after)
                 if any(kept.get(cid) != value for cid, value in before.items()):
                     raise ValueError("Il recupero cambierebbe destinazioni già valide")
-                return patched, report, rejected_destinations(patched, after, list(ids))
+                return (patched, report, rejected_destinations(patched, after, list(rejected)),
+                        {c for c in omitted if c in kept})
 
-            patched, report, still = patch(set(rejected))
+            asked = set(rejected) | set(omitted)
+            patched, report, still, found = patch(asked)
             if still and (hybrid := with_original_facts(payload, audit, extra, still)) is not extra:
                 extra = hybrid  # Only the rejected component replaced; the grounded value stays.
-                patched, report, still = patch(set(rejected))
-            if still:
-                # Still rejected: the original proposal stays, so later repairs see it unchanged.
-                patched, report, _ = patch(set(rejected) - set(still))
+                patched, report, still, found = patch(asked)
+            final = (set(rejected) - set(still)) | found
+            if final != asked:
+                # Still rejected or still omitted: the original stays, so later repairs and
+                # explanations see it unchanged.
+                patched, report, _, _ = patch(final)
             entry.update(status="applied", skipped=report["skipped"],
-                         recovered=sorted(set(rejected) - set(still)),
-                         still_rejected=sorted(still))
+                         recovered=sorted(final), still_rejected=sorted(still),
+                         still_omitted=sorted(set(omitted) - found))
             record["payload"] = patched
         except (GenerationError, ValueError, TimeoutError, httpx.HTTPError, OSError,
                 KeyError) as exc:
@@ -768,7 +779,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                                                           layout, project_id, sources,
                 revision=claimed["global_compilation"]["generation_revision"],
                 recovery=claimed["global_compilation"].get("segment_recovery_revision") == 1,
-                format_retries=claimed["global_compilation"].get("format_retry_revision") == 1)
+                format_retries=claimed["global_compilation"].get("format_retry_revision") == 1,
+                omissions=claimed["global_compilation"].get("omission_recovery_revision") == 1)
         elif claimed["global_compilation"].get("generation_revision") == 1:
             raw, model, usage = await _segmented_proposal(settings, data, root, metadata)
         else:
@@ -804,7 +816,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "hold_rereview_revision", "table_scope_revision",
                          "form_option_scope_revision", "segment_recovery_revision",
                          "form_clause_revision", "hold_resolution_revision",
-                         "format_retry_revision", "hold_review_revision"):
+                         "format_retry_revision", "hold_review_revision",
+                         "omission_recovery_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:

@@ -538,18 +538,25 @@ def accepted_destinations(payload, audit):
             if _proposes(record) and cid in fields and not fields[cid].get("validation_errors")}
 
 
-def recovery_instruction(segment, count, rejected, *, revision=2):
-    """The segment instruction for a targeted second attempt, with the backend rejections."""
-    lines = "\n".join(f"- {cid} («{item['label']}»): " + "; ".join(item["reasons"])
-                      for cid, item in rejected.items())
-    note = ("RECUPERO MIRATO. Nella risposta precedente di questo segmento il backend ha "
-            "respinto le proposte elencate, con il motivo del rifiuto. Riproponi SOLTANTO queste "
-            "destinazioni e correggi esattamente il motivo indicato, con citazioni FORM e SOURCE "
-            "letterali. Se le fonti non consentono una proposta valida, non proporre un valore: "
-            "usa disposition missing o review, con la spiegazione in coverage. Non inventare "
-            "valori e non spostarli su altre destinazioni. Le condizioni di applicabilità di "
-            "queste destinazioni restano necessarie: dichiarale di nuovo.\n"
-            f"Proposte respinte:\n{lines}\n")
+def recovery_instruction(segment, count, rejected, *, revision=2, omitted=None):
+    """The segment instruction for a targeted second attempt: rejections and omissions."""
+    def lines(items):
+        return "\n".join(f"- {cid} («{item['label']}»): " + "; ".join(item["reasons"])
+                         for cid, item in items.items())
+
+    note = ("RECUPERO MIRATO. Riproponi SOLTANTO le destinazioni elencate sotto, con citazioni "
+            "FORM e SOURCE letterali. Se le fonti non consentono una proposta valida, non "
+            "proporre un valore: usa disposition missing o review, con la spiegazione in "
+            "coverage. Non inventare valori e non spostarli su altre destinazioni. Le condizioni "
+            "di applicabilità di queste destinazioni restano necessarie: dichiarale di nuovo.\n")
+    if rejected:
+        note += ("Proposte respinte dal backend, con il motivo del rifiuto da correggere "
+                 f"esattamente:\n{lines(rejected)}\n")
+    if omitted:
+        note += ("Destinazioni non valutate nella risposta precedente, con il motivo che avevi "
+                 "indicato: valutale ora. Se il FORM ripete lo stesso gruppo di campi per più "
+                 "soggetti senza indicarne l'ordine, usa l'ordine in cui le SOURCE elencano i "
+                 f"soggetti.\n{lines(omitted)}\n")
     head, ids = resilient_instruction(segment, count, revision=revision).rsplit(
         "segment_candidate_ids:", 1)
     return head + note + "segment_candidate_ids:" + ids
@@ -743,8 +750,9 @@ def attach_resilient_status(audit, report):
                       "format_retries": s.get("format_retries", 0),
                       # Recovery: what was rejected, why, and what the second call recovered.
                       **({"recovery": {k: s["recovery"].get(k) for k in (
-                          "status", "source", "rejected", "recovered", "still_rejected",
-                          "skipped", "error") if k in s["recovery"]}}
+                          "status", "source", "rejected", "omitted", "recovered",
+                          "still_rejected", "still_omitted", "skipped", "error")
+                          if k in s["recovery"]}}
                          if s.get("recovery") else {})}
                      for s in report.get("segments", [])],
         "unanalyzed_candidate_ids": sorted(failed),
