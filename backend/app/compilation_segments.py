@@ -562,13 +562,14 @@ def recovery_instruction(segment, count, rejected, *, revision=2, omitted=None):
     return head + note + "segment_candidate_ids:" + ids
 
 
-def apply_recovery(original, recovery, rejected_ids):
+def apply_recovery(original, recovery, rejected_ids, grounded=()):
     """The segment payload with only the rejected destinations taken from the recovery.
 
     Accepted destinations, their facts and conditions are untouched. Recovery facts, bindings,
     conditions and groups get their own names and reach only rejected destinations; every
     original condition of a recovered field stays on it, so a recovery can narrow, never widen,
-    applicability. A group is taken only if all its options were rejected.
+    applicability. A group is taken only if all its options were rejected. «grounded» are the
+    original facts the validators accepted: only those can stand for an identical recovery fact.
     """
     patched, rejected = deepcopy(original), set(rejected_ids)
     kinds = ("facts", "bindings", "conditions", "choice_groups")
@@ -589,6 +590,18 @@ def apply_recovery(original, recovery, rejected_ids):
                 (condition.get("form") or {}).get("paragraph_id"), condition.get("operator")))
             in clauses and clause[0]}
     names["conditions"].update(same)
+    # A fact identical (subject, entity, aspect, property and value) to a grounded original fact
+    # is that fact: a copy under a new name would shift the alternatives of accepted fields (real
+    # Minervino run). A copy of a rejected fact stays apart: its evidence may be the correction.
+    def identity(fact):
+        return tuple(" ".join(str(fact.get(k) or "").split()).casefold()
+                     for k in ("subject", "entity", "aspect", "property", "value"))
+
+    known = {identity(f): key for key, f in (original.get("facts") or {}).items()
+             if isinstance(f, dict) and key in grounded}
+    copies = {old: known[identity(f)] for old, f in (recovery.get("facts") or {}).items()
+              if isinstance(f, dict) and identity(f) in known}
+    names["facts"].update(copies)
     needed = {kind: set() for kind in kinds}
     taken, skipped = [], {}
     groups = recovery.get("choice_groups") or {}
@@ -625,7 +638,8 @@ def apply_recovery(original, recovery, rejected_ids):
     for kind in kinds:
         for old in needed[kind]:
             item = (recovery.get(kind) or {}).get(old)
-            if not isinstance(item, dict) or kind == "conditions" and old in same:
+            if (not isinstance(item, dict) or kind == "conditions" and old in same
+                    or kind == "facts" and old in copies):
                 continue
             item = deepcopy(item)
             if isinstance(item.get("fact_ids"), list):

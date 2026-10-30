@@ -450,9 +450,11 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                 cached.write_text(json.dumps({"digest": digest, "segment": index, "raw": raw,
                                               "recovery": True}, ensure_ascii=False))
             extra, before = structural(raw, part), accepted_destinations(payload, audit)
+            grounded = {key for key, fact in audit.get("facts", {}).items()
+                        if fact.get("validation") == "GROUNDED_PROPOSAL"}
 
             def patch(ids):
-                patched, report = apply_recovery(payload, extra, ids)
+                patched, report = apply_recovery(payload, extra, ids, grounded)
                 patched = structural(json.dumps(patched, ensure_ascii=False), segment)
                 after = audited(patched)
                 # A recovery may only add valid destinations: anything accepted stays as it was.

@@ -240,3 +240,38 @@ def test_a_recovery_condition_on_the_same_FORM_clause_is_the_original_condition(
                                               "form": {"paragraph_id": "paragraph:9"}}}}
     patched, _ = apply_recovery(original, other, {"b"})
     assert patched["fields"]["b"]["conditions"] == ["c", "r_k"]  # Another clause stays its own.
+
+
+def test_a_recovery_fact_identical_to_a_grounded_original_fact_is_the_original_fact():
+    """Real Minervino run (d537e4a): the recovery re-declared «Elisa Romano» under a new name;
+    an accepted field listing that name as an alternative then pointed to the copy, the
+    invariant saw a changed destination and discarded the recovery of 17 values."""
+    fact = {"subject": "Elisa Romano", "entity": "person", "aspect": "identity",
+            "property": "nome_e_cognome", "value": "Elisa Romano", "evidence": []}
+    original = {"fields": {"a": {"fact_id": "f"}, "b": {"fact_id": "x"}},
+                "facts": {"f": fact, "x": {**fact, "value": "Altro"}}, "bindings": {},
+                "choice_groups": {}, "coverage": [], "conditions": {}}
+    recovery = {"fields": {"b": {"fact_id": "g", "conditions": []}},
+                "facts": {"g": {**fact, "subject": " Elisa  Romano", "evidence": [{"q": 1}]}},
+                "bindings": {}, "choice_groups": {}, "conditions": {}}
+    patched, _ = apply_recovery(original, recovery, {"b"}, {"f", "x"})
+    assert patched["fields"]["b"]["fact_id"] == "f" and "r_g" not in patched["facts"]
+    different = {**recovery, "facts": {"g": {**fact, "value": "Ing. Elisa Romano"}}}
+    patched, _ = apply_recovery(original, different, {"b"}, {"f", "x"})
+    assert patched["fields"]["b"]["fact_id"] == "r_g"  # A different value stays its own fact.
+
+
+def test_a_recovery_fact_identical_to_a_rejected_original_fact_stays_its_own_fact():
+    """Real Minervino run (regressione-2): the original codice fiscale cited a passage without
+    it and was rejected; the recovery repeated the value with the right citation. Taking the
+    original fact back would have kept the rejected evidence and lost the recovered value."""
+    fact = {"subject": "Elisa Romano", "entity": "person", "aspect": "identity",
+            "property": "codice_fiscale", "value": "RMNLSI85C47A662Y", "evidence": [{"q": 1}]}
+    original = {"fields": {"b": {"fact_id": "f"}}, "facts": {"f": fact}, "bindings": {},
+                "choice_groups": {}, "coverage": [], "conditions": {}}
+    recovery = {"fields": {"b": {"fact_id": "g", "conditions": []}},
+                "facts": {"g": {**fact, "evidence": [{"q": 2}]}},
+                "bindings": {}, "choice_groups": {}, "conditions": {}}
+    patched, _ = apply_recovery(original, recovery, {"b"}, grounded=set())
+    assert patched["fields"]["b"]["fact_id"] == "r_g"
+    assert patched["facts"]["r_g"]["evidence"] == [{"q": 2}]
