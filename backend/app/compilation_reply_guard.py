@@ -175,11 +175,9 @@ def requires_scope_check(reply, context):
     if reply.action in WRITE_ACTIONS:
         return True
     slot = next((s for s in (context or {}).get("slots", []) if s["slot"] == reply.slot), {})
-    # Deferring a question that shows its destinations defers exactly those (no wide doubt).
     return (reply.action in {"SKIP", "UNKNOWN", "REFUSE"}
             and slot.get("kind") == "applicability"
-            and slot.get("affected_field_count", 0) > 1
-            and not slot.get("destinations_shown"))
+            and slot.get("affected_field_count", 0) > 1)
 
 
 def accepted_slots(raw, expected):
