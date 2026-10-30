@@ -556,12 +556,20 @@ def inspect_docx(data: bytes, *, require_candidates: bool = True) -> DocxLayout:
     )
 
 
+TAX_CODE_LABEL = re.compile(r"\bcodice\s+fiscale\b|\bc\.\s?f\.", re.I)
+VAT_LABEL = re.compile(r"\bpartita\s+iva\b|\bp\.\s?iva\b|\bvat\b", re.I)
+
+
 def field_value_error(
     layout: DocxLayout, target_id: str, value: str, *, label: str = ""
 ) -> tuple[str, str] | None:
     slot = layout.slots.get(target_id)
     if slot and slot.max_length and len(value) > slot.max_length:
         return "field_max_length", "Il valore supera la lunghezza massima del campo Word"
+    # A partita IVA «IT…» is never a codice fiscale (E2E Catanzaro: written in the CF field).
+    if (TAX_CODE_LABEL.search(label or "") and not VAT_LABEL.search(label or "")
+            and re.fullmatch(r"IT\s?\d{11}", value.strip(), re.I)):
+        return "identifier_kind_mismatch", "Una partita IVA con prefisso IT non è un codice fiscale"
     value_type = layout.field_types.get(target_id)
     if value_type == "email_parts":
         return (
