@@ -52,8 +52,8 @@ def test_new_sessions_get_the_complete_sections_profile_without_any_variable():
         "attribution_safety_revision": 1, "derivation_revision": 1, "dialogue_revision": 1,
         "generation_revision": 3, "narration_recovery_revision": 1, "branch_scope_revision": 1,
         "table_scope_revision": 1, "hold_rereview_revision": 2, "form_option_scope_revision": 2,
-        "text_checkbox_revision": 1}
-    assert PROFILE_NAME == "sezioni-2026-10-25"
+        "text_checkbox_revision": 1, "segment_recovery_revision": 1}
+    assert PROFILE_NAME == "sezioni-2026-10-30"
 
 
 @pytest.mark.parametrize("stale", [
@@ -183,8 +183,17 @@ def test_the_emergency_switch_recreates_the_profile_before_the_form_scope_adopti
     assert "form_option_scope_revision" not in state
     assert not compilation_form_option_scope.enabled(state)
     assert {**PREVIOUS["sezioni-2026-10-24"], "form_option_scope_revision": 2,
-            "text_checkbox_revision": 1} == SECTIONS
+            "text_checkbox_revision": 1, "segment_recovery_revision": 1} == SECTIONS
     assert "text_checkbox_revision" not in state
+
+
+def test_the_emergency_switch_recreates_the_profile_before_the_structural_stabilization(
+        monkeypatch):
+    monkeypatch.setenv("MAPI_COMPILATION_PROFILE", "sezioni-2026-10-25")
+    state = adapter.initial_state(inspect_docx(rev2.form_docx(3)))
+    assert revisions(state) == PREVIOUS["sezioni-2026-10-25"]
+    assert "segment_recovery_revision" not in state
+    assert {**PREVIOUS["sezioni-2026-10-25"], "segment_recovery_revision": 1} == SECTIONS
 
 
 def test_text_checkbox_catalog_is_automatic_but_old_sessions_are_not_upgraded():
@@ -196,7 +205,7 @@ def test_text_checkbox_catalog_is_automatic_but_old_sessions_are_not_upgraded():
     original = form_bytes()
     layout = inspect_docx(original, require_candidates=False)
     new = adapter.initial_state(layout)
-    assert new["compilation_profile"] == "sezioni-2026-10-25"
+    assert new["compilation_profile"] == "sezioni-2026-10-30"
     assert new["text_checkbox_revision"] == 1
     assert "p0.txcb0" in new["catalog"]["candidates"]
     previous = {k: v for k, v in new.items() if k != "text_checkbox_revision"}

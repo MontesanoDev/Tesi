@@ -5,6 +5,10 @@ responsibility for proposals is partitioned. Blocks are never split and an
 option clause stays with the table that follows it. The merged envelope is
 re-serialized and validated by the unchanged V12 validator; a failed segment
 leaves its destinations visibly unanalyzed, never partially recovered.
+
+Recovery revision 1: an analyzed segment whose proposals the validators rejected gets one
+second call limited to those destinations, with the rejection reasons. Only rejected
+destinations are replaced, under the same validators (apply_recovery).
 """
 
 import json
@@ -12,7 +16,7 @@ import math
 import re
 from copy import deepcopy
 
-from app.compilation_factual_recovery import canonical_property
+from app.compilation_factual_recovery import OWNER_FAILURE, ROLE_FAILURE, canonical_property
 
 GENERATION_REVISION = 1
 MAX_SEGMENT_CANDIDATES = 60
@@ -454,6 +458,171 @@ def resilient_instruction(segment, count, *, revision=2):
             f"segmento.\nsegment_candidate_ids: [{ids}]")
 
 
+MAX_RECOVERY_DESTINATIONS = 40
+
+
+def _proposes(record):
+    return isinstance(record, dict) and bool(
+        record.get("fact_id") or record.get("alternative_fact_ids") or record.get("binding_id")
+        or record.get("choice") is not None or record.get("choice_group_id"))
+
+
+def rejected_destinations(payload, audit, candidate_ids):
+    """Destinations of one segment whose MODEL proposal the validators rejected, and why.
+
+    Only a proposal counts (fact, alternatives, binding or choice); a position declared missing
+    or without a value is not a rejection. The reasons are the backend validation texts. A
+    rejection the deterministic factual recovery repairs after the merge is left to it.
+    """
+    fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
+    linked = {"fact_id": audit.get("facts", {}), "binding_id": audit.get("bindings", {}),
+              "choice_group_id": audit.get("choice_groups", {})}
+    result = {}
+    for cid in candidate_ids:
+        record, field = (payload.get("fields") or {}).get(cid), fields.get(cid) or {}
+        if not _proposes(record) or not field.get("validation_errors") or field[
+                "validation_errors"] in ([ROLE_FAILURE], [OWNER_FAILURE]):
+            continue
+        reasons = [str(e) for e in field["validation_errors"]]
+        for key, items in linked.items():
+            reasons += [str(e) for e in (items.get(record.get(key)) or {}).get(
+                "validation_errors", [])]
+        result[cid] = {"label": str(record.get("label") or field.get("label") or cid)[:120],
+                       "reasons": list(dict.fromkeys(r[:240] for r in reasons))[:4]}
+        if len(result) == MAX_RECOVERY_DESTINATIONS:
+            break
+    return result
+
+
+def signatory_destinations(catalog):
+    """Destinations of the FORM signatory blocks: who signs is a USER decision.
+
+    Their data are derived from SOURCE after the USER names the person, never recovered by the
+    MODEL before that choice (E2E Minervino: «Binding di ruolo rifiutato» at analysis, then the
+    signatory derivation filled them after the name).
+    """
+    from app.compilation_signatory_form import signatory_groups
+    from app.compilation_source_reuse import _form_groups
+
+    ids = {cid for found, _, _ in _form_groups(catalog) for cid in found}
+    for group in signatory_groups(catalog):
+        ids |= {v for v in group.values() if isinstance(v, str) and v in catalog["candidates"]}
+    return ids
+
+
+def accepted_destinations(payload, audit):
+    """Proposed destinations that passed every validator, with what the audit made of them.
+
+    A recovery is kept only if these are identical afterwards: a sibling fact could otherwise
+    turn an accepted value into unselected alternatives without any validation error.
+    """
+    fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
+    return {cid: json.dumps([fields[cid].get(k) for k in (
+                "value", "proposed_value", "validation", "disposition", "conditions",
+                "review_kind", "alternatives")], sort_keys=True, ensure_ascii=False, default=str)
+            for cid, record in (payload.get("fields") or {}).items()
+            if _proposes(record) and cid in fields and not fields[cid].get("validation_errors")}
+
+
+def recovery_instruction(segment, count, rejected, *, revision=2):
+    """The segment instruction for a targeted second attempt, with the backend rejections."""
+    lines = "\n".join(f"- {cid} («{item['label']}»): " + "; ".join(item["reasons"])
+                      for cid, item in rejected.items())
+    note = ("RECUPERO MIRATO. Nella risposta precedente di questo segmento il backend ha "
+            "respinto le proposte elencate, con il motivo del rifiuto. Riproponi SOLTANTO queste "
+            "destinazioni e correggi esattamente il motivo indicato, con citazioni FORM e SOURCE "
+            "letterali. Se le fonti non consentono una proposta valida, non proporre un valore: "
+            "usa disposition missing o review, con la spiegazione in coverage. Non inventare "
+            "valori e non spostarli su altre destinazioni. Le condizioni di applicabilità di "
+            "queste destinazioni restano necessarie: dichiarale di nuovo.\n"
+            f"Proposte respinte:\n{lines}\n")
+    head, ids = resilient_instruction(segment, count, revision=revision).rsplit(
+        "segment_candidate_ids:", 1)
+    return head + note + "segment_candidate_ids:" + ids
+
+
+def apply_recovery(original, recovery, rejected_ids):
+    """The segment payload with only the rejected destinations taken from the recovery.
+
+    Accepted destinations, their facts and conditions are untouched. Recovery facts, bindings,
+    conditions and groups get their own names and reach only rejected destinations; every
+    original condition of a recovered field stays on it, so a recovery can narrow, never widen,
+    applicability. A group is taken only if all its options were rejected.
+    """
+    patched, rejected = deepcopy(original), set(rejected_ids)
+    kinds = ("facts", "bindings", "conditions", "choice_groups")
+    names = {kind: {old: f"r_{old}"[:80] for old in (recovery.get(kind) or {})} for kind in kinds}
+    for kind in kinds:
+        patched[kind] = dict(patched.get(kind) or {})
+        if set(names[kind].values()) & set(patched[kind]):
+            raise ValueError("Identificativo del recupero già presente nel segmento")
+    needed = {kind: set() for kind in kinds}
+    taken, skipped = [], {}
+    groups = recovery.get("choice_groups") or {}
+    for cid in sorted(rejected & set(recovery.get("fields") or {})):
+        field = deepcopy(recovery["fields"][cid])
+        if not isinstance(field, dict):
+            continue
+        group = field.get("choice_group_id")
+        if group is not None and not (isinstance((groups.get(group) or {}).get("options"), dict)
+                                      and set(groups[group]["options"]) <= rejected):
+            skipped[cid] = "Gruppo di scelta oltre le destinazioni respinte"
+            continue
+        for key, kind in (("fact_id", "facts"), ("binding_id", "bindings"),
+                          ("choice_group_id", "choice_groups")):
+            if field.get(key) is not None:
+                needed[kind].add(field[key])
+                field[key] = names[kind].get(field[key], field[key])
+        if isinstance(field.get("alternative_fact_ids"), list):
+            needed["facts"].update(field["alternative_fact_ids"])
+            field["alternative_fact_ids"] = [names["facts"].get(f, f)
+                                             for f in field["alternative_fact_ids"]]
+        needed["conditions"].update(field.get("conditions") or [])
+        own = ((original.get("fields") or {}).get(cid) or {}).get("conditions") or []
+        field["conditions"] = list(dict.fromkeys(
+            [*own, *(names["conditions"].get(c, c) for c in field.get("conditions") or [])]))
+        patched["fields"][cid] = field
+        taken.append(cid)
+    for group in list(needed["choice_groups"]):
+        needed["conditions"].update((groups.get(group) or {}).get("conditions") or [])
+    for key in list(needed["conditions"]):
+        needed["facts"].update(((recovery.get("conditions") or {}).get(key) or {}).get(
+            "fact_ids") or [])
+    for kind in kinds:
+        for old in needed[kind]:
+            item = (recovery.get(kind) or {}).get(old)
+            if not isinstance(item, dict):
+                continue
+            item = deepcopy(item)
+            if isinstance(item.get("fact_ids"), list):
+                item["fact_ids"] = [names["facts"].get(f, f) for f in item["fact_ids"]]
+            if kind == "choice_groups" and isinstance(item.get("conditions"), list):
+                item["conditions"] = [names["conditions"].get(c, c) for c in item["conditions"]]
+            if kind == "conditions" and isinstance(item.get("scope"), list):
+                # A recovery condition never reaches a destination the first answer settled.
+                item["scope"] = [s for s in item["scope"] if isinstance(s, dict)
+                                 and s.get("kind") == "candidate" and s.get("id") in taken]
+            patched[kind][names[kind][old]] = item
+    done = set(taken)
+    # A rejected group whose options were all recovered is replaced, never kept beside them.
+    for key, group in list((original.get("choice_groups") or {}).items()):
+        options = group.get("options") if isinstance(group, dict) else None
+        if isinstance(options, dict) and options and set(options) <= done:
+            del patched["choice_groups"][key]
+    patched["clarifications"] = {cid: r for cid, r in (patched.get("clarifications") or {}).items()
+                                 if cid not in done}
+    coverage = []
+    for record in patched.get("coverage") or []:
+        if isinstance(record, dict) and isinstance(record.get("candidate_ids"), list):
+            kept = [c for c in record["candidate_ids"] if c not in done]
+            if not kept:
+                continue
+            record = {**record, "candidate_ids": kept}
+        coverage.append(record)
+    patched["coverage"] = coverage
+    return patched, {"recovered_fields": taken, "skipped": skipped}
+
+
 def request_digest(body):
     import hashlib
 
@@ -535,7 +704,12 @@ def attach_resilient_status(audit, report):
         "revision": report.get("revision", RESILIENT_REVISION),
         "segments": [{**{k: s.get(k) for k in ("index", "status", "candidate_count", "error",
                                                "source", "digest")},
-                      "attempts": len(s.get("attempts") or [])}
+                      "attempts": len(s.get("attempts") or []),
+                      # Recovery: what was rejected, why, and what the second call recovered.
+                      **({"recovery": {k: s["recovery"].get(k) for k in (
+                          "status", "source", "rejected", "recovered", "still_rejected",
+                          "skipped", "error") if k in s["recovery"]}}
+                         if s.get("recovery") else {})}
                      for s in report.get("segments", [])],
         "unanalyzed_candidate_ids": sorted(failed),
         "dropped_out_of_segment": len(report.get("dropped_out_of_segment", [])),

@@ -318,23 +318,30 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
 
 
 async def _resilient_proposal(settings, data, root, metadata, layout, project_id, sources,
-                              *, revision=2):
+                              *, revision=2, recovery=False):
     """Segments by dependency, validated one by one, cached by request digest (resumption).
 
     Bounded retries (MAX_RETRIES_PER_SEGMENT, MAX_RETRIES_PER_ANALYSIS) only for transport,
     truncation, unparsable or structurally invalid output; never a JSON repair. A failed
     segment leaves its destinations unanalyzed; independent validated segments are merged.
+    recovery: one targeted call per analyzed segment whose proposals the validators rejected,
+    limited to those destinations; it is kept only if no accepted destination changes status.
     """
     from app.compilation_segments import (
         MAX_CONCURRENT_SEGMENTS,
         MAX_RETRIES_PER_ANALYSIS,
         MAX_RETRIES_PER_SEGMENT,
+        accepted_destinations,
+        apply_recovery,
         parse,
+        recovery_instruction,
+        rejected_destinations,
         request_digest,
         resilient_instruction,
         resilient_merge,
         resilient_partition,
         segment_input,
+        signatory_destinations,
     )
 
     segments = resilient_partition(data["form"])
@@ -375,6 +382,79 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                                  sources, expected_version=12)
         return payload
 
+    signatory = signatory_destinations(data["form"]) if recovery else set()
+
+    def audited(payload):
+        return validate_global_proposal(json.dumps(payload, ensure_ascii=False), layout,
+                                        project_id, sources, expected_version=12)
+
+    async def recover(segment, record):
+        """One targeted second attempt on the destinations the validators rejected."""
+        index, payload = segment["index"], record["payload"]
+        audit = audited(payload)
+        rejected = rejected_destinations(payload, audit, [
+            c for c in segment["candidate_ids"] if c not in signatory])
+        if not rejected:
+            return
+        part = {**segment, "candidate_ids": [c for c in segment["candidate_ids"]
+                                             if c in rejected]}
+        body = global_request(settings, segment_input(data, part, revision=revision),
+                              thinking=thinking, segment=recovery_instruction(
+                                  part, len(segments), rejected, revision=revision))
+        digest = request_digest(body)
+        entry = {"status": "failed", "source": "called", "digest": digest,
+                 "rejected": rejected, "recovered": [], "still_rejected": sorted(rejected)}
+        record["recovery"] = entry
+        target = folder / f"{index}-recupero"
+        target.mkdir()
+        _save(target / "request.json", body, settings.api_key)
+        cached = cache / f"{digest}.json"
+        started = time.perf_counter()
+        try:
+            if cached.is_file():
+                raw, entry["source"] = json.loads(cached.read_text())["raw"], "cache"
+            else:
+                async def capture(response):
+                    metadata["http_calls"] += 1
+                    await response.aread()
+                    _save(target / "http-response.txt", response.text, settings.api_key)
+
+                async with gate, httpx.AsyncClient(
+                    timeout=httpx.Timeout(TIMEOUT_SECONDS, connect=15),
+                    event_hooks={"response": [capture]},
+                ) as client:
+                    raw, _, usage = await asyncio.wait_for(request_model_content(
+                        client, settings, body, TIMEOUT_SECONDS,
+                        response_schema=data["schema_output"]), timeout=TIMEOUT_SECONDS)
+                _save(target / "response.txt", raw, settings.api_key)
+                record["attempts"].append({"result": "recovery", "usage": usage,
+                                           "seconds": time.perf_counter() - started})
+                cached.write_text(json.dumps({"digest": digest, "segment": index, "raw": raw,
+                                              "recovery": True}, ensure_ascii=False))
+            extra, before = structural(raw, part), accepted_destinations(payload, audit)
+
+            def patch(ids):
+                patched, report = apply_recovery(payload, extra, ids)
+                patched = structural(json.dumps(patched, ensure_ascii=False), segment)
+                after = audited(patched)
+                # A recovery may only add valid destinations: anything accepted stays as it was.
+                kept = accepted_destinations(patched, after)
+                if any(kept.get(cid) != value for cid, value in before.items()):
+                    raise ValueError("Il recupero cambierebbe destinazioni già valide")
+                return patched, report, rejected_destinations(patched, after, list(ids))
+
+            patched, report, still = patch(set(rejected))
+            if still:
+                # Still rejected: the original proposal stays, so later repairs see it unchanged.
+                patched, report, _ = patch(set(rejected) - set(still))
+            entry.update(status="applied", skipped=report["skipped"],
+                         recovered=sorted(set(rejected) - set(still)),
+                         still_rejected=sorted(still))
+            record["payload"] = patched
+        except (GenerationError, ValueError, TimeoutError, httpx.HTTPError, OSError,
+                KeyError) as exc:
+            entry["error"] = f"{type(exc).__name__}: {str(exc)[:200]}"
+
     async def run(segment):
         index, body = segment["index"], bodies[segment["index"]]
         digest = request_digest(body)
@@ -390,6 +470,8 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                 record.update(status="analyzed", source="cache",
                               payload=structural(entry["raw"], segment),
                               model=entry.get("model"))
+                if recovery:
+                    await recover(segment, record)
                 results[index] = record
                 return
             except (OSError, ValueError, KeyError):
@@ -435,6 +517,8 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                 if not retry:
                     break
                 budget["retries"] += 1
+        if recovery and record["status"] == "analyzed":
+            await recover(segment, record)
         results[index] = record
 
     await run(segments[0])  # Warms the shared, cacheable prompt prefix.
@@ -452,6 +536,8 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                      "digest": results[s["index"]]["digest"],
                      "inputs": references[s["index"]],
                      "attempts": results[s["index"]]["attempts"],
+                     **({"recovery": results[s["index"]]["recovery"]}
+                        if results[s["index"]].get("recovery") else {}),
                      "error": results[s["index"]]["error"]} for s in segments]}
 
     def valid(ids):
@@ -653,7 +739,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
         if claimed["global_compilation"].get("generation_revision") in {2, 3}:
             raw, model, usage = await _resilient_proposal(settings, data, root, metadata,
                                                           layout, project_id, sources,
-                revision=claimed["global_compilation"]["generation_revision"])
+                revision=claimed["global_compilation"]["generation_revision"],
+                recovery=claimed["global_compilation"].get("segment_recovery_revision") == 1)
         elif claimed["global_compilation"].get("generation_revision") == 1:
             raw, model, usage = await _segmented_proposal(settings, data, root, metadata)
         else:

@@ -10,14 +10,15 @@ not a user option: new sessions then follow the previous creation rules, driven 
 MAPI_*_REVISION variables (monolithic generation when they are absent). Without it, those
 experiment variables are ignored, so a stale environment cannot alter the ordinary profile.
 MAPI_COMPILATION_PROFILE=sezioni-2026-10-24 recreates the canonical profile in force before the
-FORM option/instruction scope was adopted (25 October 2026), also only as an emergency switch.
+FORM option/instruction scope was adopted (25 October 2026), also only as an emergency switch;
+sezioni-2026-10-25 the one before the structural stabilization of 30 October 2026.
 """
 
 from __future__ import annotations
 
 import os
 
-PROFILE_NAME = "sezioni-2026-10-25"
+PROFILE_NAME = "sezioni-2026-10-30"
 SECTIONS = {
     "backend_revision": 13,
     "option_authorization_revision": 1,   # V14: assent to printed option clauses.
@@ -31,11 +32,14 @@ SECTIONS = {
     "hold_rereview_revision": 2,          # One re-review of misattributed or role holds.
     "form_option_scope_revision": 2,      # Data bound to their FORM option or instruction.
     "text_checkbox_revision": 1,          # Supported ASCII markers; verified USER choice.
+    "segment_recovery_revision": 1,       # One targeted retry of validator-rejected proposals.
 }
 # Earlier canonical profiles, recreated only by the server-side emergency switch.
-PREVIOUS = {"sezioni-2026-10-24": {
-    k: v for k, v in SECTIONS.items()
-    if k not in {"form_option_scope_revision", "text_checkbox_revision"}}}
+NEW_2026_10_30 = {"segment_recovery_revision"}
+PREVIOUS = {
+    "sezioni-2026-10-24": {k: v for k, v in SECTIONS.items() if k not in {
+        "form_option_scope_revision", "text_checkbox_revision", *NEW_2026_10_30}},
+    "sezioni-2026-10-25": {k: v for k, v in SECTIONS.items() if k not in NEW_2026_10_30}}
 
 
 def new_session_flags():
