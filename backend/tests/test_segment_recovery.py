@@ -217,3 +217,26 @@ async def test_only_the_rejected_component_is_replaced_the_grounded_value_stays(
     [cid] = entry["rejected"]
     assert entry["recovered"] == [cid] and not fields[cid].get("validation_errors")
     assert fields[cid]["value"] == "ABC123"  # The value SOURCE had already grounded.
+
+
+def test_a_recovery_condition_on_the_same_FORM_clause_is_the_original_condition():
+    """Real Trapani run (c8413ed): the recovery re-declared the company condition on the same
+    option paragraph under a new name; the validator linked it to the accepted destinations of
+    that paragraph and the whole recovery was discarded (3 values lost)."""
+    original = {"fields": {"a": {"fact_id": "f", "conditions": ["c"]},
+                           "b": {"fact_id": "f", "conditions": ["c"]}},
+                "facts": {"f": {}}, "bindings": {}, "choice_groups": {}, "coverage": [],
+                "conditions": {"c": {"form": {"paragraph_id": "paragraph:5", "quote": "Società"},
+                                     "operator": "semantic", "scope": []}}}
+    recovery = {"fields": {"b": {"fact_id": "g", "conditions": ["k"]}}, "facts": {"g": {}},
+                "conditions": {"k": {"form": {"paragraph_id": "paragraph:5",
+                                              "quote": "Legale rappresentante di Società"},
+                                     "operator": "semantic", "scope": []}},
+                "bindings": {}, "choice_groups": {}}
+    patched, _ = apply_recovery(original, recovery, {"b"})
+    assert patched["fields"]["b"]["conditions"] == ["c"]
+    assert set(patched["conditions"]) == {"c"}  # No second condition on the same clause.
+    other = {**recovery, "conditions": {"k": {**recovery["conditions"]["k"],
+                                              "form": {"paragraph_id": "paragraph:9"}}}}
+    patched, _ = apply_recovery(original, other, {"b"})
+    assert patched["fields"]["b"]["conditions"] == ["c", "r_k"]  # Another clause stays its own.

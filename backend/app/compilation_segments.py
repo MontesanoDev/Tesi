@@ -577,6 +577,18 @@ def apply_recovery(original, recovery, rejected_ids):
         patched[kind] = dict(patched.get(kind) or {})
         if set(names[kind].values()) & set(patched[kind]):
             raise ValueError("Identificativo del recupero già presente nel segmento")
+    # A condition on the same FORM clause (paragraph and operator) is the original condition:
+    # a second copy would reach the accepted destinations of that clause (real Trapani run).
+    clauses = {}
+    for key, condition in (original.get("conditions") or {}).items():
+        if isinstance(condition, dict):
+            clauses.setdefault(((condition.get("form") or {}).get("paragraph_id"),
+                                condition.get("operator")), key)
+    same = {old: clauses[clause] for old, condition in (recovery.get("conditions") or {}).items()
+            if isinstance(condition, dict) and (clause := (
+                (condition.get("form") or {}).get("paragraph_id"), condition.get("operator")))
+            in clauses and clause[0]}
+    names["conditions"].update(same)
     needed = {kind: set() for kind in kinds}
     taken, skipped = [], {}
     groups = recovery.get("choice_groups") or {}
@@ -607,12 +619,13 @@ def apply_recovery(original, recovery, rejected_ids):
     for group in list(needed["choice_groups"]):
         needed["conditions"].update((groups.get(group) or {}).get("conditions") or [])
     for key in list(needed["conditions"]):
-        needed["facts"].update(((recovery.get("conditions") or {}).get(key) or {}).get(
-            "fact_ids") or [])
+        if key not in same:  # The original condition keeps its own facts.
+            needed["facts"].update(((recovery.get("conditions") or {}).get(key) or {}).get(
+                "fact_ids") or [])
     for kind in kinds:
         for old in needed[kind]:
             item = (recovery.get(kind) or {}).get(old)
-            if not isinstance(item, dict):
+            if not isinstance(item, dict) or kind == "conditions" and old in same:
                 continue
             item = deepcopy(item)
             if isinstance(item.get("fact_ids"), list):
