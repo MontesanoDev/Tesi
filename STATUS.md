@@ -1,5 +1,29 @@
 # Stato di Mapi RAG
 
+## Collaudo E2E autonomo con DeepSeek reale — 29-30 ottobre 2026
+
+**Punto di ripresa: fermarsi al rapporto.** Nessuna nuova istanza manuale preparata; nessun push o
+merge. Branch `fix/2026-10-28-correzioni-audit-03`, HEAD `45b8794`.
+- **Campagna:** 44 compilazioni reali su 6 FORM.
+  - 3 reali pubblici: Minervino, Trapani, Catanzaro; più Bergamo, estratto a caso e fuori
+    campione.
+  - 2 sintetici con gold.
+  - 539 chiamate, 11,76 milioni di token, circa 1,48 USD.
+- **Correttezza:**
+  - 0 dichiarazioni autorizzate o scritte; caselle tutte corrette;
+  - ogni valore del report presente nel DOCX;
+  - errori: CF dell'impresa con la partita IVA (Catanzaro, modello) e carica più ampia del gold
+    (Minervino).
+- **Fix (12 commit, test e rollback):** da `bea2a7c` a `45b8794`; elenco nel rapporto.
+- **Aperti:**
+  - sospensioni «source» del narratore su dati documentati;
+  - rifiuti della guardia su clausole frammento o con alternative;
+  - ciclo sul rinvio esteso;
+  - limite del corpus (bandi completi);
+  - derivazione della carica da fonti non strutturate;
+  - forte variabilità tra run.
+- [Rapporto](docs/collaudo-e2e-2026-10-29.md).
+
 ## Regressione della terza prova manuale Minervino — 29 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Nessuna nuova prova reale; l'istanza 3 resta su `5dc8918`.

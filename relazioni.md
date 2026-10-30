@@ -5852,3 +5852,28 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - Test fallito prima e passato dopo; rollback verificato.
 - **Limite aperto:** condizioni aperte non imposte dal backend e non segnalate alla bozza.
 - **Rapporto:** `docs/regressione-prova-manuale-3-2026-10-29.md`.
+
+## 29-30 ottobre 2026 — Collaudo E2E autonomo del compilatore DOCX con DeepSeek reale
+
+- **Metodo:** driver HTTP con le chiamate del frontend; utente simulato da policy esplicite
+  congelate (correzioni di policy dichiarate); valutatore indipendente su report e DOCX; nessuno
+  stub.
+- **Set:**
+  - sviluppo: Minervino;
+  - FORM che hanno prodotto correzioni: benchmark compilazione, Trapani, Catanzaro;
+  - indipendenti: benchmark checkbox, Bergamo (reale, estratto a caso, fuori campione).
+- **Esiti sul codice finale:**
+  - compilazione 18/18 corretti;
+  - checkbox 7, con 0 errati e 0 non attesi;
+  - Minervino 49, 52 e 35 corretti (gold 61 documentati a T0), 1 scostamento di carica;
+  - Catanzaro 7 corretti, 6 mancanti, 2 non attesi (CF/P.IVA);
+  - Trapani variabile (0-9 sulle 9 attese);
+  - Bergamo 1 (firmatario).
+  - Dichiarazioni non autorizzate: 0.
+- **12 correzioni** con test falliti prima e passati dopo e rollback verificato.
+- **Limiti:**
+  - variabilità del modello tra run;
+  - policy simulata fragile su FORM nuovi;
+  - un solo FORM fuori campione;
+  - corpus dei bandi completi oltre il limite.
+- **Rapporto:** `docs/collaudo-e2e-2026-10-29.md`.
