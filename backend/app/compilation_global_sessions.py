@@ -1013,6 +1013,11 @@ def generate_draft(project_id, session_id, request):
                                {f["cell_id"] for f in checked_fields})
     if notice:
         message += " " + notice
+    from app.compilation_field_outcomes import field_outcomes
+
+    outcomes = field_outcomes(state["global_compilation"],
+                              set(values) | set(checkbox_values),
+                              selected=set(request.candidate_ids) | set(request.user_candidate_ids))
     report = {"schema_version": 7, "created_at": sessions.now(), "project_id": project_id,
               "session_id": session_id, "session_version": request.version,
               "status": "needs_review", "ready_for_submission": False,
@@ -1021,6 +1026,7 @@ def generate_draft(project_id, session_id, request):
               "template_sha256": layout.sha256, "output_sha256": hashlib.sha256(draft).hexdigest(),
               "fields": checked_fields, "written_field_count": written_count, "resolved": 0,
               "checkbox_values": checkbox_values, "checkbox_effects": checkbox_effects,
+              "field_outcomes": outcomes,
               "global_audit": state["global_compilation"]["audit"],
               "conversation_review": {k: (state["global_compilation"].get("dialogue") or {}).get(
                   k, {}) for k in ["answers", "user_values"]},
