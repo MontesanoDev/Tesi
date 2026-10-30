@@ -459,9 +459,12 @@ def reconcile_branches(data, layout, project_id, sources):
                 field["condition_checks"][key]["result"] = "true"
                 field["condition_checks"][key]["grounding_basis"] = condition["grounding_basis"]
     paragraphs, local = _form_bindings(catalog)
+    # Only a valid group owns its options: a rejected MODEL group is never asked (E2E Minervino,
+    # 30 Oct: 3 of 7 «IN QUALITÀ DI» options, rejected as incomplete, hid the capacity choice).
     used = {
         cid
         for group in result.get("choice_groups", {}).values()
+        if group.get("validation") == "GROUNDED_GROUP"
         for cid in group.get("options", {})
     }
     capacity = {}
