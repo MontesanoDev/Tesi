@@ -197,3 +197,23 @@ def test_the_destinations_of_the_signatory_block_are_never_recovered_by_the_mode
 
     data, _, _ = blocked_case()
     assert set(BLOCK) <= signatory_destinations(data["catalog"])
+
+
+@pytest.mark.anyio
+async def test_only_the_rejected_component_is_replaced_the_grounded_value_stays(
+    api, provider, monkeypatch,
+):
+    """Real Minervino run (ee80067): the recovery fixed the rejected role binding of 24 members
+    but cited their facts with a heading absent from SOURCE; the original facts were grounded.
+    Here the property was wrong and the recovered fact cites text absent from SOURCE."""
+    def broken_fact(inp, ids):
+        payload = json.loads(corrected(inp, ids))
+        payload["facts"]["f"]["evidence"][0]["quote"] = "## Codici aziendali"
+        return json.dumps(payload)
+
+    model = Model({1: [first, broken_fact]})
+    session = (await analyze(api, await started(api, monkeypatch, form_docx(3), model))).json()
+    entry, fields = rejected_and_kept(session)
+    [cid] = entry["rejected"]
+    assert entry["recovered"] == [cid] and not fields[cid].get("validation_errors")
+    assert fields[cid]["value"] == "ABC123"  # The value SOURCE had already grounded.

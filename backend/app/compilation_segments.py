@@ -623,6 +623,27 @@ def apply_recovery(original, recovery, rejected_ids):
     return patched, {"recovered_fields": taken, "skipped": skipped}
 
 
+def with_original_facts(original, audit, recovery, ids):
+    """The recovery with the original grounded fact on destinations it still failed.
+
+    Only the rejected component is replaced: the value stays the one SOURCE already grounded,
+    the recovered field brings the corrected binding, FORM quote or conditions (real
+    Minervino run: 24 member bindings fixed, their new facts cited a heading absent from SOURCE).
+    """
+    facts, hybrid, changed = audit.get("facts", {}), deepcopy(recovery), False
+    for cid in ids:
+        field = (hybrid.get("fields") or {}).get(cid)
+        fact = ((original.get("fields") or {}).get(cid) or {}).get("fact_id")
+        if (not isinstance(field, dict) or field.get("fact_id") is None or not fact
+                or (facts.get(fact) or {}).get("validation") != "GROUNDED_PROPOSAL"):
+            continue
+        key = f"orig_{fact}"[:76]
+        hybrid.setdefault("facts", {})[key] = deepcopy(original["facts"][fact])
+        field["fact_id"] = key  # The property must still match it: the validator decides.
+        changed = True
+    return hybrid if changed else recovery
+
+
 def request_digest(body):
     import hashlib
 

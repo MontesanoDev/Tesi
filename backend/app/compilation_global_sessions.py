@@ -346,6 +346,7 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
         resilient_partition,
         segment_input,
         signatory_destinations,
+        with_original_facts,
     )
 
     segments = resilient_partition(data["form"])
@@ -448,6 +449,9 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
                 return patched, report, rejected_destinations(patched, after, list(ids))
 
             patched, report, still = patch(set(rejected))
+            if still and (hybrid := with_original_facts(payload, audit, extra, still)) is not extra:
+                extra = hybrid  # Only the rejected component replaced; the grounded value stays.
+                patched, report, still = patch(set(rejected))
             if still:
                 # Still rejected: the original proposal stays, so later repairs see it unchanged.
                 patched, report, _ = patch(set(rejected) - set(still))
