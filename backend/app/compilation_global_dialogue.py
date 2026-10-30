@@ -1250,7 +1250,12 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
     for i, q in enumerate(questions):
         slot, text = by_slot[q.slot], q.question
         if require_confirmation and slot["kind"] == "applicability" and not q.confirmation:
-            raise ValueError("La domanda di applicabilità richiede una proposizione chiusa")
+            # The backend owns the slot: its closed confirmation replaces an open question, so
+            # one ill-formed question no longer discards the whole narration (E2E Minervino:
+            # rejected twice, degraded dialogue, empty draft).
+            q = _open_confirmation(slot)
+            if q is None:
+                raise ValueError("La domanda di applicabilità richiede una proposizione chiusa")
         if q.confirmation is not None:
             if slot["kind"] != "applicability" or "?" in q.confirmation:
                 raise ValueError("Conferma non compatibile con la domanda del backend")

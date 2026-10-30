@@ -185,8 +185,11 @@ def test_narration_schema_and_validator_bind_closed_questions_to_boolean_slots()
     assert branches[1]["required"] == ["slot", "question"]
     plan = dialogue.DialoguePlan(message="Conservo la tua indicazione.", questions=[
         {"slot": 1, "question": "Con quale qualità partecipi?"}])
-    with pytest.raises(ValueError, match="proposizione chiusa"):
-        dialogue.render_dialogue(plan, items, require_confirmation=True)
+    # An open question on a boolean slot is replaced by the backend's closed confirmation
+    # (E2E Minervino, 30 Oct); without a safe text it is still rejected
+    # (test_open_question_on_condition_slot.py).
+    [slot] = dialogue.render_dialogue(plan, items, require_confirmation=True)["question"]["slots"]
+    assert slot["question"].startswith("Confermi che si applica al vostro caso")
     assert dialogue.narration_schema(dialogue.ContinuationPlan, [])["properties"][
         "questions"]["maxItems"] == 0
 
