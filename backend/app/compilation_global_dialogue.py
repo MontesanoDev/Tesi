@@ -491,6 +491,13 @@ def question_pool(data):
                              for cid in target["candidate_ids"]}
     pool = consent_questions(data)
     authorization_ids = {cid for q in pool for cid in q["field_ids"]}
+    # A value printed in a declaration is decided by its authorization, which shows its own
+    # scope: until accepted it never widens a condition that also governs other data (E2E
+    # Trapani, real guard:
+    # «la PEC è nella sezione delle dichiarazioni … la stessa proposizione non governa tutte
+    # le destinazioni», so the branch confirmation was refused and the company data lost).
+    from app.compilation_procedural_consent import blocked_fields as unauthorized
+    declared = unauthorized(data)
     postponed = pending_signatory_conditions(data)
     # Segments may each declare the same FORM clause as their own condition: one question per
     # FORM paragraph, one receipt per condition (apply_replies), never a second request.
@@ -513,6 +520,7 @@ def question_pool(data):
         impacted = [f for f in fields if key in f.get("conditions", []) and not any(
             answers.get("condition:" + c, {}).get("applies") is False
             for c in f.get("conditions", []) if c != key)]
+        impacted = [f for f in impacted if f["candidate_id"] not in declared] or impacted
         ids = [f["candidate_id"] for f in impacted]
         if not impacted or set(ids) <= peers:  # Only alternatives of a decided option.
             continue
