@@ -863,6 +863,27 @@ def _blocker_link(proposal, value, context, review, pool, audit=None):
     return ("condition:" + own[0], "OWN_CONDITION_QUOTE") if len(own) == 1 else (None, None)
 
 
+def _form_only_quote(data, proposal, quote):
+    """The hold's quote is FORM text and appears in none of the proposal's SOURCE quotes."""
+    from app.requirement_checks import contains_form_span
+
+    if not quote:
+        return False
+    form = [p.get("text", "") for block in (data.get("catalog") or {}).get("blocks", [])
+            for p in block.get("paragraphs", [])]
+    sources = [e.get("quote", "") for e in proposal.get("source_evidence", [])]
+    return (any(contains_form_span(text, quote) for text in form)
+            and not any(contains_form_span(text, quote) for text in sources))
+
+
+def _blocker_answered(key, answers):
+    """A slot key is settled by any recorded answer; own conditions only by USER confirmations."""
+    if key and key.startswith("conditions:"):
+        return all(answers.get("condition:" + c, {}).get("applies") is True
+                   for c in key.removeprefix("conditions:").split("+"))
+    return key in answers
+
+
 def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregular=None):
     """pool (P3): bind each hold to the key of its blocking slot and release it once
     that blocker has a recorded answer. Every write gate stays in the backend.
@@ -946,10 +967,19 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
             notes[cid]["other_reviews"] = repeated
         # Only doubts a USER answer can settle are bound to a slot: a SOURCE, FORM or
         # other doubt is never released by a confirmation (no USER substitute for SOURCE).
+        # A «source» doubt whose quote is FORM text only is about applicability (E2E
+        # Minervino: up to 31 documented values per run, unreleasable after confirmations).
+        blocker = review.blocker
+        proposal = proposals[review.proposal_slot - 1]
+        if (validation == "RECORDED" and not unresolved and blocker in {"source", "form"}
+                and _form_only_quote(data, proposal, review.evidence_quote)):
+            notes[cid]["blocker_reclassified"], blocker = blocker, "applicability"
         if (validation == "RECORDED" and not unresolved
-                and review.blocker in {"applicability", "user_decision"}):
-            key, basis = _blocker_link(proposals[review.proposal_slot - 1], value, context,
-                                       review, pool, data.get("audit"))
+                and blocker in {"applicability", "user_decision"}):
+            key, basis = _blocker_link(proposal, value, context, review, pool, data.get("audit"))
+            own = sorted(set(proposal.get("conditions", [])))
+            if not key and "blocker_reclassified" in notes[cid] and own:
+                key, basis = "conditions:" + "+".join(own), "OWN_CONDITIONS"
             if key:
                 notes[cid].update(blocker_key=key, blocker_key_basis=basis)
     if unresolved:
@@ -973,10 +1003,11 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
         if cid in reviewing:
             record["rereview"] = "done"
         records[cid] = record
-    answered = set(previous.get("answers", {})) if pool is not None else set()
-    stale = {cid for cid in incoming if notes.get(cid, {}).get("blocker_key") in answered}
+    answers = previous.get("answers", {}) if pool is not None else {}
+    stale = {cid for cid in incoming if _blocker_answered(
+        notes.get(cid, {}).get("blocker_key"), answers)}
     resolved = {cid for cid in old - incoming
-                if records.get(cid, {}).get("blocker_key") in answered}
+                if _blocker_answered(records.get(cid, {}).get("blocker_key"), answers)}
     for cid in stale | resolved:
         records[cid] = {**records.get(cid, {}), **notes.get(cid, {}), "status": "released",
                         "release_reason": "BLOCKER_ANSWERED", "last_review": review_id}
