@@ -16,6 +16,7 @@ from test_compilation_resilient_segments import state_of
 from app import compilation_global_dialogue as dialogue
 from app.compilation_chat import ClarificationReply
 from app.compilation_field_outcomes import field_outcomes
+from app.compilation_global_dialogue import question_pool
 from app.compilation_scope_review import scope_receipt
 
 __all__ = ["api", "provider"]
@@ -155,3 +156,39 @@ def test_a_verified_blocker_link_keeps_its_own_release_and_no_extra_question():
     record = data["dialogue"]["hold_records"]["p5.s0"]
     assert record["blocker_key"] == "condition:own" and "resolution" not in record
     assert dialogue.hold_questions(data) == []
+
+
+def held_options_case():
+    """A valid single-choice group whose options the narrator held (real checkbox run 3)."""
+    from test_compilation_hold_rereview import window_data
+
+    data = window_data()
+    data.update(hold_resolution_revision=1, writable_ids=["p8.cb0", "p9.cb0"])
+    group = {"validation": "GROUNDED_GROUP", "selection": "single", "min_selected": 1,
+             "conditions": [], "label": "Tipologia del partner",
+             "form_evidence": {"paragraph_id": "paragraph:7", "quote": "Tipologia del partner"},
+             "options": {"p8.cb0": {"label": "Organizzazione tecnica"},
+                         "p9.cb0": {"label": "Studio collettivo"}}}
+    data["audit"]["choice_groups"] = {"g": group}
+    data["audit"]["fields"] += [{"candidate_id": c, "conditions": [], "choice_group_id": "g",
+                                 "kind": "choice", "validation": "GROUNDED_PROPOSAL",
+                                 "proposed_value": c == "p9.cb0", "label": o["label"],
+                                 "form_evidence": {"paragraph_id": "paragraph:" + c[1],
+                                                   "quote": o["label"]}}
+                                for c, o in group["options"].items()]
+    resolution = {"kind": "selection", "key": "choice:g"}
+    data["dialogue"].update(held_candidate_ids=["p8.cb0", "p9.cb0"], hold_records={
+        c: {"status": "held", "cause": "applicabilita_incerta", "resolution": resolution}
+        for c in ("p8.cb0", "p9.cb0")})
+    return data
+
+
+def test_a_held_group_is_asked_as_an_explicit_choice_even_when_the_narrator_asks_nothing():
+    pool = question_pool(held_options_case())
+    [choice] = [q for q in pool if q["key"] == "choice:g"]
+    assert choice.get("hold_selection")  # Asked although SOURCE documents an option.
+    plan = dialogue.DialoguePlan(message="Posso preparare la bozza.", questions=[])
+    [slot] = dialogue.render_dialogue(plan, pool)["question"]["slots"]
+    assert slot["key"] == "choice:g"
+    assert "1) Organizzazione tecnica" in slot["question"] and "2) Studio collettivo" in slot[
+        "question"]

@@ -629,7 +629,16 @@ def question_pool(data):
                            + (" (ramo già confermato)" if cid in group["applicable"] else "")
                            for n, (cid, o) in enumerate(group["options"].items(), 1))]),
                         "details": ["☐ " + o["label"] for o in group["options"].values()]}
-                        if capacity else {})})
+                        if capacity else {}),
+                     # Options the narrator held: the explicit choice is the only way to settle
+                     # them, asked by the backend in its own words (real checkbox run 3).
+                     **({"hold_selection": True, "form_owned": True, "question": "\n".join([
+                         f"Quale opzione di «{short_form_text(group['label'])}» indichi? Indica "
+                         "il numero dell'opzione: nessuna casella viene spuntata senza la tua "
+                         "scelta.",
+                         *(f"   {n}) {short_form_text(o['label'], 110)}"
+                           for n, o in enumerate(group["options"].values(), 1))])}
+                        if "choice:" + key in held_choices and not capacity else {})})
     for field in fields:
         cid = field["candidate_id"]
         if (cid not in data["writable_ids"] or "field:" + cid in answers
@@ -1466,6 +1475,8 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
     # «Ing. Elisa Romano», never asked; the draft left both names empty).
     imposed += [q for q in (_alternatives_question(q) for q in pool
                             if q.get("documented_alternatives") and q["slot"] not in chosen) if q]
+    imposed += [DialogueQuestion(slot=q["slot"], question="Scelta del modulo") for q in pool
+                if q.get("hold_selection") and q["slot"] not in chosen]
     if required or imposed:
         required_ids = {q.slot for q in required}
         rest = [q for q in questions if q.slot not in required_ids]
@@ -1634,9 +1645,15 @@ async def _narrate_once(data, folder):
             for q in pool:
                 if q.get("hold_verification") and not set(q["field_ids"]) & held:
                     q["documented"] = 0
-            fresh = hold_questions({**data, "dialogue": {**(data.get("dialogue") or {}),
-                                                         **hold_update}},
-                                   exclude={q["key"] for q in pool})
+            after = {**data, "dialogue": {**(data.get("dialogue") or {}), **hold_update}}
+            existing = {q["key"]: q for q in pool}
+            selections = [q for q in question_pool(after) if q.get("hold_selection")]
+            for q in selections:  # Already asked as a plain choice: now an imposed one.
+                if q["key"] in existing:
+                    existing[q["key"]].update({k: q[k] for k in (
+                        "hold_selection", "form_owned", "question")})
+            fresh = hold_questions(after, exclude=set(existing)) + [
+                q for q in selections if q["key"] not in existing]
             pool = [*pool, *({**q, "slot": len(pool) + i + 1} for i, q in enumerate(
                 fresh[:max(0, MAX_POOL - len(pool))]))]
         reviewed = {"reviewed_candidate_ids": [f["candidate_id"] for f in proposals],
