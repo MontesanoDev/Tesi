@@ -231,10 +231,16 @@ async def verify_field_replies(message, context, replies, *, request):
             checks = FormScopeChecks.model_validate(checked_json(cleaned)).checks
             counts = Counter(c.slot for c in checks)
             expected = {p["slot"] for p in proposals}
+            # A relevant yes/no to a closed question listing its destinations has that scope.
+            shown = {s["slot"] for s in context.get("slots", [])
+                     if s.get("kind") == "applicability" and s.get("destinations_shown")}
             for check in checks:
                 target = scope["slots"].get(str(check.slot), {})
+                closed = (check.slot in shown and by_slot[check.slot].action in {
+                    "CONDITION_TRUE", "CONDITION_FALSE"})
                 if (check.slot in expected and counts[check.slot] == 1
-                        and check.result == check.scope_result == "SUPPORTED"
+                        and check.result == "SUPPORTED"
+                        and (check.scope_result == "SUPPORTED" or closed)
                         and target.get("destinations")
                         and all(d.get("candidate") for d in target["destinations"])):
                     verifications[check.slot] = proof(target, by_slot[check.slot])

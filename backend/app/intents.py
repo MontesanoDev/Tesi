@@ -404,6 +404,7 @@ def routing_context(compilation):
              "question": (slot.get("question") or "")[:600],
              "affected_field_count": len(slot.get("field_ids", [])),
              "affected_fields": slot.get("affected_fields", [])[:8],
+             "destinations_shown": bool(slot.get("destinations_shown")),
              **({"selection": slot["selection"], "min_selected": slot["min_selected"]}
                 if slot.get("kind") == "choice" else {})}
             for slot in slots

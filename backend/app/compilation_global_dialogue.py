@@ -1144,12 +1144,26 @@ def _open_confirmation(q):
     if len(clause) < 4 or not no_technical_ids(clause):
         return None
     # The anchored clause can be a fragment («dell’operatore economico», test 4): name the data.
-    labels = [short_form_text(label, 60) for label in q.get("affected_fields", [])[:3]]
-    labels = [label for label in labels if label and no_technical_ids(label)]
-    about = (" (riguarda: " + ", ".join(labels) + (" e altri" if len(
-        q.get("affected_fields", [])) > 3 else "") + ")") if labels else ""
     return DialogueQuestion(slot=q["slot"], confirmation=(
-        f"si applica al vostro caso quanto indicato nel modulo: «{clause}»{about}"))
+        f"si applica al vostro caso quanto indicato nel modulo: «{clause}»"
+        f"{destinations_about(q)}"))
+
+
+def destinations_about(q):
+    """« (riguarda: A, B, … e altri N)»: what a confirmation concerns, shown to the USER.
+
+    The scope of a closed confirmation is this list, not the wording of the model's clause
+    (E2E campaign: fragments, alternatives and heterogeneous groups made the real guard refuse
+    explicit replies). Labels come from the FORM destinations of the backend slot."""
+    labels = list(dict.fromkeys(short_form_text(label, 60) for label in q.get(
+        "affected_fields", [])))
+    labels = [label for label in labels if label and no_technical_ids(label)]
+    if not labels:
+        return ""
+    total = max(len(q.get("field_ids", [])), len(labels))
+    shown = labels[:6]
+    return " (riguarda: " + ", ".join(shown) + (
+        f" e altri {total - len(shown)}" if total > len(shown) else "") + ")"
 
 
 def documented_proposal(field):
@@ -1266,7 +1280,15 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
                 or slot["kind"] == "choice" and slot.get("form_owned")
                 or slot["kind"] == "applicability" and slot.get("extension")):
             text = slot["question"]  # Keep every attestation/choice visible, never a vague assent.
-        slots.append({**slot, "slot": i + 1, "question": text})
+        shown = {}
+        if slot["kind"] == "applicability" and not slot.get("authorization"):
+            about = "" if slot.get("extension") or "(riguarda:" in text else destinations_about(
+                slot)
+            if about:
+                text = text.rstrip(" ?") + about + "?"
+            shown = {"destinations_shown": bool(about or slot.get("extension")
+                                                or "(riguarda:" in text)}
+        slots.append({**slot, "slot": i + 1, "question": text, **shown})
     if not no_technical_ids(plan.message):
         raise ValueError("Sintesi con identificativi tecnici")
     message = plan.message
