@@ -919,9 +919,14 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
     for review in plan.hold_reviews:
         cid = proposals[review.proposal_slot - 1]["candidate_id"]
         value = context["document_values"][review.proposal_slot - 1]
-        # This anchors a MODEL explanation, never promotes it to a SOURCE fact.
+        # This anchors a MODEL explanation, never promotes it to a SOURCE fact. The FORM clause
+        # of the slot named as the blocker belongs to the hold (E2E Minervino, 30 Oct: 19 data
+        # held on «IN QUALITÀ DI», the capacity choice they named, shown only in the pool).
+        cited = pool[review.condition_slot - 1] if (
+            pool and review.condition_slot and review.condition_slot <= len(pool)) else {}
         allowed = [value, context["role_contexts"], context["previous_answers"],
-                   context["applicability_contexts"]]
+                   context["applicability_contexts"],
+                   [cited.get("condition") or "", cited.get("context") or ""]]
         anchored = any(contains_form_span(text, review.evidence_quote)
                        for text in _strings(allowed))
         if not anchored and pool is None:
