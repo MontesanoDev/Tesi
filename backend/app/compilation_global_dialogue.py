@@ -368,6 +368,58 @@ def short_form_text(text, limit=120):
     return text if len(text) <= limit else text[:limit - 1].rsplit(" ", 1)[0] + "…"
 
 
+BLANK = re.compile(r"\[\[[^\]]*\]\]|_{3,}|\.{4,}|…")
+FILLED_LINE = re.compile(r"[^\W\d_] …(?:[,;.]|\s|$)")
+
+
+def form_line(text, limit=160):
+    """A FORM line to fill in, its blanks shown as «…»; None without blanks.
+
+    Without them it read as a clause to apply (E2E Minervino: «Il sottoscritto , nato a il ,
+    residente» asked and summarized as a condition).
+    """
+    if not BLANK.search(text or ""):
+        return None
+    text = re.sub(r"\([^()]*\)", " ", BLANK.sub(" … ", text))
+    text = " ".join(re.sub(r"[☐☑☒]|\[\s*\]", " ", text).split())
+    text = re.sub(r"\s+([,;:.])", r"\1", re.sub(r"…(?:\s*…)+", "…", text)).strip(" :;,.")
+    return readable(text, limit) if re.search(r"[^\W\d_]{3,}", text) else None
+
+
+def readable(text, limit):
+    """Shown text cut at a word, never mid-word (E2E CNR: «Comune sede lega.»)."""
+    text = " ".join(str(text or "").split())
+    return text if len(text) <= limit else text[:limit - 1].rsplit(" ", 1)[0].rstrip(
+        " ,;:") + "…"
+
+
+def clause_confirmation(condition, about=""):
+    """The backend confirmation of a FORM clause; a FORM line to fill in is a part to compile.
+
+    None exactly when the clause gives no readable text, as before this wording.
+    """
+    clause = short_form_text(re.sub(r"[?\[\]]", " ", condition or ""), 200)
+    if len(clause) < 4 or not no_technical_ids(clause):
+        return None
+    if line := form_line(condition, 200):
+        return f"la parte del modulo «{line}» va compilata{about}"
+    return f"si applica al vostro caso quanto indicato nel modulo: «{clause}»{about}"
+
+
+def shown_label(field, default=None, *, with_value=True):
+    """A destination as the USER reads it: a reused person's role names person and role.
+
+    The audit label stays «Carica documentata» (the scope proof digests it); only the lists
+    shown in questions read «Carica di Leonardo Montemurro: amministratore unico …».
+    """
+    reuse = field.get("source_reuse") or {}
+    if reuse.get("property") == "role" and reuse.get("subject"):
+        value = field.get("proposed_value") or field.get("value")
+        return f"Carica di {reuse['subject']}" + (
+            f": {value}" if with_value and isinstance(value, str) and value.strip() else "")
+    return field.get("label", default)
+
+
 def confirmed_text(slot):
     """What the USER confirmed, readable: the closed question asked, else the FORM clause.
 
@@ -408,9 +460,15 @@ def continuation_receipt(dialogue, *, newly_held=False):
     latest = dialogue.get("latest_turn") or {}
     accepted = latest.get("accepted", [])
 
+    def shown(text):
+        # The scope list was in the question; a summary names the statement, whole words.
+        text = re.sub(r"\s*\(riguarda:.*$", "", str(text)).strip()
+        return readable(f"la parte del modulo «{text}»" if FILLED_LINE.search(text) else text,
+                        180)
+
     def labels(records, key='label'):
         return "; ".join(dict.fromkeys(
-            str(r.get(key) or r['label'])[:180] for r in records
+            shown(r.get(key) or r['label']) for r in records
             if r.get('label') and no_technical_ids(str(r.get(key) or r['label'])))
         ) or "punti indicati"
 
@@ -430,7 +488,7 @@ def continuation_receipt(dialogue, *, newly_held=False):
         parts.append(f"Rinviato, lascio vuoto: {labels(records)}.")
     closed = set(latest.get("loop_guard", []))
     for refused in latest.get("unaccepted", []):
-        label = str(refused.get("label") or "questa domanda")[:120]
+        label = readable(refused.get("label") or "questa domanda", 120)
         reason = refused.get("reason")
         why = f": {reason}" if reason and no_technical_ids(reason) else ""
         parts.append(
@@ -459,11 +517,10 @@ def _extension(labels, clause=""):
     The question names the FORM clause: without it the reply guard cannot tell what a plain
     «sì» confirms (E2E Minervino, real guard: refused twice, the derived data stayed empty).
     """
-    labels = list(dict.fromkeys(str(label)[:60] for label in labels))
-    shown = "; ".join(labels[:6]) + (f" e altri {len(labels) - 6}" if len(labels) > 6 else "")
-    clause = short_form_text(re.sub(r"[?\[\]]", " ", clause or ""), 200)
-    confirmed = (f"Avevi confermato che si applica al vostro caso quanto indicato nel modulo: "
-                 f"«{clause}». " if len(clause) >= 4 and no_technical_ids(clause) else "")
+    labels = list(dict.fromkeys(readable(label, 80) for label in labels))
+    shown = (f"{len(labels)} dati, tra cui " if len(labels) > 6 else "") + "; ".join(labels[:6])
+    confirmed = (f"Avevi confermato che {text}. " if (text := clause_confirmation(clause))
+                 else "")
     return {"extension": labels, "question": (
         f"{confirmed}Dopo la tua conferma ho ricavato dalle fonti altri dati collegati "
         f"({shown}). Confermi che si applica anche a questi?")}
@@ -528,7 +585,7 @@ def question_pool(data):
         # A confirmation is asked again only for destinations its receipt never showed (e.g.
         # derived from SOURCE after the USER chose a person), naming them: never silently lost.
         covered = (receipt or {}).get("affected_fields") or []
-        new = [f.get("label") or "dato collegato" for f in impacted
+        new = [shown_label(f) or "dato collegato" for f in impacted
                if f["candidate_id"] not in covered and f["candidate_id"] not in derived_options]
         # A confirmation whose destinations changed after the answer no longer proves its
         # scope: it still blocks, and it is asked again instead of blocking in silence (real
@@ -552,7 +609,7 @@ def question_pool(data):
             same["impact"] = len(same["field_ids"])
             same["documented"] = same.get("documented", 0) + documented
             same["affected_fields"] = list(dict.fromkeys(same["affected_fields"] + [
-                f.get("label", "Dato del blocco")[:150] for f in impacted]))[:8]
+                shown_label(f, "Dato del blocco")[:150] for f in impacted]))[:8]
             if extension:
                 same.update(_extension(same.get("extension", []) + extension,
                                        same.get("condition")))
@@ -569,7 +626,7 @@ def question_pool(data):
                  **({"stale_receipt": True} if stale else {}),
                  "field_ids": ids, "alternatives": [], "impact": len(ids),
                  "documented": documented,
-                 "affected_fields": [f.get("label", "Dato del blocco")[:150]
+                 "affected_fields": [shown_label(f, "Dato del blocco")[:150]
                                      for f in impacted[:8]],
                  **(_extension(extension, item["form_evidence"]["quote"])
                     if extension else {})}
@@ -982,8 +1039,8 @@ def hold_questions(data, exclude=()):
         # verification of the documented values themselves, with no clause to match.
         clause = quote if (record.get("cause") in {"applicabilita_incerta", "scelta_USER"}
                            and any(contains_form_span(t, quote) for t in form)) else HOLD_CLAUSE
-        labels = [fields.get(c, {}).get("label") or "dato" for c in cids]
-        values = [(fields.get(c, {}).get("label") or "dato",
+        labels = [shown_label(fields.get(c, {})) or "dato" for c in cids]
+        values = [(shown_label(fields.get(c, {}), with_value=False) or "dato",
                    fields.get(c, {}).get("proposed_value", fields.get(c, {}).get("value")))
                   for c in cids]
         entries.append({"key": key, "kind": "applicability", "condition": clause,
@@ -1004,7 +1061,10 @@ def _hold_confirmation(q):
     about = destinations_about(q)
     if q["condition"] != HOLD_CLAUSE:
         clause = short_form_text(q["condition"], 160)
-        return f"si applica al vostro caso quanto indicato nel modulo: «{clause}»{about}"
+        text = f"si applica al vostro caso quanto indicato nel modulo: «{clause}»{about}"
+        line = form_line(q["condition"], 160)  # Same acceptance: only the wording changes.
+        return f"la parte del modulo «{line}» va compilata{about}" if (
+            line and no_technical_ids(text) and "?" not in text) else text
     values = (q.get("hold_verification") or {}).get("values") or []
     shown = "; ".join(f"{short_form_text(label, 60)} «{str(value)[:60]}»"
                       for label, value in values)
@@ -1339,11 +1399,8 @@ def open_condition_questions(pool):
         if q["kind"] != "applicability" or not q["key"].startswith("condition:"):
             continue
         # The clause itself, without legal references or lead-ins (details stay in the FORM).
-        quote = short_form_text(re.sub(r"[?\[\]]", " ", q.get("condition") or ""), 200)
-        if len(quote) < 4 or not no_technical_ids(quote):
-            continue
-        questions.append(DialogueQuestion(slot=q["slot"], confirmation=(
-            f"si applica al vostro caso quanto indicato nel modulo: «{quote}»")))
+        if text := clause_confirmation(q.get("condition")):
+            questions.append(DialogueQuestion(slot=q["slot"], confirmation=text))
     return questions
 
 
@@ -1355,30 +1412,30 @@ def _open_confirmation(q):
         text = _hold_confirmation(q)
         return DialogueQuestion(slot=q["slot"], confirmation=text) if (
             no_technical_ids(text) and "?" not in text) else None
-    clause = short_form_text(re.sub(r"[?\[\]]", " ", q.get("condition") or ""), 200)
-    if len(clause) < 4 or not no_technical_ids(clause):
-        return None
     # The anchored clause can be a fragment («dell’operatore economico», test 4): name the data.
-    return DialogueQuestion(slot=q["slot"], confirmation=(
-        f"si applica al vostro caso quanto indicato nel modulo: «{clause}»"
-        f"{destinations_about(q)}"))
+    text = clause_confirmation(q.get("condition"), destinations_about(q))
+    return DialogueQuestion(slot=q["slot"], confirmation=text) if text else None
 
 
 def destinations_about(q):
-    """« (riguarda: A, B, … e altri N)»: what a confirmation concerns, shown to the USER.
+    """« (riguarda: A, B, C)» or « (riguarda: N dati del modulo, tra cui A, B … e F)».
 
     The scope of a closed confirmation is this list, not the wording of the model's clause
     (E2E campaign: fragments, alternatives and heterogeneous groups made the real guard refuse
-    explicit replies). Labels come from the FORM destinations of the backend slot."""
-    labels = list(dict.fromkeys(short_form_text(label, 60) for label in q.get(
+    explicit replies). Labels come from the FORM destinations of the backend slot. The marker
+    «(riguarda:» is unchanged: it says the destinations were shown (destinations_shown)."""
+    labels = list(dict.fromkeys(short_form_text(label, 80) for label in q.get(
         "affected_fields", [])))
     labels = [label for label in labels if label and no_technical_ids(label)]
     if not labels:
         return ""
     total = max(len(q.get("field_ids", [])), len(labels))
     shown = labels[:6]
-    return " (riguarda: " + ", ".join(shown) + (
-        f" e altri {total - len(shown)}" if total > len(shown) else "") + ")"
+    if total <= len(shown):
+        return " (riguarda: " + ", ".join(shown) + ")"
+    return (f" (riguarda: {total} dati del modulo, tra cui " + ", ".join(shown[:-1])
+            + f" e {shown[-1]})" if len(shown) > 1 else
+            f" (riguarda: {total} dati del modulo, tra cui {shown[0]})")
 
 
 def documented_proposal(field):
@@ -1444,8 +1501,8 @@ def unexported_notice(data, written):
             choosing.append(field)
 
     def names(fields):
-        labels = list(dict.fromkeys(f.get("label") or "dato" for f in fields))
-        return ", ".join(labels[:3]) + (" e altri" if len(labels) > 3 else "")
+        labels = list(dict.fromkeys(shown_label(f) or "dato" for f in fields))
+        return ("tra cui " if len(labels) > 3 else "") + ", ".join(labels[:3])
 
     parts = [f"{len(fields)} dati trovati nelle fonti ({names(fields)}) aspettano la tua "
              f"conferma su «{short_form_text(conditions[key]['form_evidence']['quote'], 120)}»"
@@ -1472,19 +1529,22 @@ def reviewed_doubts_notice(data, written):
                 and r.get("release_reason") == "DETERMINISTIC_REVIEW"]
     if not released:
         return ""
-    labels = list(dict.fromkeys(fields.get(c, {}).get("label") or "dato" for c in released))
-    return (f"Da rivedere: {len(released)} dati trovati nelle fonti ({', '.join(labels[:3])}"
-            f"{' e altri' if len(labels) > 3 else ''}) erano stati messi in dubbio senza un "
-            "motivo verificabile; li ho inseriti con i controlli ordinari.")
+    labels = list(dict.fromkeys(shown_label(fields.get(c, {})) or "dato" for c in released))
+    return (f"Da rivedere: {len(released)} dati trovati nelle fonti ("
+            f"{'tra cui ' if len(labels) > 3 else ''}{', '.join(labels[:3])}) erano stati "
+            "messi in dubbio senza un motivo verificabile; li ho inseriti con i controlli "
+            "ordinari.")
 
 
 def _retry_question(q):
     """The refused question again, as the USER saw it, or its FORM clause."""
     if q["kind"] == "applicability":
         clause = short_form_text(q.get("condition"), 200)
+        line = form_line(q.get("condition"), 200)
         return DialogueQuestion(slot=q["slot"], confirmation=(
-            f"si applica al vostro caso quanto indicato nel modulo: «{clause}»"
-            if len(clause) >= 4 and no_technical_ids(clause) else "questa situazione si applica"))
+            "questa situazione si applica" if len(clause) < 4 or not no_technical_ids(clause)
+            else f"la parte del modulo «{line}» va compilata" if line else
+            f"si applica al vostro caso quanto indicato nel modulo: «{clause}»"))
     previous = q.get("previous_question") or ""
     text = previous if 4 <= len(previous) <= 600 and no_technical_ids(previous) else (
         f"Puoi precisare «{str(q.get('label') or 'questo dato')[:120]}»?")

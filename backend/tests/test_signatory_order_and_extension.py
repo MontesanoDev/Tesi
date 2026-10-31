@@ -61,8 +61,10 @@ def test_a_confirmation_given_too_early_is_asked_again_naming_the_new_data():
     derived = choose(data, layout, sources)
     assert derived <= blocked_source_fields(data)  # Not covered: never written silently...
     [question] = [q for q in question_pool(data) if q["key"] == "condition:c_firm"]
-    # The question names the confirmed FORM clause (the reply guard must see what «sì» means).
-    assert question["question"].startswith("Avevi confermato che si applica al vostro caso")
+    # The question names the confirmed FORM clause (the reply guard must see what «sì» means);
+    # a FORM line to fill in is named as the part to compile, its blanks shown.
+    assert question["question"].startswith(
+        "Avevi confermato che la parte del modulo «Il sottoscritto …, nato a» va compilata.")
     assert "Dopo la tua conferma ho ricavato dalle fonti" in question["question"]
     assert set(question["field_ids"]) >= derived | {"p0.s0"}  # ...asked again, naming them.
     receipt(data, "condition:c_firm", question["field_ids"], "CONDITION_TRUE")

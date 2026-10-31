@@ -180,9 +180,13 @@ def decision_questions(data, reserved_ids=()):
                 ids.extend(cid for cid, c in catalog["candidates"].items()
                            if c.get("context_id") == following["id"] and c.get("type") == "text")
             integration = bool(re.search(r"\bintegrazione delle prestazioni\b", text, re.I))
-            append("designation", "Professionista incaricato dell'integrazione" if integration
-                   else "Professionisti esecutori", ids, [proof(paragraph)],
-                   "Chi designi per questo incarico? Non lo ricavo dai ruoli aziendali.")
+            role = ("Professionista incaricato dell'integrazione" if integration
+                    else "Professionisti esecutori")
+            # Each designation names its role: two identical «Chi designi per questo incarico?»
+            # followed by different FORM lines (real Minervino runs) read as one question.
+            append("designation", role, ids, [proof(paragraph)],
+                   f"Chi designi come {role[:1].lower() + role[1:]}? Non lo ricavo dai ruoli "
+                   "aziendali.")
         elif re.match(r"\s*Luogo e data\b", text, re.I) and "text_with_fields" in paragraph:
             append("location_date", "Luogo e data della domanda", ids, [proof(paragraph)],
                    "Quali luogo e data indichi?")
