@@ -5968,3 +5968,27 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - autorizzazioni intatte.
 - **Costo:** circa 1,05 USD stimati per 31 run.
 - **Rapporto:** `docs/riduzione-omissioni-2026-10-30.md`.
+
+## 31 ottobre 2026 — Versione per la dimostrazione ai relatori
+
+- **Obiettivo:** fermare lo sviluppo sperimentale e rendere disponibile ai relatori l'ultimo
+  compilatore, con un rollback sicuro.
+- **Default precedente congelato:** tag `demo-default-pre-r2-20261031` (`618eb36`), codice
+  runtime esatto dell'app (`796afaf` più 7 file frontend locali), profilo `sezioni-2026-10-25`.
+- **Nuovo default:** tag `demo-default-r2-20261031` (`3a8de0b`), profilo
+  `sezioni-2026-10-30-r2`, applicato all'app ordinaria per port selettivo di 83 file, ciascuno
+  verificato identico al default precedente prima della sostituzione.
+- **Verifiche senza DeepSeek:**
+  - suite backend e frontend;
+  - avvio reale con `./start.sh` su dati temporanei, rete esterna bloccata;
+  - profilo e moduli caricati nel worker;
+  - gestione dell'assenza del modello;
+  - flusso completo con modello simulato al confine;
+  - riesportazione identica di due sessioni reali registrate (compilazione e Trapani);
+  - switch al profilo precedente;
+  - integrità dei dati reali prima e dopo.
+- **Limiti dichiarati ai relatori:**
+  - variabilità dipendente dal modello;
+  - condizione generica di partecipazione;
+  - E2E non rieseguiti.
+- **Guida:** `docs/demo-relatori-2026-10-31.md`.

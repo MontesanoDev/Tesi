@@ -1,8 +1,26 @@
 # Stato di Mapi RAG
 
+## Versione per la dimostrazione ai relatori — 31 ottobre 2026
+
+**Sviluppo sperimentale fermo. L'app ordinaria usa il nuovo default `sezioni-2026-10-30-r2`;
+è una versione sperimentale consolidata, con revisione umana obbligatoria dei DOCX.**
+- Nuovo default: tag `demo-default-r2-20261031` = `3a8de0b`, cioè il compilatore `c838339` più
+  il lavoro frontend locale del 29 ottobre.
+- Default precedente congelato: tag `demo-default-pre-r2-20261031` = `618eb36`, cioè `796afaf`
+  più gli stessi file locali, profilo `sezioni-2026-10-25`.
+- App ordinaria aggiornata per port selettivo di 83 file runtime; HEAD, documenti locali, dati e
+  sessioni non toccati.
+- Verifiche:
+  - backend 4.292 PASS, Ruff PASS; frontend 188 PASS, lint e build PASS;
+  - `./start.sh` su dati temporanei con profilo r2 caricato nel worker;
+  - due FORM reali riesportati identici;
+  - 0 chiamate esterne.
+- Rollback a due livelli (switch di profilo o codice esatto), provato in un worktree.
+- [Guida per la dimostrazione](docs/demo-relatori-2026-10-31.md).
+
 ## Riduzione delle omissioni del compilatore DOCX — 30 ottobre 2026
 
-**Punto di ripresa: decidere se e come intervenire sulla variabilità residua, che dipende dal
+**Promosso a default per la dimostrazione (31 ottobre, sopra).** Punto di ripresa ancora aperto: decidere se e come intervenire sulla variabilità residua, che dipende dal
 modello (blocco soci di Minervino, condizione generica di partecipazione), e se il gold di
 `p14.s0` accetta la carica letterale della SOURCE.** Codice `c838339`, branch
 `riduzione-omissioni/2026-10-30`, nessun push o merge.
