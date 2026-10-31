@@ -13,6 +13,13 @@
 .retrieval-settings .retrieval-card + .retrieval-card { margin-top: 0; }
 .retrieval-settings .retrieval-card > p { margin: 0; }
 .retrieval-embedding-service { display: grid; gap: 18px; margin-top: 18px; }
+.retrieval-service-address { min-width: 0; }
+.retrieval-address-row { display: grid; grid-template-columns: minmax(0, 1fr) 160px; gap: 14px; align-items: start; }
+.retrieval-service-address > p { margin: 10px 0 0; }
+@media (max-width: 480px) {
+  .retrieval-address-row { grid-template-columns: minmax(0, 1fr); }
+  .retrieval-address-row > label:last-child { max-width: 180px; }
+}
 .retrieval-settings .retrieval-description { color: var(--text-muted); font-size: 13px; line-height: 1.6; }
 .retrieval-settings .retrieval-model-summary { font-size: 13px; color: var(--text-muted); }
 .retrieval-model-summary strong { color: var(--text); overflow-wrap: anywhere; }
@@ -23,8 +30,7 @@
 .retrieval-technical > summary { cursor: pointer; font-size: 14px; font-weight: 500; }
 .retrieval-technical > summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 3px; }
 .retrieval-technical > .retrieval-description { margin-top: 12px; }
-.retrieval-settings .retrieval-tech-group { align-content: start; padding-top: 18px; gap: 16px; }
-.retrieval-tech-group legend { padding-inline: 5px; font-size: 14px; font-weight: 600; }
+.retrieval-settings .retrieval-tech-group { align-content: start; padding-top: 22px; gap: 20px; }
 .retrieval-service { font-size: 13px; }
 .retrieval-settings .retrieval-address-help { margin-top: 18px; }
 .retrieval-connection { display: grid; gap: 10px; margin-top: 18px; }

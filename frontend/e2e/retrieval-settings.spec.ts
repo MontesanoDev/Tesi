@@ -7,6 +7,59 @@ const initial = {
   query_prefix: 'query:', document_prefix: 'passage:', has_qdrant_api_key: false, has_embedding_api_key: false,
 }
 
+test('embedding address, optional port and connection feedback without save or inference', async ({ page }, testInfo) => {
+  let inventories = 0
+  let fail = false
+  let expectedUrl = initial.embedding_url
+  const unexpected: string[] = []
+  await page.route('**/api/**', async (route) => {
+    const path = new URL(route.request().url()).pathname
+    if (path === '/api/settings/retrieval/providers') return route.fulfill({ json: embeddingProviders })
+    if (path === '/api/settings/ai') return route.fulfill({ json: { profiles: [], default_profile_id: null } })
+    if (path === '/api/settings/retrieval' && route.request().method() === 'GET') return route.fulfill({ json: initial })
+    if (path === '/api/settings/retrieval/models') {
+      inventories += 1
+      expect(route.request().postDataJSON().embedding_url).toBe(expectedUrl)
+      return fail ? route.fulfill({ status: 502, json: { detail: 'Servizio non raggiungibile' } })
+        : route.fulfill({ json: { models: ['bge-m3:latest'] } })
+    }
+    if (route.request().method() !== 'GET') unexpected.push(`${route.request().method()} ${path}`)
+    return route.fulfill({ json: [] })
+  })
+  await page.goto('/settings')
+  const embedding = page.getByRole('region', { name: 'Modelli di embedding' })
+  await expect(embedding.getByLabel('Modello di embedding')).toBeEnabled()
+  await embedding.getByText('Impostazioni avanzate', { exact: true }).click()
+  const address = embedding.getByLabel('Indirizzo Ollama')
+  const port = embedding.getByLabel('Porta (opzionale)')
+  await expect(address).toHaveValue('127.0.0.1')
+  await expect(port).toHaveValue('11434')
+  const bounds = await Promise.all([address.boundingBox(), port.boundingBox()])
+  if (testInfo.project.name === 'desktop') {
+    expect(bounds[0]?.y).toBe(bounds[1]?.y)
+    expect(bounds[1]!.width).toBeLessThan(bounds[0]!.width)
+  } else expect(bounds[1]!.y).toBeGreaterThan(bounds[0]!.y)
+  await port.fill('65536')
+  await embedding.getByRole('button', { name: 'Verifica collegamento', exact: true }).click()
+  expect(inventories).toBe(1)
+  expect(await port.evaluate((input: HTMLInputElement) => input.validity.valid)).toBe(false)
+  await address.fill('192.168.1.20')
+  await port.fill('11435')
+  expectedUrl = 'http://192.168.1.20:11435'
+  await embedding.getByRole('button', { name: 'Verifica collegamento', exact: true }).click()
+  await expect(embedding.getByRole('status')).toContainText('Collegamento riuscito')
+  expect(inventories).toBe(2)
+  await page.screenshot({ path: testInfo.outputPath('embedding-connection.png'), fullPage: true })
+  await port.fill('11436')
+  await expect(embedding.getByRole('status')).toHaveCount(0)
+  expectedUrl = 'http://192.168.1.20:11436'
+  fail = true
+  await embedding.getByRole('button', { name: 'Verifica collegamento', exact: true }).click()
+  await expect(embedding.getByRole('alert')).toContainText('Servizio non raggiungibile')
+  expect(unexpected).toEqual([])
+  expect(inventories).toBe(3)
+})
+
 test('two cards, installed embedding models and separate check/save/index actions', async ({ page }, testInfo) => {
   let settings = { ...initial }
   let fail = true
@@ -28,6 +81,7 @@ test('two cards, installed embedding models and separate check/save/index action
       const payload = route.request().postDataJSON()
       expect(payload.embedding_model).toBe('nomic-embed-text:latest')
       expect(payload.qdrant_api_key).toBe('browser-fake-secret')
+      expect(payload.qdrant_url).toBe('https://qdrant.example.test:7443')
       return route.fulfill({ json: { message: 'Collegamento riuscito.', dimensions: 768 } })
     }
     if (path === '/api/settings/retrieval/index') {
@@ -67,13 +121,21 @@ test('two cards, installed embedding models and separate check/save/index action
   await expect(search.getByLabel('Tipo di archivio')).toBeHidden()
   await expect(embedding.getByLabel('Indirizzo Ollama')).toBeHidden()
   await embedding.getByLabel('Modello di embedding').selectOption('nomic-embed-text:latest')
-  await expect(embedding.getByText(/Questa modifica può richiedere/)).toBeVisible()
+  await expect(search.getByText(/Questa modifica può richiedere/)).toBeVisible()
+  await expect(embedding.getByText(/Questa modifica può richiedere/)).toHaveCount(0)
+  await expect(page.getByText(/Modello previsto/)).toHaveCount(0)
   await search.getByText('Impostazioni avanzate', { exact: true }).click()
   await embedding.getByText('Impostazioni avanzate', { exact: true }).click()
   await expect(search.getByLabel('Indirizzo Qdrant')).toHaveCount(0)
   await expect(search.getByRole('button', { name: 'Aggiorna indice' })).toBeDisabled()
   await search.getByLabel('Tipo di archivio').selectOption('remote')
+  await expect(search.getByLabel('Indirizzo Qdrant')).toHaveValue('127.0.0.1')
+  await expect(search.getByLabel('Porta (opzionale)')).toHaveValue('6333')
+  await expect(embedding.getByLabel('Porta (opzionale)')).toHaveValue('11434')
   await search.getByLabel('Indirizzo Qdrant').fill('https://qdrant.example.test')
+  await expect(search.getByLabel('Porta (opzionale)')).toHaveValue('')
+  await search.getByLabel('Porta (opzionale)').fill('7443')
+  await page.screenshot({ path: testInfo.outputPath('qdrant-address.png'), fullPage: true })
   await search.getByLabel('Chiave Qdrant (facoltativa)').fill('browser-fake-secret')
   await embedding.getByLabel('Indirizzo Ollama').fill('')
   await embedding.getByText('Impostazioni avanzate', { exact: true }).click()
@@ -81,7 +143,7 @@ test('two cards, installed embedding models and separate check/save/index action
   await expect(embedding.getByLabel('Indirizzo Ollama')).toBeVisible()
   expect(saves).toBe(0)
   await embedding.getByLabel('Indirizzo Ollama').fill('http://127.0.0.1:11434')
-  await search.getByRole('button', { name: 'Verifica collegamento' }).click()
+  await search.getByRole('button', { name: 'Verifica ricerca semantica' }).click()
   await expect(search.getByRole('status')).toContainText('Collegamento riuscito')
   expect(checks).toBe(1)
   expect(saves).toBe(0)
@@ -135,7 +197,7 @@ test('advanced panels inherit light tokens and fit narrow screens', async ({ pag
   const model = embedding.getByLabel('Modello di embedding')
   expect(await model.evaluate((element) => getComputedStyle(element).color)).toBe('rgb(36, 37, 32)')
   expect(await model.evaluate((element) => getComputedStyle(element).backgroundColor)).toBe('rgb(250, 250, 247)')
-  expect(await embedding.getByText(/Questa modifica può richiedere/).evaluate((element) => getComputedStyle(element).color)).toBe('rgb(121, 81, 16)')
+  expect(await search.getByText(/Questa modifica può richiedere/).evaluate((element) => getComputedStyle(element).color)).toBe('rgb(121, 81, 16)')
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true)
   await page.screenshot({ path: `artifacts/${testInfo.project.name}-retrieval-two-cards-light.png`, fullPage: true })
 })

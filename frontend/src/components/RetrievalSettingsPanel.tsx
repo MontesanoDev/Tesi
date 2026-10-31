@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { api } from '../api'
 import type { EmbeddingProvider, EmbeddingProviderDefinition, RetrievalInput, RetrievalSettings } from '../types'
+import { ServiceAddressFields } from './ServiceAddressFields'
 import './AiSettings.css'
 import './RetrievalSettings.css'
 
@@ -28,25 +29,41 @@ export function RetrievalSettingsPanel() {
   const [models, setModels] = useState<string[] | null>(null)
   const [modelsLoading, setModelsLoading] = useState(false)
   const [modelsError, setModelsError] = useState('')
+  const [connection, setConnection] = useState<{ kind: 'checking' | 'success' | 'warning' | 'error'; message: string } | null>(null)
   const modelsRequest = useRef<AbortController | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
+  const embeddingServiceRef = useRef<HTMLDivElement>(null)
 
-  async function loadModels(config: RetrievalInput) {
+  async function loadModels(config: RetrievalInput, verify = false) {
     modelsRequest.current?.abort()
     const controller = new AbortController()
     modelsRequest.current = controller
     setModels(null)
     setModelsLoading(true)
     setModelsError('')
+    setConnection(verify ? { kind: 'checking', message: 'Verifica del collegamento in corso…' } : null)
     try {
       const result = await api.embeddingModels({
         embedding_provider: config.embedding_provider,
         embedding_url: config.embedding_url, embedding_api_key: config.embedding_api_key,
         clear_embedding_api_key: config.clear_embedding_api_key,
       }, controller.signal)
-      if (!controller.signal.aborted) setModels(result.models)
+      if (!controller.signal.aborted) {
+        setModels(result.models)
+        if (verify) {
+          const listed = result.models.some((model) => config.embedding_provider === 'ollama'
+            ? sameModel(model, config.embedding_model) : model === config.embedding_model)
+          setConnection(listed
+            ? { kind: 'success', message: `Collegamento riuscito. Il modello ${config.embedding_model} è disponibile nell’elenco.` }
+            : { kind: 'warning', message: 'Servizio raggiungibile. Il modello selezionato non compare nell’elenco: la sua disponibilità resta da verificare.' })
+        }
+      }
     } catch (reason) {
-      if (!controller.signal.aborted) setModelsError(reason instanceof Error ? reason.message : 'Modelli non disponibili')
+      if (!controller.signal.aborted) {
+        const message = reason instanceof Error ? reason.message : 'Modelli non disponibili'
+        if (verify) setConnection({ kind: 'error', message: `Verifica non riuscita: ${message}` })
+        else setModelsError(message)
+      }
     } finally {
       if (!controller.signal.aborted) setModelsLoading(false)
     }
@@ -82,6 +99,7 @@ export function RetrievalSettingsPanel() {
       ? form.embedding_model : name))]
 
   function change(patch: Partial<RetrievalInput>) {
+    setConnection(null)
     if ('embedding_provider' in patch || 'embedding_url' in patch || 'embedding_api_key' in patch || 'clear_embedding_api_key' in patch) {
       modelsRequest.current?.abort()
       setModels(null); setModelsLoading(false); setModelsError('')
@@ -89,6 +107,15 @@ export function RetrievalSettingsPanel() {
     setForm((value) => value ? { ...value, ...patch } : value)
     setNotice('')
     setError(null)
+  }
+
+  function validEmbeddingService() {
+    const inputs = embeddingServiceRef.current?.querySelectorAll('input')
+    if (!inputs) return false
+    for (const input of inputs) {
+      if (!input.reportValidity()) { setEmbeddingOpen(true); return false }
+    }
+    return true
   }
 
   function changeProvider(id: EmbeddingProvider) {
@@ -173,8 +200,7 @@ export function RetrievalSettingsPanel() {
           </datalist>}
           <div className="ai-actions">
             <button className="ai-button" type="button" disabled={modelsLoading} onClick={() => {
-              const input = formRef.current?.elements.namedItem('embedding_url') as HTMLInputElement | null
-              if (input && !input.reportValidity()) return
+              if (!validEmbeddingService()) return
               void loadModels(form)
             }}>{modelsLoading ? 'Caricamento modelli…' : 'Ricarica modelli'}</button>
           </div>
@@ -186,18 +212,16 @@ export function RetrievalSettingsPanel() {
           {!modelsLoading && models === null && !modelsError &&
             <p className="retrieval-description">Ricarica i modelli dopo aver modificato il provider o il collegamento.</p>}
           {modelsLoading && <p className="retrieval-description" role="status">Lettura dei modelli disponibili…</p>}
-          {semantic ? <p className="retrieval-model-summary">{saved?.backend === 'qdrant'
-            ? <>Modello attivo: <strong>{saved.embedding_model}</strong></>
-            : <>Modello previsto: <strong>{form.embedding_model}</strong></>}</p>
+          {semantic && saved?.backend === 'qdrant'
+            ? <p className="retrieval-model-summary">Modello attivo: <strong>{saved.embedding_model}</strong></p>
             : <p className="retrieval-description">Usato dalla ricerca semantica.</p>}
           <details className="retrieval-technical" open={embeddingOpen}
             onToggle={(event) => setEmbeddingOpen(event.currentTarget.open)}>
             <summary>Impostazioni avanzate</summary>
-            <div className="retrieval-embedding-service">
-              <label>{form.embedding_provider === 'ollama' ? 'Indirizzo Ollama' : 'Indirizzo del servizio embedding'}
-                <input name="embedding_url" required type="url" maxLength={500} value={form.embedding_url}
-                  onChange={(e) => change({ embedding_url: e.target.value })} />
-              </label>
+            <div ref={embeddingServiceRef} className="retrieval-embedding-service">
+              <ServiceAddressFields name="embedding_url" value={form.embedding_url} onChange={(value) => change({ embedding_url: value })}
+                label={form.embedding_provider === 'ollama' ? 'Indirizzo Ollama' : 'Indirizzo del servizio embedding'}
+                defaultPort={form.embedding_provider === 'ollama' ? '11434' : undefined} serviceName="Ollama in locale" />
               <label><span id="retrieval-embedding-key-label">Chiave del servizio embedding{provider?.requires_key ? '' : ' (facoltativa)'}</span>
                 <input type="password" autoComplete="new-password" maxLength={4096}
                   required={provider?.requires_key && (!saved?.has_embedding_api_key || !sameEmbeddingService || !!form.clear_embedding_api_key)}
@@ -217,12 +241,20 @@ export function RetrievalSettingsPanel() {
               {(form.embedding_provider === 'ollama' || form.embedding_provider === 'compatible') &&
                 <p className="retrieval-description">127.0.0.1 e localhost indicano la macchina del backend, non necessariamente il tuo computer.</p>}
               {form.embedding_provider !== 'ollama' && <p className="retrieval-description">Il servizio scelto riceverà i testi da indicizzare. L’utilizzo può avere un costo.</p>}
+              <div className="retrieval-connection">
+                <div className="ai-actions">
+                  <button className="ai-button" type="button" disabled={modelsLoading} onClick={() => {
+                    if (validEmbeddingService()) void loadModels(form, true)
+                  }}>{connection?.kind === 'checking' ? 'Verifica…' : 'Verifica collegamento'}</button>
+                </div>
+                <p className="retrieval-description">Controlla l’accesso al servizio e l’elenco dei modelli, senza generare embedding né salvare le modifiche.</p>
+                {connection && <p role={connection.kind === 'error' ? 'alert' : 'status'}
+                  className={connection.kind === 'error' ? 'ai-error' : connection.kind === 'warning' ? 'retrieval-warning' : 'ai-notice'}>
+                  {connection.message}
+                </p>}
+              </div>
             </div>
           </details>
-          {semantic && indexConfigChanged && <p className="retrieval-warning">
-            Questa modifica può richiedere un nuovo indice. Il salvataggio non lo prepara:
-            avverrà alla prossima ricerca semantica oppure con «Aggiorna indice».
-          </p>}
         </section>
 
         <section className="settings-card ai-settings retrieval-card" aria-labelledby="retrieval-heading">
@@ -233,11 +265,14 @@ export function RetrievalSettingsPanel() {
               <option value="qdrant">Semantica</option>
             </select>
           </label>
+          {semantic && indexConfigChanged && <p className="retrieval-warning">
+            Questa modifica può richiedere un nuovo indice. Il salvataggio non lo prepara:
+            avverrà alla prossima ricerca semantica oppure con «Aggiorna indice».
+          </p>}
           {semantic && <details className="retrieval-technical" open={searchOpen}
             onToggle={(event) => setSearchOpen(event.currentTarget.open)}>
             <summary>Impostazioni avanzate</summary>
-            <fieldset className="retrieval-tech-group">
-              <legend>Archivio vettoriale</legend>
+            <fieldset className="retrieval-tech-group" aria-label="Configurazione archivio">
               <label>Tipo di archivio
                 <select value={form.qdrant_mode} onChange={(e) => change({ qdrant_mode: e.target.value as RetrievalInput['qdrant_mode'] })}>
                   <option value="local">Integrato nell’applicazione</option>
@@ -245,10 +280,8 @@ export function RetrievalSettingsPanel() {
                 </select>
               </label>
               {form.qdrant_mode === 'remote' && <>
-                <label>Indirizzo Qdrant
-                  <input required type="url" maxLength={500} value={form.qdrant_url}
-                    onChange={(e) => change({ qdrant_url: e.target.value })} />
-                </label>
+                <ServiceAddressFields name="qdrant_url" value={form.qdrant_url} onChange={(value) => change({ qdrant_url: value })}
+                  label="Indirizzo Qdrant" defaultPort="6333" serviceName="Qdrant" />
                 <label><span id="retrieval-qdrant-key-label">Chiave Qdrant (facoltativa)</span>
                   <input type="password" autoComplete="new-password" maxLength={4096}
                     aria-labelledby="retrieval-qdrant-key-label" aria-describedby="retrieval-qdrant-key-help"
@@ -267,7 +300,7 @@ export function RetrievalSettingsPanel() {
             </fieldset>
             <div className="retrieval-connection">
               <div className="ai-actions">
-                <button className="ai-button" type="button" onClick={() => void perform('check')}>{busy === 'check' ? 'Verifica…' : 'Verifica collegamento'}</button>
+                <button className="ai-button" type="button" onClick={() => void perform('check')}>{busy === 'check' ? 'Verifica…' : 'Verifica ricerca semantica'}</button>
               </div>
               <p className="retrieval-description">Verifica il modello e l’archivio senza salvare le impostazioni o aggiornare l’indice.</p>
             </div>
