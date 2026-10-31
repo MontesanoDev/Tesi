@@ -34,6 +34,182 @@ beforeEach(() => {
 afterEach(cleanup)
 
 describe('retrieval settings', () => {
+  it('keeps embedding and Qdrant addresses independent when checking an unsaved port', async () => {
+    vi.mocked(api.retrievalSettings).mockResolvedValue({ ...vectorSettings,
+      qdrant_mode: 'remote', qdrant_url: 'http://127.0.0.1:6333' })
+    vi.mocked(api.checkRetrievalConnection).mockResolvedValue({ message: 'Collegamento riuscito', dimensions: 1024 })
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    const search = screen.getByRole('region', { name: 'Ricerca nelle fonti' })
+    const embedding = screen.getByRole('region', { name: 'Modelli di embedding' })
+    expect(within(search).getByLabelText('Indirizzo Qdrant')).toHaveValue('127.0.0.1')
+    expect(within(search).getByLabelText('Porta (opzionale)')).toHaveValue('6333')
+    expect(within(embedding).getByLabelText('Porta (opzionale)')).toHaveValue('11434')
+    const addressHelp = screen.getAllByLabelText('Porta (opzionale)').map((input) => input.getAttribute('aria-describedby'))
+    expect(new Set(addressHelp).size).toBe(2)
+    fireEvent.change(within(search).getByLabelText('Indirizzo Qdrant'), { target: { value: 'https://qdrant.example:8443/proxy' } })
+    fireEvent.change(within(search).getByLabelText('Porta (opzionale)'), { target: { value: '6334' } })
+    fireEvent.click(within(search).getByRole('button', { name: 'Verifica ricerca semantica' }))
+    await within(search).findByText('Collegamento riuscito')
+    expect(api.checkRetrievalConnection).toHaveBeenCalledWith(expect.objectContaining({
+      qdrant_url: 'https://qdrant.example:6334/proxy', embedding_url: settings.embedding_url,
+    }))
+    expect(api.saveRetrievalSettings).not.toHaveBeenCalled()
+    expect(api.updateVectorIndex).not.toHaveBeenCalled()
+  })
+
+  it('rejects an invalid Qdrant port without blocking the independent embedding check', async () => {
+    vi.mocked(api.retrievalSettings).mockResolvedValue({ ...vectorSettings, qdrant_mode: 'remote' })
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    const search = screen.getByRole('region', { name: 'Ricerca nelle fonti' })
+    fireEvent.change(within(search).getByLabelText('Porta (opzionale)'), { target: { value: '65536' } })
+    fireEvent.click(within(search).getByRole('button', { name: 'Verifica ricerca semantica' }))
+    expect(api.checkRetrievalConnection).not.toHaveBeenCalled()
+    expect(within(search).getByLabelText('Porta (opzionale)')).toBeInvalid()
+    const embedding = screen.getByRole('region', { name: 'Modelli di embedding' })
+    fireEvent.click(within(embedding).getByRole('button', { name: 'Verifica collegamento' }))
+    await within(embedding).findByText(/Collegamento riuscito/)
+    expect(api.embeddingModels).toHaveBeenCalledTimes(2)
+  })
+
+  it('shows the reindex warning only in search, even while advanced settings are collapsed', async () => {
+    vi.mocked(api.retrievalSettings).mockResolvedValue(vectorSettings)
+    vi.mocked(api.embeddingModels).mockResolvedValue({ models: ['bge-m3', 'changed'] })
+    render(<RetrievalSettingsPanel />)
+    await screen.findByLabelText('Metodo di ricerca')
+    await waitFor(() => expect(screen.getByLabelText('Modello di embedding')).toBeEnabled())
+    fireEvent.change(screen.getByLabelText('Modello di embedding'), { target: { value: 'changed' } })
+    const search = screen.getByRole('region', { name: 'Ricerca nelle fonti' })
+    const embedding = screen.getByRole('region', { name: 'Modelli di embedding' })
+    expect(within(search).getByText(/Questa modifica può richiedere/)).toBeVisible()
+    expect(within(embedding).queryByText(/Questa modifica può richiedere/)).not.toBeInTheDocument()
+    fireEvent.change(screen.getByLabelText('Modello di embedding'), { target: { value: 'bge-m3' } })
+    expect(screen.queryByText(/Questa modifica può richiedere/)).not.toBeInTheDocument()
+  })
+
+  it('separates the stored Ollama address and port without changing the saved URL', async () => {
+    vi.mocked(api.saveRetrievalSettings).mockResolvedValue(settings)
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    expect(screen.getByLabelText('Indirizzo Ollama')).toHaveValue('127.0.0.1')
+    expect(screen.getByLabelText('Porta (opzionale)')).toHaveValue('11434')
+    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
+    await waitFor(() => expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({
+      embedding_url: settings.embedding_url,
+    })))
+  })
+
+  it('checks an unsaved address and port even in keyword mode without generating embeddings', async () => {
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    fireEvent.change(screen.getByLabelText('Indirizzo Ollama'), { target: { value: '192.168.1.20' } })
+    fireEvent.change(screen.getByLabelText('Porta (opzionale)'), { target: { value: '11435' } })
+    const embedding = screen.getByRole('region', { name: 'Modelli di embedding' })
+    fireEvent.click(within(embedding).getByRole('button', { name: 'Verifica collegamento' }))
+    expect(await within(embedding).findByRole('status')).toHaveTextContent('Collegamento riuscito')
+    expect(api.embeddingModels).toHaveBeenLastCalledWith(expect.objectContaining({
+      embedding_url: 'http://192.168.1.20:11435',
+    }), expect.any(AbortSignal))
+    expect(api.saveRetrievalSettings).not.toHaveBeenCalled()
+    expect(api.checkRetrievalConnection).not.toHaveBeenCalled()
+    expect(api.updateVectorIndex).not.toHaveBeenCalled()
+    fireEvent.change(screen.getByLabelText('Porta (opzionale)'), { target: { value: '11436' } })
+    expect(within(embedding).queryByText(/Collegamento riuscito/)).not.toBeInTheDocument()
+  })
+
+  it.each(['https://ollama.example:8443/proxy/v1', 'http://[::1]:11434'])('round-trips the saved service %s', async (url) => {
+    const configured = { ...settings, embedding_url: url }
+    vi.mocked(api.retrievalSettings).mockResolvedValue(configured)
+    vi.mocked(api.saveRetrievalSettings).mockResolvedValue(configured)
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    expect(screen.getByLabelText('Porta (opzionale)')).toHaveValue(url.includes('8443') ? '8443' : '11434')
+    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
+    await waitFor(() => expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({ embedding_url: url })))
+  })
+
+  it('keeps HTTPS and the path when clearing the optional port and accepts a pasted full URL', async () => {
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    fireEvent.change(screen.getByLabelText('Indirizzo Ollama'), { target: { value: 'https://server.example:8443/proxy/v1' } })
+    expect(screen.getByLabelText('Indirizzo Ollama')).toHaveValue('https://server.example/proxy/v1')
+    expect(screen.getByLabelText('Porta (opzionale)')).toHaveValue('8443')
+    fireEvent.change(screen.getByLabelText('Porta (opzionale)'), { target: { value: '' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Ricarica modelli' }))
+    await waitFor(() => expect(api.embeddingModels).toHaveBeenLastCalledWith(expect.objectContaining({
+      embedding_url: 'https://server.example/proxy/v1',
+    }), expect.any(AbortSignal)))
+  })
+
+  it.each(['0', '65536', 'abc', '-1', '1.5'])('blocks an invalid port %s before a service request', async (port) => {
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    fireEvent.change(screen.getByLabelText('Porta (opzionale)'), { target: { value: port } })
+    fireEvent.click(within(screen.getByRole('region', { name: 'Modelli di embedding' })).getByRole('button', { name: 'Verifica collegamento' }))
+    expect(screen.getByLabelText('Porta (opzionale)')).toBeInvalid()
+    expect(api.embeddingModels).toHaveBeenCalledTimes(1)
+  })
+
+  it('reports an unreachable service without saving or losing the entered port', async () => {
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    vi.mocked(api.embeddingModels).mockRejectedValueOnce(new Error('Servizio non raggiungibile'))
+    fireEvent.change(screen.getByLabelText('Porta (opzionale)'), { target: { value: '11435' } })
+    const embedding = screen.getByRole('region', { name: 'Modelli di embedding' })
+    fireEvent.click(within(embedding).getByRole('button', { name: 'Verifica collegamento' }))
+    expect(await within(embedding).findByRole('alert')).toHaveTextContent('Servizio non raggiungibile')
+    expect(screen.getByLabelText('Porta (opzionale)')).toHaveValue('11435')
+    expect(api.saveRetrievalSettings).not.toHaveBeenCalled()
+  })
+
+  it('distinguishes a reachable service from an unlisted model', async () => {
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    vi.mocked(api.embeddingModels).mockResolvedValueOnce({ models: ['other-model'] })
+    const embedding = screen.getByRole('region', { name: 'Modelli di embedding' })
+    fireEvent.click(within(embedding).getByRole('button', { name: 'Verifica collegamento' }))
+    expect(await within(embedding).findByRole('status')).toHaveTextContent('Servizio raggiungibile')
+    expect(within(embedding).getByRole('status')).toHaveTextContent('resta da verificare')
+  })
+
+  it('does not report a late verification as successful after the address changes', async () => {
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    let finish = (_value: { models: string[] }) => {}
+    vi.mocked(api.embeddingModels).mockReturnValueOnce(new Promise((resolve) => { finish = resolve }))
+    const embedding = screen.getByRole('region', { name: 'Modelli di embedding' })
+    fireEvent.click(within(embedding).getByRole('button', { name: 'Verifica collegamento' }))
+    expect(within(embedding).getByRole('button', { name: 'Verifica…' })).toBeDisabled()
+    const signal = vi.mocked(api.embeddingModels).mock.calls.at(-1)?.[1]
+    fireEvent.change(screen.getByLabelText('Porta (opzionale)'), { target: { value: '11435' } })
+    expect(signal?.aborted).toBe(true)
+    finish({ models: ['bge-m3'] })
+    await waitFor(() => expect(within(embedding).queryByRole('status')).not.toBeInTheDocument())
+    expect(screen.getByLabelText('Porta (opzionale)')).toHaveValue('11435')
+  })
+
+  it.each(['ftp://server.example', 'https://user:password@server.example', 'https://server.example?token=test'])('blocks unsupported address %s', async (address) => {
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    fireEvent.change(screen.getByLabelText('Indirizzo Ollama'), { target: { value: address } })
+    fireEvent.click(within(screen.getByRole('region', { name: 'Modelli di embedding' })).getByRole('button', { name: 'Verifica collegamento' }))
+    expect(screen.getByLabelText('Indirizzo Ollama')).toBeInvalid()
+    expect(api.embeddingModels).toHaveBeenCalledTimes(1)
+  })
+
+  it('replaces the old port when pasting a full address with no custom port', async () => {
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    fireEvent.paste(screen.getByLabelText('Indirizzo Ollama'), { clipboardData: { getData: () => 'http://server.example/proxy' } })
+    expect(screen.getByLabelText('Indirizzo Ollama')).toHaveValue('server.example/proxy')
+    expect(screen.getByLabelText('Porta (opzionale)')).toHaveValue('')
+    fireEvent.click(screen.getByRole('button', { name: 'Ricarica modelli' }))
+    await waitFor(() => expect(api.embeddingModels).toHaveBeenLastCalledWith(expect.objectContaining({
+      embedding_url: 'http://server.example/proxy',
+    }), expect.any(AbortSignal)))
+  })
+
   it('shows two cards and hides storage options for keyword search', async () => {
     render(<RetrievalSettingsPanel />)
     expect(await screen.findByLabelText('Metodo di ricerca')).toHaveValue('fts5')
@@ -58,6 +234,7 @@ describe('retrieval settings', () => {
       updated_chunks: 2, deleted_chunks: 1, dimensions: 768, embedding_digest: 'test' })
     render(<RetrievalSettingsPanel />)
     fireEvent.change(await screen.findByLabelText('Metodo di ricerca'), { target: { value: 'qdrant' } })
+    expect(screen.queryByText(/Modello previsto/)).not.toBeInTheDocument()
     expect(screen.getByLabelText('Tipo di archivio')).not.toBeVisible()
     await openTechnical()
     expect(screen.getByLabelText('Modello di embedding')).toHaveValue('bge-m3')
@@ -83,7 +260,7 @@ describe('retrieval settings', () => {
     const key = await screen.findByLabelText(/Chiave Qdrant/)
     expect(key).toHaveValue('')
     fireEvent.change(key, { target: { value: 'fake-secret' } })
-    fireEvent.click(screen.getByRole('button', { name: 'Verifica collegamento' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Verifica ricerca semantica' }))
     await screen.findByText('Collegamento riuscito')
     expect(api.saveRetrievalSettings).not.toHaveBeenCalled()
     expect(api.checkRetrievalConnection).toHaveBeenCalledWith(expect.objectContaining({
@@ -117,7 +294,7 @@ describe('retrieval settings', () => {
     expect(screen.getByRole('region', { name: 'Manutenzione dell’indice' })).not.toBeVisible()
     await openTechnical()
     const embedding = screen.getByRole('region', { name: 'Modelli di embedding' })
-    const storage = screen.getByRole('group', { name: 'Archivio vettoriale' })
+    const storage = screen.getByRole('group', { name: 'Configurazione archivio' })
     expect(within(embedding).getByLabelText('Modello di embedding')).toBeVisible()
     expect(within(embedding).getByText('Ollama', { exact: true })).toBeVisible()
     expect(within(embedding).queryByLabelText('Tipo di archivio')).not.toBeInTheDocument()
@@ -205,7 +382,7 @@ describe('retrieval settings', () => {
     render(<RetrievalSettingsPanel />)
     await openTechnical()
     fireEvent.change(screen.getByLabelText('Indirizzo Ollama'), { target: { value: '' } })
-    fireEvent.click(screen.getByRole('button', { name: 'Verifica collegamento' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Verifica ricerca semantica' }))
     expect(api.checkRetrievalConnection).not.toHaveBeenCalled()
     expect(screen.getByLabelText('Indirizzo Ollama')).toBeInvalid()
   })
@@ -218,7 +395,7 @@ describe('retrieval settings', () => {
     vi.mocked(method).mockReturnValue(pending)
     render(<RetrievalSettingsPanel />)
     await openTechnical()
-    const label = { save: 'Salva impostazioni', check: 'Verifica collegamento', index: 'Aggiorna indice' }[action]
+    const label = { save: 'Salva impostazioni', check: 'Verifica ricerca semantica', index: 'Aggiorna indice' }[action]
     fireEvent.click(screen.getByRole('button', { name: label }))
     expect(screen.getByRole('status')).not.toBeEmptyDOMElement()
     expect(screen.getByLabelText('Metodo di ricerca')).toBeDisabled()
@@ -251,7 +428,7 @@ describe('retrieval settings', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent('Rete non disponibile')
     fireEvent.click(screen.getByRole('button', { name: 'Riprova' }))
     await openTechnical()
-    fireEvent.click(screen.getByRole('button', { name: 'Verifica collegamento' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Verifica ricerca semantica' }))
     await screen.findByText('Collegamento riuscito')
     fireEvent.change(screen.getByLabelText('Modello di embedding'), { target: { value: 'changed' } })
     expect(screen.queryByText('Collegamento riuscito')).not.toBeInTheDocument()

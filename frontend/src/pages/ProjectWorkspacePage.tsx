@@ -542,7 +542,7 @@ export function ProjectWorkspacePage() {
           type="button"
           aria-label="Aggiungi un documento"
           title="Aggiungi un documento"
-          disabled={searching || conversationLoading || changingModel || compilation.loading
+          disabled={searching || conversationLoading || compilation.loading
             || compilation.processing || documents.length === 0}
           onClick={() => {
             const position = composerInput.current?.selectionStart ?? prompt.length
