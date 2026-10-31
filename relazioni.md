@@ -5992,3 +5992,21 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - condizione generica di partecipazione;
   - E2E non rieseguiti.
 - **Guida:** `docs/demo-relatori-2026-10-31.md`.
+
+## 31 ottobre 2026 — Chiarezza delle domande e dei riepiloghi del narratore
+
+- **Obiettivo:** solo la chiarezza dei testi, partendo dalla demo R2, senza cambiare decisioni.
+- **Corretti:**
+  - riga FORM da compilare presentata come condizione;
+  - «Carica documentata» senza persona e carica;
+  - «riguarda … e altri N»;
+  - riepiloghi con l'elenco ripetuto e parole tagliate;
+  - due «Chi designi per questo incarico?» identici per ruoli diversi.
+- **Misura offline** sugli artefatti reali del narratore (90 run, fedeltà verificata
+  riproducendo col codice della demo 110 domande e 193 riepiloghi): ogni difetto a 0.
+- **Segnalati e non fatti:**
+  - la condizione stessa sulla riga del sottoscritto (logica delle condizioni);
+  - i testi già salvati nelle risposte precedenti (ricevute);
+  - l'effetto delle nuove formulazioni sul verdetto della guardia reale, non misurabile
+    senza DeepSeek.
+- **Rapporto:** `docs/narratore-chiarezza-2026-10-31.md`.

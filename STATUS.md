@@ -1,5 +1,21 @@
 # Stato di Mapi RAG
 
+## Chiarezza del narratore — 31 ottobre 2026
+
+Commit `de2f5de` sul branch `narratore-chiarezza/2026-10-31`, dalla demo R2. Non applicato alla
+demo né all'app ordinaria; nessun push o merge.
+- Solo presentazione:
+  - riga FORM da compilare detta come parte da compilare;
+  - «Carica di <persona>: <carica>»;
+  - «N dati del modulo, tra cui …» al posto di «e altri N»;
+  - riepiloghi senza elenco e senza parole tagliate;
+  - una domanda per ruolo nelle designazioni.
+- Condizioni, ricevute, guardia, validatori e DOCX invariati.
+- Verifiche:
+  - suite 4.290 PASS, Ruff PASS, rollback verificato;
+  - replay su 90 run reali: ogni difetto da 2–114 occorrenze a 0.
+- [Rapporto](docs/narratore-chiarezza-2026-10-31.md).
+
 ## Versione per la dimostrazione ai relatori — 31 ottobre 2026
 
 **Sviluppo sperimentale fermo. L'app ordinaria usa il nuovo default `sezioni-2026-10-30-r2`;
