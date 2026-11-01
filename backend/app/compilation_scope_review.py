@@ -33,6 +33,9 @@ def target(data, key, field_ids, user_conditions=None):
     # The guard must see the same fallback FORM target as the backend-owned question
     # and later SOURCE derivation, including when the model omitted the name field.
     fields.update(signatory_fields(data))
+    from app.compilation_user_extraction import target_fields
+
+    fields.update(target_fields(data))
     ids = sorted(set(field_ids))
     conditions = {c for cid in ids for c in fields.get(cid, {}).get("conditions", [])}
     if key.startswith("condition:"):

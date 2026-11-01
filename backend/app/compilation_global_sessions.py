@@ -983,7 +983,10 @@ def refreshed_audit(db, row, state):
         (folder / "response.txt").read_text(), layout, row["project_id"], sources, data, folder,
         expected_version=data["audit"].get("version", 10))
     reused = reuse_selected_person({**data, "audit": fresh}, layout, row["project_id"], sources)
-    return reconcile_branches({**data, "audit": reused}, layout, row["project_id"], sources)
+    from app.compilation_user_extraction import restore_fields
+
+    return restore_fields(data, reconcile_branches(
+        {**data, "audit": reused}, layout, row["project_id"], sources))
 
 
 def _selected(row, state, request, db):
@@ -993,6 +996,10 @@ def _selected(row, state, request, db):
     if data["phase"] != "REVIEW":
         raise HTTPException(409, "Completa l'analisi prima di rivedere le proposte")
     ids, conditions = request.candidate_ids, request.confirmed_condition_ids
+    from app.compilation_user_extraction import blocked_fields as unparsed
+
+    if (set(ids) | set(request.user_candidate_ids)) & unparsed(data):
+        raise HTTPException(409, "La risposta USER richiede un chiarimento per questi dati")
     recovering = (data.get("narration_recovery_revision") == 1 and
                   (data.get("dialogue") or {}).get("narration_recovery", {}).get("mode")
                   == "degraded")

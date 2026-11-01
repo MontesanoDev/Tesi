@@ -39,25 +39,29 @@ SECTIONS = {
     "format_retry_revision": 1,           # Invalid JSON: bounded retries saying where.
     "hold_review_revision": 1,            # Deterministic review of narrator SOURCE doubts.
     "omission_recovery_revision": 1,      # Declared-unassessed destinations: one recovery.
+    "user_extraction_revision": 1,        # Atomic USER facts, individually scope-checked.
 }
 # Earlier canonical profiles, recreated only by the server-side emergency switch.
 NEW_2026_10_30 = {"segment_recovery_revision", "form_clause_revision",
                   "hold_resolution_revision"}
 NEW_2026_10_30_R2 = {"format_retry_revision", "hold_review_revision",
                      "omission_recovery_revision"}
+NEW_USER_EXTRACTION = {"user_extraction_revision"}
 PREVIOUS = {
     "sezioni-2026-10-24": {k: v for k, v in SECTIONS.items() if k not in {
         "form_option_scope_revision", "text_checkbox_revision", *NEW_2026_10_30,
-        *NEW_2026_10_30_R2}},
+        *NEW_2026_10_30_R2, *NEW_USER_EXTRACTION}},
     "sezioni-2026-10-25": {k: v for k, v in SECTIONS.items()
-                           if k not in NEW_2026_10_30 | NEW_2026_10_30_R2},
-    "sezioni-2026-10-30": {k: v for k, v in SECTIONS.items() if k not in NEW_2026_10_30_R2}}
+                           if k not in NEW_2026_10_30 | NEW_2026_10_30_R2 | NEW_USER_EXTRACTION},
+    "sezioni-2026-10-30": {k: v for k, v in SECTIONS.items()
+                           if k not in NEW_2026_10_30_R2 | NEW_USER_EXTRACTION}}
 
 
 def new_session_flags():
     profile = os.environ.get("MAPI_COMPILATION_PROFILE")
     if profile == "checkbox-testuali-2026-10-26":
-        return {**SECTIONS, "compilation_profile": profile, "text_checkbox_revision": 1}
+        return {**{k: v for k, v in SECTIONS.items() if k not in NEW_USER_EXTRACTION},
+                "compilation_profile": profile, "text_checkbox_revision": 1}
     if profile == "storico":
         return historical_flags()
     if profile in PREVIOUS:

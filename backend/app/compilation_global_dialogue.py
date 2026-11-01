@@ -478,8 +478,13 @@ def continuation_receipt(dialogue, *, newly_held=False):
             # The FORM clause the USER answered, not the model's note on what was missing.
             parts.append(f"{outcome}: {labels(records, 'form_clause')}.")
     if records := [r for r in accepted if r["action"] == "VALUE"
-                   and r.get("write_authorized") is not False]:
+                   and r.get("write_authorized") is not False and "usable_for_draft" not in r]:
         parts.append(f"Ho registrato: {labels(records)}.")
+    if records := [r for r in accepted if r.get("usable_for_draft") is True]:
+        parts.append(f"Dati acquisiti per la bozza: {labels(records)}.")
+    if records := [r for r in accepted if r.get("usable_for_draft") is False]:
+        parts.append(f"Risposte conservate per {labels(records)}; restano da verificare "
+                     "le conferme necessarie prima di inserirle nella bozza.")
     if records := [r for r in accepted if r["action"] == "VALUE"
                    and r.get("write_authorized") is False]:
         parts.append(f"Ho registrato la decisione su {labels(records)}; non scrive ancora "
@@ -501,6 +506,7 @@ def continuation_receipt(dialogue, *, newly_held=False):
         parts.append("Riprendiamo dal punto rimasto aperto.")
     if newly_held:
         parts.append("Ho tenuto da parte alcune proposte che richiedono ancora una verifica.")
+    parts.extend(dict.fromkeys(dialogue.get("latest_extraction_issues", [])))
     return " ".join(parts)
 
 
@@ -702,7 +708,8 @@ def question_pool(data):
                 or cid in authorization_ids
                 or cid in unassessed_role_fields
                 or field.get("kind") in {"signature", "decorative"}
-                or field.get("disposition") not in {"missing", "review"}
+                or (field.get("disposition") not in {"missing", "review"}
+                    and cid not in dialogue.get("extraction_pending", {}))
                 or not field.get("label") or field["label"] == cid):
             continue
         # A dependent value is not asked before its condition has been settled, except the
@@ -1517,6 +1524,14 @@ def unexported_notice(data, written):
     if suspended:
         parts.append(f"{len(suspended)} dati trovati nelle fonti ({names(suspended)}) sono "
                      "sospesi in attesa di una verifica")
+    from app.compilation_user_extraction import enabled
+
+    if enabled(data):
+        pending_users = [v.get("label") or "dato personale" for cid, v in
+                         dialogue.get("user_values", {}).items() if cid not in written]
+        if pending_users:
+            parts.append("risposte USER conservate ma non inserite (" + ", ".join(
+                dict.fromkeys(pending_users)) + "): restano conferme o chiarimenti necessari")
     return ("Restano vuoti: " + "; ".join(parts) + ". Puoi confermarli o chiedermi di "
             "riconsiderarli, poi rigenerare la bozza.") if parts else ""
 
@@ -1950,7 +1965,7 @@ def condition_receipts(data, slot, record, reply):
 
 
 def apply_replies(project_id, session_id, version, replies, message, unaccepted_slots=(),
-                  scope_verifications=None, unaccepted_reasons=None):
+                  scope_verifications=None, unaccepted_reasons=None, value_extractions=()):
     from app.compilation_chat import (
         contains_span,
         has_user_alternatives,
@@ -1972,6 +1987,12 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
         from app.compilation_source_reuse import signatory_fields
 
         fields.update(signatory_fields(data))
+        from app import compilation_user_extraction as extraction
+
+        fields.update(extraction.target_fields(data))
+        name_ids = {g["name_id"] for g in extraction.groups(data)}
+        if extraction.enabled(data):
+            dialogue["latest_extraction_issues"] = []
         answers, user_values = dialogue.setdefault("answers", {}), dialogue.setdefault(
             "user_values", {})
         errors, changed, accepted, refused = [], False, [], {}
@@ -2061,6 +2082,12 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                     cid = slot["field_ids"][0]
                     field = fields[cid]
                     value = reply.normalized_value or reply.value
+                    if cid in name_ids and not extraction.simple_name(value):
+                        dialogue.setdefault("user_extractions", []).append({
+                            "message": message, "original_reply": reply.model_dump(),
+                            "values": {}, "issues": ["Nome non isolato dagli altri dati"]})
+                        raise ValueError("La frase contiene più dati o un nome ambiguo; "
+                                         "indica soltanto nome e cognome")
                     if (not reply.value or not contains_span(reply.user_quote, reply.value)
                             or alternatives(reply, reply.value)
                             or reply.normalized_value and normalize_date(reply.value) != value):
@@ -2079,6 +2106,11 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                                         "provenance": "USER", "label": field["label"],
                                         "previous": previous}
                     record["value"] = value
+                    if extraction.enabled(data):
+                        record["candidate_id"] = cid
+                        if cid in extraction.target_fields(data):
+                            user_values[cid]["extraction"] = {"original_quote": reply.user_quote}
+                        dialogue.get("extraction_pending", {}).pop(cid, None)
                 else:
                     raise ValueError("Risposta ambigua o non pertinente alla domanda")
                 answers.update(condition_receipts(data, slot, record, reply))
@@ -2096,6 +2128,12 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
              "question": slots[n].get("question", ""),
              "reason": refused.get(n) or REASON_TEXT.get((unaccepted_reasons or {}).get(n), "")}
             for n in sorted(set(errors) | set(unaccepted_slots)) if n in slots]}
+        extra_accepted, extra_refused, captured = (extraction.persist(
+            data, sessions.read_original(row), slots, message, value_extractions)
+            if value_extractions else ([], [], False))
+        accepted.extend(extra_accepted)
+        dialogue["latest_turn"]["unaccepted"].extend(extra_refused)
+        changed = changed or captured
         if guarded:
             # Loop guard: two unaccepted replies to the same slot leave it explicitly
             # UNKNOWN (fields stay empty with a reason); it is not asked again.
@@ -2139,6 +2177,8 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                 _save(get_storage_path().resolve() / data["artifact_path"] / name,
                       data["audit"], "")
                 data["review_audit_name"] = name
+            data["audit"] = extraction.restore_fields(data, data["audit"])
+            extraction.mark_usable(data, accepted)
             dialogue.update(phase="PENDING", question=None)
         else:
             question = dialogue.get("question")
@@ -2154,6 +2194,7 @@ def export_selection(session):
     from app.compilation_form_applicability import blocked_fields as inapplicable
     from app.compilation_procedural_consent import blocked_fields
     from app.compilation_scope_review import session_data
+    from app.compilation_user_extraction import blocked_fields as unparsed
     from app.compilation_value_completeness import blocked_fields as incomplete
 
     data = session_data(session)
@@ -2166,7 +2207,7 @@ def export_selection(session):
     from app.compilation_segments import unverified_fields
 
     user_values = effective_user_values(data)
-    blocked = blocked_fields(data) | inapplicable(data) | incomplete(data)
+    blocked = blocked_fields(data) | inapplicable(data) | incomplete(data) | unparsed(data)
     reviewed = set(dialogue.get("reviewed_candidate_ids", []))
     if (data.get("audit") or {}).get("version") == 12 and (
         "reviewed_candidate_fingerprints" in dialogue

@@ -780,11 +780,23 @@ async def plan_chat_turn(
                              and r["slot"] in allowed_slots}
                 guard_context = {**context, **({"form_scope": compilation["form_scope"]}
                     if compilation.get("form_scope") else {})}
+                from app.compilation_user_extraction import prepare, verify_extras
+
+                frames = compilation.get("user_value_frames", {})
+                replies, extractions = prepare(frames, proposed.replies, question)
+                proposed = proposed.model_copy(update={"replies": replies})
+                decision = bind_turn_plan(proposed, compilation, question)
                 verification = await verify_field_replies(question, guard_context, proposed.replies,
                                                          request=request_model_content)
                 token_counts.append(verification.total_tokens)
+                extra_tokens, extra_checks = await verify_extras(
+                    question, guard_context, frames, extractions, verification.allowed_slots,
+                    request=request_model_content)
+                token_counts.extend(extra_tokens)
                 if trace:
                     trace.guard(verification)
+                    if extractions:
+                        trace.extractions(extractions, extra_checks)
                 rejected = [r for r in proposed.replies if requires_scope_check(r, context)
                             and r.slot not in verification.allowed_slots]
                 if rejected:
@@ -820,7 +832,8 @@ async def plan_chat_turn(
                     decision = decision.model_copy(update={"unaccepted_slots": sorted(
                         raw_slots - {r.slot for r in decision.replies}),
                         "scope_verifications": verification.scope_verifications,
-                        "unaccepted_reasons": verification.reasons})
+                        "unaccepted_reasons": verification.reasons,
+                        "value_extractions": extractions})
             total = sum(token_counts) if all(n is not None for n in token_counts) else None
             logger.info("Chat routing intent=%s slots=%d attempts=%d",
                         proposed.intent, len(allowed_slots), attempt + 1)

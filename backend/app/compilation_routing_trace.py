@@ -93,9 +93,13 @@ class RoutingTrace:
         self.attempts[-1].update(status="invalid", validation_error=str(errors)[:4000])
         self.save()
 
+    def extractions(self, records, checks):
+        self.result["user_value_extraction"] = {"records": records, "checks": checks}
+        self.save()
+
     def complete(self, intent):
-        guard = {"guard": self.result["guard"]} if "guard" in self.result else {}
-        self.result = {"status": "routed", "intent": intent, **guard}
+        kept = {k: v for k, v in self.result.items() if k in {"guard", "user_value_extraction"}}
+        self.result = {"status": "routed", "intent": intent, **kept}
         self.save()
 
     def fail(self, exc, stage):

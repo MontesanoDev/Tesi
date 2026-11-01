@@ -76,6 +76,8 @@ class ClarificationDecision(StrictModel):
     unaccepted_reasons: dict[int, str] = Field(default_factory=dict)  # Guard codes per slot.
     # Internal: the same message also asked for the draft (global engine only).
     then_finish: bool = False
+    # Private backend extraction/check results, absent from the router's TurnPlan schema.
+    value_extractions: list[dict] = Field(default_factory=list, max_length=4)
 
     @model_validator(mode="after")
     def distinct_slots(self):
@@ -100,8 +102,10 @@ async def handle_group_decision(project_id, conversation_id, decision, session, 
         after, errors = await run_in_threadpool(apply_replies, project_id, session["id"],
             expected_version or session["version"], decision.replies, message,
             decision.unaccepted_slots, decision.scope_verifications,
-            decision.unaccepted_reasons)
-        return ("Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti."
+            decision.unaccepted_reasons, decision.value_extractions)
+        from app.compilation_global_dialogue import continuation_receipt
+
+        return (continuation_receipt(after["global_compilation"]["dialogue"])
                 if after["chat"]["auto_continue"] else
                 after["global_compilation"]["dialogue"]["message"]), {
                     "session_id": session["id"], "action": "updated"
@@ -367,9 +371,13 @@ def planner_context(session):
     from app.compilation_scope_review import context as scope_context
     from app.compilation_scope_review import session_data
 
-    scope = scope_context(session_data(session), (question or {}).get("slots", []))
+    data = session_data(session)
+    slots = (question or {}).get("slots", [])
+    scope = scope_context(data, slots)
+    from app.compilation_user_extraction import frames
     return {
         **({"form_scope": scope} if scope else {}),
+        **({"user_value_frames": frames(data, slots)} if scope else {}),
         "session_id": session["id"],
         "engine": session.get("engine", "legacy"),
         "enabled": view["enabled"],
