@@ -175,6 +175,8 @@ def requires_scope_check(reply, context):
     if reply.action in WRITE_ACTIONS:
         return True
     slot = next((s for s in (context or {}).get("slots", []) if s["slot"] == reply.slot), {})
+    if slot.get("direct_instruction"):
+        return True  # Even a withdrawal/reopening must identify its own destination.
     return (reply.action in {"SKIP", "UNKNOWN", "REFUSE"}
             and slot.get("kind") == "applicability"
             and slot.get("affected_field_count", 0) > 1)
@@ -208,6 +210,12 @@ async def verify_field_replies(message, context, replies, *, request):
     schema = (FormScopeChecks if scope else ReplyScopeChecks).model_json_schema()
     body = {"model": settings.model, "messages": [
         {"role": "system", "content": TASK + (FORM_SCOPE_TASK if scope else "")
+         + ("\nGli slot direct_instruction NON sono domande poste all'utente. Verifica che "
+            "il messaggio identifichi esplicitamente destinazione e soggetto; un assenso "
+            "generico o un riferimento ambiguo non basta. REOPEN riapre il dialogo sul "
+            "punto, senza autorizzare valori, condizioni o dichiarazioni. SKIP/REFUSE "
+            "ritirano l'uso soltanto dei dati individuati. Nessuna deroga all'ambito FORM."
+            if any(s.get("direct_instruction") for s in context["slots"]) else "")
          + "\nSCHEMA OUTPUT:\n" + json.dumps(schema)},
         {"role": "user", "content": json.dumps({
             "operation": "check_field_reply_scope", "message": message,

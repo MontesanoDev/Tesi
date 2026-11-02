@@ -870,6 +870,10 @@ def control_session(project_id, session_id, version, kind):
             from app.compilation_global_dialogue import PRESENTATION_VERSION
 
             dialogue = data.get("dialogue") or {}
+            from app.compilation_conversation import enabled as conversational
+
+            if conversational(data) and data["phase"] == "REVIEW" and not dialogue.get("question"):
+                dialogue.update(phase="PENDING", question=None, resuming=True)
             if (data.get("narration_recovery_revision") == 1
                     and dialogue.get("narration_recovery", {}).get("mode") == "degraded"):
                 dialogue.update(phase="PENDING", question=None, resuming=True)
@@ -943,10 +947,11 @@ async def handle_chat_action(session, decision, expected_version, message):
     if decision.action == "compilation_generate" or (
         decision.action == "compilation_control" and decision.control.kind == "finish"
     ):
+        from app.compilation_conversation import enabled as conversational
         from app.compilation_global_dialogue import export_selection
         from app.compilation_session_models import GlobalDraftRequest
 
-        if session["chat"]["paused"]:
+        if session["chat"]["paused"] and not conversational(session["global_compilation"]):
             return "La compilazione è in pausa. Chiedimi di riprenderla prima di generare.", {
                 "session_id": session["id"], "action": "clarify"}
         ids, conditions, user_ids = export_selection(session)
@@ -955,6 +960,7 @@ async def handle_chat_action(session, decision, expected_version, message):
         if empty and (dialogue.get("phase") != "READY" or dialogue.get("error") or not (
             (session["chat"].get("question") or {}).get("kind") == "generate"
             or dialogue.get("empty_export_offered") is True
+            or conversational(session["global_compilation"])
         )):
             return ("Non ho ancora valori utilizzabili per la bozza. "
                     "Prima dobbiamo chiarire le informazioni o le condizioni rimaste aperte.",
@@ -982,6 +988,9 @@ def refreshed_audit(db, row, state):
     fresh = validated_audit(
         (folder / "response.txt").read_text(), layout, row["project_id"], sources, data, folder,
         expected_version=data["audit"].get("version", 10))
+    from app.compilation_conversation import reconcile_identity
+
+    fresh = reconcile_identity(data, fresh)
     reused = reuse_selected_person({**data, "audit": fresh}, layout, row["project_id"], sources)
     from app.compilation_user_extraction import restore_fields
 
@@ -993,6 +1002,10 @@ def _selected(row, state, request, db):
     if not request.allow_unresolved:
         raise HTTPException(409, "Conferma esplicitamente la generazione di una bozza parziale")
     data = state["global_compilation"]
+    from app.compilation_conversation import blocked_fields as withdrawn
+
+    if (set(request.candidate_ids) | set(request.user_candidate_ids)) & withdrawn(data):
+        raise HTTPException(409, "Dato ritirato o rinviato dall'utente")
     if data["phase"] != "REVIEW":
         raise HTTPException(409, "Completa l'analisi prima di rivedere le proposte")
     ids, conditions = request.candidate_ids, request.confirmed_condition_ids

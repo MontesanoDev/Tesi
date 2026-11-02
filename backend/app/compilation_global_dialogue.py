@@ -532,7 +532,7 @@ def _extension(labels, clause=""):
         f"({shown}). Confermi che si applica anche a questi?")}
 
 
-def question_pool(data):
+def question_pool(data, *, selective=False, all_targets=False):
     from app.compilation_branch_evidence import capacity_choice_valid
     from app.compilation_procedural_consent import questions as consent_questions
     from app.compilation_source_reuse import (
@@ -544,6 +544,10 @@ def question_pool(data):
 
     audit, dialogue = data.get("audit") or {}, data.get("dialogue") or {}
     answers = dialogue.get("answers", {})
+    from app import compilation_conversation as conversation
+
+    if conversation.enabled(data):
+        answers = {k: v for k, v in answers.items() if k not in dialogue.get("requested_keys", [])}
     prepared = {f["candidate_id"]: f for f in audit.get("fields", [])}
     signatory = signatory_fields(data)
     prepared.update(signatory)
@@ -739,6 +743,14 @@ def question_pool(data):
         if item["key"] in refused:
             item.update(retry=True, previous_question=refused[item["key"]].get("question"))
     pool.sort(key=lambda q: not q.get("retry"))
+    if conversation.enabled(data):
+        if all_targets:
+            return [{**item, "slot": i + 1} for i, item in enumerate(pool)]
+        wanted = set(dialogue.get("requested_keys", [])) - {q["key"] for q in pool}
+        if wanted:
+            pool.extend(q for q in conversation.targets(data) if q["key"] in wanted)
+        if selective:
+            pool = conversation.selective_pool(data, pool)
     return [{**item, "slot": i + 1} for i, item in enumerate(pool[:MAX_POOL])]
 
 
@@ -1424,7 +1436,7 @@ def _open_confirmation(q):
     return DialogueQuestion(slot=q["slot"], confirmation=text) if text else None
 
 
-def destinations_about(q):
+def destinations_about(q, *, compact=False):
     """« (riguarda: A, B, C)» or « (riguarda: N dati del modulo, tra cui A, B … e F)».
 
     The scope of a closed confirmation is this list, not the wording of the model's clause
@@ -1436,6 +1448,8 @@ def destinations_about(q):
     labels = [label for label in labels if label and no_technical_ids(label)]
     if not labels:
         return ""
+    if compact:
+        return " (riguarda: " + ", ".join(labels[:6]) + ")"
     total = max(len(q.get("field_ids", [])), len(labels))
     shown = labels[:6]
     if total <= len(shown):
@@ -1567,7 +1581,7 @@ def _retry_question(q):
 
 
 def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
-                    require_confirmation=False, fill_open=False):
+                    require_confirmation=False, fill_open=False, conversational=False):
     by_slot = {q["slot"]: q for q in pool}
     if (len({q.slot for q in plan.questions}) != len(plan.questions)
             or any(q.slot not in by_slot for q in plan.questions)):
@@ -1577,6 +1591,12 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
     questions = plan.questions or (fallback + [
         DialogueQuestion(slot=q["slot"], question="Decisione del modulo")
         for q in pool if q["kind"] == "decision"])[:MAX_QUESTIONS]
+    if conversational and pool and not questions:
+        item = pool[0]
+        questions = [_open_confirmation(item) if item["kind"] == "applicability" else
+                     DialogueQuestion(slot=item["slot"], question=item.get("question") or
+                         f"Quale valore vuoi utilizzare per «{short_form_text(item['label'])}»?")]
+        questions = [q for q in questions if q]
     required = [DialogueQuestion(slot=q["slot"], confirmation="autorizzi questa dichiarazione")
                 for q in pool if q.get("authorization")] + [
         _retry_question(q) for q in pool if q.get("retry") and not q.get("authorization")]
@@ -1617,6 +1637,11 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
             if slot["kind"] != "applicability" or "?" in q.confirmation:
                 raise ValueError("Conferma non compatibile con la domanda del backend")
             text = "Confermi che " + q.confirmation.rstrip(" .!;") + "?"
+        if conversational and slot["kind"] == "applicability" and not slot.get("authorization"):
+            # Keep the closed proposition and its visible destinations; omit technical counts.
+            concise = clause_confirmation(slot.get("condition"))
+            if concise and not slot.get("hold_verification") and not slot.get("extension"):
+                text = "Confermi che " + concise.rstrip(" .!;") + "?"
         if not text or not no_technical_ids(text):
             raise ValueError("Domanda senza testo naturale utilizzabile")
         if (slot["kind"] == "decision" or slot.get("authorization")
@@ -1628,7 +1653,7 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
         shown = {}
         if slot["kind"] == "applicability" and not slot.get("authorization"):
             about = "" if slot.get("extension") or "(riguarda:" in text else destinations_about(
-                slot)
+                slot, compact=conversational)
             if about:
                 text = text.rstrip(" ?") + about + "?"
             shown = {"destinations_shown": bool(about or slot.get("extension")
@@ -1643,7 +1668,9 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
             for i, q in enumerate(slots))
         if len(slots) > 1 and not follow_up:
             message += "\nPuoi rispondere in un unico messaggio."
-        message += ("\nPuoi rispondere, rinviare qualunque punto o chiedermi subito la bozza "
+        message += ("\nPuoi rispondere, correggere altri dati, rinviare questo punto o chiedermi "
+                    "subito una bozza parziale." if conversational else
+                    "\nPuoi rispondere, rinviare qualunque punto o chiedermi subito la bozza "
                     "parziale.")
         if exportable_count == 0:
             message += (" Se la chiedi ora sarà senza valori: i dati trovati aspettano queste "
@@ -1704,6 +1731,14 @@ async def _narrate_once(data, folder):
                 schema["properties"][key]["maxItems"] = 0
     task = TASK + "\n\n" + (CONTINUATION_TASK if follow_up else INITIAL_TASK) + (
         GROUPED_TASK if revised else "")
+    from app.compilation_conversation import enabled as conversational
+
+    if conversational(data):
+        task += ("\nPresenta in massimo tre brevi frasi cosa hai trovato e il dubbio principale. "
+                 "Niente elenchi di campi vuoti o conteggi tecnici. Scegli al massimo "
+                 "una domanda ad alto impatto; non aggiungerne nel riepilogo. Non chiedere "
+                 "dati non valutati come se fossero assenti nelle fonti. Una bozza può essere "
+                 "esportata subito con le parti già controllate; le decisioni restano aperte.")
     body = {"model": settings.model, "messages": [
         {"role": "system", "content": task + "\n\nSCHEMA OUTPUT:\n" + json.dumps(schema)},
         {"role": "user", "content": json.dumps(context, ensure_ascii=False)}],
@@ -1792,9 +1827,17 @@ async def _narrate_once(data, folder):
                 **(data.get("dialogue") or {}), **reviewed, "phase": "READY", "error": None}}})
         if revised and not follow_up:
             plan = plan.model_copy(update={"message": plan.message + registered_notice(data)})
+        if conversational(data):
+            from app.compilation_conversation import selective_pool
+
+            # All condition slots remain available to semantic review/holds. Only the
+            # conversational presentation is selective, never the evidence being reviewed.
+            pool = selective_pool(data, pool)
+            plan = plan.model_copy(update={"questions": [q for q in plan.questions
+                                  if q.slot in {p["slot"] for p in pool}]})
         result = render_dialogue(plan, pool, exportable_count=len(selection[0]) + len(selection[2]),
                                 follow_up=follow_up, require_confirmation=True,
-                                fill_open=revised)
+                                fill_open=revised, conversational=conversational(data))
         result.update(**reviewed)
         if (data.get("audit") or {}).get("version") == 12:
             # Finite progress: each successful step reviews up to 40 remaining
@@ -1965,7 +2008,8 @@ def condition_receipts(data, slot, record, reply):
 
 
 def apply_replies(project_id, session_id, version, replies, message, unaccepted_slots=(),
-                  scope_verifications=None, unaccepted_reasons=None, value_extractions=()):
+                  scope_verifications=None, unaccepted_reasons=None, value_extractions=(),
+                  addressed_keys=()):
     from app.compilation_chat import (
         contains_span,
         has_user_alternatives,
@@ -1983,6 +2027,18 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
         if data["paused"] or dialogue.get("phase") != "READY":
             raise HTTPException(409, "Rileggi la domanda corrente prima di rispondere")
         slots = {s["slot"]: s for s in (dialogue.get("question") or {}).get("slots", [])}
+        from app import compilation_conversation as conversation
+
+        if addressed_keys:
+            available = {q["key"]: q for q in conversation.targets(data)}
+            if (len(set(addressed_keys)) != len(addressed_keys) or len(addressed_keys) > 4
+                    or any(k not in available for k in addressed_keys)):
+                raise HTTPException(409, "La destinazione è cambiata: rileggi la sessione")
+            slots = {n: {**available[k], "slot": n, "direct_instruction": True,
+                         "question": "", "destinations_shown": False}
+                     for n, k in enumerate(addressed_keys, 1)}
+            dialogue.setdefault("instructions", []).append({"message": message,
+                "targets": list(addressed_keys), "version": version})
         fields = {f["candidate_id"]: f for f in data["audit"]["fields"]}
         from app.compilation_source_reuse import signatory_fields
 
@@ -2024,6 +2080,13 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                     record["ambiguity_check"] = "SEMANTIC_GUARD"
                 from app.compilation_scope_review import enabled, scope_receipt
 
+                if slot.get("direct_instruction"):
+                    from app.compilation_scope_review import proof, target
+
+                    if (scope_verifications or {}).get(reply.slot) != proof(
+                            target(data, slot["key"], slot["field_ids"]), reply):
+                        raise ValueError("Istruzione libera senza verifica indipendente")
+
                 if enabled(data) and reply.action in {"VALUE", "CONDITION_TRUE", "CONDITION_FALSE"}:
                     scope = scope_receipt(data, slot["key"], slot["field_ids"], reply)
                     if (scope_verifications or {}).get(reply.slot) != scope["scope_validation"]:
@@ -2041,7 +2104,10 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                     record.update(write_authorized=False, affected_fields=list(slot["field_ids"]),
                                   decision_type=slot["decision_type"],
                                   form_evidence=slot["form_evidence"])
-                if reply.action in {"UNKNOWN", "SKIP", "REFUSE"}:
+                if reply.action == "REOPEN" and slot.get("direct_instruction"):
+                    record["affected_fields"] = list(slot["field_ids"])
+                    record["write_authorized"] = False
+                elif reply.action in {"UNKNOWN", "SKIP", "REFUSE"}:
                     record["affected_fields"] = list(slot["field_ids"])
                     # Keep unresolved; this receipt records the actual scope, not a value.
                 elif slot["kind"] == "decision" and reply.action == "VALUE":
@@ -2102,6 +2168,7 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                     if complete and complete["result"] != "COMPLETE":
                         raise ValueError("Valore composto USER incompleto o senza prove SOURCE")
                     previous = user_values.get(cid)
+                    conversation.before_change(data, slot, reply, message)
                     user_values[cid] = {"value": value, "user_quote": reply.user_quote,
                                         "provenance": "USER", "label": field["label"],
                                         "previous": previous}
@@ -2113,6 +2180,14 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                         dialogue.get("extraction_pending", {}).pop(cid, None)
                 else:
                     raise ValueError("Risposta ambigua o non pertinente alla domanda")
+                if conversation.enabled(data) and slot["kind"] != "value":
+                    # Retain superseded decisions without granting any new authority.
+                    old = answers.get(slot["key"])
+                    if old:
+                        dialogue.setdefault("superseded", []).append({"key": slot["key"],
+                            "answer": deepcopy(old), "reason": "user_correction",
+                            "message": message})
+                conversation.record_action(data, slot, reply, message)
                 answers.update(condition_receipts(data, slot, record, reply))
                 accepted.append({k: v for k, v in record.items() if k != "affected_fields"})
                 changed = True
@@ -2207,7 +2282,10 @@ def export_selection(session):
     from app.compilation_segments import unverified_fields
 
     user_values = effective_user_values(data)
-    blocked = blocked_fields(data) | inapplicable(data) | incomplete(data) | unparsed(data)
+    from app.compilation_conversation import blocked_fields as withdrawn
+
+    blocked = (blocked_fields(data) | inapplicable(data) | incomplete(data)
+               | unparsed(data) | withdrawn(data))
     reviewed = set(dialogue.get("reviewed_candidate_ids", []))
     if (data.get("audit") or {}).get("version") == 12 and (
         "reviewed_candidate_fingerprints" in dialogue

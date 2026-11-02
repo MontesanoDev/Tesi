@@ -54,7 +54,8 @@ def test_new_sessions_get_the_complete_sections_profile_without_any_variable():
         "table_scope_revision": 1, "hold_rereview_revision": 2, "form_option_scope_revision": 2,
         "text_checkbox_revision": 1, "segment_recovery_revision": 1, "form_clause_revision": 1,
         "hold_resolution_revision": 1, "format_retry_revision": 1,
-        "hold_review_revision": 1, "omission_recovery_revision": 1, "user_extraction_revision": 1}
+        "hold_review_revision": 1, "omission_recovery_revision": 1, "user_extraction_revision": 1,
+                "conversation_revision": 1}
     assert PROFILE_NAME == "sezioni-2026-10-30-r2"
 
 
@@ -191,7 +192,8 @@ def test_the_emergency_switch_recreates_the_profile_before_the_form_scope_adopti
             "text_checkbox_revision": 1, "segment_recovery_revision": 1,
             "form_clause_revision": 1, "hold_resolution_revision": 1,
             "format_retry_revision": 1, "hold_review_revision": 1,
-            "omission_recovery_revision": 1, "user_extraction_revision": 1} == SECTIONS
+            "omission_recovery_revision": 1, "user_extraction_revision": 1,
+                "conversation_revision": 1} == SECTIONS
     assert "text_checkbox_revision" not in state
 
 
@@ -204,7 +206,8 @@ def test_the_emergency_switch_recreates_the_profile_before_the_structural_stabil
     assert {**PREVIOUS["sezioni-2026-10-25"], "segment_recovery_revision": 1,
             "form_clause_revision": 1, "hold_resolution_revision": 1,
             "format_retry_revision": 1, "hold_review_revision": 1,
-            "omission_recovery_revision": 1, "user_extraction_revision": 1} == SECTIONS
+            "omission_recovery_revision": 1, "user_extraction_revision": 1,
+                "conversation_revision": 1} == SECTIONS
 
 
 @pytest.mark.parametrize("profile", [*PREVIOUS, "checkbox-testuali-2026-10-26", "storico"])

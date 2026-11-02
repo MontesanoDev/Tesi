@@ -37,7 +37,7 @@ class ActiveFieldDecision(StrictModel):
 
     action: Literal[
         "VALUE", "CONDITION_TRUE", "CONDITION_FALSE", "UNKNOWN", "SKIP",
-        "REFUSE", "PAUSE", "FINISH", "CLARIFY",
+        "REFUSE", "PAUSE", "FINISH", "CLARIFY", "REOPEN",
     ]
     value: str | None = Field(default=None, min_length=1, max_length=1500)
     normalized_value: str | None = Field(default=None, min_length=1, max_length=1500)
@@ -78,6 +78,7 @@ class ClarificationDecision(StrictModel):
     then_finish: bool = False
     # Private backend extraction/check results, absent from the router's TurnPlan schema.
     value_extractions: list[dict] = Field(default_factory=list, max_length=4)
+    addressed_keys: list[str] = Field(default_factory=list, max_length=4)
 
     @model_validator(mode="after")
     def distinct_slots(self):
@@ -102,7 +103,7 @@ async def handle_group_decision(project_id, conversation_id, decision, session, 
         after, errors = await run_in_threadpool(apply_replies, project_id, session["id"],
             expected_version or session["version"], decision.replies, message,
             decision.unaccepted_slots, decision.scope_verifications,
-            decision.unaccepted_reasons, decision.value_extractions)
+            decision.unaccepted_reasons, decision.value_extractions, decision.addressed_keys)
         from app.compilation_global_dialogue import continuation_receipt
 
         return (continuation_receipt(after["global_compilation"]["dialogue"])
@@ -374,8 +375,13 @@ def planner_context(session):
     data = session_data(session)
     slots = (question or {}).get("slots", [])
     scope = scope_context(data, slots)
+    from app.compilation_conversation import enabled, public_targets, targets
     from app.compilation_user_extraction import frames
+
+    addressed = targets(data) if enabled(data) else []
     return {
+        **({"conversation_data": data, "addressable_targets": public_targets(data, addressed)}
+           if enabled(data) else {}),
         **({"form_scope": scope} if scope else {}),
         **({"user_value_frames": frames(data, slots)} if scope else {}),
         "session_id": session["id"],

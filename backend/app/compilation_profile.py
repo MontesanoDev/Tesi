@@ -40,13 +40,14 @@ SECTIONS = {
     "hold_review_revision": 1,            # Deterministic review of narrator SOURCE doubts.
     "omission_recovery_revision": 1,      # Declared-unassessed destinations: one recovery.
     "user_extraction_revision": 1,        # Atomic USER facts, individually scope-checked.
+    "conversation_revision": 1,          # Selective questions and explicit free instructions.
 }
 # Earlier canonical profiles, recreated only by the server-side emergency switch.
 NEW_2026_10_30 = {"segment_recovery_revision", "form_clause_revision",
                   "hold_resolution_revision"}
 NEW_2026_10_30_R2 = {"format_retry_revision", "hold_review_revision",
                      "omission_recovery_revision"}
-NEW_USER_EXTRACTION = {"user_extraction_revision"}
+NEW_USER_EXTRACTION = {"user_extraction_revision", "conversation_revision"}
 PREVIOUS = {
     "sezioni-2026-10-24": {k: v for k, v in SECTIONS.items() if k not in {
         "form_option_scope_revision", "text_checkbox_revision", *NEW_2026_10_30,
