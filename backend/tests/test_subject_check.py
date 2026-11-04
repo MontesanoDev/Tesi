@@ -381,3 +381,47 @@ async def test_a_correct_clarification_on_the_same_session_still_writes_the_docx
     assert destination_subject(session_data(s), cid)["name"] == "Aurora S.r.l."
     assert any(q["key"] == "field:" + cid for q in targets(session_data(s)))
     assert NUMBER and SOURCE and analysis and analyzed and chat
+
+
+def chain_data(text, facts, proposals):
+    """Two destinations of one FORM sentence; only the second is documented."""
+    candidates = {cid: {"type": "text", "context_id": "paragraph:1", "range": [0, 1]}
+                  for cid in ("p1.s0", "p1.s1")}
+    fields = [{"candidate_id": cid, "validation": "REVIEW_REQUIRED", "validation_errors": [],
+               **({"proposal_grounding": "GROUNDED_PROPOSAL",
+                   "proposal": {"fact_id": proposals[cid]}} if cid in proposals else {})}
+              for cid in candidates]
+    return {"subject_check_revision": 1, "audit": {"fields": fields, "facts": facts}, "catalog": {
+        "candidates": candidates, "blocks": [{"paragraphs": [
+            {"id": "paragraph:1", "text_with_fields": text}]}]}}
+
+
+COMPANY_FACT = {"operator": {"subject": "Aurora S.r.l.", "entity": "company",
+                             "value": "Aurora S.r.l.", "source_evidence": []}}
+
+
+def test_a_persons_destination_has_no_company_owner_from_its_sentence():
+    # Real run: the signatory's name refused because the destination «belonged» to the operator.
+    data = chain_data("Il sottoscritto [[p1.s0]] della società [[p1.s1]]", COMPANY_FACT,
+                      {"p1.s1": "operator"})
+    assert destination_subject(data, "p1.s0") == {"name": None, "entity": "person",
+                                                  "candidates": []}
+    assert destination_subject(data, "p1.s1")["name"] == "Aurora S.r.l."
+
+
+def test_the_signatory_name_is_not_refused_and_a_foreign_owner_of_a_company_field_still_is():
+    data = chain_data("Il sottoscritto [[p1.s0]] della società [[p1.s1]]", COMPANY_FACT,
+                      {"p1.s1": "operator"})
+    message = "Leonardo Montemurro è il firmatario."
+    assert foreign_reply(message, "Leonardo Montemurro", {
+        "expected": destination_subject(data, "p1.s0"),
+        "known": known_subjects(data["audit"]), "user_values": [], "form_scope": None}) is None
+    refused = foreign_reply("La denominazione di Beta S.p.A. è 123.", "123", {
+        "expected": destination_subject(data, "p1.s1"),
+        "known": known_subjects(data["audit"]), "user_values": [], "form_scope": None})
+    assert refused["code"] == "subject"
+
+
+def test_a_destination_whose_kind_is_not_written_takes_no_owner_from_its_neighbours():
+    data = chain_data("Dati: [[p1.s0]] e [[p1.s1]]", COMPANY_FACT, {"p1.s1": "operator"})
+    assert destination_subject(data, "p1.s0") is None

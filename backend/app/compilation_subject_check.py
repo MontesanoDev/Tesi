@@ -337,13 +337,6 @@ def destination_subject(data, cid):
         other = facts.get(option.get("fact_id"), {})
         if other.get("subject"):
             names.append((other["subject"], other.get("entity")))
-    if not names and cid in candidates:
-        chain = _chain(candidates[cid])
-        for other_id, other in fields.items():
-            other_fact = _fact_of(other, facts)
-            if (other_id in candidates and _chain(candidates[other_id]) == chain
-                    and _documented(other) and other_fact.get("subject")):
-                names.append((other_fact["subject"], other_fact.get("entity")))
     entity = None
     if cid in candidates:
         try:
@@ -351,9 +344,18 @@ def destination_subject(data, cid):
         except (KeyError, ValueError):
             entity = None
     entity = entity or (names[0][1] if names else None)
-    same_kind = [n for n, e in names if e == entity] or [n for n, _ in names]
+    # The neighbours of the same FORM sentence speak for it only if they are the kind of subject
+    # the destination asks for. A company in the chain is no owner of a person's name (real run:
+    # the signatory's name refused because the destination «belonged» to the operator).
+    if not names and entity and cid in candidates:
+        chain = _chain(candidates[cid])
+        for other_id, other in fields.items():
+            other_fact = _fact_of(other, facts)
+            if (other_id in candidates and _chain(candidates[other_id]) == chain
+                    and _documented(other) and other_fact.get("subject")):
+                names.append((other_fact["subject"], other_fact.get("entity")))
     unique = []
-    for name in same_kind:
+    for name in [n for n, e in names if e == entity]:
         if not any(same_subject(name, u, entity) for u in unique):
             unique.append(name)
     return {"name": unique[0] if len(unique) == 1 else None, "entity": entity,
