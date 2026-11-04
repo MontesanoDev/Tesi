@@ -66,9 +66,21 @@ def context(data, slots):
     """Complete FORM once, actual affected destinations for each backend-owned slot."""
     if not enabled(data):
         return None
+    targets = {str(q["slot"]): target(data, q["key"], q["field_ids"]) for q in slots}
+    if data.get("conversation_revision") == 1:
+        for q in slots:
+            if q["key"].startswith("condition:"):
+                # The model's structural inventory can be wider than this USER
+                # operation (e.g. only the name is currently usable). Preserve
+                # the inventory and explicitly identify the scope being checked.
+                targets[str(q["slot"])]["requested_confirmation"] = {
+                    "candidate_ids": list(q["field_ids"]),
+                    "form_clause": q.get("condition", ""),
+                    "scope_kind": "only_requested_destinations",
+                    "other_MODEL_scope_destinations_requested": False}
     return {"revision": 1, "form_blocks": data["catalog"]["blocks"],
             "initial_user_requests": data.get("user_context", []),
-            "slots": {str(q["slot"]): target(data, q["key"], q["field_ids"]) for q in slots}}
+            "slots": targets}
 
 
 def proof(scope_target, reply):

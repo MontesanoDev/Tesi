@@ -583,7 +583,7 @@ def question_pool(data, *, selective=False, all_targets=False):
         receipt = answers.get("condition:" + key)
         if item["result"] != "unknown" or item.get("validation_errors") or not item.get(
             "form_evidence"
-        ) or key in postponed or receipt and receipt.get("applies") is not True:
+        ) or key in postponed and not all_targets or receipt and receipt.get("applies") is not True:
             continue  # A deferral, an exclusion or a closed question is never asked again.
         impacted = [f for f in fields if key in f.get("conditions", []) and not any(
             answers.get("condition:" + c, {}).get("applies") is False
@@ -2063,6 +2063,10 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                 value is not None and value_alternatives(reply.user_quote, value))
 
         duplicates = {r.slot for r in replies if sum(q.slot == r.slot for q in replies) > 1}
+        if conversation.enabled(data):
+            # A router may emit a separately checked identity confirmation before
+            # the new name. Withdraw old receipts first, then apply the NEW assent.
+            replies = sorted(replies, key=lambda r: slots.get(r.slot, {}).get("kind") != "value")
         for reply in replies:
             slot = slots.get(reply.slot)
             if slot is None or reply.slot in duplicates:

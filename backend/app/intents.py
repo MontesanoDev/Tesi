@@ -407,6 +407,13 @@ composta usa UNA edit sul target nome con user_quote uguale all'intera frase ana
 contigua: l'estrattore del backend la dividerà e controllerà ogni dato separatamente.
 Non consumare quattro edit per i primi quattro dati omettendo gli altri.
 Non inferire carica o poteri dal nome.
+identity_confirmations elenca separatamente le conferme d'identità collegate al nome.
+Se l'utente sceglie esplicitamente chi è il firmatario di questa domanda, proponi il nome
+con VALUE e la relativa conferma con CONDITION_TRUE sul suo target, ciascuna con la
+citazione USER pertinente. Il solo nome non chiude una condizione. Una correzione del
+nome e una conferma sono due verifiche distinte, anche nello stesso turno. Se il nome
+è già registrato e l'utente conferma l'identità, usa il target della conferma invece di
+ripetere soltanto VALUE. Non confermare altri rami, cariche o autorizzazioni.
 SKIP rinvia la destinazione, REFUSE ritira l'uso del dato; REOPEN richiede di discuterla
 nuovamente, senza confermarla né scrivere. Per condizioni servono CONDITION_TRUE/FALSE
 espliciti e pertinenti; per checkbox VALUE e selected_options, mai consenso implicito.

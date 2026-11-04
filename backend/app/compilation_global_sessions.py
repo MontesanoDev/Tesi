@@ -992,6 +992,11 @@ def refreshed_audit(db, row, state):
 
     fresh = reconcile_identity(data, fresh)
     reused = reuse_selected_person({**data, "audit": fresh}, layout, row["project_id"], sources)
+    # A newly revalidated SOURCE proposal owns its FORM target again. The fallback
+    # marker must not make an unchanged proposal differ at the export boundary.
+    for field in reused["fields"]:
+        if field.get("source_reuse"):
+            field.pop("retained_form_target", None)
     from app.compilation_user_extraction import restore_fields
 
     return restore_fields(data, reconcile_branches(

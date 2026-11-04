@@ -52,8 +52,41 @@ def targets(data):
             "alternatives": [o["label"] for o in group["options"].values()],
             "selection": group["selection"], "min_selected": group["min_selected"]})
     answers = data.get("dialogue", {}).get("answers", {})
-    return [{**q, "target": n, "previous_action": answers.get(q["key"], {}).get("action")}
+    return [{**current_identity_scope(data, q), "target": n,
+             "previous_action": answers.get(q["key"], {}).get("action")}
             for n, q in enumerate(by_key.values(), 1)]
+
+
+def current_identity_scope(data, question):
+    """Ask about the selected person's available data, not withdrawn facts.
+
+    Later SOURCE derivations still require the ordinary scope extension. This
+    affects the operation presented to USER/guard, never the MODEL condition.
+    """
+    from app.compilation_signatory_form import CONDITIONAL, SIGNER
+
+    if (question["kind"] != "applicability" or question.get("authorization")
+            or not SIGNER.search(question.get("condition", ""))
+            or CONDITIONAL.search(question.get("condition", ""))):
+        return question
+    users = data.get("dialogue", {}).get("user_values", {})
+    known = fields(data)
+
+    def available(cid):
+        field = known.get(cid, {})
+        return users.get(cid) or (not field.get("validation_errors") and (
+            field.get("validation") == "GROUNDED_PROPOSAL"
+            or field.get("proposal_grounding") == "GROUNDED_PROPOSAL")
+            and field.get("proposed_value", field.get("value")) is not None)
+
+    for name, members in person_groups(data).items():
+        if (name in question["field_ids"] and set(question["field_ids"]) <= members
+                and users.get(name)):
+            ids = [cid for cid in question["field_ids"] if available(cid)]
+            return {**question, "field_ids": ids, "impact": len(ids),
+                    "affected_fields": [known.get(cid, {}).get("label", "Dato personale")
+                                        for cid in ids]}
+    return question
 
 
 def public_targets(data, entries):
@@ -63,8 +96,20 @@ def public_targets(data, entries):
     outcomes = field_outcomes(data, set())["campi"]
     values = fields(data)
     users = data.get("dialogue", {}).get("user_values", {})
+    groups = person_groups(data)
+    from app.compilation_signatory_form import CONDITIONAL, SIGNER
+
+    def identity_confirmations(q):
+        members = groups.get(q["field_ids"][0], set()) if q["kind"] == "value" else set()
+        return [c["target"] for c in entries if members and c["kind"] == "applicability"
+                and not c.get("authorization") and q["field_ids"][0] in c["field_ids"]
+                and set(c["field_ids"]) <= members
+                and SIGNER.search(c.get("condition", ""))
+                and not CONDITIONAL.search(c.get("condition", ""))]
+
     return [{**{k: q.get(k) for k in ("target", "kind", "label", "previous_action")},
              "context": q.get("context", "")[:240],
+             "identity_confirmations": identity_confirmations(q),
              "alternatives": q.get("alternatives", []),
              "state": list(dict.fromkeys(outcomes.get(cid, {"esito": "non_valutato"})["esito"]
                        for cid in q["field_ids"])),
@@ -140,9 +185,10 @@ def selective_pool(data, pool):
               q.get("documented") or q.get("documented_alternatives") or
               q.get("form_owned") and q["kind"] == "value" or
               set(q.get("field_ids", [])) & pending]
-    return sorted(useful, key=lambda q: (
+    chosen = sorted(useful, key=lambda q: (
         q["key"] not in requested, not q.get("retry"),
         -q.get("documented", 0), not q.get("documented_alternatives"), -q.get("impact", 0)))[:1]
+    return [current_identity_scope(data, q) for q in chosen]
 
 
 def person_groups(data):
@@ -167,6 +213,34 @@ def archive(dialogue, key, *, reason, message):
             "user_value": user, "reason": reason, "message": message})
 
 
+def receipt_depends_on_person(data, key, receipt, members, *, signer=False):
+    """The condition's own scope, not the union of its downstream destinations.
+
+    Grouped confirmations retain independent per-condition proofs. A company
+    condition can govern a person's office without selecting that person. Unknown
+    scope stays conservative; signer powers/consents never transfer to a new signer.
+    """
+    affected = set(receipt.get("affected_fields", []))
+    if receipt.get("authorization"):
+        return signer or bool(members & affected)
+    if not key.startswith("condition:"):
+        return bool(members & affected)
+    condition = data.get("audit", {}).get("conditions", {}).get(key.removeprefix("condition:"), {})
+    quote = condition.get("form_evidence", {}).get("quote", "")
+    from app.compilation_signatory_form import SIGNER
+
+    personal_clause = SIGNER.search(quote) or re.search(
+        r"\b(?:legale\s+rappresentante|procurator[ei])\b", quote, re.I)
+    if personal_clause and (signer or members & affected):
+        return True
+    if not members & affected:
+        return False
+    scope = condition.get("scope", [])
+    if not scope or any(s.get("kind") != "candidate" for s in scope):
+        return True
+    return bool(members & {s.get("id") for s in scope})
+
+
 def before_change(data, slot, reply, message):
     """Withdraw dependent receipts BEFORE storing a changed identity. Preserve all history."""
     if not enabled(data):
@@ -179,15 +253,28 @@ def before_change(data, slot, reply, message):
         old = dialogue.get("user_values", {}).get(cid, {}).get("value") or field.get(
             "proposed_value", field.get("value"))
         if old != value and cid in person_groups(data):
+            from app.compilation_source_reuse import _form_groups, _signatory_groups
+
+            signer = cid in {g["name_id"] for g in _signatory_groups(data)} or any(
+                ids[0] == cid for ids, _, _ in _form_groups(data["catalog"]))
             dependent = person_groups(data)[cid] - {cid}
             for other in dependent:
                 archive(dialogue, "field:" + other, reason="identity_changed", message=message)
                 dialogue.get("extraction_pending", {}).pop(other, None)
                 dialogue.get("reviewed_candidate_fingerprints", {}).pop(other, None)
             for key, receipt in list(dialogue.get("answers", {}).items()) if old else []:
-                if key.startswith(("condition:", "choice:")) and dependent & set(
-                        receipt.get("affected_fields", [])):
+                if (key.startswith(("condition:", "choice:")) or receipt.get("authorization")) \
+                        and receipt_depends_on_person(
+                            data, key, receipt, dependent | {cid}, signer=signer):
                     archive(dialogue, key, reason="identity_changed", message=message)
+                    condition = data["audit"].get("conditions", {}).get(
+                        key.removeprefix("condition:"), {})
+                    if (key.startswith("condition:") and cid in {
+                            s.get("id") for s in condition.get("scope", [])}
+                            and condition.get("aspect") == "identity"):
+                        requested = dialogue.setdefault("requested_keys", [])
+                        if key not in requested:
+                            requested.append(key)
             dialogue.setdefault("identity_changes", []).append({"candidate_id": cid,
                 "previous_value": old, "value": value, "message": message})
     archive(dialogue, slot["key"], reason="user_correction", message=message)
@@ -242,6 +329,19 @@ def reconcile_identity(data, audit):
 
     audit = deepcopy(audit)
     values = {f["candidate_id"]: f for f in audit["fields"]}
+    # SOURCE reuse can discover an omitted FORM destination (e.g. the office).
+    # Withdrawing that person's fact must not erase the physical target already
+    # checked in an independent company receipt. Retain only FORM metadata, not
+    # values, evidence, authority, validation verdicts or newly stamped receipts.
+    previous = {f["candidate_id"]: f for f in data.get("audit", {}).get("fields", [])}
+    for cid, field in values.items():
+        old = previous.get(cid, {})
+        if (not field.get("form_evidence") and not field.get("validation_errors")
+                and old.get("form_evidence") and not old.get("validation_errors")
+                and (old.get("source_reuse") or old.get("retained_form_target"))):
+            field.update({k: deepcopy(old[k]) for k in (
+                "label", "kind", "form_evidence", "conditions") if k in old})
+            field["retained_form_target"] = True
     for name_id, members in person_groups(data).items():
         selected = _selection({**data, "audit": audit}, name_id)
         if not selected:

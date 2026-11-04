@@ -378,6 +378,16 @@ def value_check(data, cid, value, *, user_quote=None):
         if "value_completeness" in audit or cid not in requirements(data["catalog"]):
             return None
         return {"result": "UNKNOWN", "basis": "requires_reanalysis"}
+    from app.compilation_conversation import enabled as conversational
+    from app.compilation_user_extraction import simple_name
+
+    if (conversational(data) and check["kind"] == "person_identity" and user_quote
+            and simple_name(value) and len(value.split()) >= 2):
+        # A full name explicitly supplied as USER has its own literal provenance.
+        # This certifies only the components of the value, never identity, powers,
+        # applicability or a SOURCE fact. Scope/condition gates remain separate.
+        return assess({**check, "SOURCE_required": False}, value, {"subject": value}, {},
+                      user_quote=user_quote)
     if value == check["value"]:
         return check
     if not check["SOURCE_required"] and user_quote:
