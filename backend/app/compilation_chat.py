@@ -79,6 +79,9 @@ class ClarificationDecision(StrictModel):
     # Private backend extraction/check results, absent from the router's TurnPlan schema.
     value_extractions: list[dict] = Field(default_factory=list, max_length=4)
     addressed_keys: list[str] = Field(default_factory=list, max_length=4)
+    addressed_from: int = 1  # First slot of the direct instructions after the active questions.
+    # Parts of the message the router bound to no destination: said in the receipt, never lost.
+    ignored_quotes: list[str] = Field(default_factory=list, max_length=4)
 
     @model_validator(mode="after")
     def distinct_slots(self):
@@ -103,7 +106,8 @@ async def handle_group_decision(project_id, conversation_id, decision, session, 
         after, errors = await run_in_threadpool(apply_replies, project_id, session["id"],
             expected_version or session["version"], decision.replies, message,
             decision.unaccepted_slots, decision.scope_verifications,
-            decision.unaccepted_reasons, decision.value_extractions, decision.addressed_keys)
+            decision.unaccepted_reasons, decision.value_extractions, decision.addressed_keys,
+            decision.addressed_from, decision.ignored_quotes)
         from app.compilation_global_dialogue import continuation_receipt
 
         return (continuation_receipt(after["global_compilation"]["dialogue"])

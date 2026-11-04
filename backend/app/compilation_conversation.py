@@ -118,8 +118,18 @@ def public_targets(data, entries):
             for q in entries]
 
 
-def bind_edits(compilation, edits):
-    """Private temporary slots, never presented as questions the user actually saw."""
+def mixed_turns(compilation):
+    """An answer to the active question may also carry instructions on other destinations."""
+    return bool(compilation and (compilation.get("conversation_data") or {}).get(
+        "conversation_turn_revision") == 1)
+
+
+def bind_edits(compilation, edits, first_slot=1):
+    """Private temporary slots, never presented as questions the user actually saw.
+
+    From first_slot on when the same message also answers the active questions, which keep their
+    numbers: every slot goes through the same guard and the same receipts.
+    """
     from app.compilation_scope_review import context
     from app.compilation_user_extraction import frames
 
@@ -132,10 +142,16 @@ def bind_edits(compilation, edits):
         raise ValueError("Destinazione della modifica non univoca")
     slots = [{**available[e.target], "slot": n, "direct_instruction": True,
               "destinations_shown": False, "question": ""}
-             for n, e in enumerate(edits, 1)]
-    return {**compilation, "question": {"kind": "clarifications", "slots": slots,
+             for n, e in enumerate(edits, first_slot)]
+    active = [] if first_slot == 1 else [
+        q for q in (compilation.get("question") or {}).get("slots", [])
+        if not set(q.get("field_ids", [])) & {c for s in slots for c in s["field_ids"]}]
+    both = [*active, *slots]
+    if len(both) > 4:
+        raise ValueError("Massimo quattro risposte e modifiche per turno")
+    return {**compilation, "question": {"kind": "clarifications", "slots": both,
             "field_ids": [], "message": (compilation.get("question") or {}).get("message", "")},
-            "form_scope": context(data, slots), "user_value_frames": frames(data, slots)}, slots
+            "form_scope": context(data, both), "user_value_frames": frames(data, both)}, slots
 
 
 def complete_person_reply(compilation, replies, message):
@@ -186,9 +202,17 @@ def selective_pool(data, pool):
               q.get("subject_uncertain") or
               q.get("form_owned") and q["kind"] == "value" or
               set(q.get("field_ids", [])) & pending]
+    # What the answer unlocks comes first: a signatory name opens a whole personal block.
+    members = person_groups(data) if data.get("conversation_turn_revision") == 1 else {}
+
+    def unlocks(q):
+        return (len(members.get(q["field_ids"][0], ())) if q.get("form_owned")
+                and q["kind"] == "value" else 0)
+
     chosen = sorted(useful, key=lambda q: (
         q["key"] not in requested, not q.get("retry"),
-        -q.get("documented", 0), not q.get("documented_alternatives"), -q.get("impact", 0)))[:1]
+        -max(q.get("documented", 0), unlocks(q)), not q.get("documented_alternatives"),
+        -q.get("impact", 0)))[:1]
     return [current_identity_scope(data, q) for q in chosen]
 
 

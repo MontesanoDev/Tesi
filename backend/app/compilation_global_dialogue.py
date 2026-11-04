@@ -509,6 +509,10 @@ def continuation_receipt(dialogue, *, newly_held=False):
             f"Non ho usato la risposta su «{label}»{why}. Te la richiedo: "
             f"{CLARIFY.get(refused.get('kind'), 'precisa la risposta')}, oppure rinvia; "
             "nulla è stato scritto.")
+    if latest.get("ignored_quotes"):
+        shown = "; ".join(f"«{readable(q, 120)}»" for q in latest["ignored_quotes"])
+        parts.append(f"Non ho registrato questa parte del messaggio: {shown}. Se ti serve, "
+                     "indicala di nuovo riferendola a un campo del modulo.")
     if not parts:
         parts.append("Riprendiamo dal punto rimasto aperto.")
     if newly_held:
@@ -1582,8 +1586,45 @@ def unexported_notice(data, written):
         if pending_users:
             parts.append("risposte USER conservate ma non inserite (" + ", ".join(
                 dict.fromkeys(pending_users)) + "): restano conferme o chiarimenti necessari")
-    return ("Restano vuoti: " + "; ".join(parts) + ". Puoi confermarli o chiedermi di "
-            "riconsiderarli, poi rigenerare la bozza.") if parts else ""
+    notice = ("Restano vuoti: " + "; ".join(parts) + ". Puoi confermarli o chiedermi di "
+              "riconsiderarli, poi rigenerare la bozza.") if parts else ""
+    return " ".join(p for p in (notice, _empty_kinds(data, written)) if p)
+
+
+def _empty_kinds(data, written):
+    """Absent, not assessed or suspended are different things: said apart, labels only.
+
+    «Not found» is what the analysis reported, never a proof of absence from the SOURCE.
+    """
+    if data.get("conversation_turn_revision") != 1:
+        return ""
+    audit, answers = data.get("audit") or {}, (data.get("dialogue") or {}).get("answers", {})
+    conditions = audit.get("conditions", {})
+    kinds = {"absent": [], "unassessed": [], "suspended": []}
+    for field in audit.get("fields", []):
+        cid, label = field["candidate_id"], field.get("label")
+        if cid in written or "field:" + cid in answers or not label or label == cid or any(
+                answers.get("condition:" + c, {}).get("applies") is not True
+                and conditions.get(c, {}).get("result") != "true"
+                for c in field.get("conditions", [])):
+            continue
+        coverage = field.get("coverage") or {}
+        if field.get("review_kind") == "subject_uncertain":
+            kinds["suspended"].append(label)
+        elif coverage.get("state") == "EXPLAINED_UNFILLED" and coverage.get(
+                "outcome") == "source_not_found":
+            kinds["absent"].append(label)
+        elif coverage.get("state") == "UNASSESSED":
+            kinds["unassessed"].append(label)
+
+    def shown(labels):
+        unique = list(dict.fromkeys(short_form_text(x, 50) for x in labels))
+        return f"{len(labels)} ({', '.join(unique[:3])}{' e altri' if len(unique) > 3 else ''})"
+
+    sentences = {"absent": "L'analisi non ha trovato nelle fonti",
+                 "unassessed": "Non sono stati valutati",
+                 "suspended": "Sono sospesi perché non è certo a chi si riferiscono"}
+    return " ".join(f"{sentences[k]}: {shown(v)}." for k, v in kinds.items() if v)
 
 
 def reviewed_doubts_notice(data, written):
@@ -2053,7 +2094,7 @@ def condition_receipts(data, slot, record, reply):
 
 def apply_replies(project_id, session_id, version, replies, message, unaccepted_slots=(),
                   scope_verifications=None, unaccepted_reasons=None, value_extractions=(),
-                  addressed_keys=()):
+                  addressed_keys=(), addressed_from=1, ignored_quotes=()):
     from app.compilation_chat import (
         contains_span,
         has_user_alternatives,
@@ -2078,9 +2119,10 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
             if (len(set(addressed_keys)) != len(addressed_keys) or len(addressed_keys) > 4
                     or any(k not in available for k in addressed_keys)):
                 raise HTTPException(409, "La destinazione è cambiata: rileggi la sessione")
-            slots = {n: {**available[k], "slot": n, "direct_instruction": True,
-                         "question": "", "destinations_shown": False}
-                     for n, k in enumerate(addressed_keys, 1)}
+            direct = {n: {**available[k], "slot": n, "direct_instruction": True,
+                          "question": "", "destinations_shown": False}
+                      for n, k in enumerate(addressed_keys, addressed_from)}
+            slots = {**slots, **direct} if addressed_from > 1 else direct
             dialogue.setdefault("instructions", []).append({"message": message,
                 "targets": list(addressed_keys), "version": version})
         fields = {f["candidate_id"]: f for f in data["audit"]["fields"]}
@@ -2252,7 +2294,8 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
              "origin": "ROUTER" if slots[n].get("direct_instruction") else "USER_ANSWER",
              "reason_code": (unaccepted_reasons or {}).get(n),
              "reason": refused.get(n) or REASON_TEXT.get((unaccepted_reasons or {}).get(n), "")}
-            for n in sorted(set(errors) | set(unaccepted_slots)) if n in slots]}
+            for n in sorted(set(errors) | set(unaccepted_slots)) if n in slots],
+            **({"ignored_quotes": list(ignored_quotes)} if ignored_quotes else {})}
         if conversation.enabled(data):
             # A free router guessed an unrelated destination: the USER did not
             # refuse that field or answer it ambiguously. Retain the rejection for

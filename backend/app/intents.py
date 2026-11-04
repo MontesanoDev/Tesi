@@ -278,8 +278,8 @@ class TurnPlan(StrictModel):
                     or self.target != "form" or self.form_id is not None):
                 raise ValueError("Modifica libera: soltanto edits e destinazioni esplicite")
             return self
-        if self.edits:
-            raise ValueError("Solo edit_fields ammette modifiche libere")
+        if self.edits and self.intent != "answer_fields":
+            raise ValueError("Solo edit_fields o answer_fields ammettono modifiche libere")
         if self.intent in {"reply", "explain", "retrieve"}:
             if self.replies:
                 raise ValueError("Una risposta o spiegazione non aggiorna campi")
@@ -414,6 +414,9 @@ citazione USER pertinente. Il solo nome non chiude una condizione. Una correzion
 nome e una conferma sono due verifiche distinte, anche nello stesso turno. Se il nome
 è già registrato e l'utente conferma l'identità, usa il target della conferma invece di
 ripetere soltanto VALUE. Non confermare altri rami, cariche o autorizzazioni.
+Se il messaggio risponde a una domanda attiva e dà anche dati su altre destinazioni, usa
+intent=answer_fields con replies per i soli slot attivi ed edits per le altre destinazioni,
+al massimo quattro in totale. Gli slot esistono solo per le domande attive: non inventarli.
 SKIP rinvia la destinazione, REFUSE ritira l'uso del dato; REOPEN richiede di discuterla
 nuovamente, senza confermarla né scrivere. Per condizioni servono CONDITION_TRUE/FALSE
 espliciti e pertinenti; per checkbox VALUE e selected_options, mai consenso implicito.
@@ -786,8 +789,37 @@ async def plan_chat_turn(
                 compilation = original_compilation
                 context = routing_context(compilation)
                 allowed_slots = {slot["slot"] for slot in (context or {}).get("slots", [])}
-                addressed_keys = []
-                if isinstance(data, dict) and data.get("intent") == "edit_fields":
+                addressed_keys, addressed_from, ignored_quotes = [], 1, []
+                from app.compilation_conversation import mixed_turns
+
+                mixed = mixed_turns(compilation)
+                if (mixed and isinstance(data, dict) and data.get("intent") == "answer_fields"
+                        and isinstance(data.get("replies"), list)):
+                    unknown = [r for r in data["replies"] if isinstance(r, dict)
+                               and r.get("slot") not in allowed_slots]
+                    if unknown and not attempt:
+                        # The other data of the message were dropped here in silence (real
+                        # Minervino turn: the signatory named by the USER was never recorded).
+                        raise ValueError("Risposte su slot inesistenti: usa edits")
+                    ignored_quotes = [str(r.get("user_quote"))[:200] for r in unknown
+                                      if r.get("user_quote")]
+                    data = {**data, "replies": [r for r in data["replies"] if r not in unknown]}
+                if (mixed and isinstance(data, dict) and data.get("intent") == "answer_fields"
+                        and data.get("edits")):
+                    from app.compilation_conversation import bind_edits
+
+                    free = TurnPlan.model_validate({**data, "replies": []})
+                    addressed_from = max(allowed_slots, default=0) + 1
+                    compilation, addressed = bind_edits(compilation, free.edits,
+                                                        first_slot=addressed_from)
+                    addressed_keys = [q["key"] for q in addressed]
+                    context = routing_context(compilation)
+                    allowed_slots = {q["slot"] for q in context["slots"]}
+                    data = {**data, "edits": [], "replies": [
+                        *data["replies"],
+                        *({**e.model_dump(exclude={"target"}), "slot": q["slot"]}
+                          for e, q in zip(free.edits, addressed))]}
+                elif isinstance(data, dict) and data.get("intent") == "edit_fields":
                     from app.compilation_conversation import bind_edits
 
                     free = TurnPlan.model_validate(data)
@@ -836,9 +868,12 @@ async def plan_chat_turn(
                     repair += (
                         " Per una correzione o nuovi dati fuori dalla domanda usa "
                         "intent=edit_fields,"
-                        " replies=[] ed edits con target di addressable_targets. Non combinare "
-                        "answer_fields con edits. Le modifiche libere restano disponibili "
-                        "nel retry."
+                        " replies=[] ed edits con target di addressable_targets. "
+                        + ("Se rispondi anche a una domanda attiva usa intent=answer_fields con "
+                           "replies per i soli slot attivi ed edits per il resto. "
+                           if mixed_turns(original_compilation) else
+                           "Non combinare answer_fields con edits. ")
+                        + "Le modifiche libere restano disponibili nel retry."
                         " Un'anagrafica multipla richiede una sola edit al nome, value letterale "
                         "e user_quote con la frase anagrafica completa; "
                         "non troncare gli altri dati."
@@ -925,7 +960,8 @@ async def plan_chat_turn(
                         raw_slots - {r.slot for r in decision.replies}),
                         "scope_verifications": verification.scope_verifications,
                         "unaccepted_reasons": verification.reasons,
-                        "value_extractions": extractions, "addressed_keys": addressed_keys})
+                        "value_extractions": extractions, "addressed_keys": addressed_keys,
+                        "addressed_from": addressed_from, "ignored_quotes": ignored_quotes})
             total = sum(token_counts) if all(n is not None for n in token_counts) else None
             logger.info("Chat routing intent=%s slots=%d attempts=%d",
                         proposed.intent, len(allowed_slots), attempt + 1)
