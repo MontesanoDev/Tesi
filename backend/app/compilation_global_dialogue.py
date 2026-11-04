@@ -600,6 +600,10 @@ def question_pool(data, *, selective=False, all_targets=False):
             answers.get("condition:" + c, {}).get("applies") is False
             for c in f.get("conditions", []) if c != key)]
         impacted = [f for f in impacted if f["candidate_id"] not in declared] or impacted
+        if data.get("conversation_turn_revision") == 1:
+            # Never in this receipt's scope: the box's FORM target exists only because of it, so
+            # a repeated confirmation would bind a proof to its own consequence and void itself.
+            impacted = [f for f in impacted if f["candidate_id"] not in derived_options]
         ids = [f["candidate_id"] for f in impacted]
         if not impacted or set(ids) <= peers:  # Only alternatives of a decided option.
             continue
@@ -619,7 +623,9 @@ def question_pool(data, *, selective=False, all_targets=False):
         if receipt and not stale and (
                 not new or not scope_enabled(data) or "affected_fields" not in receipt):
             continue
-        ids = list(dict.fromkeys([*covered, *ids]))
+        kept = [cid for cid in covered if cid not in derived_options] if data.get(
+            "conversation_turn_revision") == 1 else covered
+        ids = list(dict.fromkeys([*kept, *ids]))
         extension = new if receipt and not stale else []
         documented = sum(documented_proposal(f) for f in impacted)
         clause = equivalent_clause(item)

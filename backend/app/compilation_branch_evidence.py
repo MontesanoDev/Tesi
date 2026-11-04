@@ -164,7 +164,13 @@ def _capacity_trigger(data, key, condition, receipt):
     """
     from app.compilation_scope_review import enabled
 
-    if not enabled(data) or not _accepted(condition, receipt) or condition.get("aspect") not in {
+    # A confirmation given as a free instruction was guarded like any other but has no question
+    # text. Ignoring it removed the region's choice from the audit, and with it the FORM target
+    # its own receipt had just bound (real Minervino dialogue: 16 values, then none).
+    shown = receipt
+    if data.get("conversation_turn_revision") == 1 and receipt.get("scope_validation"):
+        shown = {"question": "direct_instruction", **{k: v for k, v in receipt.items() if v}}
+    if not enabled(data) or not _accepted(condition, shown) or condition.get("aspect") not in {
         "legal_type",
         "participation",
         "representation",

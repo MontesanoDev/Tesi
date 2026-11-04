@@ -7,6 +7,8 @@ instructions are bound server-side, then checked by the ordinary independent gua
 import re
 from copy import deepcopy
 
+MAX_TURN_PARTS = 4
+
 
 def enabled(data):
     return data.get("conversation_revision") == 1
@@ -43,7 +45,12 @@ def targets(data):
             "alternatives": [a["value"] for a in field.get("alternatives", [])]}
     # Choices are still guarded, condition-checked and cardinality-validated downstream.
     for key, group in data.get("audit", {}).get("choice_groups", {}).items():
-        if group.get("validation") != "GROUNDED_GROUP" or group["selection"] == "unknown":
+        # The FORM capacity region exists only under an accepted condition. Its option is still
+        # marked only by this explicit choice, and it can be given before it is the next question.
+        capacity = (data.get("conversation_turn_revision") == 1
+                    and group.get("origin") == "FORM_capacity_choice")
+        if group.get("validation") != "GROUNDED_GROUP" or (
+                group["selection"] == "unknown" and not capacity):
             continue
         by_key.setdefault("choice:" + key, {
             "key": "choice:" + key, "kind": "choice", "choice_group_id": key,
@@ -124,6 +131,21 @@ def mixed_turns(compilation):
         "conversation_turn_revision") == 1)
 
 
+def fit_turn_parts(replies, edits):
+    """Keep a whole turn within four parts: (edits kept, quotes of the edits left out).
+
+    A long message must not lose everything: answers to active questions stay, then writes come
+    before deferrals, whose fields stay empty anyway. What is left out is told to the USER.
+    """
+    room = max(MAX_TURN_PARTS - len(replies), 0)
+    if len(edits) <= room:
+        return edits, []
+    ranked = sorted(edits, key=lambda e: isinstance(e, dict) and e.get("action") in {
+        "SKIP", "REFUSE"})
+    return ranked[:room], [str(e.get("user_quote"))[:200] for e in ranked[room:]
+                           if isinstance(e, dict) and e.get("user_quote")]
+
+
 def bind_edits(compilation, edits, first_slot=1):
     """Private temporary slots, never presented as questions the user actually saw.
 
@@ -147,7 +169,7 @@ def bind_edits(compilation, edits, first_slot=1):
         q for q in (compilation.get("question") or {}).get("slots", [])
         if not set(q.get("field_ids", [])) & {c for s in slots for c in s["field_ids"]}]
     both = [*active, *slots]
-    if len(both) > 4:
+    if len(slots) > MAX_TURN_PARTS:
         raise ValueError("Massimo quattro risposte e modifiche per turno")
     return {**compilation, "question": {"kind": "clarifications", "slots": both,
             "field_ids": [], "message": (compilation.get("question") or {}).get("message", "")},

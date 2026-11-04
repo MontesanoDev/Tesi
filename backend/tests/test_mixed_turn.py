@@ -17,7 +17,7 @@ from test_compilation_sessions import source
 from app import compilation_chat as chat
 from app import compilation_global_dialogue as dialogue
 from app import compilation_global_sessions as adapter
-from app.compilation_conversation import selective_pool, targets
+from app.compilation_conversation import fit_turn_parts, selective_pool, targets
 from app.compilation_scope_review import session_data
 
 __all__ = ["api", "provider"]
@@ -119,6 +119,44 @@ async def test_a_reply_on_a_slot_that_does_not_exist_is_repaired_once_then_repor
     assert "Non ho registrato questa parte del messaggio: «Sì, partecipiamo come società.»" in (
         receipt)
     assert values(s)[signer["field_ids"][0]]["value"] == "Ada Neri"
+
+
+def test_a_long_turn_keeps_answers_and_writes_and_reports_only_what_is_left_out():
+    reply = {"slot": 1, "action": "CONDITION_TRUE", "user_quote": "Sì."}
+    edits = [{"target": 5, "action": "SKIP", "user_quote": "Rinvio le categorie."},
+             {"target": 4, "action": "VALUE", "user_quote": "Firma Ada Neri.", "value": "Ada Neri"},
+             {"target": 3, "action": "CONDITION_TRUE", "user_quote": "Ada Neri firma."},
+             {"target": 6, "action": "REFUSE", "user_quote": "Non autorizzo dichiarazioni."}]
+    kept, left_out = fit_turn_parts([reply], edits)
+    assert [e["target"] for e in kept] == [4, 3, 5]
+    assert left_out == ["Non autorizzo dichiarazioni."]
+    assert fit_turn_parts([], edits) == (edits, [])
+    assert fit_turn_parts([reply] * 4, edits)[0] == []
+
+
+@pytest.mark.anyio
+async def test_a_turn_with_too_many_parts_is_not_lost_and_says_what_it_did_not_record(
+    api, provider, monkeypatch,
+):
+    # Real run: 1 reply + 4 edits failed twice and the whole message was lost.
+    s = await analyzed(api, monkeypatch)
+    signer, condition = active_signatory(s), condition_target(s)
+    others = [q for q in targets(session_data(s)) if q["key"] not in {
+        signer["key"], condition["key"]} and q["kind"] == "value"][:2]
+    refused = "Non autorizzo altro."
+    message = f"{MESSAGE} Rinvio il resto. {refused} Rinvio anche questo."
+    plan = {"intent": "answer_fields", "replies": [REPLY], "edits": [
+        {"target": condition["target"], "action": "CONDITION_TRUE",
+         "user_quote": "Sì, confermo che partecipiamo come società di ingegneria."},
+        {"target": others[0]["target"], "action": "SKIP", "user_quote": "Rinvio il resto."},
+        {"target": others[1]["target"], "action": "SKIP", "user_quote": "Rinvio anche questo."},
+        {"target": others[1]["target"] + 1000, "action": "REFUSE", "user_quote": refused}]}
+    s, _, routed = await route(s, monkeypatch, message, plan)
+    assert isinstance(routed.decision, chat.ClarificationDecision)
+    d = s["global_compilation"]["dialogue"]
+    assert values(s)[signer["field_ids"][0]]["value"] == "Ada Neri"
+    assert d["answers"][condition["key"]]["applies"] is True
+    assert f"«{refused}»" in dialogue.continuation_receipt(d)
 
 
 @pytest.mark.anyio

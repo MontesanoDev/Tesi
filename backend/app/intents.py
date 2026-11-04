@@ -417,6 +417,8 @@ ripetere soltanto VALUE. Non confermare altri rami, cariche o autorizzazioni.
 Se il messaggio risponde a una domanda attiva e dà anche dati su altre destinazioni, usa
 intent=answer_fields con replies per i soli slot attivi ed edits per le altre destinazioni,
 al massimo quattro in totale. Gli slot esistono solo per le domande attive: non inventarli.
+Se l'utente sceglie un'opzione di un target choice, anche col suo numero, usa VALUE con
+selected_options su quel target: confermare la condizione del ramo non seleziona alcuna casella.
 SKIP rinvia la destinazione, REFUSE ritira l'uso del dato; REOPEN richiede di discuterla
 nuovamente, senza confermarla né scrivere. Per condizioni servono CONDITION_TRUE/FALSE
 espliciti e pertinenti; per checkbox VALUE e selected_options, mai consenso implicito.
@@ -805,9 +807,14 @@ async def plan_chat_turn(
                                       if r.get("user_quote")]
                     data = {**data, "replies": [r for r in data["replies"] if r not in unknown]}
                 if (mixed and isinstance(data, dict) and data.get("intent") == "answer_fields"
-                        and data.get("edits")):
-                    from app.compilation_conversation import bind_edits
+                        and isinstance(data.get("edits"), list) and data["edits"]):
+                    from app.compilation_conversation import bind_edits, fit_turn_parts
 
+                    kept, left_out = fit_turn_parts(data.get("replies") or [], data["edits"])
+                    ignored_quotes = [*ignored_quotes, *left_out]
+                    data = {**data, "edits": kept}
+                if (mixed and isinstance(data, dict) and data.get("intent") == "answer_fields"
+                        and data.get("edits")):
                     free = TurnPlan.model_validate({**data, "replies": []})
                     addressed_from = max(allowed_slots, default=0) + 1
                     compilation, addressed = bind_edits(compilation, free.edits,
