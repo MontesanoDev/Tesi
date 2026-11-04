@@ -55,8 +55,8 @@ def test_new_sessions_get_the_complete_sections_profile_without_any_variable():
         "text_checkbox_revision": 1, "segment_recovery_revision": 1, "form_clause_revision": 1,
         "hold_resolution_revision": 1, "format_retry_revision": 1,
         "hold_review_revision": 1, "omission_recovery_revision": 1, "user_extraction_revision": 1,
-                "conversation_revision": 1}
-    assert PROFILE_NAME == "sezioni-2026-10-30-r2"
+                "conversation_revision": 1, "subject_check_revision": 1}
+    assert PROFILE_NAME == "sezioni-2026-11-05"
 
 
 @pytest.mark.parametrize("stale", [
@@ -193,7 +193,7 @@ def test_the_emergency_switch_recreates_the_profile_before_the_form_scope_adopti
             "form_clause_revision": 1, "hold_resolution_revision": 1,
             "format_retry_revision": 1, "hold_review_revision": 1,
             "omission_recovery_revision": 1, "user_extraction_revision": 1,
-                "conversation_revision": 1} == SECTIONS
+                "conversation_revision": 1, "subject_check_revision": 1} == SECTIONS
     assert "text_checkbox_revision" not in state
 
 
@@ -207,10 +207,11 @@ def test_the_emergency_switch_recreates_the_profile_before_the_structural_stabil
             "form_clause_revision": 1, "hold_resolution_revision": 1,
             "format_retry_revision": 1, "hold_review_revision": 1,
             "omission_recovery_revision": 1, "user_extraction_revision": 1,
-                "conversation_revision": 1} == SECTIONS
+                "conversation_revision": 1, "subject_check_revision": 1} == SECTIONS
 
 
-@pytest.mark.parametrize("profile", [*PREVIOUS, "checkbox-testuali-2026-10-26", "storico"])
+@pytest.mark.parametrize("profile", [*(set(PREVIOUS) - {"sezioni-2026-10-30-r2"}),
+                                     "checkbox-testuali-2026-10-26", "storico"])
 def test_previous_profiles_do_not_enable_user_extraction(monkeypatch, profile):
     monkeypatch.setenv("MAPI_COMPILATION_PROFILE", profile)
     state = adapter.initial_state(inspect_docx(rev2.form_docx(3)))
@@ -235,7 +236,7 @@ def test_text_checkbox_catalog_is_automatic_but_old_sessions_are_not_upgraded():
     original = form_bytes()
     layout = inspect_docx(original, require_candidates=False)
     new = adapter.initial_state(layout)
-    assert new["compilation_profile"] == "sezioni-2026-10-30-r2"
+    assert new["compilation_profile"] == PROFILE_NAME
     assert new["text_checkbox_revision"] == 1
     assert "p0.txcb0" in new["catalog"]["candidates"]
     previous = {k: v for k, v in new.items() if k != "text_checkbox_revision"}

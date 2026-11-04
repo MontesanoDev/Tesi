@@ -183,6 +183,7 @@ def selective_pool(data, pool):
     pending = set(data.get("dialogue", {}).get("extraction_pending", {}))
     useful = [q for q in pool if q["key"] in requested or q.get("retry") or
               q.get("documented") or q.get("documented_alternatives") or
+              q.get("subject_uncertain") or
               q.get("form_owned") and q["kind"] == "value" or
               set(q.get("field_ids", [])) & pending]
     chosen = sorted(useful, key=lambda q: (

@@ -893,8 +893,10 @@ async def plan_chat_turn(
                         labels = {s["slot"]: refusal_label(s) or s.get("question") or "questo dato"
                                   for s in context["slots"]}
                         names = ", ".join(f"«{str(labels[r.slot])[:120]}»" for r in rejected)
-                        why = "; ".join(dict.fromkeys(REASON_TEXT[verification.reasons.get(
-                            r.slot, "UNCHECKED")] for r in rejected))
+                        why = "; ".join(dict.fromkeys(
+                            verification.notes.get(r.slot) or REASON_TEXT[
+                                verification.reasons.get(r.slot, "UNCHECKED")]
+                            for r in rejected))
                         # Preserve the active question and every field. An unrelated
                         # correction is not permission to change a different field.
                         wide_defer = [s for s in context["slots"] if any(
@@ -907,7 +909,8 @@ async def plan_chat_turn(
                                   "più dati collegati. Vuoi rinviare l'intera conferma "
                                   "oppure soltanto una specifica informazione?" if wide_defer else
                                   blocked_reply_text(names, rejected, guard_context,
-                                                     verification.reasons) if repeated else
+                                                     verification.reasons,
+                                                     verification.notes) if repeated else
                                   f"Non ho usato la risposta su {names}: {why}. Puoi precisare "
                                   "soltanto questo punto?")
                         if proposed.intent != "answer_fields":

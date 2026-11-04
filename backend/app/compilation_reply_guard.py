@@ -53,6 +53,8 @@ class ReplyScopeResult:
     # Private diagnostics for the routing trace only (E2E campaign: a real refusal could not be
     # explained afterwards): the raw verdicts, never shown to the USER or used to decide.
     raw: str | None = None
+    # Backend text of a deterministic refusal, per slot: a message the USER can act on.
+    notes: dict[int, str] = field(default_factory=dict)
 
 
 REASON_TEXT = {
@@ -60,10 +62,11 @@ REASON_TEXT = {
     "AMBIGUOUS": "non indica con certezza l'opzione o il dato scelto",
     "SCOPE": "non riesco a verificare a quali campi del modulo si applica",
     "UNCHECKED": "la verifica della risposta non è riuscita",
+    "SUBJECT": "il messaggio riferisce il dato a un soggetto diverso da quello del campo",
 }
 
 
-def blocked_reply_text(names, rejected, context, reasons):
+def blocked_reply_text(names, rejected, context, reasons, notes=None):
     """A reply refused again: what blocks it, from backend facts, without a new question.
 
     Real Minervino session: the USER named the FORM slot twice and received the same «Puoi
@@ -73,9 +76,12 @@ def blocked_reply_text(names, rejected, context, reasons):
     from app.compilation_global_dialogue import form_line, short_form_text
 
     targets = (context.get("form_scope") or {}).get("slots", {})
-    causes, confirm = [], False
+    causes, confirm, notes = [], False, notes or {}
     for reply in rejected:
         target, reason = targets.get(str(reply.slot)), reasons.get(reply.slot, "UNCHECKED")
+        if reply.slot in notes:
+            causes.append(notes[reply.slot])
+            continue
         conditions = (target or {}).get("conditions", {})
         answered = (target or {}).get("user_conditions", {})
         open_clauses = [] if str((target or {}).get("key", "")).startswith("condition:") else [
@@ -228,6 +234,15 @@ Esempio di slot direct_instruction su un numero di iscrizione: «Il numero è 12
 ha scope_result AMBIGUOUS, perché non dice quale numero né di quale campo, anche se
 123 è un'alternativa dello slot; «il campo al n. dopo Camera di Commercio è 123»
 identifica la destinazione.
+
+subject, quando presente, è calcolato dal backend: expected è il soggetto della
+destinazione secondo le SOURCE o una scelta USER registrata. Se il messaggio riferisce
+il valore a un altro soggetto (altra società o persona, persona invece di società,
+domicilio o studio personale invece della sede societaria, carica di un'altra
+persona), scope_result è AMBIGUOUS anche se il valore compare tra le alternative. Se il
+riferimento a una persona o società può indicare più soggetti, è AMBIGUOUS. Non serve
+che il messaggio nomini il soggetto quando non ne cita un altro; una correzione del
+nome o della denominazione ha come valore il nuovo soggetto ed è ammessa.
 """
 
 
@@ -267,6 +282,22 @@ async def verify_field_replies(message, context, replies, *, request):
         return ReplyScopeResult(frozenset(), 0)
     settings = get_ai_settings()
     scope = context.get("form_scope")
+    # A value the message itself attributes to someone else is refused here, whatever the model
+    # says: the verdict can only remove an acceptance. One proposal reads the whole message.
+    from app.compilation_subject_check import foreign_reply, foreign_text
+
+    foreign = {}
+    for proposal in proposals:
+        check = ((scope or {}).get("slots") or {}).get(str(proposal["slot"]), {}).get("subject")
+        if proposal["action"] == "VALUE" and check and (found := foreign_reply(
+                message if len(proposals) == 1 else proposal["user_quote"],
+                proposal.get("value"), check)):
+            foreign[proposal["slot"]] = found
+    if foreign and len(foreign) == len(proposals):
+        return ReplyScopeResult(
+            frozenset(), 0, reasons={slot: "SUBJECT" for slot in foreign},
+            notes={slot: foreign_text(found) for slot, found in foreign.items()})
+    proposals = [p for p in proposals if p["slot"] not in foreign]
     schema = (FormScopeChecks if scope else ReplyScopeChecks).model_json_schema()
     body = {"model": settings.model, "messages": [
         {"role": "system", "content": TASK + (FORM_SCOPE_TASK if scope else "")
@@ -324,4 +355,6 @@ async def verify_field_replies(message, context, replies, *, request):
         allowed, checks = frozenset(), []
     logger.info("DOCX reply scope checked=%d accepted=%d", len(proposals), len(allowed))
     reasons = refusal_reasons(checks, {p["slot"] for p in proposals}, allowed)
-    return ReplyScopeResult(allowed, tokens, verifications, reasons, raw)
+    reasons.update({slot: "SUBJECT" for slot in foreign})
+    return ReplyScopeResult(allowed, tokens, verifications, reasons, raw,
+                            {slot: foreign_text(found) for slot, found in foreign.items()})

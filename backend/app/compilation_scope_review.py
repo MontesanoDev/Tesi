@@ -67,6 +67,13 @@ def context(data, slots):
     if not enabled(data):
         return None
     targets = {str(q["slot"]): target(data, q["key"], q["field_ids"]) for q in slots}
+    from app import compilation_subject_check
+
+    if compilation_subject_check.enabled(data):
+        for q in slots:  # Beside the target, outside its digest: receipts stay valid.
+            if q.get("kind") == "value" and (check := compilation_subject_check.slot_context(
+                    data, q["field_ids"])):
+                targets[str(q["slot"])]["subject"] = check
     if data.get("conversation_revision") == 1:
         for q in slots:
             if q["key"].startswith("condition:"):

@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import os
 
-PROFILE_NAME = "sezioni-2026-10-30-r2"
+PROFILE_NAME = "sezioni-2026-11-05"
 SECTIONS = {
     "backend_revision": 13,
     "option_authorization_revision": 1,   # V14: assent to printed option clauses.
@@ -41,6 +41,7 @@ SECTIONS = {
     "omission_recovery_revision": 1,      # Declared-unassessed destinations: one recovery.
     "user_extraction_revision": 1,        # Atomic USER facts, individually scope-checked.
     "conversation_revision": 1,          # Selective questions and explicit free instructions.
+    "subject_check_revision": 1,          # Evidence, destination and USER reply owners verified.
 }
 # Earlier canonical profiles, recreated only by the server-side emergency switch.
 NEW_2026_10_30 = {"segment_recovery_revision", "form_clause_revision",
@@ -48,14 +49,17 @@ NEW_2026_10_30 = {"segment_recovery_revision", "form_clause_revision",
 NEW_2026_10_30_R2 = {"format_retry_revision", "hold_review_revision",
                      "omission_recovery_revision"}
 NEW_USER_EXTRACTION = {"user_extraction_revision", "conversation_revision"}
+NEW_2026_11_05 = {"subject_check_revision"}
 PREVIOUS = {
     "sezioni-2026-10-24": {k: v for k, v in SECTIONS.items() if k not in {
         "form_option_scope_revision", "text_checkbox_revision", *NEW_2026_10_30,
-        *NEW_2026_10_30_R2, *NEW_USER_EXTRACTION}},
+        *NEW_2026_10_30_R2, *NEW_USER_EXTRACTION, *NEW_2026_11_05}},
     "sezioni-2026-10-25": {k: v for k, v in SECTIONS.items()
-                           if k not in NEW_2026_10_30 | NEW_2026_10_30_R2 | NEW_USER_EXTRACTION},
+                           if k not in NEW_2026_10_30 | NEW_2026_10_30_R2 | NEW_USER_EXTRACTION
+                           | NEW_2026_11_05},
     "sezioni-2026-10-30": {k: v for k, v in SECTIONS.items()
-                           if k not in NEW_2026_10_30_R2 | NEW_USER_EXTRACTION}}
+                           if k not in NEW_2026_10_30_R2 | NEW_USER_EXTRACTION | NEW_2026_11_05},
+    "sezioni-2026-10-30-r2": {k: v for k, v in SECTIONS.items() if k not in NEW_2026_11_05}}
 
 
 def new_session_flags():

@@ -739,6 +739,8 @@ def question_pool(data, *, selective=False, all_targets=False):
                      "alternatives": [a["value"] for a in field.get("alternatives", [])],
                      **({"documented_alternatives": True}
                         if documented_alternatives(field) else {}),
+                     **({"subject_uncertain": deepcopy(field["subject_check"])}
+                        if field.get("review_kind") == "subject_uncertain" else {}),
                      **({"form_owned": True} if cid in signatory else {})})
     pool.extend(hold_questions(data))
     pool.extend(decision_questions(data, {cid for q in pool for cid in q["field_ids"]}))
@@ -1496,6 +1498,22 @@ def _alternatives_question(q):
         len(label) >= 3 and len(text) <= 600 and no_technical_ids(text)) else None
 
 
+def _subject_question(q):
+    """A value whose owner the SOURCE does not settle: says which value, line and candidates."""
+    check = q.get("subject_uncertain") or {}
+    label = short_form_text(q.get("label"), 80)
+    owners = " e ".join(dict.fromkeys(str(o) for o in check.get("owners", [])))
+    value, quote = str(check.get("value") or ""), short_form_text(check.get("quote"), 140)
+    text = (f"Quale dato indico per «{label}»? Le fonti riportano «{value[:120]}»"
+            + (f" («{quote}»)" if quote else "")
+            + (f", ma non stabiliscono a chi si riferisce tra {owners}" if " e " in owners
+               else f", ma ci sono più soggetti chiamati {owners}" if owners
+               else ", ma non stabiliscono a chi si riferisce"))
+    text = text if text.endswith(".") else text + "."
+    return DialogueQuestion(slot=q["slot"], question=text) if (
+        len(label) >= 3 and len(text) <= 600 and no_technical_ids(text)) else None
+
+
 def unexported_notice(data, written):
     """Documented proposals the draft leaves empty and why (manual test 4: the operator and
     technical-director data were empty behind «Le informazioni non verificate restano vuote»).
@@ -1619,6 +1637,8 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
                             if q.get("documented_alternatives") and q["slot"] not in chosen) if q]
     imposed += [DialogueQuestion(slot=q["slot"], question="Scelta del modulo") for q in pool
                 if q.get("hold_selection") and q["slot"] not in chosen]
+    imposed += [q for q in (_subject_question(q) for q in pool
+                            if q.get("subject_uncertain") and q["slot"] not in chosen) if q]
     if required or imposed:
         required_ids = {q.slot for q in required}
         rest = [q for q in questions if q.slot not in required_ids]
@@ -1633,6 +1653,9 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
             # A FORM clause is asked by the backend in its own words: the same question in
             # every run, whatever the narrator's paraphrase (E2E Trapani: four wordings).
             q = _open_confirmation(slot) or q
+        if slot.get("subject_uncertain"):
+            q = _subject_question(slot) or q  # Backend words: the value, its line, the candidates.
+            text = q.question
         if require_confirmation and slot["kind"] == "applicability" and not q.confirmation:
             # The backend owns the slot: its closed confirmation replaces an open question, so
             # one ill-formed question no longer discards the whole narration (E2E Minervino:

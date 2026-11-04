@@ -616,10 +616,16 @@ def reuse_selected_person(data, layout, project_id, sources):
         from app.compilation_attribution_safety import apply_attribution_safety
 
         audit, safety = apply_attribution_safety(audit, source_map)
+    from app import compilation_subject_check
+
+    subject_checked = compilation_subject_check.enabled(data)
+    if subject_checked:
+        audit = compilation_subject_check.apply(data, audit, source_map)
     reused = [f for f in audit["fields"] if f.get("source_reuse")]
     if reused:
         audit["source_reuse_count"] = len(reused)
-    if reused or safety or any(f.get("selected_subject_check") for f in audit["fields"]):
+    if (reused or safety or subject_checked
+            or any(f.get("selected_subject_check") for f in audit["fields"])):
         audit["counts"] = dict(Counter(f["validation"] for f in audit["fields"]))
         audit["unassigned_count"] = max(0, audit.get("unassigned_count", 0) - newly_assigned)
         if "coverage_summary" in audit:
