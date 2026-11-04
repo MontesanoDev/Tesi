@@ -256,6 +256,8 @@ export type GenerationStatus =
   | 'failed'
 
 export interface GroundedAnswer {
+  request_id?: string | null
+  request_retry_safe?: boolean
   conversation_id: string
   turn_id: number
   question: string
@@ -273,6 +275,8 @@ export interface GroundedAnswer {
 }
 
 export interface ConversationTurnData {
+  request_id?: string | null
+  request_retry_safe?: boolean
   id: number
   question: string
   answer: string | null

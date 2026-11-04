@@ -256,6 +256,17 @@ def init_database() -> None:
             CREATE INDEX IF NOT EXISTS idx_conversation_turns_conversation
             ON conversation_turns(conversation_id, id);
 
+            CREATE TABLE IF NOT EXISTS chat_submissions (
+                project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+                request_id TEXT NOT NULL,
+                payload_json TEXT NOT NULL,
+                state TEXT NOT NULL CHECK(state IN ('pending','completed','interrupted')),
+                response_json TEXT,
+                turn_id INTEGER REFERENCES conversation_turns(id) ON DELETE SET NULL,
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY(project_id, request_id)
+            );
+
             CREATE TABLE IF NOT EXISTS knowledge_artifacts (
                 id TEXT PRIMARY KEY,
                 project_id TEXT REFERENCES projects(id) ON DELETE CASCADE,

@@ -167,7 +167,8 @@ describe('CompilationSession nella chat', () => {
     selectForm()
     submit('riassumilo')
     await screen.findByText('Requisiti del modulo')
-    expect(api.projectAnswer).toHaveBeenCalledWith('alpha', 'riassumilo', null, expect.any(AbortSignal), 10, undefined)
+    expect(api.projectAnswer).toHaveBeenCalledWith('alpha', 'riassumilo', null,
+      expect.any(AbortSignal), 10, undefined, expect.any(String))
     expect(api.startCompilationSession).not.toHaveBeenCalled()
   })
 
@@ -185,7 +186,7 @@ describe('CompilationSession nella chat', () => {
     submit('spiegami la fonte')
     await screen.findByText('La fonte descrive i requisiti del bando.')
     expect(api.projectAnswer).toHaveBeenCalledWith('alpha', 'spiegami la fonte', 'chat-1',
-      expect.any(AbortSignal), 12, { session_id: before.id, version: 7 })
+      expect.any(AbortSignal), 12, { session_id: before.id, version: 7 }, expect.any(String))
     expect(stored).toEqual(before)
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
     expect(api.startCompilationSession).not.toHaveBeenCalled()

@@ -491,6 +491,10 @@ def continuation_receipt(dialogue, *, newly_held=False):
                      "nel modulo.")
     if records := [r for r in accepted if r["action"] in {"SKIP", "UNKNOWN", "REFUSE"}]:
         parts.append(f"Rinviato, lascio vuoto: {labels(records)}.")
+    if latest.get("discarded_proposals"):
+        parts.append("Il dato non è stato esteso ad altre parti del modulo." if accepted else
+                     "Non ho individuato una destinazione pertinente per questa richiesta. "
+                     "Indica il campo da aggiornare.")
     closed = set(latest.get("loop_guard", []))
     for refused in latest.get("unaccepted", []):
         label = readable(refused.get("label") or "questa domanda", 120)
@@ -499,6 +503,9 @@ def continuation_receipt(dialogue, *, newly_held=False):
         parts.append(
             f"Lascio vuoto «{label}»{why}; dopo due tentativi non lo richiedo, ma puoi "
             "indicarlo quando vuoi." if refused.get("label") in closed else
+            f"Non ho applicato questa indicazione a «{label}»{why}. Per modificarlo, "
+            f"{CLARIFY.get(refused.get('kind'), 'precisa la risposta')}, oppure rinvia."
+            if latest.get("outcome_revision") == 1 else
             f"Non ho usato la risposta su «{label}»{why}. Te la richiedo: "
             f"{CLARIFY.get(refused.get('kind'), 'precisa la risposta')}, oppure rinvia; "
             "nulla è stato scritto.")
@@ -2205,8 +2212,20 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
         dialogue["latest_turn"] = {"accepted": accepted, "unaccepted": [
             {"label": refusal_label(slots[n]), "kind": slots[n]["kind"], "key": slots[n]["key"],
              "question": slots[n].get("question", ""),
+             "origin": "ROUTER" if slots[n].get("direct_instruction") else "USER_ANSWER",
+             "reason_code": (unaccepted_reasons or {}).get(n),
              "reason": refused.get(n) or REASON_TEXT.get((unaccepted_reasons or {}).get(n), "")}
             for n in sorted(set(errors) | set(unaccepted_slots)) if n in slots]}
+        if conversation.enabled(data):
+            # A free router guessed an unrelated destination: the USER did not
+            # refuse that field or answer it ambiguously. Retain the rejection for
+            # audit, without asking it again or recording a loop-guard decision.
+            latest = dialogue["latest_turn"]
+            latest["outcome_revision"] = 1
+            latest["discarded_proposals"] = [r for r in latest["unaccepted"]
+                if r["origin"] == "ROUTER" and r["reason_code"] == "UNRELATED"]
+            latest["unaccepted"] = [r for r in latest["unaccepted"]
+                                    if r not in latest["discarded_proposals"]]
         extra_accepted, extra_refused, captured = (extraction.persist(
             data, sessions.read_original(row), slots, message, value_extractions)
             if value_extractions else ([], [], False))
@@ -2219,6 +2238,9 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
             attempts = dialogue.setdefault("unaccepted_attempts", {})
             for n in sorted(set(errors) | set(unaccepted_slots)):
                 key = slots.get(n, {}).get("key")
+                if any(r["key"] == key for r in dialogue["latest_turn"].get(
+                        "discarded_proposals", [])):
+                    continue
                 if not key or key in answers:
                     continue
                 attempts[key] = attempts.get(key, 0) + 1
@@ -2261,8 +2283,9 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
             dialogue.update(phase="PENDING", question=None)
         else:
             question = dialogue.get("question")
-            dialogue["message"] = ("Non ho modificato i dati: serve un'indicazione univoca. "
-                                   + ((question or {}).get("message") or "Puoi precisare?"))
+            dialogue["message"] = (continuation_receipt(dialogue) if conversation.enabled(data)
+                else "Non ho modificato i dati: serve un'indicazione univoca. "
+                + ((question or {}).get("message") or "Puoi precisare?"))
         dialogue["user_turns"] = dialogue.get("user_turns", 0) + 1
         state.update(status="WAITING_FOR_USER")
         return sessions.save_state(db, row, state, "global_dialogue_user_reply"), errors

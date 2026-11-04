@@ -20,7 +20,8 @@ import {
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
 import { compilationReplyParagraphs } from '../compilationReply'
-import { readChatDraft, saveChatDraft, type RecoverableMessage } from '../chatMessageRecovery'
+import { readChatDraft, saveChatDraft, sameMessage,
+  type ChatSubmission, type RecoverableMessage } from '../chatMessageRecovery'
 import { AppShell } from '../components/AppShell'
 import { AssistantMessage } from '../components/AssistantMessage'
 import { CompilationReply } from '../components/CompilationReply'
@@ -36,6 +37,7 @@ import type { DocumentReference, FormReference, GroundedAnswer, ProjectFile } fr
 
 interface ChatTurn {
   id: string
+  request_id?: string | null
   question: string
   result: GroundedAnswer | null
   error: string | null
@@ -162,8 +164,10 @@ export function ProjectWorkspacePage() {
     setDraftUnavailable(draft.unavailable)
   }, [projectId, conversationId])
 
-  function retainMessage(text: string, reference = documentReference, submitted = false) {
-    const message = text ? { text, document_reference: reference, submitted } : null
+  function retainMessage(text: string, reference = documentReference, submitted = false,
+    submission?: ChatSubmission) {
+    const previous = sameMessage(recoverableMessage, text, reference) ? recoverableMessage?.submission : undefined
+    const message = text ? { text, document_reference: reference, submitted, submission: submission ?? previous } : null
     setRecoverableMessage(message)
     if (projectId) setDraftUnavailable(!saveChatDraft(projectId, conversationId, message))
   }
@@ -228,8 +232,9 @@ export function ProjectWorkspacePage() {
         setDocumentReference(documentReferenceOf(conversation))
         // A copy kept while leaving the page is not unsent once the server registered and
         // answered that same message: offering it again would only duplicate it.
-        const last = conversation.turns.at(-1)
         const kept = readChatDraft(projectId, conversation.id).message
+        const last = kept?.submission ? conversation.turns.find(
+          (turn) => turn.request_id === kept.submission?.request_id) : conversation.turns.at(-1)
         const reference = last ? documentReferenceOf(last) : null
         const typed = typedDraft(conversation.id)
         if (typed) {
@@ -245,6 +250,7 @@ export function ProjectWorkspacePage() {
         }
         setTurns(conversation.turns.map((turn) => ({
           id: `turn-${turn.id}`,
+          request_id: turn.request_id,
           question: turn.question,
           document_reference: documentReferenceOf(turn),
           result: {
@@ -303,29 +309,42 @@ export function ProjectWorkspacePage() {
     const controller = new AbortController()
     answerRequest.current = controller
     const turnId = `local-${++turnSequence.current}`
-    retainMessage(query, documentReference, true)
+    const prior = recoverableMessage ?? readChatDraft(activeProjectId, conversationId).message
+    const submission: ChatSubmission = (sameMessage(prior, query, documentReference) && prior?.submission) || {
+      request_id: crypto.randomUUID(), conversation_id: activeConversation.current,
+      document_id: selectedDocument?.id,
+      compilation: activeSession ? { session_id: activeSession.id, version: activeSession.version } : undefined,
+    }
+    retainMessage(query, documentReference, true, submission)
     stickToBottom.current = true
     setTurns((current) => [
-      ...current.map((turn, index) => {
+      ...current.filter((turn) => turn.request_id !== submission.request_id).map((turn, index) => {
         if (index !== current.length - 1 || !turn.result || !activeSession) return turn
         const answer = compilationReplyParagraphs(activeSession, turn.result, false, compilation.error).join('\n\n')
         return answer ? { ...turn, result: { ...turn.result, answer } } : turn
       }),
-      { id: turnId, question: query, result: null, error: null,
+      { id: turnId, request_id: submission.request_id, question: query, result: null, error: null,
         document_reference: selectedDocument ? documentReference : null },
     ])
     setPrompt('')
     setMention(null)
     setSearching(true)
     try {
-      const result = await api.projectAnswer(
-        activeProjectId,
-        query,
-        activeConversation.current,
-        controller.signal,
-        selectedDocument?.id,
-        activeSession ? { session_id: activeSession.id, version: activeSession.version } : undefined,
-      )
+      let result: GroundedAnswer
+      try {
+        result = await api.projectAnswer(activeProjectId, query, submission.conversation_id,
+          controller.signal, submission.document_id, submission.compilation, submission.request_id)
+      } catch (reason) {
+        if (controller.signal.aborted) return
+        // A lost HTTP response is not evidence that the USER decision failed.
+        // Read the durable receipt; never submit another decision to discover it.
+        const saved = await api.answerSubmission(activeProjectId, submission.request_id,
+          controller.signal).catch(() => null)
+        if (!saved?.response) throw saved ? new Error(
+          'Messaggio ricevuto; esito ancora da verificare. Aggiorna la conversazione: lo stesso invio non sarà applicato di nuovo.',
+        ) : reason
+        result = saved.response
+      }
       if (controller.signal.aborted) return
       // Clear only the submitted copy. A later draft belongs to the user.
       const failed = ['failed', 'not_configured'].includes(result.generation_status)
@@ -334,12 +353,14 @@ export function ProjectWorkspacePage() {
         const submitted = saved.message.text === query
           && JSON.stringify(saved.message.document_reference) === JSON.stringify(documentReference)
         if (failed || !submitted) {
-          const stored = saveChatDraft(activeProjectId, result.conversation_id, saved.message)
+          const kept = submitted && result.request_retry_safe
+            ? { ...saved.message, submission: undefined } : saved.message
+          const stored = saveChatDraft(activeProjectId, result.conversation_id, kept)
           setDraftUnavailable(!stored)
           if (stored && conversationId !== result.conversation_id) {
             saveChatDraft(activeProjectId, conversationId, null)
           }
-          setRecoverableMessage(saved.message)
+          setRecoverableMessage(kept)
         } else {
           setDraftUnavailable(!saveChatDraft(activeProjectId, conversationId, null))
           setRecoverableMessage(null)
@@ -372,6 +393,28 @@ export function ProjectWorkspacePage() {
         setSearching(false)
       }
     }
+  }
+
+  async function reuseTurn(turn: ChatTurn) {
+    let submission: ChatSubmission | undefined
+    const requestId = turn.request_id ?? turn.result?.request_id
+    if (requestId && !turn.result?.request_retry_safe) {
+      try {
+        const { request } = await api.answerSubmission(activeProjectId, requestId)
+        submission = { request_id: requestId, conversation_id: request.conversation_id,
+          document_id: request.document_id ?? request.form_id,
+          compilation: request.compilation_session_id && request.compilation_version
+            ? { session_id: request.compilation_session_id, version: request.compilation_version } : undefined }
+      } catch {
+        setTurns((current) => current.map((item) => item.id === turn.id
+          ? { ...item, error: 'Non riesco a verificare questo invio. Riprova il recupero prima di reinviarlo.' } : item))
+        return
+      }
+    }
+    setPrompt(turn.question)
+    setDocumentReference(turn.document_reference ?? null)
+    retainMessage(turn.question, turn.document_reference ?? null, true, submission)
+    composerInput.current?.focus()
   }
 
   function handleComposerKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
@@ -662,12 +705,8 @@ export function ProjectWorkspacePage() {
                       // Only the latest failed turn is still pending; later turns supersede it.
                       onReuse={!searching && !sessionProcessing && !prompt && !recoverableMessage
                         && index === turns.length - 1
-                        && (turn.error || ['failed', 'not_configured'].includes(turn.result?.generation_status ?? '')) ? () => {
-                        setPrompt(turn.question)
-                        setDocumentReference(turn.document_reference ?? null)
-                        retainMessage(turn.question, turn.document_reference ?? null, true)
-                        composerInput.current?.focus()
-                      } : undefined}
+                        && (turn.error || ['failed', 'not_configured'].includes(turn.result?.generation_status ?? ''))
+                        ? () => { void reuseTurn(turn) } : undefined}
                       assistantContent={index === turns.length - 1 ? sessionMessage ?? undefined : undefined}
                       processing={index === turns.length - 1 && (
                         Boolean(activeSession) && sessionProcessing || awaitingSession)}

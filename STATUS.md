@@ -1,5 +1,31 @@
 # Stato di Mapi RAG
 
+## Stabilizzazione finale del narratore — 4 novembre 2026
+
+Solo worktree sperimentale, base `62f6152`.
+[Rapporto](docs/narratore-stabilizzazione-2026-11-04.md); SHA finale in
+`backend/data/compilation-audit/narratore-stabilizzazione-20261104/commit.json`.
+
+- Destinazioni estranee suggerite dal router distinte dalle risposte USER respinte:
+  nessun falso rinvio/UNKNOWN o contraddizione Labirinto. Replay esatto: 12 scritture.
+- `4` accettato dal contratto API; invii con UUID persistente e recupero delle
+  risposte già salvate. Retry, refresh e interruzioni verificati senza doppie decisioni.
+- Backend 4.381 PASS / 8 SKIP; frontend 191 PASS; Ruff/build PASS, due avvisi lint
+  preesistenti. Quattro E2E con API simulate PASS e browser/API/DB/writer reali con
+  LLM simulato PASS. Rollback: 12 FAIL prima, 12 PASS dopo; schema additive compatibile.
+- DeepSeek reale: 36 chiamate, 890.305 token. Nuove analisi dei due FORM. Minervino
+  55 scritture con tutti i nove campi personali; Labirinto 17 → 22 → 23, scelta
+  checkbox esplicita e nome dopo chiarimento. Otto DOCX verificati, prime bozze immutate.
+- **Non promuovere:** gruppi checkbox omessi nella nuova analisi Minervino;
+  quarta scelta non recepita e due correzioni PEC respinte. Campi omonimi ancora
+  ambigui nel routing e domanda sullo studio associato ridondante. Nessuna guardia rilassata.
+- Pausa/ripresa conserva ricevute e valori. Dati originali, Git ordinario e tag
+  demo invariati nel confronto di questo intervento. Processi temporanei 5174/8001
+  fermati; istanza manuale non allestita come conseguenza di questa verifica.
+- Audit e backup separato `/home/montesano/tesi-backups/narratore-stabilizzazione-20261104/`.
+  Commit isolato, modifiche pregresse preservate. Nessun push/merge/promozione.
+  Fermato al rapporto; seguito soltanto su nuova richiesta.
+
 ## Chiarezza del narratore — 31 ottobre 2026
 
 Commit `de2f5de` sul branch `narratore-chiarezza/2026-10-31`, dalla demo R2. Non applicato alla

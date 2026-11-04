@@ -248,10 +248,16 @@ export const api = {
       `/projects/${projectId}/conversations/${conversationId}`,
       { signal },
     ),
-  projectAnswer: (projectId: string, question: string, conversationId?: string | null, signal?: AbortSignal, documentId?: number | null, compilation?: { session_id: string; version: number }) =>
+  answerSubmission: (projectId: string, requestId: string, signal?: AbortSignal) =>
+    request<{ state: 'pending' | 'completed' | 'interrupted'; response: GroundedAnswer | null;
+      request: { conversation_id: string | null; document_id?: number; form_id?: number;
+        compilation_session_id?: string; compilation_version?: number } }>(
+      `/projects/${projectId}/answer-submissions/${encodeURIComponent(requestId)}`, { signal }),
+  projectAnswer: (projectId: string, question: string, conversationId?: string | null, signal?: AbortSignal, documentId?: number | null, compilation?: { session_id: string; version: number }, requestId?: string) =>
     request<GroundedAnswer>(`/projects/${projectId}/answer`, {
       method: 'POST',
       body: JSON.stringify({ question, conversation_id: conversationId ?? null,
+        ...(requestId ? { request_id: requestId } : {}),
         ...(documentId != null ? { document_id: documentId } : {}),
         ...(compilation ? { compilation_session_id: compilation.session_id, compilation_version: compilation.version } : {}) }),
       signal,

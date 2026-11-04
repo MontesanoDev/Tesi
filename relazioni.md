@@ -6010,3 +6010,21 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - l'effetto delle nuove formulazioni sul verdetto della guardia reale, non misurabile
     senza DeepSeek.
 - **Rapporto:** `docs/narratore-chiarezza-2026-10-31.md`.
+
+
+## 4 novembre 2026 — stabilizzazione finale del narratore
+
+Base `62f6152`, solo worktree sperimentale. Distinto il rifiuto di una destinazione
+ipotizzata dal router da una risposta USER; recupero persistente degli invii UI,
+numero `4` ammesso e retry senza doppie decisioni. Backend 4.381 PASS / 8 SKIP,
+frontend 191 PASS; quattro E2E simulati e browser con API/DB/writer reali e provider
+simulato PASS. Rollback 12 FAIL → 12 PASS, avvio del codice base su schema aggiuntivo PASS.
+
+Due nuove analisi DeepSeek: 36 chiamate / 890.305 token. Minervino 55 scritture,
+nove campi personali completi; checkbox omessa e correzioni PEC respinte. Labirinto
+17 → 22 → 23, scelta esplicita e nome dopo chiarimento. Otto DOCX controllati,
+nessuna selezione non autorizzata nelle destinazioni verificate; copie precedenti
+immutate e ricevute conservate alla ripresa. Domande ripetute sul ramo studio
+associato e ambiguità tra campi omonimi restano limiti. Nessuna promozione consigliata.
+[Rapporto](docs/narratore-stabilizzazione-2026-11-04.md), grezzi e backup separato
+indicati nel rapporto; nessun push/merge e processi temporanei fermati.

@@ -7,6 +7,7 @@ import { ProjectWorkspacePage } from './ProjectWorkspacePage'
 
 vi.mock('../api', () => ({ api: {
   project: vi.fn(), conversation: vi.fn(), projectAnswer: vi.fn(), compilationSessions: vi.fn(),
+  answerSubmission: vi.fn(),
 } }))
 vi.mock('../components/ProjectKnowledgePanel', () => ({ ProjectKnowledgePanel: () => null }))
 vi.mock('../components/ProjectModelSelector', () => ({ ProjectModelSelector: () => null }))
@@ -44,6 +45,7 @@ describe('Conservazione e recupero dei messaggi USER', () => {
     vi.stubGlobal('requestAnimationFrame', () => 1)
     vi.stubGlobal('cancelAnimationFrame', vi.fn())
     vi.mocked(api.compilationSessions).mockResolvedValue([])
+    vi.mocked(api.answerSubmission).mockRejectedValue(new Error('Invio non ricevuto'))
     vi.mocked(api.project).mockImplementation(async (id) => ({
       id, title: id, description: 'Prova', status: 'Bozza', status_tone: 'info', updated_label: '',
       source_count: 0, model_count: 0, instructions: '', call_fact_count: 0, missing_fact_count: 0,
@@ -216,12 +218,57 @@ describe('Conservazione e recupero dei messaggi USER', () => {
     await setup(); type(long); send()
     await waitFor(() => expect(api.projectAnswer).toHaveBeenCalledTimes(1))
     cleanup()
-    history([long, 'direct'])
+    const requestId = vi.mocked(api.projectAnswer).mock.calls[0][6]
+    vi.mocked(api.conversation).mockResolvedValue({
+      id: 'c1', title: 'c1', project_id: 'alfa', metadata: '', target: null,
+      turns: [{ ...result(), id: 1, request_id: requestId, question: long, answer: 'Risposta 1' }],
+    })
     await setup()
     await screen.findByText('Risposta 1')
     await waitFor(() => expect(recoveries()).toHaveLength(0))
     expect(sessionStorage.getItem('mapi:chat-draft:alfa:c1')).toBeNull()
     expect(input()).toHaveValue('')
+  })
+
+  it('recupera la risposta persistita dopo perdita HTTP senza mostrare un falso fallimento', async () => {
+    vi.mocked(api.projectAnswer).mockRejectedValue(new Error('Connessione interrotta'))
+    vi.mocked(api.answerSubmission).mockImplementation(async (_project, requestId) => ({
+      state: 'completed', response: { ...result(), question: '4', request_id: requestId },
+      request: { conversation_id: 'c1' },
+    }))
+    await setup(); type('4'); send()
+    await screen.findByText('Risposta del sistema')
+    expect(api.projectAnswer).toHaveBeenCalledTimes(1)
+    expect(screen.queryByText('Connessione interrotta')).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Recupera messaggio' })).not.toBeInTheDocument()
+  })
+
+  it('riusa lo stesso identificativo dopo errore, refresh e recupero, senza duplicare il turno UI', async () => {
+    vi.mocked(api.projectAnswer).mockRejectedValueOnce(new Error('Connessione interrotta'))
+    await setup(); type('4'); send()
+    await screen.findByRole('button', { name: 'Recupera messaggio' })
+    const first = vi.mocked(api.projectAnswer).mock.calls[0]
+    cleanup(); await setup()
+    vi.mocked(api.projectAnswer).mockResolvedValue({ ...result(), question: '4', request_id: first[6] })
+    fireEvent.click(screen.getByRole('button', { name: 'Recupera messaggio' })); send()
+    await screen.findByText('Risposta del sistema')
+    const second = vi.mocked(api.projectAnswer).mock.calls[1]
+    expect(second[6]).toBe(first[6])
+    expect(second[5]).toEqual(first[5])
+    expect(screen.getAllByText('4')).toHaveLength(1)
+  })
+
+  it('non confonde un invio pendente con un vecchio turno dallo stesso testo', async () => {
+    vi.mocked(api.projectAnswer).mockReturnValue(new Promise(() => {}))
+    await setup(); type('4'); send()
+    await waitFor(() => expect(api.projectAnswer).toHaveBeenCalled())
+    cleanup()
+    vi.mocked(api.conversation).mockResolvedValue({
+      id: 'c1', title: 'c1', project_id: 'alfa', metadata: '', target: null,
+      turns: [{ ...result(), id: 1, request_id: 'older-submission', question: '4' }],
+    })
+    await setup()
+    expect(await screen.findByRole('button', { name: 'Recupera messaggio' })).toBeInTheDocument()
   })
 
   it('conserva la copia se il turno registrato con lo stesso testo è fallito', async () => {
