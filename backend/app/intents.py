@@ -887,7 +887,7 @@ async def plan_chat_turn(
                     kept = [r for r in proposed.replies if r not in rejected]
                     if not kept:
                         from app.compilation_global_dialogue import refusal_label
-                        from app.compilation_reply_guard import REASON_TEXT
+                        from app.compilation_reply_guard import REASON_TEXT, blocked_reply_text
 
                         # Short labels and the verified reason, not the whole FORM question.
                         labels = {s["slot"]: refusal_label(s) or s.get("question") or "questo dato"
@@ -900,9 +900,14 @@ async def plan_chat_turn(
                         wide_defer = [s for s in context["slots"] if any(
                             r.slot == s["slot"] and r.action in {"SKIP", "UNKNOWN", "REFUSE"}
                             for r in rejected)]
+                        # The same refusal again says what blocks it instead of asking again.
+                        repeated = any(f"la risposta su {names}" in str(turn.get("answer") or "")
+                                       for turn in history[-2:])
                         answer = ("Il rinvio di questa conferma lascerebbe in bianco "
                                   "più dati collegati. Vuoi rinviare l'intera conferma "
                                   "oppure soltanto una specifica informazione?" if wide_defer else
+                                  blocked_reply_text(names, rejected, guard_context,
+                                                     verification.reasons) if repeated else
                                   f"Non ho usato la risposta su {names}: {why}. Puoi precisare "
                                   "soltanto questo punto?")
                         if proposed.intent != "answer_fields":

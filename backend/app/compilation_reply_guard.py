@@ -63,6 +63,46 @@ REASON_TEXT = {
 }
 
 
+def blocked_reply_text(names, rejected, context, reasons):
+    """A reply refused again: what blocks it, from backend facts, without a new question.
+
+    Real Minervino session: the USER named the FORM slot twice and received the same «Puoi
+    precisare?» each time; nothing in the state could change the verdict by repeating it.
+    The model's rationale stays private: only the verdict codes and the slot target are used.
+    """
+    from app.compilation_global_dialogue import form_line, short_form_text
+
+    targets = (context.get("form_scope") or {}).get("slots", {})
+    causes, confirm = [], False
+    for reply in rejected:
+        target, reason = targets.get(str(reply.slot)), reasons.get(reply.slot, "UNCHECKED")
+        conditions = (target or {}).get("conditions", {})
+        answered = (target or {}).get("user_conditions", {})
+        open_clauses = [] if str((target or {}).get("key", "")).startswith("condition:") else [
+            short_form_text((c.get("form_evidence") or {}).get("quote", ""), 120)
+            for key, c in conditions.items() if answered.get(key, {}).get("applies") is not True]
+        destinations = (target or {}).get("destinations", [])
+        if reason != "SCOPE" or not target:
+            causes.append(REASON_TEXT[reason])
+        elif open_clauses:
+            confirm = True
+            causes.append("manca prima la conferma di «" + "»; «".join(open_clauses) + "»")
+        elif len(destinations) > 1:
+            shown = ", ".join(str(d.get("label") or "campo") for d in destinations[:3])
+            causes.append(f"la risposta varrebbe per {len(destinations)} campi insieme ({shown})")
+        else:
+            quote = ((destinations or [{}])[0].get("form_evidence") or {}).get("quote", "")
+            where = form_line(quote, 120) or short_form_text(quote, 120)
+            causes.append("il controllo non accetta che il messaggio riguardi proprio il campo"
+                          + (f" «{where}»" if where else ""))
+    return (f"Ho già provato a usare la risposta su {names} e viene respinta di nuovo: ripeterla "
+            f"non cambia l'esito. Motivo: {'; '.join(dict.fromkeys(causes))}. Nulla è stato "
+            "modificato, e le bozze già generate restano valide. Puoi "
+            + ("confermare prima quella clausola, " if confirm else "")
+            + "rinviare questo punto lasciandolo vuoto o chiedermi una bozza con i dati già "
+              "verificati.")
+
+
 def refusal_reasons(checks, expected, allowed):
     """Why each expected slot was refused, from the verdict fields only (rationale unused)."""
     counts = Counter(c.slot for c in checks)
@@ -168,6 +208,26 @@ Se manca una scelta necessaria o non riesci a verificare un riferimento, usa
 AMBIGUOUS. Non dedurre applicabilità da SOURCE o da un elenco conditions vuoto.
 result verifica la risposta alla domanda; scope_result verifica separatamente
 la correttezza del suo ambito effettivo. Restituisci entrambi per ogni slot.
+
+user_conditions sono le risposte USER già registrate dal backend, con la loro
+citazione, alle condizioni che governano le destinazioni dello slot. applies=true
+è un'indicazione USER esplicita data in un turno precedente, non un'ipotesi MODEL:
+il messaggio corrente non deve ripeterla e quel ramo non è una scelta mancante.
+Una condizione con applies=false, rinviata o assente da user_conditions resta
+non confermata: l'ambito di un VALUE che ne dipende è AMBIGUOUS.
+Il campo scope di una condizione elenca tutti i campi che essa governa, non
+l'ambito della risposta. La regola sulla stessa proposizione vale per le risposte
+a una condizione. Per VALUE l'ambito è soltanto destinations dello slot: il valore
+non si estende agli altri campi della condizione. Queste regole non riducono la
+verifica della destinazione: il messaggio deve identificarla. Se nel FORM più
+destinazioni restano plausibili per il messaggio, anche nello stesso paragrafo,
+l'ambito è AMBIGUOUS. Il solo valore non identifica una destinazione, nemmeno se
+compare tra le alternative dello slot o ne è l'unico candidato: fuori da una
+domanda appena posta, il messaggio deve nominare il campo o la sua posizione.
+Esempio di slot direct_instruction su un numero di iscrizione: «Il numero è 123»
+ha scope_result AMBIGUOUS, perché non dice quale numero né di quale campo, anche se
+123 è un'alternativa dello slot; «il campo al n. dopo Camera di Commercio è 123»
+identifica la destinazione.
 """
 
 
