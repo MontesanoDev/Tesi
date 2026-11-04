@@ -6028,3 +6028,16 @@ immutate e ricevute conservate alla ripresa. Domande ripetute sul ramo studio
 associato e ambiguità tra campi omonimi restano limiti. Nessuna promozione consigliata.
 [Rapporto](docs/narratore-stabilizzazione-2026-11-04.md), grezzi e backup separato
 indicati nel rapporto; nessun push/merge e processi temporanei fermati.
+
+## 4 novembre 2026 — Loop di chiarimento del narratore
+
+- **Sintomo:** nella prova manuale Minervino, stesso rifiuto ripetuto su un campo già nominato.
+- **Causa dimostrata sui dati:** router corretto; guardia con `result=SUPPORTED` e
+  `scope_result=AMBIGUOUS`, intermittente, perché il contratto non spiegava le conferme già
+  registrate. Conflitto REA/Registro Imprese generato a monte dal modello; P. IVA estranea.
+- **Prova fallita, conservata:** primo giro con messaggi troncati, baseline non valida; due versioni
+  del contratto scartate perché allargavano la guardia a un valore senza campo.
+- **Esito reale (73 chiamate alla sola guardia):** contratto finale 4/4 chiarimenti validi accettati;
+  rifiutati valore senza campo, altro campo, riferimento vago, condizione aperta.
+- **Limite aperto:** valore attribuito a un altro soggetto accettato da entrambi i contratti.
+- **Rapporto:** `docs/chiarimento-guardia-2026-11-04.md`.

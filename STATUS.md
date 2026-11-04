@@ -1,5 +1,18 @@
 # Stato di Mapi RAG
 
+## Loop di chiarimento del narratore — 4 novembre 2026
+
+Commit `e9a374e` sul branch `narratore-chiarezza/2026-10-31`. Non promosso; nessun push o merge.
+- **Causa:** il router associava bene il campo; rifiutava la guardia, in modo intermittente,
+  leggendo la lista di campi di una condizione già confermata come ambito del valore. Il rifiuto
+  si ripeteva perché quel ramo non ha stato e chiedeva sempre di precisare.
+- **Correzione:** contratto della guardia su `user_conditions` e `scope`, e spiegazione di cosa
+  blocca al rifiuto ripetuto. Verdetti, ricevute ed export invariati.
+- **Verifiche:** suite 4.390 PASS, Ruff PASS, rollback verificato; 73 chiamate reali alla sola
+  guardia; a valle `p17.s1` scritto, nessun altro campo cambiato, bozza precedente intatta.
+- **Aperto:** la guardia accetta un valore attribuito a un altro soggetto (preesistente).
+- [Rapporto](docs/chiarimento-guardia-2026-11-04.md).
+
 ## Stabilizzazione finale del narratore — 4 novembre 2026
 
 Solo worktree sperimentale, base `62f6152`.
