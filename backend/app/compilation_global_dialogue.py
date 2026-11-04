@@ -741,6 +741,12 @@ def question_pool(data, *, selective=False, all_targets=False):
                         if documented_alternatives(field) else {}),
                      **({"subject_uncertain": deepcopy(field["subject_check"])}
                         if field.get("review_kind") == "subject_uncertain" else {}),
+                     **({"backend_alternatives": True}
+                        if data.get("identifier_type_revision") == 1
+                        and documented_alternatives(field) else {}),
+                     **({"identifier_conflict": field["identifier_resolution"]["wanted"]}
+                        if (field.get("identifier_resolution") or {}).get("action") == "conflict"
+                        else {}),
                      **({"form_owned": True} if cid in signatory else {})})
     pool.extend(hold_questions(data))
     pool.extend(decision_questions(data, {cid for q in pool for cid in q["field_ids"]}))
@@ -1491,9 +1497,14 @@ def _alternatives_question(q):
     label = short_form_text(q.get("label"), 80)
     point = short_form_text(q.get("context"), 100)
     values = [str(v)[:120] for v in q.get("alternatives", [])]
+    from app.compilation_identifiers import NAMES
+
+    kind = NAMES.get(q.get("identifier_conflict"))
     text = (f"Quale valore indico per «{label}»"
             + (f" («{point}»)" if point and point.casefold() != label.casefold() else "")
-            + "? Le fonti riportano " + " oppure ".join(f"«{v}»" for v in values) + ".")
+            + "? Le fonti riportano " + " oppure ".join(f"«{v}»" for v in values) + "."
+            + (f" Sono due valori diversi dello stesso tipo ({kind}): indica quale è corretto."
+               if kind else ""))
     return DialogueQuestion(slot=q["slot"], question=text) if (
         len(label) >= 3 and len(text) <= 600 and no_technical_ids(text)) else None
 
@@ -1655,6 +1666,9 @@ def render_dialogue(plan, pool, *, exportable_count=None, follow_up=False,
             q = _open_confirmation(slot) or q
         if slot.get("subject_uncertain"):
             q = _subject_question(slot) or q  # Backend words: the value, its line, the candidates.
+            text = q.question
+        if slot.get("backend_alternatives"):
+            q = _alternatives_question(slot) or q  # The values shown: nothing to transcribe.
             text = q.question
         if require_confirmation and slot["kind"] == "applicability" and not q.confirmation:
             # The backend owns the slot: its closed confirmation replaces an open question, so

@@ -32,7 +32,7 @@ __all__ = ["api", "provider"]
 CLAUSE = "Il sottoscritto partecipa come società di ingegneria"
 LINE = ("Camera di Commercio di ____________ al n. ____________ / all'albo professionale della "
         "Provincia di ____________ al n. ____________")
-SOURCE = "Denominazione: Aurora S.r.l.\nNumero Registro Imprese: 01234560981\nNumero REA: BA-654321"
+SOURCE = "Denominazione: Aurora S.r.l.\nCodice sede: 01234560981\nCodice pratica: BA-654321"
 NUMBER = "Numero iscrizione Camera di Commercio"
 NAMED = ("Mi riferisco al campo «al n.» subito dopo «Camera di Commercio di»: è il numero del "
          "Registro Imprese, il valore è 01234560981.")
@@ -71,9 +71,9 @@ def analysis(inp):
             "facts": {"f_name": fact("denominazione", "Aurora S.r.l.",
                                      "Denominazione: Aurora S.r.l."),
                       "f_reg": fact("numero_identificativo", "01234560981",
-                                    "Numero Registro Imprese: 01234560981"),
+                                    "Codice sede: 01234560981"),
                       "f_rea": fact("numero_identificativo", "BA-654321",
-                                    "Numero REA: BA-654321")},
+                                    "Codice pratica: BA-654321")},
             "conditions": {"c": {
                 "form": {"paragraph_id": clause["id"], "quote": clause["text"]},
                 "aspect": "participation", "operator": "semantic", "fact_ids": [],

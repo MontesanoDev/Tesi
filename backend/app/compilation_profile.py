@@ -42,6 +42,8 @@ SECTIONS = {
     "user_extraction_revision": 1,        # Atomic USER facts, individually scope-checked.
     "conversation_revision": 1,          # Selective questions and explicit free instructions.
     "subject_check_revision": 1,          # Evidence, destination and USER reply owners verified.
+    "identifier_type_revision": 1,        # REA, Register, VAT and tax codes are not alternatives.
+    "role_proof_revision": 1,             # The role stated by the value's own personal record.
 }
 # Earlier canonical profiles, recreated only by the server-side emergency switch.
 NEW_2026_10_30 = {"segment_recovery_revision", "form_clause_revision",
@@ -49,7 +51,7 @@ NEW_2026_10_30 = {"segment_recovery_revision", "form_clause_revision",
 NEW_2026_10_30_R2 = {"format_retry_revision", "hold_review_revision",
                      "omission_recovery_revision"}
 NEW_USER_EXTRACTION = {"user_extraction_revision", "conversation_revision"}
-NEW_2026_11_05 = {"subject_check_revision"}
+NEW_2026_11_05 = {"subject_check_revision", "identifier_type_revision", "role_proof_revision"}
 PREVIOUS = {
     "sezioni-2026-10-24": {k: v for k, v in SECTIONS.items() if k not in {
         "form_option_scope_revision", "text_checkbox_revision", *NEW_2026_10_30,

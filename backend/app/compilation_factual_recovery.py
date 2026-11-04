@@ -116,7 +116,11 @@ def recover(data, audit, layout, project_id, sources):
         method, details = None, None
         if errors == [ROLE_FAILURE] and fact.get('entity') == 'person':
             expected = form_property(catalog['candidates'][cid], paragraphs)
-            if expected != canonical_property(fact.get('property', '')):
+            canonical = canonical_property(fact.get('property', ''))
+            own_record = data.get('role_proof_revision') == 1
+            if own_record and canonical == 'nomecognome':
+                canonical = 'nome'
+            if expected != canonical:
                 continue
             binding = result.get('bindings', {}).get(proposal.get('binding_id'), {})
             if (binding.get('validation') != 'GROUNDED_PROPOSAL' or not _same_form_role(
@@ -124,7 +128,7 @@ def recover(data, audit, layout, project_id, sources):
                 continue
             check = _binding_check(proposal.get('binding_id'), fact, cid, contexts,
                 result['bindings'], sources, personal_records=True,
-                evidence_recovery=True, verified_properties=True)
+                evidence_recovery=True, verified_properties=True, own_record=own_record)
             if check['result'] != 'literal_match' or check['validation_errors']:
                 continue
             method, details = 'typed_verified_person_records', check

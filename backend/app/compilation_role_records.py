@@ -353,6 +353,52 @@ def _record_citations(chunk, record):
         len(q) <= 800 for q in quotes) else []
 
 
+def own_record_support(binding, fact, source_map):
+    """The value's own personal record states the role: the citation the model did not make.
+
+    Real Minervino run: the role was cited in one chunk, the values in another whose section is
+    «### Ing. Elisa Romano - direttore tecnico». The same bounded record the validators accept when
+    cited is looked for here: every value line must lie inside it, so a value of another person's
+    section never passes. Nothing is inferred: no such record, no support.
+    """
+    role = binding["source_role"]
+    citations, records = [], []
+
+    def settled(record, quotes):
+        # «Data di abilitazione: non disponibili» or «il ruolo non equivale a una designazione» say
+        # nothing against the role; a revoked or future role, or a doubt on the cited line, do.
+        about = re.compile(re.escape(_text(role)) + r"|\b(?:ruolo|carica|incaric\w*|nomina)\b")
+        denied = re.compile(r"\b(?:cessat\w*|revocat\w*|scadut\w*|dimess\w*|futur\w*|ipotetic\w*|"
+                            r"potenzial\w*|ex)\b|\bda\s+(?:nominare|confermare|verificare)\b|"
+                            r"\bnon\s+(?:è|e|sarà|ricopre|più)\b")
+        for line in record["record"].splitlines():
+            text = _text(line)
+            if (about.search(text) and denied.search(text)) or (
+                    _uncertain(line) and any(_text(q) in text for q in quotes)):
+                return False
+        return True
+
+    for chunk in dict.fromkeys(proof["chunk_id"] for proof in fact["source_evidence"]):
+        source = source_map[chunk]
+        if source["category"] == "general":
+            return None
+        quotes = [p["quote"] for p in fact["source_evidence"] if p["chunk_id"] == chunk]
+        own = [r for r in personal_records(source["content"], role, fact["subject"])
+               if all(_text(q) in _text(r["record"]) for q in quotes) and settled(r, quotes)]
+        if len(own) != 1:
+            return None
+        citations.append({"chunk_id": chunk, "quote": own[0]["header"]})
+        records.append({"chunk_id": chunk, **{k: own[0][k] for k in (
+            "format", "header", "line_range")}})
+    if not records:
+        return None
+    return {"record": records[0], "citations": citations,
+            "identity_support": {"method": "own_person_record", "subject": fact["subject"]},
+            "role_support": {"role": role, "subject": fact["subject"]},
+            "value_support": {"comparison": "cited_in_record", "property": fact["property"],
+                              "proposed_value": fact["value"]}}
+
+
 def linked_person_support(binding, fact, source_map, *, verified_properties=False):
     """Bounded personal-key join, independent of role and FORM applicability.
 

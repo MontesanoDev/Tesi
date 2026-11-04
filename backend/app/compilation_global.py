@@ -51,6 +51,7 @@ from app.compilation_role_records import (
     binding_value_support,
     fact_record_support,
     linked_person_support,
+    own_record_support,
     record_support,
     table_support,
 )
@@ -1314,7 +1315,8 @@ def _recover_binding(binding, fact, candidate_id, contexts, source_map):
 
 
 def _binding_check(binding_id, fact, candidate_id, contexts, bindings, source_map,
-                   *, personal_records=False, evidence_recovery=False, verified_properties=False):
+                   *, personal_records=False, evidence_recovery=False, verified_properties=False,
+                   own_record=False):
     check = {"binding_id": binding_id, "result": "review_required",
              "semantic_review_required": True, "validation_errors": []}
     try:
@@ -1370,7 +1372,8 @@ def _binding_check(binding_id, fact, candidate_id, contexts, bindings, source_ma
               and _role_text(binding["required_role"]) == _role_text(binding["source_role"])):
             support = (binding_value_support(binding, fact, source_map)
                        or linked_person_support(binding, fact, source_map,
-                                                verified_properties=verified_properties))
+                                                verified_properties=verified_properties)
+                       or (own_record_support(binding, fact, source_map) if own_record else None))
             if support:
                 proofs = deepcopy(fact["source_evidence"] + binding["source_evidence"])
                 for citation in support["citations"]:

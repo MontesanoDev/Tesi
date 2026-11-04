@@ -291,10 +291,21 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
 
         # Each merged segment already passed the ordinary per-call budgets on its own.
         summary = json.loads(report.read_text())
+        from app import compilation_identifiers
+
+        resolutions = {}
+        if compilation_identifiers.enabled(data):  # Before validation: every gate still applies.
+            raw, resolutions = compilation_identifiers.resolve(
+                raw, build_compilation_catalog(layout), sources)
         audit = validate_global_proposal(raw, layout, project_id, sources,
                                          expected_version=expected_version,
                                          budget_scale=max(1, summary["merged_segments"]))
         audit = attach_resilient_status(audit, summary)
+        if resolutions:
+            audit["identifier_resolution"] = resolutions
+            for field in audit["fields"]:
+                if field["candidate_id"] in resolutions:
+                    field["identifier_resolution"] = resolutions[field["candidate_id"]]
         from app.compilation_branch_scope import enabled, propagate
 
         # The claimed public state omits the catalog: rebuild it from the same original.
@@ -819,7 +830,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "form_option_scope_revision", "segment_recovery_revision",
                          "form_clause_revision", "hold_resolution_revision",
                          "format_retry_revision", "hold_review_revision",
-                         "omission_recovery_revision", "subject_check_revision"):
+                         "omission_recovery_revision", "subject_check_revision",
+                         "identifier_type_revision", "role_proof_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:
