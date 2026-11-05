@@ -382,10 +382,13 @@ def planner_context(session):
     from app.compilation_conversation import enabled, public_targets, targets
     from app.compilation_user_extraction import frames
 
-    addressed = targets(data) if enabled(data) else []
+    # No audit when the analysis failed (real run: DeepSeek 402): nothing to address, and the
+    # next message gets the provider's refusal instead of a 500.
+    addressable = enabled(data) and bool(data.get("audit"))
+    addressed = targets(data) if addressable else []
     return {
         **({"conversation_data": data, "addressable_targets": public_targets(data, addressed)}
-           if enabled(data) else {}),
+           if addressable else {}),
         **({"form_scope": scope} if scope else {}),
         **({"user_value_frames": frames(data, slots)} if scope else {}),
         "session_id": session["id"],

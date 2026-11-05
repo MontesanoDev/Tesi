@@ -103,7 +103,7 @@ def target_fields(data):
         return {}
     from app.compilation_source_reuse import signatory_fields
 
-    fields = {f["candidate_id"]: f for f in data.get("audit", {}).get("fields", [])}
+    fields = {f["candidate_id"]: f for f in (data.get("audit") or {}).get("fields", [])}
     fields.update(signatory_fields(data))
     result = {}
     for group in groups(data):

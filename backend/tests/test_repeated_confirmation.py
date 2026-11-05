@@ -11,7 +11,7 @@ import test_equivalent_conditions_question as base
 
 from app import compilation_branch_evidence as branches
 from app import compilation_scope_review as scope
-from app.compilation_chat import ClarificationReply
+from app.compilation_chat import ClarificationReply, planner_context
 from app.compilation_choices import materialize_choices
 from app.compilation_conversation import literal_choice_values, targets
 from app.compilation_global_dialogue import condition_receipts
@@ -169,3 +169,12 @@ def test_no_choice_or_a_deferred_one_blocks_nothing_more():
 def test_the_gate_of_the_receipts_applies_it_only_with_the_new_profile():
     assert "theirs" in scope.blocked_source_fields(two_branches())
     assert "theirs" not in scope.blocked_source_fields(two_branches(revision=None))
+
+
+def test_a_session_whose_analysis_failed_has_no_targets_and_no_crash():
+    # Real run: DeepSeek answered 402 during the analysis and the next message ended in a 500.
+    context = planner_context({
+        "id": "s", "engine": "global", "status": "FAILED", "version": 1, "fields": [],
+        "global_compilation": {"conversation_revision": 1, "audit": None, "catalog": {},
+                               "phase": "PENDING", "paused": False, "attempts": 1}})
+    assert "addressable_targets" not in context and context["session_id"] == "s"
