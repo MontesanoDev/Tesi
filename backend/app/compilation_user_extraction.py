@@ -25,8 +25,17 @@ PREFIX = re.compile(r"^(?:(?:il|la)\s+)?(?:sottoscrittore|sottoscrittrice|sottos
                     r"firmatari[oa]|nome\s+e\s+cognome)\s*(?:è|:)?\s*|^sono\s+", re.I)
 
 
+COMMAND = re.compile(r"^(?:(?:scusa|per\s+favore|puoi|potresti)\W+)*"
+                     r"(?:mett\w*|inser\w+|scriv\w+|aggiung\w+|us[ai]\w*|indic\w+|riport\w+|"
+                     r"compil\w+)\s+", re.I)
+
+
 def enabled(data):
     return data.get("user_extraction_revision") == 1
+
+
+def same_text(left, right):
+    return " ".join(str(left).casefold().split()) == " ".join(str(right).casefold().split())
 
 
 def simple_name(value):
@@ -36,7 +45,9 @@ def simple_name(value):
             and not UNCERTAIN.search(value) and not PARTS.search(value)
             and not re.search(r"\b(?:sono|sottoscrittore|firmatario|confermo|nato|nata|"
                               r"residente|vive|abita|nascita|residenza|indirizzo|codice|"
-                              r"fiscale|qualità|lavora|è|il|in|oppure)\b", value, re.I)
+                              r"fiscale|qualità|lavora|è|il|in|oppure|metti|mettere|inserisci|"
+                              r"inserire|scrivi|scrivere|aggiungi|aggiungere|usa|usare|scusa|puoi|"
+                              r"dati|tutti)\b", value, re.I)
             and not re.search(r"\s+o\s+", value, re.I))
 
 
@@ -154,7 +165,11 @@ def frames(data, slots):
                    and cid in data["writable_ids"]}
         if group["name_id"] in members:
             result[str(slot["slot"])] = {"name_id": group["name_id"], "members": members,
-                                        "question": slot.get("question", "")}
+                                        "question": slot.get("question", ""),
+                                        "trim_role": data.get("dialogue_state_revision") == 1,
+                                        "recorded": ((data.get("dialogue") or {}).get(
+                                            "user_values", {}).get(group["name_id"]) or {}
+                                        ).get("value")}
     return result
 
 
@@ -178,6 +193,14 @@ def extract(frame, quote):
     if not matches:
         return None
     name = PREFIX.sub("", quote[:matches[0].start()].strip()).strip(" ,;:.")
+    if frame.get("trim_role"):  # Real: «metti leonardo … nato a lecce» wrote the verb in the name.
+        name = PREFIX.sub("", COMMAND.sub("", name)).strip(" ,;:.")
+    # «Leonardo Rossi, amministratore unico e rappresentante legale della società»: the name is
+    # before the comma, the role has its own question. Never the whole phrase in the name field.
+    role_tail = bool(frame.get("trim_role") and "," in name
+                     and simple_name(name.split(",")[0].strip()))
+    if role_tail:
+        name = name.split(",")[0].strip()
     if not simple_name(name):
         return {"values": {}, "issues": ["Indica un solo nome e cognome per la persona richiesta."]}
     properties, issues, ambiguous = {"name": name}, [], set()
@@ -185,7 +208,9 @@ def extract(frame, quote):
     for i, match in enumerate(matches):
         kind = match.lastgroup
         if kind == "boundary":
-            issues.append("Gli altri soggetti, ruoli e dichiarazioni richiedono domande distinte.")
+            if not role_tail:
+                issues.append(
+                    "Gli altri soggetti, ruoli e dichiarazioni richiedono domande distinte.")
             break
         if kind in seen:
             properties = {"name": name}
@@ -279,12 +304,18 @@ def prepare(available_frames, replies, message):
         parsed = (extract(frame, reply.user_quote) if frame and reply.action == "VALUE"
                   and reply.user_quote in message and reply.selected_options is None else None)
         if parsed is None:
-            changed.append(reply)
+            # The same person, whatever the case typed, is no new name: nothing derived is lost.
+            same = (frame and frame.get("trim_role") and frame.get("recorded")
+                    and reply.action == "VALUE" and same_text(frame["recorded"], reply.value or ""))
+            changed.append(reply.model_copy(update={"value": frame["recorded"]}) if same else reply)
             continue
         record = {"parent_slot": reply.slot, "original_reply": reply.model_dump(),
                   **parsed, "proofs": {}, "refused": {}}
         records.append(record)
         name = parsed["values"].get(frame["name_id"])
+        if name and frame.get("trim_role"):
+            name["value"] = next((known for known in (frame.get("recorded"), reply.value)
+                                  if known and same_text(known, name["value"])), name["value"])
         changed.append(reply.model_copy(update={"value": name["value"], "normalized_value": None})
                        if name else reply)
     return changed, records
@@ -372,6 +403,9 @@ def persist(data, layout, slots, message, records):
             reply = ClarificationReply(slot=1, action="VALUE", **value)
             receipt = scope_receipt(data, key, [cid], reply)
             error = None
+            if frame.get("trim_role") and same_text(
+                    users.get(cid, {}).get("value", ""), value["value"]):
+                continue  # Said twice in one message, by two routes: one answer, no refusal.
             if cid in users or key in answers:
                 error = "Il campo ha già una risposta: serve una correzione esplicita dedicata"
             elif record["proofs"].get(cid) != receipt["scope_validation"]:

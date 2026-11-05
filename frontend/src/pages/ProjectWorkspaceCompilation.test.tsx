@@ -718,6 +718,46 @@ describe('CompilationSession nella chat', () => {
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
   })
 
+  it('mostra una sola volta la bozza globale, anche dopo messaggi ordinari e pausa', async () => {
+    stored = globalSession(true)
+    stored.status = 'GENERATED'
+    stored.global_compilation!.dialogue = { phase: 'READY', message: 'Ho preparato una bozza parziale.' }
+    stored.last_generation = { id: 'run-1', project_id: 'alpha', template_name: form.name,
+      created_at: '2026-11-05T15:17:00+00:00', status: 'needs_review', session_version: 3,
+      changes_since_export: false, downloads: { docx: '/file', report: '/report', template: '/original' } }
+    vi.mocked(api.projectAnswer).mockImplementation(async (_p, body) => {
+      const paused = body === 'ok basta'
+      const answer = paused ? 'Metto in pausa la compilazione.' : 'Dati acquisiti per la bozza: Fax.'
+      stored!.version++
+      stored!.global_compilation!.dialogue = { phase: 'READY', message: answer }
+      if (paused) stored!.chat = { ...stored!.chat!, paused: true, paused_by_user: true }
+      else stored!.last_generation = { ...stored!.last_generation!, changes_since_export: true }
+      return { conversation_id: 'chat-1', turn_id: stored!.version, question: body, answer,
+        citations: [], evidence: [], missing_information: [], generation_status: 'direct',
+        model: 'simulato', total_tokens: 1, notice: null, form_reference: reference,
+        compilation: { session_id: 'session-1', action: paused ? 'paused' : 'updated' } }
+    })
+    await setup('/projects/alpha/conversations/chat-1')
+    await screen.findByText('Ho preparato una bozza parziale.')
+    expect(screen.getAllByRole('button', { name: 'Scarica DOCX' })).toHaveLength(1)
+    expect(screen.queryByRole('button', { name: 'Prepara nuova bozza' })).not.toBeInTheDocument()
+    submit('Il fax è +39 080 000 9999')
+    await screen.findByText('Dati acquisiti per la bozza: Fax.')
+    expect(screen.getAllByRole('button', { name: 'Scarica DOCX' })).toHaveLength(1)
+    expect(screen.getByText(/modifiche non ancora in questo file/)).toBeInTheDocument()
+    expect(screen.queryByText(/precede le ultime modifiche/)).not.toBeInTheDocument()
+    const generations = vi.mocked(api.generateGlobalDraft).mock.calls.length
+    fireEvent.click(screen.getByRole('button', { name: 'Prepara nuova bozza' }))
+    expect(screen.getByRole('textbox', { name: 'Messaggio per l’assistente' })).toHaveValue(
+      'Genera una nuova bozza parziale con i dati verificati.')
+    expect(vi.mocked(api.generateGlobalDraft).mock.calls.length).toBe(generations)
+    submit('ok basta')
+    await screen.findByText(/in pausa/)
+    expect(screen.getAllByRole('button', { name: 'Scarica DOCX' })).toHaveLength(1)
+    expect(within(screen.getAllByRole('region', { name: 'Risposta' }).at(-1)!)
+      .queryByRole('button', { name: 'Scarica DOCX' })).not.toBeInTheDocument()
+  })
+
   it('rivede la proposta nel composer senza checklist e ripristina dialogo e download', async () => {
     const summary = 'Ho trovato denominazione e recapiti nelle fonti. La partecipazione è come società?'
     stored = globalSession()
