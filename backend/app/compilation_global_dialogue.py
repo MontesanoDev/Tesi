@@ -1011,11 +1011,16 @@ def _form_only_quote(data, proposal, quote):
             and not any(contains_form_span(text, quote) for text in sources))
 
 
-def _blocker_answered(key, answers):
-    """A slot key is settled by any recorded answer; own conditions only by USER confirmations."""
+def _blocker_answered(key, answers, *, explicit_choice=False):
+    """A slot key is settled by any recorded answer; own conditions only by USER confirmations.
+
+    explicit_choice: a deferred choice settles nothing, so what it was holding stays held.
+    """
     if key and key.startswith("conditions:"):
         return all(answers.get("condition:" + c, {}).get("applies") is True
                    for c in key.removeprefix("conditions:").split("+"))
+    if explicit_choice and key and key.startswith("choice:"):
+        return answers.get(key, {}).get("action") == "VALUE"
     return key in answers
 
 
@@ -1278,12 +1283,15 @@ def _hold_updates(data, proposals, context, plan, review_id, pool=None, irregula
                 record["resolution"] = _hold_resolution(data, cid, record)
                 if (record.get("review") or {}).get("contrary"):
                     record["resolution"]["contrary"] = record["review"]["contrary"]
+    explicit_choice = data.get("checkbox_policy_revision") == 1
     stale = {cid for cid in incoming if cid in doubts or _blocker_answered(
-        bound.get(cid) or notes.get(cid, {}).get("blocker_key"), answers)
+        bound.get(cid) or notes.get(cid, {}).get("blocker_key"), answers,
+        explicit_choice=explicit_choice)
         or resolving and (records[cid].get("user_verified") or _resolution_settled(
             records[cid].get("resolution"), answers))}
     resolved = {cid for cid in old - incoming
-                if _blocker_answered(records.get(cid, {}).get("blocker_key"), answers)
+                if _blocker_answered(records.get(cid, {}).get("blocker_key"), answers,
+                                     explicit_choice=explicit_choice)
                 or resolving and _resolution_settled(records.get(cid, {}).get("resolution"),
                                                      answers)}
     if resolving:
@@ -1631,6 +1639,73 @@ def _empty_kinds(data, written):
                  "unassessed": "Non sono stati valutati",
                  "suspended": "Sono sospesi perché non è certo a chi si riferiscono"}
     return " ".join(f"{sentences[k]}: {shown(v)}." for k, v in kinds.items() if v)
+
+
+def checkbox_review(data, values, cleared, kept_marks):
+    """What the draft leaves unchosen, from backend state: groups, SOURCE hints, original marks."""
+    if data.get("checkbox_policy_revision") != 1:
+        return None
+    audit = data.get("audit") or {}
+    answers = (data.get("dialogue") or {}).get("answers", {})
+    candidates = data["catalog"]["candidates"]
+    groups, in_groups = [], set()
+    for key, group in audit.get("choice_groups", {}).items():
+        if group.get("validation") != "GROUNDED_GROUP":
+            continue
+        options = group.get("options", {})
+        in_groups |= set(options)
+        if any(values.get(cid) is True for cid in options):
+            continue
+        hints = [f["candidate_id"] for f in audit.get("fields", [])
+                 if f["candidate_id"] in options
+                 and f.get("proposed_value", f.get("value")) is True]
+        groups.append({"choice_group_id": key, "label": group.get("label"),
+                       "state": "rinviata" if answers.get("choice:" + key, {}).get("action") in {
+                           "SKIP", "UNKNOWN", "REFUSE"} else "non_scelta",
+                       "source_suggests": [options[c].get("label") for c in hints]})
+
+    def mark(cid):
+        return {"candidate_id": cid, "in_group": cid in in_groups, "label": next(
+            (g["options"][cid].get("label") for g in audit.get("choice_groups", {}).values()
+             if cid in g.get("options", {})), candidates[cid].get("label") or cid)}
+
+    return {"revision": 1, "groups_without_selection": groups,
+            "initial_marks_cleared": [mark(c) for c in sorted(cleared)],
+            "initial_marks_kept": [mark(c) for c in kept_marks]}
+
+
+def checkbox_review_notice(review):
+    """Said by name, so an empty group or a mark of the original never goes unnoticed."""
+    sentences = []
+    groups = review["groups_without_selection"]
+    if groups:
+        def shown(group):
+            label = f"«{short_form_text(group['label'], 80)}»"
+            if group["state"] == "rinviata":
+                return label + " (scelta rinviata)"
+            hints = [f"«{short_form_text(h, 60)}»" for h in group["source_suggests"][:2]]
+            return label + (f" (le fonti indicano {' e '.join(hints)})" if hints else "")
+
+        listed = "; ".join(shown(g) for g in groups[:6])
+        more = f" e altri {len(groups) - 6} gruppi" if len(groups) > 6 else ""
+        sentences.append(f"Caselle ancora senza selezione: {listed}{more}. Nessuna casella viene "
+                         "spuntata senza la tua scelta: puoi indicarla quando vuoi.")
+
+    def names(marks):
+        return ", ".join(f"«{short_form_text(m['label'], 70)}»" for m in marks)
+
+    cleared = review["initial_marks_cleared"]
+    if grouped := [m for m in cleared if m["in_group"]]:
+        sentences.append(f"Nel modulo originale era già spuntata {names(grouped)}: non è una tua "
+                         "scelta, quindi in questa bozza l'ho tolta. Se vale, dimmelo.")
+    if alone := [m for m in cleared if not m["in_group"]]:
+        sentences.append(f"Nel modulo originale era già spuntata {names(alone)}: non è una tua "
+                         "scelta, quindi in questa bozza l'ho tolta. Se vale, rimettila nel "
+                         "documento.")
+    if kept := review["initial_marks_kept"]:
+        sentences.append(f"Nel modulo originale è spuntata {names(kept)} e non posso modificarla: "
+                         "resta così ma non è una scelta confermata, controllala tu.")
+    return " ".join(sentences)
 
 
 def reviewed_doubts_notice(data, written):

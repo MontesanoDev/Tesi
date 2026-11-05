@@ -8,6 +8,7 @@ import re
 from copy import deepcopy
 
 MAX_TURN_PARTS = 4
+MIN_BRANCH_UNLOCKS = 3
 
 
 def enabled(data):
@@ -250,6 +251,28 @@ def complete_person_reply(compilation, replies, message):
     return [expanded.get(r.slot, r) for r in replies if r.slot not in covered]
 
 
+def branch_choice_unlocks(data, q):
+    """Destinations an explicit choice settles: the proposals held on it, what its branch governs.
+
+    Real campaign: 24 runs of 24 asked the FORM capacity choice before the selective questions, 0
+    of 4 after, with up to 27 documented values suspended on a choice nobody asked for.
+    """
+    if data.get("checkbox_policy_revision") != 1 or q.get("kind") != "choice":
+        return 0
+    audit, dialogue = data.get("audit") or {}, data.get("dialogue") or {}
+    records = dialogue.get("hold_records", {})
+    settled = {cid for cid in dialogue.get("held_candidate_ids", [])
+               if q["key"] in {records.get(cid, {}).get("blocker_key"),
+                               (records.get(cid, {}).get("resolution") or {}).get("key")}}
+    group = audit.get("choice_groups", {}).get(q.get("choice_group_id"), {})
+    if group.get("origin") == "FORM_capacity_choice":
+        branch = {c for keys in group.get("applicable", {}).values() for c in keys}
+        settled |= {f["candidate_id"] for f in audit.get("fields", [])
+                    if set(f.get("conditions", [])) & branch
+                    and f.get("proposed_value", f.get("value")) is not None}
+    return len(settled)
+
+
 def selective_pool(data, pool):
     """One useful next question, no questionnaire over every empty destination."""
     requested = set(data.get("dialogue", {}).get("requested_keys", []))
@@ -258,13 +281,14 @@ def selective_pool(data, pool):
               q.get("documented") or q.get("documented_alternatives") or
               q.get("subject_uncertain") or
               q.get("form_owned") and q["kind"] == "value" or
-              set(q.get("field_ids", [])) & pending]
+              set(q.get("field_ids", [])) & pending or
+              branch_choice_unlocks(data, q) >= MIN_BRANCH_UNLOCKS]
     # What the answer unlocks comes first: a signatory name opens a whole personal block.
     members = person_groups(data) if data.get("conversation_turn_revision") == 1 else {}
 
     def unlocks(q):
         return (len(members.get(q["field_ids"][0], ())) if q.get("form_owned")
-                and q["kind"] == "value" else 0)
+                and q["kind"] == "value" else branch_choice_unlocks(data, q))
 
     chosen = sorted(useful, key=lambda q: (
         q["key"] not in requested, not q.get("retry"),

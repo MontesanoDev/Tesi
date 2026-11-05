@@ -300,6 +300,14 @@ def attach_choice_audit(result, groups, items, catalog, source_map):
     result["choice_groups"] = groups
 
 
+def unconfirmed_initial_boxes(data, values):
+    """Boxes marked in the original FORM that no USER choice confirmed in this export."""
+    if data.get("checkbox_policy_revision") != 1:
+        return []
+    return [cid for cid, c in data["catalog"]["candidates"].items()
+            if c.get("type") == "checkbox" and c.get("initial_checked") and cid not in values]
+
+
 def materialize_choices(data, source_ids, user_ids):
     """Validate the final subset, including USER overrides and initial checked peers."""
     from app.compilation_branch_evidence import (

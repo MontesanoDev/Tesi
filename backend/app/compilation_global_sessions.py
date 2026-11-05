@@ -834,7 +834,7 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "format_retry_revision", "hold_review_revision",
                          "omission_recovery_revision", "subject_check_revision",
                          "identifier_type_revision", "role_proof_revision",
-                         "conversation_turn_revision"):
+                         "conversation_turn_revision", "checkbox_policy_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:
@@ -1172,7 +1172,16 @@ def generate_draft(project_id, session_id, request):
 
     checkbox_values, checkbox_effects = materialize_choices(
         state["global_compilation"], request.candidate_ids, request.user_candidate_ids)
-    draft = fill_docx(layout, values, checkbox_values=checkbox_values)
+    from app.compilation_choices import unconfirmed_initial_boxes
+    from app.docx_checkboxes import clearable_controls
+
+    # An unconfirmed mark of the original is never exported as if it were a choice. Only what the
+    # writer cannot touch stays as it is, and the draft says so by name.
+    unconfirmed = unconfirmed_initial_boxes(state["global_compilation"], checkbox_values)
+    cleared = clearable_controls(layout, unconfirmed)
+    kept_marks = [cid for cid in unconfirmed if cid not in cleared]
+    draft = fill_docx(layout, values, checkbox_values={
+        **checkbox_values, **dict.fromkeys(cleared, False)})
     written_count = len(values) + len(checkbox_values)
     message = ("Ho preparato una copia del modulo senza inserire alcun valore. "
                "I campi irrisolti e quelli con condizioni non confermate restano vuoti. "
@@ -1190,6 +1199,14 @@ def generate_draft(project_id, session_id, request):
     if doubts := reviewed_doubts_notice(state["global_compilation"],
                                         set(values) | set(checkbox_values)):
         message += " " + doubts
+    from app.compilation_global_dialogue import checkbox_review, checkbox_review_notice
+
+    boxes = checkbox_review(state["global_compilation"], checkbox_values, cleared, kept_marks)
+    if boxes and (box_notice := checkbox_review_notice(boxes)):
+        message += " " + box_notice
+    checkbox_effects = [*checkbox_effects, *(
+        {"candidate_id": cid, "value": False, "effect": "unconfirmed_initial_mark_cleared",
+         "provenance": "BACKEND"} for cid in sorted(cleared))]
     from app.compilation_field_outcomes import field_outcomes
 
     outcomes = field_outcomes(state["global_compilation"],
@@ -1202,7 +1219,9 @@ def generate_draft(project_id, session_id, request):
                             "allow_empty": request.allow_empty},
               "template_sha256": layout.sha256, "output_sha256": hashlib.sha256(draft).hexdigest(),
               "fields": checked_fields, "written_field_count": written_count, "resolved": 0,
-              "checkbox_values": checkbox_values, "checkbox_effects": checkbox_effects,
+              "checkbox_values": {**checkbox_values, **dict.fromkeys(cleared, False)},
+              "checkbox_effects": checkbox_effects,
+              **({"checkbox_review": boxes} if boxes else {}),
               "field_outcomes": outcomes,
               "global_audit": state["global_compilation"]["audit"],
               "conversation_review": {k: (state["global_compilation"].get("dialogue") or {}).get(

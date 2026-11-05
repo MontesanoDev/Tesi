@@ -185,7 +185,8 @@ def _capacity_trigger(data, key, condition, receipt):
     if len(matches) != 1 or matches[0] not in condition.get("applies_to", []):
         return None
     region = _capacity_region(catalog, matches[0])
-    if not region or any(catalog["candidates"][peer].get("initial_checked") for peer in region[1]):
+    if not region or (data.get("checkbox_policy_revision") != 1 and any(
+            catalog["candidates"][peer].get("initial_checked") for peer in region[1])):
         return None  # Unknown cardinality: an existing mark is never combined or cleared.
     return matches[0], region
 
