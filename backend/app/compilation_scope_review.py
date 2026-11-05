@@ -25,17 +25,19 @@ def session_data(session):
             **({"fields": data["fields"]} if "fields" in data else {})}
 
 
-def target(data, key, field_ids, user_conditions=None):
-    catalog, audit = data.get("catalog") or {}, data.get("audit") or {}
-    fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
+def derived_targets(data):
+    """The same fallback FORM targets the guard sees as the backend-owned question and later
+    SOURCE derivation, including when the model omitted the name field."""
     from app.compilation_source_reuse import signatory_fields
-
-    # The guard must see the same fallback FORM target as the backend-owned question
-    # and later SOURCE derivation, including when the model omitted the name field.
-    fields.update(signatory_fields(data))
     from app.compilation_user_extraction import target_fields
 
-    fields.update(target_fields(data))
+    return {**signatory_fields(data), **target_fields(data)}
+
+
+def target(data, key, field_ids, user_conditions=None, *, derived=None):
+    catalog, audit = data.get("catalog") or {}, data.get("audit") or {}
+    fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
+    fields.update(derived_targets(data) if derived is None else derived)
     ids = sorted(set(field_ids))
     conditions = {c for cid in ids for c in fields.get(cid, {}).get("conditions", [])}
     if key.startswith("condition:"):
@@ -109,7 +111,25 @@ def scope_receipt(data, key, field_ids, reply):
     return scope
 
 
-def valid_receipt(data, key, receipt, cid):
+def _checked(data, key, receipt, ids, seen, memo):
+    """Scope target and proof of one receipt.
+
+    One check reads one frozen state, and a receipt covers many fields: both are derived once per
+    receipt instead of once per covered field. No memo, no sharing.
+    """
+    if memo is None:
+        scope_target = target(data, key, ids, seen)
+        return scope_target, proof(scope_target, receipt)
+    slot = (key, id(receipt), seen is None)
+    if slot not in memo:
+        if "derived" not in memo:
+            memo["derived"] = derived_targets(data)
+        scope_target = target(data, key, ids, seen, derived=memo["derived"])
+        memo[slot] = scope_target, proof(scope_target, receipt)
+    return memo[slot]
+
+
+def valid_receipt(data, key, receipt, cid, memo=None):
     ids = receipt.get("affected_fields") or []
     if (cid not in ids or not receipt.get("scope_validation")
             or receipt.get("provenance") != "USER"):
@@ -122,8 +142,8 @@ def valid_receipt(data, key, receipt, cid):
         return False
     seen = receipt.get("checked_conditions")
     if key.startswith("condition:") or seen is None:
-        return receipt["scope_validation"] == proof(target(data, key, ids), receipt)
-    if receipt["scope_validation"] != proof(target(data, key, ids, seen), receipt):
+        return receipt["scope_validation"] == _checked(data, key, receipt, ids, None, memo)[1]
+    if receipt["scope_validation"] != _checked(data, key, receipt, ids, seen, memo)[1]:
         return False
     # A later USER confirmation covering this field keeps the value checked before it
     # (signatory name asked before its condition, or a confirmation extended to derived
@@ -131,8 +151,8 @@ def valid_receipt(data, key, receipt, cid):
     answers = (data.get("dialogue") or {}).get("answers", {})
     return all(now == seen.get(c) or (
         seen.get(c, {}).get("applies") in {None, True} and now.get("applies") is True
-        and valid_receipt(data, "condition:" + c, answers.get("condition:" + c, {}), cid))
-        for c, now in target(data, key, ids)["user_conditions"].items())
+        and valid_receipt(data, "condition:" + c, answers.get("condition:" + c, {}), cid, memo))
+        for c, now in _checked(data, key, receipt, ids, None, memo)[0]["user_conditions"].items())
 
 
 def blocked_source_fields(data, *, linked_user_controls=False):
@@ -145,6 +165,7 @@ def blocked_source_fields(data, *, linked_user_controls=False):
     from app.compilation_table_scope import blocked_fields
 
     blocked = blocked_fields(data) | option_blocked(data)
+    memo = {}
     for field in audit.get("fields", []):
         cid = field["candidate_id"]
         for c in field.get("conditions", []):
@@ -160,7 +181,7 @@ def blocked_source_fields(data, *, linked_user_controls=False):
 
                 # The explicit choice receipt covers its option and binds this condition's
                 # USER answer; it releases no other condition of the same control.
-                valid = valid_receipt(data, key, receipt, cid) or (
+                valid = valid_receipt(data, key, receipt, cid, memo) or (
                     linked_user_controls and (linked_receipt_valid(data, cid, key)
                                               or capacity_choice_valid(data, cid, c)))
                 if receipt.get("applies") is not True or not valid:
