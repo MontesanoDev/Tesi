@@ -134,3 +134,38 @@ def test_the_literal_value_changes_nothing_but_a_choice_of_the_new_profile():
     assert literal_choice_values([no_option], session()) == [no_option]
     condition = {**copied, "action": "CONDITION_TRUE"}
     assert literal_choice_values([condition], session()) == [condition]
+
+
+def two_branches(selected=(1,), action="VALUE", revision=1):
+    data = {"generation_revision": 3, "dialogue": {"answers": {GROUP_KEY: {
+                "action": action, "selected_options": list(selected)}}},
+            "audit": {"conditions": {"own": {"result": "true"}, "other": {"result": "true"}},
+                      "choice_groups": {"form_capacity_0": {
+                "origin": "FORM_capacity_choice", "options": {"a": {}, "b": {}},
+                "applicable": {"a": ["own"], "b": ["other"]}}},
+                "fields": [{"candidate_id": "mine", "conditions": ["own"]},
+                           {"candidate_id": "theirs", "conditions": ["other"]},
+                           {"candidate_id": "both", "conditions": ["own", "other"]},
+                           {"candidate_id": "free", "conditions": []}]}}
+    if revision:
+        data["conversation_turn_revision"] = revision
+    return data
+
+
+GROUP_KEY = "choice:form_capacity_0"
+
+
+def test_the_explicit_choice_blocks_only_the_data_of_the_other_option():
+    assert branches.other_capacity_branches(two_branches()) == {"theirs"}
+    assert branches.other_capacity_branches(two_branches(selected=(2,))) == {"mine"}
+
+
+def test_no_choice_or_a_deferred_one_blocks_nothing_more():
+    assert branches.other_capacity_branches(two_branches(selected=())) == set()
+    assert branches.other_capacity_branches(two_branches(action="SKIP")) == set()
+    assert branches.other_capacity_branches(two_branches(selected=(9,))) == set()
+
+
+def test_the_gate_of_the_receipts_applies_it_only_with_the_new_profile():
+    assert "theirs" in scope.blocked_source_fields(two_branches())
+    assert "theirs" not in scope.blocked_source_fields(two_branches(revision=None))

@@ -413,10 +413,13 @@ TYPED_PROPERTY = {
     "ordinecollegioprofessionale": "ordineprofessionale",
     "sezioneordine": "sezione", "sezionealbo": "sezione",
     "provinciaordine": "provincia", "provinciaalbo": "provincia",
+    "provinciaiscrizione": "provincia", "provinciadiiscrizione": "provincia",
+    "sezioneiscrizione": "sezione", "qualifica": "qualificaprofessionale",
     "dataiscrizione": "iscrizionedal", "dataiscrizionealbo": "iscrizionedal",
     "iscrittodal": "iscrizionedal", "iscrizione": "iscrizionedal",
     "numeroiscrizioneordine": "numeroiscrizione", "numeroiscrizionealbo": "numeroiscrizione",
-    "niscrizione": "numeroiscrizione",
+    "niscrizione": "numeroiscrizione", "numeroalbo": "numeroiscrizione",
+    "numeroordine": "numeroiscrizione",
     "codicefiscalepersonale": "codicefiscale", "cf": "codicefiscale",
 }
 
@@ -507,6 +510,9 @@ def linked_person_support(binding, fact, source_map, *, verified_properties=Fals
         cell = [v for k, v in cells.items() if k in _COLUMNS[prop]]
         comparison = (_comparison(fact["value"], cell[0], prop, fact["subject"])
                       if len(cell) == 1 and verified_properties else None)
+        if typed and len(cell) == 1 and not comparison and prop == "provincia" and (
+                same_typed_value(prop, fact["value"], cell[0])):
+            comparison = "province_abbreviation"
         if len(cell) != 1 or not (comparison or _text(cell[0]) == _text(fact["value"])):
             return None
         key = _identity(record)

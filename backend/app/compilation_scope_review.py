@@ -186,6 +186,10 @@ def blocked_source_fields(data, *, linked_user_controls=False):
                                               or capacity_choice_valid(data, cid, c)))
                 if receipt.get("applies") is not True or not valid:
                     blocked.add(cid)
+    if data.get("conversation_turn_revision") == 1:
+        from app.compilation_branch_evidence import other_capacity_branches
+
+        blocked |= other_capacity_branches(data)
     return blocked
 
 

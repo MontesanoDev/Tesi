@@ -165,6 +165,13 @@ def test_the_previous_profile_keeps_those_words_unjoined(prop, value):
     assert linked(prop, value, typed=False) is None
 
 
+def test_a_province_without_its_abbreviation_is_the_same_cell():
+    assert linked("provincia", "Bari")["value_support"]["comparison"] == "province_abbreviation"
+    assert linked("provincia_iscrizione", "Bari (BA)")
+    assert linked("provincia", "Lecce") is None
+    assert linked("provincia", "Bari", typed=False) is None
+
+
 def test_a_property_outside_the_typed_ones_is_never_joined():
     assert linked("quota_societaria", "40%") is None
     assert linked("ruolo", "direttore tecnico") is None

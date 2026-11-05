@@ -190,6 +190,31 @@ def _capacity_trigger(data, key, condition, receipt):
     return matches[0], region
 
 
+def other_capacity_branches(data):
+    """Data of another FORM capacity option, once the USER explicitly chose one.
+
+    Real dialogue: the scripted USER also confirmed the consortium branch, whose company data the
+    narrator held. The later choice of the fourth option released them too, on another destination
+    of the same company. A choice settles its own branch; changing it reopens the other.
+    """
+    audit, blocked = data.get("audit") or {}, set()
+    answers = (data.get("dialogue") or {}).get("answers", {})
+    for group_id, group in audit.get("choice_groups", {}).items():
+        answer = answers.get("choice:" + group_id, {})
+        options, selected = list(group.get("options", {})), answer.get("selected_options") or []
+        if (group.get("origin") != "FORM_capacity_choice" or answer.get("action") != "VALUE"
+                or len(selected) != 1 or not 1 <= selected[0] <= len(options)):
+            continue
+        applicable = group.get("applicable", {})
+        own = set(applicable.get(options[selected[0] - 1], []))
+        others = {c for keys in applicable.values() for c in keys} - own
+        if own:
+            blocked |= {f["candidate_id"] for f in audit.get("fields", [])
+                        if set(f.get("conditions", [])) & others
+                        and not set(f.get("conditions", [])) & own}
+    return blocked
+
+
 def capacity_choice_valid(data, cid, key=None):
     """The exact USER choice of this option, under a condition that made it applicable."""
     from app.compilation_scope_review import valid_receipt
