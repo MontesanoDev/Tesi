@@ -299,7 +299,8 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
                 raw, build_compilation_catalog(layout), sources)
         audit = validate_global_proposal(raw, layout, project_id, sources,
                                          expected_version=expected_version,
-                                         budget_scale=max(1, summary["merged_segments"]))
+                                         budget_scale=max(1, summary["merged_segments"]),
+                                         typed_siblings=compilation_identifiers.enabled(data))
         audit = attach_resilient_status(audit, summary)
         if resolutions:
             audit["identifier_resolution"] = resolutions
@@ -334,7 +335,7 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
 
 async def _resilient_proposal(settings, data, root, metadata, layout, project_id, sources,
                               *, revision=2, recovery=False, format_retries=False,
-                              omissions=False):
+                              omissions=False, typed_values=False):
     """Segments by dependency, validated one by one, cached by request digest (resumption).
 
     Bounded retries (MAX_RETRIES_PER_SEGMENT, MAX_RETRIES_PER_ANALYSIS) only for transport,
@@ -592,7 +593,7 @@ async def _resilient_proposal(settings, data, root, metadata, layout, project_id
 
     def valid(ids):
         merged, report = resilient_merge(segments, {i: results[i]["payload"] for i in ids},
-                                         revision=revision)
+                                         revision=revision, typed_values=typed_values)
         validate_global_proposal(json.dumps(merged, ensure_ascii=False), layout, project_id,
                                  sources, expected_version=12, budget_scale=max(1, len(ids)))
         return merged, report
@@ -793,7 +794,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                 revision=claimed["global_compilation"]["generation_revision"],
                 recovery=claimed["global_compilation"].get("segment_recovery_revision") == 1,
                 format_retries=claimed["global_compilation"].get("format_retry_revision") == 1,
-                omissions=claimed["global_compilation"].get("omission_recovery_revision") == 1)
+                omissions=claimed["global_compilation"].get("omission_recovery_revision") == 1,
+                typed_values=claimed["global_compilation"].get("identifier_type_revision") == 1)
         elif claimed["global_compilation"].get("generation_revision") == 1:
             raw, model, usage = await _segmented_proposal(settings, data, root, metadata)
         else:

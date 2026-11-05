@@ -53,6 +53,7 @@ from app.compilation_role_records import (
     linked_person_support,
     own_record_support,
     record_support,
+    same_typed_value,
     table_support,
 )
 from app.compilation_semantics import empty_value_reason
@@ -1370,7 +1371,7 @@ def _binding_check(binding_id, fact, candidate_id, contexts, bindings, source_ma
               and binding["validation"] == "GROUNDED_PROPOSAL"
               and binding["form"]["paragraph_id"] in contexts[candidate_id]
               and _role_text(binding["required_role"]) == _role_text(binding["source_role"])):
-            support = (binding_value_support(binding, fact, source_map)
+            support = (binding_value_support(binding, fact, source_map, typed=own_record)
                        or linked_person_support(binding, fact, source_map,
                                                 verified_properties=verified_properties,
                                                 typed=own_record)
@@ -1472,7 +1473,8 @@ def _recover_slot_destination(candidate_id, candidate, form, paragraphs, marked,
                 {"paragraph_id": form.paragraph_id, "quote": placeholder}]}}
 
 
-def _validate_sparse_proposal(payload, layout, catalog, source_map, *, budget_scale=1):
+def _validate_sparse_proposal(payload, layout, catalog, source_map, *, budget_scale=1,
+                              typed_siblings=False):
     """Keep the canonical inventory in the backend and quarantine each proposal.
 
     Invalid JSON/envelopes/budgets remain global errors. Local assignment,
@@ -1652,7 +1654,9 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map, *, budget_sc
                         if (fact["validation"] == "GROUNDED_PROPOSAL"
                                 and _fact_identity(fact) == _fact_identity(chosen)
                                 and _sibling_value_text(fact["value"]) !=
-                                _sibling_value_text(chosen["value"])):
+                                _sibling_value_text(chosen["value"])
+                                and not (typed_siblings and same_typed_value(
+                                    chosen["property"], fact["value"], chosen["value"]))):
                             siblings.setdefault(_sibling_value_text(fact["value"]), ref)
                     if siblings:
                         fact_ids = [item.fact_id, *siblings.values()]
@@ -1798,7 +1802,7 @@ def _validate_sparse_proposal(payload, layout, catalog, source_map, *, budget_sc
 
 
 def validate_global_proposal(raw, layout, project_id, sources, *, expected_version=None,
-                             budget_scale=1):
+                             budget_scale=1, typed_siblings=False):
     """Check structure/literal grounding only; return audit, no writable values.
 
     Never synthesizes the V1 independent semantic verdict. A wrong property
@@ -1824,7 +1828,8 @@ def validate_global_proposal(raw, layout, project_id, sources, *, expected_versi
     if (isinstance(payload, dict) and type(payload.get("version")) is int
             and payload["version"] in {5, 6, 7, 8, 9, 10, 11, 12}):
         result = _validate_sparse_proposal(payload, layout, catalog, source_map,
-                                           budget_scale=budget_scale)
+                                           budget_scale=budget_scale,
+                                           typed_siblings=typed_siblings)
         if payload["version"] == 12:
             from app.compilation_form_applicability import evaluate
 

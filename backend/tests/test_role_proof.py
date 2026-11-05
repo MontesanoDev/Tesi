@@ -15,7 +15,13 @@ from test_compilation_binding_identity import source
 
 from app.compilation_global import build_global_input, validate_global_proposal
 from app.compilation_global_dialogue import documented_proposal
-from app.compilation_role_records import linked_person_support
+from app.compilation_role_records import (
+    binding_value_support,
+    linked_person_support,
+    own_record_support,
+    same_typed_value,
+)
+from app.compilation_segments import _mark_conflicts
 from app.compilation_source_reuse import reuse_selected_person
 from app.docx_templates import inspect_docx
 
@@ -182,3 +188,153 @@ def test_two_registrations_under_one_name_stay_unjoined():
 
 def test_another_registration_in_the_role_record_is_not_joined_to_the_row():
     assert linked("nome", NAME, role_chunks={-3: role_section(number="9999")}) is None
+
+
+# Real Minervino runs again: a fact cited in the table row and in the person's own line, or in the
+# role record and in that line, was refused because of the citation more.
+def cited_twice(prop, value, line=LINE, *, typed=True):
+    chunks = {-3: role_section(), -16: TABLE, -17: line}
+    source_map = {c: {"chunk_id": c, "content": text, "category": "company"}
+                  for c, text in chunks.items()}
+    binding = {"source_role": "direttore tecnico", "source_evidence": [
+        {"chunk_id": -3, "quote": HEADING}]}
+    fact = {"property": prop, "subject": NAME, "value": value, "source_evidence": [
+        {"chunk_id": -16, "quote": ROW, "category": "company"},
+        {"chunk_id": -17, "quote": line, "category": "company"}]}
+    return linked_person_support(binding, fact, source_map, verified_properties=True, typed=typed)
+
+
+def test_a_value_cited_in_the_row_and_in_the_persons_line_is_joined():
+    assert cited_twice("sezione", "A")
+    assert cited_twice("numero_iscrizione", "8421")
+    assert cited_twice("sezione", "A", typed=False) is None
+
+
+def test_a_line_with_another_registration_stops_the_join():
+    assert cited_twice("sezione", "A", LINE.replace("numero 8421", "numero 9999")) is None
+
+
+def test_a_line_of_another_person_stops_the_join():
+    other = LINE.replace(NAME, "Luca Ferri")
+    assert cited_twice("sezione", "A", other) is None
+
+
+def own_and_line(line=LINE):
+    source_map = {-3: {"chunk_id": -3, "content": role_section(), "category": "company"},
+                  -17: {"chunk_id": -17, "content": line, "category": "company"}}
+    binding = {"source_role": "direttore tecnico", "source_evidence": [
+        {"chunk_id": -3, "quote": HEADING}, {"chunk_id": -17, "quote": line}]}
+    fact = {"property": "numero_iscrizione_albo", "subject": NAME, "value": "8421",
+            "source_evidence": [
+                {"chunk_id": -3, "quote": "- Numero di iscrizione professionale simulato: 8421."},
+                {"chunk_id": -17, "quote": line}]}
+    return own_record_support(binding, fact, source_map)
+
+
+def test_the_role_record_and_the_persons_line_together_are_supported():
+    assert own_and_line()
+
+
+def test_a_line_of_another_person_gives_no_support_to_the_role_record():
+    assert own_and_line(LINE.replace(NAME, "Luca Ferri")) is None
+
+
+def test_a_line_stating_another_role_gives_no_support():
+    assert own_and_line(LINE.replace("direttore tecnico", "responsabile qualità")) is None
+
+
+def test_the_word_for_a_property_does_not_decide_the_role_row_either():
+    title = "## 3. Soci della società al 15 ottobre 2026"
+    table = TABLE.replace("## Soci", title)
+    source_map = {-16: {"chunk_id": -16, "content": table, "category": "company"}}
+    binding = {"source_role": "socio", "source_evidence": [
+        {"chunk_id": -16, "quote": title}, {"chunk_id": -16, "quote": ROW}]}
+    fact = {"property": "ordine", "subject": NAME, "value": "Ordine degli Ingegneri di Bari",
+            "source_evidence": [{"chunk_id": -16, "quote": ROW, "category": "company"}]}
+    assert binding_value_support(binding, fact, source_map, typed=True)
+    assert binding_value_support(binding, fact, source_map) is None
+    wrong = {**fact, "value": "Ordine degli Architetti di Bari"}
+    assert binding_value_support(binding, wrong, source_map, typed=True) is None
+
+
+@pytest.mark.parametrize("prop, first, second, same", [
+    ("provincia", "Bari (BA)", "Bari", True),
+    ("provincia_albo", "bari", "Bari (BA)", True),
+    ("provincia", "Bari", "Lecce (LE)", False),
+    ("data_iscrizione", "18/05/2015", "18 maggio 2015", True),
+    ("data_nascita", "14/11/1982", "14 novembre 1982", True),
+    ("data_iscrizione", "18/05/2015", "19/05/2015", False),
+    ("nome", "Ing. Elisa Romano", "Elisa Romano", True),
+    ("nome", "Elisa Romano", "Elisa Rossi", False),
+    ("numero_iscrizione_registro_imprese", "01234560981", "99999999901", False),
+    ("sede", "Bari (BA)", "Bari", False),
+    ("qualifica_professionale", "Ing.", "Ingegnere", False),
+])
+def test_only_the_same_datum_in_another_format_is_the_same_value(prop, first, second, same):
+    assert same_typed_value(prop, first, second) is same
+
+
+def conflicts(values, *, typed=True, prop="provincia"):
+    facts = {f"s{i}_f": {"subject": NAME, "entity": "person", "property": prop, "value": v}
+             for i, v in enumerate(values, 1)}
+    fields = {f"p{i}.s0": {"label": "x", "kind": "data", "fact_id": f"s{i}_f"}
+              for i in range(1, len(values) + 1)}
+    merged, report = {"facts": facts, "fields": fields}, {"conflicts": []}
+    _mark_conflicts(merged, report, typed=typed)
+    return merged, report
+
+
+def test_a_format_of_one_datum_is_not_a_conflict_between_segments():
+    merged, report = conflicts(["Bari (BA)", "Bari"])
+    assert not report["conflicts"]
+    assert merged["fields"]["p1.s0"]["fact_id"] == "s1_f"
+    assert merged["fields"]["p2.s0"]["fact_id"] == "s2_f"
+    _, dates = conflicts(["18/05/2015", "18 maggio 2015"], prop="data_iscrizione")
+    assert not dates["conflicts"]
+
+
+def test_two_real_values_stay_a_conflict_between_segments():
+    merged, report = conflicts(["Bari (BA)", "Lecce (LE)"])
+    assert report["conflicts"]
+    assert merged["fields"]["p1.s0"]["review_kind"] == "conflicting"
+    assert merged["fields"]["p2.s0"]["alternative_fact_ids"] == ["s1_f", "s2_f"]
+    _, numbers = conflicts(["01234560981", "99999999901"], prop="numero_iscrizione")
+    assert numbers["conflicts"]
+
+
+def test_the_previous_profile_keeps_the_format_conflict():
+    merged, report = conflicts(["Bari (BA)", "Bari"], typed=False)
+    assert report["conflicts"] and merged["fields"]["p1.s0"]["review_kind"] == "conflicting"
+
+
+def siblings(values, *, typed=True):
+    doc = Document()
+    doc.add_paragraph("Direttore tecnico")
+    doc.add_paragraph("della provincia di: ________")
+    doc.add_paragraph("della provincia di: ________")
+    stream = BytesIO()
+    doc.save(stream)
+    layout = inspect_docx(stream.getvalue())
+    lines = [f"- Provincia {i}: {value}." for i, value in enumerate(values)]
+    payload = proposal("provincia_albo", "della provincia di", values[0], lines[0])
+    payload["facts"].update({f"g{i}": {**payload["facts"]["f"], "value": value, "evidence": [
+        {"chunk_id": -7, "quote": lines[i]}]} for i, value in enumerate(values) if i})
+    # In the real run each value was the proposal of another destination of the same person.
+    payload["fields"]["p2.s0"] = {
+        **payload["fields"]["p1.s0"], "fact_id": "g1", "form": {
+            "paragraph_id": "paragraph:2", "quote": "della provincia di: [[p2.s0]]"}}
+    sources = [source("\n".join(lines), -7), source(ROLE_LINE, -9)]
+    audit = validate_global_proposal(json.dumps(payload), layout, "alpha", sources,
+                                     typed_siblings=typed)
+    return next(f for f in audit["fields"] if f["candidate_id"] == "p1.s0")
+
+
+def test_the_same_province_with_its_abbreviation_asks_nothing():
+    field = siblings(["Bari", "Bari (BA)"])
+    assert not field.get("alternatives") and field["validation"] != "REJECTED"
+    assert field["proposal"]["fact_id"] == "f" and "review_kind" not in field
+
+
+def test_two_provinces_are_still_a_choice_and_the_previous_profile_keeps_the_format_one():
+    assert len(siblings(["Bari", "Lecce (LE)"])["alternatives"]) == 2
+    assert len(siblings(["Bari", "Bari (BA)"], typed=False)["alternatives"]) == 2

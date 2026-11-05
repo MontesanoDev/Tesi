@@ -17,6 +17,7 @@ import re
 from copy import deepcopy
 
 from app.compilation_factual_recovery import OWNER_FAILURE, ROLE_FAILURE, canonical_property
+from app.compilation_role_records import same_typed_value, typed_property
 
 GENERATION_REVISION = 1
 MAX_SEGMENT_CANDIDATES = 60
@@ -124,7 +125,7 @@ def _rename(value, mapping):
     return mapping.get(value, value) if isinstance(value, str) else value
 
 
-def merge(segments, payloads):
+def merge(segments, payloads, *, typed_values=False):
     """Merge successful segment payloads into one V12 envelope; return (payload, report)."""
     merged = {"version": 12, "uncertain_paragraph_ids": [], "conditions": {}, "bindings": {},
               "choice_groups": {}, "fields": {}, "facts": {}, "clarifications": {},
@@ -210,7 +211,7 @@ def merge(segments, payloads):
         for pid in payload.get("uncertain_paragraph_ids") or []:
             if pid not in merged["uncertain_paragraph_ids"]:
                 merged["uncertain_paragraph_ids"].append(pid)
-    _mark_conflicts(merged, report)
+    _mark_conflicts(merged, report, typed=typed_values)
     if len(merged["facts"]) > LIMITS["facts"]:
         used = {f.get("fact_id") for f in merged["fields"].values() if isinstance(f, dict)}
         used |= {a for f in merged["fields"].values() if isinstance(f, dict)
@@ -230,20 +231,31 @@ def _norm(value):
     return " ".join(str(value).casefold().split())
 
 
-def _mark_conflicts(merged, report):
+def _different_values(prop, values, typed):
+    """Real Minervino run: «Bari» and «Bari (BA)» of one person sent the user to choose."""
+    if not typed:
+        return len({_norm(v) for v in values}) > 1
+    distinct = []
+    for value in values:
+        if not any(same_typed_value(prop, value, other) for other in distinct):
+            distinct.append(value)
+    return len(distinct) > 1
+
+
+def _mark_conflicts(merged, report, *, typed=False):
     """Different values for one subject/property from different segments become a review."""
     groups = {}
     for key, fact in merged["facts"].items():
         if not isinstance(fact, dict) or not re.match(r"s\d+_", key):
             continue
         signature = (_norm(fact.get("subject", "")), fact.get("entity"),
-                     canonical_property(fact.get("property", "")))
+                     (typed_property if typed else canonical_property)(fact.get("property", "")))
         groups.setdefault(signature, []).append(key)
     conflicting = {}
     for signature, keys in groups.items():
-        values = {_norm(merged["facts"][k].get("value", "")) for k in keys}
+        values = [merged["facts"][k].get("value", "") for k in keys]
         segments = {k.split("_", 1)[0] for k in keys}
-        if len(values) > 1 and len(segments) > 1:
+        if _different_values(signature[2], values, typed) and len(segments) > 1:
             for key in keys:
                 conflicting[key] = keys
             report["conflicts"].append({"subject": signature[0], "entity": signature[1],
@@ -753,9 +765,9 @@ def unify_shared_conditions(merged, report):
     return merged
 
 
-def resilient_merge(segments, payloads, *, revision=2):
+def resilient_merge(segments, payloads, *, revision=2, typed_values=False):
     """P3 merge (ownership, renaming, exact dedup, value conflicts) plus shared conditions."""
-    merged, report = merge(segments, payloads)
+    merged, report = merge(segments, payloads, typed_values=typed_values)
     return (merged if revision == 3 else unify_shared_conditions(merged, report)), report
 
 

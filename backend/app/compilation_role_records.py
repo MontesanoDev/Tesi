@@ -253,7 +253,7 @@ def _comparison(value, cell, prop, subject):
     return None
 
 
-def binding_value_support(binding, fact, source_map):
+def binding_value_support(binding, fact, source_map, *, typed=False):
     """An independent exact/typed-equivalent proof in the binding's role/person row.
 
     Never discard a fact citation about another person. No identity merge and
@@ -276,9 +276,9 @@ def binding_value_support(binding, fact, source_map):
         return None
     if any(_conflicting_keys(_identity(row), _identity(record)) for record in records):
         return None
-    values = [v for k, v in _cells(row).items()
-              if k in _COLUMNS.get(_property(fact["property"]), set())]
-    comparison = _comparison(fact["value"], values[0], _property(fact["property"]),
+    prop = typed_property(fact["property"]) if typed else _property(fact["property"])
+    values = [v for k, v in _cells(row).items() if k in _COLUMNS.get(prop, set())]
+    comparison = _comparison(fact["value"], values[0], prop,
                              fact["subject"]) if len(values) == 1 else None
     if not comparison:
         return None
@@ -385,6 +385,11 @@ def own_record_support(binding, fact, source_map):
         quotes = [p["quote"] for p in fact["source_evidence"] if p["chunk_id"] == chunk]
         own = [r for r in personal_records(source["content"], role, fact["subject"])
                if all(_text(q) in _text(r["record"]) for q in quotes) and settled(r, quotes)]
+        if not own and all(fact_record_support(source["content"], q, role, fact["subject"])
+                           for q in quotes):
+            # The person's own line, stating role and value together: a further citation.
+            citations.append({"chunk_id": chunk, "quote": quotes[0]})
+            continue
         if len(own) != 1:
             return None
         citations.append({"chunk_id": chunk, "quote": own[0]["header"]})
@@ -419,6 +424,17 @@ TYPED_PROPERTY = {
 def typed_property(value):
     prop = _property(value)
     return TYPED_PROPERTY.get(prop, prop)
+
+
+def same_typed_value(prop, first, second):
+    """One datum written in two ways, for the formats a property has; nothing else is the same."""
+    prop = typed_property(prop)
+    if _text(first) == _text(second) or (_date(first) and _date(first) == _date(second)):
+        return True
+    if prop == "provincia":
+        return (re.sub(r"\s*\([a-z]{2}\)$", "", _text(first))
+                == re.sub(r"\s*\([a-z]{2}\)$", "", _text(second)))
+    return prop == "nome" and _name(first) == _name(second)
 
 
 def linked_person_support(binding, fact, source_map, *, verified_properties=False, typed=False):
@@ -482,6 +498,9 @@ def linked_person_support(binding, fact, source_map, *, verified_properties=Fals
             return None
         record = _value_record(source_map[proof["chunk_id"]]["content"], proof["quote"],
                                fact["subject"])
+        if (typed and record and "row" not in record and _record_certain(record)
+                and not _conflicting_keys(role_key, _identity(record))):
+            continue  # The same person's own line cites the value too: more proof, not a doubt.
         if not record or "row" not in record or not _record_certain(record):
             return None
         cells = _cells(record)
