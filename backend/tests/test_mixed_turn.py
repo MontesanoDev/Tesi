@@ -17,7 +17,12 @@ from test_compilation_sessions import source
 from app import compilation_chat as chat
 from app import compilation_global_dialogue as dialogue
 from app import compilation_global_sessions as adapter
-from app.compilation_conversation import fit_turn_parts, selective_pool, targets
+from app.compilation_conversation import (
+    fit_turn_parts,
+    selective_pool,
+    targets,
+    without_repeated_edits,
+)
 from app.compilation_scope_review import session_data
 
 __all__ = ["api", "provider"]
@@ -166,6 +171,46 @@ async def test_the_previous_profile_keeps_the_old_single_intent_contract(
     monkeypatch.setenv("MAPI_COMPILATION_PROFILE", "sezioni-2026-10-30-r2")
     s = await analyzed(api, monkeypatch)
     assert not chat.planner_context(s)["conversation_data"].get("conversation_turn_revision")
+
+
+def test_only_a_reply_repeating_an_edit_goes():
+    yes = {"slot": 1, "action": "CONDITION_TRUE", "user_quote": "Sì, confermo."}
+    name = {"slot": 1, "action": "VALUE", "value": "Ada Neri", "user_quote": "Ada Neri firma."}
+    edit = {"target": 3, "action": "VALUE", "value": "Ada Neri", "user_quote": "Ada Neri firma."}
+    assert without_repeated_edits([yes, name], [edit]) == [yes]
+    other_quote = {**edit, "user_quote": "Firma Ada Neri."}
+    assert without_repeated_edits([yes, name], [other_quote]) == [yes, name]
+    other_value = {**edit, "value": "Ada Bianchi"}
+    assert without_repeated_edits([yes, name], [other_value]) == [yes, name]
+    skipped = {**edit, "action": "SKIP"}
+    assert without_repeated_edits([yes, name], [skipped]) == [yes, name]
+
+
+@pytest.mark.anyio
+async def test_a_name_repeated_on_the_slot_does_not_cancel_the_confirmation(
+    api, provider, monkeypatch,
+):
+    # Real runs: the name both on slot 1 and on its target; the confirmation was asked again.
+    s = await analyzed(api, monkeypatch)
+    signer, condition = active_signatory(s), condition_target(s)
+    s, _, _ = await route(s, monkeypatch, "La firmataria è Ada Neri.",
+                          {"intent": "answer_fields", "replies": [REPLY], "edits": []})
+    s = await resolve(api, s)
+    [slot] = chat.planner_context(s)["question"]["slots"]
+    assert slot["kind"] == "applicability"
+    quote = "La firmataria è Ada Bianchi."
+    yes = "Sì, confermo che partecipiamo come società di ingegneria."
+    plan = {"intent": "answer_fields",
+            "replies": [{"slot": 1, "action": "CONDITION_TRUE", "user_quote": yes},
+                        {"slot": 1, "action": "VALUE", "value": "Ada Bianchi",
+                         "user_quote": quote}],
+            "edits": [{"target": signer["target"], "action": "VALUE", "value": "Ada Bianchi",
+                       "user_quote": quote}]}
+    s, _, routed = await route(s, monkeypatch, f"{yes} {quote}", plan)
+    assert isinstance(routed.decision, chat.ClarificationDecision)
+    answers = s["global_compilation"]["dialogue"]["answers"]
+    assert answers[condition["key"]]["applies"] is True
+    assert values(s)[signer["field_ids"][0]]["value"] == "Ada Bianchi"
 
 
 def test_the_question_that_unlocks_more_data_comes_first():

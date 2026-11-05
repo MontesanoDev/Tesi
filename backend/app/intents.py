@@ -418,7 +418,8 @@ Se il messaggio risponde a una domanda attiva e dà anche dati su altre destinaz
 intent=answer_fields con replies per i soli slot attivi ed edits per le altre destinazioni,
 al massimo quattro in totale. Gli slot esistono solo per le domande attive: non inventarli.
 Se l'utente sceglie un'opzione di un target choice, anche col suo numero, usa VALUE con
-selected_options su quel target: confermare la condizione del ramo non seleziona alcuna casella.
+selected_options su quel target e in value la sua frase letterale, non l'etichetta del modulo:
+confermare la condizione del ramo non seleziona alcuna casella.
 SKIP rinvia la destinazione, REFUSE ritira l'uso del dato; REOPEN richiede di discuterla
 nuovamente, senza confermarla né scrivere. Per condizioni servono CONDITION_TRUE/FALSE
 espliciti e pertinenti; per checkbox VALUE e selected_options, mai consenso implicito.
@@ -808,11 +809,16 @@ async def plan_chat_turn(
                     data = {**data, "replies": [r for r in data["replies"] if r not in unknown]}
                 if (mixed and isinstance(data, dict) and data.get("intent") == "answer_fields"
                         and isinstance(data.get("edits"), list) and data["edits"]):
-                    from app.compilation_conversation import bind_edits, fit_turn_parts
+                    from app.compilation_conversation import (
+                        bind_edits,
+                        fit_turn_parts,
+                        without_repeated_edits,
+                    )
 
-                    kept, left_out = fit_turn_parts(data.get("replies") or [], data["edits"])
+                    answered = without_repeated_edits(data.get("replies") or [], data["edits"])
+                    kept, left_out = fit_turn_parts(answered, data["edits"])
                     ignored_quotes = [*ignored_quotes, *left_out]
-                    data = {**data, "edits": kept}
+                    data = {**data, "replies": answered, "edits": kept}
                 if (mixed and isinstance(data, dict) and data.get("intent") == "answer_fields"
                         and data.get("edits")):
                     free = TurnPlan.model_validate({**data, "replies": []})
@@ -846,6 +852,10 @@ async def plan_chat_turn(
                     # Discard any anticipatory answer; still validate every query,
                     # target, identifier and all other schema constraints normally.
                     data = {**data, "answer": ""}
+                if isinstance(data, dict) and isinstance(data.get("replies"), list):
+                    from app.compilation_conversation import literal_choice_values
+
+                    data = {**data, "replies": literal_choice_values(data["replies"], compilation)}
                 proposed = canonical_turn_plan(parse_turn_plan(data, allowed_slots), compilation)
                 decision = bind_turn_plan(proposed, compilation, question)
             except (ValueError, RecursionError) as exc:

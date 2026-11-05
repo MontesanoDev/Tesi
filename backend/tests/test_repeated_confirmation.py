@@ -13,7 +13,7 @@ from app import compilation_branch_evidence as branches
 from app import compilation_scope_review as scope
 from app.compilation_chat import ClarificationReply
 from app.compilation_choices import materialize_choices
-from app.compilation_conversation import targets
+from app.compilation_conversation import literal_choice_values, targets
 from app.compilation_global_dialogue import condition_receipts
 
 CID, GROUP, CHOICE = base.CID, "form_capacity_0", "choice:form_capacity_0"
@@ -102,3 +102,35 @@ def test_a_confirmation_never_shown_is_still_not_a_shown_answer_without_a_guard_
 def test_the_previous_profile_keeps_its_targets():
     first, _ = case(revision=None)
     assert by_key(first, CHOICE) is None
+
+
+LABEL = "Legale rappresentante di società di ingegneria avente la seguente"
+QUOTE = "Scelgo l'opzione 4: legale rappresentante."
+
+
+def session(kind="choice", revision=1):
+    data = {"conversation_turn_revision": revision} if revision else {}
+    return {"conversation_data": data, "question": {"slots": [{"slot": 1, "kind": kind}]}}
+
+
+def reply(**extra):
+    return {"slot": 1, "action": "VALUE", "user_quote": QUOTE, "selected_options": [4], **extra}
+
+
+def test_a_form_label_copied_as_the_value_of_a_choice_becomes_the_users_sentence():
+    assert literal_choice_values([reply(value=LABEL)], session())[0]["value"] == QUOTE
+    assert literal_choice_values([reply(value=None)], session())[0]["value"] == QUOTE
+
+
+def test_a_value_already_in_the_users_words_is_kept():
+    assert literal_choice_values([reply(value="opzione 4")], session())[0]["value"] == "opzione 4"
+
+
+def test_the_literal_value_changes_nothing_but_a_choice_of_the_new_profile():
+    copied = reply(value=LABEL)
+    assert literal_choice_values([copied], session(revision=None)) == [copied]
+    assert literal_choice_values([copied], session(kind="field")) == [copied]
+    no_option = {**copied, "selected_options": None}
+    assert literal_choice_values([no_option], session()) == [no_option]
+    condition = {**copied, "action": "CONDITION_TRUE"}
+    assert literal_choice_values([condition], session()) == [condition]

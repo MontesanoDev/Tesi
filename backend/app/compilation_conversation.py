@@ -131,6 +131,41 @@ def mixed_turns(compilation):
         "conversation_turn_revision") == 1)
 
 
+def without_repeated_edits(replies, edits):
+    """One datum given twice by the router is one datum, on the destination it names.
+
+    Real Minervino turns: «Sì, confermo…» and the signatory's name both on slot 1, the name also as
+    an edit on its target. Two replies on one slot are both refused, so the confirmation was lost
+    and asked again. Only an identical value and quote go; the rest meets the usual guard.
+    """
+    given = {(e.get("value"), e.get("user_quote")) for e in edits
+             if isinstance(e, dict) and e.get("action") == "VALUE"}
+    return [r for r in replies if not (
+        isinstance(r, dict) and r.get("action") == "VALUE"
+        and (r.get("value"), r.get("user_quote")) in given)]
+
+
+def literal_choice_values(replies, compilation):
+    """A choice is its option numbers, which the guard checks against the user's sentence.
+
+    The value of a choice reply is that sentence, as the router contract says. Real runs copied the
+    FORM label there and a correct, verified choice was refused as not grounded. Any span of the
+    quote already passed that check, so nothing about the choice itself is taken on trust here.
+    """
+    from app.compilation_chat import contains_span
+
+    if not mixed_turns(compilation):
+        return replies
+    kinds = {q.get("slot"): q.get("kind")
+             for q in (compilation.get("question") or {}).get("slots", [])}
+    return [{**r, "value": r["user_quote"]} if (
+        isinstance(r, dict) and kinds.get(r.get("slot")) == "choice"
+        and r.get("action") == "VALUE" and r.get("selected_options") is not None
+        and r.get("user_quote")
+        and not (r.get("value") and contains_span(r["user_quote"], r["value"]))) else r
+        for r in replies]
+
+
 def fit_turn_parts(replies, edits):
     """Keep a whole turn within four parts: (edits kept, quotes of the edits left out).
 
