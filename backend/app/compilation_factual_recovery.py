@@ -11,7 +11,7 @@ from copy import deepcopy
 
 from app.compilation_attribution import check_source_target
 from app.compilation_global import _binding_check, _form_bindings, _role_contexts
-from app.compilation_role_records import _property, _text
+from app.compilation_role_records import _property, _text, typed_property
 from app.compilation_sessions import validate_value
 
 ROLE_FAILURE = ("SOURCE non attribuisce esplicitamente ruolo e soggetto "
@@ -118,8 +118,8 @@ def recover(data, audit, layout, project_id, sources):
             expected = form_property(catalog['candidates'][cid], paragraphs)
             canonical = canonical_property(fact.get('property', ''))
             own_record = data.get('role_proof_revision') == 1
-            if own_record and canonical == 'nomecognome':
-                canonical = 'nome'
+            if own_record:
+                canonical = typed_property(fact.get('property', ''))
             if expected != canonical:
                 continue
             binding = result.get('bindings', {}).get(proposal.get('binding_id'), {})

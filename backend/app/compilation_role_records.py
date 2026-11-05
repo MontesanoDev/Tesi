@@ -399,7 +399,29 @@ def own_record_support(binding, fact, source_map):
                               "proposed_value": fact["value"]}}
 
 
-def linked_person_support(binding, fact, source_map, *, verified_properties=False):
+# The words a model uses for one typed property, never a value or a FORM. What the join requires
+# of a person (same CF or same registration, no conflict in the sources) does not depend on them.
+TYPED_PROPERTY = {
+    "nomecompleto": "nome", "nomeecognome": "nome", "nomecognome": "nome", "nominativo": "nome",
+    "albo": "ordineprofessionale", "alboprofessionale": "ordineprofessionale",
+    "ordine": "ordineprofessionale", "ordinecollegio": "ordineprofessionale",
+    "ordinecollegioprofessionale": "ordineprofessionale",
+    "sezioneordine": "sezione", "sezionealbo": "sezione",
+    "provinciaordine": "provincia", "provinciaalbo": "provincia",
+    "dataiscrizione": "iscrizionedal", "dataiscrizionealbo": "iscrizionedal",
+    "iscrittodal": "iscrizionedal", "iscrizione": "iscrizionedal",
+    "numeroiscrizioneordine": "numeroiscrizione", "numeroiscrizionealbo": "numeroiscrizione",
+    "niscrizione": "numeroiscrizione",
+    "codicefiscalepersonale": "codicefiscale", "cf": "codicefiscale",
+}
+
+
+def typed_property(value):
+    prop = _property(value)
+    return TYPED_PROPERTY.get(prop, prop)
+
+
+def linked_person_support(binding, fact, source_map, *, verified_properties=False, typed=False):
     """Bounded personal-key join, independent of role and FORM applicability.
 
     Transfer only a personal CF or attributes of the same professional
@@ -411,6 +433,8 @@ def linked_person_support(binding, fact, source_map, *, verified_properties=Fals
     prop = _property(fact["property"])
     prop = {"provinciaalbo": "provincia", "dataiscrizionealbo": "iscrizionedal",
             "numeroiscrizionealbo": "numeroiscrizione"}.get(prop, prop)
+    if typed:
+        prop = typed_property(prop)
     supported = {"codicefiscale", "provincia", "iscrizionedal", "numeroiscrizione"}
     if verified_properties:
         prop = {"nomecompleto": "nome", "nomeecognome": "nome",
@@ -438,6 +462,14 @@ def linked_person_support(binding, fact, source_map, *, verified_properties=Fals
                 pair = (source["chunk_id"], record)
                 if pair not in role_records:
                     role_records.append(pair)
+    if typed and len(role_records) > 1:
+        # Two records stating the same role of the same registered person are more proof, not
+        # a doubt; two different registrations under one name stay unjoined.
+        keys = [_identity(r) for _, r in role_records]
+        if any(_conflicting_keys(a, b) for a in keys for b in keys):
+            return None
+        role_records = [max(role_records, key=lambda pair: sum(
+            bool(v) for v in _identity(pair[1]).values()))]
     if len(role_records) != 1:
         return None
     role_chunk, role_record = role_records[0]

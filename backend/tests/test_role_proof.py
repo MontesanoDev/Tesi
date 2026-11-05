@@ -15,6 +15,7 @@ from test_compilation_binding_identity import source
 
 from app.compilation_global import build_global_input, validate_global_proposal
 from app.compilation_global_dialogue import documented_proposal
+from app.compilation_role_records import linked_person_support
 from app.compilation_source_reuse import reuse_selected_person
 from app.docx_templates import inspect_docx
 
@@ -108,3 +109,76 @@ def test_without_the_persons_own_record_the_value_stays_rejected(content, quote,
     label = "Qualifica professionale"
     field = run(label, proposal("qualifica_professionale", label, value, quote), content)
     assert field["validation_errors"] and not field.get("proposed_value")
+
+
+# Real Minervino runs: the same person's table row was joined or not depending on the word the model
+# used for the property, or on having cited the role in two records instead of one.
+HEADING = "### Ing. Elisa Romano - direttore tecnico"
+
+
+def role_section(number="8421", cf=""):
+    return (f"{HEADING}\n\n- Nominativo completo: Ing. {NAME}.\n"
+            "- Ordine professionale simulato: Ordine degli Ingegneri di Bari.\n"
+            f"- Numero di iscrizione professionale simulato: {number}.\n{cf}")
+
+
+ROW = (f"| {NAME} | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | "
+       "18/05/2015 | 8421 | RMNLSI85C47A662Y |")
+TABLE = ("## Soci\n\n| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | "
+         "Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |\n"
+         "| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n" + ROW + "\n")
+LINE = (f"- **{NAME}:** direttore tecnico di Aurora S.r.l.; ingegnere, Ordine degli Ingegneri di "
+        "Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.")
+
+
+def linked(prop, value, *, typed=True, role_chunks=None):
+    chunks = {-3: role_section(), -16: TABLE} | (role_chunks or {})
+    source_map = {c: {"chunk_id": c, "content": text, "category": "company"}
+                  for c, text in chunks.items()}
+    quotes = {-3: HEADING, -17: LINE}
+    binding = {"source_role": "direttore tecnico", "source_evidence": [
+        {"chunk_id": c, "quote": quotes.get(c, HEADING)} for c in chunks if c != -16]}
+    fact = {"property": prop, "subject": NAME, "value": value, "source_evidence": [
+        {"chunk_id": -16, "quote": ROW, "category": "company"}]}
+    return linked_person_support(binding, fact, source_map, verified_properties=True, typed=typed)
+
+
+@pytest.mark.parametrize("prop, value", [
+    ("nome_cognome", NAME), ("albo_professionale", "Ordine degli Ingegneri di Bari"),
+    ("data_iscrizione", "18/05/2015"), ("sezione_albo", "A"), ("nome", NAME),
+    ("qualifica_professionale", "Ingegnere")])
+def test_the_word_chosen_for_a_property_does_not_decide_the_join(prop, value):
+    support = linked(prop, value)
+    assert support and support["identity_support"]["method"] == "professional_registration"
+
+
+@pytest.mark.parametrize("prop, value", [
+    ("nome_cognome", NAME), ("albo_professionale", "Ordine degli Ingegneri di Bari"),
+    ("data_iscrizione", "18/05/2015")])
+def test_the_previous_profile_keeps_those_words_unjoined(prop, value):
+    assert linked(prop, value, typed=False) is None
+
+
+def test_a_property_outside_the_typed_ones_is_never_joined():
+    assert linked("quota_societaria", "40%") is None
+    assert linked("ruolo", "direttore tecnico") is None
+
+
+def test_a_value_not_in_the_cell_of_its_property_is_not_joined():
+    assert linked("data_iscrizione", "8421") is None
+    assert linked("albo_professionale", "Ordine degli Architetti di Bari") is None
+
+
+def test_two_records_of_the_same_registration_are_more_proof_not_a_doubt():
+    assert linked("nome", NAME, role_chunks={-17: LINE})
+    assert linked("sezione_albo", "A", role_chunks={-17: LINE})
+    assert linked("nome", NAME, typed=False, role_chunks={-17: LINE}) is None
+
+
+def test_two_registrations_under_one_name_stay_unjoined():
+    other = LINE.replace("numero 8421", "numero 9999")
+    assert linked("nome", NAME, role_chunks={-17: other}) is None
+
+
+def test_another_registration_in_the_role_record_is_not_joined_to_the_row():
+    assert linked("nome", NAME, role_chunks={-3: role_section(number="9999")}) is None
