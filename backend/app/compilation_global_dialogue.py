@@ -467,10 +467,13 @@ def continuation_receipt(dialogue, *, newly_held=False):
                         180)
 
     def labels(records, key='label'):
-        return "; ".join(dict.fromkeys(
-            shown(r.get(key) or r['label']) for r in records
-            if r.get('label') and no_technical_ids(str(r.get(key) or r['label'])))
-        ) or "punti indicati"
+        # One clause confirmed twice in a message (question, then instruction) is said once.
+        said = {}
+        for record in records:
+            if record.get('label') and no_technical_ids(str(record.get(key) or record['label'])):
+                text = shown(record.get(key) or record['label'])
+                said.setdefault(" ".join(text.casefold().split()).rstrip(" ."), text)
+        return "; ".join(said.values()) or "punti indicati"
 
     parts = []
     for action, outcome in [("CONDITION_TRUE", "Confermato"), ("CONDITION_FALSE", "Escluso")]:
@@ -586,7 +589,11 @@ def question_pool(data, *, selective=False, all_targets=False):
     # Segments may each declare the same FORM clause as their own condition: one question per
     # FORM paragraph, one receipt per condition (apply_replies), never a second request.
     by_paragraph = {}
-    from app.compilation_branch_evidence import decided_peers, other_capacity_branches
+    from app.compilation_branch_evidence import (
+        decided_peers,
+        incompatible_option_conditions,
+        other_capacity_branches,
+    )
     from app.compilation_scope_review import enabled as scope_enabled
     from app.compilation_scope_review import valid_receipt
 
@@ -599,8 +606,12 @@ def question_pool(data, *, selective=False, all_targets=False):
     derived_options = {cid for g in audit.get("choice_groups", {}).values()
                        if g.get("origin") in {"FORM_capacity_choice", "FORM_receipt_link"}
                        for cid in g.get("options", {})}
+    closed_options = incompatible_option_conditions(data) if not all_targets else set()
+    requested = set(dialogue.get("requested_keys", []))
     for key, item in audit.get("conditions", {}).items():
         receipt = answers.get("condition:" + key)
+        if key in closed_options and "condition:" + key not in requested:
+            continue
         if item["result"] != "unknown" or item.get("validation_errors") or not item.get(
             "form_evidence"
         ) or key in postponed and not all_targets or receipt and receipt.get("applies") is not True:
@@ -1565,7 +1576,11 @@ def unexported_notice(data, written):
     audit, dialogue = data.get("audit") or {}, data.get("dialogue") or {}
     answers, conditions = dialogue.get("answers", {}), audit.get("conditions", {})
     held = set(dialogue.get("held_candidate_ids", []))
-    waiting, deferred, suspended, choosing = {}, {}, [], []
+    waiting, deferred, suspended, choosing, elsewhere = {}, {}, [], [], []
+    from app.compilation_branch_evidence import incompatible_option_conditions
+
+    # Data of an option other than the one settled on: no confirmation is invited for them.
+    closed = incompatible_option_conditions(data)
     for field in audit.get("fields", []):
         cid, keys = field["candidate_id"], field.get("conditions", [])
         alternatives = documented_alternatives(field)
@@ -1583,7 +1598,9 @@ def unexported_notice(data, written):
         # waited for a deferred confirmation and the draft did not say so).
         later = [c for c in keys if answers.get("condition:" + c, {}).get("action") in {
             "SKIP", "UNKNOWN"} and conditions.get(c, {}).get("form_evidence")]
-        if open_keys:
+        if open_keys and set(open_keys) & closed:
+            elsewhere.append(field)
+        elif open_keys:
             waiting.setdefault(open_keys[0], []).append(field)
         elif later:
             deferred.setdefault(later[0], []).append(field)
@@ -1601,6 +1618,9 @@ def unexported_notice(data, written):
               "rinviato la conferma su "
               f"«{short_form_text(conditions[key]['form_evidence']['quote'], 120)}»"
               for key, fields in deferred.items()]
+    if elsewhere:
+        parts.append(f"{len(elsewhere)} dati trovati nelle fonti ({names(elsewhere)}) riguardano "
+                     "un'altra opzione rispetto a quella scelta")
     if choosing:
         parts.append(f"{len(choosing)} dati trovati nelle fonti ({names(choosing)}) aspettano "
                      "la tua scelta tra valori diversi delle fonti")
@@ -2463,6 +2483,11 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                         slots[n]["label"])
                     changed = True
         if changed:
+            if data.get("export_completeness_revision") == 1:
+                # This message's turn is not stored yet: the last one stored is already complete.
+                data["answered_after_turn"] = db.execute(
+                    "SELECT MAX(id) FROM conversation_turns WHERE conversation_id=?",
+                    (row["conversation_id"],)).fetchone()[0]
             from app.compilation_global_sessions import refreshed_audit
             from app.compilation_source_reuse import source_reuse_requested
 

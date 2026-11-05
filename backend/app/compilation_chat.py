@@ -435,6 +435,10 @@ def retain_compilation_question(db, row, state):
     if not isinstance(command, dict) or command.get("session_id") != row["id"]:
         return  # A later conversational answer or another module owns this turn.
     if state.get("engine") == "global":
+        # Real session: each answer was overwritten with the text of the following one.
+        complete = state.get("global_compilation", {}).get("answered_after_turn")
+        if complete is not None and turn["id"] <= complete:
+            return
         if global_message and command.get("action") in {"start", "updated", "resumed"}:
             db.execute("UPDATE conversation_turns SET answer=? WHERE id=?",
                        (global_message, turn["id"]))

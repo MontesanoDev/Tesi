@@ -338,8 +338,13 @@ def validated_audit(raw, layout, project_id, sources, data, folder, *, expected_
                 audit, catalog, data["form_option_scope_revision"])
         from app import compilation_form_clauses
 
-        return compilation_form_clauses.apply(audit, catalog) if (
-            compilation_form_clauses.enabled(data)) else audit
+        if compilation_form_clauses.enabled(data):
+            audit = compilation_form_clauses.apply(audit, catalog)
+        if data.get("export_completeness_revision") == 1:
+            from app.compilation_branch_evidence import release_header_from_options
+
+            audit = release_header_from_options(audit, catalog)
+        return audit
     audit = validate_global_proposal(raw, layout, project_id, sources,
                                      expected_version=expected_version)
     if data.get("generation_revision") == 1 and report.is_file():
@@ -851,7 +856,7 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "omission_recovery_revision", "subject_check_revision",
                          "identifier_type_revision", "role_proof_revision",
                          "conversation_turn_revision", "checkbox_policy_revision",
-                         "dialogue_state_revision"):
+                         "dialogue_state_revision", "export_completeness_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:
@@ -1078,7 +1083,8 @@ async def handle_chat_action(session, decision, expected_version, message):
                                    user_candidate_ids=user_ids, allow_unresolved=True,
                                    allow_empty=empty, user_quote=message))
         return (after["global_compilation"]["dialogue"]["message"],
-                {"session_id": session["id"], "action": "generated"})
+                {"session_id": session["id"], "action": "generated",
+                 "generation_id": after["last_generation"]["id"]})
     return ((session["global_compilation"].get("dialogue") or {}).get("message")
             or "Sto conservando l'analisi. Puoi chiedermi di riprendere la compilazione.",
             {"session_id": session["id"], "action": "clarify"})
@@ -1348,6 +1354,10 @@ def generate_draft(project_id, session_id, request):
         if latest["global_compilation"].get("dialogue"):
             latest["global_compilation"]["dialogue"].update(phase="READY", question=None,
                 message=message)
+            if latest["global_compilation"].get("export_completeness_revision") == 1:
+                # What this file now contains is no longer news: a later resume must not repeat
+                # that the file already exported lacks it.
+                latest["global_compilation"]["dialogue"]["latest_turn"] = None
         sessions.save_state(db, current, latest, "global_draft_generate")
 
     _persist(project_id, state["template_name"], layout.original, draft, report, on_saved=on_saved)

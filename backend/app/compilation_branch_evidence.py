@@ -223,6 +223,123 @@ def other_capacity_branches(data, *, only_valid=False):
     return blocked
 
 
+def _option_anchors(catalog, conditions):
+    """condition -> (box of the capacity option it is anchored on, id of the region's heading)."""
+    boxes = {}
+    for cid, candidate in (catalog.get("candidates") or {}).items():
+        if candidate.get("type") == "checkbox":
+            boxes.setdefault(candidate.get("context_id"), cid)
+    regions, result = {}, {}
+    for key, condition in (conditions or {}).items():
+        box = boxes.get((condition.get("form_evidence") or {}).get("paragraph_id"))
+        if box is None:
+            continue
+        if box not in regions:
+            regions[box] = _capacity_region(catalog, box)
+        if regions[box]:
+            result[key] = (box, regions[box][0]["id"])
+    return result
+
+
+def release_header_from_options(audit, catalog):
+    """A destination above the capacity options cannot depend on one of them.
+
+    Real manual run: the model wrote «the operator is an organization, not a single professional»,
+    anchored it on the option «Libero professionista singolo» and gave it the company header. The
+    question made no sense, the USER's correct «no» excluded the header, and the signatory's office
+    was never derived. It keeps its other conditions; with none left the condition moves onto the
+    destination's own FORM line, so no gate is lost and an accepted branch can answer it
+    (imply_label_receipts). What is inside the region or below it is untouched: those data do
+    depend on their option.
+    """
+    conditions = audit.get("conditions") or {}
+    anchors = _option_anchors(catalog, conditions)
+    if not anchors:
+        return audit
+    candidates = catalog.get("candidates") or {}
+    position = {p["id"]: i for i, p in enumerate(
+        p for block in catalog["blocks"] for p in block["paragraphs"])}
+    report = {"revision": 1, "origin": "BACKEND", "detached": {}, "moved": {}}
+
+    def line(cid):
+        before = (candidates.get(cid, {}).get("slot_context") or {}).get("before")
+        text = re.sub(r"[._…]{2,}|[☐☑☒“”\"]", " ", str(before or ""))
+        return " ".join(text.split()).strip(" ,;:.")
+
+    for key, (_, heading) in anchors.items():
+        condition = conditions[key]
+        above = sorted((f for f in audit.get("fields", []) if key in f.get("conditions", [])
+                        and position.get(candidates.get(f["candidate_id"], {}).get("context_id"),
+                                         position[heading]) < position[heading]),
+                       key=lambda f: position[candidates[f["candidate_id"]]["context_id"]])
+        if not above or condition.get("validation_errors"):
+            continue
+        alone = [f for f in above
+                 if not any(c != key and c not in anchors for c in f["conditions"])]
+        new = None
+        if alone:
+            new = key + "__sopra"
+            label = next((text for f in alone if (text := line(f["candidate_id"]))), None)
+            first = candidates[alone[0]["candidate_id"]]["context_id"]
+            derived = deepcopy(condition)
+            derived.pop("form_clause", None)
+            derived.update(
+                aspect="participation", derived_from=key,
+                form_evidence={"paragraph_id": first, "quote": label or (
+                    condition.get("form_evidence") or {}).get("quote")},
+                reason="Dati del modulo che precedono le opzioni di qualità.",
+                applies_to=sorted(f["candidate_id"] for f in alone),
+                scope=[{"kind": "candidate", "id": f["candidate_id"]} for f in alone])
+            conditions[new] = derived
+            report["moved"][key] = sorted(f["candidate_id"] for f in alone)
+        moved = {f["candidate_id"] for f in alone}
+        for field in above:
+            checks = field.get("condition_checks") or {}
+            if field["candidate_id"] in moved:
+                field["conditions"] = [new if c == key else c for c in field["conditions"]]
+                if key in checks:
+                    checks[new] = checks.pop(key)
+            else:
+                field["conditions"] = [c for c in field["conditions"] if c != key]
+                checks.pop(key, None)
+                report["detached"].setdefault(key, []).append(field["candidate_id"])
+        gone = {f["candidate_id"] for f in above}
+        if "applies_to" in condition:
+            condition["applies_to"] = [c for c in condition["applies_to"] if c not in gone]
+        if isinstance(condition.get("scope"), list):
+            condition["scope"] = [s for s in condition["scope"]
+                                  if not isinstance(s, dict) or s.get("id") not in gone]
+    if report["detached"] or report["moved"]:
+        audit["capacity_anchor"] = report
+    return audit
+
+
+def incompatible_option_conditions(data):
+    """Conditions on another option of a region where the USER already settled on one.
+
+    Only the question goes: their data stay empty, and asking again what the USER has just excluded
+    is noise (real: «si applica Libero professionista singolo?» after option 4). It returns as soon
+    as that decision is withdrawn or stops being valid; an explicit instruction still reaches it.
+    """
+    if data.get("export_completeness_revision") != 1:
+        return set()
+    audit = data.get("audit") or {}
+    answers = (data.get("dialogue") or {}).get("answers", {})
+    anchors = _option_anchors(data.get("catalog") or {}, audit.get("conditions"))
+    settled = {box for key, (box, _) in anchors.items()
+               if answers.get("condition:" + key, {}).get("applies") is True}
+    for group_id, group in audit.get("choice_groups", {}).items():
+        answer = answers.get("choice:" + group_id, {})
+        options, selected = list(group.get("options", {})), answer.get("selected_options") or []
+        if (group.get("origin") == "FORM_capacity_choice" and answer.get("action") == "VALUE"
+                and len(selected) == 1 and 1 <= selected[0] <= len(options)
+                and capacity_choice_valid(data, options[selected[0] - 1])):
+            settled.add(options[selected[0] - 1])
+    headings = {heading for box, heading in anchors.values() if box in settled}
+    return {key for key, (box, heading) in anchors.items()
+            if heading in headings and box not in settled}
+
+
 def capacity_choice_valid(data, cid, key=None):
     """The exact USER choice of this option, under a condition that made it applicable."""
     from app.compilation_scope_review import valid_receipt

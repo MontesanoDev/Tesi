@@ -93,6 +93,7 @@ export type CompilationFieldStatus = 'PENDING' | 'RESOLVED' | 'MISSING' | 'AMBIG
 export interface CompilationChatAction {
   session_id: string
   action: 'start' | 'updated' | 'clarify' | 'generated' | 'deferred' | 'paused' | 'resumed'
+  generation_id?: string
 }
 
 export interface CompilationChatState {
