@@ -1,21 +1,5 @@
 # Stato di Mapi RAG
 
-## Candidata checkbox testuali verificata offline — 26 ottobre 2026
-
-Snapshot precedente `1785357`, ripristino del codice e dei dati verificato.
-Fix isolato nel branch `fix/2026-10-26-checkbox-testuali`; profilo ordinario e
-sessioni storiche invariati. Marcatori ASCII iniziali supportati solo nel profilo
-esplicito `checkbox-testuali-2026-10-26`, con scelta USER e gate esistenti.
-
-- 117 test mirati PASS; suite 3980 PASS + 8 test storici inizialmente saltati,
-  poi recuperati e tutti PASS; Ruff PASS.
-- Replay: errori 0/25; positivi 243/245 e 236/240 con guardia simulata, invariati.
-  Le vecchie ricevute non sono automaticamente trasferibili al catalogo ampliato.
-- Verificati DOCX e PDF selezionato/non selezionato del FORM sintetico storico.
-- Nessuna inferenza, adozione o pubblicazione automatica.
-- Rapporto: `docs/checkbox-testuali-2026-10-26.md`.
-
-
 ## Protezione dei rami FORM adottata nell'app e prova E2E reale — 25 ottobre 2026
 
 **Punto di ripresa: fermarsi.** Decisione dell'utente («fai tutti e 3»). Rapporto:

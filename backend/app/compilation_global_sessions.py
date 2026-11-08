@@ -38,12 +38,10 @@ TIMEOUT_SECONDS = 300
 def initial_state(layout):
     from app.compilation_profile import new_session_flags
 
-    flags = new_session_flags()
-    layout.text_checkbox_revision = flags.get("text_checkbox_revision", 0)
     catalog = build_compilation_catalog(layout)
     # One canonical creation profile for new sessions (compilation_profile.py).
     # Existing sessions keep their stored flags; nothing is upgraded at runtime.
-    return {"phase": "PENDING", **flags,
+    return {"phase": "PENDING", **new_session_flags(),
             "candidate_count": len(catalog["candidates"]),
             "catalog": catalog,
             "writable_ids": sorted(catalog["candidates"]), "paused": False,
