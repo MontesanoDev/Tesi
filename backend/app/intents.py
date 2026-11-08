@@ -420,6 +420,12 @@ al massimo quattro in totale. Gli slot esistono solo per le domande attive: non 
 Se l'utente sceglie un'opzione di un target choice, anche col suo numero, usa VALUE con
 selected_options su quel target e in value la sua frase letterale, non l'etichetta del modulo:
 confermare la condizione del ramo non seleziona alcuna casella.
+user_quote è sempre copiato parola per parola dal messaggio corrente, mai dalla cronologia.
+Se l'utente chiede di usare i dati documentati di una persona o di una sezione senza scriverli
+(«metti i dati di X nel sottoscritto», «prendili dalle fonti»), i valori non sono nel messaggio:
+non usare VALUE, usa CONDITION_TRUE sul target applicability di quella sezione, riconoscibile da
+label, context e current_values, con la citazione letterale. Se la sezione non è identificabile o
+più sezioni sono possibili, non creare edits: usa intent=explain e chiedi quale sezione intende.
 SKIP rinvia la destinazione, REFUSE ritira l'uso del dato; REOPEN richiede di discuterla
 nuovamente, senza confermarla né scrivere. Per condizioni servono CONDITION_TRUE/FALSE
 espliciti e pertinenti; per checkbox VALUE e selected_options, mai consenso implicito.
@@ -852,10 +858,17 @@ async def plan_chat_turn(
                     # Discard any anticipatory answer; still validate every query,
                     # target, identifier and all other schema constraints normally.
                     data = {**data, "answer": ""}
+                routed_quotes = []
                 if isinstance(data, dict) and isinstance(data.get("replies"), list):
-                    from app.compilation_conversation import literal_choice_values
+                    from app.compilation_conversation import literal_choice_values, literal_quotes
 
-                    data = {**data, "replies": literal_choice_values(data["replies"], compilation)}
+                    replies, invented = literal_quotes(literal_choice_values(
+                        data["replies"], compilation, question), compilation, question)
+                    if invented and not attempt:
+                        raise ValueError("Citazione assente dal messaggio corrente")
+                    data = {**data, "replies": replies}
+                    routed_quotes = [str(r["user_quote"]) for r in replies if isinstance(r, dict)
+                                     and r.get("user_quote")][:8]
                 proposed = canonical_turn_plan(parse_turn_plan(data, allowed_slots), compilation)
                 decision = bind_turn_plan(proposed, compilation, question)
             except (ValueError, RecursionError) as exc:
@@ -890,6 +903,8 @@ async def plan_chat_turn(
                            "replies per i soli slot attivi ed edits per il resto. "
                            if mixed_turns(original_compilation) else
                            "Non combinare answer_fields con edits. ")
+                        + "Ogni user_quote è copiato parola per parola dal messaggio corrente; un "
+                        "dato che il messaggio non contiene non è un VALUE. "
                         + "Le modifiche libere restano disponibili nel retry."
                         " Un'anagrafica multipla richiede una sola edit al nome, value letterale "
                         "e user_quote con la frase anagrafica completa; "
@@ -978,7 +993,8 @@ async def plan_chat_turn(
                         "scope_verifications": verification.scope_verifications,
                         "unaccepted_reasons": verification.reasons,
                         "value_extractions": extractions, "addressed_keys": addressed_keys,
-                        "addressed_from": addressed_from, "ignored_quotes": ignored_quotes})
+                        "addressed_from": addressed_from, "ignored_quotes": ignored_quotes,
+                        "routed_quotes": routed_quotes})
             total = sum(token_counts) if all(n is not None for n in token_counts) else None
             logger.info("Chat routing intent=%s slots=%d attempts=%d",
                         proposed.intent, len(allowed_slots), attempt + 1)

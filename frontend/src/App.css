@@ -663,6 +663,11 @@
 .assistant-attachment { margin-top: 14px; }
 .compilation-state { margin-top: 12px; color: var(--text-muted); font-size: 0.92em; }
 .compilation-state p { margin: 4px 0; }
+.compilation-draft-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin: 0 0 10px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text-muted); font-size: 0.875rem; }
+.compilation-draft-bar p { margin: 2px 0; }
+.compilation-draft-bar__actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.compilation-draft-bar details { flex-basis: 100%; }
+.compilation-draft-bar details button { display: block; margin-top: 6px; }
 @keyframes assistant-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) {
   .assistant-activity svg { animation: none; }

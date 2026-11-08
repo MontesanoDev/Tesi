@@ -509,6 +509,9 @@ def continuation_receipt(dialogue, *, newly_held=False):
             f"Non ho usato la risposta su «{label}»{why}. Te la richiedo: "
             f"{CLARIFY.get(refused.get('kind'), 'precisa la risposta')}, oppure rinvia; "
             "nulla è stato scritto.")
+    if accepted and latest.get("after_export"):
+        parts.append("Il file già esportato resta com'è: per includere queste modifiche chiedimi "
+                     "una nuova bozza.")
     if latest.get("ignored_quotes"):
         shown = "; ".join(f"«{readable(q, 120)}»" for q in latest["ignored_quotes"])
         parts.append(f"Non ho registrato questa parte del messaggio: {shown}. Se ti serve, "
@@ -660,6 +663,7 @@ def question_pool(data, *, selective=False, all_targets=False):
         pool.append(entry)
         if clause:
             by_paragraph[clause] = entry
+    pool = conversation.merge_label_conditions(data, pool)
     pool.sort(key=lambda q: -q["impact"])
     held_choices = {r["resolution"]["key"] for cid, r in dialogue.get("hold_records", {}).items()
                     if cid in set(dialogue.get("held_candidate_ids", []))
@@ -2164,7 +2168,10 @@ def condition_receipts(data, slot, record, reply):
     from app.compilation_scope_review import proof, target
 
     receipts = {slot["key"]: record}
+    implied = set(slot.get("implied_condition_ids", []))
     for other in slot.get("condition_ids", [])[1:]:
+        if other in implied and record.get("applies") is not True:
+            continue  # A no or a deferral on the branch says nothing about the label beside it.
         copy = {**deepcopy(record), "condition_group": slot["key"]}
         if "scope_validation" in record:
             copy["scope_validation"] = proof(
@@ -2175,7 +2182,7 @@ def condition_receipts(data, slot, record, reply):
 
 def apply_replies(project_id, session_id, version, replies, message, unaccepted_slots=(),
                   scope_verifications=None, unaccepted_reasons=None, value_extractions=(),
-                  addressed_keys=(), addressed_from=1, ignored_quotes=()):
+                  addressed_keys=(), addressed_from=1, ignored_quotes=(), earlier_turn=None):
     from app.compilation_chat import (
         contains_span,
         has_user_alternatives,
@@ -2377,6 +2384,13 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
              "reason": refused.get(n) or REASON_TEXT.get((unaccepted_reasons or {}).get(n), "")}
             for n in sorted(set(errors) | set(unaccepted_slots)) if n in slots],
             **({"ignored_quotes": list(ignored_quotes)} if ignored_quotes else {})}
+        if data.get("dialogue_state_revision") == 1:
+            if state.get("last_generation"):
+                dialogue["latest_turn"]["after_export"] = True
+            if earlier_turn:  # One message, two routing passes: the USER sees one receipt.
+                latest = dialogue["latest_turn"]
+                latest["accepted"] = [*earlier_turn.get("accepted", []), *latest["accepted"]]
+                latest["unaccepted"] = [*earlier_turn.get("unaccepted", []), *latest["unaccepted"]]
         if conversation.enabled(data):
             # A free router guessed an unrelated destination: the USER did not
             # refuse that field or answer it ambiguously. Retain the rejection for

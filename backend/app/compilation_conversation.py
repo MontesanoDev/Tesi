@@ -9,6 +9,12 @@ from copy import deepcopy
 
 MAX_TURN_PARTS = 4
 MIN_BRANCH_UNLOCKS = 3
+BARE_OPTION = re.compile(r"\W*(?:(?:l[ao]\s+)?(?:opzione|numero|n\.?)|l[ao])?\s*(\d{1,2})\W*", re.I)
+SENTENCE = re.compile(r"(?<=[.!?;])\s+(?=[A-ZÀ-Ý«\"(\d])|\n+")
+# A label naming a capacity is a branch of the FORM, never a mere label of the participant.
+CAPACITY_WORD = re.compile(r"\b(?:rappresentant\w*|professionist\w*|prestator\w*|societ\w*|studio|"
+                           r"consorzi\w*|raggruppament\w*|mandatari\w*|mandant\w*|capogruppo|"
+                           r"sottoscritt\w*|firmatari\w*|procurator\w*|associat\w*)\b", re.I)
 
 
 def enabled(data):
@@ -146,12 +152,21 @@ def without_repeated_edits(replies, edits):
         and (r.get("value"), r.get("user_quote")) in given)]
 
 
-def literal_choice_values(replies, compilation):
+def state_revision(compilation):
+    return bool(compilation and (compilation.get("conversation_data") or {}).get(
+        "dialogue_state_revision") == 1)
+
+
+def literal_choice_values(replies, compilation, message=None):
     """A choice is its option numbers, which the guard checks against the user's sentence.
 
     The value of a choice reply is that sentence, as the router contract says. Real runs copied the
     FORM label there and a correct, verified choice was refused as not grounded. Any span of the
     quote already passed that check, so nothing about the choice itself is taken on trust here.
+
+    A message that is only the number of the chosen option is itself the quote. Real manual turn:
+    «4» after the numbered question; the model quoted the previous message, the guard agreed on the
+    option and the literal check answered «not in the USER message». Another number stays refused.
     """
     from app.compilation_chat import contains_span
 
@@ -159,12 +174,133 @@ def literal_choice_values(replies, compilation):
         return replies
     kinds = {q.get("slot"): q.get("kind")
              for q in (compilation.get("question") or {}).get("slots", [])}
-    return [{**r, "value": r["user_quote"]} if (
-        isinstance(r, dict) and kinds.get(r.get("slot")) == "choice"
-        and r.get("action") == "VALUE" and r.get("selected_options") is not None
-        and r.get("user_quote")
-        and not (r.get("value") and contains_span(r["user_quote"], r["value"]))) else r
-        for r in replies]
+    bare = BARE_OPTION.fullmatch(message or "") if state_revision(compilation) else None
+    result = []
+    for r in replies:
+        chosen = (isinstance(r, dict) and kinds.get(r.get("slot")) == "choice"
+                  and r.get("action") == "VALUE" and r.get("selected_options") is not None)
+        if chosen and bare and r["selected_options"] == [int(bare[1])]:
+            r = {**r, "user_quote": message.strip(), "value": message.strip()}
+        elif chosen and r.get("user_quote") and not (
+                r.get("value") and contains_span(r["user_quote"], r["value"])):
+            r = {**r, "value": r["user_quote"]}
+        result.append(r)
+    return result
+
+
+def literal_quotes(replies, compilation, message):
+    """(replies, the ones quoting what the message does not say).
+
+    A value literally in the message is quoted with its sentence: real manual turn, «puoi mettere
+    …» quoted as «metti …» and a verified name was refused. A quote with no such value goes back to
+    the router: only the current message authorizes anything, never the history or the sources.
+    """
+    from app.compilation_chat import contains_span
+
+    if not state_revision(compilation):
+        return replies, []
+    result, invented = [], []
+    for r in replies:
+        quote = r.get("user_quote") if isinstance(r, dict) else None
+        if not quote or contains_span(message, quote):
+            result.append(r)
+            continue
+        value = r.get("value")
+        sentence = next((s for s in sentences(message) if value and contains_span(s, value)), None)
+        if r.get("action") == "VALUE" and sentence:
+            result.append({**r, "user_quote": sentence})
+            continue
+        result.append(r)
+        invented.append(r)
+    return result, invented
+
+
+def sentences(message):
+    return [s.strip() for s in SENTENCE.split(message or "") if s and s.strip()]
+
+
+def unrouted_sentences(message, quotes):
+    """Sentences of the message no reply quoted: what a turn with many intents may have dropped."""
+    from app.compilation_chat import contains_span
+
+    rest = []
+    for sentence in sentences(message):
+        if len(sentence.split()) < 3 and not re.search(r"\d", sentence):
+            continue  # «Grazie.», «Ok.»: nothing to route.
+        if not any(q and (contains_span(sentence, q) or contains_span(q, sentence))
+                   for q in quotes):
+            rest.append(sentence)
+    return rest
+
+
+def _label_only(item, governed, candidates):
+    """The condition's FORM quote is the text right before a slot it governs: no clause at all."""
+    def clean(text):
+        text = re.sub(r"\[\[[^\]]*\]\]|[._…]{2,}|[☐☑☒“”\"]", " ", str(text or ""))
+        return " ".join(text.casefold().split()).strip(" ,;:.")
+
+    quote = clean((item.get("form_evidence") or {}).get("quote"))
+    if not quote or CAPACITY_WORD.search(quote):
+        return False
+    return any(before and (quote == before or (
+        quote.startswith(before + " ") and len(quote) <= len(before) + 30))
+        for before in (clean((candidates.get(c, {}).get("slot_context") or {}).get("before"))
+                       for c in governed))
+
+
+def merge_label_conditions(data, pool):
+    """A label asked as a condition goes under the branch about the same company, one question.
+
+    Real manual run: «dell'operatore economico» held the company's 11 header fields, though the USER
+    had just confirmed that very company in the branch, whose fields already held the same data. The
+    reply guard sees every destination together and each condition keeps its own receipt; a label
+    naming a capacity (a real alternative of the FORM) is never merged, nor is a negative answer
+    extended. With no such branch open the label is still asked on its own.
+    """
+    if data.get("dialogue_state_revision") != 1:
+        return pool
+    audit = data.get("audit") or {}
+    facts = audit.get("facts") or {}
+    candidates = (data.get("catalog") or {}).get("candidates") or {}
+    fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
+
+    def subjects(q):
+        found = set()
+        for cid in q.get("field_ids", []):
+            fact = facts.get((fields.get(cid, {}).get("proposal") or {}).get("fact_id"), {})
+            if fact.get("entity") == "company" and fact.get("subject"):
+                found.add(" ".join(str(fact["subject"]).casefold().split()))
+        return found
+
+    def plain(q):
+        return (q.get("kind") == "applicability" and not q.get("authorization")
+                and not q.get("extension") and not q.get("stale_receipt"))
+
+    labels = []
+    for q in pool:
+        ids = q.get("condition_ids") or []
+        item = audit.get("conditions", {}).get(ids[0], {}) if len(ids) == 1 else {}
+        if (plain(q) and item.get("aspect") in {"participation", "identity"}
+                and len(subjects(q)) == 1
+                and _label_only(item, q.get("field_ids", []), candidates)):
+            labels.append(q)
+    merged = []
+    for label in labels:
+        hosts = [q for q in pool if q is not label and q not in labels and plain(q)
+                 and subjects(label) <= subjects(q)]
+        if not hosts:
+            continue
+        host = max(hosts, key=lambda q: q.get("documented", 0))
+        host["condition_ids"] = [*host["condition_ids"], *label["condition_ids"]]
+        host["implied_condition_ids"] = [*host.get("implied_condition_ids", []),
+                                         *label["condition_ids"]]
+        host["field_ids"] = list(dict.fromkeys(host["field_ids"] + label["field_ids"]))
+        host["impact"] = len(host["field_ids"])
+        host["documented"] = host.get("documented", 0) + label.get("documented", 0)
+        host["affected_fields"] = list(dict.fromkeys(
+            host.get("affected_fields", []) + label.get("affected_fields", [])))[:8]
+        merged.append(label)
+    return [q for q in pool if not any(q is m for m in merged)]
 
 
 def fit_turn_parts(replies, edits):
