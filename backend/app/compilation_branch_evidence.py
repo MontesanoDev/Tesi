@@ -191,12 +191,13 @@ def _capacity_trigger(data, key, condition, receipt):
     return matches[0], region
 
 
-def other_capacity_branches(data):
+def other_capacity_branches(data, *, only_valid=False):
     """Data of another FORM capacity option, once the USER explicitly chose one.
 
     Real dialogue: the scripted USER also confirmed the consortium branch, whose company data the
     narrator held. The later choice of the fourth option released them too, on another destination
     of the same company. A choice settles its own branch; changing it reopens the other.
+    With `only_valid`, only for a choice that still verifies (no question is dropped otherwise).
     """
     audit, blocked = data.get("audit") or {}, set()
     answers = (data.get("dialogue") or {}).get("answers", {})
@@ -204,11 +205,17 @@ def other_capacity_branches(data):
         answer = answers.get("choice:" + group_id, {})
         options, selected = list(group.get("options", {})), answer.get("selected_options") or []
         if (group.get("origin") != "FORM_capacity_choice" or answer.get("action") != "VALUE"
-                or len(selected) != 1 or not 1 <= selected[0] <= len(options)):
+                or len(selected) != 1 or not 1 <= selected[0] <= len(options)
+                or only_valid and not capacity_choice_valid(data, options[selected[0] - 1])):
             continue
         applicable = group.get("applicable", {})
         own = set(applicable.get(options[selected[0] - 1], []))
         others = {c for keys in applicable.values() for c in keys} - own
+        if only_valid:  # `applicable` lists accepted conditions; a branch nobody answered counts.
+            of_option = {f["candidate_id"]: f.get("conditions", [])
+                         for f in audit.get("fields", [])}
+            own |= set(of_option.get(options[selected[0] - 1], []))
+            others |= {c for o in options for c in of_option.get(o, [])} - own
         if own:
             blocked |= {f["candidate_id"] for f in audit.get("fields", [])
                         if set(f.get("conditions", [])) & others

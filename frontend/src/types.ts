@@ -138,7 +138,11 @@ export interface CompilationSessionSummary {
     user_provided: number
   }
   chat?: CompilationChatState
-  last_generation: (DocumentCompilationSummary & { session_version: number }) | null
+  last_generation: (DocumentCompilationSummary & {
+    session_version: number
+    changes_since_export?: boolean
+  }) | null
+  draft_history?: { id: string, created_at: string, session_version: number }[]
 }
 
 export interface CompilationSourceEvidence extends Evidence {

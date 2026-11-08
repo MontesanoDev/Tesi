@@ -5,6 +5,7 @@ import logging
 import os
 from contextlib import asynccontextmanager
 from dataclasses import replace
+from functools import partial
 from pathlib import Path
 from shutil import rmtree
 from typing import Annotated, Literal
@@ -859,6 +860,10 @@ async def _project_answer(project_id: str, payload: QuestionRequest) -> dict:
                         from app.compilation_global_sessions import answer_then_finish
 
                         handler = answer_then_finish
+                    elif (compilation_session or {}).get("engine") == "global":
+                        from app.compilation_global_sessions import answer_with_rest
+
+                        handler = partial(answer_with_rest, history=history)
                     else:
                         handler = handle_group_decision
                     text, command = await handler(
