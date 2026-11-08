@@ -1,0 +1,38 @@
+{
+  "human_visual_pages": 7,
+  "all_DOCX_XML_positions_checked": 40,
+  "new_PDFs_rendered": 36,
+  "historical_PDFs_rendered": 4,
+  "original_PDFs_rendered": 4,
+  "human_review_not_exhaustive_all_pages": true,
+  "samples": [
+    {
+      "path": "history-latest/catanzaro/render/page-01.png",
+      "verdict": "Indirizzo completo visibile nella cella; estrazione testuale interleava la colonna etichetta."
+    },
+    {
+      "path": "runs/catanzaro/B0/rep-3/final/render/safety-page-02.png",
+      "verdict": "Sede operativa visibile ma scritta nel ramo non applicabile; checkbox non selezionate."
+    },
+    {
+      "path": "runs/catanzaro/E1/rep-3/final/render/safety-page-02.png",
+      "verdict": "Stessa scrittura indebita della sede operativa; valori fiscali e telefono leggibili, checkbox vuote."
+    },
+    {
+      "path": "runs/minervino/B0/rep-1/final/render/page-01.png",
+      "verdict": "18 valori leggibili; provincia sede vuota coerente con rifiuto della prova FORM; nessuna selezione societaria automatica."
+    },
+    {
+      "path": "runs/minervino/E1/rep-3/final/render/page-10.png",
+      "verdict": "Firma e luogo/data vuoti e prestampato preservato; pagina finale ampia, etichetta firma presente, non sola linea isolata."
+    },
+    {
+      "path": "runs/trapani/E1/rep-1/final/render/page-1.png",
+      "verdict": "Otto generalità leggibili; aLecce senza spazio è difetto cosmetico conservato; sezioni alternative vuote."
+    },
+    {
+      "path": "runs/bella/E2-A/rep-2/final/render/page-1.png",
+      "verdict": "Otto valori leggibili; 1982in qualità senza spazio e dati/etichette contigui sono difetti cosmetici; checkbox vuote."
+    }
+  ]
+}

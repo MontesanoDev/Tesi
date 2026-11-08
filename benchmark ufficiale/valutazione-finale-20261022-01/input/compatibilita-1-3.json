@@ -1,0 +1,257 @@
+{
+ "minervino": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/minervino/FORM-originale.docx",
+  "runtime_source": "storico",
+  "package_and_parser": "OK",
+  "encrypted": false,
+  "write_protection_enforced": false,
+  "candidates": 267,
+  "nonempty_paragraphs": 172,
+  "text_chars": 24852,
+  "global_input": {
+   "ok": true,
+   "chars": 202196
+  },
+  "blank_paragraphs_without_candidates": [],
+  "conditions_1_3": {
+   "1_package_parser_not_protected": true,
+   "2_catalog_limits_and_global_input": true,
+   "3_text_extractable": true
+  }
+ },
+ "cesano": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/cesano/FORM-originale.docx",
+  "runtime_source": "storico",
+  "package_and_parser": "OK",
+  "encrypted": false,
+  "write_protection_enforced": false,
+  "candidates": 88,
+  "nonempty_paragraphs": 88,
+  "text_chars": 4202,
+  "global_input": {
+   "ok": true,
+   "chars": 114870
+  },
+  "blank_paragraphs_without_candidates": [],
+  "conditions_1_3": {
+   "1_package_parser_not_protected": true,
+   "2_catalog_limits_and_global_input": true,
+   "3_text_extractable": true
+  }
+ },
+ "craa": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/craa/FORM-originale.docx",
+  "runtime_source": "storico",
+  "package_and_parser": "OK",
+  "encrypted": false,
+  "write_protection_enforced": false,
+  "candidates": 51,
+  "nonempty_paragraphs": 97,
+  "text_chars": 14273,
+  "global_input": {
+   "ok": true,
+   "chars": 106302
+  },
+  "blank_paragraphs_without_candidates": [],
+  "conditions_1_3": {
+   "1_package_parser_not_protected": true,
+   "2_catalog_limits_and_global_input": true,
+   "3_text_extractable": true
+  }
+ },
+ "catanzaro": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/catanzaro/FORM-originale.docx",
+  "runtime_source": "storico",
+  "package_and_parser": "OK",
+  "encrypted": false,
+  "write_protection_enforced": false,
+  "candidates": 307,
+  "nonempty_paragraphs": 324,
+  "text_chars": 20146,
+  "global_input": {
+   "ok": true,
+   "chars": 264473
+  },
+  "blank_paragraphs_without_candidates": [],
+  "conditions_1_3": {
+   "1_package_parser_not_protected": true,
+   "2_catalog_limits_and_global_input": true,
+   "3_text_extractable": true
+  }
+ },
+ "bella": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/bella/FORM-originale.docx",
+  "runtime_source": "storico",
+  "package_and_parser": "OK",
+  "encrypted": false,
+  "write_protection_enforced": false,
+  "candidates": 67,
+  "nonempty_paragraphs": 66,
+  "text_chars": 8259,
+  "global_input": {
+   "ok": true,
+   "chars": 105725
+  },
+  "blank_paragraphs_without_candidates": [],
+  "conditions_1_3": {
+   "1_package_parser_not_protected": true,
+   "2_catalog_limits_and_global_input": true,
+   "3_text_extractable": true
+  }
+ },
+ "trapani": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/trapani/FORM-originale.docx",
+  "runtime_source": "storico",
+  "package_and_parser": "OK",
+  "encrypted": false,
+  "write_protection_enforced": false,
+  "candidates": 115,
+  "nonempty_paragraphs": 66,
+  "text_chars": 10639,
+  "global_input": {
+   "ok": true,
+   "chars": 121378
+  },
+  "blank_paragraphs_without_candidates": [
+   {
+    "id": "paragraph:173",
+    "text": "\t\t\t\t\t\t\t\tIL DICHIARANTE"
+   },
+   {
+    "id": "paragraph:176",
+    "text": "\t\t\t\t\t\t\t\t(timbro e firma digitale)"
+   }
+  ],
+  "conditions_1_3": {
+   "1_package_parser_not_protected": true,
+   "2_catalog_limits_and_global_input": true,
+   "3_text_extractable": true
+  }
+ },
+ "soresa2023": {
+  "path": "benchmark ufficiale/casuali-v12-20261019-01/pool/soresa2023.docx",
+  "runtime_source": "nuova-source",
+  "package_and_parser": "OK",
+  "encrypted": false,
+  "write_protection_enforced": false,
+  "candidates": 81,
+  "nonempty_paragraphs": 125,
+  "text_chars": 13526,
+  "global_input": {
+   "ok": true,
+   "chars": 96548
+  },
+  "blank_paragraphs_without_candidates": [
+   {
+    "id": "paragraph:141",
+    "text": "1. \t"
+   },
+   {
+    "id": "paragraph:143",
+    "text": "2. \t"
+   },
+   {
+    "id": "paragraph:145",
+    "text": "3. \t"
+   }
+  ],
+  "conditions_1_3": {
+   "1_package_parser_not_protected": true,
+   "2_catalog_limits_and_global_input": true,
+   "3_text_extractable": true
+  }
+ },
+ "cannara": {
+  "path": "benchmark ufficiale/casuali-v12-20261019-01/pool/cannara.docx",
+  "runtime_source": "nuova-source",
+  "package_and_parser": "OK",
+  "encrypted": false,
+  "write_protection_enforced": false,
+  "candidates": 49,
+  "nonempty_paragraphs": 212,
+  "text_chars": 25293,
+  "global_input": {
+   "ok": true,
+   "chars": 99934
+  },
+  "blank_paragraphs_without_candidates": [
+   {
+    "id": "paragraph:11",
+    "text": " \tdell’impresa/operatore economico\t \t\tcon sede legale in\t\t(\t)\tCF/P.IVA\t\ttelefono"
+   },
+   {
+    "id": "paragraph:12",
+    "text": " \tfax\tP.E.C.  \t"
+   },
+   {
+    "id": "paragraph:39",
+    "text": "Percentuale\t%\t\tdi esecuzione\t\tdella"
+   },
+   {
+    "id": "paragraph:41",
+    "text": "(Capogruppo)  \t"
+   },
+   {
+    "id": "paragraph:44",
+    "text": "(Mandante/altro)  \t"
+   },
+   {
+    "id": "paragraph:47",
+    "text": "(Mandante/altro)  \t"
+   },
+   {
+    "id": "paragraph:50",
+    "text": "(Mandante/altro)  \t"
+   },
+   {
+    "id": "paragraph:73",
+    "text": "-\tdi essere   nato   a    \t"
+   },
+   {
+    "id": "paragraph:74",
+    "text": "\n(Prov.\t)   il    \t"
+   },
+   {
+    "id": "paragraph:87",
+    "text": "di non essere tenuto al suddetto adempimento e di essere iscritta nell’Albo  \t"
+   },
+   {
+    "id": "paragraph:90",
+    "text": "INPS: sede di\tmatricola n.  \t INAIL: sede di\t\tmatricola n.  \t\t  Cassa Edile:  \t\t\t\t\t                                                                                                                               Altro:  \t\t\t\t"
+   },
+   {
+    "id": "paragraph:174",
+    "text": "rilasciata\tda\tSocietà\tdi\tattestazione\tSOA\t \t"
+   },
+   {
+    "id": "paragraph:246",
+    "text": "sede\tin\t \t"
+   },
+   {
+    "id": "paragraph:276",
+    "text": "in    \t"
+   },
+   {
+    "id": "paragraph:283",
+    "text": "che tutte le comunicazioni vanno inviate, come segue: e-mail \t"
+   },
+   {
+    "id": "paragraph:284",
+    "text": "PEC  \t"
+   },
+   {
+    "id": "paragraph:285",
+    "text": "tel.\t\t Referente  \t\t"
+   },
+   {
+    "id": "paragraph:289",
+    "text": " \t,  \t"
+   }
+  ],
+  "conditions_1_3": {
+   "1_package_parser_not_protected": true,
+   "2_catalog_limits_and_global_input": true,
+   "3_text_extractable": true
+  }
+ }
+}

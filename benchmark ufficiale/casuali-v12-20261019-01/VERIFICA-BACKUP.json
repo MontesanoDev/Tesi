@@ -1,0 +1,40 @@
+{
+  "extracted_manifest_files_verified": 794,
+  "archive_sha256_verified": true,
+  "archived_code_used": true,
+  "network_forbidden": true,
+  "private_database_not_used": true,
+  "provider_calls": 0,
+  "results": [
+    {
+      "slug": "craa",
+      "fresh_audit_identical": true,
+      "text_values": 9,
+      "checkboxes": {},
+      "effects": [],
+      "docx_identical": true,
+      "sha256": "006f576fc9f3c0e1534a1253f008e8a1d0022ed1e6f8fe80f74e60a8b2d30159",
+      "provider_calls": 0
+    },
+    {
+      "slug": "bella",
+      "fresh_audit_identical": true,
+      "text_values": 4,
+      "checkboxes": {},
+      "effects": [],
+      "docx_identical": true,
+      "sha256": "781f7db27db8d3fda3c04f4da056552213659811347eb9788a0867d899183b14",
+      "provider_calls": 0
+    },
+    {
+      "slug": "cesano",
+      "fresh_audit_identical": true,
+      "text_values": 0,
+      "checkboxes": {},
+      "effects": [],
+      "docx_identical": true,
+      "sha256": "409170f436884a9cf5a7c5a4631a2c9505321b4142b61b56fa637c4c11b10a34",
+      "provider_calls": 0
+    }
+  ]
+}

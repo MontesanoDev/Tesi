@@ -1,0 +1,63 @@
+{
+  "experiment": "craa-model-reason-20261020-01",
+  "date": "2026-10-20",
+  "HEAD": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "controlled_variable": "clarification.reason length only; 225 vs 42 characters",
+  "before": {
+    "original": "REJECTED",
+    "reason_only_counterfactual": "GROUNDED_REQUEST",
+    "accepted_USER_receipts_lost": 0
+  },
+  "after": {
+    "original": "GROUNDED_REQUEST",
+    "all_original_reason_characters_preserved": 225,
+    "warning_observable": true,
+    "structural_checks_unchanged": true,
+    "automatic_fact_or_checkbox_acceptances": 0
+  },
+  "persisted_stages_checked": 5,
+  "saved_narrator_plans_replayed": 2,
+  "name_already_present_in_USER_messages": 3,
+  "new_actual_narrator_question_proven": false,
+  "new_name_write_proven": false,
+  "red": {
+    "failed": 6,
+    "passed": 20
+  },
+  "new_permanent_tests": 28,
+  "focused": {
+    "passed": 101,
+    "seconds": 14.32
+  },
+  "backend": {
+    "passed": 2905,
+    "seconds": 225.72
+  },
+  "ruff": "PASS",
+  "regression": {
+    "DOCX_identical": 23,
+    "audits_identical": 21,
+    "audits_with_expected_clarification_only_delta": 2,
+    "minervino_writes": 61,
+    "historical_CRAA_writes": 9,
+    "latest_real_CRAA_writes": 7,
+    "SOURCE_facts_conditions_bindings_choices_unchanged": true
+  },
+  "new_LLM_calls": 0,
+  "new_LLM_tokens": 0,
+  "new_provider_cost_USD": 0,
+  "new_real_UI_test": false,
+  "frontend_tests_repeated": false,
+  "PDF_rendering_repeated": false,
+  "limits": [
+    "Saved narrator plans still do not select recovered clarification",
+    "Effect on new narrator inference not measured",
+    "Signer name omission not fixed",
+    "Invisible CCIAA PDF values not fixed",
+    "Compound field coverage not changed",
+    "Redundant questions not changed"
+  ],
+  "baseline_adopted": false,
+  "no_commit_push": true,
+  "report": "docs/craa-motivazione-model-2026-10-20.md"
+}

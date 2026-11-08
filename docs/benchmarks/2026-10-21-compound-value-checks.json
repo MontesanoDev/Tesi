@@ -1,0 +1,40 @@
+{
+  "software_and_deterministic_regression_status": "PASS",
+  "baseline_backend": 3048,
+  "final_backend": 3180,
+  "new_tests": 132,
+  "new_unit_tests": 98,
+  "new_API_FTS_Qdrant_tests": 34,
+  "Ruff": "PASS",
+  "export_replays": 69,
+  "DOCX_exact": 56,
+  "DOCX_changed_expected": 13,
+  "removed_partial_number_instances": 5,
+  "removed_ambiguous_contacts": 10,
+  "other_value_position_checkbox_deltas": 0,
+  "historical_validators": 213,
+  "validator_accepted": 207,
+  "previous_rejections_preserved": 6,
+  "all_other_audit_dimensions_exact": true,
+  "PDF_regression_pairs": 31,
+  "actual_UI": "PASS",
+  "UI_values": 16,
+  "UI_partial_MODEL_proposals": 0,
+  "UI_number_date_omitted_by_MODEL": true,
+  "UI_same_response_backend_pair": [
+    16,
+    16
+  ],
+  "original_same_response_pair": [
+    17,
+    15
+  ],
+  "backup_verification": "../../benchmark ufficiale/compound-values-20261021-01/VERIFICA-BACKUP.json",
+  "report": "../completezza-valori-composti-v12-2026-10-21.md",
+  "final_backend_seconds": 287.83,
+  "UI_final_session_version": 8,
+  "UI_provider_calls": 8,
+  "UI_global_calls": 1,
+  "UI_tokens": 155285,
+  "UI_final_code_export": "PASS"
+}

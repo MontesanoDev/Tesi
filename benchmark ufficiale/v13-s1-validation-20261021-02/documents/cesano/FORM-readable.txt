@@ -1,0 +1,112 @@
+paragraph:0: ALLEGATO A
+paragraph:1: 
+paragraph:2: 
+paragraph:3: 
+paragraph:4: Al Comune di Cesano Maderno
+paragraph:5: Settore Servizi al Territorio Ambiente e Imprese
+paragraph:6: Uo Segreteria di Area e Staff
+paragraph:7: protocollo@pec.comune.cesano-maderno.mb.it  
+paragraph:8: 
+paragraph:9: 
+paragraph:10: OGGETTO: ISTANZA PER L’INSERIMENTO NELL’ELENCO DI PROFESSIONISTI E OPERATORI ECONOMICI PER L’AFFIDAMENTO DI SERVIZI DI INGEGNERIA E ARCHITETTURA E DI SERVIZI TECNICI DI SUPPORTO SPECIALISTICO PER IL COMUNE DI CESANO MADERNO 
+paragraph:11: 
+paragraph:12: Il sottoscritto [[p12.ft0]] Nato a [[p12.ft1]] il [[p12.ft2]] con studio in [[p12.ft3]] via [[p12.ft4]] numero  [[p12.ft5]]  Partita IVA [[p12.ft6]] Numero posizione INAIL [[p12.ft7]]  Numero matricola INPS  [[p12.ft8]] Numero Posizione INARCASSA [[p12.ft9]] Indirizzo mail [[p12.ft10]] Pec [[p12.ft11]] numero di telefono [[p12.ft12]] iscritto all’ordine professionale [[p12.ft13]] al n. [[p12.ft14]] 
+paragraph:13: 
+paragraph:14: In nome e per conto: 
+paragraph:15: 
+paragraph:16:   Proprio 
+paragraph:17:   Della Associazione di professionisti (1) 
+paragraph:18:   Associazione Temporanea (2) [[p18.ft0]]
+paragraph:19:   Della Società di Ingegneria (3) [[p19.ft0]]
+paragraph:20:   Della Società professionale (3)  [[p20.ft0]]
+paragraph:21:   Altro (4) [[p21.ft0]]
+paragraph:22: 
+paragraph:23: 
+paragraph:24: 
+paragraph:25: 1) specificare il nome del raggruppamento/associazione o altro; 
+paragraph:26: 2) riportare il nominativo di ciascun soggetto facente parte del raggruppamento e corredare la domanda dalla fotocopia di documento di identità valido, indicare il professionista designato come capogruppo;
+paragraph:27: 3) specificare la denominazione della Società di Ingegneria o della Società professionale. 
+paragraph:28: 4) specificare altre forma del soggetto e caratteristiche dello stesso; 
+paragraph:29: 
+paragraph:30: 
+paragraph:31: CHIEDE
+paragraph:32: 
+paragraph:33: Di essere inserito nell’elenco dei professionisti a cui affidare gli incarichi professionali ai sensi dell’art. art. 66 del D. Lgs. 36/2023 per le seguenti attività e categorie di servizi e classi di attività: 
+paragraph:34: 
+paragraph:35:  Prestazioni di progettazione di fattibilità tecnica ed economica, definitiva ed esecutiva o supporto al RUP secondo le seguenti tipologie di opere:
+paragraph:36:      Opere architettoniche;
+paragraph:37:      Opere strutturali;
+paragraph:38:      Impianti elettrici;
+paragraph:39:      Impianti meccanici;
+paragraph:40:      Verde e arredo urbano;
+paragraph:41:      Infrastrutture varie, strade;
+paragraph:42:      Immobili vincolati;
+paragraph:43:  Prestazioni di direzione dei lavori secondo le seguenti tipologie di opere:
+paragraph:44:      Opere architettoniche;
+paragraph:45:      Opere strutturali;
+paragraph:46:      Impianti elettrici;
+paragraph:47:      Impianti meccanici;
+paragraph:48:      Verde e arredo urbano;
+paragraph:49:      Infrastrutture varie, strade;
+paragraph:50:      Immobili vincolati;
+paragraph:51: 
+paragraph:52:  Prestazioni di coordinamento della sicurezza dei cantieri in fase di progettazione e          esecuzione secondo le seguenti tipologie di opere:
+paragraph:53: 
+paragraph:54:      Opere architettoniche;
+paragraph:55:      Opere strutturali;
+paragraph:56:      Impianti elettrici;
+paragraph:57:      Impianti meccanici;
+paragraph:58:      Verde e arredo urbano;
+paragraph:59:      Infrastrutture varie, strade;
+paragraph:60:      Immobili vincolati;
+paragraph:61: 
+paragraph:62:  Collaudi di opere pubbliche (finali o in corso d’opera);
+paragraph:63: 
+paragraph:64:      Opere architettoniche;
+paragraph:65:      Opere strutturali;
+paragraph:66:      Impianti elettrici;
+paragraph:67:      Impianti meccanici;
+paragraph:68:      Verde e arredo urbano;
+paragraph:69:      Infrastrutture varie, strade;
+paragraph:70:      Immobili vincolati;
+paragraph:71: 
+paragraph:72:  Studi di impatto / verifiche ambientali suddivise nelle seguenti categorie di servizi:
+paragraph:73:      Indagini e relazioni acustiche;
+paragraph:74:      Indagini e relazioni in ambito forestale; 
+paragraph:75:      Indagini e relazioni in ambito di agronomia; 
+paragraph:76:      Studi di invarianza idraulica; 
+paragraph:77: 
+paragraph:78:  Relazioni geologiche;
+paragraph:79:  Pianificazione urbanistica secondo le seguenti attività:
+paragraph:80:      Stesura e predisposizione del PGT;
+paragraph:81:      Stesura di VAS e VIA; 
+paragraph:82:  Rilievi topografici e di manufatti;
+paragraph:83:      Effettuazione e restituzione di rilievi topografici;
+paragraph:84:      Effettuazione e restituzione di rilievi di fabbricati;
+paragraph:85:      Effettuazione e restituzione di rilievi di manufatti;
+paragraph:86:  Pratiche catastali e ipotecarie suddivise nelle seguenti competenze:
+paragraph:87:      pratiche di aggiornamento catasto terreni;
+paragraph:88:      pratiche di aggiornamento catasto fabbricati;
+paragraph:89:      Volturazioni;
+paragraph:90:      Indagini e pratiche ipotecarie;
+paragraph:91:  Verifiche di Validazione di progetti: 
+paragraph:92:      Opere architettoniche;
+paragraph:93:      Opere strutturali;
+paragraph:94:      Impianti elettrici;
+paragraph:95:      Impianti meccanici;
+paragraph:96:      Verde e arredo urbano;
+paragraph:97:      Infrastrutture varie, strade;
+paragraph:98:      Immobili vincolati;
+paragraph:99: 
+paragraph:100:  certificazione energetica degli edifici; 
+paragraph:101:  Perizie giurate;
+paragraph:102:  Pratiche antincendio;
+paragraph:103:  Studi Viabilistici; 
+paragraph:104: 
+paragraph:105: data [[p105.ft0]]
+paragraph:106: Documento firmato digitalmente 
+paragraph:107: La presente istanza e il curriculum devono essere firmati digitalmente: 
+paragraph:108: In caso di professionista singolo, dal professionista medesimo;
+paragraph:109: In caso di studio professionale associato, da tutti i professionisti associati;
+paragraph:110: In caso di società o raggruppamenti temporanei, dal legale rappresentante o dal capogruppo; 
+paragraph:111: 

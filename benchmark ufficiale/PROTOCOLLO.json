@@ -1,0 +1,20 @@
+{
+  "created_UTC": "2026-10-19T11:36:33.608837+00:00",
+  "forms_order": [
+    "minervino",
+    "trapani",
+    "catanzaro"
+  ],
+  "one_real_global_generation_per_FORM": true,
+  "no_frozen_response_reuse": true,
+  "no_selective_repeats": true,
+  "max_USER_reply_rounds": 2,
+  "partial_export_is_acceptable": true,
+  "no_code_prompt_validator_writer_changes": true,
+  "same_SOURCE_snapshot_for_every_project": "0982378194a2e3e769ed3e18dc8d92bf6c1c70f6c4e8b5aa9bbf6d236093ff0c",
+  "global_settings": "actual current pipeline enabled thinking + reasoning_effort low; do not change FORM or prompt",
+  "new_isolated_projects_created_via_API": true,
+  "original_database_is_read_only": true,
+  "decision": "No baseline adoption yet; propose only if all three usable, provenance verifiable, no undue writes, reasonable clarification",
+  "cost": "Estimated from complete per-request usage and official tariff captured; no invoice assertion"
+}

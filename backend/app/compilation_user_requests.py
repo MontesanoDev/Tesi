@@ -3,6 +3,22 @@
 from app.compilation_global_contract import UserFieldRequest
 from app.docx_templates import is_signature_target
 
+REASON_LIMIT = UserFieldRequest.model_json_schema()["properties"]["reason"]["maxLength"]
+
+
+def _request_record(record, checked):
+    """Quarantine only oversized descriptive text; validate every structural property."""
+    reason = record.get("reason") if isinstance(record, dict) else None
+    if not isinstance(reason, str) or len(reason.strip()) <= REASON_LIMIT:
+        return record
+    checked["metadata_warnings"] = [{
+        "field": "reason", "code": "descriptive_text_over_limit",
+        "original_characters": len(reason), "schema_max_characters": REASON_LIMIT,
+        "preserved_in": "proposal.reason", "effect": "operational_reason_replaced",
+    }]
+    return {**record, "reason": (
+        "Chiarimento richiesto dal modello; motivazione integrale conservata nella proposta.")}
+
 
 def attach_user_requests(result, records, raw_fields, layout, catalog, paragraphs, local):
     from app.compilation_global import _slot_destination
@@ -14,7 +30,7 @@ def attach_user_requests(result, records, raw_fields, layout, catalog, paragraph
     for cid, record in records.items():
         checked = {"validation": "REJECTED", "proposal": record, "validation_errors": []}
         try:
-            request = UserFieldRequest.model_validate(record)
+            request = UserFieldRequest.model_validate(_request_record(record, checked))
             if cid not in fields or cid in raw_fields:
                 raise ValueError("Domanda senza posizione autonoma o già proposta dalle SOURCE")
             candidate = catalog["candidates"][cid]

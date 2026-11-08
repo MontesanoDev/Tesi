@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-17",
+  "kind": "Local UI availability and software verification, not new LLM quality measurement",
+  "services": {
+    "backend_health": {
+      "http_status": 200,
+      "health": {
+        "status": "ok"
+      }
+    },
+    "frontend": {
+      "http_status": 200,
+      "health": null
+    },
+    "frontend_proxy_health": {
+      "http_status": 200,
+      "health": {
+        "status": "ok"
+      }
+    }
+  },
+  "workspace_url": "http://localhost:5173/projects/minervino-di-lecce-elenco-sia",
+  "application_code_changed_this_phase": false,
+  "already_in_ui_path": [
+    "SOURCE bindings",
+    "semantic locality compatibility",
+    "FORM context verification",
+    "registered session USER context transport"
+  ],
+  "full_form_b0": true,
+  "e1_integrated": false,
+  "benchmark_manual_reviews_imported": false,
+  "narrator_source_proposal_limit_unchanged": 40,
+  "tests": {
+    "backend": {
+      "passed": 298,
+      "seconds": 36.28,
+      "provider_simulated": true
+    },
+    "browser_first": {
+      "passed": 7,
+      "failed": 1,
+      "cause": "obsolete expected busy text, no application failure",
+      "failure_artifacts_retained": true
+    },
+    "browser_final": {
+      "passed": 8,
+      "seconds": 23.9,
+      "api_simulated": true,
+      "desktop_and_mobile": true
+    },
+    "frontend_lint_passed": true
+  },
+  "live_browser": {
+    "actual_backend_and_frontend": true,
+    "project_opened": true,
+    "form_mention_selected": true,
+    "submitted_messages": 0,
+    "mutation_requests": [],
+    "browser_errors": [],
+    "provider_calls": 0,
+    "new_sessions_created": 0
+  },
+  "live_integrity": {
+    "live_form_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "live_form_equal_frozen": true,
+    "live_source_chunks": 56,
+    "live_canonical_without_user_equal_b0": true,
+    "original_sessions_unchanged": true,
+    "domain_counts_unchanged": true,
+    "application_code_hashes_unchanged": true,
+    "provider_calls": 0,
+    "new_compilation_runs": 0
+  },
+  "source_code_hashes": {
+    "backend/app/__init__.py": "080e8f8dc4df84bcb06f57a7c980127a14e828ae8c75cc33fd0519c7a611d57a",
+    "backend/app/ai_discovery.py": "0e4b2549833f0f6eb37aa7bb6d96bfd5d38e79f6c9ac0a8d737d147dd1d5c3bf",
+    "backend/app/ai_login.py": "0ca46d10dd6d7dd2ea0bead05cdb27b6d68e1e9aa4f519337029d873e234d5b5",
+    "backend/app/ai_profiles.py": "aa13d349f7c985753befa77d52030b6628f6fa915682ccbaa21b2408053350d2",
+    "backend/app/ai_providers.py": "82fdce0f4ba8021d23a7104293b54ba2cfc3482f8cf3cbb9b53eba51e9df569b",
+    "backend/app/ai_routes.py": "37ec0beccb8f471dbcd9a851a56db7e2f5c8efaf787497ab0af9646d3fba9657",
+    "backend/app/ai_transport.py": "5562fe92f976d27f2937a9826d82d886c22a3ba411b19c7a7a09618d8a6285fa",
+    "backend/app/artifacts.py": "24add18a94f92bd1acea94acd6e39c45d2db6d69e3a17972196ac9d1f58467a5",
+    "backend/app/call_facts.py": "a7bf3a3ea97362c09a1aee9dce483515e1a3cb4c5ac76d35c28e2434b259abe6",
+    "backend/app/compilation_applicability.py": "30958711cf1555f9baaa51e3a48ba7a33ade323e3e8fe9f49c69cd2f6d76671d",
+    "backend/app/compilation_catalog.py": "0d8cf2b5ddb9c863f1d9bb19a1bf6eb7a825d3a47c8e5e709f374674e5439c25",
+    "backend/app/compilation_chat.py": "c42cb2b6381cf3b8b17aa72d34b11a4ad9cba2ccbfcb9a63aa969cc4e05dc9d4",
+    "backend/app/compilation_choices.py": "36901fd3efdb86cfc957a3dc756d6628961cc3834f32065d76444cb3e33fc448",
+    "backend/app/compilation_clarifications.py": "5c003b978a455105bb1eb61177bde2ebfd0d091899130d835e8f32ab3aa6e9fc",
+    "backend/app/compilation_conditions.py": "a9c059612cbb49347c1e848f3dcac4d7f2961225210305128c011d1d73cc9a75",
+    "backend/app/compilation_coverage.py": "340991dd18bb19273f6e725aa386745af4dcd21f566503fe6fcdd860bcbc2760",
+    "backend/app/compilation_document_plan.py": "cfacf36fc70bafd4834c1f9a973cb6a96b0dc165c30623e0be24b0f3a9b5f7fc",
+    "backend/app/compilation_evidence.py": "f18cdcb2acf9cb84f5d8ab0214b875e656d1c6a0a65d0ad84a4f967a66f2121e",
+    "backend/app/compilation_form_conditions.py": "f8504f158568ca6fcd31f60d94cd8c5ac88298b67b239c3736c363f5a657bc10",
+    "backend/app/compilation_form_view.py": "9399e116a4b8c3308b47e89571c382dcc772c54c0c733d107179c85c0d74a72c",
+    "backend/app/compilation_global.py": "75c8c9913dad61c32f6aeff14f275ab12d24c0c16afb8820278426cc591d7b36",
+    "backend/app/compilation_global_contract.py": "6d3d615b82b04904e4a89a1ad094b1fb1a2a5b8d55b2b86d503de566dfb558a8",
+    "backend/app/compilation_global_dialogue.py": "6ab181596619a0e116cc6d6a384b2be212d2460f5a119129815f8406fd98e14b",
+    "backend/app/compilation_global_sessions.py": "0562f8a00e091efab3000588bbe5d47536e196f39c499dea310fcf6da321e3af",
+    "backend/app/compilation_json.py": "56797d8474a9d200e438c96e83ba4347f7c665fe692c8159d8c725065d2b440b",
+    "backend/app/compilation_reading_plan.py": "61548fad2c8ac06018b9b1a709a2db4e8f8ac8a03e77002bd2d90d1b74287bb8",
+    "backend/app/compilation_reply_guard.py": "81f1c09ab131e2eed0970f6222602e8db2f210ac1d5b5da4c5558e1f76ed810c",
+    "backend/app/compilation_role_records.py": "02f2ade803ea319d6a9f411167b1b6951ada67374f1863e742537d5bfd327589",
+    "backend/app/compilation_routing_trace.py": "c7f67d6255c3ecf9213660abddfe1ddbbda1ff935affff5d6c177b52ec4dec7d",
+    "backend/app/compilation_semantics.py": "8b65ab90dc1d50ae9da419f378c6a23fdfd8435b11850eb4797c7b71d001677c",
+    "backend/app/compilation_session_models.py": "4089b2a373c85a94c8100b7d7c673c883f13a61a3d3aa3ee4ea285b339c36264",
+    "backend/app/compilation_session_resolution.py": "4c996945711338e95cbf6a33fa6be315ff307cfe3b73aee13339ec9838f3c4ae",
+    "backend/app/compilation_session_routes.py": "26d370bc013f3e297a5ef6775ab10fef46c0d7645a28cc9881973b9925675b71",
+    "backend/app/compilation_sessions.py": "f5894e103039341063bdaec4bc7eb5cbb8411a59cf26806e263a79aa132f540c",
+    "backend/app/compilation_sources.py": "903d9a837e41b95ae35139e6272ce80185d39c9c140d453d1b3e3c5ae120fde6",
+    "backend/app/compilation_user_context.py": "50cfc0b1db5f1c9ce54b1379a20bc44bbbf27e916e4b405f702b7e21cc4e941f",
+    "backend/app/compilation_user_requests.py": "ab551158678241395be135ec3b0eb7bb0832a8deb728b562ca5924bd514b7b18",
+    "backend/app/config.py": "d7d1552bbe3f4e22740001763a64757e188edcdc9c44e52400c5a35648a09985",
+    "backend/app/db.py": "01e2175dfa9ff450a731172439a7d956500ed9dba1df9191c76ea2bb1523df0b",
+    "backend/app/document_compilation.py": "2fad9f0db0f2db003ffb2996825f5464539725f524757483b6e7ad3cc807e1c0",
+    "backend/app/document_compilation_routes.py": "51924735c0909055a1077c627ca1ff3a246b28e7d6edee84778827714265dd6e",
+    "backend/app/docx_checkboxes.py": "e96bb4fbf8f836d8655917363fd4e7ecb57a49281aff847f01f38965873ce036",
+    "backend/app/docx_templates.py": "dc11a5ad81985035fc9b2b0aa22ce4a9e18ada34e04a16aa1ad9883eec4b3bad",
+    "backend/app/draft_generation.py": "caa12c1ae99e85e3ec56ea7b2868902c10b4b6e4e3039a6353dd22eb21e22209",
+    "backend/app/fact_extraction.py": "3dfe770e9b2bded8532e9e60b4b2b2fa006244f88a3100eb9d17d67d521e379f",
+    "backend/app/generation.py": "aefa58c92f0c6c251346ce6441a943b74b52ed776ef2d37c3a152f3bc49555a5",
+    "backend/app/ingestion.py": "89e695fff366343fc7ee133cc149a698b9603774961440b0621a807256240a82",
+    "backend/app/intents.py": "236acd12d58fa949f3952d4a649321b33bc5b560a568f05d333d67c68981dcf4",
+    "backend/app/main.py": "a0d18dadc9deb654bc82255c251dd17ca0a327947c0720c107c0e5876743c7ea",
+    "backend/app/project_forms.py": "28fb00cd160e6d478ab3f2975040ae1a913cad70a12f0d350ac0a54f9e5303b0",
+    "backend/app/repository.py": "1705df519711d5f4d704c5044f944ba2b1771e7237dff8daa541abac40c2dbe4",
+    "backend/app/requirement_checks.py": "4fadb20f13c24bb6142b72c3e4d4e750cd9c091cc8f4865bf5daf243275c96d1",
+    "backend/app/retrieval.py": "2ffdfd14ac69f15b62f2f4dd69c6413be1ac1c43521bbae62a06a317e8c5494e",
+    "backend/app/retrieval_documents.py": "4950bbcd706fd159d9062c07fba8a9c1e2490d50102accc6994019093caf7c12",
+    "backend/app/retrieval_embeddings.py": "69cf920af7f46b1ca26c1be64b95d3d2c39e17d81385639457f5d3e97e1560eb",
+    "backend/app/retrieval_routes.py": "a754cebe08c7c4e90ae8ee660a95c777a8a32e5a9716107041c4b944475c032b",
+    "backend/app/retrieval_settings.py": "602dc548d397e41e96a230b4a094e67a045d1226fec9cc9643640dc53d1effd9",
+    "backend/app/schemas.py": "b840b8eba44abcac7827b3cc0874ad8faf99606056ffb1eff5653fe36191f1d4",
+    "backend/app/seed.py": "c5a832a982c81252e28d8dddf56308497f45805817516c29f89f67a383a757f7",
+    "backend/app/source_planning.py": "0ac1e5e6a1a8db2ad3173937997485cb5ff59602240f3d175e30c7dabfa3ffe5",
+    "backend/app/vector_retrieval.py": "d9d43ca941bd3591673e0ca62a5be24b4f594547bf1fe8e5bfd07c994013d39b"
+  },
+  "test_changed": "frontend/e2e/global-compilation.spec.ts",
+  "provider_calls": 0,
+  "new_real_compilation_runs": 0,
+  "original_sessions_migrated": 0,
+  "commits_or_pushes": 0,
+  "services_left_running": true,
+  "private_database_backup_published": false,
+  "report": "docs/prova-ui-compilazione-2026-10-17.md",
+  "raw_directory": "backend/data/compilation-audit/ui-binding-20261017-01"
+}

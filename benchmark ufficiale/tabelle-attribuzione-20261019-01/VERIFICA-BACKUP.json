@@ -1,0 +1,11 @@
+{
+  "manifest_files_verified": 198,
+  "archive_SHA256_valid": true,
+  "uses_extracted_application_code_in_separate_processes": true,
+  "provider_calls": 0,
+  "database_not_used_in_replays": true,
+  "network_forbidden_in_replays": true,
+  "all_nine_audits_DOCX_identical": true,
+  "four_probes_reproduced_baseline_grounded": 4,
+  "four_probes_reproduced_after_grounded": 0
+}

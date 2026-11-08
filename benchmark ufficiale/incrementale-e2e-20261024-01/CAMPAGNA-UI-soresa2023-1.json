@@ -1,0 +1,19 @@
+{
+  "attempted": 1,
+  "tokens_spent": 748094,
+  "results": [
+    {
+      "trial": "soresa2023-1",
+      "document": "soresa2023",
+      "session_id": "ed3e8d19697a49b898f12a19744c7689",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 182634,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    }
+  ]
+}

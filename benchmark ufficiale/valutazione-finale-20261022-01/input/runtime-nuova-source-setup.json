@@ -1,0 +1,105 @@
+{
+ "before": {
+  "documents": [
+   {
+    "id": 10,
+    "name": "integrazione-company.md",
+    "category": "company",
+    "metadata": "MD · 4 KB · 5 frammenti",
+    "status": "Indicizzato",
+    "mime_type": "text/markdown",
+    "byte_size": 4363,
+    "page_count": 1,
+    "chunk_count": 5
+   },
+   {
+    "id": 9,
+    "name": "visura-mapi-ingegneria-simulata.pdf",
+    "category": "company",
+    "metadata": "PDF · 47 KB · 4 frammenti",
+    "status": "Indicizzato",
+    "mime_type": "application/pdf",
+    "byte_size": 47968,
+    "page_count": 2,
+    "chunk_count": 4
+   },
+   {
+    "id": 8,
+    "name": "progettazione-opere-pubbliche.txt",
+    "category": "general",
+    "metadata": "TXT · 4 KB · 4 frammenti",
+    "status": "Indicizzato",
+    "mime_type": "text/plain",
+    "byte_size": 4117,
+    "page_count": 1,
+    "chunk_count": 4
+   },
+   {
+    "id": 7,
+    "name": "generalita-mapi.md",
+    "category": "company",
+    "metadata": "MD · 8 KB · 9 frammenti",
+    "status": "Indicizzato",
+    "mime_type": "text/markdown",
+    "byte_size": 8441,
+    "page_count": 1,
+    "chunk_count": 9
+   }
+  ],
+  "document_count": 4,
+  "chunk_count": 22
+ },
+ "deleted": [
+  {
+   "id": 10,
+   "name": "integrazione-company.md"
+  },
+  {
+   "id": 9,
+   "name": "visura-mapi-ingegneria-simulata.pdf"
+  },
+  {
+   "id": 7,
+   "name": "generalita-mapi.md"
+  }
+ ],
+ "uploaded": {
+  "id": 11,
+  "name": "scheda-dati-operatore-mapi.pdf",
+  "category": "company",
+  "metadata": "PDF · 136 KB · 10 frammenti",
+  "status": "Indicizzato",
+  "mime_type": "application/pdf",
+  "byte_size": 139317,
+  "page_count": 4,
+  "chunk_count": 10
+ },
+ "after": {
+  "documents": [
+   {
+    "id": 11,
+    "name": "scheda-dati-operatore-mapi.pdf",
+    "category": "company",
+    "metadata": "PDF · 136 KB · 10 frammenti",
+    "status": "Indicizzato",
+    "mime_type": "application/pdf",
+    "byte_size": 139317,
+    "page_count": 4,
+    "chunk_count": 10
+   },
+   {
+    "id": 8,
+    "name": "progettazione-opere-pubbliche.txt",
+    "category": "general",
+    "metadata": "TXT · 4 KB · 4 frammenti",
+    "status": "Indicizzato",
+    "mime_type": "text/plain",
+    "byte_size": 4117,
+    "page_count": 1,
+    "chunk_count": 4
+   }
+  ],
+  "document_count": 2,
+  "chunk_count": 14
+ }
+}

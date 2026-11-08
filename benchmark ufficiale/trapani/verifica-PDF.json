@@ -1,0 +1,29 @@
+{
+  "slug": "trapani",
+  "pages": 5,
+  "rendered_images": [
+    1,
+    2,
+    5
+  ],
+  "text_locations": {
+    "Leonardo Montemurro": [],
+    "Elisa Romano": [],
+    "Mapi Ingegneria": [
+      2
+    ],
+    "Luca Ferri": []
+  },
+  "DOCX_unchanged": true,
+  "render_seconds_not_measured": true,
+  "registry_warning": true,
+  "all_pages_bbox_checked": 5,
+  "out_of_page_words": [],
+  "visual_pages_inspected": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "visual_result": "Readable selected filled/first/last pages, no clipping or lost signature line observed; justified spacing and label joins remain"
+}

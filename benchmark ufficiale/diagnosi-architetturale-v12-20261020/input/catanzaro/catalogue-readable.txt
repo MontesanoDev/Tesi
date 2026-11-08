@@ -1,0 +1,1227 @@
+p175.s0 text | gli estremi del provvedimento di ammissione rilasciato dal Tribunale di [[p175.s0]] sono i seguenti: [[p175.s1]];
+ANCHOR gli estremi del provvedimento di ammissione rilasciato dal Tribunale di ____________ sono i seguenti: _____________________________________________________________________;
+ORIGIN ad integrazione di quanto indicato nel DGUE che:
+
+p175.s1 text | gli estremi del provvedimento di ammissione rilasciato dal Tribunale di [[p175.s0]] sono i seguenti: [[p175.s1]];
+ANCHOR gli estremi del provvedimento di ammissione rilasciato dal Tribunale di ____________ sono i seguenti: _____________________________________________________________________;
+ORIGIN ad integrazione di quanto indicato nel DGUE che:
+
+p176.s0 text | gli estremi del provvedimento di autorizzazione a partecipare alle gare rilasciato dal giudice delegato sono i seguenti: [[p176.s0]];
+ANCHOR gli estremi del provvedimento di autorizzazione a partecipare alle gare rilasciato dal giudice delegato sono i seguenti: ________________________________________________________;
+ORIGIN ad integrazione di quanto indicato nel DGUE che:
+
+p180.s0 text | gli estremi del deposito della domanda di ammissione sono i seguenti: prot.n. [[p180.s0]] del [[p180.s1]] presentata al [[p180.s2]];
+ANCHOR gli estremi del deposito della domanda di ammissione sono i seguenti: prot.n. ________ del _____________ presentata al _____________________;
+ORIGIN ad integrazione di quanto indicato nel DGUE che:
+
+p180.s1 text | gli estremi del deposito della domanda di ammissione sono i seguenti: prot.n. [[p180.s0]] del [[p180.s1]] presentata al [[p180.s2]];
+ANCHOR gli estremi del deposito della domanda di ammissione sono i seguenti: prot.n. ________ del _____________ presentata al _____________________;
+ORIGIN ad integrazione di quanto indicato nel DGUE che:
+
+p180.s2 text | gli estremi del deposito della domanda di ammissione sono i seguenti: prot.n. [[p180.s0]] del [[p180.s1]] presentata al [[p180.s2]];
+ANCHOR gli estremi del deposito della domanda di ammissione sono i seguenti: prot.n. ________ del _____________ presentata al _____________________;
+ORIGIN ad integrazione di quanto indicato nel DGUE che:
+
+p182.s0 text | il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di[[p182.s0]] è il seguente: prot.n. [[p182.s1]] del [[p182.s2]];
+ANCHOR il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di_____________________ è il seguente: prot.n. ________ del _____________;
+ORIGIN 
+
+p182.s1 text | il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di[[p182.s0]] è il seguente: prot.n. [[p182.s1]] del [[p182.s2]];
+ANCHOR il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di_____________________ è il seguente: prot.n. ________ del _____________;
+ORIGIN 
+
+p182.s2 text | il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di[[p182.s0]] è il seguente: prot.n. [[p182.s1]] del [[p182.s2]];
+ANCHOR il provvedimento di autorizzazione a partecipare alle gare rilasciato dal Tribunale di_____________________ è il seguente: prot.n. ________ del _____________;
+ORIGIN 
+
+p184.s0 text | il soggetto di cui intende avvalersi, ai sensi dell'articolo 372 del D.Lgs. 14/2019, è il seguente: [[p184.s0]];
+ANCHOR il soggetto di cui intende avvalersi, ai sensi dell'articolo 372 del D.Lgs. 14/2019, è il seguente: ____________________;
+ORIGIN 
+
+p63.s0 text | Prestatore di servizi di ingegneria e architettura, stabilito nello Stato membro di [[p63.s0]], costituito conformemente alla legislazione vigente nel medesimo Paese come da allegata documentazione (art. 66, comma 1, lett. d)
+ANCHOR Prestatore di servizi di ingegneria e architettura, stabilito nello Stato membro di ___________, costituito conformemente alla legislazione vigente nel medesimo Paese come da allegata documentazione (art. 66, comma 1, lett. d)
+ORIGIN 
+
+p799.s0 text | ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: [[p799.s0]].
+ANCHOR ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: _____________________________________.
+ORIGIN 
+
+p807.s0 text | [[p807.s0]]
+ANCHOR ………………………………………
+ORIGIN Giovane professionista abilitato da meno di 5 (cinque) anni all'esercizio della professione, quale progettista
+
+p822.s0 text | (eventuale altra documentazione prevista in caso di RTI, consorzi e imprese retiste) [[p822.s0]].
+ANCHOR (eventuale altra documentazione prevista in caso di RTI, consorzi e imprese retiste) _____________________________.
+ORIGIN Organigramma aggiornato di cui alla parte V dell’allegato II.12 al D.lgs. n° 36/2023;
+
+t0.r0.c1 text | 
+ANCHOR Il/La sottoscritto/a
+ORIGIN 
+
+t0.r1.c1 text | 
+ANCHOR Data e luogo di nascita
+ORIGIN 
+
+t0.r10.c1 text | 
+ANCHOR Partita IVA operatore economico
+ORIGIN 
+
+t0.r11.c1 text | 
+ANCHOR Cellulare + Telefono
+ORIGIN 
+
+t0.r2.c1 text | 
+ANCHOR Codice fiscale
+ORIGIN 
+
+t0.r3.c1 text | 
+ANCHOR In qualità di (carica sociale: professionista singolo, professionista associato, legale rappresentante società, procuratore, etc.)
+ORIGIN 
+
+t0.r4.c1 text | 
+ANCHOR (se procuratore) estremi procura (notaio, repertorio, raccolta) 
+ORIGIN 
+
+t0.r5.c1 text | 
+ANCHOR Operatore economico
+ORIGIN 
+
+t0.r6.c1 text | 
+ANCHOR Forma giuridica
+ORIGIN 
+
+t0.r7.c1 text | 
+ANCHOR Sede legale (via, città, prov.)
+ORIGIN 
+
+t0.r8.c1 text | 
+ANCHOR Sede operativa  | (se diversa dalla sede legale)
+ORIGIN 
+
+t0.r9.c1 text | 
+ANCHOR Codice fiscale operatore economico
+ORIGIN 
+
+t11.r0.c1 text | 
+ANCHOR Denominazione dello studio associato:
+ORIGIN 
+
+t11.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t11.r3.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t11.r3.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t12.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t12.r1.c1 text | 
+ANCHOR Data e luogo di nascita:
+ORIGIN 
+
+t12.r2.c1 text | 
+ANCHOR Codice fiscale:
+ORIGIN 
+
+t12.r3.c1 text | 
+ANCHOR Residenza:
+ORIGIN 
+
+t12.r4.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t12.r5.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t12.r6.c1 text | 
+ANCHOR numero di iscrizione all’Albo professionale:
+ORIGIN 
+
+t12.r7.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t12.r7.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t13.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t13.r1.c1 text | 
+ANCHOR Data e luogo di nascita:
+ORIGIN 
+
+t13.r2.c1 text | 
+ANCHOR Codice fiscale:
+ORIGIN 
+
+t13.r3.c1 text | 
+ANCHOR Residenza:
+ORIGIN 
+
+t13.r4.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t13.r5.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t13.r6.c1 text | 
+ANCHOR numero di iscrizione all’Albo professionale:
+ORIGIN 
+
+t13.r7.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t13.r7.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t14.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t14.r1.c1 text | 
+ANCHOR Data e luogo di nascita:
+ORIGIN 
+
+t14.r2.c1 text | 
+ANCHOR Codice fiscale:
+ORIGIN 
+
+t14.r3.c1 text | 
+ANCHOR Residenza:
+ORIGIN 
+
+t14.r4.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t14.r5.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t14.r6.c1 text | 
+ANCHOR numero di iscrizione all’Albo professionale:
+ORIGIN 
+
+t14.r7.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t14.r7.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t15.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t15.r1.c1 text | 
+ANCHOR Data e luogo di nascita:
+ORIGIN 
+
+t15.r2.c1 text | 
+ANCHOR Codice fiscale:
+ORIGIN 
+
+t15.r3.c1 text | 
+ANCHOR Residenza:
+ORIGIN 
+
+t15.r4.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t15.r5.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t15.r6.c1 text | 
+ANCHOR numero di iscrizione all’Albo professionale:
+ORIGIN 
+
+t15.r7.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t15.r7.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t17.r0.c1 text | 
+ANCHOR Denominazione dello studio associato:
+ORIGIN 
+
+t17.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t17.r10.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t17.r10.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t17.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t17.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t17.r3.c1 text | 
+ANCHOR Nome e cognome dell’associato:
+ORIGIN 
+
+t17.r4.c1 text | 
+ANCHOR Data e luogo di nascita:
+ORIGIN 
+
+t17.r5.c1 text | 
+ANCHOR Codice fiscale:
+ORIGIN 
+
+t17.r6.c1 text | 
+ANCHOR Residenza:
+ORIGIN 
+
+t17.r7.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t17.r8.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t17.r9.c1 text | 
+ANCHOR numero ed anno di iscrizione all’Albo professionale:
+ORIGIN 
+
+t19.r0.c1 text | 
+ANCHOR Denominazione sociale:
+ORIGIN 
+
+t19.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t19.r3.c1 text | 
+ANCHOR numero d’iscrizione:
+ORIGIN 
+
+t19.r4.c1 text | 
+ANCHOR forma giuridica: | sede legale:
+ORIGIN 
+
+t19.r4.c3 text | 
+ANCHOR forma giuridica: | sede legale:
+ORIGIN 
+
+t20.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t20.r1.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t20.r2.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t20.r3.c1 text | 
+ANCHOR numero di iscrizione all’Albo professionale:
+ORIGIN 
+
+t20.r4.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t20.r4.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t21.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t21.r1.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t21.r2.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t21.r3.c1 text | 
+ANCHOR numero di iscrizione all’Albo professionale:
+ORIGIN 
+
+t21.r4.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t21.r4.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t22.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t22.r1.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t22.r2.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t22.r3.c1 text | 
+ANCHOR numero di iscrizione all’Albo professionale:
+ORIGIN 
+
+t22.r4.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t22.r4.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t23.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t23.r1.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t23.r2.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t23.r3.c1 text | 
+ANCHOR numero di iscrizione all’Albo professionale:
+ORIGIN 
+
+t23.r4.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t23.r4.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t25.r0.c1 text | 
+ANCHOR Denominazione sociale:
+ORIGIN 
+
+t25.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t25.r3.c1 text | 
+ANCHOR numero e data d’iscrizione:
+ORIGIN 
+
+t25.r4.c1 text | 
+ANCHOR forma giuridica: | sede legale:
+ORIGIN 
+
+t25.r4.c3 text | 
+ANCHOR forma giuridica: | sede legale:
+ORIGIN 
+
+t25.r5.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t25.r5.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t26.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t26.r1.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t26.r2.c1 text | 
+ANCHOR Data di abilitazione
+ORIGIN 
+
+t26.r3.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t26.r4.c1 text | 
+ANCHOR numero di iscrizione all’Albo professionale:
+ORIGIN 
+
+t26.r5.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t26.r5.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t28.r0.c1 text | 
+ANCHOR Denominazione sociale:
+ORIGIN 
+
+t28.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t28.r3.c1 text | 
+ANCHOR Natura giuridica: | sede legale:
+ORIGIN 
+
+t28.r3.c3 text | 
+ANCHOR Natura giuridica: | sede legale:
+ORIGIN 
+
+t28.r4.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t28.r4.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t29.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t29.r1.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t29.r2.c1 text | 
+ANCHOR Data di abilitazione
+ORIGIN 
+
+t29.r3.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t29.r4.c1 text | 
+ANCHOR numero di iscrizione all’Albo professionale:
+ORIGIN 
+
+t29.r5.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t29.r5.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t3.r3.c0 text | 
+ANCHOR  Raggruppamento temporaneo (art. 66, comma 1, lett. f), Codice)
+ORIGIN 
+
+t3.r4.c0 text | 
+ANCHOR  Consorzio ordinario (art. 65, comma 2, lettera f), Codice)
+ORIGIN 
+
+t3.r5.c0 text | 
+ANCHOR  Rete di imprese (art. 65, comma 2, lettera g), Codice)
+ORIGIN 
+
+t3.r6.c0 text | 
+ANCHOR  Gruppo europeo di interesse economico (G.E.I.E.)
+ORIGIN 
+
+t31.r0.c1 text | 
+ANCHOR Denominazione sociale:
+ORIGIN 
+
+t31.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t31.r3.c1 text | 
+ANCHOR numero e data d’iscrizione:
+ORIGIN 
+
+t31.r4.c1 text | 
+ANCHOR forma giuridica: | sede legale:
+ORIGIN 
+
+t31.r4.c3 text | 
+ANCHOR forma giuridica: | sede legale:
+ORIGIN 
+
+t31.r5.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t31.r5.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t32.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t32.r1.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t32.r2.c1 text | 
+ANCHOR Albo/Ordine/collegio professionale di appartenenza:
+ORIGIN 
+
+t32.r3.c1 text | 
+ANCHOR numero di iscrizione Albo/Ordine/collegio:
+ORIGIN 
+
+t32.r4.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t32.r4.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t33.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t33.r1.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t33.r2.c1 text | 
+ANCHOR Albo/Ordine/collegio professionale di appartenenza:
+ORIGIN 
+
+t33.r3.c1 text | 
+ANCHOR numero di iscrizione Albo/Ordine/collegio:
+ORIGIN 
+
+t33.r4.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t33.r4.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t34.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t34.r1.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t34.r2.c1 text | 
+ANCHOR Albo/Ordine/collegio professionale di appartenenza:
+ORIGIN 
+
+t34.r3.c1 text | 
+ANCHOR numero di iscrizione Albo/Ordine/collegio:
+ORIGIN 
+
+t34.r4.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t34.r4.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t35.r0.c1 text | 
+ANCHOR Nome e cognome / Denominazione:
+ORIGIN 
+
+t35.r1.c1 text | 
+ANCHOR Nome e cognome / Denominazione:
+ORIGIN 
+
+t35.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t35.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t37.r0.c1 text | 
+ANCHOR Denominazione sociale:
+ORIGIN 
+
+t37.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t37.r3.c1 text | 
+ANCHOR numero e data d’iscrizione:
+ORIGIN 
+
+t37.r4.c1 text | 
+ANCHOR forma giuridica: | sede legale:
+ORIGIN 
+
+t37.r4.c3 text | 
+ANCHOR forma giuridica: | sede legale:
+ORIGIN 
+
+t37.r5.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t37.r5.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r1.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r1.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r2.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r3.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r3.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r3.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r4.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r4.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r4.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r5.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r5.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t38.r5.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t40.r0.c1 text | 
+ANCHOR Denominazione sociale:
+ORIGIN 
+
+t40.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t40.r3.c1 text | 
+ANCHOR numero e data d’iscrizione:
+ORIGIN 
+
+t40.r4.c1 text | 
+ANCHOR forma giuridica: | sede legale:
+ORIGIN 
+
+t40.r4.c3 text | 
+ANCHOR forma giuridica: | sede legale:
+ORIGIN 
+
+t40.r5.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t40.r5.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t41.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t41.r1.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t41.r1.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t41.r1.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t41.r1.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t41.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t41.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t41.r2.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t41.r2.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t41.r2.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t42.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t42.r1.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t42.r1.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t42.r1.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t42.r1.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t42.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t42.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t42.r2.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t42.r2.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t42.r2.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t43.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t43.r1.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t43.r1.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t43.r1.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t43.r1.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t43.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t43.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t43.r2.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t43.r2.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t43.r2.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t44.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t44.r1.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t44.r1.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t44.r1.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t44.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t44.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t44.r2.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t44.r2.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t45.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t45.r1.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t45.r1.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t45.r1.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t45.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t45.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t45.r2.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t45.r2.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t46.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t46.r1.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t46.r1.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t46.r1.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t47.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t47.r1.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t47.r1.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t47.r1.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t47.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t47.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t47.r2.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t47.r2.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t48.r1.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t48.r1.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t48.r1.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t48.r1.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t48.r1.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t48.r2.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t48.r2.c1 text | 
+ANCHOR 
+ORIGIN 
+
+t48.r2.c2 text | 
+ANCHOR 
+ORIGIN 
+
+t48.r2.c3 text | 
+ANCHOR 
+ORIGIN 
+
+t48.r2.c4 text | 
+ANCHOR 
+ORIGIN 
+
+t7.r1.c3 text | 
+ANCHOR EDILIZIA | E.06 | €. 3.710.525,77
+ORIGIN 
+
+t7.r2.c3 text | 
+ANCHOR STRUTTURTE | S.03 | €. 2.148.313,01
+ORIGIN 
+
+t7.r3.c3 text | 
+ANCHOR IMPIANTI | IA.01 | €. 385.621,50
+ORIGIN 
+
+t7.r4.c3 text | 
+ANCHOR IMPIANTI | IA.02 | €. 727.128,39
+ORIGIN 
+
+t7.r5.c3 text | 
+ANCHOR IMPIANTI | IA.03 | €. 1.443.299,24
+ORIGIN 
+
+t9.r0.c1 text | 
+ANCHOR Nome e cognome:
+ORIGIN 
+
+t9.r1.c1 text | 
+ANCHOR Data e luogo di nascita:
+ORIGIN 
+
+t9.r2.c1 text | 
+ANCHOR Codice fiscale:
+ORIGIN 
+
+t9.r3.c1 text | 
+ANCHOR Residenza:
+ORIGIN 
+
+t9.r4.c1 text | 
+ANCHOR qualifica professionale:
+ORIGIN 
+
+t9.r5.c1 text | 
+ANCHOR Ordine professionale di appartenenza:
+ORIGIN 
+
+t9.r6.c1 text | 
+ANCHOR numero ed anno di iscrizione all’Albo professionale:
+ORIGIN 
+
+t9.r7.c0 text | 
+ANCHOR 
+ORIGIN 
+
+t9.r7.c1 text | 
+ANCHOR 
+ORIGIN 
+
+p49.cb0 checkbox | 
+ANCHOR Professionista singolo
+ORIGIN 
+
+p51.cb0 checkbox | 
+ANCHOR Professionista associato nelle forme di cui alla legge n. 1815 del 1939, cosiddetti “studi associati” o “associazioni professionali”, con potere di legale rappresentanza dello studio associato / dell’associazione professionale.
+ORIGIN 
+
+p53.cb0 checkbox | 
+ANCHOR Professionista associato nelle forme di cui alla legge n. 1815 del 1939, cosiddetti “studi associati” o “associazioni professionali”, senza potere di rappresentanza dello studio associato / dell’associazione professionale.
+ORIGIN 
+
+p55.cb0 checkbox | 
+ANCHOR Società di professionisti di cui all’art. 35 dell’allegato II.12 al D.lgs. n. 36/2023
+ORIGIN 
+
+p57.cb0 checkbox | 
+ANCHOR Società di ingegneria in forma di società di capitali o di società cooperativa di cui all’art. 36 dell’allegato II.12 al D.lgs. n. 36/2023
+ORIGIN 
+
+p60.cb0 checkbox | 
+ANCHOR Consorzio stabile di società di professionisti o di ingegneria di cui all’art. 66, comma 1, lett. g) del D.Lgs. 36/2023
+ORIGIN 
+
+p62.cb0 checkbox | 
+ANCHOR Prestatore di servizi di ingegneria e architettura, stabilito nello Stato membro di ___________, costituito conformemente alla legislazione vigente nel medesimo Paese come da allegata documentazione (art. 66, comma 1, lett. d)
+ORIGIN 
+
+p64.cb0 checkbox | 
+ANCHOR Società tra professionisti, anche multidisciplinari, di cui al decreto ministeriale n. 34 del 2013
+ORIGIN 
+
+p69.cb0 checkbox | 
+ANCHOR Consorziata per la quale il consorzio stabile concorre / esecutrice nell’ipotesi di partecipazione di cui all’art. 66, comma 1, lett. g) del D.Lgs. n. 36/2023.
+ORIGIN 
+
+p76.cb0 checkbox |  SI    NO
+ANCHOR L’operatore economico partecipa alla procedura insieme ad altri? |  SI    NO
+ORIGIN 
+
+p76.cb1 checkbox |  SI    NO
+ANCHOR L’operatore economico partecipa alla procedura insieme ad altri? |  SI    NO
+ORIGIN 
+
+p80.cb0 checkbox |  Raggruppamento temporaneo (art. 66, comma 1, lett. f), Codice)
+ANCHOR  Raggruppamento temporaneo (art. 66, comma 1, lett. f), Codice)
+ORIGIN 
+
+p82.cb0 checkbox |  Consorzio ordinario (art. 65, comma 2, lettera f), Codice)
+ANCHOR  Consorzio ordinario (art. 65, comma 2, lettera f), Codice)
+ORIGIN 
+
+p84.cb0 checkbox |  Rete di imprese (art. 65, comma 2, lettera g), Codice)
+ANCHOR  Rete di imprese (art. 65, comma 2, lettera g), Codice)
+ORIGIN 
+
+p86.cb0 checkbox |  Gruppo europeo di interesse economico (G.E.I.E.)
+ANCHOR  Gruppo europeo di interesse economico (G.E.I.E.)
+ORIGIN 
+
+p89.cb0 checkbox |  Mandatario di un Raggruppamento temporaneo di operatori economici – come di seguito specificato nella parte quinta del presente documento:
+ANCHOR a)	Specificare il ruolo dell'operatore economico nel raggruppamento (mandataria, mandante ,…): |  Mandatario di un Raggruppamento temporaneo di operatori economici – come di seguito specificato nella parte quinta del presente documento: |  Costituendo           Costituito
+ORIGIN 
+
+p91.cb0 checkbox |  Costituendo           Costituito
+ANCHOR a)	Specificare il ruolo dell'operatore economico nel raggruppamento (mandataria, mandante ,…): |  Mandatario di un Raggruppamento temporaneo di operatori economici – come di seguito specificato nella parte quinta del presente documento: |  Costituendo           Costituito
+ORIGIN 
+
+p91.cb1 checkbox |  Costituendo           Costituito
+ANCHOR a)	Specificare il ruolo dell'operatore economico nel raggruppamento (mandataria, mandante ,…): |  Mandatario di un Raggruppamento temporaneo di operatori economici – come di seguito specificato nella parte quinta del presente documento: |  Costituendo           Costituito
+ORIGIN 
+
+p96.cb0 checkbox |  Mandante di un Raggruppamento temporaneo di operatori economici – come di seguito specificato nella parte quinta del presente documento.
+ANCHOR  Mandante di un Raggruppamento temporaneo di operatori economici – come di seguito specificato nella parte quinta del presente documento.
+ORIGIN 
+
+p101.cb0 checkbox |  Capogruppo di un consorzio ordinario – come di seguito specificato nella parte quinta del presente documento:
+ANCHOR  Capogruppo di un consorzio ordinario – come di seguito specificato nella parte quinta del presente documento: |  Costituendo          Costituito
+ORIGIN 
+
+p103.cb0 checkbox |  Costituendo          Costituito
+ANCHOR  Capogruppo di un consorzio ordinario – come di seguito specificato nella parte quinta del presente documento: |  Costituendo          Costituito
+ORIGIN 
+
+p103.cb1 checkbox |  Costituendo          Costituito
+ANCHOR  Capogruppo di un consorzio ordinario – come di seguito specificato nella parte quinta del presente documento: |  Costituendo          Costituito
+ORIGIN 
+
+p107.cb0 checkbox |  Consorziata di un consorzio ordinario – come di seguito specificato nella parte quinta del presente documento.
+ANCHOR  Consorziata di un consorzio ordinario – come di seguito specificato nella parte quinta del presente documento.
+ORIGIN 
+
+p110.cb0 checkbox |  Organo comune in rete
+ANCHOR  Organo comune in rete |  Impresa in rete (retista)
+ORIGIN 
+
+p111.cb0 checkbox |  Impresa in rete (retista)
+ANCHOR  Organo comune in rete |  Impresa in rete (retista)
+ORIGIN 
+
+p114.cb0 checkbox |  (altro) ____________________________________
+ANCHOR  (altro) ____________________________________
+ORIGIN 
+
+p147.cb0 checkbox |  NO
+ANCHOR  NO
+ORIGIN 
+
+p149.cb0 checkbox |  SI (in tal caso occorre allegare idonea documentazione con la quale dimostrare che la circostanza non abbia influito sulla gara né sia idonea a incidere sulla capacità di rispettare gli obblighi contrattuali); 
+ANCHOR  SI (in tal caso occorre allegare idonea documentazione con la quale dimostrare che la circostanza non abbia influito sulla gara né sia idonea a incidere sulla capacità di rispettare gli obblighi contrattuali); 
+ORIGIN 

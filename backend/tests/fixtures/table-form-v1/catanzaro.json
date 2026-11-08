@@ -1,0 +1,338 @@
+{
+  "original_fixture": "../form-applicability-v1/original.docx",
+  "blocked": [
+    {
+      "candidate_id": "t25.r2.c0",
+      "label": "CCIAA",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:440": ""
+      },
+      "table": "table:25",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t41.r1.c0",
+      "label": "nome",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:655": "",
+        "paragraph:657": "",
+        "paragraph:656": "",
+        "paragraph:659": "",
+        "paragraph:660": "",
+        "paragraph:658": ""
+      },
+      "table": "table:41",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t41.r1.c1",
+      "label": "nascita_data_luogo",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:655": "",
+        "paragraph:657": "",
+        "paragraph:656": "",
+        "paragraph:659": "",
+        "paragraph:660": "",
+        "paragraph:658": ""
+      },
+      "table": "table:41",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t41.r1.c2",
+      "label": "residenza",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:655": "",
+        "paragraph:657": "",
+        "paragraph:656": "",
+        "paragraph:659": "",
+        "paragraph:660": "",
+        "paragraph:658": ""
+      },
+      "table": "table:41",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t41.r1.c3",
+      "label": "cf",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:655": "",
+        "paragraph:657": "",
+        "paragraph:656": "",
+        "paragraph:659": "",
+        "paragraph:660": "",
+        "paragraph:658": ""
+      },
+      "table": "table:41",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t41.r1.c4",
+      "label": "carica",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:655": "",
+        "paragraph:657": "",
+        "paragraph:656": "",
+        "paragraph:659": "",
+        "paragraph:660": "",
+        "paragraph:658": ""
+      },
+      "table": "table:41",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t43.r1.c0",
+      "label": "nome",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:698": "",
+        "paragraph:701": "",
+        "paragraph:702": "",
+        "paragraph:699": "",
+        "paragraph:703": "",
+        "paragraph:700": ""
+      },
+      "table": "table:43",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t43.r1.c1",
+      "label": "nascita_data_luogo",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:698": "",
+        "paragraph:701": "",
+        "paragraph:702": "",
+        "paragraph:699": "",
+        "paragraph:703": "",
+        "paragraph:700": ""
+      },
+      "table": "table:43",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t43.r1.c2",
+      "label": "residenza",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:698": "",
+        "paragraph:701": "",
+        "paragraph:702": "",
+        "paragraph:699": "",
+        "paragraph:703": "",
+        "paragraph:700": ""
+      },
+      "table": "table:43",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t43.r1.c3",
+      "label": "cf",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:698": "",
+        "paragraph:701": "",
+        "paragraph:702": "",
+        "paragraph:699": "",
+        "paragraph:703": "",
+        "paragraph:700": ""
+      },
+      "table": "table:43",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t43.r1.c4",
+      "label": "carica",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:698": "",
+        "paragraph:701": "",
+        "paragraph:702": "",
+        "paragraph:699": "",
+        "paragraph:703": "",
+        "paragraph:700": ""
+      },
+      "table": "table:43",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t44.r1.c0",
+      "label": "nome",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:718": "",
+        "paragraph:721": "",
+        "paragraph:720": "",
+        "paragraph:719": "",
+        "paragraph:717": ""
+      },
+      "table": "table:44",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    },
+    {
+      "candidate_id": "t44.r1.c3",
+      "label": "cf",
+      "SOURCE_available": true,
+      "candidate_recognized_by_parser_and_writer": true,
+      "allowed_FORM_paragraphs": {
+        "paragraph:718": "",
+        "paragraph:721": "",
+        "paragraph:720": "",
+        "paragraph:719": "",
+        "paragraph:717": ""
+      },
+      "table": "table:44",
+      "formal_repeat_header_rows": [],
+      "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+      "not_caused_by_new_LLM_response": true
+    }
+  ],
+  "reference": [
+    {
+      "candidate_id": "t25.r2.c0",
+      "label": "CCIAA",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "cciaa",
+      "value": "Bari",
+      "required_role": "operatore economico"
+    },
+    {
+      "candidate_id": "t41.r1.c0",
+      "label": "nome",
+      "subject": "Leonardo Montemurro",
+      "property": "nome",
+      "value": "Leonardo Montemurro",
+      "required_role": "sottoscrittore/legale rappresentante"
+    },
+    {
+      "candidate_id": "t41.r1.c1",
+      "label": "nascita_data_luogo",
+      "subject": "Leonardo Montemurro",
+      "property": "nascita_data_luogo",
+      "value": "14/11/1982, Lecce (LE)",
+      "required_role": "sottoscrittore/legale rappresentante"
+    },
+    {
+      "candidate_id": "t41.r1.c2",
+      "label": "residenza",
+      "subject": "Leonardo Montemurro",
+      "property": "residenza",
+      "value": "Via Amedeo 24, Bari (BA)",
+      "required_role": "sottoscrittore/legale rappresentante"
+    },
+    {
+      "candidate_id": "t41.r1.c3",
+      "label": "cf",
+      "subject": "Leonardo Montemurro",
+      "property": "cf",
+      "value": "MNTLRD82S14E506X",
+      "required_role": "sottoscrittore/legale rappresentante"
+    },
+    {
+      "candidate_id": "t41.r1.c4",
+      "label": "carica",
+      "subject": "Leonardo Montemurro",
+      "property": "carica",
+      "value": "amministratore unico e rappresentante legale",
+      "required_role": "sottoscrittore/legale rappresentante"
+    },
+    {
+      "candidate_id": "t43.r1.c0",
+      "label": "nome",
+      "subject": "Leonardo Montemurro",
+      "property": "nome",
+      "value": "Leonardo Montemurro",
+      "required_role": "sottoscrittore/legale rappresentante"
+    },
+    {
+      "candidate_id": "t43.r1.c1",
+      "label": "nascita_data_luogo",
+      "subject": "Leonardo Montemurro",
+      "property": "nascita_data_luogo",
+      "value": "14/11/1982, Lecce (LE)",
+      "required_role": "sottoscrittore/legale rappresentante"
+    },
+    {
+      "candidate_id": "t43.r1.c2",
+      "label": "residenza",
+      "subject": "Leonardo Montemurro",
+      "property": "residenza",
+      "value": "Via Amedeo 24, Bari (BA)",
+      "required_role": "sottoscrittore/legale rappresentante"
+    },
+    {
+      "candidate_id": "t43.r1.c3",
+      "label": "cf",
+      "subject": "Leonardo Montemurro",
+      "property": "cf",
+      "value": "MNTLRD82S14E506X",
+      "required_role": "sottoscrittore/legale rappresentante"
+    },
+    {
+      "candidate_id": "t43.r1.c4",
+      "label": "carica",
+      "subject": "Leonardo Montemurro",
+      "property": "carica",
+      "value": "amministratore unico e rappresentante legale",
+      "required_role": "sottoscrittore/legale rappresentante"
+    },
+    {
+      "candidate_id": "t44.r1.c0",
+      "label": "nome",
+      "subject": "Elisa Romano",
+      "property": "nome",
+      "value": "Elisa Romano",
+      "required_role": "direttore tecnico"
+    },
+    {
+      "candidate_id": "t44.r1.c3",
+      "label": "cf",
+      "subject": "Elisa Romano",
+      "property": "cf",
+      "value": "RMNLSI85C47A662Y",
+      "required_role": "direttore tecnico"
+    }
+  ]
+}

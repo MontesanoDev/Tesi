@@ -1,0 +1,667 @@
+{
+  "catanzaro-1": {
+    "table_scope": {
+      "revision": 1,
+      "origin": "BACKEND",
+      "regions": [
+        {
+          "anchor_ids": [
+            "paragraph:362",
+            "paragraph:364"
+          ],
+          "candidate_ids": [
+            "t19.r0.c1",
+            "t19.r2.c0",
+            "t19.r3.c1",
+            "t19.r4.c1",
+            "t19.r4.c3"
+          ],
+          "table_id": "table:19"
+        },
+        {
+          "anchor_ids": [
+            "paragraph:432",
+            "paragraph:434"
+          ],
+          "candidate_ids": [
+            "t25.r0.c1",
+            "t25.r2.c0",
+            "t25.r3.c1",
+            "t25.r4.c1",
+            "t25.r4.c3",
+            "t25.r5.c0",
+            "t25.r5.c1"
+          ],
+          "table_id": "table:25"
+        },
+        {
+          "anchor_ids": [
+            "paragraph:468",
+            "paragraph:469"
+          ],
+          "candidate_ids": [
+            "t28.r0.c1",
+            "t28.r2.c0",
+            "t28.r3.c1",
+            "t28.r3.c3",
+            "t28.r4.c0",
+            "t28.r4.c1"
+          ],
+          "table_id": "table:28"
+        },
+        {
+          "anchor_ids": [
+            "paragraph:503",
+            "paragraph:505"
+          ],
+          "candidate_ids": [
+            "t31.r0.c1",
+            "t31.r2.c0",
+            "t31.r3.c1",
+            "t31.r4.c1",
+            "t31.r4.c3",
+            "t31.r5.c0",
+            "t31.r5.c1"
+          ],
+          "table_id": "table:31"
+        },
+        {
+          "anchor_ids": [
+            "paragraph:573",
+            "paragraph:575"
+          ],
+          "candidate_ids": [
+            "t37.r0.c1",
+            "t37.r2.c0",
+            "t37.r3.c1",
+            "t37.r4.c1",
+            "t37.r4.c3",
+            "t37.r5.c0",
+            "t37.r5.c1"
+          ],
+          "table_id": "table:37"
+        },
+        {
+          "anchor_ids": [
+            "paragraph:618",
+            "paragraph:620"
+          ],
+          "candidate_ids": [
+            "t40.r0.c1",
+            "t40.r2.c0",
+            "t40.r3.c1",
+            "t40.r4.c1",
+            "t40.r4.c3",
+            "t40.r5.c0",
+            "t40.r5.c1"
+          ],
+          "table_id": "table:40"
+        }
+      ]
+    },
+    "table_unknown_candidates": [],
+    "table_blocked_grounded_proposals": [],
+    "selectable_without_table_gate_only": [],
+    "counterfactual_limit": "Selectability alone excludes neither narrator holds nor missing authorizations; not proof of an otherwise certain write.",
+    "source_rereview": {},
+    "source_rereview_written": [],
+    "generation_segments": {
+      "revision": 3,
+      "segments": [
+        {
+          "index": 1,
+          "status": "analyzed",
+          "candidate_count": 43,
+          "error": null,
+          "source": "called",
+          "digest": "2981baf5998ede945521489ea2f317f9c7e6f6ff0db152a618c6cb2e237fc541",
+          "attempts": 1
+        },
+        {
+          "index": 2,
+          "status": "analyzed",
+          "candidate_count": 57,
+          "error": null,
+          "source": "called",
+          "digest": "a665d69e58c2632b898e758f8a712d24b2a87f925e4def678ddc5f3e50be9fd2",
+          "attempts": 1
+        },
+        {
+          "index": 3,
+          "status": "analyzed",
+          "candidate_count": 51,
+          "error": null,
+          "source": "called",
+          "digest": "cc29c88107cf1096645f214bfc55a2a2f3f847f6a5db5cead90f27b922b718a9",
+          "attempts": 1
+        },
+        {
+          "index": 4,
+          "status": "analyzed",
+          "candidate_count": 56,
+          "error": null,
+          "source": "called",
+          "digest": "ba037e740bef91c89992d3a09a787d918c5e00df1580a9f72eaea3452b33e15c",
+          "attempts": 1
+        },
+        {
+          "index": 5,
+          "status": "analyzed",
+          "candidate_count": 59,
+          "error": null,
+          "source": "called",
+          "digest": "9978632c32c6aeb06a79b5bb5a4a21386753b350bb4a1f60bb01ccf410291257",
+          "attempts": 1
+        },
+        {
+          "index": 6,
+          "status": "analyzed",
+          "candidate_count": 41,
+          "error": null,
+          "source": "called",
+          "digest": "9f88819efd89c57c3d33186edcbb5326cdf745098f7dd8dcb59ec21beed05444",
+          "attempts": 1
+        }
+      ],
+      "unanalyzed_candidate_ids": [],
+      "dropped_out_of_segment": 0,
+      "conflicts": [
+        {
+          "subject": "mapi ingegneria s.r.l.",
+          "entity": "company",
+          "property": "tipologiaoperatore",
+          "fact_ids": [
+            "s1_f11",
+            "s2_f_tipologia"
+          ]
+        }
+      ],
+      "unified_conditions": [],
+      "shared_conditions_not_unified": [],
+      "retries": 0
+    },
+    "narration_recovery": {
+      "revision": 1,
+      "mode": "completed",
+      "attempts": [
+        {
+          "artifact_path": "dialogue/debe82a199224fdc9deeac39300f9d56",
+          "error": null,
+          "usage": {
+            "prompt_tokens": 9163,
+            "completion_tokens": 11,
+            "total_tokens": 9174,
+            "prompt_tokens_details": {
+              "cached_tokens": 3072
+            },
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 6091
+          },
+          "seconds": 3.0700854530005017,
+          "http_calls": 1
+        }
+      ],
+      "retries": 0,
+      "unreviewed_candidate_ids": []
+    }
+  },
+  "minervino-1": {
+    "not_started": false,
+    "no_state": true
+  },
+  "soresa2023-1": {
+    "table_scope": {
+      "revision": 1,
+      "origin": "BACKEND",
+      "regions": []
+    },
+    "table_unknown_candidates": [],
+    "table_blocked_grounded_proposals": [],
+    "selectable_without_table_gate_only": [],
+    "counterfactual_limit": "Selectability alone excludes neither narrator holds nor missing authorizations; not proof of an otherwise certain write.",
+    "source_rereview": {},
+    "source_rereview_written": [],
+    "generation_segments": {
+      "revision": 3,
+      "segments": [
+        {
+          "index": 1,
+          "status": "analyzed",
+          "candidate_count": 36,
+          "error": null,
+          "source": "called",
+          "digest": "c1faa902d4483d1b34c0d54323df885af27d206c75cac452f54274b2392e1bbc",
+          "attempts": 1
+        },
+        {
+          "index": 2,
+          "status": "analyzed",
+          "candidate_count": 45,
+          "error": null,
+          "source": "called",
+          "digest": "494ee206c2d4a62af668a0f74c0ddb6efc9daa75e52d3123e9fb26770c593cde",
+          "attempts": 1
+        }
+      ],
+      "unanalyzed_candidate_ids": [],
+      "dropped_out_of_segment": 0,
+      "conflicts": [],
+      "unified_conditions": [],
+      "shared_conditions_not_unified": [],
+      "retries": 0
+    },
+    "narration_recovery": {
+      "revision": 1,
+      "mode": "completed",
+      "attempts": [
+        {
+          "artifact_path": "dialogue/cc64540ff9ab4ca8ad8ea16158165578",
+          "error": null,
+          "usage": {
+            "prompt_tokens": 6943,
+            "completion_tokens": 11,
+            "total_tokens": 6954,
+            "prompt_tokens_details": {
+              "cached_tokens": 3072
+            },
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 3871
+          },
+          "seconds": 1.3243257460001132,
+          "http_calls": 1
+        }
+      ],
+      "retries": 0,
+      "unreviewed_candidate_ids": []
+    }
+  },
+  "cesano-1": {
+    "table_scope": {
+      "revision": 1,
+      "origin": "BACKEND",
+      "regions": []
+    },
+    "table_unknown_candidates": [],
+    "table_blocked_grounded_proposals": [],
+    "selectable_without_table_gate_only": [],
+    "counterfactual_limit": "Selectability alone excludes neither narrator holds nor missing authorizations; not proof of an otherwise certain write.",
+    "source_rereview": {},
+    "source_rereview_written": [],
+    "generation_segments": {
+      "revision": 3,
+      "segments": [
+        {
+          "index": 1,
+          "status": "analyzed",
+          "candidate_count": 60,
+          "error": null,
+          "source": "called",
+          "digest": "7a547476e419fbfdd119bd516af7efc6607f15694b347593191adc4a61736401",
+          "attempts": 1
+        },
+        {
+          "index": 2,
+          "status": "analyzed",
+          "candidate_count": 28,
+          "error": null,
+          "source": "called",
+          "digest": "d10857d478bc6897ce760d4a2fd15637b0381af950200ebdc24d6a35def41ca4",
+          "attempts": 1
+        }
+      ],
+      "unanalyzed_candidate_ids": [],
+      "dropped_out_of_segment": 0,
+      "conflicts": [],
+      "unified_conditions": [],
+      "shared_conditions_not_unified": [],
+      "retries": 0
+    },
+    "narration_recovery": {
+      "revision": 1,
+      "mode": "completed",
+      "attempts": [
+        {
+          "artifact_path": "dialogue/72c2e08c388b4507a6195c599889dfbb",
+          "error": null,
+          "usage": {
+            "prompt_tokens": 9648,
+            "completion_tokens": 11,
+            "total_tokens": 9659,
+            "prompt_tokens_details": {
+              "cached_tokens": 3072
+            },
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 6576
+          },
+          "seconds": 1.3938258480000059,
+          "http_calls": 1
+        }
+      ],
+      "retries": 0,
+      "unreviewed_candidate_ids": []
+    }
+  },
+  "catanzaro-2": {
+    "table_scope": {
+      "revision": 1,
+      "origin": "BACKEND",
+      "regions": [
+        {
+          "anchor_ids": [
+            "paragraph:362",
+            "paragraph:364"
+          ],
+          "candidate_ids": [
+            "t19.r0.c1",
+            "t19.r2.c0",
+            "t19.r3.c1",
+            "t19.r4.c1",
+            "t19.r4.c3"
+          ],
+          "table_id": "table:19"
+        },
+        {
+          "anchor_ids": [
+            "paragraph:432",
+            "paragraph:434"
+          ],
+          "candidate_ids": [
+            "t25.r0.c1",
+            "t25.r2.c0",
+            "t25.r3.c1",
+            "t25.r4.c1",
+            "t25.r4.c3",
+            "t25.r5.c0",
+            "t25.r5.c1"
+          ],
+          "table_id": "table:25"
+        },
+        {
+          "anchor_ids": [
+            "paragraph:468",
+            "paragraph:469"
+          ],
+          "candidate_ids": [
+            "t28.r0.c1",
+            "t28.r2.c0",
+            "t28.r3.c1",
+            "t28.r3.c3",
+            "t28.r4.c0",
+            "t28.r4.c1"
+          ],
+          "table_id": "table:28"
+        },
+        {
+          "anchor_ids": [
+            "paragraph:503",
+            "paragraph:505"
+          ],
+          "candidate_ids": [
+            "t31.r0.c1",
+            "t31.r2.c0",
+            "t31.r3.c1",
+            "t31.r4.c1",
+            "t31.r4.c3",
+            "t31.r5.c0",
+            "t31.r5.c1"
+          ],
+          "table_id": "table:31"
+        },
+        {
+          "anchor_ids": [
+            "paragraph:573",
+            "paragraph:575"
+          ],
+          "candidate_ids": [
+            "t37.r0.c1",
+            "t37.r2.c0",
+            "t37.r3.c1",
+            "t37.r4.c1",
+            "t37.r4.c3",
+            "t37.r5.c0",
+            "t37.r5.c1"
+          ],
+          "table_id": "table:37"
+        },
+        {
+          "anchor_ids": [
+            "paragraph:618",
+            "paragraph:620"
+          ],
+          "candidate_ids": [
+            "t40.r0.c1",
+            "t40.r2.c0",
+            "t40.r3.c1",
+            "t40.r4.c1",
+            "t40.r4.c3",
+            "t40.r5.c0",
+            "t40.r5.c1"
+          ],
+          "table_id": "table:40"
+        }
+      ]
+    },
+    "table_unknown_candidates": [
+      "t37.r0.c1",
+      "t37.r2.c0",
+      "t37.r3.c1",
+      "t37.r4.c1",
+      "t37.r4.c3",
+      "t37.r5.c0",
+      "t37.r5.c1",
+      "t40.r0.c1",
+      "t40.r2.c0",
+      "t40.r3.c1",
+      "t40.r4.c1",
+      "t40.r4.c3",
+      "t40.r5.c0",
+      "t40.r5.c1"
+    ],
+    "table_blocked_grounded_proposals": [],
+    "selectable_without_table_gate_only": [],
+    "counterfactual_limit": "Selectability alone excludes neither narrator holds nor missing authorizations; not proof of an otherwise certain write.",
+    "source_rereview": {
+      "t44.r1.c0": {
+        "basis": "bound_role",
+        "rereview": "pending",
+        "status": "held",
+        "release_reason": null,
+        "actually_written": false,
+        "author_judgment": null
+      }
+    },
+    "source_rereview_written": [],
+    "generation_segments": {
+      "revision": 3,
+      "segments": [
+        {
+          "index": 1,
+          "status": "analyzed",
+          "candidate_count": 43,
+          "error": null,
+          "source": "called",
+          "digest": "7baea1e91c341c911f6839be0719371c82cbba9047c9fb22e7a11aaf5c9b8878",
+          "attempts": 1
+        },
+        {
+          "index": 2,
+          "status": "analyzed",
+          "candidate_count": 57,
+          "error": null,
+          "source": "called",
+          "digest": "ba55281ec1c1107592147ba0eb3de07f40cebeae8b9e0c5fe330181303765725",
+          "attempts": 1
+        },
+        {
+          "index": 3,
+          "status": "analyzed",
+          "candidate_count": 51,
+          "error": null,
+          "source": "called",
+          "digest": "75db63717ec5816e7b4c14ec34d2da8de3908cb7d3b14d3e2149af8122cf6574",
+          "attempts": 1
+        },
+        {
+          "index": 4,
+          "status": "analyzed",
+          "candidate_count": 56,
+          "error": null,
+          "source": "called",
+          "digest": "1b8245acc3d1a3661eddaf8c709ca4cd0e72a95e4386b10421a0df19be8863a2",
+          "attempts": 1
+        },
+        {
+          "index": 5,
+          "status": "analyzed",
+          "candidate_count": 59,
+          "error": null,
+          "source": "called",
+          "digest": "fba69daa5e216e6d3fbcbaebaab8d53b35b70595b5f91a65929df7bd08eb09fc",
+          "attempts": 1
+        },
+        {
+          "index": 6,
+          "status": "analyzed",
+          "candidate_count": 41,
+          "error": null,
+          "source": "called",
+          "digest": "61094ad717e9b77005db47a2fb12dd57e64852220d1706eef10c3c2b2a0d02c0",
+          "attempts": 1
+        }
+      ],
+      "unanalyzed_candidate_ids": [],
+      "dropped_out_of_segment": 0,
+      "conflicts": [
+        {
+          "subject": "mapi ingegneria s.r.l.",
+          "entity": "company",
+          "property": "tipologiaoperatore",
+          "fact_ids": [
+            "s1_f_company_type",
+            "s3_f_tipo"
+          ]
+        }
+      ],
+      "unified_conditions": [],
+      "shared_conditions_not_unified": [],
+      "retries": 0
+    },
+    "narration_recovery": {
+      "revision": 1,
+      "mode": "completed",
+      "attempts": [
+        {
+          "artifact_path": "dialogue/35cb8cc9607643fd95f01990a0bd853d",
+          "error": null,
+          "usage": {
+            "prompt_tokens": 11122,
+            "completion_tokens": 158,
+            "total_tokens": 11280,
+            "prompt_tokens_details": {
+              "cached_tokens": 3072
+            },
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 8050
+          },
+          "seconds": 2.979574242999888,
+          "http_calls": 1
+        }
+      ],
+      "retries": 0,
+      "unreviewed_candidate_ids": []
+    }
+  },
+  "minervino-2": {
+    "table_scope": {
+      "revision": 1,
+      "origin": "BACKEND",
+      "regions": []
+    },
+    "table_unknown_candidates": [],
+    "table_blocked_grounded_proposals": [],
+    "selectable_without_table_gate_only": [],
+    "counterfactual_limit": "Selectability alone excludes neither narrator holds nor missing authorizations; not proof of an otherwise certain write.",
+    "source_rereview": {},
+    "source_rereview_written": [],
+    "generation_segments": {
+      "revision": 3,
+      "segments": [
+        {
+          "index": 1,
+          "status": "analyzed",
+          "candidate_count": 59,
+          "error": null,
+          "source": "cache",
+          "digest": "324413ce9b4c2e387ae053a624430f8cdf3253b507fc7bf4d527aeb744e17f7e",
+          "attempts": 0
+        },
+        {
+          "index": 2,
+          "status": "analyzed",
+          "candidate_count": 54,
+          "error": null,
+          "source": "called",
+          "digest": "61e60a38276b80e16cdc51f84de1afccd0528cd32e94e7bc052e5651b280552f",
+          "attempts": 1
+        },
+        {
+          "index": 3,
+          "status": "analyzed",
+          "candidate_count": 60,
+          "error": null,
+          "source": "called",
+          "digest": "aafacf57c00db7d7d90b9aaee0b3234b7856c8206dc6c354209388bc3abb233a",
+          "attempts": 1
+        },
+        {
+          "index": 4,
+          "status": "analyzed",
+          "candidate_count": 60,
+          "error": null,
+          "source": "called",
+          "digest": "4cf2ddc6a1f765fea906cbb2eb4aec76d680db50aeabf74585b54c9c14702fa1",
+          "attempts": 1
+        },
+        {
+          "index": 5,
+          "status": "analyzed",
+          "candidate_count": 34,
+          "error": null,
+          "source": "called",
+          "digest": "03c1e88e02ae9211f665053cf60b1a2a9890e42fd50a854ef8a3a769141c1344",
+          "attempts": 1
+        }
+      ],
+      "unanalyzed_candidate_ids": [],
+      "dropped_out_of_segment": 0,
+      "conflicts": [],
+      "unified_conditions": [],
+      "shared_conditions_not_unified": [],
+      "retries": 0
+    },
+    "narration_recovery": {
+      "revision": 1,
+      "mode": "completed",
+      "attempts": [
+        {
+          "artifact_path": "dialogue/d0da6dfd232b499fa64e44282036c162",
+          "error": null,
+          "usage": {
+            "prompt_tokens": 12357,
+            "completion_tokens": 11,
+            "total_tokens": 12368,
+            "prompt_tokens_details": {
+              "cached_tokens": 3456
+            },
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 8901
+          },
+          "seconds": 4.331908332999774,
+          "http_calls": 1
+        }
+      ],
+      "retries": 0,
+      "unreviewed_candidate_ids": []
+    }
+  }
+}

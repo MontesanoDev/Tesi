@@ -1,0 +1,30 @@
+[
+  {
+    "document_id": 7,
+    "original_name": "generalita-mapi.md",
+    "live_relative_path": "backend/data/uploads/_global/company/68d14ad5a40f4f1d9662f30c5c5b66a2.md",
+    "SHA256": "0404c209cc312e7bef3371797c836b48d983f5ff83ea38a44fd78eea0b451e3b",
+    "metadata_verbatim": "MD · 8 KB · 9 frammenti"
+  },
+  {
+    "document_id": 8,
+    "original_name": "progettazione-opere-pubbliche.txt",
+    "live_relative_path": "backend/data/uploads/_global/general/452246cb5f524dfb8d996869f1cd0ee7.txt",
+    "SHA256": "21340bc17677bde1118df2eeeeb36652c87303b14c2c9e606a83a3d36be4cf33",
+    "metadata_verbatim": "TXT · 4 KB · 4 frammenti"
+  },
+  {
+    "document_id": 9,
+    "original_name": "visura-mapi-ingegneria-simulata.pdf",
+    "live_relative_path": "backend/data/uploads/_global/company/86d01e643890471abe5259288de10a0f.pdf",
+    "SHA256": "74edda8cd65ef67e50c2195cdd6059114115aa47b5bc595b37fa6de962ce52aa",
+    "metadata_verbatim": "PDF · 47 KB · 4 frammenti"
+  },
+  {
+    "document_id": 10,
+    "original_name": "integrazione-company.md",
+    "live_relative_path": "backend/data/uploads/_global/company/0f420917080446c7a6049e077c2f3b55.md",
+    "SHA256": "4817c4f567e04e183a90cfc59f15d2e5a5105925ff674536e83531218ed04507",
+    "metadata_verbatim": "MD · 4 KB · 5 frammenti"
+  }
+]

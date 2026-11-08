@@ -1,0 +1,133 @@
+{
+ "version": 3,
+ "document": "cesano",
+ "derived_from": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/cesano/reference.json",
+  "sha256": "9f52e091de53c6cf000d0eeec87bd265f45c6d718541117ca89112e104ea0110",
+  "values_unchanged": true
+ },
+ "FORM_sha256": "9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795",
+ "scenario": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/cesano/scenario-USER.json",
+ "scenario_sha256": "a933337b026faad9c6c211496af1ee239eee8ab91ee8bff6d538e0530a0ff5bd",
+ "variant": "cesano-esteso",
+ "runtime_source": "storico",
+ "destinations": [
+  {
+   "candidate_id": "p12.ft0",
+   "recognized": true,
+   "label": "Nome firmatario",
+   "value": "Leonardo Montemurro",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "name",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.ft1",
+   "recognized": true,
+   "label": "Nascita luogo",
+   "value": "Lecce (LE)",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "birthplace",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p12.ft2",
+   "recognized": true,
+   "label": "Nascita data",
+   "value": "14/11/1982",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "birthdate",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p19.ft0",
+   "recognized": true,
+   "label": "Denominazione società di ingegneria",
+   "value": "Mapi Ingegneria S.r.l.",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "name",
+   "SOURCE_chunks": [
+    -30,
+    -43
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v2 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": true,
+    "kind": "option_clause",
+    "region_kind": "participation",
+    "scenario_state": "authorized"
+   },
+   "expected_if_authorized": true,
+   "in_denominator": true
+  }
+ ],
+ "unrecognized_core_destinations": [],
+ "USER_decisions_expected": {
+  "p19.cb0": true
+ },
+ "pertinent_unresolved_active_fields": [
+  "data",
+  "preferenze categorie/fasce",
+  "recapiti studio personale non dimostrati",
+  "INAIL/INPS/INARCASSA personali",
+  "iscrizione professionale Leonardo"
+ ],
+ "permitted_equivalence": "Date formats, case/spaces, title prefix, fuller literal SOURCE if subject/property/granularity correct",
+ "protected": "Do not invent personal properties, powers, designations or attestations; no signatures; USER choice only identifies signer and participation",
+ "legacy_notes": {
+  "applicability_notes": "Preflight rejects all destinations. These four human-readable SOURCE occurrences are documented but have no supported candidate IDs. Never edit the FORM to add placeholders during this benchmark.",
+  "denominator_scope": "Documented core SOURCE field occurrences, not distinct atomic facts or total procedure requirements; unknown attestations/designations and variable-cardinality tables excluded from completeness denominator"
+ },
+ "registered_UTC": "2026-10-22T10:47:07+00:00",
+ "condition_4": {
+  "core": 4,
+  "recognized": 4,
+  "share": 1.0,
+  "passes": true
+ }
+}

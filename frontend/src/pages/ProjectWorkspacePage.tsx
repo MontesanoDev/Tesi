@@ -20,9 +20,11 @@ import {
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../api'
 import { compilationReplyParagraphs } from '../compilationReply'
+import { readChatDraft, saveChatDraft, type RecoverableMessage } from '../chatMessageRecovery'
 import { AppShell } from '../components/AppShell'
 import { AssistantMessage } from '../components/AssistantMessage'
 import { CompilationReply } from '../components/CompilationReply'
+import { compilationActivity as compilationActivityLabel } from '../compilationStatus'
 import '../components/ChatComposer.css'
 import { ErrorState, LoadingState } from '../components/LoadingState'
 import { ProjectKnowledgePanel } from '../components/ProjectKnowledgePanel'
@@ -50,8 +52,9 @@ function documentReferenceOf(value: {
   return form ? { document_id: form.form_id, name: form.name, role: 'form' } : null
 }
 
-function ConversationTurn({ turn, assistantContent, processing = false, activity }: {
+function ConversationTurn({ turn, assistantContent, processing = false, activity, onReuse }: {
   turn: ChatTurn; assistantContent?: ReactNode; processing?: boolean; activity?: string
+  onReuse?: () => void
 }) {
   const result = turn.result
   const evidence = result?.evidence ?? []
@@ -64,6 +67,7 @@ function ConversationTurn({ turn, assistantContent, processing = false, activity
         <span>Tu</span>
         <p>{turn.question}</p>
         {turn.document_reference && <small className="chat-form-reference">@{turn.document_reference.name}</small>}
+        {onReuse && <button type="button" className="button button--compact" onClick={onReuse}>Recupera messaggio</button>}
       </div>
 
       <AssistantMessage id={answerTitleId} model={result?.model}
@@ -118,6 +122,8 @@ export function ProjectWorkspacePage() {
   const [deletingProject, setDeletingProject] = useState(false)
   const [deleteError, setDeleteError] = useState<string | null>(null)
   const [prompt, setPrompt] = useState('')
+  const [recoverableMessage, setRecoverableMessage] = useState<RecoverableMessage | null>(null)
+  const [draftUnavailable, setDraftUnavailable] = useState(false)
   const [turns, setTurns] = useState<ChatTurn[]>([])
   const [searching, setSearching] = useState(false)
   const [changingModel, setChangingModel] = useState(false)
@@ -150,6 +156,26 @@ export function ProjectWorkspacePage() {
   )
 
   useEffect(() => {
+    if (!projectId) return
+    const draft = readChatDraft(projectId, conversationId)
+    setRecoverableMessage(draft.message)
+    setDraftUnavailable(draft.unavailable)
+  }, [projectId, conversationId])
+
+  function retainMessage(text: string, reference = documentReference, submitted = false) {
+    const message = text ? { text, document_reference: reference, submitted } : null
+    setRecoverableMessage(message)
+    if (projectId) setDraftUnavailable(!saveChatDraft(projectId, conversationId, message))
+  }
+
+  // A draft only typed goes back into the composer (e.g. after the AI settings page); only a
+  // copy of a sent message is offered with the explicit «Recupera messaggio».
+  function typedDraft(conversation = conversationId) {
+    const draft = projectId ? readChatDraft(projectId, conversation).message : null
+    return draft && draft.submitted === false ? draft : null
+  }
+
+  useEffect(() => {
     setSearching(false)
     return () => {
       answerRequest.current?.abort()
@@ -158,11 +184,12 @@ export function ProjectWorkspacePage() {
   }, [projectId, conversationId])
 
   useEffect(() => {
-    setPrompt('')
+    const typed = typedDraft()
+    setPrompt(typed?.text ?? '')
     setTurns([])
     setSearching(false)
     setConversationError(null)
-    setDocumentReference(null)
+    setDocumentReference(typed?.document_reference ?? null)
     setMention(null)
     turnSequence.current = 0
     activeConversation.current = null
@@ -177,7 +204,9 @@ export function ProjectWorkspacePage() {
       setTurns([])
       setConversationLoading(false)
       setConversationError(null)
-      setDocumentReference(null)
+      const typed = typedDraft()
+      if (typed) setPrompt(typed.text)
+      setDocumentReference(typed?.document_reference ?? null)
       setMention(null)
       return
     }
@@ -197,6 +226,23 @@ export function ProjectWorkspacePage() {
         activeConversation.current = conversation.id
         loadedConversation.current = conversation.id
         setDocumentReference(documentReferenceOf(conversation))
+        // A copy kept while leaving the page is not unsent once the server registered and
+        // answered that same message: offering it again would only duplicate it.
+        const last = conversation.turns.at(-1)
+        const kept = readChatDraft(projectId, conversation.id).message
+        const reference = last ? documentReferenceOf(last) : null
+        const typed = typedDraft(conversation.id)
+        if (typed) {
+          setPrompt(typed.text)
+          setDocumentReference(typed.document_reference)
+        }
+        if (kept && !typed && last && kept.text === last.question
+          && !['failed', 'not_configured'].includes(last.generation_status)
+          && kept.document_reference?.document_id === reference?.document_id
+          && kept.document_reference?.role === reference?.role) {
+          setDraftUnavailable(!saveChatDraft(projectId, conversation.id, null))
+          setRecoverableMessage(null)
+        }
         setTurns(conversation.turns.map((turn) => ({
           id: `turn-${turn.id}`,
           question: turn.question,
@@ -250,12 +296,14 @@ export function ProjectWorkspacePage() {
 
   async function submitPrompt(event: FormEvent) {
     event.preventDefault()
-    const query = prompt.trim()
-    if (!query || answerRequest.current || searching || conversationLoading || changingModel
+    const query = prompt
+    if (!query.trim() || [...query].length > MAX_PROMPT_LENGTH
+      || answerRequest.current || searching || conversationLoading || changingModel
       || compilation.loading || sessionStateUnavailable || compilation.isProcessing()) return
     const controller = new AbortController()
     answerRequest.current = controller
     const turnId = `local-${++turnSequence.current}`
+    retainMessage(query, documentReference, true)
     stickToBottom.current = true
     setTurns((current) => [
       ...current.map((turn, index) => {
@@ -279,6 +327,24 @@ export function ProjectWorkspacePage() {
         activeSession ? { session_id: activeSession.id, version: activeSession.version } : undefined,
       )
       if (controller.signal.aborted) return
+      // Clear only the submitted copy. A later draft belongs to the user.
+      const failed = ['failed', 'not_configured'].includes(result.generation_status)
+      const saved = readChatDraft(activeProjectId, conversationId)
+      if (saved.message) {
+        const submitted = saved.message.text === query
+          && JSON.stringify(saved.message.document_reference) === JSON.stringify(documentReference)
+        if (failed || !submitted) {
+          const stored = saveChatDraft(activeProjectId, result.conversation_id, saved.message)
+          setDraftUnavailable(!stored)
+          if (stored && conversationId !== result.conversation_id) {
+            saveChatDraft(activeProjectId, conversationId, null)
+          }
+          setRecoverableMessage(saved.message)
+        } else {
+          setDraftUnavailable(!saveChatDraft(activeProjectId, conversationId, null))
+          setRecoverableMessage(null)
+        }
+      }
       activeConversation.current = result.conversation_id
       loadedConversation.current = result.conversation_id
       setTurns((current) => current.map((turn) => (
@@ -331,9 +397,12 @@ export function ProjectWorkspacePage() {
 
   function selectMention(document: ProjectFile) {
     if (!mention || compilation.isProcessing() || compilation.loading || searching) return
-    setDocumentReference({ document_id: document.id, name: document.name,
-      role: document.kind === 'form' ? 'form' : 'source' })
-    setPrompt(prompt.slice(0, mention.start) + prompt.slice(mention.end))
+    const reference = { document_id: document.id, name: document.name,
+      role: document.kind === 'form' ? 'form' as const : 'source' as const }
+    const text = prompt.slice(0, mention.start) + prompt.slice(mention.end)
+    setDocumentReference(reference)
+    setPrompt(text)
+    retainMessage(text, reference)
     setMention(null)
     composerInput.current?.focus()
   }
@@ -394,10 +463,7 @@ export function ProjectWorkspacePage() {
   const sessionProcessing = compilation.processing || compilation.loading
   const awaitingSession = Boolean(latestTurn?.result?.compilation && !activeSession
     && compilation.loading && !compilation.error)
-  const compilationActivity = activeSession?.engine === 'global'
-    ? activeSession.global_compilation?.phase === 'REVIEW'
-      ? 'Aggiorno la compilazione…' : 'Analizzo il modulo…'
-    : 'Sto lavorando…'
+  const compilationActivity = compilationActivityLabel(activeSession)
   const sessionMessage = activeSession ? (
     <CompilationReply key={activeSession.id} session={activeSession} response={latestTurn?.result}
       pending={Boolean(latestTurn && !latestTurn.result && !latestTurn.error)}
@@ -420,10 +486,10 @@ export function ProjectWorkspacePage() {
       </div>}
       <textarea
         ref={composerInput}
-        aria-label="Messaggio per Mapi RAG"
+        aria-label="Messaggio per l’assistente"
         placeholder="Come posso aiutarti? Usa @ per scegliere un documento"
-        maxLength={MAX_PROMPT_LENGTH}
         value={prompt}
+        aria-invalid={[...prompt].length > MAX_PROMPT_LENGTH || undefined}
         aria-controls={mention ? 'composer-document-options' : undefined}
         aria-activedescendant={mention && mentionOptions[mentionIndex] ? `document-option-${mentionOptions[mentionIndex].id}` : undefined}
         onChange={(event) => {
@@ -431,6 +497,7 @@ export function ProjectWorkspacePage() {
           const end = event.target.selectionStart
           const match = /(?:^|\s)@([^@\s]*)$/.exec(text.slice(0, end))
           setPrompt(text)
+          retainMessage(text)
           setMentionIndex(0)
           setMention(match && !compilation.processing && !compilation.loading && !searching ? { start: end - match[1].length - 1, end, query: match[1] } : null)
         }}
@@ -453,14 +520,29 @@ export function ProjectWorkspacePage() {
         <p role="alert">{compilation.error}</p>
         <button type="button" className="button" disabled={compilation.busy} onClick={compilation.refresh}>Riprova caricamento sessione</button>
       </div>}
-      {compilation.busy && !activeSession && <p role="status">Preparazione della compilazione…</p>}
+      {[...prompt].length > MAX_PROMPT_LENGTH && <p role="alert">
+        Il messaggio supera i 4.000 caratteri accettati dalla chat. Il testo resta integrale:
+        dividilo in risposte più brevi prima di inviarlo.
+      </p>}
+      {draftUnavailable && <p role="alert">
+        Non riesco a salvare la copia di recupero in questa scheda. Copia il messaggio prima di uscire.
+      </p>}
+      {!searching && recoverableMessage && prompt !== recoverableMessage.text && <div className="composer-recovery">
+        <p>Un messaggio è conservato in questa scheda. Recuperarlo non lo invia né conferma decisioni.</p>
+        <button type="button" disabled={Boolean(prompt)} onClick={() => {
+          setPrompt(recoverableMessage.text)
+          setDocumentReference(recoverableMessage.document_reference)
+          composerInput.current?.focus()
+        }}>Recupera messaggio</button>
+      </div>}
+      {compilation.busy && !activeSession && <p role="status">{compilationActivityLabel(null)}</p>}
       <div className="composer-tools">
         <button
           className={`composer-mention-trigger${mention ? ' is-active' : ''}`}
           type="button"
           aria-label="Aggiungi un documento"
           title="Aggiungi un documento"
-          disabled={searching || conversationLoading || changingModel || compilation.loading
+          disabled={searching || conversationLoading || compilation.loading
             || compilation.processing || documents.length === 0}
           onClick={() => {
             const position = composerInput.current?.selectionStart ?? prompt.length
@@ -477,7 +559,7 @@ export function ProjectWorkspacePage() {
           className="send-button"
           type="submit"
           aria-label="Invia"
-          disabled={!prompt.trim() || searching || conversationLoading || changingModel || compilation.processing || compilation.loading || sessionStateUnavailable}
+          disabled={!prompt.trim() || [...prompt].length > MAX_PROMPT_LENGTH || searching || conversationLoading || changingModel || compilation.processing || compilation.loading || sessionStateUnavailable}
         >
           <ArrowUp size={20} />
         </button>
@@ -577,6 +659,15 @@ export function ProjectWorkspacePage() {
                   <div key={turn.id}>
                     <ConversationTurn
                       turn={turn}
+                      // Only the latest failed turn is still pending; later turns supersede it.
+                      onReuse={!searching && !sessionProcessing && !prompt && !recoverableMessage
+                        && index === turns.length - 1
+                        && (turn.error || ['failed', 'not_configured'].includes(turn.result?.generation_status ?? '')) ? () => {
+                        setPrompt(turn.question)
+                        setDocumentReference(turn.document_reference ?? null)
+                        retainMessage(turn.question, turn.document_reference ?? null, true)
+                        composerInput.current?.focus()
+                      } : undefined}
                       assistantContent={index === turns.length - 1 ? sessionMessage ?? undefined : undefined}
                       processing={index === turns.length - 1 && (
                         Boolean(activeSession) && sessionProcessing || awaitingSession)}

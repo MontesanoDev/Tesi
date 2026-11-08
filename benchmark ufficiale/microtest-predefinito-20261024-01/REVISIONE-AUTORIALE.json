@@ -1,0 +1,70 @@
+{
+ "reviewer": "Claude (autoriale, NON indipendente)",
+ "UTC": "2026-10-24T17:07:06+00:00",
+ "trial": "cesano-predefinito-1",
+ "judgments": {
+  "p12.ft0|Leonardo Montemurro": {
+   "verdict": "DIMOSTRATA",
+   "basis": "SOURCE integrazione-company.md, sezione «Leonardo Montemurro — anagrafica sintetica» (chunk -53/-54); firmatario scelto dall'USER e ramo s1_c_rappr confermato (ricevuta CONDITION_TRUE); la stessa SOURCE lo indica come amministratore unico e rappresentante legale dal 2 ottobre 2026",
+   "note": "Dato personale attribuito alla persona giusta; i restanti campi personali (studio, via, P.IVA, INAIL, INPS, INARCASSA, mail, PEC, telefono, ordine) restano vuoti: le proposte con dati aziendali sono state respinte dal controllo K3."
+  },
+  "p12.ft1|Lecce (LE)": {
+   "verdict": "DIMOSTRATA",
+   "basis": "SOURCE integrazione-company.md, sezione «Leonardo Montemurro — anagrafica sintetica» (chunk -53/-54); firmatario scelto dall'USER e ramo s1_c_rappr confermato (ricevuta CONDITION_TRUE); la stessa SOURCE lo indica come amministratore unico e rappresentante legale dal 2 ottobre 2026; riga «Luogo di nascita: Lecce (LE).»",
+   "note": "Dato personale attribuito alla persona giusta; i restanti campi personali (studio, via, P.IVA, INAIL, INPS, INARCASSA, mail, PEC, telefono, ordine) restano vuoti: le proposte con dati aziendali sono state respinte dal controllo K3."
+  },
+  "p12.ft2|14 novembre 1982": {
+   "verdict": "DIMOSTRATA",
+   "basis": "SOURCE integrazione-company.md, sezione «Leonardo Montemurro — anagrafica sintetica» (chunk -53/-54); firmatario scelto dall'USER e ramo s1_c_rappr confermato (ricevuta CONDITION_TRUE); la stessa SOURCE lo indica come amministratore unico e rappresentante legale dal 2 ottobre 2026; riga «Data di nascita: 14 novembre 1982.»",
+   "note": "Dato personale attribuito alla persona giusta; i restanti campi personali (studio, via, P.IVA, INAIL, INPS, INARCASSA, mail, PEC, telefono, ordine) restano vuoti: le proposte con dati aziendali sono state respinte dal controllo K3."
+  },
+  "p19.ft0|Mapi Ingegneria S.r.l.": {
+   "verdict": "DIMOSTRATA",
+   "basis": "SOURCE generalita-mapi.md «Ragione sociale: Mapi Ingegneria S.r.l.»; autorizzazione USER della clausola d'opzione (ricevuta authorization:1ef46e49…, CONDITION_TRUE)",
+   "note": "Denominazione richiesta dalla nota (3) del FORM per la Società di Ingegneria."
+  },
+  "p19.cb0|true": {
+   "verdict": "DIMOSTRATA",
+   "basis": "Scelta USER esplicita «Scelgo la voce Società di Ingegneria» (gruppo s1_cg_part, ricevuta VALUE); coerente con SOURCE «Tipologia di attivita': societa' di ingegneria civile» e visura «SOCIETA DI INGEGNERIA CIVILE»",
+   "note": "La proposta autonoma del modello era stata respinta (scelta senza SOURCE fattuale autorizzata); scritta solo dopo la decisione USER."
+  },
+  "p16.cb0|false": {
+   "verdict": "DIMOSTRATA",
+   "kind": "effetto della scelta esclusiva, non nuovo fatto",
+   "basis": "Scelta USER «Scelgo la voce Società di Ingegneria» sul gruppo s1_cg_part (ricevuta VALUE); scenario: partecipazione singola come società di ingegneria",
+   "note": "Casella già deselezionata per default nel FORM; il DOCX scrive checked=0 esplicito, senza cambiamento visibile."
+  },
+  "p17.cb0|false": {
+   "verdict": "DIMOSTRATA",
+   "kind": "effetto della scelta esclusiva, non nuovo fatto",
+   "basis": "Scelta USER «Scelgo la voce Società di Ingegneria» sul gruppo s1_cg_part (ricevuta VALUE); scenario: partecipazione singola come società di ingegneria",
+   "note": "Casella già deselezionata per default nel FORM; il DOCX scrive checked=0 esplicito, senza cambiamento visibile."
+  },
+  "p18.cb0|false": {
+   "verdict": "DIMOSTRATA",
+   "kind": "effetto della scelta esclusiva, non nuovo fatto",
+   "basis": "Scelta USER «Scelgo la voce Società di Ingegneria» sul gruppo s1_cg_part (ricevuta VALUE); scenario: partecipazione singola come società di ingegneria",
+   "note": "Casella già deselezionata per default nel FORM; il DOCX scrive checked=0 esplicito, senza cambiamento visibile."
+  },
+  "p20.cb0|false": {
+   "verdict": "DIMOSTRATA",
+   "kind": "effetto della scelta esclusiva, non nuovo fatto",
+   "basis": "Scelta USER «Scelgo la voce Società di Ingegneria» sul gruppo s1_cg_part (ricevuta VALUE); scenario: partecipazione singola come società di ingegneria",
+   "note": "Casella già deselezionata per default nel FORM; il DOCX scrive checked=0 esplicito, senza cambiamento visibile."
+  },
+  "p21.cb0|false": {
+   "verdict": "DIMOSTRATA",
+   "kind": "effetto della scelta esclusiva, non nuovo fatto",
+   "basis": "Scelta USER «Scelgo la voce Società di Ingegneria» sul gruppo s1_cg_part (ricevuta VALUE); scenario: partecipazione singola come società di ingegneria",
+   "note": "Casella già deselezionata per default nel FORM; il DOCX scrive checked=0 esplicito, senza cambiamento visibile."
+  }
+ },
+ "summary": {
+  "positive_writes": 5,
+  "deselection_effects": 5,
+  "DIMOSTRATA": 10,
+  "DUBBIA": 0,
+  "NON_DIMOSTRATA": 0
+ },
+ "method": "Ogni scrittura confrontata con FORM (catalogo), SOURCE citate (corpus congelato), ricevute USER e DOCX/PDF renderizzato."
+}

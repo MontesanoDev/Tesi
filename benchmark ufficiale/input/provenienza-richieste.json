@@ -1,0 +1,30 @@
+{
+  "SOURCE_actual_input_sha256": "217a480df4c877f4ac2735c9abcddf68beaaa6069577c27d904306ccc99cf1ad",
+  "snapshot_projection": "Ordinary pipeline excludes only excerpt, relevance and document_metadata; content, identity, project, scope and role preserved; three actual arrays identical",
+  "global_requests": [
+    {
+      "slug": "minervino",
+      "actual_user_prompt_sha256": "d99102a3814f056b9463ac967172fdb15ae940229eceb830d5fabfdc6cd3b2a8",
+      "actual_system_prompt_sha256": "978c321f5a992e2b53f6dea55f6afcaaab18d4fa728470e9e6a7cc61e9904d8c",
+      "body_sha256": "9163460c80320239cd34229aaf575e85756b561ab1af3b97a8c4bb229382c28d",
+      "characters_user_prompt": 192197,
+      "temperature": 0.1
+    },
+    {
+      "slug": "trapani",
+      "actual_user_prompt_sha256": "ba84153a126e2a599d6fe2e5a4db815a946db8b3fad3a3182966cea127df15fe",
+      "actual_system_prompt_sha256": "978c321f5a992e2b53f6dea55f6afcaaab18d4fa728470e9e6a7cc61e9904d8c",
+      "body_sha256": "c2408c1691927496419555df530290d3396d9fe6ccefdfabdb32a822a138ee2b",
+      "characters_user_prompt": 115917,
+      "temperature": 0.1
+    },
+    {
+      "slug": "catanzaro",
+      "actual_user_prompt_sha256": "17a1480f70d9b7986c581957aa10c651bd4adca442fd6466daa5f5d11b87fce1",
+      "actual_system_prompt_sha256": "978c321f5a992e2b53f6dea55f6afcaaab18d4fa728470e9e6a7cc61e9904d8c",
+      "body_sha256": "eef3f68e6670fe8c745f604b27e48da4839efc4e242bcc2f083e65c984e7b44a",
+      "characters_user_prompt": 248773,
+      "temperature": 0.1
+    }
+  ]
+}

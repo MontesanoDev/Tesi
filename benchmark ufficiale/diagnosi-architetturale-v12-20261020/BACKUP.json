@@ -1,0 +1,9 @@
+{
+  "archive": "audit-completo.tar.gz",
+  "SHA256": "c8f26e4bdd0383621efc5bd806188538faeb5bee90e380c1c367dae797dc4996",
+  "bytes": 51349716,
+  "files_in_archive": 2033,
+  "status": "CREATED",
+  "no_private_DB_environment_or_credentials": true,
+  "generated_UTC": "2026-10-20T19:46:43.106246+00:00"
+}

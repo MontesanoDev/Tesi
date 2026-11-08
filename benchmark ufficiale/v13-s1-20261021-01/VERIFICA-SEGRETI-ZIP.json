@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "zip_files": 90,
+  "members_decompressed": 2845,
+  "members_with_credential": 0,
+  "base64_forms_checked": true,
+  "video_and_image_pixels_not_scannable": true,
+  "secrets_never_printed": true
+}

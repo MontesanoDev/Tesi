@@ -1,0 +1,108 @@
+{
+  "status": "PASS",
+  "backend_tests": 3048,
+  "new_permanent_tests": 52,
+  "Ruff": "PASS",
+  "export_replays": 68,
+  "DOCX_byte_exact": 68,
+  "SOURCE_facts_and_bindings_exact": true,
+  "validator_cases": 213,
+  "validator_results_exact": 199,
+  "validator_changed_cases": 14,
+  "validator_validated": 207,
+  "validator_prior_root_rejections": 6,
+  "validator_promotions": [
+    [
+      "043",
+      "t25.r2.c0"
+    ],
+    [
+      "046",
+      "t25.r2.c0"
+    ],
+    [
+      "046",
+      "t44.r1.c0"
+    ],
+    [
+      "059",
+      "t25.r2.c0"
+    ],
+    [
+      "062",
+      "t25.r2.c0"
+    ],
+    [
+      "062",
+      "t44.r1.c0"
+    ],
+    [
+      "091",
+      "t25.r2.c0"
+    ],
+    [
+      "094",
+      "t25.r2.c0"
+    ],
+    [
+      "094",
+      "t44.r1.c0"
+    ],
+    [
+      "124",
+      "t25.r2.c0"
+    ],
+    [
+      "125",
+      "t25.r2.c0"
+    ],
+    [
+      "128",
+      "t25.r2.c0"
+    ],
+    [
+      "128",
+      "t44.r1.c0"
+    ],
+    [
+      "137",
+      "t25.r2.c0"
+    ],
+    [
+      "137",
+      "t44.r1.c0"
+    ],
+    [
+      "150",
+      "t25.r2.c0"
+    ],
+    [
+      "153",
+      "t25.r2.c0"
+    ],
+    [
+      "153",
+      "t44.r1.c0"
+    ],
+    [
+      "203",
+      "t25.r2.c0"
+    ],
+    [
+      "206",
+      "t25.r2.c0"
+    ],
+    [
+      "206",
+      "t44.r1.c0"
+    ]
+  ],
+  "validator_lost_grounded": [],
+  "export_protocol_raw_proposals_promotions": 29,
+  "positive_counts_are_overlapping_protocols_not_additive": true,
+  "MODEL_condition_truth_changes": 0,
+  "original_unsafe_counterexamples_still_empty": true,
+  "PDF_families": 6,
+  "PDF_samples": 8,
+  "real_E2E_report_separate": true
+}

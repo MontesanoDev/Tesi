@@ -1,0 +1,126 @@
+{
+  "completed_UTC": "2026-10-21T20:34:56.913677+00:00",
+  "protocol_registered_UTC": "2026-10-21T19:30:07.764815+00:00",
+  "campaign_window_UTC": [
+    "2026-10-21T19:30:41Z",
+    "about 3 minutes, all six in parallel"
+  ],
+  "attempts": 6,
+  "DOCX": 6,
+  "provider_failures": 0,
+  "LLM_calls": 55,
+  "tokens": 802062,
+  "per_trial": {
+    "craa-ramo": {
+      "variant": "craa-ramo",
+      "DOCX": true,
+      "reply_rounds": 1,
+      "authorization_slots_per_round": [
+        1
+      ],
+      "unaccepted_replies": 0,
+      "CCIAA_written": {},
+      "p19_ft0": null,
+      "writes": 8,
+      "core_written_date_equivalent": "8/8 (CCIAA esclusi: dipendenti da autorizzazione)",
+      "redundant_decision_confirmations": 1,
+      "option_region_writes_without_accepted_authorization": []
+    },
+    "cesano-breve": {
+      "variant": "cesano-breve",
+      "DOCX": true,
+      "reply_rounds": 2,
+      "authorization_slots_per_round": [
+        1,
+        0
+      ],
+      "unaccepted_replies": 0,
+      "CCIAA_written": {},
+      "p19_ft0": null,
+      "writes": 0,
+      "core_written_date_equivalent": "0/4",
+      "redundant_decision_confirmations": 2,
+      "option_region_writes_without_accepted_authorization": []
+    },
+    "minervino-a": {
+      "variant": "minervino-controllo",
+      "DOCX": true,
+      "reply_rounds": 4,
+      "authorization_slots_per_round": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "unaccepted_replies": 0,
+      "CCIAA_written": {},
+      "p19_ft0": null,
+      "writes": 51,
+      "core_written_date_equivalent": "51/60",
+      "redundant_decision_confirmations": 3,
+      "option_region_writes_without_accepted_authorization": []
+    },
+    "craa-autorizza": {
+      "variant": "craa-autorizza",
+      "DOCX": true,
+      "reply_rounds": 1,
+      "authorization_slots_per_round": [
+        1
+      ],
+      "unaccepted_replies": 0,
+      "CCIAA_written": {},
+      "p19_ft0": null,
+      "writes": 8,
+      "core_written_date_equivalent": "8/8 (CCIAA esclusi)",
+      "redundant_decision_confirmations": 0,
+      "option_region_writes_without_accepted_authorization": []
+    },
+    "cesano-esteso": {
+      "variant": "cesano-esteso",
+      "DOCX": true,
+      "reply_rounds": 1,
+      "authorization_slots_per_round": [
+        1
+      ],
+      "unaccepted_replies": 0,
+      "CCIAA_written": {},
+      "p19_ft0": "Mapi Ingegneria S.r.l.",
+      "writes": 4,
+      "core_written_date_equivalent": "4/4",
+      "redundant_decision_confirmations": 2,
+      "option_region_writes_without_accepted_authorization": []
+    },
+    "minervino-b": {
+      "variant": "minervino-controllo",
+      "DOCX": true,
+      "reply_rounds": 2,
+      "authorization_slots_per_round": [
+        0,
+        0
+      ],
+      "unaccepted_replies": 0,
+      "CCIAA_written": {},
+      "p19_ft0": null,
+      "writes": 27,
+      "core_written_date_equivalent": "26/60",
+      "redundant_decision_confirmations": 1,
+      "option_region_writes_without_accepted_authorization": []
+    }
+  },
+  "key_findings": {
+    "branch_only_receipt": "craa-ramo: «Sì, Mapi Ingegneria S.r.l. è una società.» accettata come condizione di ramo; attestazione rinviata; CCIAA vuote. Con le stesse ricevute e la stessa revisione, il profilo V13 le avrebbe esportate.",
+    "full_authorization": "craa-autorizza: autorizzazione accettata, ma la condizione di ramo del modello c_cciaa (nel pool) non è stata chiesta dal narratore: CCIAA vuote. Nessuna scrittura senza entrambe le conferme.",
+    "cesano_recovery": "p19.ft0 recuperato in 1 tentativo su 2 dopo autorizzazione esplicita; in cesano-breve il narratore ha trattenuto 4 proposte al primo riepilogo (comportamento presente anche in 4/20 prove Cesano V13) e le trattenute non sono state rilasciate.",
+    "dialogue_cost": "1 slot di autorizzazione al primo turno in ogni prova CRAA/Cesano; spostamento di una sola domanda al turno successivo (cesano-breve); 0 risposte rifiutate.",
+    "safety": "0 scritture in regioni d'opzione senza autorizzazione accettata; 0 scritture non dimostrate nella revisione dell'autore (non indipendente); nessun valore invisibile nei PDF.",
+    "P2_evidence": "minervino-b: 60 proposte del modello, 33 respinte da «Binding di ruolo rifiutato»."
+  },
+  "concurrent_activity": "Dopo la campagna un'altra sessione ha modificato 7 file applicativi (impostazioni retrieval, 22:25-22:33 locali) e il DB live tramite l'app su 8000/5173. La campagna aveva già verificato a ogni chiamata gli hash del codice V14; il percorso di compilazione non è coinvolto.",
+  "not_done": [
+    "nessuna adozione",
+    "nessuna modifica di codice",
+    "nessun commit/push",
+    "revisione non indipendente",
+    "soglie di conclusione non applicate (6 prove di meccanismo)"
+  ]
+}

@@ -1,0 +1,756 @@
+{
+  "reviewer": "Claude (Opus), autore delle correzioni e della campagna (NON indipendente)",
+  "method": "tutte le scritture di ogni DOCX su valore, soggetto, ramo del FORM e consenso, prima del tentativo successivo; contesto dal catalogo, prove SOURCE e ricevute USER dallo stato finale; caso dubbio = non dimostrata",
+  "judgments": {
+    "soresa2023-1|p115.s1|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Domicilio fiscale, codice fiscale di Mapi Ingegneria: SOURCE «Codice fiscale e Partita IVA IT01234567890», uguale al riferimento v3; condizione s2_c_partecipazione (partecipazione singola) vera per ricevuta USER con prova d'ambito che comprende la destinazione."
+    },
+    "soresa2023-1|p115.s2|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Domicilio fiscale, partita IVA di Mapi Ingegneria: stessa prova SOURCE e stessa ricevuta d'ambito di p115.s1; uguale al riferimento v3."
+    },
+    "soresa2023-1|t0.r1.c0|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella che segue «[ ] come singolo operatore economico» (paragraph:66), ramo dello scenario; «Denominazione operatore economico / Sede legale»: ragione sociale SOURCE corretta, sede mancante (valore parziale, nessun valore sbagliato); condizione s2_c_partecipazione vera con ricevuta d'ambito."
+    },
+    "minervino-1|p12.s0|Leonardo Montemurro": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Dichiarante principale, firmatario scelto nello scenario (Leonardo Montemurro): nome, luogo e data di nascita uguali o equivalenti al riferimento v3."
+    },
+    "minervino-1|p12.s1|Lecce": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Dichiarante principale, firmatario scelto nello scenario (Leonardo Montemurro): nome, luogo e data di nascita uguali o equivalenti al riferimento v3."
+    },
+    "minervino-1|p12.s2|LE": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Dichiarante principale, firmatario scelto nello scenario (Leonardo Montemurro): nome, luogo e data di nascita uguali o equivalenti al riferimento v3."
+    },
+    "minervino-1|p12.s3|14 novembre 1982": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Dichiarante principale, firmatario scelto nello scenario (Leonardo Montemurro): nome, luogo e data di nascita uguali o equivalenti al riferimento v3."
+    },
+    "minervino-1|p13.s0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Residenza e codice fiscale del dichiarante; uguali al riferimento v3."
+    },
+    "minervino-1|p13.s1|BA": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Residenza e codice fiscale del dichiarante; uguali al riferimento v3."
+    },
+    "minervino-1|p13.s2|Amedeo 24": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Residenza e codice fiscale del dichiarante; uguali al riferimento v3."
+    },
+    "minervino-1|p13.s3|MNTLRD82S14E506X": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Residenza e codice fiscale del dichiarante; uguali al riferimento v3."
+    },
+    "minervino-1|p14.s0|amministratore unico e rappresentante legale": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ruolo («amministratore unico e rappresentante legale», più completo del riferimento) e denominazione dell'operatore economico; ramo società confermato."
+    },
+    "minervino-1|p14.s1|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ruolo («amministratore unico e rappresentante legale», più completo del riferimento) e denominazione dell'operatore economico; ramo società confermato."
+    },
+    "minervino-1|p15.s0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Sede legale (comune) e recapiti telefonici dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-1|p15.s2|+39 080 000 2040": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Sede legale (comune) e recapiti telefonici dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-1|p15.s3|+39 080 000 2041": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Sede legale (comune) e recapiti telefonici dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-1|p16.s0|segreteria@mapi-ingegneria.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "E-mail, PEC e partita IVA dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-1|p16.s1|mapi.ingegneria@pec.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "E-mail, PEC e partita IVA dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-1|p16.s2|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "E-mail, PEC e partita IVA dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-1|p17.s0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione CCIAA dell'operatore; uguale al riferimento v3; nessuna regione d'opzione."
+    },
+    "minervino-1|p17.s1|01234560981": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione CCIAA dell'operatore; uguale al riferimento v3; nessuna regione d'opzione."
+    },
+    "minervino-1|p40.s0|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo «Legale rappresentante di società … di ingegneria» (paragraph:39), ramo dello scenario: denominazione; condizione s1_c_partecipazione vera con ricevuta d'ambito (estesa da R1)."
+    },
+    "minervino-1|p41.s0|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società (paragraph:39): partita IVA; uguale al riferimento v3."
+    },
+    "minervino-1|p42.s0|BA": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società (paragraph:39): provincia, indirizzo, telefono, e-mail e PEC della società; uguali al riferimento v3."
+    },
+    "minervino-1|p42.s1|Via Giovanni Amendola": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società (paragraph:39): provincia, indirizzo, telefono, e-mail e PEC della società; uguali al riferimento v3."
+    },
+    "minervino-1|p42.s2|172/C": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società (paragraph:39): provincia, indirizzo, telefono, e-mail e PEC della società; uguali al riferimento v3."
+    },
+    "minervino-1|p42.s3|+39 080 000 2040": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società (paragraph:39): provincia, indirizzo, telefono, e-mail e PEC della società; uguali al riferimento v3."
+    },
+    "minervino-1|p42.s4|segreteria@mapi-ingegneria.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società (paragraph:39): provincia, indirizzo, telefono, e-mail e PEC della società; uguali al riferimento v3."
+    },
+    "minervino-1|p42.s5|mapi.ingegneria@pec.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società (paragraph:39): provincia, indirizzo, telefono, e-mail e PEC della società; uguali al riferimento v3."
+    },
+    "minervino-1|p43.s0|Luca Ferri": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Primo socio (Luca Ferri) nell'elenco dei soci del ramo società: binding «socio» literal_match sulla tabella SOURCE «Soci della società»; valori uguali al riferimento v3."
+    },
+    "minervino-1|p43.s1|Ingegnere": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Primo socio (Luca Ferri) nell'elenco dei soci del ramo società: binding «socio» literal_match sulla tabella SOURCE «Soci della società»; valori uguali al riferimento v3."
+    },
+    "minervino-1|p43.s2|FRRLCU80A01A662K": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Primo socio (Luca Ferri) nell'elenco dei soci del ramo società: binding «socio» literal_match sulla tabella SOURCE «Soci della società»; valori uguali al riferimento v3."
+    },
+    "minervino-1|p43.s3|Ordine degli Ingegneri di Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Primo socio (Luca Ferri) nell'elenco dei soci del ramo società: binding «socio» literal_match sulla tabella SOURCE «Soci della società»; valori uguali al riferimento v3."
+    },
+    "minervino-1|p43.s4|A": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Primo socio (Luca Ferri) nell'elenco dei soci del ramo società: binding «socio» literal_match sulla tabella SOURCE «Soci della società»; valori uguali al riferimento v3."
+    },
+    "minervino-1|p44.s0|Bari (BA)": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del primo socio (Luca Ferri): provincia, data e numero; uguali al riferimento v3."
+    },
+    "minervino-1|p44.s1|21/03/2012": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del primo socio (Luca Ferri): provincia, data e numero; uguali al riferimento v3."
+    },
+    "minervino-1|p44.s2|7294": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del primo socio (Luca Ferri): provincia, data e numero; uguali al riferimento v3."
+    },
+    "minervino-1|p48.s0|Architetto": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Terzo socio (Andrea Greco): qualifica e codice fiscale, binding «socio» literal_match; il nome p47.s0 non è scritto (sospeso dal narratore): blocco incompleto, difetto di qualità, non di sicurezza."
+    },
+    "minervino-1|p48.s1|GRCNDR84D20A662P": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Terzo socio (Andrea Greco): qualifica e codice fiscale, binding «socio» literal_match; il nome p47.s0 non è scritto (sospeso dal narratore): blocco incompleto, difetto di qualità, non di sicurezza."
+    },
+    "minervino-1|p49.s0|Ordine degli Architetti di Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del terzo socio (Andrea Greco); uguale al riferimento v3; blocco senza nome (vedi p48)."
+    },
+    "minervino-1|p49.s1|A": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del terzo socio (Andrea Greco); uguale al riferimento v3; blocco senza nome (vedi p48)."
+    },
+    "minervino-1|p49.s2|Bari (BA)": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del terzo socio (Andrea Greco); uguale al riferimento v3; blocco senza nome (vedi p48)."
+    },
+    "minervino-1|p49.s3|12/06/2014": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del terzo socio (Andrea Greco); uguale al riferimento v3; blocco senza nome (vedi p48)."
+    },
+    "minervino-1|p49.s4|5267": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del terzo socio (Andrea Greco); uguale al riferimento v3; blocco senza nome (vedi p48)."
+    },
+    "minervino-1|p52.s0|Ingegnere": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Direttore tecnico (blocco dopo paragraph:50, «Direttore Tecnico (per le società di ingegneria)»): Elisa Romano, binding «Direttore Tecnico» literal_match; condizione s2_cond_dt vera per risposta USER verificata dalla guardia d'ambito; qualifica e CF uguali al riferimento; nome p51.s0 non proposto (blocco incompleto)."
+    },
+    "minervino-1|p52.s1|RMNLSI85C47A662Y": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Direttore tecnico (blocco dopo paragraph:50, «Direttore Tecnico (per le società di ingegneria)»): Elisa Romano, binding «Direttore Tecnico» literal_match; condizione s2_cond_dt vera per risposta USER verificata dalla guardia d'ambito; qualifica e CF uguali al riferimento; nome p51.s0 non proposto (blocco incompleto)."
+    },
+    "minervino-1|p53.s0|Ordine degli Ingegneri di Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del direttore tecnico (Elisa Romano): ordine, sezione e numero uguali al riferimento v3; provincia e data non proposte."
+    },
+    "minervino-1|p53.s1|A": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del direttore tecnico (Elisa Romano): ordine, sezione e numero uguali al riferimento v3; provincia e data non proposte."
+    },
+    "minervino-1|p53.s4|8421": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del direttore tecnico (Elisa Romano): ordine, sezione e numero uguali al riferimento v3; provincia e data non proposte."
+    },
+    "catanzaro-1|t0.r0.c1|Leonardo Montemurro": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, «Il/La sottoscritto/a»: firmatario scelto nello scenario; uguale al riferimento v3."
+    },
+    "catanzaro-1|t0.r10.c1|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, partita IVA dell'operatore; uguale al riferimento v3."
+    },
+    "catanzaro-1|t0.r2.c1|MNTLRD82S14E506X": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, codice fiscale del sottoscrittore; uguale al riferimento v3."
+    },
+    "catanzaro-1|t0.r5.c1|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, operatore economico; uguale al riferimento v3."
+    },
+    "catanzaro-1|t0.r6.c1|Societa a responsabilita limitata": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, forma giuridica dell'operatore: SOURCE letterale «Societa a responsabilita limitata» (senza accenti anche nella fonte), equivalente al riferimento v3."
+    },
+    "catanzaro-1|t0.r7.c1|Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, sede legale dell'operatore; uguale o più completa del riferimento v3."
+    },
+    "catanzaro-1|t0.r9.c1|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, codice fiscale dell'operatore; uguale al riferimento v3."
+    },
+    "catanzaro-1|t25.r0.c1|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA» (paragraph:432), ramo dello scenario confermato dalla scelta USER «Società di Ingegneria» (choice:s1_cg_tipologia, ricevuta d'ambito) e dalla richiesta iniziale; denominazione, CCIAA, forma giuridica e sede uguali o equivalenti al riferimento v3. Nessuna condizione del modello sulla sezione (limite: protezione solo empirica per le sezioni sorelle)."
+    },
+    "catanzaro-1|t25.r2.c0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA» (paragraph:432), ramo dello scenario confermato dalla scelta USER «Società di Ingegneria» (choice:s1_cg_tipologia, ricevuta d'ambito) e dalla richiesta iniziale; denominazione, CCIAA, forma giuridica e sede uguali o equivalenti al riferimento v3. Nessuna condizione del modello sulla sezione (limite: protezione solo empirica per le sezioni sorelle)."
+    },
+    "catanzaro-1|t25.r4.c1|Societa a responsabilita limitata": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA» (paragraph:432), ramo dello scenario confermato dalla scelta USER «Società di Ingegneria» (choice:s1_cg_tipologia, ricevuta d'ambito) e dalla richiesta iniziale; denominazione, CCIAA, forma giuridica e sede uguali o equivalenti al riferimento v3. Nessuna condizione del modello sulla sezione (limite: protezione solo empirica per le sezioni sorelle)."
+    },
+    "catanzaro-1|t25.r4.c3|Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA» (paragraph:432), ramo dello scenario confermato dalla scelta USER «Società di Ingegneria» (choice:s1_cg_tipologia, ricevuta d'ambito) e dalla richiesta iniziale; denominazione, CCIAA, forma giuridica e sede uguali o equivalenti al riferimento v3. Nessuna condizione del modello sulla sezione (limite: protezione solo empirica per le sezioni sorelle)."
+    },
+    "catanzaro-1|p49.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione dell'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER Società di ingegneria; non è un nuovo fatto."
+    },
+    "catanzaro-1|p51.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione dell'alternativa esclusiva del gruppo s1_cg_tipologia (effetto tracciato della scelta USER)."
+    },
+    "catanzaro-1|p53.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione dell'alternativa esclusiva del gruppo s1_cg_tipologia (effetto tracciato della scelta USER)."
+    },
+    "catanzaro-1|p55.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione dell'alternativa esclusiva del gruppo s1_cg_tipologia (effetto tracciato della scelta USER)."
+    },
+    "catanzaro-1|p57.cb0|True": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Casella «Società di ingegneria» del gruppo s1_cg_tipologia (GROUNDED_GROUP, scelta singola): scelta USER esplicita «Scelgo la voce Società di Ingegneria.», con ricevuta d'ambito, prevista dallo scenario."
+    },
+    "catanzaro-1|p60.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione dell'alternativa esclusiva del gruppo s1_cg_tipologia (effetto tracciato della scelta USER)."
+    },
+    "catanzaro-1|p62.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione dell'alternativa esclusiva del gruppo s1_cg_tipologia (effetto tracciato della scelta USER)."
+    },
+    "catanzaro-1|p64.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione dell'alternativa esclusiva del gruppo s1_cg_tipologia (effetto tracciato della scelta USER)."
+    },
+    "soresa2023-2|p115.s1|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Domicilio fiscale, codice fiscale di Mapi Ingegneria: SOURCE «Codice fiscale e Partita IVA IT01234567890»; uguale al riferimento v3."
+    },
+    "soresa2023-2|p115.s2|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Domicilio fiscale, partita IVA di Mapi Ingegneria; uguale al riferimento v3."
+    },
+    "soresa2023-2|p8.s7|Via Giovanni Amendola 172/C": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Blocco del dichiarante principale (paragraph:8) nella sezione «da compilare nel caso di partecipazione in forma di operatore economico singolo …» (paragraph:7), ramo dello scenario: sede, telefono e PEC dell'operatore; condizione s1_c1 vera per ricevuta USER con prova d'ambito; uguali al riferimento v3."
+    },
+    "soresa2023-2|p8.s8|+39 080 000 2040": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Blocco del dichiarante principale (paragraph:8) nella sezione «da compilare nel caso di partecipazione in forma di operatore economico singolo …» (paragraph:7), ramo dello scenario: sede, telefono e PEC dell'operatore; condizione s1_c1 vera per ricevuta USER con prova d'ambito; uguali al riferimento v3."
+    },
+    "soresa2023-2|p8.s9|mapi.ingegneria@pec.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Blocco del dichiarante principale (paragraph:8) nella sezione «da compilare nel caso di partecipazione in forma di operatore economico singolo …» (paragraph:7), ramo dello scenario: sede, telefono e PEC dell'operatore; condizione s1_c1 vera per ricevuta USER con prova d'ambito; uguali al riferimento v3."
+    },
+    "soresa2023-2|p9.s0|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Codice fiscale e partita IVA dell'operatore nel blocco del dichiarante principale (sezione paragraph:7, condizione s1_c1 verificata); uguali al riferimento v3."
+    },
+    "soresa2023-2|p9.s1|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Codice fiscale e partita IVA dell'operatore nel blocco del dichiarante principale (sezione paragraph:7, condizione s1_c1 verificata); uguali al riferimento v3."
+    },
+    "minervino-2|p12.s0|Leonardo Montemurro": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Dichiarante principale, firmatario scelto nello scenario: nome, luogo e data di nascita uguali o equivalenti al riferimento v3."
+    },
+    "minervino-2|p12.s1|Lecce": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Dichiarante principale, firmatario scelto nello scenario: nome, luogo e data di nascita uguali o equivalenti al riferimento v3."
+    },
+    "minervino-2|p12.s2|LE": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Dichiarante principale, firmatario scelto nello scenario: nome, luogo e data di nascita uguali o equivalenti al riferimento v3."
+    },
+    "minervino-2|p12.s3|14 novembre 1982": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Dichiarante principale, firmatario scelto nello scenario: nome, luogo e data di nascita uguali o equivalenti al riferimento v3."
+    },
+    "minervino-2|p13.s0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Residenza e codice fiscale del dichiarante; uguali al riferimento v3."
+    },
+    "minervino-2|p13.s1|BA": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Residenza e codice fiscale del dichiarante; uguali al riferimento v3."
+    },
+    "minervino-2|p13.s2|Amedeo 24": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Residenza e codice fiscale del dichiarante; uguali al riferimento v3."
+    },
+    "minervino-2|p13.s3|MNTLRD82S14E506X": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Residenza e codice fiscale del dichiarante; uguali al riferimento v3."
+    },
+    "minervino-2|p14.s1|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Denominazione dell'operatore economico; uguale al riferimento v3 (il ruolo p14.s0 è sospeso dal narratore per un conflitto di date fra schede SOURCE)."
+    },
+    "minervino-2|p15.s0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Sede legale (comune, provincia) e telefoni dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-2|p15.s1|BA": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Sede legale (comune, provincia) e telefoni dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-2|p15.s2|+39 080 000 2040": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Sede legale (comune, provincia) e telefoni dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-2|p15.s3|+39 080 000 2041": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Sede legale (comune, provincia) e telefoni dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-2|p16.s0|segreteria@mapi-ingegneria.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "E-mail, PEC e partita IVA dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-2|p16.s1|mapi.ingegneria@pec.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "E-mail, PEC e partita IVA dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-2|p16.s2|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "E-mail, PEC e partita IVA dell'operatore; uguali al riferimento v3."
+    },
+    "minervino-2|p17.s0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione CCIAA dell'operatore; uguale al riferimento v3."
+    },
+    "minervino-2|p17.s1|01234560981": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione CCIAA dell'operatore; uguale al riferimento v3."
+    },
+    "minervino-2|p40.s0|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo «Legale rappresentante di società … di ingegneria» (paragraph:39), ramo dello scenario: denominazione; condizioni s1_c_soc_ing e s2_c_soc_ing vere per ricevuta USER con prova d'ambito (s1_c_soc_ing estesa da R1)."
+    },
+    "minervino-2|p41.s0|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società: partita IVA e comune della sede legale; uguali al riferimento v3."
+    },
+    "minervino-2|p41.s1|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società: partita IVA e comune della sede legale; uguali al riferimento v3."
+    },
+    "minervino-2|p42.s0|BA": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società: provincia, indirizzo, telefono, e-mail e PEC; uguali al riferimento v3."
+    },
+    "minervino-2|p42.s1|Via Giovanni Amendola": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società: provincia, indirizzo, telefono, e-mail e PEC; uguali al riferimento v3."
+    },
+    "minervino-2|p42.s2|172/C": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società: provincia, indirizzo, telefono, e-mail e PEC; uguali al riferimento v3."
+    },
+    "minervino-2|p42.s3|+39 080 000 2040": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società: provincia, indirizzo, telefono, e-mail e PEC; uguali al riferimento v3."
+    },
+    "minervino-2|p42.s4|segreteria@mapi-ingegneria.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società: provincia, indirizzo, telefono, e-mail e PEC; uguali al riferimento v3."
+    },
+    "minervino-2|p42.s5|mapi.ingegneria@pec.demo": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Ramo società: provincia, indirizzo, telefono, e-mail e PEC; uguali al riferimento v3."
+    },
+    "minervino-2|p43.s0|Luca Ferri": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Primo socio (Luca Ferri) nell'elenco dei soci (paragraph:42): binding «socio» literal_match sulla tabella SOURCE «Soci della società al 15 ottobre 2026»; valori uguali al riferimento v3. Uno dei 21 campi sospesi nel gemello della candidata corretta."
+    },
+    "minervino-2|p43.s1|Ingegnere": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Primo socio (Luca Ferri) nell'elenco dei soci (paragraph:42): binding «socio» literal_match sulla tabella SOURCE «Soci della società al 15 ottobre 2026»; valori uguali al riferimento v3. Uno dei 21 campi sospesi nel gemello della candidata corretta."
+    },
+    "minervino-2|p43.s2|FRRLCU80A01A662K": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Primo socio (Luca Ferri) nell'elenco dei soci (paragraph:42): binding «socio» literal_match sulla tabella SOURCE «Soci della società al 15 ottobre 2026»; valori uguali al riferimento v3. Uno dei 21 campi sospesi nel gemello della candidata corretta."
+    },
+    "minervino-2|p43.s3|Ordine degli Ingegneri di Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Primo socio (Luca Ferri) nell'elenco dei soci (paragraph:42): binding «socio» literal_match sulla tabella SOURCE «Soci della società al 15 ottobre 2026»; valori uguali al riferimento v3. Uno dei 21 campi sospesi nel gemello della candidata corretta."
+    },
+    "minervino-2|p43.s4|A": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Primo socio (Luca Ferri) nell'elenco dei soci (paragraph:42): binding «socio» literal_match sulla tabella SOURCE «Soci della società al 15 ottobre 2026»; valori uguali al riferimento v3. Uno dei 21 campi sospesi nel gemello della candidata corretta."
+    },
+    "minervino-2|p44.s0|Bari (BA)": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del primo socio (Luca Ferri); uguale al riferimento v3."
+    },
+    "minervino-2|p44.s1|21/03/2012": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del primo socio (Luca Ferri); uguale al riferimento v3."
+    },
+    "minervino-2|p44.s2|7294": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del primo socio (Luca Ferri); uguale al riferimento v3."
+    },
+    "minervino-2|p45.s0|Elisa Romano": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Secondo socio (Elisa Romano): nome, qualifica, CF, ordine, sezione; binding «socio» literal_match sulla tabella dei soci; uguali al riferimento v3."
+    },
+    "minervino-2|p45.s1|Ingegnere": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Secondo socio (Elisa Romano): nome, qualifica, CF, ordine, sezione; binding «socio» literal_match sulla tabella dei soci; uguali al riferimento v3."
+    },
+    "minervino-2|p45.s2|RMNLSI85C47A662Y": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Secondo socio (Elisa Romano): nome, qualifica, CF, ordine, sezione; binding «socio» literal_match sulla tabella dei soci; uguali al riferimento v3."
+    },
+    "minervino-2|p45.s3|Ordine degli Ingegneri di Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Secondo socio (Elisa Romano): nome, qualifica, CF, ordine, sezione; binding «socio» literal_match sulla tabella dei soci; uguali al riferimento v3."
+    },
+    "minervino-2|p45.s4|A": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Secondo socio (Elisa Romano): nome, qualifica, CF, ordine, sezione; binding «socio» literal_match sulla tabella dei soci; uguali al riferimento v3."
+    },
+    "minervino-2|p46.s0|Bari (BA)": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del secondo socio (Elisa Romano): provincia, data, numero; uguali al riferimento v3; blocco ora completo (nel gemello mancava il nome)."
+    },
+    "minervino-2|p46.s1|18/05/2015": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del secondo socio (Elisa Romano): provincia, data, numero; uguali al riferimento v3; blocco ora completo (nel gemello mancava il nome)."
+    },
+    "minervino-2|p46.s2|8421": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del secondo socio (Elisa Romano): provincia, data, numero; uguali al riferimento v3; blocco ora completo (nel gemello mancava il nome)."
+    },
+    "minervino-2|p47.s0|Andrea Greco": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Terzo socio (Andrea Greco), nome: binding «socio» literal_match; p47-p49 è il terzo socio, prima del blocco del direttore tecnico (paragraph:50)."
+    },
+    "minervino-2|p48.s0|Architetto": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Terzo socio (Andrea Greco): qualifica e CF; uguali al riferimento v3."
+    },
+    "minervino-2|p48.s1|GRCNDR84D20A662P": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Terzo socio (Andrea Greco): qualifica e CF; uguali al riferimento v3."
+    },
+    "minervino-2|p49.s0|Ordine degli Architetti di Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del terzo socio (Andrea Greco); uguale al riferimento v3."
+    },
+    "minervino-2|p49.s1|A": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del terzo socio (Andrea Greco); uguale al riferimento v3."
+    },
+    "minervino-2|p49.s2|Bari (BA)": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del terzo socio (Andrea Greco); uguale al riferimento v3."
+    },
+    "minervino-2|p49.s3|12/06/2014": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del terzo socio (Andrea Greco); uguale al riferimento v3."
+    },
+    "minervino-2|p49.s4|5267": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Iscrizione del terzo socio (Andrea Greco); uguale al riferimento v3."
+    },
+    "catanzaro-2|t0.r10.c1|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, partita IVA dell'operatore; uguale al riferimento v3."
+    },
+    "catanzaro-2|t0.r5.c1|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, operatore economico; uguale al riferimento v3."
+    },
+    "catanzaro-2|t0.r6.c1|Societa a responsabilita limitata": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, forma giuridica: SOURCE letterale «Societa a responsabilita limitata», equivalente al riferimento v3."
+    },
+    "catanzaro-2|t0.r7.c1|Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, sede legale dell'operatore; uguale o più completa del riferimento v3."
+    },
+    "catanzaro-2|t0.r9.c1|IT01234567890": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 0, codice fiscale dell'operatore; uguale al riferimento v3."
+    },
+    "catanzaro-2|t25.r0.c1|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA», ramo dello scenario; condizione s4_c_ing vera per ricevuta USER (richiesta iniziale) con prova d'ambito; denominazione, CCIAA, forma giuridica e sede uguali o equivalenti al riferimento v3."
+    },
+    "catanzaro-2|t25.r2.c0|Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA», ramo dello scenario; condizione s4_c_ing vera per ricevuta USER (richiesta iniziale) con prova d'ambito; denominazione, CCIAA, forma giuridica e sede uguali o equivalenti al riferimento v3."
+    },
+    "catanzaro-2|t25.r4.c1|Societa a responsabilita limitata": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA», ramo dello scenario; condizione s4_c_ing vera per ricevuta USER (richiesta iniziale) con prova d'ambito; denominazione, CCIAA, forma giuridica e sede uguali o equivalenti al riferimento v3."
+    },
+    "catanzaro-2|t25.r4.c3|Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 25, sezione «5.d) da compilare in caso di SOCIETÀ DI INGEGNERIA», ramo dello scenario; condizione s4_c_ing vera per ricevuta USER (richiesta iniziale) con prova d'ambito; denominazione, CCIAA, forma giuridica e sede uguali o equivalenti al riferimento v3."
+    },
+    "catanzaro-2|t26.r0.c1|Elisa Romano": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 26, «estremi dei requisiti del direttore tecnico» (paragraph:451, dentro la sezione 5.d): Elisa Romano, binding «direttore tecnico» literal_match (SOURCE «Nominativo completo: Ing. Elisa Romano»); condizione s4_c_ing con ricevuta d'ambito che comprende la tabella; nome, qualifica, ordine e numero uguali al riferimento v3."
+    },
+    "catanzaro-2|t26.r1.c1|Ingegnere": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 26, «estremi dei requisiti del direttore tecnico» (paragraph:451, dentro la sezione 5.d): Elisa Romano, binding «direttore tecnico» literal_match (SOURCE «Nominativo completo: Ing. Elisa Romano»); condizione s4_c_ing con ricevuta d'ambito che comprende la tabella; nome, qualifica, ordine e numero uguali al riferimento v3."
+    },
+    "catanzaro-2|t26.r3.c1|Ordine degli Ingegneri di Bari": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 26, «estremi dei requisiti del direttore tecnico» (paragraph:451, dentro la sezione 5.d): Elisa Romano, binding «direttore tecnico» literal_match (SOURCE «Nominativo completo: Ing. Elisa Romano»); condizione s4_c_ing con ricevuta d'ambito che comprende la tabella; nome, qualifica, ordine e numero uguali al riferimento v3."
+    },
+    "catanzaro-2|t26.r4.c1|8421": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella 26, «estremi dei requisiti del direttore tecnico» (paragraph:451, dentro la sezione 5.d): Elisa Romano, binding «direttore tecnico» literal_match (SOURCE «Nominativo completo: Ing. Elisa Romano»); condizione s4_c_ing con ricevuta d'ambito che comprende la tabella; nome, qualifica, ordine e numero uguali al riferimento v3."
+    }
+  },
+  "trials": {
+    "soresa2023-1": {
+      "UTC": "2026-10-23T17:30:36+00:00",
+      "writes_reviewed": 3,
+      "non_dimostrate": 0,
+      "negative_check": "Nessuna scrittura né proposta valida nelle 8 destinazioni storiche di So.Re.Sa. (p127.s1-s4, p43.s8-s9, p44.s0-s1).",
+      "narrator_holds": "8 proposte sospese con il motivo «dipendono dalla forma di partecipazione singola … trattata come condizione»: la partecipazione singola è confermata dall'USER con ricevuta d'ambito. 3 rilasciate (dubbio collegato alla loro condizione già risolta); 5 (p8.s7-s9, p9.s0-s1, sede/telefono/PEC e CF/P.IVA del dichiarante principale) restano sospese: la loro condizione è s1_c_forma, la citazione è ancorata solo a livello di finestra, quindi il criterio M non le marca. Falso rifiuto del narratore rispetto al gemello (scritte e DIMOSTRATA), non dovuto alle modifiche dello sprint.",
+      "stop_rule_triggered": false
+    },
+    "minervino-1": {
+      "UTC": "2026-10-23T17:36:50+00:00",
+      "writes_reviewed": 46,
+      "non_dimostrate": 0,
+      "negative_check": "Nessuna scrittura né proposta valida in p37.s1-s7 (ramo studio associato); R1 ha esteso s1_c_studio_associato (24 destinazioni, UNKNOWN), s2_cond_studio (2, SKIP), s2_cond_rtp (26, SKIP), s3_c_consorzio (6, UNKNOWN), s4_c_consorzio (30, senza risposta): nessuna di queste destinazioni scritta.",
+      "narrator_holds": "6 sospensioni con blocco source e motivo RECORDED: «la fonte attesta il ruolo di direttore tecnico / responsabile qualità … ma non il ruolo di socio» per Elisa Romano (p45.s1-s4, p46.s2) e Andrea Greco (p47.s0); la citazione è proprio la riga della tabella «Soci della società», e il binding «socio» è literal_match: sospensioni non fondate (falso rifiuto del narratore), escluse per costruzione dalla revisione mirata (solo applicabilità).",
+      "not_proposed": "p15.s1 respinta dal validatore; p41.s1, p45.s0, p46.s0-s1, p51.s0, p53.s2 non proposte dal modello.",
+      "stop_rule_triggered": false
+    },
+    "catanzaro-1": {
+      "UTC": "2026-10-23T17:42:09+00:00",
+      "writes_reviewed": 19,
+      "non_dimostrate": 0,
+      "negative_check": "Nessuna scrittura né proposta valida in t19.* (sezione 5.c, società di professionisti).",
+      "conflicts": "Data e luogo di nascita del firmatario e nome di Elisa Romano da due segmenti: revisione 'conflicting', non scritti.",
+      "narrator_holds": "4 sospensioni di applicabilità RECORDED su t26.r1/r3/r4 e t44.r1.c3 (dati del direttore tecnico Elisa Romano nella sezione 5.d): «dipende dalla tipologia di operatore», già scelta dall'USER (Società di ingegneria). Dubbio già risolto: falso rifiuto del narratore rispetto al gemello; citazione ancorata a livello di finestra, fuori dal criterio M.",
+      "stop_rule_triggered": false
+    },
+    "soresa2023-2": {
+      "UTC": "2026-10-23T17:46:12+00:00",
+      "writes_reviewed": 7,
+      "non_dimostrate": 0,
+      "negative_check": "Nessuna scrittura né proposta valida nelle 8 destinazioni storiche di So.Re.Sa.; il modello ha ancorato una condizione all'avvalimento (s2_c_avvalimento, paragraph:125, aperta) e le condizioni RT sono false per ricevuta USER.",
+      "not_proposed": "t0.r1.c0 respinta dal validatore.",
+      "stop_rule_triggered": false
+    },
+    "minervino-2": {
+      "UTC": "2026-10-23T17:52:31+00:00",
+      "writes_reviewed": 51,
+      "non_dimostrate": 0,
+      "negative_check": "Nessuna scrittura né proposta valida in p37.s1-s7; R1 ha esteso s2_c_p35_studio (SKIP), s2_c_p54_rtp (SKIP), s3_c_rtp_capogruppo (SKIP), s3_c_consorzio (UNKNOWN), s4_c_consorzio e s5_c_rtp (senza risposta): nessuna di quelle destinazioni scritta; s1_c_soc_ing (41 destinazioni) confermata e scritta.",
+      "soci_21": "21/21 scritti e dimostrati. NON per effetto della revisione mirata: in questo tentativo il narratore non li ha sospesi (0 sospensioni marcate M, 0 revisioni consumate); il meccanismo non è stato esercitato.",
+      "narrator_holds": "9 sospensioni source: p14.s0 (ruolo del firmatario, conflitto di date fra due schede SOURCE: dubbio documentale reale) e il blocco del direttore tecnico p51-p53 (la SOURCE precisa che il ruolo aziendale non equivale a una designazione: dubbio documentale citato, prudente). Fuori dalla revisione mirata per costruzione.",
+      "stop_rule_triggered": false
+    },
+    "catanzaro-2": {
+      "UTC": "2026-10-23T17:56:50+00:00",
+      "writes_reviewed": 13,
+      "non_dimostrate": 0,
+      "negative_check": "Nessuna scrittura né proposta valida in t19.* (sezione 5.c).",
+      "signer": "Il modello ha chiesto conferma di un firmatario sbagliato («l'amministratore unico Luca Ferri»): risposta USER negativa, condizione s1_c_firmatario falsa, nessun valore del firmatario scritto (comportamento sicuro, copertura persa).",
+      "not_proposed": "Caselle della tipologia non scelte in questo tentativo (nessuna scelta USER); t0.r2.c1 non proposta.",
+      "conflicts": "1 conflitto fra segmenti, in revisione, non scritto.",
+      "stop_rule_triggered": false
+    }
+  }
+}

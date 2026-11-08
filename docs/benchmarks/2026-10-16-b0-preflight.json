@@ -1,0 +1,50 @@
+{
+  "kind": "offline_input_measurement_not_llm_quality_baseline",
+  "date": "2026-10-16",
+  "head": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "fixture_manifest_sha256": "89534c5171a90328b994d4425e9e11b082c6e5968c3a5b275b710438cf3e0139",
+  "fixture_hashes_verified": 18,
+  "configuration": {
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "context_window": 32768,
+    "profile_thinking": false,
+    "global_analysis_thinking": true
+  },
+  "project": "minervino-di-lecce-elenco-sia",
+  "form_id": 156,
+  "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+  "live_original_and_five_source_files_match_frozen_fixture": true,
+  "source_chunks": 56,
+  "source_files": 5,
+  "candidates": 267,
+  "candidate_types": {
+    "text": 254,
+    "checkbox": 13
+  },
+  "input_compact_characters": 240276,
+  "input_compact_utf8_bytes": 242959,
+  "input_components_characters": {
+    "proposal_stage": 26,
+    "project_id": 31,
+    "form": 126928,
+    "sources": 75735,
+    "user_values": 2,
+    "source_coverage": 64,
+    "schema_output": 11701,
+    "reading_plan": 25670
+  },
+  "source_content_characters": 63655,
+  "system_prompt_characters": 24675,
+  "request_messages_characters": 264951,
+  "request_max_output_tokens": 49152,
+  "input_sha256": "24e9b4be4b5954fde541ce1596953845f2578bb1014bc199d51b84b06f68b009",
+  "request_sha256": "10afa55bb9359e67eede25c5d0f0174cae3dd8cbc86ea6c76f17426346e6ac80",
+  "provider_calls": 0,
+  "token_usage_measured": false,
+  "quality_score_measured": false,
+  "session_or_docx_generation_performed": false,
+  "kb_or_fixture_modified": false,
+  "gold_used_to_build_input": false,
+  "runner_note": "Global application analysis forces thinking for DeepSeek regardless of profile preference (compilation_global_sessions.py). Keep thinking enabled for faithful B0; --no-thinking is a separate experimental variant. Runner measures proposal/local validation only, not dialogue or DOCX."
+}

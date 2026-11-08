@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "archive": "docs/benchmarks/2026-10-21-embedding-providers-ui-audit.tar.gz",
+  "SHA256": "a3c3a456bf43f6e125f75b07515a3fb6b2a20ea928446bd1b2b5280740955cb1",
+  "bytes": 1866675,
+  "files_verified_after_separate_extraction": 51,
+  "extraction": ".tools/embedding-providers-ui-20261021-01/backup-verification",
+  "private_database_and_keys_excluded": true,
+  "scope": "UI and embedding provider extension only, not a compilation baseline"
+}

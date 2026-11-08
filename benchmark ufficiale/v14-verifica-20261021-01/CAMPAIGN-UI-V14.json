@@ -1,0 +1,83 @@
+{
+  "attempted": 6,
+  "results": [
+    {
+      "trial": "craa-autorizza",
+      "document": "craa",
+      "session_id": "0da237c0add64d44a855562ae1ff8121",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 96984,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "cesano-breve",
+      "document": "cesano",
+      "session_id": "3038036996c9485a96a3e529cbe138c5",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 99645,
+      "user_messages": 4,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "cesano-esteso",
+      "document": "cesano",
+      "session_id": "82d82fc5857442368420a2181c803f4a",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 105878,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "craa-ramo",
+      "document": "craa",
+      "session_id": "31c18d5777724e26a86ae1298c6a0213",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 109200,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "minervino-b",
+      "document": "minervino",
+      "session_id": "02ed2f1b076343759996d464bbf3cb43",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 175185,
+      "user_messages": 4,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "minervino-a",
+      "document": "minervino",
+      "session_id": "d1b0250068084ba5a2769ee548247082",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 179683,
+      "user_messages": 6,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    }
+  ]
+}

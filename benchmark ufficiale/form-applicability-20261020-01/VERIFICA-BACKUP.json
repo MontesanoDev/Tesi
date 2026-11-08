@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "archive_SHA256": "e21ccd5aa6aae2c9d568db5b3421908b01ee8eca349b377bded180b15e6f239c",
+  "files_extracted_hash_exact": 2957,
+  "credentials_environment_private_DB_excluded": true,
+  "actual_secret_scan_passed": true,
+  "independent_replays": [
+    {
+      "mode": "before-replay",
+      "cases": 67,
+      "seconds": 18.17908903300122,
+      "network_SQLite_forbidden_by_runner": true
+    },
+    {
+      "mode": "after",
+      "cases": 67,
+      "seconds": 20.23300496700176,
+      "network_SQLite_forbidden_by_runner": true
+    }
+  ],
+  "DOCX_exact_rebuilt": 134,
+  "raw_effective_audits_structurally_exact_rebuilt": 268,
+  "real_UI_audit_DOCX_download_exact": true,
+  "historical_validator_results_exact_rebuilt": 426,
+  "network_SQLite_forbidden": true,
+  "original_study_preserved_separately": true,
+  "no_application_code_from_working_tree_used_by_extracted_replay": true
+}

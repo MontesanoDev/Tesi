@@ -1,0 +1,320 @@
+[
+  {
+    "start_UTC": "2026-10-19T14:41:57.354265+00:00",
+    "end_UTC": "2026-10-19T14:41:58.885072+00:00",
+    "seconds": 1.5308276729999761,
+    "http_status": 200,
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 4009,
+      "completion_tokens": 35,
+      "total_tokens": 4044,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 1193
+    },
+    "is_global": false,
+    "thinking": {
+      "type": "disabled"
+    },
+    "reasoning_effort": null,
+    "max_tokens": 1024,
+    "request_forwarded_unchanged": true,
+    "finish_reasons": [
+      "stop"
+    ],
+    "call_index": 1,
+    "kind": "router",
+    "estimated_USD": 0.000208398,
+    "request_sha256": "8cc3517be844aea25a6ccd82c756d3314ea7e4eb3ae0efcdb0edb1ae27e474b1",
+    "system_prompt_sha256": "db9000fb248e7fc8d8c898ff6e0104211b8422750f19faaea4e2997b3daef89a",
+    "temperature": 0.1
+  },
+  {
+    "start_UTC": "2026-10-19T14:41:59.658068+00:00",
+    "end_UTC": "2026-10-19T14:44:12.973209+00:00",
+    "seconds": 133.315165423,
+    "http_status": 200,
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 84045,
+      "completion_tokens": 35484,
+      "total_tokens": 119529,
+      "prompt_tokens_details": {
+        "cached_tokens": 7040
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 27080
+      },
+      "prompt_cache_hit_tokens": 7040,
+      "prompt_cache_miss_tokens": 77005
+    },
+    "is_global": true,
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "low",
+    "max_tokens": 49152,
+    "request_forwarded_unchanged": true,
+    "finish_reasons": [
+      "stop"
+    ],
+    "call_index": 2,
+    "kind": "global",
+    "estimated_USD": 0.03286227,
+    "request_sha256": "820d0d128f75f7440ad843666f39c8fda1b260f77f7ca805e3565efbf8d24f8e",
+    "system_prompt_sha256": "978c321f5a992e2b53f6dea55f6afcaaab18d4fa728470e9e6a7cc61e9904d8c",
+    "temperature": 0.1
+  },
+  {
+    "start_UTC": "2026-10-19T14:44:13.294702+00:00",
+    "end_UTC": "2026-10-19T14:44:16.278430+00:00",
+    "seconds": 2.983775537999975,
+    "http_status": 200,
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 10080,
+      "completion_tokens": 221,
+      "total_tokens": 10301,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 7776
+    },
+    "is_global": false,
+    "thinking": {
+      "type": "disabled"
+    },
+    "reasoning_effort": null,
+    "max_tokens": 2048,
+    "request_forwarded_unchanged": true,
+    "finish_reasons": [
+      "stop"
+    ],
+    "call_index": 3,
+    "kind": "narrator",
+    "estimated_USD": 0.0013059119999999998,
+    "request_sha256": "f5b216eafde9a5102645847d315b10ddc2d6fc57d92df79db6b5b16d129378ce",
+    "system_prompt_sha256": "93aebd17249333afc820b6be827d63ea16b2a2c0aa73b5f61ce10cf12e88658d",
+    "temperature": 0.1
+  },
+  {
+    "start_UTC": "2026-10-19T14:46:06.637422+00:00",
+    "end_UTC": "2026-10-19T14:46:08.060701+00:00",
+    "seconds": 1.4233196499999963,
+    "http_status": 200,
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 4623,
+      "completion_tokens": 127,
+      "total_tokens": 4750,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 1807
+    },
+    "is_global": false,
+    "thinking": {
+      "type": "disabled"
+    },
+    "reasoning_effort": null,
+    "max_tokens": 1024,
+    "request_forwarded_unchanged": true,
+    "finish_reasons": [
+      "stop"
+    ],
+    "call_index": 4,
+    "kind": "router",
+    "estimated_USD": 0.000355698,
+    "request_sha256": "36889d2cc2dc58929165380897569565315a455b7cd44ee350990246cdee8d02",
+    "system_prompt_sha256": "db9000fb248e7fc8d8c898ff6e0104211b8422750f19faaea4e2997b3daef89a",
+    "temperature": 0.1
+  },
+  {
+    "start_UTC": "2026-10-19T14:46:08.069566+00:00",
+    "end_UTC": "2026-10-19T14:46:09.329187+00:00",
+    "seconds": 1.259637266000027,
+    "http_status": 200,
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 2012,
+      "completion_tokens": 56,
+      "total_tokens": 2068,
+      "prompt_tokens_details": {
+        "cached_tokens": 1280
+      },
+      "prompt_cache_hit_tokens": 1280,
+      "prompt_cache_miss_tokens": 732
+    },
+    "is_global": false,
+    "thinking": {
+      "type": "disabled"
+    },
+    "reasoning_effort": null,
+    "max_tokens": 768,
+    "request_forwarded_unchanged": true,
+    "finish_reasons": [
+      "stop"
+    ],
+    "call_index": 5,
+    "kind": "guard",
+    "estimated_USD": 0.00014724,
+    "request_sha256": "9c3f4e86dcce569ae7ad03461bb524b4535f21c9c05f4247bacdcefb81050aa4",
+    "system_prompt_sha256": "03372f4624c01a8290244597429c0df60b087e7ddf1e96f1f66efc7beb3a624b",
+    "temperature": 0
+  },
+  {
+    "start_UTC": "2026-10-19T14:46:30.667997+00:00",
+    "end_UTC": "2026-10-19T14:46:32.165070+00:00",
+    "seconds": 1.4971098449999545,
+    "http_status": 200,
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 4863,
+      "completion_tokens": 121,
+      "total_tokens": 4984,
+      "prompt_tokens_details": {
+        "cached_tokens": 3072
+      },
+      "prompt_cache_hit_tokens": 3072,
+      "prompt_cache_miss_tokens": 1791
+    },
+    "is_global": false,
+    "thinking": {
+      "type": "disabled"
+    },
+    "reasoning_effort": null,
+    "max_tokens": 1024,
+    "request_forwarded_unchanged": true,
+    "finish_reasons": [
+      "stop"
+    ],
+    "call_index": 6,
+    "kind": "router",
+    "estimated_USD": 0.000350466,
+    "request_sha256": "c4f7f1d3f5cea68aad061962813d7fb272e023b075d5a22de59989dfb5f43c95",
+    "system_prompt_sha256": "db9000fb248e7fc8d8c898ff6e0104211b8422750f19faaea4e2997b3daef89a",
+    "temperature": 0.1
+  },
+  {
+    "start_UTC": "2026-10-19T14:46:32.178591+00:00",
+    "end_UTC": "2026-10-19T14:46:33.234219+00:00",
+    "seconds": 1.0556497070000432,
+    "http_status": 200,
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 1982,
+      "completion_tokens": 52,
+      "total_tokens": 2034,
+      "prompt_tokens_details": {
+        "cached_tokens": 1408
+      },
+      "prompt_cache_hit_tokens": 1408,
+      "prompt_cache_miss_tokens": 574
+    },
+    "is_global": false,
+    "thinking": {
+      "type": "disabled"
+    },
+    "reasoning_effort": null,
+    "max_tokens": 768,
+    "request_forwarded_unchanged": true,
+    "finish_reasons": [
+      "stop"
+    ],
+    "call_index": 7,
+    "kind": "guard",
+    "estimated_USD": 0.000121524,
+    "request_sha256": "bbeaedce1e5a04b27e2aec18a070945060fa4338c86dcff0c1dd580e96d24558",
+    "system_prompt_sha256": "03372f4624c01a8290244597429c0df60b087e7ddf1e96f1f66efc7beb3a624b",
+    "temperature": 0
+  },
+  {
+    "start_UTC": "2026-10-19T14:46:33.972213+00:00",
+    "end_UTC": "2026-10-19T14:46:35.633226+00:00",
+    "seconds": 1.6610317320000263,
+    "http_status": 200,
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 8017,
+      "completion_tokens": 19,
+      "total_tokens": 8036,
+      "prompt_tokens_details": {
+        "cached_tokens": 2944
+      },
+      "prompt_cache_hit_tokens": 2944,
+      "prompt_cache_miss_tokens": 5073
+    },
+    "is_global": false,
+    "thinking": {
+      "type": "disabled"
+    },
+    "reasoning_effort": null,
+    "max_tokens": 2048,
+    "request_forwarded_unchanged": true,
+    "finish_reasons": [
+      "stop"
+    ],
+    "call_index": 8,
+    "kind": "narrator",
+    "estimated_USD": 0.000781182,
+    "request_sha256": "d5e1bd192876d48063f1db1420e3a3e716e56593999fd0ba18edcb3fb99cfb8c",
+    "system_prompt_sha256": "30f932cc4237b477e36d9bf677906bdfc4e61b0ca3e79bf668ebbedbbd9e977e",
+    "temperature": 0.1
+  },
+  {
+    "start_UTC": "2026-10-19T14:46:48.615320+00:00",
+    "end_UTC": "2026-10-19T14:46:49.612348+00:00",
+    "seconds": 0.9970572910000328,
+    "http_status": 200,
+    "requested_model": "deepseek-flash",
+    "returned_model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "usage": {
+      "prompt_tokens": 4681,
+      "completion_tokens": 35,
+      "total_tokens": 4716,
+      "prompt_tokens_details": {
+        "cached_tokens": 3328
+      },
+      "prompt_cache_hit_tokens": 3328,
+      "prompt_cache_miss_tokens": 1353
+    },
+    "is_global": false,
+    "thinking": {
+      "type": "disabled"
+    },
+    "reasoning_effort": null,
+    "max_tokens": 1024,
+    "request_forwarded_unchanged": true,
+    "finish_reasons": [
+      "stop"
+    ],
+    "call_index": 9,
+    "kind": "router",
+    "estimated_USD": 0.000233934,
+    "request_sha256": "e66fb1ccbc6e480b29df79fb24d6bb44461568156f34e0007d84e2a74d8220ba",
+    "system_prompt_sha256": "db9000fb248e7fc8d8c898ff6e0104211b8422750f19faaea4e2997b3daef89a",
+    "temperature": 0.1
+  }
+]

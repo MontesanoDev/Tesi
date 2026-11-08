@@ -1,0 +1,24 @@
+{
+  "archive": "2026-10-18-v12-source-coverage-audit.tar.gz",
+  "sha256": "6c2632cb5954f0c249ffbf2eef39bc39517787297a90a30bd4fbb2f39ca44fd1",
+  "files": 251,
+  "uncompressed_bytes": 26750354,
+  "compressed_bytes": 4992185,
+  "all_members_verified": true,
+  "source_raw": "backend/data/compilation-audit/v12-source-coverage-20261018-01",
+  "contains_private_DB_or_keys": false,
+  "credential_pattern_scan": "negative; no active credentials read",
+  "global_calls": 0,
+  "provider_calls": 0,
+  "new_USER_decisions": 0,
+  "independent_extracted_bundle_verification": {
+    "audit_equal": true,
+    "five_decisions": true,
+    "values": 52,
+    "docx_identical": true,
+    "provider_calls": 0,
+    "sha256": "58f1179d4cff7c6c1de4f2e886c524906c1be618e1025a67d97288f7c7323f2b"
+  },
+  "verification_uses_archived_app_code": true,
+  "private_persistence_replay_seed_excluded": ".tools/v12-review-soci-20261018-01/"
+}

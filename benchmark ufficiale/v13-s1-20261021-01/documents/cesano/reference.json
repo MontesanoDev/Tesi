@@ -1,0 +1,89 @@
+{
+  "version": 2,
+  "created_before_first_LLM_call": true,
+  "reference_kind": "Authorial requirement/SOURCE inventory; no independent GOLD DOCX; not fed to model",
+  "SOURCE_available_occurrences": [
+    {
+      "candidate_id": "p12.ft0",
+      "label": "Nome firmatario",
+      "value": "Leonardo Montemurro",
+      "subject": "Leonardo Montemurro",
+      "property": "name",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.ft1",
+      "label": "Nascita luogo",
+      "value": "Lecce (LE)",
+      "subject": "Leonardo Montemurro",
+      "property": "birthplace",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.ft2",
+      "label": "Nascita data",
+      "value": "14/11/1982",
+      "subject": "Leonardo Montemurro",
+      "property": "birthdate",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p19.ft0",
+      "label": "Denominazione società di ingegneria",
+      "value": "Mapi Ingegneria S.r.l.",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "name",
+      "SOURCE_chunks": [
+        -30,
+        -43
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    }
+  ],
+  "SOURCE_available_occurrence_count": 4,
+  "USER_authorized_controls": {
+    "p19.cb0": true
+  },
+  "known_unresolved_active_fields": [
+    "data",
+    "preferenze categorie/fasce",
+    "recapiti studio personale non dimostrati",
+    "INAIL/INPS/INARCASSA personali",
+    "iscrizione professionale Leonardo"
+  ],
+  "applicability_notes": "Preflight rejects all destinations. These four human-readable SOURCE occurrences are documented but have no supported candidate IDs. Never edit the FORM to add placeholders during this benchmark.",
+  "preflight_error": "DocumentInputError: Nessun campo supportato: servono celle vuote o segnaposti nei paragrafi (___, ...., {{campo}}). Controlli Word e spazi senza segnaposto non sono supportati",
+  "denominator_scope": "Documented core SOURCE field occurrences, not distinct atomic facts or total procedure requirements; unknown attestations/designations and variable-cardinality tables excluded from completeness denominator",
+  "protected": "Do not invent personal properties, powers, designations or attestations; no signatures; USER choice only identifies signer and participation",
+  "source_as_of": "2026-10-15",
+  "permitted_equivalence": "Date formats, case/spaces, title prefix, fuller literal SOURCE if subject/property/granularity correct",
+  "registered_UTC": "2026-10-21T11:36:54.734172+00:00",
+  "new_trial": true,
+  "reference_not_in_prompt": true,
+  "not_gold_from_new_model_output": true,
+  "ordinary_UI_new_global_call_required": true,
+  "source_corpus": "../../input/SOURCE.json",
+  "decisions": "scenario-USER.json",
+  "baseline_reference_limit": "Core documented occurrences, not all document requirements or an independent second reviewer. Every actual write and other omission needs its own documentary assessment. Complete FORM requirements, ownership, active branch and procedural authorization override a generic old expectation.",
+  "permutation_allowed": "Socio records may be reordered, but all properties in each physical row must refer to the same documented person.",
+  "open_scope": "Native procedural preferences, consents and signatures remain unconfirmed. Inactive participation branches stay empty; unlisted candidates are not automatically legitimate omissions.",
+  "registered_before_inference": true,
+  "old_reference_path": "benchmark ufficiale/baseline-v12-20261021-01/trials/cesano/riferimento-preregistrato.json",
+  "old_reference_SHA256": "12b60a15da124dc5461f9cc2d3ce537f7ecf4784590c4c0285b2d51ca309c24c",
+  "evaluation_limit": "Authorial documentary review; not independent gold or universal accuracy",
+  "existing_compound_and_applicability_guards_override_legacy_expected_values": true
+}

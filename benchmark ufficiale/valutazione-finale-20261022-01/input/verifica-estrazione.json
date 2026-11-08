@@ -1,0 +1,9 @@
+{
+ "docx_sha256": "8eb0a56a78d8c2b5a4a8f7f53772b9680f15232aa476166547f8bf1b1b70bfaf",
+ "pdf_sha256": "891be324abdbbbc06e1ef98be14a80c3661ef4b4a8c1b37c49fcaf0368e0f961",
+ "pages": 4,
+ "chunks": 10,
+ "values": 104,
+ "values_not_literal_in_extracted_text": [],
+ "values_not_within_a_single_chunk": []
+}

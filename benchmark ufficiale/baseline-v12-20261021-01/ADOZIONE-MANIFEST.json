@@ -1,0 +1,13 @@
+{
+  "BASELINE-V12.md": "1f180a94c822c04a14b2bcb5fa661d35be9ed19ce7490ff7d1a6ba48b7581a5a",
+  "STATUS.md": "96b13a5863813ff6bb69d3758bbbef18a30e7272fa4850c33c9c760d3811661f",
+  "relazioni.md": "5e5ebd926f8a9bfd25e7c8f8f0d408e57dd8f45373beececa61f15f2c7ed9fe8",
+  "benchmark ufficiale/baseline-v12-20261021-01/CANDIDATO-BASELINE.json": "13db230a0b3d16b31a6965be65c7c6266e14cc1dd23693aa9cff0593d055cc46",
+  "benchmark ufficiale/baseline-v12-20261021-01/ADOZIONE-VERIFICHE.json": "0732d0a660eda2ecc64bb0f3b77577a9c952d1e8266c6f87b0599daf1a6fb703",
+  "backend/data/compilation-audit/baseline-v12-adoption-20261021-01/preflight.json": "ee36be370181c56badd1f7f08a14b6b08ba01c61b2c3a839459e521defe03278",
+  "backend/data/compilation-audit/baseline-v12-adoption-20261021-01/verify_adoption.py": "dc46dc4a43dde3e5ddc0408a0a22f800ac3eb7518a673143e9945ffbf92c37f6",
+  "backend/data/compilation-audit/baseline-v12-adoption-20261021-01/backup_adoption.py": "8f3c93ef9559828beb4bdf0724ab30241907c599a5974e9d3b9627440074c1fc",
+  "backend/data/compilation-audit/baseline-v12-adoption-20261021-01/working-tree-before.patch": "48ddc2272738cff635f8af284df80adf5622dec1244e816d936af6e6f274814d",
+  "backend/data/compilation-audit/baseline-v12-adoption-20261021-01/verification.log": "b71b1e311c6392b81806e4ace4f34b7f60d82ddfa58806a038154a1afc8dc73c",
+  "backend/data/compilation-audit/baseline-v12-adoption-20261021-01/before.json": "c35e6d7c9d2ff3df60bf8314100fae47d0b04a4f2437076aa057545c81c5d27f"
+}

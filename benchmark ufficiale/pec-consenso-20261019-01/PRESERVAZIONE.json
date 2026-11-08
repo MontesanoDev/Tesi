@@ -1,0 +1,17 @@
+{
+  "previous_protected_files_unchanged": 1333,
+  "authorized_existing_files_changed": [
+    "STATUS.md",
+    "backend/app/compilation_global_dialogue.py",
+    "backend/app/compilation_global_sessions.py",
+    "relazioni.md"
+  ],
+  "live_sessions_unchanged": 29,
+  "live_storage_files_unchanged": 285,
+  "clone_previous_sessions_unchanged": 34,
+  "one_new_isolated_session": true,
+  "application_hashes_frozen_through_trial": 66,
+  "new_provider_calls_after_resume": 0,
+  "originals_and_prior_experiments_preserved": true,
+  "no_commit_push": true
+}

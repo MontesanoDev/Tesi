@@ -1,0 +1,246 @@
+paragraph:0: Comune di Minervino di Lecce
+paragraph:1: Provincia di Lecce
+paragraph:2: Settore IV^ - Edilizia - Urbanistica - Manutenzioni
+paragraph:3: Settore V^ - LL.PP.
+paragraph:4: Via Duca degli Abruzzi s.n.  – 73027 Minervino di Lecce (Le)
+paragraph:5: Centralino 0836 891063
+paragraph:6: Codice fiscale: 83000490751 - Partita IVA: 01777120757
+paragraph:7:   pec:  protocollo.comuneminervino.le@pec.rupar.puglia.it   
+paragraph:8: 
+paragraph:9: AVVISO DI SELEZIONE PUBBLICA PER COSTITUZIONE ELENCO PROFESSIONISTI QUALIFICATI CUI AFFIDARE INCARICHI DI PROGETTAZIONE, DI DIREZIONE DEI LAVORI, DI COLLAUDO, COORDINAMENTO DELLA SICUREZZA IN FASE DI PROGETTAZIONE E DI ESECUZIONE, ATTIVITÀ DI SUPPORTO TECNICO SPECIALISTICA PER ATTUAZIONE PROGETTI FINANZIANTI CON FONDI COMUNITARI, ATTIVITA’ TECNICO - AMMINISTRATIVE CONNESSE E DI SUPPORTO AL RUP, DI IMPORTO STIMATO INFERIORE A 221.000,00 EURO, ART. 41 E ART. 77 D. LGS.36/2023.
+paragraph:10: (da rendersi ai sensi del DPR 445/2000)
+paragraph:11: DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+paragraph:12: Il sottoscritto [[p12.s0]], nato a [[p12.s1]] ([[p12.s2]]) il [[p12.s3]], residente
+paragraph:13: in [[p13.s0]] ([[p13.s1]]), via [[p13.s2]], C.F. [[p13.s3]], in qualità di
+paragraph:14: [[p14.s0]] dell’operatore economico [[p14.s1]] con sede in
+paragraph:15: [[p15.s0]] ([[p15.s1]]), tel. [[p15.s2]], fax [[p15.s3]], indirizzo e-mail
+paragraph:16: [[p16.s0]] P.E.C. [[p16.s1]] Partita IVA [[p16.s2]], iscritto alla
+paragraph:17: Camera di Commercio di [[p17.s0]] al n. [[p17.s1]] / all'albo professionale della Provincia di [[p17.s2]] al n. [[p17.s3]]
+paragraph:18: consapevole della responsabilità penale a cui possono andare incontro in caso di dichiarazioni mendaci, ai sensi e per gli effetti dell’art. 76 del D.P.R. 28 dicembre 2000, n. 445, tenuto conto degli articoli 46 e 47 del citato D.P.R. n. 445/2000
+paragraph:19: IN QUALITÀ DI
+paragraph:20: ☐ Libero professionista singolo
+paragraph:21: ☐ Legale rappresentante dello studio professionale associato avente la seguente denominazione
+paragraph:22: “[[p22.s0]]” P. IVA [[p22.s1]]
+paragraph:23: sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]
+paragraph:24: pec [[p24.s0]]
+paragraph:25: il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+paragraph:26: 1) nome e cognome [[p26.s0]]
+paragraph:27: qualifica professionale [[p27.s0]]C.F. [[p27.s1]]
+paragraph:28: iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]
+paragraph:29: 2) nome e cognome [[p29.s0]]
+paragraph:30: ￼qualifica professionale [[p30.s0]]C.F. [[p30.s1]]
+paragraph:31: iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]
+paragraph:32: 3) nome e cognome [[p32.s0]]
+paragraph:33: qualifica professionale [[p33.s0]]C.F. [[p33.s1]]
+paragraph:34: iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]
+paragraph:35: ☐ Professionista appartenete allo studio professionale associato avente la seguente denominazione
+paragraph:36: “[[p36.s0]]” P. IVA [[p36.s1]]
+paragraph:37: sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]
+paragraph:38: il cui Rappresentante Legale è: nome e cognome [[p38.s0]]
+paragraph:39: ☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente
+paragraph:40: denominazione/ragione sociale “[[p40.s0]]”
+paragraph:41: P. IVA [[p41.s0]] sede legale in [[p41.s1]]
+paragraph:42: prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+paragraph:43: 1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]
+paragraph:44: della provincia di [[p44.s0]] dal [[p44.s1]] con il n. [[p44.s2]]
+paragraph:45: 2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]
+paragraph:46: della provincia di [[p46.s0]] dal [[p46.s1]] con il n. [[p46.s2]]
+paragraph:47: 3) nome e cognome [[p47.s0]]
+paragraph:48: qualifica professionale [[p48.s0]] C.F. [[p48.s1]]
+paragraph:49: iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]
+paragraph:50: la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):
+paragraph:51: 3) nome e cognome [[p51.s0]]
+paragraph:52: qualifica professionale [[p52.s0]] C.F. [[p52.s1]]
+paragraph:53: iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]
+paragraph:54: ☐ Capogruppo di raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione:
+paragraph:55: “[[p55.s0]]”, composto dai seguenti soggetti “mandanti” (riportare nominativo, qualifica professionale, C.F. di ogni soggetto nonché la specifica se trattasi di professionista singolo, rappresentante di associazione di professionisti, legale rappresentante di società o di consorzio):
+paragraph:56: 1) nome e cognome [[p56.s0]]
+paragraph:57: qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]
+paragraph:58: 2) nome e cognome [[p58.s0]]qualifica professionale[[p58.s1]]
+paragraph:59: C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]
+paragraph:60: 3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]
+paragraph:61: ☐ Mandante del raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione
+paragraph:62: “[[p62.s0]]”
+paragraph:63: il cui Capogruppo è: nome e cognome [[p63.s0]]
+paragraph:64: ☐ Legale rappresentante di consorzio stabile di società di professionisti e di società di ingegneria (art.66, comma 1, lett. g, D.lgs. n.36/2023) denominato
+paragraph:65: ￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica
+paragraph:66: professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+paragraph:67: 1) nome e cognome [[p67.s0]]qualifica professionale [[p67.s1]]C.F. [[p67.s2]]
+paragraph:68: iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]
+paragraph:69: 2) nome e cognome [[p69.s0]]
+paragraph:70: qualifica professionale [[p70.s0]]C.F. [[p70.s1]]
+paragraph:71: iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]
+paragraph:72: 3) nome e cognome [[p72.s0]]
+paragraph:73: qualifica professionale [[p73.s0]]C.F. [[p73.s1]]
+paragraph:74: iscritto all’Ordine/Collegio professionale [[p74.s0]] sezione [[p74.s1]]
+paragraph:75: della provincia di [[p75.s0]] dal [[p75.s1]] con il n. [[p75.s2]] legale rappresentante della società consorziata [[p75.s3]]
+paragraph:76: C H I E D E
+paragraph:77: di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):
+paragraph:78: Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):
+paragraph:79: Categoria di opere
+paragraph:80: Fascia A 
+paragraph:81: (incarichi da € 0,00 a € 39.999,00)
+paragraph:82: Fascia B 
+paragraph:83: (incarichi da € 40.000,00 a € 139.999,00)
+paragraph:84: Fascia C 
+paragraph:85: (incarichi da € 140.000,00 a € 221.000,00)
+paragraph:86: Edilizia commerciale
+paragraph:87: 
+paragraph:88: 
+paragraph:89: 
+paragraph:90: Edilizia residenziale
+paragraph:91: 
+paragraph:92: 
+paragraph:93: 
+paragraph:94: Edilizia scolastica e sanitaria
+paragraph:95: 
+paragraph:96: 
+paragraph:97: 
+paragraph:98: Impianti sportivi, piscine, cimiteri ed edifici di culto
+paragraph:99: 
+paragraph:100: 
+paragraph:101: 
+paragraph:102: Aree esterne e opere a verde
+paragraph:103: 
+paragraph:104: 
+paragraph:105: 
+paragraph:106: Interventi su beni immobili di interesse storico- artistico
+paragraph:107: 
+paragraph:108: 
+paragraph:109: 
+paragraph:110: Edilizia – sedi amministrative
+paragraph:111: 
+paragraph:112: 
+paragraph:113: 
+paragraph:114: Strutture
+paragraph:115: 
+paragraph:116: 
+paragraph:117: 
+paragraph:118: Impianti meccanici
+paragraph:119: 
+paragraph:120: 
+paragraph:121: 
+paragraph:122: Impianti elettrici
+paragraph:123: 
+paragraph:124: 
+paragraph:125: 
+paragraph:126: Impianti di depurazione o discariche
+paragraph:127: 
+paragraph:128: 
+paragraph:129: 
+paragraph:130: Opere elettriche per reti
+paragraph:131: 
+paragraph:132: 
+paragraph:133: 
+paragraph:134: Opere stradali
+paragraph:135: 
+paragraph:136: 
+paragraph:137: 
+paragraph:138: Opere idrauliche
+paragraph:139: 
+paragraph:140: 
+paragraph:141: 
+paragraph:142: Sistemi e reti di telecomunicazioni
+paragraph:143: 
+paragraph:144: 
+paragraph:145: 
+paragraph:146: Sistemi e reti di telecomunicazioni
+paragraph:147: 
+paragraph:148: 
+paragraph:149: 
+paragraph:150: Pianificazione
+paragraph:151: 
+paragraph:152: 
+paragraph:153: 
+paragraph:154: 
+paragraph:155: Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;
+paragraph:156: Tipologia incarico
+paragraph:157: Fascia A
+paragraph:158: (incarichi da € 0,00 a € 39.999,00)
+paragraph:159: Fascia B
+paragraph:160: (incarichi da € 40.000,00 a € 139.999,00)
+paragraph:161: Fascia C
+paragraph:162: (incarichi da € 140.000,00 a € 221.000,00)
+paragraph:163: CSP/CSE
+paragraph:164: 
+paragraph:165: 
+paragraph:166: 
+paragraph:167: 
+paragraph:168: Servizio di collaudo finale o in corso d’opera;
+paragraph:169: Tipologia incarico
+paragraph:170: Preferenza
+paragraph:171: Collaudo statico
+paragraph:172: 
+paragraph:173: Collaudo tecnico amministrativo
+paragraph:174: 
+paragraph:175: Collaudo funzionale - impiantistico
+paragraph:176: 
+paragraph:177: 
+paragraph:178: Altri incarichi per servizi tecnici;
+paragraph:179: Tipologia incarico
+paragraph:180: Preferenza
+paragraph:181: redazione pratiche prevenzione incendi
+paragraph:182: 
+paragraph:183: visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti
+paragraph:184: 
+paragraph:185: perizie di stima
+paragraph:186: 
+paragraph:187: relazioni geologiche e sismiche
+paragraph:188: 
+paragraph:189: indagini geologiche / sismiche e relazioni geologiche
+paragraph:190: 
+paragraph:191: supporto agli atti di pianificazione comunque denominati
+paragraph:192: 
+paragraph:193: servizi tecnici di competenza di restauratori
+paragraph:194: 
+paragraph:195: servizi di assistenza archeologica
+paragraph:196: 
+paragraph:197: servizi di competenza di agronomi e dottori forestali
+paragraph:198: 
+paragraph:199: redazione di certificato di prestazione energetica
+paragraph:200: 
+paragraph:201: 
+paragraph:202: D I C H I A R A
+paragraph:203: ☐ in caso di PROFESSIONISTI ASSOCIATI
+paragraph:204: - di essere ammesso alla presente procedura in regime di professionisti associati, conferendo al “rappresentante” indicato nella presente domanda la rappresentanza nei confronti dell’Amministrazione;
+paragraph:205: - di sottoscrivere integralmente e senza riserva alcuna, per quanto ad essi compete, le dichiarazioni rese dal “rappresentante” nella presente domanda;
+paragraph:206: ☐ in caso di RTP
+paragraph:207: - di essere ammessi alla presente procedura in regime di raggruppamento temporaneo, conferendo al “capogruppo” indicato nella presente domanda la rappresentanza nei confronti dell’Amministrazione;
+paragraph:208: - di sottoscrivere integralmente e senza riserva alcuna, per quanto ad essi compete, le dichiarazioni rese dal “capogruppo” nella presente domanda;
+paragraph:209: - che i soggetti del raggruppamento si obbligano, in caso di incarico, a conformarsi alla disciplina di cui all’art.68 del D.lgs. n.36/2023, in quanto compatibile;
+paragraph:210: - che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:
+paragraph:211: nome e cognome [[p211.s0]]
+paragraph:212: qualifica professionale [[p212.s0]]C.F. [[p212.s1]] iscritto all’Ordine/Collegio professionale [[p212.s2]] sezione [[p212.s3]]
+paragraph:213: della provincia di [[p213.s0]] dal [[p213.s1]] con il n. [[p213.s2]]
+paragraph:214: ☐ in caso di RTP COSTITUTI: ALLEGANO il mandato collettivo o l’atto costitutivo (risultante da scrittura privata autenticata) e la relativa procura speciale conferita dai soggetti raggruppati al legale rappresentante del soggetto capogruppo-mandatario;
+paragraph:215: ☐ in caso di RTP NON ANCORA COSTITUTI: i soggetti che intendono raggrupparsi SI IMPEGNANO a conferire, in caso di affidamento di incarico, mandato collettivo speciale con rappresentanza ad uno dei componenti il raggruppamento;
+paragraph:216: DICHIARA inoltre
+paragraph:217: ☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:
+paragraph:218: di non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;
+paragraph:219: che non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;
+paragraph:220: di non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;
+paragraph:221: di non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;
+paragraph:222: di impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.
+paragraph:223: di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;
+paragraph:224: che il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;
+paragraph:225: di essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;
+paragraph:226: di acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;
+paragraph:227: di autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.
+paragraph:228: ☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:
+paragraph:229: [[p229.s0]]
+paragraph:230: [[p230.s0]]
+paragraph:231: e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:
+paragraph:232: [[p232.s0]]
+paragraph:233: [[p233.s0]]
+paragraph:234: [[p234.s0]]
+paragraph:235: N.B: Per le società di professionisti e le società di ingegneria
+paragraph:236: • Se trattasi di società di professionisti o di società di ingegneria, i soggetti sotto indicati devono dichiarare personalmente di non incorrere in una delle cause di esclusione di cui agli artt. 94, 95, 97 e 98 del D.lgs. n.36/2023:
+paragraph:237: tutti i soci ed il direttore tecnico, se si tratta di s.n.c.;
+paragraph:238: tutti i soci accomandatari ed il direttore tecnico, se si tratta di s.a.s.;
+paragraph:239: tutti gli amministratori muniti di potere di rappresentanza, il direttore tecnico, il socio unico persona fisica ovvero il socio di maggioranza in caso di società con meno di 4 soci, se si tratta di altro tipo di società;
+paragraph:240: tutti i soggetti che hanno ricoperto le cariche di cui sopra e cessati dalla carica nell'anno antecedente
+paragraph:241: 
+paragraph:242: Luogo e data, [[p242.s0]]
+paragraph:243: 
+paragraph:244: Firma digitale 
+paragraph:245: [[p245.s0]]

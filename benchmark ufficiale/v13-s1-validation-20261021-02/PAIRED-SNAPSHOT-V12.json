@@ -1,0 +1,158 @@
+{
+  "status": "PASS",
+  "cases": 38,
+  "results": [
+    {
+      "trial": "bella-01",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "bella-02",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "bella-03",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "bella-04",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "bella-05",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "catanzaro-01",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "catanzaro-02",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "catanzaro-03",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "catanzaro-04",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "catanzaro-05",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "cesano-01",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "cesano-02",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "cesano-03",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "cesano-04",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "cesano-05",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "cesano-06",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "cesano-07",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "cesano-09",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "cesano-10",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "craa-01",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "craa-02",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "craa-03",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "craa-04",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "craa-05",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "craa-06",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "craa-07",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "craa-08",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "craa-09",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "craa-10",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "minervino-01",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "minervino-03",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "minervino-04",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "minervino-08",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "trapani-01",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "trapani-02",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "trapani-03",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "trapani-04",
+      "old_snapshot_audit_DOCX_exact": true
+    },
+    {
+      "trial": "trapani-05",
+      "old_snapshot_audit_DOCX_exact": true
+    }
+  ]
+}

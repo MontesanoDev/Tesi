@@ -1,0 +1,791 @@
+[
+  {
+    "trial": "craa-ramo",
+    "document": "craa",
+    "variant": "craa-ramo",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 3,
+    "elapsed_s": 109.2,
+    "provider_calls": 7,
+    "global_calls": 1,
+    "tokens": 95974,
+    "finish_reasons": {
+      "stop": 7
+    },
+    "provider_failures": [],
+    "narrator_pools": [
+      {
+        "call": "03",
+        "stage": "initial",
+        "pool": 3,
+        "authorization": 1,
+        "other": 2,
+        "other_beyond_three_after_authorizations": 0
+      },
+      {
+        "call": "06",
+        "stage": "follow_up",
+        "pool": 0,
+        "authorization": 0,
+        "other": 0,
+        "other_beyond_three_after_authorizations": null
+      }
+    ],
+    "rounds": 1,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "authorization:789d1d1eea5b7c130d1ca52f",
+          "kind": "applicability",
+          "rule": "v14_defer_cciaa_attestation"
+        },
+        {
+          "slot": 2,
+          "key": "condition:c_rep",
+          "kind": "applicability",
+          "rule": "scenario_signer_representation"
+        },
+        {
+          "slot": 3,
+          "key": "condition:c_societies",
+          "kind": "applicability",
+          "rule": "v14_branch_only_confirmation"
+        }
+      ]
+    ],
+    "authorization_slots_per_round": [
+      1
+    ],
+    "redundant_decision_confirmations": 1,
+    "receipts": {
+      "authorization:789d1d1eea5b7c130d1ca52f": {
+        "action": "SKIP",
+        "applies": null,
+        "quote": "Rinvio questa dichiarazione: non dichiaro ancora l’attività coerente con la classe merceologica, quindi lascia vuoti que"
+      },
+      "condition:c_rep": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, confermo questo ramo: il firmatario scelto per questa domanda è Leonardo Montemurro, legale rappresentante di Mapi I"
+      },
+      "condition:c_societies": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, Mapi Ingegneria S.r.l. è una società."
+      }
+    },
+    "unaccepted_replies": [],
+    "option_requirements": [
+      {
+        "key": "authorization:789d1d1eea5b7c130d1ca52f",
+        "fields": [
+          "t6.r0.c1",
+          "t6.r0.c3"
+        ],
+        "accepted": false,
+        "clause": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto d"
+      }
+    ],
+    "writes": 8,
+    "checkbox_values": {},
+    "CCIAA_written": {},
+    "p19_ft0_written": null,
+    "option_region_writes": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "writes_matching_reference": [
+      "p12.s0",
+      "p13.s0",
+      "p14.s0",
+      "p15.s0",
+      "p16.s0",
+      "p17.s0",
+      "p18.s0",
+      "p5.s0"
+    ],
+    "writes_differing_from_reference": {},
+    "writes_outside_reference_for_review": {},
+    "core_reference_written": "8/10"
+  },
+  {
+    "trial": "cesano-breve",
+    "document": "cesano",
+    "variant": "cesano-breve",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 4,
+    "elapsed_s": 99.6,
+    "provider_calls": 9,
+    "global_calls": 1,
+    "tokens": 107307,
+    "finish_reasons": {
+      "stop": 9
+    },
+    "provider_failures": [],
+    "narrator_pools": [
+      {
+        "call": "03",
+        "stage": "initial",
+        "pool": 4,
+        "authorization": 1,
+        "other": 3,
+        "other_beyond_three_after_authorizations": 1
+      },
+      {
+        "call": "06",
+        "stage": "follow_up",
+        "pool": 1,
+        "authorization": 0,
+        "other": 1,
+        "other_beyond_three_after_authorizations": null
+      },
+      {
+        "call": "08",
+        "stage": "follow_up",
+        "pool": 0,
+        "authorization": 0,
+        "other": 0,
+        "other_beyond_three_after_authorizations": null
+      }
+    ],
+    "rounds": 2,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "authorization:8332beca0212aaa22df7e2ef",
+          "kind": "applicability",
+          "rule": "v14_authorize_participation_option"
+        },
+        {
+          "slot": 2,
+          "key": "condition:c_signatory",
+          "kind": "applicability",
+          "rule": "scenario_signer_representation"
+        },
+        {
+          "slot": 3,
+          "key": "condition:c_soc_ing",
+          "kind": "applicability",
+          "rule": "scenario_company_and_single_participation"
+        }
+      ],
+      [
+        {
+          "slot": 1,
+          "key": "field:p105.ft0",
+          "kind": "value",
+          "rule": "no_factual_values_from_USER"
+        }
+      ]
+    ],
+    "authorization_slots_per_round": [
+      1,
+      0
+    ],
+    "redundant_decision_confirmations": 2,
+    "receipts": {
+      "authorization:8332beca0212aaa22df7e2ef": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, autorizzo."
+      },
+      "condition:c_signatory": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, confermo questo ramo: il firmatario scelto per questa domanda è Leonardo Montemurro, legale rappresentante di Mapi I"
+      },
+      "condition:c_soc_ing": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, confermo questo ramo: società di ingegneria Mapi Ingegneria S.r.l., partecipazione in forma singola."
+      }
+    },
+    "unaccepted_replies": [],
+    "option_requirements": [
+      {
+        "key": "authorization:8332beca0212aaa22df7e2ef",
+        "fields": [
+          "p19.ft0"
+        ],
+        "accepted": true,
+        "clause": "  Della Società di Ingegneria (3)      "
+      }
+    ],
+    "writes": 0,
+    "checkbox_values": {},
+    "CCIAA_written": {},
+    "p19_ft0_written": null,
+    "option_region_writes": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "writes_matching_reference": [],
+    "writes_differing_from_reference": {},
+    "writes_outside_reference_for_review": {},
+    "core_reference_written": "0/4"
+  },
+  {
+    "trial": "minervino-a",
+    "document": "minervino",
+    "variant": "minervino-controllo",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 6,
+    "elapsed_s": 179.7,
+    "provider_calls": 16,
+    "global_calls": 1,
+    "tokens": 233887,
+    "finish_reasons": {
+      "stop": 16
+    },
+    "provider_failures": [],
+    "narrator_pools": [
+      {
+        "call": "03",
+        "stage": "initial",
+        "pool": 7,
+        "authorization": 0,
+        "other": 7,
+        "other_beyond_three_after_authorizations": null
+      },
+      {
+        "call": "04",
+        "stage": "follow_up",
+        "pool": 7,
+        "authorization": 0,
+        "other": 7,
+        "other_beyond_three_after_authorizations": null
+      },
+      {
+        "call": "07",
+        "stage": "follow_up",
+        "pool": 4,
+        "authorization": 0,
+        "other": 4,
+        "other_beyond_three_after_authorizations": null
+      },
+      {
+        "call": "10",
+        "stage": "follow_up",
+        "pool": 2,
+        "authorization": 0,
+        "other": 2,
+        "other_beyond_three_after_authorizations": null
+      },
+      {
+        "call": "12",
+        "stage": "follow_up",
+        "pool": 1,
+        "authorization": 0,
+        "other": 1,
+        "other_beyond_three_after_authorizations": null
+      },
+      {
+        "call": "15",
+        "stage": "follow_up",
+        "pool": 0,
+        "authorization": 0,
+        "other": 0,
+        "other_beyond_three_after_authorizations": null
+      }
+    ],
+    "rounds": 4,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "condition:c_soc_ing",
+          "kind": "applicability",
+          "rule": "scenario_company_and_single_participation"
+        },
+        {
+          "slot": 2,
+          "key": "decision:ff6a9c86b0584e3ed5ac5799",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        },
+        {
+          "slot": 3,
+          "key": "decision:4d948502d4305ca0995d3928",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        }
+      ],
+      [
+        {
+          "slot": 1,
+          "key": "condition:c_firmatario_role",
+          "kind": "applicability",
+          "rule": "scenario_signer_representation"
+        },
+        {
+          "slot": 2,
+          "key": "decision:0a242b4c138d38515e716924",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        },
+        {
+          "slot": 3,
+          "key": "decision:24278d2efa5d91eb97fdcae9",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        }
+      ],
+      [
+        {
+          "slot": 1,
+          "key": "decision:9128538342d18a184258aa29",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        }
+      ],
+      [
+        {
+          "slot": 1,
+          "key": "field:p12.s0",
+          "kind": "value",
+          "rule": "name_choice_in_verified_name_slot"
+        }
+      ]
+    ],
+    "authorization_slots_per_round": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "redundant_decision_confirmations": 3,
+    "receipts": {
+      "condition:c_soc_ing": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, confermo questo ramo: società di ingegneria Mapi Ingegneria S.r.l., partecipazione in forma singola."
+      },
+      "condition:c_firmatario_role": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, confermo questo ramo: il firmatario scelto per questa domanda è Leonardo Montemurro, legale rappresentante di Mapi I"
+      }
+    },
+    "unaccepted_replies": [],
+    "option_requirements": [],
+    "writes": 51,
+    "checkbox_values": {},
+    "CCIAA_written": {},
+    "p19_ft0_written": null,
+    "option_region_writes": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "writes_matching_reference": [
+      "p12.s0",
+      "p12.s1",
+      "p12.s2",
+      "p13.s0",
+      "p13.s1",
+      "p13.s2",
+      "p13.s3",
+      "p14.s1",
+      "p15.s0",
+      "p15.s1",
+      "p15.s2",
+      "p15.s3",
+      "p16.s0",
+      "p16.s1",
+      "p16.s2",
+      "p17.s0",
+      "p17.s1",
+      "p40.s0",
+      "p41.s0",
+      "p41.s1",
+      "p42.s0",
+      "p42.s1",
+      "p42.s2",
+      "p42.s3",
+      "p42.s4",
+      "p42.s5",
+      "p43.s0",
+      "p43.s1",
+      "p43.s2",
+      "p43.s3",
+      "p43.s4",
+      "p44.s0",
+      "p44.s1",
+      "p44.s2",
+      "p45.s0",
+      "p45.s1",
+      "p45.s2",
+      "p45.s3",
+      "p45.s4",
+      "p46.s0",
+      "p46.s1",
+      "p46.s2",
+      "p47.s0",
+      "p48.s0",
+      "p48.s1",
+      "p49.s0",
+      "p49.s1",
+      "p49.s2",
+      "p49.s3",
+      "p49.s4"
+    ],
+    "writes_differing_from_reference": {
+      "p12.s3": [
+        "14 novembre 1982",
+        "14/11/1982"
+      ]
+    },
+    "writes_outside_reference_for_review": {},
+    "core_reference_written": "50/60"
+  },
+  {
+    "trial": "craa-autorizza",
+    "document": "craa",
+    "variant": "craa-autorizza",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 3,
+    "elapsed_s": 97.0,
+    "provider_calls": 7,
+    "global_calls": 1,
+    "tokens": 93071,
+    "finish_reasons": {
+      "stop": 7
+    },
+    "provider_failures": [],
+    "narrator_pools": [
+      {
+        "call": "03",
+        "stage": "initial",
+        "pool": 3,
+        "authorization": 1,
+        "other": 2,
+        "other_beyond_three_after_authorizations": 0
+      },
+      {
+        "call": "06",
+        "stage": "follow_up",
+        "pool": 1,
+        "authorization": 0,
+        "other": 1,
+        "other_beyond_three_after_authorizations": null
+      }
+    ],
+    "rounds": 1,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "authorization:0b46b6948186365d6492ce09",
+          "kind": "applicability",
+          "rule": "v14_full_authorization_cciaa"
+        },
+        {
+          "slot": 2,
+          "key": "condition:c_fatturato",
+          "kind": "applicability",
+          "rule": "defer_unconfirmed_attestation_or_designation"
+        }
+      ]
+    ],
+    "authorization_slots_per_round": [
+      1
+    ],
+    "redundant_decision_confirmations": 0,
+    "receipts": {
+      "authorization:0b46b6948186365d6492ce09": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, autorizzo questa dichiarazione con i dati indicati."
+      },
+      "condition:c_fatturato": {
+        "action": "SKIP",
+        "applies": null,
+        "quote": "Rinvia questo punto e lascialo vuoto. Non confermo questo punto."
+      }
+    },
+    "unaccepted_replies": [],
+    "option_requirements": [
+      {
+        "key": "authorization:0b46b6948186365d6492ce09",
+        "fields": [
+          "t6.r0.c1",
+          "t6.r0.c3"
+        ],
+        "accepted": true,
+        "clause": "☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto d"
+      }
+    ],
+    "writes": 8,
+    "checkbox_values": {},
+    "CCIAA_written": {},
+    "p19_ft0_written": null,
+    "option_region_writes": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "writes_matching_reference": [
+      "p12.s0",
+      "p13.s0",
+      "p14.s0",
+      "p15.s0",
+      "p16.s0",
+      "p17.s0",
+      "p18.s0",
+      "p5.s0"
+    ],
+    "writes_differing_from_reference": {},
+    "writes_outside_reference_for_review": {},
+    "core_reference_written": "8/10"
+  },
+  {
+    "trial": "cesano-esteso",
+    "document": "cesano",
+    "variant": "cesano-esteso",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 3,
+    "elapsed_s": 105.9,
+    "provider_calls": 7,
+    "global_calls": 1,
+    "tokens": 98777,
+    "finish_reasons": {
+      "stop": 7
+    },
+    "provider_failures": [],
+    "narrator_pools": [
+      {
+        "call": "03",
+        "stage": "initial",
+        "pool": 3,
+        "authorization": 1,
+        "other": 2,
+        "other_beyond_three_after_authorizations": 0
+      },
+      {
+        "call": "06",
+        "stage": "follow_up",
+        "pool": 0,
+        "authorization": 0,
+        "other": 0,
+        "other_beyond_three_after_authorizations": null
+      }
+    ],
+    "rounds": 1,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "authorization:48cc9df986485c8d169d1afd",
+          "kind": "applicability",
+          "rule": "v14_authorize_participation_option"
+        },
+        {
+          "slot": 2,
+          "key": "condition:c_firmatario_role",
+          "kind": "applicability",
+          "rule": "scenario_signer_representation"
+        },
+        {
+          "slot": 3,
+          "key": "condition:c_soc_ing",
+          "kind": "applicability",
+          "rule": "scenario_company_and_single_participation"
+        }
+      ]
+    ],
+    "authorization_slots_per_round": [
+      1
+    ],
+    "redundant_decision_confirmations": 2,
+    "receipts": {
+      "authorization:48cc9df986485c8d169d1afd": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, autorizzo la dichiarazione: la domanda è presentata per conto della Società di Ingegneria Mapi Ingegneria S.r.l.."
+      },
+      "condition:c_firmatario_role": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, confermo questo ramo: il firmatario scelto per questa domanda è Leonardo Montemurro, legale rappresentante di Mapi I"
+      },
+      "condition:c_soc_ing": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, confermo questo ramo: società di ingegneria Mapi Ingegneria S.r.l., partecipazione in forma singola."
+      }
+    },
+    "unaccepted_replies": [],
+    "option_requirements": [
+      {
+        "key": "authorization:48cc9df986485c8d169d1afd",
+        "fields": [
+          "p19.ft0"
+        ],
+        "accepted": true,
+        "clause": "  Della Società di Ingegneria (3)      "
+      }
+    ],
+    "writes": 4,
+    "checkbox_values": {},
+    "CCIAA_written": {},
+    "p19_ft0_written": "Mapi Ingegneria S.r.l.",
+    "option_region_writes": {
+      "p19.ft0": "Mapi Ingegneria S.r.l."
+    },
+    "option_region_writes_without_accepted_authorization": [],
+    "writes_matching_reference": [
+      "p12.ft0",
+      "p12.ft1",
+      "p19.ft0"
+    ],
+    "writes_differing_from_reference": {
+      "p12.ft2": [
+        "14 novembre 1982",
+        "14/11/1982"
+      ]
+    },
+    "writes_outside_reference_for_review": {},
+    "core_reference_written": "3/4"
+  },
+  {
+    "trial": "minervino-b",
+    "document": "minervino",
+    "variant": "minervino-controllo",
+    "DOCX": true,
+    "final_status": "GENERATED",
+    "user_messages": 4,
+    "elapsed_s": 175.2,
+    "provider_calls": 9,
+    "global_calls": 1,
+    "tokens": 173046,
+    "finish_reasons": {
+      "stop": 9
+    },
+    "provider_failures": [],
+    "narrator_pools": [
+      {
+        "call": "03",
+        "stage": "initial",
+        "pool": 6,
+        "authorization": 0,
+        "other": 6,
+        "other_beyond_three_after_authorizations": null
+      },
+      {
+        "call": "06",
+        "stage": "follow_up",
+        "pool": 3,
+        "authorization": 0,
+        "other": 3,
+        "other_beyond_three_after_authorizations": null
+      },
+      {
+        "call": "08",
+        "stage": "follow_up",
+        "pool": 0,
+        "authorization": 0,
+        "other": 0,
+        "other_beyond_three_after_authorizations": null
+      }
+    ],
+    "rounds": 2,
+    "slots_asked": [
+      [
+        {
+          "slot": 1,
+          "key": "condition:c_soc_ing",
+          "kind": "applicability",
+          "rule": "scenario_company_and_single_participation"
+        },
+        {
+          "slot": 2,
+          "key": "decision:ff6a9c86b0584e3ed5ac5799",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        },
+        {
+          "slot": 3,
+          "key": "decision:0a242b4c138d38515e716924",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        }
+      ],
+      [
+        {
+          "slot": 1,
+          "key": "decision:24278d2efa5d91eb97fdcae9",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        },
+        {
+          "slot": 2,
+          "key": "decision:9128538342d18a184258aa29",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        },
+        {
+          "slot": 3,
+          "key": "decision:4d948502d4305ca0995d3928",
+          "kind": "decision",
+          "rule": "defer_procedural"
+        }
+      ]
+    ],
+    "authorization_slots_per_round": [
+      0,
+      0
+    ],
+    "redundant_decision_confirmations": 1,
+    "receipts": {
+      "condition:c_soc_ing": {
+        "action": "CONDITION_TRUE",
+        "applies": true,
+        "quote": "Sì, confermo questo ramo: società di ingegneria Mapi Ingegneria S.r.l., partecipazione in forma singola."
+      }
+    },
+    "unaccepted_replies": [],
+    "option_requirements": [],
+    "writes": 27,
+    "checkbox_values": {
+      "p39.cb0": true
+    },
+    "CCIAA_written": {},
+    "p19_ft0_written": null,
+    "option_region_writes": {},
+    "option_region_writes_without_accepted_authorization": [],
+    "writes_matching_reference": [
+      "p12.s0",
+      "p12.s1",
+      "p12.s2",
+      "p13.s0",
+      "p13.s1",
+      "p13.s2",
+      "p13.s3",
+      "p14.s1",
+      "p15.s0",
+      "p15.s1",
+      "p15.s2",
+      "p15.s3",
+      "p16.s0",
+      "p16.s1",
+      "p16.s2",
+      "p17.s0",
+      "p17.s1",
+      "p40.s0",
+      "p41.s0",
+      "p42.s0",
+      "p42.s1",
+      "p42.s2",
+      "p42.s3",
+      "p42.s4",
+      "p42.s5"
+    ],
+    "writes_differing_from_reference": {
+      "p12.s3": [
+        "14 novembre 1982",
+        "14/11/1982"
+      ]
+    },
+    "writes_outside_reference_for_review": {
+      "p39.cb0": true
+    },
+    "core_reference_written": "25/60"
+  }
+]

@@ -1,0 +1,183 @@
+FAC-SIMILE PER TESI - DOCUMENTO SIMULATO - NON UFFICIALE
+Scheda dati dell'operatore economico - Mapi Ingegneria S.r.l.
+Formato tabellare. Consolida, senza aggiungere dati, la visura simulata del 6 agosto 2026, la 
+scheda generalita' del 17 settembre 2026 e l'integrazione anagrafica e societaria del 15 ottobre 
+2026. Data di riferimento: 15 ottobre 2026. Tutti i dati sono simulati per finalita' didattiche.
+1. Dati identificativi dell'operatore economico
+Ragione sociale Mapi Ingegneria S.r.l.
+Forma giuridica Societa a responsabilita limitata
+Tipologia di attivita societa' di ingegneria civile
+Stato dell'attivita Attiva
+Codice fiscale e Partita IVA IT01234567890
+Numero REA BA - 654321
+Camera di Commercio competente Bari
+Numero di iscrizione al Registro delle Imprese 01234560981
+Data di costituzione 27 febbraio 2019
+Data di iscrizione riportata nella visura 14 marzo 2019
+Durata della societa fino al 31 dicembre 2050
+Capitale sociale EUR 50.000,00, interamente versato
+Codice ATECO 71.12.10 - Attivita degli studi di ingegneria
+Nota: Il codice fiscale e Partita IVA IT01234567890 e' un valore fittizio della fixture, non valido 
+come identificativo fiscale reale; la scheda lo conserva senza correggerlo.
+Nota: Il numero REA (BA - 654321, scritto anche BA-654321) non e' il numero di iscrizione al 
+Registro delle Imprese. Il numero di iscrizione al Registro delle Imprese 01234560981 e' un 
+identificativo sintetico dell'integrazione del 15 ottobre 2026.
+2. Sedi e recapiti
+Sede legale Via Giovanni Amendola 172/C, 70126 Bari (BA), 
+Italia
+Sede legale - via Via Giovanni Amendola
+Sede legale - numero civico 172/C
+Sede legale - CAP 70126
+Sede legale - comune Bari
+Sede legale - provincia BA
+Sede legale - Paese Italia
+Sede operativa Via Giovanni Amendola 172/C, 70126 Bari (BA), 
+Italia
+Rapporto tra le sedi sede operativa coincidente con la sede legale
+Ulteriori unita' locali nessuna oltre alla sede operativa indicata
+PEC aziendale mapi.ingegneria@pec.demo
+E-mail aziendale segreteria@mapi-ingegneria.demo
+Telefono aziendale +39 080 000 2040
+Fax aziendale +39 080 000 2041
+Sito web www.mapi-ingegneria.demo
+Cellulare aziendale non disponibile
+Nota: Recapiti dimostrativi, non canali da usare per contatti o invii reali. L'indirizzo aziendale non 
+rappresenta la residenza personale degli amministratori o dei tecnici.
+
+3. Amministrazione e rappresentanza
+Luca Ferri - nominativo completo Ing. Luca Ferri
+Luca Ferri - carica Amministratore unico
+Luca Ferri - data di nomina 18 aprile 2024
+Luca Ferri - durata indicata nella visura del 6 
+agosto 2026
+fino all'approvazione del bilancio 2026
+Luca Ferri - cessazione della carica 1 ottobre 2026
+Leonardo Montemurro - carica Amministratore unico e rappresentante legale 
+della societa
+Leonardo Montemurro - in carica dal 2 ottobre 2026
+Nota: La visura simulata del 6 agosto 2026 indica Luca Ferri come amministratore unico; 
+l'integrazione del 15 ottobre 2026 registra la cessazione della carica il 1 ottobre 2026 e la carica di 
+Leonardo Montemurro dal 2 ottobre 2026, non documentata dalla visura di agosto. Gli eventi 
+successivi non correggono retroattivamente le fonti precedenti.
+Nota: Procure, deleghe e dettaglio dei poteri di rappresentanza: non documentati. La carica 
+societaria non equivale automaticamente alla scelta del firmatario di una specifica domanda: tale 
+scelta resta riferita alla singola pratica.
+4. Leonardo Montemurro - anagrafica
+Nome Leonardo
+Cognome Montemurro
+Luogo di nascita Lecce (LE)
+Data di nascita 14 novembre 1982
+Comune di residenza Bari (BA)
+Indirizzo di residenza Via Amedeo 24
+Codice fiscale personale MNTLRD82S14E506X
+Nota: Dati anagrafici sintetici dimostrativi. L'indirizzo di residenza di Leonardo Montemurro non e' 
+la sede legale della societa.
+5. Struttura tecnica e ruoli aziendali
+Elisa Romano - ruolo Direttore tecnico di Mapi Ingegneria S.r.l.
+Elisa Romano - nominativo completo Ing. Elisa Romano
+Elisa Romano - qualifica professionale Ingegnere
+Elisa Romano - ordine professionale Ordine degli Ingegneri di Bari
+Elisa Romano - sezione A
+Elisa Romano - iscritta dal 18 maggio 2015
+Elisa Romano - numero di iscrizione 8421
+Andrea Greco - ruolo Responsabile qualita' aziendale
+Andrea Greco - nominativo completo Arch. Andrea Greco
+Andrea Greco - qualifica professionale Architetto
+Andrea Greco - ordine professionale Ordine degli Architetti di Bari
+Andrea Greco - sezione A
+Andrea Greco - numero di iscrizione 5267
+Mario Rossi - ruolo Referente organizzativo interno
+Mario Rossi - nominativo completo Ing. Mario Rossi
+Addetti al 31 dicembre 2025 7 unita'
+Addetti tecnici al 31 dicembre 2025 5 unita'
+Nota: Elisa Romano: data di abilitazione e settore dell'albo, data e luogo di nascita e residenza non 
+disponibili. Andrea Greco: dati personali e poteri di firma non disponibili. Mario Rossi: poteri di 
+
+firma, procure, qualifica di legale rappresentante, dati personali e iscrizione all'albo non attribuiti; 
+non sostituisce l'amministratore unico o il direttore tecnico.
+Nota: Luca Ferri: data e luogo di nascita e residenza non disponibili; la scheda generalita' del 17 
+settembre 2026 non riportava il codice fiscale personale, riportato invece nella tabella dei soci 
+dell'integrazione del 15 ottobre 2026.
+Nota: Un ruolo aziendale non costituisce una designazione per uno specifico incarico di 
+progettazione, coordinamento della sicurezza, collaudo o direzione lavori. L'elenco nominativo 
+completo degli addetti e l'organigramma non sono disponibili.
+6. Soci al 15 ottobre 2026
+Luca Ferri - quota 30%
+Luca Ferri - qualifica professionale Ingegnere
+Luca Ferri - albo Ordine degli Ingegneri di Bari
+Luca Ferri - sezione A
+Luca Ferri - provincia Bari (BA)
+Luca Ferri - iscrizione dal 21/03/2012
+Luca Ferri - numero di iscrizione 7294
+Luca Ferri - codice fiscale FRRLCU80A01A662K
+Elisa Romano - quota 40%
+Elisa Romano - qualifica professionale Ingegnere
+Elisa Romano - albo Ordine degli Ingegneri di Bari
+Elisa Romano - sezione A
+Elisa Romano - provincia Bari (BA)
+Elisa Romano - iscrizione dal 18/05/2015
+Elisa Romano - numero di iscrizione 8421
+Elisa Romano - codice fiscale RMNLSI85C47A662Y
+Andrea Greco - quota 30%
+Andrea Greco - qualifica professionale Architetto
+Andrea Greco - albo Ordine degli Architetti di Bari
+Andrea Greco - sezione A
+Andrea Greco - provincia Bari (BA)
+Andrea Greco - iscrizione dal 12/06/2014
+Andrea Greco - numero di iscrizione 5267
+Andrea Greco - codice fiscale GRCNDR84D20A662P
+Nota: Quote 30% + 40% + 30% = 100%. I nominativi descritti non costituiscono l'elenco completo 
+dei titolari effettivi o di tutti i soggetti da dichiarare in una procedura.
+7. Attivita' e servizi
+Ambito territoriale Italia, con operativita' prevalente nelle regioni 
+del Mezzogiorno
+Ruolo operativo consulenza tecnica e supporto alla 
+progettazione per enti pubblici e committenti 
+privati
+Servizi servizi integrati di ingegneria e architettura 
+relativi a opere civili e infrastrutture pubbliche
+Progettazione fattibilita' tecnico-economica, definitiva ed 
+esecutiva
+Strutture verifiche strutturali e valutazioni di 
+vulnerabilita' sismica; interventi di 
+adeguamento e riqualificazione degli edifici
+
+Energia riqualificazione energetica e funzionale di 
+edifici pubblici
+Cantiere direzione lavori, coordinamento della sicurezza 
+e contabilita' dei lavori
+Digitale modellazione BIM e gestione documentale; 
+supporto ai processi autorizzativi
+Supporto agli enti assistenza tecnica agli enti per bandi e 
+programmi di finanziamento
+Nota: La descrizione dei servizi non prova incarichi gia' eseguiti, importi di lavori, qualificazioni 
+individuali o il possesso dei requisiti richiesti da una gara.
+8. Qualita', coperture e indicatori economici
+Sistema di gestione qualita' ISO 9001:2015
+Identificativo del certificato MAPI-QMS-2024-001
+Scadenza del certificato 30 settembre 2027
+Polizza professionale RC-MAPI-2026-018
+Massimale della polizza EUR 2.000.000,00
+Scadenza della polizza 31 dicembre 2026
+Ricavi complessivi 2024 EUR 1.080.000,00
+Ricavi complessivi 2025 EUR 1.280.000,00
+Patrimonio netto 2025 EUR 410.000,00
+Procedure concorsuali nessuna procedura indicata nel dataset 
+simulato
+Scioglimento o liquidazione nessuna procedura indicata nel dataset 
+simulato
+Nota: Certificato autentico, organismo emittente, compagnia e condizioni della polizza non 
+disponibili. Riferimenti simulati: non dimostrano una copertura reale, una certificazione posseduta 
+o la loro validita' alla data di una gara. I ricavi complessivi non sono fatturato specifico per 
+categoria di servizi o importi di servizi di punta.
+9. Informazioni non disponibili o specifiche della singola pratica
+La scheda non contiene evidenze su regolarita' contributiva o fiscale, casellario, assenza di cause di 
+esclusione, assetto proprietario, titolarita' effettiva, poteri di firma o allegati effettivamente 
+presentati. L'assenza di informazioni non equivale a una dichiarazione positiva o negativa.
+Non contiene e non determina: la forma di partecipazione scelta per una procedura specifica; il 
+soggetto che sottoscrive una determinata domanda; le categorie e le fasce di servizi per cui 
+candidarsi; i professionisti designati per una specifica prestazione; dichiarazioni personali, 
+consenso, allegati effettivamente prodotti, luogo e data della domanda; attestazioni di assenza di 
+cause di esclusione e decisioni sulla firma digitale.
+Queste informazioni sono decisioni o attestazioni della singola pratica e non vanno inferite dalla 
+scheda.

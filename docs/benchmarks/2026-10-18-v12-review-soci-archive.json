@@ -1,0 +1,16 @@
+{
+  "archive": "2026-10-18-v12-review-soci-audit.tar.gz",
+  "sha256": "3d5d90eee93a8ca4e74c7be7a165ba3351674a1eb19dfd9ffc3adce037f40876",
+  "bytes": 35108391,
+  "file_count": 246,
+  "uncompressed_file_bytes": 67273364,
+  "verified_all_members_against_files": true,
+  "raw_directory": "backend/data/compilation-audit/v12-review-soci-20261018-01",
+  "exclusions": {
+    "full_original_trace": "included (snapshots/actions/network, screenshots disabled; complete video)",
+    "private_runtime": ".tools/v12-review-soci-20261018-01 (DB, ai-key, private storage clone)"
+  },
+  "includes_video_complete": true,
+  "includes_trace_complete": true,
+  "active_credential_scan_passed": true
+}

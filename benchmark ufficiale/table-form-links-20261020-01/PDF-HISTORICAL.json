@@ -1,0 +1,477 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "historical/conserved/minervino-v12-61",
+      "pdf": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 9,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "p12.s0": true,
+          "p12.s1": true,
+          "p12.s2": true,
+          "p12.s3": true,
+          "p13.s0": true,
+          "p13.s1": true,
+          "p13.s2": true,
+          "p13.s3": true,
+          "p14.s0": true,
+          "p14.s1": true,
+          "p15.s0": true,
+          "p15.s1": true,
+          "p15.s2": true,
+          "p15.s3": true,
+          "p16.s0": true,
+          "p16.s1": true,
+          "p16.s2": true,
+          "p17.s0": true,
+          "p17.s1": true,
+          "p40.s0": true,
+          "p41.s0": true,
+          "p41.s1": true,
+          "p42.s0": true,
+          "p42.s1": true,
+          "p42.s2": true,
+          "p42.s3": true,
+          "p42.s4": true,
+          "p42.s5": true,
+          "p43.s0": true,
+          "p43.s1": true,
+          "p43.s2": true,
+          "p43.s3": true,
+          "p43.s4": true,
+          "p44.s0": true,
+          "p44.s1": true,
+          "p44.s2": true,
+          "p45.s0": true,
+          "p45.s1": true,
+          "p45.s2": true,
+          "p45.s3": true,
+          "p45.s4": true,
+          "p46.s0": true,
+          "p46.s1": true,
+          "p46.s2": true,
+          "p47.s0": true,
+          "p48.s0": true,
+          "p48.s1": true,
+          "p49.s0": true,
+          "p49.s1": true,
+          "p49.s2": true,
+          "p49.s3": true,
+          "p49.s4": true,
+          "p51.s0": true,
+          "p52.s0": true,
+          "p52.s1": true,
+          "p53.s0": true,
+          "p53.s1": true,
+          "p53.s2": true,
+          "p53.s3": true,
+          "p53.s4": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "55d4d80b891ecb8fa7da9284095002de8a0639b2d95af864bcb96fcabd5d37c2",
+        "images_pages": [
+          1,
+          2,
+          9
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "real/firmatario-generale-20261020-01",
+      "pdf": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 5,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "p12.s0": true,
+          "p12.s1": true,
+          "p12.s2": true,
+          "p12.s3": true,
+          "p12.s4": true,
+          "p12.s5": true,
+          "p12.s6": true,
+          "p12.s7": true,
+          "p75.s0": true,
+          "p75.s1": true,
+          "p75.s2": true,
+          "p75.s3": true,
+          "p75.s4": true,
+          "p75.s5": true,
+          "p75.s6": true,
+          "p75.s7": true,
+          "p75.s8": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "4dbf06de1ce64e234ea22f6fb8ff58cb89145d1d45e62272a568762e16e42912",
+        "images_pages": [
+          1,
+          2,
+          5
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/conserved/bella",
+      "pdf": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 4,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "p21.s4": true,
+          "p21.s5": true,
+          "p21.s6": true,
+          "p21.s7": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "d12842ef0aa6845e3c26bd4747bb86294dce89ac8b2aff8770a874faa3ca0350",
+        "images_pages": [
+          1,
+          2,
+          4
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "historical/conserved/cesano-reale-8",
+      "pdf": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 3,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "p19.ft0": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "c6f6e8212beb5ef0be7fe3141a84c7874e328962b617b3599789e7a81ed32bab",
+        "images_pages": [
+          1,
+          2,
+          3
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "real/craa-user-20261020-01",
+      "pdf": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 7,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "p12.s0": true,
+          "p13.s0": true,
+          "p14.s0": true,
+          "p15.s0": true,
+          "p16.s0": true,
+          "p17.s0": true,
+          "p18.s0": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "d79b0c64c9e7850da4991c9096deb008a7468291c296f0310d68e7bb67c7d7a6",
+        "images_pages": [
+          1,
+          2,
+          7
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/B0/rep-3",
+      "pdf": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r10.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "ee8fe58eb6010527f25beaf919cd09294367179cd55b63b2b4bcd4c32027c3c8",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "study/catanzaro/E1/rep-3",
+      "pdf": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "0acc8e06ca791bd4039e10bcc97f0685b65263be4aaafbae0fd5abfe32782113",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    },
+    {
+      "case": "real/form-applicability-20261020-01",
+      "pdf": {
+        "status": "PASS",
+        "renderer": "LibreOffice 26.2.6.3 620(Build:3)",
+        "pages": 17,
+        "all_page_bboxes_checked": true,
+        "outside_page_words": [],
+        "whole_PDF_visibility": {
+          "t0.r0.c1": true,
+          "t0.r10.c1": true,
+          "t0.r11.c1": true,
+          "t0.r2.c1": true,
+          "t0.r5.c1": true,
+          "t0.r6.c1": true,
+          "t0.r7.c1": false,
+          "t0.r9.c1": true,
+          "t25.r3.c1": true,
+          "t25.r4.c1": true,
+          "t25.r4.c3": false,
+          "t26.r0.c1": true,
+          "t26.r1.c1": true,
+          "t26.r3.c1": true,
+          "t26.r4.c1": true
+        },
+        "position_verified_independently_in_XML": true,
+        "Word_desktop_tested": false,
+        "PDF_SHA256": "c76914ddafae334164da4d63114860b8a444afcf9dc8347377a9bcec9bcedada",
+        "images_pages": [
+          1,
+          2,
+          17
+        ]
+      },
+      "local": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      }
+    }
+  ]
+}

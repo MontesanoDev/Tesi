@@ -1,0 +1,8 @@
+{
+  "registered_UTC": "2026-10-20T15:16:52.825789+00:00",
+  "primary_reference_unchanged": true,
+  "new_provider_response_contents_not_inspected_for_this_change": true,
+  "clarification": "Evaluation only: accept documented street type already printed by FORM and optional province in unsplit birthplace. Do not transform any model output or writer value.",
+  "harness_correction": "Historical trace now separates raw proposal rejection from final loss; accepted USER receipts satisfy UNKNOWN checks for export without modifying audit conditions.",
+  "evaluation_SHA256": "e5b53dab966da495e5cb8f94b0492d70bd1eeaf96281580e1a373acaf75252df"
+}

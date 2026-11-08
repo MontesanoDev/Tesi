@@ -1,0 +1,217 @@
+{
+ "version": 3,
+ "document": "bella",
+ "derived_from": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/bella/reference.json",
+  "sha256": "5b182eb0f2bc92bd3d02299dd3e29301b18745d5d7fa8792d9ddfe110395c7ee",
+  "values_unchanged": true
+ },
+ "FORM_sha256": "4d894b3faee91909275589ac5ed8e1dd2eddc09890f95ac0456780bbb6828ae0",
+ "scenario": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/bella/scenario-USER.json",
+ "scenario_sha256": "d1d4cee05fba2249e985a4d2f64210953a3cab3e11b9a274fc8e6ea45bd43e5d",
+ "variant": "generico",
+ "runtime_source": "storico",
+ "destinations": [
+  {
+   "candidate_id": "p21.s0",
+   "recognized": true,
+   "label": "Nome firmatario",
+   "value": "Leonardo Montemurro",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "name",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p21.s1",
+   "recognized": true,
+   "label": "Nascita luogo",
+   "value": "Lecce (LE)",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "birthplace",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p21.s2",
+   "recognized": true,
+   "label": "Nascita data",
+   "value": "14/11/1982",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "birthdate",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p21.s3",
+   "recognized": true,
+   "label": "Carica",
+   "value": "amministratore unico e rappresentante legale",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "role",
+   "SOURCE_chunks": [
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p21.s4",
+   "recognized": true,
+   "label": "Studio/società/consorzio",
+   "value": "Mapi Ingegneria S.r.l.",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "name",
+   "SOURCE_chunks": [
+    -30,
+    -43
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p21.s5",
+   "recognized": true,
+   "label": "Sede",
+   "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "address",
+   "SOURCE_chunks": [
+    -30,
+    -43
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p21.s6",
+   "recognized": true,
+   "label": "CF società",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "cf",
+   "SOURCE_chunks": [
+    -30,
+    -43
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "p21.s7",
+   "recognized": true,
+   "label": "PIVA società",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "piva",
+   "SOURCE_chunks": [
+    -30,
+    -43
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  }
+ ],
+ "unrecognized_core_destinations": [],
+ "USER_decisions_expected": {
+  "p30.cb0": true
+ },
+ "pertinent_unresolved_active_fields": [
+  "p129.s0"
+ ],
+ "permitted_equivalence": "Date formats, case/spaces, title prefix, fuller literal SOURCE if subject/property/granularity correct",
+ "protected": "Do not invent personal properties, powers, designations or attestations; no signatures; USER choice only identifies signer and participation",
+ "legacy_notes": {
+  "applicability_notes": "RTP leader, young professional, quotas and activities are not applicable to individual company participation. Named persons who will perform the specific assignment require USER designation, not merely a SOURCE company role. p65 company-type boxes belong to that designation statement and are not authorized by legal-type decision alone.",
+  "denominator_scope": "Documented core SOURCE field occurrences, not distinct atomic facts or total procedure requirements; unknown attestations/designations and variable-cardinality tables excluded from completeness denominator"
+ },
+ "registered_UTC": "2026-10-22T10:47:07+00:00",
+ "condition_4": {
+  "core": 8,
+  "recognized": 8,
+  "share": 1.0,
+  "passes": true
+ }
+}

@@ -1,0 +1,755 @@
+{
+ "version": 3,
+ "document": "catanzaro",
+ "derived_from": {
+  "path": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/catanzaro/reference.json",
+  "sha256": "49f0f72b86250a505f58eb8974b54a520fdb201377616b6bef058d3368e8f2dc",
+  "values_unchanged": true
+ },
+ "FORM_sha256": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563",
+ "scenario": "benchmark ufficiale/v13-s1-validation-20261021-02/documents/catanzaro/scenario-USER.json",
+ "scenario_sha256": "fd81a731d4dbad405db4f839511de0b8c57f5cdcfb87318229e5ba9829f88897",
+ "variant": "catanzaro-controllo",
+ "runtime_source": "storico",
+ "destinations": [
+  {
+   "candidate_id": "t0.r0.c1",
+   "recognized": true,
+   "label": "nome",
+   "value": "Leonardo Montemurro",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "nome",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t0.r1.c1",
+   "recognized": true,
+   "label": "nascita_data_luogo",
+   "value": "14/11/1982, Lecce (LE)",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "nascita_data_luogo",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t0.r2.c1",
+   "recognized": true,
+   "label": "cf",
+   "value": "MNTLRD82S14E506X",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "cf",
+   "SOURCE_chunks": [
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t0.r3.c1",
+   "recognized": true,
+   "label": "carica",
+   "value": "rappresentante legale",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "carica",
+   "SOURCE_chunks": [
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t0.r5.c1",
+   "recognized": true,
+   "label": "nome",
+   "value": "Mapi Ingegneria S.r.l.",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "nome",
+   "SOURCE_chunks": [
+    -30
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t0.r6.c1",
+   "recognized": true,
+   "label": "forma_giuridica",
+   "value": "Società a responsabilità limitata",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "forma_giuridica",
+   "SOURCE_chunks": [
+    -30
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t0.r7.c1",
+   "recognized": true,
+   "label": "sede_legale",
+   "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA)",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "sede_legale",
+   "SOURCE_chunks": [
+    -30,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t0.r9.c1",
+   "recognized": true,
+   "label": "cf",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "cf",
+   "SOURCE_chunks": [
+    -30
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t0.r10.c1",
+   "recognized": true,
+   "label": "piva",
+   "value": "IT01234567890",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "piva",
+   "SOURCE_chunks": [
+    -30
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t0.r11.c1",
+   "recognized": true,
+   "label": "telefono",
+   "value": "+39 080 000 2040",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "telefono",
+   "SOURCE_chunks": [
+    -44
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t25.r0.c1",
+   "recognized": true,
+   "label": "Società",
+   "value": "Mapi Ingegneria S.r.l.",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "nome",
+   "SOURCE_chunks": [
+    -30,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t25.r2.c0",
+   "recognized": true,
+   "label": "CCIAA",
+   "value": "Bari",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "cciaa",
+   "SOURCE_chunks": [
+    -30,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t25.r3.c1",
+   "recognized": true,
+   "label": "Numero e data iscrizione",
+   "value": "01234560981; 14/03/2019",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "numero_data_registro",
+   "SOURCE_chunks": [
+    -30,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t25.r4.c1",
+   "recognized": true,
+   "label": "Forma giuridica",
+   "value": "Società a responsabilità limitata",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "forma_giuridica",
+   "SOURCE_chunks": [
+    -30,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t25.r4.c3",
+   "recognized": true,
+   "label": "Sede legale",
+   "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA)",
+   "match": "equivalent",
+   "subject": "Mapi Ingegneria S.r.l.",
+   "property": "sede_legale",
+   "SOURCE_chunks": [
+    -30,
+    -52,
+    -53
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t26.r0.c1",
+   "recognized": true,
+   "label": "nome",
+   "value": "Elisa Romano",
+   "match": "equivalent",
+   "subject": "Elisa Romano",
+   "property": "nome",
+   "SOURCE_chunks": [
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t26.r1.c1",
+   "recognized": true,
+   "label": "qualifica",
+   "value": "Ingegnere",
+   "match": "equivalent",
+   "subject": "Elisa Romano",
+   "property": "qualifica",
+   "SOURCE_chunks": [
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t26.r3.c1",
+   "recognized": true,
+   "label": "ordine",
+   "value": "Ordine degli Ingegneri di Bari",
+   "match": "equivalent",
+   "subject": "Elisa Romano",
+   "property": "ordine",
+   "SOURCE_chunks": [
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t26.r4.c1",
+   "recognized": true,
+   "label": "numero_iscrizione",
+   "value": "8421",
+   "match": "equivalent",
+   "subject": "Elisa Romano",
+   "property": "numero_iscrizione",
+   "SOURCE_chunks": [
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t41.r1.c0",
+   "recognized": true,
+   "label": "nome",
+   "value": "Leonardo Montemurro",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "nome",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t41.r1.c1",
+   "recognized": true,
+   "label": "nascita_data_luogo",
+   "value": "14/11/1982, Lecce (LE)",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "nascita_data_luogo",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t41.r1.c2",
+   "recognized": true,
+   "label": "residenza",
+   "value": "Via Amedeo 24, Bari (BA)",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "residenza",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t41.r1.c3",
+   "recognized": true,
+   "label": "cf",
+   "value": "MNTLRD82S14E506X",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "cf",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t41.r1.c4",
+   "recognized": true,
+   "label": "carica",
+   "value": "amministratore unico e rappresentante legale",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "carica",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t43.r1.c0",
+   "recognized": true,
+   "label": "nome",
+   "value": "Leonardo Montemurro",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "nome",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t43.r1.c1",
+   "recognized": true,
+   "label": "nascita_data_luogo",
+   "value": "14/11/1982, Lecce (LE)",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "nascita_data_luogo",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t43.r1.c2",
+   "recognized": true,
+   "label": "residenza",
+   "value": "Via Amedeo 24, Bari (BA)",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "residenza",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t43.r1.c3",
+   "recognized": true,
+   "label": "cf",
+   "value": "MNTLRD82S14E506X",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "cf",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t43.r1.c4",
+   "recognized": true,
+   "label": "carica",
+   "value": "amministratore unico e rappresentante legale",
+   "match": "equivalent",
+   "subject": "Leonardo Montemurro",
+   "property": "carica",
+   "SOURCE_chunks": [
+    -53,
+    -54
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t44.r1.c0",
+   "recognized": true,
+   "label": "nome",
+   "value": "Elisa Romano",
+   "match": "equivalent",
+   "subject": "Elisa Romano",
+   "property": "nome",
+   "SOURCE_chunks": [
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  },
+  {
+   "candidate_id": "t44.r1.c3",
+   "recognized": true,
+   "label": "cf",
+   "value": "RMNLSI85C47A662Y",
+   "match": "equivalent",
+   "subject": "Elisa Romano",
+   "property": "cf",
+   "SOURCE_chunks": [
+    -54,
+    -55
+   ],
+   "fact_available": true,
+   "branch_condition": {
+    "result": "TRUE_IN_SCENARIO",
+    "basis": "riferimento congelato v1 (AVAILABLE_SOURCE)"
+   },
+   "declaration_authorization": {
+    "required": false
+   },
+   "expected_if_authorized": false,
+   "in_denominator": true
+  }
+ ],
+ "unrecognized_core_destinations": [],
+ "USER_decisions_expected": {
+  "p57.cb0": true,
+  "p76.cb1": true,
+  "p147.cb0": true
+ },
+ "pertinent_unresolved_active_fields": [
+  "t26.r2.c1",
+  "t44.r1.c1",
+  "t44.r1.c2"
+ ],
+ "permitted_equivalence": "Case, spaces, professional title prefix and equivalent dates; fuller literal SOURCE values accepted only if property/subject/granularity correct",
+ "protected": "No signatures, no attestations/preferences/designations without scenario decision; inactive branches remain blank",
+ "legacy_notes": {
+  "variable_cardinality_records": "Service-history/other-subject rows are not counted as mandatory facts merely because blank rows exist",
+  "unlisted_candidates": "Review against FORM and SOURCE individually; not automatically wrong or required",
+  "known_preexisting_limits": {
+   "t25.r3.c1": "Number/date require a complete literal grounded value; no multi-SOURCE composition",
+   "t0.r11.c1": "Cellulare + Telefono: missing mobile and conservative compound grammar",
+   "t0.r8.c1": "Operating and legal office coincide; never write alternative office"
+  }
+ },
+ "registered_UTC": "2026-10-22T10:47:07+00:00",
+ "condition_4": {
+  "core": 31,
+  "recognized": 31,
+  "share": 1.0,
+  "passes": true
+ }
+}

@@ -1,0 +1,25 @@
+{
+  "cause": "Existing has_user_alternatives matches the standalone o in the negative phrase senza raggruppamenti o consorzi. It rejects an otherwise explicitly affirmative reply.",
+  "router_reply": {
+    "action": "CONDITION_TRUE",
+    "slot": 2,
+    "user_quote": "Confermo: Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria, singolarmente, senza raggruppamenti o consorzi.",
+    "value": null,
+    "normalized_value": null,
+    "selected_options": null,
+    "rationale": "Conferma del ramo Società di Ingegneria"
+  },
+  "guard_reply": {
+    "checks": [
+      {
+        "slot": 2,
+        "result": "SUPPORTED",
+        "rationale": "L'utente conferma esplicitamente che la società partecipa come Società di Ingegneria, rispondendo alla domanda dello slot 2."
+      }
+    ]
+  },
+  "literal_alternatives_check": true,
+  "not_changed_this_phase": true,
+  "second_USER_round_accepted": true,
+  "no_global_retry": true
+}

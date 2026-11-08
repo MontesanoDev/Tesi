@@ -1,0 +1,55 @@
+{
+  "completed_collected": 5,
+  "results": [
+    {
+      "trial": "catanzaro-1",
+      "document": "catanzaro",
+      "session_id": "413cc0bb3fa14cd9b120c9b205c4a2d7",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 6,
+      "runtime": "storico"
+    },
+    {
+      "trial": "soresa2023-1",
+      "document": "soresa2023",
+      "session_id": "ed3e8d19697a49b898f12a19744c7689",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 2,
+      "runtime": "nuova-source"
+    },
+    {
+      "trial": "cesano-1",
+      "document": "cesano",
+      "session_id": "3c180e98d20149f498212855c5993a0d",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 2,
+      "runtime": "storico"
+    },
+    {
+      "trial": "catanzaro-2",
+      "document": "catanzaro",
+      "session_id": "5aca6f03a7ca4d88a82bc0baaefd25f0",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 6,
+      "runtime": "storico"
+    },
+    {
+      "trial": "minervino-2",
+      "document": "minervino",
+      "session_id": "fbfb7440999b49c8b7cb9c4601d8aaac",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 6,
+      "global_calls": 5,
+      "runtime": "storico"
+    }
+  ]
+}

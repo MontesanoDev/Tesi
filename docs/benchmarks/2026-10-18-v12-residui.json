@@ -1,0 +1,334 @@
+{
+  "experiment": "V12 residui: equivalenza tipografica, decisioni USER, export parziale",
+  "date": "2026-10-18",
+  "provider_calls": 0,
+  "global_calls": 0,
+  "new_model_tokens": 0,
+  "new_provider_cost_usd": 0,
+  "quality_note": "Replay deterministici con narratore simulato; non una nuova prova UI o valutazione autonoma del modello",
+  "baseline": {
+    "mode": "baseline",
+    "provider_calls": 0,
+    "global_calls": 0,
+    "narrator_transport": "simulated, no holds or new factual inference",
+    "source_corpus_equal": true,
+    "original_USER_answers_preserved": true,
+    "source_grounded": 44,
+    "reviewed": 44,
+    "unknown_grounded": [
+      "p51.s0",
+      "p53.s0",
+      "p53.s1"
+    ],
+    "source_written": 41,
+    "user_written": 1,
+    "written": 42,
+    "previous_42_lost": [],
+    "new_written_ids": [],
+    "value_differences": 0,
+    "new_undue_writes": 0,
+    "checkbox_writes": 0,
+    "form_b0_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "docx_sha256": "4a29f7d306a6664b88208f8ba88bff5738123310a84853ff4e770f69dae126c8",
+    "xml_crc_report_physical_checks": true,
+    "review_windows": [
+      0
+    ],
+    "open_decisions": [],
+    "original_raw_response_sha256": "265b1176c5f9d2d145ca4c1074bb1aca72d04482f76686d8d72d38b94ca1a050"
+  },
+  "historical_replay": {
+    "mode": "corrected-verified",
+    "provider_calls": 0,
+    "global_calls": 0,
+    "narrator_transport": "simulated, no holds or new factual inference",
+    "source_corpus_equal": true,
+    "original_USER_answers_preserved": true,
+    "source_grounded": 46,
+    "reviewed": 46,
+    "unknown_grounded": [
+      "p51.s0",
+      "p52.s0",
+      "p53.s0",
+      "p53.s1"
+    ],
+    "source_written": 41,
+    "user_written": 1,
+    "written": 42,
+    "previous_42_lost": [],
+    "new_written_ids": [],
+    "value_differences": 0,
+    "new_undue_writes": 0,
+    "checkbox_writes": 0,
+    "form_b0_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "docx_sha256": "4a29f7d306a6664b88208f8ba88bff5738123310a84853ff4e770f69dae126c8",
+    "xml_crc_report_physical_checks": true,
+    "review_windows": [
+      2
+    ],
+    "open_decisions": [
+      {
+        "key": "decision:ff6a9c86b0584e3ed5ac5799",
+        "decision_type": "preferences",
+        "field_ids": [
+          "t0.r1.c1",
+          "t0.r1.c2",
+          "t0.r1.c3",
+          "t0.r2.c1",
+          "t0.r2.c2",
+          "t0.r2.c3",
+          "t0.r3.c1",
+          "t0.r3.c2",
+          "t0.r3.c3",
+          "t0.r4.c1",
+          "t0.r4.c2",
+          "t0.r4.c3",
+          "t0.r5.c1",
+          "t0.r5.c2",
+          "t0.r5.c3",
+          "t0.r6.c1",
+          "t0.r6.c2",
+          "t0.r6.c3",
+          "t0.r7.c1",
+          "t0.r7.c2",
+          "t0.r7.c3",
+          "t0.r8.c1",
+          "t0.r8.c2",
+          "t0.r8.c3",
+          "t0.r9.c1",
+          "t0.r9.c2",
+          "t0.r9.c3",
+          "t0.r10.c1",
+          "t0.r10.c2",
+          "t0.r10.c3",
+          "t0.r11.c1",
+          "t0.r11.c2",
+          "t0.r11.c3",
+          "t0.r12.c1",
+          "t0.r12.c2",
+          "t0.r12.c3",
+          "t0.r13.c1",
+          "t0.r13.c2",
+          "t0.r13.c3",
+          "t0.r14.c1",
+          "t0.r14.c2",
+          "t0.r14.c3",
+          "t0.r15.c1",
+          "t0.r15.c2",
+          "t0.r15.c3",
+          "t0.r16.c1",
+          "t0.r16.c2",
+          "t0.r16.c3",
+          "t0.r17.c1",
+          "t0.r17.c2",
+          "t0.r17.c3",
+          "t1.r1.c1",
+          "t1.r1.c2",
+          "t1.r1.c3",
+          "t2.r1.c1",
+          "t2.r2.c1",
+          "t2.r3.c1",
+          "t3.r1.c1",
+          "t3.r2.c1",
+          "t3.r3.c1",
+          "t3.r4.c1",
+          "t3.r5.c1",
+          "t3.r6.c1",
+          "t3.r7.c1",
+          "t3.r8.c1",
+          "t3.r9.c1",
+          "t3.r10.c1"
+        ]
+      },
+      {
+        "key": "decision:0a242b4c138d38515e716924",
+        "decision_type": "attestation",
+        "field_ids": [
+          "p217.cb0"
+        ]
+      },
+      {
+        "key": "decision:24278d2efa5d91eb97fdcae9",
+        "decision_type": "designation",
+        "field_ids": [
+          "p228.cb0",
+          "p229.s0",
+          "p230.s0"
+        ]
+      },
+      {
+        "key": "decision:9128538342d18a184258aa29",
+        "decision_type": "designation",
+        "field_ids": [
+          "p232.s0",
+          "p233.s0",
+          "p234.s0"
+        ]
+      },
+      {
+        "key": "decision:4d948502d4305ca0995d3928",
+        "decision_type": "location_date",
+        "field_ids": [
+          "p242.s0"
+        ]
+      }
+    ],
+    "original_raw_response_sha256": "265b1176c5f9d2d145ca4c1074bb1aca72d04482f76686d8d72d38b94ca1a050"
+  },
+  "pre_qualification_replay": {
+    "mode": "pre-qualification-verified",
+    "provider_calls": 0,
+    "global_calls": 0,
+    "narrator_transport": "simulated, no holds or new factual inference",
+    "source_corpus_equal": true,
+    "original_USER_answers_preserved": true,
+    "source_grounded": 46,
+    "reviewed": 46,
+    "unknown_grounded": [
+      "p51.s0",
+      "p52.s0",
+      "p53.s0",
+      "p53.s1"
+    ],
+    "source_written": 42,
+    "user_written": 0,
+    "written": 42,
+    "previous_42_lost": [],
+    "new_written_ids": [],
+    "value_differences": 0,
+    "new_undue_writes": 0,
+    "checkbox_writes": 0,
+    "form_b0_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "docx_sha256": "4a29f7d306a6664b88208f8ba88bff5738123310a84853ff4e770f69dae126c8",
+    "xml_crc_report_physical_checks": true,
+    "review_windows": [
+      2
+    ],
+    "open_decisions": [
+      {
+        "key": "decision:ff6a9c86b0584e3ed5ac5799",
+        "decision_type": "preferences",
+        "field_ids": [
+          "t0.r1.c1",
+          "t0.r1.c2",
+          "t0.r1.c3",
+          "t0.r2.c1",
+          "t0.r2.c2",
+          "t0.r2.c3",
+          "t0.r3.c1",
+          "t0.r3.c2",
+          "t0.r3.c3",
+          "t0.r4.c1",
+          "t0.r4.c2",
+          "t0.r4.c3",
+          "t0.r5.c1",
+          "t0.r5.c2",
+          "t0.r5.c3",
+          "t0.r6.c1",
+          "t0.r6.c2",
+          "t0.r6.c3",
+          "t0.r7.c1",
+          "t0.r7.c2",
+          "t0.r7.c3",
+          "t0.r8.c1",
+          "t0.r8.c2",
+          "t0.r8.c3",
+          "t0.r9.c1",
+          "t0.r9.c2",
+          "t0.r9.c3",
+          "t0.r10.c1",
+          "t0.r10.c2",
+          "t0.r10.c3",
+          "t0.r11.c1",
+          "t0.r11.c2",
+          "t0.r11.c3",
+          "t0.r12.c1",
+          "t0.r12.c2",
+          "t0.r12.c3",
+          "t0.r13.c1",
+          "t0.r13.c2",
+          "t0.r13.c3",
+          "t0.r14.c1",
+          "t0.r14.c2",
+          "t0.r14.c3",
+          "t0.r15.c1",
+          "t0.r15.c2",
+          "t0.r15.c3",
+          "t0.r16.c1",
+          "t0.r16.c2",
+          "t0.r16.c3",
+          "t0.r17.c1",
+          "t0.r17.c2",
+          "t0.r17.c3",
+          "t1.r1.c1",
+          "t1.r1.c2",
+          "t1.r1.c3",
+          "t2.r1.c1",
+          "t2.r2.c1",
+          "t2.r3.c1",
+          "t3.r1.c1",
+          "t3.r2.c1",
+          "t3.r3.c1",
+          "t3.r4.c1",
+          "t3.r5.c1",
+          "t3.r6.c1",
+          "t3.r7.c1",
+          "t3.r8.c1",
+          "t3.r9.c1",
+          "t3.r10.c1"
+        ]
+      },
+      {
+        "key": "decision:0a242b4c138d38515e716924",
+        "decision_type": "attestation",
+        "field_ids": [
+          "p217.cb0"
+        ]
+      },
+      {
+        "key": "decision:24278d2efa5d91eb97fdcae9",
+        "decision_type": "designation",
+        "field_ids": [
+          "p228.cb0",
+          "p229.s0",
+          "p230.s0"
+        ]
+      },
+      {
+        "key": "decision:9128538342d18a184258aa29",
+        "decision_type": "designation",
+        "field_ids": [
+          "p232.s0",
+          "p233.s0",
+          "p234.s0"
+        ]
+      },
+      {
+        "key": "decision:4d948502d4305ca0995d3928",
+        "decision_type": "location_date",
+        "field_ids": [
+          "p242.s0"
+        ]
+      }
+    ],
+    "original_raw_response_sha256": "265b1176c5f9d2d145ca4c1074bb1aca72d04482f76686d8d72d38b94ca1a050"
+  },
+  "pre_qualification_USER_note": "Restano le ricevute USER società TRUE e direttore SKIP della stessa sessione; manca solo la successiva scelta tipografica della qualifica. Non è un benchmark senza USER.",
+  "missing_SOURCE_fields": 18,
+  "missing_USER_text_fields": 4,
+  "preference_option_cells": 67,
+  "gold_preference_selections_await_USER": 6,
+  "checkboxes_still_missing_against_gold": {
+    "participation_decision_already_recorded_but_no_choice_group": 1,
+    "need_USER_attestation_or_designation": 2
+  },
+  "grouped_decisions": 5,
+  "new_decision_targets": 75,
+  "grouped_receipts_do_not_authorize_writes": true,
+  "partial_export_with_questions_open": true,
+  "native_controls_unchanged": 13,
+  "tables_unchanged": 4,
+  "source_target_slots": 60,
+  "unchanged_values_from_baseline": 42,
+  "wrong_new_writes_observed": 0
+}

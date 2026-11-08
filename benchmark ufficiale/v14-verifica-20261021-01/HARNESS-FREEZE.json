@@ -1,0 +1,14 @@
+{
+  "registered_UTC": "2026-10-21T19:30:07.955269+00:00",
+  "harness": {
+    "prepare_v14.py": "31f4f547ab2a62df87c52d2c782a6ac3d4fb8733a02b9074d07cd3e9acc91aa1",
+    "observed_server_v14.py": "0176babe8e9e7ccaa9ade84f761c63aeba244bf3a27263d51d05a6dffdaf8de3",
+    "setup_projects_v14.py": "2236f946001e47aa768fdbfb8cc7b297db98020660383e5de7660f723eb74822",
+    "campaign_v14.cjs": "5371a50fdb54d663cbb803873fdc32e8fe8c82ce9d58d6a822f79710555be562",
+    "collect_v14.py": "5dd2a9f9e320616037babf2b47a88deb6b20b64c0e3051c123bb523b73cd5401",
+    "user_policy_v14.cjs": "c6001c3c6824f94921e234f1ab0847040d4f89d2747dbd38b73c0c35d150e474",
+    "dry-run-policy.txt": "c47ee79848e5ab7380f103aaae2e801bd4c0d8c074e4c76861d8769806762a5a",
+    "dry-run-assent.txt": "6cda56e10c26f3c7640ab3e93528ec1123dd9959a4a992d986de09002f8747ef"
+  },
+  "protocol_SHA256": "4718d02f191a54dd5768d4e5c90df224e1776d566088776fd716b258decc1a4b"
+}

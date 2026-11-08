@@ -1,0 +1,83 @@
+{
+  "session_id": "331f4362017a42dc86f223ea0c8c46c7",
+  "raw_facts": 9,
+  "raw_value_proposals": 10,
+  "grounded_facts": 9,
+  "grounded_value_proposals": 10,
+  "applicable_grounded": 10,
+  "reviewed_current": 10,
+  "written_count": 9,
+  "SOURCE_written": 9,
+  "USER_written": 0,
+  "checkbox_values": {},
+  "procedural_blocked": [
+    "p107.s0"
+  ],
+  "final_holds": [],
+  "SOURCE_reference_positions": 17,
+  "reference_omitted": [
+    "p12.s0",
+    "p12.s1",
+    "p12.s2",
+    "p12.s3",
+    "p12.s4",
+    "p12.s5",
+    "p12.s6",
+    "p12.s7"
+  ],
+  "UNKNOWN_conditions": [],
+  "calls": 10,
+  "call_kinds": {
+    "router": 4,
+    "global": 1,
+    "narrator": 3,
+    "guard": 2
+  },
+  "global_calls": 1,
+  "usage": {
+    "prompt_tokens": 92309,
+    "completion_tokens": 16867,
+    "total_tokens": 109176,
+    "prompt_cache_hit_tokens": 29952,
+    "prompt_cache_miss_tokens": 62357
+  },
+  "summed_provider_seconds": 77.21646694799983,
+  "global_seconds": 65.86449079799968,
+  "estimated_USD": 0.019563605999999997,
+  "cost_not_invoice": true,
+  "provider_errors": 0,
+  "all_stop": true,
+  "model": [
+    "deepseek-flash"
+  ],
+  "fingerprints": [
+    "e72d3c7f663d3e1383b00b3884cb4501"
+  ],
+  "new_global_no_reuse": true,
+  "no_correction_during_trial": true,
+  "final_quality_verdict": "Targeted PEC reliability fix PASS; partial draft with existing coverage/dialogue limitations",
+  "correct_SOURCE_values": 9,
+  "complete_SOURCE_properties": 8,
+  "partial_SOURCE_properties": 1,
+  "unsupported_writes_detected": 0,
+  "wrong_subject_or_section_writes_detected": 0,
+  "consent_required_not_written": 1,
+  "unproposed_signatory_properties": 8,
+  "partial_address_missing": "Civico 172/C, present in SOURCE -52/-53, not proposed in the real global response",
+  "USER_reply_rounds": 2,
+  "actual_questions": 4,
+  "unique_questions": 3,
+  "duplicate_questions": 1,
+  "duplicate_cause": "has_user_alternatives treats o in senza raggruppamenti o consorzi as an alternative; unchanged, second narrower reply accepted",
+  "PDF_pages": 5,
+  "PDF_values_readable": 9,
+  "PDF_bboxes_outside": 0,
+  "visual_pages_checked": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "positive_consent_case": "Permanent isolated session tests with simulated provider only; real trial used SKIP/UNKNOWN scenario",
+  "no_general_baseline_adoption": true
+}

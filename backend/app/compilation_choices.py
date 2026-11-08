@@ -67,6 +67,11 @@ def choice_form(candidate_id, form, catalog, paragraphs):
     restored = _form_quote(paragraphs[form.paragraph_id], restored)
     if not restored.strip():
         raise ValueError("Opzione checkbox senza etichetta FORM")
+    if candidate.get("control_type") == "text_ascii" and (
+        form.paragraph_id != candidate["context_id"]
+        or restored.strip() != paragraphs[form.paragraph_id].strip()
+    ):
+        raise ValueError("Casella testuale senza la clausola FORM locale intera")
     return FormSpan(paragraph_id=form.paragraph_id, quote=restored)
 
 
@@ -132,7 +137,11 @@ def _exclusive_region(group, catalog, paragraphs):
         pos = index + direction
         while 0 <= pos < len(order):
             pid = order[pos]
-            if pid in table_paragraphs or (paragraphs[pid].strip() and pid not in by_paragraph):
+            separator = (first.get('control_type') == 'text_ascii'
+                         and _option_text(paragraphs[pid]) == 'oppure')
+            if pid in table_paragraphs or (
+                paragraphs[pid].strip() and pid not in by_paragraph and not separator
+            ):
                 break
             peers = by_paragraph.get(pid, set())
             if any(controls[cid]["section_ids"] != first["section_ids"] for cid in peers):
@@ -265,6 +274,8 @@ def attach_choice_audit(result, groups, items, catalog, source_map):
         if item is None or item.disposition not in {"value", "conditional"}:
             continue
         try:
+            if catalog['candidates'][cid].get('control_type') == 'text_ascii':
+                raise ValueError('Casella testuale: necessaria una scelta USER del gruppo')
             group = groups.get(item.choice_group_id, {})
             proofs = check_choice(item, result["facts"][item.fact_id], group, cid, source_map)
             field["source_evidence"] = proofs
@@ -291,19 +302,41 @@ def attach_choice_audit(result, groups, items, catalog, source_map):
 
 def materialize_choices(data, source_ids, user_ids):
     """Validate the final subset, including USER overrides and initial checked peers."""
+    from app.compilation_branch_evidence import (
+        capacity_choice_valid,
+        effective_user_values,
+        receipt_choice_value,
+    )
+
     fields = {f["candidate_id"]: f for f in data["audit"]["fields"]}
-    users = (data.get("dialogue") or {}).get("user_values", {})
+    users = effective_user_values(data)
     chosen = {cid: (users[cid]["value"] if cid in user_ids else
                    fields[cid].get("proposed_value", fields[cid].get("value")))
               for cid in [*source_ids, *user_ids]
               if data["catalog"]["candidates"][cid]["type"] == "checkbox"}
     values, effects = {}, []
+    if any(data['catalog']['candidates'][cid].get('control_type') == 'text_ascii'
+           and cid not in user_ids for cid in chosen):
+        raise ValueError('Casella testuale senza scelta USER verificata')
     for key, group in data["audit"].get("choice_groups", {}).items():
         selected = {cid: value for cid, value in chosen.items() if cid in group["options"]}
         if not selected:
             continue
-        if group["validation"] != "GROUNDED_GROUP" or group["selection"] == "unknown":
+        if group["validation"] != "GROUNDED_GROUP":
             raise ValueError("Gruppo di scelta non validato")
+        if group["selection"] == "unknown":
+            # Cardinality is still unknown. Only an exact positive condition receipt or
+            # the explicit USER choice of the region can mark one control; never clear
+            # or infer peers.
+            capacity = group.get("origin") == "FORM_capacity_choice"
+            if (capacity and len(selected) != 1) or any(
+                    cid not in user_ids or value is not True
+                    or not (capacity_choice_valid(data, cid) if capacity
+                            else receipt_choice_value(data, cid) == users[cid])
+                    for cid, value in selected.items()):
+                raise ValueError("Cardinalità ignota senza ricevuta positiva verificata")
+            values.update(selected)
+            continue
         count = sum(v is True for v in selected.values())
         if any(type(v) is not bool for v in selected.values()) or (
             group["selection"] == "single" and count > 1
@@ -330,6 +363,18 @@ def user_choice(data, slot, reply):
     group = data["audit"]["choice_groups"].get(slot["choice_group_id"], {})
     options = list(group.get("options", {}))
     chosen = reply.selected_options
+    if group.get("origin") == "FORM_capacity_choice":
+        # Unknown cardinality: exactly one option, and only one an accepted condition
+        # makes applicable. The other options are neither marked nor cleared.
+        if (group.get("validation") != "GROUNDED_GROUP" or slot["field_ids"] != options
+                or chosen is None or reply.normalized_value or len(chosen) != 1
+                or not 1 <= chosen[0] <= len(options)):
+            raise ValueError("Scelta USER ambigua o incompatibile col gruppo attivo")
+        cid = options[chosen[0] - 1]
+        if cid not in group.get("applicable", {}):
+            raise ValueError("Qualità non applicabile: nessuna condizione confermata la prevede")
+        return {cid: {"value": True, "provenance": "USER", "label": group["options"][cid]["label"],
+                      "user_quote": reply.user_quote, "choice_group_id": slot["choice_group_id"]}}
     if (group.get("validation") != "GROUNDED_GROUP" or group["selection"] == "unknown"
             or slot["field_ids"] != options or chosen is None or reply.normalized_value
             or len(chosen) != len(set(chosen)) or any(not 1 <= i <= len(options) for i in chosen)

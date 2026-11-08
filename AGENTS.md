@@ -66,6 +66,10 @@ embedding hanno configurazioni distinte. Il modello predefinito degli embedding
   una sola chiamata; la vecchia modalità a gruppi e le riparazioni automatiche
   sono state rimosse. La CompilationSession V1, autorizzata successivamente,
   itera sullo stato persistente con passi limitati, sempre da un solo originale.
+  Dal 24 ottobre le nuove sessioni usano un solo profilo per sezioni, definito in
+  `compilation_profile.py` (la UI lo chiama soltanto «Compilazione DOCX»); le sessioni
+  esistenti conservano il loro profilo e `MAPI_COMPILATION_PROFILE=storico` è solo
+  un rollback di emergenza lato server, non una modalità da esporre.
   Dal 13 ottobre le nuove compilazioni della chat usano il motore globale V12:
   una chiamata per il catalogo, proposta persistita, dialogo USER ed export
   esplicito di una bozza parziale dall'originale. La breve sintesi AI è separata
@@ -153,3 +157,32 @@ separate funzionalità implementate, preferenze dell'utente e proposte da valuta
 Indicare quando una correzione richiede una migrazione o una reindicizzazione
 ancora non effettuata. Non presentare test precedenti come appena rieseguiti.
 AGENTS.md contiene indicazioni stabili; STATUS.md contiene lo stato che cambia.
+
+## graphify
+
+This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+
+When the user types `/graphify`, use the installed graphify skill or instructions before doing anything else.
+
+Rules:
+- When graphify-out/graph.json exists, run `graphify query "<question>"` before your first grep, search or source-file read for a codebase question, and put this rule in every subagent prompt that explores code. Read raw files only for lines the graph or an earlier read already located. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
+- Dirty graphify-out/ files are expected after hooks or incremental updates; dirty graph files are not a reason to skip graphify. Only skip graphify if the task is about stale or incorrect graph output, or the user explicitly says not to use it.
+- If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
+- Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
+- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
+- A committed graphify-out/graph.json is rewritten whole on every build, so a large diff to it in a pull request is expected. Do not flag it as churn or suggest skipping the graph rebuild or its hooks.
+
+### Perimetro Graphify di questo progetto
+
+- La mappa ordinaria comprende soltanto `backend/app/**/*.py` e il codice
+  TypeScript/TSX di `frontend/src/`, esclusi i test. La lista ammessa è in
+  `.graphifyignore`: non allargarla a dati, documenti, audit, fixture o benchmark.
+- Prima costruzione: `graphify extract . --code-only`. Aggiornamento dopo
+  modifiche o cambio branch: `graphify update .`; conserva lo stesso perimetro.
+- Per simboli noti preferire `graphify explain "nome"`; per esplorazione usare
+  `graphify query "termini del codice" --budget 1000`. I risultati possono essere
+  troncati o incompleti: verificare nel sorgente i passaggi rilevanti prima dei fix.
+- `graphify-out/` è locale e ignorata da Git. Ogni worktree deve avere la propria
+  mappa; non copiare quella dell'app in una candidata con codice diverso.
+- Nessuna estrazione semantica, chiamata LLM, cloud, hook Git o modalità watch
+  è necessaria per questa configurazione. Guida: `docs/graphify-app-2026-10-28.md`.

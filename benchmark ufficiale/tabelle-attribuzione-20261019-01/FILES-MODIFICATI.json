@@ -1,0 +1,19 @@
+{
+  "modified_existing_this_phase": [
+    "backend/app/compilation_attribution.py",
+    "backend/tests/fixtures/source-attribution-v1/README.md",
+    "STATUS.md",
+    "relazioni.md"
+  ],
+  "new_files": [
+    "backend/tests/test_compilation_table_attribution.py",
+    "backend/tests/fixtures/source-attribution-v1/catanzaro-real.json",
+    "docs/attribuzioni-tabellari-2026-10-19.md",
+    "docs/benchmarks/2026-10-19-table-attribution-checks.json"
+  ],
+  "application_change_only": "backend/app/compilation_attribution.py",
+  "public_artifacts_directory": "benchmark ufficiale/tabelle-attribuzione-20261019-01",
+  "raw_audit_directory": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01",
+  "previous_working_tree_preserved": true,
+  "no_commit_push": true
+}

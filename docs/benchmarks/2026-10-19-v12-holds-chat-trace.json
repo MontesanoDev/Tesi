@@ -1,0 +1,1334 @@
+[
+  {
+    "candidate_id": "p51.s0",
+    "value": "Elisa Romano",
+    "SOURCE": [
+      {
+        "chunk_id": -55,
+        "file_id": -10,
+        "chunk_index": 3,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -55,
+        "citation_rebound": false,
+        "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+        "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+      }
+    ],
+    "binding": {
+      "binding_id": "b_elisa_dt",
+      "result": "literal_match",
+      "semantic_review_required": true,
+      "validation_errors": [],
+      "form_evidence": {
+        "paragraph_id": "paragraph:50",
+        "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+      },
+      "source_evidence": [
+        {
+          "chunk_id": -55,
+          "file_id": -10,
+          "chunk_index": 3,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -55,
+          "citation_rebound": false,
+          "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+        }
+      ],
+      "record_attributions": [
+        {
+          "chunk_id": -55,
+          "format": "named_role_line",
+          "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "line_range": [
+            6,
+            7
+          ]
+        }
+      ],
+      "recovery": {
+        "method": "fact_source_record",
+        "original_validation_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "original_source_evidence": [
+          {
+            "chunk_id": -45,
+            "file_id": -7,
+            "chunk_index": 2,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -45,
+            "citation_rebound": false,
+            "quote": "### Ing. Elisa Romano - direttore tecnico",
+            "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+          },
+          {
+            "chunk_id": -55,
+            "file_id": -10,
+            "chunk_index": 3,
+            "source_name": "integrazione-company.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -55,
+            "citation_rebound": false,
+            "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+            "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+          }
+        ]
+      }
+    },
+    "FORM": {
+      "paragraph_id": "paragraph:51",
+      "quote": "3) nome e cognome .................................................................................................................................................."
+    },
+    "condition_checks": {
+      "c_dt": {
+        "result": "true",
+        "scope": "semantic_review_required",
+        "grounding_basis": "verified_FORM_USER_SOURCE_branch"
+      },
+      "c_societa": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "held": false,
+    "written": true
+  },
+  {
+    "candidate_id": "p52.s0",
+    "value": "ingegnere",
+    "SOURCE": [
+      {
+        "chunk_id": -55,
+        "file_id": -10,
+        "chunk_index": 3,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -55,
+        "citation_rebound": false,
+        "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+        "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+      }
+    ],
+    "binding": {
+      "binding_id": "b_elisa_dt",
+      "result": "literal_match",
+      "semantic_review_required": true,
+      "validation_errors": [],
+      "form_evidence": {
+        "paragraph_id": "paragraph:50",
+        "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+      },
+      "source_evidence": [
+        {
+          "chunk_id": -55,
+          "file_id": -10,
+          "chunk_index": 3,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -55,
+          "citation_rebound": false,
+          "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+        }
+      ],
+      "record_attributions": [
+        {
+          "chunk_id": -55,
+          "format": "named_role_line",
+          "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "line_range": [
+            6,
+            7
+          ]
+        }
+      ],
+      "recovery": {
+        "method": "fact_source_record",
+        "original_validation_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "original_source_evidence": [
+          {
+            "chunk_id": -45,
+            "file_id": -7,
+            "chunk_index": 2,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -45,
+            "citation_rebound": false,
+            "quote": "### Ing. Elisa Romano - direttore tecnico",
+            "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+          },
+          {
+            "chunk_id": -55,
+            "file_id": -10,
+            "chunk_index": 3,
+            "source_name": "integrazione-company.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -55,
+            "citation_rebound": false,
+            "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+            "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+          }
+        ]
+      }
+    },
+    "FORM": {
+      "paragraph_id": "paragraph:52",
+      "quote": "qualifica professionale ..................................................................................... C.F."
+    },
+    "condition_checks": {
+      "c_dt": {
+        "result": "true",
+        "scope": "semantic_review_required",
+        "grounding_basis": "verified_FORM_USER_SOURCE_branch"
+      },
+      "c_societa": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "held": false,
+    "written": true
+  },
+  {
+    "candidate_id": "p52.s1",
+    "value": "RMNLSI85C47A662Y",
+    "SOURCE": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "binding": {
+      "binding_id": "b_elisa_dt",
+      "result": "literal_match",
+      "semantic_review_required": true,
+      "validation_errors": [],
+      "form_evidence": {
+        "paragraph_id": "paragraph:50",
+        "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+      },
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -45,
+          "file_id": -7,
+          "chunk_index": 2,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -45,
+          "citation_rebound": false,
+          "quote": "### Ing. Elisa Romano - direttore tecnico",
+          "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+        },
+        {
+          "chunk_id": -55,
+          "file_id": -10,
+          "chunk_index": 3,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -55,
+          "citation_rebound": false,
+          "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+        },
+        {
+          "chunk_id": -45,
+          "file_id": -7,
+          "chunk_index": 2,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -45,
+          "citation_rebound": false,
+          "quote": "### Ing. Elisa Romano - direttore tecnico\n\n- Nome: Elisa.\n- Cognome: Romano.\n- Nominativo completo: Ing. Elisa Romano.\n- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.\n- Qualifica professionale nello scenario: Ingegnere.\n- Ordine professionale simulato: Ordine degli Ingegneri di Bari.\n- Numero di iscrizione professionale simulato: 8421.\n- Data di abilitazione, sezione e settore dell'albo: non disponibili.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n\nIl ruolo di direttore tecnico aziendale non equivale a una designazione come direttore dei lavori o coordinatore della sicurezza per uno specifico incarico.",
+          "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ],
+      "record_attributions": [
+        {
+          "format": "verified_person_records",
+          "role_chunk_id": -45,
+          "value_chunk_ids": [
+            -54
+          ]
+        }
+      ],
+      "identity_support": {
+        "method": "professional_registration",
+        "subject": "elisa romano",
+        "key": {
+          "order": "ordine degli ingegneri di bari",
+          "number": "8421"
+        },
+        "role_record_keys": {
+          "cf": "",
+          "order": "ordine degli ingegneri di bari",
+          "number": "8421"
+        },
+        "value_record_keys": [
+          {
+            "cf": "rmnlsi85c47a662y",
+            "order": "ordine degli ingegneri di bari",
+            "number": "8421"
+          }
+        ]
+      },
+      "value_support": {
+        "comparison": "exact",
+        "property": "codice_fiscale",
+        "proposed_value": "RMNLSI85C47A662Y",
+        "source_value": "RMNLSI85C47A662Y"
+      },
+      "role_support": {
+        "role": "Direttore Tecnico",
+        "subject": "elisa romano",
+        "chunk_id": -45
+      },
+      "recovery": {
+        "method": "verified_person_records",
+        "original_validation_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "original_source_evidence": [
+          {
+            "chunk_id": -45,
+            "file_id": -7,
+            "chunk_index": 2,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -45,
+            "citation_rebound": false,
+            "quote": "### Ing. Elisa Romano - direttore tecnico",
+            "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+          },
+          {
+            "chunk_id": -55,
+            "file_id": -10,
+            "chunk_index": 3,
+            "source_name": "integrazione-company.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -55,
+            "citation_rebound": false,
+            "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+            "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+          }
+        ]
+      }
+    },
+    "FORM": {
+      "paragraph_id": "paragraph:52",
+      "quote": "C.F. ........................................................"
+    },
+    "condition_checks": {
+      "c_dt": {
+        "result": "true",
+        "scope": "semantic_review_required",
+        "grounding_basis": "verified_FORM_USER_SOURCE_branch"
+      },
+      "c_societa": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "held": false,
+    "written": true
+  },
+  {
+    "candidate_id": "p53.s0",
+    "value": "Ordine degli Ingegneri di Bari",
+    "SOURCE": [
+      {
+        "chunk_id": -55,
+        "file_id": -10,
+        "chunk_index": 3,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -55,
+        "citation_rebound": false,
+        "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+        "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+      }
+    ],
+    "binding": {
+      "binding_id": "b_elisa_dt",
+      "result": "literal_match",
+      "semantic_review_required": true,
+      "validation_errors": [],
+      "form_evidence": {
+        "paragraph_id": "paragraph:50",
+        "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+      },
+      "source_evidence": [
+        {
+          "chunk_id": -55,
+          "file_id": -10,
+          "chunk_index": 3,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -55,
+          "citation_rebound": false,
+          "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+        }
+      ],
+      "record_attributions": [
+        {
+          "chunk_id": -55,
+          "format": "named_role_line",
+          "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "line_range": [
+            6,
+            7
+          ]
+        }
+      ],
+      "recovery": {
+        "method": "fact_source_record",
+        "original_validation_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "original_source_evidence": [
+          {
+            "chunk_id": -45,
+            "file_id": -7,
+            "chunk_index": 2,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -45,
+            "citation_rebound": false,
+            "quote": "### Ing. Elisa Romano - direttore tecnico",
+            "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+          },
+          {
+            "chunk_id": -55,
+            "file_id": -10,
+            "chunk_index": 3,
+            "source_name": "integrazione-company.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -55,
+            "citation_rebound": false,
+            "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+            "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+          }
+        ]
+      }
+    },
+    "FORM": {
+      "paragraph_id": "paragraph:53",
+      "quote": "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione"
+    },
+    "condition_checks": {
+      "c_dt": {
+        "result": "true",
+        "scope": "semantic_review_required",
+        "grounding_basis": "verified_FORM_USER_SOURCE_branch"
+      },
+      "c_societa": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "held": false,
+    "written": true
+  },
+  {
+    "candidate_id": "p53.s1",
+    "value": "A",
+    "SOURCE": [
+      {
+        "chunk_id": -55,
+        "file_id": -10,
+        "chunk_index": 3,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -55,
+        "citation_rebound": false,
+        "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+        "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+      }
+    ],
+    "binding": {
+      "binding_id": "b_elisa_dt",
+      "result": "literal_match",
+      "semantic_review_required": true,
+      "validation_errors": [],
+      "form_evidence": {
+        "paragraph_id": "paragraph:50",
+        "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+      },
+      "source_evidence": [
+        {
+          "chunk_id": -55,
+          "file_id": -10,
+          "chunk_index": 3,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -55,
+          "citation_rebound": false,
+          "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+        }
+      ],
+      "record_attributions": [
+        {
+          "chunk_id": -55,
+          "format": "named_role_line",
+          "header": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "line_range": [
+            6,
+            7
+          ]
+        }
+      ],
+      "recovery": {
+        "method": "fact_source_record",
+        "original_validation_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "original_source_evidence": [
+          {
+            "chunk_id": -45,
+            "file_id": -7,
+            "chunk_index": 2,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -45,
+            "citation_rebound": false,
+            "quote": "### Ing. Elisa Romano - direttore tecnico",
+            "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+          },
+          {
+            "chunk_id": -55,
+            "file_id": -10,
+            "chunk_index": 3,
+            "source_name": "integrazione-company.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -55,
+            "citation_rebound": false,
+            "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+            "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+          }
+        ]
+      }
+    },
+    "FORM": {
+      "paragraph_id": "paragraph:53",
+      "quote": "sezione ........................................della provincia"
+    },
+    "condition_checks": {
+      "c_dt": {
+        "result": "true",
+        "scope": "semantic_review_required",
+        "grounding_basis": "verified_FORM_USER_SOURCE_branch"
+      },
+      "c_societa": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "held": false,
+    "written": true
+  },
+  {
+    "candidate_id": "p53.s2",
+    "value": "Bari (BA)",
+    "SOURCE": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "binding": {
+      "binding_id": "b_elisa_dt",
+      "result": "literal_match",
+      "semantic_review_required": true,
+      "validation_errors": [],
+      "form_evidence": {
+        "paragraph_id": "paragraph:50",
+        "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+      },
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -45,
+          "file_id": -7,
+          "chunk_index": 2,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -45,
+          "citation_rebound": false,
+          "quote": "### Ing. Elisa Romano - direttore tecnico",
+          "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+        },
+        {
+          "chunk_id": -55,
+          "file_id": -10,
+          "chunk_index": 3,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -55,
+          "citation_rebound": false,
+          "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+        },
+        {
+          "chunk_id": -45,
+          "file_id": -7,
+          "chunk_index": 2,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -45,
+          "citation_rebound": false,
+          "quote": "### Ing. Elisa Romano - direttore tecnico\n\n- Nome: Elisa.\n- Cognome: Romano.\n- Nominativo completo: Ing. Elisa Romano.\n- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.\n- Qualifica professionale nello scenario: Ingegnere.\n- Ordine professionale simulato: Ordine degli Ingegneri di Bari.\n- Numero di iscrizione professionale simulato: 8421.\n- Data di abilitazione, sezione e settore dell'albo: non disponibili.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n\nIl ruolo di direttore tecnico aziendale non equivale a una designazione come direttore dei lavori o coordinatore della sicurezza per uno specifico incarico.",
+          "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ],
+      "record_attributions": [
+        {
+          "format": "verified_person_records",
+          "role_chunk_id": -45,
+          "value_chunk_ids": [
+            -54
+          ]
+        }
+      ],
+      "identity_support": {
+        "method": "professional_registration",
+        "subject": "elisa romano",
+        "key": {
+          "order": "ordine degli ingegneri di bari",
+          "number": "8421"
+        },
+        "role_record_keys": {
+          "cf": "",
+          "order": "ordine degli ingegneri di bari",
+          "number": "8421"
+        },
+        "value_record_keys": [
+          {
+            "cf": "rmnlsi85c47a662y",
+            "order": "ordine degli ingegneri di bari",
+            "number": "8421"
+          }
+        ]
+      },
+      "value_support": {
+        "comparison": "exact",
+        "property": "provincia_albo",
+        "proposed_value": "Bari (BA)",
+        "source_value": "Bari (BA)"
+      },
+      "role_support": {
+        "role": "Direttore Tecnico",
+        "subject": "elisa romano",
+        "chunk_id": -45
+      },
+      "recovery": {
+        "method": "verified_person_records",
+        "original_validation_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "original_source_evidence": [
+          {
+            "chunk_id": -45,
+            "file_id": -7,
+            "chunk_index": 2,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -45,
+            "citation_rebound": false,
+            "quote": "### Ing. Elisa Romano - direttore tecnico",
+            "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+          },
+          {
+            "chunk_id": -55,
+            "file_id": -10,
+            "chunk_index": 3,
+            "source_name": "integrazione-company.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -55,
+            "citation_rebound": false,
+            "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+            "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+          }
+        ]
+      }
+    },
+    "FORM": {
+      "paragraph_id": "paragraph:53",
+      "quote": "della provincia di ............................................ dal"
+    },
+    "condition_checks": {
+      "c_dt": {
+        "result": "true",
+        "scope": "semantic_review_required",
+        "grounding_basis": "verified_FORM_USER_SOURCE_branch"
+      },
+      "c_societa": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "held": false,
+    "written": true
+  },
+  {
+    "candidate_id": "p53.s3",
+    "value": "18/05/2015",
+    "SOURCE": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "binding": {
+      "binding_id": "b_elisa_dt",
+      "result": "literal_match",
+      "semantic_review_required": true,
+      "validation_errors": [],
+      "form_evidence": {
+        "paragraph_id": "paragraph:50",
+        "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+      },
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -45,
+          "file_id": -7,
+          "chunk_index": 2,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -45,
+          "citation_rebound": false,
+          "quote": "### Ing. Elisa Romano - direttore tecnico",
+          "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+        },
+        {
+          "chunk_id": -55,
+          "file_id": -10,
+          "chunk_index": 3,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -55,
+          "citation_rebound": false,
+          "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+        },
+        {
+          "chunk_id": -45,
+          "file_id": -7,
+          "chunk_index": 2,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -45,
+          "citation_rebound": false,
+          "quote": "### Ing. Elisa Romano - direttore tecnico\n\n- Nome: Elisa.\n- Cognome: Romano.\n- Nominativo completo: Ing. Elisa Romano.\n- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.\n- Qualifica professionale nello scenario: Ingegnere.\n- Ordine professionale simulato: Ordine degli Ingegneri di Bari.\n- Numero di iscrizione professionale simulato: 8421.\n- Data di abilitazione, sezione e settore dell'albo: non disponibili.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n\nIl ruolo di direttore tecnico aziendale non equivale a una designazione come direttore dei lavori o coordinatore della sicurezza per uno specifico incarico.",
+          "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ],
+      "record_attributions": [
+        {
+          "format": "verified_person_records",
+          "role_chunk_id": -45,
+          "value_chunk_ids": [
+            -54
+          ]
+        }
+      ],
+      "identity_support": {
+        "method": "professional_registration",
+        "subject": "elisa romano",
+        "key": {
+          "order": "ordine degli ingegneri di bari",
+          "number": "8421"
+        },
+        "role_record_keys": {
+          "cf": "",
+          "order": "ordine degli ingegneri di bari",
+          "number": "8421"
+        },
+        "value_record_keys": [
+          {
+            "cf": "rmnlsi85c47a662y",
+            "order": "ordine degli ingegneri di bari",
+            "number": "8421"
+          }
+        ]
+      },
+      "value_support": {
+        "comparison": "exact",
+        "property": "data_iscrizione_albo",
+        "proposed_value": "18/05/2015",
+        "source_value": "18/05/2015"
+      },
+      "role_support": {
+        "role": "Direttore Tecnico",
+        "subject": "elisa romano",
+        "chunk_id": -45
+      },
+      "recovery": {
+        "method": "verified_person_records",
+        "original_validation_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "original_source_evidence": [
+          {
+            "chunk_id": -45,
+            "file_id": -7,
+            "chunk_index": 2,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -45,
+            "citation_rebound": false,
+            "quote": "### Ing. Elisa Romano - direttore tecnico",
+            "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+          },
+          {
+            "chunk_id": -55,
+            "file_id": -10,
+            "chunk_index": 3,
+            "source_name": "integrazione-company.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -55,
+            "citation_rebound": false,
+            "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+            "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+          }
+        ]
+      }
+    },
+    "FORM": {
+      "paragraph_id": "paragraph:53",
+      "quote": "dal ........................ con il n."
+    },
+    "condition_checks": {
+      "c_dt": {
+        "result": "true",
+        "scope": "semantic_review_required",
+        "grounding_basis": "verified_FORM_USER_SOURCE_branch"
+      },
+      "c_societa": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "held": false,
+    "written": true
+  },
+  {
+    "candidate_id": "p53.s4",
+    "value": "8421",
+    "SOURCE": [
+      {
+        "chunk_id": -54,
+        "file_id": -10,
+        "chunk_index": 2,
+        "source_name": "integrazione-company.md",
+        "role": "source",
+        "scope": "global",
+        "project_id": null,
+        "category": "company",
+        "cited_chunk_id": -54,
+        "citation_rebound": false,
+        "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+        "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+      }
+    ],
+    "binding": {
+      "binding_id": "b_elisa_dt",
+      "result": "literal_match",
+      "semantic_review_required": true,
+      "validation_errors": [],
+      "form_evidence": {
+        "paragraph_id": "paragraph:50",
+        "quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+      },
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -45,
+          "file_id": -7,
+          "chunk_index": 2,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -45,
+          "citation_rebound": false,
+          "quote": "### Ing. Elisa Romano - direttore tecnico",
+          "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+        },
+        {
+          "chunk_id": -55,
+          "file_id": -10,
+          "chunk_index": 3,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -55,
+          "citation_rebound": false,
+          "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+          "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+        },
+        {
+          "chunk_id": -45,
+          "file_id": -7,
+          "chunk_index": 2,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -45,
+          "citation_rebound": false,
+          "quote": "### Ing. Elisa Romano - direttore tecnico\n\n- Nome: Elisa.\n- Cognome: Romano.\n- Nominativo completo: Ing. Elisa Romano.\n- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.\n- Qualifica professionale nello scenario: Ingegnere.\n- Ordine professionale simulato: Ordine degli Ingegneri di Bari.\n- Numero di iscrizione professionale simulato: 8421.\n- Data di abilitazione, sezione e settore dell'albo: non disponibili.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n\nIl ruolo di direttore tecnico aziendale non equivale a una designazione come direttore dei lavori o coordinatore della sicurezza per uno specifico incarico.",
+          "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "## 3. Soci della società al 15 ottobre 2026 — scenario sintetico",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| Persona | Quota | Qualifica professionale | Albo | Sezione | Provincia | Iscrizione dal | N. iscrizione | Codice fiscale dimostrativo |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        },
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ],
+      "record_attributions": [
+        {
+          "format": "verified_person_records",
+          "role_chunk_id": -45,
+          "value_chunk_ids": [
+            -54
+          ]
+        }
+      ],
+      "identity_support": {
+        "method": "professional_registration",
+        "subject": "elisa romano",
+        "key": {
+          "order": "ordine degli ingegneri di bari",
+          "number": "8421"
+        },
+        "role_record_keys": {
+          "cf": "",
+          "order": "ordine degli ingegneri di bari",
+          "number": "8421"
+        },
+        "value_record_keys": [
+          {
+            "cf": "rmnlsi85c47a662y",
+            "order": "ordine degli ingegneri di bari",
+            "number": "8421"
+          }
+        ]
+      },
+      "value_support": {
+        "comparison": "exact",
+        "property": "numero_iscrizione_albo",
+        "proposed_value": "8421",
+        "source_value": "8421"
+      },
+      "role_support": {
+        "role": "Direttore Tecnico",
+        "subject": "elisa romano",
+        "chunk_id": -45
+      },
+      "recovery": {
+        "method": "verified_person_records",
+        "original_validation_errors": [
+          "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+        ],
+        "original_source_evidence": [
+          {
+            "chunk_id": -45,
+            "file_id": -7,
+            "chunk_index": 2,
+            "source_name": "generalita-mapi.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -45,
+            "citation_rebound": false,
+            "quote": "### Ing. Elisa Romano - direttore tecnico",
+            "content_sha256": "01abb435edc83e237f7c704cf4d99779792ea2bbfade9a2dfdb51b2ef46e0b8f"
+          },
+          {
+            "chunk_id": -55,
+            "file_id": -10,
+            "chunk_index": 3,
+            "source_name": "integrazione-company.md",
+            "role": "source",
+            "scope": "global",
+            "project_id": null,
+            "category": "company",
+            "cited_chunk_id": -55,
+            "citation_rebound": false,
+            "quote": "- **Elisa Romano:** direttore tecnico di Mapi Ingegneria S.r.l.; ingegnere, Ordine degli Ingegneri di Bari, sezione A, iscritta dal 18 maggio 2015 con numero 8421.",
+            "content_sha256": "d2f6833dd4aaecdd5b5d9f67d00c990679daa578cf7a425d9b55ff2b739293fe"
+          }
+        ]
+      }
+    },
+    "FORM": {
+      "paragraph_id": "paragraph:53",
+      "quote": "con il n. ………………..…"
+    },
+    "condition_checks": {
+      "c_dt": {
+        "result": "true",
+        "scope": "semantic_review_required",
+        "grounding_basis": "verified_FORM_USER_SOURCE_branch"
+      },
+      "c_societa": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "held": false,
+    "written": true
+  }
+]

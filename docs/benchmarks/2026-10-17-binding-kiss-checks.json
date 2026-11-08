@@ -1,0 +1,27 @@
+{
+  "protected_file_count": 10754,
+  "unchanged_protected_files": 10752,
+  "changed_existing_files": [
+    "backend/app/compilation_global.py",
+    "backend/app/compilation_role_records.py"
+  ],
+  "new_test": "backend/tests/test_compilation_binding_evidence.py",
+  "fixture_sources_gold_original_old_audits_unchanged": true,
+  "code_scope": "see code-scope-checks.json",
+  "provider_calls": 0,
+  "new_exports": 0,
+  "replay_network_disabled": true,
+  "recovered_total": 11,
+  "new_nonconformant_acceptances": 0,
+  "preexisting_nonconformant_destination": "p41.s1 in both outputs",
+  "raw_fixture_user_decisions_used": false,
+  "archive": {
+    "path": "docs/benchmarks/2026-10-17-binding-kiss-audit.tar.gz",
+    "sha256": "79ea9798c5fa744732e81203226a3f2ae290325cba633028745d20f6ddacd3cb",
+    "files": 40,
+    "uncompressed_bytes": 5292563,
+    "compressed_bytes": 643276,
+    "archive_contents_verified": true,
+    "scope": "saved local replay, no provider, DB, credentials or DOCX export"
+  }
+}

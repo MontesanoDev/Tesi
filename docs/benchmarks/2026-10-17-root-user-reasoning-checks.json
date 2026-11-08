@@ -1,0 +1,47 @@
+{
+  "generative_calls": 0,
+  "provider_metadata_gets": 1,
+  "historical_protected_files": 1245,
+  "unchanged_protected_files": 1243,
+  "changed_existing_files_only_authorized_USER_transport": [
+    "backend/app/compilation_global_sessions.py",
+    "backend/app/compilation_global.py"
+  ],
+  "new_application_and_test_files": [
+    "backend/app/compilation_user_context.py",
+    "backend/tests/test_compilation_user_context.py"
+  ],
+  "original_four_audit_directories_and_fixtures_unchanged": true,
+  "root_replay_original_response_preserved": true,
+  "quarantine_only_two_root_metadata": true,
+  "full_original_schema_passes_after_quarantine": true,
+  "gates_and_output_contract_unchanged": "unchanged-gates.json",
+  "no_user_B0_input_and_request_exactly_equal": true,
+  "with_USER_requests_not_sent": true,
+  "root_export_no_conditions_refused": true,
+  "separate_USER_software_export": {
+    "SOURCE_written": 19,
+    "SOURCE_conformant": 18,
+    "USER_field_values": 0
+  },
+  "DOCX_destinations_checked": 534,
+  "table_cells_including_headers_checked": 220,
+  "all_four_DOCX_PDF_review_copies_exact": true,
+  "known_live_entities_and_five_SOURCE_unchanged": "live-integrity.json; no whole binary DB or derived-index invariance claim",
+  "software_tests": {
+    "targeted_passed": 79,
+    "full_backend_passed": 2304,
+    "ruff": "passed",
+    "frontend": "unchanged/not rerun"
+  },
+  "no_commit_or_push": true,
+  "git_diff_check": "passed",
+  "bundle": "docs/benchmarks/2026-10-17-root-user-reasoning-audit.tar.gz",
+  "bundle_files": 149,
+  "bundle_sha256": "24799ce17ac5baa66c63367ddda807e97cf72f0a13eaab90f71b7770021c987f",
+  "known_credentials_excluded": "archive-checks.json and package_audit.py in bundle",
+  "new_local_links_verified": 24,
+  "bundle_and_current_raw_manifest_verified": 149,
+  "protected_files_rechecked_after_documentation": true,
+  "unchanged_contract_coverage_role_gates_and_writer_vs_HEAD": true
+}

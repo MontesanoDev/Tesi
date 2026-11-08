@@ -1,0 +1,481 @@
+{
+  "text_values": {
+    "t0.r0.c1": "Leonardo Montemurro",
+    "t0.r10.c1": "IT01234567890",
+    "t0.r11.c1": "+39 080 000 2040",
+    "t0.r2.c1": "MNTLRD82S14E506X",
+    "t0.r5.c1": "Mapi Ingegneria S.r.l.",
+    "t0.r6.c1": "Societa a responsabilita limitata",
+    "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "t0.r8.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "t0.r9.c1": "IT01234567890"
+  },
+  "checkboxes": {},
+  "checkbox_effects": [],
+  "SOURCE_ids": [
+    "t0.r0.c1",
+    "t0.r10.c1",
+    "t0.r11.c1",
+    "t0.r2.c1",
+    "t0.r5.c1",
+    "t0.r6.c1",
+    "t0.r7.c1",
+    "t0.r8.c1",
+    "t0.r9.c1"
+  ],
+  "USER_ids": [],
+  "confirmed_condition_ids": [],
+  "validation_checks": [
+    {
+      "candidate_id": "t0.r0.c1",
+      "value": "Leonardo Montemurro",
+      "check": {
+        "cell_id": "t0.r0.c1",
+        "label": "Nome del firmatario scelto",
+        "entity": "person",
+        "kind": "data",
+        "status": "proposed",
+        "value": "Leonardo Montemurro",
+        "reason": "Valore da SOURCE pertinente",
+        "written_value": "Leonardo Montemurro",
+        "location": {
+          "kind": "table_cell"
+        },
+        "evidence": [
+          {
+            "source_id": "chunk:-54",
+            "document_id": -10,
+            "source_name": "integrazione-company.md",
+            "scope": "company",
+            "source_kind": "source",
+            "origin": "document",
+            "fragment": 3,
+            "page": null,
+            "quote": "### Leonardo Montemurro — anagrafica sintetica",
+            "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+          }
+        ],
+        "rejected_evidence": [],
+        "validation_notes": [],
+        "validation_codes": []
+      },
+      "SOURCE": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r10.c1",
+      "value": "IT01234567890",
+      "check": {
+        "cell_id": "t0.r10.c1",
+        "label": "Partita IVA operatore economico",
+        "entity": "company",
+        "kind": "data",
+        "status": "proposed",
+        "value": "IT01234567890",
+        "reason": "Valore da SOURCE pertinente",
+        "written_value": "IT01234567890",
+        "location": {
+          "kind": "table_cell"
+        },
+        "evidence": [
+          {
+            "source_id": "chunk:-43",
+            "document_id": -7,
+            "source_name": "generalita-mapi.md",
+            "scope": "company",
+            "source_kind": "source",
+            "origin": "document",
+            "fragment": 1,
+            "page": null,
+            "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+            "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+          }
+        ],
+        "rejected_evidence": [],
+        "validation_notes": [],
+        "validation_codes": []
+      },
+      "SOURCE": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -43,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r11.c1",
+      "value": "+39 080 000 2040",
+      "check": {
+        "cell_id": "t0.r11.c1",
+        "label": "Cellulare + Telefono",
+        "entity": "company",
+        "kind": "data",
+        "status": "proposed",
+        "value": "+39 080 000 2040",
+        "reason": "Valore da SOURCE pertinente",
+        "written_value": "+39 080 000 2040",
+        "location": {
+          "kind": "table_cell"
+        },
+        "evidence": [
+          {
+            "source_id": "chunk:-44",
+            "document_id": -7,
+            "source_name": "generalita-mapi.md",
+            "scope": "company",
+            "source_kind": "source",
+            "origin": "document",
+            "fragment": 2,
+            "page": null,
+            "quote": "- Telefono aziendale simulato: +39 080 000 2040.",
+            "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+          }
+        ],
+        "rejected_evidence": [],
+        "validation_notes": [],
+        "validation_codes": []
+      },
+      "SOURCE": [
+        {
+          "chunk_id": -44,
+          "file_id": -7,
+          "chunk_index": 1,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -44,
+          "citation_rebound": false,
+          "quote": "- Telefono aziendale simulato: +39 080 000 2040.",
+          "content_sha256": "7cdde5d1a760908439ce978788a843e71fce46cabd6e4c68a9f14162343bf61e"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r2.c1",
+      "value": "MNTLRD82S14E506X",
+      "check": {
+        "cell_id": "t0.r2.c1",
+        "label": "Codice fiscale personale",
+        "entity": "person",
+        "kind": "data",
+        "status": "proposed",
+        "value": "MNTLRD82S14E506X",
+        "reason": "Valore da SOURCE pertinente",
+        "written_value": "MNTLRD82S14E506X",
+        "location": {
+          "kind": "table_cell"
+        },
+        "evidence": [
+          {
+            "source_id": "chunk:-54",
+            "document_id": -10,
+            "source_name": "integrazione-company.md",
+            "scope": "company",
+            "source_kind": "source",
+            "origin": "document",
+            "fragment": 3,
+            "page": null,
+            "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+            "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+          }
+        ],
+        "rejected_evidence": [],
+        "validation_notes": [],
+        "validation_codes": []
+      },
+      "SOURCE": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r5.c1",
+      "value": "Mapi Ingegneria S.r.l.",
+      "check": {
+        "cell_id": "t0.r5.c1",
+        "label": "Operatore economico",
+        "entity": "company",
+        "kind": "data",
+        "status": "proposed",
+        "value": "Mapi Ingegneria S.r.l.",
+        "reason": "Valore da SOURCE pertinente",
+        "written_value": "Mapi Ingegneria S.r.l.",
+        "location": {
+          "kind": "table_cell"
+        },
+        "evidence": [
+          {
+            "source_id": "chunk:-43",
+            "document_id": -7,
+            "source_name": "generalita-mapi.md",
+            "scope": "company",
+            "source_kind": "source",
+            "origin": "document",
+            "fragment": 1,
+            "page": null,
+            "quote": "- Ragione sociale: Mapi Ingegneria S.r.l.",
+            "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+          }
+        ],
+        "rejected_evidence": [],
+        "validation_notes": [],
+        "validation_codes": []
+      },
+      "SOURCE": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -43,
+          "citation_rebound": false,
+          "quote": "- Ragione sociale: Mapi Ingegneria S.r.l.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r6.c1",
+      "value": "Societa a responsabilita limitata",
+      "check": {
+        "cell_id": "t0.r6.c1",
+        "label": "Forma giuridica",
+        "entity": "company",
+        "kind": "data",
+        "status": "proposed",
+        "value": "Societa a responsabilita limitata",
+        "reason": "Valore da SOURCE pertinente",
+        "written_value": "Societa a responsabilita limitata",
+        "location": {
+          "kind": "table_cell"
+        },
+        "evidence": [
+          {
+            "source_id": "chunk:-43",
+            "document_id": -7,
+            "source_name": "generalita-mapi.md",
+            "scope": "company",
+            "source_kind": "source",
+            "origin": "document",
+            "fragment": 1,
+            "page": null,
+            "quote": "- Forma giuridica: Societa a responsabilita limitata.",
+            "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+          }
+        ],
+        "rejected_evidence": [],
+        "validation_notes": [],
+        "validation_codes": []
+      },
+      "SOURCE": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -43,
+          "citation_rebound": false,
+          "quote": "- Forma giuridica: Societa a responsabilita limitata.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r7.c1",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "check": {
+        "cell_id": "t0.r7.c1",
+        "label": "Sede legale (via, città, prov.)",
+        "entity": "company",
+        "kind": "data",
+        "status": "proposed",
+        "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+        "reason": "Valore da SOURCE pertinente",
+        "written_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+        "location": {
+          "kind": "table_cell"
+        },
+        "evidence": [
+          {
+            "source_id": "chunk:-43",
+            "document_id": -7,
+            "source_name": "generalita-mapi.md",
+            "scope": "company",
+            "source_kind": "source",
+            "origin": "document",
+            "fragment": 1,
+            "page": null,
+            "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+            "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+          }
+        ],
+        "rejected_evidence": [],
+        "validation_notes": [],
+        "validation_codes": []
+      },
+      "SOURCE": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -43,
+          "citation_rebound": false,
+          "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r8.c1",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "check": {
+        "cell_id": "t0.r8.c1",
+        "label": "Sede operativa",
+        "entity": "company",
+        "kind": "data",
+        "status": "proposed",
+        "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+        "reason": "Valore da SOURCE pertinente",
+        "written_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+        "location": {
+          "kind": "table_cell"
+        },
+        "evidence": [
+          {
+            "source_id": "chunk:-43",
+            "document_id": -7,
+            "source_name": "generalita-mapi.md",
+            "scope": "company",
+            "source_kind": "source",
+            "origin": "document",
+            "fragment": 1,
+            "page": null,
+            "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+            "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+          }
+        ],
+        "rejected_evidence": [],
+        "validation_notes": [],
+        "validation_codes": []
+      },
+      "SOURCE": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -43,
+          "citation_rebound": false,
+          "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ]
+    },
+    {
+      "candidate_id": "t0.r9.c1",
+      "value": "IT01234567890",
+      "check": {
+        "cell_id": "t0.r9.c1",
+        "label": "Codice fiscale operatore economico",
+        "entity": "company",
+        "kind": "data",
+        "status": "proposed",
+        "value": "IT01234567890",
+        "reason": "Valore da SOURCE pertinente",
+        "written_value": "IT01234567890",
+        "location": {
+          "kind": "table_cell"
+        },
+        "evidence": [
+          {
+            "source_id": "chunk:-43",
+            "document_id": -7,
+            "source_name": "generalita-mapi.md",
+            "scope": "company",
+            "source_kind": "source",
+            "origin": "document",
+            "fragment": 1,
+            "page": null,
+            "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+            "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+          }
+        ],
+        "rejected_evidence": [],
+        "validation_notes": [],
+        "validation_codes": []
+      },
+      "SOURCE": [
+        {
+          "chunk_id": -43,
+          "file_id": -7,
+          "chunk_index": 0,
+          "source_name": "generalita-mapi.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -43,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale e Partita IVA riportati nella visura demo: IT01234567890.",
+          "content_sha256": "84c4d5b433e464d6618d6946f36bbd938259fd1e6da58eab38b80ad13a4de2bb"
+        }
+      ]
+    }
+  ],
+  "export_request": "Genera una bozza parziale; lascia vuoti tutti i punti non verificati."
+}

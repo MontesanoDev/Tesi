@@ -47,7 +47,8 @@ def test_canonical_export_does_not_authorize_a_missing_or_disabled_session(conte
         intents.bind_turn_plan(plan, context, "Genera la bozza")
 
 
-@pytest.mark.parametrize("intent", ["pause", "resume", "finish", "generate"])
+# finish/generate with replies: test_answers_with_draft_request.py (recorded first).
+@pytest.mark.parametrize("intent", ["pause", "resume"])
 def test_command_with_field_writes_is_invalid_before_normalization(intent):
     with pytest.raises(ValueError):
         turn(intent, replies=[intents.TurnReply(

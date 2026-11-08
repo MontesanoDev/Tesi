@@ -1,0 +1,42 @@
+{
+  "created_UTC": "2026-10-19T15:08:25.504659+00:00",
+  "experiment": "Exploratory generalization on three randomly sampled previously unused forms; unchanged V12",
+  "pool_target": 8,
+  "sampling_frame": "First eight unique official Italian public-procedure SIA application/interest/registration DOCX forms successfully downloaded from fixed search queries in listed order, results in supplied order; no quality/length/field-layout filtering",
+  "queries_in_order": [
+    "filetype:docx \"servizi di architettura e ingegneria\" \"domanda\"",
+    "filetype:docx \"elenco\" \"professionisti\" \"domanda\" comune",
+    "filetype:docx \"società di ingegneria\" \"manifestazione\"",
+    "filetype:docx \"direttore tecnico\" \"domanda di partecipazione\"",
+    "\"servizi tecnici\" \"domanda\" \".docx\" comune",
+    "\"elenco professionisti\" \"allegato\" \".docx\"",
+    "\"servizi di ingegneria\" \"modello\" \".docx\"",
+    "\"architettura\" \"istanza\" \".docx\" comune"
+  ],
+  "pool_admission": [
+    "Official contracting authority/public institution domain or its linked procurement platform",
+    "SIA application, expression of interest or professional-list registration form",
+    "DOCX original available and valid ZIP with word/document.xml",
+    "Not any of Minervino/Trapani/Catanzaro historical forms, unique procedure and unique DOCX hash"
+  ],
+  "exclusion_logging": "Every discovered candidate and download failure retained; no replacement after random selection, including parser or compiler failure",
+  "draw_algorithm": "Sort eligible pool by canonical URL; random.Random(seed).sample(pool,3), ordered sample determines execution order",
+  "seed": "Mapi-V12-bandi-casuali-2026-10-19-01",
+  "seed_fixed_before_discovery": true,
+  "number_cases": 3,
+  "one_fresh_global_per_case": true,
+  "quality_retries": 0,
+  "same_KB": "Current Company+General snapshot, expected same22chunks as official benchmark; no new procedure SOURCE in this controlled run",
+  "USER_scenario": "Independently preregister each selected procedure: engineering company, single participation, Leonardo signer choice; no factual properties from USER, no attestations/preferences/designations/PEC consent/place-date without explicit scenario decision",
+  "max_USER_reply_rounds": 2,
+  "unknown_or_defer_unavailable_answers": true,
+  "ordinary_chat_and_export": true,
+  "no_manual_internal_state_edits": true,
+  "no_application_changes": true,
+  "no_commit_push": true,
+  "no_baseline_adoption": true,
+  "holdout": "These three are exploratory tests. Additional blind holdout is not selected or evaluated during this experiment.",
+  "metrics": "proposed,grounded,applicable,reviewed,physical writes,correct source/user,undue writes,omissions,clarifications,UNKNOWN,DOCX/PDF,all calls/tokens/seconds/estimated cost. No accuracy percentage without independent gold.",
+  "code_HEAD": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "protected_files_sha256": "28b6bd3aaa71b48cd02a8727cdba0e9bb6d226faf2d69b1399959e3860d1f428"
+}

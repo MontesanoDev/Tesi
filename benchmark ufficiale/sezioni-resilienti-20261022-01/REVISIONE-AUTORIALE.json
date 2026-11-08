@@ -1,0 +1,153 @@
+{
+  "reviewer": "autore del sistema (NON indipendente)",
+  "UTC": "2026-10-22T14:37:49+00:00",
+  "scope": "tutte le scritture non dimostrate automaticamente dal riferimento v3 (35 occorrenze, 29 giudizi distinti)",
+  "method": "contesto FORM della destinazione (catalogo), ramo dello scenario, prove SOURCE e ricevute USER dello stato finale; nessun accesso a risultati attesi diversi dai riferimenti v3",
+  "judgments": {
+    "minervino|p37.s1|BA": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    },
+    "minervino|p37.s2|Via Giovanni Amendola": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    },
+    "minervino|p37.s3|172/C": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    },
+    "minervino|p37.s4|+39 080 000 2040": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    },
+    "minervino|p37.s5|+39 080 000 2041": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    },
+    "minervino|p37.s6|segreteria@mapi-ingegneria.demo": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    },
+    "minervino|p37.s7|mapi.ingegneria@pec.demo": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+    },
+    "soresa2023|p127.s1|Via Giovanni Amendola 172/C": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    },
+    "soresa2023|p127.s2|mapi.ingegneria@pec.demo": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    },
+    "soresa2023|p127.s3|IT01234567890": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    },
+    "soresa2023|p127.s4|IT01234567890": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+    },
+    "soresa2023|p44.s0|IT01234567890": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    },
+    "soresa2023|p44.s1|IT01234567890": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    },
+    "soresa2023|p31.s0|Leonardo Montemurro": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Valore USER dato per lo stesso slot (regola name_choice_in_verified_name_slot della politica simulata), quindi catena FORM/USER esplicita. Riserva: lo slot appartiene a un blocco per i componenti di un RT, presentato dal narratore come «Nome del firmatario della domanda»; un utente reale avrebbe potuto rinviarlo."
+    },
+    "catanzaro|t19.r0.c1|Mapi Ingegneria S.r.l.": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    },
+    "catanzaro|t19.r2.c0|Bari": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    },
+    "catanzaro|t19.r3.c1|01234560981": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    },
+    "catanzaro|t19.r4.c1|Societa a responsabilita limitata": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    },
+    "catanzaro|t19.r4.c3|Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+    },
+    "catanzaro|p49.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    },
+    "catanzaro|p51.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    },
+    "catanzaro|p53.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    },
+    "catanzaro|p55.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    },
+    "catanzaro|p60.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    },
+    "catanzaro|p62.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    },
+    "catanzaro|p64.cb0|False": {
+      "verdict": "DIMOSTRATA",
+      "basis": "USER",
+      "note": "Deselezione di un'alternativa esclusiva del gruppo s1_cg_tipologia, effetto tracciato della scelta USER «Scelgo la voce Società di Ingegneria» (politica USER simulata, regola scenario_engineering_option). Non è un nuovo fatto."
+    },
+    "soresa2023|p43.s8|+39 080 000 2040": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    },
+    "soresa2023|p43.s9|mapi.ingegneria@pec.demo": {
+      "verdict": "NON_DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+    },
+    "soresa2023|t0.r1.c0|Mapi Ingegneria S.r.l.": {
+      "verdict": "DIMOSTRATA",
+      "basis": "SOURCE",
+      "note": "Destinazione del nucleo («Denominazione operatore economico / Sede legale»): la ragione sociale è corretta (SOURCE «Ragione sociale Mapi Ingegneria S.r.l.») ma manca la sede, quindi il valore è parziale."
+    }
+  }
+}

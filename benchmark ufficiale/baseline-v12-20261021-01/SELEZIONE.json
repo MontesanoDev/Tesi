@@ -1,0 +1,90 @@
+{
+  "registered_UTC": "2026-10-21T11:32:22.618558+00:00",
+  "corpus_pool": [
+    {
+      "slug": "minervino",
+      "original": "benchmark ufficiale/compound-values-20261021-01/inputs/study/minervino/B0/rep-1/original.docx",
+      "SHA256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+      "candidates": {
+        "text": 254,
+        "checkbox": 13
+      },
+      "FORMTEXT": 0,
+      "blocks": 134
+    },
+    {
+      "slug": "trapani",
+      "original": "benchmark ufficiale/compound-values-20261021-01/inputs/study/trapani/E1/rep-1/original.docx",
+      "SHA256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+      "candidates": {
+        "text": 115
+      },
+      "FORMTEXT": 0,
+      "blocks": 83
+    },
+    {
+      "slug": "catanzaro",
+      "original": "benchmark ufficiale/compound-values-20261021-01/inputs/study/catanzaro/E2-A/rep-1/original.docx",
+      "SHA256": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563",
+      "candidates": {
+        "text": 279,
+        "checkbox": 28
+      },
+      "FORMTEXT": 0,
+      "blocks": 299
+    },
+    {
+      "slug": "bella",
+      "original": "benchmark ufficiale/compound-values-20261021-01/inputs/study/bella/B0/rep-1/original.docx",
+      "SHA256": "4d894b3faee91909275589ac5ed8e1dd2eddc09890f95ac0456780bbb6828ae0",
+      "candidates": {
+        "text": 49,
+        "checkbox": 18
+      },
+      "FORMTEXT": 0,
+      "blocks": 88
+    },
+    {
+      "slug": "cesano",
+      "original": "benchmark ufficiale/compound-values-20261021-01/inputs/historical/conserved/cesano/original.docx",
+      "SHA256": "9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795",
+      "candidates": {
+        "text": 20,
+        "checkbox": 68
+      },
+      "FORMTEXT": 20,
+      "blocks": 112
+    },
+    {
+      "slug": "craa",
+      "original": "benchmark ufficiale/compound-values-20261021-01/inputs/historical/conserved/craa/original.docx",
+      "SHA256": "4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab",
+      "candidates": {
+        "text": 51
+      },
+      "FORMTEXT": 0,
+      "blocks": 97
+    }
+  ],
+  "selection_method": "Two structural strata fixed before inference (inline and FORMTEXT); one uniform draw from four table forms. No redraw or substitution after outcomes.",
+  "fixed_strata": [
+    "minervino",
+    "cesano"
+  ],
+  "table_pool_order": [
+    "bella",
+    "catanzaro",
+    "craa",
+    "trapani"
+  ],
+  "random_seed_hex": "7a57847e66f052554d444bfebfc1eecb",
+  "index_sha256_modulo_4": 2,
+  "selected_order": [
+    "minervino",
+    "cesano",
+    "craa"
+  ],
+  "no_new_provider_call_before_selection": true,
+  "not_random_sample_of_all_tenders": true,
+  "already_used_documents_not_unseen_generalization": true
+}

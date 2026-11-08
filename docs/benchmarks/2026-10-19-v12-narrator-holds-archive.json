@@ -1,0 +1,66 @@
+{
+  "archive": "2026-10-19-v12-narrator-holds-audit.tar.gz",
+  "sha256": "ecdcca7c9805c92e14ea8cdf14bc62b5f071215d469df74ea9b1a382a57456ae",
+  "files": 458,
+  "uncompressed_bytes": 61772148,
+  "compressed_bytes": 20829654,
+  "all_members_verified": true,
+  "source_raw": "backend/data/compilation-audit/v12-narrator-holds-20261019-01",
+  "contains_private_DB_or_keys": false,
+  "credential_pattern_scan": "negative; private keys/DB excluded and provider secrets redacted",
+  "global_calls": 0,
+  "provider_calls": 2,
+  "invented_USER_decisions": 0,
+  "new_registered_USER_receipts": 0,
+  "independent_extracted_bundle_verification": [
+    {
+      "mode": "historical",
+      "audit_equal": true,
+      "text_values": 52,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "provider_calls": 0
+    },
+    {
+      "mode": "observable",
+      "audit_equal": true,
+      "text_values": 52,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "provider_calls": 0
+    },
+    {
+      "mode": "corrected-final",
+      "audit_equal": true,
+      "text_values": 60,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "84e33e53477f0bb4935eaa9667ed02c6eea6d010beb091cab4f650a1b87feddd",
+      "provider_calls": 0
+    },
+    {
+      "mode": "necessary-hold-final",
+      "audit_equal": true,
+      "text_values": 52,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "provider_calls": 0
+    }
+  ],
+  "verification_uses_archived_app_code": true,
+  "private_runtime_excluded": ".tools/v12-narrator-holds-20261019-01/",
+  "original_chat_private_runtime_excluded": ".tools/v12-branches-chat-20261019-01/",
+  "tokens": 22140,
+  "new_UI_run": false
+}

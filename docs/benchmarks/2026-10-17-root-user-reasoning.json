@@ -1,0 +1,325 @@
+{
+  "kind": "Offline INDEX-01 root-metadata counterfactual, scoped USER transport implementation, provider capabilities and B0-03 partner diagnosis",
+  "new_llm_calls": 0,
+  "provider_metadata_gets": 1,
+  "original_index_01_still_historical_failure": true,
+  "schema_isolation": {
+    "exactly_two_keys_quarantined": [
+      "proposal_stage",
+      "project_id"
+    ],
+    "original_sha256": "4ae180ecde7d4f69098fb1cc1f1ec2b9b59113a25c21e8f4e39d1741158879ff",
+    "all_other_json_values_exactly_preserved": true,
+    "full_schema_passed": true,
+    "fields": 27,
+    "facts": 20,
+    "grounded_conditional": 19,
+    "scope": "Offline counterfactual only; no production sanitizer or historic success rewrite."
+  },
+  "analysis_after_quarantine": {
+    "run": "analysis-01",
+    "scope": "raw proposal and local validation, not session/export or semantic acceptance",
+    "counts": {
+      "source_targets": 60,
+      "raw_proposed": 27,
+      "raw_value_matches": 25,
+      "grounded_proposed": 19,
+      "grounded_value_matches": 18
+    },
+    "source_by_group": {
+      "firmatario_e_anagrafica_iniziale": {
+        "source_targets": 19,
+        "raw_proposed": 10,
+        "raw_value_matches": 9,
+        "grounded_proposed": 9,
+        "grounded_value_matches": 9
+      },
+      "societa": {
+        "source_targets": 9,
+        "raw_proposed": 9,
+        "raw_value_matches": 8,
+        "grounded_proposed": 9,
+        "grounded_value_matches": 8
+      },
+      "soci_24_occurrences": {
+        "source_targets": 24
+      },
+      "direttore_8_occurrences": {
+        "source_targets": 8,
+        "raw_proposed": 8,
+        "raw_value_matches": 8,
+        "grounded_proposed": 1,
+        "grounded_value_matches": 1
+      }
+    },
+    "raw_fields": 27,
+    "raw_facts": 20,
+    "raw_choice_groups": 0,
+    "usage": null,
+    "ai_seconds": 0,
+    "quality_limit": "Matches use frozen authored values with declared title/date/province/space equivalences. SOURCE entailment/subject/role needs separate review; local grounding alone is not semantic acceptance."
+  },
+  "export_scenarios": [
+    {
+      "id": 1,
+      "scenario": "No participation confirmations",
+      "global_analysis_has_user": false,
+      "written_fields": 0,
+      "source_matches_of_60": 0,
+      "source_written": 0,
+      "user_written": 0,
+      "word_sha256": "c5a2b0c30db4c8f70749a0ce7e79201d019571ac621255ac3e9cfc1fd8e1e2e5",
+      "ready_for_submission": false,
+      "resolved": 0,
+      "failed_export_without_confirmations": {
+        "status": 409,
+        "detail": "Conferma l'applicabilità delle condizioni dei valori selezionati"
+      },
+      "word_score": {
+        "run": "integrated-01",
+        "counts": {
+          "source_text_targets": 60,
+          "source_text_matches": 0,
+          "blank_text_targets": 123,
+          "blank_text_matches": 123,
+          "user_text_targets": 4,
+          "user_text_matches": 0,
+          "table_unselected_targets": 61,
+          "table_unselected_matches": 61,
+          "table_selected_targets": 6,
+          "table_selected_matches": 0,
+          "native_false_targets": 10,
+          "native_false_matches": 10,
+          "native_true_targets": 3,
+          "native_true_matches": 0
+        },
+        "written_field_count": 0,
+        "written_source_fields": 0,
+        "written_user_fields": 0,
+        "physical_word_values_match_report": true,
+        "changed_zip_parts": [
+          "word/document.xml"
+        ],
+        "all_other_parts_preserved": true,
+        "matched_text_fields_in_word": 0,
+        "scoring_limit": "Frozen-value conformance and physical materialization; does not certify factual entailment, qualifications or complete dialogue."
+      },
+      "wrong_written_fields": [],
+      "conditions_user_fixture": null
+    },
+    {
+      "id": 2,
+      "scenario": "Separate software test replaying two archived USER confirmations",
+      "global_analysis_has_user": false,
+      "written_fields": 19,
+      "source_matches_of_60": 18,
+      "source_written": 19,
+      "user_written": 0,
+      "word_sha256": "70e7d38890a77348498540789cb2d36dd5254c0a899521b3702d4ad4050833a3",
+      "ready_for_submission": false,
+      "resolved": 0,
+      "failed_export_without_confirmations": {
+        "status": 409,
+        "detail": "Conferma l'applicabilità delle condizioni dei valori selezionati"
+      },
+      "word_score": {
+        "run": "integrated-02",
+        "counts": {
+          "source_text_targets": 60,
+          "source_text_matches": 18,
+          "blank_text_targets": 123,
+          "blank_text_matches": 123,
+          "user_text_targets": 4,
+          "user_text_matches": 0,
+          "table_unselected_targets": 61,
+          "table_unselected_matches": 61,
+          "table_selected_targets": 6,
+          "table_selected_matches": 0,
+          "native_false_targets": 10,
+          "native_false_matches": 10,
+          "native_true_targets": 3,
+          "native_true_matches": 0
+        },
+        "written_field_count": 19,
+        "written_source_fields": 19,
+        "written_user_fields": 0,
+        "physical_word_values_match_report": true,
+        "changed_zip_parts": [
+          "word/document.xml"
+        ],
+        "all_other_parts_preserved": true,
+        "matched_text_fields_in_word": 19,
+        "scoring_limit": "Frozen-value conformance and physical materialization; does not certify factual entailment, qualifications or complete dialogue."
+      },
+      "wrong_written_fields": [
+        {
+          "candidate_id": "p41.s1",
+          "id": "text.041.1",
+          "label": "Comune sede società",
+          "expected": "Bari",
+          "actual": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "match": false,
+          "category": "source_text",
+          "provenance": "SOURCE"
+        }
+      ],
+      "conditions_user_fixture": {
+        "source": "Historical INDEX-03 replies, separate software fixture",
+        "source_session": "ac4edc0ccd5e4acf91d56a55f0895b0a",
+        "message": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria. Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.",
+        "explicit_test_mapping": {
+          "c_branch_soc": "c_soc",
+          "c_op": "c_oe"
+        },
+        "registered_answers": {
+          "condition:c_op": {
+            "action": "CONDITION_TRUE",
+            "user_quote": "Il firmatario scelto per questa pratica è Leonardo Montemurro, rappresentante legale.",
+            "provenance": "USER",
+            "label": "La compilazione dei dati dell'operatore economico presuppone la conferma del soggetto partecipante; il modulo è bianco e non intestato.",
+            "applies": true
+          },
+          "condition:c_branch_soc": {
+            "action": "CONDITION_TRUE",
+            "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria.",
+            "provenance": "USER",
+            "label": "Blocco 'società di professionisti/ingegneria': si applica solo se è selezionata questa qualità in 'IN QUALITÀ DI'; la scelta non è attestata.",
+            "applies": true
+          }
+        },
+        "narrator_and_reply_interpreter": "not measured; backend-owned slots and replayed typed replies"
+      }
+    }
+  ],
+  "user_transport": {
+    "registered_start_turn": 234,
+    "session_id": "9b3d36819ff44d9c9358130fe2bfe4c9",
+    "conversation_id": "conv-7ce484ccd6194c2a",
+    "original_recorded_message_from": "e1-index-20261017-01/integrated-03/initial-routing.json",
+    "current_session_bound_persisted_receipt": true,
+    "no_automatic_decision_extraction": true,
+    "user_values_stays_empty": true,
+    "no_user_baseline_input_exactly_matches_B0": true,
+    "no_user_baseline_request_exactly_matches_B0": true,
+    "form_sources_schema_and_reading_plan_unchanged": true,
+    "with_user_is_separate_test_not_new_LLM_evaluation": true,
+    "provider_calls": 0
+  },
+  "provider": {
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "base_url": "https://api.deepseek.com",
+    "saved_context_window": 32768,
+    "saved_project_thinking": false,
+    "retrieved_at": "2026-10-17T10:28:31.952689+00:00",
+    "generative_calls": 0,
+    "metadata_get_calls": 1,
+    "http_status": 200,
+    "matching_models": [
+      {
+        "id": "deepseek-flash",
+        "object": "model",
+        "owned_by": "deepseek",
+        "name": "DeepSeek-V4.1-Flash",
+        "context_window": 1048576,
+        "max_output_tokens": 393216,
+        "input_modalities": [
+          "text",
+          "image"
+        ],
+        "output_modalities": [
+          "text"
+        ],
+        "effort": {
+          "supported_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "default_level": "high"
+        },
+        "api_capabilities": {
+          "anthropic_messages": {
+            "system_prompt_update": "in-history"
+          }
+        }
+      }
+    ]
+  },
+  "thinking_comparison": {
+    "state": "proposed_only_not_run",
+    "new_generative_calls": 0,
+    "smallest_future_pilot_calls": 2,
+    "arms": [
+      "fresh A thinking enabled/low",
+      "fresh B thinking disabled, reasoning_effort omitted"
+    ],
+    "same": [
+      "FORM B0 complete",
+      "SOURCE",
+      "user_values empty and no user_context",
+      "TASK and output schema/coverage",
+      "temperature 0.1",
+      "max_tokens 49152",
+      "timeout 300s",
+      "one global call per arm",
+      "validators/writer"
+    ],
+    "difference": "thinking mode only; omit effort when off to avoid enabling conflicting parameters",
+    "controls": "Fresh A/B in the same interval; keep failures, no retries. Record current /models, cache and usage. Two calls are feasibility only, not statistical reliability or quality equivalence.",
+    "metrics": [
+      "schema acceptance",
+      "finish_reason",
+      "completion/reasoning/nonreasoning tokens",
+      "analysis seconds",
+      "raw SOURCE value matches",
+      "local rejections and causes",
+      "exportability with no USER conditions (partial/blocked kept distinct)"
+    ],
+    "user_experiment_separate": true
+  },
+  "b0_partners": {
+    "occurrences": 24,
+    "raw_values_match_gold": 24,
+    "local_fact_grounding_passed": 23,
+    "local_fact_grounding_rejected": 1,
+    "rejected_bindings": 3,
+    "all_fields_blocked_by_binding": true,
+    "also_bad_source_quote": [
+      "p46.s0"
+    ],
+    "value_proof_chunks_contained_in_raw_binding_chunks": 15,
+    "value_proof_chunks_outside_raw_binding_chunks": 9,
+    "reason": "Each raw binding cites heading Soci and a table row, neither contains the exact singular role socio. The role gate requires it per citation; accepted personal record formats do not include this table. One correct value Bari (BA) is cited from a narrative without that full value.",
+    "not_a_claim": "23 facts locally grounded does not mean 23 writable fields or that changing only plural handling fixes binding and source alignment."
+  },
+  "software_checks": {
+    "targeted": "79 passed in 9.33s",
+    "full_backend": "2304 passed in 168.46s",
+    "ruff": "passed",
+    "initial_lint_issue": "Eight F401/F811 diagnostics in new test fixture imports, fixed; ruff-initial.txt preserved.",
+    "frontend": "unchanged, not rerun",
+    "real_USER_quality": "not measured; no real model call with USER context"
+  },
+  "unchanged_gates": {
+    "changed_global_module_functions": [
+      "build_global_input",
+      "global_request"
+    ],
+    "all_other_global_validator_functions_ast_identical": true,
+    "coverage_output_schema_contract_unchanged_sha256": "6d3d615b82b04904e4a89a1ad094b1fb1a2a5b8d55b2b86d503de566dfb558a8",
+    "source_role_records_unchanged": true,
+    "production_root_error_policy_unchanged": true,
+    "replay_metadata_isolation_is_offline_only": true,
+    "no_user_B0_request_exact_equality": "user-context-minervino/checks.json"
+  },
+  "limits": [
+    "Metadata isolation is only this explicit offline counterfactual, not a generic production sanitizer.",
+    "Schema pass does not mean correct data or writeability; 19 grounded includes one wrong destination granularity.",
+    "USER reply slots and explicit field selection in export fixture are controlled software input; narrator and interpreter quality not measured.",
+    "Registered initial utterances are sent verbatim, not parsed decisions; no automatic participation, signatory, field or SOURCE attribution.",
+    "Fresh no-USER B0 request exactly reproduced; tests with USER context remain separate from frozen comparison.",
+    "Disabled-thinking generation behavior untested. GET /models and official docs do not measure quality or tokens with thinking off.",
+    "Runtime DB is private and excluded from portable bundle; full service replay script uses that existing local snapshot. Pure schema/gold/validation can be reviewed from original archives."
+  ]
+}

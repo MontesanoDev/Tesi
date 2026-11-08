@@ -1,0 +1,488 @@
+[
+  {
+    "trial": "minervino/B0/rep-1",
+    "document": "minervino",
+    "variant": "B0",
+    "replica": 1,
+    "candidate_id": "p41.s1",
+    "label": "Comune sede società",
+    "subject": "Mapi Ingegneria S.r.l.",
+    "expected": "Bari",
+    "catalogue": true,
+    "FORM_context_in_request": true,
+    "SOURCE_in_request": true,
+    "raw_proposed": true,
+    "raw_correct_value": false,
+    "raw_correct_subject": false,
+    "raw_correct": false,
+    "raw_values": [
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+    ],
+    "raw_subjects": [
+      "Mapi Ingegneria S.r.l."
+    ],
+    "raw_proposal": {
+      "label": "Sede legale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:41",
+        "quote": "sede legale in [[p41.s1]]"
+      },
+      "conditions": [
+        "c39"
+      ],
+      "property": "sede_legale",
+      "fact_id": "f_sede_full",
+      "reason": "Sede documentata; ramo società da confermare."
+    },
+    "raw_facts": [
+      {
+        "fact_id": "f_sede_full",
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "location",
+        "property": "sede_legale",
+        "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+        "evidence": [
+          {
+            "chunk_id": -43,
+            "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+          }
+        ]
+      }
+    ],
+    "raw_grounded": false,
+    "raw_correct_grounded": false,
+    "raw_validation": "REJECTED",
+    "raw_rejection": [
+      "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+    ],
+    "source_reuse": false,
+    "effective_grounded": false,
+    "effective_correct_grounded": false,
+    "effective_value": null,
+    "condition_checks": {
+      "c39": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "unknown_conditions": [
+      "c39"
+    ],
+    "held": false,
+    "reviewed": false,
+    "written": false,
+    "written_value": null,
+    "written_reference_match": false,
+    "written_correct": false,
+    "analysis_call_status": "PASS",
+    "raw_class": "INCORRECT_INCOMPLETE_OR_WRONG_DISPOSITION",
+    "final_class": "NOT_GROUNDED"
+  },
+  {
+    "trial": "minervino/E2-A/rep-1",
+    "document": "minervino",
+    "variant": "E2-A",
+    "replica": 1,
+    "candidate_id": "p41.s1",
+    "label": "Comune sede società",
+    "subject": "Mapi Ingegneria S.r.l.",
+    "expected": "Bari",
+    "catalogue": true,
+    "FORM_context_in_request": true,
+    "SOURCE_in_request": true,
+    "raw_proposed": true,
+    "raw_correct_value": false,
+    "raw_correct_subject": false,
+    "raw_correct": false,
+    "raw_values": [
+      "Via Giovanni Amendola 172/C, 70126 Bari (BA)"
+    ],
+    "raw_subjects": [
+      "Mapi Ingegneria S.r.l."
+    ],
+    "raw_proposal": {
+      "label": "Sede legale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:41",
+        "quote": "sede legale in [[p41.s1]]"
+      },
+      "conditions": [
+        "c_societa_ingegneria"
+      ],
+      "property": "sede_legale",
+      "fact_id": "f_sede_legale_completa",
+      "reason": "Dato documentato; ramo società di ingegneria non attestato letteralmente"
+    },
+    "raw_facts": [
+      {
+        "fact_id": "f_sede_legale_completa",
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "location",
+        "property": "sede_legale",
+        "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA)",
+        "evidence": [
+          {
+            "chunk_id": -43,
+            "quote": "- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+          }
+        ]
+      }
+    ],
+    "raw_grounded": false,
+    "raw_correct_grounded": false,
+    "raw_validation": "REJECTED",
+    "raw_rejection": [
+      "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+    ],
+    "source_reuse": false,
+    "effective_grounded": false,
+    "effective_correct_grounded": false,
+    "effective_value": null,
+    "condition_checks": {
+      "s0_c_societa_ingegneria": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "unknown_conditions": [
+      "s0_c_societa_ingegneria"
+    ],
+    "held": false,
+    "reviewed": false,
+    "written": false,
+    "written_value": null,
+    "written_reference_match": false,
+    "written_correct": false,
+    "analysis_call_status": "PASS",
+    "raw_class": "INCORRECT_INCOMPLETE_OR_WRONG_DISPOSITION",
+    "final_class": "NOT_GROUNDED"
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "document": "trapani",
+    "variant": "E2-A",
+    "replica": 1,
+    "candidate_id": "p75.s1",
+    "label": "Sede via",
+    "subject": "Mapi Ingegneria S.r.l.",
+    "expected": "Via Giovanni Amendola 172/C",
+    "catalogue": true,
+    "FORM_context_in_request": true,
+    "SOURCE_in_request": true,
+    "raw_proposed": true,
+    "raw_correct_value": false,
+    "raw_correct_subject": false,
+    "raw_correct": false,
+    "raw_values": [
+      "Via Giovanni Amendola"
+    ],
+    "raw_subjects": [
+      "Mapi Ingegneria S.r.l."
+    ],
+    "raw_proposal": {
+      "label": "Via/P.zza",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:75",
+        "quote": "con sede in Via/P.zza [[p75.s1]]"
+      },
+      "conditions": [
+        "c_societa_ingegneria"
+      ],
+      "property": "indirizzo",
+      "fact_id": "f_company_via",
+      "reason": "Dato societario documentato; selezione dell'opzione Società di Ingegneria da confermare"
+    },
+    "raw_facts": [
+      {
+        "fact_id": "f_company_via",
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "location",
+        "property": "indirizzo",
+        "value": "Via Giovanni Amendola",
+        "evidence": [
+          {
+            "chunk_id": -52,
+            "quote": "- **Sede legale — via:** Via Giovanni Amendola."
+          }
+        ]
+      }
+    ],
+    "raw_grounded": true,
+    "raw_correct_grounded": false,
+    "raw_validation": "REVIEW_REQUIRED",
+    "raw_rejection": [],
+    "source_reuse": false,
+    "effective_grounded": true,
+    "effective_correct_grounded": false,
+    "effective_value": "Via Giovanni Amendola",
+    "condition_checks": {
+      "s0_c_societa_ingegneria": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "unknown_conditions": [
+      "s0_c_societa_ingegneria"
+    ],
+    "held": false,
+    "reviewed": true,
+    "written": false,
+    "written_value": null,
+    "written_reference_match": false,
+    "written_correct": false,
+    "analysis_call_status": "PASS",
+    "raw_class": "INCORRECT_INCOMPLETE_OR_WRONG_DISPOSITION",
+    "final_class": "UNKNOWN_APPLICABILITY"
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "document": "catanzaro",
+    "variant": "B0",
+    "replica": 2,
+    "candidate_id": "t25.r3.c1",
+    "label": "Numero e data iscrizione",
+    "subject": "Mapi Ingegneria S.r.l.",
+    "expected": "01234560981; 14/03/2019",
+    "catalogue": true,
+    "FORM_context_in_request": true,
+    "SOURCE_in_request": true,
+    "raw_proposed": true,
+    "raw_correct_value": false,
+    "raw_correct_subject": false,
+    "raw_correct": false,
+    "raw_values": [
+      "01234560981"
+    ],
+    "raw_subjects": [
+      "Mapi Ingegneria S.r.l."
+    ],
+    "raw_proposal": {
+      "label": "numero e data d’iscrizione",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:441",
+        "quote": "numero e data d’iscrizione:"
+      },
+      "conditions": [
+        "c_tipo_operatore"
+      ],
+      "property": "numero_iscrizione_registro_imprese",
+      "fact_id": "f_company_reg_number",
+      "reason": "Numero iscrizione documentato; ramo 5.d condizionato alla tipologia."
+    },
+    "raw_facts": [
+      {
+        "fact_id": "f_company_reg_number",
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "identity",
+        "property": "numero_iscrizione_registro_imprese",
+        "value": "01234560981",
+        "evidence": [
+          {
+            "chunk_id": -52,
+            "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+          }
+        ]
+      }
+    ],
+    "raw_grounded": true,
+    "raw_correct_grounded": false,
+    "raw_validation": "REVIEW_REQUIRED",
+    "raw_rejection": [],
+    "source_reuse": false,
+    "effective_grounded": true,
+    "effective_correct_grounded": false,
+    "effective_value": "01234560981",
+    "condition_checks": {
+      "c_tipo_operatore": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "unknown_conditions": [
+      "c_tipo_operatore"
+    ],
+    "held": false,
+    "reviewed": true,
+    "written": false,
+    "written_value": null,
+    "written_reference_match": false,
+    "written_correct": false,
+    "analysis_call_status": "PASS",
+    "raw_class": "INCORRECT_INCOMPLETE_OR_WRONG_DISPOSITION",
+    "final_class": "UNKNOWN_APPLICABILITY"
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "document": "catanzaro",
+    "variant": "E1",
+    "replica": 3,
+    "candidate_id": "t25.r3.c1",
+    "label": "Numero e data iscrizione",
+    "subject": "Mapi Ingegneria S.r.l.",
+    "expected": "01234560981; 14/03/2019",
+    "catalogue": true,
+    "FORM_context_in_request": true,
+    "SOURCE_in_request": true,
+    "raw_proposed": true,
+    "raw_correct_value": false,
+    "raw_correct_subject": false,
+    "raw_correct": false,
+    "raw_values": [
+      "01234560981 del 14 marzo 2019"
+    ],
+    "raw_subjects": [
+      "Mapi Ingegneria S.r.l."
+    ],
+    "raw_proposal": {
+      "label": "Numero e data d’iscrizione",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:441",
+        "quote": "numero e data d’iscrizione:"
+      },
+      "conditions": [
+        "c_soc_ingegneria"
+      ],
+      "property": "numero_e_data_iscrizione_registro_imprese",
+      "fact_id": "f_company_reg_data",
+      "reason": "Sezione 5.d condizionata alla tipologia di operatore"
+    },
+    "raw_facts": [
+      {
+        "fact_id": "f_company_reg_data",
+        "subject": "Mapi Ingegneria S.r.l.",
+        "entity": "company",
+        "aspect": "identity",
+        "property": "numero_e_data_iscrizione_registro_imprese",
+        "value": "01234560981 del 14 marzo 2019",
+        "evidence": [
+          {
+            "chunk_id": -52,
+            "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+          },
+          {
+            "chunk_id": -43,
+            "quote": "- Data di iscrizione riportata nella visura demo: 14 marzo 2019."
+          }
+        ]
+      }
+    ],
+    "raw_grounded": false,
+    "raw_correct_grounded": false,
+    "raw_validation": "REJECTED",
+    "raw_rejection": [
+      "Fatto SOURCE assente o rifiutato"
+    ],
+    "source_reuse": false,
+    "effective_grounded": false,
+    "effective_correct_grounded": false,
+    "effective_value": null,
+    "condition_checks": {},
+    "unknown_conditions": [],
+    "held": false,
+    "reviewed": false,
+    "written": false,
+    "written_value": null,
+    "written_reference_match": false,
+    "written_correct": false,
+    "analysis_call_status": "PASS",
+    "raw_class": "INCORRECT_INCOMPLETE_OR_WRONG_DISPOSITION",
+    "final_class": "NOT_GROUNDED"
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "document": "minervino",
+    "variant": "E2-A",
+    "replica": 3,
+    "candidate_id": "p12.s1",
+    "label": "Nascita: comune",
+    "subject": "Leonardo Montemurro",
+    "expected": "Lecce",
+    "catalogue": true,
+    "FORM_context_in_request": true,
+    "SOURCE_in_request": true,
+    "raw_proposed": true,
+    "raw_correct_value": false,
+    "raw_correct_subject": false,
+    "raw_correct": false,
+    "raw_values": [
+      "Lecce (LE)"
+    ],
+    "raw_subjects": [
+      "Leonardo Montemurro"
+    ],
+    "raw_proposal": {
+      "label": "Luogo di nascita",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:12",
+        "quote": "nato a [[p12.s1]]"
+      },
+      "conditions": [
+        "c_firmatario"
+      ],
+      "fact_id": "fl_luogo",
+      "reason": "Dato documentato; ruolo del firmatario da confermare",
+      "property": "luogo_nascita",
+      "binding_id": "b_leonardo"
+    },
+    "raw_facts": [
+      {
+        "fact_id": "fl_luogo",
+        "subject": "Leonardo Montemurro",
+        "entity": "person",
+        "aspect": "identity",
+        "property": "luogo_nascita",
+        "value": "Lecce (LE)",
+        "evidence": [
+          {
+            "chunk_id": -54,
+            "quote": "- Luogo di nascita: Lecce (LE)."
+          }
+        ]
+      }
+    ],
+    "raw_grounded": false,
+    "raw_correct_grounded": false,
+    "raw_validation": "REVIEW_REQUIRED",
+    "raw_rejection": [
+      "Binding di ruolo rifiutato"
+    ],
+    "source_reuse": false,
+    "effective_grounded": false,
+    "effective_correct_grounded": false,
+    "effective_value": null,
+    "condition_checks": {
+      "s0_c_firmatario": {
+        "result": "unknown",
+        "scope": "semantic_review_required"
+      }
+    },
+    "unknown_conditions": [
+      "s0_c_firmatario"
+    ],
+    "held": false,
+    "reviewed": false,
+    "written": false,
+    "written_value": null,
+    "written_reference_match": false,
+    "written_correct": false,
+    "analysis_call_status": "PASS",
+    "raw_class": "INCORRECT_INCOMPLETE_OR_WRONG_DISPOSITION",
+    "final_class": "NOT_GROUNDED"
+  }
+]

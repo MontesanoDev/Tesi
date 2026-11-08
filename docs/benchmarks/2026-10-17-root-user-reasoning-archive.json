@@ -1,0 +1,9 @@
+{
+  "files": 149,
+  "bytes": 3516747,
+  "sha256": "24799ce17ac5baa66c63367ddda807e97cf72f0a13eaab90f71b7770021c987f",
+  "raw_root": "backend/data/compilation-audit/root-user-reasoning-20261017-01",
+  "path": "docs/benchmarks/2026-10-17-root-user-reasoning-audit.tar.gz",
+  "manifest_verified": true,
+  "private_runtime_included": false
+}

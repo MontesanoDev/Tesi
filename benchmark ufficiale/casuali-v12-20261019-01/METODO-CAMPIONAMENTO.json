@@ -1,0 +1,50 @@
+{
+  "pool_type": "Convenience discovery pool from web search; random sampling only within the frozen pool, not a random sample of all Italian procedures",
+  "queries_extended_adaptively_before_draw": true,
+  "reason": "Few qualifying DOCX originals from initial eight queries; extended search for same eligibility criteria, no model output available",
+  "seed_and_pool_size_fixed_before_discovery": true,
+  "form_type_review": "Only title/opening checked for admission; no field count/layout/compilation quality filter before draw",
+  "excluded_relevant_candidates": [
+    {
+      "procedure": "AO Pisa",
+      "reason": "Main application only DOC/PDF"
+    },
+    {
+      "procedure": "Alghero",
+      "reason": "Main application DOC; DOCX annex only service sheets"
+    },
+    {
+      "procedure": "Torrenova",
+      "reason": "Published format label docx inconsistent with downloaded bytes; not OOXML Word"
+    },
+    {
+      "procedure": "So.Re.Sa. 2019",
+      "reason": "Main application DOC; unrelated DOCX annexes not eligible"
+    },
+    {
+      "procedure": "ARPA FVG 2017",
+      "reason": "Original DOCX link HTTP404"
+    },
+    {
+      "procedure": "Prato2022",
+      "reason": "Main application ODT; DOCX only service summary"
+    },
+    {
+      "procedure": "ASMECOMM geologia4652",
+      "reason": "DOCX only economic offer, not application"
+    },
+    {
+      "procedure": "TrapaniGreen",
+      "reason": "Previously used historical form"
+    },
+    {
+      "procedure": "Bisceglie",
+      "reason": "Ninth eligible procedure discovered in same batch; beyond preregistered target8"
+    }
+  ],
+  "other_exclusions": "Search results on legal representation, recruitment, university admissions, general regulations, PDF-only pages or non-SIA services are outside registered scope. No compilation results used in selection.",
+  "raw_first_search_01_04_not_acquired_as_tool_payload": true,
+  "first_search_relevant_pages": "SORESA regulation PDF, Pisa DOC/PDF application, non-SIA law/idoneità housing/recruitment; no admitted candidate in this batch",
+  "originals_downloaded_before_draw": true,
+  "new_holdout_not_run": true
+}

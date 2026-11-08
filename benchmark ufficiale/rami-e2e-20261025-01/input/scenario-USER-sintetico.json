@@ -1,0 +1,17 @@
+{
+ "document": "sintetico-rami",
+ "synthetic_authorial_scenario": true,
+ "authored_for_this_new_procedure": true,
+ "company": "Mapi Ingegneria S.r.l.",
+ "participation": "Raggruppamento temporaneo non ancora costituito: mandataria Mapi Ingegneria S.r.l., mandante Studio Tecnico Associato Ferri; avvalimento dell'impresa ausiliaria Geo Lab S.r.l.",
+ "UNKNOWN": [
+  "luogo e data",
+  "firme",
+  "dichiarazioni procedurali non richieste"
+ ],
+ "maximum_reply_rounds": 4,
+ "maximum_export_requests": 1,
+ "reply_policy": "Politica deterministica preregistrata policy_rami_sintetico.cjs: conferma i rami RT e avvalimento dello scenario, nega forma singola e requisiti in proprio, rinvia tutto il resto; nessun valore fattuale dall'USER.",
+ "recorded_request": "Compila una bozza parziale della domanda della procedura sintetica di prova. Partecipiamo come raggruppamento temporaneo non ancora costituito: mandataria Mapi Ingegneria S.r.l., mandante Studio Tecnico Associato Ferri. Non partecipiamo in forma singola. Per i requisiti ci avvaliamo dell'impresa ausiliaria Geo Lab S.r.l. Usa soltanto i dati documentati nelle fonti; luogo, data e firme restano da decidere. Chiedimi le decisioni mancanti; prima dell'export chiedimi conferma della bozza parziale.",
+ "export_request": "Genera una bozza parziale con i soli dati verificati e le decisioni già registrate. Lascia vuoti tutti i punti irrisolti, senza aggiungere firme o attestazioni."
+}

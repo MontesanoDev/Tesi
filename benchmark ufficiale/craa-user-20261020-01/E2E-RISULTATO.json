@@ -1,0 +1,80 @@
+{
+  "session_id": "bc286f4fd88d46d89d55edf0595d68e7",
+  "session_version": 7,
+  "raw_facts": 13,
+  "MODEL_value_proposals": 13,
+  "grounded_values": 9,
+  "applicable_grounded": 7,
+  "reviewed_current": 9,
+  "written_count": 7,
+  "SOURCE_written": 7,
+  "USER_written": 0,
+  "checkbox_values": {},
+  "UNKNOWN_conditions": [
+    "c_societa_cciaa",
+    "c_fatturato"
+  ],
+  "SOURCE_reference_unwritten": [
+    "p5.s0",
+    "t6.r0.c1",
+    "t6.r0.c3"
+  ],
+  "long_USER_characters": 3113,
+  "long_USER_SHA256": "52342bd3aaafe13be4213326d3a45610f70fedc34c5932ddc8a915dc02ce542e",
+  "accepted_decisions": 3,
+  "calls": 7,
+  "call_kinds": {
+    "router": 3,
+    "global": 1,
+    "narrator": 2,
+    "guard": 1
+  },
+  "usage": {
+    "prompt_tokens": 73536,
+    "completion_tokens": 22138,
+    "total_tokens": 95674,
+    "prompt_cache_hit_tokens": 22528,
+    "prompt_cache_miss_tokens": 51008
+  },
+  "summed_HTTP_seconds": 96.42035125799885,
+  "global_seconds": 87.21352968500014,
+  "estimated_USD": 0.021001584,
+  "cost_not_invoice": true,
+  "models": [
+    "deepseek-flash"
+  ],
+  "fingerprints": [
+    "e72d3c7f663d3e1383b00b3884cb4501"
+  ],
+  "all_stop": true,
+  "provider_errors": 0,
+  "no_quality_retry": true,
+  "new_global_calls": 1,
+  "no_code_correction_during_trial": true,
+  "final_quality_verdict": "PASS circoscritto: risposta USER conservata integralmente;3decisioni verificate;7SOURCE corrette nel DOCX parziale",
+  "grounded_facts": 13,
+  "rejected_FIELD_assignments": 2,
+  "unselected_alternative_FIELDS": 2,
+  "grounded_values_not_written_due_USER_SKIP": 2,
+  "correct_SOURCE_writes": 7,
+  "unsupported_writes_detected": 0,
+  "wrong_subject_or_section_detected": 0,
+  "PDF_pages": 7,
+  "PDF_readable_values": 7,
+  "visual_pages_checked": [
+    1,
+    4,
+    7
+  ],
+  "source_name_still_omitted": "p5.s0",
+  "historical_MODEL_reason225_problem_not_fixed": true,
+  "CCIAA_visibility_not_fixed": true,
+  "residuals": [
+    "Nome firmatario omesso dal MODEL; nessun riuso retroattivo o nuova inferenza",
+    "Due CCIAA disponibili ma sospesi dalla condizione sulla coerenza merceologica rinviata",
+    "Due anni rifiutati per citazione FORM;due fatturati lasciati come alternative senza selezione",
+    "Preferenze/attestazioni/esecutori/integrazione/luogo-data senza conferme",
+    "Etichette contigue ai valori come impresaMapi,PECmapi;writer invariato",
+    "Prima acquisizione browser senza PTY: riaperta la stessa conversazione,nessuna nuova globale; primo trace non finalizzato"
+  ]
+}

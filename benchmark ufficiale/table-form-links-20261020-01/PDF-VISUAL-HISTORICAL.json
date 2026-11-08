@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "method": "ispezione PNG PDF locale, campione visivo; tutte le posizioni verificate in XML separatamente",
+  "pages": [
+    {
+      "case": "historical/conserved/minervino-v12-61",
+      "page": 1,
+      "readable": true
+    },
+    {
+      "case": "real/firmatario-generale-20261020-01",
+      "page": 1,
+      "readable": true
+    },
+    {
+      "case": "historical/conserved/bella",
+      "page": 1,
+      "readable": true
+    },
+    {
+      "case": "historical/conserved/cesano-reale-8",
+      "page": 1,
+      "readable": true
+    },
+    {
+      "case": "real/craa-user-20261020-01",
+      "page": 1,
+      "readable": true
+    }
+  ],
+  "limitations": "Nessuna prova Word desktop; spaziature del prestampato CRAA conservate, DOCX identico alla baseline."
+}

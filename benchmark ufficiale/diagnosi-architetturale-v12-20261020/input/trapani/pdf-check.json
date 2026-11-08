@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "renderer": "LibreOffice local headless",
+  "pages": 5,
+  "all_page_bboxes_checked": true,
+  "outside_page_words": [],
+  "whole_PDF_value_visibility": {},
+  "all_written_values_found_in_text": true,
+  "duplicate_short_values_not_proven_at_each_position_by_text_presence": true,
+  "XML_positions_verified_separately": true,
+  "Word_desktop_not_tested": true,
+  "images_generated_pages": [
+    1,
+    5
+  ],
+  "PDF_SHA256": "7db4c5542b636f11a8eb166193d227d65dce198839cbe78d477db907ad4c22e2"
+}

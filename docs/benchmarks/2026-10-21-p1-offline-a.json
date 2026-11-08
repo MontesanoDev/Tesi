@@ -1,0 +1,292 @@
+{
+ "status": "COMPLETED_OFFLINE",
+ "date": "2026-10-21",
+ "scope": "Esperimento offline A: verifica della priorità P1 (decisioni USER come stato del backend)",
+ "report": "docs/p1-esperimento-offline-a-2026-10-21.md",
+ "raw": "backend/data/compilation-audit/p1-offline-a-20261021-01",
+ "archive": "docs/benchmarks/2026-10-21-p1-offline-a-audit.tar.gz",
+ "archive_sha256": "b34bb5eb60f274fee9e8911b1ba38f51639969b3ecaa5d064d7153b156451713",
+ "prereg_sha256": "20f4ad411d949227309ef393a209601edead104ee1b3ea0d23e32d5c69901973",
+ "option_annotation_sha256": "de3f1a1df592ba2c0318e3b55d25b2c9a4b95c797da36e2a9e8754620f4d0c99",
+ "inputs_hashed": 240,
+ "files_in_manifest": 22,
+ "llm_calls": 0,
+ "compilations": 0,
+ "application_changes": 0,
+ "minervino_V13_effettivo": {
+  "baseline": {
+   "risposte": 1,
+   "possibili": 60,
+   "esportate_reali": 43,
+   "S-clause": 44,
+   "S-field": 44,
+   "S-lex-opt": 44,
+   "S-conj": 35,
+   "S-lex-cons": 9
+  },
+  "C2_con_DOCX": {
+   "risposte": 4,
+   "possibili": 240,
+   "esportate_reali": 219,
+   "S-clause": 224,
+   "S-field": 224,
+   "S-lex-opt": 224,
+   "S-conj": 224,
+   "S-lex-cons": 54
+  },
+  "C1_con_DOCX": {
+   "risposte": 8,
+   "possibili": 480,
+   "esportate_reali": 63,
+   "S-clause": 448,
+   "S-field": 448,
+   "S-lex-opt": 412,
+   "S-conj": 255,
+   "S-lex-cons": 68
+  },
+  "C2_senza_DOCX": {
+   "risposte": 4,
+   "possibili": 240,
+   "esportate_reali": 0,
+   "S-clause": 222,
+   "S-field": 222,
+   "S-lex-opt": 213,
+   "S-conj": 171,
+   "S-lex-cons": 27
+  }
+ },
+ "q2_breakdown": {
+  "V12-puro|S-clause": {
+   "etichetta_o_ambito": {
+    "casi": 2720,
+    "prove_con_almeno_un_caso": 17,
+    "campi_distinti_sommati": 680
+   },
+   "sovrablocco": {
+    "casi": 244,
+    "prove_con_almeno_un_caso": 10,
+    "campi_distinti_sommati": 61
+   },
+   "senza_condizioni": {
+    "casi": 520,
+    "prove_con_almeno_un_caso": 6,
+    "campi_distinti_sommati": 59
+   }
+  },
+  "V12-puro|S-conj": {
+   "sovrablocco": {
+    "casi": 1345,
+    "prove_con_almeno_un_caso": 11,
+    "campi_distinti_sommati": 371
+   },
+   "senza_condizioni": {
+    "casi": 520,
+    "prove_con_almeno_un_caso": 6,
+    "campi_distinti_sommati": 59
+   }
+  },
+  "V12-puro|S-lex-opt": {
+   "etichetta_o_ambito": {
+    "casi": 2624,
+    "prove_con_almeno_un_caso": 16,
+    "campi_distinti_sommati": 656
+   },
+   "sovrablocco": {
+    "casi": 352,
+    "prove_con_almeno_un_caso": 11,
+    "campi_distinti_sommati": 97
+   },
+   "senza_condizioni": {
+    "casi": 520,
+    "prove_con_almeno_un_caso": 6,
+    "campi_distinti_sommati": 59
+   }
+  },
+  "V12-puro|S-lex-cons": {
+   "etichetta_o_ambito": {
+    "casi": 8,
+    "prove_con_almeno_un_caso": 1,
+    "campi_distinti_sommati": 2
+   },
+   "sovrablocco": {
+    "casi": 2314,
+    "prove_con_almeno_un_caso": 17,
+    "campi_distinti_sommati": 691
+   },
+   "senza_condizioni": {
+    "casi": 520,
+    "prove_con_almeno_un_caso": 6,
+    "campi_distinti_sommati": 59
+   }
+  },
+  "V13-effettivo|S-clause": {
+   "etichetta_o_ambito": {
+    "casi": 3036,
+    "prove_con_almeno_un_caso": 17,
+    "campi_distinti_sommati": 757
+   },
+   "sovrablocco": {
+    "casi": 426,
+    "prove_con_almeno_un_caso": 10,
+    "campi_distinti_sommati": 110
+   },
+   "senza_condizioni": {
+    "casi": 1156,
+    "prove_con_almeno_un_caso": 11,
+    "campi_distinti_sommati": 136
+   }
+  },
+  "V13-effettivo|S-conj": {
+   "sovrablocco": {
+    "casi": 1743,
+    "prove_con_almeno_un_caso": 12,
+    "campi_distinti_sommati": 450
+   },
+   "senza_condizioni": {
+    "casi": 1156,
+    "prove_con_almeno_un_caso": 11,
+    "campi_distinti_sommati": 136
+   },
+   "etichetta_o_ambito": {
+    "casi": 6,
+    "prove_con_almeno_un_caso": 2,
+    "campi_distinti_sommati": 2
+   }
+  },
+  "V13-effettivo|S-lex-opt": {
+   "etichetta_o_ambito": {
+    "casi": 2976,
+    "prove_con_almeno_un_caso": 16,
+    "campi_distinti_sommati": 742
+   },
+   "sovrablocco": {
+    "casi": 591,
+    "prove_con_almeno_un_caso": 11,
+    "campi_distinti_sommati": 154
+   },
+   "senza_condizioni": {
+    "casi": 1156,
+    "prove_con_almeno_un_caso": 11,
+    "campi_distinti_sommati": 136
+   }
+  },
+  "V13-effettivo|S-lex-cons": {
+   "etichetta_o_ambito": {
+    "casi": 28,
+    "prove_con_almeno_un_caso": 2,
+    "campi_distinti_sommati": 7
+   },
+   "sovrablocco": {
+    "casi": 2784,
+    "prove_con_almeno_un_caso": 17,
+    "campi_distinti_sommati": 786
+   },
+   "senza_condizioni": {
+    "casi": 1156,
+    "prove_con_almeno_un_caso": 11,
+    "campi_distinti_sommati": 136
+   }
+  }
+ },
+ "structural_first_measure": {
+  "bella|R1": {
+   "scritture": 45,
+   "CORRECT_WRITE": 45
+  },
+  "bella|R2": {
+   "scritture": 45,
+   "CORRECT_WRITE": 45
+  },
+  "bella|R3": {
+   "scritture": 45,
+   "CORRECT_WRITE": 45
+  },
+  "catanzaro|R1": {
+   "scritture": 89,
+   "CORRECT_WRITE": 89
+  },
+  "catanzaro|R2": {
+   "scritture": 89,
+   "CORRECT_WRITE": 89
+  },
+  "catanzaro|R3": {
+   "scritture": 89,
+   "CORRECT_WRITE": 89
+  },
+  "cesano|R1": {
+   "scritture": 63,
+   "CORRECT_WRITE": 63,
+   "corrette_dipendenti_da_cattura_scelta": 10,
+   "sovrablocco_corrette": 5
+  },
+  "cesano|R2": {
+   "scritture": 63,
+   "CORRECT_WRITE": 63,
+   "corrette_dipendenti_da_cattura_scelta": 10,
+   "sovrablocco_corrette": 5
+  },
+  "cesano|R3": {
+   "scritture": 63,
+   "CORRECT_WRITE": 63,
+   "corrette_dipendenti_da_cattura_scelta": 10,
+   "sovrablocco_corrette": 5
+  },
+  "craa|R1": {
+   "scritture": 156,
+   "CORRECT_WRITE": 152,
+   "UNDEMONSTRATED_WRITE_GRAVE_REGRESSION": 4,
+   "non_dimostrate_NON_bloccate": 4
+  },
+  "craa|R2": {
+   "scritture": 156,
+   "CORRECT_WRITE": 152,
+   "UNDEMONSTRATED_WRITE_GRAVE_REGRESSION": 4,
+   "bloccate_non_dimostrate": 4
+  },
+  "craa|R3": {
+   "scritture": 156,
+   "CORRECT_WRITE": 152,
+   "sovrablocco_corrette": 114,
+   "UNDEMONSTRATED_WRITE_GRAVE_REGRESSION": 4,
+   "bloccate_non_dimostrate": 4
+  },
+  "minervino|R1": {
+   "scritture": 328,
+   "CORRECT_WRITE": 328,
+   "corrette_dipendenti_da_cattura_scelta": 3
+  },
+  "minervino|R2": {
+   "scritture": 328,
+   "CORRECT_WRITE": 328,
+   "corrette_dipendenti_da_cattura_scelta": 3
+  },
+  "minervino|R3": {
+   "scritture": 328,
+   "CORRECT_WRITE": 328,
+   "corrette_dipendenti_da_cattura_scelta": 110
+  },
+  "trapani|R1": {
+   "scritture": 125,
+   "CORRECT_WRITE": 125
+  },
+  "trapani|R2": {
+   "scritture": 125,
+   "CORRECT_WRITE": 125
+  },
+  "trapani|R3": {
+   "scritture": 125,
+   "CORRECT_WRITE": 125
+  }
+ },
+ "verification": {
+  "independent_extractions": 2,
+  "outputs_identical": 11,
+  "note": "ordine dei controesempi reso deterministico prima dell'archiviazione definitiva; conteggi invariati"
+ },
+ "limits": [
+  "un solo documento con gold",
+  "annotazione non indipendente",
+  "narratore non simulato",
+  "cattura delle decisioni assunta perfetta"
+ ]
+}

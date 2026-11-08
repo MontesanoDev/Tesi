@@ -1,0 +1,1067 @@
+p12.s0 text | Il sottoscritto [[p12.s0]], nato a [[p12.s1]] ([[p12.s2]]) il [[p12.s3]], residente
+ANCHOR Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p12.s1 text | Il sottoscritto [[p12.s0]], nato a [[p12.s1]] ([[p12.s2]]) il [[p12.s3]], residente
+ANCHOR Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p12.s2 text | Il sottoscritto [[p12.s0]], nato a [[p12.s1]] ([[p12.s2]]) il [[p12.s3]], residente
+ANCHOR Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p12.s3 text | Il sottoscritto [[p12.s0]], nato a [[p12.s1]] ([[p12.s2]]) il [[p12.s3]], residente
+ANCHOR Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p13.s0 text | in [[p13.s0]] ([[p13.s1]]), via [[p13.s2]], C.F. [[p13.s3]], in qualità di
+ANCHOR in __________________ (__), via ________________________, C.F. ______________________, in qualità di
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p13.s1 text | in [[p13.s0]] ([[p13.s1]]), via [[p13.s2]], C.F. [[p13.s3]], in qualità di
+ANCHOR in __________________ (__), via ________________________, C.F. ______________________, in qualità di
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p13.s2 text | in [[p13.s0]] ([[p13.s1]]), via [[p13.s2]], C.F. [[p13.s3]], in qualità di
+ANCHOR in __________________ (__), via ________________________, C.F. ______________________, in qualità di
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p13.s3 text | in [[p13.s0]] ([[p13.s1]]), via [[p13.s2]], C.F. [[p13.s3]], in qualità di
+ANCHOR in __________________ (__), via ________________________, C.F. ______________________, in qualità di
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p14.s0 text | [[p14.s0]] dell’operatore economico [[p14.s1]] con sede in
+ANCHOR _______________________ dell’operatore economico ___________________________________ con sede in
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p14.s1 text | [[p14.s0]] dell’operatore economico [[p14.s1]] con sede in
+ANCHOR _______________________ dell’operatore economico ___________________________________ con sede in
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p15.s0 text | [[p15.s0]] ([[p15.s1]]), tel. [[p15.s2]], fax [[p15.s3]], indirizzo e-mail
+ANCHOR _________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p15.s1 text | [[p15.s0]] ([[p15.s1]]), tel. [[p15.s2]], fax [[p15.s3]], indirizzo e-mail
+ANCHOR _________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p15.s2 text | [[p15.s0]] ([[p15.s1]]), tel. [[p15.s2]], fax [[p15.s3]], indirizzo e-mail
+ANCHOR _________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p15.s3 text | [[p15.s0]] ([[p15.s1]]), tel. [[p15.s2]], fax [[p15.s3]], indirizzo e-mail
+ANCHOR _________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p16.s0 text | [[p16.s0]] P.E.C. [[p16.s1]] Partita IVA [[p16.s2]], iscritto alla
+ANCHOR ________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p16.s1 text | [[p16.s0]] P.E.C. [[p16.s1]] Partita IVA [[p16.s2]], iscritto alla
+ANCHOR ________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p16.s2 text | [[p16.s0]] P.E.C. [[p16.s1]] Partita IVA [[p16.s2]], iscritto alla
+ANCHOR ________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p17.s0 text | Camera di Commercio di [[p17.s0]] al n. [[p17.s1]] / all'albo professionale della Provincia di [[p17.s2]] al n. [[p17.s3]]
+ANCHOR Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p17.s1 text | Camera di Commercio di [[p17.s0]] al n. [[p17.s1]] / all'albo professionale della Provincia di [[p17.s2]] al n. [[p17.s3]]
+ANCHOR Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p17.s2 text | Camera di Commercio di [[p17.s0]] al n. [[p17.s1]] / all'albo professionale della Provincia di [[p17.s2]] al n. [[p17.s3]]
+ANCHOR Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p17.s3 text | Camera di Commercio di [[p17.s0]] al n. [[p17.s1]] / all'albo professionale della Provincia di [[p17.s2]] al n. [[p17.s3]]
+ANCHOR Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________
+ORIGIN DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI
+
+p211.s0 text | nome e cognome [[p211.s0]]
+ANCHOR nome e cognome .................................................................................................................................................................
+ORIGIN - che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:
+
+p212.s0 text | qualifica professionale [[p212.s0]]C.F. [[p212.s1]] iscritto all’Ordine/Collegio professionale [[p212.s2]] sezione [[p212.s3]]
+ANCHOR qualifica professionale ...........................................................................C.F. ................................................................................................... iscritto all’Ordine/Collegio professionale ……………………………………................................................................ sezione ........................................
+ORIGIN - che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:
+
+p212.s1 text | qualifica professionale [[p212.s0]]C.F. [[p212.s1]] iscritto all’Ordine/Collegio professionale [[p212.s2]] sezione [[p212.s3]]
+ANCHOR qualifica professionale ...........................................................................C.F. ................................................................................................... iscritto all’Ordine/Collegio professionale ……………………………………................................................................ sezione ........................................
+ORIGIN - che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:
+
+p212.s2 text | qualifica professionale [[p212.s0]]C.F. [[p212.s1]] iscritto all’Ordine/Collegio professionale [[p212.s2]] sezione [[p212.s3]]
+ANCHOR qualifica professionale ...........................................................................C.F. ................................................................................................... iscritto all’Ordine/Collegio professionale ……………………………………................................................................ sezione ........................................
+ORIGIN - che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:
+
+p212.s3 text | qualifica professionale [[p212.s0]]C.F. [[p212.s1]] iscritto all’Ordine/Collegio professionale [[p212.s2]] sezione [[p212.s3]]
+ANCHOR qualifica professionale ...........................................................................C.F. ................................................................................................... iscritto all’Ordine/Collegio professionale ……………………………………................................................................ sezione ........................................
+ORIGIN - che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:
+
+p213.s0 text | della provincia di [[p213.s0]] dal [[p213.s1]] con il n. [[p213.s2]]
+ANCHOR della provincia di .............................................................. dal ........................ con il n. …..……
+ORIGIN - che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:
+
+p213.s1 text | della provincia di [[p213.s0]] dal [[p213.s1]] con il n. [[p213.s2]]
+ANCHOR della provincia di .............................................................. dal ........................ con il n. …..……
+ORIGIN - che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:
+
+p213.s2 text | della provincia di [[p213.s0]] dal [[p213.s1]] con il n. [[p213.s2]]
+ANCHOR della provincia di .............................................................. dal ........................ con il n. …..……
+ORIGIN - che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:
+
+p22.s0 text | “[[p22.s0]]” P. IVA [[p22.s1]]
+ANCHOR “.........................................................................................................................................” P. IVA ...........................................
+ORIGIN 
+
+p22.s1 text | “[[p22.s0]]” P. IVA [[p22.s1]]
+ANCHOR “.........................................................................................................................................” P. IVA ...........................................
+ORIGIN 
+
+p229.s0 text | [[p229.s0]]
+ANCHOR …...........................................................................................................................................................................................................................................................................................................................................................................................................
+ORIGIN 
+
+p23.s0 text | sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]
+ANCHOR sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………
+ORIGIN 
+
+p23.s1 text | sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]
+ANCHOR sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………
+ORIGIN 
+
+p23.s2 text | sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]
+ANCHOR sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………
+ORIGIN 
+
+p23.s3 text | sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]
+ANCHOR sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………
+ORIGIN 
+
+p23.s4 text | sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]
+ANCHOR sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………
+ORIGIN 
+
+p23.s5 text | sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]
+ANCHOR sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………
+ORIGIN 
+
+p230.s0 text | [[p230.s0]]
+ANCHOR …...................................................................................................................................................................................................
+ORIGIN 
+
+p232.s0 text | [[p232.s0]]
+ANCHOR …...................................................................................................................................................................................................
+ORIGIN e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:
+
+p233.s0 text | [[p233.s0]]
+ANCHOR …...................................................................................................................................................................................................
+ORIGIN e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:
+
+p234.s0 text | [[p234.s0]]
+ANCHOR …...................................................................................................................................................................................................
+ORIGIN e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:
+
+p24.s0 text | pec [[p24.s0]]
+ANCHOR pec ……………………….………..……………………………………………………………
+ORIGIN 
+
+p242.s0 text | Luogo e data, [[p242.s0]]
+ANCHOR Luogo e data, ______________________
+ORIGIN 
+
+p245.s0 text | [[p245.s0]]
+ANCHOR ____________________________
+ORIGIN Firma digitale 
+
+p26.s0 text | 1) nome e cognome [[p26.s0]]
+ANCHOR 1) nome e cognome .......................................................................................................................................
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p27.s0 text | qualifica professionale [[p27.s0]]C.F. [[p27.s1]]
+ANCHOR qualifica professionale .......................................................................C.F. .....................................................................
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p27.s1 text | qualifica professionale [[p27.s0]]C.F. [[p27.s1]]
+ANCHOR qualifica professionale .......................................................................C.F. .....................................................................
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p28.s0 text | iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p28.s1 text | iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p28.s2 text | iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p28.s3 text | iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p28.s4 text | iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p29.s0 text | 2) nome e cognome [[p29.s0]]
+ANCHOR 2) nome e cognome .....................................................................................................
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p30.s0 text | ￼qualifica professionale [[p30.s0]]C.F. [[p30.s1]]
+ANCHOR qualifica professionale .....................................................................................................C.F. .......................................
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p30.s1 text | ￼qualifica professionale [[p30.s0]]C.F. [[p30.s1]]
+ANCHOR qualifica professionale .....................................................................................................C.F. .......................................
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p31.s0 text | iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p31.s1 text | iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p31.s2 text | iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p31.s3 text | iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p31.s4 text | iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:
+
+p32.s0 text | 3) nome e cognome [[p32.s0]]
+ANCHOR 3) nome e cognome ...................................................................................................................................................................
+ORIGIN 
+
+p33.s0 text | qualifica professionale [[p33.s0]]C.F. [[p33.s1]]
+ANCHOR qualifica professionale .................................................................................C.F. ...............................................................
+ORIGIN 
+
+p33.s1 text | qualifica professionale [[p33.s0]]C.F. [[p33.s1]]
+ANCHOR qualifica professionale .................................................................................C.F. ...............................................................
+ORIGIN 
+
+p34.s0 text | iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN 
+
+p34.s1 text | iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN 
+
+p34.s2 text | iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN 
+
+p34.s3 text | iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN 
+
+p34.s4 text | iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……
+ORIGIN 
+
+p36.s0 text | “[[p36.s0]]” P. IVA [[p36.s1]]
+ANCHOR “................................................................................................” P. IVA .......................................................
+ORIGIN 
+
+p36.s1 text | “[[p36.s0]]” P. IVA [[p36.s1]]
+ANCHOR “................................................................................................” P. IVA .......................................................
+ORIGIN 
+
+p37.s0 text | sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]
+ANCHOR sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………
+ORIGIN 
+
+p37.s1 text | sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]
+ANCHOR sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………
+ORIGIN 
+
+p37.s2 text | sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]
+ANCHOR sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………
+ORIGIN 
+
+p37.s3 text | sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]
+ANCHOR sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………
+ORIGIN 
+
+p37.s4 text | sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]
+ANCHOR sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………
+ORIGIN 
+
+p37.s5 text | sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]
+ANCHOR sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………
+ORIGIN 
+
+p37.s6 text | sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]
+ANCHOR sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………
+ORIGIN 
+
+p37.s7 text | sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]
+ANCHOR sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………
+ORIGIN 
+
+p38.s0 text | il cui Rappresentante Legale è: nome e cognome [[p38.s0]]
+ANCHOR il cui Rappresentante Legale è: nome e cognome .......................................................................................................................................................
+ORIGIN 
+
+p40.s0 text | denominazione/ragione sociale “[[p40.s0]]”
+ANCHOR denominazione/ragione sociale “………………................................................................................................”
+ORIGIN 
+
+p41.s0 text | P. IVA [[p41.s0]] sede legale in [[p41.s1]]
+ANCHOR P. IVA ................................................. sede legale in .............................................................................................................
+ORIGIN 
+
+p41.s1 text | P. IVA [[p41.s0]] sede legale in [[p41.s1]]
+ANCHOR P. IVA ................................................. sede legale in .............................................................................................................
+ORIGIN 
+
+p42.s0 text | prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ANCHOR prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ORIGIN 
+
+p42.s1 text | prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ANCHOR prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ORIGIN 
+
+p42.s2 text | prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ANCHOR prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ORIGIN 
+
+p42.s3 text | prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ANCHOR prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ORIGIN 
+
+p42.s4 text | prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ANCHOR prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ORIGIN 
+
+p42.s5 text | prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ANCHOR prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):
+ORIGIN 
+
+p43.s0 text | 1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]
+ANCHOR 1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+ORIGIN 
+
+p43.s1 text | 1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]
+ANCHOR 1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+ORIGIN 
+
+p43.s2 text | 1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]
+ANCHOR 1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+ORIGIN 
+
+p43.s3 text | 1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]
+ANCHOR 1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+ORIGIN 
+
+p43.s4 text | 1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]
+ANCHOR 1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+ORIGIN 
+
+p44.s0 text | della provincia di [[p44.s0]] dal [[p44.s1]] con il n. [[p44.s2]]
+ANCHOR della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p44.s1 text | della provincia di [[p44.s0]] dal [[p44.s1]] con il n. [[p44.s2]]
+ANCHOR della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p44.s2 text | della provincia di [[p44.s0]] dal [[p44.s1]] con il n. [[p44.s2]]
+ANCHOR della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p45.s0 text | 2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]
+ANCHOR 2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+ORIGIN 
+
+p45.s1 text | 2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]
+ANCHOR 2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+ORIGIN 
+
+p45.s2 text | 2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]
+ANCHOR 2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+ORIGIN 
+
+p45.s3 text | 2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]
+ANCHOR 2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+ORIGIN 
+
+p45.s4 text | 2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]
+ANCHOR 2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................
+ORIGIN 
+
+p46.s0 text | della provincia di [[p46.s0]] dal [[p46.s1]] con il n. [[p46.s2]]
+ANCHOR della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p46.s1 text | della provincia di [[p46.s0]] dal [[p46.s1]] con il n. [[p46.s2]]
+ANCHOR della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p46.s2 text | della provincia di [[p46.s0]] dal [[p46.s1]] con il n. [[p46.s2]]
+ANCHOR della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p47.s0 text | 3) nome e cognome [[p47.s0]]
+ANCHOR 3) nome e cognome ......................................................................................................................................
+ORIGIN 
+
+p48.s0 text | qualifica professionale [[p48.s0]] C.F. [[p48.s1]]
+ANCHOR qualifica professionale ..................................................................................... C.F. ..................................................
+ORIGIN 
+
+p48.s1 text | qualifica professionale [[p48.s0]] C.F. [[p48.s1]]
+ANCHOR qualifica professionale ..................................................................................... C.F. ..................................................
+ORIGIN 
+
+p49.s0 text | iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p49.s1 text | iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p49.s2 text | iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p49.s3 text | iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p49.s4 text | iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN 
+
+p51.s0 text | 3) nome e cognome [[p51.s0]]
+ANCHOR 3) nome e cognome ..................................................................................................................................................
+ORIGIN la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):
+
+p52.s0 text | qualifica professionale [[p52.s0]] C.F. [[p52.s1]]
+ANCHOR qualifica professionale ..................................................................................... C.F. ........................................................
+ORIGIN la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):
+
+p52.s1 text | qualifica professionale [[p52.s0]] C.F. [[p52.s1]]
+ANCHOR qualifica professionale ..................................................................................... C.F. ........................................................
+ORIGIN la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):
+
+p53.s0 text | iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):
+
+p53.s1 text | iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):
+
+p53.s2 text | iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):
+
+p53.s3 text | iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):
+
+p53.s4 text | iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]
+ANCHOR iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…
+ORIGIN la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):
+
+p55.s0 text | “[[p55.s0]]”, composto dai seguenti soggetti “mandanti” (riportare nominativo, qualifica professionale, C.F. di ogni soggetto nonché la specifica se trattasi di professionista singolo, rappresentante di associazione di professionisti, legale rappresentante di società o di consorzio):
+ANCHOR “......................................................................................................................................................................................................................”, composto dai seguenti soggetti “mandanti” (riportare nominativo, qualifica professionale, C.F. di ogni soggetto nonché la specifica se trattasi di professionista singolo, rappresentante di associazione di professionisti, legale rappresentante di società o di consorzio):
+ORIGIN 
+
+p56.s0 text | 1) nome e cognome [[p56.s0]]
+ANCHOR 1) nome e cognome ...............................................................................................................................................................
+ORIGIN 
+
+p57.s0 text | qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]
+ANCHOR qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… …………………………………………………………….
+ORIGIN 
+
+p57.s1 text | qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]
+ANCHOR qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… …………………………………………………………….
+ORIGIN 
+
+p57.s2 text | qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]
+ANCHOR qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… …………………………………………………………….
+ORIGIN 
+
+p57.s3 text | qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]
+ANCHOR qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… …………………………………………………………….
+ORIGIN 
+
+p57.s4 text | qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]
+ANCHOR qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… …………………………………………………………….
+ORIGIN 
+
+p57.s5 text | qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]
+ANCHOR qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… …………………………………………………………….
+ORIGIN 
+
+p57.s6 text | qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]
+ANCHOR qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… …………………………………………………………….
+ORIGIN 
+
+p57.s7 text | qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]
+ANCHOR qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… …………………………………………………………….
+ORIGIN 
+
+p58.s0 text | 2) nome e cognome [[p58.s0]]qualifica professionale[[p58.s1]]
+ANCHOR 2) nome e cognome ........................................................................................................................................................................................qualifica professionale................................................................................................................................................................................
+ORIGIN 
+
+p58.s1 text | 2) nome e cognome [[p58.s0]]qualifica professionale[[p58.s1]]
+ANCHOR 2) nome e cognome ........................................................................................................................................................................................qualifica professionale................................................................................................................................................................................
+ORIGIN 
+
+p59.s0 text | C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]
+ANCHOR C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………
+ORIGIN 
+
+p59.s1 text | C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]
+ANCHOR C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………
+ORIGIN 
+
+p59.s2 text | C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]
+ANCHOR C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………
+ORIGIN 
+
+p59.s3 text | C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]
+ANCHOR C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………
+ORIGIN 
+
+p59.s4 text | C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]
+ANCHOR C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………
+ORIGIN 
+
+p59.s5 text | C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]
+ANCHOR C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………
+ORIGIN 
+
+p59.s6 text | C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]
+ANCHOR C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………
+ORIGIN 
+
+p60.s0 text | 3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]
+ANCHOR 3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………
+ORIGIN 
+
+p60.s1 text | 3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]
+ANCHOR 3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………
+ORIGIN 
+
+p60.s2 text | 3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]
+ANCHOR 3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………
+ORIGIN 
+
+p60.s3 text | 3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]
+ANCHOR 3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………
+ORIGIN 
+
+p60.s4 text | 3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]
+ANCHOR 3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………
+ORIGIN 
+
+p60.s5 text | 3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]
+ANCHOR 3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………
+ORIGIN 
+
+p60.s6 text | 3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]
+ANCHOR 3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………
+ORIGIN 
+
+p60.s7 text | 3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]
+ANCHOR 3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………
+ORIGIN 
+
+p60.s8 text | 3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]
+ANCHOR 3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………
+ORIGIN 
+
+p62.s0 text | “[[p62.s0]]”
+ANCHOR “…………………………………………………………………………………………………………………………………………………………………………………..……………”
+ORIGIN 
+
+p63.s0 text | il cui Capogruppo è: nome e cognome [[p63.s0]]
+ANCHOR il cui Capogruppo è: nome e cognome .....................................................................................................................................
+ORIGIN 
+
+p65.s0 text | ￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica
+ANCHOR “...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica
+ORIGIN 
+
+p65.s1 text | ￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica
+ANCHOR “...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica
+ORIGIN 
+
+p65.s2 text | ￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica
+ANCHOR “...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica
+ORIGIN 
+
+p65.s3 text | ￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica
+ANCHOR “...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica
+ORIGIN 
+
+p65.s4 text | ￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica
+ANCHOR “...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica
+ORIGIN 
+
+p65.s5 text | ￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica
+ANCHOR “...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica
+ORIGIN 
+
+p65.s6 text | ￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica
+ANCHOR “...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica
+ORIGIN 
+
+p65.s7 text | ￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica
+ANCHOR “...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica
+ORIGIN 
+
+p65.s8 text | ￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica
+ANCHOR “...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica
+ORIGIN 
+
+p67.s0 text | 1) nome e cognome [[p67.s0]]qualifica professionale [[p67.s1]]C.F. [[p67.s2]]
+ANCHOR 1) nome e cognome .......................................................................................................................................................qualifica professionale ....................................................................................................C.F. ...........................................................................................
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p67.s1 text | 1) nome e cognome [[p67.s0]]qualifica professionale [[p67.s1]]C.F. [[p67.s2]]
+ANCHOR 1) nome e cognome .......................................................................................................................................................qualifica professionale ....................................................................................................C.F. ...........................................................................................
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p67.s2 text | 1) nome e cognome [[p67.s0]]qualifica professionale [[p67.s1]]C.F. [[p67.s2]]
+ANCHOR 1) nome e cognome .......................................................................................................................................................qualifica professionale ....................................................................................................C.F. ...........................................................................................
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p68.s0 text | iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p68.s1 text | iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p68.s2 text | iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p68.s3 text | iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p68.s4 text | iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p68.s5 text | iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p69.s0 text | 2) nome e cognome [[p69.s0]]
+ANCHOR 2) nome e cognome ...........................................................................................................................................................
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p70.s0 text | qualifica professionale [[p70.s0]]C.F. [[p70.s1]]
+ANCHOR qualifica professionale ..........................................................................................C.F. ........................................................
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p70.s1 text | qualifica professionale [[p70.s0]]C.F. [[p70.s1]]
+ANCHOR qualifica professionale ..........................................................................................C.F. ........................................................
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p71.s0 text | iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p71.s1 text | iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p71.s2 text | iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p71.s3 text | iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p71.s4 text | iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p71.s5 text | iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]
+ANCHOR iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p72.s0 text | 3) nome e cognome [[p72.s0]]
+ANCHOR 3) nome e cognome .................................................................................................................................................................
+ORIGIN professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):
+
+p73.s0 text | qualifica professionale [[p73.s0]]C.F. [[p73.s1]]
+ANCHOR qualifica professionale ....................................................................................................C.F. .................................................
+ORIGIN 
+
+p73.s1 text | qualifica professionale [[p73.s0]]C.F. [[p73.s1]]
+ANCHOR qualifica professionale ....................................................................................................C.F. .................................................
+ORIGIN 
+
+p74.s0 text | iscritto all’Ordine/Collegio professionale [[p74.s0]] sezione [[p74.s1]]
+ANCHOR iscritto all’Ordine/Collegio professionale ................................................................................................. sezione .............................
+ORIGIN 
+
+p74.s1 text | iscritto all’Ordine/Collegio professionale [[p74.s0]] sezione [[p74.s1]]
+ANCHOR iscritto all’Ordine/Collegio professionale ................................................................................................. sezione .............................
+ORIGIN 
+
+p75.s0 text | della provincia di [[p75.s0]] dal [[p75.s1]] con il n. [[p75.s2]] legale rappresentante della società consorziata [[p75.s3]]
+ANCHOR della provincia di ............................................................................................................................ dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN 
+
+p75.s1 text | della provincia di [[p75.s0]] dal [[p75.s1]] con il n. [[p75.s2]] legale rappresentante della società consorziata [[p75.s3]]
+ANCHOR della provincia di ............................................................................................................................ dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN 
+
+p75.s2 text | della provincia di [[p75.s0]] dal [[p75.s1]] con il n. [[p75.s2]] legale rappresentante della società consorziata [[p75.s3]]
+ANCHOR della provincia di ............................................................................................................................ dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN 
+
+p75.s3 text | della provincia di [[p75.s0]] dal [[p75.s1]] con il n. [[p75.s2]] legale rappresentante della società consorziata [[p75.s3]]
+ANCHOR della provincia di ............................................................................................................................ dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……
+ORIGIN 
+
+t0.r1.c1 text | 
+ANCHOR Edilizia commerciale
+ORIGIN 
+
+t0.r1.c2 text | 
+ANCHOR Edilizia commerciale
+ORIGIN 
+
+t0.r1.c3 text | 
+ANCHOR Edilizia commerciale
+ORIGIN 
+
+t0.r10.c1 text | 
+ANCHOR Impianti elettrici
+ORIGIN 
+
+t0.r10.c2 text | 
+ANCHOR Impianti elettrici
+ORIGIN 
+
+t0.r10.c3 text | 
+ANCHOR Impianti elettrici
+ORIGIN 
+
+t0.r11.c1 text | 
+ANCHOR Impianti di depurazione o discariche
+ORIGIN 
+
+t0.r11.c2 text | 
+ANCHOR Impianti di depurazione o discariche
+ORIGIN 
+
+t0.r11.c3 text | 
+ANCHOR Impianti di depurazione o discariche
+ORIGIN 
+
+t0.r12.c1 text | 
+ANCHOR Opere elettriche per reti
+ORIGIN 
+
+t0.r12.c2 text | 
+ANCHOR Opere elettriche per reti
+ORIGIN 
+
+t0.r12.c3 text | 
+ANCHOR Opere elettriche per reti
+ORIGIN 
+
+t0.r13.c1 text | 
+ANCHOR Opere stradali
+ORIGIN 
+
+t0.r13.c2 text | 
+ANCHOR Opere stradali
+ORIGIN 
+
+t0.r13.c3 text | 
+ANCHOR Opere stradali
+ORIGIN 
+
+t0.r14.c1 text | 
+ANCHOR Opere idrauliche
+ORIGIN 
+
+t0.r14.c2 text | 
+ANCHOR Opere idrauliche
+ORIGIN 
+
+t0.r14.c3 text | 
+ANCHOR Opere idrauliche
+ORIGIN 
+
+t0.r15.c1 text | 
+ANCHOR Sistemi e reti di telecomunicazioni
+ORIGIN 
+
+t0.r15.c2 text | 
+ANCHOR Sistemi e reti di telecomunicazioni
+ORIGIN 
+
+t0.r15.c3 text | 
+ANCHOR Sistemi e reti di telecomunicazioni
+ORIGIN 
+
+t0.r16.c1 text | 
+ANCHOR Sistemi e reti di telecomunicazioni
+ORIGIN 
+
+t0.r16.c2 text | 
+ANCHOR Sistemi e reti di telecomunicazioni
+ORIGIN 
+
+t0.r16.c3 text | 
+ANCHOR Sistemi e reti di telecomunicazioni
+ORIGIN 
+
+t0.r17.c1 text | 
+ANCHOR Pianificazione
+ORIGIN 
+
+t0.r17.c2 text | 
+ANCHOR Pianificazione
+ORIGIN 
+
+t0.r17.c3 text | 
+ANCHOR Pianificazione
+ORIGIN 
+
+t0.r2.c1 text | 
+ANCHOR Edilizia residenziale
+ORIGIN 
+
+t0.r2.c2 text | 
+ANCHOR Edilizia residenziale
+ORIGIN 
+
+t0.r2.c3 text | 
+ANCHOR Edilizia residenziale
+ORIGIN 
+
+t0.r3.c1 text | 
+ANCHOR Edilizia scolastica e sanitaria
+ORIGIN 
+
+t0.r3.c2 text | 
+ANCHOR Edilizia scolastica e sanitaria
+ORIGIN 
+
+t0.r3.c3 text | 
+ANCHOR Edilizia scolastica e sanitaria
+ORIGIN 
+
+t0.r4.c1 text | 
+ANCHOR Impianti sportivi, piscine, cimiteri ed edifici di culto
+ORIGIN 
+
+t0.r4.c2 text | 
+ANCHOR Impianti sportivi, piscine, cimiteri ed edifici di culto
+ORIGIN 
+
+t0.r4.c3 text | 
+ANCHOR Impianti sportivi, piscine, cimiteri ed edifici di culto
+ORIGIN 
+
+t0.r5.c1 text | 
+ANCHOR Aree esterne e opere a verde
+ORIGIN 
+
+t0.r5.c2 text | 
+ANCHOR Aree esterne e opere a verde
+ORIGIN 
+
+t0.r5.c3 text | 
+ANCHOR Aree esterne e opere a verde
+ORIGIN 
+
+t0.r6.c1 text | 
+ANCHOR Interventi su beni immobili di interesse storico- artistico
+ORIGIN 
+
+t0.r6.c2 text | 
+ANCHOR Interventi su beni immobili di interesse storico- artistico
+ORIGIN 
+
+t0.r6.c3 text | 
+ANCHOR Interventi su beni immobili di interesse storico- artistico
+ORIGIN 
+
+t0.r7.c1 text | 
+ANCHOR Edilizia – sedi amministrative
+ORIGIN 
+
+t0.r7.c2 text | 
+ANCHOR Edilizia – sedi amministrative
+ORIGIN 
+
+t0.r7.c3 text | 
+ANCHOR Edilizia – sedi amministrative
+ORIGIN 
+
+t0.r8.c1 text | 
+ANCHOR Strutture
+ORIGIN 
+
+t0.r8.c2 text | 
+ANCHOR Strutture
+ORIGIN 
+
+t0.r8.c3 text | 
+ANCHOR Strutture
+ORIGIN 
+
+t0.r9.c1 text | 
+ANCHOR Impianti meccanici
+ORIGIN 
+
+t0.r9.c2 text | 
+ANCHOR Impianti meccanici
+ORIGIN 
+
+t0.r9.c3 text | 
+ANCHOR Impianti meccanici
+ORIGIN 
+
+t1.r1.c1 text | 
+ANCHOR CSP/CSE
+ORIGIN 
+
+t1.r1.c2 text | 
+ANCHOR CSP/CSE
+ORIGIN 
+
+t1.r1.c3 text | 
+ANCHOR CSP/CSE
+ORIGIN 
+
+t2.r1.c1 text | 
+ANCHOR Collaudo statico
+ORIGIN 
+
+t2.r2.c1 text | 
+ANCHOR Collaudo tecnico amministrativo
+ORIGIN 
+
+t2.r3.c1 text | 
+ANCHOR Collaudo funzionale - impiantistico
+ORIGIN 
+
+t3.r1.c1 text | 
+ANCHOR redazione pratiche prevenzione incendi
+ORIGIN 
+
+t3.r10.c1 text | 
+ANCHOR redazione di certificato di prestazione energetica
+ORIGIN 
+
+t3.r2.c1 text | 
+ANCHOR visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti
+ORIGIN 
+
+t3.r3.c1 text | 
+ANCHOR perizie di stima
+ORIGIN 
+
+t3.r4.c1 text | 
+ANCHOR relazioni geologiche e sismiche
+ORIGIN 
+
+t3.r5.c1 text | 
+ANCHOR indagini geologiche / sismiche e relazioni geologiche
+ORIGIN 
+
+t3.r6.c1 text | 
+ANCHOR supporto agli atti di pianificazione comunque denominati
+ORIGIN 
+
+t3.r7.c1 text | 
+ANCHOR servizi tecnici di competenza di restauratori
+ORIGIN 
+
+t3.r8.c1 text | 
+ANCHOR servizi di assistenza archeologica
+ORIGIN 
+
+t3.r9.c1 text | 
+ANCHOR servizi di competenza di agronomi e dottori forestali
+ORIGIN 
+
+p20.cb0 checkbox | ☐ Libero professionista singolo
+ANCHOR ☐ Libero professionista singolo
+ORIGIN 
+
+p21.cb0 checkbox | ☐ Legale rappresentante dello studio professionale associato avente la seguente denominazione
+ANCHOR ☐ Legale rappresentante dello studio professionale associato avente la seguente denominazione
+ORIGIN 
+
+p35.cb0 checkbox | ☐ Professionista appartenete allo studio professionale associato avente la seguente denominazione
+ANCHOR ☐ Professionista appartenete allo studio professionale associato avente la seguente denominazione
+ORIGIN 
+
+p39.cb0 checkbox | ☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente
+ANCHOR ☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente
+ORIGIN 
+
+p54.cb0 checkbox | ☐ Capogruppo di raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione:
+ANCHOR ☐ Capogruppo di raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione:
+ORIGIN 
+
+p61.cb0 checkbox | ☐ Mandante del raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione
+ANCHOR ☐ Mandante del raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione
+ORIGIN 
+
+p64.cb0 checkbox | ☐ Legale rappresentante di consorzio stabile di società di professionisti e di società di ingegneria (art.66, comma 1, lett. g, D.lgs. n.36/2023) denominato
+ANCHOR ☐ Legale rappresentante di consorzio stabile di società di professionisti e di società di ingegneria (art.66, comma 1, lett. g, D.lgs. n.36/2023) denominato
+ORIGIN 
+
+p203.cb0 checkbox | ☐ in caso di PROFESSIONISTI ASSOCIATI
+ANCHOR ☐ in caso di PROFESSIONISTI ASSOCIATI
+ORIGIN 
+
+p206.cb0 checkbox | ☐ in caso di RTP
+ANCHOR ☐ in caso di RTP
+ORIGIN 
+
+p214.cb0 checkbox | ☐ in caso di RTP COSTITUTI: ALLEGANO il mandato collettivo o l’atto costitutivo (risultante da scrittura privata autenticata) e la relativa procura speciale conferita dai soggetti raggruppati al legale rappresentante del soggetto capogruppo-mandatario;
+ANCHOR ☐ in caso di RTP COSTITUTI: ALLEGANO il mandato collettivo o l’atto costitutivo (risultante da scrittura privata autenticata) e la relativa procura speciale conferita dai soggetti raggruppati al legale rappresentante del soggetto capogruppo-mandatario;
+ORIGIN 
+
+p215.cb0 checkbox | ☐ in caso di RTP NON ANCORA COSTITUTI: i soggetti che intendono raggrupparsi SI IMPEGNANO a conferire, in caso di affidamento di incarico, mandato collettivo speciale con rappresentanza ad uno dei componenti il raggruppamento;
+ANCHOR ☐ in caso di RTP NON ANCORA COSTITUTI: i soggetti che intendono raggrupparsi SI IMPEGNANO a conferire, in caso di affidamento di incarico, mandato collettivo speciale con rappresentanza ad uno dei componenti il raggruppamento;
+ORIGIN 
+
+p217.cb0 checkbox | ☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:
+ANCHOR ☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:
+ORIGIN 
+
+p228.cb0 checkbox | ☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:
+ANCHOR ☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:
+ORIGIN 

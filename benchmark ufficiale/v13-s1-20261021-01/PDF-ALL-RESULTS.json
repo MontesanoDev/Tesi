@@ -1,0 +1,2901 @@
+{
+  "total_PDF": 79,
+  "PASS_WITH_LIMITS": 77,
+  "FAIL": [
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-03",
+      "status": "FAIL",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true,
+        "t6.r0.c1": true,
+        "t6.r0.c3": false
+      },
+      "local_visibility": null,
+      "tiny_original_cells": [
+        {
+          "candidate_id": "t6.r0.c1",
+          "written_value": "Bari",
+          "width_twips": 66,
+          "width_unchanged_from_original": true,
+          "needs_local_visual_review": true
+        },
+        {
+          "candidate_id": "t6.r0.c3",
+          "written_value": "01234560981",
+          "width_twips": 81,
+          "width_unchanged_from_original": true,
+          "needs_local_visual_review": true
+        }
+      ],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-04",
+      "status": "FAIL",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "t6.r0.c1": true,
+        "t6.r0.c3": false
+      },
+      "local_visibility": null,
+      "tiny_original_cells": [
+        {
+          "candidate_id": "t6.r0.c1",
+          "written_value": "Bari",
+          "width_twips": 66,
+          "width_unchanged_from_original": true,
+          "needs_local_visual_review": true
+        },
+        {
+          "candidate_id": "t6.r0.c3",
+          "written_value": "01234560981",
+          "width_twips": 81,
+          "width_unchanged_from_original": true,
+          "needs_local_visual_review": true
+        }
+      ],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    }
+  ],
+  "total_pages": 553,
+  "results": [
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "bella-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 4,
+      "whole_PDF_visibility": {},
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "bella-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 4,
+      "whole_PDF_visibility": {},
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "bella-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 4,
+      "whole_PDF_visibility": {
+        "p21.s0": true,
+        "p21.s1": true,
+        "p21.s2": true,
+        "p21.s4": true,
+        "p21.s5": true,
+        "p21.s6": true,
+        "p21.s7": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "bella-04",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 4,
+      "whole_PDF_visibility": {
+        "p21.s0": true,
+        "p21.s1": true,
+        "p21.s2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "bella-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 4,
+      "whole_PDF_visibility": {
+        "p21.s0": true,
+        "p21.s1": true,
+        "p21.s2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "catanzaro-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 17,
+      "whole_PDF_visibility": {
+        "t0.r0.c1": true,
+        "t0.r10.c1": true,
+        "t0.r2.c1": true,
+        "t0.r5.c1": true,
+        "t0.r6.c1": true,
+        "t0.r7.c1": false,
+        "t0.r9.c1": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "catanzaro-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 17,
+      "whole_PDF_visibility": {
+        "t0.r0.c1": true,
+        "t0.r10.c1": true,
+        "t0.r2.c1": true,
+        "t0.r5.c1": true,
+        "t0.r6.c1": true,
+        "t0.r7.c1": false,
+        "t0.r9.c1": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "catanzaro-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 17,
+      "whole_PDF_visibility": {},
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "catanzaro-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 17,
+      "whole_PDF_visibility": {},
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "cesano-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "cesano-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "cesano-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {},
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "cesano-04",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "cesano-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "cesano-06",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "cesano-08",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {},
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "cesano-09",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "cesano-10",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "craa-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "craa-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "craa-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "craa-04",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "craa-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "craa-06",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "craa-07",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "craa-08",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "craa-09",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "craa-10",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "minervino-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 10,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p13.s0": true,
+        "p13.s1": true,
+        "p13.s2": true,
+        "p13.s3": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "minervino-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 10,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p13.s0": true,
+        "p13.s1": true,
+        "p13.s2": true,
+        "p13.s3": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "minervino-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 10,
+      "whole_PDF_visibility": {},
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "minervino-04",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 10,
+      "whole_PDF_visibility": {
+        "p12.s2": true,
+        "p13.s1": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "minervino-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 10,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p13.s0": true,
+        "p13.s1": true,
+        "p13.s2": true,
+        "p13.s3": true,
+        "p14.s0": true,
+        "p14.s1": true,
+        "p15.s0": true,
+        "p15.s1": true,
+        "p15.s2": true,
+        "p15.s3": true,
+        "p16.s0": true,
+        "p16.s1": true,
+        "p16.s2": true,
+        "p17.s0": true,
+        "p17.s1": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "minervino-06",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 10,
+      "whole_PDF_visibility": {},
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "minervino-07",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 10,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p13.s0": true,
+        "p13.s1": true,
+        "p13.s2": true,
+        "p13.s3": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "minervino-10",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 10,
+      "whole_PDF_visibility": {
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p13.s0": true,
+        "p13.s1": true,
+        "p13.s2": true,
+        "p13.s3": true,
+        "p14.s1": true,
+        "p15.s0": true,
+        "p15.s1": true,
+        "p15.s2": true,
+        "p15.s3": true,
+        "p16.s0": true,
+        "p16.s1": true,
+        "p16.s2": true,
+        "p17.s0": true,
+        "p17.s1": true,
+        "p12.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "trapani-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 5,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p12.s4": true,
+        "p12.s5": true,
+        "p12.s6": true,
+        "p12.s7": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "trapani-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 5,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p12.s4": true,
+        "p12.s5": true,
+        "p12.s6": true,
+        "p12.s7": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "trapani-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 5,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p12.s4": true,
+        "p12.s5": true,
+        "p12.s6": true,
+        "p12.s7": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "trapani-04",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 5,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p12.s4": true,
+        "p12.s5": true,
+        "p12.s6": true,
+        "p12.s7": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-20261021-01",
+      "trial": "trapani-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 5,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p12.s4": true,
+        "p12.s5": true,
+        "p12.s6": true,
+        "p12.s7": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "bella-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 4,
+      "whole_PDF_visibility": {
+        "p21.s0": true,
+        "p21.s1": true,
+        "p21.s2": true,
+        "p21.s4": true,
+        "p21.s5": true,
+        "p21.s6": true,
+        "p21.s7": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "bella-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 4,
+      "whole_PDF_visibility": {
+        "p21.s0": true,
+        "p21.s1": true,
+        "p21.s2": true,
+        "p21.s3": true,
+        "p21.s4": true,
+        "p21.s5": true,
+        "p21.s6": true,
+        "p21.s7": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "bella-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 4,
+      "whole_PDF_visibility": {
+        "p21.s0": true,
+        "p21.s1": true,
+        "p21.s2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "bella-04",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 4,
+      "whole_PDF_visibility": {
+        "p21.s0": true,
+        "p21.s1": true,
+        "p21.s2": true,
+        "p21.s4": true,
+        "p21.s5": true,
+        "p21.s6": true,
+        "p21.s7": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "bella-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 4,
+      "whole_PDF_visibility": {
+        "p21.s0": true,
+        "p21.s1": true,
+        "p21.s2": true,
+        "p21.s4": true,
+        "p21.s5": true,
+        "p21.s6": true,
+        "p21.s7": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "catanzaro-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 17,
+      "whole_PDF_visibility": {
+        "t0.r0.c1": true,
+        "t0.r10.c1": true,
+        "t0.r2.c1": true,
+        "t0.r5.c1": true,
+        "t0.r6.c1": true,
+        "t0.r7.c1": false,
+        "t0.r9.c1": true,
+        "t25.r0.c1": true,
+        "t25.r2.c0": true,
+        "t25.r4.c1": true,
+        "t25.r4.c3": false,
+        "t26.r0.c1": true,
+        "t26.r1.c1": true,
+        "t26.r3.c1": true,
+        "t26.r4.c1": true,
+        "t44.r1.c0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "catanzaro-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 17,
+      "whole_PDF_visibility": {
+        "t0.r0.c1": true,
+        "t0.r10.c1": true,
+        "t0.r2.c1": true,
+        "t0.r5.c1": true,
+        "t0.r6.c1": true,
+        "t0.r7.c1": false,
+        "t0.r9.c1": true,
+        "t25.r0.c1": true,
+        "t25.r4.c1": true,
+        "t25.r4.c3": false,
+        "t26.r0.c1": true,
+        "t26.r1.c1": true,
+        "t26.r3.c1": true,
+        "t26.r4.c1": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "catanzaro-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 17,
+      "whole_PDF_visibility": {
+        "t0.r0.c1": true,
+        "t0.r10.c1": true,
+        "t0.r2.c1": true,
+        "t0.r5.c1": true,
+        "t0.r6.c1": true,
+        "t0.r7.c1": false,
+        "t0.r9.c1": true,
+        "t25.r0.c1": true,
+        "t25.r4.c1": true,
+        "t25.r4.c3": false,
+        "t26.r0.c1": true,
+        "t26.r1.c1": true,
+        "t26.r3.c1": true,
+        "t26.r4.c1": true,
+        "t44.r1.c0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "catanzaro-04",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 17,
+      "whole_PDF_visibility": {
+        "t0.r0.c1": true,
+        "t0.r10.c1": true,
+        "t0.r2.c1": true,
+        "t0.r5.c1": true,
+        "t0.r6.c1": true,
+        "t0.r7.c1": false,
+        "t0.r9.c1": true,
+        "t25.r0.c1": true,
+        "t25.r2.c0": true,
+        "t25.r4.c1": true,
+        "t25.r4.c3": false,
+        "t26.r0.c1": true,
+        "t26.r1.c1": true,
+        "t26.r3.c1": true,
+        "t26.r4.c1": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "catanzaro-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 17,
+      "whole_PDF_visibility": {
+        "t0.r0.c1": true,
+        "t0.r10.c1": true,
+        "t0.r2.c1": true,
+        "t0.r5.c1": true,
+        "t0.r6.c1": true,
+        "t0.r7.c1": false,
+        "t0.r9.c1": true,
+        "t25.r0.c1": true,
+        "t25.r2.c0": true,
+        "t25.r4.c1": true,
+        "t25.r4.c3": false,
+        "t26.r0.c1": true,
+        "t26.r1.c1": true,
+        "t26.r3.c1": true,
+        "t26.r4.c1": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {
+          "t0.r7.c1": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+          "t25.r4.c3": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia"
+        },
+        "bounded_locations": {
+          "t0.r7.c1": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ],
+          "t25.r4.c3": [
+            {
+              "page": 1,
+              "bbox": [
+                213.25,
+                754.064764,
+                514.054,
+                782.020764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            },
+            {
+              "page": 11,
+              "bbox": [
+                372.7,
+                210.320764,
+                514.23,
+                245.250764
+              ],
+              "matched_tokens": [
+                "via",
+                "giovanni",
+                "amendola",
+                "172c",
+                "70126",
+                "bari",
+                "ba",
+                "italia"
+              ]
+            }
+          ]
+        },
+        "distinct_locations_sufficient": {
+          "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia": true
+        },
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "cesano-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true,
+        "p19.ft0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "cesano-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true,
+        "p19.ft0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "cesano-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true,
+        "p19.ft0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "cesano-04",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p19.ft0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "cesano-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "cesano-06",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true,
+        "p19.ft0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "cesano-07",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true,
+        "p19.ft0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "cesano-09",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true,
+        "p19.ft0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "cesano-10",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 3,
+      "whole_PDF_visibility": {
+        "p12.ft0": true,
+        "p12.ft1": true,
+        "p12.ft2": true,
+        "p19.ft0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-03",
+      "status": "FAIL",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true,
+        "t6.r0.c1": true,
+        "t6.r0.c3": false
+      },
+      "local_visibility": null,
+      "tiny_original_cells": [
+        {
+          "candidate_id": "t6.r0.c1",
+          "written_value": "Bari",
+          "width_twips": 66,
+          "width_unchanged_from_original": true,
+          "needs_local_visual_review": true
+        },
+        {
+          "candidate_id": "t6.r0.c3",
+          "written_value": "01234560981",
+          "width_twips": 81,
+          "width_unchanged_from_original": true,
+          "needs_local_visual_review": true
+        }
+      ],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-04",
+      "status": "FAIL",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "t6.r0.c1": true,
+        "t6.r0.c3": false
+      },
+      "local_visibility": null,
+      "tiny_original_cells": [
+        {
+          "candidate_id": "t6.r0.c1",
+          "written_value": "Bari",
+          "width_twips": 66,
+          "width_unchanged_from_original": true,
+          "needs_local_visual_review": true
+        },
+        {
+          "candidate_id": "t6.r0.c3",
+          "written_value": "01234560981",
+          "width_twips": 81,
+          "width_unchanged_from_original": true,
+          "needs_local_visual_review": true
+        }
+      ],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-06",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-07",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-08",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-09",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "craa-10",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 7,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p13.s0": true,
+        "p14.s0": true,
+        "p15.s0": true,
+        "p16.s0": true,
+        "p17.s0": true,
+        "p18.s0": true,
+        "p5.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "minervino-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 9,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p13.s1": true,
+        "p13.s2": true,
+        "p13.s3": true,
+        "p14.s1": true,
+        "p15.s0": true,
+        "p15.s1": true,
+        "p15.s2": true,
+        "p15.s3": true,
+        "p16.s0": true,
+        "p16.s1": true,
+        "p16.s2": true,
+        "p17.s0": true,
+        "p17.s1": true,
+        "p40.s0": true,
+        "p41.s0": true,
+        "p41.s1": true,
+        "p42.s0": true,
+        "p42.s1": true,
+        "p42.s2": true,
+        "p42.s3": true,
+        "p42.s4": true,
+        "p42.s5": true,
+        "p43.s0": true,
+        "p43.s1": true,
+        "p43.s2": true,
+        "p43.s3": true,
+        "p43.s4": true,
+        "p44.s0": true,
+        "p44.s1": true,
+        "p44.s2": true,
+        "p45.s0": true,
+        "p45.s1": true,
+        "p45.s2": true,
+        "p45.s3": true,
+        "p45.s4": true,
+        "p46.s0": true,
+        "p46.s1": true,
+        "p46.s2": true,
+        "p47.s0": true,
+        "p48.s0": true,
+        "p48.s1": true,
+        "p49.s0": true,
+        "p49.s1": true,
+        "p49.s2": true,
+        "p49.s3": true,
+        "p49.s4": true,
+        "p52.s1": true,
+        "p53.s2": true,
+        "p53.s3": true,
+        "p53.s4": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "minervino-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 9,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p13.s0": true,
+        "p13.s1": true,
+        "p13.s2": true,
+        "p13.s3": true,
+        "p14.s0": true,
+        "p14.s1": true,
+        "p15.s0": true,
+        "p15.s1": true,
+        "p15.s2": true,
+        "p15.s3": true,
+        "p16.s0": true,
+        "p16.s1": true,
+        "p16.s2": true,
+        "p17.s0": true,
+        "p17.s1": true,
+        "p40.s0": true,
+        "p41.s0": true,
+        "p42.s0": true,
+        "p42.s1": true,
+        "p42.s2": true,
+        "p42.s3": true,
+        "p42.s4": true,
+        "p42.s5": true,
+        "p43.s0": true,
+        "p43.s1": true,
+        "p43.s2": true,
+        "p43.s3": true,
+        "p43.s4": true,
+        "p44.s0": true,
+        "p44.s1": true,
+        "p44.s2": true,
+        "p45.s0": true,
+        "p45.s1": true,
+        "p45.s2": true,
+        "p45.s3": true,
+        "p45.s4": true,
+        "p46.s0": true,
+        "p46.s1": true,
+        "p46.s2": true,
+        "p47.s0": true,
+        "p48.s0": true,
+        "p48.s1": true,
+        "p49.s0": true,
+        "p49.s1": true,
+        "p49.s2": true,
+        "p49.s3": true,
+        "p49.s4": true,
+        "p51.s0": true,
+        "p52.s0": true,
+        "p52.s1": true,
+        "p53.s0": true,
+        "p53.s1": true,
+        "p53.s2": true,
+        "p53.s3": true,
+        "p53.s4": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "minervino-04",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 9,
+      "whole_PDF_visibility": {
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p13.s0": true,
+        "p13.s1": true,
+        "p13.s2": true,
+        "p13.s3": true,
+        "p14.s1": true,
+        "p15.s0": true,
+        "p15.s2": true,
+        "p15.s3": true,
+        "p16.s0": true,
+        "p16.s1": true,
+        "p16.s2": true,
+        "p17.s0": true,
+        "p17.s1": true,
+        "p40.s0": true,
+        "p41.s0": true,
+        "p42.s0": true,
+        "p42.s1": true,
+        "p42.s2": true,
+        "p42.s3": true,
+        "p42.s4": true,
+        "p42.s5": true,
+        "p43.s0": true,
+        "p43.s1": true,
+        "p43.s2": true,
+        "p43.s3": true,
+        "p43.s4": true,
+        "p44.s0": true,
+        "p44.s1": true,
+        "p44.s2": true,
+        "p45.s0": true,
+        "p45.s1": true,
+        "p45.s2": true,
+        "p45.s3": true,
+        "p45.s4": true,
+        "p46.s0": true,
+        "p46.s1": true,
+        "p46.s2": true,
+        "p47.s0": true,
+        "p48.s0": true,
+        "p48.s1": true,
+        "p49.s0": true,
+        "p49.s1": true,
+        "p49.s2": true,
+        "p49.s3": true,
+        "p49.s4": true,
+        "p12.s0": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "minervino-08",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 9,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p13.s0": true,
+        "p13.s1": true,
+        "p13.s2": true,
+        "p13.s3": true,
+        "p14.s1": true,
+        "p15.s0": true,
+        "p15.s1": true,
+        "p15.s2": true,
+        "p15.s3": true,
+        "p16.s0": true,
+        "p16.s1": true,
+        "p16.s2": true,
+        "p17.s0": true,
+        "p17.s1": true,
+        "p40.s0": true,
+        "p41.s0": true,
+        "p42.s0": true,
+        "p42.s1": true,
+        "p42.s2": true,
+        "p42.s3": true,
+        "p42.s4": true,
+        "p42.s5": true,
+        "p43.s0": true,
+        "p43.s1": true,
+        "p43.s2": true,
+        "p43.s3": true,
+        "p43.s4": true,
+        "p44.s0": true,
+        "p44.s1": true,
+        "p44.s2": true,
+        "p45.s0": true,
+        "p45.s1": true,
+        "p45.s2": true,
+        "p45.s3": true,
+        "p45.s4": true,
+        "p46.s0": true,
+        "p46.s1": true,
+        "p46.s2": true,
+        "p47.s0": true,
+        "p48.s0": true,
+        "p48.s1": true,
+        "p49.s0": true,
+        "p49.s1": true,
+        "p49.s2": true,
+        "p49.s3": true,
+        "p49.s4": true,
+        "p51.s0": true,
+        "p52.s0": true,
+        "p52.s1": true,
+        "p53.s0": true,
+        "p53.s1": true,
+        "p53.s2": true,
+        "p53.s3": true,
+        "p53.s4": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "trapani-01",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 5,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p12.s4": true,
+        "p12.s5": true,
+        "p12.s6": true,
+        "p12.s7": true,
+        "p75.s0": true,
+        "p75.s1": true,
+        "p75.s2": true,
+        "p75.s3": true,
+        "p75.s4": true,
+        "p75.s5": true,
+        "p75.s6": true,
+        "p75.s7": true,
+        "p75.s8": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "trapani-02",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 5,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p12.s4": true,
+        "p12.s5": true,
+        "p12.s6": true,
+        "p12.s7": true,
+        "p75.s0": true,
+        "p75.s1": true,
+        "p75.s2": true,
+        "p75.s3": true,
+        "p75.s4": true,
+        "p75.s5": true,
+        "p75.s6": true,
+        "p75.s7": true,
+        "p75.s8": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "trapani-03",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 5,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p12.s4": true,
+        "p12.s5": true,
+        "p12.s6": true,
+        "p12.s7": true,
+        "p75.s0": true,
+        "p75.s1": true,
+        "p75.s2": true,
+        "p75.s3": true,
+        "p75.s4": true,
+        "p75.s5": true,
+        "p75.s6": true,
+        "p75.s7": true,
+        "p75.s8": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "trapani-04",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 5,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p12.s4": true,
+        "p12.s5": true,
+        "p12.s6": true,
+        "p12.s7": true,
+        "p75.s0": true,
+        "p75.s1": true,
+        "p75.s2": true,
+        "p75.s3": true,
+        "p75.s4": true,
+        "p75.s5": true,
+        "p75.s6": true,
+        "p75.s7": true,
+        "p75.s8": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "trial": "trapani-05",
+      "status": "PASS_WITH_LIMITS",
+      "pages": 5,
+      "whole_PDF_visibility": {
+        "p12.s0": true,
+        "p12.s1": true,
+        "p12.s2": true,
+        "p12.s3": true,
+        "p12.s4": true,
+        "p12.s5": true,
+        "p12.s6": true,
+        "p12.s7": true,
+        "p75.s0": true,
+        "p75.s1": true,
+        "p75.s2": true,
+        "p75.s3": true,
+        "p75.s4": true,
+        "p75.s5": true,
+        "p75.s6": true,
+        "p75.s7": true,
+        "p75.s8": true
+      },
+      "local_visibility": {
+        "all_values_observed": true,
+        "text_interleaving_false_negatives": {},
+        "bounded_locations": {},
+        "distinct_locations_sufficient": {},
+        "actual_XML_positions_and_visual_sampling_required": true
+      },
+      "tiny_original_cells": [],
+      "PDF_geometry_outside_page": [],
+      "XML_positions_checked_independently": true,
+      "Word_desktop_not_tested": true,
+      "token_visibility_does_not_prove_geometric_location_of_every_repeated_value": true
+    }
+  ]
+}

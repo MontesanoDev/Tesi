@@ -1,0 +1,137 @@
+paragraph:0: 	ALLEGATO A
+paragraph:1: da inserire nella “Documentazione Amministrativa”  
+paragraph:2: 
+paragraph:3: COMUNE DI BELLA
+paragraph:4: PROVINCIA DI POTENZA
+paragraph:5: Medaglia d’Oro al Valore Civile
+paragraph:6: Corso Italia 28 – 85051 BELLA (PZ) – C.F.:  00224880765
+paragraph:7: www.comune.bella.pz.it – pec: protocollo@pec.comune.bella.pz.it
+paragraph:8: AREA III - LAVORI PUBBLICI E APPALTI
+paragraph:9: 
+paragraph:10:   
+paragraph:11:  
+paragraph:12: 
+paragraph:13: OGGETTO: SERVIZI DI ARCHITETTURA E INGEGNERIA PER LO STUDIO DI FATTIBILITÀ TECNICA ED ECONOMICA PER LA REALIZZAZIONE DEGLI INTERVENTI “PROGETTO DI RECUPERO, RIQUALIFICAZIONE URBANA ED AMBIENTALE DEL COMUNE DI BELLA (PZ) - MITIGAZIONE DEL RISCHIO IDROGEOLOGICO VERSANTE EX MUNICIPIO.
+paragraph:14:  
+paragraph:15: CUP: D64D22004040006
+paragraph:16: CIG: Z7B39E59CB
+paragraph:17: 
+paragraph:18: DOMANDA DI AMMISSIONE ALLA GARA
+paragraph:19: E DICHIARAZIONE A CORREDO DELL’OFFERTA
+paragraph:20: 
+paragraph:21: Il/la sottoscritto/a [[p21.s0]] nato/a a [[p21.s1]] il [[p21.s2]] in qualità di [[p21.s3]] dello studio/società/consorzio [[p21.s4]] con sede in [[p21.s5]] con codice fiscale n. [[p21.s6]] con partita IVA n. [[p21.s7]]
+paragraph:22: 
+paragraph:23: C H I E D E
+paragraph:24: 
+paragraph:25: di partecipare alla procedura negoziata indicata in oggetto come:
+paragraph:26: 
+paragraph:27: 	libero professionista singolo;
+paragraph:28: 	libero professionista associato (nelle forme di cui alla legge 23 novembre 1939, n. 1815); 
+paragraph:29: 	legale rappresentante di una società di professionisti; 
+paragraph:30: 	legale rappresentante di una società di ingegneria; 
+paragraph:31: 	capogruppo o legale rappresentante del soggetto capogruppo di un raggruppamento temporaneo tra i soggetti di cui alle lettere a) b) c) e d), dell’art. 46, comma 1, del D. Lgs. 18 aprile 2016, n. 50 s.m.i.;
+paragraph:32: 	consorzio stabile di società di professionisti e di società di ingegneria di cui all’art. 46, comma 1, lettera f) del D. Lgs. 18 aprile 2016, n. 50 s.m.i.; 
+paragraph:33: 	operatore economico che svolge servizi di ingegneria ed architettura di cui all’art. 46, comma 1, del D. Lgs. n. 50/2016 s.m.i. stabilito in altri Stati membri dell’Unione Europea; 
+paragraph:34: 	partecipante con l’operatore ausiliario……………………………………….;
+paragraph:35: 
+paragraph:36: 	………………………………………………………………………………………………..;
+paragraph:37: 
+paragraph:38: Al fine di dimostrare il possesso dei requisiti di capacità economico-finanziaria e tecnico-organizzativa, ai sensi degli articoli 46, 47 e 77-bis del d.P.R. 28 dicembre 2000, n. 445, e successive modifiche, consapevole delle sanzioni penali previste dall'articolo 76 del medesimo d.P.R. n. 445/2000, per le ipotesi di falsità in atti e dichiarazioni mendaci ivi indicate
+paragraph:39: 
+paragraph:40: DICHIARA
+paragraph:41: 
+paragraph:42: Che l’offerta economica presentata è remunerativa giacché, per la sua formulazione, si è preso atto e tenuto conto:
+paragraph:43: delle condizioni contrattuali e degli oneri compresi quelli eventuali relativi in materia, di assicurazione, di condizioni di lavoro e di previdenza e assistenza in vigore nel luogo dove devono essere svolti i servizi;
+paragraph:44: di tutte le circostanze generali, particolari e locali, nessuna esclusa ed eccettuata, che possono avere influito o influire sia sulla prestazione dei servizi, sia sulla determinazione della propria offerta;
+paragraph:45: di considerare, pertanto, valida e fondata l’offerta economica presentata;
+paragraph:46: 
+paragraph:47: di accettare, senza condizione o riserva alcuna, tutte le norme e disposizioni contenute nel Capitolato speciale prestazionale e d'oneri, nel disciplinare di gara e nello schema di contratto di incarico professionale;
+paragraph:48: 
+paragraph:49: di impegnarsi a stipulare apposita polizza di responsabilità civile professionale per i rischi derivanti dallo svolgimento dell’attività di propria competenza ai sensi dell’art ai sensi dell’articolo 24, comma 4, del D. Lgs. n. 50/2016 s.m.i.;
+paragraph:50: 
+paragraph:51: l’indirizzo PEC e/o mail indicati nel DGUE sono idonei per l’invio per l’eventuale richiesta di integrazioni di cui all’art. 83, comma 9 del D.lgs. n. 50/2016 (soccorso istruttorio) e qualsiasi altra comunicazione prevista dal medesimo decreto; 
+paragraph:52: 
+paragraph:53: (nel caso di raggruppamento temporaneo di professionisti) che, in caso di aggiudicazione, sarà conferito mandato speciale con rappresentanza o funzioni di capogruppo/capoprogetto a [[p53.s0]];
+paragraph:54: 
+paragraph:55: (nel caso di raggruppamento temporaneo di professionisti) di assumersi l’impegno, in caso di aggiudicazione, ad uniformarsi alla disciplina vigente in materia di associazioni temporanee;
+paragraph:56: 
+paragraph:57: (nel caso di raggruppamento temporaneo di professionisti) che, ai sensi dell’art. 24, comma 5, del D. Lgs. n. 50/2016 ed art. 4 comma 1 D.M. 02/12/2016 n. 263 il giovane professionista laureato progettista risulta essere:
+paragraph:58: ￼nome: [[p58.s0]]
+paragraph:59: cognome: [[p59.s0]]
+paragraph:60: titolo professionale: [[p60.s0]]
+paragraph:61: data di nascita: [[p61.s0]]
+paragraph:62: data di abilitazione professionale [[p62.s0]]
+paragraph:63: qualifica: [[p63.s0]] 
+paragraph:64: 
+paragraph:65: che i tecnici persone fisiche  del consorzio stabile,   della società di ingegneria o   della società di professionisti, che seguiranno personalmente l’incarico saranno:
+paragraph:66: 
+paragraph:67: Num.
+paragraph:68: Qualifica e generalità del Tecnico
+paragraph:69: Data di conseguimento abilitazione
+paragraph:70: Natura del rapporto professionale
+paragraph:71: N. ordine prof. e Città sede dell’Ordine
+paragraph:72: 
+paragraph:73: 
+paragraph:74: 
+paragraph:75: 
+paragraph:76: 
+paragraph:77: 
+paragraph:78: 
+paragraph:79: 
+paragraph:80: 
+paragraph:81: 
+paragraph:82: 
+paragraph:83: 
+paragraph:84: 
+paragraph:85: 
+paragraph:86: 
+paragraph:87: 
+paragraph:88: 
+paragraph:89: 
+paragraph:90: 
+paragraph:91: 
+paragraph:92: 
+paragraph:93: 
+paragraph:94: 
+paragraph:95: 
+paragraph:96: 
+paragraph:97: 
+paragraph:98: 
+paragraph:99: 
+paragraph:100: 
+paragraph:101: 
+paragraph:102: 
+paragraph:103: e che la quota di partecipazione al raggruppamento, corrispondente alla percentuale di servizi che verranno eseguiti da ciascun concorrente è la seguente [[p103.s0]]
+paragraph:104: e la natura del servizio d’ingegneria che verrà eseguita da ciascun concorrente è la seguente [[p104.s0]]
+paragraph:105: 
+paragraph:106: di essere informato, ai sensi e per gli effetti di cui all’articolo 10 del D. Lgs. 30 giugno 2003, n. 196, che i dati personali raccolti saranno trattati, anche con strumenti informatici, esclusivamente nell’ambito del procedimento per il quale la presente dichiarazione viene resa;
+paragraph:107: 
+paragraph:108: ⁭ dichiara di non essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e successive modificazioni;
+paragraph:109: 
+paragraph:110: oppure
+paragraph:111: 
+paragraph:112:  ⁭ dichiara di essersi avvalso di piani individuali di emersione di cui alla L. 383/2001 e succ. mod., ma che il periodo di emersione si è concluso;
+paragraph:113: 
+paragraph:114: ⁭ di essere edotto degli obblighi derivanti dal Codice di comportamento adottato dalla stazione appaltante con la deliberazione di Giunta Comunale n. 9 del 29 gennaio 2014 reperibile al seguente link: Amministrazione Trasparente - Codice Comportamentale dei dipendenti pubblici (openacta.it) e si impegna, in caso di aggiudicazione, ad osservare e a far osservare ai propri dipendenti e collaboratori, per quanto applicabile, il suddetto codice, pena la risoluzione del contratto;
+paragraph:115: 
+paragraph:116:  ⁭ si impegna ad uniformarsi, in caso di aggiudicazione, alla disciplina di cui agli articoli 17, comma 2, e 53, comma 3 del D.P.R. n. 633/1972 e a comunicare, alla stazione appaltante, la nomina del proprio rappresentante fiscale, nelle forme di legge;
+paragraph:117: 
+paragraph:118: ⁭ dichiara di autorizzare la stazione appaltante a rilasciare copia di tutta la documentazione presentata per la partecipazione alla gara, qualora un partecipante alla gara eserciti, ai sensi della L. 07.08.1990, n° 241, la facoltà di “accesso agli atti”;
+paragraph:119: 
+paragraph:120: ⁭ dichiara l’assunzione di tutti gli obblighi di tracciabilità dei flussi finanziari di cui all’articolo 3 della L. 13.08.2010 n° 136 e s.m.i.;
+paragraph:121: 
+paragraph:122: 
+paragraph:123: Timbro
+paragraph:124: Professionale
+paragraph:125: 
+paragraph:126: Timbro
+paragraph:127: Professionale
+paragraph:128: 
+paragraph:129: Data [[p129.s0]] 			FIRMA [[p129.s1]]
+paragraph:130: 
+paragraph:131: 	
+paragraph:132: 
+paragraph:133: 
+paragraph:134: 
+paragraph:135: N.B. 1 La domanda e dichiarazione deve essere corredata da fotocopia, non autenticata, di documento di identità del sottoscrittore, in corso di validità.
+paragraph:136: N.B.2: Alla presente domanda va allegato il DGUE previsto per la verifica dei requisiti di partecipazione.

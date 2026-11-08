@@ -1,0 +1,19 @@
+{
+  "attempted": 1,
+  "tokens_spent": 923425,
+  "results": [
+    {
+      "trial": "cesano-1",
+      "document": "cesano",
+      "session_id": "3c180e98d20149f498212855c5993a0d",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 196890,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    }
+  ]
+}

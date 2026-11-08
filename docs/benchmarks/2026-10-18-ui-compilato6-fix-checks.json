@@ -1,0 +1,19 @@
+{
+  "live_sessions_unchanged": 29,
+  "live_schema_unchanged": true,
+  "original_analysis_files_unchanged": 22,
+  "download_compilato6_unchanged": true,
+  "fixture_and_gold_git_diff_empty": true,
+  "allowed_preexisting_files_changed": [
+    "backend/app/compilation_global_dialogue.py",
+    "backend/app/compilation_global_sessions.py",
+    "backend/app/compilation_global.py",
+    "backend/app/compilation_coverage.py",
+    "backend/tests/test_compilation_global_dialogue.py",
+    "STATUS.md",
+    "relazioni.md"
+  ],
+  "writer_api_routes_database_and_other_preexisting_files_unchanged": true,
+  "head_unchanged": "99ab052",
+  "git_diff_check": "passed"
+}

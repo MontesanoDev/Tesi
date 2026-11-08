@@ -1,0 +1,173 @@
+{
+  "version": 2,
+  "created_before_first_LLM_call": true,
+  "reference_kind": "Authorial requirement/SOURCE inventory; no independent GOLD DOCX; not fed to model",
+  "SOURCE_available_occurrences": [
+    {
+      "candidate_id": "p5.s0",
+      "label": "Nome firmatario",
+      "value": "Leonardo Montemurro",
+      "subject": "Leonardo Montemurro",
+      "property": "name",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s0",
+      "label": "Impresa",
+      "value": "Mapi Ingegneria S.r.l.",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "name",
+      "SOURCE_chunks": [
+        -30,
+        -43
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p13.s0",
+      "label": "Sede",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "address",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p14.s0",
+      "label": "PEC",
+      "value": "mapi.ingegneria@pec.demo",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "pec",
+      "SOURCE_chunks": [
+        -44
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p15.s0",
+      "label": "CF impresa",
+      "value": "IT01234567890",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "cf",
+      "SOURCE_chunks": [
+        -30,
+        -43
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p16.s0",
+      "label": "PIVA impresa",
+      "value": "IT01234567890",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "piva",
+      "SOURCE_chunks": [
+        -30,
+        -43
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p17.s0",
+      "label": "Mail impresa",
+      "value": "segreteria@mapi-ingegneria.demo",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "email",
+      "SOURCE_chunks": [
+        -44
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p18.s0",
+      "label": "Telefono impresa",
+      "value": "+39 080 000 2040",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "phone",
+      "SOURCE_chunks": [
+        -44
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t6.r0.c1",
+      "label": "Provincia CCIAA",
+      "value": "Bari (BA)",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "province",
+      "SOURCE_chunks": [
+        -30,
+        -52
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t6.r0.c3",
+      "label": "Numero CCIAA",
+      "value": "01234560981",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "registration_number",
+      "SOURCE_chunks": [
+        -52
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    }
+  ],
+  "SOURCE_available_occurrence_count": 10,
+  "USER_authorized_controls": {},
+  "known_unresolved_active_fields": [
+    "p51.s0",
+    "p52.s0",
+    "p55.s0",
+    "p75.s0",
+    "p89.s0",
+    "p90.s0",
+    "p90.s1",
+    "p91.s0",
+    "p91.s1",
+    "p92.s0",
+    "p92.s1",
+    "p115.s0",
+    "p124.s0",
+    "p126.s0"
+  ],
+  "applicability_notes": "The single-professional and associated-studio branches are not active; blank companion cells beside name/role are not extra mandatory facts. Service/turnover qualification declarations require their own proof and applicability; individual annual values do not prove best three years of the last five.",
+  "preflight_error": null,
+  "denominator_scope": "Documented core SOURCE field occurrences, not distinct atomic facts or total procedure requirements; unknown attestations/designations and variable-cardinality tables excluded from completeness denominator",
+  "protected": "Do not invent personal properties, powers, designations or attestations; no signatures; USER choice only identifies signer and participation",
+  "source_as_of": "2026-10-15",
+  "permitted_equivalence": "Date formats, case/spaces, title prefix, fuller literal SOURCE if subject/property/granularity correct",
+  "registered_UTC": "2026-10-21T11:36:54.734825+00:00",
+  "new_trial": true,
+  "reference_not_in_prompt": true,
+  "not_gold_from_new_model_output": true,
+  "ordinary_UI_new_global_call_required": true,
+  "source_corpus": "../../input/SOURCE.json",
+  "decisions": "scenario-USER.json",
+  "baseline_reference_limit": "Core documented occurrences, not all document requirements or an independent second reviewer. Every actual write and other omission needs its own documentary assessment. Complete FORM requirements, ownership, active branch and procedural authorization override a generic old expectation.",
+  "permutation_allowed": "Socio records may be reordered, but all properties in each physical row must refer to the same documented person.",
+  "open_scope": "Native procedural preferences, consents and signatures remain unconfirmed. Inactive participation branches stay empty; unlisted candidates are not automatically legitimate omissions.",
+  "registered_before_inference": true,
+  "old_reference_path": "benchmark ufficiale/baseline-v12-20261021-01/trials/craa/riferimento-preregistrato.json",
+  "old_reference_SHA256": "e4e5a891aa31ac173435bc3708f5ec6cabf6a7b600b1d6cf3dab8752f87b912b",
+  "evaluation_limit": "Authorial documentary review; not independent gold or universal accuracy",
+  "existing_compound_and_applicability_guards_override_legacy_expected_values": true
+}

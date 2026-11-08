@@ -1,0 +1,17 @@
+{
+  "UTC": "2026-10-23T10:05:40.735554+00:00",
+  "files": {
+    "backend/data/compilation-audit/candidata-completa-20261023-01/e2e_analyze.py": "d3ea493b835ac8556376d7e809a0958226a1f13b642d9c44e48cc2d80426b87a",
+    "backend/data/compilation-audit/candidata-completa-20261023-01/e2e_prepare.py": "201a014ff0cd8390de9df9ffe6727affc03b9c2eff7b553f7923edeab3a90756",
+    "backend/data/compilation-audit/candidata-completa-20261023-01/test_budget.py": "7ed00f4776ad7da8a5f95e934259016f24b99ef396437062f095944307b6f0a8",
+    "backend/data/compilation-audit/candidata-completa-20261023-01/e2e_collect.py": "f2ddcbf9aba7080319db76fcae28f00db1a539d4b99a4821bb7f0fe6083ba01e",
+    "backend/data/compilation-audit/candidata-completa-20261023-01/e2e_observed_server.py": "d978f888118f2cf30fa801f613e886142f9a3d7782a545f0fce9bdc1d9994ec7",
+    "backend/data/compilation-audit/candidata-completa-20261023-01/e2e_render.py": "4f2905dd5ce3226ffa77c9fa257b514dc772ecdd3dedb0ca2671c3117401d01b",
+    "backend/data/compilation-audit/candidata-completa-20261023-01/e2e_setup_runtimes.py": "6243a8dca97e6d81598491bb951105feb07b5eab18fa38946f70ef446d88df81",
+    "backend/data/compilation-audit/candidata-completa-20261023-01/e2e_setup_projects.py": "7dc7945b8e30f9e63509236906798f0ee249be4fc21062565b610385b00f809f",
+    "backend/data/compilation-audit/candidata-completa-20261023-01/budget.py": "8e8958276155342b558d8b783ed71421aecd37c84a95dee62eef2327f511bd82",
+    "backend/data/compilation-audit/candidata-completa-20261023-01/e2e_campaign.cjs": "ba4e46ced406130ad144cf43b6a80492f391b6f7a135f38cf6ae9f50d27dc5fe",
+    "backend/data/compilation-audit/candidata-completa-20261023-01/PREREG-E2E-SEZIONI.md": "04411bb00f10fe719ee20d65e0399e2172fb92db83503900ed959aabd25dfed4",
+    "benchmark ufficiale/candidata-completa-20261023-01/PROTOCOLLO-SEZIONI.json": "88de66e41ba192885ea8ac1ef496ee30cc9be69909bced900b579d20fa9244a2"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "E2E_allowed": true,
+  "tests_permanent_and_focused": "PASS: 258",
+  "tests_full": "PASS:2682",
+  "ruff": "PASS",
+  "six_catalog_and_exports": "PASS",
+  "twenty_native_fields_IDs_writes_readability": "PASS",
+  "old_DOCX_and_PDF_no_regressions": "PASS",
+  "known_independent_CRAA_visibility": "FAIL (preexisting, preserved, not FORMText regression)",
+  "no_application_changes": true,
+  "no_unexecuted_required_preflight": true
+}

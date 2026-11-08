@@ -1,0 +1,135 @@
+[
+ {
+  "runtime": "storico",
+  "model": {
+   "provider": "deepseek",
+   "model": "deepseek-flash",
+   "base_url": "https://api.deepseek.com"
+  },
+  "forms": {
+   "minervino": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1,
+     "derivation_revision": 1,
+     "generation_revision": 2
+    },
+    "segments": [
+     59,
+     54,
+     60,
+     60,
+     34
+    ],
+    "request_chars": [
+     120546,
+     120155,
+     122854,
+     118374,
+     116103
+    ],
+    "requests_sha256": [
+     "7f542c4414c82f2937f5476a2516117c992caf367ef6d3dd3df918a631b3497b",
+     "afc03fbc775f89480563c09ad23a5013b72b554d494e43ef9b16b672b509c7a2",
+     "f66c897d90383382c21a26ac00f267449afb3695766f0ecad9090b102c960b38",
+     "cbfdb998a2a1f5b7954d06abc1488677ddb41f0ba3329025eec2ab71b56bd2da",
+     "6706a11d3796ee11fc0a4ccc409793ef58171e04b0ac768dcea537920e055550"
+    ],
+    "deterministic_twice": true
+   },
+   "catanzaro": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1,
+     "derivation_revision": 1,
+     "generation_revision": 2
+    },
+    "segments": [
+     43,
+     57,
+     51,
+     56,
+     59,
+     41
+    ],
+    "request_chars": [
+     124465,
+     130357,
+     123185,
+     126785,
+     123487,
+     119113
+    ],
+    "requests_sha256": [
+     "0da2dbc27a83dfe251ab39c342a2990f3f51512472dc7515f9e1c30d3f6cfed2",
+     "ee488e375ec6fe4d4a823fe8adc45f3823a6b2215ccd62d294c95f9f04e19295",
+     "929a0053c7e190ca0579bb815522e789007f3d9b9f8350642b06ef4bd7f5263f",
+     "f66333fb2481533584569607fcda6f99bcd57e1663f77ed077258e02f47e3a46",
+     "07613021b9a33e41374a42b61714a694592db4a7d0a3622c0ae5c5f8203fd2ac",
+     "0ad7c6ec082990683e5a89523a74ee9599a1be8d9e34e4b0d0765b62993786d5"
+    ],
+    "deterministic_twice": true
+   },
+   "cesano": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1,
+     "derivation_revision": 1,
+     "generation_revision": 2
+    },
+    "segments": [
+     60,
+     28
+    ],
+    "request_chars": [
+     126147,
+     110282
+    ],
+    "requests_sha256": [
+     "06f90697616439727bc3a4888046f667559247d1dc21d5e1abc990986705f92c",
+     "c536b70158cb3cda0aca43e7a300daf918530f3e3a3c8ea1ab953bb9f2c8da6a"
+    ],
+    "deterministic_twice": true
+   }
+  }
+ },
+ {
+  "runtime": "nuova-source",
+  "model": {
+   "provider": "deepseek",
+   "model": "deepseek-flash",
+   "base_url": "https://api.deepseek.com"
+  },
+  "forms": {
+   "soresa2023": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1,
+     "derivation_revision": 1,
+     "generation_revision": 2
+    },
+    "segments": [
+     36,
+     45
+    ],
+    "request_chars": [
+     84792,
+     92128
+    ],
+    "requests_sha256": [
+     "022277eadd1232b428597f598df5729091e2cad9c3bb71a6235db4d62140eb44",
+     "2852eaf9486c530e38796a0a8db81f32f45ed442a2bda1982f323171eb705781"
+    ],
+    "deterministic_twice": true
+   }
+  }
+ }
+]

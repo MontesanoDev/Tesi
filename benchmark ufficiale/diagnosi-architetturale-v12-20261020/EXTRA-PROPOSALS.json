@@ -1,0 +1,2269 @@
+[
+  {
+    "trial": "trapani/E1/rep-1",
+    "candidate_id": "p107.s0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p107.s0",
+      "type": "text",
+      "context": "paragraph:107",
+      "continuation": "paragraph:106",
+      "text": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]; ",
+      "anchors": [
+        "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; "
+      ],
+      "origin_text": "possesso di tutti requisiti specifici richiesti dalla normativa così come indicati nella Linee Guida ANAC n. 3 di attuazione del Codice;",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "PEC per comunicazioni",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:107",
+        "quote": "al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]];"
+      },
+      "conditions": [],
+      "fact_id": "f_pec",
+      "reason": "",
+      "property": "pec"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "pec",
+      "value": "mapi.ingegneria@pec.demo",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "candidate_id": "p107.s0",
+    "section": 1,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p107.s0",
+      "type": "text",
+      "context": "paragraph:107",
+      "continuation": "paragraph:106",
+      "text": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]; ",
+      "anchors": [
+        "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; "
+      ],
+      "origin_text": "possesso di tutti requisiti specifici richiesti dalla normativa così come indicati nella Linee Guida ANAC n. 3 di attuazione del Codice;",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "PEC per comunicazioni",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:107",
+        "quote": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]];"
+      },
+      "conditions": [
+        "c_proponente"
+      ],
+      "fact_id": "f_pec",
+      "property": "PEC",
+      "reason": "PEC aziendale documentata; resta da confermare la qualità di soggetto proponente."
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "PEC",
+      "value": "mapi.ingegneria@pec.demo",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "trapani/B0/rep-1",
+    "candidate_id": "p107.s0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p107.s0",
+      "type": "text",
+      "context": "paragraph:107",
+      "continuation": "paragraph:106",
+      "text": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]; ",
+      "anchors": [
+        "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; "
+      ],
+      "origin_text": "possesso di tutti requisiti specifici richiesti dalla normativa così come indicati nella Linee Guida ANAC n. 3 di attuazione del Codice;",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "PEC per comunicazioni",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:107",
+        "quote": "il dichiarante assume ogni rischio): [[p107.s0]];"
+      },
+      "conditions": [
+        "c_pec"
+      ],
+      "property": "pec",
+      "fact_id": "f_mapi_pec",
+      "reason": "PEC documentata; accettazione dell’indirizzo non confermata"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "pec",
+      "value": "mapi.ingegneria@pec.demo",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "candidate_id": "t0.r8.c1",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t0.r8.c1",
+      "type": "text",
+      "context": "t0.r8.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Sede operativa ",
+        "(se diversa dalla sede legale)"
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Sede operativa",
+      "kind": "data",
+      "disposition": "not_applicable",
+      "form": {
+        "paragraph_id": "paragraph:34",
+        "quote": "Sede operativa"
+      },
+      "conditions": [
+        "c_sede_diversa"
+      ],
+      "reason": "Sede operativa coincidente con la sede legale"
+    },
+    "fact": {},
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/B0/rep-1",
+    "candidate_id": "t0.r8.c1",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t0.r8.c1",
+      "type": "text",
+      "context": "t0.r8.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Sede operativa ",
+        "(se diversa dalla sede legale)"
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Sede operativa",
+      "kind": "data",
+      "disposition": "not_applicable",
+      "form": {
+        "paragraph_id": "paragraph:34",
+        "quote": "Sede operativa "
+      },
+      "conditions": [
+        "c_sede_diversa"
+      ],
+      "reason": "Sede operativa coincidente con la sede legale"
+    },
+    "fact": {},
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E1/rep-1",
+    "candidate_id": "t0.r8.c1",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t0.r8.c1",
+      "type": "text",
+      "context": "t0.r8.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Sede operativa ",
+        "(se diversa dalla sede legale)"
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Sede operativa (se diversa dalla sede legale)",
+      "kind": "data",
+      "disposition": "not_applicable",
+      "form": {
+        "paragraph_id": "paragraph:34",
+        "quote": "Sede operativa "
+      },
+      "conditions": [
+        "c_sedi_diverse"
+      ],
+      "reason": "La sede operativa documentata coincide con la sede legale."
+    },
+    "fact": {},
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "candidate_id": "t0.r8.c1",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t0.r8.c1",
+      "type": "text",
+      "context": "t0.r8.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Sede operativa ",
+        "(se diversa dalla sede legale)"
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Sede operativa",
+      "kind": "data",
+      "disposition": "not_applicable",
+      "form": {
+        "paragraph_id": "paragraph:34",
+        "quote": "Sede operativa "
+      },
+      "conditions": [
+        "c_sede_diff"
+      ],
+      "reason": "La sede operativa documentata coincide con la sede legale"
+    },
+    "fact": {},
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "candidate_id": "p799.s0",
+    "section": 2,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p799.s0",
+      "type": "text",
+      "context": "paragraph:799",
+      "continuation": null,
+      "text": "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: [[p799.s0]].",
+      "anchors": [
+        "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: _____________________________________."
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "banca dati ufficiale o pubblico registro",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:799",
+        "quote": "il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: [[p799.s0]]"
+      },
+      "conditions": [
+        "c_parte_terza",
+        "c_pubblico_registro"
+      ],
+      "property": "pubblico registro",
+      "fact_id": "f_registro",
+      "reason": "Registro documentato; scelta del ramo 'ovvero' e applicabilità Parte Terza non confermate"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "pubblico registro",
+      "value": "Registro delle Imprese",
+      "evidence": [
+        {
+          "chunk_id": -52,
+          "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t0.r8.c1",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t0.r8.c1",
+      "type": "text",
+      "context": "t0.r8.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Sede operativa ",
+        "(se diversa dalla sede legale)"
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Sede operativa (se diversa dalla sede legale)",
+      "kind": "data",
+      "disposition": "not_applicable",
+      "form": {
+        "paragraph_id": "paragraph:35",
+        "quote": "(se diversa dalla sede legale)"
+      },
+      "conditions": [
+        "c_sede_operativa_diversa"
+      ],
+      "property": "sede_operativa",
+      "reason": "Sede operativa coincidente con la sede legale."
+    },
+    "fact": {},
+    "raw_grounded": false,
+    "raw_rejections": [
+      "1 validation error for tagged-union[ChoiceValue,ChoiceConditionalValue,NonApplicableAssignment,AlternativeAssignment]\nnot_applicable.property\n  Input should be None [type=none_required, input_value='sede_operativa', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/none_required"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t42.r1.c0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c0",
+      "type": "text",
+      "context": "t42.r1.c0",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Nome e cognome",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:672",
+        "quote": "Nome e cognome"
+      },
+      "conditions": [
+        "c_tipo_operatore"
+      ],
+      "property": "nome_completo",
+      "fact_id": "f_leon_name",
+      "binding_id": "b_leonardo",
+      "reason": "Amministratore documentato; organi condizionati alla tipologia."
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "nome_completo",
+      "value": "Leonardo Montemurro",
+      "evidence": [
+        {
+          "chunk_id": -53,
+          "quote": "- Nome: Leonardo."
+        },
+        {
+          "chunk_id": -53,
+          "quote": "- Cognome: Montemurro."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Fatto SOURCE assente o rifiutato",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t42.r1.c1",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c1",
+      "type": "text",
+      "context": "t42.r1.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Data e luogo di nascita",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:673",
+        "quote": "Data e luogo di nascita "
+      },
+      "conditions": [
+        "c_tipo_operatore"
+      ],
+      "property": "data_e_luogo_di_nascita",
+      "fact_id": "f_leon_birth",
+      "binding_id": "b_leonardo",
+      "reason": "Nascita documentata; organi condizionati alla tipologia."
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "data_e_luogo_di_nascita",
+      "value": "14 novembre 1982, Lecce (LE)",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "- Data di nascita: 14 novembre 1982."
+        },
+        {
+          "chunk_id": -53,
+          "quote": "- Luogo di nascita: Lecce (LE)."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Fatto SOURCE assente o rifiutato",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t42.r1.c2",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c2",
+      "type": "text",
+      "context": "t42.r1.c2",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Residenza",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:674",
+        "quote": "Residenza"
+      },
+      "conditions": [
+        "c_tipo_operatore"
+      ],
+      "property": "residenza",
+      "fact_id": "f_leon_residence",
+      "binding_id": "b_leonardo",
+      "reason": "Residenza documentata; organi condizionati alla tipologia."
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "location",
+      "property": "residenza",
+      "value": "Via Amedeo 24, Bari (BA)",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "- Indirizzo di residenza: Via Amedeo 24."
+        },
+        {
+          "chunk_id": -54,
+          "quote": "- Comune di residenza: Bari (BA)."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Fatto SOURCE assente o rifiutato",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t42.r1.c3",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c3",
+      "type": "text",
+      "context": "t42.r1.c3",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Codice fiscale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:675",
+        "quote": "Codice fiscale "
+      },
+      "conditions": [
+        "c_tipo_operatore"
+      ],
+      "property": "codice_fiscale",
+      "fact_id": "f_leon_cf",
+      "binding_id": "b_leonardo",
+      "reason": "CF documentato; organi condizionati alla tipologia."
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "codice_fiscale",
+      "value": "MNTLRD82S14E506X",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Estratto FORM esterno al contesto strutturale locale",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "t42.r1.c4",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c4",
+      "type": "text",
+      "context": "t42.r1.c4",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Poteri conferiti / qualifica",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:676",
+        "quote": "Poteri conferiti / qualifica"
+      },
+      "conditions": [
+        "c_tipo_operatore"
+      ],
+      "property": "carica_sociale",
+      "fact_id": "f_leon_role",
+      "binding_id": "b_leonardo",
+      "reason": "Carica documentata; organi condizionati alla tipologia."
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "representation",
+      "property": "carica_sociale",
+      "value": "amministratore unico e rappresentante legale",
+      "evidence": [
+        {
+          "chunk_id": -53,
+          "quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Estratto FORM esterno al contesto strutturale locale",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "candidate_id": "p799.s0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p799.s0",
+      "type": "text",
+      "context": "paragraph:799",
+      "continuation": null,
+      "text": "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: [[p799.s0]].",
+      "anchors": [
+        "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: _____________________________________."
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "banca dati ufficiale o pubblico registro",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:799",
+        "quote": "il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: [[p799.s0]]"
+      },
+      "conditions": [
+        "c_tipo_operatore"
+      ],
+      "property": "pubblico_registro",
+      "fact_id": "f_company_public_register",
+      "reason": "Registro documentato; ramo condizionato alla tipologia."
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "pubblico_registro",
+      "value": "Registro delle Imprese",
+      "evidence": [
+        {
+          "chunk_id": -52,
+          "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "candidate_id": "p52.s2",
+    "section": 0,
+    "scope_authorized": false,
+    "FORM": null,
+    "raw_proposal": {
+      "label": "Ordine/Collegio direttore tecnico",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:52",
+        "quote": "iscritto all’Ordine/Collegio professionale [[p52.s2]] sezione"
+      },
+      "conditions": [
+        "c_soc_ing"
+      ],
+      "property": "ordine_professionale",
+      "fact_id": "f_elisa_ordine",
+      "binding_id": "b_elisa_dt",
+      "reason": "Direttore tecnico documentato; ramo società di ingegneria da confermare"
+    },
+    "fact": {
+      "subject": "Elisa Romano",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "ordine_professionale",
+      "value": "Ordine degli Ingegneri di Bari",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "candidate_id": "p52.s3",
+    "section": 0,
+    "scope_authorized": false,
+    "FORM": null,
+    "raw_proposal": {
+      "label": "Sezione direttore tecnico",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:52",
+        "quote": "sezione [[p52.s3]]"
+      },
+      "conditions": [
+        "c_soc_ing"
+      ],
+      "property": "sezione_albo",
+      "fact_id": "f_elisa_sezione",
+      "binding_id": "b_elisa_dt",
+      "reason": "Direttore tecnico documentato; ramo società di ingegneria da confermare"
+    },
+    "fact": {
+      "subject": "Elisa Romano",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "sezione_albo",
+      "value": "A",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "trapani/E1/rep-2",
+    "candidate_id": "p107.s0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p107.s0",
+      "type": "text",
+      "context": "paragraph:107",
+      "continuation": "paragraph:106",
+      "text": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]; ",
+      "anchors": [
+        "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; "
+      ],
+      "origin_text": "possesso di tutti requisiti specifici richiesti dalla normativa così come indicati nella Linee Guida ANAC n. 3 di attuazione del Codice;",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Indirizzo PEC per le comunicazioni",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:107",
+        "quote": "elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]];"
+      },
+      "conditions": [
+        "c_mapi_proponent"
+      ],
+      "property": "pec",
+      "fact_id": "f_pec",
+      "reason": "PEC aziendale documentata; soggetto proponente non confermato."
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "pec",
+      "value": "mapi.ingegneria@pec.demo",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "trapani/E2-A/rep-2",
+    "candidate_id": "p107.s0",
+    "section": 1,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p107.s0",
+      "type": "text",
+      "context": "paragraph:107",
+      "continuation": "paragraph:106",
+      "text": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]; ",
+      "anchors": [
+        "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; "
+      ],
+      "origin_text": "possesso di tutti requisiti specifici richiesti dalla normativa così come indicati nella Linee Guida ANAC n. 3 di attuazione del Codice;",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "PEC per comunicazioni",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:107",
+        "quote": "all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]];"
+      },
+      "conditions": [
+        "c_soc_ing"
+      ],
+      "property": "pec",
+      "fact_id": "f_pec",
+      "reason": "PEC aziendale documentata; qualità di partecipante da confermare"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "other",
+      "property": "pec",
+      "value": "mapi.ingegneria@pec.demo",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "trapani/B0/rep-2",
+    "candidate_id": "p107.s0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p107.s0",
+      "type": "text",
+      "context": "paragraph:107",
+      "continuation": "paragraph:106",
+      "text": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]; ",
+      "anchors": [
+        "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; "
+      ],
+      "origin_text": "possesso di tutti requisiti specifici richiesti dalla normativa così come indicati nella Linee Guida ANAC n. 3 di attuazione del Codice;",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "PEC per comunicazioni",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:107",
+        "quote": "seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+      },
+      "conditions": [],
+      "property": "pec",
+      "fact_id": "f_company_pec"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "pec",
+      "value": "mapi.ingegneria@pec.demo",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "trapani/E2-A/rep-3",
+    "candidate_id": "p107.s0",
+    "section": 1,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p107.s0",
+      "type": "text",
+      "context": "paragraph:107",
+      "continuation": "paragraph:106",
+      "text": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]; ",
+      "anchors": [
+        "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; "
+      ],
+      "origin_text": "possesso di tutti requisiti specifici richiesti dalla normativa così come indicati nella Linee Guida ANAC n. 3 di attuazione del Codice;",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Indirizzo di posta elettronica certificata",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:107",
+        "quote": "indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]"
+      },
+      "conditions": [
+        "c_part"
+      ],
+      "property": "PEC",
+      "fact_id": "f_pec",
+      "reason": "PEC aziendale documentata; ramo IN QUALITA' e firmatario non ancora confermati come decisione registrata"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "other",
+      "property": "PEC",
+      "value": "mapi.ingegneria@pec.demo",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "trapani/B0/rep-3",
+    "candidate_id": "p107.s0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p107.s0",
+      "type": "text",
+      "context": "paragraph:107",
+      "continuation": "paragraph:106",
+      "text": "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]]; ",
+      "anchors": [
+        "di accettare che ogni comunicazione relativa all’Avviso, di cui trattasi, venga validamente inviata al seguente indirizzo di posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): ___________________________; "
+      ],
+      "origin_text": "possesso di tutti requisiti specifici richiesti dalla normativa così come indicati nella Linee Guida ANAC n. 3 di attuazione del Codice;",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "PEC per comunicazioni",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:107",
+        "quote": "posta elettronica certificata (della cui operatività il dichiarante assume ogni rischio): [[p107.s0]];"
+      },
+      "conditions": [],
+      "property": "pec",
+      "fact_id": "f_company_pec"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "identity",
+      "property": "pec",
+      "value": "mapi.ingegneria@pec.demo",
+      "evidence": [
+        {
+          "chunk_id": -44,
+          "quote": "- PEC aziendale simulata: mapi.ingegneria@pec.demo."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/B0/rep-3",
+    "candidate_id": "t0.r8.c1",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t0.r8.c1",
+      "type": "text",
+      "context": "t0.r8.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Sede operativa ",
+        "(se diversa dalla sede legale)"
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Sede operativa",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:34",
+        "quote": "Sede operativa"
+      },
+      "conditions": [],
+      "property": "sede_operativa",
+      "fact_id": "f_sede_op"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "sede_operativa",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "written": true
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t0.r8.c1",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t0.r8.c1",
+      "type": "text",
+      "context": "t0.r8.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Sede operativa ",
+        "(se diversa dalla sede legale)"
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Sede operativa",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:34",
+        "quote": "Sede operativa"
+      },
+      "conditions": [],
+      "property": "sede_operativa",
+      "fact_id": "f_company_oper_address"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "location",
+      "property": "sede_operativa",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "written": true
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t42.r1.c0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c0",
+      "type": "text",
+      "context": "t42.r1.c0",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Nome e cognome",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:672",
+        "quote": "Nome e cognome"
+      },
+      "conditions": [
+        "c_parte_terza"
+      ],
+      "property": "nome",
+      "fact_id": "f_mont_name",
+      "binding_id": "b_mont_42",
+      "reason": "Organi con poteri di direzione o vigilanza da confermare"
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "nome",
+      "value": "Leonardo Montemurro",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica"
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Estratto FORM esterno al contesto strutturale locale",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t42.r1.c1",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c1",
+      "type": "text",
+      "context": "t42.r1.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Data e luogo di nascita",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:673",
+        "quote": "Data e luogo di nascita"
+      },
+      "conditions": [
+        "c_parte_terza"
+      ],
+      "property": "data_e_luogo_di_nascita",
+      "fact_id": "f_mont_birth_combined",
+      "binding_id": "b_mont_42",
+      "reason": "Organi con poteri di direzione o vigilanza da confermare"
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "data_e_luogo_di_nascita",
+      "value": "14 novembre 1982, Lecce (LE)",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "- Data di nascita: 14 novembre 1982."
+        },
+        {
+          "chunk_id": -54,
+          "quote": "- Luogo di nascita: Lecce (LE)."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Fatto SOURCE assente o rifiutato",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t42.r1.c2",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c2",
+      "type": "text",
+      "context": "t42.r1.c2",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Residenza",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:674",
+        "quote": "Residenza"
+      },
+      "conditions": [
+        "c_parte_terza"
+      ],
+      "property": "residenza",
+      "fact_id": "f_mont_residenza",
+      "binding_id": "b_mont_42",
+      "reason": "Organi con poteri di direzione o vigilanza da confermare"
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "location",
+      "property": "residenza",
+      "value": "Via Amedeo 24, Bari (BA)",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "- Indirizzo di residenza: Via Amedeo 24."
+        },
+        {
+          "chunk_id": -54,
+          "quote": "- Comune di residenza: Bari (BA)."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Fatto SOURCE assente o rifiutato",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t42.r1.c3",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c3",
+      "type": "text",
+      "context": "t42.r1.c3",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Codice fiscale",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:675",
+        "quote": "Codice fiscale"
+      },
+      "conditions": [
+        "c_parte_terza"
+      ],
+      "property": "codice_fiscale",
+      "fact_id": "f_mont_cf",
+      "binding_id": "b_mont_42",
+      "reason": "Organi con poteri di direzione o vigilanza da confermare"
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "codice_fiscale",
+      "value": "MNTLRD82S14E506X",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Estratto FORM esterno al contesto strutturale locale",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t42.r1.c4",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c4",
+      "type": "text",
+      "context": "t42.r1.c4",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Poteri conferiti / qualifica",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:676",
+        "quote": "Poteri conferiti / qualifica"
+      },
+      "conditions": [
+        "c_parte_terza"
+      ],
+      "property": "carica",
+      "fact_id": "f_mont_role",
+      "binding_id": "b_mont_42",
+      "reason": "Organi con poteri di direzione o vigilanza da confermare"
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "representation",
+      "property": "carica",
+      "value": "amministratore unico e rappresentante legale",
+      "evidence": [
+        {
+          "chunk_id": -53,
+          "quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Estratto FORM esterno al contesto strutturale locale",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t0.r8.c1",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t0.r8.c1",
+      "type": "text",
+      "context": "t0.r8.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Sede operativa ",
+        "(se diversa dalla sede legale)"
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Sede operativa (se diversa dalla sede legale)",
+      "kind": "data",
+      "disposition": "not_applicable",
+      "form": {
+        "paragraph_id": "paragraph:35",
+        "quote": "(se diversa dalla sede legale)"
+      },
+      "conditions": [
+        "c_sede_diversa"
+      ],
+      "reason": "Sede operativa coincidente con la sede legale; campo previsto solo se diversa."
+    },
+    "fact": {},
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p49.cb0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p49.cb0",
+      "type": "checkbox",
+      "context": "paragraph:49",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Professionista singolo"
+      ],
+      "origin_text": "",
+      "reference_class": "USER_DECISION_OR_ATTESTATION",
+      "note": "Richiede scelta pertinente e gruppo validato; nessuna selezione da presenza del dato."
+    },
+    "raw_proposal": {
+      "label": "Professionista singolo",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:49",
+        "quote": "[[p49.cb0]]"
+      },
+      "conditions": [],
+      "fact_id": "f_tipologia",
+      "property": "tipologia_operatore_economico",
+      "choice": false,
+      "choice_group_id": "g_tipologia"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "tipologia_operatore_economico",
+      "value": "Società di ingegneria",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Checkbox senza collegamento strutturale di gruppo validato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p51.cb0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p51.cb0",
+      "type": "checkbox",
+      "context": "paragraph:51",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Professionista associato nelle forme di cui alla legge n. 1815 del 1939, cosiddetti “studi associati” o “associazioni professionali”, con potere di legale rappresentanza dello studio associato / dell’associazione professionale."
+      ],
+      "origin_text": "",
+      "reference_class": "USER_DECISION_OR_ATTESTATION",
+      "note": "Richiede scelta pertinente e gruppo validato; nessuna selezione da presenza del dato."
+    },
+    "raw_proposal": {
+      "label": "Professionista associato nelle forme di cui alla legge n. 1815 del 1939, cosiddetti “studi associati” o “associazioni professionali”, con potere di legale rappresentanza dello studio associato / dell’associazione professionale.",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:51",
+        "quote": "[[p51.cb0]]"
+      },
+      "conditions": [],
+      "fact_id": "f_tipologia",
+      "property": "tipologia_operatore_economico",
+      "choice": false,
+      "choice_group_id": "g_tipologia"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "tipologia_operatore_economico",
+      "value": "Società di ingegneria",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Checkbox senza collegamento strutturale di gruppo validato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p53.cb0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p53.cb0",
+      "type": "checkbox",
+      "context": "paragraph:53",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Professionista associato nelle forme di cui alla legge n. 1815 del 1939, cosiddetti “studi associati” o “associazioni professionali”, senza potere di rappresentanza dello studio associato / dell’associazione professionale."
+      ],
+      "origin_text": "",
+      "reference_class": "USER_DECISION_OR_ATTESTATION",
+      "note": "Richiede scelta pertinente e gruppo validato; nessuna selezione da presenza del dato."
+    },
+    "raw_proposal": {
+      "label": "Professionista associato nelle forme di cui alla legge n. 1815 del 1939, cosiddetti “studi associati” o “associazioni professionali”, senza potere di rappresentanza dello studio associato / dell’associazione professionale.",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:53",
+        "quote": "[[p53.cb0]]"
+      },
+      "conditions": [],
+      "fact_id": "f_tipologia",
+      "property": "tipologia_operatore_economico",
+      "choice": false,
+      "choice_group_id": "g_tipologia"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "tipologia_operatore_economico",
+      "value": "Società di ingegneria",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Checkbox senza collegamento strutturale di gruppo validato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p55.cb0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p55.cb0",
+      "type": "checkbox",
+      "context": "paragraph:55",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Società di professionisti di cui all’art. 35 dell’allegato II.12 al D.lgs. n. 36/2023"
+      ],
+      "origin_text": "",
+      "reference_class": "USER_DECISION_OR_ATTESTATION",
+      "note": "Richiede scelta pertinente e gruppo validato; nessuna selezione da presenza del dato."
+    },
+    "raw_proposal": {
+      "label": "Società di professionisti di cui all’art. 35 dell’allegato II.12 al D.lgs. n. 36/2023",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:55",
+        "quote": "[[p55.cb0]]"
+      },
+      "conditions": [],
+      "fact_id": "f_tipologia",
+      "property": "tipologia_operatore_economico",
+      "choice": false,
+      "choice_group_id": "g_tipologia"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "tipologia_operatore_economico",
+      "value": "Società di ingegneria",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Checkbox senza collegamento strutturale di gruppo validato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p57.cb0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p57.cb0",
+      "type": "checkbox",
+      "context": "paragraph:57",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Società di ingegneria in forma di società di capitali o di società cooperativa di cui all’art. 36 dell’allegato II.12 al D.lgs. n. 36/2023"
+      ],
+      "origin_text": "",
+      "reference_class": "USER_DECISION_OR_ATTESTATION",
+      "note": "Richiede scelta pertinente e gruppo validato; nessuna selezione da presenza del dato."
+    },
+    "raw_proposal": {
+      "label": "Società di ingegneria in forma di società di capitali o di società cooperativa di cui all’art. 36 dell’allegato II.12 al D.lgs. n. 36/2023",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:57",
+        "quote": "[[p57.cb0]]"
+      },
+      "conditions": [],
+      "fact_id": "f_tipologia",
+      "property": "tipologia_operatore_economico",
+      "choice": true,
+      "choice_group_id": "g_tipologia"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "tipologia_operatore_economico",
+      "value": "Società di ingegneria",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Checkbox senza collegamento strutturale di gruppo validato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p60.cb0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p60.cb0",
+      "type": "checkbox",
+      "context": "paragraph:60",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Consorzio stabile di società di professionisti o di ingegneria di cui all’art. 66, comma 1, lett. g) del D.Lgs. 36/2023"
+      ],
+      "origin_text": "",
+      "reference_class": "USER_DECISION_OR_ATTESTATION",
+      "note": "Richiede scelta pertinente e gruppo validato; nessuna selezione da presenza del dato."
+    },
+    "raw_proposal": {
+      "label": "Consorzio stabile di società di professionisti o di ingegneria di cui all’art. 66, comma 1, lett. g) del D.Lgs. 36/2023",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:60",
+        "quote": "[[p60.cb0]]"
+      },
+      "conditions": [],
+      "fact_id": "f_tipologia",
+      "property": "tipologia_operatore_economico",
+      "choice": false,
+      "choice_group_id": "g_tipologia"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "tipologia_operatore_economico",
+      "value": "Società di ingegneria",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Checkbox senza collegamento strutturale di gruppo validato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p62.cb0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p62.cb0",
+      "type": "checkbox",
+      "context": "paragraph:62",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Prestatore di servizi di ingegneria e architettura, stabilito nello Stato membro di ___________, costituito conformemente alla legislazione vigente nel medesimo Paese come da allegata documentazione (art. 66, comma 1, lett. d)"
+      ],
+      "origin_text": "",
+      "reference_class": "USER_DECISION_OR_ATTESTATION",
+      "note": "Richiede scelta pertinente e gruppo validato; nessuna selezione da presenza del dato."
+    },
+    "raw_proposal": {
+      "label": "Prestatore di servizi di ingegneria e architettura, stabilito nello Stato membro di ___________, costituito conformemente alla legislazione vigente nel medesimo Paese come da allegata documentazione (art. 66, comma 1, lett. d)",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:62",
+        "quote": "[[p62.cb0]]"
+      },
+      "conditions": [],
+      "fact_id": "f_tipologia",
+      "property": "tipologia_operatore_economico",
+      "choice": false,
+      "choice_group_id": "g_tipologia"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "tipologia_operatore_economico",
+      "value": "Società di ingegneria",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Checkbox senza collegamento strutturale di gruppo validato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p64.cb0",
+    "section": 0,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p64.cb0",
+      "type": "checkbox",
+      "context": "paragraph:64",
+      "continuation": null,
+      "text": "",
+      "anchors": [
+        "Società tra professionisti, anche multidisciplinari, di cui al decreto ministeriale n. 34 del 2013"
+      ],
+      "origin_text": "",
+      "reference_class": "USER_DECISION_OR_ATTESTATION",
+      "note": "Richiede scelta pertinente e gruppo validato; nessuna selezione da presenza del dato."
+    },
+    "raw_proposal": {
+      "label": "Società tra professionisti, anche multidisciplinari, di cui al decreto ministeriale n. 34 del 2013",
+      "kind": "choice",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:64",
+        "quote": "[[p64.cb0]]"
+      },
+      "conditions": [],
+      "fact_id": "f_tipologia",
+      "property": "tipologia_operatore_economico",
+      "choice": false,
+      "choice_group_id": "g_tipologia"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "tipologia_operatore_economico",
+      "value": "Società di ingegneria",
+      "evidence": [
+        {
+          "chunk_id": -43,
+          "quote": "- Tipologia di attivita': societa' di ingegneria civile."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Checkbox senza collegamento strutturale di gruppo validato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "p799.s0",
+    "section": 2,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "p799.s0",
+      "type": "text",
+      "context": "paragraph:799",
+      "continuation": null,
+      "text": "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: [[p799.s0]].",
+      "anchors": [
+        "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: _____________________________________."
+      ],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Banca dati ufficiale o pubblico registro",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:799",
+        "quote": "ovvero che la banca dati ufficiale o il pubblico registro da cui i medesimi possono essere ricavati in modo aggiornato alla data di presentazione dell’offerta è il seguente: [[p799.s0]]."
+      },
+      "conditions": [
+        "c799"
+      ],
+      "fact_id": "f_registro",
+      "property": "pubblico_registro",
+      "reason": "Registro documentato; resta da confermare il ricorso a questa alternativa"
+    },
+    "fact": {
+      "subject": "Mapi Ingegneria S.r.l.",
+      "entity": "company",
+      "aspect": "legal_type",
+      "property": "pubblico_registro",
+      "value": "Registro delle Imprese",
+      "evidence": [
+        {
+          "chunk_id": -52,
+          "quote": "- **Numero di iscrizione al Registro delle Imprese, identificativo sintetico:** 01234560981."
+        }
+      ]
+    },
+    "raw_grounded": true,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t42.r1.c0",
+    "section": 2,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c0",
+      "type": "text",
+      "context": "t42.r1.c0",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Nome e cognome",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:672",
+        "quote": "Nome e cognome"
+      },
+      "conditions": [],
+      "fact_id": "f_leo_nome",
+      "property": "nome",
+      "binding_id": "b_leo42"
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "nome",
+      "value": "Leonardo Montemurro",
+      "evidence": [
+        {
+          "chunk_id": -53,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica"
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Estratto FORM esterno al contesto strutturale locale",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t42.r1.c1",
+    "section": 2,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c1",
+      "type": "text",
+      "context": "t42.r1.c1",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Data e luogo di nascita",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:673",
+        "quote": "Data e luogo di nascita "
+      },
+      "conditions": [],
+      "fact_id": "f_leo_nascita",
+      "property": "data_e_luogo_di_nascita",
+      "binding_id": "b_leo42"
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "data_e_luogo_di_nascita",
+      "value": "14 novembre 1982, Lecce (LE)",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "- Data di nascita: 14 novembre 1982."
+        },
+        {
+          "chunk_id": -53,
+          "quote": "- Luogo di nascita: Lecce (LE)."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Fatto SOURCE assente o rifiutato",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t42.r1.c2",
+    "section": 2,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c2",
+      "type": "text",
+      "context": "t42.r1.c2",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Residenza",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:674",
+        "quote": "Residenza"
+      },
+      "conditions": [],
+      "fact_id": "f_leo_residenza",
+      "property": "residenza",
+      "binding_id": "b_leo42"
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "location",
+      "property": "residenza",
+      "value": "Via Amedeo 24, Bari (BA)",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "- Indirizzo di residenza: Via Amedeo 24."
+        },
+        {
+          "chunk_id": -54,
+          "quote": "- Comune di residenza: Bari (BA)."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Fatto SOURCE assente o rifiutato",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t42.r1.c3",
+    "section": 2,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c3",
+      "type": "text",
+      "context": "t42.r1.c3",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Codice fiscale",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:675",
+        "quote": "Codice fiscale "
+      },
+      "conditions": [],
+      "fact_id": "f_leo_cf",
+      "property": "codice_fiscale",
+      "binding_id": "b_leo42"
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "identity",
+      "property": "codice_fiscale",
+      "value": "MNTLRD82S14E506X",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Estratto FORM esterno al contesto strutturale locale",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "candidate_id": "t42.r1.c4",
+    "section": 2,
+    "scope_authorized": true,
+    "FORM": {
+      "id": "t42.r1.c4",
+      "type": "text",
+      "context": "t42.r1.c4",
+      "continuation": null,
+      "text": "",
+      "anchors": [],
+      "origin_text": "",
+      "reference_class": "SOURCE_UNDOCUMENTED_OR_CONDITIONAL",
+      "note": "Nessuna proprietà/soggetto/periodo sufficientemente attestati per questa destinazione nel corpus; non incluso nel denominatore SOURCE fisso."
+    },
+    "raw_proposal": {
+      "label": "Poteri conferiti / qualifica",
+      "kind": "data",
+      "disposition": "value",
+      "form": {
+        "paragraph_id": "paragraph:676",
+        "quote": "Poteri conferiti / qualifica"
+      },
+      "conditions": [],
+      "fact_id": "f_leo_ruolo",
+      "property": "poteri_e_qualifica",
+      "binding_id": "b_leo42"
+    },
+    "fact": {
+      "subject": "Leonardo Montemurro",
+      "entity": "person",
+      "aspect": "representation",
+      "property": "poteri_e_qualifica",
+      "value": "amministratore unico e rappresentante legale",
+      "evidence": [
+        {
+          "chunk_id": -53,
+          "quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**."
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [
+      "Estratto FORM esterno al contesto strutturale locale",
+      "Binding di ruolo rifiutato"
+    ],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "candidate_id": "p52.s2",
+    "section": 0,
+    "scope_authorized": false,
+    "FORM": null,
+    "raw_proposal": {
+      "label": "Ordine/Collegio professionale direttore tecnico",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:52",
+        "quote": "iscritto all’Ordine/Collegio professionale [[p52.s2]] sezione"
+      },
+      "conditions": [
+        "c_soc_ing"
+      ],
+      "property": "ordine_professionale",
+      "fact_id": "f_elisa_ordine",
+      "binding_id": "b_elisa_dt",
+      "reason": "Dato documentato; ramo società di ingegneria/rappresentanza da confermare"
+    },
+    "fact": {
+      "subject": "Elisa Romano",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "ordine_professionale",
+      "value": "Ordine degli Ingegneri di Bari",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "candidate_id": "p52.s3",
+    "section": 0,
+    "scope_authorized": false,
+    "FORM": null,
+    "raw_proposal": {
+      "label": "Sezione direttore tecnico",
+      "kind": "data",
+      "disposition": "conditional",
+      "form": {
+        "paragraph_id": "paragraph:52",
+        "quote": "sezione [[p52.s3]]"
+      },
+      "conditions": [
+        "c_soc_ing"
+      ],
+      "property": "sezione",
+      "fact_id": "f_elisa_sezione",
+      "binding_id": "b_elisa_dt",
+      "reason": "Dato documentato; ramo società di ingegneria/rappresentanza da confermare"
+    },
+    "fact": {
+      "subject": "Elisa Romano",
+      "entity": "person",
+      "aspect": "professional",
+      "property": "sezione",
+      "value": "A",
+      "evidence": [
+        {
+          "chunk_id": -54,
+          "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |"
+        }
+      ]
+    },
+    "raw_grounded": false,
+    "raw_rejections": [],
+    "written_value": null,
+    "written": false
+  }
+]

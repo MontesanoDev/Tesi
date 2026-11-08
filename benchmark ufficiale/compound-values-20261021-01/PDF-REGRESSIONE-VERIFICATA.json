@@ -1,0 +1,207 @@
+{
+  "status": "PASS",
+  "rendered_DOCX_PDF_pairs": 31,
+  "all_changed_DOCX_before_after_covered": true,
+  "zero_words_outside_pages": true,
+  "actual_XML_positions_checked": true,
+  "visual_sample": {
+    "case": "real/table-form-links-20261020-01",
+    "pages": [
+      2,
+      11
+    ],
+    "before_number": "01234560981",
+    "after_number": null,
+    "after_CCIAA": "Bari",
+    "after_DT_preserved": true,
+    "after_operating_office_blank": true
+  },
+  "records": [
+    {
+      "case": "historical/conserved/bella",
+      "mode": "after",
+      "DOCX_SHA256": "781f7db27db8d3fda3c04f4da056552213659811347eb9788a0867d899183b14",
+      "PDF_SHA256": "3818d1582c850ab7994f823f632217432825d63713597235b4d9ad13cf3bad4f"
+    },
+    {
+      "case": "historical/conserved/catanzaro",
+      "mode": "before-replay",
+      "DOCX_SHA256": "aa940efde8dcc76796b07e247f59baceaaa8ab2af0e092681c58aba60ac9a7b0",
+      "PDF_SHA256": "dc4d778ebc9865325f245a770c98bbba28d250d1c5b994b0777586c85c2c2ba2"
+    },
+    {
+      "case": "historical/conserved/catanzaro",
+      "mode": "after",
+      "DOCX_SHA256": "b5e2ea84196b6a0249a5ccf9fbd4302abd44a429c54ac51528b6fc5f55e7a9ea",
+      "PDF_SHA256": "f59fb329e1b952f730243ca8b885d69106647cc3938c5ae82e573b9180ab4a4d"
+    },
+    {
+      "case": "historical/conserved/cesano-reale-8",
+      "mode": "after",
+      "DOCX_SHA256": "8758106d09b3ad8f4b59ec32530a6f3d45a779838556313629fa80d91da46ee7",
+      "PDF_SHA256": "44629800b1c8ab2ebe6877058105a04742a2a741c2c32441c370d0f5fcf97f91"
+    },
+    {
+      "case": "historical/conserved/e2e-catanzaro",
+      "mode": "before-replay",
+      "DOCX_SHA256": "433c3eb3aba3ba7b86fe48698fa6dc5fdba7ac6236a3607a4d3453cae9857960",
+      "PDF_SHA256": "af204cce1395980ebeeb1a36efe44b4cedfff1777032e1d6e67d37db4bc0fc08"
+    },
+    {
+      "case": "historical/conserved/e2e-catanzaro",
+      "mode": "after",
+      "DOCX_SHA256": "e930967f39724db3725f62b21d673d6bef22d87e9eb214c27b6e774291543a83",
+      "PDF_SHA256": "a8e865601a1e76add6fb68f8bba94ab94cc250e8712e3fe87822880bdfd4b084"
+    },
+    {
+      "case": "historical/conserved/minervino-v12-61",
+      "mode": "after",
+      "DOCX_SHA256": "84e33e53477f0bb4935eaa9667ed02c6eea6d010beb091cab4f650a1b87feddd",
+      "PDF_SHA256": "50f1a73990b3c81b85ee54ccb121879e8d5b179a924151cff662bcd86f3007c3"
+    },
+    {
+      "case": "historical/new-context/catanzaro",
+      "mode": "before-replay",
+      "DOCX_SHA256": "aa940efde8dcc76796b07e247f59baceaaa8ab2af0e092681c58aba60ac9a7b0",
+      "PDF_SHA256": "dd53e14966e099a65a37995e536396aaaeb997ff3d092737acb97186b5c82709"
+    },
+    {
+      "case": "historical/new-context/catanzaro",
+      "mode": "after",
+      "DOCX_SHA256": "b5e2ea84196b6a0249a5ccf9fbd4302abd44a429c54ac51528b6fc5f55e7a9ea",
+      "PDF_SHA256": "3cc05c888e3cbd40638ed18cf49a8c8c0c1028d8268bd3ec165fc326dc413064"
+    },
+    {
+      "case": "historical/new-context/e2e-catanzaro",
+      "mode": "before-replay",
+      "DOCX_SHA256": "433c3eb3aba3ba7b86fe48698fa6dc5fdba7ac6236a3607a4d3453cae9857960",
+      "PDF_SHA256": "cf4bfc9b27528343ce0eb34a417dfb34631a0925675b33239a691fa4635f590e"
+    },
+    {
+      "case": "historical/new-context/e2e-catanzaro",
+      "mode": "after",
+      "DOCX_SHA256": "e930967f39724db3725f62b21d673d6bef22d87e9eb214c27b6e774291543a83",
+      "PDF_SHA256": "1e3bcfcb006d0c8d65a112ebcdc73fdf0d1bbf3eb118f4d9fc150ef2e09b7bbb"
+    },
+    {
+      "case": "history-latest/catanzaro",
+      "mode": "before-replay",
+      "DOCX_SHA256": "433c3eb3aba3ba7b86fe48698fa6dc5fdba7ac6236a3607a4d3453cae9857960",
+      "PDF_SHA256": "358594551a19c4f91b5d9917e0b81b0dcb09b6433b29364ee8ac1f6b4ff94afb"
+    },
+    {
+      "case": "history-latest/catanzaro",
+      "mode": "after",
+      "DOCX_SHA256": "e930967f39724db3725f62b21d673d6bef22d87e9eb214c27b6e774291543a83",
+      "PDF_SHA256": "45cb22d3bbe8c92f3af166f057e761ad663fdca963118d4d52540dc4ef6808d5"
+    },
+    {
+      "case": "history/catanzaro",
+      "mode": "before-replay",
+      "DOCX_SHA256": "aa940efde8dcc76796b07e247f59baceaaa8ab2af0e092681c58aba60ac9a7b0",
+      "PDF_SHA256": "1c9cd9d4531094558ff64a4293d06a8685cca3aa19f32f498303cd8ada7cb90b"
+    },
+    {
+      "case": "history/catanzaro",
+      "mode": "after",
+      "DOCX_SHA256": "b5e2ea84196b6a0249a5ccf9fbd4302abd44a429c54ac51528b6fc5f55e7a9ea",
+      "PDF_SHA256": "dc4497f7f9c70cb71bde00751b613369feb80ff250085de6f122d7d550a9497c"
+    },
+    {
+      "case": "real/craa-user-20261020-01",
+      "mode": "after",
+      "DOCX_SHA256": "69edd5aa8dbfca8d61f51fc7062c0734656c843de78623be7eef043a1f2a963a",
+      "PDF_SHA256": "f7a83a71e20af424559d6e9e2fa45cbca00b631e65fdac1896ec882b197d589e"
+    },
+    {
+      "case": "real/firmatario-generale-20261020-01",
+      "mode": "after",
+      "DOCX_SHA256": "72c09b92e7c590dd0b7017e4fb6da84f6572494562f06104da4aa36601866a1d",
+      "PDF_SHA256": "2e607394654e7a6acb23c78f4c154bd6bdaf430df14976eeb1872d8c01efc8e4"
+    },
+    {
+      "case": "real/form-applicability-20261020-01",
+      "mode": "before-replay",
+      "DOCX_SHA256": "3e75a2ff50c4e736d90a6b730d24f209f2155d042da113850ca0cf0cab6e8274",
+      "PDF_SHA256": "80e7e8f56998b1a44672bc0ca68dc0e115948d1da7cce37c9fc9653abc3d04fa"
+    },
+    {
+      "case": "real/form-applicability-20261020-01",
+      "mode": "after",
+      "DOCX_SHA256": "b67fdbf205ed349c28c9b889ad73096dd9a0ca692dd0bf46332888f41357c7c8",
+      "PDF_SHA256": "ec5fd7a1503ddde88f046e5389f56ef5e7d429c7b3f686ffc205010c3d300e38"
+    },
+    {
+      "case": "real/table-form-links-20261020-01",
+      "mode": "before-replay",
+      "DOCX_SHA256": "c2aac7af7b7917e2b520b180634f57de1eac8a2bc03150d8e45ace1cd8cbc9b2",
+      "PDF_SHA256": "7f38a5a63f4a5d7b74af891ae561ccc0a51524a726ff8313e687b1dc207d0742"
+    },
+    {
+      "case": "real/table-form-links-20261020-01",
+      "mode": "after",
+      "DOCX_SHA256": "99f4833bc21c9ca0016095259ce013813d10d2c8d15aaf7499a17e90d9ef553a",
+      "PDF_SHA256": "2f2192fe55a4229e9a70537de6b3af2982448897213bfbec15a3aebc6e469f23"
+    },
+    {
+      "case": "study/catanzaro/B0/rep-2",
+      "mode": "before-replay",
+      "DOCX_SHA256": "671946218e754de26e879e5ca3aff43218c80c2c5437a9e6d124053a47b7e36a",
+      "PDF_SHA256": "1c9de5d0666e89fb28de1cb3c3c7bcb11fe6edd2209b75983dd8d8fe8566fc4a"
+    },
+    {
+      "case": "study/catanzaro/B0/rep-2",
+      "mode": "after",
+      "DOCX_SHA256": "11605a53b4efcc3c799ea98762676b7c6f5e63b9dd4e146192eafbdc647d3634",
+      "PDF_SHA256": "f0e445ef6dd0689dff0db5946bf35dd2ad8d5f423ef4e2bee44b16a9347f7662"
+    },
+    {
+      "case": "study/catanzaro/E1/rep-2",
+      "mode": "before-replay",
+      "DOCX_SHA256": "6fe2c624ccbe8ef07bdb849755e44e91c539f21d7e018ef4d9206f536eb4fae2",
+      "PDF_SHA256": "58ca637ec97b4e492b22da92d2bb63c7b9e8777419bad4c85cb9d8ed7378873d"
+    },
+    {
+      "case": "study/catanzaro/E1/rep-2",
+      "mode": "after",
+      "DOCX_SHA256": "ead69443b2fc65677c4fbdfc45555dc9a20c7932db13679c8bbb30beb70d1b82",
+      "PDF_SHA256": "4309321943cbe4478fcd8202496f6d345035452f23dd90f0c4f724ccaa91762c"
+    },
+    {
+      "case": "study/catanzaro/E1/rep-3",
+      "mode": "before-replay",
+      "DOCX_SHA256": "6fe2c624ccbe8ef07bdb849755e44e91c539f21d7e018ef4d9206f536eb4fae2",
+      "PDF_SHA256": "92bb1029509720499d44cd9962805abe488383d77fa42be35122519ceb83ffbd"
+    },
+    {
+      "case": "study/catanzaro/E1/rep-3",
+      "mode": "after",
+      "DOCX_SHA256": "ead69443b2fc65677c4fbdfc45555dc9a20c7932db13679c8bbb30beb70d1b82",
+      "PDF_SHA256": "4bffe36e7b6f3a6aad703a6feb75cb8d91829f99080c34cce58256564b407e92"
+    },
+    {
+      "case": "study/catanzaro/E2-A/rep-1",
+      "mode": "before-replay",
+      "DOCX_SHA256": "3d2c2d62abb114d6413bac7eae4612810d0ef431f18566378729f16b99c9354a",
+      "PDF_SHA256": "4cb42f919285847c8c7540aa1fdf01e3a1ed047a75b2bf8b0b2c1df3036e5987"
+    },
+    {
+      "case": "study/catanzaro/E2-A/rep-1",
+      "mode": "after",
+      "DOCX_SHA256": "27cc2c007995ce0a449f64d96acdb6e8853b82ca8fe0768f74f28e4d3e3a269b",
+      "PDF_SHA256": "1b0a82f68e41472ac3fe20fe0303dc2b207c2a2427c31cc1c9125c4fb04ff41d"
+    },
+    {
+      "case": "study/catanzaro/E2-A/rep-3",
+      "mode": "before-replay",
+      "DOCX_SHA256": "6fe2c624ccbe8ef07bdb849755e44e91c539f21d7e018ef4d9206f536eb4fae2",
+      "PDF_SHA256": "66e3c12731088f913550bd78add5d98c521a832795251e64e9ee2a21677a9286"
+    },
+    {
+      "case": "study/catanzaro/E2-A/rep-3",
+      "mode": "after",
+      "DOCX_SHA256": "ead69443b2fc65677c4fbdfc45555dc9a20c7932db13679c8bbb30beb70d1b82",
+      "PDF_SHA256": "33fb2aa0ce870f77d6a11638a569d39e0558192b716a83e0596bff08be51d27b"
+    }
+  ]
+}

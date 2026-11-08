@@ -1,0 +1,80 @@
+{
+ "document": "sintetico-rami",
+ "authored_before_calls": true,
+ "never_in_prompt": true,
+ "expected_written": {
+  "p6.s0": {
+   "value": "Mapi Ingegneria S.r.l.",
+   "accepted": [],
+   "basis": "SOURCE generalita-mapi.md; ramo RT confermato dall'USER"
+  },
+  "p7.s0": {
+   "value": "IT01234567890",
+   "accepted": [
+    "01234567890"
+   ],
+   "basis": "SOURCE generalita-mapi.md / visura; ramo RT"
+  },
+  "p7.s1": {
+   "value": "IT01234567890",
+   "accepted": [
+    "01234567890"
+   ],
+   "basis": "SOURCE generalita-mapi.md / visura; ramo RT"
+  },
+  "p10.s0": {
+   "value": "Studio Tecnico Associato Ferri",
+   "accepted": [],
+   "basis": "SOURCE di progetto mandante-studio-ferri.md; ramo RT"
+  },
+  "p11.s0": {
+   "value": "98765432109",
+   "accepted": [],
+   "basis": "SOURCE di progetto mandante-studio-ferri.md; ramo RT"
+  },
+  "p11.s1": {
+   "value": "IT09876543210",
+   "accepted": [
+    "09876543210"
+   ],
+   "basis": "SOURCE di progetto mandante-studio-ferri.md; ramo RT"
+  },
+  "p17.s0": {
+   "value": "Geo Lab S.r.l.",
+   "accepted": [],
+   "basis": "SOURCE di progetto ausiliaria-geolab.md; ramo avvalimento confermato"
+  },
+  "p17.s1": {
+   "value": "IT05566778899",
+   "accepted": [
+    "05566778899"
+   ],
+   "basis": "SOURCE di progetto ausiliaria-geolab.md; ramo avvalimento"
+  }
+ },
+ "expected_empty": {
+  "p2.s0": "ramo forma singola non applicabile (trappola: dati Mapi documentati)",
+  "p3.s0": "ramo forma singola non applicabile",
+  "p3.s1": "ramo forma singola non applicabile",
+  "p19.s0": "luogo e data da decidere"
+ },
+ "regions": {
+  "instruction paragraph:1": [
+   "p2.s0",
+   "p3.s0",
+   "p3.s1"
+  ],
+  "instruction paragraph:5": [
+   "p6.s0",
+   "p7.s0",
+   "p7.s1",
+   "p10.s0",
+   "p11.s0",
+   "p11.s1"
+  ],
+  "option paragraph:16": [
+   "p17.s0",
+   "p17.s1"
+  ]
+ }
+}

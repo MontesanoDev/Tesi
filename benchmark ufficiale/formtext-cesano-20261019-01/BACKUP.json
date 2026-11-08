@@ -1,0 +1,16 @@
+{
+  "archive": "audit-completo.tar.gz",
+  "sha256": "892983f7b4c16048c2a21d6509f182cc3b0e5a6895d0b0a2d3feada55a05371a",
+  "bytes": 31773857,
+  "files": 691,
+  "raw_source": "backend/data/compilation-audit/formtext-chiusura-20261019-01",
+  "code_HEAD": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "dirty_code_preserved": true,
+  "application_files_unchanged": true,
+  "includes_public_results": true,
+  "private_database_excluded": true,
+  "keys_env_credentials_excluded": true,
+  "manifest_inside": "MANIFEST-SHA256.json",
+  "offline_verifier": "audit/verify_bundle.py",
+  "baseline_adopted": false
+}

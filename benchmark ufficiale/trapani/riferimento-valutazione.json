@@ -1,0 +1,256 @@
+{
+  "version": 1,
+  "created_before_first_LLM_call": true,
+  "reference_kind": "Authorial field review, no independent DOCX GOLD",
+  "SOURCE_available_occurrences": [
+    {
+      "candidate_id": "p12.s0",
+      "label": "Firmatario",
+      "value": "Leonardo Montemurro",
+      "subject": "Leonardo Montemurro",
+      "property": "nome",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s1",
+      "label": "Nascita luogo",
+      "value": "Lecce (LE)",
+      "subject": "Leonardo Montemurro",
+      "property": "nascita_luogo",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s2",
+      "label": "Nascita data",
+      "value": "14/11/1982",
+      "subject": "Leonardo Montemurro",
+      "property": "nascita_data",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s3",
+      "label": "CF",
+      "value": "MNTLRD82S14E506X",
+      "subject": "Leonardo Montemurro",
+      "property": "cf",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s4",
+      "label": "Residenza comune",
+      "value": "Bari",
+      "subject": "Leonardo Montemurro",
+      "property": "residenza_comune",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s5",
+      "label": "Residenza provincia",
+      "value": "BA",
+      "subject": "Leonardo Montemurro",
+      "property": "residenza_provincia",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s6",
+      "label": "Residenza via",
+      "value": "Via Amedeo",
+      "subject": "Leonardo Montemurro",
+      "property": "residenza_via",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s7",
+      "label": "Residenza numero",
+      "value": "24",
+      "subject": "Leonardo Montemurro",
+      "property": "residenza_numero",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p75.s0",
+      "label": "Società",
+      "value": "Mapi Ingegneria S.r.l.",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "nome",
+      "SOURCE_chunks": [
+        -30,
+        -44,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p75.s1",
+      "label": "Sede via",
+      "value": "Via Giovanni Amendola 172/C",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "sede_via_numero",
+      "SOURCE_chunks": [
+        -30,
+        -44,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p75.s2",
+      "label": "Comune",
+      "value": "Bari",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "sede_comune",
+      "SOURCE_chunks": [
+        -30,
+        -44,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p75.s3",
+      "label": "CAP",
+      "value": "70126",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "sede_cap",
+      "SOURCE_chunks": [
+        -30,
+        -44,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p75.s4",
+      "label": "Provincia",
+      "value": "BA",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "sede_provincia",
+      "SOURCE_chunks": [
+        -30,
+        -44,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p75.s5",
+      "label": "PIVA",
+      "value": "IT01234567890",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "piva",
+      "SOURCE_chunks": [
+        -30,
+        -44,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p75.s6",
+      "label": "Telefono",
+      "value": "+39 080 000 2040",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "telefono",
+      "SOURCE_chunks": [
+        -30,
+        -44,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p75.s7",
+      "label": "Fax",
+      "value": "+39 080 000 2041",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "fax",
+      "SOURCE_chunks": [
+        -30,
+        -44,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p75.s8",
+      "label": "PEC",
+      "value": "mapi.ingegneria@pec.demo",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "pec",
+      "SOURCE_chunks": [
+        -30,
+        -44,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    }
+  ],
+  "SOURCE_available_occurrence_count": 17,
+  "USER_authorized_controls": {},
+  "known_unresolved_active_fields": [
+    "p9.s0",
+    "p97.s0",
+    "p104.s0",
+    "p105.s0",
+    "p107.s0",
+    "p112.s0",
+    "p113.s0",
+    "p171.s0"
+  ],
+  "variable_cardinality_records": "Service-history/other-subject rows are not counted as mandatory facts merely because blank rows exist",
+  "unlisted_candidates": "Review against FORM and SOURCE individually; not automatically wrong or required",
+  "permitted_equivalence": "Case, spaces, professional title prefix and equivalent dates; fuller literal SOURCE values accepted only if property/subject/granularity correct",
+  "protected": "No signatures, no attestations/preferences/designations without scenario decision; inactive branches remain blank",
+  "company_snapshot_date": "2026-10-15",
+  "historical_procedure_eligibility_not_certified": true
+}

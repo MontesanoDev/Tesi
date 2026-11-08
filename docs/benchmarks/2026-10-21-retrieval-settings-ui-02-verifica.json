@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "archive": "docs/benchmarks/2026-10-21-retrieval-settings-ui-02-audit.tar.gz",
+  "SHA256": "175bea36b30085d0a3bf6198a0faa733fee5cd46aaea0255861c452ce44471fa",
+  "bytes": 1419599,
+  "files_extracted_and_verified": 37,
+  "extraction": ".tools/retrieval-settings-ui-20261021-02/backup-verification",
+  "includes_live_DB_indexes_or_credentials": false
+}

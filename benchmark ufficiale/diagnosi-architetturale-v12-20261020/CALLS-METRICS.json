@@ -1,0 +1,2720 @@
+[
+  {
+    "trial": "minervino/B0/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 61741,
+      "completion_tokens": 35287,
+      "total_tokens": 97028,
+      "prompt_tokens_details": {
+        "cached_tokens": 7040
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 21311
+      },
+      "prompt_cache_hit_tokens": 7040,
+      "prompt_cache_miss_tokens": 54701
+    },
+    "seconds": 129.91483737499993,
+    "finished_UTC": "2026-10-20T15:14:54.481704+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "a0f37f6a-4e08-4d28-bfc1-6fa0a410b028",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.02939847,
+    "cost_USD_peak": 0.05879694,
+    "prompt_tokens_provider": 61741,
+    "completion_tokens_provider": 35287
+  },
+  {
+    "trial": "minervino/B0/rep-1",
+    "kind": "narrator",
+    "path": "runs/minervino/B0/rep-1/final/dialogue/b329fd332dca42919d0c70595ae8fef7/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "4349a16d-8a91-45c3-ab1d-d9d4a22276f8",
+    "usage": {
+      "prompt_tokens": 12596,
+      "completion_tokens": 58,
+      "total_tokens": 12654,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 10292
+    },
+    "seconds": 1.491635352999765,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0015855119999999999,
+    "cost_USD_peak": 0.0031710239999999997,
+    "prompt_tokens_provider": 12596,
+    "completion_tokens_provider": 58
+  },
+  {
+    "trial": "minervino/B0/rep-1",
+    "kind": "narrator",
+    "path": "runs/minervino/B0/rep-1/final/dialogue/b1f7c4b7a6444002a74ec3855e941939/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "3c505d0a-c815-4c61-a5fd-f59a87b9f230",
+    "usage": {
+      "prompt_tokens": 16857,
+      "completion_tokens": 322,
+      "total_tokens": 17179,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 14553
+    },
+    "seconds": 2.9037519389994486,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0023830619999999996,
+    "cost_USD_peak": 0.004766123999999999,
+    "prompt_tokens_provider": 16857,
+    "completion_tokens_provider": 322
+  },
+  {
+    "trial": "minervino/E1/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 51647,
+      "completion_tokens": 47772,
+      "total_tokens": 99419,
+      "prompt_tokens_details": {
+        "cached_tokens": 7040
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 32793
+      },
+      "prompt_cache_hit_tokens": 7040,
+      "prompt_cache_miss_tokens": 44607
+    },
+    "seconds": 170.17274618099964,
+    "finished_UTC": "2026-10-20T15:15:34.782493+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "9141b7f1-5db2-4c31-88af-28685008095d",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.03537537,
+    "cost_USD_peak": 0.07075074,
+    "prompt_tokens_provider": 51647,
+    "completion_tokens_provider": 47772
+  },
+  {
+    "trial": "minervino/E1/rep-1",
+    "kind": "narrator",
+    "path": "runs/minervino/E1/rep-1/final/dialogue/f3d030c915a54bc6a757b25ef99828b2/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "742b6280-cbc9-4210-8769-b501c45b6db2",
+    "usage": {
+      "prompt_tokens": 12440,
+      "completion_tokens": 1978,
+      "total_tokens": 14418,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 10136
+    },
+    "seconds": 6.985840242999984,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0027141120000000003,
+    "cost_USD_peak": 0.005428224000000001,
+    "prompt_tokens_provider": 12440,
+    "completion_tokens_provider": 1978
+  },
+  {
+    "trial": "minervino/E1/rep-1",
+    "kind": "narrator",
+    "path": "runs/minervino/E1/rep-1/final/dialogue/5484286ef2f2464d9160bf12c705c428/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "5d099bcb-d2eb-4fa9-b50e-bcb918a21b58",
+    "usage": {
+      "prompt_tokens": 17774,
+      "completion_tokens": 446,
+      "total_tokens": 18220,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 15470
+    },
+    "seconds": 3.28993076200004,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.002595012,
+    "cost_USD_peak": 0.005190024,
+    "prompt_tokens_provider": 17774,
+    "completion_tokens_provider": 446
+  },
+  {
+    "trial": "minervino/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 49536,
+      "completion_tokens": 45925,
+      "total_tokens": 95461,
+      "prompt_tokens_details": {
+        "cached_tokens": 7296
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 31788
+      },
+      "prompt_cache_hit_tokens": 7296,
+      "prompt_cache_miss_tokens": 42240
+    },
+    "seconds": 172.13294386999996,
+    "finished_UTC": "2026-10-20T15:17:46.620595+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "5fe9c16e-b178-40f1-8194-6d37bad114f0",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.033912888,
+    "cost_USD_peak": 0.067825776,
+    "prompt_tokens_provider": 49536,
+    "completion_tokens_provider": 45925
+  },
+  {
+    "trial": "minervino/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 46957,
+      "completion_tokens": 1787,
+      "total_tokens": 48744,
+      "prompt_tokens_details": {
+        "cached_tokens": 23936
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 978
+      },
+      "prompt_cache_hit_tokens": 23936,
+      "prompt_cache_miss_tokens": 23021
+    },
+    "seconds": 9.380838159000177,
+    "finished_UTC": "2026-10-20T15:15:44.168466+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "5a0df1c4-7aea-4c9f-9df0-1d4a42e23421",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.0045971580000000005,
+    "cost_USD_peak": 0.009194316000000001,
+    "prompt_tokens_provider": 46957,
+    "completion_tokens_provider": 1787
+  },
+  {
+    "trial": "minervino/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 2,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 44730,
+      "completion_tokens": 4397,
+      "total_tokens": 49127,
+      "prompt_tokens_details": {
+        "cached_tokens": 23936
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3343
+      },
+      "prompt_cache_hit_tokens": 23936,
+      "prompt_cache_miss_tokens": 20794
+    },
+    "seconds": 22.067663822000213,
+    "finished_UTC": "2026-10-20T15:16:06.241565+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "35656468-2c40-4889-a567-f4c451ab30c6",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.005829108,
+    "cost_USD_peak": 0.011658216,
+    "prompt_tokens_provider": 44730,
+    "completion_tokens_provider": 4397
+  },
+  {
+    "trial": "minervino/E2-A/rep-1",
+    "kind": "narrator",
+    "path": "runs/minervino/E2-A/rep-1/final/dialogue/7646a0f8a7594e26905cc720712f80e5/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "f77e539b-3863-420c-8845-e67d728d17dc",
+    "usage": {
+      "prompt_tokens": 12679,
+      "completion_tokens": 51,
+      "total_tokens": 12730,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 9863
+    },
+    "seconds": 1.1247892629999114,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.001518498,
+    "cost_USD_peak": 0.003036996,
+    "prompt_tokens_provider": 12679,
+    "completion_tokens_provider": 51
+  },
+  {
+    "trial": "minervino/E2-A/rep-1",
+    "kind": "narrator",
+    "path": "runs/minervino/E2-A/rep-1/final/dialogue/dbe6a4e5386a418788634c3403ab486b/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "db73f576-8124-4c56-846a-6caf99ff5b5d",
+    "usage": {
+      "prompt_tokens": 17060,
+      "completion_tokens": 431,
+      "total_tokens": 17491,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 14244
+    },
+    "seconds": 3.5117059889998927,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0024036479999999995,
+    "cost_USD_peak": 0.004807295999999999,
+    "prompt_tokens_provider": 17060,
+    "completion_tokens_provider": 431
+  },
+  {
+    "trial": "trapani/E1/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 37727,
+      "completion_tokens": 19671,
+      "total_tokens": 57398,
+      "prompt_tokens_details": {
+        "cached_tokens": 7424
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 15202
+      },
+      "prompt_cache_hit_tokens": 7424,
+      "prompt_cache_miss_tokens": 30303
+    },
+    "seconds": 76.84562113100037,
+    "finished_UTC": "2026-10-20T15:17:23.092846+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "438b192d-0dfa-4f63-979a-093484d880b6",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.016370322,
+    "cost_USD_peak": 0.032740644,
+    "prompt_tokens_provider": 37727,
+    "completion_tokens_provider": 19671
+  },
+  {
+    "trial": "trapani/E1/rep-1",
+    "kind": "narrator",
+    "path": "runs/trapani/E1/rep-1/final/dialogue/030bcebdd66840dbaa0cbd306f6ba657/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "f1b80fc9-bcb3-4c96-b2f6-64d98730ab4e",
+    "usage": {
+      "prompt_tokens": 11551,
+      "completion_tokens": 334,
+      "total_tokens": 11885,
+      "prompt_tokens_details": {
+        "cached_tokens": 3328
+      },
+      "prompt_cache_hit_tokens": 3328,
+      "prompt_cache_miss_tokens": 8223
+    },
+    "seconds": 2.536182526999255,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.001443834,
+    "cost_USD_peak": 0.002887668,
+    "prompt_tokens_provider": 11551,
+    "completion_tokens_provider": 334
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 37080,
+      "completion_tokens": 17708,
+      "total_tokens": 54788,
+      "prompt_tokens_details": {
+        "cached_tokens": 7680
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 14421
+      },
+      "prompt_cache_hit_tokens": 7680,
+      "prompt_cache_miss_tokens": 29400
+    },
+    "seconds": 74.05306584499976,
+    "finished_UTC": "2026-10-20T15:18:37.151475+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "428b36c6-6505-41fe-b4c4-c3cbe31733d5",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.01505784,
+    "cost_USD_peak": 0.03011568,
+    "prompt_tokens_provider": 37080,
+    "completion_tokens_provider": 17708
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 36065,
+      "completion_tokens": 9919,
+      "total_tokens": 45984,
+      "prompt_tokens_details": {
+        "cached_tokens": 16512
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 8615
+      },
+      "prompt_cache_hit_tokens": 16512,
+      "prompt_cache_miss_tokens": 19553
+    },
+    "seconds": 47.005711629000416,
+    "finished_UTC": "2026-10-20T15:18:33.632033+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "5798e0e1-7ef2-4e77-a4d1-c172ea748a57",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.008933885999999999,
+    "cost_USD_peak": 0.017867771999999997,
+    "prompt_tokens_provider": 36065,
+    "completion_tokens_provider": 9919
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "kind": "narrator",
+    "path": "runs/trapani/E2-A/rep-1/final/dialogue/7b9788935ac3462d84674bb6c869d0c7/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "dcce4b0a-06ac-4a6d-818b-91840e3967c5",
+    "usage": {
+      "prompt_tokens": 12479,
+      "completion_tokens": 297,
+      "total_tokens": 12776,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 10175
+    },
+    "seconds": 2.0118244770001183,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0017113620000000001,
+    "cost_USD_peak": 0.0034227240000000003,
+    "prompt_tokens_provider": 12479,
+    "completion_tokens_provider": 297
+  },
+  {
+    "trial": "trapani/B0/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 41884,
+      "completion_tokens": 17382,
+      "total_tokens": 59266,
+      "prompt_tokens_details": {
+        "cached_tokens": 7040
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 13195
+      },
+      "prompt_cache_hit_tokens": 7040,
+      "prompt_cache_miss_tokens": 34844
+    },
+    "seconds": 71.36484428099993,
+    "finished_UTC": "2026-10-20T15:19:45.002550+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "326ae07f-04a7-437f-8be1-e49b9189bdc5",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.015676919999999997,
+    "cost_USD_peak": 0.031353839999999994,
+    "prompt_tokens_provider": 41884,
+    "completion_tokens_provider": 17382
+  },
+  {
+    "trial": "trapani/B0/rep-1",
+    "kind": "narrator",
+    "path": "runs/trapani/B0/rep-1/final/dialogue/9b1bc8af15894ae2a2316c409564ac25/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "e23e1e6d-3ea5-45bc-a5d8-24945b2eccdc",
+    "usage": {
+      "prompt_tokens": 11888,
+      "completion_tokens": 301,
+      "total_tokens": 12189,
+      "prompt_tokens_details": {
+        "cached_tokens": 3328
+      },
+      "prompt_cache_hit_tokens": 3328,
+      "prompt_cache_miss_tokens": 8560
+    },
+    "seconds": 2.3594590180000523,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.001474584,
+    "cost_USD_peak": 0.002949168,
+    "prompt_tokens_provider": 11888,
+    "completion_tokens_provider": 301
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 68201,
+      "completion_tokens": 29751,
+      "total_tokens": 97952,
+      "prompt_tokens_details": {
+        "cached_tokens": 7680
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 25369
+      },
+      "prompt_cache_hit_tokens": 7680,
+      "prompt_cache_miss_tokens": 60521
+    },
+    "seconds": 124.2304026009997,
+    "finished_UTC": "2026-10-20T15:20:41.410843+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "eaef819f-7cc4-4c37-b72a-78fd2ee44113",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.02695179,
+    "cost_USD_peak": 0.05390358,
+    "prompt_tokens_provider": 68201,
+    "completion_tokens_provider": 29751
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 73979,
+      "completion_tokens": 25415,
+      "total_tokens": 99394,
+      "prompt_tokens_details": {
+        "cached_tokens": 41472
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 18683
+      },
+      "prompt_cache_hit_tokens": 41472,
+      "prompt_cache_miss_tokens": 32507
+    },
+    "seconds": 97.70924684200008,
+    "finished_UTC": "2026-10-20T15:21:22.720467+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "cdfad828-282b-4b92-be6f-0a53a755a33c",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.020249466,
+    "cost_USD_peak": 0.040498932,
+    "prompt_tokens_provider": 73979,
+    "completion_tokens_provider": 25415
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 2,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 68592,
+      "completion_tokens": 12945,
+      "total_tokens": 81537,
+      "prompt_tokens_details": {
+        "cached_tokens": 41472
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 10659
+      },
+      "prompt_cache_hit_tokens": 41472,
+      "prompt_cache_miss_tokens": 27120
+    },
+    "seconds": 55.675767134000125,
+    "finished_UTC": "2026-10-20T15:21:37.101378+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "ce277963-0ad3-4e64-9850-8971388c12fc",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.011959416,
+    "cost_USD_peak": 0.023918832,
+    "prompt_tokens_provider": 68592,
+    "completion_tokens_provider": 12945
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 3,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 65242,
+      "completion_tokens": 3195,
+      "total_tokens": 68437,
+      "prompt_tokens_details": {
+        "cached_tokens": 41472
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2733
+      },
+      "prompt_cache_hit_tokens": 41472,
+      "prompt_cache_miss_tokens": 23770
+    },
+    "seconds": 17.048466310000094,
+    "finished_UTC": "2026-10-20T15:21:39.793795+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "33f1191c-d6e0-4cb2-8582-e4f2367eb18c",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.005606916,
+    "cost_USD_peak": 0.011213832,
+    "prompt_tokens_provider": 65242,
+    "completion_tokens_provider": 3195
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "kind": "narrator",
+    "path": "runs/catanzaro/E2-A/rep-1/final/dialogue/abb7dba965fb4df9892a7ce631ded8cc/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "5a44ea08-8018-40ec-89ec-6ab21b6a0977",
+    "usage": {
+      "prompt_tokens": 10946,
+      "completion_tokens": 260,
+      "total_tokens": 11206,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 8130
+    },
+    "seconds": 2.166267790999882,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.001383948,
+    "cost_USD_peak": 0.002767896,
+    "prompt_tokens_provider": 10946,
+    "completion_tokens_provider": 260
+  },
+  {
+    "trial": "catanzaro/B0/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 83997,
+      "completion_tokens": 35299,
+      "total_tokens": 119296,
+      "prompt_tokens_details": {
+        "cached_tokens": 7040
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 26732
+      },
+      "prompt_cache_hit_tokens": 7040,
+      "prompt_cache_miss_tokens": 76957
+    },
+    "seconds": 141.26334389000021,
+    "finished_UTC": "2026-10-20T15:23:58.381430+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "cfadf1a4-f2f7-4e7b-8afb-45c2463760ae",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.03274407,
+    "cost_USD_peak": 0.06548814,
+    "prompt_tokens_provider": 83997,
+    "completion_tokens_provider": 35299
+  },
+  {
+    "trial": "catanzaro/B0/rep-1",
+    "kind": "narrator",
+    "path": "runs/catanzaro/B0/rep-1/final/dialogue/dca62b6697224987a4124c7848922bf2/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "37415e4d-55c5-41ca-a3d2-684feff56113",
+    "usage": {
+      "prompt_tokens": 9574,
+      "completion_tokens": 221,
+      "total_tokens": 9795,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 6758
+    },
+    "seconds": 2.0509095529996557,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0011547479999999997,
+    "cost_USD_peak": 0.0023094959999999994,
+    "prompt_tokens_provider": 9574,
+    "completion_tokens_provider": 221
+  },
+  {
+    "trial": "catanzaro/E1/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 78145,
+      "completion_tokens": 38695,
+      "total_tokens": 116840,
+      "prompt_tokens_details": {
+        "cached_tokens": 7424
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 28592
+      },
+      "prompt_cache_hit_tokens": 7424,
+      "prompt_cache_miss_tokens": 70721
+    },
+    "seconds": 152.4205718989997,
+    "finished_UTC": "2026-10-20T15:24:12.227707+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "aa9fa57a-c99b-49ce-9db4-24cabcac4617",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.033847422,
+    "cost_USD_peak": 0.067694844,
+    "prompt_tokens_provider": 78145,
+    "completion_tokens_provider": 38695
+  },
+  {
+    "trial": "catanzaro/E1/rep-1",
+    "kind": "narrator",
+    "path": "runs/catanzaro/E1/rep-1/final/dialogue/3215aa2bab4243bea55d25d3b81b742d/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "d61809b7-ab05-416b-9016-300d55d9cfda",
+    "usage": {
+      "prompt_tokens": 10772,
+      "completion_tokens": 207,
+      "total_tokens": 10979,
+      "prompt_tokens_details": {
+        "cached_tokens": 3200
+      },
+      "prompt_cache_hit_tokens": 3200,
+      "prompt_cache_miss_tokens": 7572
+    },
+    "seconds": 2.0261487509997096,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0012695999999999999,
+    "cost_USD_peak": 0.0025391999999999997,
+    "prompt_tokens_provider": 10772,
+    "completion_tokens_provider": 207
+  },
+  {
+    "trial": "bella/B0/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 37408,
+      "completion_tokens": 22331,
+      "total_tokens": 59739,
+      "prompt_tokens_details": {
+        "cached_tokens": 7040
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 17779
+      },
+      "prompt_cache_hit_tokens": 7040,
+      "prompt_cache_miss_tokens": 30368
+    },
+    "seconds": 92.6141777759999,
+    "finished_UTC": "2026-10-20T15:25:31.005509+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "82a6048f-05a5-48d2-be48-6eb31ad7ce9c",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.01797492,
+    "cost_USD_peak": 0.03594984,
+    "prompt_tokens_provider": 37408,
+    "completion_tokens_provider": 22331
+  },
+  {
+    "trial": "bella/B0/rep-1",
+    "kind": "narrator",
+    "path": "runs/bella/B0/rep-1/final/dialogue/640cd48e46cd49f181b1cec18523bfa2/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "7ab1fe62-3c84-4eb0-8829-a981964c6cc9",
+    "usage": {
+      "prompt_tokens": 8146,
+      "completion_tokens": 491,
+      "total_tokens": 8637,
+      "prompt_tokens_details": {
+        "cached_tokens": 2944
+      },
+      "prompt_cache_hit_tokens": 2944,
+      "prompt_cache_miss_tokens": 5202
+    },
+    "seconds": 3.292548104999696,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.001083732,
+    "cost_USD_peak": 0.002167464,
+    "prompt_tokens_provider": 8146,
+    "completion_tokens_provider": 491
+  },
+  {
+    "trial": "bella/E1/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 36155,
+      "completion_tokens": 26043,
+      "total_tokens": 62198,
+      "prompt_tokens_details": {
+        "cached_tokens": 7424
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 21763
+      },
+      "prompt_cache_hit_tokens": 7424,
+      "prompt_cache_miss_tokens": 28731
+    },
+    "seconds": 109.88999050799976,
+    "finished_UTC": "2026-10-20T15:26:02.127003+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "7b8f0896-e9f3-468e-94c3-4de6e79784ed",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.019957721999999997,
+    "cost_USD_peak": 0.039915443999999994,
+    "prompt_tokens_provider": 36155,
+    "completion_tokens_provider": 26043
+  },
+  {
+    "trial": "bella/E1/rep-1",
+    "kind": "narrator",
+    "path": "runs/bella/E1/rep-1/final/dialogue/6aaf23d91a694afab7fd7050e4a259c5/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "d8f74e05-74bf-4815-ae85-fd5cc69e0f3e",
+    "usage": {
+      "prompt_tokens": 9663,
+      "completion_tokens": 230,
+      "total_tokens": 9893,
+      "prompt_tokens_details": {
+        "cached_tokens": 3200
+      },
+      "prompt_cache_hit_tokens": 3200,
+      "prompt_cache_miss_tokens": 6463
+    },
+    "seconds": 2.1606890719995135,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0011170499999999999,
+    "cost_USD_peak": 0.0022340999999999997,
+    "prompt_tokens_provider": 9663,
+    "completion_tokens_provider": 230
+  },
+  {
+    "trial": "bella/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 34751,
+      "completion_tokens": 11275,
+      "total_tokens": 46026,
+      "prompt_tokens_details": {
+        "cached_tokens": 7680
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 9064
+      },
+      "prompt_cache_hit_tokens": 7680,
+      "prompt_cache_miss_tokens": 27071
+    },
+    "seconds": 50.505919963999986,
+    "finished_UTC": "2026-10-20T15:26:21.521369+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "901906d1-18ed-4adf-b636-069078544540",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.01084869,
+    "cost_USD_peak": 0.02169738,
+    "prompt_tokens_provider": 34751,
+    "completion_tokens_provider": 11275
+  },
+  {
+    "trial": "bella/E2-A/rep-1",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 36134,
+      "completion_tokens": 11009,
+      "total_tokens": 47143,
+      "prompt_tokens_details": {
+        "cached_tokens": 15616
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 8964
+      },
+      "prompt_cache_hit_tokens": 15616,
+      "prompt_cache_miss_tokens": 20518
+    },
+    "seconds": 50.91625183699989,
+    "finished_UTC": "2026-10-20T15:26:53.052052+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "9b166a18-6971-4ae3-b61a-ef7640d6e134",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.009729948,
+    "cost_USD_peak": 0.019459896,
+    "prompt_tokens_provider": 36134,
+    "completion_tokens_provider": 11009
+  },
+  {
+    "trial": "bella/E2-A/rep-1",
+    "kind": "narrator",
+    "path": "runs/bella/E2-A/rep-1/final/dialogue/8864974b8e9b43cebabf322b55b5dc2f/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "e7ebb6a9-4ec9-49c4-8759-43aa8c77434b",
+    "usage": {
+      "prompt_tokens": 7751,
+      "completion_tokens": 177,
+      "total_tokens": 7928,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 4935
+    },
+    "seconds": 3.1840670789997603,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.000854898,
+    "cost_USD_peak": 0.001709796,
+    "prompt_tokens_provider": 7751,
+    "completion_tokens_provider": 177
+  },
+  {
+    "trial": "catanzaro/E1/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 78145,
+      "completion_tokens": 38249,
+      "total_tokens": 116394,
+      "prompt_tokens_details": {
+        "cached_tokens": 77952
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 29724
+      },
+      "prompt_cache_hit_tokens": 77952,
+      "prompt_cache_miss_tokens": 193
+    },
+    "seconds": 147.51602498700004,
+    "finished_UTC": "2026-10-20T15:28:49.051453+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "d49fdc6c-9b72-48d9-ac49-c73197a18424",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.023212206,
+    "cost_USD_peak": 0.046424412,
+    "prompt_tokens_provider": 78145,
+    "completion_tokens_provider": 38249
+  },
+  {
+    "trial": "catanzaro/E1/rep-2",
+    "kind": "narrator",
+    "path": "runs/catanzaro/E1/rep-2/final/dialogue/7e9df32bd3ba42099edddfc099e99bf6/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "0991dd7f-08d1-451b-bd57-358b0ed33abe",
+    "usage": {
+      "prompt_tokens": 10792,
+      "completion_tokens": 203,
+      "total_tokens": 10995,
+      "prompt_tokens_details": {
+        "cached_tokens": 3200
+      },
+      "prompt_cache_hit_tokens": 3200,
+      "prompt_cache_miss_tokens": 7592
+    },
+    "seconds": 1.8470527700001185,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0012701999999999998,
+    "cost_USD_peak": 0.0025403999999999995,
+    "prompt_tokens_provider": 10792,
+    "completion_tokens_provider": 203
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 68201,
+      "completion_tokens": 30503,
+      "total_tokens": 98704,
+      "prompt_tokens_details": {
+        "cached_tokens": 67968
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 23195
+      },
+      "prompt_cache_hit_tokens": 67968,
+      "prompt_cache_miss_tokens": 233
+    },
+    "seconds": 127.04093041799979,
+    "finished_UTC": "2026-10-20T15:29:00.103123+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "d77e1b62-a918-4b3f-b181-4966b7591da7",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.018540654,
+    "cost_USD_peak": 0.037081308,
+    "prompt_tokens_provider": 68201,
+    "completion_tokens_provider": 30503
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 73979,
+      "completion_tokens": 18795,
+      "total_tokens": 92774,
+      "prompt_tokens_details": {
+        "cached_tokens": 73728
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 14327
+      },
+      "prompt_cache_hit_tokens": 73728,
+      "prompt_cache_miss_tokens": 251
+    },
+    "seconds": 73.18187844300019,
+    "finished_UTC": "2026-10-20T15:30:02.247524+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "63d5d8f0-13e2-4fae-96a1-62ca7a6392ab",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.011535834,
+    "cost_USD_peak": 0.023071668,
+    "prompt_tokens_provider": 73979,
+    "completion_tokens_provider": 18795
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 2,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 68592,
+      "completion_tokens": 13865,
+      "total_tokens": 82457,
+      "prompt_tokens_details": {
+        "cached_tokens": 68352
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 11833
+      },
+      "prompt_cache_hit_tokens": 68352,
+      "prompt_cache_miss_tokens": 240
+    },
+    "seconds": 60.58341461100008,
+    "finished_UTC": "2026-10-20T15:30:00.697188+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "f3f1d013-fc95-4890-b73b-a6c931c3a020",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.008560056,
+    "cost_USD_peak": 0.017120112,
+    "prompt_tokens_provider": 68592,
+    "completion_tokens_provider": 13865
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 3,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 65242,
+      "completion_tokens": 3372,
+      "total_tokens": 68614,
+      "prompt_tokens_details": {
+        "cached_tokens": 65024
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2885
+      },
+      "prompt_cache_hit_tokens": 65024,
+      "prompt_cache_miss_tokens": 218
+    },
+    "seconds": 16.055513080999845,
+    "finished_UTC": "2026-10-20T15:30:16.766816+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "47f98d0a-1cef-471d-be3e-d2c4467d1912",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.002250972,
+    "cost_USD_peak": 0.004501944,
+    "prompt_tokens_provider": 65242,
+    "completion_tokens_provider": 3372
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "kind": "narrator",
+    "path": "runs/catanzaro/E2-A/rep-2/final/dialogue/27d808748ad9494db156baa5b5195275/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "584fb28b-e191-4b40-953c-fbf3b82994e2",
+    "usage": {
+      "prompt_tokens": 12322,
+      "completion_tokens": 309,
+      "total_tokens": 12631,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 10018
+    },
+    "seconds": 3.350211056000262,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.001695012,
+    "cost_USD_peak": 0.003390024,
+    "prompt_tokens_provider": 12322,
+    "completion_tokens_provider": 309
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 83997,
+      "completion_tokens": 35929,
+      "total_tokens": 119926,
+      "prompt_tokens_details": {
+        "cached_tokens": 83840
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 26029
+      },
+      "prompt_cache_hit_tokens": 83840,
+      "prompt_cache_miss_tokens": 157
+    },
+    "seconds": 136.76403415699997,
+    "finished_UTC": "2026-10-20T15:32:19.027109+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "54948498-4e0f-413b-95cc-edccc1120691",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.021832469999999996,
+    "cost_USD_peak": 0.04366493999999999,
+    "prompt_tokens_provider": 83997,
+    "completion_tokens_provider": 35929
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "kind": "narrator",
+    "path": "runs/catanzaro/B0/rep-2/final/dialogue/346b8b132f2a4018869fd4409b275a67/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "f66b6cd2-e60c-4d24-aa00-92b35584adab",
+    "usage": {
+      "prompt_tokens": 10399,
+      "completion_tokens": 215,
+      "total_tokens": 10614,
+      "prompt_tokens_details": {
+        "cached_tokens": 3328
+      },
+      "prompt_cache_hit_tokens": 3328,
+      "prompt_cache_miss_tokens": 7071
+    },
+    "seconds": 2.1124761159999252,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0011996339999999998,
+    "cost_USD_peak": 0.0023992679999999995,
+    "prompt_tokens_provider": 10399,
+    "completion_tokens_provider": 215
+  },
+  {
+    "trial": "minervino/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 49536,
+      "completion_tokens": 46681,
+      "total_tokens": 96217,
+      "prompt_tokens_details": {
+        "cached_tokens": 49280
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 28439
+      },
+      "prompt_cache_hit_tokens": 49280,
+      "prompt_cache_miss_tokens": 256
+    },
+    "seconds": 160.44353602299998,
+    "finished_UTC": "2026-10-20T15:32:57.221643+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "71534445-cd7a-4c76-aa2d-f4077dd97fa2",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.02819484,
+    "cost_USD_peak": 0.05638968,
+    "prompt_tokens_provider": 49536,
+    "completion_tokens_provider": 46681
+  },
+  {
+    "trial": "minervino/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 46957,
+      "completion_tokens": 4273,
+      "total_tokens": 51230,
+      "prompt_tokens_details": {
+        "cached_tokens": 46720
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1510
+      },
+      "prompt_cache_hit_tokens": 46720,
+      "prompt_cache_miss_tokens": 237
+    },
+    "seconds": 14.216352560999894,
+    "finished_UTC": "2026-10-20T15:32:33.255438+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "f433a8fe-9dba-4629-9396-eceefb1e7bd3",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.0027395099999999997,
+    "cost_USD_peak": 0.005479019999999999,
+    "prompt_tokens_provider": 46957,
+    "completion_tokens_provider": 4273
+  },
+  {
+    "trial": "minervino/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 2,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 44730,
+      "completion_tokens": 12183,
+      "total_tokens": 56913,
+      "prompt_tokens_details": {
+        "cached_tokens": 44544
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 10664
+      },
+      "prompt_cache_hit_tokens": 44544,
+      "prompt_cache_miss_tokens": 186
+    },
+    "seconds": 55.019279448999896,
+    "finished_UTC": "2026-10-20T15:33:28.284110+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "cc670622-2c7c-4924-8a81-935e16b18b76",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.007471332000000001,
+    "cost_USD_peak": 0.014942664000000001,
+    "prompt_tokens_provider": 44730,
+    "completion_tokens_provider": 12183
+  },
+  {
+    "trial": "minervino/E2-A/rep-2",
+    "kind": "narrator",
+    "path": "runs/minervino/E2-A/rep-2/final/dialogue/3e0ac0d3f5624e5db72502d0fad4b72a/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "ef676f25-d509-4709-a281-468bbe9a0448",
+    "usage": {
+      "prompt_tokens": 12483,
+      "completion_tokens": 166,
+      "total_tokens": 12649,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 10179
+    },
+    "seconds": 2.3033794720004153,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0016333619999999997,
+    "cost_USD_peak": 0.0032667239999999995,
+    "prompt_tokens_provider": 12483,
+    "completion_tokens_provider": 166
+  },
+  {
+    "trial": "minervino/E2-A/rep-2",
+    "kind": "narrator",
+    "path": "runs/minervino/E2-A/rep-2/final/dialogue/608583c74eeb4f018226b7aa36b296e4/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "4c497c5a-159b-4046-9ec2-c73e7c5eeee2",
+    "usage": {
+      "prompt_tokens": 17698,
+      "completion_tokens": 416,
+      "total_tokens": 18114,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 15394
+    },
+    "seconds": 3.4834867979998307,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0025656119999999997,
+    "cost_USD_peak": 0.005131223999999999,
+    "prompt_tokens_provider": 17698,
+    "completion_tokens_provider": 416
+  },
+  {
+    "trial": "minervino/B0/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 61741,
+      "completion_tokens": 37304,
+      "total_tokens": 99045,
+      "prompt_tokens_details": {
+        "cached_tokens": 61568
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 23365
+      },
+      "prompt_cache_hit_tokens": 61568,
+      "prompt_cache_miss_tokens": 173
+    },
+    "seconds": 132.60925255699976,
+    "finished_UTC": "2026-10-20T15:35:09.842831+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "807eef12-4a57-458d-8c76-24111d4faa7d",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.022593053999999998,
+    "cost_USD_peak": 0.045186107999999996,
+    "prompt_tokens_provider": 61741,
+    "completion_tokens_provider": 37304
+  },
+  {
+    "trial": "minervino/B0/rep-2",
+    "kind": "narrator",
+    "path": "runs/minervino/B0/rep-2/final/dialogue/7a282be456dc4780b088304fa15f6d7d/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "2f9bac7b-1604-4082-9c46-71833f43cbb9",
+    "usage": {
+      "prompt_tokens": 17565,
+      "completion_tokens": 2048,
+      "total_tokens": 19613,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 15261
+    },
+    "seconds": 7.727048401999127,
+    "status": "FAIL",
+    "cost_USD_off_peak": 0.003524862,
+    "cost_USD_peak": 0.007049724,
+    "prompt_tokens_provider": 17565,
+    "completion_tokens_provider": 2048
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 51647,
+      "completion_tokens": 43625,
+      "total_tokens": 95272,
+      "prompt_tokens_details": {
+        "cached_tokens": 51456
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 29495
+      },
+      "prompt_cache_hit_tokens": 51456,
+      "prompt_cache_miss_tokens": 191
+    },
+    "seconds": 155.45117611299975,
+    "finished_UTC": "2026-10-20T15:36:03.747430+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "0c1c5180-b43a-4c40-9e95-b1af538563aa",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.026358018,
+    "cost_USD_peak": 0.052716036,
+    "prompt_tokens_provider": 51647,
+    "completion_tokens_provider": 43625
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "kind": "narrator",
+    "path": "runs/minervino/E1/rep-2/final/dialogue/978cfc51b99d486b84bb7ecbd540cc05/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "12557f5c-8cdb-447d-a065-e3890e77d819",
+    "usage": {
+      "prompt_tokens": 11722,
+      "completion_tokens": 374,
+      "total_tokens": 12096,
+      "prompt_tokens_details": {
+        "cached_tokens": 2176
+      },
+      "prompt_cache_hit_tokens": 2176,
+      "prompt_cache_miss_tokens": 9546
+    },
+    "seconds": 2.588476176999393,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0016628279999999999,
+    "cost_USD_peak": 0.0033256559999999998,
+    "prompt_tokens_provider": 11722,
+    "completion_tokens_provider": 374
+  },
+  {
+    "trial": "bella/B0/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 37408,
+      "completion_tokens": 20517,
+      "total_tokens": 57925,
+      "prompt_tokens_details": {
+        "cached_tokens": 37248
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 16944
+      },
+      "prompt_cache_hit_tokens": 37248,
+      "prompt_cache_miss_tokens": 160
+    },
+    "seconds": 85.53823893300023,
+    "finished_UTC": "2026-10-20T15:36:35.391275+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "3843f988-2067-4bde-9c91-317dce2cbd44",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.012445943999999999,
+    "cost_USD_peak": 0.024891887999999997,
+    "prompt_tokens_provider": 37408,
+    "completion_tokens_provider": 20517
+  },
+  {
+    "trial": "bella/B0/rep-2",
+    "kind": "narrator",
+    "path": "runs/bella/B0/rep-2/final/dialogue/8c58d4019ccc46edb6abbd64471973df/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "d90ffdab-b6ad-4146-ba83-57794b03028a",
+    "usage": {
+      "prompt_tokens": 9640,
+      "completion_tokens": 347,
+      "total_tokens": 9987,
+      "prompt_tokens_details": {
+        "cached_tokens": 2944
+      },
+      "prompt_cache_hit_tokens": 2944,
+      "prompt_cache_miss_tokens": 6696
+    },
+    "seconds": 2.5610185810000985,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.001221432,
+    "cost_USD_peak": 0.002442864,
+    "prompt_tokens_provider": 9640,
+    "completion_tokens_provider": 347
+  },
+  {
+    "trial": "bella/E1/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 36155,
+      "completion_tokens": 20293,
+      "total_tokens": 56448,
+      "prompt_tokens_details": {
+        "cached_tokens": 35968
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 17004
+      },
+      "prompt_cache_hit_tokens": 35968,
+      "prompt_cache_miss_tokens": 187
+    },
+    "seconds": 85.65198527200027,
+    "finished_UTC": "2026-10-20T15:37:29.409052+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "a60d5479-796c-499f-b476-060bca033b63",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.012311754,
+    "cost_USD_peak": 0.024623508,
+    "prompt_tokens_provider": 36155,
+    "completion_tokens_provider": 20293
+  },
+  {
+    "trial": "bella/E1/rep-2",
+    "kind": "narrator",
+    "path": "runs/bella/E1/rep-2/final/dialogue/65364c1664dc4294a5acee33a518e35e/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "8a8ca68b-d28f-4501-835b-72eeee3759ef",
+    "usage": {
+      "prompt_tokens": 9298,
+      "completion_tokens": 390,
+      "total_tokens": 9688,
+      "prompt_tokens_details": {
+        "cached_tokens": 3200
+      },
+      "prompt_cache_hit_tokens": 3200,
+      "prompt_cache_miss_tokens": 6098
+    },
+    "seconds": 2.8250478240006487,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0011583,
+    "cost_USD_peak": 0.0023166,
+    "prompt_tokens_provider": 9298,
+    "completion_tokens_provider": 390
+  },
+  {
+    "trial": "bella/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 34751,
+      "completion_tokens": 10134,
+      "total_tokens": 44885,
+      "prompt_tokens_details": {
+        "cached_tokens": 34560
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 8221
+      },
+      "prompt_cache_hit_tokens": 34560,
+      "prompt_cache_miss_tokens": 191
+    },
+    "seconds": 46.0535354120002,
+    "finished_UTC": "2026-10-20T15:37:21.451464+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "f973f58f-e692-46e1-83ad-595f25b9bb4f",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.00621273,
+    "cost_USD_peak": 0.01242546,
+    "prompt_tokens_provider": 34751,
+    "completion_tokens_provider": 10134
+  },
+  {
+    "trial": "bella/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 36134,
+      "completion_tokens": 12145,
+      "total_tokens": 48279,
+      "prompt_tokens_details": {
+        "cached_tokens": 35968
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 10442
+      },
+      "prompt_cache_hit_tokens": 35968,
+      "prompt_cache_miss_tokens": 166
+    },
+    "seconds": 54.88864376999982,
+    "finished_UTC": "2026-10-20T15:38:16.348199+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "919c3f28-bd79-46ba-8d8f-f33b6c607c03",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.007419804,
+    "cost_USD_peak": 0.014839608,
+    "prompt_tokens_provider": 36134,
+    "completion_tokens_provider": 12145
+  },
+  {
+    "trial": "bella/E2-A/rep-2",
+    "kind": "narrator",
+    "path": "runs/bella/E2-A/rep-2/final/dialogue/81ad381fc29b4db5bef0888e3d171fad/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "2506a6c5-0a3f-4e5d-a1e0-9a24f5cc750b",
+    "usage": {
+      "prompt_tokens": 9392,
+      "completion_tokens": 229,
+      "total_tokens": 9621,
+      "prompt_tokens_details": {
+        "cached_tokens": 2176
+      },
+      "prompt_cache_hit_tokens": 2176,
+      "prompt_cache_miss_tokens": 7216
+    },
+    "seconds": 1.9575727930005087,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.001226328,
+    "cost_USD_peak": 0.002452656,
+    "prompt_tokens_provider": 9392,
+    "completion_tokens_provider": 229
+  },
+  {
+    "trial": "trapani/E1/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 37727,
+      "completion_tokens": 18192,
+      "total_tokens": 55919,
+      "prompt_tokens_details": {
+        "cached_tokens": 37504
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 13333
+      },
+      "prompt_cache_hit_tokens": 37504,
+      "prompt_cache_miss_tokens": 223
+    },
+    "seconds": 73.83204278999983,
+    "finished_UTC": "2026-10-20T15:38:43.251441+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "1e6329a3-dcdb-4897-92da-852eb9122670",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.011061161999999998,
+    "cost_USD_peak": 0.022122323999999995,
+    "prompt_tokens_provider": 37727,
+    "completion_tokens_provider": 18192
+  },
+  {
+    "trial": "trapani/E1/rep-2",
+    "kind": "narrator",
+    "path": "runs/trapani/E1/rep-2/final/dialogue/ed7dc979dfff41e5a17dea62263ab4a0/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "ffee07dd-bf83-43cb-a283-837846ba9db8",
+    "usage": {
+      "prompt_tokens": 12197,
+      "completion_tokens": 337,
+      "total_tokens": 12534,
+      "prompt_tokens_details": {
+        "cached_tokens": 2304
+      },
+      "prompt_cache_hit_tokens": 2304,
+      "prompt_cache_miss_tokens": 9893
+    },
+    "seconds": 2.827763218000655,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0016930620000000002,
+    "cost_USD_peak": 0.0033861240000000003,
+    "prompt_tokens_provider": 12197,
+    "completion_tokens_provider": 337
+  },
+  {
+    "trial": "trapani/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 37080,
+      "completion_tokens": 17474,
+      "total_tokens": 54554,
+      "prompt_tokens_details": {
+        "cached_tokens": 36864
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 12932
+      },
+      "prompt_cache_hit_tokens": 36864,
+      "prompt_cache_miss_tokens": 216
+    },
+    "seconds": 66.92086517300004,
+    "finished_UTC": "2026-10-20T15:39:23.278845+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "2a3ae97d-026c-46f7-8b0a-046f815c5191",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.010627392,
+    "cost_USD_peak": 0.021254784,
+    "prompt_tokens_provider": 37080,
+    "completion_tokens_provider": 17474
+  },
+  {
+    "trial": "trapani/E2-A/rep-2",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 36065,
+      "completion_tokens": 9343,
+      "total_tokens": 45408,
+      "prompt_tokens_details": {
+        "cached_tokens": 35840
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 8150
+      },
+      "prompt_cache_hit_tokens": 35840,
+      "prompt_cache_miss_tokens": 225
+    },
+    "seconds": 43.225275175000206,
+    "finished_UTC": "2026-10-20T15:39:26.485646+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "27b92c9a-eea7-4541-aae4-8caed2bb32f7",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.00574707,
+    "cost_USD_peak": 0.01149414,
+    "prompt_tokens_provider": 36065,
+    "completion_tokens_provider": 9343
+  },
+  {
+    "trial": "trapani/E2-A/rep-2",
+    "kind": "narrator",
+    "path": "runs/trapani/E2-A/rep-2/final/dialogue/c61c85a5264649e4b4193e3604d525fc/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "8eab9d48-9f36-47f2-9027-748c421f10c3",
+    "usage": {
+      "prompt_tokens": 11907,
+      "completion_tokens": 333,
+      "total_tokens": 12240,
+      "prompt_tokens_details": {
+        "cached_tokens": 3328
+      },
+      "prompt_cache_hit_tokens": 3328,
+      "prompt_cache_miss_tokens": 8579
+    },
+    "seconds": 2.4114059180001277,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0014966339999999997,
+    "cost_USD_peak": 0.0029932679999999994,
+    "prompt_tokens_provider": 11907,
+    "completion_tokens_provider": 333
+  },
+  {
+    "trial": "trapani/B0/rep-2",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 41884,
+      "completion_tokens": 20199,
+      "total_tokens": 62083,
+      "prompt_tokens_details": {
+        "cached_tokens": 41728
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 15801
+      },
+      "prompt_cache_hit_tokens": 41728,
+      "prompt_cache_miss_tokens": 156
+    },
+    "seconds": 82.67312563299993,
+    "finished_UTC": "2026-10-20T15:40:45.962528+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "adcfe4cc-ae66-4ec1-a640-16200710444e",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.012267984000000001,
+    "cost_USD_peak": 0.024535968000000002,
+    "prompt_tokens_provider": 41884,
+    "completion_tokens_provider": 20199
+  },
+  {
+    "trial": "trapani/B0/rep-2",
+    "kind": "narrator",
+    "path": "runs/trapani/B0/rep-2/final/dialogue/d4f2d1883f8c43f682cc9d9d495dc4d0/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "ed752125-aaed-4754-9c5d-e4ab01ffb2e0",
+    "usage": {
+      "prompt_tokens": 11839,
+      "completion_tokens": 282,
+      "total_tokens": 12121,
+      "prompt_tokens_details": {
+        "cached_tokens": 3328
+      },
+      "prompt_cache_hit_tokens": 3328,
+      "prompt_cache_miss_tokens": 8511
+    },
+    "seconds": 2.2837583909995374,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0014558339999999998,
+    "cost_USD_peak": 0.0029116679999999996,
+    "prompt_tokens_provider": 11839,
+    "completion_tokens_provider": 282
+  },
+  {
+    "trial": "trapani/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 37080,
+      "completion_tokens": 15352,
+      "total_tokens": 52432,
+      "prompt_tokens_details": {
+        "cached_tokens": 36864
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 11794
+      },
+      "prompt_cache_hit_tokens": 36864,
+      "prompt_cache_miss_tokens": 216
+    },
+    "seconds": 63.80242992900003,
+    "finished_UTC": "2026-10-20T15:40:30.292992+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "4e4abe7b-93ef-4f31-ad07-47f6c7a7ce64",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.009354191999999999,
+    "cost_USD_peak": 0.018708383999999998,
+    "prompt_tokens_provider": 37080,
+    "completion_tokens_provider": 15352
+  },
+  {
+    "trial": "trapani/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 36065,
+      "completion_tokens": 18633,
+      "total_tokens": 54698,
+      "prompt_tokens_details": {
+        "cached_tokens": 35840
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 17328
+      },
+      "prompt_cache_hit_tokens": 35840,
+      "prompt_cache_miss_tokens": 225
+    },
+    "seconds": 76.32707067399997,
+    "finished_UTC": "2026-10-20T15:41:46.624356+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "eec0b6f3-9cd4-4328-b84a-2757587cf208",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.011321069999999999,
+    "cost_USD_peak": 0.022642139999999998,
+    "prompt_tokens_provider": 36065,
+    "completion_tokens_provider": 18633
+  },
+  {
+    "trial": "trapani/E2-A/rep-3",
+    "kind": "narrator",
+    "path": "runs/trapani/E2-A/rep-3/final/dialogue/ed66774aa1124da0928f1e7fb6494f76/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "50863941-d0f2-4c79-929b-fcada58ed323",
+    "usage": {
+      "prompt_tokens": 11749,
+      "completion_tokens": 330,
+      "total_tokens": 12079,
+      "prompt_tokens_details": {
+        "cached_tokens": 3328
+      },
+      "prompt_cache_hit_tokens": 3328,
+      "prompt_cache_miss_tokens": 8421
+    },
+    "seconds": 2.330486763999943,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0014711339999999998,
+    "cost_USD_peak": 0.0029422679999999996,
+    "prompt_tokens_provider": 11749,
+    "completion_tokens_provider": 330
+  },
+  {
+    "trial": "trapani/B0/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 41884,
+      "completion_tokens": 26331,
+      "total_tokens": 68215,
+      "prompt_tokens_details": {
+        "cached_tokens": 41728
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 21106
+      },
+      "prompt_cache_hit_tokens": 41728,
+      "prompt_cache_miss_tokens": 156
+    },
+    "seconds": 107.34517746499978,
+    "finished_UTC": "2026-10-20T15:42:33.313030+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "36561a7b-0eb8-492e-a692-7fa1c22ef691",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.015947184,
+    "cost_USD_peak": 0.031894368,
+    "prompt_tokens_provider": 41884,
+    "completion_tokens_provider": 26331
+  },
+  {
+    "trial": "trapani/B0/rep-3",
+    "kind": "narrator",
+    "path": "runs/trapani/B0/rep-3/final/dialogue/bd871723a83747fdbedc45d4fd91e694/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "a62274f6-e1ae-46a4-8485-70af0c5f8f6e",
+    "usage": {
+      "prompt_tokens": 11851,
+      "completion_tokens": 288,
+      "total_tokens": 12139,
+      "prompt_tokens_details": {
+        "cached_tokens": 3328
+      },
+      "prompt_cache_hit_tokens": 3328,
+      "prompt_cache_miss_tokens": 8523
+    },
+    "seconds": 2.2579504710001856,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0014612339999999998,
+    "cost_USD_peak": 0.0029224679999999997,
+    "prompt_tokens_provider": 11851,
+    "completion_tokens_provider": 288
+  },
+  {
+    "trial": "trapani/E1/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 37727,
+      "completion_tokens": 19607,
+      "total_tokens": 57334,
+      "prompt_tokens_details": {
+        "cached_tokens": 37504
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 15896
+      },
+      "prompt_cache_hit_tokens": 37504,
+      "prompt_cache_miss_tokens": 223
+    },
+    "seconds": 82.31373490299984,
+    "finished_UTC": "2026-10-20T15:43:08.942255+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "f381709f-0aeb-4fcb-9a91-0df7a0ce3f9d",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.011910161999999998,
+    "cost_USD_peak": 0.023820323999999997,
+    "prompt_tokens_provider": 37727,
+    "completion_tokens_provider": 19607
+  },
+  {
+    "trial": "trapani/E1/rep-3",
+    "kind": "narrator",
+    "path": "runs/trapani/E1/rep-3/final/dialogue/58ffb4f03d2f48d3b4685740397411de/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "d84a7979-dc95-40d9-a64f-18889b7ff4ac",
+    "usage": {
+      "prompt_tokens": 10785,
+      "completion_tokens": 261,
+      "total_tokens": 11046,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 7969
+    },
+    "seconds": 2.067240534999655,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0013603979999999999,
+    "cost_USD_peak": 0.0027207959999999997,
+    "prompt_tokens_provider": 10785,
+    "completion_tokens_provider": 261
+  },
+  {
+    "trial": "catanzaro/B0/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 83997,
+      "completion_tokens": 27517,
+      "total_tokens": 111514,
+      "prompt_tokens_details": {
+        "cached_tokens": 83840
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 19292
+      },
+      "prompt_cache_hit_tokens": 83840,
+      "prompt_cache_miss_tokens": 157
+    },
+    "seconds": 106.1001659980002,
+    "finished_UTC": "2026-10-20T15:44:19.429793+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "d149260d-7319-4f5d-a8df-be5d6b335842",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.01678527,
+    "cost_USD_peak": 0.03357054,
+    "prompt_tokens_provider": 83997,
+    "completion_tokens_provider": 27517
+  },
+  {
+    "trial": "catanzaro/B0/rep-3",
+    "kind": "narrator",
+    "path": "runs/catanzaro/B0/rep-3/final/dialogue/9699362410dd43c5bf3f2762e40a0a49/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "e9162dc9-78f2-45c9-a3ab-99646765bce9",
+    "usage": {
+      "prompt_tokens": 9399,
+      "completion_tokens": 220,
+      "total_tokens": 9619,
+      "prompt_tokens_details": {
+        "cached_tokens": 3200
+      },
+      "prompt_cache_hit_tokens": 3200,
+      "prompt_cache_miss_tokens": 6199
+    },
+    "seconds": 1.8502017799992245,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0010714499999999998,
+    "cost_USD_peak": 0.0021428999999999997,
+    "prompt_tokens_provider": 9399,
+    "completion_tokens_provider": 220
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 78145,
+      "completion_tokens": 36310,
+      "total_tokens": 114455,
+      "prompt_tokens_details": {
+        "cached_tokens": 77952
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 24939
+      },
+      "prompt_cache_hit_tokens": 77952,
+      "prompt_cache_miss_tokens": 193
+    },
+    "seconds": 132.75250979600014,
+    "finished_UTC": "2026-10-20T15:45:21.709922+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "83c3ca97-81c9-44f0-adb0-06e08d6e9f23",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.022048806,
+    "cost_USD_peak": 0.044097612,
+    "prompt_tokens_provider": 78145,
+    "completion_tokens_provider": 36310
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "kind": "narrator",
+    "path": "runs/catanzaro/E1/rep-3/final/dialogue/3e222543e1394504ba6eec6d3afed323/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "1498fe34-265a-4e58-b81e-936b17b5ec06",
+    "usage": {
+      "prompt_tokens": 10636,
+      "completion_tokens": 1025,
+      "total_tokens": 11661,
+      "prompt_tokens_details": {
+        "cached_tokens": 3200
+      },
+      "prompt_cache_hit_tokens": 3200,
+      "prompt_cache_miss_tokens": 7436
+    },
+    "seconds": 4.9166828099996565,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0017399999999999998,
+    "cost_USD_peak": 0.0034799999999999996,
+    "prompt_tokens_provider": 10636,
+    "completion_tokens_provider": 1025
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 68201,
+      "completion_tokens": 28840,
+      "total_tokens": 97041,
+      "prompt_tokens_details": {
+        "cached_tokens": 67968
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 21184
+      },
+      "prompt_cache_hit_tokens": 67968,
+      "prompt_cache_miss_tokens": 233
+    },
+    "seconds": 114.82693020400029,
+    "finished_UTC": "2026-10-20T15:46:14.271783+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "630475eb-8ea9-4f52-bdff-ca2c1699f352",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.017542854,
+    "cost_USD_peak": 0.035085708,
+    "prompt_tokens_provider": 68201,
+    "completion_tokens_provider": 28840
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 73979,
+      "completion_tokens": 18517,
+      "total_tokens": 92496,
+      "prompt_tokens_details": {
+        "cached_tokens": 73728
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 14415
+      },
+      "prompt_cache_hit_tokens": 73728,
+      "prompt_cache_miss_tokens": 251
+    },
+    "seconds": 73.66180685900008,
+    "finished_UTC": "2026-10-20T15:46:35.385913+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "205b8c1c-7425-4ff6-ae09-e07535aa4ed8",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.011369034,
+    "cost_USD_peak": 0.022738068,
+    "prompt_tokens_provider": 73979,
+    "completion_tokens_provider": 18517
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 2,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 68592,
+      "completion_tokens": 17120,
+      "total_tokens": 85712,
+      "prompt_tokens_details": {
+        "cached_tokens": 68352
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 13595
+      },
+      "prompt_cache_hit_tokens": 68352,
+      "prompt_cache_miss_tokens": 240
+    },
+    "seconds": 71.14399743999957,
+    "finished_UTC": "2026-10-20T15:47:25.431590+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "81b3f628-73a2-4e44-8caa-1d8fc49bd94e",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.010513056,
+    "cost_USD_peak": 0.021026112,
+    "prompt_tokens_provider": 68592,
+    "completion_tokens_provider": 17120
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 3,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 65242,
+      "completion_tokens": 4226,
+      "total_tokens": 69468,
+      "prompt_tokens_details": {
+        "cached_tokens": 65024
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3723
+      },
+      "prompt_cache_hit_tokens": 65024,
+      "prompt_cache_miss_tokens": 218
+    },
+    "seconds": 21.725378575000377,
+    "finished_UTC": "2026-10-20T15:46:57.125430+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "9d46f8c4-76a8-4513-8a38-34adacd09db0",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.002763372,
+    "cost_USD_peak": 0.005526744,
+    "prompt_tokens_provider": 65242,
+    "completion_tokens_provider": 4226
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "kind": "narrator",
+    "path": "runs/catanzaro/E2-A/rep-3/final/dialogue/4bb85d7cad964f10b3977423d850d14d/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "7dcdf92e-cda2-4ee2-a7cf-c08947cd147d",
+    "usage": {
+      "prompt_tokens": 11176,
+      "completion_tokens": 322,
+      "total_tokens": 11498,
+      "prompt_tokens_details": {
+        "cached_tokens": 2944
+      },
+      "prompt_cache_hit_tokens": 2944,
+      "prompt_cache_miss_tokens": 8232
+    },
+    "seconds": 2.343030611999893,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.001436832,
+    "cost_USD_peak": 0.002873664,
+    "prompt_tokens_provider": 11176,
+    "completion_tokens_provider": 322
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 51647,
+      "completion_tokens": 43587,
+      "total_tokens": 95234,
+      "prompt_tokens_details": {
+        "cached_tokens": 51456
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 28729
+      },
+      "prompt_cache_hit_tokens": 51456,
+      "prompt_cache_miss_tokens": 191
+    },
+    "seconds": 154.27039331800006,
+    "finished_UTC": "2026-10-20T15:49:31.409563+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "03e584c5-d6e0-49ab-8bac-adc10a0d109d",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.026335218,
+    "cost_USD_peak": 0.052670436,
+    "prompt_tokens_provider": 51647,
+    "completion_tokens_provider": 43587
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "kind": "narrator",
+    "path": "runs/minervino/E1/rep-3/final/dialogue/079198fed0a54a9da35fca6113e81038/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "fc5e6c59-3a16-4c54-8db2-0dce5aef6c7b",
+    "usage": {
+      "prompt_tokens": 13293,
+      "completion_tokens": 473,
+      "total_tokens": 13766,
+      "prompt_tokens_details": {
+        "cached_tokens": 4608
+      },
+      "prompt_cache_hit_tokens": 4608,
+      "prompt_cache_miss_tokens": 8685
+    },
+    "seconds": 3.5353113380006107,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0016003740000000001,
+    "cost_USD_peak": 0.0032007480000000002,
+    "prompt_tokens_provider": 13293,
+    "completion_tokens_provider": 473
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 49536,
+      "completion_tokens": 46873,
+      "total_tokens": 96409,
+      "prompt_tokens_details": {
+        "cached_tokens": 49280
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 31565
+      },
+      "prompt_cache_hit_tokens": 49280,
+      "prompt_cache_miss_tokens": 256
+    },
+    "seconds": 166.2396450899996,
+    "finished_UTC": "2026-10-20T15:50:11.682067+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "7bfbe490-6bf9-4163-9368-8b33db17a389",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.02831004,
+    "cost_USD_peak": 0.05662008,
+    "prompt_tokens_provider": 49536,
+    "completion_tokens_provider": 46873
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 46957,
+      "completion_tokens": 3702,
+      "total_tokens": 50659,
+      "prompt_tokens_details": {
+        "cached_tokens": 46720
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 2850
+      },
+      "prompt_cache_hit_tokens": 46720,
+      "prompt_cache_miss_tokens": 237
+    },
+    "seconds": 16.459058106000157,
+    "finished_UTC": "2026-10-20T15:49:47.879161+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "afe4ed22-5383-4170-a9df-7b83e2d2802b",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.00239691,
+    "cost_USD_peak": 0.00479382,
+    "prompt_tokens_provider": 46957,
+    "completion_tokens_provider": 3702
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 2,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 44730,
+      "completion_tokens": 4146,
+      "total_tokens": 48876,
+      "prompt_tokens_details": {
+        "cached_tokens": 44544
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 3064
+      },
+      "prompt_cache_hit_tokens": 44544,
+      "prompt_cache_miss_tokens": 186
+    },
+    "seconds": 19.0054596279997,
+    "finished_UTC": "2026-10-20T15:50:06.893678+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "28390b13-9614-45b2-aad2-be6fec459501",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.0026491320000000002,
+    "cost_USD_peak": 0.0052982640000000004,
+    "prompt_tokens_provider": 44730,
+    "completion_tokens_provider": 4146
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "kind": "narrator",
+    "path": "runs/minervino/E2-A/rep-3/final/dialogue/478cf3199f214d7ba39ace691eac7b47/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "43a3784e-ebce-4330-afde-95f3ecc1f84c",
+    "usage": {
+      "prompt_tokens": 12790,
+      "completion_tokens": 152,
+      "total_tokens": 12942,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 9974
+    },
+    "seconds": 1.676971620000586,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0015957480000000001,
+    "cost_USD_peak": 0.0031914960000000003,
+    "prompt_tokens_provider": 12790,
+    "completion_tokens_provider": 152
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "kind": "narrator",
+    "path": "runs/minervino/E2-A/rep-3/final/dialogue/2adb067945984ed5ba1a11257ad69232/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "224f9358-01bb-42dd-904c-b458d4166296",
+    "usage": {
+      "prompt_tokens": 18206,
+      "completion_tokens": 330,
+      "total_tokens": 18536,
+      "prompt_tokens_details": {
+        "cached_tokens": 3712
+      },
+      "prompt_cache_hit_tokens": 3712,
+      "prompt_cache_miss_tokens": 14494
+    },
+    "seconds": 2.4885807470000145,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.002383236,
+    "cost_USD_peak": 0.004766472,
+    "prompt_tokens_provider": 18206,
+    "completion_tokens_provider": 330
+  },
+  {
+    "trial": "minervino/B0/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 61741,
+      "completion_tokens": 41185,
+      "total_tokens": 102926,
+      "prompt_tokens_details": {
+        "cached_tokens": 61568
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 27766
+      },
+      "prompt_cache_hit_tokens": 61568,
+      "prompt_cache_miss_tokens": 173
+    },
+    "seconds": 147.05372446399997,
+    "finished_UTC": "2026-10-20T15:52:33.959674+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "63e8b20a-d689-4907-9877-cb1320050879",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.024921653999999998,
+    "cost_USD_peak": 0.049843307999999996,
+    "prompt_tokens_provider": 61741,
+    "completion_tokens_provider": 41185
+  },
+  {
+    "trial": "minervino/B0/rep-3",
+    "kind": "narrator",
+    "path": "runs/minervino/B0/rep-3/final/dialogue/bdf177c8c60540bcabffab211974dbd2/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "90b7747f-7d13-4951-8419-452c2032df47",
+    "usage": {
+      "prompt_tokens": 17196,
+      "completion_tokens": 365,
+      "total_tokens": 17561,
+      "prompt_tokens_details": {
+        "cached_tokens": 3712
+      },
+      "prompt_cache_hit_tokens": 3712,
+      "prompt_cache_miss_tokens": 13484
+    },
+    "seconds": 2.8820628129997203,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.002252736,
+    "cost_USD_peak": 0.004505472,
+    "prompt_tokens_provider": 17196,
+    "completion_tokens_provider": 365
+  },
+  {
+    "trial": "minervino/B0/rep-3",
+    "kind": "narrator",
+    "path": "runs/minervino/B0/rep-3/final/dialogue/b05c129a81664b06acd6bf11bed494b7/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "c0986351-73d1-42cc-91d3-ffa057abe1bd",
+    "usage": {
+      "prompt_tokens": 11249,
+      "completion_tokens": 155,
+      "total_tokens": 11404,
+      "prompt_tokens_details": {
+        "cached_tokens": 3328
+      },
+      "prompt_cache_hit_tokens": 3328,
+      "prompt_cache_miss_tokens": 7921
+    },
+    "seconds": 1.7138450640004521,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0012911339999999998,
+    "cost_USD_peak": 0.0025822679999999995,
+    "prompt_tokens_provider": 11249,
+    "completion_tokens_provider": 155
+  },
+  {
+    "trial": "bella/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 34751,
+      "completion_tokens": 11082,
+      "total_tokens": 45833,
+      "prompt_tokens_details": {
+        "cached_tokens": 34560
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 8308
+      },
+      "prompt_cache_hit_tokens": 34560,
+      "prompt_cache_miss_tokens": 191
+    },
+    "seconds": 46.62129954400007,
+    "finished_UTC": "2026-10-20T15:50:58.312917+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "1916b651-8e93-4c50-9320-569dfd7fde9f",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.00678153,
+    "cost_USD_peak": 0.01356306,
+    "prompt_tokens_provider": 34751,
+    "completion_tokens_provider": 11082
+  },
+  {
+    "trial": "bella/E2-A/rep-3",
+    "kind": "analysis",
+    "section": 1,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 36134,
+      "completion_tokens": 11796,
+      "total_tokens": 47930,
+      "prompt_tokens_details": {
+        "cached_tokens": 35968
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 9865
+      },
+      "prompt_cache_hit_tokens": 35968,
+      "prompt_cache_miss_tokens": 166
+    },
+    "seconds": 51.39594279300036,
+    "finished_UTC": "2026-10-20T15:51:49.714923+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "8dfcecaa-f93a-47b3-8857-fae5f9afab12",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.007210403999999999,
+    "cost_USD_peak": 0.014420807999999999,
+    "prompt_tokens_provider": 36134,
+    "completion_tokens_provider": 11796
+  },
+  {
+    "trial": "bella/E2-A/rep-3",
+    "kind": "narrator",
+    "path": "runs/bella/E2-A/rep-3/final/dialogue/fd511bcca77143a697dea66f5465d7e1/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "2ebe1986-7d33-4e8d-9640-5f306d9db97b",
+    "usage": {
+      "prompt_tokens": 9283,
+      "completion_tokens": 187,
+      "total_tokens": 9470,
+      "prompt_tokens_details": {
+        "cached_tokens": 3328
+      },
+      "prompt_cache_hit_tokens": 3328,
+      "prompt_cache_miss_tokens": 5955
+    },
+    "seconds": 1.9488356950005254,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.0010154340000000002,
+    "cost_USD_peak": 0.0020308680000000003,
+    "prompt_tokens_provider": 9283,
+    "completion_tokens_provider": 187
+  },
+  {
+    "trial": "bella/B0/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 37408,
+      "completion_tokens": 24490,
+      "total_tokens": 61898,
+      "prompt_tokens_details": {
+        "cached_tokens": 37248
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 19882
+      },
+      "prompt_cache_hit_tokens": 37248,
+      "prompt_cache_miss_tokens": 160
+    },
+    "seconds": 101.33364042800076,
+    "finished_UTC": "2026-10-20T15:53:31.057372+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "6ad8c068-26ab-4d85-b5ac-56f966fd7a53",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.014829744,
+    "cost_USD_peak": 0.029659488,
+    "prompt_tokens_provider": 37408,
+    "completion_tokens_provider": 24490
+  },
+  {
+    "trial": "bella/B0/rep-3",
+    "kind": "narrator",
+    "path": "runs/bella/B0/rep-3/final/dialogue/89f3b30dcf6044a380029b560b3a4f66/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "0cf295c3-f062-428d-8af2-26c24ceeeb72",
+    "usage": {
+      "prompt_tokens": 9765,
+      "completion_tokens": 429,
+      "total_tokens": 10194,
+      "prompt_tokens_details": {
+        "cached_tokens": 3200
+      },
+      "prompt_cache_hit_tokens": 3200,
+      "prompt_cache_miss_tokens": 6565
+    },
+    "seconds": 3.0235301009997784,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.00125175,
+    "cost_USD_peak": 0.0025035,
+    "prompt_tokens_provider": 9765,
+    "completion_tokens_provider": 429
+  },
+  {
+    "trial": "bella/E1/rep-3",
+    "kind": "analysis",
+    "section": 0,
+    "status": "PASS",
+    "HTTP_calls": 1,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 36155,
+      "completion_tokens": 24959,
+      "total_tokens": 61114,
+      "prompt_tokens_details": {
+        "cached_tokens": 35968
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 20273
+      },
+      "prompt_cache_hit_tokens": 35968,
+      "prompt_cache_miss_tokens": 187
+    },
+    "seconds": 96.19572814599996,
+    "finished_UTC": "2026-10-20T15:54:10.165855+00:00",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "25940c98-1afe-42cb-a253-3eda42d3ce02",
+    "finish_reason": "stop",
+    "cost_USD_off_peak": 0.015111353999999999,
+    "cost_USD_peak": 0.030222707999999997,
+    "prompt_tokens_provider": 36155,
+    "completion_tokens_provider": 24959
+  },
+  {
+    "trial": "bella/E1/rep-3",
+    "kind": "narrator",
+    "path": "runs/bella/E1/rep-3/final/dialogue/90ae3a6b8bad4cf9affe61c0e3c2e757/http-response.txt",
+    "model": "deepseek-flash",
+    "system_fingerprint": "e72d3c7f663d3e1383b00b3884cb4501",
+    "provider_id": "1daff6c2-8c50-4b2b-9bdd-9003c629fea7",
+    "usage": {
+      "prompt_tokens": 7398,
+      "completion_tokens": 197,
+      "total_tokens": 7595,
+      "prompt_tokens_details": {
+        "cached_tokens": 2944
+      },
+      "prompt_cache_hit_tokens": 2944,
+      "prompt_cache_miss_tokens": 4454
+    },
+    "seconds": 1.9806072150004184,
+    "status": "PASS",
+    "cost_USD_off_peak": 0.000795132,
+    "cost_USD_peak": 0.001590264,
+    "prompt_tokens_provider": 7398,
+    "completion_tokens_provider": 197
+  }
+]

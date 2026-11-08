@@ -3,6 +3,560 @@
 I benchmark sono dati di progetto da conservare, non output temporanei.
 Distinguere prove reali dei provider da test software con risposte simulate.
 
+## Candidata corretta, 23 ottobre 2026
+
+[Rapporto](../candidata-corretta-2026-10-23.md). Rev 3 completa con la guardia corretta, non
+adottata. Campagna preregistrata di 6 tentativi in
+`benchmark ufficiale/candidata-corretta-20261023-01/`, grezzo in
+`backend/data/compilation-audit/candidata-corretta-20261023-01/`.
+
+- **Esiti:**
+  - 6/6 DOCX;
+  - 0 scritture non dimostrate su 142 (revisione autoriale);
+  - 0 scritture nei 25 rami sbagliati della rev 2;
+  - 2 segmenti recuperati.
+- **Costi:** 2,57 M token su un tetto di 2,8 M.
+- **Copertura mediana:** 72% / 39% / 47% (Minervino / Catanzaro / So.Re.Sa.).
+- **Esito preregistrato:** favorevole.
+
+## Candidata completa, campagna arrestata, 23 ottobre 2026
+
+[Rapporto](../candidata-completa-2026-10-23.md). Profilo rev 3 completo, non adottato. Campagna in
+`benchmark ufficiale/candidata-completa-20261023-01/`, grezzo in
+`backend/data/compilation-audit/candidata-completa-20261023-01/`.
+
+- **Eseguiti:** 3 tentativi su 8, 2 DOCX, 0 scritture non dimostrate.
+- **Rami sbagliati della rev 2:** vuoti in Minervino e Catanzaro; nessuna proposta in So.Re.Sa.
+- **Arresto:** per un difetto della guardia rev 3 (`rationale` oltre 250 caratteri respinta);
+  1,18 M token.
+
+## Sezioni resilienti e stato derivato, 22 ottobre 2026
+
+[Rapporto](../sezioni-resilienti-2026-10-22.md). Candidate opt-in, non adottate.
+Campagna esplorativa preregistrata in `benchmark ufficiale/sezioni-resilienti-20261022-01/`,
+grezzo e script in `backend/data/compilation-audit/sezioni-resilienti-20261022-01/`.
+
+- **409 di minervino-1:** riprodotto deterministicamente e corretto con `derivation_revision 1`.
+- **Verifiche offline:**
+  - suite 3.560 PASS;
+  - 193/193 validazioni registrate identiche;
+  - 247/247 sintesi rigiocate identiche.
+- **E2E, 8 tentativi:**
+  - 7/8 DOCX (1 errore di schema del narratore);
+  - 30/30 segmenti analizzati, 0 retry, 0 risposte 409;
+  - 1,85 milioni di token, 0,37 USD.
+- **25 scritture non dimostrate** (revisione autoriale) in rami non pertinenti, per contesto di
+  ramo assente nel segmento: candidata non pronta.
+
+## Valutazione finale del candidato, 22 ottobre 2026
+
+[Rapporto](../valutazione-finale-2026-10-22.md). Criteri v1 invariati; campagna in
+`benchmark ufficiale/valutazione-finale-20261022-01/`, grezzo in
+`backend/data/compilation-audit/valutazione-finale-20261022-01/`.
+
+- 35 tentativi reali: 6 moduli storici più So.Re.Sa. con SOURCE tabellare; 4,15 milioni di token;
+- 32/35 DOCX; copertura mediana ≥ 70% su 5 moduli su 7;
+- 19 conferme ridondanti; vuoti con motivo 352/354;
+- 0 scritture non dimostrate (revisione autoriale; indipendente non disponibile).
+
+Candidato non adottato. Backup locale escluso da Git in
+`backend/data/compilation-audit/valutazione-finale-backup-20261022/`.
+
+## Strategia di generazione, 22 ottobre 2026
+
+[Rapporto](../strategia-generazione-2026-10-22.md). Offline, zero chiamate LLM, in sola lettura:
+`backend/data/compilation-audit/strategia-generazione-20261022-01/`.
+
+- 158 chiamate globali registrate (132 monolitiche, 6 moduli);
+- 5 troncamenti, tutti nello stesso modulo da 267 posizioni;
+- criterio per dimensione respinto; ripiego dopo troncamento proposto, non eseguito.
+
+## Narratore P3 e fallback dell'app live, 22 ottobre 2026
+
+[Rapporto](../narratore-p3-2026-10-22.md). Offline in
+`backend/data/compilation-audit/narratore-p3-20261022-01/` (preregistrazione SHA256
+`042899fd…`, due addenda); E2E in `benchmark ufficiale/narratore-p3-verifica-20261022-01/`.
+
+Offline, zero chiamate LLM:
+- 4 sintesi respinte riprodotte e ora accettate, con le sospensioni conservate;
+- replay di 247 sintesi: le 215 legacy sono identiche al pre-P3;
+- export finale invariato nelle 12 prove P3 riuscite;
+- suite 3.509 PASS, Ruff PASS.
+
+E2E reale, 8 prove appaiate al braccio A di P3, 1,01 milioni di token:
+- 7 DOCX su 8; l'unico fallimento è un troncamento della chiamata globale monolitica;
+- 0 sintesi respinte, 0 scritture non dimostrate (revisione dell'autore).
+
+P3 è opt-in e non adottato. Backup locale, escluso da Git:
+`backend/data/compilation-audit/narratore-p3-backup-20261022/narratore-p3-audit-completo.tar.gz`
+(SHA256 `aaaff81d96f0612d09a0239fb9fecf6443408c425eb5c0507c0d70f5e9278be2`).
+
+## P3, dialogo e generazione per sezioni, 22 ottobre 2026
+
+[Rapporto](../p3-dialogo-generazione-2026-10-22.md). Diagnosi e preregistrazione in
+`backend/data/compilation-audit/p3-20261021-01/`; campagna in
+`benchmark ufficiale/p3-verifica-20261022-01/`.
+
+Campagna E2E reale, 16 prove (bracci A e B), 3,62 milioni di token:
+- 12 DOCX su 16; i 4 fallimenti vengono dalla validazione del narratore P3;
+- B contro A: 0 troncamenti, 25/28 chiamate sotto metà del limite, token 2,7×;
+- 0 scritture non dimostrate (revisione dell'autore).
+
+Candidata non adottata. Backup locale, escluso da Git:
+`backend/data/compilation-audit/p3-backup-20261022/p3-audit-completo.tar.gz`
+(SHA256 `9e4c76f1949312d7de7bbdc4d64cbf92ca9dcd8cca02c2dfa27dfae468e39554`).
+
+## Controllo di attribuzione condiviso, 21 ottobre 2026
+
+[Rapporto](../controllo-attribuzione-2026-10-21.md),
+[descrittore](2026-10-21-controllo-attribuzione.json),
+[backup](2026-10-21-controllo-attribuzione-audit.tar.gz),
+[checksum](2026-10-21-controllo-attribuzione-audit.tar.gz.sha256).
+Offline, zero chiamate LLM, preregistrato. Replay su 92 audit: classe del CF (K1) perde 39
+corrette e coerenza delle attestazioni (K2) 147, quindi esclusi; organizzazione
+nell'attestazione (K3) 0, implementata solo per le nuove sessioni. Equivalenza verificata;
+13 test, suite completa e Ruff PASS. Grezzo
+`backend/data/compilation-audit/attribution-safety-20261021-01/`.
+
+## P2, attribuzione di ruolo a livello di record, 21 ottobre 2026
+
+[Rapporto](../p2-attribuzione-record-2026-10-21.md),
+[descrittore](2026-10-21-p2-record-binding.json),
+[backup](2026-10-21-p2-record-binding-audit.tar.gz),
+[checksum](2026-10-21-p2-record-binding-audit.tar.gz.sha256).
+Offline, zero chiamate LLM, preregistrata. Simulazione: 47 recuperi corretti, 0 errati,
+0 regressioni, rifiuti Cesano e amministratore cessato preservati. Seconda serie di
+controesempi: 5 negativi su 11 recuperati, gli stessi accettati anche dal gate V12/V14
+con citazioni corrette. Regola non implementata; grezzo
+`backend/data/compilation-audit/p2-record-binding-20261021-01/`.
+
+## Candidata V14, autorizzazione delle clausole d'opzione, 21 ottobre 2026
+
+[Rapporto](../v14-autorizzazione-clausole-opzione-2026-10-21.md),
+[descrittore](2026-10-21-v14-option-authorization.json),
+[backup](2026-10-21-v14-option-authorization-audit.tar.gz),
+[checksum](2026-10-21-v14-option-authorization-audit.tar.gz.sha256).
+Offline, zero chiamate LLM. Ricevuta di solo ramo: CCIAA esportate 21/21 con V13, 0/21
+con V14. Replay di 82 DOCX: rimosse 4 CCIAA e 9 `p19.ft0` Cesano (solo selezioni), nessuna
+altra modifica. 16 test nuovi, suite 3.380 PASS, Ruff PASS. Candidata non adottata.
+
+## Diagnosi CCIAA, generalità di R2 e veto delle opzioni, 21 ottobre 2026
+
+[Rapporto](../cciaa-r2-veto-opzioni-2026-10-21.md),
+[descrittore](2026-10-21-cciaa-r2-diagnosi.json),
+[backup](2026-10-21-cciaa-r2-diagnosi-audit.tar.gz),
+[checksum](2026-10-21-cciaa-r2-diagnosi-audit.tar.gz.sha256).
+Offline, zero chiamate LLM. CCIAA: valore corretto, autorizzazione della dichiarazione
+mancante; riferimento senza questa dimensione, giudizi coerenti (18 prove aperte con
+SKIP, 2 scritte senza condizione). R2 non generalizza: struttura Word piatta, figli
+senza «:», contenuti condivisi, marcatori «[ ]»/U+F06F, condizioni solo testuali.
+R1T con sblocco da ricevuta USER: 4/4 CCIAA bloccate, 0 su 802 corrette. Proposta non
+implementata; grezzo `backend/data/compilation-audit/cciaa-r2-diagnosi-20261021-01/`.
+
+## Esperimento offline A su P1, 21 ottobre 2026
+
+[Rapporto](../p1-esperimento-offline-a-2026-10-21.md),
+[descrittore](2026-10-21-p1-offline-a.json),
+[backup](2026-10-21-p1-offline-a-audit.tar.gz),
+[checksum](2026-10-21-p1-offline-a-audit.tar.gz.sha256).
+Offline, zero chiamate LLM; preregistrazione prima dei risultati. 17 risposte Minervino,
+21 CRAA, 806 scritture verificate. Con protocollo corretto il dialogo attuale ottiene
+262 scritture contro un tetto oracolo di 268; raggruppare le condizioni LLM per decisione
+dà controesempi in 17/17 risposte e non ferma le CCIAA. P1 ridimensionata; grezzo
+`backend/data/compilation-audit/p1-offline-a-20261021-01/`.
+
+## Unica prova reale chat V12 dopo gli hold, 19 ottobre 2026
+
+[Rapporto](../prova-chat-v12-hold-2026-10-19.md),
+[misure](2026-10-19-v12-holds-chat.json),
+[otto tracciati](2026-10-19-v12-holds-chat-trace.json),
+[controlli](2026-10-19-v12-holds-chat-checks.json),
+[backup](2026-10-19-v12-holds-chat-audit.tar.gz),
+[checksum](2026-10-19-v12-holds-chat-audit.tar.gz.sha256),
+[descrittore](2026-10-19-v12-holds-chat-archive.json).
+Una sola sessione,stessa globale congelata suFORM/56SOURCE/schemaidentici,
+router/guard/narratorereali. Stessi3messaggiUSER,nessunaricevutacopiata.
+61scritture=60SOURCEtesti+1USERcheckbox,8DTnon sospesi,52precedenti conservati;
+DOCXidentico alreplay61,0nuoveindebite osservate.0holdSOURCElegittimi nelcampione;
+18negativi offline esistenti passati,5gruppiUSER ancora aperti/4testivuoti.
+7chiamate/69815token,0nuoveglobali/1riuso,0retry.9pagine;249filecodice/fixture
+immutati. Ripresa stessaUI conPTY perstdin chiuso,non secondasessione oLLMretry.
+Bundle indipendente ricostruisceaudit/Word senzadatabase/chiavi;nessuncommit/push.
+
+## Hold del narratore V12, 19 ottobre 2026
+
+[Rapporto](../hold-narratore-v12-2026-10-19.md),
+[misure](2026-10-19-v12-narrator-holds.json),
+[otto tracciati](2026-10-19-v12-narrator-holds-trace.json),
+[controlli](2026-10-19-v12-narrator-holds-checks.json),
+[backup](2026-10-19-v12-narrator-holds-audit.tar.gz),
+[checksum](2026-10-19-v12-narrator-holds-audit.tar.gz.sha256),
+[descrittore](2026-10-19-v12-narrator-holds-archive.json).
+Storico:8hold MODEL nuovi nella terza sintesi,8ereditati all'export,motivo non
+registrato. Due prove mirate reali dopo esaurimento degli artefatti:
+con/senza prova composta entrambe8hold,confermaUSER attuale delruolo ridondante.
+Sola esposizione delle prove insufficiente; finale motivi citati e verifica
+restrittiva dello stesso requisito già attestato. BMODEL conserva8,backend
+respinge8motivi ridondanti. Quattroreplay:53,53,61,53(controllonegativoSOURCE).
+Tutti52testi+1casella conservati,8DTrecuperati offline,0nuovi indebiti osservati.
+NessunanuovaUI/globali,2sintesireali/22140token.26testnuovi,210mirati,2627suite,
+Ruff passati. Bundle ricostruisce4DOCX senzaDB/chiavi/rete con codicearchiviato.
+FORM/grounding/writer invariati,nessuncommit/push;5gruppiUSER ancora aperti.
+
+## Direttore e checkbox V12, 19 ottobre 2026
+
+[Rapporto](../rami-v12-direttore-checkbox-2026-10-19.md),
+[misure](2026-10-19-v12-branches.json),
+[otto tracciati](2026-10-19-v12-branches-trace.json),
+[controlli](2026-10-19-v12-branches-checks.json),
+[backup](2026-10-19-v12-branches-audit.tar.gz),
+[checksum](2026-10-19-v12-branches-audit.tar.gz.sha256),
+[descrittore](2026-10-19-v12-branches-archive.json).
+Replay prima dellaUI:52→60testi+1casella=61,8DT sbloccati da proveFORM/USER/SOURCE
+distinte; stessi52valori precedenti. Gruppo7opzioni validato,cardinalitàUNKNOWN;
+sola spunta positiva dalla ricevuta corrispondente,0deselezioni. Nuova chat
+isolata conglobale salvata/providerconversazionale reale:52testi+1casella=53,
+8DT grounded/applicabili ma sospesi dalnarratore. Hold non forzati o cancellati;
+motivo non emesso dallo schema, ipotesi distinta dai fatti.0nuoveglobali,
+7chiamate/61977token.34test nuovi,243mirati,2601suite/Ruff passati.9pagine,
+0valori precedenti persi,0nuovi indebiti osservati. Verifica bundle senzaDB/chiavi
+ricostruisce entrambi iDOCX. FORM/modello/writer immutati,nessun commit/push/E1.
+
+## Copertura SOURCE V12, 18 ottobre 2026
+
+[Rapporto](../copertura-source-v12-2026-10-18.md),
+[misure](2026-10-18-v12-source-coverage.json),
+[18 tracciati](2026-10-18-v12-source-coverage-trace.json),
+[controlli](2026-10-18-v12-source-coverage-checks.json),
+[backup](2026-10-18-v12-source-coverage-audit.tar.gz),
+[checksum](2026-10-18-v12-source-coverage-audit.tar.gz.sha256),
+[descrittore](2026-10-18-v12-source-coverage-archive.json).
+Stessa risposta globale e stessi56SOURCE: tutti18vuoti erano proposti con dati
+disponibili. Riuso da scelta nominativa USER registrata, prove FORM fisiche e
+proprietà di iscrizione collegate solo con identità verificata. Replay42→52:
+9generalità/carica firmatario+Comune,0precedenti persi/cambiati,24soci conservati.
+46→60grounded/revisionate;8DTUNKNOWN/rinviati restano vuoti;0nuove spunte.
+Cinque decisioni USER invariate.51/52conformi al gold,1carica completa attestata
+più ampia del gold,0nuove scritture indebite osservate. PDF9pagine prima/dopo.
+43casi nuovi,304mirati e2567suite passati,Ruff; fallimenti conservati. Narratore
+simulato e rete vietata, grounding/persistenza/export reali; verifica indipendente
+senza DB/chiavi. Zero nuove LLM/UI, costi/token provider0. FORM/API/DB/modello/
+writer invariati, E1 fermo. Raw v12-source-coverage-20261018-01/.
+
+## Residui V12 e domande USER, 18 ottobre 2026
+
+[Rapporto](../residui-v12-dialogo-2026-10-18.md),
+[misure](2026-10-18-v12-residui.json),
+[controlli](2026-10-18-v12-residui-checks.json),
+[backup](2026-10-18-v12-residui-audit.tar.gz),
+[checksum](2026-10-18-v12-residui-audit.tar.gz.sha256),
+[descrittore](2026-10-18-v12-residui-archive.json).
+Solo residui: valori equivalenti per maiuscole/spazi, cinque decisioni FORM
+raggruppate, export parziale a domande aperte. Nessuna nuova LLM/UI o E1.
+Replay storico42scritture(41SOURCE+1USER) conservate con stesso hashDOCX;
+44→46grounded, due falsi conflitti eliminati, UNKNOWN3→4(non scritto).
+Snapshot prima della scelta qualifica:42SOURCE/0valoriUSER, sempre con le
+ricevute societàTRUE/DT SKIP. Non benchmark senzaUSER. Zero nuove spunte o
+scritture indebite osservate;18vuoti SOURCE e decisioni della pratica restano.
+Ricevute raggruppate non autorizzano scrittura automatica.45test nuovi,
+221mirati e2524suite finale passati,Ruff. Rete vietata e narratore simulato;
+validatori/persistenza/export reali, verifica indipendente bundle senza DB/chiavi.
+Sessioni/storage originali invariati, nessun commit/push. Raw
+backend/data/compilation-audit/v12-residui-20261018-01/.
+
+## Revisioni e soci V12, 18 ottobre 2026
+
+[Rapporto](../correzione-revisioni-soci-2026-10-18.md),
+[misure](2026-10-18-v12-review-soci.json),
+[24 tracciati](2026-10-18-v12-review-soci-trace.json),
+[controlli](2026-10-18-v12-review-soci-checks.json),
+[backup](2026-10-18-v12-review-soci-audit.tar.gz),
+[descrittore](2026-10-18-v12-review-soci-archive.json).
+Revisioni V12 conservate solo con impronta immutata; finestre40 sulle nuove
+proposte, nessuna seconda globale. Prompt titolo+riga, validatori invariati.
+Replay vecchio41→54, soci16→24SOURCE; solecitazioni27→43, soci8→24SOURCE.
+NuovaUI:stessoinput,44grounded/reviewed,42scritture conformi,24soci nelDOCX
+ma23SOURCE+1USER per falso conflitto Ingegnere/ingegnere. TreDT rinviati esclusi.
+2479test passati,Ruff.11chiamate/181.776token,globale174,83s,costo stimato0,04563USD.
+Nessuna accelerazione/stabilità generale dimostrata. Dialogo preferenze/
+designazioni/attestazioni resta separato;FORM/modello/writer immutati,E1nonavviato.
+
+## UI reale Minervino V12, 18 ottobre 2026
+
+[Diagnosi](../diagnosi-e2e-v12-minervino-2026-10-18.md),
+[misure](2026-10-18-v12-e2e-minervino.json),
+[traccia dei 24 campi soci](2026-10-18-v12-e2e-soci.json),
+[controlli](2026-10-18-v12-e2e-checks.json),
+[backup](2026-10-18-v12-e2e-audit.tar.gz),
+[descrittore](2026-10-18-v12-e2e-archive.json),
+[checksum](2026-10-18-v12-e2e-audit.tar.gz.sha256).
+UI/provider reali su runtime isolato:60SOURCE proposte,27grounded/revisionate/
+scritte,27conformi al gold,33vuotiSOURCE. Soci24proposti corretti,8scritti;
+16citazioni binding non letterali, controprova offline titolo+riga recupera16.
+Vecchio16:otto revisioni Andrea già presenti perse dopo riuso e finestra40.
+Una sola domanda di conferma,poi export;quattro argomenti USER mai chiesti.
+Sette chiamate,153.384token,globale142,10s;cinquePOST154,76s. T0 V1 completo
+diverso dal precedente compila:confronto non controllato del solo prompt.
+Nessuna modifica applicativa o E1. Video completo e trace campionata nel bundle;
+trace originale936MiB locale,DB/chiavi esclusi. GrezziHTTP di routeriniziale e
+guard non acquisiti;totali conservati e limite documentato.
+
+## Correzioni UI compilato(6), 18 ottobre 2026
+
+[Rapporto](../correzioni-ui-compilato6-2026-10-18.md),
+[misure](2026-10-18-ui-compilato6-fix.json).
+[Backup](2026-10-18-ui-compilato6-fix-audit.tar.gz),
+[descrittore](2026-10-18-ui-compilato6-fix-archive.json),
+[checksum](2026-10-18-ui-compilato6-fix-audit.tar.gz.sha256) e
+[controlli](2026-10-18-ui-compilato6-fix-checks.json).
+Una sola prova globale reale del prompt: soci 24/24 proposti e grounded.
+Replay isolati del riuso dopo USER: compilato6 25→33 scritture, B0 manuale
+48→56; nuova proposta 41 scritture, 13 grounded non revisionate per limite40.
+Narratore simulato nei replay, export e controlli reali. Una discordanza stretta
+dal gold per carica più completa e attestata; nessun adattamento del gold.
+Zero nuove chiamate per recuperare le generalità. Bari/BA e checkbox restano
+irrisolti con causa documentata, controlli non allentati.
+
+## Diagnosi del download UI compilato(6), 17 ottobre 2026
+
+[Rapporto](../analisi-ui-compilato6-2026-10-17.md),
+[misure](2026-10-17-ui-compilato6.json),
+[controlli](2026-10-17-ui-compilato6-checks.json),
+[backup](2026-10-17-ui-compilato6-audit.tar.gz).
+
+Nuovo output reale dell'utente:25scritture24SOURCE+1USER.33omissioni e2rifiutiFORM
+su35target SOURCE vuoti. Dati già presenti nell'input; prompt dei binding non
+allineato alle nuove capacità del verificatore, scelta USER non ricollegata
+agli8dati di Leonardo, soci eCFdirettore omessi dal modello e falsamente detti
+assenti dal narratore. Tutte24grounded scritte, limite40 non raggiunto. Nessuna
+nuova chiamata o modifica di codice/stato; nessuna misura controllata prima/dopo.
+
+## Attivazione per prova UI, 17 ottobre 2026
+
+[Guida](../prova-ui-compilazione-2026-10-17.md),
+[controlli e misure](2026-10-17-ui-binding.json),
+[backup](2026-10-17-ui-binding-audit.tar.gz).
+
+Servizi locali avviati sul motore globale corrente con correzioni già presenti.
+298 test backend mirati,8 E2E desktop/mobile e lint passati; una vecchia
+asserzione E2E corretta dopo il fallimento conservato. Browser live in sola
+lettura, nessuna nuova generazione reale.28sessioni invariate, modulo e56SOURCE
+identici a B0. Le48review offline non vengono importate nella UI; narratore
+con limite40proposte per passo ancora presente. Non è una misura qualitativa LLM.
+
+## B0-03: export parziale verificato, 17 ottobre 2026
+
+[Word](<../../nuovi dati/domanda-iscrizione.B0-03-PARZIALE-VERIFICATO.docx>),
+[PDF](<../../nuovi dati/domanda-iscrizione.B0-03-PARZIALE-VERIFICATO.pdf>),
+[rapporto](../export-b0-03-verificato-2026-10-17.md),
+[misure](2026-10-17-b0-docx-verified.json),
+[controlli](2026-10-17-b0-docx-verified-checks.json),
+[backup](2026-10-17-b0-docx-verified-audit.tar.gz),
+[checksum](2026-10-17-b0-docx-verified-audit.tar.gz.sha256).
+
+Export reale sulla copia della stessa sessione B0-03, nessun nuovo provider:
+47 SOURCE +1 nome USER, 26 pendenti riesaminate manualmente. Audit UNKNOWN
+invariato e ricevute proprie distinte; limite di ambito c_p39 registrato.
+Tre rifiuti conservati, 48 valori fisicamente corretti contro22 nel vecchio
+Word (23 inseriti, uno errato). Gold solo dopo export. Tutte9 pagine PDF viste,
+5 giunzioni senza spazio registrate; nessun writer corretto. 13 checkbox e
+4 tabelle intatte. Non è un nuovo benchmark senzaUSER o di autonomia del modello.
+
+## Applicabilità UNKNOWN: studio offline, 17 ottobre 2026
+
+[Rapporto](../applicabilita-b0-index-2026-10-17.md),
+[registro e misure](2026-10-17-applicability.json),
+[bundle](2026-10-17-applicability-audit.tar.gz),
+[checksum](2026-10-17-applicability-audit.tar.gz.sha256),
+[controlli](2026-10-17-applicability-checks.json).
+
+Tre condizioni semantic senza operandi: B0 47, INDEX 9+16 proposte. USER
+proprio di B0 già registrato, audit immutabile UNKNOWN e overlay del dialogo
+separati. INDEX con USER è test distinto con mapping da INDEX-03. Preflight
+47/25 SOURCE e nome USER passati; revisione B0 21 valide/26 nuove da rivedere.
+Zero choice_groups: confermare la condizione non spunta la checkbox. Piano
+per 47 SOURCE + 1 USER soltanto proposto, nessun DOCX o controllo modificato.
+Nessuna nuova chiamata, framework, commit o push; suite precedenti non rieseguite.
+
+## Ultima correzione SOURCE e replay, 17 ottobre 2026
+
+[Rapporto](../correzione-binding-source-finale-2026-10-17.md),
+[misure e tracciati](2026-10-17-binding-final.json),
+[bundle](2026-10-17-binding-final-audit.tar.gz),
+[checksum](2026-10-17-binding-final-audit.tar.gz.sha256),
+[controlli](2026-10-17-binding-final-checks.json).
+
+Baseline riprodotta esattamente. Prima quattro prove esatte del binding:
+B0 38→42, INDEX 23→23. Poi titoli/date e identità con chiavi concordanti:
+finali B0 47 (+9), INDEX 25 (+2), undici recuperi conformi su dieci destinazioni.
+Zero nuove grounded non conformi o perse; cinque rifiuti necessari mantenuti.
+Identità/ruolo/valore separati, applicabilità ancora unknown, nessuna scrittura,
+USER, generazione LLM o export. 57 nuovi casi, 274 mirati/2.431 backend passati,
+Ruff. Controesempi red e prove intermedie conservati. Writer, API, FORM B0,
+modello/thinking e fixture invariati. Arresto dopo replay, nessun commit/push.
+
+## Diagnosi degli undici SOURCE residui, 17 ottobre 2026
+
+[Rapporto](../diagnosi-undici-source-2026-10-17.md),
+[tracciati e misure](2026-10-17-residual-source-diagnosis.json),
+[bundle](2026-10-17-residual-source-diagnosis-audit.tar.gz),
+[checksum](2026-10-17-residual-source-diagnosis-audit.tar.gz.sha256),
+[controlli](2026-10-17-residual-source-diagnosis-checks.json).
+
+Diagnosi senza implementazione, nuovi replay dei validatori o chiamate LLM.
+11 occorrenze/10 destinazioni: 4 prove congiunte esatte già nel binding,
+3 nomi con onorifico in altro record, 1 data con rappresentazione diversa,
+3 collegamenti socio/direttore. Nessun valore o ruolo assente dall'input;
+per sette resta una decisione su associazione/equivalenza. Nessuna nuova
+accettazione o misura dei falsi positivi. Applicabilità separata e ancora
+sconosciuta, nessun USER nei due input, codice/fixture/vecchi raw invariati.
+
+## Comune e contesto FORM, 17 ottobre 2026
+
+[Rapporto](../comune-contesto-form-2026-10-17.md),
+[misure](2026-10-17-field-context.json),
+[bundle](2026-10-17-field-context-audit.tar.gz),
+[checksum](2026-10-17-field-context-audit.tar.gz.sha256),
+[controlli](2026-10-17-field-context-checks.json).
+
+KISS SOURCE conservato. Compatibilità fisica del Comune nel validatore condiviso
+ed elenco numerato con schede ripetute per il contesto V12; FORM/input invariati.
+18 prove FORM sufficienti ora riconosciute: +11 proposte corrette, sette rifiuti
+SOURCE mantenuti. Eliminato p41.s1 improprio in entrambe le risposte: B0 27→38
+corretti e INDEX 23→23, zero grounded non conformi nei due replay finali. Quote,
+condizioni e fatti preservati; nessuna scrittura o nuovo USER/provider/export.
+30 nuovi casi, 211 mirati/2.374 backend passati, Ruff. Controesempi intermedi
+conservati e risolti prima del replay; nessun commit/push o modifica al writer.
+
+## Correzione binding KISS e replay, 17 ottobre 2026
+
+[Rapporto](../correzione-binding-kiss-2026-10-17.md),
+[misure](2026-10-17-binding-kiss.json),
+[bundle](2026-10-17-binding-kiss-audit.tar.gz),
+[checksum](2026-10-17-binding-kiss-audit.tar.gz.sha256),
+[controlli](2026-10-17-binding-kiss-checks.json).
+
+Correzione autorizzata solo del verificatore V12: prova tabellare strutturale
+e recupero da record SOURCE del fatto. Nessun join di persone/chunk, nuova
+citazione del valore o approvazione di applicabilità. 40 nuovi casi, 133 mirati
+e 2.344 backend passati; Ruff. Zero nuove richieste provider o export.
+B0-03 recupera 6 valori, INDEX-01 root isolato 5: 11/11 conformi, tutti ancora
+condizionati. Nessuna nuova accettazione indebita osservata; persiste l'errore
+preesistente p41.s1 in entrambe le risposte. Residui 22+3 distinti per fatto,
+contesto FORM e record SOURCE. Originali, gold e audit precedenti invariati.
+Fermato dopo replay/rapporto, nessun commit/push. FORM/coverage/thinking invariati.
+
+## Replay INDEX-01, USER e reasoning, 17 ottobre 2026
+
+[Rapporto](../replay-index01-user-reasoning-2026-10-17.md),
+[misure](2026-10-17-root-user-reasoning.json),
+[bundle](2026-10-17-root-user-reasoning-audit.tar.gz),
+[checksum](2026-10-17-root-user-reasoning-audit.tar.gz.sha256),
+[controlli](2026-10-17-root-user-reasoning-checks.json).
+
+Nessuna nuova generazione; un GET /models. Quarantena offline dei soli due
+metadati root: schema passa, 19 grounded/18 conformi. Export senza conferme
+bloccato; copia vuota esplicita e distinto test con due risposte USER archiviate
+che scrive 19 SOURCE/18 conformi. Non un nuovo run provider o recupero storico.
+Trasporto USER registrati implementato; senza USER input e request identici a B0.
+79 mirati/2.304 backend passati, Ruff. B0-03 soci: 23 fatti grounded/una quote errata,
+tre binding respinti e nove collegamenti chunk esterni. Thinking A/B solo proposto,
+body NOT-SENT. Coverage/FORM/schema/gate/writer invariati, nessun commit/push.
+
+## Diagnosi offline output, 17 ottobre 2026
+
+**Stop compattazione FORM richiesto dall'utente. B0 resta riferimento;
+compact-v1 e compact-index-v2 non vanno integrate.** Nessuna nuova chiamata,
+modifica di codice/prompt/validatori/writer o commit.
+
+[Rapporto](../diagnosi-contratto-risposta-b0-e1-2026-10-17.md),
+[misure](2026-10-17-output-diagnosis.json),
+[bundle derivati](2026-10-17-output-diagnosis-audit.tar.gz),
+[checksum](2026-10-17-output-diagnosis-audit.tar.gz.sha256),
+[verifiche](2026-10-17-output-diagnosis-checks.json).
+
+Nove analisi storiche: rifiuto envelope e troncamento distinti, nessun timeout
+nei due INDEX falliti. Output 349.460, reasoning 273.801 (78,35%). Otto JSON
+completi, 634 record, zero duplicati esatti o fatti inutilizzati; coverage 210
+record / 34,22% caratteri. 540 prove SOURCE presenti nei messaggi realmente inviati;
+49 valori conformi bloccati localmente su sette audit, 25 persi al rifiuto globale.
+Proposta minima coverage sparsa, senza implementazione o nuovi test LLM.
+Archivio di soli derivati e riferimenti/hash ai tre bundle originali invariati.
+
+## E1 indice diretto, 17 ottobre 2026
+
+[Rapporto](../esperimento-e1-index-2026-10-17.md),
+[misure](2026-10-17-e1-index.json),
+[bundle](2026-10-17-e1-index-audit.tar.gz),
+[checksum](2026-10-17-e1-index-audit.tar.gz.sha256),
+[archivio](2026-10-17-e1-index-archive.json),
+[verifiche finali](2026-10-17-e1-index-checks.json).
+
+compact-index-v2 approvato, implementato nel solo runner e misurato su tre
+analisi reali dello stesso Minervino completo. Input -13,31% token B0;
+prima risposta rifiutata per chiavi extra, seconda troncata al limite output,
+terza accettata. Nessun retry/riparazione; unico Word con 21/60 conformi,
+nessun argomento USER chiesto, tutti i soci omessi. N/D per i due Word non
+prodotti, nessuna media qualità sui soli successi. Variante non adottata.
+
+137 mirati e 2.279 backend passati, Ruff; iniziale E501 conservato e corretto
+prima del congelamento. Nove chiamate totali, 353.942 token, cache/storia
+provider non controllate. Scorer identico B0, 267 destinazioni e 110 celle
+verificate, visione campionata 1/3/10, cinque SOURCE live identiche.
+Bundle 250 file, 3.250.464 byte, SHA-256
+e0f586cf03775c9a699be31b7d75d704af5b61609411fbbdb13d74284dda33fc.
+DB/credenziali esclusi; nessun commit/push, solo copie E1INDEX-RUN-03 in nuovi dati.
+E2 non avviato, prova separata su contratto output/budget reasoning proposta.
+
+## E1 FORM compatto completo, 16 ottobre 2026
+
+[Rapporto](../esperimento-e1-form-compatto-2026-10-16.md),
+[misure](2026-10-16-e1-form.json),
+[bundle](2026-10-16-e1-form-audit.tar.gz),
+[checksum](2026-10-16-e1-form-audit.tar.gz.sha256),
+[archivio](2026-10-16-e1-form-archive.json),
+[verifiche finali](2026-10-16-e1-form-checks.json).
+
+compact-v1 approvato e implementato soltanto nel banco di prova. Tre analisi
+DeepSeek reali, stesso input canonico/fonti di B0, adattamento del solo formato
+e istruzioni di lettura. FORM -36,02% caratteri, input -16,09% token reali,
+totale medio analisi -15,27%. Word 14/11/23 target conformi su 60 contro
+23/17/22 B0; nessun argomento USER chiesto, stop fuori copione nel secondo.
+Variante conservata, non adottata nella chat; E2 ancora da avviare.
+
+116 mirati e 2.258 backend passati, Ruff; quattro fallimenti iniziali delle
+aspettative dei nuovi test conservati e corretti senza cambiare parser/gold.
+267 destinazioni e struttura verificati, tre Word/PDF, visione campionata.
+27 chiamate e 413.624 token complessivi, cache non uniforme; nessuna equivalenza
+statistica o fattura dedotta. Bundle 386 file, 6.711.650 byte, SHA-256
+9cafd05bb2db9d4180aa37d9d47cfb79ad88b9b8bb7bd4a26bdf2215af6516d5.
+Nessun DB/credenziale nel bundle, nessun commit/push. Copie per revisione in nuovi dati.
+
+## Baseline B0 Minervino con provider reale, 16 ottobre 2026
+
+[Rapporto](../baseline-minervino-b0-2026-10-16.md),
+[misure](2026-10-16-minervino-b0.json),
+[bundle](2026-10-16-minervino-b0-audit.tar.gz),
+[checksum](2026-10-16-minervino-b0-audit.tar.gz.sha256),
+[dettagli archivio](2026-10-16-minervino-b0-archive.json),
+[verifiche finali](2026-10-16-minervino-b0-checks.json).
+
+Tre analisi reali DeepSeek flash/thinking sullo stesso input e tre continuazioni
+dei servizi isolati fino al Word; non browser/endpoint HTTP o ingestion. Nessun
+motore modificato, fixture Minervino V1 e Labirinto invariati. Word con 23/17/22
+valori conformi sui 60 target documentati, provenienza SOURCE/USER distinta;
+nessuno dei quattro argomenti USER del copione chiesto, checkbox/preferenze
+attese non selezionate. Omissioni e rifiuti di binding separati nel rapporto.
+
+30 chiamate, 481.199 token; 75.864 input per analisi, tutte con cache calda;
+tempi analisi 146,73–183,85 s. Controlli indipendenti delle 267 destinazioni,
+OOXML e rendering LibreOffice campionato. Firma su pagina quasi vuota;
+non certificato il layout Microsoft Word. Artefatti e fallimenti diagnostici
+conservati, nessun retry per migliorare gli esiti. Bundle 348 file, 6.423.265 byte,
+senza DB o credenziali; SHA-256 85d2d441e0edb297a4d4955929eca8c8ca3c61545fef1be6de5f9575c69009ee.
+E1/E2 ancora da implementare; nessuna suite applicativa o pubblicazione Git
+in questo aggiornamento. Copie Word/PDF per revisione nella cartella nuovi dati.
+
 ## Contesto e ruoli, 12 ottobre 2026
 
 [Report](../benchmark-contesto-ruoli-2026-10-12.md),
@@ -319,3 +873,16 @@ LibreOffice ispezionate; numerazione alfabetica confermata. MuPDF reimpagina
 e separa la firma: limite conservato nei raw, non riferimento di layout.
 Nessuna nuova prova LLM, istanza integrata, modifica al motore o KB live.
 Tag: baseline-minervino-v1-20261016; Labirinto V1 invariato.
+
+## Preflight dell'input B0, 16 ottobre 2026
+
+[Report](../b0-preflight-2026-10-16.md),
+[misure](2026-10-16-b0-preflight.json),
+[bundle](2026-10-16-b0-preflight-audit.tar.gz) e
+[checksum](2026-10-16-b0-preflight-audit.tar.gz.sha256).
+
+Input attuale ricostruito offline: 240.276 caratteri JSON, 24.675 system,
+cinque fonti/56 chunk e 267 destinazioni. Materiali backend corrispondenti
+alla fixture. Analisi globale DeepSeek forza thinking anche con preferenza
+progetto disattivata; prima ipotesi corretta e conservata nei raw. Zero
+chiamate provider: nessuna misura di token, qualità, dialogo o generazione Word.

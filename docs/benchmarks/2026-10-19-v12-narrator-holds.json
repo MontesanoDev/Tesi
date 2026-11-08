@@ -1,0 +1,1194 @@
+{
+  "date": "2026-10-19",
+  "reference": "V12 actual chat 53 versus earlier offline 61",
+  "runs": [
+    {
+      "mode": "historical",
+      "offline_provider_calls": 0,
+      "new_global_calls": 0,
+      "transport_calls": [
+        {
+          "exact_request_equal": true,
+          "original_response": "90a6ab2054374d50baef0ed9f1693fdd"
+        },
+        {
+          "exact_request_equal": true,
+          "original_response": "94aabd66c60b47bc908ef50195be7999"
+        },
+        {
+          "exact_request_equal": true,
+          "original_response": "a6b8313ca19647e980ac2d8fad29c0af"
+        }
+      ],
+      "text_written": 52,
+      "checkbox_written": 1,
+      "total_written": 53,
+      "previous_52_lost_or_changed": 0,
+      "held": [
+        "p51.s0",
+        "p52.s0",
+        "p52.s1",
+        "p53.s0",
+        "p53.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "hold_transition": null,
+      "DOCX_sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "SOURCE_audit_and_USER_receipts_unchanged": true,
+      "SOURCE_text": 52,
+      "USER_checkbox": 1,
+      "new_undue_writes_observed": 0,
+      "xml_crc_positions_preprinted_verified": true,
+      "tables_and_controls": {
+        "w:tbl": {
+          "count": 4,
+          "modified": 0
+        },
+        "w:sdt": {
+          "count": 13,
+          "modified": 1
+        },
+        "w:checkBox": {
+          "count": 0,
+          "modified": 0
+        },
+        "w14:checkbox": {
+          "count": 13,
+          "modified": 1
+        }
+      },
+      "gold_conforming_text": 51,
+      "gold_strict_differences": [
+        {
+          "candidate_id": "p14.s0",
+          "label": "Carica firmatario",
+          "actual": "amministratore unico e rappresentante legale",
+          "expected": "rappresentante legale",
+          "gold_conforming": false
+        }
+      ],
+      "new_SOURCE_fields": [],
+      "remaining_expected_text": [
+        {
+          "candidate_id": "p51.s0",
+          "label": "Direttore tecnico Elisa Romano: Nome",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p52.s0",
+          "label": "Direttore tecnico Elisa Romano: Qualifica",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p52.s1",
+          "label": "Direttore tecnico Elisa Romano: CF",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s0",
+          "label": "Direttore tecnico Elisa Romano: Ordine",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s1",
+          "label": "Direttore tecnico Elisa Romano: Sezione",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s2",
+          "label": "Direttore tecnico Elisa Romano: Provincia",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s3",
+          "label": "Direttore tecnico Elisa Romano: Data iscrizione",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s4",
+          "label": "Direttore tecnico Elisa Romano: Numero iscrizione",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p229.s0",
+          "label": "Professionisti esecutori: Elisa e Luca",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p230.s0",
+          "label": "Professionista esecutore: Andrea",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p232.s0",
+          "label": "Integrazione delle prestazioni specialistiche",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p242.s0",
+          "label": "Luogo e data della bozza",
+          "provenance": "USER"
+        }
+      ],
+      "pages": 9,
+      "PDF_provenance": "Previous render reused only after exact DOCX binary equality"
+    },
+    {
+      "mode": "observable",
+      "offline_provider_calls": 0,
+      "new_global_calls": 0,
+      "transport_calls": [
+        {
+          "exact_request_equal": false,
+          "original_response": "90a6ab2054374d50baef0ed9f1693fdd"
+        },
+        {
+          "exact_request_equal": false,
+          "original_response": "94aabd66c60b47bc908ef50195be7999"
+        },
+        {
+          "exact_request_equal": false,
+          "original_response": "a6b8313ca19647e980ac2d8fad29c0af"
+        }
+      ],
+      "text_written": 52,
+      "checkbox_written": 1,
+      "total_written": 53,
+      "previous_52_lost_or_changed": 0,
+      "held": [
+        "p51.s0",
+        "p52.s0",
+        "p52.s1",
+        "p53.s0",
+        "p53.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "hold_transition": {
+        "review_id": "93149b1ccfc94ed6af426f0f4a9e1b81",
+        "new": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "confirmed": [],
+        "inherited": [],
+        "released": [],
+        "suppressed_new": [],
+        "rejected_redundant": [],
+        "model_new": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "model_confirmed": [],
+        "model_decisions": {}
+      },
+      "DOCX_sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "SOURCE_audit_and_USER_receipts_unchanged": true,
+      "SOURCE_text": 52,
+      "USER_checkbox": 1,
+      "new_undue_writes_observed": 0,
+      "xml_crc_positions_preprinted_verified": true,
+      "tables_and_controls": {
+        "w:tbl": {
+          "count": 4,
+          "modified": 0
+        },
+        "w:sdt": {
+          "count": 13,
+          "modified": 1
+        },
+        "w:checkBox": {
+          "count": 0,
+          "modified": 0
+        },
+        "w14:checkbox": {
+          "count": 13,
+          "modified": 1
+        }
+      },
+      "gold_conforming_text": 51,
+      "gold_strict_differences": [
+        {
+          "candidate_id": "p14.s0",
+          "label": "Carica firmatario",
+          "actual": "amministratore unico e rappresentante legale",
+          "expected": "rappresentante legale",
+          "gold_conforming": false
+        }
+      ],
+      "new_SOURCE_fields": [],
+      "remaining_expected_text": [
+        {
+          "candidate_id": "p51.s0",
+          "label": "Direttore tecnico Elisa Romano: Nome",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p52.s0",
+          "label": "Direttore tecnico Elisa Romano: Qualifica",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p52.s1",
+          "label": "Direttore tecnico Elisa Romano: CF",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s0",
+          "label": "Direttore tecnico Elisa Romano: Ordine",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s1",
+          "label": "Direttore tecnico Elisa Romano: Sezione",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s2",
+          "label": "Direttore tecnico Elisa Romano: Provincia",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s3",
+          "label": "Direttore tecnico Elisa Romano: Data iscrizione",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s4",
+          "label": "Direttore tecnico Elisa Romano: Numero iscrizione",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p229.s0",
+          "label": "Professionisti esecutori: Elisa e Luca",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p230.s0",
+          "label": "Professionista esecutore: Andrea",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p232.s0",
+          "label": "Integrazione delle prestazioni specialistiche",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p242.s0",
+          "label": "Luogo e data della bozza",
+          "provenance": "USER"
+        }
+      ],
+      "pages": 9,
+      "PDF_provenance": "Previous render reused only after exact DOCX binary equality"
+    },
+    {
+      "mode": "corrected",
+      "offline_provider_calls": 0,
+      "new_global_calls": 0,
+      "transport_calls": [
+        {
+          "same_eight_values_proofs_USER_and_conditions_as_probe_B": true,
+          "extra_source_availability_attached_by_real_narrate": {
+            "absent_from_sources": {
+              "verified": false,
+              "meaning": "Nessuna verifica esaustiva di assenza disponibile"
+            },
+            "not_retrieved": {
+              "verified": false,
+              "meaning": "Non deducibile da un'omissione del modello"
+            },
+            "present_not_proposed": {
+              "meaning": "Record dell'input non citati da proposte; non provano da soli la pertinenza a ogni campo",
+              "records": [
+                {
+                  "subject": "2. Sedi e contatti aziendali",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "## 2. Sedi e contatti aziendali - dati simulati\n\n- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Rapporto tra le sedi:",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "3. Persone e ruoli",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "## 3. Persone e ruoli - dati simulati\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Ing. Luca Ferri",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Ing. Luca Ferri - amministratore unico\n\n- Nome: Luca.\n- Cognome: Ferri.\n- Nominativo completo: Ing. Luca Ferri.\n- Carica in Mapi Ingegneria S.r.l.: Amministratore unico.\n- Data di nomina: 18 aprile 2024.\n- Durata della carica nel dataset: fino all'approvazione del bilancio 2026.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n- Procure,",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Ing. Elisa Romano",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Ing. Elisa Romano - direttore tecnico\n\n- Nome: Elisa.\n- Cognome: Romano.\n- Nominativo completo: Ing. Elisa Romano.\n- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.\n- Qualifica professionale nello scenario: Ingegnere.\n- Ordine professionale simulato: Ordine degli Ingegneri di Bari.\n- Numero di iscrizione professionale simulato: 8421.\n- Data di abilitazione, sezione e settore dell'albo: non disponibili.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n\nIl ruolo di direttore tecnico aziendale non equivale a una designazione come direttore dei lavori o coordinatore della sicurezza per uno specifico incarico.\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Arch. Andrea Greco",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Arch. Andrea Greco - responsabile qualita'\n\n-",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Arch. Andrea Greco",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Arch. Andrea Greco - responsabile qualita'\n\n- Nome: Andrea.\n- Cognome: Greco.\n- Nominativo completo: Arch. Andrea Greco.\n- Ruolo in Mapi Ingegneria S.r.l.: Responsabile qualita'.\n- Dati personali, iscrizione all'albo e poteri di firma: non disponibili.\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Ing. Mario Rossi",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Ing. Mario Rossi - referente organizzativo della demo\n\n- Nome: Mario.\n- Cognome: Rossi.\n- Nominativo completo: Ing. Mario Rossi.\n- Ruolo ipotizzato in questa scheda: Referente organizzativo interno.\n- Compiti nello scenario dimostrativo: raccolta dei documenti aziendali, coordinamento delle informazioni e contatto con il gruppo che prepara le candidature.\n- Poteri di firma, procure e qualifica di legale rappresentante: non attribuiti da questa scheda.\n- Dati personali e iscrizione all'albo: non disponibili.\n\nLa voce generica \"Responsabile: Ing. Mario Rossi\" del profilo iniziale viene qui precisata come referente organizzativo. Non sostituisce l'amministratore unico Luca Ferri o il direttore tecnico Elisa Romano.\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Dimensione della struttura",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Dimensione della struttura - dati simulati\n\n- Addetti di",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Dimensione della struttura",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Dimensione della struttura - dati simulati\n\n- Addetti di Mapi Ingegneria S.r.l. al 31 dicembre 2025: 7 unita'.\n- Addetti tecnici al 31 dicembre 2025: 5 unita'.\n- Elenco nominativo completo degli addetti e organigramma: non disponibili.\n\nI nominativi descritti non costituiscono l'elenco completo dei soci, dei titolari effettivi o di tutti i soggetti da dichiarare in una procedura.\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "4. Attivita' e servizi",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "## 4. Attivita' e servizi - profilo simulato\n\nMapi Ingegneria S.r.l. svolge, nello scenario dimostrativo, servizi integrati di ingegneria e architettura relativi a opere civili e infrastrutture pubbliche. Opera come consulente tecnico di enti pubblici e committenti privati.\n\n- Codice ATECO riportato nel dataset simulato: 71.12.10 - Attivita degli studi di ingegneria.\n- Ambito territoriale del profilo: Italia, con operativita' prevalente nelle regioni del Mezzogiorno.\n- Progettazione di fattibilita' tecnico-economica, definitiva ed esecutiva, secondo la descrizione della visura demo.\n- Verifiche strutturali e valutazioni di vulnerabilita' sismica.\n- Progettazione",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Mapi Ingegneria S.r.l.",
+                  "source_name": "integrazione-company.md",
+                  "quote": "# Mapi Ingegneria S.r.l. — Integrazione anagrafica e societaria (fixture sintetica)\n\n**Versione della fixture:** 1.0 — **Data di riferimento:** 15 ottobre 2026.\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Società",
+                  "source_name": "integrazione-company.md",
+                  "quote": "- **Società:** Mapi Ingegneria S.r.l.",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Sede legale — CAP",
+                  "source_name": "integrazione-company.md",
+                  "quote": "- **Sede legale — CAP:** 70126.",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Sede legale — Paese",
+                  "source_name": "integrazione-company.md",
+                  "quote": "- **Sede legale — Paese:** Italia.",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Andrea Greco",
+                  "source_name": "integrazione-company.md",
+                  "quote": "- **Andrea Greco:** responsabile qualità aziendale, architetto, Ordine degli Architetti di Bari, sezione A, numero 5267.",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                }
+              ]
+            },
+            "rejected_proposals": 0,
+            "conditional_or_waiting": 0,
+            "meaning": "Indizi SOURCE distinti da decisioni USER e fatti validati; non dichiarare un dato assente soltanto perché non è proposto"
+          },
+          "exact_same_context_as_probe_B": false,
+          "response": "actual probe B"
+        }
+      ],
+      "text_written": 60,
+      "checkbox_written": 1,
+      "total_written": 61,
+      "previous_52_lost_or_changed": 0,
+      "held": [],
+      "hold_transition": {
+        "review_id": "3e7fc939c2114eed94fa79a22908423a",
+        "new": [],
+        "confirmed": [],
+        "inherited": [],
+        "released": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "suppressed_new": [],
+        "rejected_redundant": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "model_new": [],
+        "model_confirmed": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "model_decisions": {
+          "p51.s0": {
+            "proposal_slot": 1,
+            "decision": "hold",
+            "blocker": "applicability",
+            "reason": "Il ruolo di Direttore Tecnico di Elisa Romano è attestato nelle fonti, ma la conferma aggiuntiva sul ruolo attuale è stata rinviata dall'utente.",
+            "missing_information": "Conferma del ruolo attuale di Direttore Tecnico",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "REJECTED_REDUNDANT_ROLE_CONFIRMATION"
+          },
+          "p52.s0": {
+            "proposal_slot": 2,
+            "decision": "hold",
+            "blocker": "applicability",
+            "reason": "La qualifica professionale dipende dal ruolo di Direttore Tecnico, la cui conferma attuale è stata rinviata.",
+            "missing_information": "Conferma del ruolo attuale di Direttore Tecnico",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "REJECTED_REDUNDANT_ROLE_CONFIRMATION"
+          },
+          "p52.s1": {
+            "proposal_slot": 3,
+            "decision": "hold",
+            "blocker": "applicability",
+            "reason": "Il codice fiscale è associato al ruolo di Direttore Tecnico, la cui conferma attuale è stata rinviata.",
+            "missing_information": "Conferma del ruolo attuale di Direttore Tecnico",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "REJECTED_REDUNDANT_ROLE_CONFIRMATION"
+          },
+          "p53.s0": {
+            "proposal_slot": 4,
+            "decision": "hold",
+            "blocker": "applicability",
+            "reason": "L'iscrizione all'Ordine è riferita al ruolo di Direttore Tecnico, la cui conferma attuale è stata rinviata.",
+            "missing_information": "Conferma del ruolo attuale di Direttore Tecnico",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "REJECTED_REDUNDANT_ROLE_CONFIRMATION"
+          },
+          "p53.s1": {
+            "proposal_slot": 5,
+            "decision": "hold",
+            "blocker": "applicability",
+            "reason": "La sezione dell'Ordine dipende dal ruolo di Direttore Tecnico, la cui conferma attuale è stata rinviata.",
+            "missing_information": "Conferma del ruolo attuale di Direttore Tecnico",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "REJECTED_REDUNDANT_ROLE_CONFIRMATION"
+          },
+          "p53.s2": {
+            "proposal_slot": 6,
+            "decision": "hold",
+            "blocker": "applicability",
+            "reason": "La provincia dell'Ordine dipende dal ruolo di Direttore Tecnico, la cui conferma attuale è stata rinviata.",
+            "missing_information": "Conferma del ruolo attuale di Direttore Tecnico",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "REJECTED_REDUNDANT_ROLE_CONFIRMATION"
+          },
+          "p53.s3": {
+            "proposal_slot": 7,
+            "decision": "hold",
+            "blocker": "applicability",
+            "reason": "La data di iscrizione all'Ordine dipende dal ruolo di Direttore Tecnico, la cui conferma attuale è stata rinviata.",
+            "missing_information": "Conferma del ruolo attuale di Direttore Tecnico",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "REJECTED_REDUNDANT_ROLE_CONFIRMATION"
+          },
+          "p53.s4": {
+            "proposal_slot": 8,
+            "decision": "hold",
+            "blocker": "applicability",
+            "reason": "Il numero di iscrizione all'Ordine dipende dal ruolo di Direttore Tecnico, la cui conferma attuale è stata rinviata.",
+            "missing_information": "Conferma del ruolo attuale di Direttore Tecnico",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "REJECTED_REDUNDANT_ROLE_CONFIRMATION"
+          }
+        }
+      },
+      "DOCX_sha256": "84e33e53477f0bb4935eaa9667ed02c6eea6d010beb091cab4f650a1b87feddd",
+      "SOURCE_audit_and_USER_receipts_unchanged": true,
+      "SOURCE_text": 60,
+      "USER_checkbox": 1,
+      "new_undue_writes_observed": 0,
+      "xml_crc_positions_preprinted_verified": true,
+      "tables_and_controls": {
+        "w:tbl": {
+          "count": 4,
+          "modified": 0
+        },
+        "w:sdt": {
+          "count": 13,
+          "modified": 1
+        },
+        "w:checkBox": {
+          "count": 0,
+          "modified": 0
+        },
+        "w14:checkbox": {
+          "count": 13,
+          "modified": 1
+        }
+      },
+      "gold_conforming_text": 59,
+      "gold_strict_differences": [
+        {
+          "candidate_id": "p14.s0",
+          "label": "Carica firmatario",
+          "actual": "amministratore unico e rappresentante legale",
+          "expected": "rappresentante legale",
+          "gold_conforming": false
+        }
+      ],
+      "new_SOURCE_fields": [
+        "p51.s0",
+        "p52.s0",
+        "p52.s1",
+        "p53.s0",
+        "p53.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "remaining_expected_text": [
+        {
+          "candidate_id": "p229.s0",
+          "label": "Professionisti esecutori: Elisa e Luca",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p230.s0",
+          "label": "Professionista esecutore: Andrea",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p232.s0",
+          "label": "Integrazione delle prestazioni specialistiche",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p242.s0",
+          "label": "Luogo e data della bozza",
+          "provenance": "USER"
+        }
+      ],
+      "pages": 9,
+      "PDF_provenance": "Previous render reused only after exact DOCX binary equality"
+    },
+    {
+      "mode": "necessary-hold",
+      "offline_provider_calls": 0,
+      "new_global_calls": 0,
+      "transport_calls": [
+        {
+          "same_eight_values_proofs_USER_and_conditions_as_probe_B": true,
+          "extra_source_availability_attached_by_real_narrate": {
+            "absent_from_sources": {
+              "verified": false,
+              "meaning": "Nessuna verifica esaustiva di assenza disponibile"
+            },
+            "not_retrieved": {
+              "verified": false,
+              "meaning": "Non deducibile da un'omissione del modello"
+            },
+            "present_not_proposed": {
+              "meaning": "Record dell'input non citati da proposte; non provano da soli la pertinenza a ogni campo",
+              "records": [
+                {
+                  "subject": "2. Sedi e contatti aziendali",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "## 2. Sedi e contatti aziendali - dati simulati\n\n- Sede legale di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia.\n- Rapporto tra le sedi:",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "3. Persone e ruoli",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "## 3. Persone e ruoli - dati simulati\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Ing. Luca Ferri",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Ing. Luca Ferri - amministratore unico\n\n- Nome: Luca.\n- Cognome: Ferri.\n- Nominativo completo: Ing. Luca Ferri.\n- Carica in Mapi Ingegneria S.r.l.: Amministratore unico.\n- Data di nomina: 18 aprile 2024.\n- Durata della carica nel dataset: fino all'approvazione del bilancio 2026.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n- Procure,",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Ing. Elisa Romano",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Ing. Elisa Romano - direttore tecnico\n\n- Nome: Elisa.\n- Cognome: Romano.\n- Nominativo completo: Ing. Elisa Romano.\n- Ruolo in Mapi Ingegneria S.r.l.: Direttore tecnico.\n- Qualifica professionale nello scenario: Ingegnere.\n- Ordine professionale simulato: Ordine degli Ingegneri di Bari.\n- Numero di iscrizione professionale simulato: 8421.\n- Data di abilitazione, sezione e settore dell'albo: non disponibili.\n- Data e luogo di nascita, codice fiscale personale e residenza: non disponibili.\n\nIl ruolo di direttore tecnico aziendale non equivale a una designazione come direttore dei lavori o coordinatore della sicurezza per uno specifico incarico.\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Arch. Andrea Greco",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Arch. Andrea Greco - responsabile qualita'\n\n-",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Arch. Andrea Greco",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Arch. Andrea Greco - responsabile qualita'\n\n- Nome: Andrea.\n- Cognome: Greco.\n- Nominativo completo: Arch. Andrea Greco.\n- Ruolo in Mapi Ingegneria S.r.l.: Responsabile qualita'.\n- Dati personali, iscrizione all'albo e poteri di firma: non disponibili.\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Ing. Mario Rossi",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Ing. Mario Rossi - referente organizzativo della demo\n\n- Nome: Mario.\n- Cognome: Rossi.\n- Nominativo completo: Ing. Mario Rossi.\n- Ruolo ipotizzato in questa scheda: Referente organizzativo interno.\n- Compiti nello scenario dimostrativo: raccolta dei documenti aziendali, coordinamento delle informazioni e contatto con il gruppo che prepara le candidature.\n- Poteri di firma, procure e qualifica di legale rappresentante: non attribuiti da questa scheda.\n- Dati personali e iscrizione all'albo: non disponibili.\n\nLa voce generica \"Responsabile: Ing. Mario Rossi\" del profilo iniziale viene qui precisata come referente organizzativo. Non sostituisce l'amministratore unico Luca Ferri o il direttore tecnico Elisa Romano.\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Dimensione della struttura",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Dimensione della struttura - dati simulati\n\n- Addetti di",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Dimensione della struttura",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "### Dimensione della struttura - dati simulati\n\n- Addetti di Mapi Ingegneria S.r.l. al 31 dicembre 2025: 7 unita'.\n- Addetti tecnici al 31 dicembre 2025: 5 unita'.\n- Elenco nominativo completo degli addetti e organigramma: non disponibili.\n\nI nominativi descritti non costituiscono l'elenco completo dei soci, dei titolari effettivi o di tutti i soggetti da dichiarare in una procedura.\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "4. Attivita' e servizi",
+                  "source_name": "generalita-mapi.md",
+                  "quote": "## 4. Attivita' e servizi - profilo simulato\n\nMapi Ingegneria S.r.l. svolge, nello scenario dimostrativo, servizi integrati di ingegneria e architettura relativi a opere civili e infrastrutture pubbliche. Opera come consulente tecnico di enti pubblici e committenti privati.\n\n- Codice ATECO riportato nel dataset simulato: 71.12.10 - Attivita degli studi di ingegneria.\n- Ambito territoriale del profilo: Italia, con operativita' prevalente nelle regioni del Mezzogiorno.\n- Progettazione di fattibilita' tecnico-economica, definitiva ed esecutiva, secondo la descrizione della visura demo.\n- Verifiche strutturali e valutazioni di vulnerabilita' sismica.\n- Progettazione",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Mapi Ingegneria S.r.l.",
+                  "source_name": "integrazione-company.md",
+                  "quote": "# Mapi Ingegneria S.r.l. — Integrazione anagrafica e societaria (fixture sintetica)\n\n**Versione della fixture:** 1.0 — **Data di riferimento:** 15 ottobre 2026.\n",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Società",
+                  "source_name": "integrazione-company.md",
+                  "quote": "- **Società:** Mapi Ingegneria S.r.l.",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Sede legale — CAP",
+                  "source_name": "integrazione-company.md",
+                  "quote": "- **Sede legale — CAP:** 70126.",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Sede legale — Paese",
+                  "source_name": "integrazione-company.md",
+                  "quote": "- **Sede legale — Paese:** Italia.",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                },
+                {
+                  "subject": "Andrea Greco",
+                  "source_name": "integrazione-company.md",
+                  "quote": "- **Andrea Greco:** responsabile qualità aziendale, architetto, Ordine degli Architetti di Bari, sezione A, numero 5267.",
+                  "truncated": false,
+                  "table_title": "",
+                  "used_by_proposal": false
+                }
+              ]
+            },
+            "rejected_proposals": 0,
+            "conditional_or_waiting": 0,
+            "meaning": "Indizi SOURCE distinti da decisioni USER e fatti validati; non dichiarare un dato assente soltanto perché non è proposto"
+          },
+          "exact_same_context_as_probe_B": false,
+          "response": "negative simulated SOURCE blocker"
+        }
+      ],
+      "text_written": 52,
+      "checkbox_written": 1,
+      "total_written": 53,
+      "previous_52_lost_or_changed": 0,
+      "held": [
+        "p51.s0",
+        "p52.s0",
+        "p52.s1",
+        "p53.s0",
+        "p53.s1",
+        "p53.s2",
+        "p53.s3",
+        "p53.s4"
+      ],
+      "hold_transition": {
+        "review_id": "e83137afcb3d473f9937ef295b00c72c",
+        "new": [],
+        "confirmed": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "inherited": [],
+        "released": [],
+        "suppressed_new": [],
+        "rejected_redundant": [],
+        "model_new": [],
+        "model_confirmed": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "model_decisions": {
+          "p51.s0": {
+            "proposal_slot": 1,
+            "decision": "hold",
+            "blocker": "source",
+            "reason": "La prova del requisito ulteriore resta da verificare.",
+            "missing_information": "Atto di nomina ancora da provare",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "RECORDED"
+          },
+          "p52.s0": {
+            "proposal_slot": 2,
+            "decision": "hold",
+            "blocker": "source",
+            "reason": "La prova del requisito ulteriore resta da verificare.",
+            "missing_information": "Atto di nomina ancora da provare",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "RECORDED"
+          },
+          "p52.s1": {
+            "proposal_slot": 3,
+            "decision": "hold",
+            "blocker": "source",
+            "reason": "La prova del requisito ulteriore resta da verificare.",
+            "missing_information": "Atto di nomina ancora da provare",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "RECORDED"
+          },
+          "p53.s0": {
+            "proposal_slot": 4,
+            "decision": "hold",
+            "blocker": "source",
+            "reason": "La prova del requisito ulteriore resta da verificare.",
+            "missing_information": "Atto di nomina ancora da provare",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "RECORDED"
+          },
+          "p53.s1": {
+            "proposal_slot": 5,
+            "decision": "hold",
+            "blocker": "source",
+            "reason": "La prova del requisito ulteriore resta da verificare.",
+            "missing_information": "Atto di nomina ancora da provare",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "RECORDED"
+          },
+          "p53.s2": {
+            "proposal_slot": 6,
+            "decision": "hold",
+            "blocker": "source",
+            "reason": "La prova del requisito ulteriore resta da verificare.",
+            "missing_information": "Atto di nomina ancora da provare",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "RECORDED"
+          },
+          "p53.s3": {
+            "proposal_slot": 7,
+            "decision": "hold",
+            "blocker": "source",
+            "reason": "La prova del requisito ulteriore resta da verificare.",
+            "missing_information": "Atto di nomina ancora da provare",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "RECORDED"
+          },
+          "p53.s4": {
+            "proposal_slot": 8,
+            "decision": "hold",
+            "blocker": "source",
+            "reason": "La prova del requisito ulteriore resta da verificare.",
+            "missing_information": "Atto di nomina ancora da provare",
+            "evidence_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+            "condition_slot": 1,
+            "reason_validation": "RECORDED"
+          }
+        }
+      },
+      "DOCX_sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "SOURCE_audit_and_USER_receipts_unchanged": true,
+      "SOURCE_text": 52,
+      "USER_checkbox": 1,
+      "new_undue_writes_observed": 0,
+      "xml_crc_positions_preprinted_verified": true,
+      "tables_and_controls": {
+        "w:tbl": {
+          "count": 4,
+          "modified": 0
+        },
+        "w:sdt": {
+          "count": 13,
+          "modified": 1
+        },
+        "w:checkBox": {
+          "count": 0,
+          "modified": 0
+        },
+        "w14:checkbox": {
+          "count": 13,
+          "modified": 1
+        }
+      },
+      "gold_conforming_text": 51,
+      "gold_strict_differences": [
+        {
+          "candidate_id": "p14.s0",
+          "label": "Carica firmatario",
+          "actual": "amministratore unico e rappresentante legale",
+          "expected": "rappresentante legale",
+          "gold_conforming": false
+        }
+      ],
+      "new_SOURCE_fields": [],
+      "remaining_expected_text": [
+        {
+          "candidate_id": "p51.s0",
+          "label": "Direttore tecnico Elisa Romano: Nome",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p52.s0",
+          "label": "Direttore tecnico Elisa Romano: Qualifica",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p52.s1",
+          "label": "Direttore tecnico Elisa Romano: CF",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s0",
+          "label": "Direttore tecnico Elisa Romano: Ordine",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s1",
+          "label": "Direttore tecnico Elisa Romano: Sezione",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s2",
+          "label": "Direttore tecnico Elisa Romano: Provincia",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s3",
+          "label": "Direttore tecnico Elisa Romano: Data iscrizione",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p53.s4",
+          "label": "Direttore tecnico Elisa Romano: Numero iscrizione",
+          "provenance": "SOURCE"
+        },
+        {
+          "candidate_id": "p229.s0",
+          "label": "Professionisti esecutori: Elisa e Luca",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p230.s0",
+          "label": "Professionista esecutore: Andrea",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p232.s0",
+          "label": "Integrazione delle prestazioni specialistiche",
+          "provenance": "USER"
+        },
+        {
+          "candidate_id": "p242.s0",
+          "label": "Luogo e data della bozza",
+          "provenance": "USER"
+        }
+      ],
+      "pages": 9,
+      "PDF_provenance": "Previous render reused only after exact DOCX binary equality"
+    }
+  ],
+  "historical_trace": {
+    "steps": [
+      {
+        "directory": "90a6ab2054374d50baef0ed9f1693fdd",
+        "stage": "initial",
+        "window_size": 40,
+        "new_plan_slots": [],
+        "persisted_holds": [],
+        "MODEL_reason_fields": [
+          "message",
+          "questions",
+          "held_proposal_slots"
+        ],
+        "HTTP_message_fields": [
+          "role",
+          "content"
+        ],
+        "has_branch_evidence_context": false,
+        "created_at": 1792403182,
+        "new": [],
+        "inherited": [],
+        "confirmed": []
+      },
+      {
+        "directory": "94aabd66c60b47bc908ef50195be7999",
+        "stage": "follow_up",
+        "window_size": 11,
+        "new_plan_slots": [],
+        "persisted_holds": [],
+        "MODEL_reason_fields": [
+          "questions",
+          "held_proposal_slots"
+        ],
+        "HTTP_message_fields": [
+          "role",
+          "content"
+        ],
+        "has_branch_evidence_context": false,
+        "created_at": 1792403186,
+        "new": [],
+        "inherited": [],
+        "confirmed": []
+      },
+      {
+        "directory": "a6b8313ca19647e980ac2d8fad29c0af",
+        "stage": "follow_up",
+        "window_size": 17,
+        "new_plan_slots": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "persisted_holds": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "MODEL_reason_fields": [
+          "questions",
+          "held_proposal_slots"
+        ],
+        "HTTP_message_fields": [
+          "role",
+          "content"
+        ],
+        "has_branch_evidence_context": false,
+        "created_at": 1792403224,
+        "new": [
+          "p51.s0",
+          "p52.s0",
+          "p52.s1",
+          "p53.s0",
+          "p53.s1",
+          "p53.s2",
+          "p53.s3",
+          "p53.s4"
+        ],
+        "inherited": [],
+        "confirmed": []
+      }
+    ],
+    "export_inherited_holds": [
+      "p51.s0",
+      "p52.s0",
+      "p52.s1",
+      "p53.s0",
+      "p53.s1",
+      "p53.s2",
+      "p53.s3",
+      "p53.s4"
+    ],
+    "historical_reason": "NOT_RECORDED",
+    "model_call_evidence_exhausted": true,
+    "SOURCE_FORM_USER_available_but_branch_proof_not_sent": true,
+    "no_initial_holds": true,
+    "new_count": 8,
+    "confirmed_later_count": 0,
+    "inherited_at_export_count": 8
+  },
+  "probes": [
+    {
+      "seconds": 4.187799327999528,
+      "model": "deepseek-flash",
+      "usage": {
+        "prompt_tokens": 9302,
+        "completion_tokens": 1183,
+        "total_tokens": 10485,
+        "prompt_tokens_details": {
+          "cached_tokens": 1664
+        },
+        "prompt_cache_hit_tokens": 1664,
+        "prompt_cache_miss_tokens": 7638
+      },
+      "global_calls": 0,
+      "narrator_calls": 1,
+      "arm": "A-missing-context",
+      "same_eight_original_proposals": true,
+      "historical_private_reason_reconstructed": false
+    },
+    {
+      "seconds": 4.237226821001968,
+      "model": "deepseek-flash",
+      "usage": {
+        "prompt_tokens": 10427,
+        "completion_tokens": 1228,
+        "total_tokens": 11655,
+        "prompt_tokens_details": {
+          "cached_tokens": 3200
+        },
+        "prompt_cache_hit_tokens": 3200,
+        "prompt_cache_miss_tokens": 7227
+      },
+      "global_calls": 0,
+      "narrator_calls": 1,
+      "arm": "B-complete-context",
+      "same_eight_original_proposals": true,
+      "historical_private_reason_reconstructed": false
+    }
+  ],
+  "real_calls": 2,
+  "new_global_calls": 0,
+  "total_prompt_tokens": 19729,
+  "total_output_tokens": 2411,
+  "total_tokens": 22140,
+  "price_USD": null,
+  "offline_replay_LLM_calls": 0,
+  "new_UI_session_run": false,
+  "MODEL_hold_decisions_in_complete_probe": 8,
+  "backend_rejected_redundant_reasons": 8,
+  "reason_not_retroactively_recovered": true,
+  "five_USER_groups_left_open": [
+    "preferences",
+    "attestations",
+    "executors",
+    "integration",
+    "location_date"
+  ],
+  "generic_new_tests": 26,
+  "negative_cases_in_parametrized_protection_test": 18,
+  "limits": [
+    "Two narrow stochastic probes do not reconstruct original unrecorded reason or establish general success rate.",
+    "Replay B preserves values, proofs, conditions and USER; real narrate adds existing source_availability metadata absent from probe.",
+    "B ran under exploratory schema permitting releases, but all eight actual decisions were hold; final schema is hold-only.",
+    "No new real UI validation, no new global call, no USD pricing measured.",
+    "Legacy holds with missing/unsupported reason remain protected until explicit bounded reassessment."
+  ]
+}

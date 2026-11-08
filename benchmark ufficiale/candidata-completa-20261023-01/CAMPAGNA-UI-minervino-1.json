@@ -1,0 +1,19 @@
+{
+  "attempted": 1,
+  "tokens_spent": 484353,
+  "results": [
+    {
+      "trial": "minervino-1",
+      "document": "minervino",
+      "session_id": "84f5a0a825d641f3b62545d922e0fb4b",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 280698,
+      "user_messages": 5,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    }
+  ]
+}

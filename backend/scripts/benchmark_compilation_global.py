@@ -21,6 +21,14 @@ from pathlib import Path
 import httpx
 
 from app.ai_profiles import resolve_project_settings
+from app.compilation_form_view import (
+    INDEXED_VIEW_INSTRUCTIONS,
+    VIEW_INSTRUCTIONS,
+    compact_input,
+    indexed_input,
+    validate_form_view,
+    validate_indexed_form,
+)
 from app.compilation_global import (
     build_global_input,
     global_request,
@@ -42,6 +50,12 @@ def arguments(argv=None):
     parser.add_argument("--profile-project", required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--max-seconds", type=int, default=300)
+    parser.add_argument("--form-view", choices=["full", "compact-v1", "compact-index-v2"],
+                        default="full")
+    parser.add_argument("--prepare-only", action="store_true",
+                        help="Save input/request/checks without contacting the provider")
+    parser.add_argument("--reference-input", type=Path,
+                        help="Require canonical input equal to a frozen B0 input before any call")
     parser.add_argument("--thinking", action=argparse.BooleanOptionalAction, default=True,
                         help="Ragionamento low predefinito; --no-thinking per il controllo, "
                              "sempre una chiamata")
@@ -83,6 +97,7 @@ def run(args):
               "semantic_calls": 0, "automatic_retries": 0, "session_writes": 0,
               "docx_writes": 0, "user_values": 0, "max_seconds": args.max_seconds,
               "thinking": args.thinking,
+              "form_view": args.form_view, "prepare_only": args.prepare_only,
               "saved_profile_context_window": settings.context_window,
               "scope": "complete small document corpus, proposal + local audit only"}
     save("code.json", {
@@ -92,7 +107,7 @@ def run(args):
                                           cwd=repo, text=True),
     })
     for relative in ["app/compilation_global.py", "app/compilation_global_contract.py",
-                     "app/compilation_catalog.py",
+                     "app/compilation_catalog.py", "app/compilation_form_view.py",
                      "app/compilation_semantics.py", "app/compilation_role_records.py",
                      "app/compilation_sessions.py",
                      "app/compilation_sources.py",
@@ -131,12 +146,28 @@ def run(args):
                 sources = load_document_corpus(db, args.project)
         (root / "original.docx").write_bytes(original)
         layout = inspect_docx(original, require_candidates=False)
-        data = build_global_input(layout, args.project, sources)
+        canonical = build_global_input(layout, args.project, sources)
+        if args.reference_input:
+            if canonical != json.loads(args.reference_input.read_text()):
+                raise ValueError("Canonical input differs from the frozen reference")
+            report["reference_input_equal"] = True
+        projections = {
+            "compact-v1": (compact_input, validate_form_view, VIEW_INSTRUCTIONS),
+            "compact-index-v2": (indexed_input, validate_indexed_form, INDEXED_VIEW_INSTRUCTIONS),
+        }
+        data = (projections[args.form_view][0](canonical)
+                if args.form_view in projections else canonical)
         body = global_request(settings, data, thinking=args.thinking)
+        if args.form_view in projections:
+            _, validator, instructions = projections[args.form_view]
+            body["messages"][0]["content"] += "\n\n" + instructions
+            save("canonical-input.json", canonical)
+            save("form-view-validation.json", validator(canonical["form"], data["form"]))
+            save("prompt-adaptation.txt", instructions)
         save("input.json", data)
         save("request.json", body)
         report.update(original_sha256=layout.sha256,
-                      candidate_count=len(data["form"]["candidates"]),
+                      candidate_count=len(canonical["form"]["candidates"]),
                       source_coverage=data["source_coverage"],
                       input_characters=sum(len(m["content"]) for m in body["messages"]),
                       max_output_tokens=body["max_tokens"])
@@ -163,6 +194,9 @@ def run(args):
 
         started = time.perf_counter()
         try:
+            if args.prepare_only:
+                report.update(state="prepared", ai_seconds=0)
+                return True
             raw, model, usage = asyncio.run(call())
             report.update(model=model, usage=usage, ai_seconds=time.perf_counter() - started)
             save("response.txt", raw)

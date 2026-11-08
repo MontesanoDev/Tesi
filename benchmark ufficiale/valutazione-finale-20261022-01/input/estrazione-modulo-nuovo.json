@@ -1,0 +1,27 @@
+{
+ "UTC": "2026-10-22T10:42:01+00:00",
+ "pool_sha256": "7ef38518c430e719814dd9dd6c78e8e76086b9277ea64fc88d2c05771c560344",
+ "excluded_studied": [
+  "bella",
+  "cesano",
+  "craa"
+ ],
+ "excluded_individual_professional_models": [
+  "mit",
+  "mitrup"
+ ],
+ "exclusion_rule": "scenario fisso: Mapi Ingegneria S.r.l., società di ingegneria in forma singola; i modelli per professionista singolo non ammettono l'operatore",
+ "eligible_sorted": [
+  "calabria",
+  "cannara",
+  "soresa2023"
+ ],
+ "seed": "Mapi-valutazione-finale-2026-10-22-01",
+ "algorithm": "random.Random(seed).sample(eligible_sorted, len(eligible_sorted))",
+ "order": [
+  "cannara",
+  "soresa2023",
+  "calabria"
+ ],
+ "selected_first": "cannara"
+}

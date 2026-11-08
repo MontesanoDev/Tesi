@@ -1,0 +1,258 @@
+[
+  {
+    "document": "minervino",
+    "SOURCE_reference": 60,
+    "no_possible_nonempty_local_FORM_proof": 0,
+    "maximum_SOURCE_reference_groundable_by_model_under_local_FORM_gate": 60,
+    "blocked": []
+  },
+  {
+    "document": "trapani",
+    "SOURCE_reference": 17,
+    "no_possible_nonempty_local_FORM_proof": 0,
+    "maximum_SOURCE_reference_groundable_by_model_under_local_FORM_gate": 17,
+    "blocked": []
+  },
+  {
+    "document": "catanzaro",
+    "SOURCE_reference": 31,
+    "no_possible_nonempty_local_FORM_proof": 13,
+    "maximum_SOURCE_reference_groundable_by_model_under_local_FORM_gate": 18,
+    "blocked": [
+      {
+        "candidate_id": "t25.r2.c0",
+        "label": "CCIAA",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:440": ""
+        },
+        "table": "table:25",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t41.r1.c0",
+        "label": "nome",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:655": "",
+          "paragraph:657": "",
+          "paragraph:656": "",
+          "paragraph:659": "",
+          "paragraph:660": "",
+          "paragraph:658": ""
+        },
+        "table": "table:41",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t41.r1.c1",
+        "label": "nascita_data_luogo",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:655": "",
+          "paragraph:657": "",
+          "paragraph:656": "",
+          "paragraph:659": "",
+          "paragraph:660": "",
+          "paragraph:658": ""
+        },
+        "table": "table:41",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t41.r1.c2",
+        "label": "residenza",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:655": "",
+          "paragraph:657": "",
+          "paragraph:656": "",
+          "paragraph:659": "",
+          "paragraph:660": "",
+          "paragraph:658": ""
+        },
+        "table": "table:41",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t41.r1.c3",
+        "label": "cf",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:655": "",
+          "paragraph:657": "",
+          "paragraph:656": "",
+          "paragraph:659": "",
+          "paragraph:660": "",
+          "paragraph:658": ""
+        },
+        "table": "table:41",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t41.r1.c4",
+        "label": "carica",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:655": "",
+          "paragraph:657": "",
+          "paragraph:656": "",
+          "paragraph:659": "",
+          "paragraph:660": "",
+          "paragraph:658": ""
+        },
+        "table": "table:41",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t43.r1.c0",
+        "label": "nome",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:698": "",
+          "paragraph:701": "",
+          "paragraph:702": "",
+          "paragraph:699": "",
+          "paragraph:703": "",
+          "paragraph:700": ""
+        },
+        "table": "table:43",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t43.r1.c1",
+        "label": "nascita_data_luogo",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:698": "",
+          "paragraph:701": "",
+          "paragraph:702": "",
+          "paragraph:699": "",
+          "paragraph:703": "",
+          "paragraph:700": ""
+        },
+        "table": "table:43",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t43.r1.c2",
+        "label": "residenza",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:698": "",
+          "paragraph:701": "",
+          "paragraph:702": "",
+          "paragraph:699": "",
+          "paragraph:703": "",
+          "paragraph:700": ""
+        },
+        "table": "table:43",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t43.r1.c3",
+        "label": "cf",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:698": "",
+          "paragraph:701": "",
+          "paragraph:702": "",
+          "paragraph:699": "",
+          "paragraph:703": "",
+          "paragraph:700": ""
+        },
+        "table": "table:43",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t43.r1.c4",
+        "label": "carica",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:698": "",
+          "paragraph:701": "",
+          "paragraph:702": "",
+          "paragraph:699": "",
+          "paragraph:703": "",
+          "paragraph:700": ""
+        },
+        "table": "table:43",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t44.r1.c0",
+        "label": "nome",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:718": "",
+          "paragraph:721": "",
+          "paragraph:720": "",
+          "paragraph:719": "",
+          "paragraph:717": ""
+        },
+        "table": "table:44",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      },
+      {
+        "candidate_id": "t44.r1.c3",
+        "label": "cf",
+        "SOURCE_available": true,
+        "candidate_recognized_by_parser_and_writer": true,
+        "allowed_FORM_paragraphs": {
+          "paragraph:718": "",
+          "paragraph:721": "",
+          "paragraph:720": "",
+          "paragraph:719": "",
+          "paragraph:717": ""
+        },
+        "table": "table:44",
+        "formal_repeat_header_rows": [],
+        "cause": "All allowed local FORM paragraphs are empty; a nonempty literal requirement quote cannot be supplied under the frozen contract",
+        "not_caused_by_new_LLM_response": true
+      }
+    ]
+  },
+  {
+    "document": "bella",
+    "SOURCE_reference": 8,
+    "no_possible_nonempty_local_FORM_proof": 0,
+    "maximum_SOURCE_reference_groundable_by_model_under_local_FORM_gate": 8,
+    "blocked": []
+  }
+]

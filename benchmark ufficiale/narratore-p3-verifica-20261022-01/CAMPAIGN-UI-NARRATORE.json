@@ -1,0 +1,109 @@
+{
+  "attempted": 8,
+  "results": [
+    {
+      "trial": "craa-N1",
+      "document": "craa",
+      "session_id": "1bdb7511fd414ce7a4525758857badb7",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 127823,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "cesano-N1",
+      "document": "cesano",
+      "session_id": "dc2a81d440d74311ad8e2b057cf60ae4",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 137873,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "catanzaro-N1",
+      "document": "catanzaro",
+      "session_id": "00e33062bd6242f280319d17c0ed4e63",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 189658,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "minervino-N1",
+      "document": "minervino",
+      "session_id": "ec1335f0f3e649e988b768bb02443790",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 204845,
+      "user_messages": 4,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "cesano-N2",
+      "document": "cesano",
+      "session_id": "ed20f6e60b2d4ad8ab05338afbc7891e",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 110038,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "craa-N2",
+      "document": "craa",
+      "session_id": "52d516a3c69447cfb7de6b33ccad348d",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 146527,
+      "user_messages": 3,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "catanzaro-N2",
+      "document": "catanzaro",
+      "session_id": "5bbca23f3e7c42af97f1bdeb43607b76",
+      "downloaded": true,
+      "exportRequested": true,
+      "final_status": "GENERATED",
+      "elapsed_ms": 152352,
+      "user_messages": 2,
+      "errors": 10,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    },
+    {
+      "trial": "minervino-N2",
+      "document": "minervino",
+      "session_id": "4e4cb989c4f746d0bb10997145e98183",
+      "downloaded": false,
+      "exportRequested": true,
+      "final_status": "FAILED",
+      "elapsed_ms": 1217050,
+      "user_messages": 2,
+      "errors": 6,
+      "no_mocks_or_routes": true,
+      "no_selective_retry": true
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+[
+ {
+  "runtime": "storico",
+  "model": {
+   "provider": "deepseek",
+   "model": "deepseek-flash",
+   "base_url": "https://api.deepseek.com"
+  },
+  "forms": {
+   "minervino": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1,
+     "narration_recovery_revision": 1,
+     "derivation_revision": 1,
+     "generation_revision": 3,
+     "branch_scope_revision": 1,
+     "hold_rereview_revision": 2,
+     "table_scope_revision": 1
+    },
+    "segments": [
+     59,
+     54,
+     60,
+     60,
+     34
+    ],
+    "request_chars": [
+     178944,
+     176937,
+     179339,
+     176335,
+     170945
+    ],
+    "requests_sha256": [
+     "246125c3de9772a4fda68445a40f21a578ed93b48ccbe143ef6481e99d438b1d",
+     "5bb89437dbe461761465cf0465610d8cad35660c7363d0450de05b67ce0165ce",
+     "caca4ee64b7a1160921577782ce05c04a83e563d77f2a2b84c507de156d28a36",
+     "e5cb6cf13597bb7d3ddb876a70292faa4c1cb097a0987f571b26a857ee52e7da",
+     "9967f158a54fe93359c2842b40e1e4187a2a9c8ad8c242f6b64f551eccbc07a9"
+    ],
+    "deterministic_twice": true
+   },
+   "catanzaro": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1,
+     "narration_recovery_revision": 1,
+     "derivation_revision": 1,
+     "generation_revision": 3,
+     "branch_scope_revision": 1,
+     "hold_rereview_revision": 2,
+     "table_scope_revision": 1
+    },
+    "segments": [
+     43,
+     57,
+     51,
+     56,
+     59,
+     41
+    ],
+    "request_chars": [
+     228997,
+     233875,
+     230390,
+     232846,
+     231789,
+     227556
+    ],
+    "requests_sha256": [
+     "02bd497d4a4c5ee7ade613bb8c3ed486eb5b013c203154873b96260c0a062d47",
+     "b4dbde0c713dbaa97b7d476e8241fc021bb6512ff421940b518f1ab45f62f79a",
+     "a3544e9a1b37b1a48ac8c5d1e9a9bed45e2ed3d7e60aa437275cdcaf1cc55b62",
+     "a122636b1b36951659fb4fae1e737d382da8fc9ba0522164973e7aa2ee0246d5",
+     "86f9d2dfde1b6fc73b75e0b74f1feb024e879e775b03412c9f0caf5c2a1d687b",
+     "579d7e677def4cbde9b698cfbc8fb62915a9bd6137fe11e1bdffe2180b726728"
+    ],
+    "deterministic_twice": true
+   },
+   "cesano": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1,
+     "narration_recovery_revision": 1,
+     "derivation_revision": 1,
+     "generation_revision": 3,
+     "branch_scope_revision": 1,
+     "hold_rereview_revision": 2,
+     "table_scope_revision": 1
+    },
+    "segments": [
+     60,
+     28
+    ],
+    "request_chars": [
+     141819,
+     132306
+    ],
+    "requests_sha256": [
+     "fe7214a3b0330590b2716dfdd107e555e52e9717fb9bf3940e577c25a067e649",
+     "7917b5ef1d154296e5ce87e428dffb9d60fb46ad1ebce2836d31db9f8128499f"
+    ],
+    "deterministic_twice": true
+   }
+  }
+ },
+ {
+  "runtime": "nuova-source",
+  "model": {
+   "provider": "deepseek",
+   "model": "deepseek-flash",
+   "base_url": "https://api.deepseek.com"
+  },
+  "forms": {
+   "soresa2023": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1,
+     "narration_recovery_revision": 1,
+     "derivation_revision": 1,
+     "generation_revision": 3,
+     "branch_scope_revision": 1,
+     "hold_rereview_revision": 2,
+     "table_scope_revision": 1
+    },
+    "segments": [
+     36,
+     45
+    ],
+    "request_chars": [
+     115591,
+     118334
+    ],
+    "requests_sha256": [
+     "1da0ace0c4b0a238f6c4c341ec332eb471546ec3dad03f4033636a5d6f2b7d9b",
+     "d27c132daf843e8582fa0da22210db77198f6504ec59d8e0d2a7e61ce4576f9c"
+    ],
+    "deterministic_twice": true
+   }
+  }
+ }
+]

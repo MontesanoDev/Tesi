@@ -144,13 +144,17 @@ def attach_coverage(result, payload, catalog, paragraphs, contexts):
                                  if "outcome" in f["coverage"]))})
 
 
-def narration_coverage(audit):
+def narration_coverage(audit, handled_ids=()):
     """Bounded human context, no technical recipients or invented absence claims."""
     summary = audit.get("coverage_summary")
     if summary is None:
         return {"recorded": False, "positions_without_proposal": audit.get("unassigned_count", 0),
                 "meaning": "Omissioni dell'output precedente, non prova che non siano state lette"}
-    groups = [g for g in audit["coverage_groups"] if g["accepted_ids"]]
+    handled = set(handled_ids) | {f["candidate_id"] for f in audit.get("fields", [])
+                                 if f.get("source_reuse")}
+    groups = [{**g, "accepted_ids": [cid for cid in g["accepted_ids"] if cid not in handled]}
+              for g in audit["coverage_groups"]]
+    groups = [g for g in groups if g["accepted_ids"]]
     return {"recorded": True, **summary,
             "groups": [{"outcome": g["outcome"], "reason": g["reason"],
                         "positions": len(g["accepted_ids"]),
@@ -158,6 +162,47 @@ def narration_coverage(audit):
                        for g in groups[:24]], "omitted_groups": max(0, len(groups) - 24),
             "meaning": "Motivazioni MODEL ancorate al FORM; non prova di assenza nelle SOURCE "
                        "e non autorizzazione a scrivere o a dichiarare la non applicabilità"}
+
+
+def source_availability_context(audit, sources, answers=None):
+    """Literal input records are reading hints, never new accepted facts.
+
+    We cannot certify exhaustive absence or successful retrieval from a model
+    coverage explanation. Expose those unknowns rather than inventing a search.
+    """
+    from app.compilation_role_records import _subject_records
+
+    fields, answers = audit.get("fields", []), answers or {}
+    used = [e.get("quote", "") for f in fields for e in f.get("source_evidence", [])]
+    records, seen = [], set()
+    for source in sources:
+        if source.get("role") != "source" or source.get("category") == "general":
+            continue
+        for record in _subject_records(source["content"], None):
+            quote = record["record"]
+            key = (source["file_id"], record.get("subject"), quote)
+            if key in seen:
+                continue
+            seen.add(key)
+            records.append({"subject": record.get("subject", ""),
+                "source_name": source["source_name"], "quote": quote[:800],
+                "truncated": len(quote) > 800,
+                "table_title": record.get("title", ""),
+                "used_by_proposal": any(quote in q or q in quote for q in used if q)})
+    return {"absent_from_sources": {"verified": False,
+                "meaning": "Nessuna verifica esaustiva di assenza disponibile"},
+            "not_retrieved": {"verified": False,
+                "meaning": "Non deducibile da un'omissione del modello"},
+            "present_not_proposed": {"meaning": "Record dell'input non citati da proposte; "
+                "non provano da soli la pertinenza a ogni campo", "records": [
+                    r for r in records if not r["used_by_proposal"]][:24]},
+            "rejected_proposals": sum(bool(f.get("validation_errors")) for f in fields),
+            "conditional_or_waiting": sum(any(
+                check.get("result") == "unknown" and answers.get(
+                    "condition:" + key, {}).get("applies") is None
+                for key, check in f.get("condition_checks", {}).items()) for f in fields),
+            "meaning": "Indizi SOURCE distinti da decisioni USER e fatti validati; "
+                       "non dichiarare un dato assente soltanto perché non è proposto"}
 
 
 def coverage_notice(audit):

@@ -1,0 +1,132 @@
+{
+  "experiment": "source-attribuzione-20261019-01",
+  "controls": [
+    {
+      "control": "Seven real Cesano unsupported person/company attributions reproduced and blocked",
+      "result": "PASS",
+      "before": 7,
+      "after": 0
+    },
+    {
+      "control": "Company facts retained as facts and correct company destination retained",
+      "result": "PASS",
+      "grounded_company_facts": 8,
+      "written_supported_company_name": 1
+    },
+    {
+      "control": "Negative/positive, identity, homonym and similar-property tests",
+      "result": "PASS",
+      "new_permanent_cases": 39
+    },
+    {
+      "control": "Six deterministic regression catalogs/audits/exports",
+      "result": "PASS",
+      "DOCX_identical": 6
+    },
+    {
+      "control": "Minervino V12 real reference",
+      "result": "PASS",
+      "writes_before": 61,
+      "writes_after": 61,
+      "DOCX_identical": true
+    },
+    {
+      "control": "Parser FORMTEXT, writer, API, prompt and model untouched",
+      "result": "PASS"
+    },
+    {
+      "control": "Backend tests and Ruff",
+      "result": "PASS",
+      "full_tests": 2721,
+      "focused_tests": 324,
+      "Ruff": "PASS"
+    },
+    {
+      "control": "One random draw and one fresh real global after code freeze",
+      "result": "PASS",
+      "case": "catanzaro",
+      "seed": 13243375443350163391
+    },
+    {
+      "control": "Real DOCX subject/field/section attribution review",
+      "result": "PASS",
+      "written": 15,
+      "unsupported_writes_detected": 0,
+      "bounded_observation_not_universal_guarantee": true
+    },
+    {
+      "control": "SOURCE coverage on new Catanzaro",
+      "result": "FAIL",
+      "reference_empty": 16,
+      "partially_filled": 1,
+      "historical_reference_not_independent_gold": true
+    },
+    {
+      "control": "Checkbox completion on new Catanzaro",
+      "result": "FAIL",
+      "choice_groups_proposed": 0,
+      "new_checkbox_changes": 0
+    },
+    {
+      "control": "Dialogue avoids superfluous requests",
+      "result": "FAIL",
+      "initial_request_decisions_asked_again": 4,
+      "conditional_procura_question": 1,
+      "no_repeat_after_accepted_receipt": true
+    },
+    {
+      "control": "Real XML/ZIP/positions/download/PDF readability",
+      "result": "PASS",
+      "pages": 17,
+      "values_readable": 15,
+      "visual_pages": [
+        1,
+        2,
+        11,
+        17
+      ]
+    },
+    {
+      "control": "CRAA readability",
+      "result": "FAIL_PREEXISTING",
+      "invisible_CCIAA_values": 2,
+      "not_a_regression": true
+    },
+    {
+      "control": "Original sessions/artifacts/storage preserved; one isolated new session",
+      "result": "PASS"
+    },
+    {
+      "control": "No code corrections during benchmark; no rerun to improve result",
+      "result": "PASS"
+    }
+  ],
+  "mandatory_checks_not_executed": [],
+  "not_claimed": [
+    "Universal semantic subject verification for tables/unrecognised prose",
+    "Statistical accuracy or representative random sample",
+    "Microsoft Word desktop rendering",
+    "Baseline adoption"
+  ],
+  "targeted_fix": "PASS",
+  "regression": "PASS",
+  "random_E2E": "Usable partial draft with known coverage/dialogue/checkbox failures",
+  "preservation": {
+    "application_unchanged_during_benchmark": true,
+    "protected_previous_files_changed_only": [
+      "backend/app/compilation_global.py"
+    ],
+    "other_protected_files_unchanged": 967,
+    "previous_audit_files_unchanged": 279,
+    "live_sessions_unchanged": 29,
+    "live_storage_files_unchanged": 285,
+    "clone_old_sessions_unchanged": 33,
+    "new_sessions": 1,
+    "global_calls": 1,
+    "all_provider_calls": 10,
+    "no_manual_state_edits": true,
+    "no_quality_retry_no_redraw": true,
+    "parser_writer_API_model_prompt_unchanged": true,
+    "no_commit_push": true
+  }
+}

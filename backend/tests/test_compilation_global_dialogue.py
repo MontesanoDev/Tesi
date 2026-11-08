@@ -21,18 +21,53 @@ from app.intents import ChatDecision, bind_turn_plan, parse_turn_plan, routing_c
 api, provider = global_api, global_provider
 
 
+@pytest.mark.anyio
+@pytest.mark.parametrize("claim", [
+    "Non risultano invece dati su soci e codici fiscali nelle fonti.",
+    "Mancano i dati anagrafici nella base di conoscenza.",
+    "La KB non contiene il codice fiscale del direttore tecnico.",
+])
+async def test_narrator_cannot_turn_omissions_into_source_absence(
+    api, provider, monkeypatch, claim,
+):
+    async def summarize(client, settings, body, timeout, **kwargs):
+        return json.dumps({"message": claim, "questions": []}), "simulated", {}
+
+    monkeypatch.setattr(dialogue, "request_model_content", summarize)
+    s = await resolve(api, await start(api))
+    message = s["global_compilation"]["dialogue"]["message"]
+    assert claim not in message
+    assert "assenza" in message and "fonti" in message
+    assert s["global_compilation"]["proposal_count"] == 2
+
+
 @pytest.fixture
 def anyio_backend():
     return "asyncio"
 
 
-async def conditional(api, monkeypatch):
+def previous_session(session, *flags):
+    """The same session as created before a candidate revision existed."""
+    with connection() as db:
+        db.execute("BEGIN IMMEDIATE")
+        row, state = adapter._row_state(db, "alpha", session["id"], session["version"])
+        for flag in flags:
+            state["global_compilation"].pop(flag, None)
+        return sessions.save_state(db, row, state, "test_previous_revision")
+
+
+async def conditional(api, monkeypatch, *, legacy=False):
     async def request(client, settings, body, timeout, **kwargs):
         data = json.loads(body["messages"][1]["content"])
         return json.dumps(proposal(data, conditional=True)), "simulated", {}
 
     monkeypatch.setattr(adapter, "request_model_content", request)
-    return await resolve(api, await start(api))
+    if not legacy:
+        monkeypatch.setenv("MAPI_DIALOGUE_REVISION", "1")  # P3 is opt-in.
+    s = await start(api)
+    if legacy:
+        s = previous_session(s, "dialogue_revision")
+    return await resolve(api, s)
 
 
 def reply(session, action, message, slot=1, value=None):
@@ -279,14 +314,23 @@ async def test_historical_review_gets_summary_only(api, provider):
 
 
 @pytest.mark.anyio
-async def test_bad_reply_does_not_mutate_condition(api, provider, monkeypatch):
-    s = await conditional(api, monkeypatch)
-    for quote, message in [("inventato", "No"), ("Sì o forse no", "Sì o forse no")]:
+@pytest.mark.parametrize("legacy", [True, False])
+async def test_bad_reply_does_not_mutate_condition(api, provider, monkeypatch, legacy):
+    s = await conditional(api, monkeypatch, legacy=legacy)
+    for attempt, (quote, message) in enumerate([("inventato", "No"),
+                                                ("Sì o forse no", "Sì o forse no")]):
         s, errors = dialogue.apply_replies("alpha", s["id"], s["version"], [
             ClarificationReply(slot=1, action="CONDITION_TRUE", user_quote=quote)], message)
-        assert errors == [1]
-        assert not s["global_compilation"]["dialogue"]["answers"]
-        assert not s["chat"]["auto_continue"] and not s["last_generation"]
+        answers = s["global_compilation"]["dialogue"]["answers"]
+        assert errors == [1] and not s["last_generation"]
+        assert not any(a.get("applies") is True for a in answers.values())
+        assert not s["global_compilation"]["dialogue"]["user_values"]
+        if legacy or attempt == 0:
+            assert not answers and not s["chat"]["auto_continue"]
+        else:
+            # P3 loop guard: the condition is left explicitly unknown, never confirmed.
+            assert {k: (a["action"], a["provenance"], a["origin"]) for k, a in answers.items()} \
+                == {"condition:c": ("UNKNOWN", "BACKEND", "BACKEND_LOOP_GUARD")}
 
 
 @pytest.mark.anyio
@@ -353,21 +397,24 @@ async def test_user_value_only_for_active_slot_and_kept_distinct_from_source(api
 
 
 @pytest.mark.anyio
-async def test_partial_group_reply_updates_valid_slot_and_keeps_ambiguous_one_open(api, provider):
+async def test_partial_group_reply_updates_valid_slot_and_keeps_ambiguous_one_open(
+    api, provider, monkeypatch,
+):
+    async def request(client, settings, body, timeout, **kwargs):
+        payload = proposal(json.loads(body["messages"][1]["content"]))
+        # The review belongs to the immutable MODEL output, so it survives re-derivation.
+        payload["clarifications"] = {
+            cid: {"label": field["label"], "form": field["form"],
+                  "reason": "Valore da confermare per questa pratica"}
+            for cid, field in payload["fields"].items()
+        }
+        payload.update(fields={}, facts={})
+        return json.dumps(payload), "simulated", {}
+
+    monkeypatch.setattr(adapter, "request_model_content", request)
     s = await resolve(api, await start(api))
-    with connection() as db:
-        row = sessions._row(db, "alpha", s["id"])
-        state = json.loads(row["state_json"])
-        data = state["global_compilation"]
-        for f in data["audit"]["fields"]:
-            f.update(disposition="review")
-        slots = [{"slot": i + 1, "kind": "value", "key": "field:" + cid,
-                  "label": label, "field_ids": [cid], "condition": "", "context": label}
-                 for i, (cid, label) in enumerate([
-                     ("t0.r0.c1", "Denominazione sociale"), ("t0.r1.c1", "Sede legale")])]
-        data["dialogue"]["question"] = {"kind": "clarifications", "slots": slots,
-            "message": "Quali valori devo usare per denominazione e sede?", "field_ids": []}
-        s = sessions.save_state(db, row, state, "fixture_group_review")
+    slots = s["global_compilation"]["dialogue"]["question"]["slots"]
+    assert [slot["field_ids"] for slot in slots] == [["t0.r0.c1"], ["t0.r1.c1"]]
     message = "Denominazione: Orione S.r.l.; per la sede non sono sicuro."
     s, errors = dialogue.apply_replies("alpha", s["id"], s["version"], [
         ClarificationReply(slot=1, action="VALUE", value="Orione S.r.l.",
@@ -384,13 +431,27 @@ async def test_partial_group_reply_updates_valid_slot_and_keeps_ambiguous_one_op
 
 
 @pytest.mark.anyio
-async def test_narrator_can_only_remove_proposals_and_hold_persists(api, provider, monkeypatch):
+@pytest.mark.parametrize("legacy", [True, False])
+async def test_narrator_can_only_remove_proposals_and_hold_persists(
+    api, provider, monkeypatch, legacy,
+):
+    message = "Ho trovato i dati, ma la destinazione della sede è dubbia."
+
     async def hold(*args, **kwargs):
-        return json.dumps({"message": "Ho trovato i dati, ma la destinazione della sede è dubbia.",
-                           "questions": [], "held_proposal_slots": [2]}), "simulated", {}
+        if legacy:
+            return json.dumps({"message": message, "questions": [],
+                               "held_proposal_slots": [2]}), "simulated", {}
+        return json.dumps({"message": message, "questions": [], "hold_groups": [
+            {"proposal_slots": [2], "blocker": "form", "reason": "Destinazione dubbia",
+             "evidence_quote": "Sede legale"}]}), "simulated", {}
 
     monkeypatch.setattr(dialogue, "request_model_content", hold)
-    s = await resolve(api, await start(api))
+    if not legacy:
+        monkeypatch.setenv("MAPI_DIALOGUE_REVISION", "1")  # P3 is opt-in.
+    s = await start(api)
+    if legacy:
+        s = previous_session(s, "dialogue_revision")
+    s = await resolve(api, s)
     assert dialogue.export_selection(s)[0] == ["t0.r0.c1"]
     assert s["global_compilation"]["dialogue"]["held_candidate_ids"] == ["t0.r1.c1"]
     assert s["global_compilation"]["proposal_count"] == 2  # Original audit unchanged.

@@ -1,0 +1,428 @@
+{
+  "actual_question_exposures": 9,
+  "unique_question_decisions": 8,
+  "duplicate_exposures": 1,
+  "superfluous_alternative_exposures": 2,
+  "relevant_distinct_decisions": 6,
+  "questions": [
+    {
+      "version": 5,
+      "slot_key": "condition:c_soc",
+      "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria ai sensi dell'art. 66, comma 1, lett. c, del D.Lgs. n. 36/2023?",
+      "kind": "applicability",
+      "duplicate": false,
+      "superfluous_given_frozen_scenario": false,
+      "assessment": "Relevant first confirmation or genuinely missing decision",
+      "form": null
+    },
+    {
+      "version": 5,
+      "slot_key": "field:p242.s0",
+      "question": "Quale luogo e data vanno indicati in calce alla domanda?",
+      "kind": "value",
+      "duplicate": false,
+      "superfluous_given_frozen_scenario": false,
+      "assessment": "Relevant first confirmation or genuinely missing decision",
+      "form": null
+    },
+    {
+      "version": 5,
+      "slot_key": "decision:ff6a9c86b0584e3ed5ac5799",
+      "question": "Quali categorie, servizi e fasce d'incarico scegli per questa domanda? Rispetta l'istruzione del modulo e indica solo le scelte ancora aperte.\ndi essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):\nProgettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):\nFascia A  (incarichi da € 0,00 a € 39.999,00) | Fascia B  (incarichi da € 40.000,00 a € 139.999,00) | Fascia C  (incarichi da € 140.000,00 a € 221.000,00)\nEdilizia commerciale: Fascia A , Fascia B , Fascia C \nEdilizia residenziale: Fascia A , Fascia B , Fascia C \nEdilizia scolastica e sanitaria: Fascia A , Fascia B , Fascia C \nImpianti sportivi, piscine, cimiteri ed edifici di culto: Fascia A , Fascia B , Fascia C \nAree esterne e opere a verde: Fascia A , Fascia B , Fascia C \nInterventi su beni immobili di interesse storico- artistico: Fascia A , Fascia B , Fascia C \nEdilizia – sedi amministrative: Fascia A , Fascia B , Fascia C \nStrutture: Fascia A , Fascia B , Fascia C \nImpianti meccanici: Fascia A , Fascia B , Fascia C \nImpianti elettrici: Fascia A , Fascia B , Fascia C \nImpianti di depurazione o discariche: Fascia A , Fascia B , Fascia C \nOpere elettriche per reti: Fascia A , Fascia B , Fascia C \nOpere stradali: Fascia A , Fascia B , Fascia C \nOpere idrauliche: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nSistemi e reti di telecomunicazioni: Fascia A , Fascia B , Fascia C \nPianificazione: Fascia A , Fascia B , Fascia C \nServizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;\nFascia A (incarichi da € 0,00 a € 39.999,00) | Fascia B (incarichi da € 40.000,00 a € 139.999,00) | Fascia C (incarichi da € 140.000,00 a € 221.000,00)\nCSP/CSE: Fascia A, Fascia B, Fascia C\nServizio di collaudo finale o in corso d’opera;\nPreferenza\nCollaudo statico: Preferenza\nCollaudo tecnico amministrativo: Preferenza\nCollaudo funzionale - impiantistico: Preferenza\nAltri incarichi per servizi tecnici;\nPreferenza\nredazione pratiche prevenzione incendi: Preferenza\nvisure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti: Preferenza\nperizie di stima: Preferenza\nrelazioni geologiche e sismiche: Preferenza\nindagini geologiche / sismiche e relazioni geologiche: Preferenza\nsupporto agli atti di pianificazione comunque denominati: Preferenza\nservizi tecnici di competenza di restauratori: Preferenza\nservizi di assistenza archeologica: Preferenza\nservizi di competenza di agronomi e dottori forestali: Preferenza\nredazione di certificato di prestazione energetica: Preferenza",
+      "kind": "decision",
+      "duplicate": false,
+      "superfluous_given_frozen_scenario": false,
+      "assessment": "Relevant first confirmation or genuinely missing decision",
+      "form": [
+        {
+          "paragraph_id": "paragraph:77",
+          "quote": "di essere inserito/i nell’ ELENCO DI PROFESSIONISTI PER L'AFFIDAMENTO DI INCARICHI DI IMPORTO INFERIORE AD EURO 221.000,00 per le seguenti tipologie di incarico (barrare il/i settore/i interessato/i – max. 6 tipologie):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:78",
+          "quote": "Progettazione (fattibilità tecnico- economica/ esecutiva), direzione lavori nelle seguenti categorie di opere (per l’identificazione delle categorie si fa riferimento al D.M. 17/06/2016):",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:86",
+          "quote": "Edilizia commerciale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:80",
+          "quote": "Fascia A ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:81",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:82",
+          "quote": "Fascia B ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:83",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:84",
+          "quote": "Fascia C ",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:85",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:90",
+          "quote": "Edilizia residenziale",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:94",
+          "quote": "Edilizia scolastica e sanitaria",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:98",
+          "quote": "Impianti sportivi, piscine, cimiteri ed edifici di culto",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:102",
+          "quote": "Aree esterne e opere a verde",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:106",
+          "quote": "Interventi su beni immobili di interesse storico- artistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:110",
+          "quote": "Edilizia – sedi amministrative",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:114",
+          "quote": "Strutture",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:118",
+          "quote": "Impianti meccanici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:122",
+          "quote": "Impianti elettrici",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:126",
+          "quote": "Impianti di depurazione o discariche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:130",
+          "quote": "Opere elettriche per reti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:134",
+          "quote": "Opere stradali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:138",
+          "quote": "Opere idrauliche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:142",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:146",
+          "quote": "Sistemi e reti di telecomunicazioni",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:150",
+          "quote": "Pianificazione",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:155",
+          "quote": "Servizio di coordinamento della sicurezza in fase di progettazione ed esecuzione;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:163",
+          "quote": "CSP/CSE",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:157",
+          "quote": "Fascia A",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:158",
+          "quote": "(incarichi da € 0,00 a € 39.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:159",
+          "quote": "Fascia B",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:160",
+          "quote": "(incarichi da € 40.000,00 a € 139.999,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:161",
+          "quote": "Fascia C",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:162",
+          "quote": "(incarichi da € 140.000,00 a € 221.000,00)",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:168",
+          "quote": "Servizio di collaudo finale o in corso d’opera;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:171",
+          "quote": "Collaudo statico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:170",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:173",
+          "quote": "Collaudo tecnico amministrativo",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:175",
+          "quote": "Collaudo funzionale - impiantistico",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:178",
+          "quote": "Altri incarichi per servizi tecnici;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:181",
+          "quote": "redazione pratiche prevenzione incendi",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:180",
+          "quote": "Preferenza",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:183",
+          "quote": "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:185",
+          "quote": "perizie di stima",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:187",
+          "quote": "relazioni geologiche e sismiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:189",
+          "quote": "indagini geologiche / sismiche e relazioni geologiche",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:191",
+          "quote": "supporto agli atti di pianificazione comunque denominati",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:193",
+          "quote": "servizi tecnici di competenza di restauratori",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:195",
+          "quote": "servizi di assistenza archeologica",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:197",
+          "quote": "servizi di competenza di agronomi e dottori forestali",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:199",
+          "quote": "redazione di certificato di prestazione energetica",
+          "role": "form"
+        }
+      ]
+    },
+    {
+      "version": 8,
+      "slot_key": "condition:c_soc",
+      "question": "Confermi che la domanda è presentata come legale rappresentante di una società di ingegneria (o di società di professionisti), con i relativi dati societari da indicare?",
+      "kind": "applicability",
+      "duplicate": true,
+      "superfluous_given_frozen_scenario": false,
+      "assessment": "Unnecessary repetition after unambiguous negative alternatives falsely rejected",
+      "form": null
+    },
+    {
+      "version": 8,
+      "slot_key": "decision:0a242b4c138d38515e716924",
+      "question": "Quali delle seguenti dichiarazioni puoi confermare espressamente? Le informazioni aziendali non costituiscono una conferma delle attestazioni.\n☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:\ndi non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;\nche non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;\ndi non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;\ndi non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;\ndi impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.\ndi non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;\nche il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;\ndi essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;\ndi acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;\ndi autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+      "kind": "decision",
+      "duplicate": false,
+      "superfluous_given_frozen_scenario": false,
+      "assessment": "Relevant first confirmation or genuinely missing decision",
+      "form": [
+        {
+          "paragraph_id": "paragraph:217",
+          "quote": "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:218",
+          "quote": "di non trovarsi in alcuna delle situazioni di esclusione di cui agli artt. 94, 95, 97 e 98 del D.Lgs.n.36/2023;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:219",
+          "quote": "che non sussistono motivi ostativi all'esercizio della libera professione e all'accettazione di incarichi affidati dalla Pubblica Amministrazione;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:220",
+          "quote": "di non trovarsi in alcune delle condizioni che comporterebbero l’esclusione a causa di partecipazione multipla a procedure concorsuali pubbliche;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:221",
+          "quote": "di non trovarsi in alcuna delle condizioni ostative all’inserimento nell’elenco, specificate nell’avviso pubblico;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:222",
+          "quote": "di impegnarsi, pena la risoluzione del contratto, al rispetto degli obblighi di condotta previsti dai sopracitati codici per quanto compatibili.",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:223",
+          "quote": "di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver concluso contratti di lavoro subordinato o autonomo e comunque di non aver attribuito incarichi ad ex dipendenti che hanno esercitato poteri autoritativi o negoziali per conto del Comune di Minervino di Lecce per il triennio successivo alla conclusione del rapporto;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:224",
+          "quote": "che il/i curriculum professionale/i allegato/i è/sono autentico/i e veritiero/i;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:225",
+          "quote": "di essere consapevole/i che l’elenco non pone in essere nessuna procedura selettiva, né parimenti prevede attribuzione di punteggi né alcuna graduatoria di merito delle figure professionali, ma semplicemente individua i soggetti da invitare, in base alle esigenze dell’Amministrazione, per l’affidamento di eventuali incarichi professionali d’importo inferiore a 140.000,00 Euro, per i quali si attingerà alle domande che perverranno a seguito del presente avviso;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:226",
+          "quote": "di acconsentire al trattamento dei dati personali contenuti nella presente istanza e nel/i curriculum allegato/i, ai sensi dell'art.13 del D.lgs. n.196/2003;",
+          "role": "form"
+        },
+        {
+          "paragraph_id": "paragraph:227",
+          "quote": "di autorizzare, ai fini della trasmissione delle comunicazioni relative al presente procedimento, l'utilizzo della posta elettronica certificata P.E.C.",
+          "role": "form"
+        }
+      ]
+    },
+    {
+      "version": 8,
+      "slot_key": "decision:24278d2efa5d91eb97fdcae9",
+      "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\n☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+      "kind": "decision",
+      "duplicate": false,
+      "superfluous_given_frozen_scenario": false,
+      "assessment": "Relevant first confirmation or genuinely missing decision",
+      "form": [
+        {
+          "paragraph_id": "paragraph:228",
+          "quote": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+          "role": "form"
+        }
+      ]
+    },
+    {
+      "version": 11,
+      "slot_key": "condition:c_studio",
+      "question": "Confermi che la domanda è presentata come legale rappresentante di uno studio professionale associato, con i relativi dati da indicare?",
+      "kind": "applicability",
+      "duplicate": false,
+      "superfluous_given_frozen_scenario": true,
+      "assessment": "Alternative already excluded by participation decision",
+      "form": null
+    },
+    {
+      "version": 11,
+      "slot_key": "condition:c_rtp_capogruppo",
+      "question": "Confermi che la domanda è presentata come capogruppo di un raggruppamento temporaneo di professionisti, con la denominazione del raggruppamento da indicare?",
+      "kind": "applicability",
+      "duplicate": false,
+      "superfluous_given_frozen_scenario": true,
+      "assessment": "Alternative already excluded by participation decision",
+      "form": null
+    },
+    {
+      "version": 11,
+      "slot_key": "decision:9128538342d18a184258aa29",
+      "question": "Chi designi per questo incarico? La designazione della pratica non si deduce dai ruoli aziendali.\ne che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:",
+      "kind": "decision",
+      "duplicate": false,
+      "superfluous_given_frozen_scenario": false,
+      "assessment": "Relevant first confirmation or genuinely missing decision",
+      "form": [
+        {
+          "paragraph_id": "paragraph:231",
+          "quote": "e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:",
+          "role": "form"
+        }
+      ]
+    }
+  ],
+  "max_USER_rounds": 2,
+  "export_requested_at_pre_registered_limit": true,
+  "false_alternatives_observed": {
+    "phrase": "senza raggruppamenti o consorzi",
+    "router_interpretation": "CONDITION_TRUE",
+    "guard": "SUPPORTED",
+    "backend": "Rejected by has_user_alternatives literal regex for o",
+    "code": "backend/app/compilation_global_dialogue.py apply_replies; backend/app/compilation_chat.py has_user_alternatives"
+  },
+  "not_asked_but_needed": []
+}

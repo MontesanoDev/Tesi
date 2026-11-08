@@ -3,6 +3,8 @@ import type {
   CompilationSessionSummary,
   CompilationFieldInput,
   RetrievalInput,
+  EmbeddingServiceInput,
+  EmbeddingProviderDefinition,
   RetrievalSettings,
   VectorIndexResult,
   AiLoginFlow,
@@ -93,6 +95,12 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 export const api = {
   retrievalSettings: (signal?: AbortSignal) =>
     request<RetrievalSettings>('/settings/retrieval', { signal }),
+  embeddingProviders: (signal?: AbortSignal) =>
+    request<EmbeddingProviderDefinition[]>('/settings/retrieval/providers', { signal }),
+  embeddingModels: (payload: EmbeddingServiceInput, signal?: AbortSignal) =>
+    request<{ models: string[] }>('/settings/retrieval/models', {
+      method: 'POST', body: JSON.stringify(payload), signal,
+    }),
   saveRetrievalSettings: (payload: RetrievalInput) =>
     request<RetrievalSettings>('/settings/retrieval', {
       method: 'PUT', body: JSON.stringify(payload),

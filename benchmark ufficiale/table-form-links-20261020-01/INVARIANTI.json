@@ -1,0 +1,11 @@
+{
+  "build_global_input": true,
+  "global_request": true,
+  "_source_quote": true,
+  "_shared_facts": true,
+  "_binding_check": true,
+  "_slot_destination": true,
+  "_subject_bindings": true,
+  "global_TASK": true,
+  "writer_docx_templates_exact": true
+}

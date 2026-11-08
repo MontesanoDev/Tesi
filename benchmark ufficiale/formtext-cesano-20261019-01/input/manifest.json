@@ -1,0 +1,10 @@
+{
+  "forms": [
+    {
+      "slug": "cesano",
+      "sha256": "9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795"
+    }
+  ],
+  "same_previous_source_snapshot": true,
+  "new_real_global_only_after_preflight_gate": true
+}

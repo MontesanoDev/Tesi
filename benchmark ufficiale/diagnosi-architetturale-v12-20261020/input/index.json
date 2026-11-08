@@ -1,0 +1,42 @@
+[
+  {
+    "document": "minervino",
+    "FORM_SHA256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+    "canonical_input_SHA256": "18143fcbeadbdaa93bf81f5a4c7a15812390511262d33705efbc61a84a121971",
+    "candidates": 267,
+    "blocks": 134,
+    "form_chars": 126928,
+    "indexed_form_chars": 88522,
+    "SOURCE_chunks": 22
+  },
+  {
+    "document": "trapani",
+    "FORM_SHA256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+    "canonical_input_SHA256": "51b09fce9e78093e37057736fc87d43c9665e36cd803cfa66d5958d0fdeda3fc",
+    "candidates": 115,
+    "blocks": 83,
+    "form_chars": 55073,
+    "indexed_form_chars": 38300,
+    "SOURCE_chunks": 22
+  },
+  {
+    "document": "catanzaro",
+    "FORM_SHA256": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563",
+    "canonical_input_SHA256": "9477f8879b7ed62f01c5ce0b05ff15bf3d12137f3dc74519ff096b514b959d4d",
+    "candidates": 307,
+    "blocks": 299,
+    "form_chars": 171785,
+    "indexed_form_chars": 146541,
+    "SOURCE_chunks": 22
+  },
+  {
+    "document": "bella",
+    "FORM_SHA256": "4d894b3faee91909275589ac5ed8e1dd2eddc09890f95ac0456780bbb6828ae0",
+    "canonical_input_SHA256": "1484b3009b0cf198d2112ee394588bba3ab1f2bc163ec85b03e096e8304f2d96",
+    "candidates": 67,
+    "blocks": 88,
+    "form_chars": 41698,
+    "indexed_form_chars": 35713,
+    "SOURCE_chunks": 22
+  }
+]

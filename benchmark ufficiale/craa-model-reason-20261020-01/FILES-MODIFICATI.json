@@ -1,0 +1,19 @@
+{
+  "modified_existing_this_phase": [
+    "backend/app/compilation_user_requests.py",
+    "STATUS.md",
+    "relazioni.md"
+  ],
+  "new_repository_files": [
+    "backend/tests/test_compilation_request_metadata.py",
+    "backend/tests/fixtures/model-request-metadata-v1/craa.json",
+    "backend/tests/fixtures/model-request-metadata-v1/README.md",
+    "docs/craa-motivazione-model-2026-10-20.md",
+    "docs/benchmarks/2026-10-20-model-reason-checks.json"
+  ],
+  "new_output_directory": "benchmark ufficiale/craa-model-reason-20261020-01",
+  "raw_audit_directory": "backend/data/compilation-audit/craa-model-reason-20261020-01",
+  "pre_existing_changes_preserved": true,
+  "only_application_file_changed": "backend/app/compilation_user_requests.py",
+  "no_commit_push": true
+}

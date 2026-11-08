@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-17",
+  "mode": "diagnosis_only",
+  "protected_files": 11006,
+  "unchanged_protected_files": 11006,
+  "changed_protected_files": [],
+  "summary_public_consistent": true,
+  "diagnostic_script_completed": true,
+  "classified_occurrences": 11,
+  "unique_candidate_ids": 10,
+  "four_exact_column_values_verified": true,
+  "all_case_quotes_found_in_source": true,
+  "source_arrays_identical": true,
+  "provider_calls": 0,
+  "new_validator_replays": 0,
+  "new_exports": 0,
+  "software_tests_rerun": false,
+  "ruff_rerun": false,
+  "git_diff_check_passed": true,
+  "commit_or_push": false
+}

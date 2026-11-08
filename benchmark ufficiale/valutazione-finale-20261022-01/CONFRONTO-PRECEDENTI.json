@@ -1,0 +1,389 @@
+{
+ "note": "post hoc, descrittivo; scenari/varianti/profili diversi; DOCX = report di export presente nella cartella della prova",
+ "campaigns": {
+  "V12 baseline": {
+   "cesano": {
+    "attempts": 1,
+    "DOCX": 1,
+    "coverage": [
+     1.0
+    ],
+    "coverage_median": 1.0
+   },
+   "craa": {
+    "attempts": 1,
+    "DOCX": 1,
+    "coverage": [
+     0.875
+    ],
+    "coverage_median": 0.875
+   },
+   "minervino": {
+    "attempts": 1,
+    "DOCX": 1,
+    "coverage": [
+     0.717
+    ],
+    "coverage_median": 0.717
+   }
+  },
+  "V13 coorte 1": {
+   "bella": {
+    "attempts": 5,
+    "DOCX": 5,
+    "coverage": [
+     0.0,
+     0.0,
+     0.875,
+     0.375,
+     0.375
+    ],
+    "coverage_median": 0.375
+   },
+   "catanzaro": {
+    "attempts": 5,
+    "DOCX": 4,
+    "coverage": [
+     0.226,
+     0.226,
+     0.0,
+     0.0
+    ],
+    "coverage_median": 0.113
+   },
+   "cesano": {
+    "attempts": 10,
+    "DOCX": 9,
+    "coverage": [
+     0.75,
+     0.75,
+     0.0,
+     0.75,
+     0.75,
+     0.75,
+     0.0,
+     0.75,
+     0.75
+    ],
+    "coverage_median": 0.75
+   },
+   "craa": {
+    "attempts": 10,
+    "DOCX": 10,
+    "coverage": [
+     0.125,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     0.125
+    ],
+    "coverage_median": 1.0
+   },
+   "minervino": {
+    "attempts": 10,
+    "DOCX": 8,
+    "coverage": [
+     0.133,
+     0.133,
+     0.0,
+     0.033,
+     0.317,
+     0.0,
+     0.133,
+     0.3
+    ],
+    "coverage_median": 0.133
+   },
+   "trapani": {
+    "attempts": 5,
+    "DOCX": 5,
+    "coverage": [
+     0.412,
+     0.412,
+     0.412,
+     0.412,
+     0.412
+    ],
+    "coverage_median": 0.412
+   }
+  },
+  "V13 coorte 2": {
+   "bella": {
+    "attempts": 5,
+    "DOCX": 5,
+    "coverage": [
+     0.875,
+     1.0,
+     0.375,
+     0.875,
+     0.875
+    ],
+    "coverage_median": 0.875
+   },
+   "catanzaro": {
+    "attempts": 5,
+    "DOCX": 5,
+    "coverage": [
+     0.516,
+     0.452,
+     0.484,
+     0.484,
+     0.484
+    ],
+    "coverage_median": 0.484
+   },
+   "cesano": {
+    "attempts": 10,
+    "DOCX": 9,
+    "coverage": [
+     1.0,
+     1.0,
+     1.0,
+     0.25,
+     0.75,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "coverage_median": 1.0
+   },
+   "craa": {
+    "attempts": 10,
+    "DOCX": 10,
+    "coverage": [
+     1.0,
+     1.0,
+     1.0,
+     0.875,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "coverage_median": 1.0
+   },
+   "minervino": {
+    "attempts": 10,
+    "DOCX": 4,
+    "coverage": [
+     0.883,
+     0.983,
+     0.817,
+     0.967
+    ],
+    "coverage_median": 0.925
+   },
+   "trapani": {
+    "attempts": 5,
+    "DOCX": 5,
+    "coverage": [
+     0.941,
+     0.941,
+     0.941,
+     0.941,
+     0.941
+    ],
+    "coverage_median": 0.941
+   }
+  },
+  "V14": {
+   "cesano": {
+    "attempts": 2,
+    "DOCX": 2,
+    "coverage": [
+     0.0,
+     1.0
+    ],
+    "coverage_median": 0.5
+   },
+   "craa": {
+    "attempts": 2,
+    "DOCX": 2,
+    "coverage": [
+     1.0,
+     1.0
+    ],
+    "coverage_median": 1.0
+   },
+   "minervino": {
+    "attempts": 2,
+    "DOCX": 2,
+    "coverage": [
+     0.85,
+     0.433
+    ],
+    "coverage_median": 0.6415
+   }
+  },
+  "P3 (A+B)": {
+   "catanzaro": {
+    "attempts": 4,
+    "DOCX": 3,
+    "coverage": [
+     0.452,
+     0.323,
+     0.516
+    ],
+    "coverage_median": 0.452
+   },
+   "cesano": {
+    "attempts": 4,
+    "DOCX": 4,
+    "coverage": [
+     1.0,
+     1.0,
+     1.0,
+     0.75
+    ],
+    "coverage_median": 1.0
+   },
+   "craa": {
+    "attempts": 4,
+    "DOCX": 4,
+    "coverage": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "coverage_median": 1.0
+   },
+   "minervino": {
+    "attempts": 4,
+    "DOCX": 1,
+    "coverage": [
+     0.3
+    ],
+    "coverage_median": 0.3
+   }
+  },
+  "Narratore": {
+   "catanzaro": {
+    "attempts": 2,
+    "DOCX": 2,
+    "coverage": [
+     0.419,
+     0.258
+    ],
+    "coverage_median": 0.3385
+   },
+   "cesano": {
+    "attempts": 2,
+    "DOCX": 2,
+    "coverage": [
+     1.0,
+     1.0
+    ],
+    "coverage_median": 1.0
+   },
+   "craa": {
+    "attempts": 2,
+    "DOCX": 2,
+    "coverage": [
+     1.0,
+     1.0
+    ],
+    "coverage_median": 1.0
+   },
+   "minervino": {
+    "attempts": 2,
+    "DOCX": 1,
+    "coverage": [
+     0.867
+    ],
+    "coverage_median": 0.867
+   }
+  },
+  "Valutazione finale": {
+   "bella": {
+    "attempts": 5,
+    "DOCX": 5,
+    "coverage": [
+     0.75,
+     0.875,
+     1.0,
+     0.375,
+     0.875
+    ],
+    "coverage_median": 0.875
+   },
+   "catanzaro": {
+    "attempts": 5,
+    "DOCX": 4,
+    "coverage": [
+     0.194,
+     0.29,
+     0.419,
+     0.355
+    ],
+    "coverage_median": 0.3225
+   },
+   "cesano": {
+    "attempts": 5,
+    "DOCX": 4,
+    "coverage": [
+     1.0,
+     0.75,
+     1.0,
+     1.0
+    ],
+    "coverage_median": 1.0
+   },
+   "craa": {
+    "attempts": 5,
+    "DOCX": 5,
+    "coverage": [
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "coverage_median": 1.0
+   },
+   "minervino": {
+    "attempts": 5,
+    "DOCX": 4,
+    "coverage": [
+     0.433,
+     0.667,
+     0.917,
+     0.95
+    ],
+    "coverage_median": 0.792
+   },
+   "soresa2023": {
+    "attempts": 5,
+    "DOCX": 5,
+    "coverage": [
+     0.4,
+     0.467,
+     0.467,
+     0.467,
+     0.467
+    ],
+    "coverage_median": 0.467
+   },
+   "trapani": {
+    "attempts": 5,
+    "DOCX": 5,
+    "coverage": [
+     0.941,
+     0.471,
+     0.941,
+     0.882,
+     0.941
+    ],
+    "coverage_median": 0.941
+   }
+  }
+ }
+}

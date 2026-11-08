@@ -1,0 +1,3201 @@
+{
+ "version": 5,
+ "role": "form",
+ "template_sha256": "81b980a62303820e2f4abd36b02795cae605813485421e7190e3184bbbd2331d",
+ "candidate_scope": "document_body",
+ "checkbox_write_supported": false,
+ "blocks": [
+  {
+   "id": "paragraph:0",
+   "paragraphs": [
+    {
+     "id": "paragraph:0",
+     "text": "DOMANDA DI PARTECIPAZIONE",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:1",
+   "paragraphs": [
+    {
+     "id": "paragraph:1",
+     "text": "(Allegare fotocopia della carta di identità del/i sottoscrittore/i)"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:2",
+   "paragraphs": [
+    {
+     "id": "paragraph:2",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:3",
+   "paragraphs": [
+    {
+     "id": "paragraph:3",
+     "text": "OGGETTO: Procedura di gara aperta per la conclusione di un Accordo Quadro quadriennale, ai sensi degli artt. 59 e 71 del d. lgs. 36/2023, per l’affidamento di servizi di ingegneria e architettura nella fase progettuale e nella fase di esecuzione dei contratti. CIG: A021F1E29C",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:4",
+   "paragraphs": [
+    {
+     "id": "paragraph:4",
+     "text": "*** *** ***"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:5",
+   "paragraphs": [
+    {
+     "id": "paragraph:5",
+     "text": "Avvertenza: compilare solo le parti di propria pertinenza al fine di far emergere con chiarezza la propria condizione e barrare quelle che non si riferiscono alla propria situazione aziendale/professionale"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:6",
+   "paragraphs": [
+    {
+     "id": "paragraph:6",
+     "text": "*** *** ***"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:7",
+   "paragraphs": [
+    {
+     "id": "paragraph:7",
+     "text": "(da compilare nel caso di partecipazione in forma di operatore economico singolo ovvero di Raggruppamento Temporaneo, di Consorzio Ordinario o di GEIE già costituito ovvero di Consorzio stabile di cui all’art. 66, comma 1, lett. g) del D. Lgs n. 36/2023)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:8",
+   "paragraphs": [
+    {
+     "id": "paragraph:8",
+     "text": "Il sottoscritto_____________ nato a____________ il __________ residente ______________                                                            alla via ___________________in qualità di ________________________________________________ _________________________________    con sede legale/studio professionale __________________                        alla via ________________n. telefono__________________PEC ______________________",
+     "text_with_fields": "Il sottoscritto[[p8.s0]] nato a[[p8.s1]] il [[p8.s2]] residente [[p8.s3]]                                                            alla via [[p8.s4]]in qualità di [[p8.s5]]    con sede legale/studio professionale [[p8.s6]]                        alla via [[p8.s7]]n. telefono[[p8.s8]]PEC [[p8.s9]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:1",
+    "paragraph:3",
+    "paragraph:4",
+    "paragraph:5",
+    "paragraph:6",
+    "paragraph:7"
+   ]
+  },
+  {
+   "id": "paragraph:9",
+   "paragraphs": [
+    {
+     "id": "paragraph:9",
+     "text": "Codice fiscale _______________ Partita Iva ______________                                                     ",
+     "text_with_fields": "Codice fiscale [[p9.s0]] Partita Iva [[p9.s1]]                                                     "
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:3",
+    "paragraph:4",
+    "paragraph:5",
+    "paragraph:6",
+    "paragraph:7",
+    "paragraph:8"
+   ]
+  },
+  {
+   "id": "paragraph:10",
+   "paragraphs": [
+    {
+     "id": "paragraph:10",
+     "text": "(al fine di fare emergere la natura dell’operatore economico concorrente occorre contrassegnare la casella di interesse)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:11",
+   "paragraphs": [
+    {
+     "id": "paragraph:11",
+     "text": "[ ] professionista singolo;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:12",
+   "paragraphs": [
+    {
+     "id": "paragraph:12",
+     "text": "[ ] Studio Associato;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:13",
+   "paragraphs": [
+    {
+     "id": "paragraph:13",
+     "text": "[ ] Società di professionisti di cui all’art. 66 comma 1 lett. b) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:14",
+   "paragraphs": [
+    {
+     "id": "paragraph:14",
+     "text": "[ ] Società di ingegneria di cui all’art. 66 comma 1 lett. c) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:15",
+   "paragraphs": [
+    {
+     "id": "paragraph:15",
+     "text": "[ ] prestatore servizi di ingegneria di cui all’art. 66 comma 1 lett. d) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:16",
+   "paragraphs": [
+    {
+     "id": "paragraph:16",
+     "text": "[ ] consorzio stabile di cui all’art. 66 comma 1 lett. g) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:17",
+   "paragraphs": [
+    {
+     "id": "paragraph:17",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:18",
+   "paragraphs": [
+    {
+     "id": "paragraph:18",
+     "text": "*** ***"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:19",
+   "paragraphs": [
+    {
+     "id": "paragraph:19",
+     "text": "(da compilare nel caso di partecipazione in forma di RT, Consorzio Ordinario o GEIE non ancora costituito)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:20",
+   "paragraphs": [
+    {
+     "id": "paragraph:20",
+     "text": "Il sottoscritto_____________ nato a____________ il __________ residente ______________                                                            alla via ___________________in qualità di _______________________________________________________________________________    ",
+     "text_with_fields": "Il sottoscritto[[p20.s0]] nato a[[p20.s1]] il [[p20.s2]] residente [[p20.s3]]                                                            alla via [[p20.s4]]in qualità di [[p20.s5]]    "
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:13",
+    "paragraph:14",
+    "paragraph:15",
+    "paragraph:16",
+    "paragraph:18",
+    "paragraph:19"
+   ]
+  },
+  {
+   "id": "paragraph:21",
+   "paragraphs": [
+    {
+     "id": "paragraph:21",
+     "text": "con sede legale/studio professionale __________________                        alla via ________________n. telefono_________PEC ______________Codice fiscale ______________ Partita Iva ______________                                                     ",
+     "text_with_fields": "con sede legale/studio professionale [[p21.s0]]                        alla via [[p21.s1]]n. telefono[[p21.s2]]PEC [[p21.s3]]Codice fiscale [[p21.s4]] Partita Iva [[p21.s5]]                                                     "
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:14",
+    "paragraph:15",
+    "paragraph:16",
+    "paragraph:18",
+    "paragraph:19",
+    "paragraph:20"
+   ]
+  },
+  {
+   "id": "paragraph:22",
+   "paragraphs": [
+    {
+     "id": "paragraph:22",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:23",
+   "paragraphs": [
+    {
+     "id": "paragraph:23",
+     "text": "(al fine di fare emergere la natura del singolo componente il RT, Consorzio Ordinario o GEIE, non costituito, occorre contrassegnare la casella di interesse)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:24",
+   "paragraphs": [
+    {
+     "id": "paragraph:24",
+     "text": "[ ] professionista singolo;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:25",
+   "paragraphs": [
+    {
+     "id": "paragraph:25",
+     "text": "[ ] Studio Associato;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:26",
+   "paragraphs": [
+    {
+     "id": "paragraph:26",
+     "text": "[ ] Società di professionisti di cui all’art. 66 comma 1 lett. b) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:27",
+   "paragraphs": [
+    {
+     "id": "paragraph:27",
+     "text": "[ ] Società di ingegneria di cui all’art. 66 comma 1 lett. c) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:28",
+   "paragraphs": [
+    {
+     "id": "paragraph:28",
+     "text": "[ ] prestatore servizi di ingegneria di cui all’art. 66 comma 1 lett. d) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:29",
+   "paragraphs": [
+    {
+     "id": "paragraph:29",
+     "text": "[ ] consorzio stabile di cui all’art. 66 comma 1 lett. g) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:30",
+   "paragraphs": [
+    {
+     "id": "paragraph:30",
+     "text": "*** *** ****"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:31",
+   "paragraphs": [
+    {
+     "id": "paragraph:31",
+     "text": "Il sottoscritto_____________ nato a____________ il __________ residente ______________                                                            alla via ___________________in qualità di ________________________________________________ _________________________________    con sede legale/studio professionale __________________                        alla via ________________n. telefono__________________PEC ______________________",
+     "text_with_fields": "Il sottoscritto[[p31.s0]] nato a[[p31.s1]] il [[p31.s2]] residente [[p31.s3]]                                                            alla via [[p31.s4]]in qualità di [[p31.s5]]    con sede legale/studio professionale [[p31.s6]]                        alla via [[p31.s7]]n. telefono[[p31.s8]]PEC [[p31.s9]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:25",
+    "paragraph:26",
+    "paragraph:27",
+    "paragraph:28",
+    "paragraph:29",
+    "paragraph:30"
+   ]
+  },
+  {
+   "id": "paragraph:32",
+   "paragraphs": [
+    {
+     "id": "paragraph:32",
+     "text": "Codice fiscale _______________ Partita Iva ______________                                                     ",
+     "text_with_fields": "Codice fiscale [[p32.s0]] Partita Iva [[p32.s1]]                                                     "
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:26",
+    "paragraph:27",
+    "paragraph:28",
+    "paragraph:29",
+    "paragraph:30",
+    "paragraph:31"
+   ]
+  },
+  {
+   "id": "paragraph:33",
+   "paragraphs": [
+    {
+     "id": "paragraph:33",
+     "text": "(al fine di fare emergere la natura del singolo componente il RT, Consorzio Ordinario o GEIE, non costituito, occorre contrassegnare la casella di interesse)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:34",
+   "paragraphs": [
+    {
+     "id": "paragraph:34",
+     "text": "[ ] professionista singolo;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:35",
+   "paragraphs": [
+    {
+     "id": "paragraph:35",
+     "text": "[ ] Studio Associato;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:36",
+   "paragraphs": [
+    {
+     "id": "paragraph:36",
+     "text": "[ ] Società di professionisti di cui all’art. 66 comma 1 lett. b) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:37",
+   "paragraphs": [
+    {
+     "id": "paragraph:37",
+     "text": "[ ] Società di ingegneria di cui all’art. 66 comma 1 lett. c) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:38",
+   "paragraphs": [
+    {
+     "id": "paragraph:38",
+     "text": "[ ] prestatore servizi di ingegneria di cui all’art. 66 comma 1 lett. d) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:39",
+   "paragraphs": [
+    {
+     "id": "paragraph:39",
+     "text": "[ ] consorzio stabile di cui all’art. 66 comma 1 lett. g) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:40",
+   "paragraphs": [
+    {
+     "id": "paragraph:40",
+     "text": "*** *** ****"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:41",
+   "paragraphs": [
+    {
+     "id": "paragraph:41",
+     "text": "\n"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:42",
+   "paragraphs": [
+    {
+     "id": "paragraph:42",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:43",
+   "paragraphs": [
+    {
+     "id": "paragraph:43",
+     "text": "Il sottoscritto_____________ nato a____________ il __________ residente ______________                                                            alla via ___________________in qualità di ________________________________________________ _________________________________    con sede legale/studio professionale __________________                        alla via ________________n. telefono__________________PEC ______________________",
+     "text_with_fields": "Il sottoscritto[[p43.s0]] nato a[[p43.s1]] il [[p43.s2]] residente [[p43.s3]]                                                            alla via [[p43.s4]]in qualità di [[p43.s5]]    con sede legale/studio professionale [[p43.s6]]                        alla via [[p43.s7]]n. telefono[[p43.s8]]PEC [[p43.s9]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:35",
+    "paragraph:36",
+    "paragraph:37",
+    "paragraph:38",
+    "paragraph:39",
+    "paragraph:40"
+   ]
+  },
+  {
+   "id": "paragraph:44",
+   "paragraphs": [
+    {
+     "id": "paragraph:44",
+     "text": "Codice fiscale _______________ Partita Iva ______________                                                     ",
+     "text_with_fields": "Codice fiscale [[p44.s0]] Partita Iva [[p44.s1]]                                                     "
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:36",
+    "paragraph:37",
+    "paragraph:38",
+    "paragraph:39",
+    "paragraph:40",
+    "paragraph:43"
+   ]
+  },
+  {
+   "id": "paragraph:45",
+   "paragraphs": [
+    {
+     "id": "paragraph:45",
+     "text": "(al fine di fare emergere la natura del singolo componente il RT, Consorzio Ordinario o GEIE, non costituito, occorre contrassegnare la casella di interesse)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:46",
+   "paragraphs": [
+    {
+     "id": "paragraph:46",
+     "text": "[ ] professionista singolo;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:47",
+   "paragraphs": [
+    {
+     "id": "paragraph:47",
+     "text": "[ ] Studio Associato;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:48",
+   "paragraphs": [
+    {
+     "id": "paragraph:48",
+     "text": "[ ] Società di professionisti di cui all’art. 66 comma 1 lett. b) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:49",
+   "paragraphs": [
+    {
+     "id": "paragraph:49",
+     "text": "[ ] Società di ingegneria di cui all’art. 66 comma 1 lett. c) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:50",
+   "paragraphs": [
+    {
+     "id": "paragraph:50",
+     "text": "[ ] prestatore servizi di ingegneria di cui all’art. 66 comma 1 lett. d) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:51",
+   "paragraphs": [
+    {
+     "id": "paragraph:51",
+     "text": "[ ] consorzio stabile di cui all’art. 66 comma 1 lett. g) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:52",
+   "paragraphs": [
+    {
+     "id": "paragraph:52",
+     "text": "*** *** ****"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:53",
+   "paragraphs": [
+    {
+     "id": "paragraph:53",
+     "text": "Il sottoscritto_____________ nato a____________ il __________ residente ______________                                                            alla via ___________________in qualità di ________________________________________________ _________________________________    con sede legale/studio professionale __________________                        alla via ________________n. telefono__________________PEC ______________________",
+     "text_with_fields": "Il sottoscritto[[p53.s0]] nato a[[p53.s1]] il [[p53.s2]] residente [[p53.s3]]                                                            alla via [[p53.s4]]in qualità di [[p53.s5]]    con sede legale/studio professionale [[p53.s6]]                        alla via [[p53.s7]]n. telefono[[p53.s8]]PEC [[p53.s9]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:47",
+    "paragraph:48",
+    "paragraph:49",
+    "paragraph:50",
+    "paragraph:51",
+    "paragraph:52"
+   ]
+  },
+  {
+   "id": "paragraph:54",
+   "paragraphs": [
+    {
+     "id": "paragraph:54",
+     "text": "Codice fiscale _______________ Partita Iva ______________                                                     ",
+     "text_with_fields": "Codice fiscale [[p54.s0]] Partita Iva [[p54.s1]]                                                     "
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:48",
+    "paragraph:49",
+    "paragraph:50",
+    "paragraph:51",
+    "paragraph:52",
+    "paragraph:53"
+   ]
+  },
+  {
+   "id": "paragraph:55",
+   "paragraphs": [
+    {
+     "id": "paragraph:55",
+     "text": "(al fine di fare emergere la natura del singolo componente il RT, Consorzio Ordinario o GEIE, non costituito, occorre contrassegnare la casella di interesse)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:56",
+   "paragraphs": [
+    {
+     "id": "paragraph:56",
+     "text": "[ ] professionista singolo;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:57",
+   "paragraphs": [
+    {
+     "id": "paragraph:57",
+     "text": "[ ] Studio Associato;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:58",
+   "paragraphs": [
+    {
+     "id": "paragraph:58",
+     "text": "[ ] Società di professionisti di cui all’art. 66 comma 1 lett. b) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:59",
+   "paragraphs": [
+    {
+     "id": "paragraph:59",
+     "text": "[ ] Società di ingegneria di cui all’art. 66 comma 1 lett. c) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:60",
+   "paragraphs": [
+    {
+     "id": "paragraph:60",
+     "text": "[ ] prestatore servizi di ingegneria di cui all’art. 66 comma 1 lett. d) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:61",
+   "paragraphs": [
+    {
+     "id": "paragraph:61",
+     "text": "[ ] consorzio stabile di cui all’art. 66 comma 1 lett. g) del D. Lgs n. 36/2023;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:62",
+   "paragraphs": [
+    {
+     "id": "paragraph:62",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:63",
+   "paragraphs": [
+    {
+     "id": "paragraph:63",
+     "text": "*** *** ****"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:64",
+   "paragraphs": [
+    {
+     "id": "paragraph:64",
+     "text": "\nCHIEDE/CHIEDONO",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:65",
+   "paragraphs": [
+    {
+     "id": "paragraph:65",
+     "text": "di partecipare alla presente procedura aperta in una delle seguenti forme:"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:66",
+   "paragraphs": [
+    {
+     "id": "paragraph:66",
+     "text": "[ ] come singolo operatore economico"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:67",
+   "paragraphs": [
+    {
+     "id": "paragraph:67",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:68",
+   "paragraphs": [
+    {
+     "id": "paragraph:68",
+     "text": "Denominazione operatore economico Sede legale/studio professionale"
+    },
+    {
+     "id": "paragraph:69",
+     "text": ""
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:60",
+    "paragraph:61",
+    "paragraph:63",
+    "paragraph:64",
+    "paragraph:65",
+    "paragraph:66"
+   ],
+   "tables": [
+    {
+     "id": "table:0",
+     "rows": [
+      [
+       {
+        "id": "t0.r0.c0",
+        "paragraph_ids": [
+         "paragraph:68"
+        ]
+       }
+      ],
+      [
+       {
+        "id": "t0.r1.c0",
+        "paragraph_ids": [
+         "paragraph:69"
+        ]
+       }
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "paragraph:70",
+   "paragraphs": [
+    {
+     "id": "paragraph:70",
+     "text": "[ ] come RT, Consorzio Ordinario, Geie già costituito o da costituire. A tal fine, indica/indicano la tipologia di RT, Consorzio Ordinario, Geie:"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:71",
+   "paragraphs": [
+    {
+     "id": "paragraph:71",
+     "text": "[ ] orizzontale"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:72",
+   "paragraphs": [
+    {
+     "id": "paragraph:72",
+     "text": "[ ] verticale"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:73",
+   "paragraphs": [
+    {
+     "id": "paragraph:73",
+     "text": "[ ] misto così composto (indicare la/e sub associazione/i orizzontale/i che compone /compongono il RT)"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:74",
+   "paragraphs": [
+    {
+     "id": "paragraph:74",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:75",
+   "paragraphs": [
+    {
+     "id": "paragraph:75",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:76",
+   "paragraphs": [
+    {
+     "id": "paragraph:76",
+     "text": "ed indica/indicano gli operatori economici che compongono il RT, il Consorzio Ordinario o il Geie:"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:77",
+   "paragraphs": [
+    {
+     "id": "paragraph:77",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:78",
+   "paragraphs": [
+    {
+     "id": "paragraph:78",
+     "text": ""
+    },
+    {
+     "id": "paragraph:79",
+     "text": "Denominazione operatore economico Sede legale/studio professionale"
+    },
+    {
+     "id": "paragraph:80",
+     "text": "1. Capogruppo"
+    },
+    {
+     "id": "paragraph:81",
+     "text": ""
+    },
+    {
+     "id": "paragraph:82",
+     "text": "2. Mandante"
+    },
+    {
+     "id": "paragraph:83",
+     "text": ""
+    },
+    {
+     "id": "paragraph:84",
+     "text": "3. Mandante"
+    },
+    {
+     "id": "paragraph:85",
+     "text": ""
+    },
+    {
+     "id": "paragraph:86",
+     "text": "4. Mandante"
+    },
+    {
+     "id": "paragraph:87",
+     "text": ""
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:66",
+    "paragraph:70",
+    "paragraph:71",
+    "paragraph:72",
+    "paragraph:73",
+    "paragraph:76"
+   ],
+   "tables": [
+    {
+     "id": "table:1",
+     "rows": [
+      [
+       {
+        "id": "t1.r0.c0",
+        "paragraph_ids": [
+         "paragraph:78"
+        ]
+       },
+       {
+        "id": "t1.r0.c1",
+        "paragraph_ids": [
+         "paragraph:79"
+        ]
+       }
+      ],
+      [
+       {
+        "id": "t1.r1.c0",
+        "paragraph_ids": [
+         "paragraph:80"
+        ]
+       },
+       {
+        "id": "t1.r1.c1",
+        "paragraph_ids": [
+         "paragraph:81"
+        ]
+       }
+      ],
+      [
+       {
+        "id": "t1.r2.c0",
+        "paragraph_ids": [
+         "paragraph:82"
+        ]
+       },
+       {
+        "id": "t1.r2.c1",
+        "paragraph_ids": [
+         "paragraph:83"
+        ]
+       }
+      ],
+      [
+       {
+        "id": "t1.r3.c0",
+        "paragraph_ids": [
+         "paragraph:84"
+        ]
+       },
+       {
+        "id": "t1.r3.c1",
+        "paragraph_ids": [
+         "paragraph:85"
+        ]
+       }
+      ],
+      [
+       {
+        "id": "t1.r4.c0",
+        "paragraph_ids": [
+         "paragraph:86"
+        ]
+       },
+       {
+        "id": "t1.r4.c1",
+        "paragraph_ids": [
+         "paragraph:87"
+        ]
+       }
+      ]
+     ],
+     "repeat_header_rows": [
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "paragraph:88",
+   "paragraphs": [
+    {
+     "id": "paragraph:88",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:89",
+   "paragraphs": [
+    {
+     "id": "paragraph:89",
+     "text": "[ ] come consorzio stabile di cui all’art. 66, comma 1 lett. g), del D.Lgs. 36/2023. A tal fine, dichiara che l’operatore economico consorziato esecutore delle prestazioni è/sono:"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:90",
+   "paragraphs": [
+    {
+     "id": "paragraph:90",
+     "text": ""
+    },
+    {
+     "id": "paragraph:91",
+     "text": "Denominazione operatore economico Sede legale/studio professionale"
+    },
+    {
+     "id": "paragraph:92",
+     "text": "1. Consorziata esecutrice"
+    },
+    {
+     "id": "paragraph:93",
+     "text": ""
+    },
+    {
+     "id": "paragraph:94",
+     "text": "2. Consorziata esecutrice"
+    },
+    {
+     "id": "paragraph:95",
+     "text": ""
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:70",
+    "paragraph:71",
+    "paragraph:72",
+    "paragraph:73",
+    "paragraph:76",
+    "paragraph:89"
+   ],
+   "tables": [
+    {
+     "id": "table:2",
+     "rows": [
+      [
+       {
+        "id": "t2.r0.c0",
+        "paragraph_ids": [
+         "paragraph:90"
+        ]
+       },
+       {
+        "id": "t2.r0.c1",
+        "paragraph_ids": [
+         "paragraph:91"
+        ]
+       }
+      ],
+      [
+       {
+        "id": "t2.r1.c0",
+        "paragraph_ids": [
+         "paragraph:92"
+        ]
+       },
+       {
+        "id": "t2.r1.c1",
+        "paragraph_ids": [
+         "paragraph:93"
+        ]
+       }
+      ],
+      [
+       {
+        "id": "t2.r2.c0",
+        "paragraph_ids": [
+         "paragraph:94"
+        ]
+       },
+       {
+        "id": "t2.r2.c1",
+        "paragraph_ids": [
+         "paragraph:95"
+        ]
+       }
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "paragraph:96",
+   "paragraphs": [
+    {
+     "id": "paragraph:96",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:97",
+   "paragraphs": [
+    {
+     "id": "paragraph:97",
+     "text": "*** *** ***"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:98",
+   "paragraphs": [
+    {
+     "id": "paragraph:98",
+     "text": "Inoltre, consapevole/i della responsabilità penale cui può/possono andare incontro nel caso di affermazioni mendaci e delle relative sanzioni penali di cui all’articolo 76 del D.p.r. n. 445/2000"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:99",
+   "paragraphs": [
+    {
+     "id": "paragraph:99",
+     "text": "DICHIARA/DICHIARANO"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:100",
+   "paragraphs": [
+    {
+     "id": "paragraph:100",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:101",
+   "paragraphs": [
+    {
+     "id": "paragraph:101",
+     "text": "(in caso di società) di essere iscritto/i alla CCIAA per l’esecuzione delle attività oggetto dell’appalto come di seguito:"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:102",
+   "paragraphs": [
+    {
+     "id": "paragraph:102",
+     "text": "(riportare numero di iscrizione del singolo partecipante o di tutte le società)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:103",
+   "paragraphs": [
+    {
+     "id": "paragraph:103",
+     "text": "essere in possesso dei requisiti di ordine generale previsti dal Codice nonché degli ulteriori requisiti indicati dal disciplinare"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:104",
+   "paragraphs": [
+    {
+     "id": "paragraph:104",
+     "text": "di accettare, senza condizione o riserva alcuna, tutte le norme e disposizioni contenute nella documentazione gara;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:105",
+   "paragraphs": [
+    {
+     "id": "paragraph:105",
+     "text": "di accettare il Protocollo di legalità sottoscritto con la Prefettura di Napoli nel 2007;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:106",
+   "paragraphs": [
+    {
+     "id": "paragraph:106",
+     "text": "di accettare i requisiti particolari per l’esecuzione del contratto nell’ipotesi in cui risulti aggiudicatario;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:107",
+   "paragraphs": [
+    {
+     "id": "paragraph:107",
+     "text": "di non trovarsi, con altri concorrenti alla gara, in una situazione di controllo di cui all’art. 2359 del codice civile;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:108",
+   "paragraphs": [
+    {
+     "id": "paragraph:108",
+     "text": "di essere in regola con i versamenti contributivi."
+    }
+   ]
+  },
+  {
+   "id": "paragraph:109",
+   "paragraphs": [
+    {
+     "id": "paragraph:109",
+     "text": "Per gli operatori economici aventi sede, residenza o domicilio nei paesi inseriti nelle c.d. “black list”",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:110",
+   "paragraphs": [
+    {
+     "id": "paragraph:110",
+     "text": "di essere in possesso dell’autorizzazione in corso di validità rilasciata ai sensi del D.M. 14 dicembre 2010 del Ministero dell’economia e delle finanze ai sensi (art. 37 del d.l.78/2010, conv. in l. 122/2010) oppure dichiara di aver presentato domanda di autorizzazione ai sensi dell’art. 1 comma 3 del D.M. 14.12.2010 e allega copia conforme dell’istanza di autorizzazione inviata al Ministero;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:111",
+   "paragraphs": [
+    {
+     "id": "paragraph:111",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:112",
+   "paragraphs": [
+    {
+     "id": "paragraph:112",
+     "text": "Per gli operatori economici non residenti e privi di stabile organizzazione in Italia",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:113",
+   "paragraphs": [
+    {
+     "id": "paragraph:113",
+     "text": "di impegnarsi ad uniformarsi, in caso di aggiudicazione, alla disciplina di cui agli articoli 17, comma 2, e 53, comma 3 del d.p.r. 633/1972 e a comunicare alla stazione appaltante la nomina del proprio rappresentante fiscale, nelle forme di legge;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:114",
+   "paragraphs": [
+    {
+     "id": "paragraph:114",
+     "text": "di aver preso visione dei luoghi;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:115",
+   "paragraphs": [
+    {
+     "id": "paragraph:115",
+     "text": "il seguente domicilio fiscale …………; codice fiscale ……………, partita IVA ………………….; indica l’indirizzo PEC oppure, solo in caso di concorrenti aventi sede in altri Stati membri, l’indirizzo di  posta  elettronica ai fini delle comunicazioni di cui all’art.90 del Codice;",
+     "text_with_fields": "il seguente domicilio fiscale [[p115.s0]]; codice fiscale [[p115.s1]], partita IVA [[p115.s2]]; indica l’indirizzo PEC oppure, solo in caso di concorrenti aventi sede in altri Stati membri, l’indirizzo di  posta  elettronica ai fini delle comunicazioni di cui all’art.90 del Codice;"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:108",
+    "paragraph:109",
+    "paragraph:110",
+    "paragraph:112",
+    "paragraph:113",
+    "paragraph:114"
+   ]
+  },
+  {
+   "id": "paragraph:116",
+   "paragraphs": [
+    {
+     "id": "paragraph:116",
+     "text": "attesta di essere informato, ai sensi e per gli effetti dell’articolo 13 del decreto legislativo 30 giugno 2003, n. 196, che i dati personali raccolti saranno trattati, anche con strumenti informatici, esclusivamente nell’ambito della presente gara, nonché dell’esistenza dei diritti di cui all’articolo 7 del medesimo decreto legislativo."
+    }
+   ]
+  },
+  {
+   "id": "paragraph:117",
+   "paragraphs": [
+    {
+     "id": "paragraph:117",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:118",
+   "paragraphs": [
+    {
+     "id": "paragraph:118",
+     "text": "Per gli operatori economici ammessi al concordato preventivo con continuità aziendale di cui all’art. 186 bis del R.D. 16 marzo 1942, n. 267",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:119",
+   "paragraphs": [
+    {
+     "id": "paragraph:119",
+     "text": "di indicare, ad integrazione di quanto indicato nella parte III, sez. C, lett. d) del DGUE, i seguenti estremi del provvedimento di ammissione al concordato e del provvedimento di autorizzazione a partecipare alle gare ………… rilasciati dal Tribunale di…………………nonché dichiara di non partecipare alla gara quale mandataria……………………..di un raggruppamento temporaneo di imprese e che le altre imprese aderenti al raggruppamento non sono assoggettate ad una procedura concorsuale ai sensi dell’art. 186 bis, comma 6 del R.D. 16 marzo 1942, n. 267.",
+     "text_with_fields": "di indicare, ad integrazione di quanto indicato nella parte III, sez. C, lett. d) del DGUE, i seguenti estremi del provvedimento di ammissione al concordato e del provvedimento di autorizzazione a partecipare alle gare [[p119.s0]] rilasciati dal Tribunale di[[p119.s1]]nonché dichiara di non partecipare alla gara quale mandataria[[p119.s2]]di un raggruppamento temporaneo di imprese e che le altre imprese aderenti al raggruppamento non sono assoggettate ad una procedura concorsuale ai sensi dell’art. 186 bis, comma 6 del R.D. 16 marzo 1942, n. 267."
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:112",
+    "paragraph:113",
+    "paragraph:114",
+    "paragraph:115",
+    "paragraph:116",
+    "paragraph:118"
+   ]
+  },
+  {
+   "id": "paragraph:120",
+   "paragraphs": [
+    {
+     "id": "paragraph:120",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:121",
+   "paragraphs": [
+    {
+     "id": "paragraph:121",
+     "text": "DICHIARA/DICHIARANO ALTRESÌ"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:122",
+   "paragraphs": [
+    {
+     "id": "paragraph:122",
+     "text": " (selezionare la casella di interesse)"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:123",
+   "paragraphs": [
+    {
+     "id": "paragraph:123",
+     "text": "[ ] di non avvalersi dei requisiti di altro operatore economico;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:124",
+   "paragraphs": [
+    {
+     "id": "paragraph:124",
+     "text": "OPPURE",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:125",
+   "paragraphs": [
+    {
+     "id": "paragraph:125",
+     "text": "[]di avvalersi dei requisiti del seguente operatore economico:"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:126",
+   "paragraphs": [
+    {
+     "id": "paragraph:126",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:127",
+   "paragraphs": [
+    {
+     "id": "paragraph:127",
+     "text": "con sede legale/studio professionale in………………………………………. alla via………………………………………..pec……………………………………..Codice fiscale …………………………………..Partita Iva…………………………………………………………",
+     "text_with_fields": "con sede legale/studio professionale in[[p127.s0]] alla via[[p127.s1]]pec[[p127.s2]]Codice fiscale [[p127.s3]]Partita Iva[[p127.s4]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:119",
+    "paragraph:121",
+    "paragraph:122",
+    "paragraph:123",
+    "paragraph:124",
+    "paragraph:125"
+   ]
+  },
+  {
+   "id": "paragraph:128",
+   "paragraphs": [
+    {
+     "id": "paragraph:128",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:129",
+   "paragraphs": [
+    {
+     "id": "paragraph:129",
+     "text": "(selezionare la casella di interesse)"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:130",
+   "paragraphs": [
+    {
+     "id": "paragraph:130",
+     "text": "[ ] di non ricorrere al subappalto"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:131",
+   "paragraphs": [
+    {
+     "id": "paragraph:131",
+     "text": "OPPURE",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:132",
+   "paragraphs": [
+    {
+     "id": "paragraph:132",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:133",
+   "paragraphs": [
+    {
+     "id": "paragraph:133",
+     "text": "[ ] di ricorrere al subappalto per le prestazioni di seguito indicate:"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:134",
+   "paragraphs": [
+    {
+     "id": "paragraph:134",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:135",
+   "paragraphs": [
+    {
+     "id": "paragraph:135",
+     "text": "(N.B. si rammenta possono essere subappaltate solo le prestazioni concernenti le indagini geologiche, geotecniche e sismiche, sondaggi, rilievi, misurazioni e picchettazioni, predisposizione di elaborati specialistici e di dettaglio, con esclusione delle relazioni geologiche, nonché la sola redazione grafica degli elaborati progettuali)"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:136",
+   "paragraphs": [
+    {
+     "id": "paragraph:136",
+     "text": "Di aver esaminato e di accettare, senza condizione o riserva alcuna, tutte le norme e le disposizioni contenute nel bando di gara, nel disciplinare di gara e nei relativi allegati, nello schema di contratto di incarico professionale ed in tutti gli altri documenti messi in gara;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:137",
+   "paragraphs": [
+    {
+     "id": "paragraph:137",
+     "text": "(selezionare la casella di interesse)"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:138",
+   "paragraphs": [
+    {
+     "id": "paragraph:138",
+     "text": "[ ] di autorizzare, successivamente all’aggiudicazione, l’eventuale accesso agli atti (mediante visione e/o estrazione di copia) da parte di terzi in relazione alla documentazione presentata per la presente procedura di gara."
+    }
+   ]
+  },
+  {
+   "id": "paragraph:139",
+   "paragraphs": [
+    {
+     "id": "paragraph:139",
+     "text": "OPPURE"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:140",
+   "paragraphs": [
+    {
+     "id": "paragraph:140",
+     "text": "[ ] di non autorizzare (ai sensi dell’art.35 D.Lgs.n.50/2016), successivamente all’aggiudicazione, l’eventuale accesso agli atti (mediante visione e/o estrazione di copia) da parte di terzi per le seguenti parti relative alla documentazione tecnica presentata in ordine alla presente procedura di gara (indicare n. pagg., sezioni precise, parti e riferimenti specifici della documentazione) costituenti segreto tecnico o commerciale:"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:141",
+   "paragraphs": [
+    {
+     "id": "paragraph:141",
+     "text": "1. \t"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:142",
+   "paragraphs": [
+    {
+     "id": "paragraph:142",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:143",
+   "paragraphs": [
+    {
+     "id": "paragraph:143",
+     "text": "2. \t"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:144",
+   "paragraphs": [
+    {
+     "id": "paragraph:144",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:145",
+   "paragraphs": [
+    {
+     "id": "paragraph:145",
+     "text": "3. \t"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:146",
+   "paragraphs": [
+    {
+     "id": "paragraph:146",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:147",
+   "paragraphs": [
+    {
+     "id": "paragraph:147",
+     "text": "per le seguenti motivazioni (ai sensidell’art.35 del D.Lgs.n.50/2016):______________________________",
+     "text_with_fields": "per le seguenti motivazioni (ai sensidell’art.35 del D.Lgs.n.50/2016):[[p147.s0]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:138",
+    "paragraph:139",
+    "paragraph:140",
+    "paragraph:141",
+    "paragraph:143",
+    "paragraph:145"
+   ]
+  },
+  {
+   "id": "paragraph:148",
+   "paragraphs": [
+    {
+     "id": "paragraph:148",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:149",
+   "paragraphs": [
+    {
+     "id": "paragraph:149",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:150",
+   "paragraphs": [
+    {
+     "id": "paragraph:150",
+     "text": "N.B. Le motivazioni non potranno essere generiche ma dovranno essere puntuali e dettagliate. In assenza di motivazioni la dichiarazione verrà considerata come non resa."
+    }
+   ]
+  },
+  {
+   "id": "paragraph:151",
+   "paragraphs": [
+    {
+     "id": "paragraph:151",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:152",
+   "paragraphs": [
+    {
+     "id": "paragraph:152",
+     "text": "Data\tFirma"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:153",
+   "paragraphs": [
+    {
+     "id": "paragraph:153",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:154",
+   "paragraphs": [
+    {
+     "id": "paragraph:154",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:155",
+   "paragraphs": [
+    {
+     "id": "paragraph:155",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:156",
+   "paragraphs": [
+    {
+     "id": "paragraph:156",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:157",
+   "paragraphs": [
+    {
+     "id": "paragraph:157",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:158",
+   "paragraphs": [
+    {
+     "id": "paragraph:158",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:159",
+   "paragraphs": [
+    {
+     "id": "paragraph:159",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:160",
+   "paragraphs": [
+    {
+     "id": "paragraph:160",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:161",
+   "paragraphs": [
+    {
+     "id": "paragraph:161",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:162",
+   "paragraphs": [
+    {
+     "id": "paragraph:162",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:163",
+   "paragraphs": [
+    {
+     "id": "paragraph:163",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:164",
+   "paragraphs": [
+    {
+     "id": "paragraph:164",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:165",
+   "paragraphs": [
+    {
+     "id": "paragraph:165",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:166",
+   "paragraphs": [
+    {
+     "id": "paragraph:166",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:167",
+   "paragraphs": [
+    {
+     "id": "paragraph:167",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:168",
+   "paragraphs": [
+    {
+     "id": "paragraph:168",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:169",
+   "paragraphs": [
+    {
+     "id": "paragraph:169",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:170",
+   "paragraphs": [
+    {
+     "id": "paragraph:170",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:171",
+   "paragraphs": [
+    {
+     "id": "paragraph:171",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:172",
+   "paragraphs": [
+    {
+     "id": "paragraph:172",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:173",
+   "paragraphs": [
+    {
+     "id": "paragraph:173",
+     "text": "La domanda di partecipazione deve essere sottoscritta:"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:174",
+   "paragraphs": [
+    {
+     "id": "paragraph:174",
+     "text": "nel caso di partecipazione come professionista singolo dal medesimo professionista;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:175",
+   "paragraphs": [
+    {
+     "id": "paragraph:175",
+     "text": "in caso di partecipazione come studio associato dal legale rappresentante dello stesso;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:176",
+   "paragraphs": [
+    {
+     "id": "paragraph:176",
+     "text": "in caso di partecipazione come società di professionisti ovvero come società di ingegneria dal legale rappresentante della medesima società;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:177",
+   "paragraphs": [
+    {
+     "id": "paragraph:177",
+     "text": "nel caso di RT o di GEIE già costituito dal legale rappresentante della mandataria/capogruppo del RT o del GEIE;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:178",
+   "paragraphs": [
+    {
+     "id": "paragraph:178",
+     "text": "nel caso di RT o di GEIE non costituito dal legale rappresentante di ciascun componente il RT o il GEIE "
+    }
+   ]
+  },
+  {
+   "id": "paragraph:179",
+   "paragraphs": [
+    {
+     "id": "paragraph:179",
+     "text": "nel caso di consorzi stabili di società di professionisti e di società di ingegneria di cui all’articolo 66, comma1, lett.g) D.Lgs. 36/2023, dal legale rappresentante del Consorzio e della consorziata indicata per l’esecuzione del servizio."
+    }
+   ]
+  },
+  {
+   "id": "paragraph:180",
+   "paragraphs": [
+    {
+     "id": "paragraph:180",
+     "text": ""
+    }
+   ]
+  }
+ ],
+ "candidates": {
+  "p115.s0": {
+   "type": "text",
+   "context_id": "paragraph:115",
+   "section_ids": [],
+   "range": [
+    30,
+    34
+   ],
+   "slot_context": {
+    "before": "il seguente domicilio fiscale ",
+    "after": "; codice fiscale "
+   },
+   "location": {
+    "block_id": "paragraph:115"
+   },
+   "continuation_origin_paragraph_id": "paragraph:114"
+  },
+  "p115.s1": {
+   "type": "text",
+   "context_id": "paragraph:115",
+   "section_ids": [],
+   "range": [
+    51,
+    56
+   ],
+   "slot_context": {
+    "before": "; codice fiscale ",
+    "after": ", partita IVA "
+   },
+   "location": {
+    "block_id": "paragraph:115"
+   },
+   "continuation_origin_paragraph_id": "paragraph:114"
+  },
+  "p115.s2": {
+   "type": "text",
+   "context_id": "paragraph:115",
+   "section_ids": [],
+   "range": [
+    70,
+    78
+   ],
+   "slot_context": {
+    "before": ", partita IVA ",
+    "after": "; indica l’indirizzo PEC oppure, solo in caso di concorrenti aventi sede in altri Stati membri, l’indirizzo di  posta  e"
+   },
+   "location": {
+    "block_id": "paragraph:115"
+   },
+   "continuation_origin_paragraph_id": "paragraph:114"
+  },
+  "p119.s0": {
+   "type": "text",
+   "context_id": "paragraph:119",
+   "section_ids": [],
+   "range": [
+    219,
+    223
+   ],
+   "slot_context": {
+    "before": "nti estremi del provvedimento di ammissione al concordato e del provvedimento di autorizzazione a partecipare alle gare ",
+    "after": " rilasciati dal Tribunale di"
+   },
+   "location": {
+    "block_id": "paragraph:119"
+   },
+   "continuation_origin_paragraph_id": "paragraph:118"
+  },
+  "p119.s1": {
+   "type": "text",
+   "context_id": "paragraph:119",
+   "section_ids": [],
+   "range": [
+    251,
+    258
+   ],
+   "slot_context": {
+    "before": " rilasciati dal Tribunale di",
+    "after": "nonché dichiara di non partecipare alla gara quale mandataria"
+   },
+   "location": {
+    "block_id": "paragraph:119"
+   },
+   "continuation_origin_paragraph_id": "paragraph:118"
+  },
+  "p119.s2": {
+   "type": "text",
+   "context_id": "paragraph:119",
+   "section_ids": [],
+   "range": [
+    319,
+    329
+   ],
+   "slot_context": {
+    "before": "nonché dichiara di non partecipare alla gara quale mandataria",
+    "after": "di un raggruppamento temporaneo di imprese e che le altre imprese aderenti al raggruppamento non sono assoggettate ad un"
+   },
+   "location": {
+    "block_id": "paragraph:119"
+   },
+   "continuation_origin_paragraph_id": "paragraph:118"
+  },
+  "p127.s0": {
+   "type": "text",
+   "context_id": "paragraph:127",
+   "section_ids": [],
+   "range": [
+    39,
+    55
+   ],
+   "slot_context": {
+    "before": "con sede legale/studio professionale in",
+    "after": " alla via"
+   },
+   "location": {
+    "block_id": "paragraph:127"
+   }
+  },
+  "p127.s1": {
+   "type": "text",
+   "context_id": "paragraph:127",
+   "section_ids": [],
+   "range": [
+    64,
+    81
+   ],
+   "slot_context": {
+    "before": " alla via",
+    "after": "pec"
+   },
+   "location": {
+    "block_id": "paragraph:127"
+   }
+  },
+  "p127.s2": {
+   "type": "text",
+   "context_id": "paragraph:127",
+   "section_ids": [],
+   "range": [
+    84,
+    100
+   ],
+   "value_type": "email",
+   "slot_context": {
+    "before": "pec",
+    "after": "Codice fiscale "
+   },
+   "location": {
+    "block_id": "paragraph:127"
+   }
+  },
+  "p127.s3": {
+   "type": "text",
+   "context_id": "paragraph:127",
+   "section_ids": [],
+   "range": [
+    115,
+    130
+   ],
+   "slot_context": {
+    "before": "Codice fiscale ",
+    "after": "Partita Iva"
+   },
+   "location": {
+    "block_id": "paragraph:127"
+   }
+  },
+  "p127.s4": {
+   "type": "text",
+   "context_id": "paragraph:127",
+   "section_ids": [],
+   "range": [
+    141,
+    163
+   ],
+   "slot_context": {
+    "before": "Partita Iva",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:127"
+   }
+  },
+  "p147.s0": {
+   "type": "text",
+   "context_id": "paragraph:147",
+   "section_ids": [],
+   "range": [
+    70,
+    100
+   ],
+   "slot_context": {
+    "before": "per le seguenti motivazioni (ai sensidell’art.35 del D.Lgs.n.50/2016):",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:147"
+   }
+  },
+  "p20.s0": {
+   "type": "text",
+   "context_id": "paragraph:20",
+   "section_ids": [],
+   "range": [
+    15,
+    28
+   ],
+   "slot_context": {
+    "before": "Il sottoscritto",
+    "after": " nato a"
+   },
+   "location": {
+    "block_id": "paragraph:20"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p20.s1": {
+   "type": "text",
+   "context_id": "paragraph:20",
+   "section_ids": [],
+   "range": [
+    35,
+    47
+   ],
+   "slot_context": {
+    "before": " nato a",
+    "after": " il "
+   },
+   "location": {
+    "block_id": "paragraph:20"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p20.s2": {
+   "type": "text",
+   "context_id": "paragraph:20",
+   "section_ids": [],
+   "range": [
+    51,
+    61
+   ],
+   "slot_context": {
+    "before": " il ",
+    "after": " residente "
+   },
+   "location": {
+    "block_id": "paragraph:20"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p20.s3": {
+   "type": "text",
+   "context_id": "paragraph:20",
+   "section_ids": [],
+   "range": [
+    72,
+    86
+   ],
+   "slot_context": {
+    "before": " residente ",
+    "after": "                                                            alla via "
+   },
+   "location": {
+    "block_id": "paragraph:20"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p20.s4": {
+   "type": "text",
+   "context_id": "paragraph:20",
+   "section_ids": [],
+   "range": [
+    155,
+    174
+   ],
+   "slot_context": {
+    "before": "                                                            alla via ",
+    "after": "in qualità di "
+   },
+   "location": {
+    "block_id": "paragraph:20"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p20.s5": {
+   "type": "text",
+   "context_id": "paragraph:20",
+   "section_ids": [],
+   "range": [
+    188,
+    267
+   ],
+   "slot_context": {
+    "before": "in qualità di ",
+    "after": "    "
+   },
+   "location": {
+    "block_id": "paragraph:20"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p21.s0": {
+   "type": "text",
+   "context_id": "paragraph:21",
+   "section_ids": [],
+   "range": [
+    37,
+    55
+   ],
+   "slot_context": {
+    "before": "con sede legale/studio professionale ",
+    "after": "                        alla via "
+   },
+   "location": {
+    "block_id": "paragraph:21"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p21.s1": {
+   "type": "text",
+   "context_id": "paragraph:21",
+   "section_ids": [],
+   "range": [
+    88,
+    104
+   ],
+   "slot_context": {
+    "before": "                        alla via ",
+    "after": "n. telefono"
+   },
+   "location": {
+    "block_id": "paragraph:21"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p21.s2": {
+   "type": "text",
+   "context_id": "paragraph:21",
+   "section_ids": [],
+   "range": [
+    115,
+    124
+   ],
+   "slot_context": {
+    "before": "n. telefono",
+    "after": "PEC "
+   },
+   "location": {
+    "block_id": "paragraph:21"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p21.s3": {
+   "type": "text",
+   "context_id": "paragraph:21",
+   "section_ids": [],
+   "range": [
+    128,
+    142
+   ],
+   "value_type": "email",
+   "slot_context": {
+    "before": "PEC ",
+    "after": "Codice fiscale "
+   },
+   "location": {
+    "block_id": "paragraph:21"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p21.s4": {
+   "type": "text",
+   "context_id": "paragraph:21",
+   "section_ids": [],
+   "range": [
+    157,
+    171
+   ],
+   "slot_context": {
+    "before": "Codice fiscale ",
+    "after": " Partita Iva "
+   },
+   "location": {
+    "block_id": "paragraph:21"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p21.s5": {
+   "type": "text",
+   "context_id": "paragraph:21",
+   "section_ids": [],
+   "range": [
+    184,
+    198
+   ],
+   "slot_context": {
+    "before": " Partita Iva ",
+    "after": "                                                     "
+   },
+   "location": {
+    "block_id": "paragraph:21"
+   },
+   "continuation_origin_paragraph_id": "paragraph:19"
+  },
+  "p31.s0": {
+   "type": "text",
+   "context_id": "paragraph:31",
+   "section_ids": [],
+   "range": [
+    15,
+    28
+   ],
+   "slot_context": {
+    "before": "Il sottoscritto",
+    "after": " nato a"
+   },
+   "location": {
+    "block_id": "paragraph:31"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p31.s1": {
+   "type": "text",
+   "context_id": "paragraph:31",
+   "section_ids": [],
+   "range": [
+    35,
+    47
+   ],
+   "slot_context": {
+    "before": " nato a",
+    "after": " il "
+   },
+   "location": {
+    "block_id": "paragraph:31"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p31.s2": {
+   "type": "text",
+   "context_id": "paragraph:31",
+   "section_ids": [],
+   "range": [
+    51,
+    61
+   ],
+   "slot_context": {
+    "before": " il ",
+    "after": " residente "
+   },
+   "location": {
+    "block_id": "paragraph:31"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p31.s3": {
+   "type": "text",
+   "context_id": "paragraph:31",
+   "section_ids": [],
+   "range": [
+    72,
+    86
+   ],
+   "slot_context": {
+    "before": " residente ",
+    "after": "                                                            alla via "
+   },
+   "location": {
+    "block_id": "paragraph:31"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p31.s4": {
+   "type": "text",
+   "context_id": "paragraph:31",
+   "section_ids": [],
+   "range": [
+    155,
+    174
+   ],
+   "slot_context": {
+    "before": "                                                            alla via ",
+    "after": "in qualità di "
+   },
+   "location": {
+    "block_id": "paragraph:31"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p31.s5": {
+   "type": "text",
+   "context_id": "paragraph:31",
+   "section_ids": [],
+   "range": [
+    188,
+    270
+   ],
+   "slot_context": {
+    "before": "in qualità di ",
+    "after": "    con sede legale/studio professionale "
+   },
+   "location": {
+    "block_id": "paragraph:31"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p31.s6": {
+   "type": "text",
+   "context_id": "paragraph:31",
+   "section_ids": [],
+   "range": [
+    311,
+    329
+   ],
+   "slot_context": {
+    "before": "    con sede legale/studio professionale ",
+    "after": "                        alla via "
+   },
+   "location": {
+    "block_id": "paragraph:31"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p31.s7": {
+   "type": "text",
+   "context_id": "paragraph:31",
+   "section_ids": [],
+   "range": [
+    362,
+    378
+   ],
+   "slot_context": {
+    "before": "                        alla via ",
+    "after": "n. telefono"
+   },
+   "location": {
+    "block_id": "paragraph:31"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p31.s8": {
+   "type": "text",
+   "context_id": "paragraph:31",
+   "section_ids": [],
+   "range": [
+    389,
+    407
+   ],
+   "slot_context": {
+    "before": "n. telefono",
+    "after": "PEC "
+   },
+   "location": {
+    "block_id": "paragraph:31"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p31.s9": {
+   "type": "text",
+   "context_id": "paragraph:31",
+   "section_ids": [],
+   "range": [
+    411,
+    433
+   ],
+   "value_type": "email",
+   "slot_context": {
+    "before": "PEC ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:31"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p32.s0": {
+   "type": "text",
+   "context_id": "paragraph:32",
+   "section_ids": [],
+   "range": [
+    15,
+    30
+   ],
+   "slot_context": {
+    "before": "Codice fiscale ",
+    "after": " Partita Iva "
+   },
+   "location": {
+    "block_id": "paragraph:32"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p32.s1": {
+   "type": "text",
+   "context_id": "paragraph:32",
+   "section_ids": [],
+   "range": [
+    43,
+    57
+   ],
+   "slot_context": {
+    "before": " Partita Iva ",
+    "after": "                                                     "
+   },
+   "location": {
+    "block_id": "paragraph:32"
+   },
+   "continuation_origin_paragraph_id": "paragraph:30"
+  },
+  "p43.s0": {
+   "type": "text",
+   "context_id": "paragraph:43",
+   "section_ids": [],
+   "range": [
+    15,
+    28
+   ],
+   "slot_context": {
+    "before": "Il sottoscritto",
+    "after": " nato a"
+   },
+   "location": {
+    "block_id": "paragraph:43"
+   }
+  },
+  "p43.s1": {
+   "type": "text",
+   "context_id": "paragraph:43",
+   "section_ids": [],
+   "range": [
+    35,
+    47
+   ],
+   "slot_context": {
+    "before": " nato a",
+    "after": " il "
+   },
+   "location": {
+    "block_id": "paragraph:43"
+   }
+  },
+  "p43.s2": {
+   "type": "text",
+   "context_id": "paragraph:43",
+   "section_ids": [],
+   "range": [
+    51,
+    61
+   ],
+   "slot_context": {
+    "before": " il ",
+    "after": " residente "
+   },
+   "location": {
+    "block_id": "paragraph:43"
+   }
+  },
+  "p43.s3": {
+   "type": "text",
+   "context_id": "paragraph:43",
+   "section_ids": [],
+   "range": [
+    72,
+    86
+   ],
+   "slot_context": {
+    "before": " residente ",
+    "after": "                                                            alla via "
+   },
+   "location": {
+    "block_id": "paragraph:43"
+   }
+  },
+  "p43.s4": {
+   "type": "text",
+   "context_id": "paragraph:43",
+   "section_ids": [],
+   "range": [
+    155,
+    174
+   ],
+   "slot_context": {
+    "before": "                                                            alla via ",
+    "after": "in qualità di "
+   },
+   "location": {
+    "block_id": "paragraph:43"
+   }
+  },
+  "p43.s5": {
+   "type": "text",
+   "context_id": "paragraph:43",
+   "section_ids": [],
+   "range": [
+    188,
+    270
+   ],
+   "slot_context": {
+    "before": "in qualità di ",
+    "after": "    con sede legale/studio professionale "
+   },
+   "location": {
+    "block_id": "paragraph:43"
+   }
+  },
+  "p43.s6": {
+   "type": "text",
+   "context_id": "paragraph:43",
+   "section_ids": [],
+   "range": [
+    311,
+    329
+   ],
+   "slot_context": {
+    "before": "    con sede legale/studio professionale ",
+    "after": "                        alla via "
+   },
+   "location": {
+    "block_id": "paragraph:43"
+   }
+  },
+  "p43.s7": {
+   "type": "text",
+   "context_id": "paragraph:43",
+   "section_ids": [],
+   "range": [
+    362,
+    378
+   ],
+   "slot_context": {
+    "before": "                        alla via ",
+    "after": "n. telefono"
+   },
+   "location": {
+    "block_id": "paragraph:43"
+   }
+  },
+  "p43.s8": {
+   "type": "text",
+   "context_id": "paragraph:43",
+   "section_ids": [],
+   "range": [
+    389,
+    407
+   ],
+   "slot_context": {
+    "before": "n. telefono",
+    "after": "PEC "
+   },
+   "location": {
+    "block_id": "paragraph:43"
+   }
+  },
+  "p43.s9": {
+   "type": "text",
+   "context_id": "paragraph:43",
+   "section_ids": [],
+   "range": [
+    411,
+    433
+   ],
+   "value_type": "email",
+   "slot_context": {
+    "before": "PEC ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:43"
+   }
+  },
+  "p44.s0": {
+   "type": "text",
+   "context_id": "paragraph:44",
+   "section_ids": [],
+   "range": [
+    15,
+    30
+   ],
+   "slot_context": {
+    "before": "Codice fiscale ",
+    "after": " Partita Iva "
+   },
+   "location": {
+    "block_id": "paragraph:44"
+   }
+  },
+  "p44.s1": {
+   "type": "text",
+   "context_id": "paragraph:44",
+   "section_ids": [],
+   "range": [
+    43,
+    57
+   ],
+   "slot_context": {
+    "before": " Partita Iva ",
+    "after": "                                                     "
+   },
+   "location": {
+    "block_id": "paragraph:44"
+   }
+  },
+  "p53.s0": {
+   "type": "text",
+   "context_id": "paragraph:53",
+   "section_ids": [],
+   "range": [
+    15,
+    28
+   ],
+   "slot_context": {
+    "before": "Il sottoscritto",
+    "after": " nato a"
+   },
+   "location": {
+    "block_id": "paragraph:53"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p53.s1": {
+   "type": "text",
+   "context_id": "paragraph:53",
+   "section_ids": [],
+   "range": [
+    35,
+    47
+   ],
+   "slot_context": {
+    "before": " nato a",
+    "after": " il "
+   },
+   "location": {
+    "block_id": "paragraph:53"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p53.s2": {
+   "type": "text",
+   "context_id": "paragraph:53",
+   "section_ids": [],
+   "range": [
+    51,
+    61
+   ],
+   "slot_context": {
+    "before": " il ",
+    "after": " residente "
+   },
+   "location": {
+    "block_id": "paragraph:53"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p53.s3": {
+   "type": "text",
+   "context_id": "paragraph:53",
+   "section_ids": [],
+   "range": [
+    72,
+    86
+   ],
+   "slot_context": {
+    "before": " residente ",
+    "after": "                                                            alla via "
+   },
+   "location": {
+    "block_id": "paragraph:53"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p53.s4": {
+   "type": "text",
+   "context_id": "paragraph:53",
+   "section_ids": [],
+   "range": [
+    155,
+    174
+   ],
+   "slot_context": {
+    "before": "                                                            alla via ",
+    "after": "in qualità di "
+   },
+   "location": {
+    "block_id": "paragraph:53"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p53.s5": {
+   "type": "text",
+   "context_id": "paragraph:53",
+   "section_ids": [],
+   "range": [
+    188,
+    270
+   ],
+   "slot_context": {
+    "before": "in qualità di ",
+    "after": "    con sede legale/studio professionale "
+   },
+   "location": {
+    "block_id": "paragraph:53"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p53.s6": {
+   "type": "text",
+   "context_id": "paragraph:53",
+   "section_ids": [],
+   "range": [
+    311,
+    329
+   ],
+   "slot_context": {
+    "before": "    con sede legale/studio professionale ",
+    "after": "                        alla via "
+   },
+   "location": {
+    "block_id": "paragraph:53"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p53.s7": {
+   "type": "text",
+   "context_id": "paragraph:53",
+   "section_ids": [],
+   "range": [
+    362,
+    378
+   ],
+   "slot_context": {
+    "before": "                        alla via ",
+    "after": "n. telefono"
+   },
+   "location": {
+    "block_id": "paragraph:53"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p53.s8": {
+   "type": "text",
+   "context_id": "paragraph:53",
+   "section_ids": [],
+   "range": [
+    389,
+    407
+   ],
+   "slot_context": {
+    "before": "n. telefono",
+    "after": "PEC "
+   },
+   "location": {
+    "block_id": "paragraph:53"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p53.s9": {
+   "type": "text",
+   "context_id": "paragraph:53",
+   "section_ids": [],
+   "range": [
+    411,
+    433
+   ],
+   "value_type": "email",
+   "slot_context": {
+    "before": "PEC ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:53"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p54.s0": {
+   "type": "text",
+   "context_id": "paragraph:54",
+   "section_ids": [],
+   "range": [
+    15,
+    30
+   ],
+   "slot_context": {
+    "before": "Codice fiscale ",
+    "after": " Partita Iva "
+   },
+   "location": {
+    "block_id": "paragraph:54"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p54.s1": {
+   "type": "text",
+   "context_id": "paragraph:54",
+   "section_ids": [],
+   "range": [
+    43,
+    57
+   ],
+   "slot_context": {
+    "before": " Partita Iva ",
+    "after": "                                                     "
+   },
+   "location": {
+    "block_id": "paragraph:54"
+   },
+   "continuation_origin_paragraph_id": "paragraph:52"
+  },
+  "p8.s0": {
+   "type": "text",
+   "context_id": "paragraph:8",
+   "section_ids": [],
+   "range": [
+    15,
+    28
+   ],
+   "slot_context": {
+    "before": "Il sottoscritto",
+    "after": " nato a"
+   },
+   "location": {
+    "block_id": "paragraph:8"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p8.s1": {
+   "type": "text",
+   "context_id": "paragraph:8",
+   "section_ids": [],
+   "range": [
+    35,
+    47
+   ],
+   "slot_context": {
+    "before": " nato a",
+    "after": " il "
+   },
+   "location": {
+    "block_id": "paragraph:8"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p8.s2": {
+   "type": "text",
+   "context_id": "paragraph:8",
+   "section_ids": [],
+   "range": [
+    51,
+    61
+   ],
+   "slot_context": {
+    "before": " il ",
+    "after": " residente "
+   },
+   "location": {
+    "block_id": "paragraph:8"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p8.s3": {
+   "type": "text",
+   "context_id": "paragraph:8",
+   "section_ids": [],
+   "range": [
+    72,
+    86
+   ],
+   "slot_context": {
+    "before": " residente ",
+    "after": "                                                            alla via "
+   },
+   "location": {
+    "block_id": "paragraph:8"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p8.s4": {
+   "type": "text",
+   "context_id": "paragraph:8",
+   "section_ids": [],
+   "range": [
+    155,
+    174
+   ],
+   "slot_context": {
+    "before": "                                                            alla via ",
+    "after": "in qualità di "
+   },
+   "location": {
+    "block_id": "paragraph:8"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p8.s5": {
+   "type": "text",
+   "context_id": "paragraph:8",
+   "section_ids": [],
+   "range": [
+    188,
+    270
+   ],
+   "slot_context": {
+    "before": "in qualità di ",
+    "after": "    con sede legale/studio professionale "
+   },
+   "location": {
+    "block_id": "paragraph:8"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p8.s6": {
+   "type": "text",
+   "context_id": "paragraph:8",
+   "section_ids": [],
+   "range": [
+    311,
+    329
+   ],
+   "slot_context": {
+    "before": "    con sede legale/studio professionale ",
+    "after": "                        alla via "
+   },
+   "location": {
+    "block_id": "paragraph:8"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p8.s7": {
+   "type": "text",
+   "context_id": "paragraph:8",
+   "section_ids": [],
+   "range": [
+    362,
+    378
+   ],
+   "slot_context": {
+    "before": "                        alla via ",
+    "after": "n. telefono"
+   },
+   "location": {
+    "block_id": "paragraph:8"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p8.s8": {
+   "type": "text",
+   "context_id": "paragraph:8",
+   "section_ids": [],
+   "range": [
+    389,
+    407
+   ],
+   "slot_context": {
+    "before": "n. telefono",
+    "after": "PEC "
+   },
+   "location": {
+    "block_id": "paragraph:8"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p8.s9": {
+   "type": "text",
+   "context_id": "paragraph:8",
+   "section_ids": [],
+   "range": [
+    411,
+    433
+   ],
+   "value_type": "email",
+   "slot_context": {
+    "before": "PEC ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:8"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p9.s0": {
+   "type": "text",
+   "context_id": "paragraph:9",
+   "section_ids": [],
+   "range": [
+    15,
+    30
+   ],
+   "slot_context": {
+    "before": "Codice fiscale ",
+    "after": " Partita Iva "
+   },
+   "location": {
+    "block_id": "paragraph:9"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "p9.s1": {
+   "type": "text",
+   "context_id": "paragraph:9",
+   "section_ids": [],
+   "range": [
+    43,
+    57
+   ],
+   "slot_context": {
+    "before": " Partita Iva ",
+    "after": "                                                     "
+   },
+   "location": {
+    "block_id": "paragraph:9"
+   },
+   "continuation_origin_paragraph_id": "paragraph:7"
+  },
+  "t0.r1.c0": {
+   "type": "text",
+   "context_id": "t0.r1.c0",
+   "section_ids": [],
+   "location": {
+    "block_id": "paragraph:68",
+    "table_id": "table:0",
+    "row_index": 1
+   }
+  },
+  "t1.r0.c0": {
+   "type": "text",
+   "context_id": "t1.r0.c0",
+   "section_ids": [],
+   "location": {
+    "block_id": "paragraph:78",
+    "table_id": "table:1",
+    "row_index": 0
+   }
+  },
+  "t1.r1.c1": {
+   "type": "text",
+   "context_id": "t1.r1.c1",
+   "section_ids": [],
+   "location": {
+    "block_id": "paragraph:78",
+    "table_id": "table:1",
+    "row_index": 1
+   }
+  },
+  "t1.r2.c1": {
+   "type": "text",
+   "context_id": "t1.r2.c1",
+   "section_ids": [],
+   "location": {
+    "block_id": "paragraph:78",
+    "table_id": "table:1",
+    "row_index": 2
+   }
+  },
+  "t1.r3.c1": {
+   "type": "text",
+   "context_id": "t1.r3.c1",
+   "section_ids": [],
+   "location": {
+    "block_id": "paragraph:78",
+    "table_id": "table:1",
+    "row_index": 3
+   }
+  },
+  "t1.r4.c1": {
+   "type": "text",
+   "context_id": "t1.r4.c1",
+   "section_ids": [],
+   "location": {
+    "block_id": "paragraph:78",
+    "table_id": "table:1",
+    "row_index": 4
+   }
+  },
+  "t2.r0.c0": {
+   "type": "text",
+   "context_id": "t2.r0.c0",
+   "section_ids": [],
+   "location": {
+    "block_id": "paragraph:90",
+    "table_id": "table:2",
+    "row_index": 0
+   }
+  },
+  "t2.r1.c1": {
+   "type": "text",
+   "context_id": "t2.r1.c1",
+   "section_ids": [],
+   "location": {
+    "block_id": "paragraph:90",
+    "table_id": "table:2",
+    "row_index": 1
+   }
+  },
+  "t2.r2.c1": {
+   "type": "text",
+   "context_id": "t2.r2.c1",
+   "section_ids": [],
+   "location": {
+    "block_id": "paragraph:90",
+    "table_id": "table:2",
+    "row_index": 2
+   }
+  }
+ },
+ "read_only_parts": [
+  {
+   "part": "word/footer1.xml",
+   "read_only_checkbox_count": 0,
+   "paragraphs": [
+    "6"
+   ]
+  },
+  {
+   "part": "word/header1.xml",
+   "read_only_checkbox_count": 0,
+   "paragraphs": [
+    "ALLEGATO 1"
+   ]
+  }
+ ]
+}

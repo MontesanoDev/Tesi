@@ -1,0 +1,32 @@
+[
+  {
+    "trial": "minervino/E2-A/rep-1",
+    "merge": "PASS",
+    "fields": 58,
+    "facts": 50
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "merge": "PASS",
+    "fields": 10,
+    "facts": 12
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "merge": "PASS",
+    "fields": 20,
+    "facts": 23
+  },
+  {
+    "trial": "bella/E2-A/rep-1",
+    "merge": "PASS",
+    "fields": 8,
+    "facts": 8
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "merge": "PASS",
+    "fields": 22,
+    "facts": 22
+  }
+]

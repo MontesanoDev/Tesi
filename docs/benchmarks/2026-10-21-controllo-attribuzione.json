@@ -1,0 +1,28 @@
+{
+ "status": "K3_IMPLEMENTED_NEW_SESSIONS_ONLY_NOT_ADOPTED",
+ "date": "2026-10-21",
+ "report": "docs/controllo-attribuzione-2026-10-21.md",
+ "raw": "backend/data/compilation-audit/attribution-safety-20261021-01",
+ "archive_sha256": "b65456bd8c498867adbc332f6a5b683d17d349c63814db987a5acb1141268519",
+ "archive_files": 20,
+ "prereg_sha256": "2772f5113e44cb8a5bebacfd29810aaf8bb0f4029de6797ae2bc222eed45083c",
+ "prereg_utc": "2026-10-21T21:11:57Z",
+ "technical_base": "V14 candidate (not baseline); V12 remains adopted",
+ "llm_calls": 0,
+ "commits": 0,
+ "synthetic_cases": {"total": 27, "counted_conforming": 25, "excluded_gate_rejects": ["P5", "N15"]},
+ "replay": {"audits": 92, "responses_without_audit_excluded": 7, "correct_grounded_person_proposals": 948,
+            "lost_correct": {"K1": 39, "K2": 147, "K3": 0},
+            "decision": {"K1": "excluded", "K2": "excluded", "K3": "implemented", "K4": "excluded a priori"}},
+ "equivalence_app_vs_evaluated_K3": {"cases": 26, "audits": 92, "differences": 0},
+ "app_files": {
+  "backend/app/compilation_attribution_safety.py": "56b14b4260c83c3471f978db7ac3aebdaaf8b8825dfc9026d2a91df471c0c2a6",
+  "backend/app/compilation_source_reuse.py": "ffecbc70b45ffed6b7060d57da13f8afe2de9aceaa02932132782c535c9d1109",
+  "backend/app/compilation_global_sessions.py": "3f51bd6b55386a3222d32743ffc87c19804cc1e0ee64a8430306d8d93bd1f6b8",
+  "backend/tests/test_compilation_attribution_safety.py": "fbeec778824d9d74b3f5267bf788e31d923be652205d660145cb82c741e8c370"
+ },
+ "verification": {"new_tests": 13, "full_backend_suite": "PASS (stop-on-first-failure run reached 100%; 3439 collected afterwards)", "ruff": "PASS"},
+ "residual_risk": ["FORM role of a partner (P2 counterexamples 1-2)", "ceased office in prose elsewhere (5)",
+                   "company tax code as personal (4)", "third-party SOURCE documents without explicit organization",
+                   "partner company documented by the same draft"]
+}

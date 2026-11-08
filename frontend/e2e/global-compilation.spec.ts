@@ -34,6 +34,7 @@ test('global compilation in chat, explicit partial export and refresh', async ({
         fields: [], open_issues: [], summary: { total: 2, pending: 2, resolved: 0, missing: 0,
           ambiguous: 0, conflicting: 0, not_applicable: 0, user_provided: 0 },
         global_compilation: { phase: 'PENDING', candidate_count: 2, attempts: 0, paused: false,
+          generation_revision: 3, compilation_profile: 'sezioni-2026-10-24',
           fields: [], conditions: [], proposal_count: 0, omitted: 0, rejected: 0, report_url: null },
         chat: { enabled: true, auto_continue: true, paused: false, question: null, analyzed: 0,
           verified: 0, user_provided: 0, remaining_questions: 0, steps_used: 0, max_steps: 1 },
@@ -105,7 +106,7 @@ test('global compilation in chat, explicit partial export and refresh', async ({
     return route.fulfill({ json: [] })
   })
   await page.goto('/projects/global-chat')
-  const composer = page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' })
+  const composer = page.getByRole('textbox', { name: 'Messaggio per l’assistente' })
   await composer.fill('@')
   await page.getByRole('option', { name: form.name }).click()
   await composer.fill('riassumilo')
@@ -114,7 +115,8 @@ test('global compilation in chat, explicit partial export and refresh', async ({
   expect(state).toBeNull()
   await composer.fill('me lo compili?')
   await page.getByRole('button', { name: 'Invia', exact: true }).click()
-  await expect(page.getByText('Sto lavorando…')).toBeVisible()
+  await expect(page.getByRole('status', { name: 'Elaborazione in corso' }))
+    .toHaveText('Analisi del documento e compilazione delle sezioni…')
   expect(exports).toBe(0)
   release()
   await expect(page.getByText('Ho trovato denominazione e recapiti nelle fonti. La partecipazione è come società?')).toBeVisible()
@@ -128,7 +130,7 @@ test('global compilation in chat, explicit partial export and refresh', async ({
   expect(exports).toBe(0)
   await page.reload()
   await expect(page.getByText('Ho registrato la conferma. Vuoi che generi una bozza parziale?')).toBeVisible()
-  await page.getByRole('textbox', { name: 'Messaggio per Mapi RAG' }).fill('genera la bozza parziale')
+  await page.getByRole('textbox', { name: 'Messaggio per l’assistente' }).fill('genera la bozza parziale')
   await page.getByRole('button', { name: 'Invia', exact: true }).click()
   await expect(page.getByRole('button', { name: 'Scarica DOCX' })).toBeVisible()
   expect(exports).toBe(1)

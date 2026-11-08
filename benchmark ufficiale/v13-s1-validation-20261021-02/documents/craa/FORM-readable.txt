@@ -1,0 +1,137 @@
+paragraph:0: CARTA INTESTATA DITTA
+paragraph:1: DICHIARAZIONE CUMULATIVA (ISTANZA E REQUISITI)
+paragraph:2: 
+paragraph:3: OGGETTO: RICHIESTA DI ISCRIZIONE ALL’ELENCO SERVIZI  INGEGNERIA E ARCHITETTURA
+paragraph:4: 
+paragraph:5: Il sottoscritto[[p5.s0]]
+paragraph:6: 
+paragraph:7: in qualità di: 
+paragraph:8: ☐libero professionista, [[p8.s0]] abilitato alla professione [[p8.s1]] iscritto all'albo degli [[p8.s2]]della provincia di [[p8.s3]]con il numero [[p8.s4]],
+paragraph:9:  ☐professionista associato dello studio associato [[p9.s0]] abilitato alla professione [[p9.s1]]iscritto all'albo degli [[p9.s2]]della provincia di [[p9.s3]] con il numero [[p9.s4]],
+paragraph:10:  ☐titolare, legale rappresentante, procuratore,  ☐ altro[[p10.s0]]
+paragraph:11: 
+paragraph:12: dell’impresa[[p12.s0]]
+paragraph:13: con sede in[[p13.s0]]
+paragraph:14: PEC[[p14.s0]]
+paragraph:15: Codice fiscale[[p15.s0]]
+paragraph:16: Partita IVA[[p16.s0]]
+paragraph:17: Mail [[p17.s0]]
+paragraph:18: Tel[[p18.s0]]
+paragraph:19: CHIEDE
+paragraph:20: 
+paragraph:21: di essere iscritto all’Elenco Servizi di ingegneria e architettura del CRAA - Azienda Sperimentale Regionale Improsta per le categorie e le fasce di importo selezionate sul portale Appalti: 
+paragraph:22: https://craa-appalti.maggiolicloud.it/PortaleAppalti/it/homepage.wp 
+paragraph:23: 
+paragraph:24: A tal fine, ai sensi degli artt. 46, 47, 75 e 76 del d.P.R. 28.12.2000, N. 445 e ss.mm.ii., consapevole della responsabilità e delle conseguenze civili, amministrative e penali previste in caso di rilascio di dichiarazioni mendaci e/o formazione di atti falsi e/o uso degli stessi
+paragraph:25: 
+paragraph:26: DICHIARA
+paragraph:27: 
+paragraph:28: PARTE I
+Requisiti di ordine generale e cause di esclusione automatica
+(art. 94 d.lgs. 36/2023)
+paragraph:29: In ordine ai requisiti di cui all’art. 94 del d.lgs. 36/2023, 
+paragraph:30: DICHIARA
+paragraph:31: ☐ che, con riferimento al sottoscritto dichiarante, ai soggetti indicati al comma 3 dell’art. 94 del D. Lgs 36/2023, nonché ai soggetti di cui al comma 4 dello stesso art. 94, NON è stata adottata condanna con sentenza definitiva o decreto penale di condanna divenuto irrevocabile per i reati elencati al comma 1 dello stesso art. 94, tenuto conto che la causa di esclusione non è disposta e il divieto di aggiudicare non si applica quando il reato è stato depenalizzato oppure quando è intervenuta la riabilitazione oppure, nei casi di condanna ad una pena accessoria perpetua, quando questa è stata dichiarata estinta ai sensi dell’articolo 179, settimo comma, del codice penale, oppure quando il reato è stato dichiarato estinto dopo la condanna oppure in caso di revoca della condanna medesima;
+paragraph:32: ☐ che, con riferimento al sottoscritto dichiarante e ai soggetti indicati al comma 3 dell’art. 94 del D. Lgs 36/2023 nonché ai soggetti di cui al comma 4 dello stesso art. 94, NON sussistono le ragioni di decadenza, di sospensione o di divieto previste dall’articolo 67 del codice delle leggi antimafia e delle misure di prevenzione, di cui al decreto legislativo 6 settembre 2011, n. 159 o di un tentativo di infiltrazione mafiosa di cui all’articolo 84, comma 4, del medesimo codice, fermo restando quanto previsto dagli articoli 88, comma 4-bis, e 92, commi 2 e 3, del codice di cui al decreto legislativo n. 159 del 2011, con riferimento rispettivamente alle comunicazioni antimafia e alle informazioni antimafia e tenuto conto che la causa di esclusione di cui all’articolo 84, comma 4, del medesimo codice di cui al decreto legislativo n. 159 del 2011 non opera se, entro la data dell’aggiudicazione, l’impresa sia stata ammessa al controllo giudiziario ai sensi dell’articolo 34-bis del medesimo codice;
+paragraph:33: ☐ di NON versare in alcuna delle cause di esclusione di cui al comma 5 dell’articolo 94 del d.lgs. 36/2023, laddove applicabili,  cui si rinvia e che si intende qui per ripetuto e trascritto;
+paragraph:34: ☐ che, ai sensi dell’articolo 94, comma 6, del D. Lgs 36/2023, l’operatore economico NON ha commesso violazioni gravi, definitivamente accertate, rispetto agli obblighi relativi al pagamento delle imposte e tasse o dei contributi previdenziali, secondo la legislazione italiana o quella dello Stato in cui è stabilito (costituiscono gravi violazioni definitivamente accertate quelle indicate nell’allegato II.10. al D.lgs. 36/2023). 
+paragraph:35: ☐ OVVERO di aver ottemperato ai suoi obblighi pagando o impegnandosi in modo vincolante a pagare le imposte o i contributi previdenziali dovuti, compresi eventuali interessi o sanzioni e il relativo pagamento o impegno si sono perfezionati in data anteriore alla richiesta di iscrizione all’elenco;
+paragraph:36: ☐ OVVERO il debito tributario o previdenziale è integralmente estinto e la relativa estinzione si è perfezionata in data anteriore alla richiesta di iscrizione all’elenco.
+paragraph:37: 
+paragraph:38: PARTE II 
+Cause di esclusione NON automatica
+(art. 95 d.lgs.36/2023)
+paragraph:39: In ordine ai requisiti di cui all’art. 95 del d.lgs. 36/2023, 
+paragraph:40: DICHIARA
+paragraph:41: ☐ che l’operatore economico NON versa in alcuna delle possibili cause di esclusione di cui al comma 1 dell’articolo 95 del d.lgs. 36/2023, laddove applicabili, cui si rinvia e che si intende qui per ripetuto e trascritto, anche tenuto conto di quanto disposto all’art. 98 dello stesso d.lgs. 36/2023;
+paragraph:42: ☐ che l’operatore economico NON ha commesso gravi violazioni non definitivamente accertate agli obblighi relativi al pagamento di imposte e tasse o contributi previdenziali; (tenuto conto che costituiscono gravi violazioni non definitivamente accertate in materia fiscale quelle indicate nell’Allegato II.10 del d.lgs. 36/2023, che la gravità va in ogni caso valutata anche tenendo conto del valore dell’appalto/affidamento)
+paragraph:43: ☐ OVVERO di aver ottemperato ai suoi obblighi pagando o impegnandosi in modo vincolante a pagare le imposte o i contributi previdenziali dovuti, compresi eventuali interessi o sanzioni e il relativo pagamento o impegno si sono perfezionati in data anteriore alla richiesta di iscrizione all’elenco;
+paragraph:44: ☐ OVVERO il debito tributario o previdenziale è integralmente estinto e la relativa estinzione si è perfezionata in data anteriore alla richiesta di iscrizione all’elenco;
+paragraph:45: ☐ OVVERO il debito tributario è stato compensato con crediti certificati vantati nei confronti della pubblica amministrazione.
+paragraph:46: 
+paragraph:47: PARTE III 
+Eventuali Misure di Self-Cleaning
+(art. 96, COMMA 6,  d.lgs. 36/2023)
+paragraph:48: In ordine alle misure di cui all’art. 96, comma 6,  del d.lgs. 36/2023, 
+paragraph:49: DICHIARA
+paragraph:50: (eventuale, non compilare se l’ipotesi non sussiste) →
+paragraph:51: che l’operatore economico, versando in una delle situazioni di cui all’articolo 94 (a eccezione del comma 6) o dell’art. 95 (a eccezione del comma 2) del d.lgs. 36/2023, ossia (indicare la circostanza che genererebbe una ipotesi di esclusione) [[p51.s0]]:
+paragraph:52: ☐ ha adottato, ai sensi del comma 6 dell’art. 96 del Codice dei Contratti, le seguenti misure di self-cleaning [[p52.s0]]  
+paragraph:53: (N.B. → l’operatore economico dimostra di aver risarcito o di essersi impegnato a risarcire qualunque danno causato dal reato o dall’illecito, di aver chiarito i fatti e le circostanze in modo globale collaborando attivamente con le autorità investigative e di aver adottato provvedimenti concreti di carattere tecnico, organizzativo e relativi al personale idonei a prevenire ulteriori reati o illeciti);
+paragraph:54: oppure
+paragraph:55: ☐ di NON aver potuto adottare misure di self-cleaning prima della richiesta di iscrizione in quanto [[p55.s0]] e si impegna sin da ora ad adottare le  misure correttive di cui comma 6 dell’art. 96 del Codice dei Contratti entro il termine di conclusione della procedura comunicandole tempestivamente alla stazione appaltante.
+paragraph:56: PARTE IV
+Requisiti di ordine speciale 
+(art. 100 d.lgs. 36/2023)
+paragraph:57: In ordine ai requisiti di cui all’art. 100 del d.lgs. 36/2023, 
+paragraph:58: DICHIARA
+paragraph:59: di possedere i requisiti di idoneità professionale, capacità economico-finanziaria e tecnico-professionale richiesti dalla Stazione Appaltante per l’iscrizione all’Elenco nelle categorie e per le fasce di importo selezionate sul portale.
+paragraph:60: A tal fine l’operatore in fase di presentazione dell’istanza (automaticamente generata dal portale) dovrà selezionare le categorie e tutte le fasce di importo per le quali intende essere invitato alle procedure.
+paragraph:61: In particolare, dichiara:
+paragraph:62: quanto al REQUISITO DI IDONEITÀ PROFESSIONALE:
+paragraph:63: ☐ DI ESSERE in possesso dei requisiti del decreto del Ministero delle Infrastrutture e dei Trasporti n. 263/2016;
+paragraph:64: ☐ per le società DI ESSERE iscritto alla CCIAA per un’attività coerente a quella oggetto della classe merceologica per la quale si richiede l’iscrizione, con i seguenti dati:
+paragraph:65: Provincia di iscrizione:  
+paragraph:66: 
+paragraph:67: numero di iscrizione:
+paragraph:68: 
+paragraph:69: 
+paragraph:70: ☐ per i professionisti singoli DI ESSERE abilitato alla professione [[p70.s0]] iscritto all'albo degli [[p70.s1]]della provincia di [[p70.s2]] con il numero [[p70.s3]];
+paragraph:71: 
+paragraph:72: ☐ (nel caso di incarichi di coordinatore per la sicurezza in fase di progettazione e di esecuzione) DI ESSERE in possesso dei requisiti, attestazioni e/o certificazioni previste dall’art. 98 del testo Unico sulla sicurezza d.lgs. n.81 del 9 aprile 2008(depennare se non di interesse);
+paragraph:73: 
+paragraph:74: ☐DI ESSERE in possesso, per l’esercizio degli incarichi per i quali si chiede l’iscrizione (da specificare), delle seguenti autorizzazioni, abilitazioni o altro requisito prescritti:
+paragraph:75: [[p75.s0]]
+paragraph:76:   
+paragraph:77: Per lo svolgimento del servizio di verifica preventiva della progettazione:
+paragraph:78: 
+paragraph:79: Per lavori di importo inferiore a € 20.000.000,00 
+paragraph:80: ☐ DI ESSERE un soggetto di cui all’art. 66 del Codice in possesso del certificato di qualità UNI EN ISO 9001 per le attività di verifica della progettazione delle opere e dei requisiti previsti dal DM 02/12/2016 n. 263
+paragraph:81: OVVERO
+paragraph:82: ☐ DI ESSERE un organismo di ispezione di tipo A o di tipo C in possesso di accreditamento UNI CEI EN ISO/IEC 17020.
+paragraph:83: 
+paragraph:84: Per lavori di importo pari o superiore a € 20.000.000,00
+paragraph:85: ☐ DI ESSERE un organismo di ispezione di tipo A o di tipo C in possesso di accreditamento UNI CEI EN ISO/IEC 17020.
+paragraph:86: 
+paragraph:87: quanto al REQUISITO DI CAPACITÀ ECONOMICA E FINANZIARIA:
+paragraph:88: ☐ di avere un FATTURATO GLOBALE COMPLESSIVO, riferito al miglior triennio dell’ultimo quinquennio disponibile all’atto della presentazione della richiesta di iscrizione, pari a:
+paragraph:89: € [[p89.s0]], così conseguito:
+paragraph:90: anno[[p90.s0]]fatturato globale[[p90.s1]]
+paragraph:91: anno[[p91.s0]]fatturato globale[[p91.s1]]
+paragraph:92: anno[[p92.s0]]fatturato globale[[p92.s1]]
+paragraph:93: 
+paragraph:94: quanto al REQUISITO DI CAPACITÀ TECNICA E PROFESSIONALE: 
+paragraph:95:  di aver realizzato, nell’ultimo decennio antecedente la data di iscrizione, almeno due servizi di ingegneria e architettura per ciascuna ID opera per la quale si chiede l’iscrizione 
+paragraph:96: Descrizione del servizio di ingegneria e architettura
+paragraph:97: Id Opera
+paragraph:98: Committente
+paragraph:99: Importo Lavori*
+paragraph:100: Periodo di riferimento
+paragraph:101: 
+paragraph:102: 
+paragraph:103: 
+paragraph:104: 
+paragraph:105: 
+paragraph:106: 
+paragraph:107: 
+paragraph:108: 
+paragraph:109: 
+paragraph:110: 
+paragraph:111: *occorre conteggiare, in caso di prestazioni eseguite in RTP, le sole quote di competenza.
+paragraph:112: 
+paragraph:113: solo per le classi di importo a partire da € 140.000,00
+paragraph:114: ☐ intende avvalersi, nelle procedure di aggiudicazione, dei seguenti requisiti di capacità economico-finanziaria e/o tecnico-professionale:
+paragraph:115: [[p115.s0]]
+paragraph:116: 
+paragraph:117: DICHIARA INFINE 
+paragraph:118: DI ESSERE consapevole che, ai sensi dell’articolo 96, comma 14, del D.lgs. n. 36/2023, l’operatore ha l’obbligo di comunicare alla stazione appaltante anche la sussistenza dei fatti e dei provvedimenti che possono costituire causa di esclusione ai sensi degli articoli 94 e 95, ove non menzionati nel proprio fascicolo virtuale;
+paragraph:119: DI IMPEGNARSI ad eseguire le prestazioni oggetto di eventuali procedure di affidamento secondo le modalità ed i tempi stabiliti dalla stazione appaltante; 
+paragraph:120: DI ESSERE EDOTTO degli obblighi derivanti dal Codice di comportamento integrativo dell’Ente e di impegnarsi, in caso di aggiudicazione, a osservare e a far osservare ai propri dipendenti e collaboratori, per quanto applicabile, il suddetto codice, pena la risoluzione del contratto;
+paragraph:121: DI NON AVER CONCLUSO contratti di lavoro subordinato o autonomo e comunque di non avere attribuito incarichi ad ex dipendenti della stazione appaltante che hanno esercitato funzioni autoritative o negoziali nei confronti dell’impresa che rappresento, nel triennio successivo alla cessazione del rapporto di impiego;
+paragraph:122: DI ESSERE CONSAPEVOLE che i pagamenti conseguenti all esecuzione delle prestazioni oggetto di eventuale affidamento avverranno comunque esclusivamente tramite lo strumento del bonifico bancario o postale ai sensi art.3 della Legge 13 agosto 2010, n. 136, impegnandosi a rispettare e far rispettare (in caso di subappalti /subcontratti) i relativi obblighi di tracciabilità dei flussi finanziari, consapevole che in caso di inadempimento agli obblighi della suddetta Legge si procederà alla risoluzione del contratto;
+paragraph:123: DI IMPEGNARSI a  garantire al personale impiegato nei lavori il contratto collettivo nazionale e territoriale in vigore per il settore e per la zona nella quale si eseguono le prestazioni di lavoro, stipulato dalle associazioni dei datori e dei prestatori di lavoro comparativamente più rappresentative sul piano nazionale e quello il cui ambito di applicazione sia strettamente connesso con l’attività oggetto dell’appalto svolta dall’impresa anche in maniera prevalente, nonché garantire le stesse tutele economiche e normative per i lavoratori in subappalto rispetto ai dipendenti dell’appaltatore e contro il lavoro irregolare;
+paragraph:124: ☐ DI APPLICARE ai propri dipendenti il seguente Contratto Nazionale (CCNL): [[p124.s0]];
+paragraph:125: Oppure
+paragraph:126: ☐ CHE il Contratto Nazionale applicato ai propri dipendenti è il seguente  [[p126.s0]] e che lo stesso, in quanto equivalente, assicura le medesime tutele economiche e normative ai lavoratori di quello indicato dalla stazione appaltante, esprimendosi sin da ora la disponibilità ad ogni verifica in tal senso, secondo quanto stabilito dal D. Lgs 36/2023;
+paragraph:127: DI AUTORIZZARE, ai sensi del decreto legislativo 30 giugno 2003, n. 196 e ss.mm.ii. e del Regolamento UE 2016/679, l’utilizzazione dei dati di cui alla presente dichiarazione, compresi quelli di cui ai numeri 2) e 3) (dati sensibili ai sensi degli articoli 20, 21 e 22, del citato decreto legislativo, ferme restando le esenzioni dagli obblighi di notifica e acquisizione del consenso), ai fini della partecipazione alla procedura e per gli eventuali procedimenti amministrativi e giurisdizionali conseguenti; ne autorizza, inoltre, la comunicazione ai funzionari e agli incaricati dell’organismo appaltante o dell’amministrazione aggiudicatrice, nonché agli eventuali controinteressati che ne facciano legittima e motivata richiesta.
+paragraph:128: (firma digitale del legale rappresentante dell’operatore) 

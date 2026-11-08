@@ -1,0 +1,268 @@
+candidate_id,type,field_label,reference_SOURCE_available,reference_chunks_in_real_input,LLM_field_proposed,LLM_disposition,audit_validation,grounded_value,proposed_value,validation_errors,effective_conditions,reviewed,held,export_selected,physically_written_value,outcome,verdict
+p12.s0,text,Firmatario: nome,True,True,True,value,REVIEW_REQUIRED,True,Leonardo Montemurro,[],{},True,False,True,Leonardo Montemurro,WRITTEN,CORRECT_SOURCE
+p12.s1,text,Nascita: comune,True,True,True,value,REVIEW_REQUIRED,True,Lecce,[],{},True,False,True,Lecce,WRITTEN,CORRECT_SOURCE
+p12.s2,text,Nascita: provincia,True,True,True,value,REVIEW_REQUIRED,True,LE,[],{},True,False,True,LE,WRITTEN,CORRECT_SOURCE
+p12.s3,text,Nascita: data,True,True,True,value,REVIEW_REQUIRED,True,14 novembre 1982,[],{},True,False,True,14 novembre 1982,WRITTEN,CORRECT_SOURCE
+p13.s0,text,Residenza: comune,True,True,True,value,REVIEW_REQUIRED,True,Bari,[],{},True,False,True,Bari,WRITTEN,CORRECT_SOURCE
+p13.s1,text,Residenza: provincia,True,True,True,value,REVIEW_REQUIRED,True,BA,[],{},True,False,True,BA,WRITTEN,CORRECT_SOURCE
+p13.s2,text,Residenza: indirizzo,True,True,True,value,REVIEW_REQUIRED,True,Amedeo 24,[],{},True,False,True,Amedeo 24,WRITTEN,CORRECT_SOURCE
+p13.s3,text,CF firmatario,True,True,True,value,REVIEW_REQUIRED,True,MNTLRD82S14E506X,[],{},True,False,True,MNTLRD82S14E506X,WRITTEN,CORRECT_SOURCE
+p14.s0,text,Carica firmatario,True,True,True,conditional,REVIEW_REQUIRED,True,amministratore unico e rappresentante legale,[],"{""c_soc"": ""true""}",True,False,True,amministratore unico e rappresentante legale,WRITTEN,CORRECT_SOURCE
+p14.s1,text,Operatore economico,True,True,True,value,GROUNDED_PROPOSAL,True,Mapi Ingegneria S.r.l.,[],{},True,False,True,Mapi Ingegneria S.r.l.,WRITTEN,CORRECT_SOURCE
+p15.s0,text,Comune sede,True,True,True,value,GROUNDED_PROPOSAL,True,Bari,[],{},True,False,True,Bari,WRITTEN,CORRECT_SOURCE
+p15.s1,text,Provincia sede,True,True,True,value,REJECTED,False,,"[""Il solo marker non documenta la richiesta del campo""]",{},False,False,False,,REJECTED,NO_WRITE
+p15.s2,text,Telefono,True,True,True,value,GROUNDED_PROPOSAL,True,+39 080 000 2040,[],{},True,False,True,+39 080 000 2040,WRITTEN,CORRECT_SOURCE
+p15.s3,text,Fax,True,True,True,value,GROUNDED_PROPOSAL,True,+39 080 000 2041,[],{},True,False,True,+39 080 000 2041,WRITTEN,CORRECT_SOURCE
+p16.s0,text,Email,True,True,True,value,GROUNDED_PROPOSAL,True,segreteria@mapi-ingegneria.demo,[],{},True,False,True,segreteria@mapi-ingegneria.demo,WRITTEN,CORRECT_SOURCE
+p16.s1,text,PEC,True,True,True,value,GROUNDED_PROPOSAL,True,mapi.ingegneria@pec.demo,[],{},True,False,True,mapi.ingegneria@pec.demo,WRITTEN,CORRECT_SOURCE
+p16.s2,text,PIVA,True,True,True,value,GROUNDED_PROPOSAL,True,IT01234567890,[],{},True,False,True,IT01234567890,WRITTEN,CORRECT_SOURCE
+p17.s0,text,CCIAA,True,True,True,value,GROUNDED_PROPOSAL,True,Bari,[],{},True,False,True,Bari,WRITTEN,CORRECT_SOURCE
+p17.s1,text,Registro Imprese,True,True,True,value,GROUNDED_PROPOSAL,True,01234560981,[],{},True,False,True,01234560981,WRITTEN,CORRECT_SOURCE
+p17.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p17.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p211.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p212.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p212.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p212.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p212.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p213.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p213.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p213.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p22.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p22.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p229.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p23.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p23.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p23.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p23.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p23.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p23.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p230.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p232.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p233.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p234.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p24.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p242.s0,text,Luogo e data della domanda,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p245.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p26.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p27.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p27.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p28.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p28.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p28.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p28.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p28.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p29.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p30.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p30.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p31.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p31.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p31.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p31.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p31.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p32.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p33.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p33.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p34.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p34.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p34.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p34.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p34.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p36.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p36.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p37.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p37.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p37.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p37.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p37.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p37.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p37.s6,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p37.s7,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p38.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p40.s0,text,Denominazione,True,True,True,conditional,REVIEW_REQUIRED,True,Mapi Ingegneria S.r.l.,[],"{""c_soc"": ""true""}",True,False,True,Mapi Ingegneria S.r.l.,WRITTEN,CORRECT_SOURCE
+p41.s0,text,PIVA società,True,True,True,conditional,REVIEW_REQUIRED,True,IT01234567890,[],"{""c_soc"": ""true""}",True,False,True,IT01234567890,WRITTEN,CORRECT_SOURCE
+p41.s1,text,Comune sede società,True,True,True,conditional,REJECTED,False,,"[""Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo""]","{""c_soc"": ""true""}",False,False,False,,REJECTED,NO_WRITE
+p42.s0,text,Provincia sede società,True,True,True,conditional,REVIEW_REQUIRED,True,BA,[],"{""c_soc"": ""true""}",True,False,True,BA,WRITTEN,CORRECT_SOURCE
+p42.s1,text,Via società,True,True,True,conditional,REVIEW_REQUIRED,True,Via Giovanni Amendola,[],"{""c_soc"": ""true""}",True,False,True,Via Giovanni Amendola,WRITTEN,CORRECT_SOURCE
+p42.s2,text,Civico società,True,True,True,conditional,REVIEW_REQUIRED,True,172/C,[],"{""c_soc"": ""true""}",True,False,True,172/C,WRITTEN,CORRECT_SOURCE
+p42.s3,text,Telefono società,True,True,True,conditional,REVIEW_REQUIRED,True,+39 080 000 2040,[],"{""c_soc"": ""true""}",True,False,True,+39 080 000 2040,WRITTEN,CORRECT_SOURCE
+p42.s4,text,Email società,True,True,True,conditional,REVIEW_REQUIRED,True,segreteria@mapi-ingegneria.demo,[],"{""c_soc"": ""true""}",True,False,True,segreteria@mapi-ingegneria.demo,WRITTEN,CORRECT_SOURCE
+p42.s5,text,PEC società,True,True,True,conditional,REVIEW_REQUIRED,True,mapi.ingegneria@pec.demo,[],"{""c_soc"": ""true""}",True,False,True,mapi.ingegneria@pec.demo,WRITTEN,CORRECT_SOURCE
+p43.s0,text,Socio Luca Ferri: Nome,True,True,True,conditional,REVIEW_REQUIRED,True,Luca Ferri,[],"{""c_soc"": ""true""}",True,False,True,Luca Ferri,WRITTEN,CORRECT_SOURCE
+p43.s1,text,Socio Luca Ferri: Qualifica,True,True,True,conditional,REVIEW_REQUIRED,True,Ingegnere,[],"{""c_soc"": ""true""}",True,False,True,Ingegnere,WRITTEN,CORRECT_SOURCE
+p43.s2,text,Socio Luca Ferri: CF,True,True,True,conditional,REVIEW_REQUIRED,True,FRRLCU80A01A662K,[],"{""c_soc"": ""true""}",True,False,True,FRRLCU80A01A662K,WRITTEN,CORRECT_SOURCE
+p43.s3,text,Socio Luca Ferri: Ordine,True,True,True,conditional,REVIEW_REQUIRED,True,Ordine degli Ingegneri di Bari,[],"{""c_soc"": ""true""}",True,False,True,Ordine degli Ingegneri di Bari,WRITTEN,CORRECT_SOURCE
+p43.s4,text,Socio Luca Ferri: Sezione,True,True,True,conditional,REVIEW_REQUIRED,True,A,[],"{""c_soc"": ""true""}",True,False,True,A,WRITTEN,CORRECT_SOURCE
+p44.s0,text,Socio Luca Ferri: Provincia,True,True,True,conditional,REVIEW_REQUIRED,True,Bari (BA),[],"{""c_soc"": ""true""}",True,False,True,Bari (BA),WRITTEN,CORRECT_SOURCE
+p44.s1,text,Socio Luca Ferri: Data iscrizione,True,True,True,conditional,REVIEW_REQUIRED,True,21/03/2012,[],"{""c_soc"": ""true""}",True,False,True,21/03/2012,WRITTEN,CORRECT_SOURCE
+p44.s2,text,Socio Luca Ferri: Numero iscrizione,True,True,True,conditional,REVIEW_REQUIRED,True,7294,[],"{""c_soc"": ""true""}",True,False,True,7294,WRITTEN,CORRECT_SOURCE
+p45.s0,text,Socio Elisa Romano: Nome,True,True,True,conditional,REVIEW_REQUIRED,True,Elisa Romano,[],"{""c_soc"": ""true""}",True,False,True,Elisa Romano,WRITTEN,CORRECT_SOURCE
+p45.s1,text,Socio Elisa Romano: Qualifica,True,True,True,conditional,REVIEW_REQUIRED,True,Ingegnere,[],"{""c_soc"": ""true""}",True,False,True,Ingegnere,WRITTEN,CORRECT_SOURCE
+p45.s2,text,Socio Elisa Romano: CF,True,True,True,conditional,REVIEW_REQUIRED,True,RMNLSI85C47A662Y,[],"{""c_soc"": ""true""}",True,False,True,RMNLSI85C47A662Y,WRITTEN,CORRECT_SOURCE
+p45.s3,text,Socio Elisa Romano: Ordine,True,True,True,conditional,REVIEW_REQUIRED,True,Ordine degli Ingegneri di Bari,[],"{""c_soc"": ""true""}",True,False,True,Ordine degli Ingegneri di Bari,WRITTEN,CORRECT_SOURCE
+p45.s4,text,Socio Elisa Romano: Sezione,True,True,True,conditional,REVIEW_REQUIRED,True,A,[],"{""c_soc"": ""true""}",True,False,True,A,WRITTEN,CORRECT_SOURCE
+p46.s0,text,Socio Elisa Romano: Provincia,True,True,True,conditional,REVIEW_REQUIRED,True,Bari (BA),[],"{""c_soc"": ""true""}",True,False,True,Bari (BA),WRITTEN,CORRECT_SOURCE
+p46.s1,text,Socio Elisa Romano: Data iscrizione,True,True,True,conditional,REVIEW_REQUIRED,True,18/05/2015,[],"{""c_soc"": ""true""}",True,False,True,18/05/2015,WRITTEN,CORRECT_SOURCE
+p46.s2,text,Socio Elisa Romano: Numero iscrizione,True,True,True,conditional,REVIEW_REQUIRED,True,8421,[],"{""c_soc"": ""true""}",True,False,True,8421,WRITTEN,CORRECT_SOURCE
+p47.s0,text,Socio Andrea Greco: Nome,True,True,True,conditional,REVIEW_REQUIRED,True,Andrea Greco,[],"{""c_soc"": ""true""}",True,False,True,Andrea Greco,WRITTEN,CORRECT_SOURCE
+p48.s0,text,Socio Andrea Greco: Qualifica,True,True,True,conditional,REVIEW_REQUIRED,True,Architetto,[],"{""c_soc"": ""true""}",True,False,True,Architetto,WRITTEN,CORRECT_SOURCE
+p48.s1,text,Socio Andrea Greco: CF,True,True,True,conditional,REVIEW_REQUIRED,True,GRCNDR84D20A662P,[],"{""c_soc"": ""true""}",True,False,True,GRCNDR84D20A662P,WRITTEN,CORRECT_SOURCE
+p49.s0,text,Socio Andrea Greco: Ordine,True,True,True,conditional,REVIEW_REQUIRED,True,Ordine degli Architetti di Bari,[],"{""c_soc"": ""true""}",True,False,True,Ordine degli Architetti di Bari,WRITTEN,CORRECT_SOURCE
+p49.s1,text,Socio Andrea Greco: Sezione,True,True,True,conditional,REVIEW_REQUIRED,True,A,[],"{""c_soc"": ""true""}",True,False,True,A,WRITTEN,CORRECT_SOURCE
+p49.s2,text,Socio Andrea Greco: Provincia,True,True,True,conditional,REVIEW_REQUIRED,True,Bari (BA),[],"{""c_soc"": ""true""}",True,False,True,Bari (BA),WRITTEN,CORRECT_SOURCE
+p49.s3,text,Socio Andrea Greco: Data iscrizione,True,True,True,conditional,REVIEW_REQUIRED,True,12/06/2014,[],"{""c_soc"": ""true""}",True,False,True,12/06/2014,WRITTEN,CORRECT_SOURCE
+p49.s4,text,Socio Andrea Greco: Numero iscrizione,True,True,True,conditional,REVIEW_REQUIRED,True,5267,[],"{""c_soc"": ""true""}",True,False,True,5267,WRITTEN,CORRECT_SOURCE
+p51.s0,text,Direttore tecnico Elisa Romano: Nome,True,True,True,conditional,REVIEW_REQUIRED,False,,"[""SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore""]","{""c_soc"": ""true""}",False,False,False,,REJECTED,NO_WRITE
+p52.s0,text,Direttore tecnico Elisa Romano: Qualifica,True,True,True,conditional,REVIEW_REQUIRED,False,,"[""SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore""]","{""c_soc"": ""true""}",False,False,False,,REJECTED,NO_WRITE
+p52.s1,text,Direttore tecnico Elisa Romano: CF,True,True,True,conditional,REVIEW_REQUIRED,True,RMNLSI85C47A662Y,[],"{""c_soc"": ""true""}",True,False,True,RMNLSI85C47A662Y,WRITTEN,CORRECT_SOURCE
+p53.s0,text,Direttore tecnico Elisa Romano: Ordine,True,True,True,conditional,REVIEW_REQUIRED,False,,"[""SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore""]","{""c_soc"": ""true""}",False,False,False,,REJECTED,NO_WRITE
+p53.s1,text,Direttore tecnico Elisa Romano: Sezione,True,True,True,conditional,REVIEW_REQUIRED,False,,"[""SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore""]","{""c_soc"": ""true""}",False,False,False,,REJECTED,NO_WRITE
+p53.s2,text,Direttore tecnico Elisa Romano: Provincia,True,True,True,conditional,REVIEW_REQUIRED,True,Bari (BA),[],"{""c_soc"": ""true""}",True,False,True,Bari (BA),WRITTEN,CORRECT_SOURCE
+p53.s3,text,Direttore tecnico Elisa Romano: Data iscrizione,True,True,True,conditional,REVIEW_REQUIRED,True,18/05/2015,[],"{""c_soc"": ""true""}",True,False,True,18/05/2015,WRITTEN,CORRECT_SOURCE
+p53.s4,text,Direttore tecnico Elisa Romano: Numero iscrizione,True,True,True,conditional,REVIEW_REQUIRED,True,8421,[],"{""c_soc"": ""true""}",True,False,True,8421,WRITTEN,CORRECT_SOURCE
+p55.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p56.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p57.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p57.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p57.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p57.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p57.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p57.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p57.s6,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p57.s7,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p58.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p58.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p59.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p59.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p59.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p59.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p59.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p59.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p59.s6,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p60.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p60.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p60.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p60.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p60.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p60.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p60.s6,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p60.s7,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p60.s8,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p62.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_mandante"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p63.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_mandante"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p65.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p65.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p65.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p65.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p65.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p65.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p65.s6,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p65.s7,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p65.s8,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p67.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p67.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p67.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p68.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p68.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p68.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p68.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p68.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p68.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p69.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p70.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p70.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p71.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p71.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p71.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p71.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p71.s4,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p71.s5,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p72.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p73.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p74.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p74.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p75.s0,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p75.s1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p75.s2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p75.s3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+t0.r1.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r1.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r1.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r10.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r10.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r10.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r11.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r11.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r11.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r12.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r12.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r12.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r13.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r13.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r13.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r14.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r14.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r14.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r15.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r15.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r15.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r16.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r16.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r16.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r17.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r17.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r17.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r2.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r2.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r2.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r3.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r3.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r3.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r4.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r4.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r4.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r5.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r5.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r5.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r6.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r6.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r6.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r7.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r7.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r7.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r8.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r8.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r8.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r9.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r9.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t0.r9.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t1.r1.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t1.r1.c2,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t1.r1.c3,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t2.r1.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t2.r2.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t2.r3.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t3.r1.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t3.r10.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t3.r2.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t3.r3.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t3.r4.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t3.r5.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t3.r6.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t3.r7.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t3.r8.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+t3.r9.c1,text,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p20.cb0,checkbox,Libero professionista singolo,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p21.cb0,checkbox,Legale rappresentante dello studio professionale associato avente la seguente denominazione,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p35.cb0,checkbox,Professionista appartenete allo studio professionale associato avente la seguente denominazione,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_studio_member"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p39.cb0,checkbox,"Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_soc"": ""true""}",False,False,True,True,WRITTEN,CORRECT_USER
+p54.cb0,checkbox,"Capogruppo di raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione:",False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_capogruppo"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p61.cb0,checkbox,"Mandante del raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione",False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp_mandante"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p64.cb0,checkbox,"Legale rappresentante di consorzio stabile di società di professionisti e di società di ingegneria (art.66, comma 1, lett. g, D.lgs. n.36/2023) denominato",False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_consorzio"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p203.cb0,checkbox,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p206.cb0,checkbox,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p214.cb0,checkbox,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p215.cb0,checkbox,,False,False,False,,REVIEW_REQUIRED,False,,[],"{""c_rtp"": ""unknown""}",False,False,False,,UNPROPOSED,NO_WRITE
+p217.cb0,checkbox,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE
+p228.cb0,checkbox,,False,False,False,,REVIEW_REQUIRED,False,,[],{},False,False,False,,UNPROPOSED,NO_WRITE

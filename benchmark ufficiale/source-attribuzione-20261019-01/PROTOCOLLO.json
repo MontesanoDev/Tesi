@@ -1,0 +1,40 @@
+{
+  "registered_UTC": "2026-10-19T20:14:15.687348+00:00",
+  "forms": [
+    {
+      "slug": "catanzaro",
+      "sha256": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563"
+    }
+  ],
+  "model": {
+    "model": "deepseek-flash",
+    "base_url": "https://api.deepseek.com",
+    "provider": "deepseek",
+    "profile_id": "2457f8fd35564874b6374cf29a4653f9",
+    "context_window": 32768,
+    "thinking": false,
+    "configured": true,
+    "global_thinking": "enabled; reasoning_effort=low",
+    "narrator_thinking": "disabled"
+  },
+  "system_prompt_SHA256": "978c321f5a992e2b53f6dea55f6afcaaab18d4fa728470e9e6a7cc61e9904d8c",
+  "global_parameters": {
+    "model": "deepseek-flash",
+    "temperature": 0.1,
+    "max_tokens": 49152,
+    "thinking": {
+      "type": "enabled"
+    },
+    "response_format": {
+      "type": "json_object"
+    },
+    "reasoning_effort": "low"
+  },
+  "SOURCE_SHA256": "0982378194a2e3e769ed3e18dc8d92bf6c1c70f6c4e8b5aa9bbf6d236093ff0c",
+  "SOURCE_chunks": 22,
+  "one_new_global_no_frozen_output_no_manual_state_edits": true,
+  "maximum_USER_reply_rounds": 2,
+  "no_code_changes_during_final_trial": true,
+  "no_quality_retry_no_redraw": true,
+  "no_commit_push": true
+}

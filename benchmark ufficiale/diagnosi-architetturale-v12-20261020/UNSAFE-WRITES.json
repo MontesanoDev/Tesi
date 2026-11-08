@@ -1,0 +1,60 @@
+[
+  {
+    "trial": "catanzaro/B0/rep-3",
+    "candidate_id": "t0.r8.c1",
+    "category": "INACTIVE_OPERATING_OFFICE_PROPOSAL",
+    "disposition": "value",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "raw_grounded": true,
+    "written": true,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:34",
+      "quote": "Sede operativa"
+    },
+    "conditions": [],
+    "cause": "LLM omits explicit FORM condition, literal SOURCE grounding does not discover it independently, narrator fails to hold; writer executes accepted destination correctly",
+    "FORM_condition": {
+      "paragraph_id": "paragraph:35",
+      "quote": "(se diversa dalla sede legale)"
+    },
+    "SOURCE_counterevidence": {
+      "chunk_id": -44,
+      "quote": "- Rapporto tra le sedi: sede operativa coincidente con la sede legale."
+    }
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "candidate_id": "t0.r8.c1",
+    "category": "INACTIVE_OPERATING_OFFICE_PROPOSAL",
+    "disposition": "value",
+    "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+    "raw_grounded": true,
+    "written": true,
+    "SOURCE_quote": [
+      {
+        "chunk_id": -43,
+        "quote": "- Sede operativa di Mapi Ingegneria S.r.l.: Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia."
+      }
+    ],
+    "FORM": {
+      "paragraph_id": "paragraph:34",
+      "quote": "Sede operativa"
+    },
+    "conditions": [],
+    "cause": "LLM omits explicit FORM condition, literal SOURCE grounding does not discover it independently, narrator fails to hold; writer executes accepted destination correctly",
+    "FORM_condition": {
+      "paragraph_id": "paragraph:35",
+      "quote": "(se diversa dalla sede legale)"
+    },
+    "SOURCE_counterevidence": {
+      "chunk_id": -44,
+      "quote": "- Rapporto tra le sedi: sede operativa coincidente con la sede legale."
+    }
+  }
+]

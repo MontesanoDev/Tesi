@@ -1,0 +1,93 @@
+{
+  "protected_files": 212,
+  "existing_production_files_changed": [
+    "backend/app/compilation_global_dialogue.py"
+  ],
+  "existing_test_files_changed": [
+    "backend/tests/test_compilation_continuation.py"
+  ],
+  "new_tests": "backend/tests/test_compilation_narrator_holds.py",
+  "other_protected_files_unchanged": 210,
+  "prior_tracked_changes_outside_allowed_files_preserved": true,
+  "original_sessions_unchanged": 29,
+  "uploads_knowledge_unchanged": 285,
+  "head_unchanged": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "git_diff_check": true,
+  "changed_functions_and_classes": [
+    "ContinuationPlan",
+    "DialoguePlan",
+    "ProposalHoldReview",
+    "_applicability_contexts",
+    "_hold_updates",
+    "_redundant_role_confirmation",
+    "_review_fingerprint",
+    "model_context",
+    "narrate",
+    "narration_schema"
+  ],
+  "grounding_FORM_writer_API_DB_model_settings_unchanged": true,
+  "tests": {
+    "new": 26,
+    "parametrized_negative_protection_cases": 18,
+    "targeted": 210,
+    "targeted_seconds": 22.61,
+    "full": 2627,
+    "full_seconds": 186.99,
+    "ruff": "passed"
+  },
+  "independent_verification": [
+    {
+      "mode": "historical",
+      "audit_equal": true,
+      "text_values": 52,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "provider_calls": 0
+    },
+    {
+      "mode": "observable",
+      "audit_equal": true,
+      "text_values": 52,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "provider_calls": 0
+    },
+    {
+      "mode": "corrected-final",
+      "audit_equal": true,
+      "text_values": 60,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "84e33e53477f0bb4935eaa9667ed02c6eea6d010beb091cab4f650a1b87feddd",
+      "provider_calls": 0
+    },
+    {
+      "mode": "necessary-hold-final",
+      "audit_equal": true,
+      "text_values": 52,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "4ff926e9d644b2a879a26aebca8e0d42db253fe941bc1e9e2f725c16b3058479",
+      "provider_calls": 0
+    }
+  ],
+  "new_global_calls": 0,
+  "real_narrator_calls": 2,
+  "tokens": 22140,
+  "USD_price": null,
+  "new_UI_run": false,
+  "DOCX_checks": "CRC/XML/rels/physical positions/preprinted text/report/tables/native controls verified independently",
+  "PDF_checks": "Previous 9-page renders reused only after exact binary equality of DOCX; no new render/visual inspection",
+  "holds_with_no_or_unsupported_reason": "retained",
+  "scope": "Only the eight director technical holds; no general override of narrator blocks"
+}

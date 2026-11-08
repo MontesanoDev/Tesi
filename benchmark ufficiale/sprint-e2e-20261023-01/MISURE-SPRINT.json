@@ -1,0 +1,571 @@
+{
+ "soresa2023-1": {
+  "DOCX": true,
+  "failure_class": null,
+  "R1": {},
+  "holds": {
+   "final": 5,
+   "marked_M": [],
+   "rereview_done": [],
+   "released_model_rereview": [],
+   "held_again_after_rereview": []
+  },
+  "export_bypass": {
+   "exported_source_ids": 3,
+   "held_or_unreviewed_exported": []
+  },
+  "wrong_branch_25": {
+   "written": {},
+   "proposed": []
+  },
+  "writes": 3,
+  "undemonstrated": [],
+  "unreviewed_writes": [],
+  "vs_candidata_corretta": {
+   "twin_correct": 8,
+   "preserved": 3,
+   "not_written_here": {
+    "p8.s7": "sospesa_dal_narratore",
+    "p8.s8": "sospesa_dal_narratore",
+    "p8.s9": "sospesa_dal_narratore",
+    "p9.s0": "sospesa_dal_narratore",
+    "p9.s1": "sospesa_dal_narratore"
+   },
+   "new_here": []
+  }
+ },
+ "minervino-1": {
+  "DOCX": true,
+  "failure_class": null,
+  "R1": {
+   "s1_c_partecipazione": {
+    "paragraph_id": "paragraph:39",
+    "extended": 41,
+    "answer": "CONDITION_TRUE",
+    "extended_written": [
+     "p40.s0",
+     "p41.s0",
+     "p42.s0",
+     "p42.s1",
+     "p42.s2",
+     "p42.s3",
+     "p42.s4",
+     "p42.s5",
+     "p43.s0",
+     "p43.s1",
+     "p43.s2",
+     "p43.s3",
+     "p43.s4",
+     "p44.s0",
+     "p44.s1",
+     "p44.s2",
+     "p48.s0",
+     "p48.s1",
+     "p49.s0",
+     "p49.s1",
+     "p49.s2",
+     "p49.s3",
+     "p49.s4",
+     "p52.s0",
+     "p52.s1",
+     "p53.s0",
+     "p53.s1",
+     "p53.s4"
+    ]
+   },
+   "s1_c_studio_associato": {
+    "paragraph_id": "paragraph:21",
+    "extended": 24,
+    "answer": "UNKNOWN",
+    "extended_written": []
+   },
+   "s2_cond_socing": {
+    "paragraph_id": "paragraph:39",
+    "extended": 8,
+    "answer": "CONDITION_TRUE",
+    "extended_written": [
+     "p52.s0",
+     "p52.s1",
+     "p53.s0",
+     "p53.s1",
+     "p53.s4"
+    ]
+   },
+   "s2_cond_studio": {
+    "paragraph_id": "paragraph:35",
+    "extended": 2,
+    "answer": "SKIP",
+    "extended_written": []
+   },
+   "s2_cond_rtp": {
+    "paragraph_id": "paragraph:54",
+    "extended": 26,
+    "answer": "SKIP",
+    "extended_written": []
+   },
+   "s3_c_consorzio": {
+    "paragraph_id": "paragraph:64",
+    "extended": 6,
+    "answer": "UNKNOWN",
+    "extended_written": []
+   },
+   "s4_c_consorzio": {
+    "paragraph_id": "paragraph:64",
+    "extended": 30,
+    "answer": null,
+    "extended_written": []
+   }
+  },
+  "holds": {
+   "final": 6,
+   "marked_M": [],
+   "rereview_done": [],
+   "released_model_rereview": [],
+   "held_again_after_rereview": []
+  },
+  "export_bypass": {
+   "exported_source_ids": 46,
+   "held_or_unreviewed_exported": []
+  },
+  "wrong_branch_25": {
+   "written": {},
+   "proposed": []
+  },
+  "writes": 46,
+  "undemonstrated": [],
+  "unreviewed_writes": [],
+  "soci_21": {
+   "p43.s0": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p43.s1": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p43.s2": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p43.s3": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p43.s4": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p44.s0": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p44.s1": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p44.s2": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p45.s0": {
+    "stato": "non_proposta_o_respinta"
+   },
+   "p45.s1": {
+    "stato": "sospesa_dal_narratore"
+   },
+   "p45.s2": {
+    "stato": "sospesa_dal_narratore"
+   },
+   "p45.s3": {
+    "stato": "sospesa_dal_narratore"
+   },
+   "p45.s4": {
+    "stato": "sospesa_dal_narratore"
+   },
+   "p47.s0": {
+    "stato": "sospesa_dal_narratore"
+   },
+   "p48.s0": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p48.s1": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p49.s0": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p49.s1": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p49.s2": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p49.s3": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p49.s4": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   }
+  },
+  "soci_21_written": 15,
+  "vs_candidata_corretta": {
+   "twin_correct": 56,
+   "preserved": 43,
+   "not_written_here": {
+    "p15.s1": "non_proposta_o_respinta",
+    "p41.s1": "non_proposta_o_respinta",
+    "p45.s0": "non_proposta_o_respinta",
+    "p45.s1": "sospesa_dal_narratore",
+    "p45.s2": "sospesa_dal_narratore",
+    "p45.s3": "sospesa_dal_narratore",
+    "p45.s4": "sospesa_dal_narratore",
+    "p46.s0": "non_proposta_o_respinta",
+    "p46.s1": "non_proposta_o_respinta",
+    "p46.s2": "sospesa_dal_narratore",
+    "p47.s0": "sospesa_dal_narratore",
+    "p51.s0": "non_proposta_o_respinta",
+    "p53.s2": "non_proposta_o_respinta"
+   },
+   "new_here": [
+    "p15.s0",
+    "p53.s0",
+    "p53.s1"
+   ]
+  }
+ },
+ "catanzaro-1": {
+  "DOCX": true,
+  "failure_class": null,
+  "R1": {},
+  "holds": {
+   "final": 4,
+   "marked_M": [],
+   "rereview_done": [],
+   "released_model_rereview": [],
+   "held_again_after_rereview": []
+  },
+  "export_bypass": {
+   "exported_source_ids": 11,
+   "held_or_unreviewed_exported": []
+  },
+  "wrong_branch_25": {
+   "written": {},
+   "proposed": []
+  },
+  "writes": 19,
+  "undemonstrated": [],
+  "unreviewed_writes": [],
+  "vs_candidata_corretta": {
+   "twin_correct": 22,
+   "preserved": 17,
+   "not_written_here": {
+    "t26.r0.c1": "non_proposta_o_respinta",
+    "t26.r1.c1": "sospesa_dal_narratore",
+    "t26.r3.c1": "sospesa_dal_narratore",
+    "t26.r4.c1": "sospesa_dal_narratore",
+    "t44.r1.c0": "non_proposta_o_respinta"
+   },
+   "new_here": [
+    "t0.r6.c1",
+    "t25.r4.c1"
+   ]
+  }
+ },
+ "soresa2023-2": {
+  "DOCX": true,
+  "failure_class": null,
+  "R1": {},
+  "holds": {
+   "final": 0,
+   "marked_M": [],
+   "rereview_done": [],
+   "released_model_rereview": [],
+   "held_again_after_rereview": []
+  },
+  "export_bypass": {
+   "exported_source_ids": 7,
+   "held_or_unreviewed_exported": []
+  },
+  "wrong_branch_25": {
+   "written": {},
+   "proposed": []
+  },
+  "writes": 7,
+  "undemonstrated": [],
+  "unreviewed_writes": [],
+  "vs_candidata_corretta": {
+   "twin_correct": 8,
+   "preserved": 7,
+   "not_written_here": {
+    "t0.r1.c0": "non_proposta_o_respinta"
+   },
+   "new_here": []
+  }
+ },
+ "minervino-2": {
+  "DOCX": true,
+  "failure_class": null,
+  "R1": {
+   "s1_c_soc_ing": {
+    "paragraph_id": "paragraph:39",
+    "extended": 41,
+    "answer": "CONDITION_TRUE",
+    "extended_written": [
+     "p40.s0",
+     "p41.s0",
+     "p41.s1",
+     "p42.s0",
+     "p42.s1",
+     "p42.s2",
+     "p42.s3",
+     "p42.s4",
+     "p42.s5",
+     "p43.s0",
+     "p43.s1",
+     "p43.s2",
+     "p43.s3",
+     "p43.s4",
+     "p44.s0",
+     "p44.s1",
+     "p44.s2",
+     "p45.s0",
+     "p45.s1",
+     "p45.s2",
+     "p45.s3",
+     "p45.s4",
+     "p46.s0",
+     "p46.s1",
+     "p46.s2",
+     "p47.s0",
+     "p48.s0",
+     "p48.s1",
+     "p49.s0",
+     "p49.s1",
+     "p49.s2",
+     "p49.s3",
+     "p49.s4"
+    ]
+   },
+   "s2_c_p35_studio": {
+    "paragraph_id": "paragraph:35",
+    "extended": 2,
+    "answer": "SKIP",
+    "extended_written": []
+   },
+   "s2_c_p54_rtp": {
+    "paragraph_id": "paragraph:54",
+    "extended": 26,
+    "answer": "SKIP",
+    "extended_written": []
+   },
+   "s3_c_rtp_capogruppo": {
+    "paragraph_id": "paragraph:54",
+    "extended": 2,
+    "answer": "SKIP",
+    "extended_written": []
+   },
+   "s3_c_consorzio": {
+    "paragraph_id": "paragraph:64",
+    "extended": 6,
+    "answer": "UNKNOWN",
+    "extended_written": []
+   },
+   "s4_c_consorzio": {
+    "paragraph_id": "paragraph:64",
+    "extended": 30,
+    "answer": null,
+    "extended_written": []
+   },
+   "s5_c_rtp": {
+    "paragraph_id": "paragraph:206",
+    "extended": 8,
+    "answer": null,
+    "extended_written": []
+   }
+  },
+  "holds": {
+   "final": 9,
+   "marked_M": [],
+   "rereview_done": [],
+   "released_model_rereview": [],
+   "held_again_after_rereview": []
+  },
+  "export_bypass": {
+   "exported_source_ids": 51,
+   "held_or_unreviewed_exported": []
+  },
+  "wrong_branch_25": {
+   "written": {},
+   "proposed": []
+  },
+  "writes": 51,
+  "undemonstrated": [],
+  "unreviewed_writes": [],
+  "soci_21": {
+   "p43.s0": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p43.s1": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p43.s2": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p43.s3": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p43.s4": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p44.s0": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p44.s1": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p44.s2": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p45.s0": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p45.s1": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p45.s2": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p45.s3": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p45.s4": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p47.s0": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p48.s0": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p48.s1": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p49.s0": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p49.s1": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p49.s2": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p49.s3": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   },
+   "p49.s4": {
+    "stato": "scritto",
+    "verdict": "DIMOSTRATA"
+   }
+  },
+  "soci_21_written": 21,
+  "vs_candidata_corretta": {
+   "twin_correct": 30,
+   "preserved": 30,
+   "not_written_here": {},
+   "new_here": [
+    "p43.s0",
+    "p43.s1",
+    "p43.s2",
+    "p43.s3",
+    "p43.s4",
+    "p44.s0",
+    "p44.s1",
+    "p44.s2",
+    "p45.s0",
+    "p45.s1",
+    "p45.s2",
+    "p45.s3",
+    "p45.s4",
+    "p47.s0",
+    "p48.s0",
+    "p48.s1",
+    "p49.s0",
+    "p49.s1",
+    "p49.s2",
+    "p49.s3",
+    "p49.s4"
+   ]
+  }
+ },
+ "catanzaro-2": {
+  "DOCX": true,
+  "failure_class": null,
+  "R1": {},
+  "holds": {
+   "final": 0,
+   "marked_M": [],
+   "rereview_done": [],
+   "released_model_rereview": [],
+   "held_again_after_rereview": []
+  },
+  "export_bypass": {
+   "exported_source_ids": 13,
+   "held_or_unreviewed_exported": []
+  },
+  "wrong_branch_25": {
+   "written": {},
+   "proposed": []
+  },
+  "writes": 13,
+  "undemonstrated": [],
+  "unreviewed_writes": [],
+  "vs_candidata_corretta": {
+   "twin_correct": 18,
+   "preserved": 9,
+   "not_written_here": {
+    "p49.cb0": "non_proposta_o_respinta",
+    "p51.cb0": "non_proposta_o_respinta",
+    "p53.cb0": "non_proposta_o_respinta",
+    "p55.cb0": "non_proposta_o_respinta",
+    "p57.cb0": "non_proposta_o_respinta",
+    "p60.cb0": "non_proposta_o_respinta",
+    "p62.cb0": "non_proposta_o_respinta",
+    "p64.cb0": "non_proposta_o_respinta",
+    "t0.r2.c1": "non_proposta_o_respinta"
+   },
+   "new_here": [
+    "t26.r0.c1",
+    "t26.r1.c1",
+    "t26.r3.c1",
+    "t26.r4.c1"
+   ]
+  }
+ }
+}

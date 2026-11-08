@@ -1,0 +1,465 @@
+{
+ "version": 5,
+ "role": "form",
+ "template_sha256": "e875fc0c711160532aafb8653236b5897ab3ee2589ba7d8e68b5f7392a7673fb",
+ "candidate_scope": "document_body",
+ "checkbox_write_supported": false,
+ "blocks": [
+  {
+   "id": "paragraph:0",
+   "paragraphs": [
+    {
+     "id": "paragraph:0",
+     "text": "DOMANDA DI PARTECIPAZIONE — PROCEDURA SINTETICA DI PROVA",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:1",
+   "paragraphs": [
+    {
+     "id": "paragraph:1",
+     "text": "(da compilare nel caso di partecipazione in forma di operatore economico singolo)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:2",
+   "paragraphs": [
+    {
+     "id": "paragraph:2",
+     "text": "Denominazione dell'operatore economico ____________________",
+     "text_with_fields": "Denominazione dell'operatore economico [[p2.s0]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:0",
+    "paragraph:1"
+   ]
+  },
+  {
+   "id": "paragraph:3",
+   "paragraphs": [
+    {
+     "id": "paragraph:3",
+     "text": "Codice fiscale ____________________ Partita Iva ____________________",
+     "text_with_fields": "Codice fiscale [[p3.s0]] Partita Iva [[p3.s1]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:0",
+    "paragraph:1",
+    "paragraph:2"
+   ]
+  },
+  {
+   "id": "paragraph:4",
+   "paragraphs": [
+    {
+     "id": "paragraph:4",
+     "text": "*** ***"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:5",
+   "paragraphs": [
+    {
+     "id": "paragraph:5",
+     "text": "(da compilare nel caso di partecipazione in forma di Raggruppamento Temporaneo non ancora costituito)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:6",
+   "paragraphs": [
+    {
+     "id": "paragraph:6",
+     "text": "Mandataria — denominazione ____________________",
+     "text_with_fields": "Mandataria — denominazione [[p6.s0]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:0",
+    "paragraph:1",
+    "paragraph:2",
+    "paragraph:3",
+    "paragraph:4",
+    "paragraph:5"
+   ]
+  },
+  {
+   "id": "paragraph:7",
+   "paragraphs": [
+    {
+     "id": "paragraph:7",
+     "text": "Codice fiscale ____________________ Partita Iva ____________________",
+     "text_with_fields": "Codice fiscale [[p7.s0]] Partita Iva [[p7.s1]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:1",
+    "paragraph:2",
+    "paragraph:3",
+    "paragraph:4",
+    "paragraph:5",
+    "paragraph:6"
+   ]
+  },
+  {
+   "id": "paragraph:8",
+   "paragraphs": [
+    {
+     "id": "paragraph:8",
+     "text": "(indicare i dati di ciascun componente del raggruppamento)",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:9",
+   "paragraphs": [
+    {
+     "id": "paragraph:9",
+     "text": "*** *** ****"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:10",
+   "paragraphs": [
+    {
+     "id": "paragraph:10",
+     "text": "Mandante — denominazione ____________________",
+     "text_with_fields": "Mandante — denominazione [[p10.s0]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:4",
+    "paragraph:5",
+    "paragraph:6",
+    "paragraph:7",
+    "paragraph:8",
+    "paragraph:9"
+   ]
+  },
+  {
+   "id": "paragraph:11",
+   "paragraphs": [
+    {
+     "id": "paragraph:11",
+     "text": "Codice fiscale ____________________ Partita Iva ____________________",
+     "text_with_fields": "Codice fiscale [[p11.s0]] Partita Iva [[p11.s1]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:5",
+    "paragraph:6",
+    "paragraph:7",
+    "paragraph:8",
+    "paragraph:9",
+    "paragraph:10"
+   ]
+  },
+  {
+   "id": "paragraph:12",
+   "paragraphs": [
+    {
+     "id": "paragraph:12",
+     "text": "*** *** ****"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:13",
+   "paragraphs": [
+    {
+     "id": "paragraph:13",
+     "text": "DICHIARA",
+     "all_text_direct_bold": true
+    }
+   ]
+  },
+  {
+   "id": "paragraph:14",
+   "paragraphs": [
+    {
+     "id": "paragraph:14",
+     "text": "[ ] di possedere in proprio i requisiti richiesti;"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:15",
+   "paragraphs": [
+    {
+     "id": "paragraph:15",
+     "text": "OPPURE"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:16",
+   "paragraphs": [
+    {
+     "id": "paragraph:16",
+     "text": "[] di avvalersi dei requisiti della seguente impresa ausiliaria:"
+    }
+   ]
+  },
+  {
+   "id": "paragraph:17",
+   "paragraphs": [
+    {
+     "id": "paragraph:17",
+     "text": "Denominazione ____________________ Codice fiscale ____________________",
+     "text_with_fields": "Denominazione [[p17.s0]] Codice fiscale [[p17.s1]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:11",
+    "paragraph:12",
+    "paragraph:13",
+    "paragraph:14",
+    "paragraph:15",
+    "paragraph:16"
+   ]
+  },
+  {
+   "id": "paragraph:18",
+   "paragraphs": [
+    {
+     "id": "paragraph:18",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "id": "paragraph:19",
+   "paragraphs": [
+    {
+     "id": "paragraph:19",
+     "text": "Luogo e data ____________________",
+     "text_with_fields": "Luogo e data [[p19.s0]]"
+    }
+   ],
+   "preceding_body_paragraph_ids": [
+    "paragraph:12",
+    "paragraph:13",
+    "paragraph:14",
+    "paragraph:15",
+    "paragraph:16",
+    "paragraph:17"
+   ]
+  }
+ ],
+ "candidates": {
+  "p10.s0": {
+   "type": "text",
+   "context_id": "paragraph:10",
+   "section_ids": [],
+   "range": [
+    25,
+    45
+   ],
+   "slot_context": {
+    "before": "Mandante — denominazione ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:10"
+   },
+   "continuation_origin_paragraph_id": "paragraph:9"
+  },
+  "p11.s0": {
+   "type": "text",
+   "context_id": "paragraph:11",
+   "section_ids": [],
+   "range": [
+    15,
+    35
+   ],
+   "slot_context": {
+    "before": "Codice fiscale ",
+    "after": " Partita Iva "
+   },
+   "location": {
+    "block_id": "paragraph:11"
+   },
+   "continuation_origin_paragraph_id": "paragraph:9"
+  },
+  "p11.s1": {
+   "type": "text",
+   "context_id": "paragraph:11",
+   "section_ids": [],
+   "range": [
+    48,
+    68
+   ],
+   "slot_context": {
+    "before": " Partita Iva ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:11"
+   },
+   "continuation_origin_paragraph_id": "paragraph:9"
+  },
+  "p17.s0": {
+   "type": "text",
+   "context_id": "paragraph:17",
+   "section_ids": [],
+   "range": [
+    14,
+    34
+   ],
+   "slot_context": {
+    "before": "Denominazione ",
+    "after": " Codice fiscale "
+   },
+   "location": {
+    "block_id": "paragraph:17"
+   },
+   "continuation_origin_paragraph_id": "paragraph:16"
+  },
+  "p17.s1": {
+   "type": "text",
+   "context_id": "paragraph:17",
+   "section_ids": [],
+   "range": [
+    50,
+    70
+   ],
+   "slot_context": {
+    "before": " Codice fiscale ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:17"
+   },
+   "continuation_origin_paragraph_id": "paragraph:16"
+  },
+  "p19.s0": {
+   "type": "text",
+   "context_id": "paragraph:19",
+   "section_ids": [],
+   "range": [
+    13,
+    33
+   ],
+   "slot_context": {
+    "before": "Luogo e data ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:19"
+   }
+  },
+  "p2.s0": {
+   "type": "text",
+   "context_id": "paragraph:2",
+   "section_ids": [],
+   "range": [
+    39,
+    59
+   ],
+   "slot_context": {
+    "before": "Denominazione dell'operatore economico ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:2"
+   },
+   "continuation_origin_paragraph_id": "paragraph:1"
+  },
+  "p3.s0": {
+   "type": "text",
+   "context_id": "paragraph:3",
+   "section_ids": [],
+   "range": [
+    15,
+    35
+   ],
+   "slot_context": {
+    "before": "Codice fiscale ",
+    "after": " Partita Iva "
+   },
+   "location": {
+    "block_id": "paragraph:3"
+   },
+   "continuation_origin_paragraph_id": "paragraph:1"
+  },
+  "p3.s1": {
+   "type": "text",
+   "context_id": "paragraph:3",
+   "section_ids": [],
+   "range": [
+    48,
+    68
+   ],
+   "slot_context": {
+    "before": " Partita Iva ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:3"
+   },
+   "continuation_origin_paragraph_id": "paragraph:1"
+  },
+  "p6.s0": {
+   "type": "text",
+   "context_id": "paragraph:6",
+   "section_ids": [],
+   "range": [
+    27,
+    47
+   ],
+   "slot_context": {
+    "before": "Mandataria — denominazione ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:6"
+   },
+   "continuation_origin_paragraph_id": "paragraph:5"
+  },
+  "p7.s0": {
+   "type": "text",
+   "context_id": "paragraph:7",
+   "section_ids": [],
+   "range": [
+    15,
+    35
+   ],
+   "slot_context": {
+    "before": "Codice fiscale ",
+    "after": " Partita Iva "
+   },
+   "location": {
+    "block_id": "paragraph:7"
+   },
+   "continuation_origin_paragraph_id": "paragraph:5"
+  },
+  "p7.s1": {
+   "type": "text",
+   "context_id": "paragraph:7",
+   "section_ids": [],
+   "range": [
+    48,
+    68
+   ],
+   "slot_context": {
+    "before": " Partita Iva ",
+    "after": ""
+   },
+   "location": {
+    "block_id": "paragraph:7"
+   },
+   "continuation_origin_paragraph_id": "paragraph:5"
+  }
+ },
+ "read_only_parts": []
+}

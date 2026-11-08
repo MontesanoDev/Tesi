@@ -1,0 +1,203 @@
+{
+  "attempts": 6,
+  "by_form": {
+    "catanzaro": {
+      "group": "storico",
+      "DOCX": "2/2",
+      "coverage_primary_by_trial": [
+        0.5484,
+        0.4839
+      ],
+      "coverage_median_primary": 0.51615,
+      "coverage_median_with_partial": 0.51615,
+      "failure_classes": {},
+      "narrator_rejections": 0,
+      "writes": 40,
+      "pending_author_review": 0,
+      "undemonstrated_author": 0,
+      "option_writes_without_authorization": 0,
+      "redundant_confirmations": 3,
+      "same_question_three_rounds": 0,
+      "gaps_with_reason": "36/36",
+      "visibility_warnings": 0,
+      "tokens_total": 1171984,
+      "cost_usd": 0.1649,
+      "elapsed_median_s": 264.6,
+      "segment_failures": 0,
+      "segment_retries": 0,
+      "source_writes_unverified": 0,
+      "http_409_derived_state": 0,
+      "reasoning_tokens": 132533,
+      "segment_wall_seconds": [
+        189.1,
+        273.5
+      ]
+    },
+    "minervino": {
+      "group": "storico",
+      "DOCX": "1/2",
+      "coverage_primary_by_trial": [
+        null,
+        0.9167
+      ],
+      "coverage_median_primary": 0.9167,
+      "coverage_median_with_partial": 0.9167,
+      "failure_classes": {
+        "DRIVER": 1
+      },
+      "narrator_rejections": 0,
+      "writes": 55,
+      "pending_author_review": 0,
+      "undemonstrated_author": 0,
+      "option_writes_without_authorization": 0,
+      "redundant_confirmations": 0,
+      "same_question_three_rounds": 0,
+      "gaps_with_reason": "9/9",
+      "visibility_warnings": 0,
+      "tokens_total": 445015,
+      "cost_usd": 0.0753,
+      "elapsed_median_s": 911.0500000000001,
+      "segment_failures": 0,
+      "segment_retries": 0,
+      "source_writes_unverified": 0,
+      "http_409_derived_state": 0,
+      "reasoning_tokens": 56939,
+      "segment_wall_seconds": [
+        null,
+        1763.9
+      ]
+    },
+    "soresa2023": {
+      "group": "nuovo",
+      "DOCX": "1/1",
+      "coverage_primary_by_trial": [
+        0.1333
+      ],
+      "coverage_median_primary": 0.1333,
+      "coverage_median_with_partial": 0.1333,
+      "failure_classes": {},
+      "narrator_rejections": 0,
+      "writes": 2,
+      "pending_author_review": 0,
+      "undemonstrated_author": 0,
+      "option_writes_without_authorization": 0,
+      "redundant_confirmations": 2,
+      "same_question_three_rounds": 0,
+      "gaps_with_reason": "14/14",
+      "visibility_warnings": 0,
+      "tokens_total": 167036,
+      "cost_usd": 0.0313,
+      "elapsed_median_s": 182.6,
+      "segment_failures": 0,
+      "segment_retries": 0,
+      "source_writes_unverified": 0,
+      "http_409_derived_state": 0,
+      "reasoning_tokens": 25692,
+      "segment_wall_seconds": [
+        155.9
+      ]
+    },
+    "cesano": {
+      "group": "storico",
+      "DOCX": "1/1",
+      "coverage_primary_by_trial": [
+        1.0
+      ],
+      "coverage_median_primary": 1.0,
+      "coverage_median_with_partial": 1.0,
+      "failure_classes": {},
+      "narrator_rejections": 0,
+      "writes": 4,
+      "pending_author_review": 0,
+      "undemonstrated_author": 0,
+      "option_writes_without_authorization": 0,
+      "redundant_confirmations": 0,
+      "same_question_three_rounds": 0,
+      "gaps_with_reason": "0/0",
+      "visibility_warnings": 0,
+      "tokens_total": 175331,
+      "cost_usd": 0.0339,
+      "elapsed_median_s": 196.9,
+      "segment_failures": 0,
+      "segment_retries": 0,
+      "source_writes_unverified": 0,
+      "http_409_derived_state": 0,
+      "reasoning_tokens": 29872,
+      "segment_wall_seconds": [
+        174.8
+      ]
+    }
+  },
+  "groups": {
+    "storico": {
+      "DOCX": "4/5",
+      "DOCX_share": 0.8
+    },
+    "nuovo": {
+      "DOCX": "1/1",
+      "DOCX_share": 1.0
+    }
+  },
+  "total": {
+    "DOCX": "5/6",
+    "DOCX_share": 0.833,
+    "tokens_total": 1959366,
+    "cost_usd": 0.3054,
+    "elapsed_median_s": 210.05,
+    "failure_classes": {
+      "DRIVER": 1
+    },
+    "redundant_confirmations": 5,
+    "redundant_by_rule": {
+      "scenario_engineering_option": 1,
+      "scenario_company_and_single_participation": 2,
+      "name_choice_in_verified_name_slot": 1,
+      "scenario_signer_representation": 1
+    },
+    "authorization_requests": 1,
+    "pending_author_review": 0,
+    "undemonstrated_author": 0,
+    "independent_review": "NON DISPONIBILE: revisione autoriale riportata a parte",
+    "not_started": [],
+    "segment_failures": 0,
+    "segment_retries": 0,
+    "analyses_with_preserved_results_after_failure": [],
+    "source_writes_unverified": 0,
+    "option_writes_without_authorization": 0,
+    "http_409": 0,
+    "http_409_derived_state": 0,
+    "reasoning_tokens": 245036,
+    "cache_hit_tokens": 886016,
+    "cache_miss_tokens": 758427
+  },
+  "monolithic_reference_not_paired": {
+    "catanzaro": {
+      "DOCX": "4/5",
+      "coverage_median_primary": 0.32255,
+      "tokens_median": 142406,
+      "cost_usd_median": 0.036435,
+      "elapsed_median_s": 163.2
+    },
+    "minervino": {
+      "DOCX": "4/5",
+      "coverage_median_primary": 0.7917,
+      "tokens_median": 212377,
+      "cost_usd_median": 0.046794,
+      "elapsed_median_s": 183.3
+    },
+    "soresa2023": {
+      "DOCX": "5/5",
+      "coverage_median_primary": 0.4667,
+      "tokens_median": 90713,
+      "cost_usd_median": 0.022129,
+      "elapsed_median_s": 125.4
+    },
+    "cesano": {
+      "DOCX": "4/5",
+      "coverage_median_primary": 1.0,
+      "tokens_median": 95479,
+      "cost_usd_median": 0.020199,
+      "elapsed_median_s": 124.0
+    }
+  }
+}

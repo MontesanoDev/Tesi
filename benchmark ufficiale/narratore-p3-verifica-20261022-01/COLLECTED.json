@@ -1,0 +1,85 @@
+{
+  "completed_collected": 8,
+  "results": [
+    {
+      "trial": "minervino-N1",
+      "document": "minervino",
+      "session_id": "ec1335f0f3e649e988b768bb02443790",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 4,
+      "global_calls": 1,
+      "arm": "N"
+    },
+    {
+      "trial": "cesano-N1",
+      "document": "cesano",
+      "session_id": "dc2a81d440d74311ad8e2b057cf60ae4",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1,
+      "arm": "N"
+    },
+    {
+      "trial": "craa-N1",
+      "document": "craa",
+      "session_id": "1bdb7511fd414ce7a4525758857badb7",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1,
+      "arm": "N"
+    },
+    {
+      "trial": "catanzaro-N1",
+      "document": "catanzaro",
+      "session_id": "00e33062bd6242f280319d17c0ed4e63",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1,
+      "arm": "N"
+    },
+    {
+      "trial": "minervino-N2",
+      "document": "minervino",
+      "session_id": "4e4cb989c4f746d0bb10997145e98183",
+      "exported": false,
+      "status": "FAILED",
+      "turns": 2,
+      "global_calls": 1,
+      "arm": "N"
+    },
+    {
+      "trial": "cesano-N2",
+      "document": "cesano",
+      "session_id": "ed20f6e60b2d4ad8ab05338afbc7891e",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1,
+      "arm": "N"
+    },
+    {
+      "trial": "craa-N2",
+      "document": "craa",
+      "session_id": "52d516a3c69447cfb7de6b33ccad348d",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 3,
+      "global_calls": 1,
+      "arm": "N"
+    },
+    {
+      "trial": "catanzaro-N2",
+      "document": "catanzaro",
+      "session_id": "5bbca23f3e7c42af97f1bdeb43607b76",
+      "exported": true,
+      "status": "GENERATED",
+      "turns": 2,
+      "global_calls": 1,
+      "arm": "N"
+    }
+  ]
+}

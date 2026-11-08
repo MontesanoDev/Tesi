@@ -30,15 +30,26 @@ Da Linux o macOS (x64/arm64), dalla radice del repository:
 - Applicazione: `http://localhost:5173`
 - API e schema OpenAPI: `http://localhost:8000/docs`
 
-Per provare la compilazione globale: nuova conversazione nel progetto,
-`@modulo.docx` e **«me lo compili?»**. Un'analisi globale, poi una sintesi e
-pochi chiarimenti nella chat: rispondere nel composer, senza checklist.
-Per esportare chiedere **«genera la bozza parziale»**. Le sessioni
-precedenti sono conservate. [Istruzioni e limiti](docs/compilation-session-v1.md).
+**Compilazione DOCX:** nuova conversazione nel progetto,
+`@modulo.docx` e **«me lo compili?»**. Il modulo viene analizzato per sezioni,
+ognuna con il FORM completo e validata separatamente; poi una sintesi e pochi
+chiarimenti nella chat: rispondere nel composer, senza checklist.
+Per esportare chiedere **«genera la bozza parziale»**. Il DOCX è una bozza da
+verificare. È l'unico percorso offerto, senza opzioni da configurare: il profilo
+delle nuove sessioni è definito in `backend/app/compilation_profile.py`. Le
+sessioni precedenti conservano il loro profilo. [Profilo, verifiche e rollback di
+emergenza](docs/integrazione-compilazione-sezioni-2026-10-24.md);
+[istruzioni e limiti](docs/compilation-session-v1.md).
 Le nuove sessioni V12 conservano anche i motivi dei campi lasciati vuoti,
 distinguendo spiegazioni respinte e omissioni; non certificano completezza.
 Possono scrivere checkbox native Word con gruppi di scelta
 validati e provenienza SOURCE/USER; [prove e limiti](docs/checkbox-2026-10-13.md).
+Dal 27 ottobre le nuove sessioni del profilo `sezioni-2026-10-25` mantengono le
+protezioni FORM e riconoscono anche le caselle testuali supportate (`[]`, `[ ]`):
+la scelta USER verificata può marcarle `[X]`. Le sessioni precedenti mantengono
+il proprio comportamento. Il supporto non copre tutte le rappresentazioni Word;
+il DOCX resta una bozza da revisionare. [Integrazione e rollback](docs/integrazione-checkbox-testuali-2026-10-27.md).
+
 
 Lo script installa automaticamente le dipendenze frontend mancanti o non valide
 con `npm ci` e sincronizza quelle backend con `uv sync --locked` prima di
@@ -78,12 +89,31 @@ dell'utente: `systemctl --user status ollama` ne verifica lo stato e
    **Usa predefinito**: la preferenza resta salvata per progetto quando si cambia
    modello. Il progetto continua a seguire il predefinito generale. Le vecchie
    impostazioni si aggiornano automaticamente all'avvio del backend.
-2. In **Ricerca nelle fonti**, scegliere FTS5 oppure Qdrant. La ricerca
-   vettoriale usa **BGE-M3** tramite Ollama; Qdrant
-   può usare un archivio locale oppure un servizio raggiungibile tramite URL.
-   Gli indirizzi dei servizi e i comandi di verifica sono nelle impostazioni
-   avanzate. Il modello di embedding è mostrato in sola lettura ed è comune
-   a tutti i progetti.
+2. I riquadri sono ordinati in **Modelli AI**, **Modelli di embedding** e
+   **Ricerca nelle fonti**. Per gli embedding si può scegliere Ollama (predefinito
+   **bge-m3**), OpenAI, Mistral o un servizio compatibile con le API embedding
+   OpenAI, con credenziali separate dalla chat. In **Ricerca nelle fonti**,
+   scegliere **Per parole chiave** (FTS5) oppure **Semantica**.
+   Le **Impostazioni avanzate** contengono l'archivio
+   Qdrant, la verifica del collegamento e la manutenzione dell'indice.
+   Per un server Qdrant esterno, indirizzo e porta sono separati come per gli
+   embedding (porta abituale `6333`). Gli avvisi sul nuovo indice compaiono in
+   **Ricerca nelle fonti**, anche quando le impostazioni avanzate sono chiuse.
+   **Modelli di embedding** permette di scegliere i modelli embedding disponibili
+   sul servizio; per un endpoint compatibile si può anche inserire il nome
+   manualmente. Indirizzo e chiave del provider sono nelle sue
+   **Impostazioni avanzate**. Per gli embedding, indirizzo e **Porta (opzionale)**
+   sono separati: ad esempio `127.0.0.1` e `11434` per Ollama locale. Si può anche
+   incollare un URL completo; HTTPS e percorsi personalizzati sono conservati.
+   **Verifica collegamento** controlla accesso ed elenco modelli con i dati inseriti,
+   senza salvare o generare embedding; non certifica una generazione riuscita.
+   **Ricarica modelli** legge l'elenco senza scaricare
+   o indicizzare nulla. **Salva impostazioni** applica entrambi i riquadri a
+   tutti i progetti. **Verifica ricerca semantica** prova modello e archivio senza
+   salvarli; **Aggiorna indice** usa le impostazioni già salvate.
+   Salvare non avvia l'indicizzazione:
+   l'indice si sincronizza alla successiva ricerca semantica o con il comando
+   esplicito. Un cambio di modello o archivio può richiedere un nuovo indice.
 3. Caricare le fonti PDF, TXT o Markdown nel progetto o nella conoscenza
    aziendale. La chat cerca nelle fonti e mostra le evidenze utilizzate.
 4. In **Moduli da compilare**, caricare uno o più originali DOCX o TXT,

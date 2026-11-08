@@ -1,0 +1,26 @@
+{
+  "trial": "cesano-predefinito-1",
+  "project_id": "micro-test-compilazione-docx-cesano-temporaneo",
+  "browser": {
+    "trial": "cesano-predefinito-1",
+    "session_id": "f9d0f5ea5d9748608afa91082dc9b4e8",
+    "downloaded": true,
+    "exportRequested": true,
+    "stopped": null,
+    "final_status": "GENERATED",
+    "elapsed_ms": 188986,
+    "tokens_charged": 163006,
+    "user_messages": 3,
+    "errors": 10,
+    "no_mocks_or_routes": true,
+    "no_selective_retry": true
+  },
+  "original_sha256_in_session": "9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795",
+  "download_identical_to_archived": true,
+  "session_id": "f9d0f5ea5d9748608afa91082dc9b4e8",
+  "status": "GENERATED",
+  "exported": true,
+  "turns": 3,
+  "artifact_path": "micro-test-compilazione-docx-cesano-temporaneo/_global_compilations/f9d0f5ea5d9748608afa91082dc9b4e8/611b016a42434be3bcfa11e3f58beb06",
+  "storage_export": "micro-test-compilazione-docx-cesano-temporaneo/_compilations/daa94f9b8eff45508e40dd0b641c038d"
+}

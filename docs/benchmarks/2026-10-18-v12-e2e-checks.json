@@ -1,0 +1,21 @@
+{
+  "protected_files": 205,
+  "changed_protected_files": [],
+  "original_sessions": 29,
+  "original_sessions_unchanged": true,
+  "original_storage_files": 273,
+  "original_storage_files_different_from_pre_run_clone": [],
+  "no_application_code_changes": true,
+  "no_commit_or_push": true,
+  "offline_counterfactual_separate": true,
+  "docx_crc_xml_positions_report_pass": true,
+  "gold_source_written_matches": 27,
+  "gold_source_written_mismatches": 0,
+  "source_gaps": 33,
+  "tables_unchanged": 4,
+  "native_controls_unchanged": 13,
+  "real_browser_no_mocks": true,
+  "original_servers_respond_200": true,
+  "isolated_servers_stopped": true,
+  "whole_software_suite_not_rerun": true
+}

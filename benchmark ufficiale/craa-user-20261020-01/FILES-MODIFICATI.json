@@ -1,0 +1,21 @@
+{
+  "modified_existing_this_phase": [
+    "backend/app/compilation_chat.py",
+    "frontend/src/pages/ProjectWorkspacePage.tsx",
+    "STATUS.md",
+    "relazioni.md"
+  ],
+  "new_repository_files": [
+    "frontend/src/chatMessageRecovery.ts",
+    "frontend/src/chatMessageRecovery.test.ts",
+    "frontend/src/pages/ProjectWorkspaceMessageRecovery.test.tsx",
+    "backend/tests/test_compilation_long_user_reply.py",
+    "backend/tests/fixtures/long-user-v1/craa-diagnosis.json",
+    "backend/tests/fixtures/long-user-v1/README.md",
+    "docs/craa-risposte-user-2026-10-20.md",
+    "docs/benchmarks/2026-10-20-craa-user-checks.json"
+  ],
+  "raw_audit_directory": "backend/data/compilation-audit/craa-user-20261020-01",
+  "public_directory": "benchmark ufficiale/craa-user-20261020-01",
+  "no_commit_push": true
+}

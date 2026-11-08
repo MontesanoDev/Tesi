@@ -1,0 +1,2939 @@
+[
+  {
+    "id": "p12.s0",
+    "type": "text",
+    "context": "paragraph:12",
+    "continuation": "paragraph:11",
+    "text": "Il sottoscritto [[p12.s0]], nato a [[p12.s1]] ([[p12.s2]]) il [[p12.s3]], residente",
+    "anchors": [
+      "Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p12.s1",
+    "type": "text",
+    "context": "paragraph:12",
+    "continuation": "paragraph:11",
+    "text": "Il sottoscritto [[p12.s0]], nato a [[p12.s1]] ([[p12.s2]]) il [[p12.s3]], residente",
+    "anchors": [
+      "Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p12.s2",
+    "type": "text",
+    "context": "paragraph:12",
+    "continuation": "paragraph:11",
+    "text": "Il sottoscritto [[p12.s0]], nato a [[p12.s1]] ([[p12.s2]]) il [[p12.s3]], residente",
+    "anchors": [
+      "Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p12.s3",
+    "type": "text",
+    "context": "paragraph:12",
+    "continuation": "paragraph:11",
+    "text": "Il sottoscritto [[p12.s0]], nato a [[p12.s1]] ([[p12.s2]]) il [[p12.s3]], residente",
+    "anchors": [
+      "Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p13.s0",
+    "type": "text",
+    "context": "paragraph:13",
+    "continuation": "paragraph:11",
+    "text": "in [[p13.s0]] ([[p13.s1]]), via [[p13.s2]], C.F. [[p13.s3]], in qualità di",
+    "anchors": [
+      "in __________________ (__), via ________________________, C.F. ______________________, in qualità di"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p13.s1",
+    "type": "text",
+    "context": "paragraph:13",
+    "continuation": "paragraph:11",
+    "text": "in [[p13.s0]] ([[p13.s1]]), via [[p13.s2]], C.F. [[p13.s3]], in qualità di",
+    "anchors": [
+      "in __________________ (__), via ________________________, C.F. ______________________, in qualità di"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p13.s2",
+    "type": "text",
+    "context": "paragraph:13",
+    "continuation": "paragraph:11",
+    "text": "in [[p13.s0]] ([[p13.s1]]), via [[p13.s2]], C.F. [[p13.s3]], in qualità di",
+    "anchors": [
+      "in __________________ (__), via ________________________, C.F. ______________________, in qualità di"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p13.s3",
+    "type": "text",
+    "context": "paragraph:13",
+    "continuation": "paragraph:11",
+    "text": "in [[p13.s0]] ([[p13.s1]]), via [[p13.s2]], C.F. [[p13.s3]], in qualità di",
+    "anchors": [
+      "in __________________ (__), via ________________________, C.F. ______________________, in qualità di"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p14.s0",
+    "type": "text",
+    "context": "paragraph:14",
+    "continuation": "paragraph:11",
+    "text": "[[p14.s0]] dell’operatore economico [[p14.s1]] con sede in",
+    "anchors": [
+      "_______________________ dell’operatore economico ___________________________________ con sede in"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p14.s1",
+    "type": "text",
+    "context": "paragraph:14",
+    "continuation": "paragraph:11",
+    "text": "[[p14.s0]] dell’operatore economico [[p14.s1]] con sede in",
+    "anchors": [
+      "_______________________ dell’operatore economico ___________________________________ con sede in"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p15.s0",
+    "type": "text",
+    "context": "paragraph:15",
+    "continuation": "paragraph:11",
+    "text": "[[p15.s0]] ([[p15.s1]]), tel. [[p15.s2]], fax [[p15.s3]], indirizzo e-mail",
+    "anchors": [
+      "_________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p15.s1",
+    "type": "text",
+    "context": "paragraph:15",
+    "continuation": "paragraph:11",
+    "text": "[[p15.s0]] ([[p15.s1]]), tel. [[p15.s2]], fax [[p15.s3]], indirizzo e-mail",
+    "anchors": [
+      "_________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p15.s2",
+    "type": "text",
+    "context": "paragraph:15",
+    "continuation": "paragraph:11",
+    "text": "[[p15.s0]] ([[p15.s1]]), tel. [[p15.s2]], fax [[p15.s3]], indirizzo e-mail",
+    "anchors": [
+      "_________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p15.s3",
+    "type": "text",
+    "context": "paragraph:15",
+    "continuation": "paragraph:11",
+    "text": "[[p15.s0]] ([[p15.s1]]), tel. [[p15.s2]], fax [[p15.s3]], indirizzo e-mail",
+    "anchors": [
+      "_________________________ (__), tel. _______________________, fax _______________, indirizzo e-mail"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p16.s0",
+    "type": "text",
+    "context": "paragraph:16",
+    "continuation": "paragraph:11",
+    "text": "[[p16.s0]] P.E.C. [[p16.s1]] Partita IVA [[p16.s2]], iscritto alla",
+    "anchors": [
+      "________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p16.s1",
+    "type": "text",
+    "context": "paragraph:16",
+    "continuation": "paragraph:11",
+    "text": "[[p16.s0]] P.E.C. [[p16.s1]] Partita IVA [[p16.s2]], iscritto alla",
+    "anchors": [
+      "________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p16.s2",
+    "type": "text",
+    "context": "paragraph:16",
+    "continuation": "paragraph:11",
+    "text": "[[p16.s0]] P.E.C. [[p16.s1]] Partita IVA [[p16.s2]], iscritto alla",
+    "anchors": [
+      "________________________ P.E.C. ________________________ Partita IVA _______________, iscritto alla"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p17.s0",
+    "type": "text",
+    "context": "paragraph:17",
+    "continuation": "paragraph:11",
+    "text": "Camera di Commercio di [[p17.s0]] al n. [[p17.s1]] / all'albo professionale della Provincia di [[p17.s2]] al n. [[p17.s3]]",
+    "anchors": [
+      "Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p17.s1",
+    "type": "text",
+    "context": "paragraph:17",
+    "continuation": "paragraph:11",
+    "text": "Camera di Commercio di [[p17.s0]] al n. [[p17.s1]] / all'albo professionale della Provincia di [[p17.s2]] al n. [[p17.s3]]",
+    "anchors": [
+      "Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p17.s2",
+    "type": "text",
+    "context": "paragraph:17",
+    "continuation": "paragraph:11",
+    "text": "Camera di Commercio di [[p17.s0]] al n. [[p17.s1]] / all'albo professionale della Provincia di [[p17.s2]] al n. [[p17.s3]]",
+    "anchors": [
+      "Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p17.s3",
+    "type": "text",
+    "context": "paragraph:17",
+    "continuation": "paragraph:11",
+    "text": "Camera di Commercio di [[p17.s0]] al n. [[p17.s1]] / all'albo professionale della Provincia di [[p17.s2]] al n. [[p17.s3]]",
+    "anchors": [
+      "Camera di Commercio di ____________________________ al n. _________ / all'albo professionale della Provincia di _________________ al n. _________"
+    ],
+    "origin_text": "DOMANDA DI ISCRIZIONE ALL’ELENCO DI PROFESSIONISTI"
+  },
+  {
+    "id": "p211.s0",
+    "type": "text",
+    "context": "paragraph:211",
+    "continuation": "paragraph:210",
+    "text": "nome e cognome [[p211.s0]]",
+    "anchors": [
+      "nome e cognome ................................................................................................................................................................."
+    ],
+    "origin_text": "- che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:"
+  },
+  {
+    "id": "p212.s0",
+    "type": "text",
+    "context": "paragraph:212",
+    "continuation": "paragraph:210",
+    "text": "qualifica professionale [[p212.s0]]C.F. [[p212.s1]] iscritto all’Ordine/Collegio professionale [[p212.s2]] sezione [[p212.s3]]",
+    "anchors": [
+      "qualifica professionale ...........................................................................C.F. ................................................................................................... iscritto all’Ordine/Collegio professionale ……………………………………................................................................ sezione ........................................"
+    ],
+    "origin_text": "- che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:"
+  },
+  {
+    "id": "p212.s1",
+    "type": "text",
+    "context": "paragraph:212",
+    "continuation": "paragraph:210",
+    "text": "qualifica professionale [[p212.s0]]C.F. [[p212.s1]] iscritto all’Ordine/Collegio professionale [[p212.s2]] sezione [[p212.s3]]",
+    "anchors": [
+      "qualifica professionale ...........................................................................C.F. ................................................................................................... iscritto all’Ordine/Collegio professionale ……………………………………................................................................ sezione ........................................"
+    ],
+    "origin_text": "- che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:"
+  },
+  {
+    "id": "p212.s2",
+    "type": "text",
+    "context": "paragraph:212",
+    "continuation": "paragraph:210",
+    "text": "qualifica professionale [[p212.s0]]C.F. [[p212.s1]] iscritto all’Ordine/Collegio professionale [[p212.s2]] sezione [[p212.s3]]",
+    "anchors": [
+      "qualifica professionale ...........................................................................C.F. ................................................................................................... iscritto all’Ordine/Collegio professionale ……………………………………................................................................ sezione ........................................"
+    ],
+    "origin_text": "- che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:"
+  },
+  {
+    "id": "p212.s3",
+    "type": "text",
+    "context": "paragraph:212",
+    "continuation": "paragraph:210",
+    "text": "qualifica professionale [[p212.s0]]C.F. [[p212.s1]] iscritto all’Ordine/Collegio professionale [[p212.s2]] sezione [[p212.s3]]",
+    "anchors": [
+      "qualifica professionale ...........................................................................C.F. ................................................................................................... iscritto all’Ordine/Collegio professionale ……………………………………................................................................ sezione ........................................"
+    ],
+    "origin_text": "- che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:"
+  },
+  {
+    "id": "p213.s0",
+    "type": "text",
+    "context": "paragraph:213",
+    "continuation": "paragraph:210",
+    "text": "della provincia di [[p213.s0]] dal [[p213.s1]] con il n. [[p213.s2]]",
+    "anchors": [
+      "della provincia di .............................................................. dal ........................ con il n. …..……"
+    ],
+    "origin_text": "- che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:"
+  },
+  {
+    "id": "p213.s1",
+    "type": "text",
+    "context": "paragraph:213",
+    "continuation": "paragraph:210",
+    "text": "della provincia di [[p213.s0]] dal [[p213.s1]] con il n. [[p213.s2]]",
+    "anchors": [
+      "della provincia di .............................................................. dal ........................ con il n. …..……"
+    ],
+    "origin_text": "- che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:"
+  },
+  {
+    "id": "p213.s2",
+    "type": "text",
+    "context": "paragraph:213",
+    "continuation": "paragraph:210",
+    "text": "della provincia di [[p213.s0]] dal [[p213.s1]] con il n. [[p213.s2]]",
+    "anchors": [
+      "della provincia di .............................................................. dal ........................ con il n. …..……"
+    ],
+    "origin_text": "- che il professionista-progettista, abilitato da meno di cinque anni all’esercizio della professione, è:"
+  },
+  {
+    "id": "p22.s0",
+    "type": "text",
+    "context": "paragraph:22",
+    "continuation": null,
+    "text": "“[[p22.s0]]” P. IVA [[p22.s1]]",
+    "anchors": [
+      "“.........................................................................................................................................” P. IVA ..........................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p22.s1",
+    "type": "text",
+    "context": "paragraph:22",
+    "continuation": null,
+    "text": "“[[p22.s0]]” P. IVA [[p22.s1]]",
+    "anchors": [
+      "“.........................................................................................................................................” P. IVA ..........................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p229.s0",
+    "type": "text",
+    "context": "paragraph:229",
+    "continuation": null,
+    "text": "[[p229.s0]]",
+    "anchors": [
+      "…..........................................................................................................................................................................................................................................................................................................................................................................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p23.s0",
+    "type": "text",
+    "context": "paragraph:23",
+    "continuation": null,
+    "text": "sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]",
+    "anchors": [
+      "sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p23.s1",
+    "type": "text",
+    "context": "paragraph:23",
+    "continuation": null,
+    "text": "sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]",
+    "anchors": [
+      "sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p23.s2",
+    "type": "text",
+    "context": "paragraph:23",
+    "continuation": null,
+    "text": "sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]",
+    "anchors": [
+      "sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p23.s3",
+    "type": "text",
+    "context": "paragraph:23",
+    "continuation": null,
+    "text": "sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]",
+    "anchors": [
+      "sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p23.s4",
+    "type": "text",
+    "context": "paragraph:23",
+    "continuation": null,
+    "text": "sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]",
+    "anchors": [
+      "sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p23.s5",
+    "type": "text",
+    "context": "paragraph:23",
+    "continuation": null,
+    "text": "sede legale in [[p23.s0]] prov. [[p23.s1]]via/piazza [[p23.s2]]n. [[p23.s3]], tel[[p23.s4]] e-mail [[p23.s5]]",
+    "anchors": [
+      "sede legale in ............................................................................................. prov. ...........................via/piazza ....................................................................n. ........., tel............................................................. e-mail …………………………………….………………...………………………….………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p230.s0",
+    "type": "text",
+    "context": "paragraph:230",
+    "continuation": null,
+    "text": "[[p230.s0]]",
+    "anchors": [
+      "…..................................................................................................................................................................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p232.s0",
+    "type": "text",
+    "context": "paragraph:232",
+    "continuation": "paragraph:231",
+    "text": "[[p232.s0]]",
+    "anchors": [
+      "…..................................................................................................................................................................................................."
+    ],
+    "origin_text": "e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:"
+  },
+  {
+    "id": "p233.s0",
+    "type": "text",
+    "context": "paragraph:233",
+    "continuation": "paragraph:231",
+    "text": "[[p233.s0]]",
+    "anchors": [
+      "…..................................................................................................................................................................................................."
+    ],
+    "origin_text": "e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:"
+  },
+  {
+    "id": "p234.s0",
+    "type": "text",
+    "context": "paragraph:234",
+    "continuation": "paragraph:231",
+    "text": "[[p234.s0]]",
+    "anchors": [
+      "…..................................................................................................................................................................................................."
+    ],
+    "origin_text": "e che il professionista incaricato dell’integrazione delle prestazioni specialistiche è:"
+  },
+  {
+    "id": "p24.s0",
+    "type": "text",
+    "context": "paragraph:24",
+    "continuation": null,
+    "text": "pec [[p24.s0]]",
+    "anchors": [
+      "pec ……………………….………..……………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p242.s0",
+    "type": "text",
+    "context": "paragraph:242",
+    "continuation": null,
+    "text": "Luogo e data, [[p242.s0]]",
+    "anchors": [
+      "Luogo e data, ______________________"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p245.s0",
+    "type": "text",
+    "context": "paragraph:245",
+    "continuation": "paragraph:244",
+    "text": "[[p245.s0]]",
+    "anchors": [
+      "____________________________"
+    ],
+    "origin_text": "Firma digitale "
+  },
+  {
+    "id": "p26.s0",
+    "type": "text",
+    "context": "paragraph:26",
+    "continuation": "paragraph:25",
+    "text": "1) nome e cognome [[p26.s0]]",
+    "anchors": [
+      "1) nome e cognome ......................................................................................................................................."
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p27.s0",
+    "type": "text",
+    "context": "paragraph:27",
+    "continuation": "paragraph:25",
+    "text": "qualifica professionale [[p27.s0]]C.F. [[p27.s1]]",
+    "anchors": [
+      "qualifica professionale .......................................................................C.F. ....................................................................."
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p27.s1",
+    "type": "text",
+    "context": "paragraph:27",
+    "continuation": "paragraph:25",
+    "text": "qualifica professionale [[p27.s0]]C.F. [[p27.s1]]",
+    "anchors": [
+      "qualifica professionale .......................................................................C.F. ....................................................................."
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p28.s0",
+    "type": "text",
+    "context": "paragraph:28",
+    "continuation": "paragraph:25",
+    "text": "iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p28.s1",
+    "type": "text",
+    "context": "paragraph:28",
+    "continuation": "paragraph:25",
+    "text": "iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p28.s2",
+    "type": "text",
+    "context": "paragraph:28",
+    "continuation": "paragraph:25",
+    "text": "iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p28.s3",
+    "type": "text",
+    "context": "paragraph:28",
+    "continuation": "paragraph:25",
+    "text": "iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p28.s4",
+    "type": "text",
+    "context": "paragraph:28",
+    "continuation": "paragraph:25",
+    "text": "iscritto all’Ordine/Collegio professionale [[p28.s0]]sezione [[p28.s1]] della provincia di [[p28.s2]] dal [[p28.s3]] con il n. [[p28.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p29.s0",
+    "type": "text",
+    "context": "paragraph:29",
+    "continuation": "paragraph:25",
+    "text": "2) nome e cognome [[p29.s0]]",
+    "anchors": [
+      "2) nome e cognome ....................................................................................................."
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p30.s0",
+    "type": "text",
+    "context": "paragraph:30",
+    "continuation": "paragraph:25",
+    "text": "￼qualifica professionale [[p30.s0]]C.F. [[p30.s1]]",
+    "anchors": [
+      "qualifica professionale .....................................................................................................C.F. ......................................."
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p30.s1",
+    "type": "text",
+    "context": "paragraph:30",
+    "continuation": "paragraph:25",
+    "text": "￼qualifica professionale [[p30.s0]]C.F. [[p30.s1]]",
+    "anchors": [
+      "qualifica professionale .....................................................................................................C.F. ......................................."
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p31.s0",
+    "type": "text",
+    "context": "paragraph:31",
+    "continuation": "paragraph:25",
+    "text": "iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p31.s1",
+    "type": "text",
+    "context": "paragraph:31",
+    "continuation": "paragraph:25",
+    "text": "iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p31.s2",
+    "type": "text",
+    "context": "paragraph:31",
+    "continuation": "paragraph:25",
+    "text": "iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p31.s3",
+    "type": "text",
+    "context": "paragraph:31",
+    "continuation": "paragraph:25",
+    "text": "iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p31.s4",
+    "type": "text",
+    "context": "paragraph:31",
+    "continuation": "paragraph:25",
+    "text": "iscritto all’Ordine/Collegio professionale [[p31.s0]]sezione [[p31.s1]] della provincia di [[p31.s2]] dal [[p31.s3]] con il n. [[p31.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ...................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": "il quale partecipa come “professionista associato” unitamente ai seguenti professionisti:"
+  },
+  {
+    "id": "p32.s0",
+    "type": "text",
+    "context": "paragraph:32",
+    "continuation": null,
+    "text": "3) nome e cognome [[p32.s0]]",
+    "anchors": [
+      "3) nome e cognome ..................................................................................................................................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p33.s0",
+    "type": "text",
+    "context": "paragraph:33",
+    "continuation": null,
+    "text": "qualifica professionale [[p33.s0]]C.F. [[p33.s1]]",
+    "anchors": [
+      "qualifica professionale .................................................................................C.F. ..............................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p33.s1",
+    "type": "text",
+    "context": "paragraph:33",
+    "continuation": null,
+    "text": "qualifica professionale [[p33.s0]]C.F. [[p33.s1]]",
+    "anchors": [
+      "qualifica professionale .................................................................................C.F. ..............................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p34.s0",
+    "type": "text",
+    "context": "paragraph:34",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p34.s1",
+    "type": "text",
+    "context": "paragraph:34",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p34.s2",
+    "type": "text",
+    "context": "paragraph:34",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p34.s3",
+    "type": "text",
+    "context": "paragraph:34",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p34.s4",
+    "type": "text",
+    "context": "paragraph:34",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale [[p34.s0]]sezione [[p34.s1]] della provincia di [[p34.s2]] dal [[p34.s3]] con il n. [[p34.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................................sezione ................................. della provincia di ................................ dal ........................ con il n. ……"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p36.s0",
+    "type": "text",
+    "context": "paragraph:36",
+    "continuation": null,
+    "text": "“[[p36.s0]]” P. IVA [[p36.s1]]",
+    "anchors": [
+      "“................................................................................................” P. IVA ......................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p36.s1",
+    "type": "text",
+    "context": "paragraph:36",
+    "continuation": null,
+    "text": "“[[p36.s0]]” P. IVA [[p36.s1]]",
+    "anchors": [
+      "“................................................................................................” P. IVA ......................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p37.s0",
+    "type": "text",
+    "context": "paragraph:37",
+    "continuation": null,
+    "text": "sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]",
+    "anchors": [
+      "sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p37.s1",
+    "type": "text",
+    "context": "paragraph:37",
+    "continuation": null,
+    "text": "sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]",
+    "anchors": [
+      "sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p37.s2",
+    "type": "text",
+    "context": "paragraph:37",
+    "continuation": null,
+    "text": "sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]",
+    "anchors": [
+      "sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p37.s3",
+    "type": "text",
+    "context": "paragraph:37",
+    "continuation": null,
+    "text": "sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]",
+    "anchors": [
+      "sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p37.s4",
+    "type": "text",
+    "context": "paragraph:37",
+    "continuation": null,
+    "text": "sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]",
+    "anchors": [
+      "sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p37.s5",
+    "type": "text",
+    "context": "paragraph:37",
+    "continuation": null,
+    "text": "sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]",
+    "anchors": [
+      "sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p37.s6",
+    "type": "text",
+    "context": "paragraph:37",
+    "continuation": null,
+    "text": "sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]",
+    "anchors": [
+      "sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p37.s7",
+    "type": "text",
+    "context": "paragraph:37",
+    "continuation": null,
+    "text": "sede legale in [[p37.s0]] prov. [[p37.s1]] via/piazza [[p37.s2]] n. [[p37.s3]], tel. [[p37.s4]]fax [[p37.s5]] e-mail [[p37.s6]] pec [[p37.s7]]",
+    "anchors": [
+      "sede legale in ................................................................................................................................................ prov. ........................... via/piazza ................................................................................................................. n. ........., tel. .....................................fax ............................ e-mail ………………...………………………..……………….………………………………… pec ……………………….………………………………………………………....………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p38.s0",
+    "type": "text",
+    "context": "paragraph:38",
+    "continuation": null,
+    "text": "il cui Rappresentante Legale è: nome e cognome [[p38.s0]]",
+    "anchors": [
+      "il cui Rappresentante Legale è: nome e cognome ......................................................................................................................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p40.s0",
+    "type": "text",
+    "context": "paragraph:40",
+    "continuation": null,
+    "text": "denominazione/ragione sociale “[[p40.s0]]”",
+    "anchors": [
+      "denominazione/ragione sociale “………………................................................................................................”"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p41.s0",
+    "type": "text",
+    "context": "paragraph:41",
+    "continuation": null,
+    "text": "P. IVA [[p41.s0]] sede legale in [[p41.s1]]",
+    "anchors": [
+      "P. IVA ................................................. sede legale in ............................................................................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p41.s1",
+    "type": "text",
+    "context": "paragraph:41",
+    "continuation": null,
+    "text": "P. IVA [[p41.s0]] sede legale in [[p41.s1]]",
+    "anchors": [
+      "P. IVA ................................................. sede legale in ............................................................................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p42.s0",
+    "type": "text",
+    "context": "paragraph:42",
+    "continuation": null,
+    "text": "prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+    "anchors": [
+      "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p42.s1",
+    "type": "text",
+    "context": "paragraph:42",
+    "continuation": null,
+    "text": "prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+    "anchors": [
+      "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p42.s2",
+    "type": "text",
+    "context": "paragraph:42",
+    "continuation": null,
+    "text": "prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+    "anchors": [
+      "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p42.s3",
+    "type": "text",
+    "context": "paragraph:42",
+    "continuation": null,
+    "text": "prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+    "anchors": [
+      "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p42.s4",
+    "type": "text",
+    "context": "paragraph:42",
+    "continuation": null,
+    "text": "prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+    "anchors": [
+      "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p42.s5",
+    "type": "text",
+    "context": "paragraph:42",
+    "continuation": null,
+    "text": "prov. [[p42.s0]] via/piazza [[p42.s1]] n. [[p42.s2]], tel [[p42.s3]] e-mail [[p42.s4]] pec [[p42.s5]] e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+    "anchors": [
+      "prov. ....................................... via/piazza .................................................................................................................... n. ..............., tel ..................... …… e-mail …………………………………………...………….…… pec …………………………………………………………………………………….………………..…………...………… e composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p43.s0",
+    "type": "text",
+    "context": "paragraph:43",
+    "continuation": null,
+    "text": "1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]",
+    "anchors": [
+      "1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p43.s1",
+    "type": "text",
+    "context": "paragraph:43",
+    "continuation": null,
+    "text": "1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]",
+    "anchors": [
+      "1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p43.s2",
+    "type": "text",
+    "context": "paragraph:43",
+    "continuation": null,
+    "text": "1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]",
+    "anchors": [
+      "1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p43.s3",
+    "type": "text",
+    "context": "paragraph:43",
+    "continuation": null,
+    "text": "1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]",
+    "anchors": [
+      "1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p43.s4",
+    "type": "text",
+    "context": "paragraph:43",
+    "continuation": null,
+    "text": "1) nome e cognome [[p43.s0]] qualifica professionale [[p43.s1]] C.F. [[p43.s2]] iscritto all’Ordine/Collegio professionale[[p43.s3]] sezione [[p43.s4]]",
+    "anchors": [
+      "1) nome e cognome ........................................................................................................................................................................................................ qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p44.s0",
+    "type": "text",
+    "context": "paragraph:44",
+    "continuation": null,
+    "text": "della provincia di [[p44.s0]] dal [[p44.s1]] con il n. [[p44.s2]]",
+    "anchors": [
+      "della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p44.s1",
+    "type": "text",
+    "context": "paragraph:44",
+    "continuation": null,
+    "text": "della provincia di [[p44.s0]] dal [[p44.s1]] con il n. [[p44.s2]]",
+    "anchors": [
+      "della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p44.s2",
+    "type": "text",
+    "context": "paragraph:44",
+    "continuation": null,
+    "text": "della provincia di [[p44.s0]] dal [[p44.s1]] con il n. [[p44.s2]]",
+    "anchors": [
+      "della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p45.s0",
+    "type": "text",
+    "context": "paragraph:45",
+    "continuation": null,
+    "text": "2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]",
+    "anchors": [
+      "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p45.s1",
+    "type": "text",
+    "context": "paragraph:45",
+    "continuation": null,
+    "text": "2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]",
+    "anchors": [
+      "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p45.s2",
+    "type": "text",
+    "context": "paragraph:45",
+    "continuation": null,
+    "text": "2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]",
+    "anchors": [
+      "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p45.s3",
+    "type": "text",
+    "context": "paragraph:45",
+    "continuation": null,
+    "text": "2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]",
+    "anchors": [
+      "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p45.s4",
+    "type": "text",
+    "context": "paragraph:45",
+    "continuation": null,
+    "text": "2) nome e cognome [[p45.s0]] qualifica professionale [[p45.s1]] C.F. [[p45.s2]] iscritto all’Ordine/Collegio professionale[[p45.s3]] sezione [[p45.s4]]",
+    "anchors": [
+      "2) nome e cognome ............................................................................................................................................................................................................... qualifica professionale .............................................................................................................. C.F. .................................................................................. iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p46.s0",
+    "type": "text",
+    "context": "paragraph:46",
+    "continuation": null,
+    "text": "della provincia di [[p46.s0]] dal [[p46.s1]] con il n. [[p46.s2]]",
+    "anchors": [
+      "della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p46.s1",
+    "type": "text",
+    "context": "paragraph:46",
+    "continuation": null,
+    "text": "della provincia di [[p46.s0]] dal [[p46.s1]] con il n. [[p46.s2]]",
+    "anchors": [
+      "della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p46.s2",
+    "type": "text",
+    "context": "paragraph:46",
+    "continuation": null,
+    "text": "della provincia di [[p46.s0]] dal [[p46.s1]] con il n. [[p46.s2]]",
+    "anchors": [
+      "della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p47.s0",
+    "type": "text",
+    "context": "paragraph:47",
+    "continuation": null,
+    "text": "3) nome e cognome [[p47.s0]]",
+    "anchors": [
+      "3) nome e cognome ......................................................................................................................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p48.s0",
+    "type": "text",
+    "context": "paragraph:48",
+    "continuation": null,
+    "text": "qualifica professionale [[p48.s0]] C.F. [[p48.s1]]",
+    "anchors": [
+      "qualifica professionale ..................................................................................... C.F. .................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p48.s1",
+    "type": "text",
+    "context": "paragraph:48",
+    "continuation": null,
+    "text": "qualifica professionale [[p48.s0]] C.F. [[p48.s1]]",
+    "anchors": [
+      "qualifica professionale ..................................................................................... C.F. .................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p49.s0",
+    "type": "text",
+    "context": "paragraph:49",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p49.s1",
+    "type": "text",
+    "context": "paragraph:49",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p49.s2",
+    "type": "text",
+    "context": "paragraph:49",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p49.s3",
+    "type": "text",
+    "context": "paragraph:49",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p49.s4",
+    "type": "text",
+    "context": "paragraph:49",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale[[p49.s0]] sezione [[p49.s1]] della provincia di [[p49.s2]] dal [[p49.s3]] con il n. [[p49.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................ della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p51.s0",
+    "type": "text",
+    "context": "paragraph:51",
+    "continuation": "paragraph:50",
+    "text": "3) nome e cognome [[p51.s0]]",
+    "anchors": [
+      "3) nome e cognome .................................................................................................................................................."
+    ],
+    "origin_text": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+  },
+  {
+    "id": "p52.s0",
+    "type": "text",
+    "context": "paragraph:52",
+    "continuation": "paragraph:50",
+    "text": "qualifica professionale [[p52.s0]] C.F. [[p52.s1]]",
+    "anchors": [
+      "qualifica professionale ..................................................................................... C.F. ........................................................"
+    ],
+    "origin_text": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+  },
+  {
+    "id": "p52.s1",
+    "type": "text",
+    "context": "paragraph:52",
+    "continuation": "paragraph:50",
+    "text": "qualifica professionale [[p52.s0]] C.F. [[p52.s1]]",
+    "anchors": [
+      "qualifica professionale ..................................................................................... C.F. ........................................................"
+    ],
+    "origin_text": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+  },
+  {
+    "id": "p53.s0",
+    "type": "text",
+    "context": "paragraph:53",
+    "continuation": "paragraph:50",
+    "text": "iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+  },
+  {
+    "id": "p53.s1",
+    "type": "text",
+    "context": "paragraph:53",
+    "continuation": "paragraph:50",
+    "text": "iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+  },
+  {
+    "id": "p53.s2",
+    "type": "text",
+    "context": "paragraph:53",
+    "continuation": "paragraph:50",
+    "text": "iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+  },
+  {
+    "id": "p53.s3",
+    "type": "text",
+    "context": "paragraph:53",
+    "continuation": "paragraph:50",
+    "text": "iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+  },
+  {
+    "id": "p53.s4",
+    "type": "text",
+    "context": "paragraph:53",
+    "continuation": "paragraph:50",
+    "text": "iscritto all’Ordine/Collegio professionale[[p53.s0]] sezione [[p53.s1]]della provincia di [[p53.s2]] dal [[p53.s3]] con il n. [[p53.s4]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale………..................................................................................................... sezione ........................................della provincia di ............................................ dal ........................ con il n. ………………..…"
+    ],
+    "origin_text": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):"
+  },
+  {
+    "id": "p55.s0",
+    "type": "text",
+    "context": "paragraph:55",
+    "continuation": null,
+    "text": "“[[p55.s0]]”, composto dai seguenti soggetti “mandanti” (riportare nominativo, qualifica professionale, C.F. di ogni soggetto nonché la specifica se trattasi di professionista singolo, rappresentante di associazione di professionisti, legale rappresentante di società o di consorzio):",
+    "anchors": [
+      "“......................................................................................................................................................................................................................”, composto dai seguenti soggetti “mandanti” (riportare nominativo, qualifica professionale, C.F. di ogni soggetto nonché la specifica se trattasi di professionista singolo, rappresentante di associazione di professionisti, legale rappresentante di società o di consorzio):"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p56.s0",
+    "type": "text",
+    "context": "paragraph:56",
+    "continuation": null,
+    "text": "1) nome e cognome [[p56.s0]]",
+    "anchors": [
+      "1) nome e cognome ..............................................................................................................................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p57.s0",
+    "type": "text",
+    "context": "paragraph:57",
+    "continuation": null,
+    "text": "qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]",
+    "anchors": [
+      "qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… ……………………………………………………………."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p57.s1",
+    "type": "text",
+    "context": "paragraph:57",
+    "continuation": null,
+    "text": "qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]",
+    "anchors": [
+      "qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… ……………………………………………………………."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p57.s2",
+    "type": "text",
+    "context": "paragraph:57",
+    "continuation": null,
+    "text": "qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]",
+    "anchors": [
+      "qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… ……………………………………………………………."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p57.s3",
+    "type": "text",
+    "context": "paragraph:57",
+    "continuation": null,
+    "text": "qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]",
+    "anchors": [
+      "qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… ……………………………………………………………."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p57.s4",
+    "type": "text",
+    "context": "paragraph:57",
+    "continuation": null,
+    "text": "qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]",
+    "anchors": [
+      "qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… ……………………………………………………………."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p57.s5",
+    "type": "text",
+    "context": "paragraph:57",
+    "continuation": null,
+    "text": "qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]",
+    "anchors": [
+      "qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… ……………………………………………………………."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p57.s6",
+    "type": "text",
+    "context": "paragraph:57",
+    "continuation": null,
+    "text": "qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]",
+    "anchors": [
+      "qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… ……………………………………………………………."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p57.s7",
+    "type": "text",
+    "context": "paragraph:57",
+    "continuation": null,
+    "text": "qualifica professionale [[p57.s0]]C.F. [[p57.s1]] iscritto all’Ordine/Collegio professionale[[p57.s2]]sezione [[p57.s3]]della provincia di [[p57.s4]] dal [[p57.s5]] con il n. [[p57.s6]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p57.s7]]",
+    "anchors": [
+      "qualifica professionale ..............................................................................................................................................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………… ……………………………………………………………."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p58.s0",
+    "type": "text",
+    "context": "paragraph:58",
+    "continuation": null,
+    "text": "2) nome e cognome [[p58.s0]]qualifica professionale[[p58.s1]]",
+    "anchors": [
+      "2) nome e cognome ........................................................................................................................................................................................qualifica professionale................................................................................................................................................................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p58.s1",
+    "type": "text",
+    "context": "paragraph:58",
+    "continuation": null,
+    "text": "2) nome e cognome [[p58.s0]]qualifica professionale[[p58.s1]]",
+    "anchors": [
+      "2) nome e cognome ........................................................................................................................................................................................qualifica professionale................................................................................................................................................................................"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p59.s0",
+    "type": "text",
+    "context": "paragraph:59",
+    "continuation": null,
+    "text": "C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]",
+    "anchors": [
+      "C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p59.s1",
+    "type": "text",
+    "context": "paragraph:59",
+    "continuation": null,
+    "text": "C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]",
+    "anchors": [
+      "C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p59.s2",
+    "type": "text",
+    "context": "paragraph:59",
+    "continuation": null,
+    "text": "C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]",
+    "anchors": [
+      "C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p59.s3",
+    "type": "text",
+    "context": "paragraph:59",
+    "continuation": null,
+    "text": "C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]",
+    "anchors": [
+      "C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p59.s4",
+    "type": "text",
+    "context": "paragraph:59",
+    "continuation": null,
+    "text": "C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]",
+    "anchors": [
+      "C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p59.s5",
+    "type": "text",
+    "context": "paragraph:59",
+    "continuation": null,
+    "text": "C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]",
+    "anchors": [
+      "C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p59.s6",
+    "type": "text",
+    "context": "paragraph:59",
+    "continuation": null,
+    "text": "C.F. [[p59.s0]] iscritto all’Ordine/Collegio professionale[[p59.s1]]sezione [[p59.s2]]della provincia di [[p59.s3]] dal [[p59.s4]] con il n. [[p59.s5]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p59.s6]]",
+    "anchors": [
+      "C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)………………………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p60.s0",
+    "type": "text",
+    "context": "paragraph:60",
+    "continuation": null,
+    "text": "3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]",
+    "anchors": [
+      "3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p60.s1",
+    "type": "text",
+    "context": "paragraph:60",
+    "continuation": null,
+    "text": "3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]",
+    "anchors": [
+      "3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p60.s2",
+    "type": "text",
+    "context": "paragraph:60",
+    "continuation": null,
+    "text": "3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]",
+    "anchors": [
+      "3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p60.s3",
+    "type": "text",
+    "context": "paragraph:60",
+    "continuation": null,
+    "text": "3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]",
+    "anchors": [
+      "3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p60.s4",
+    "type": "text",
+    "context": "paragraph:60",
+    "continuation": null,
+    "text": "3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]",
+    "anchors": [
+      "3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p60.s5",
+    "type": "text",
+    "context": "paragraph:60",
+    "continuation": null,
+    "text": "3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]",
+    "anchors": [
+      "3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p60.s6",
+    "type": "text",
+    "context": "paragraph:60",
+    "continuation": null,
+    "text": "3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]",
+    "anchors": [
+      "3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p60.s7",
+    "type": "text",
+    "context": "paragraph:60",
+    "continuation": null,
+    "text": "3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]",
+    "anchors": [
+      "3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p60.s8",
+    "type": "text",
+    "context": "paragraph:60",
+    "continuation": null,
+    "text": "3) nome e cognome [[p60.s0]]qualifica professionale [[p60.s1]]C.F. [[p60.s2]] iscritto all’Ordine/Collegio professionale[[p60.s3]]sezione [[p60.s4]]della provincia di [[p60.s5]] dal [[p60.s6]] con il n. [[p60.s7]] specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)[[p60.s8]]",
+    "anchors": [
+      "3) nome e cognome ..............................................................................................................................................................................................................qualifica professionale ..............................C.F. ..................................................................................... iscritto all’Ordine/Collegio professionale.............................................................................sezione ........................................della provincia di .............................................................. dal ........................................... con il n. ……… specifica del “mandante” (indicare se professionista singolo / rappresentante di associazione di professionisti/legale rappresentante di società o di consorzio)…………………………………………………………………………………………"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p62.s0",
+    "type": "text",
+    "context": "paragraph:62",
+    "continuation": null,
+    "text": "“[[p62.s0]]”",
+    "anchors": [
+      "“…………………………………………………………………………………………………………………………………………………………………………………..……………”"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p63.s0",
+    "type": "text",
+    "context": "paragraph:63",
+    "continuation": null,
+    "text": "il cui Capogruppo è: nome e cognome [[p63.s0]]",
+    "anchors": [
+      "il cui Capogruppo è: nome e cognome ....................................................................................................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p65.s0",
+    "type": "text",
+    "context": "paragraph:65",
+    "continuation": null,
+    "text": "￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica",
+    "anchors": [
+      "“...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p65.s1",
+    "type": "text",
+    "context": "paragraph:65",
+    "continuation": null,
+    "text": "￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica",
+    "anchors": [
+      "“...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p65.s2",
+    "type": "text",
+    "context": "paragraph:65",
+    "continuation": null,
+    "text": "￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica",
+    "anchors": [
+      "“...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p65.s3",
+    "type": "text",
+    "context": "paragraph:65",
+    "continuation": null,
+    "text": "￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica",
+    "anchors": [
+      "“...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p65.s4",
+    "type": "text",
+    "context": "paragraph:65",
+    "continuation": null,
+    "text": "￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica",
+    "anchors": [
+      "“...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p65.s5",
+    "type": "text",
+    "context": "paragraph:65",
+    "continuation": null,
+    "text": "￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica",
+    "anchors": [
+      "“...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p65.s6",
+    "type": "text",
+    "context": "paragraph:65",
+    "continuation": null,
+    "text": "￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica",
+    "anchors": [
+      "“...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p65.s7",
+    "type": "text",
+    "context": "paragraph:65",
+    "continuation": null,
+    "text": "￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica",
+    "anchors": [
+      "“...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p65.s8",
+    "type": "text",
+    "context": "paragraph:65",
+    "continuation": null,
+    "text": "￼“[[p65.s0]]” P. IVA [[p65.s1]] sede legale in [[p65.s2]]prov. [[p65.s3]]via/piazza [[p65.s4]] n. [[p65.s5]] tel. [[p65.s6]] e-mail[[p65.s7]]PEC [[p65.s8]] e composto da (riportare nominativo, qualifica",
+    "anchors": [
+      "“...................................................................................................................................................................................................................................................” P. IVA ................................................. sede legale in ..............................................................................................................................prov. ……………. .via/piazza .......................................................................................................... n. ........... tel. .......................................... e-mail…...………………….………………………………………………………………..PEC ……………………………….………….….. e composto da (riportare nominativo, qualifica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p67.s0",
+    "type": "text",
+    "context": "paragraph:67",
+    "continuation": "paragraph:66",
+    "text": "1) nome e cognome [[p67.s0]]qualifica professionale [[p67.s1]]C.F. [[p67.s2]]",
+    "anchors": [
+      "1) nome e cognome .......................................................................................................................................................qualifica professionale ....................................................................................................C.F. ..........................................................................................."
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p67.s1",
+    "type": "text",
+    "context": "paragraph:67",
+    "continuation": "paragraph:66",
+    "text": "1) nome e cognome [[p67.s0]]qualifica professionale [[p67.s1]]C.F. [[p67.s2]]",
+    "anchors": [
+      "1) nome e cognome .......................................................................................................................................................qualifica professionale ....................................................................................................C.F. ..........................................................................................."
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p67.s2",
+    "type": "text",
+    "context": "paragraph:67",
+    "continuation": "paragraph:66",
+    "text": "1) nome e cognome [[p67.s0]]qualifica professionale [[p67.s1]]C.F. [[p67.s2]]",
+    "anchors": [
+      "1) nome e cognome .......................................................................................................................................................qualifica professionale ....................................................................................................C.F. ..........................................................................................."
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p68.s0",
+    "type": "text",
+    "context": "paragraph:68",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p68.s1",
+    "type": "text",
+    "context": "paragraph:68",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p68.s2",
+    "type": "text",
+    "context": "paragraph:68",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p68.s3",
+    "type": "text",
+    "context": "paragraph:68",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p68.s4",
+    "type": "text",
+    "context": "paragraph:68",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p68.s5",
+    "type": "text",
+    "context": "paragraph:68",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p68.s0]] sezione [[p68.s1]]della provincia di [[p68.s2]] dal [[p68.s3]] con il n. [[p68.s4]] legale rappresentante della società consorziata [[p68.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ........................................................................ sezione ..................................della provincia di ......................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p69.s0",
+    "type": "text",
+    "context": "paragraph:69",
+    "continuation": "paragraph:66",
+    "text": "2) nome e cognome [[p69.s0]]",
+    "anchors": [
+      "2) nome e cognome ..........................................................................................................................................................."
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p70.s0",
+    "type": "text",
+    "context": "paragraph:70",
+    "continuation": "paragraph:66",
+    "text": "qualifica professionale [[p70.s0]]C.F. [[p70.s1]]",
+    "anchors": [
+      "qualifica professionale ..........................................................................................C.F. ........................................................"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p70.s1",
+    "type": "text",
+    "context": "paragraph:70",
+    "continuation": "paragraph:66",
+    "text": "qualifica professionale [[p70.s0]]C.F. [[p70.s1]]",
+    "anchors": [
+      "qualifica professionale ..........................................................................................C.F. ........................................................"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p71.s0",
+    "type": "text",
+    "context": "paragraph:71",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p71.s1",
+    "type": "text",
+    "context": "paragraph:71",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p71.s2",
+    "type": "text",
+    "context": "paragraph:71",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p71.s3",
+    "type": "text",
+    "context": "paragraph:71",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p71.s4",
+    "type": "text",
+    "context": "paragraph:71",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p71.s5",
+    "type": "text",
+    "context": "paragraph:71",
+    "continuation": "paragraph:66",
+    "text": "iscritto all’Ordine/Collegio professionale [[p71.s0]] sezione [[p71.s1]]della provincia di [[p71.s2]] dal [[p71.s3]] con il n. [[p71.s4]] legale rappresentante della società consorziata [[p71.s5]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ............................................................................................. sezione ..........................................della provincia di ....................................................................................................................... dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p72.s0",
+    "type": "text",
+    "context": "paragraph:72",
+    "continuation": "paragraph:66",
+    "text": "3) nome e cognome [[p72.s0]]",
+    "anchors": [
+      "3) nome e cognome ................................................................................................................................................................."
+    ],
+    "origin_text": "professionale e C.F. di ogni legale rappresentante della/e società consorziata/e):"
+  },
+  {
+    "id": "p73.s0",
+    "type": "text",
+    "context": "paragraph:73",
+    "continuation": null,
+    "text": "qualifica professionale [[p73.s0]]C.F. [[p73.s1]]",
+    "anchors": [
+      "qualifica professionale ....................................................................................................C.F. ................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p73.s1",
+    "type": "text",
+    "context": "paragraph:73",
+    "continuation": null,
+    "text": "qualifica professionale [[p73.s0]]C.F. [[p73.s1]]",
+    "anchors": [
+      "qualifica professionale ....................................................................................................C.F. ................................................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p74.s0",
+    "type": "text",
+    "context": "paragraph:74",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale [[p74.s0]] sezione [[p74.s1]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ................................................................................................. sezione ............................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p74.s1",
+    "type": "text",
+    "context": "paragraph:74",
+    "continuation": null,
+    "text": "iscritto all’Ordine/Collegio professionale [[p74.s0]] sezione [[p74.s1]]",
+    "anchors": [
+      "iscritto all’Ordine/Collegio professionale ................................................................................................. sezione ............................."
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p75.s0",
+    "type": "text",
+    "context": "paragraph:75",
+    "continuation": null,
+    "text": "della provincia di [[p75.s0]] dal [[p75.s1]] con il n. [[p75.s2]] legale rappresentante della società consorziata [[p75.s3]]",
+    "anchors": [
+      "della provincia di ............................................................................................................................ dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p75.s1",
+    "type": "text",
+    "context": "paragraph:75",
+    "continuation": null,
+    "text": "della provincia di [[p75.s0]] dal [[p75.s1]] con il n. [[p75.s2]] legale rappresentante della società consorziata [[p75.s3]]",
+    "anchors": [
+      "della provincia di ............................................................................................................................ dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p75.s2",
+    "type": "text",
+    "context": "paragraph:75",
+    "continuation": null,
+    "text": "della provincia di [[p75.s0]] dal [[p75.s1]] con il n. [[p75.s2]] legale rappresentante della società consorziata [[p75.s3]]",
+    "anchors": [
+      "della provincia di ............................................................................................................................ dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p75.s3",
+    "type": "text",
+    "context": "paragraph:75",
+    "continuation": null,
+    "text": "della provincia di [[p75.s0]] dal [[p75.s1]] con il n. [[p75.s2]] legale rappresentante della società consorziata [[p75.s3]]",
+    "anchors": [
+      "della provincia di ............................................................................................................................ dal ............................... con il n. …………… legale rappresentante della società consorziata …………………………………………………………………………………………………………….……"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r1.c1",
+    "type": "text",
+    "context": "t0.r1.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia commerciale"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r1.c2",
+    "type": "text",
+    "context": "t0.r1.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia commerciale"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r1.c3",
+    "type": "text",
+    "context": "t0.r1.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia commerciale"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r10.c1",
+    "type": "text",
+    "context": "t0.r10.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti elettrici"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r10.c2",
+    "type": "text",
+    "context": "t0.r10.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti elettrici"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r10.c3",
+    "type": "text",
+    "context": "t0.r10.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti elettrici"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r11.c1",
+    "type": "text",
+    "context": "t0.r11.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti di depurazione o discariche"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r11.c2",
+    "type": "text",
+    "context": "t0.r11.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti di depurazione o discariche"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r11.c3",
+    "type": "text",
+    "context": "t0.r11.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti di depurazione o discariche"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r12.c1",
+    "type": "text",
+    "context": "t0.r12.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Opere elettriche per reti"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r12.c2",
+    "type": "text",
+    "context": "t0.r12.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Opere elettriche per reti"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r12.c3",
+    "type": "text",
+    "context": "t0.r12.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Opere elettriche per reti"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r13.c1",
+    "type": "text",
+    "context": "t0.r13.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Opere stradali"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r13.c2",
+    "type": "text",
+    "context": "t0.r13.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Opere stradali"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r13.c3",
+    "type": "text",
+    "context": "t0.r13.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Opere stradali"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r14.c1",
+    "type": "text",
+    "context": "t0.r14.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Opere idrauliche"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r14.c2",
+    "type": "text",
+    "context": "t0.r14.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Opere idrauliche"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r14.c3",
+    "type": "text",
+    "context": "t0.r14.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Opere idrauliche"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r15.c1",
+    "type": "text",
+    "context": "t0.r15.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Sistemi e reti di telecomunicazioni"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r15.c2",
+    "type": "text",
+    "context": "t0.r15.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Sistemi e reti di telecomunicazioni"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r15.c3",
+    "type": "text",
+    "context": "t0.r15.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Sistemi e reti di telecomunicazioni"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r16.c1",
+    "type": "text",
+    "context": "t0.r16.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Sistemi e reti di telecomunicazioni"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r16.c2",
+    "type": "text",
+    "context": "t0.r16.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Sistemi e reti di telecomunicazioni"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r16.c3",
+    "type": "text",
+    "context": "t0.r16.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Sistemi e reti di telecomunicazioni"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r17.c1",
+    "type": "text",
+    "context": "t0.r17.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Pianificazione"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r17.c2",
+    "type": "text",
+    "context": "t0.r17.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Pianificazione"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r17.c3",
+    "type": "text",
+    "context": "t0.r17.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Pianificazione"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r2.c1",
+    "type": "text",
+    "context": "t0.r2.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia residenziale"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r2.c2",
+    "type": "text",
+    "context": "t0.r2.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia residenziale"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r2.c3",
+    "type": "text",
+    "context": "t0.r2.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia residenziale"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r3.c1",
+    "type": "text",
+    "context": "t0.r3.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia scolastica e sanitaria"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r3.c2",
+    "type": "text",
+    "context": "t0.r3.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia scolastica e sanitaria"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r3.c3",
+    "type": "text",
+    "context": "t0.r3.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia scolastica e sanitaria"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r4.c1",
+    "type": "text",
+    "context": "t0.r4.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti sportivi, piscine, cimiteri ed edifici di culto"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r4.c2",
+    "type": "text",
+    "context": "t0.r4.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti sportivi, piscine, cimiteri ed edifici di culto"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r4.c3",
+    "type": "text",
+    "context": "t0.r4.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti sportivi, piscine, cimiteri ed edifici di culto"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r5.c1",
+    "type": "text",
+    "context": "t0.r5.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Aree esterne e opere a verde"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r5.c2",
+    "type": "text",
+    "context": "t0.r5.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Aree esterne e opere a verde"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r5.c3",
+    "type": "text",
+    "context": "t0.r5.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Aree esterne e opere a verde"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r6.c1",
+    "type": "text",
+    "context": "t0.r6.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Interventi su beni immobili di interesse storico- artistico"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r6.c2",
+    "type": "text",
+    "context": "t0.r6.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Interventi su beni immobili di interesse storico- artistico"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r6.c3",
+    "type": "text",
+    "context": "t0.r6.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Interventi su beni immobili di interesse storico- artistico"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r7.c1",
+    "type": "text",
+    "context": "t0.r7.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia – sedi amministrative"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r7.c2",
+    "type": "text",
+    "context": "t0.r7.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia – sedi amministrative"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r7.c3",
+    "type": "text",
+    "context": "t0.r7.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Edilizia – sedi amministrative"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r8.c1",
+    "type": "text",
+    "context": "t0.r8.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Strutture"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r8.c2",
+    "type": "text",
+    "context": "t0.r8.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Strutture"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r8.c3",
+    "type": "text",
+    "context": "t0.r8.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Strutture"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r9.c1",
+    "type": "text",
+    "context": "t0.r9.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti meccanici"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r9.c2",
+    "type": "text",
+    "context": "t0.r9.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti meccanici"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t0.r9.c3",
+    "type": "text",
+    "context": "t0.r9.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Impianti meccanici"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t1.r1.c1",
+    "type": "text",
+    "context": "t1.r1.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "CSP/CSE"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t1.r1.c2",
+    "type": "text",
+    "context": "t1.r1.c2",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "CSP/CSE"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t1.r1.c3",
+    "type": "text",
+    "context": "t1.r1.c3",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "CSP/CSE"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t2.r1.c1",
+    "type": "text",
+    "context": "t2.r1.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Collaudo statico"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t2.r2.c1",
+    "type": "text",
+    "context": "t2.r2.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Collaudo tecnico amministrativo"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t2.r3.c1",
+    "type": "text",
+    "context": "t2.r3.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "Collaudo funzionale - impiantistico"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t3.r1.c1",
+    "type": "text",
+    "context": "t3.r1.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "redazione pratiche prevenzione incendi"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t3.r10.c1",
+    "type": "text",
+    "context": "t3.r10.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "redazione di certificato di prestazione energetica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t3.r2.c1",
+    "type": "text",
+    "context": "t3.r2.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "visure catastali, rilievi, pratiche relative ad accatastamenti di fabbricati e frazionamenti"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t3.r3.c1",
+    "type": "text",
+    "context": "t3.r3.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "perizie di stima"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t3.r4.c1",
+    "type": "text",
+    "context": "t3.r4.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "relazioni geologiche e sismiche"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t3.r5.c1",
+    "type": "text",
+    "context": "t3.r5.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "indagini geologiche / sismiche e relazioni geologiche"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t3.r6.c1",
+    "type": "text",
+    "context": "t3.r6.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "supporto agli atti di pianificazione comunque denominati"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t3.r7.c1",
+    "type": "text",
+    "context": "t3.r7.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "servizi tecnici di competenza di restauratori"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t3.r8.c1",
+    "type": "text",
+    "context": "t3.r8.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "servizi di assistenza archeologica"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "t3.r9.c1",
+    "type": "text",
+    "context": "t3.r9.c1",
+    "continuation": null,
+    "text": "",
+    "anchors": [
+      "servizi di competenza di agronomi e dottori forestali"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p20.cb0",
+    "type": "checkbox",
+    "context": "paragraph:20",
+    "continuation": null,
+    "text": "☐ Libero professionista singolo",
+    "anchors": [
+      "☐ Libero professionista singolo"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p21.cb0",
+    "type": "checkbox",
+    "context": "paragraph:21",
+    "continuation": null,
+    "text": "☐ Legale rappresentante dello studio professionale associato avente la seguente denominazione",
+    "anchors": [
+      "☐ Legale rappresentante dello studio professionale associato avente la seguente denominazione"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p35.cb0",
+    "type": "checkbox",
+    "context": "paragraph:35",
+    "continuation": null,
+    "text": "☐ Professionista appartenete allo studio professionale associato avente la seguente denominazione",
+    "anchors": [
+      "☐ Professionista appartenete allo studio professionale associato avente la seguente denominazione"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p39.cb0",
+    "type": "checkbox",
+    "context": "paragraph:39",
+    "continuation": null,
+    "text": "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente",
+    "anchors": [
+      "☐ Legale rappresentante di società di professionisti (art. 66, comma 1, lett. b D. Lgs. n. 36/2023) o di società di ingegneria (art.66, comma 1, lett. c D.lgs. n. 36/2023.) avente la seguente"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p54.cb0",
+    "type": "checkbox",
+    "context": "paragraph:54",
+    "continuation": null,
+    "text": "☐ Capogruppo di raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione:",
+    "anchors": [
+      "☐ Capogruppo di raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione:"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p61.cb0",
+    "type": "checkbox",
+    "context": "paragraph:61",
+    "continuation": null,
+    "text": "☐ Mandante del raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione",
+    "anchors": [
+      "☐ Mandante del raggruppamento temporaneo di professionisti (R.T.P. di cui all’art. 66, comma 1, lett. f, D.lgs. n.36/2023) che, ai fini dell’inserimento nell’elenco, assume la seguente denominazione"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p64.cb0",
+    "type": "checkbox",
+    "context": "paragraph:64",
+    "continuation": null,
+    "text": "☐ Legale rappresentante di consorzio stabile di società di professionisti e di società di ingegneria (art.66, comma 1, lett. g, D.lgs. n.36/2023) denominato",
+    "anchors": [
+      "☐ Legale rappresentante di consorzio stabile di società di professionisti e di società di ingegneria (art.66, comma 1, lett. g, D.lgs. n.36/2023) denominato"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p203.cb0",
+    "type": "checkbox",
+    "context": "paragraph:203",
+    "continuation": null,
+    "text": "☐ in caso di PROFESSIONISTI ASSOCIATI",
+    "anchors": [
+      "☐ in caso di PROFESSIONISTI ASSOCIATI"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p206.cb0",
+    "type": "checkbox",
+    "context": "paragraph:206",
+    "continuation": null,
+    "text": "☐ in caso di RTP",
+    "anchors": [
+      "☐ in caso di RTP"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p214.cb0",
+    "type": "checkbox",
+    "context": "paragraph:214",
+    "continuation": null,
+    "text": "☐ in caso di RTP COSTITUTI: ALLEGANO il mandato collettivo o l’atto costitutivo (risultante da scrittura privata autenticata) e la relativa procura speciale conferita dai soggetti raggruppati al legale rappresentante del soggetto capogruppo-mandatario;",
+    "anchors": [
+      "☐ in caso di RTP COSTITUTI: ALLEGANO il mandato collettivo o l’atto costitutivo (risultante da scrittura privata autenticata) e la relativa procura speciale conferita dai soggetti raggruppati al legale rappresentante del soggetto capogruppo-mandatario;"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p215.cb0",
+    "type": "checkbox",
+    "context": "paragraph:215",
+    "continuation": null,
+    "text": "☐ in caso di RTP NON ANCORA COSTITUTI: i soggetti che intendono raggrupparsi SI IMPEGNANO a conferire, in caso di affidamento di incarico, mandato collettivo speciale con rappresentanza ad uno dei componenti il raggruppamento;",
+    "anchors": [
+      "☐ in caso di RTP NON ANCORA COSTITUTI: i soggetti che intendono raggrupparsi SI IMPEGNANO a conferire, in caso di affidamento di incarico, mandato collettivo speciale con rappresentanza ad uno dei componenti il raggruppamento;"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p217.cb0",
+    "type": "checkbox",
+    "context": "paragraph:217",
+    "continuation": null,
+    "text": "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:",
+    "anchors": [
+      "☐ che i fatti, stati e qualità riportati nei successivi paragrafi corrispondono a verità:"
+    ],
+    "origin_text": ""
+  },
+  {
+    "id": "p228.cb0",
+    "type": "checkbox",
+    "context": "paragraph:228",
+    "continuation": null,
+    "text": "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:",
+    "anchors": [
+      "☐ che in caso di conferimento dell'incarico, il/i professionista/i che eseguirà/eseguiranno la prestazione è/sono:"
+    ],
+    "origin_text": ""
+  }
+]

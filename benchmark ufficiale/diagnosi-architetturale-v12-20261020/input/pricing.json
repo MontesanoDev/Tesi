@@ -1,0 +1,20 @@
+{
+  "retrieved_UTC": "2026-10-20T15:11:57.953732+00:00",
+  "source": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "published_model_version": "DeepSeek-V4.1-Flash-1017",
+  "off_peak_USD_per_million": {
+    "cache_hit": 0.003,
+    "cache_miss": 0.15,
+    "output": 0.6
+  },
+  "peak_USD_per_million": {
+    "cache_hit": 0.006,
+    "cache_miss": 0.3,
+    "output": 1.2
+  },
+  "peak_UTC": "Mon-Fri 01:00-04:00 and 06:00-10:00 except Chinese public holidays",
+  "not_account_invoice": true,
+  "tokenizer_source": "https://cdn.deepseek.com/api-docs/deepseek_v4_tokenizer.zip",
+  "tokenizer_version_SHA256": "e7310d1dafe0a86d8a5629fe78a7c763760f651db9b8682718a1781dcd6fe495",
+  "component_tokens_offline_not_provider_usage": true
+}

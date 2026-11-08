@@ -1,0 +1,12 @@
+{
+  "model": "deepseek-flash",
+  "temperature": 0.1,
+  "max_tokens": 49152,
+  "thinking": {
+    "type": "enabled"
+  },
+  "response_format": {
+    "type": "json_object"
+  },
+  "reasoning_effort": "low"
+}

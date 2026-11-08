@@ -1,0 +1,105 @@
+{
+  "session_id": "b7d40c2449ad421580fe267547ac7964",
+  "raw_facts": 9,
+  "raw_value_proposals": 9,
+  "grounded_facts": 9,
+  "grounded_value_proposals": 17,
+  "applicable_grounded": 17,
+  "reviewed_current": 17,
+  "written_count": 17,
+  "SOURCE_written": 17,
+  "USER_written": 0,
+  "checkbox_values": {},
+  "procedural_blocked": [],
+  "final_holds": [],
+  "SOURCE_reference_positions": 17,
+  "reference_omitted": [],
+  "UNKNOWN_conditions": [
+    "c_prof_singolo",
+    "c_studio_assoc",
+    "c_soc_prof",
+    "c_altro_prestatore"
+  ],
+  "calls": 7,
+  "call_kinds": {
+    "router": 3,
+    "global": 1,
+    "narrator": 2,
+    "guard": 1
+  },
+  "global_calls": 1,
+  "usage": {
+    "prompt_tokens": 76885,
+    "completion_tokens": 18138,
+    "total_tokens": 95023,
+    "prompt_cache_hit_tokens": 22912,
+    "prompt_cache_miss_tokens": 53973
+  },
+  "summed_provider_seconds": 79.89365757299993,
+  "global_seconds": 70.75881978500001,
+  "estimated_USD": 0.019047486,
+  "cost_not_invoice": true,
+  "provider_errors": 0,
+  "all_stop": true,
+  "model": [
+    "deepseek-flash"
+  ],
+  "fingerprints": [
+    "e72d3c7f663d3e1383b00b3884cb4501"
+  ],
+  "new_global_no_reuse": true,
+  "target_signatory_fields": [
+    "p12.s0",
+    "p12.s1",
+    "p12.s2",
+    "p12.s3",
+    "p12.s4",
+    "p12.s5",
+    "p12.s6",
+    "p12.s7"
+  ],
+  "target_signatory_written": [
+    "p12.s0",
+    "p12.s1",
+    "p12.s2",
+    "p12.s3",
+    "p12.s4",
+    "p12.s5",
+    "p12.s6",
+    "p12.s7"
+  ],
+  "no_correction_during_trial": true,
+  "final_quality_verdict": "PASS circoscritto:8/8 generalità Trapani recuperate;17 SOURCE corrette; bozza parziale con limiti dichiarati",
+  "initial_grounded_value_proposals": 9,
+  "reused_personal_fields": 8,
+  "initial_MODEL_omitted_personal_fields": 8,
+  "grounded_facts_scope": "9 fatti globali MODEL;8 proprietà personali hanno prove locali distinte in source_reuse",
+  "correct_SOURCE_values": 17,
+  "complete_SOURCE_properties": 17,
+  "partial_SOURCE_properties": 0,
+  "unsupported_writes_detected": 0,
+  "wrong_subject_or_section_detected": 0,
+  "new_personal_written": 8,
+  "USER_reply_rounds": 1,
+  "actual_questions": 3,
+  "initial_selection_confirmation_asked_again": 1,
+  "source_values_asked_again": 0,
+  "PDF_pages": 5,
+  "PDF_readable_values": 17,
+  "PDF_outside_words": 0,
+  "visual_pages_checked": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "residuals": [
+    "Luogo/data rinviati; firma vuota; dati CIG/Ordine/MEPA/Albo non acquisiti in questa conversazione",
+    "La conferma identità ripete la scelta iniziale; condizioni MODEL non forzate",
+    "Quattro rami alternativi restano UNKNOWN e privi di nuove scritture",
+    "Consenso PEC non richiesto perché il MODEL non propone quella dichiarazione; resta vuota",
+    "Prestampato a contiguo alla nascita: aLecce, difetto cosmetico conservato",
+    "Dichiarazioni prestampate originali non sono attestazioni verificate dal benchmark; bozza non pronta per invio"
+  ],
+  "comparison_with_first_trial": "Stesse8 generalità; indirizzo aziendale ora completo di172/C per variazione MODEL, non per la correzione del riuso"
+}

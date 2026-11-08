@@ -1,0 +1,23 @@
+{
+  "document": "minervino",
+  "synthetic_authorial_scenario": true,
+  "authored_for_this_new_procedure": true,
+  "source_as_of": "2026-10-15",
+  "firmatario": "Leonardo Montemurro",
+  "company": "Mapi Ingegneria S.r.l.",
+  "participation": "Società di ingegneria, in forma singola; nessun raggruppamento, consorzio o altra forma contemporanea per questa pratica",
+  "UNKNOWN": [
+    "preferenze categorie/fasce",
+    "consensi PEC e altre dichiarazioni procedurali",
+    "attestazioni e documenti realmente allegati",
+    "professionisti esecutori designati e integrazione prestazioni",
+    "ulteriori poteri o procure",
+    "luogo/data/firma"
+  ],
+  "maximum_reply_rounds": 4,
+  "maximum_export_requests": 1,
+  "reply_policy": "Preregistered deterministic USER policy in user_policy.cjs; only active slots; company/single participation/chosen signer choices. No invented factual values or attestations. Uncertain or bundled conditions are deferred. No rerun or replacement of failed attempts.",
+  "recorded_request": "Compila una bozza parziale della domanda Minervino per Mapi Ingegneria S.r.l. Per questa specifica procedura scelgo la partecipazione singola soltanto come società di ingegneria, senza raggruppamenti o consorzi e senza partecipazioni in altre forme. Il firmatario scelto per questa domanda è Leonardo Montemurro, rappresentante legale: dati, ruolo e poteri devono comunque essere verificati nelle SOURCE. Usa i dati aziendali documentati riferiti al 15 ottobre 2026. Preferenze, professionisti esecutori designati, integrazione delle prestazioni, attestazioni, consensi procedurali, allegati, luogo e data restano da decidere. Non compilare firme o dichiarazioni non confermate. Chiedimi le decisioni mancanti; prima dell'export chiedimi conferma della bozza parziale.",
+  "export_request": "Genera una bozza parziale con i soli dati verificati e le decisioni già registrate. Lascia vuoti tutti i punti irrisolti, senza aggiungere firme o attestazioni.",
+  "dialogue_budget_differs_from_V12_two_rounds": true
+}

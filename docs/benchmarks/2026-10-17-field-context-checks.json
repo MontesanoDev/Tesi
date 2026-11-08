@@ -1,0 +1,31 @@
+{
+  "protected_files": 10795,
+  "unchanged_files": 10793,
+  "changed_existing_files": [
+    "backend/app/compilation_global.py",
+    "backend/app/document_compilation.py"
+  ],
+  "new_test_file": "backend/tests/test_compilation_field_context.py",
+  "kiss_source_binding_rules_unchanged": true,
+  "b0_full_input_exactly_unchanged": true,
+  "all_old_raw_artifacts_and_fixtures_unchanged": true,
+  "original_index_root_still_rejected": true,
+  "network_disabled_for_replay": true,
+  "source_facts_and_conditions_identical": true,
+  "source_values_never_transformed": true,
+  "new_provider_calls": 0,
+  "new_exports": 0,
+  "lost_correct_values": 0,
+  "false_acceptances_observed_in_final_replays": 0,
+  "archive": {
+    "path": "docs/benchmarks/2026-10-17-field-context-audit.tar.gz",
+    "sha256": "f3d9bdc6f22b0b3837695090ce4ca0a9b8f2347d7011f4cf5517f38071c6fba7",
+    "files": 47,
+    "uncompressed_bytes": 5515935,
+    "compressed_bytes": 657471,
+    "archive_contents_verified": true
+  },
+  "full_backend_passed": 2374,
+  "targeted_passed": 211,
+  "ruff": "passed"
+}

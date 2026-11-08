@@ -1,0 +1,39 @@
+{
+  "bundle_and_current_raw_manifest_verified": 250,
+  "bundle_sha256": "e0f586cf03775c9a699be31b7d75d704af5b61609411fbbdb13d74284dda33fc",
+  "public_summary_matches_raw": true,
+  "attempted_analyses": 3,
+  "accepted_analyses": 1,
+  "words_produced": 1,
+  "provider_calls_including_failures": 9,
+  "provider_reported_total_tokens_including_failures": 353942,
+  "failures": [
+    "CoverageAwareProposal extra properties",
+    "GenerationTruncatedError length"
+  ],
+  "failed_runs_have_no_audit_session_or_word": true,
+  "no_retries_or_response_repairs": true,
+  "all_267_destinations_in_only_word_verified": true,
+  "all_table_cells_including_headers_checked": 110,
+  "docx_parts_and_member_sets_preserved": true,
+  "both_word_pdf_export_copies_exact": true,
+  "only_output_partial": true,
+  "known_credentials_excluded": "archive-checks.json and package_audit.py in bundle",
+  "fixture_integrity": {
+    "benchmark-minervino": {
+      "manifest_sha256": "89534c5171a90328b994d4425e9e11b082c6e5968c3a5b275b710438cf3e0139",
+      "files_verified": 18
+    },
+    "benchmark-compilazione": {
+      "manifest_sha256": "5a3ac76f6d3d26faf739fce4272f4af5d1550a16871ecfbe5cfb6da8c8424136",
+      "files_verified": 11
+    }
+  },
+  "live_sources_and_existing_entities": "live-integrity.json in bundle",
+  "frozen_code_hashes_match": true,
+  "production_engine_frontend_and_fixtures_unchanged": true,
+  "new_local_links_checked": 27,
+  "git_diff_check": "passed",
+  "software_tests": "137 targeted and 2279 full backend passed, Ruff; full logs and initial E501 in bundle",
+  "scope": "Offline verification after all nine actual provider calls. No additional calls. Historical comparisons descriptive; no imputed quality scores for failed runs."
+}

@@ -1,0 +1,96 @@
+[
+ {
+  "runtime": "storico",
+  "model": {
+   "provider": "deepseek",
+   "model": "deepseek-flash",
+   "base_url": "https://api.deepseek.com"
+  },
+  "forms": {
+   "minervino": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1
+    },
+    "global_request_sha256": "e3b63a123782714b506b724b675d2f23b6d804c7d3abb00fdef33dd9b0c1f48f",
+    "deterministic_twice": true,
+    "identical_to_narrator_verification": true
+   },
+   "cesano": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1
+    },
+    "global_request_sha256": "817e70cc21c424e01ce83667b84c8f96adc353a3cf5efafd255b293ca587ec7d",
+    "deterministic_twice": true,
+    "identical_to_narrator_verification": true
+   },
+   "craa": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1
+    },
+    "global_request_sha256": "efc181f6223929b936d07af78bfec4dcb9a969dae0a0d23e6529db0b3800af41",
+    "deterministic_twice": true,
+    "identical_to_narrator_verification": true
+   },
+   "catanzaro": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1
+    },
+    "global_request_sha256": "cb9bca55834966a71105d20c7f1f2cfa5c0eb0e81a6abc6213559b8068bebd2e",
+    "deterministic_twice": true,
+    "identical_to_narrator_verification": true
+   },
+   "bella": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1
+    },
+    "global_request_sha256": "80845048edf443b6a39f58cc9ee192034921204a898369dc7f2a785aed202909",
+    "deterministic_twice": true
+   },
+   "trapani": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1
+    },
+    "global_request_sha256": "b8cca8e19a4a65e4af0693271f90341ad67b5b8d8eee7302d103c02248c48348",
+    "deterministic_twice": true
+   }
+  }
+ },
+ {
+  "runtime": "nuova-source",
+  "model": {
+   "provider": "deepseek",
+   "model": "deepseek-flash",
+   "base_url": "https://api.deepseek.com"
+  },
+  "forms": {
+   "soresa2023": {
+    "flags": {
+     "backend_revision": 13,
+     "option_authorization_revision": 1,
+     "attribution_safety_revision": 1,
+     "dialogue_revision": 1
+    },
+    "global_request_sha256": "1bc04b6454a015e6dfc5287228ba5aabbcf7d2b9b7d15cab55ae2b062a4b3771",
+    "deterministic_twice": true
+   }
+  }
+ }
+]

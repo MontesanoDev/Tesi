@@ -1,0 +1,424 @@
+{
+  "version": 1,
+  "created_before_first_LLM_call": true,
+  "reference_kind": "Authorial field review, no independent DOCX GOLD",
+  "SOURCE_available_occurrences": [
+    {
+      "candidate_id": "t0.r0.c1",
+      "label": "nome",
+      "value": "Leonardo Montemurro",
+      "subject": "Leonardo Montemurro",
+      "property": "nome",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t0.r1.c1",
+      "label": "nascita_data_luogo",
+      "value": "14/11/1982, Lecce (LE)",
+      "subject": "Leonardo Montemurro",
+      "property": "nascita_data_luogo",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t0.r2.c1",
+      "label": "cf",
+      "value": "MNTLRD82S14E506X",
+      "subject": "Leonardo Montemurro",
+      "property": "cf",
+      "SOURCE_chunks": [
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t0.r3.c1",
+      "label": "carica",
+      "value": "rappresentante legale",
+      "subject": "Leonardo Montemurro",
+      "property": "carica",
+      "SOURCE_chunks": [
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t0.r5.c1",
+      "label": "nome",
+      "value": "Mapi Ingegneria S.r.l.",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "nome",
+      "SOURCE_chunks": [
+        -30
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t0.r6.c1",
+      "label": "forma_giuridica",
+      "value": "Società a responsabilità limitata",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "forma_giuridica",
+      "SOURCE_chunks": [
+        -30
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t0.r7.c1",
+      "label": "sede_legale",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA)",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "sede_legale",
+      "SOURCE_chunks": [
+        -30,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t0.r9.c1",
+      "label": "cf",
+      "value": "IT01234567890",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "cf",
+      "SOURCE_chunks": [
+        -30
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t0.r10.c1",
+      "label": "piva",
+      "value": "IT01234567890",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "piva",
+      "SOURCE_chunks": [
+        -30
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t0.r11.c1",
+      "label": "telefono",
+      "value": "+39 080 000 2040",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "telefono",
+      "SOURCE_chunks": [
+        -44
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t25.r0.c1",
+      "label": "Società",
+      "value": "Mapi Ingegneria S.r.l.",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "nome",
+      "SOURCE_chunks": [
+        -30,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t25.r2.c0",
+      "label": "CCIAA",
+      "value": "Bari",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "cciaa",
+      "SOURCE_chunks": [
+        -30,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t25.r3.c1",
+      "label": "Numero e data iscrizione",
+      "value": "01234560981; 14/03/2019",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "numero_data_registro",
+      "SOURCE_chunks": [
+        -30,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t25.r4.c1",
+      "label": "Forma giuridica",
+      "value": "Società a responsabilità limitata",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "forma_giuridica",
+      "SOURCE_chunks": [
+        -30,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t25.r4.c3",
+      "label": "Sede legale",
+      "value": "Via Giovanni Amendola 172/C, 70126 Bari (BA)",
+      "subject": "Mapi Ingegneria S.r.l.",
+      "property": "sede_legale",
+      "SOURCE_chunks": [
+        -30,
+        -52,
+        -53
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t26.r0.c1",
+      "label": "nome",
+      "value": "Elisa Romano",
+      "subject": "Elisa Romano",
+      "property": "nome",
+      "SOURCE_chunks": [
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t26.r1.c1",
+      "label": "qualifica",
+      "value": "Ingegnere",
+      "subject": "Elisa Romano",
+      "property": "qualifica",
+      "SOURCE_chunks": [
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t26.r3.c1",
+      "label": "ordine",
+      "value": "Ordine degli Ingegneri di Bari",
+      "subject": "Elisa Romano",
+      "property": "ordine",
+      "SOURCE_chunks": [
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t26.r4.c1",
+      "label": "numero_iscrizione",
+      "value": "8421",
+      "subject": "Elisa Romano",
+      "property": "numero_iscrizione",
+      "SOURCE_chunks": [
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t41.r1.c0",
+      "label": "nome",
+      "value": "Leonardo Montemurro",
+      "subject": "Leonardo Montemurro",
+      "property": "nome",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t41.r1.c1",
+      "label": "nascita_data_luogo",
+      "value": "14/11/1982, Lecce (LE)",
+      "subject": "Leonardo Montemurro",
+      "property": "nascita_data_luogo",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t41.r1.c2",
+      "label": "residenza",
+      "value": "Via Amedeo 24, Bari (BA)",
+      "subject": "Leonardo Montemurro",
+      "property": "residenza",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t41.r1.c3",
+      "label": "cf",
+      "value": "MNTLRD82S14E506X",
+      "subject": "Leonardo Montemurro",
+      "property": "cf",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t41.r1.c4",
+      "label": "carica",
+      "value": "amministratore unico e rappresentante legale",
+      "subject": "Leonardo Montemurro",
+      "property": "carica",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t43.r1.c0",
+      "label": "nome",
+      "value": "Leonardo Montemurro",
+      "subject": "Leonardo Montemurro",
+      "property": "nome",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t43.r1.c1",
+      "label": "nascita_data_luogo",
+      "value": "14/11/1982, Lecce (LE)",
+      "subject": "Leonardo Montemurro",
+      "property": "nascita_data_luogo",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t43.r1.c2",
+      "label": "residenza",
+      "value": "Via Amedeo 24, Bari (BA)",
+      "subject": "Leonardo Montemurro",
+      "property": "residenza",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t43.r1.c3",
+      "label": "cf",
+      "value": "MNTLRD82S14E506X",
+      "subject": "Leonardo Montemurro",
+      "property": "cf",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t43.r1.c4",
+      "label": "carica",
+      "value": "amministratore unico e rappresentante legale",
+      "subject": "Leonardo Montemurro",
+      "property": "carica",
+      "SOURCE_chunks": [
+        -53,
+        -54
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t44.r1.c0",
+      "label": "nome",
+      "value": "Elisa Romano",
+      "subject": "Elisa Romano",
+      "property": "nome",
+      "SOURCE_chunks": [
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "t44.r1.c3",
+      "label": "cf",
+      "value": "RMNLSI85C47A662Y",
+      "subject": "Elisa Romano",
+      "property": "cf",
+      "SOURCE_chunks": [
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    }
+  ],
+  "SOURCE_available_occurrence_count": 31,
+  "USER_authorized_controls": {
+    "p57.cb0": true,
+    "p76.cb1": true,
+    "p147.cb0": true
+  },
+  "known_unresolved_active_fields": [
+    "t26.r2.c1",
+    "t44.r1.c1",
+    "t44.r1.c2"
+  ],
+  "variable_cardinality_records": "Service-history/other-subject rows are not counted as mandatory facts merely because blank rows exist",
+  "unlisted_candidates": "Review against FORM and SOURCE individually; not automatically wrong or required",
+  "permitted_equivalence": "Case, spaces, professional title prefix and equivalent dates; fuller literal SOURCE values accepted only if property/subject/granularity correct",
+  "protected": "No signatures, no attestations/preferences/designations without scenario decision; inactive branches remain blank",
+  "company_snapshot_date": "2026-10-15",
+  "historical_procedure_eligibility_not_certified": true
+}

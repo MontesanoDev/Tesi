@@ -1,0 +1,59 @@
+{
+  "protected_files": 249,
+  "changed_application_tests_frontend_fixture_files": [],
+  "old_artifacts_unchanged": 842,
+  "live_sessions_unchanged": 29,
+  "live_uploads_knowledge_files_unchanged": 285,
+  "reference_private_runtime_unchanged": true,
+  "prior_working_tree_preserved": true,
+  "head_unchanged": "99ab052b3c6e626a4e1f6cc21b5ca31baba56a7e",
+  "git_diff_check": true,
+  "UI_sessions_started": 1,
+  "recorded_revisions": 9,
+  "actual_writes": 61,
+  "previous_52_lost_or_changed": 0,
+  "director_fields_written": 8,
+  "sole_checkbox": "p39.cb0",
+  "new_undue_writes_observed": 0,
+  "legitimate_SOURCE_proposal_holds_observed_in_UI": 0,
+  "offline_legitimate_hold_negative_tests": 18,
+  "negative_test_seconds": 1.43,
+  "full_suite_and_ruff_rerun": false,
+  "only_documentation_and_audit_scripts_added_or_updated": true,
+  "independent_verification": [
+    {
+      "mode": "chat",
+      "audit_equal": true,
+      "text_values": 60,
+      "checkboxes": {
+        "p39.cb0": true
+      },
+      "docx_identical": true,
+      "sha256": "84e33e53477f0bb4935eaa9667ed02c6eea6d010beb091cab4f650a1b87feddd",
+      "provider_calls": 0
+    }
+  ],
+  "visual": {
+    "fresh_local_LibreOffice_render": true,
+    "pages": 9,
+    "pages_viewed": [
+      3,
+      9
+    ],
+    "director_and_soci_readable": true,
+    "signature_with_line_on_page9": true,
+    "preexisting_joined_labels_remain": true,
+    "Word_desktop_certification": false,
+    "render_language_subtag_registry_warning": true,
+    "conversion_success_and_DOCX_unchanged": true
+  },
+  "provider_calls": 7,
+  "new_global_calls": 0,
+  "frozen_global_reuses": 1,
+  "tokens": 69815,
+  "driver_restart_same_conversation": true,
+  "quality_retries": 0,
+  "first_driver_detailed_errors_trace_and_video_not_finalized": true,
+  "continuation_GET_aborted_on_mount_reload": 10,
+  "HTTP_error_responses_acquired": 0
+}

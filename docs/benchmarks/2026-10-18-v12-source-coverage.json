@@ -1,0 +1,334 @@
+{
+  "date": "2026-10-18",
+  "experiment": "V12 SOURCE coverage from frozen saved output",
+  "provider_calls": 0,
+  "global_calls": 0,
+  "new_USER_decisions": 0,
+  "narrator": "simulated transport; real persistence/validators/export",
+  "source_chunks": 56,
+  "source_targets": 60,
+  "all_18_in_SOURCE": true,
+  "all_18_in_LLM_input": true,
+  "all_18_proposed": true,
+  "omitted_of_18": 0,
+  "source_grounded_before": 46,
+  "source_grounded_after": 60,
+  "reviewed_before": 46,
+  "reviewed_after": 60,
+  "unknown_grounded_before": 4,
+  "unknown_grounded_after": 8,
+  "applicable_source_before": 42,
+  "applicable_source_after": 52,
+  "source_written_before": 41,
+  "source_written_after": 51,
+  "user_written_before": 1,
+  "user_written_after": 1,
+  "written_before": 42,
+  "written_after": 52,
+  "new_correct_source_writes": 10,
+  "new_grounded_but_still_unknown": 4,
+  "previous_values_lost": 0,
+  "previous_values_changed": 0,
+  "new_undue_writes_observed": 0,
+  "gold_conforming_written": 51,
+  "gold_strict_differences": [
+    {
+      "candidate_id": "p14.s0",
+      "label": "Carica firmatario",
+      "expected": "rappresentante legale",
+      "actual": "amministratore unico e rappresentante legale",
+      "gold_conforms": false,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -53,
+          "file_id": -10,
+          "chunk_index": 1,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -53,
+          "citation_rebound": false,
+          "quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**",
+          "content_sha256": "9adf1f05eab274373163f984cc134429c0b80323c5117372a9c8d5e37f01f66f"
+        }
+      ],
+      "factually_supported": true,
+      "assessment": "Carica SOURCE completa: amministratore unico e rappresentante legale; GOLD riporta solo rappresentante legale. Nessuna modifica alle aspettative.",
+      "assessment_origin": "Codex manual FORM/SOURCE review"
+    }
+  ],
+  "source_target_slots_still_blank": 8,
+  "new_checkbox_writes": 0,
+  "native_controls_unchanged": 13,
+  "table_count_unchanged": 4,
+  "five_USER_decision_groups_unchanged": true,
+  "USER_answers_unchanged": true,
+  "USER_values_unchanged": true,
+  "review_windows": [
+    14
+  ],
+  "form_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+  "baseline_docx_sha256": "4a29f7d306a6664b88208f8ba88bff5738123310a84853ff4e770f69dae126c8",
+  "new_docx_sha256": "58f1179d4cff7c6c1de4f2e886c524906c1be618e1025a67d97288f7c7323f2b",
+  "baseline_pages": 9,
+  "new_pages": 9,
+  "source_remaining": [
+    "p51.s0",
+    "p52.s0",
+    "p52.s1",
+    "p53.s0",
+    "p53.s1",
+    "p53.s2",
+    "p53.s3",
+    "p53.s4"
+  ],
+  "new_writes": [
+    {
+      "candidate_id": "p12.s0",
+      "label": "Firmatario: nome",
+      "expected": "Leonardo Montemurro",
+      "actual": "Leonardo Montemurro",
+      "gold_conforms": true,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "### Leonardo Montemurro — anagrafica sintetica",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    {
+      "candidate_id": "p12.s1",
+      "label": "Nascita: comune",
+      "expected": "Lecce",
+      "actual": "Lecce",
+      "gold_conforms": true,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Luogo di nascita: Lecce (LE).",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    {
+      "candidate_id": "p12.s2",
+      "label": "Nascita: provincia",
+      "expected": "LE",
+      "actual": "LE",
+      "gold_conforms": true,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Luogo di nascita: Lecce (LE).",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    {
+      "candidate_id": "p12.s3",
+      "label": "Nascita: data",
+      "expected": "14/11/1982",
+      "actual": "14 novembre 1982",
+      "gold_conforms": true,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Data di nascita: 14 novembre 1982.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    {
+      "candidate_id": "p13.s0",
+      "label": "Residenza: comune",
+      "expected": "Bari",
+      "actual": "Bari",
+      "gold_conforms": true,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Comune di residenza: Bari (BA).",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    {
+      "candidate_id": "p13.s1",
+      "label": "Residenza: provincia",
+      "expected": "BA",
+      "actual": "BA",
+      "gold_conforms": true,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Comune di residenza: Bari (BA).",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    {
+      "candidate_id": "p13.s2",
+      "label": "Residenza: indirizzo",
+      "expected": "Amedeo 24",
+      "actual": "Amedeo 24",
+      "gold_conforms": true,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Indirizzo di residenza: Via Amedeo 24.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    {
+      "candidate_id": "p13.s3",
+      "label": "CF firmatario",
+      "expected": "MNTLRD82S14E506X",
+      "actual": "MNTLRD82S14E506X",
+      "gold_conforms": true,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -54,
+          "file_id": -10,
+          "chunk_index": 2,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -54,
+          "citation_rebound": false,
+          "quote": "- Codice fiscale personale dimostrativo: MNTLRD82S14E506X.",
+          "content_sha256": "5b69cf57690450fb2cf2c9bdb8baa7048938837f9986de4d763c2c2674bb7397"
+        }
+      ]
+    },
+    {
+      "candidate_id": "p14.s0",
+      "label": "Carica firmatario",
+      "expected": "rappresentante legale",
+      "actual": "amministratore unico e rappresentante legale",
+      "gold_conforms": false,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -53,
+          "file_id": -10,
+          "chunk_index": 1,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -53,
+          "citation_rebound": false,
+          "quote": "- **Leonardo Montemurro**: **amministratore unico e rappresentante legale della società nello scenario dal 2 ottobre 2026**",
+          "content_sha256": "9adf1f05eab274373163f984cc134429c0b80323c5117372a9c8d5e37f01f66f"
+        }
+      ],
+      "factually_supported": true,
+      "assessment": "Carica SOURCE completa: amministratore unico e rappresentante legale; GOLD riporta solo rappresentante legale. Nessuna modifica alle aspettative.",
+      "assessment_origin": "Codex manual FORM/SOURCE review"
+    },
+    {
+      "candidate_id": "p15.s0",
+      "label": "Comune sede",
+      "expected": "Bari",
+      "actual": "Bari",
+      "gold_conforms": true,
+      "new": true,
+      "source_evidence": [
+        {
+          "chunk_id": -52,
+          "file_id": -10,
+          "chunk_index": 0,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "category": "company",
+          "cited_chunk_id": -52,
+          "citation_rebound": false,
+          "quote": "- **Sede legale — comune:** Bari.",
+          "content_sha256": "3a75b3865fbde9ccfa40b9382ed34398e43632ce507fdf4f6e0ceb66c35953a4"
+        }
+      ]
+    }
+  ],
+  "export_report_ready_for_submission": false
+}

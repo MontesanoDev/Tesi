@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "archive_SHA256": "75d60b93a607462642e23c3c275e0ef8a16c1b2bde5365e622e9142bb4b42cbc",
+  "archive_bytes": 828506206,
+  "files_extracted_hash_exact": 14091,
+  "cohort_results": [
+    {
+      "phase": "v13-s1-20261021-01",
+      "DOCX_audits_browser_downloads_rebuilt_exactly": 41,
+      "application_from_extraction_asserted": true,
+      "application_hashes_exact": 120,
+      "metrics_and_classifications_exact": true,
+      "seconds": 18.997688006998942,
+      "network_SQLite_forbidden_by_replay": true
+    },
+    {
+      "phase": "v13-s1-validation-20261021-02",
+      "DOCX_audits_browser_downloads_rebuilt_exactly": 38,
+      "application_from_extraction_asserted": true,
+      "application_hashes_exact": 120,
+      "metrics_and_classifications_exact": true,
+      "seconds": 17.236171267999453,
+      "network_SQLite_forbidden_by_replay": true
+    }
+  ],
+  "no_credentials_private_DB_keys_environment_in_archive": true,
+  "actual_secret_scan_passed": true,
+  "independent_extraction": ".tools/v13-s1-backup-verification-20261021-01",
+  "no_new_provider_calls": true,
+  "working_tree_application_not_used": true,
+  "Python_dependencies_and_PDF_renderer_not_bundled": true,
+  "prior_69_and_213_fixtures_reused_from_preserved_compound_value_archive": true,
+  "final_documentary_closeout_provided_in_small_separate_addendum": true
+}

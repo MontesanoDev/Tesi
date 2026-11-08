@@ -1,0 +1,11 @@
+{
+  "archive_SHA256_valid": true,
+  "manifest_files_verified": 711,
+  "extracted_code_separate_processes": true,
+  "network_and_sqlite_forbidden": true,
+  "LLM_calls": 0,
+  "previous_audits_DOCX_rebuilt_exactly": 22,
+  "new_CRAA_audit_DOCX_rebuilt_exactly": 1,
+  "excerpt_contract_before_after_verified": true,
+  "all_results_exactly_match_saved": true
+}

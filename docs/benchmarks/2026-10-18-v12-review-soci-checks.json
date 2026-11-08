@@ -1,0 +1,28 @@
+{
+  "protected_count": 205,
+  "changed_expected_files": [
+    "backend/app/compilation_global_dialogue.py",
+    "backend/app/compilation_global_sessions.py",
+    "backend/app/compilation_global.py",
+    "backend/tests/test_compilation_binding_evidence.py",
+    "backend/tests/test_compilation_continuation.py"
+  ],
+  "new_test_file": "backend/tests/test_compilation_review_windows.py",
+  "other_protected_files_unchanged": true,
+  "all_global_validator_functions_classes_unchanged": true,
+  "original_sessions_unchanged": 29,
+  "original_storage_files_unchanged": 273,
+  "form_source_schema_user_context_equal_previous_real_ui": true,
+  "docx_xml_crc_positions_report_passed": true,
+  "soci_written_verified_in_xml": 24,
+  "soci_source": 23,
+  "soci_user": 1,
+  "no_factual_false_positives_observed_in_new_writes": true,
+  "no_automatic_unknown_true_or_resolved_promotion": true,
+  "software_suite_final": "2479 passed in 288.71s",
+  "ruff_final": "All checks passed!",
+  "new_test_count": 20,
+  "baseline_new_tests_red": "11 failed, 2 passed",
+  "initial_whole_suite": "2477 passed, 2 failed (old repeated-context expectation; test updated to retained receipts)",
+  "no_form_model_writer_api_routes_db_schema_changes": true
+}

@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "modified_existing_this_task": [
+    "STATUS.md",
+    "backend/app/compilation_global.py",
+    "backend/app/compilation_global_dialogue.py",
+    "backend/app/compilation_global_sessions.py",
+    "backend/app/compilation_source_reuse.py",
+    "backend/tests/test_compilation_form_applicability.py",
+    "relazioni.md"
+  ],
+  "other_protected_files_unchanged": 9279,
+  "live_DB_entirely_logically_identical": true,
+  "live_sessions_unchanged": 29,
+  "live_storage_files_unchanged": 273,
+  "knowledge_files_unchanged_against_prior_study_manifest": 12,
+  "original_clone_sessions_unchanged": 38,
+  "original_clone_storage_files_unchanged": 490,
+  "new_clone_sessions": [
+    "e81df1cca6b34606a923857c5605d325"
+  ],
+  "final_application_hashes_intact": 70,
+  "HEAD_unchanged": true,
+  "no_commit_push_migration_reindex": true
+}

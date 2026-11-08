@@ -1,0 +1,741 @@
+{
+ "description": "I 25 casi storici della rev 2 (sezioni-resilienti-20261022-01), tutti giudicati NON_DIMOSTRATA dalla revisione autoriale rev 2 (non indipendente). Risultati storici invariati.",
+ "scenario": "Tutti gli scenari congelati: partecipazione singola come società di ingegneria, senza raggruppamenti, consorzi o altre forme.",
+ "counts_explained": {
+  "19_of_25": "Prima dello sprint, con le ricevute USER registrate in rev 2 (senza prova d'ambito rev 3): 19 delle 25 scritture sbagliate passerebbero ancora i controlli deterministici se il modello ripetesse l'uscita rev 2; le 6 legate a s2_c_sing sono bloccate perché manca la prova d'ambito. Con una guardia che conferma ogni risposta: 25 su 25.",
+  "12_and_18_of_25": "Dopo R1 le stesse due misure diventano 12 su 25 (ricevute registrate) e 18 su 25 (guardia che conferma tutto): R1 chiude le 7 di Minervino in entrambe. «12/18» del rapporto dello sprint indica queste due misure su 25, non 12 su 18.",
+  "source": "sprint-sezioni-20261023-01/out/rigioco-r1.json e out/controesempi-passo1.json"
+ },
+ "cases": [
+  {
+   "document": "minervino",
+   "rev2_trial": "minervino-1",
+   "cell": "p37.s1",
+   "rev2_value": "BA",
+   "applicable_branch": "paragraph:39, legale rappresentante di società (scenario: società di ingegneria)",
+   "wrong_branch": "paragraph:35, professionista dello studio associato (sede legale dello studio)",
+   "conditions_on_field": [],
+   "conditions_on_option": [
+    "s1_c35"
+   ],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s1_c35 ancorata all'opzione, aperta, con scope limitato a p36: le destinazioni p37 non avevano condizioni",
+   "closure_after_sprint": "R1 (deterministica): s1_c35 estesa alla continuazione p36-p38",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": false
+    }
+   }
+  },
+  {
+   "document": "minervino",
+   "rev2_trial": "minervino-1",
+   "cell": "p37.s2",
+   "rev2_value": "Via Giovanni Amendola",
+   "applicable_branch": "paragraph:39, legale rappresentante di società (scenario: società di ingegneria)",
+   "wrong_branch": "paragraph:35, professionista dello studio associato (sede legale dello studio)",
+   "conditions_on_field": [],
+   "conditions_on_option": [
+    "s1_c35"
+   ],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s1_c35 ancorata all'opzione, aperta, con scope limitato a p36: le destinazioni p37 non avevano condizioni",
+   "closure_after_sprint": "R1 (deterministica): s1_c35 estesa alla continuazione p36-p38",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": false
+    }
+   }
+  },
+  {
+   "document": "minervino",
+   "rev2_trial": "minervino-1",
+   "cell": "p37.s3",
+   "rev2_value": "172/C",
+   "applicable_branch": "paragraph:39, legale rappresentante di società (scenario: società di ingegneria)",
+   "wrong_branch": "paragraph:35, professionista dello studio associato (sede legale dello studio)",
+   "conditions_on_field": [],
+   "conditions_on_option": [
+    "s1_c35"
+   ],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s1_c35 ancorata all'opzione, aperta, con scope limitato a p36: le destinazioni p37 non avevano condizioni",
+   "closure_after_sprint": "R1 (deterministica): s1_c35 estesa alla continuazione p36-p38",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": false
+    }
+   }
+  },
+  {
+   "document": "minervino",
+   "rev2_trial": "minervino-1",
+   "cell": "p37.s4",
+   "rev2_value": "+39 080 000 2040",
+   "applicable_branch": "paragraph:39, legale rappresentante di società (scenario: società di ingegneria)",
+   "wrong_branch": "paragraph:35, professionista dello studio associato (sede legale dello studio)",
+   "conditions_on_field": [],
+   "conditions_on_option": [
+    "s1_c35"
+   ],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s1_c35 ancorata all'opzione, aperta, con scope limitato a p36: le destinazioni p37 non avevano condizioni",
+   "closure_after_sprint": "R1 (deterministica): s1_c35 estesa alla continuazione p36-p38",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": false
+    }
+   }
+  },
+  {
+   "document": "minervino",
+   "rev2_trial": "minervino-1",
+   "cell": "p37.s5",
+   "rev2_value": "+39 080 000 2041",
+   "applicable_branch": "paragraph:39, legale rappresentante di società (scenario: società di ingegneria)",
+   "wrong_branch": "paragraph:35, professionista dello studio associato (sede legale dello studio)",
+   "conditions_on_field": [],
+   "conditions_on_option": [
+    "s1_c35"
+   ],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s1_c35 ancorata all'opzione, aperta, con scope limitato a p36: le destinazioni p37 non avevano condizioni",
+   "closure_after_sprint": "R1 (deterministica): s1_c35 estesa alla continuazione p36-p38",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": false
+    }
+   }
+  },
+  {
+   "document": "minervino",
+   "rev2_trial": "minervino-1",
+   "cell": "p37.s6",
+   "rev2_value": "segreteria@mapi-ingegneria.demo",
+   "applicable_branch": "paragraph:39, legale rappresentante di società (scenario: società di ingegneria)",
+   "wrong_branch": "paragraph:35, professionista dello studio associato (sede legale dello studio)",
+   "conditions_on_field": [],
+   "conditions_on_option": [
+    "s1_c35"
+   ],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s1_c35 ancorata all'opzione, aperta, con scope limitato a p36: le destinazioni p37 non avevano condizioni",
+   "closure_after_sprint": "R1 (deterministica): s1_c35 estesa alla continuazione p36-p38",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": false
+    }
+   }
+  },
+  {
+   "document": "minervino",
+   "rev2_trial": "minervino-1",
+   "cell": "p37.s7",
+   "rev2_value": "mapi.ingegneria@pec.demo",
+   "applicable_branch": "paragraph:39, legale rappresentante di società (scenario: società di ingegneria)",
+   "wrong_branch": "paragraph:35, professionista dello studio associato (sede legale dello studio)",
+   "conditions_on_field": [],
+   "conditions_on_option": [
+    "s1_c35"
+   ],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s1_c35 ancorata all'opzione, aperta, con scope limitato a p36: le destinazioni p37 non avevano condizioni",
+   "closure_after_sprint": "R1 (deterministica): s1_c35 estesa alla continuazione p36-p38",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Valore SOURCE vero per Mapi Ingegneria, ma la destinazione è la sede dello «studio professionale associato» del ramo «☐ Professionista appartenente allo studio professionale associato» (paragrafi 35-37). Lo scenario è una società di ingegneria (ramo dei paragrafi 39-40): applicabilità non dimostrata. Nessuna condizione, nessuna conferma USER. Il segmento 2 iniziava al paragrafo 37 senza l'opzione del paragrafo 35 nel contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": false
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-1",
+   "cell": "p127.s1",
+   "rev2_value": "Via Giovanni Amendola 172/C",
+   "applicable_branch": "paragraph:123, «[ ] di non avvalersi» (nessun avvalimento nello scenario)",
+   "wrong_branch": "paragraph:125, «[]di avvalersi dei requisiti del seguente operatore»: l'ausiliaria è un terzo",
+   "conditions_on_field": [
+    "s2_c_sing"
+   ],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s2_c_sing (partecipazione singola, confermata dall'USER) legata dal modello alle destinazioni dell'avvalimento; ricevuta rev 2 con ambito misto",
+   "closure_after_sprint": "rev 3: bloccate senza prova d'ambito della guardia (semantica, dipende dal modello); R1 non si applica («[ ]» non riconosciuto, nessuna condizione ancorata a p125)",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": false,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-1",
+   "cell": "p127.s2",
+   "rev2_value": "mapi.ingegneria@pec.demo",
+   "applicable_branch": "paragraph:123, «[ ] di non avvalersi» (nessun avvalimento nello scenario)",
+   "wrong_branch": "paragraph:125, «[]di avvalersi dei requisiti del seguente operatore»: l'ausiliaria è un terzo",
+   "conditions_on_field": [
+    "s2_c_sing"
+   ],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s2_c_sing (partecipazione singola, confermata dall'USER) legata dal modello alle destinazioni dell'avvalimento; ricevuta rev 2 con ambito misto",
+   "closure_after_sprint": "rev 3: bloccate senza prova d'ambito della guardia (semantica, dipende dal modello); R1 non si applica («[ ]» non riconosciuto, nessuna condizione ancorata a p125)",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": false,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-1",
+   "cell": "p127.s3",
+   "rev2_value": "IT01234567890",
+   "applicable_branch": "paragraph:123, «[ ] di non avvalersi» (nessun avvalimento nello scenario)",
+   "wrong_branch": "paragraph:125, «[]di avvalersi dei requisiti del seguente operatore»: l'ausiliaria è un terzo",
+   "conditions_on_field": [
+    "s2_c_sing"
+   ],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s2_c_sing (partecipazione singola, confermata dall'USER) legata dal modello alle destinazioni dell'avvalimento; ricevuta rev 2 con ambito misto",
+   "closure_after_sprint": "rev 3: bloccate senza prova d'ambito della guardia (semantica, dipende dal modello); R1 non si applica («[ ]» non riconosciuto, nessuna condizione ancorata a p125)",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": false,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-1",
+   "cell": "p127.s4",
+   "rev2_value": "IT01234567890",
+   "applicable_branch": "paragraph:123, «[ ] di non avvalersi» (nessun avvalimento nello scenario)",
+   "wrong_branch": "paragraph:125, «[]di avvalersi dei requisiti del seguente operatore»: l'ausiliaria è un terzo",
+   "conditions_on_field": [
+    "s2_c_sing"
+   ],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "condizione s2_c_sing (partecipazione singola, confermata dall'USER) legata dal modello alle destinazioni dell'avvalimento; ricevuta rev 2 con ambito misto",
+   "closure_after_sprint": "rev 3: bloccate senza prova d'ambito della guardia (semantica, dipende dal modello); R1 non si applica («[ ]» non riconosciuto, nessuna condizione ancorata a p125)",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": false,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-1",
+   "cell": "p44.s0",
+   "rev2_value": "IT01234567890",
+   "applicable_branch": "paragraph:7-8, dichiarante della partecipazione singola",
+   "wrong_branch": "blocco del terzo componente RT sotto paragraph:19 «da compilare nel caso di partecipazione in forma di RT…»",
+   "conditions_on_field": [
+    "s2_c_sing"
+   ],
+   "conditions_on_option": [],
+   "conditions_on_heading": [
+    "s2_c_sing"
+   ],
+   "accepted_in_rev2_because": "s2_c_sing ancorata a paragraph:33 «natura del singolo componente il RT»: «singolo componente» letto come «partecipazione singola», confermata dall'USER",
+   "closure_after_sprint": "rev 3: guardia d'ambito (semantica); R1 non si applica (intestazione, non opzione)",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": false,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-1",
+   "cell": "p44.s1",
+   "rev2_value": "IT01234567890",
+   "applicable_branch": "paragraph:7-8, dichiarante della partecipazione singola",
+   "wrong_branch": "blocco del terzo componente RT sotto paragraph:19 «da compilare nel caso di partecipazione in forma di RT…»",
+   "conditions_on_field": [
+    "s2_c_sing"
+   ],
+   "conditions_on_option": [],
+   "conditions_on_heading": [
+    "s2_c_sing"
+   ],
+   "accepted_in_rev2_because": "s2_c_sing ancorata a paragraph:33 «natura del singolo componente il RT»: «singolo componente» letto come «partecipazione singola», confermata dall'USER",
+   "closure_after_sprint": "rev 3: guardia d'ambito (semantica); R1 non si applica (intestazione, non opzione)",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": false,
+     "con_R1": false
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-2",
+   "cell": "p127.s2",
+   "rev2_value": "mapi.ingegneria@pec.demo",
+   "applicable_branch": "paragraph:123, nessun avvalimento",
+   "wrong_branch": "paragraph:125, avvalimento",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione: valori SOURCE dell'azienda scritti come dati dell'ausiliaria",
+   "closure_after_sprint": "nessuna deterministica; solo comportamento del modello con FORM completo",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-2",
+   "cell": "p127.s3",
+   "rev2_value": "IT01234567890",
+   "applicable_branch": "paragraph:123, nessun avvalimento",
+   "wrong_branch": "paragraph:125, avvalimento",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione: valori SOURCE dell'azienda scritti come dati dell'ausiliaria",
+   "closure_after_sprint": "nessuna deterministica; solo comportamento del modello con FORM completo",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-2",
+   "cell": "p127.s4",
+   "rev2_value": "IT01234567890",
+   "applicable_branch": "paragraph:123, nessun avvalimento",
+   "wrong_branch": "paragraph:125, avvalimento",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione: valori SOURCE dell'azienda scritti come dati dell'ausiliaria",
+   "closure_after_sprint": "nessuna deterministica; solo comportamento del modello con FORM completo",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Destinazione del ramo «di avvalersi dei requisiti del seguente operatore economico» (avvalimento, paragrafi 125-127): l'operatore ausiliario è un terzo. Scrivere i dati di Mapi come ausiliaria non è sostenuto da SOURCE né da USER; lo scenario non prevede avvalimento."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-2",
+   "cell": "p43.s8",
+   "rev2_value": "+39 080 000 2040",
+   "applicable_branch": "dichiarante della partecipazione singola",
+   "wrong_branch": "blocco di un componente RT sotto paragraph:19 (intestazioni annidate p33/p45, separatori «*** ***»)",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione",
+   "closure_after_sprint": "nessuna deterministica: serve l'ambito di sezione di paragraph:19",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-2",
+   "cell": "p43.s9",
+   "rev2_value": "mapi.ingegneria@pec.demo",
+   "applicable_branch": "dichiarante della partecipazione singola",
+   "wrong_branch": "blocco di un componente RT sotto paragraph:19 (intestazioni annidate p33/p45, separatori «*** ***»)",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione",
+   "closure_after_sprint": "nessuna deterministica: serve l'ambito di sezione di paragraph:19",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-2",
+   "cell": "p44.s0",
+   "rev2_value": "IT01234567890",
+   "applicable_branch": "dichiarante della partecipazione singola",
+   "wrong_branch": "blocco di un componente RT sotto paragraph:19",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione",
+   "closure_after_sprint": "nessuna deterministica: serve l'ambito di sezione di paragraph:19",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "soresa2023",
+   "rev2_trial": "soresa2023-2",
+   "cell": "p44.s1",
+   "rev2_value": "IT01234567890",
+   "applicable_branch": "dichiarante della partecipazione singola",
+   "wrong_branch": "blocco di un componente RT sotto paragraph:19",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione",
+   "closure_after_sprint": "nessuna deterministica: serve l'ambito di sezione di paragraph:19",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Blocco ripetuto per i componenti di un RT/consorzio/GEIE (separatori «*** *** ****» e nota «al fine di fare emergere la natura del singolo componente il RT…»). Il dichiarante principale è ai paragrafi 8-9. In partecipazione singola il blocco non si applica: applicabilità non dimostrata."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "catanzaro",
+   "rev2_trial": "catanzaro-2",
+   "cell": "t19.r0.c1",
+   "rev2_value": "Mapi Ingegneria S.r.l.",
+   "applicable_branch": "sezione 5.d società di ingegneria (s4_c1 confermata dall'USER)",
+   "wrong_branch": "sezione 5.c società di professionisti (intestazione paragraph:362 in tabella)",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione ancorata a 5.c; l'esclusività fra 5.c e 5.d è semantica",
+   "closure_after_sprint": "nessuna deterministica: servirebbe l'esclusività fra sezioni sorelle",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "catanzaro",
+   "rev2_trial": "catanzaro-2",
+   "cell": "t19.r2.c0",
+   "rev2_value": "Bari",
+   "applicable_branch": "sezione 5.d società di ingegneria (s4_c1 confermata dall'USER)",
+   "wrong_branch": "sezione 5.c società di professionisti (intestazione paragraph:362 in tabella)",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione ancorata a 5.c; l'esclusività fra 5.c e 5.d è semantica",
+   "closure_after_sprint": "nessuna deterministica: servirebbe l'esclusività fra sezioni sorelle",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "catanzaro",
+   "rev2_trial": "catanzaro-2",
+   "cell": "t19.r3.c1",
+   "rev2_value": "01234560981",
+   "applicable_branch": "sezione 5.d società di ingegneria (s4_c1 confermata dall'USER)",
+   "wrong_branch": "sezione 5.c società di professionisti (intestazione paragraph:362 in tabella)",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione ancorata a 5.c; l'esclusività fra 5.c e 5.d è semantica",
+   "closure_after_sprint": "nessuna deterministica: servirebbe l'esclusività fra sezioni sorelle",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "catanzaro",
+   "rev2_trial": "catanzaro-2",
+   "cell": "t19.r4.c1",
+   "rev2_value": "Societa a responsabilita limitata",
+   "applicable_branch": "sezione 5.d società di ingegneria (s4_c1 confermata dall'USER)",
+   "wrong_branch": "sezione 5.c società di professionisti (intestazione paragraph:362 in tabella)",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione ancorata a 5.c; l'esclusività fra 5.c e 5.d è semantica",
+   "closure_after_sprint": "nessuna deterministica: servirebbe l'esclusività fra sezioni sorelle",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  },
+  {
+   "document": "catanzaro",
+   "rev2_trial": "catanzaro-2",
+   "cell": "t19.r4.c3",
+   "rev2_value": "Via Giovanni Amendola 172/C, 70126 Bari (BA), Italia",
+   "applicable_branch": "sezione 5.d società di ingegneria (s4_c1 confermata dall'USER)",
+   "wrong_branch": "sezione 5.c società di professionisti (intestazione paragraph:362 in tabella)",
+   "conditions_on_field": [],
+   "conditions_on_option": [],
+   "conditions_on_heading": [],
+   "accepted_in_rev2_because": "nessuna condizione ancorata a 5.c; l'esclusività fra 5.c e 5.d è semantica",
+   "closure_after_sprint": "nessuna deterministica: servirebbe l'esclusività fra sezioni sorelle",
+   "rev2_author_judgment": {
+    "verdict": "NON_DIMOSTRATA",
+    "basis": "SOURCE",
+    "note": "Tabella della sezione «5.c) da compilare in caso di SOCIETÀ DI PROFESSIONISTI» (intestazione nella tabella 18). Mapi Ingegneria è una società di ingegneria: ramo non pertinente, applicabilità non dimostrata. Nessuna condizione; l'intestazione 5.c era dentro lo span del segmento 3 ma non nel suo contesto."
+   },
+   "exportable_if_rev2_output_repeated": {
+    "recorded_receipts": {
+     "senza_R1": true,
+     "con_R1": true
+    },
+    "guard_confirming_all": {
+     "senza_R1": true,
+     "con_R1": true
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,123 @@
+{
+  "status": "DIAGNOSED",
+  "results": [
+    {
+      "trial": "minervino-02",
+      "document": "minervino",
+      "cause": "DIALOGUE_NOT_ADVANCING_TO_EXPORT",
+      "finish_reason": "stop",
+      "global_error": null,
+      "narrator_error": null,
+      "pipeline_before_and_after_outcome": {
+        "status": "RAW_AND_SOURCE_RECOVERY_VALIDATED"
+      },
+      "same_validation_reuse_success_or_failure_before_after": true,
+      "S1_recovery_exception_not_the_cause": true,
+      "no_DOCX_exported": true,
+      "no_replacement_attempt": true,
+      "new_provider_calls_for_diagnosis": 0
+    },
+    {
+      "trial": "minervino-05",
+      "document": "minervino",
+      "cause": "GLOBAL_MODEL_OUTPUT_LIMIT",
+      "finish_reason": "length",
+      "global_error": "GenerationTruncatedError",
+      "narrator_error": null,
+      "pipeline_before_and_after_outcome": {
+        "status": "REJECTED",
+        "exception": "JSONDecodeError",
+        "message": "Unterminated string starting at: line 1 column 37958 (char 37957)"
+      },
+      "same_validation_reuse_success_or_failure_before_after": true,
+      "S1_recovery_exception_not_the_cause": true,
+      "no_DOCX_exported": true,
+      "no_replacement_attempt": true,
+      "new_provider_calls_for_diagnosis": 0
+    },
+    {
+      "trial": "minervino-06",
+      "document": "minervino",
+      "cause": "GLOBAL_MODEL_OUTPUT_LIMIT",
+      "finish_reason": "length",
+      "global_error": "GenerationTruncatedError",
+      "narrator_error": null,
+      "pipeline_before_and_after_outcome": {
+        "status": "REJECTED",
+        "exception": "JSONDecodeError",
+        "message": "Unterminated string starting at: line 1 column 47235 (char 47234)"
+      },
+      "same_validation_reuse_success_or_failure_before_after": true,
+      "S1_recovery_exception_not_the_cause": true,
+      "no_DOCX_exported": true,
+      "no_replacement_attempt": true,
+      "new_provider_calls_for_diagnosis": 0
+    },
+    {
+      "trial": "minervino-07",
+      "document": "minervino",
+      "cause": "NARRATOR_GenerationTruncatedError",
+      "finish_reason": "stop",
+      "global_error": null,
+      "narrator_error": "GenerationTruncatedError",
+      "pipeline_before_and_after_outcome": {
+        "status": "RAW_AND_SOURCE_RECOVERY_VALIDATED"
+      },
+      "same_validation_reuse_success_or_failure_before_after": true,
+      "S1_recovery_exception_not_the_cause": true,
+      "no_DOCX_exported": true,
+      "no_replacement_attempt": true,
+      "new_provider_calls_for_diagnosis": 0
+    },
+    {
+      "trial": "cesano-08",
+      "document": "cesano",
+      "cause": "GLOBAL_MODEL_INVALID_JSON_OR_SCHEMA",
+      "finish_reason": "stop",
+      "global_error": "GenerationError",
+      "narrator_error": null,
+      "pipeline_before_and_after_outcome": {
+        "status": "REJECTED",
+        "exception": "JSONDecodeError",
+        "message": "Expecting ',' delimiter: line 2 column 1 (char 24317)"
+      },
+      "same_validation_reuse_success_or_failure_before_after": true,
+      "S1_recovery_exception_not_the_cause": true,
+      "no_DOCX_exported": true,
+      "no_replacement_attempt": true,
+      "new_provider_calls_for_diagnosis": 0
+    },
+    {
+      "trial": "minervino-09",
+      "document": "minervino",
+      "cause": "NARRATOR_GenerationTruncatedError",
+      "finish_reason": "stop",
+      "global_error": null,
+      "narrator_error": "GenerationTruncatedError",
+      "pipeline_before_and_after_outcome": {
+        "status": "RAW_AND_SOURCE_RECOVERY_VALIDATED"
+      },
+      "same_validation_reuse_success_or_failure_before_after": true,
+      "S1_recovery_exception_not_the_cause": true,
+      "no_DOCX_exported": true,
+      "no_replacement_attempt": true,
+      "new_provider_calls_for_diagnosis": 0
+    },
+    {
+      "trial": "minervino-10",
+      "document": "minervino",
+      "cause": "NARRATOR_GenerationTruncatedError",
+      "finish_reason": "stop",
+      "global_error": null,
+      "narrator_error": "GenerationTruncatedError",
+      "pipeline_before_and_after_outcome": {
+        "status": "RAW_AND_SOURCE_RECOVERY_VALIDATED"
+      },
+      "same_validation_reuse_success_or_failure_before_after": true,
+      "S1_recovery_exception_not_the_cause": true,
+      "no_DOCX_exported": true,
+      "no_replacement_attempt": true,
+      "new_provider_calls_for_diagnosis": 0
+    }
+  ]
+}

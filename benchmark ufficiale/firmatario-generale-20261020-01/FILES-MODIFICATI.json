@@ -1,0 +1,23 @@
+{
+  "modified_existing_this_phase": [
+    "backend/app/compilation_source_reuse.py",
+    "backend/app/compilation_global_sessions.py",
+    "STATUS.md",
+    "relazioni.md"
+  ],
+  "new_repository_files": [
+    "backend/app/compilation_signatory_form.py",
+    "backend/tests/test_compilation_signatory_layouts.py",
+    "backend/tests/test_compilation_signatory_session.py",
+    "backend/tests/fixtures/signatory-layouts-v1/cases.json",
+    "backend/tests/fixtures/signatory-layouts-v1/README.md",
+    "docs/firmatario-generale-2026-10-20.md",
+    "docs/benchmarks/2026-10-20-signatory-checks.json"
+  ],
+  "generated_public_directory": "benchmark ufficiale/firmatario-generale-20261020-01",
+  "raw_audit_directory": "backend/data/compilation-audit/firmatario-generale-20261020-01",
+  "existing_working_tree_preserved": true,
+  "no_commit_push": true,
+  "additional_generated_public_directory": "benchmark ufficiale/firmatario-generale-20261020-02",
+  "additional_raw_audit_directory": "backend/data/compilation-audit/firmatario-generale-20261020-02"
+}

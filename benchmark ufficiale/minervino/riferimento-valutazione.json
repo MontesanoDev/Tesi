@@ -1,0 +1,1103 @@
+{
+  "version": 1,
+  "created_before_first_LLM_call": true,
+  "reference_kind": "Frozen GOLD plus SOURCE assessment",
+  "SOURCE_available_occurrences": [
+    {
+      "candidate_id": "p12.s0",
+      "label": "Firmatario: nome",
+      "value": "Leonardo Montemurro",
+      "subject": "see GOLD subject",
+      "property": "Firmatario: nome",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s1",
+      "label": "Nascita: comune",
+      "value": "Lecce",
+      "subject": "see GOLD subject",
+      "property": "Nascita: comune",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s2",
+      "label": "Nascita: provincia",
+      "value": "LE",
+      "subject": "see GOLD subject",
+      "property": "Nascita: provincia",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p12.s3",
+      "label": "Nascita: data",
+      "value": "14/11/1982",
+      "subject": "see GOLD subject",
+      "property": "Nascita: data",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p13.s0",
+      "label": "Residenza: comune",
+      "value": "Bari",
+      "subject": "see GOLD subject",
+      "property": "Residenza: comune",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p13.s1",
+      "label": "Residenza: provincia",
+      "value": "BA",
+      "subject": "see GOLD subject",
+      "property": "Residenza: provincia",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p13.s2",
+      "label": "Residenza: indirizzo",
+      "value": "Amedeo 24",
+      "subject": "see GOLD subject",
+      "property": "Residenza: indirizzo",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p13.s3",
+      "label": "CF firmatario",
+      "value": "MNTLRD82S14E506X",
+      "subject": "see GOLD subject",
+      "property": "CF firmatario",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p14.s0",
+      "label": "Carica firmatario",
+      "value": "rappresentante legale",
+      "subject": "see GOLD subject",
+      "property": "Carica firmatario",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p14.s1",
+      "label": "Operatore economico",
+      "value": "Mapi Ingegneria S.r.l.",
+      "subject": "see GOLD subject",
+      "property": "Operatore economico",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p15.s0",
+      "label": "Comune sede",
+      "value": "Bari",
+      "subject": "see GOLD subject",
+      "property": "Comune sede",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p15.s1",
+      "label": "Provincia sede",
+      "value": "BA",
+      "subject": "see GOLD subject",
+      "property": "Provincia sede",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p15.s2",
+      "label": "Telefono",
+      "value": "+39 080 000 2040",
+      "subject": "see GOLD subject",
+      "property": "Telefono",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p15.s3",
+      "label": "Fax",
+      "value": "+39 080 000 2041",
+      "subject": "see GOLD subject",
+      "property": "Fax",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p16.s0",
+      "label": "Email",
+      "value": "segreteria@mapi-ingegneria.demo",
+      "subject": "see GOLD subject",
+      "property": "Email",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p16.s1",
+      "label": "PEC",
+      "value": "mapi.ingegneria@pec.demo",
+      "subject": "see GOLD subject",
+      "property": "PEC",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p16.s2",
+      "label": "PIVA",
+      "value": "IT01234567890",
+      "subject": "see GOLD subject",
+      "property": "PIVA",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p17.s0",
+      "label": "CCIAA",
+      "value": "Bari",
+      "subject": "see GOLD subject",
+      "property": "CCIAA",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p17.s1",
+      "label": "Registro Imprese",
+      "value": "01234560981",
+      "subject": "see GOLD subject",
+      "property": "Registro Imprese",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p40.s0",
+      "label": "Denominazione",
+      "value": "Mapi Ingegneria S.r.l.",
+      "subject": "see GOLD subject",
+      "property": "Denominazione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p41.s0",
+      "label": "PIVA società",
+      "value": "IT01234567890",
+      "subject": "see GOLD subject",
+      "property": "PIVA società",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p41.s1",
+      "label": "Comune sede società",
+      "value": "Bari",
+      "subject": "see GOLD subject",
+      "property": "Comune sede società",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p42.s0",
+      "label": "Provincia sede società",
+      "value": "BA",
+      "subject": "see GOLD subject",
+      "property": "Provincia sede società",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p42.s1",
+      "label": "Via società",
+      "value": "Via Giovanni Amendola",
+      "subject": "see GOLD subject",
+      "property": "Via società",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p42.s2",
+      "label": "Civico società",
+      "value": "172/C",
+      "subject": "see GOLD subject",
+      "property": "Civico società",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p42.s3",
+      "label": "Telefono società",
+      "value": "+39 080 000 2040",
+      "subject": "see GOLD subject",
+      "property": "Telefono società",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p42.s4",
+      "label": "Email società",
+      "value": "segreteria@mapi-ingegneria.demo",
+      "subject": "see GOLD subject",
+      "property": "Email società",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p42.s5",
+      "label": "PEC società",
+      "value": "mapi.ingegneria@pec.demo",
+      "subject": "see GOLD subject",
+      "property": "PEC società",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p43.s0",
+      "label": "Socio Luca Ferri: Nome",
+      "value": "Ing. Luca Ferri",
+      "subject": "see GOLD subject",
+      "property": "Socio Luca Ferri: Nome",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p43.s1",
+      "label": "Socio Luca Ferri: Qualifica",
+      "value": "Ingegnere",
+      "subject": "see GOLD subject",
+      "property": "Socio Luca Ferri: Qualifica",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p43.s2",
+      "label": "Socio Luca Ferri: CF",
+      "value": "FRRLCU80A01A662K",
+      "subject": "see GOLD subject",
+      "property": "Socio Luca Ferri: CF",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p43.s3",
+      "label": "Socio Luca Ferri: Ordine",
+      "value": "Ordine degli Ingegneri di Bari",
+      "subject": "see GOLD subject",
+      "property": "Socio Luca Ferri: Ordine",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p43.s4",
+      "label": "Socio Luca Ferri: Sezione",
+      "value": "A",
+      "subject": "see GOLD subject",
+      "property": "Socio Luca Ferri: Sezione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p44.s0",
+      "label": "Socio Luca Ferri: Provincia",
+      "value": "Bari",
+      "subject": "see GOLD subject",
+      "property": "Socio Luca Ferri: Provincia",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p44.s1",
+      "label": "Socio Luca Ferri: Data iscrizione",
+      "value": "21/03/2012",
+      "subject": "see GOLD subject",
+      "property": "Socio Luca Ferri: Data iscrizione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p44.s2",
+      "label": "Socio Luca Ferri: Numero iscrizione",
+      "value": "7294",
+      "subject": "see GOLD subject",
+      "property": "Socio Luca Ferri: Numero iscrizione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p45.s0",
+      "label": "Socio Elisa Romano: Nome",
+      "value": "Ing. Elisa Romano",
+      "subject": "see GOLD subject",
+      "property": "Socio Elisa Romano: Nome",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p45.s1",
+      "label": "Socio Elisa Romano: Qualifica",
+      "value": "Ingegnere",
+      "subject": "see GOLD subject",
+      "property": "Socio Elisa Romano: Qualifica",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p45.s2",
+      "label": "Socio Elisa Romano: CF",
+      "value": "RMNLSI85C47A662Y",
+      "subject": "see GOLD subject",
+      "property": "Socio Elisa Romano: CF",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p45.s3",
+      "label": "Socio Elisa Romano: Ordine",
+      "value": "Ordine degli Ingegneri di Bari",
+      "subject": "see GOLD subject",
+      "property": "Socio Elisa Romano: Ordine",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p45.s4",
+      "label": "Socio Elisa Romano: Sezione",
+      "value": "A",
+      "subject": "see GOLD subject",
+      "property": "Socio Elisa Romano: Sezione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p46.s0",
+      "label": "Socio Elisa Romano: Provincia",
+      "value": "Bari",
+      "subject": "see GOLD subject",
+      "property": "Socio Elisa Romano: Provincia",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p46.s1",
+      "label": "Socio Elisa Romano: Data iscrizione",
+      "value": "18/05/2015",
+      "subject": "see GOLD subject",
+      "property": "Socio Elisa Romano: Data iscrizione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p46.s2",
+      "label": "Socio Elisa Romano: Numero iscrizione",
+      "value": "8421",
+      "subject": "see GOLD subject",
+      "property": "Socio Elisa Romano: Numero iscrizione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p47.s0",
+      "label": "Socio Andrea Greco: Nome",
+      "value": "Arch. Andrea Greco",
+      "subject": "see GOLD subject",
+      "property": "Socio Andrea Greco: Nome",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p48.s0",
+      "label": "Socio Andrea Greco: Qualifica",
+      "value": "Architetto",
+      "subject": "see GOLD subject",
+      "property": "Socio Andrea Greco: Qualifica",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p48.s1",
+      "label": "Socio Andrea Greco: CF",
+      "value": "GRCNDR84D20A662P",
+      "subject": "see GOLD subject",
+      "property": "Socio Andrea Greco: CF",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p49.s0",
+      "label": "Socio Andrea Greco: Ordine",
+      "value": "Ordine degli Architetti di Bari",
+      "subject": "see GOLD subject",
+      "property": "Socio Andrea Greco: Ordine",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p49.s1",
+      "label": "Socio Andrea Greco: Sezione",
+      "value": "A",
+      "subject": "see GOLD subject",
+      "property": "Socio Andrea Greco: Sezione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p49.s2",
+      "label": "Socio Andrea Greco: Provincia",
+      "value": "Bari",
+      "subject": "see GOLD subject",
+      "property": "Socio Andrea Greco: Provincia",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p49.s3",
+      "label": "Socio Andrea Greco: Data iscrizione",
+      "value": "12/06/2014",
+      "subject": "see GOLD subject",
+      "property": "Socio Andrea Greco: Data iscrizione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p49.s4",
+      "label": "Socio Andrea Greco: Numero iscrizione",
+      "value": "5267",
+      "subject": "see GOLD subject",
+      "property": "Socio Andrea Greco: Numero iscrizione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p51.s0",
+      "label": "Direttore tecnico Elisa Romano: Nome",
+      "value": "Ing. Elisa Romano",
+      "subject": "see GOLD subject",
+      "property": "Direttore tecnico Elisa Romano: Nome",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p52.s0",
+      "label": "Direttore tecnico Elisa Romano: Qualifica",
+      "value": "Ingegnere",
+      "subject": "see GOLD subject",
+      "property": "Direttore tecnico Elisa Romano: Qualifica",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p52.s1",
+      "label": "Direttore tecnico Elisa Romano: CF",
+      "value": "RMNLSI85C47A662Y",
+      "subject": "see GOLD subject",
+      "property": "Direttore tecnico Elisa Romano: CF",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p53.s0",
+      "label": "Direttore tecnico Elisa Romano: Ordine",
+      "value": "Ordine degli Ingegneri di Bari",
+      "subject": "see GOLD subject",
+      "property": "Direttore tecnico Elisa Romano: Ordine",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p53.s1",
+      "label": "Direttore tecnico Elisa Romano: Sezione",
+      "value": "A",
+      "subject": "see GOLD subject",
+      "property": "Direttore tecnico Elisa Romano: Sezione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p53.s2",
+      "label": "Direttore tecnico Elisa Romano: Provincia",
+      "value": "Bari",
+      "subject": "see GOLD subject",
+      "property": "Direttore tecnico Elisa Romano: Provincia",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p53.s3",
+      "label": "Direttore tecnico Elisa Romano: Data iscrizione",
+      "value": "18/05/2015",
+      "subject": "see GOLD subject",
+      "property": "Direttore tecnico Elisa Romano: Data iscrizione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    },
+    {
+      "candidate_id": "p53.s4",
+      "label": "Direttore tecnico Elisa Romano: Numero iscrizione",
+      "value": "8421",
+      "subject": "see GOLD subject",
+      "property": "Direttore tecnico Elisa Romano: Numero iscrizione",
+      "SOURCE_chunks": [
+        -30,
+        -43,
+        -44,
+        -52,
+        -53,
+        -54,
+        -55
+      ],
+      "state": "AVAILABLE_SOURCE",
+      "applicability": "TRUE_IN_SCENARIO"
+    }
+  ],
+  "SOURCE_available_occurrence_count": 60,
+  "USER_authorized_controls": {
+    "p39.cb0": true
+  },
+  "known_unresolved_active_fields": [
+    "p229.s0",
+    "p230.s0",
+    "p232.s0",
+    "p242.s0"
+  ],
+  "variable_cardinality_records": "Service-history/other-subject rows are not counted as mandatory facts merely because blank rows exist",
+  "unlisted_candidates": "Review against FORM and SOURCE individually; not automatically wrong or required",
+  "permitted_equivalence": "Case, spaces, professional title prefix and equivalent dates; fuller literal SOURCE values accepted only if property/subject/granularity correct",
+  "protected": "No signatures, no attestations/preferences/designations without scenario decision; inactive branches remain blank",
+  "company_snapshot_date": "2026-10-15",
+  "historical_procedure_eligibility_not_certified": true
+}

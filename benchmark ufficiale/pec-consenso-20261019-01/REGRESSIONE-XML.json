@@ -1,0 +1,15 @@
+{
+  "PASS": true,
+  "nine_replays": 9,
+  "eight_other_DOCX_identical": true,
+  "Trapani_parts_changed": [
+    "word/document.xml"
+  ],
+  "Trapani_only_paragraph_changed_in_draft": 108,
+  "original_form_paragraph": 107,
+  "declaration_restored_byte_identical_to_original": true,
+  "all_other_paragraphs_identical_to_previous_draft": true,
+  "styles_headers_footers_other_parts_original": true,
+  "XML_CRC": true,
+  "no_checkbox_or_signature_change": true
+}

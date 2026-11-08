@@ -1,0 +1,17 @@
+[
+  {
+    "case": "trapani-first",
+    "audit_and_DOCX_identical": true,
+    "output": "{\"real_Trapani_audit_DOCX_exactly_reproduced\": true, \"texts\": 17, \"network_forbidden\": true, \"database_not_used\": true}"
+  },
+  {
+    "case": "trapani-final",
+    "audit_and_DOCX_identical": true,
+    "output": "{\"real_Trapani_audit_DOCX_exactly_reproduced\": true, \"texts\": 17, \"network_forbidden\": true, \"database_not_used\": true}"
+  },
+  {
+    "case": "craa-latest",
+    "audit_and_DOCX_identical": true,
+    "output": "{\"real_CRAA_audit_DOCX_exactly_reproduced\": true, \"texts\": 7, \"network_forbidden\": true, \"database_not_used\": true}"
+  }
+]

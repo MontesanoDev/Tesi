@@ -1,0 +1,620 @@
+[
+  {
+    "trial": "minervino/B0/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 7,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "minervino/E1/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "minervino/E2-A/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 4,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "trapani/E1/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [
+      {
+        "candidate_id": "p12.s0",
+        "automatic_scope_links": [
+          "s0_c_firmatario"
+        ]
+      },
+      {
+        "candidate_id": "p12.s1",
+        "automatic_scope_links": [
+          "s0_c_firmatario"
+        ]
+      },
+      {
+        "candidate_id": "p12.s2",
+        "automatic_scope_links": [
+          "s0_c_firmatario"
+        ]
+      },
+      {
+        "candidate_id": "p12.s3",
+        "automatic_scope_links": [
+          "s0_c_firmatario"
+        ]
+      },
+      {
+        "candidate_id": "p12.s4",
+        "automatic_scope_links": [
+          "s0_c_firmatario"
+        ]
+      },
+      {
+        "candidate_id": "p12.s5",
+        "automatic_scope_links": [
+          "s0_c_firmatario"
+        ]
+      },
+      {
+        "candidate_id": "p12.s6",
+        "automatic_scope_links": [
+          "s0_c_firmatario"
+        ]
+      },
+      {
+        "candidate_id": "p12.s7",
+        "automatic_scope_links": [
+          "s0_c_firmatario"
+        ]
+      }
+    ],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "trapani/B0/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [
+      {
+        "candidate_id": "t25.r3.c1",
+        "automatic_scope_links": [
+          "s1_c_5d"
+        ]
+      },
+      {
+        "candidate_id": "t41.r1.c0",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t41.r1.c1",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t41.r1.c2",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t41.r1.c3",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t41.r1.c4",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t43.r1.c0",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t43.r1.c1",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t43.r1.c2",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t43.r1.c3",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t43.r1.c4",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t44.r1.c3",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      }
+    ],
+    "literal_duplicate_grounded_fact_records": 3,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "catanzaro/B0/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "catanzaro/E1/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "bella/B0/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "bella/E1/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "bella/E2-A/rep-1",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "catanzaro/E1/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [
+      {
+        "candidate_id": "t41.r1.c0",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t41.r1.c1",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t41.r1.c2",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t41.r1.c3",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t41.r1.c4",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t43.r1.c0",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t43.r1.c1",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t43.r1.c2",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t43.r1.c3",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t43.r1.c4",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      },
+      {
+        "candidate_id": "t44.r1.c3",
+        "automatic_scope_links": [
+          "s2_c_parte_terza"
+        ]
+      }
+    ],
+    "literal_duplicate_grounded_fact_records": 2,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "catanzaro/B0/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "minervino/E2-A/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [
+      {
+        "candidate_id": "p14.s0",
+        "automatic_scope_links": [
+          "s0_c_partecipazione"
+        ]
+      }
+    ],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "minervino/B0/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 6,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "minervino/E1/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "bella/B0/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "bella/E1/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "bella/E2-A/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "trapani/E1/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [
+      {
+        "candidate_id": "p75.s0",
+        "automatic_scope_links": [
+          "s1_c_soc_ing"
+        ]
+      },
+      {
+        "candidate_id": "p75.s1",
+        "automatic_scope_links": [
+          "s1_c_soc_ing"
+        ]
+      },
+      {
+        "candidate_id": "p75.s2",
+        "automatic_scope_links": [
+          "s1_c_soc_ing"
+        ]
+      },
+      {
+        "candidate_id": "p75.s3",
+        "automatic_scope_links": [
+          "s1_c_soc_ing"
+        ]
+      },
+      {
+        "candidate_id": "p75.s4",
+        "automatic_scope_links": [
+          "s1_c_soc_ing"
+        ]
+      },
+      {
+        "candidate_id": "p75.s5",
+        "automatic_scope_links": [
+          "s1_c_soc_ing"
+        ]
+      },
+      {
+        "candidate_id": "p75.s6",
+        "automatic_scope_links": [
+          "s1_c_soc_ing"
+        ]
+      },
+      {
+        "candidate_id": "p75.s7",
+        "automatic_scope_links": [
+          "s1_c_soc_ing"
+        ]
+      },
+      {
+        "candidate_id": "p75.s8",
+        "automatic_scope_links": [
+          "s1_c_soc_ing"
+        ]
+      }
+    ],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "trapani/B0/rep-2",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "trapani/E2-A/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "trapani/B0/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "trapani/E1/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "catanzaro/B0/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "catanzaro/E1/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "catanzaro/E2-A/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 6,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "minervino/E1/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "minervino/E2-A/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [
+      {
+        "candidate_id": "p14.s0",
+        "automatic_scope_links": [
+          "s0_c_operatore"
+        ]
+      }
+    ],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "minervino/B0/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "bella/E2-A/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": true,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "bella/B0/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  },
+  {
+    "trial": "bella/E1/rep-3",
+    "model_internal_ID_collisions": 0,
+    "nonoverlapping_destination_partition": false,
+    "mechanical_merge_succeeded": true,
+    "local_to_merged_grounding_losses": [],
+    "scope_links_not_explicitly_repeated_in_assignment": [],
+    "literal_duplicate_grounded_fact_records": 0,
+    "no_semantic_contradiction_absence_claim": true
+  }
+]

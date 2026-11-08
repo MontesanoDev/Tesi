@@ -184,7 +184,9 @@ def test_cli_requires_exactly_one_input_mode(tmp_path):
         runner.arguments(common + ["--fixture", str(FIXTURE), "--project", "p"])
 
 
-def test_fixture_runner_never_reads_local_corpus_or_sends_gold(material, tmp_path, monkeypatch):
+@pytest.mark.parametrize("view", ["full", "compact-v1", "compact-index-v2"])
+def test_fixture_runner_never_reads_local_corpus_or_sends_gold(
+        material, tmp_path, monkeypatch, view):
     """Simulated software test: no API call and no model-quality claim."""
     raw = json.dumps({"version": 12, "fields": {}, "facts": {}, "conditions": {}, "bindings": {},
                       "choice_groups": {}, "coverage": []})
@@ -206,12 +208,50 @@ def test_fixture_runner_never_reads_local_corpus_or_sends_gold(material, tmp_pat
     output = tmp_path / "audit"
     before = hashlib.sha256(material["path"].read_bytes()).hexdigest()
     assert runner.run(runner.arguments([
-        "--fixture", str(FIXTURE), "--profile-project", "unused", "--output", str(output)]))
+        "--fixture", str(FIXTURE), "--profile-project", "unused", "--output", str(output),
+        "--form-view", view]))
     assert len(captured) == 1
     sent = json.loads(captured[0]["messages"][1]["content"])
-    assert len(sent["form"]["candidates"]) == 55
+    if view in {"full", "compact-index-v2"}:
+        assert len(sent["form"]["candidates"]) == 55
+    else:
+        assert sum(len(g["fields"]) for g in sent["form"]["contexts"].values()) == 55
+        assert json.loads((output / "form-view-validation.json").read_text())[
+            "candidate_semantics_exact"]
     assert "expected_state" not in json.dumps(sent)
     assert "annotation_origin" not in json.dumps(sent)
     assert (output / "fixture/gold.json").is_file()
     assert json.loads((output / "fixture-score.json").read_text())["omitted"] == 55
     assert hashlib.sha256(material["path"].read_bytes()).hexdigest() == before
+
+
+@pytest.mark.parametrize("mismatch", [False, True])
+@pytest.mark.parametrize("view", ["compact-v1", "compact-index-v2"])
+def test_prepare_only_and_reference_guard_never_contact_provider(
+        material, tmp_path, monkeypatch, mismatch, view):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Prepare-only/reference mismatch must never contact provider")
+
+    monkeypatch.setattr(runner, "request_model_content", forbidden)
+    monkeypatch.setattr(runner, "resolve_project_settings", lambda _: SimpleNamespace(
+        provider="deepseek", configured=True, model="simulated-software-test",
+        api_key="software-test-key", context_window=32768))
+    layout = inspect_docx(material["path"].read_bytes())
+    canonical = build_global_input(layout, material["manifest"]["project_id"], material["sources"])
+    if mismatch:
+        canonical["sources"][0]["content"] += " changed"
+    reference = tmp_path / "reference.json"
+    reference.write_text(json.dumps(canonical))
+    output = tmp_path / "audit"
+    args = runner.arguments([
+        "--fixture", str(FIXTURE), "--profile-project", "unused", "--output", str(output),
+        "--form-view", view, "--prepare-only", "--reference-input", str(reference)])
+    if mismatch:
+        with pytest.raises(ValueError, match="frozen reference"):
+            runner.run(args)
+    else:
+        assert runner.run(args)
+        metrics = json.loads((output / "metrics.json").read_text())
+        assert metrics["state"] == "prepared"
+        assert metrics["http_calls"] == metrics["semantic_calls"] == 0
+        assert metrics["reference_input_equal"]

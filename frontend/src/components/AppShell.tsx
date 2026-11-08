@@ -4,6 +4,7 @@ import {
   Folder,
   PanelLeft,
   Settings,
+  UserRound,
   X,
 } from 'lucide-react'
 import { useState, type ReactNode } from 'react'
@@ -66,8 +67,8 @@ export function AppShell({
         >
           <Settings size={18} />
         </NavLink>
-        <div className="profile-avatar" aria-label="Profilo Mapi Ingegneria">
-          M
+        <div className="profile-avatar" aria-label="Profilo utente">
+          <UserRound size={16} aria-hidden="true" />
         </div>
       </aside>
 
@@ -93,7 +94,7 @@ export function AppShell({
                 <PanelLeft size={18} />
               </button>
               <div>
-                <strong>Mapi RAG</strong>
+                <strong>Assistente documentale</strong>
                 <span>Area di progetto</span>
               </div>
               <button
@@ -115,7 +116,7 @@ export function AppShell({
               <Database size={18} />
               <span>
                 <strong>Dati aziendali</strong>
-                <small>Mapi Ingegneria</small>
+                <small>Documenti condivisi</small>
               </span>
               <em>Globale</em>
             </Link>
@@ -134,9 +135,9 @@ export function AppShell({
               <Settings size={18} /> Impostazioni
             </NavLink>
             <div className="drawer-profile">
-              <span>M</span>
+              <span><UserRound size={18} aria-hidden="true" /></span>
               <div>
-                <strong>Mapi Ingegneria</strong>
+                <strong>Utente</strong>
                 <small>Area di lavoro tesi</small>
               </div>
             </div>

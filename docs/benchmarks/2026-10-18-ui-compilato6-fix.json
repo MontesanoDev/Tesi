@@ -1,0 +1,296 @@
+{
+  "date": "2026-10-18",
+  "scope": "Targeted compiled6 fixes, preserved B0; one real global prompt probe, offline post-USER replays",
+  "baseline_compiled6": {
+    "source_proposed": 26,
+    "source_grounded": 24,
+    "source_reviewed": 24,
+    "source_written": 24,
+    "user_written": 1,
+    "written": 25,
+    "non_grounded": 2,
+    "grounded_still_unknown": 0,
+    "source_target_gaps": 35
+  },
+  "baseline_b0_manual": {
+    "source_proposed": 50,
+    "source_grounded": 47,
+    "source_reviewed": 47,
+    "source_written": 47,
+    "user_written": 1,
+    "written": 48,
+    "non_grounded": 3,
+    "grounded_still_unknown": 0,
+    "source_target_gaps": 12
+  },
+  "after": {
+    "compiled6-final": {
+      "proposed_source": 34,
+      "grounded_source": 32,
+      "source_reuse": 8,
+      "reviewed_source": 32,
+      "source_written": 32,
+      "user_written": 1,
+      "total_written": 33,
+      "soci_written": 0,
+      "non_grounded_proposals": 2,
+      "source_proposals_not_reviewed": 0,
+      "grounded_still_unknown": 0,
+      "source_target_gaps": 27,
+      "written_values_not_matching_gold": 1,
+      "errors": [
+        {
+          "candidate_id": "p14.s0",
+          "label": "Carica firmatario",
+          "value": "amministratore unico e rappresentante legale",
+          "expected": "rappresentante legale",
+          "written": true,
+          "conforms": false
+        }
+      ],
+      "not_accuracy_of_entire_kb": true,
+      "checkboxes_written": 0,
+      "all_physical_values_equal_report": true,
+      "only_document_xml_changed": true,
+      "docx_sha256": "9c9eaf7a9c36d032d650ec98de998635565151a7d88e8feecbf92a47cf00b991",
+      "rejections": [
+        {
+          "candidate_id": "p15.s0",
+          "errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ]
+        },
+        {
+          "candidate_id": "p15.s1",
+          "errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ]
+        }
+      ]
+    },
+    "b0-existing-final": {
+      "proposed_source": 58,
+      "grounded_source": 55,
+      "source_reuse": 8,
+      "reviewed_source": 55,
+      "source_written": 55,
+      "user_written": 1,
+      "total_written": 56,
+      "soci_written": 23,
+      "non_grounded_proposals": 3,
+      "source_proposals_not_reviewed": 0,
+      "grounded_still_unknown": 0,
+      "source_target_gaps": 4,
+      "written_values_not_matching_gold": 1,
+      "errors": [
+        {
+          "candidate_id": "p14.s0",
+          "label": "Carica firmatario",
+          "value": "amministratore unico e rappresentante legale",
+          "expected": "rappresentante legale",
+          "written": true,
+          "conforms": false
+        }
+      ],
+      "not_accuracy_of_entire_kb": true,
+      "checkboxes_written": 0,
+      "all_physical_values_equal_report": true,
+      "only_document_xml_changed": true,
+      "docx_sha256": "1942641b4ac464a79e52511d60cdd83691ca13332b4bd1257de443eac3a8457d",
+      "rejections": [
+        {
+          "candidate_id": "p41.s1",
+          "errors": [
+            "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+          ]
+        },
+        {
+          "candidate_id": "p46.s0",
+          "errors": [
+            "Fatto SOURCE assente o rifiutato",
+            "Binding senza fatto SOURCE grounded"
+          ]
+        },
+        {
+          "candidate_id": "p53.s2",
+          "errors": [
+            "Fatto SOURCE assente o rifiutato",
+            "Binding senza fatto SOURCE grounded"
+          ]
+        }
+      ]
+    },
+    "prompt-final": {
+      "proposed_source": 59,
+      "grounded_source": 53,
+      "source_reuse": 8,
+      "reviewed_source": 40,
+      "source_written": 40,
+      "user_written": 1,
+      "total_written": 41,
+      "soci_written": 16,
+      "non_grounded_proposals": 6,
+      "source_proposals_not_reviewed": 13,
+      "grounded_still_unknown": 0,
+      "source_target_gaps": 19,
+      "written_values_not_matching_gold": 1,
+      "errors": [
+        {
+          "candidate_id": "p14.s0",
+          "label": "Carica firmatario",
+          "value": "amministratore unico e rappresentante legale",
+          "expected": "rappresentante legale",
+          "written": true,
+          "conforms": false
+        }
+      ],
+      "not_accuracy_of_entire_kb": true,
+      "checkboxes_written": 0,
+      "all_physical_values_equal_report": true,
+      "only_document_xml_changed": true,
+      "docx_sha256": "19ca869a25dac863f42ec7351274403334d0794a798fa5e3458a9a0a8d58bd15",
+      "rejections": [
+        {
+          "candidate_id": "p15.s0",
+          "errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ]
+        },
+        {
+          "candidate_id": "p15.s1",
+          "errors": [
+            "Il solo marker non documenta la richiesta del campo"
+          ]
+        },
+        {
+          "candidate_id": "p41.s1",
+          "errors": [
+            "Il FORM richiede un Comune/località: l'indirizzo completo non è compatibile con questo campo"
+          ]
+        },
+        {
+          "candidate_id": "p53.s1",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s2",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        },
+        {
+          "candidate_id": "p53.s3",
+          "errors": [
+            "SOURCE non attribuisce esplicitamente ruolo e soggetto nello stesso chunk del valore"
+          ]
+        }
+      ]
+    }
+  },
+  "real_global_probe": {
+    "seconds": 136.70317445299588,
+    "http_calls": 1,
+    "usage": {
+      "prompt_tokens": 76408,
+      "completion_tokens": 37735,
+      "total_tokens": 114143,
+      "prompt_tokens_details": {
+        "cached_tokens": 1536
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 24441
+      },
+      "prompt_cache_hit_tokens": 1536,
+      "prompt_cache_miss_tokens": 74872
+    },
+    "model": "deepseek-flash"
+  },
+  "probe_narration_and_replays": "Simulated narrator transport; actual persistence, guards and writer; B0 previous manual review retained",
+  "new_user_decisions": 0,
+  "new_llm_calls_for_source_reuse": 0,
+  "real_global_provider_calls": 1,
+  "gold_unchanged": true,
+  "observed_new_factual_false_positives": 0,
+  "strict_gold_discrepancy": {
+    "candidate_id": "p14.s0",
+    "value": "amministratore unico e rappresentante legale",
+    "expected": "rappresentante legale",
+    "source_supported": true,
+    "scorer_not_modified": true
+  },
+  "remaining": [
+    "initial Bari/BA FORM anchors",
+    "native group absent; no checkbox",
+    "narrator 40 proposal limit",
+    "3 professional links in new sample",
+    "existing writer spacing/pagination"
+  ],
+  "raw_directory": "backend/data/compilation-audit/ui-compilato6-fix-20261017-01",
+  "report": "docs/correzioni-ui-compilato6-2026-10-18.md",
+  "tests": {
+    "full_backend": {
+      "passed": 2459,
+      "seconds": 172.68,
+      "provider_simulated": true
+    },
+    "ruff": "passed",
+    "git_diff_check": "passed",
+    "frontend": "unchanged, not rerun",
+    "initial_targeted_failures": 18,
+    "additional_failing_cases_preserved": [
+      "homonym in another table",
+      "shared identifier across people",
+      "duplicated street type",
+      "different operator",
+      "missing name question",
+      "previous contract guard"
+    ]
+  },
+  "task_complete": true,
+  "document_complete": false,
+  "preservation": {
+    "live_sessions_unchanged": 29,
+    "live_schema_unchanged": true,
+    "original_analysis_files_unchanged": 22,
+    "download_compilato6_unchanged": true,
+    "fixture_and_gold_git_diff_empty": true,
+    "allowed_preexisting_files_changed": [
+      "backend/app/compilation_global_dialogue.py",
+      "backend/app/compilation_global_sessions.py",
+      "backend/app/compilation_global.py",
+      "backend/app/compilation_coverage.py",
+      "backend/tests/test_compilation_global_dialogue.py",
+      "STATUS.md",
+      "relazioni.md"
+    ],
+    "writer_api_routes_database_and_other_preexisting_files_unchanged": true,
+    "head_unchanged": "99ab052",
+    "git_diff_check": "passed"
+  },
+  "current_code_export_guards": [
+    {
+      "copy": "compiled6-final",
+      "source_selected": 32,
+      "user_selected": 1,
+      "current_code_freshness_checks_passed": true,
+      "state_unchanged": true
+    },
+    {
+      "copy": "b0-existing-final",
+      "source_selected": 55,
+      "user_selected": 1,
+      "current_code_freshness_checks_passed": true,
+      "state_unchanged": true
+    },
+    {
+      "copy": "prompt-final",
+      "source_selected": 40,
+      "user_selected": 1,
+      "current_code_freshness_checks_passed": true,
+      "state_unchanged": true
+    }
+  ],
+  "archive": "docs/benchmarks/2026-10-18-ui-compilato6-fix-audit.tar.gz"
+}

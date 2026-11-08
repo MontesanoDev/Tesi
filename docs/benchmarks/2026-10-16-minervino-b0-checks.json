@@ -1,0 +1,12 @@
+{
+  "bundle_sha256_verified": true,
+  "bundle_files_verified": 348,
+  "credential_check": "archive-checks.json in bundle; all known plaintext and encrypted profile secrets checked in memory",
+  "summary_matches_raw": true,
+  "all_267_destinations_per_export_checked": true,
+  "docx_member_sets_equal_original": true,
+  "six_user_export_copies_match_raw": true,
+  "all_outputs_partial": true,
+  "local_links_verified": 14,
+  "scope": "Final offline checks only. No new provider calls or full software suites."
+}

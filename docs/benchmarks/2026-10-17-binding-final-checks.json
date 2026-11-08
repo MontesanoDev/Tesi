@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-17",
+  "protected_files": 11023,
+  "unchanged_protected_files": 11021,
+  "changed_protected_files": [
+    "backend/app/compilation_role_records.py",
+    "backend/app/compilation_global.py"
+  ],
+  "only_authorized_production_changes": true,
+  "before_audits_reproduced_exactly": true,
+  "all_actual_recovered_field_values_equal_original_fact_values": true,
+  "all_new_citations_literal_hashed_and_within_800_characters": true,
+  "all_identity_links_use_shared_order_and_number": true,
+  "facts_and_conditions_unchanged": true,
+  "input_and_response_copies_identical_to_previous_artifacts": true,
+  "conditional_recoveries": 11,
+  "resolved": 0,
+  "writes": 0,
+  "root_index_original_still_schema_rejected": true,
+  "software_tests": {
+    "new_cases": 57,
+    "targeted": {
+      "passed": 274,
+      "seconds": 18.92,
+      "log": "tests-targeted-final-source-scope.txt"
+    },
+    "backend_full": {
+      "passed": 2431,
+      "seconds": 219.46,
+      "log": "tests-backend-full-final.txt"
+    },
+    "ruff_passed": true
+  },
+  "provider_calls": 0,
+  "new_user_inputs": 0,
+  "new_docx_exports": 0,
+  "git_diff_check_passed": true,
+  "commits_or_pushes": 0,
+  "new_frameworks": 0
+}

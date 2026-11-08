@@ -1,0 +1,1967 @@
+{
+  "status": "PASS",
+  "cases": 213,
+  "network_SQLite_forbidden": true,
+  "not_DOCX_export_or_model_quality_test": true,
+  "results": [
+    {
+      "id": "000",
+      "origin": "backend/data/compilation-audit/alternatives-v6-20261011-run2",
+      "version": 6,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "001",
+      "origin": "backend/data/compilation-audit/labirinto-v1-20261011-run2",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "002",
+      "origin": "backend/data/compilation-audit/global-compact-20261010-run6",
+      "version": 4,
+      "status": "REJECTED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "003",
+      "origin": "backend/data/compilation-audit/global-conditions-20261010-run1",
+      "version": 2,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "004",
+      "origin": "backend/data/compilation-audit/context-v3-20261011-run1",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "005",
+      "origin": "backend/data/compilation-audit/alternatives-v6-20261011-run1",
+      "version": 6,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "006",
+      "origin": "backend/data/compilation-audit/subject-binding-v7c-20261011-run3",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "007",
+      "origin": "backend/data/compilation-audit/context-v2-20261011-run3",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "008",
+      "origin": "backend/data/compilation-audit/global-compact-20261010-run4",
+      "version": 3,
+      "status": "REJECTED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "009",
+      "origin": "backend/data/compilation-audit/global-sparse-20261011-run3",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "010",
+      "origin": "backend/data/compilation-audit/global-sparse-20261011-run1",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "011",
+      "origin": "backend/data/compilation-audit/alternatives-v6b-20261011-run3",
+      "version": 6,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "012",
+      "origin": "backend/data/compilation-audit/context-v3-20261011-run2",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "013",
+      "origin": "backend/data/compilation-audit/global-conditions-20261010-run2",
+      "version": 2,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "014",
+      "origin": "backend/data/compilation-audit/subject-binding-v7b-20261011-run3",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "015",
+      "origin": "backend/data/compilation-audit/labirinto-v1-20261011-run3",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "016",
+      "origin": "backend/data/compilation-audit/global-sparse-20261011-run4",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "017",
+      "origin": "backend/data/compilation-audit/global-sparse-20261011-run2",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "018",
+      "origin": "backend/data/compilation-audit/global-compact-20261010-run3",
+      "version": 3,
+      "status": "REJECTED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "019",
+      "origin": "backend/data/compilation-audit/b0-docx-verified-20261017-01",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "020",
+      "origin": "backend/data/compilation-audit/alternatives-v6b-20261011-run1",
+      "version": 6,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "021",
+      "origin": "backend/data/compilation-audit/global-compact-20261010-run2",
+      "version": 3,
+      "status": "REJECTED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "022",
+      "origin": "backend/data/compilation-audit/subject-binding-v7-20261011-run3",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "023",
+      "origin": "backend/data/compilation-audit/subject-binding-v7-20261011-run1",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "024",
+      "origin": "backend/data/compilation-audit/context-v2-20261011-run1",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "025",
+      "origin": "backend/data/compilation-audit/minervino-output-2-20261013",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "026",
+      "origin": "backend/data/compilation-audit/subject-binding-v7b-20261011-run1",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "027",
+      "origin": "backend/data/compilation-audit/labirinto-v1-20261011-run1",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "028",
+      "origin": "backend/data/compilation-audit/subject-binding-v7c-20261011-run2",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "029",
+      "origin": "backend/data/compilation-audit/alternatives-v6b-20261011-run2",
+      "version": 6,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "030",
+      "origin": "backend/data/compilation-audit/subject-binding-v7c-20261011-run1",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "031",
+      "origin": "backend/data/compilation-audit/alternatives-v6-20261011-run3",
+      "version": 6,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "032",
+      "origin": "backend/data/compilation-audit/context-v2-20261011-run2",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "033",
+      "origin": "backend/data/compilation-audit/subject-binding-v7b-20261011-run2",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "034",
+      "origin": "backend/data/compilation-audit/subject-binding-v7-20261011-run2",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "035",
+      "origin": "backend/data/compilation-audit/context-v3-20261011-run3",
+      "version": 5,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "036",
+      "origin": "backend/data/compilation-audit/global-compact-20261010-run5",
+      "version": 4,
+      "status": "REJECTED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "037",
+      "origin": "backend/data/compilation-audit/casuali-v12-20261019-01/cesano/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "038",
+      "origin": "backend/data/compilation-audit/casuali-v12-20261019-01/craa/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "039",
+      "origin": "backend/data/compilation-audit/casuali-v12-20261019-01/bella/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "040",
+      "origin": "backend/data/compilation-audit/conversation-review-20261012/labirinto/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "041",
+      "origin": "backend/data/compilation-audit/conversation-review-20261012/catanzaro/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "042",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/input",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "043",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/e2e-catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "044",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/minervino",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "045",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/bella",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "046",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "047",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/pec-trapani-reale",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "048",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/minervino-v12-61",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "049",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/trapani",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "050",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/craa",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "051",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/cesano-reale-8",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "052",
+      "origin": "backend/data/compilation-audit/craa-model-reason-20261020-01/baseline/audit/offline-input/cesano",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "053",
+      "origin": "backend/data/compilation-audit/field-decisions-20261013/baseline-minervino",
+      "version": 11,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "054",
+      "origin": "backend/data/compilation-audit/field-decisions-20261013/baseline-lab",
+      "version": 11,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "055",
+      "origin": "backend/data/compilation-audit/v12-holds-chat-20261019-01/chat/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "056",
+      "origin": "backend/data/compilation-audit/group-confirmations-20261012/replay/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "057",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-02/trapani/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "058",
+      "origin": "backend/data/compilation-audit/minervino-output-20261013/analysis",
+      "version": 11,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "059",
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/e2e-catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "060",
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/minervino",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "061",
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/bella",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "062",
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "063",
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/minervino-v12-61",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "064",
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/trapani",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "065",
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/craa",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "066",
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/cesano-reale-8",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "067",
+      "origin": "backend/data/compilation-audit/tabelle-attribuzione-20261019-01/offline-input/cesano",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "068",
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/trapani-run2",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "069",
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/labirinto-run2",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "070",
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/trapani-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "071",
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/trapani-run3",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "072",
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/labirinto-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "073",
+      "origin": "backend/data/compilation-audit/trapani-form-grounding-20261011/labirinto-run3",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "074",
+      "origin": "backend/data/compilation-audit/conversation-flow-20261013/diagnosis/analysis",
+      "version": 11,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "075",
+      "origin": "backend/data/compilation-audit/v12-review-soci-20261018-01/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "076",
+      "origin": "backend/data/compilation-audit/trapani-granularity-v8-20261011/trapani-run2",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "077",
+      "origin": "backend/data/compilation-audit/trapani-granularity-v8-20261011/trapani-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "078",
+      "origin": "backend/data/compilation-audit/trapani-granularity-v8-20261011/trapani-run3",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "079",
+      "origin": "backend/data/compilation-audit/trapani-granularity-v8-20261011/trapani-no-thinking-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "080",
+      "origin": "backend/data/compilation-audit/trapani-granularity-v8-20261011/labirinto-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "081",
+      "origin": "backend/data/compilation-audit/v12-branches-20261019-01/chat/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "082",
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/reported-data",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "083",
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/ablation",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "084",
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/compact",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "085",
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/baseline",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "086",
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/compact-v8",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "087",
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/thinking-v8",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "088",
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/slot-context",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "089",
+      "origin": "backend/data/compilation-audit/trapani-diagnosis-20261011/compact-v8-clear",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "090",
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/trapani/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "091",
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/e2e-catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "092",
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/minervino",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "093",
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/bella",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "094",
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "095",
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/minervino-v12-61",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "096",
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/trapani",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "097",
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/craa",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "098",
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/cesano-reale-8",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "099",
+      "origin": "backend/data/compilation-audit/pec-consenso-20261019-01/offline-input/cesano",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "100",
+      "origin": "backend/data/compilation-audit/rejected-checkbox-20261013/recorded-failure",
+      "version": 11,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "101",
+      "origin": "backend/data/compilation-audit/trapani-semantic-contract-20261011/trapani-run2",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "102",
+      "origin": "backend/data/compilation-audit/trapani-semantic-contract-20261011/trapani-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "103",
+      "origin": "backend/data/compilation-audit/trapani-semantic-contract-20261011/trapani-run3",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "104",
+      "origin": "backend/data/compilation-audit/trapani-semantic-contract-20261011/trapani-no-thinking-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "105",
+      "origin": "backend/data/compilation-audit/trapani-semantic-contract-20261011/labirinto-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "106",
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/minervino-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "107",
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/trapani-run2",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "108",
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/catanzaro-run2",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "109",
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/trapani-run3",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "110",
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/minervino-run4",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "111",
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/minervino-run2",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "112",
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/catanzaro-run3",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "113",
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/catanzaro-run4",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "114",
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/minervino-run3",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "115",
+      "origin": "backend/data/compilation-audit/tre-bandi-20261011/trapani-run4",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "116",
+      "origin": "backend/data/compilation-audit/ui-compilato6-20261017-01/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "117",
+      "origin": "backend/data/compilation-audit/e1-index-20261017-01/analysis-03",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "118",
+      "origin": "backend/data/compilation-audit/e1-index-20261017-01/analysis-01",
+      "version": 12,
+      "status": "REJECTED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "119",
+      "origin": "backend/data/compilation-audit/b0-minervino-20261016T154354Z/analysis-03",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "120",
+      "origin": "backend/data/compilation-audit/b0-minervino-20261016T154354Z/analysis-02",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "121",
+      "origin": "backend/data/compilation-audit/b0-minervino-20261016T154354Z/analysis-01",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "122",
+      "origin": "backend/data/compilation-audit/minervino-integrazione-20261016T133808Z/analysis",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "123",
+      "origin": "backend/data/compilation-audit/formtext-chiusura-20261019-01/cesano/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "124",
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/catanzaro/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "125",
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/e2e-catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "126",
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/minervino",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "127",
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/bella",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "128",
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "129",
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/minervino-v12-61",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "130",
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/trapani",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "131",
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/craa",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "132",
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/cesano-reale-8",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "133",
+      "origin": "backend/data/compilation-audit/source-attribuzione-20261019-01/offline-input/cesano",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "134",
+      "origin": "backend/data/compilation-audit/trapani-independent-grounding-20261011/trapani-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "135",
+      "origin": "backend/data/compilation-audit/trapani-independent-grounding-20261011/labirinto-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "136",
+      "origin": "backend/data/compilation-audit/ufficiale-v12-20261019-01/trapani/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "137",
+      "origin": "backend/data/compilation-audit/ufficiale-v12-20261019-01/catanzaro/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "138",
+      "origin": "backend/data/compilation-audit/ufficiale-v12-20261019-01/minervino/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "139",
+      "origin": "backend/data/compilation-audit/role-coverage-20261012/minervino-run1",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "140",
+      "origin": "backend/data/compilation-audit/role-coverage-20261012/catanzaro-run2",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "141",
+      "origin": "backend/data/compilation-audit/role-coverage-20261012/catanzaro-run3",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "142",
+      "origin": "backend/data/compilation-audit/role-coverage-20261012/catanzaro-run1",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "143",
+      "origin": "backend/data/compilation-audit/role-coverage-20261012/labirinto-run1",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "144",
+      "origin": "backend/data/compilation-audit/trapani-hypothesis-stage-20261011/trapani-run2",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "145",
+      "origin": "backend/data/compilation-audit/trapani-hypothesis-stage-20261011/trapani-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "146",
+      "origin": "backend/data/compilation-audit/trapani-hypothesis-stage-20261011/trapani-run3",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "147",
+      "origin": "backend/data/compilation-audit/trapani-hypothesis-stage-20261011/trapani-no-thinking-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "148",
+      "origin": "backend/data/compilation-audit/trapani-hypothesis-stage-20261011/labirinto-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "149",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/craa/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "150",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/e2e-catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "151",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/minervino",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "152",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/bella",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "153",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "154",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/pec-trapani-reale",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "155",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/minervino-v12-61",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "156",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/trapani",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "157",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/craa",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "158",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/cesano-reale-8",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "159",
+      "origin": "backend/data/compilation-audit/craa-user-20261020-01/baseline/audit/offline-input/cesano",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "160",
+      "origin": "backend/data/compilation-audit/ui-compilato6-fix-20261017-01/baseline-compiled6",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "161",
+      "origin": "backend/data/compilation-audit/full-conversation-20261012/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "162",
+      "origin": "backend/data/compilation-audit/full-conversation-20261012/labirinto/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "163",
+      "origin": "backend/data/compilation-audit/full-conversation-20261012/labirinto-r2/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "164",
+      "origin": "backend/data/compilation-audit/role-context-20261012/minervino-run1",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "165",
+      "origin": "backend/data/compilation-audit/role-context-20261012/labirinto-run2",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "166",
+      "origin": "backend/data/compilation-audit/role-context-20261012/minervino-run2",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "167",
+      "origin": "backend/data/compilation-audit/role-context-20261012/catanzaro-run1",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "168",
+      "origin": "backend/data/compilation-audit/role-context-20261012/minervino-run3",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "169",
+      "origin": "backend/data/compilation-audit/role-context-20261012/labirinto-run1",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "170",
+      "origin": "backend/data/compilation-audit/role-context-20261012/labirinto-run3",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "171",
+      "origin": "backend/data/compilation-audit/blank-consent-20261012/skip-si/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "172",
+      "origin": "backend/data/compilation-audit/blank-consent-20261012/confirm-si/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "173",
+      "origin": "backend/data/compilation-audit/blank-consent-20261012/current-si/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "174",
+      "origin": "backend/data/compilation-audit/blank-consent-20261012/current-siii/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "175",
+      "origin": "backend/data/compilation-audit/global-main-20261012/labirinto/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "176",
+      "origin": "backend/data/compilation-audit/global-main-20261012/catanzaro/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "177",
+      "origin": "backend/data/compilation-audit/e1-form-20261016-01/analysis-03",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "178",
+      "origin": "backend/data/compilation-audit/e1-form-20261016-01/analysis-02",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "179",
+      "origin": "backend/data/compilation-audit/e1-form-20261016-01/analysis-01",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "180",
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/trapani-run2",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "181",
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/labirinto-run2",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "182",
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/trapani-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "183",
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/trapani-run3",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "184",
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/labirinto-run1",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "185",
+      "origin": "backend/data/compilation-audit/trapani-conditional-v8-20261011/labirinto-run3",
+      "version": 8,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "186",
+      "origin": "backend/data/compilation-audit/v12-narrator-holds-20261019-01/saved-chat/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "187",
+      "origin": "backend/data/compilation-audit/narration-roles-20261012/replay-after/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "188",
+      "origin": "backend/data/compilation-audit/narration-roles-20261012/replay-before/analysis",
+      "version": 10,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "189",
+      "origin": "backend/data/compilation-audit/bando-casuale-20261011/run1",
+      "version": 7,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "190",
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/minervino-run1",
+      "version": 9,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "191",
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/labirinto-run2",
+      "version": 9,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "192",
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/minervino-run2",
+      "version": 9,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "193",
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/catanzaro-run1",
+      "version": 9,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "194",
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/minervino-run3",
+      "version": 9,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "195",
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/labirinto-run1",
+      "version": 9,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "196",
+      "origin": "backend/data/compilation-audit/slot-anchors-20261012/labirinto-run3",
+      "version": 9,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "197",
+      "origin": "backend/data/compilation-audit/ui-v12-e2e-20261018-01/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "198",
+      "origin": "backend/data/compilation-audit/text-coverage-20261013/http-02/analysis",
+      "version": 11,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "199",
+      "origin": "backend/data/compilation-audit/text-coverage-20261013/series-02/http/analysis",
+      "version": 11,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "200",
+      "origin": "backend/data/compilation-audit/checkboxes-20261013/conversation-r2/analysis",
+      "version": 11,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "201",
+      "origin": "backend/data/compilation-audit/checkboxes-20261013/conversation-r1/analysis",
+      "version": 11,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "202",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/trapani/artifacts",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "203",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/e2e-catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "204",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/minervino",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "205",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/bella",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "206",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/catanzaro",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": false,
+      "changed_fields": [
+        "t25.r2.c0",
+        "t44.r1.c0"
+      ],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "207",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/pec-trapani-reale",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "208",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/minervino-v12-61",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "209",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/trapani",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "210",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/craa",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "211",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/cesano-reale-8",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    },
+    {
+      "id": "212",
+      "origin": "backend/data/compilation-audit/firmatario-generale-20261020-01/offline-input/cesano",
+      "version": 12,
+      "status": "VALIDATED",
+      "underlying_result_exact": true,
+      "changed_fields": [],
+      "facts_bindings_exact": true
+    }
+  ]
+}
